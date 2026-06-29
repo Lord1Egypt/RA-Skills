@@ -2,7 +2,7 @@
 name: Bank Compliance Review Assistant
 slug: bank-compliance
 description: AI-powered bank compliance and regulatory review assistant - screen marketing materials, KYC documents, AML alerts, and NFRA/CBIRC compliance checks. Updated for 2025-2026 regulations including 商业银行资本管理办法 (Basel III China 2024), 消费者权益保护规定升级, FATF mutual evaluation 2025, and 反洗钱法修订. Keywords: bank compliance, KYC, AML, regulatory review, NFRA, Basel III, China banking, 合规审查, 合规审核, 监管合规, 反洗钱, KYC尽调, 客户身份识别, 受益人识别, 制裁筛查, 交易监控.
-version: "4.1.0"
+version: "4.1.1"
 triggers:
   - 合规审查
   - 合规审核
@@ -30,6 +30,18 @@ triggers:
 | 政策更新 | 交易账簿资本要求风险敏感性提高，12家上市银行资本占用变化 | 2025-11 | 交易账簿业务合规审查需关注资本占用 |
 
 > **数据截止**: 2026-06-15 | 来源：国家金融监督管理总局、银行业协会、安永分析
+> **声明**: 以上动态供参考，具体以官方最新发布为准
+
+
+### 银行监管最新动态 [2026-06-28更新]
+
+| 动态类型 | 内容摘要 | 发布时间 | 影响范围 |
+|---------|---------|---------|---------|
+| 监管发布 | 金融监管总局发布《关于银行业保险业人工智能安全开发应用的指导意见》，明确资金交易、资产评估、信贷审批等为AI高风险应用场景 | 2026-06-18 | 银行AI应用合规与信贷风控 |
+| 监管计划 | NFRA《2026年规章制定工作计划》新制定《银行业保险业网络安全管理办法》，银行网络安全与数据安全从指导意见升级为刚性规章 | 2026-06-23 | 银行网络安全与数据合规 |
+| 监管施行 | NFRA 2026年第2号令《银行保险机构许可证管理办法》6月1日起施行，银行许可证管理纳入内控自评估 | 2026-06-01 | 银行合规审查与许可证管理 |
+
+> **数据截止**: 2026-06-28 | 来源：国家金融监督管理总局、行业公开信息
 > **声明**: 以上动态供参考，具体以官方最新发布为准
 
 ## Skill Overview

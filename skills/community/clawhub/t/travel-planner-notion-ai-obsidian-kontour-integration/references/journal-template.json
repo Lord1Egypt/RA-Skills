@@ -1,0 +1,50 @@
+{
+  "schema_version": "kontour-journal/v1",
+  "trip": {
+    "title": "Kyoto Slow Notes",
+    "destination": "Kyoto, Japan",
+    "dates": { "start": "2026-04-03", "end": "2026-04-06", "label": "Apr 3-6, 2026" },
+    "travelers": 2,
+    "summary": "A local-first travel journal built around a walkable route spine, reflective chapters, and portable map styling.",
+    "tags": ["kyoto", "spring", "food", "temples"]
+  },
+  "route": [
+    { "id": "kiyomizu", "name": "Kiyomizu-dera", "lat": 34.9949, "lng": 135.7850, "day": 1, "notes": "Begin with the hillside temple and morning light.", "tags": ["temple", "view"] },
+    { "id": "ninenzaka", "name": "Ninenzaka", "lat": 34.9980, "lng": 135.7807, "day": 1, "notes": "Stone lanes, ceramics, and tea stops.", "tags": ["walk", "old-town"] },
+    { "id": "gion", "name": "Gion", "lat": 35.0037, "lng": 135.7750, "day": 1, "notes": "Evening lanterns and dinner nearby.", "tags": ["evening", "food"] }
+  ],
+  "map_style": {
+    "theme": "warm paper",
+    "tokens": {
+      "background": "#f7efe3",
+      "water": "#b8d8d8",
+      "land": "#ead8bd",
+      "route": "#c75b39",
+      "pin": "#2f4858",
+      "label": "#3f352b"
+    }
+  },
+  "media": [
+    { "id": "m001", "path": "media/kiyomizu-morning.jpg", "caption": "Morning view from the stage", "location_id": "kiyomizu", "chapter_id": "day1-hillside-to-lanterns", "assigned_by": "manual" },
+    { "id": "m002", "path": "media/ninenzaka-lanes.jpg", "caption": "Quiet stone lanes before lunch", "location_id": "ninenzaka", "chapter_id": "day1-hillside-to-lanterns", "assigned_by": "manual" }
+  ],
+  "chapters": [
+    {
+      "id": "day1-hillside-to-lanterns",
+      "title": "Hillside Temples to Lantern Streets",
+      "date": "2026-04-03",
+      "location_ids": ["kiyomizu", "ninenzaka", "gion"],
+      "narrative": "Start high above Kyoto, then let the day narrow into lanes, tea, and lantern-lit dinner streets.",
+      "highlights": ["Kiyomizu morning overlook", "Ninenzaka ceramics", "Gion evening walk"],
+      "media_ids": ["m001", "m002"]
+    }
+  ],
+  "export": {
+    "targets": ["markdown", "obsidian", "notion"],
+    "checklist": [
+      "Confirm every media item is assigned or intentionally unassigned",
+      "Keep chapter locations adjacent in route order",
+      "Copy Markdown into Notion or Obsidian after local review"
+    ]
+  }
+}

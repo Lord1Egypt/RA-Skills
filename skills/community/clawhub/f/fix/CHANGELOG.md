@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.3](https://github.com/es6kr/skills/compare/fix-v0.3.2...fix-v0.3.3) (2026-06-25)
+
+
+### Bug Fixes
+
+* **fix:** split Step 2 medium by content type — case history to failed-attempts.md ([c1b4720](https://github.com/es6kr/skills/commit/c1b4720349874311611c1a867a5ce4386df56891))
+* **fix:** split Step 2 medium by content type — case history to failed-attempts.md ([#62](https://github.com/es6kr/skills/issues/62)) ([747b3f9](https://github.com/es6kr/skills/commit/747b3f957ca0fefdbc5044eb08f66b8aafc1e26a))
+
 ## [0.3.2](https://github.com/es6kr/skills/compare/fix-v0.3.1...fix-v0.3.2) (2026-06-19)
 
 

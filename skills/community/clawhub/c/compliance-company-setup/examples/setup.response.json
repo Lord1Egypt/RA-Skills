@@ -1,0 +1,35 @@
+{
+  "recommendation": "Wyoming LLC",
+  "feasibilityScore": 85,
+  "feasibilityStatus": "🟢 方案可行",
+  "reasons": [
+    "年费最低（$52/年），适合月销 4 万美元的 OPC",
+    "无州公司所得税 + 穿透税制，无需双重纳税",
+    "Amazon/Shopify 全兼容",
+    "支持美国商标注册，适合自有品牌"
+  ],
+  "warnings": [
+    "卖到 EU 仍需注册 VAT + CE 合规",
+    "暂未开立美国银行账户，需通过第三方数字银行解决"
+  ],
+  "nextActions": [
+    {
+      "priority": "high",
+      "actionType": "SEARCH_COMPANY_NAME",
+      "description": "查询选定的 Wyoming 公司名称是否可用",
+      "status": "pending"
+    },
+    {
+      "priority": "high",
+      "actionType": "HIRE_REGISTERED_AGENT",
+      "description": "雇佣 Wyoming 注册代理人 (Registered Agent)",
+      "status": "pending"
+    },
+    {
+      "priority": "low",
+      "actionType": "REGISTER_TRADEMARK",
+      "description": "向 USPTO 提交商标申请",
+      "status": "pending"
+    }
+  ]
+}

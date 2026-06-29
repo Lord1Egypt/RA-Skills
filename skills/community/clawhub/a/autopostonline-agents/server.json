@@ -1,0 +1,40 @@
+{
+  "name": "autopostonline-agents",
+  "displayName": "AutoPostOnline Agents",
+  "description": "Autonomous social publishing infrastructure for AI agents. One API key for drafts, scheduling, publishing, media, and analytics through AutoPostOnline.",
+  "homepage": "https://autopostonline.com/agents/",
+  "docs": "https://autopostonline.com/docs/agents/",
+  "repository": "https://github.com/AutoPostOnline/autopostonline-agents",
+  "apiBaseUrl": "https://app.autopostonline.com/api",
+  "mcpEndpoint": "https://app.autopostonline.com/api/mcp",
+  "auth": {
+    "type": "api_key",
+    "headers": [
+      "Authorization: Bearer <api_key>",
+      "Authorization: <api_key>"
+    ]
+  },
+  "environment": {
+    "POSTIZ_API_URL": "https://app.autopostonline.com/api",
+    "POSTIZ_API_KEY": "your_api_key"
+  },
+  "capabilities": [
+    "list_integrations",
+    "create_drafts",
+    "upload_media",
+    "schedule_posts",
+    "publish_posts",
+    "retrieve_analytics",
+    "autonomous_campaign_workflows"
+  ],
+  "pricing": {
+    "plan": "Agent Unlimited",
+    "base": "$9/month",
+    "checkout": "https://buy.stripe.com/cNi7sL5pz0XkalC6nf24002`.",
+    "positioning": "low-cost autonomous publishing infrastructure"
+  },
+  "operatingModes": [
+    "safe_mode",
+    "autonomous_mode"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/VKambulov/research-mode/schemas/adequacy.v1.schema.json",
+  "title": "Research Mode adequacy result v1",
+  "description": "Research adequacy gate result embedded in worker results and task state.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["status"],
+  "properties": {
+    "status": {"type": "string"},
+    "coverage_summary": {"type": ["string", "null"]},
+    "goal_alignment": {"type": ["string", "null"]},
+    "covered_requirements": {"type": "array"},
+    "coverage_gaps": {"type": "array"},
+    "evidence_risks": {"type": "array"},
+    "contradictions": {"type": "array"},
+    "blocking_reasons": {"type": "array"},
+    "validation_evidence": {"type": "array"},
+    "recommended_next_phase": {"type": ["string", "null"]},
+    "recommended_next_angle": {"type": ["string", "null"]},
+    "operator_next_action": {"type": ["string", "null"]}
+  }
+}

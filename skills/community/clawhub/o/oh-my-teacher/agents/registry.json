@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "default_agent": "generic",
+  "contract_path": "references/agent-adapter-contract.md",
+  "inventory_path": "references/agent-inventory.md",
+  "agents": [
+    {
+      "id": "generic",
+      "display_name": "Generic Agent",
+      "adapter_path": "agents/generic.yaml",
+      "optimization_profiles": ["prompt-agent"],
+      "capability_tags": ["unknown"],
+      "source_status": "baseline"
+    },
+    {
+      "id": "codex",
+      "display_name": "Codex",
+      "adapter_path": "agents/codex.yaml",
+      "optimization_profiles": ["scripted-agent", "file-agent", "planner-agent"],
+      "capability_tags": ["file-read", "file-write", "shell", "sandbox", "task-plan", "rendering"],
+      "source_status": "observed"
+    },
+    {
+      "id": "claude",
+      "display_name": "Claude",
+      "adapter_path": "agents/claude.yaml",
+      "optimization_profiles": ["prompt-agent", "file-agent"],
+      "capability_tags": ["unknown"],
+      "source_status": "unknown"
+    },
+    {
+      "id": "openclaw",
+      "display_name": "OpenClaw",
+      "adapter_path": "agents/openclaw.yaml",
+      "optimization_profiles": ["prompt-agent", "file-agent"],
+      "capability_tags": ["unknown"],
+      "source_status": "unknown"
+    },
+    {
+      "id": "hermes",
+      "display_name": "Hermes",
+      "adapter_path": "agents/hermes.yaml",
+      "optimization_profiles": ["prompt-agent", "file-agent"],
+      "capability_tags": ["unknown"],
+      "source_status": "unknown"
+    },
+    {
+      "id": "workbuddy",
+      "display_name": "WorkBuddy",
+      "adapter_path": "agents/workbuddy.yaml",
+      "optimization_profiles": ["prompt-agent", "planner-agent", "memory-agent"],
+      "capability_tags": ["unknown"],
+      "source_status": "unknown"
+    },
+    {
+      "id": "qoder-work",
+      "display_name": "Qoder Work",
+      "adapter_path": "agents/qoder-work.yaml",
+      "optimization_profiles": ["ide-agent", "prompt-agent"],
+      "capability_tags": ["unknown", "ide"],
+      "source_status": "unknown"
+    },
+    {
+      "id": "trae",
+      "display_name": "Trae",
+      "adapter_path": "agents/trae.yaml",
+      "optimization_profiles": ["ide-agent", "prompt-agent"],
+      "capability_tags": ["unknown", "ide"],
+      "source_status": "unknown"
+    },
+    {
+      "id": "openai",
+      "display_name": "OpenAI",
+      "adapter_path": "agents/openai.yaml",
+      "optimization_profiles": ["prompt-agent", "retrieval-agent"],
+      "capability_tags": ["unknown"],
+      "source_status": "observed"
+    },
+    {
+      "id": "deepseek",
+      "display_name": "DeepSeek",
+      "adapter_path": "agents/deepseek.yaml",
+      "optimization_profiles": ["prompt-agent"],
+      "capability_tags": ["unknown"],
+      "source_status": "observed"
+    },
+    {
+      "id": "ollama",
+      "display_name": "Ollama",
+      "adapter_path": "agents/ollama.yaml",
+      "optimization_profiles": ["prompt-agent"],
+      "capability_tags": ["unknown"],
+      "source_status": "observed"
+    },
+    {
+      "id": "ima",
+      "display_name": "ima",
+      "adapter_path": "agents/ima.yaml",
+      "optimization_profiles": ["retrieval-agent", "memory-agent", "planner-agent", "delegating-agent"],
+      "capability_tags": ["kb-retrieval", "memory", "task-plan", "subagents", "citations"],
+      "source_status": "observed"
+    }
+  ]
+}

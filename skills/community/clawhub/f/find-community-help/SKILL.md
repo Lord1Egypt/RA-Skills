@@ -1,7 +1,7 @@
 ---
 name: find-community-help
 description: Build a safe outside-help plan for blocked agent work. Use only when the active task is stalled, looping, version-sensitive, likely covered by known issues/libraries, or the user asks for official/community guidance. Dry-run only; no browsing or durable memory.
-version: 0.3.5
+version: 0.3.6
 license: MIT
 user-invocable: true
 disable-model-invocation: true

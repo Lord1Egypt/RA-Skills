@@ -1,0 +1,69 @@
+{
+  "categories": {
+    "food-explore": {
+      "genre": "热门美食探店 BGM",
+      "pace": "快节奏",
+      "description": "节奏明快的背景音乐，适合美食、探店类视频",
+      "examples": [
+        "刘德华 - 一起走过的日子 (加速版)",
+        "美食探店专属BGM (抖音热门)",
+        "Yummy - 节奏轻快的美食BGM",
+        "舌尖上的中国主题曲 (轻快版)"
+      ]
+    },
+    "knowledge": {
+      "genre": "轻快知识类 BGM",
+      "pace": "轻快",
+      "description": "适合知识科普、干货分享类视频",
+      "examples": [
+        "Tobu - Candyland",
+        "知识科普背景音乐 (轻快版)",
+        "安静学习BGM (节奏感不强)",
+        "Alan Walker - Fade (知识博主常用)"
+      ]
+    },
+    "ecommerce": {
+      "genre": "带货节奏 BGM",
+      "pace": "中速",
+      "description": "适合产品种草、带货类视频",
+      "examples": [
+        "电商带货专属BGM (抖音热门)",
+        "节奏感强但不抢话的带货BGM",
+        "Inspiring Ambient Background",
+        "产品展示背景音乐"
+      ]
+    },
+    "emotional": {
+      "genre": "情感共鸣 BGM",
+      "pace": "舒缓",
+      "description": "适合情感故事、个人感悟类视频",
+      "examples": [
+        "River Flows in You - Yiruma",
+        "抖音热门情感BGM",
+        "温柔的钢琴背景音乐",
+        "白日梦 - 钢琴曲"
+      ]
+    },
+    "comedy": {
+      "genre": "搞笑剧情 BGM",
+      "pace": "快节奏",
+      "description": "适合搞笑、剧情反转类视频",
+      "examples": [
+        "喜剧之王片尾曲",
+        "搞笑剧情专属BGM",
+        "Benny Benassi - Satisfaction (搞笑版)",
+        "抖音搞笑背景音乐合集"
+      ]
+    }
+  },
+  "recommendations": {
+    "style_to_category": {
+      "快节奏诱人": "food-explore",
+      "干货温和": "knowledge",
+      "种草真实": "ecommerce",
+      "剧情搞笑": "comedy",
+      "情感共鸣": "emotional",
+      "知识科普": "knowledge"
+    }
+  }
+}

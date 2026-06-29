@@ -1,0 +1,139 @@
+{
+  "name": "cinematic-scroll",
+  "version": "2.5.1",
+  "description": "Build cinematic scroll-driven, 3D-tilt, parallax, and environment-morphing websites — pinned chapter reveals, hero parallax, depth-image figures, hover-tilt cards, release/launch pages, and editorial microsites. Single self-contained scroll sections (Mode A) or full Shopify-Editions-style Next.js release pages with optional AI-generated visuals via the fal.ai remote API (Mode B — requires your own fal.ai key; makes outbound API calls to fal.ai servers). A cinematic web production studio in an Agent Skill: an optional 5-phase pipeline (Cinematic Audit → Motion Storyboard → Technical Spec → Build → Polish) with taste guardrails, 12 scroll patterns, 11 visual systems, a DTCG design-token contract (design.md + tokens/), a scroll-choreography.json schema, and a 4-dimension audit mode (agent-driven analysis using the agent's browser/fetch access — not a standalone binary). WebXR/AR sessions are user-initiated (feature-gated Enter VR/AR that only starts on an explicit user action), and 3D GLB generation is provided by the Mode B Next.js template (templates/nextjs/scripts/generate-flagship-assets.mjs, run with your own fal.ai key) — neither runs unless the user triggers it. Built with React, Next.js, GSAP, Lenis, fal.ai.",
+  "author": {
+    "name": "Simone Leonelli",
+    "email": "simone@w230.net"
+  },
+  "license": "MIT",
+  "licenseFile": "LICENSE",
+  "price": 0,
+  "currency": "USD",
+  "maintained": true,
+  "maintenanceNote": "Open-source, actively developed. Community contributions and feedback welcome.",
+  "category": "frontend",
+  "tags": [
+    "react",
+    "nextjs",
+    "gsap",
+    "framer-motion",
+    "scroll",
+    "3d",
+    "parallax",
+    "animation",
+    "cinematic",
+    "fal.ai",
+    "ai-images",
+    "shopify-editions",
+    "release-page",
+    "landing-page",
+    "tailwind",
+    "threejs",
+    "react-three-fiber",
+    "webxr",
+    "3d-generation",
+    "draco",
+    "remotion"
+  ],
+  "compatibility": {
+    "claude": ">=3.5",
+    "agentskills.io": "1.x"
+  },
+  "entry": "SKILL.md",
+  "activation": {
+    "invokeWhen": [
+      "User asks to BUILD a cinematic/scroll-driven/parallax/3D-tilt/environment-morphing website, launch or release page, product story, or editorial microsite",
+      "User asks to AUDIT, review, or score the scroll experience of a specific URL or local build they own or are authorized to test",
+      "User references the flagship/WebXR/3D scroll experience or asks to generate 3D chapter assets in the Next.js template"
+    ],
+    "doNotInvokeFor": [
+      "Generic landing pages, CRUD apps, forms/wizards, CMS integrations, dashboards, or admin panels",
+      "Any request without explicit scroll-driven motion or cinematic web-design intent",
+      "Auditing arbitrary third-party URLs the user does not own or have authorization to test"
+    ],
+    "exampleTriggers": [
+      "Build a cinematic scroll release page for <product> in a <style> aesthetic",
+      "Audit the scroll experience of <a URL I own> and score pacing/perf/a11y/arc"
+    ]
+  },
+  "templates": "templates/nextjs/",
+  "repository": "https://github.com/MustBeSimo/cinematic-scroll-skill",
+  "homepage": "https://mustbesimo.github.io/cinematic-scroll-skill/",
+  "requires": {
+    "npmPackages": [
+      "choreo-3d",
+      "framer-motion",
+      "gsap",
+      "lenis",
+      "@fal-ai/client",
+      "@fal-ai/server-proxy",
+      "next",
+      "react",
+      "react-dom",
+      "tailwindcss"
+    ],
+    "envVars": [
+      "FAL_KEY",
+      "FAL_IMAGE_MODEL"
+    ]
+  },
+  "permissions": [
+    "filesystem:read",
+    "filesystem:write",
+    "network:fetch",
+    "shell:execute",
+    "env"
+  ],
+  "security": {
+    "note": "All sensitive capabilities are optional and user-initiated. FAL_KEY is a billable secret — store it in a gitignored .env.local or a secret manager, never in source or version control. Audit mode uses the agent's own browser/fetch access to analyze a user-supplied URL (not a local headless binary); the request may trigger analytics or side effects on the target — only audit sites you own or are authorized to test. Mode A output pages load GSAP + ScrollTrigger and three.js from cdn.jsdelivr.net, the three.js Draco decoder and @google/model-viewer from unpkg.com, and Google Fonts from fonts.googleapis.com / fonts.gstatic.com (SRI-pinned where the format allows — ES-module import maps cannot carry SRI) — self-host these if your deployment policy requires it. See manifest.md → Security & Privacy and audit-mode.md.",
+    "secrets": [
+      "FAL_KEY",
+      "GENERATE_API_SECRET"
+    ],
+    "thirdPartyNetworkCalls": [
+      {"when": "Mode B image/asset generation", "destination": "fal.ai API", "trigger": "user-initiated, requires FAL_KEY"},
+      {"when": "Audit mode", "destination": "user-supplied URL", "trigger": "user-initiated, explicit confirmation required"},
+      {"when": "Mode A output pages", "destination": "cdn.jsdelivr.net (GSAP + ScrollTrigger, three.js), unpkg.com (three.js Draco decoder, @google/model-viewer), fonts.googleapis.com + fonts.gstatic.com (Google Fonts)", "trigger": "loaded by the generated HTML when opened in a browser — self-host to avoid"}
+    ],
+    "disclosure": "manifest.md#security--privacy"
+  },
+  "modes": [
+    {
+      "name": "Scroll artifact",
+      "description": "Single self-contained HTML or .tsx scroll section / page. No build step, no AI keys. Generated pages load GSAP and Google Fonts from third-party CDNs (SRI-pinned). Fast preview."
+    },
+    {
+      "name": "Full release site",
+      "description": "Tested Next.js App Router templates + optional fal.ai remote API pipeline for AI-generated chapter imagery. Requires your own fal.ai account and FAL_KEY. Makes outbound API calls to fal.ai servers."
+    },
+    {
+      "name": "Cinematic audit",
+      "description": "Agent-driven analysis of an existing URL's scroll experience using the agent's browser/fetch access. Scores pacing, performance, accessibility, and emotional arc. Outputs remediation-plan.md with prioritized fixes. This is not a standalone CLI tool."
+    }
+  ],
+  "references": [
+    "design.md",
+    "taste-guardrails.md",
+    "references/scroll-patterns.md",
+    "references/film-archetypes.md",
+    "references/design-tokens.md",
+    "references/component-grammar.md",
+    "references/artifact-templates.md",
+    "references/performance-budget.md",
+    "audit-mode.md",
+    "scroll-choreography.json"
+  ],
+  "pipeline": {
+    "phases": 5,
+    "gated": "adaptive",
+    "gatedNote": "Phases gate on user approval when the user wants the process (ambiguous brief, iterative workflow). Phases run internally without pausing when the user asked for a direct result ('build me…', one-shot, CI invocation, or another agent invoked this skill). The agent never blocks an autonomous run waiting for approval the user cannot give.",
+    "artifacts": [
+      "cinematic-audit.md",
+      "motion-storyboard.md",
+      "technical-spec.md",
+      "code-output",
+      "polish-report.md"
+    ]
+  }
+}

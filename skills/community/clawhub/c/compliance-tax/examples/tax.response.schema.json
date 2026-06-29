@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "taxHealthScore": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "taxHealthStatus": { "type": "string", "enum": ["🟢 健康", "🟡 预警", "🔴 高危风险"] },
+    "countryDetails": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "country": { "type": "string", "enum": ["US", "GB", "DE", "EE", "SG", "JP", "AU", "HK", "FR", "IT", "ES"] },
+          "taxType": { "type": "string", "enum": ["VAT", "Sales Tax", "GST", "JCT"] },
+          "standardRate": { "type": "string" },
+          "registrationThreshold": { "type": "string" },
+          "isTriggered": { "type": "boolean" },
+          "filingFrequency": { "type": "string", "enum": ["monthly", "quarterly", "annually", "monthly/quarterly"] },
+          "nextDeadline": { "type": "string" },
+          "action": { "type": "string" }
+        },
+        "required": ["country", "taxType", "isTriggered"]
+      }
+    },
+    "recommendations": { "type": "array", "items": { "type": "string" } },
+    "nextActions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "priority": { "type": "string", "enum": ["high", "medium", "low"] },
+          "actionType": { "type": "string", "enum": ["REGISTER_VAT", "REGISTER_GST", "CHECK_NEXUS", "CALCULATE_YTD", "REGISTER_OSS", "APPLY_DE_VAT", "SCHEDULE_TAX_FILING"] },
+          "description": { "type": "string" },
+          "status": { "type": "string", "enum": ["pending", "completed", "skipped"] }
+        },
+        "required": ["priority", "actionType", "description", "status"]
+      }
+    }
+  },
+  "required": ["taxHealthScore", "taxHealthStatus", "countryDetails", "nextActions"]
+}

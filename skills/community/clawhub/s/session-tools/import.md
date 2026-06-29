@@ -99,5 +99,5 @@ Task tool:
 
 - If no pipeline target is found, return summarize results only
 - hookify pipeline extracts user/assistant messages only
-- Sensitive information is automatically filtered (API keys, tokens, etc.)
+- Sensitive information should be reviewed manually before import (API keys, tokens, etc.)
 - Due to context limits, only the most recent 50 messages are delivered

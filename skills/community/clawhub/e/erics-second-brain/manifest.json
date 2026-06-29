@@ -1,0 +1,52 @@
+{
+  "name": "erics-second-brain",
+  "displayName": "Eric's Second Brain",
+  "version": "1.0.0",
+  "description": "Eric's Second Brain — 融会贯通第二大脑所有技能体系的元认知操作系统。覆盖三脑协同架构、跨域路由与合成、个人经验层注入、多学科协同诊断与输出。",
+  "author": "Eric (网瘾中年)",
+  "repository": "https://github.com/Shun1989/erics-second-brain",
+  "license": "MIT",
+  "keywords": [
+    "second-brain",
+    "meta-cognition",
+    "engineering",
+    "life-wisdom",
+    "ai-agent",
+    "innovation",
+    "workbuddy"
+  ],
+  "categories": [
+    "knowledge-management",
+    "ai-agent",
+    "engineering",
+    "productivity"
+  ],
+  "triggers": [
+    "第二大脑",
+    "工程问题",
+    "人生选择",
+    "职业发展",
+    "AI Agent",
+    "创新",
+    "跨域分析",
+    "技能体系",
+    "认知操作系统"
+  ],
+  "dependencies": {
+    "skills": [
+      "erics-engineering-wisdom",
+      "erics-life-wisdom",
+      "motor-expert",
+      "nvh-expert",
+      "gear-expert",
+      "cbi-innovation",
+      "innovation-expert"
+    ]
+  },
+  "metadata": {
+    "architecture": "left-brain engineering + right-brain wisdom + creation-brain ai",
+    "requires_api_key": false,
+    "skill_type": "knowledge",
+    "security_audit": "Benign"
+  }
+}

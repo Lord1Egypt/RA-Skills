@@ -1,0 +1,9 @@
+{
+  "first_frame": {
+    "type": "base64",
+    "format": "png",
+    "base64": "REPLACE_WITH_BASE64_FIRST_FRAME"
+  },
+  "no_background": true,
+  "seed": 0
+}

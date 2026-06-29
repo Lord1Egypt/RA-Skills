@@ -1,0 +1,52 @@
+========================================================================
+NOTICE
+Copyright (c) Proximity 2026 
+========================================================================
+
+x402 Pay
+
+This software enables AI agents to discover and pay HTTP 402 / x402-enabled services using blockchain transactions, including payments on Base and optional cross-chain funding.
+
+IMPORTANT RISK NOTICE
+
+This software may cause an autonomous or semi-autonomous agent to initiate, sign, submit, or otherwise facilitate blockchain transactions. Blockchain transactions may be irreversible. Agents can misunderstand user instructions, select the wrong service, use the wrong network, transfer funds to an incorrect or unrecoverable address, overpay for a service, or interact with a malicious, unavailable, or defective endpoint.
+
+Users are solely responsible for implementing appropriate safeguards outside this software, including spend limits, service allowlists, address allowlists, network restrictions, transaction previews, human approvals, wallet policies, and monitoring. This software cannot guarantee that any agent harness, wallet provider, RPC endpoint, payment facilitator, bridge, solver, service catalog, or third-party API will enforce those controls.
+
+Loss of funds is possible and may be irreversible.
+
+THIRD-PARTY SOFTWARE
+
+The original x402-pay skill source code is licensed under MIT-0. Third-party dependencies and optional/transitive wallet-provider components remain subject to their own license terms, including those described in LICENSE-THIRD-PARTY.txt.
+
+Certain optional or transitive wallet-provider dependencies may include WalletConnect / Reown software. WalletConnect / Reown software is subject to the WalletConnect Community License Agreement and is not licensed under the primary license for this software. See LICENSE-THIRD-PARTY.txt for additional information.
+
+THIRD-PARTY HOSTED SERVICES
+
+Operation of this software may require or optionally use third-party hosted services, including payment facilitators, wallet providers, RPC providers, cross-chain funding services, service catalogs, and third-party paid APIs. These services are not provided by the authors of this software. Each service is subject to its own terms, fees, availability limits, acceptable-use rules, sanctions and geographic restrictions, disclaimers, and dispute-resolution provisions.
+
+Use of this software does not mean that any third-party service has been endorsed, audited, vetted, or approved by the authors of this software.
+
+QR CODE GENERATION SERVICE
+
+This skill may generate QR codes for deposit addresses, payment URIs, or funding instructions using the third-party QR Code API operated at api.qrserver.com by Foundata GmbH. Use of that service is subject to its own terms, privacy notices, availability, request filtering, logging, and operational limits.
+
+When QR code generation is used, the data encoded in the QR code, such as a wallet address or payment URI, is transmitted to the third-party QR code service for generation. Do not encode private keys, seed phrases, authentication secrets, confidential user data, or other sensitive information in QR codes. QR codes should be used only for public deposit addresses, payment URIs, or non-sensitive funding instructions.
+
+The authors of this skill do not operate or control the QR code service and do not guarantee that generated QR codes will be available, correct, scannable, private, or secure. Users should verify the displayed address, network, token, and amount before sending funds.
+
+NO ENDORSEMENT OF PAID APIs
+
+This software is generic and may allow an agent to pay any service that supports the relevant payment standard. The authors of this software do not endorse, monitor, audit, or guarantee any paid API, service listing, service catalog, or third-party endpoint. Users are responsible for reviewing the terms, legality, accuracy, security, and suitability of any service their agent pays for.
+
+INDEPENDENT PROJECT NOTICE
+
+x402 Pay is an independent agent skill for interacting with x402-compatible HTTP 402 payment services. It is not affiliated with, endorsed by, or sponsored by Coinbase, LF Projects, the x402 project, or any x402 Foundation entity.
+
+NO LEGAL, FINANCIAL, OR COMPLIANCE ADVICE
+
+This software is provided as software only. It does not provide legal, financial, tax, sanctions, AML, consumer-protection, money-transmission, securities, commodities, data-protection, or other compliance advice. Users and redistributors are responsible for determining whether their use, distribution, integration, or operation of this software complies with applicable law.
+
+AUTHOR LIABILITY NOTICE
+
+The authors, contributors, and maintainers are **not liable** for any direct, indirect, incidental, special, exemplary, or consequential damages (including loss of assets or profits).

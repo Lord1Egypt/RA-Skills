@@ -1,0 +1,8 @@
+[
+  {
+    "group_id": "YOUR_GROUP_ID",
+    "name": "你的星球名称",
+    "scope": "digests",
+    "max_topics": 20
+  }
+]

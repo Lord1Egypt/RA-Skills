@@ -1,5 +1,5 @@
 ## Description: <br>
-Converts documents and URLs to markdown through a tiered fallback workflow using markitdown MCP when available, native tools where supported, and user-facing guidance when conversion is unavailable. <br>
+Converts documents and URLs to markdown via tiered fallback using MCP markitdown, native tools, and user notification. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,36 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and agents use this skill to turn user-selected PDFs, Office documents, HTML, data files, images, audio, archives, e-books, or URLs into markdown for downstream processing while preserving clear fallback behavior. <br>
+Developers and agents use this skill to convert PDF, Office, web, data, image, audio, archive, and e-book inputs into markdown for downstream processing. It is most useful when the source content is not already plain text or markdown. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Converted documents and URLs are external content and may contain misleading or instruction-like text. <br>
-Mitigation: Apply the documented sanitization checklist, including size checks, stripping instruction tags, and external-content boundary markers. <br>
-Risk: The optional markitdown MCP converter may process local files or remote URLs supplied by the user. <br>
-Mitigation: Use it only for intended documents and avoid sensitive files unless the converter and execution environment are trusted. <br>
-Risk: Some formats have limited or no native fallback support when markitdown MCP is unavailable. <br>
-Mitigation: Follow the tiered fallback matrix and notify the user instead of guessing or fabricating content when conversion is unsupported. <br>
+Risk: The skill processes external documents and untrusted links, which can include sensitive data or embedded instructions. <br>
+Mitigation: Invoke it only for files or URLs intended for conversion, and apply the documented content-sanitization checklist to converted content. <br>
+Risk: Some formats depend on the markitdown MCP server; without it, conversion quality or coverage can degrade. <br>
+Mitigation: Use the native fallback paths for supported formats and clearly notify the user when a format cannot be converted without markitdown. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-leyline-document-conversion) <br>
-- [Leyline plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
-- [Format support matrix](artifact/modules/format-matrix.md) <br>
-- [Fallback tier instructions](artifact/modules/fallback-tiers.md) <br>
-- [URI construction rules](artifact/modules/uri-construction.md) <br>
+- [ClawHub Skill Page](https://clawhub.ai/athola/skills/nm-leyline-document-conversion) <br>
+- [Publisher Profile](https://clawhub.ai/user/athola) <br>
+- [Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
+- [Format Support Matrix](artifact/modules/format-matrix.md) <br>
+- [Fallback Tier Instructions](artifact/modules/fallback-tiers.md) <br>
+- [URI Construction](artifact/modules/uri-construction.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline JSON and shell-command snippets] <br>
+**Output Type(s):** [Markdown, Shell commands, Configuration, Guidance] <br>
+**Output Format:** [Markdown with inline JSON and command snippets] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes tiered fallback instructions and external-content sanitization guidance.] <br>
+**Other Properties Related to Output:** [May include converted document content, fallback instructions, or setup guidance when markitdown MCP is unavailable.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata) <br>
+1.9.13 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

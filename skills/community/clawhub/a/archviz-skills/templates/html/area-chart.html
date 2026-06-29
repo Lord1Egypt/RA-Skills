@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Area Chart</title></head>
+<body style="margin:0;background:#f5f0eb;font-family:system-ui">
+<!-- Area Chart — archviz-skills -->
+<!-- Use for: cumulative trends over time, volume visualization -->
+<canvas id="c" width="700" height="350"></canvas>
+<script>
+const series = [
+  {label:"Series A",color:"#002FA7",data:[10,25,18,32,28,45,38,52,48,60]},
+  {label:"Series B",color:"#94a3b8",data:[5,12,20,15,28,22,35,30,42,38]}
+];
+const ctx=document.getElementById("c").getContext("2d");
+const l=60,r=660,t=30,b=300,n=10;
+const max=Math.max(...series.flatMap(s=>s.data));
+const labels=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct"];
+
+// Grid
+for(let i=0;i<=4;i++){
+  const y=b-i*(b-t)/4;
+  ctx.beginPath();ctx.moveTo(l,y);ctx.lineTo(r,y);ctx.strokeStyle="#e8e4e0";ctx.stroke();
+  ctx.fillStyle="#a8a29e";ctx.font="11px system-ui";ctx.textAlign="right";
+  ctx.fillText(Math.round(max*i/4),l-8,y+4);
+}
+
+// Areas (draw back to front)
+series.reverse().forEach(s=>{
+  ctx.beginPath();
+  ctx.moveTo(l,b);
+  s.data.forEach((v,i)=>{
+    const x=l+i*(r-l)/(n-1);
+    const y=b-(v/max)*(b-t);
+    ctx.lineTo(x,y);
+  });
+  ctx.lineTo(l+(n-1)*(r-l)/(n-1),b);
+  ctx.closePath();
+  ctx.fillStyle=s.color.replace(")",",0.15)").replace("rgb","rgba").replace("#","");
+  // Simple alpha overlay
+  ctx.globalAlpha=0.15;ctx.fillStyle=s.color;ctx.fill();ctx.globalAlpha=1;
+  // Line
+  ctx.beginPath();
+  s.data.forEach((v,i)=>{
+    const x=l+i*(r-l)/(n-1);
+    const y=b-(v/max)*(b-t);
+    i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  });
+  ctx.strokeStyle=s.color;ctx.lineWidth=2;ctx.stroke();
+});
+
+// X labels
+labels.forEach((lb,i)=>{
+  const x=l+i*(r-l)/(n-1);
+  ctx.fillStyle="#44403c";ctx.font="11px system-ui";ctx.textAlign="center";
+  ctx.fillText(lb,x,b+16);
+});
+
+// Legend
+series.reverse().forEach((s,i)=>{
+  ctx.fillStyle=s.color;ctx.fillRect(80+i*100,8,14,14);
+  ctx.fillStyle="#44403c";ctx.font="12px system-ui";ctx.fillText(s.label,100+i*100,20);
+});
+</script>
+</body></html>

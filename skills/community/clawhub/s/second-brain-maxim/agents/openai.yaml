@@ -1,0 +1,7 @@
+interface:
+  display_name: "第二大脑箴言"
+  short_description: "从第二大脑召回语境，生成个人感悟、箴言和短句。"
+  default_prompt: "Use $second-brain-aphorism to generate a concise aphorism from my second brain about the idea I am wrestling with."
+
+policy:
+  allow_implicit_invocation: true

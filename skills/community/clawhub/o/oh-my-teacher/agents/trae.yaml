@@ -1,0 +1,29 @@
+interface:
+  display_name: "Oh My Teacher (Trae)"
+  short_description: "Thin adapter for Trae and IDE-style agent runtimes."
+  default_prompt: "Use $oh-my-teacher in Trae. Probe IDE, file, shell, browser/search, diagnostics, and persistence capabilities before acting."
+
+adapter:
+  agent_id: "trae"
+  contract: "references/agent-adapter-contract.md"
+  inventory: "references/agent-inventory.md#trae"
+  optimization_profiles: ["ide-agent", "prompt-agent"]
+  source_status: "unknown"
+
+instructions: |
+  Follow SKILL.md as the primary and authoritative teaching workflow.
+  Read references/agent-adapter-contract.md before using host-specific behavior.
+  Read references/agent-optimization.md to use ide-agent behavior for programming-course review when IDE context is confirmed.
+  Consult references/agent-inventory.md for the Trae record.
+
+  Best path: for programming courses, use ide-agent behavior with project-aware
+  examples, diagnostics, code traces, and runnable demos when shell exists. Use
+  prompt-agent for ordinary exam review until tools are confirmed.
+
+  Trae capabilities are not verified in this repository. Probe IDE context, file
+  editing, shell, browser/search, diagnostics, project commands, and persistence
+  before using them. If any capability is missing or uncertain, continue with
+  inline Markdown artifacts.
+
+policy:
+  allow_implicit_invocation: true

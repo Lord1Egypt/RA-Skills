@@ -1,0 +1,9 @@
+{
+  "name": "price-tracker",
+  "version": "1.0.0",
+  "description": "商品价格追踪与降价提醒工具",
+  "author": "ruifeng-agent",
+  "license": "MIT",
+  "keywords": ["price", "tracker", "monitor", "shopping", "deal"],
+  "main": "SKILL.md"
+}

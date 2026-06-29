@@ -1,0 +1,97 @@
+# 知识库配置
+# 用于标书制作过程中的历史案例匹配和模板填充
+
+version: 1.0.0
+
+knowledge_bases:
+
+  - name: 企业资质库
+    description: 企业资质证书、营业执照等法定证明文件
+    type: document_collection
+    documents:
+      - 营业执照副本扫描件
+      - 企业资质证书（XX级）
+      - 安全生产许可证
+      - ISO质量管理体系认证证书
+      - 环境管理体系认证证书
+      - 职业健康安全管理体系认证证书
+      - 软件企业认定证书（如适用）
+      - 高新技术企业证书（如适用）
+      - AAA信用等级证书
+    usage: 自动填充"资质证明文件"章节
+    update_frequency: annually
+
+  - name: 历史中标案例库
+    description: 过往中标的完整标书，用于技术方案匹配
+    type: document_collection
+    indexing:
+      - by_project_type: "按项目类型分类"
+      - by_budget_range: "按预算范围分类"
+      - by_score: "按中标评分排序"
+    usage: |
+      在编写技术方案时，自动检索相似度最高的历史案例，
+      提取成功的方案结构和关键表述作为参考。
+    matching_criteria:
+      - project_type_match: 0.4    # 项目类型匹配权重
+      - technical_field_match: 0.3 # 技术领域匹配权重
+      - budget_similarity: 0.2    # 预算相似度权重
+      - customer_type_match: 0.1   # 客户类型匹配权重
+
+  - name: 技术方案模板库
+    description: 标准化的技术方案模板，按行业和技术领域分类
+    type: template_collection
+    categories:
+      - IT信息化:
+        - 智慧城市技术方案模板
+        - 网络安全方案模板
+        - 软件开发方案模板
+        - 系统集成方案模板
+        - 数据中台方案模板
+      - 工程建设:
+        - 建筑工程施工组织设计模板
+        - 市政工程施工方案模板
+        - 装饰装修方案模板
+      - 设备采购:
+        - 设备供货方案模板
+        - 安装调试方案模板
+      - 服务外包:
+        - 运维服务方案模板
+        - 物业服务方案模板
+        - 咨询服务方案模板
+    usage: 根据项目类型选择对应模板，作为技术方案的基础框架
+
+  - name: 业绩证明库
+    description: 项目合同、验收报告、用户评价等业绩证明材料
+    type: document_collection
+    documents:
+      - 典型项目合同扫描件
+      - 项目验收报告
+      - 用户满意度评价
+      - 获奖证书
+    usage: 自动匹配与当前招标项目类似的业绩材料
+
+  - name: 常见问题库
+    description: 招投标常见问题及应对策略
+    type: qa_collection
+    categories:
+      - 资格预审常见问题
+      - 技术方案常见扣分项
+      - 报价常见陷阱
+      - 废标常见原因
+    usage: 质检阶段自动检查是否有常见问题的遗漏
+
+# 知识库匹配流程
+matching_pipeline:
+  trigger: "章节生成前"
+  steps:
+    - 1. 根据招标项目类型和预算，检索历史中标案例库
+    - 2. 根据技术领域，检索技术方案模板库
+    - 3. 根据资质要求，从企业资质库提取相关证书
+    - 4. 根据业绩要求，从业绩证明库匹配类似项目
+    - 5. 综合匹配结果，生成知识库引用建议
+
+# 引用规范
+citation:
+  format: "【参考：[知识库名称]/[文档名称]】"
+  max_citations_per_chapter: 5
+  require_verification: true  # 引用内容需人工确认

@@ -1,0 +1,40 @@
+{
+  "name": "musik-tools-skill",
+  "displayName": "Musik Tools AI Music Companion",
+  "version": "1.0.0",
+  "description": "Music discovery and creative audio planning companion for finding songs, checking singing range, drafting lyrics, and preparing AI music generation briefs.",
+  "triggerKeywords": [
+    "musik tools",
+    "music finder",
+    "song finder",
+    "ai music",
+    "singing test",
+    "pitch detector",
+    "lyrics generator"
+  ],
+  "tags": [
+    "music",
+    "ai music",
+    "song finder",
+    "lyrics",
+    "audio tools"
+  ],
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "homepage": "https://musik.tools/",
+  "productPages": [
+    {"name": "Musik Tools", "url": "https://musik.tools/"},
+    {"name": "AI Image", "url": "https://musik.tools/ai/image"},
+    {"name": "Song Finder", "url": "https://musik.tools/song-finder"},
+    {"name": "Music Finder", "url": "https://musik.tools/music-finder"},
+    {"name": "Singing Test", "url": "https://musik.tools/singing-test"},
+    {"name": "Pitch Detector", "url": "https://musik.tools/pitch-detector"},
+    {"name": "Mureka Music", "url": "https://musik.tools/mureka-music"},
+    {"name": "Rap Lyrics Generator", "url": "https://musik.tools/rap-lyrics-generator"},
+    {"name": "Add Tracks", "url": "https://musik.tools/add-tracks"},
+    {"name": "GitHub Resources", "url": "https://github.com/eavemma5-tech/musik-tools-resources"},
+    {"name": "GitHub Pages", "url": "https://eavemma5-tech.github.io/musik-tools-resources/"}
+  ]
+}

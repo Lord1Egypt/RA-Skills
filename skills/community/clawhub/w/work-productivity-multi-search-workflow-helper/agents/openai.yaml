@@ -1,0 +1,7 @@
+interface:
+  display_name: "Multi Search Workflow Helper"
+  short_description: "Builds deduped, source-diverse search plans and evidence summaries."
+  default_prompt: "Use $work-productivity-multi-search-workflow-helper to search multiple source families and synthesize the evidence."
+
+policy:
+  allow_implicit_invocation: true

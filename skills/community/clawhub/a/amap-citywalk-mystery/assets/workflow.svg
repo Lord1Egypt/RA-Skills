@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1200" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+    <linearGradient id="card1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e94560"/>
+      <stop offset="100%" style="stop-color:#c23616"/>
+    </linearGradient>
+    <linearGradient id="card2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f3460"/>
+      <stop offset="100%" style="stop-color:#533483"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e94560"/>
+      <stop offset="100%" style="stop-color:#f5a623"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="1200" fill="url(#bg)"/>
+  
+  <!-- Title -->
+  <text x="400" y="60" text-anchor="middle" fill="url(#accent)" font-size="36" font-weight="bold">🎭 AI CityWalk 剧本杀</text>
+  <text x="400" y="95" text-anchor="middle" fill="#8892b0" font-size="18">执行流程 · Skill Workflow</text>
+  <line x1="200" y1="115" x2="600" y2="115" stroke="url(#accent)" stroke-width="2" opacity="0.5"/>
+  
+  <!-- Step 1: User Input -->
+  <rect x="150" y="140" width="500" height="100" rx="12" fill="#1e2a4a" stroke="#e94560" stroke-width="1.5"/>
+  <text x="190" y="175" fill="#e94560" font-size="22" font-weight="bold">① 获取用户偏好</text>
+  <text x="190" y="205" fill="#ccd6f6" font-size="14">城市 · 主题 · 时长 · 人数</text>
+  <text x="190" y="228" fill="#8892b0" font-size="12">🔍 悬疑侦探 / 💕 浪漫爱情 / 🍜 美食探索 / 🏛️ 历史穿越</text>
+  
+  <!-- Arrow 1 -->
+  <polygon points="400,245 390,260 410,260" fill="#e94560" opacity="0.8"/>
+  <line x1="400" y1="260" x2="400" y2="275" stroke="#e94560" stroke-width="2" opacity="0.5"/>
+  
+  <!-- Step 2: Weather -->
+  <rect x="150" y="280" width="500" height="85" rx="12" fill="#1e2a4a" stroke="#0f3460" stroke-width="1.5"/>
+  <text x="190" y="315" fill="#f5a623" font-size="22" font-weight="bold">② 查询天气</text>
+  <text x="190" y="345" fill="#ccd6f6" font-size="14">🌤️ check-weather.js → 穿搭出行建议</text>
+  
+  <!-- Arrow 2 -->
+  <polygon points="400,370 390,385 410,385" fill="#f5a623" opacity="0.8"/>
+  <line x1="400" y1="385" x2="400" y2="400" stroke="#f5a623" stroke-width="2" opacity="0.5"/>
+  
+  <!-- Step 3: POI Search -->
+  <rect x="150" y="405" width="500" height="100" rx="12" fill="#1e2a4a" stroke="#533483" stroke-width="1.5"/>
+  <text x="190" y="440" fill="#a78bfa" font-size="22" font-weight="bold">③ 搜索故事地点</text>
+  <text x="190" y="470" fill="#ccd6f6" font-size="14">📍 search-locations.js → 高德 POI 搜索</text>
+  <text x="190" y="493" fill="#8892b0" font-size="12">按主题匹配 POI 类型 · 评分筛选 · 真实地点</text>
+  
+  <!-- Arrow 3 -->
+  <polygon points="400,510 390,525 410,525" fill="#a78bfa" opacity="0.8"/>
+  <line x1="400" y1="525" x2="400" y2="540" stroke="#a78bfa" stroke-width="2" opacity="0.5"/>
+  
+  <!-- Step 4: Route Planning -->
+  <rect x="150" y="545" width="500" height="85" rx="12" fill="#1e2a4a" stroke="#06b6d4" stroke-width="1.5"/>
+  <text x="190" y="580" fill="#06b6d4" font-size="22" font-weight="bold">④ 规划路线</text>
+  <text x="190" y="610" fill="#ccd6f6" font-size="14">🚶 plan-route.js → 步行路线串联各站点</text>
+  
+  <!-- Arrow 4 -->
+  <polygon points="400,635 390,650 410,650" fill="#06b6d4" opacity="0.8"/>
+  <line x1="400" y1="650" x2="400" y2="665" stroke="#06b6d4" stroke-width="2" opacity="0.5"/>
+  
+  <!-- Step 5: AI Script -->
+  <rect x="150" y="670" width="500" height="110" rx="12" fill="#1e2a4a" stroke="#10b981" stroke-width="1.5"/>
+  <text x="190" y="705" fill="#10b981" font-size="22" font-weight="bold">⑤ AI 生成剧本 ⭐ 核心创意</text>
+  <text x="190" y="735" fill="#ccd6f6" font-size="14">📖 多章节沉浸式叙事 · 每站含剧情/线索/任务</text>
+  <text x="190" y="758" fill="#8892b0" font-size="12">🎯 故事主线 + 章节结构 + 沉浸文案 + 结局设计</text>
+  <text x="190" y="775" fill="#8892b0" font-size="12">🔍 线索任务 + 到达确认 + 温馨提示</text>
+  
+  <!-- Arrow 5 -->
+  <polygon points="400,785 390,800 410,800" fill="#10b981" opacity="0.8"/>
+  <line x1="400" y1="800" x2="400" y2="815" stroke="#10b981" stroke-width="2" opacity="0.5"/>
+  
+  <!-- Step 6: Map Link -->
+  <rect x="150" y="820" width="500" height="85" rx="12" fill="#1e2a4a" stroke="#f59e0b" stroke-width="1.5"/>
+  <text x="190" y="855" fill="#f59e0b" font-size="22" font-weight="bold">⑥ 生成地图链接</text>
+  <text x="190" y="885" fill="#ccd6f6" font-size="14">🗺️ generate-map.js → 可交互路线地图</text>
+  
+  <!-- Arrow 6 -->
+  <polygon points="400,910 390,925 410,925" fill="#f59e0b" opacity="0.8"/>
+  <line x1="400" y1="925" x2="400" y2="940" stroke="#f59e0b" stroke-width="2" opacity="0.5"/>
+  
+  <!-- Step 7: Output -->
+  <rect x="150" y="945" width="500" height="100" rx="12" fill="url(#card1)" stroke="#e94560" stroke-width="2"/>
+  <text x="400" y="985" text-anchor="middle" fill="white" font-size="24" font-weight="bold">⑦ 输出完整剧本</text>
+  <text x="400" y="1015" text-anchor="middle" fill="#ffe0e6" font-size="16">📜 剧本 + 🗺️ 地图 + 📋 攻略</text>
+  <text x="400" y="1038" text-anchor="middle" fill="#ffe0e6" font-size="12">完整的多章节城市探索体验</text>
+  
+  <!-- Footer -->
+  <text x="400" y="1090" text-anchor="middle" fill="#8892b0" font-size="14">高德开放平台「智图创想」Skill 创意征集赛</text>
+  <text x="400" y="1115" text-anchor="middle" fill="#5a6684" font-size="12">amap-citywalk-mystery · 让 AI 当你的城市剧本杀主持人</text>
+  
+  <!-- Tech badges -->
+  <rect x="175" y="1140" width="110" height="28" rx="14" fill="#1e2a4a" stroke="#06b6d4" stroke-width="1"/>
+  <text x="230" y="1159" text-anchor="middle" fill="#06b6d4" font-size="11">POI 搜索 API</text>
+  
+  <rect x="300" y="1140" width="100" height="28" rx="14" fill="#1e2a4a" stroke="#10b981" stroke-width="1"/>
+  <text x="350" y="1159" text-anchor="middle" fill="#10b981" font-size="11">路径规划 API</text>
+  
+  <rect x="415" y="1140" width="100" height="28" rx="14" fill="#1e2a4a" stroke="#f59e0b" stroke-width="1"/>
+  <text x="465" y="1159" text-anchor="middle" fill="#f59e0b" font-size="11">天气查询 API</text>
+  
+  <rect x="530" y="1140" width="110" height="28" rx="14" fill="#1e2a4a" stroke="#a78bfa" stroke-width="1"/>
+  <text x="585" y="1159" text-anchor="middle" fill="#a78bfa" font-size="11">地图可视化 API</text>
+</svg>

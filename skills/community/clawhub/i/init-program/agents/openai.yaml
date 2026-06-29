@@ -1,0 +1,4 @@
+interface:
+  display_name: "Init Program"
+  short_description: "Create agent instructions, then initialize project."
+  default_prompt: "Use $init-program to create the right agent instruction file for this repository, then initialize the project according to it."

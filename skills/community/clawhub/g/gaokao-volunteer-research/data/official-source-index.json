@@ -1,0 +1,97 @@
+{
+  "schema_version": "gaokao-official-source-index/v1",
+  "updated_at": "2026-06-13",
+  "notes": [
+    "This is a seed index for official-source discovery. Verify the exact current-year page before using a source as evidence.",
+    "Province home URLs are not a substitute for current-year score tables, cutoff lines, admissions plans, or official form-entry pages."
+  ],
+  "national_sources": [
+    {
+      "id": "moe_gaokao_2026",
+      "name": "教育部 2026 年全国高考专题",
+      "url": "https://www.moe.gov.cn/jyb_xwfb/xw_zt/moe_357/2026/2026_zt08/",
+      "source_type": "policy"
+    },
+    {
+      "id": "moe_2026_admission_notice",
+      "name": "教育部关于做好 2026 年普通高校招生工作的通知",
+      "url": "https://www.moe.gov.cn/srcsite/A15/moe_776/s3258/202601/t20260121_1427110.html",
+      "source_type": "policy"
+    },
+    {
+      "id": "chsi_gaokao",
+      "name": "阳光高考平台",
+      "url": "https://gaokao.chsi.com.cn/",
+      "source_type": "portal"
+    },
+    {
+      "id": "chsi_zyck",
+      "name": "阳光志愿信息服务系统",
+      "url": "https://gaokao.chsi.com.cn/zyck/",
+      "source_type": "portal"
+    },
+    {
+      "id": "chsi_province_news",
+      "name": "阳光高考省招办最新消息",
+      "url": "https://gaokao.chsi.com.cn/gkxx/zc/ss",
+      "source_type": "province_news"
+    },
+    {
+      "id": "chsi_province_office_index",
+      "name": "阳光高考全国 31 个省级招办官网和官微索引",
+      "url": "https://gaokao.chsi.com.cn/gkxx/zc/ss/202007/20200716/1542552579.html",
+      "source_type": "index"
+    },
+    {
+      "id": "chsi_policy_summary_2026",
+      "name": "阳光高考 2026 年高考招生政策及照顾政策汇总",
+      "url": "https://gaokao.chsi.com.cn/z/gkbmfslq/zszc.jsp",
+      "source_type": "policy_index"
+    },
+    {
+      "id": "chsi_school_db",
+      "name": "阳光高考院校信息库",
+      "url": "https://gaokao.chsi.com.cn/sch/",
+      "source_type": "school_db"
+    },
+    {
+      "id": "chsi_major_db",
+      "name": "阳光高考专业知识库",
+      "url": "https://gaokao.chsi.com.cn/zyk/",
+      "source_type": "major_db"
+    }
+  ],
+  "province_sources": [
+    {"province": "北京", "authority_name": "北京教育考试院", "home_url": "https://www.bjeea.cn/", "chsi_url": "https://gaokao.chsi.com.cn/beijing/"},
+    {"province": "天津", "authority_name": "天津市教育招生考试院/招考资讯网", "home_url": "http://www.zhaokao.net/", "chsi_url": "https://gaokao.chsi.com.cn/tianjin/"},
+    {"province": "河北", "authority_name": "河北省教育考试院", "home_url": "http://www.hebeea.edu.cn/", "chsi_url": "https://gaokao.chsi.com.cn/hebei/"},
+    {"province": "山西", "authority_name": "山西招生考试网", "home_url": "http://www.sxkszx.cn/", "chsi_url": "https://gaokao.chsi.com.cn/shanxi/"},
+    {"province": "内蒙古", "authority_name": "内蒙古招生考试信息网", "home_url": "https://www.nm.zsks.cn/", "chsi_url": "https://gaokao.chsi.com.cn/neimenggu/"},
+    {"province": "辽宁", "authority_name": "辽宁招生考试之窗", "home_url": "https://www.lnzsks.com/", "chsi_url": "https://gaokao.chsi.com.cn/liaoning/"},
+    {"province": "吉林", "authority_name": "吉林省教育考试院", "home_url": "http://www.jleea.com.cn/", "chsi_url": "https://gaokao.chsi.com.cn/jilin/"},
+    {"province": "黑龙江", "authority_name": "黑龙江省招生考试信息港", "home_url": "https://www.lzk.hl.cn/", "chsi_url": "https://gaokao.chsi.com.cn/heilongjiang/"},
+    {"province": "上海", "authority_name": "上海市教育考试院", "home_url": "https://www.shmeea.edu.cn/", "chsi_url": "https://gaokao.chsi.com.cn/shanghai/"},
+    {"province": "江苏", "authority_name": "江苏省教育考试院", "home_url": "https://www.jseea.cn/", "chsi_url": "https://gaokao.chsi.com.cn/jiangsu/"},
+    {"province": "浙江", "authority_name": "浙江省教育考试院", "home_url": "https://www.zjzs.net/", "chsi_url": "https://gaokao.chsi.com.cn/zhejiang/"},
+    {"province": "安徽", "authority_name": "安徽省教育招生考试院", "home_url": "https://www.ahzsks.cn/", "chsi_url": "https://gaokao.chsi.com.cn/anhui/"},
+    {"province": "福建", "authority_name": "福建省教育考试院", "home_url": "https://www.eeafj.cn/", "chsi_url": "https://gaokao.chsi.com.cn/fujian/"},
+    {"province": "江西", "authority_name": "江西省教育考试院", "home_url": "http://www.jxeea.cn/", "chsi_url": "https://gaokao.chsi.com.cn/jiangxi/"},
+    {"province": "山东", "authority_name": "山东省教育招生考试院", "home_url": "https://www.sdzk.cn/", "chsi_url": "https://gaokao.chsi.com.cn/shandong/"},
+    {"province": "河南", "authority_name": "河南省教育考试院", "home_url": "https://www.haeea.cn/", "chsi_url": "https://gaokao.chsi.com.cn/henan/"},
+    {"province": "湖北", "authority_name": "湖北省教育考试院", "home_url": "http://www.hbea.edu.cn/", "chsi_url": "https://gaokao.chsi.com.cn/hubei/"},
+    {"province": "湖南", "authority_name": "湖南省教育考试院", "home_url": "https://www.hneeb.cn/", "chsi_url": "https://gaokao.chsi.com.cn/hunan/"},
+    {"province": "广东", "authority_name": "广东省教育考试院", "home_url": "https://eea.gd.gov.cn/", "chsi_url": "https://gaokao.chsi.com.cn/guangdong/"},
+    {"province": "广西", "authority_name": "广西壮族自治区招生考试院", "home_url": "https://www.gxeea.cn/", "chsi_url": "https://gaokao.chsi.com.cn/guangxi/"},
+    {"province": "海南", "authority_name": "海南省考试局", "home_url": "http://ea.hainan.gov.cn/", "chsi_url": "https://gaokao.chsi.com.cn/hainan/"},
+    {"province": "重庆", "authority_name": "重庆市教育考试院", "home_url": "https://www.cqksy.cn/", "chsi_url": "https://gaokao.chsi.com.cn/chongqing/"},
+    {"province": "四川", "authority_name": "四川省教育考试院", "home_url": "https://www.sceea.cn/", "chsi_url": "https://gaokao.chsi.com.cn/sichuan/"},
+    {"province": "贵州", "authority_name": "贵州省招生考试院", "home_url": "https://zsksy.guizhou.gov.cn/", "chsi_url": "https://gaokao.chsi.com.cn/guizhou/"},
+    {"province": "云南", "authority_name": "云南省招生考试院", "home_url": "https://www.ynzs.cn/", "chsi_url": "https://gaokao.chsi.com.cn/yunnan/"},
+    {"province": "西藏", "authority_name": "西藏自治区教育考试院", "home_url": "http://zsks.edu.xizang.gov.cn/", "chsi_url": "https://gaokao.chsi.com.cn/xizang/"},
+    {"province": "陕西", "authority_name": "陕西省教育考试院", "home_url": "https://www.sneea.cn/", "chsi_url": "https://gaokao.chsi.com.cn/shaanxi/"},
+    {"province": "甘肃", "authority_name": "甘肃省教育考试院", "home_url": "https://www.ganseea.cn/", "chsi_url": "https://gaokao.chsi.com.cn/gansu/"},
+    {"province": "青海", "authority_name": "青海省教育招生考试院", "home_url": "https://www.qhjyks.com/", "chsi_url": "https://gaokao.chsi.com.cn/qinghai/"},
+    {"province": "宁夏", "authority_name": "宁夏教育考试院", "home_url": "https://www.nxjyks.cn/", "chsi_url": "https://gaokao.chsi.com.cn/ningxia/"},
+    {"province": "新疆", "authority_name": "新疆维吾尔自治区教育考试院", "home_url": "https://www.xjzk.gov.cn/", "chsi_url": "https://gaokao.chsi.com.cn/xinjiang/"}
+  ]
+}

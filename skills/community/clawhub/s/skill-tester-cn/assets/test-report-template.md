@@ -48,4 +48,4 @@
 
 ---
 
-报告由 skill-tester 生成
+报告由 skill-tester-cn 生成

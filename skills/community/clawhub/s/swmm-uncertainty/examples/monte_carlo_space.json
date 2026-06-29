@@ -1,0 +1,27 @@
+{
+  "parameters": {
+    "hydraulic_conductivity_s1": {
+      "distribution": "lognormal",
+      "median": 6.5,
+      "p05": 3.0,
+      "p95": 10.0,
+      "precision": 4
+    },
+    "pct_imperv_s1": {
+      "distribution": "truncnorm",
+      "mean": 28.0,
+      "p05": 15.0,
+      "p95": 40.0,
+      "clip_min": 0.0,
+      "clip_max": 100.0,
+      "precision": 3
+    },
+    "n_imperv_s1": {
+      "distribution": "uniform",
+      "min": 0.01,
+      "max": 0.03,
+      "precision": 4
+    }
+  },
+  "constraints": []
+}

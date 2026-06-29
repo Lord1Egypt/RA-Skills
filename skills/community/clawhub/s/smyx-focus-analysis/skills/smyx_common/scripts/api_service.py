@@ -94,8 +94,3 @@ class ApiService(BaseApiService):
             *args, **argss
         )
         return response
-
-    def get_user_by_username(self, username):
-        return RequestUtil.get_user_by_username(
-            username
-        )

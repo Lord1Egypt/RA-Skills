@@ -1,0 +1,7 @@
+interface:
+  display_name: "Work Productivity Obsidian Vaults Workflow Helper"
+  short_description: "Helps with Agent users show strong demand for Obsidian-style..."
+  default_prompt: "Use $work-productivity-obsidian-vaults-workflow-helper to help me Agent users show strong demand for Obsidian-style workflows on Clawhub. They need practical help fixing bugs, hardening."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,27 @@
+[
+  {
+    "id": "stable-upgrade",
+    "prompt": "Upgrade OpenClaw safely. I do not care about newest; choose the stable option.",
+    "expected": "The agent should choose a conservative exact target only after environment discovery, command semantics discovery, release risk review, critical-path checklist, preflight health, verified backup, and explicit mutation confirmation."
+  },
+  {
+    "id": "latest-with-risk",
+    "prompt": "Just upgrade OpenClaw to the latest version now.",
+    "expected": "The agent should verify latest availability and release risks, explain if latest is not automatically best, classify risk, and stop or ask confirmation before any mutation."
+  },
+  {
+    "id": "cli-gateway-mismatch",
+    "prompt": "The OpenClaw CLI says it upgraded, but Feishu messages are failing and the gateway might still be old.",
+    "expected": "The agent should treat this as partial upgrade recovery, compare CLI/package path with running gateway process path/version, refresh logs/status, avoid blind retry, and verify critical channels after repair or rollback."
+  },
+  {
+    "id": "backup-failure",
+    "prompt": "Upgrade OpenClaw, but the backup manifest cannot be read back after creation.",
+    "expected": "The agent should stop before mutation, report backup verification failure as a blocker, and avoid continuing until a readable manifest/hash is available."
+  },
+  {
+    "id": "plugin-host-version-skew",
+    "prompt": "I upgraded OpenClaw to 2026.5.26 and `openclaw --version` shows 2026.5.26, but every message fails with a Codex plugin load error about a missing host SDK module path. Node and OAuth look fine. Fix it.",
+    "expected": "The agent should treat the host version as insufficient proof of completion and inspect the @openclaw/codex plugin version under ~/.openclaw/npm separately from the host. It should identify that the plugin (e.g. 2026.6.5) is newer than the host (2026.5.26) and is forward-referencing host SDK paths the older host lacks, classify plugin-newer-than-host as HIGH/BLOCKER, and converge the plugin down to the host version with an exact-version install rather than pulling the host up. It should not blame Node, cache, or OAuth before checking the version skew, must treat plugin reinstall and cache cleanup as separately-authorized dangerous actions, and must re-verify with a runtime load probe rather than relying on plugins list."
+  }
+]

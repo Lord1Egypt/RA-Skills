@@ -11,31 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and documentation maintainers use this skill to draft new documentation, remediate AI-generated writing patterns, and apply quality gates for clear, thesis-led technical content. <br>
+Developers and documentation maintainers use this skill to draft new documentation, remediate AI-like writing, and apply quality gates to repository docs, contributor guidance, and code comments. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Broad trigger phrases may activate the skill for documentation-adjacent tasks more often than intended. <br>
-Mitigation: Narrow trigger phrases or invoke the skill explicitly when installation policy requires activation only for documentation generation or remediation. <br>
-Risk: The skill can influence or edit documentation during remediation workflows. <br>
-Mitigation: Review proposed edits before applying them and keep the skill scoped to target documentation files. <br>
+Risk: Documentation or agent guidance changes could introduce inaccurate, misleading, or workflow-changing instructions. <br>
+Mitigation: Review proposed edits before acceptance, especially changes to AGENTS.md, CONTRIBUTING.md, aliases, symlinks, and repository-wide guidance. <br>
+Risk: The remediation workflow may change wording in a way that alters intended meaning. <br>
+Mitigation: Use the skill's section-by-section review flow for larger documents and require user approval for major restructuring or unclear intent. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-scribe-doc-generator) <br>
-- [Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scribe) <br>
+- [ClawHub Skill Page](https://clawhub.ai/athola/skills/nm-scribe-doc-generator) <br>
+- [Scribe Plugin Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scribe) <br>
+- [Generation Guidelines](artifact/modules/generation-guidelines.md) <br>
+- [Quality Gates](artifact/modules/quality-gates.md) <br>
+- [Remediation Workflow](artifact/modules/remediation-workflow.md) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown with prose, checklists, and inline code blocks] <br>
+**Output Format:** [Markdown prose with optional code blocks and shell commands] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May edit target documentation when explicitly asked and uses documentation quality gates before completion.] <br>
+**Other Properties Related to Output:** [May propose documentation edits, quality-gate results, and remediation steps for human review.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release evidence) <br>
+1.9.13 (source: ClawHub release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

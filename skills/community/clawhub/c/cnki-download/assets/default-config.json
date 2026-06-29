@@ -1,0 +1,12 @@
+{
+  "keyword": "区块链",
+  "sort": {
+    "field": "发表时间",
+    "order": "DESC"
+  },
+  "filters": [
+    { "col": "来源类别", "values": ["北大核心", "CSSCI"] },
+    { "col": "年度",     "values": ["2024", "2025"] }
+  ],
+  "download_count": 5
+}

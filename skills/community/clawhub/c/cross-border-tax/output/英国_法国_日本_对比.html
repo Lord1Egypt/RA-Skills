@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>跨境税务速查 · 英国 法国 日本 对比</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: #F0F4F8; color: #1A202C; line-height: 1.6; }
+.container { max-width: 960px; margin: 0 auto; padding: 20px; }
+.header { text-align: center; padding: 32px 20px 24px; background: linear-gradient(135deg, #1E3A5F 0%, #2D6A9F 100%); color: white; border-radius: 16px; margin-bottom: 24px; }
+.header h1 { font-size: 26px; margin-bottom: 8px; }
+.header p { font-size: 14px; opacity: 0.85; }
+.oss-section { background: white; border-radius: 14px; padding: 28px; margin-bottom: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.oss-section h2 { font-size: 22px; margin-bottom: 12px; }
+.oss-section h3 { font-size: 17px; margin: 20px 0 12px; color: #1E3A5F; }
+.oss-intro { color: #64748B; margin-bottom: 16px; font-size: 14px; }
+.table-wrapper { overflow-x: auto; margin: 12px 0; }
+.oss-table, .compare-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.oss-table th, .compare-table th { background: #F1F5F9; padding: 10px 12px; text-align: left; font-weight: 600; color: #334155; white-space: nowrap; }
+.oss-table td, .compare-table td { padding: 10px 12px; border-bottom: 1px solid #E2E8F0; }
+.oss-table tr:hover td, .compare-table tr:hover td { background: #F8FAFC; }
+.deadline-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 16px 0; }
+.deadline-card { background: #F1F5F9; border-radius: 10px; padding: 16px; text-align: center; }
+.deadline-card div:first-child { font-weight: 700; color: #1E3A5F; font-size: 16px; }
+.deadline-card div:nth-child(2) { font-size: 12px; color: #64748B; }
+.deadline-date { color: #E53935; font-weight: 700; font-size: 14px; margin-top: 6px; }
+.timeline { position: relative; padding-left: 24px; margin: 12px 0; }
+.timeline::before { content: ""; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: #CBD5E1; }
+.timeline-item { display: flex; align-items: flex-start; margin-bottom: 14px; position: relative; }
+.timeline-dot { width: 10px; height: 10px; border-radius: 50%; background: #2D6A9F; flex-shrink: 0; margin-right: 14px; margin-top: 4px; z-index: 1; }
+.timeline-content { font-size: 13px; }
+.timeline-date { font-weight: 700; color: #2D6A9F; font-size: 12px; }
+.timeline-text { color: #334155; }
+.country-card { background: white; border-radius: 14px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.country-flag { font-size: 32px; }
+.country-name { font-size: 20px; font-weight: 700; color: #1E3A5F; }
+.country-code { font-size: 12px; color: #94A3B8; font-weight: 400; background: #F1F5F9; padding: 2px 6px; border-radius: 4px; }
+.country-tax-type { font-size: 12px; color: #64748B; }
+.card-badges { margin-left: auto; display: flex; gap: 6px; }
+.badge { padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+.badge-oss { background: #E8F0FE; color: #1E6FD6; }
+.badge-ioss { background: #FCE4EC; color: #C62828; }
+.rate-section { padding: 16px; border-radius: 10px; border: 2px solid; text-align: center; margin-bottom: 16px; }
+.rate-label { font-size: 12px; color: #64748B; text-transform: uppercase; }
+.rate-value { font-size: 42px; font-weight: 800; }
+.rate-reduced { font-size: 13px; color: #64748B; margin-top: 4px; }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.info-item { background: #F8FAFC; padding: 10px 12px; border-radius: 8px; }
+.info-label { font-size: 11px; color: #64748B; text-transform: uppercase; font-weight: 600; }
+.info-value { font-size: 13px; color: #334155; margin-top: 2px; }
+.notes { background: #FFF8E1; padding: 10px 14px; border-radius: 8px; border-left: 3px solid #FFC107; margin-bottom: 12px; font-size: 13px; color: #5D4037; }
+.special-rules { display: flex; flex-wrap: wrap; gap: 6px; }
+.rule-tag { padding: 6px 12px; border-radius: 6px; font-size: 12px; line-height: 1.4; }
+.alert-warn { background: #FFF3E0; border: 1px solid #FFB74D; color: #E65100; }
+.alert-info { background: #E3F2FD; border: 1px solid #90CAF9; color: #1565C0; }
+.compare-section { background: white; border-radius: 14px; padding: 28px; margin-bottom: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.compare-section h2 { font-size: 20px; margin-bottom: 16px; }
+.oss-reminder { background: #E8F0FE; padding: 14px 20px; border-radius: 10px; margin-bottom: 20px; font-size: 14px; }
+.oss-reminder a { color: #1E6FD6; font-weight: 600; }
+.no-result { background: white; border-radius: 14px; padding: 40px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.no-result h2 { margin-bottom: 12px; }
+.no-result ul { text-align: left; display: inline-block; margin: 12px auto; color: #64748B; font-size: 14px; }
+.no-result li { margin-bottom: 6px; }
+.tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 12px; }
+.tag { background: #F1F5F9; padding: 8px 16px; border-radius: 20px; font-size: 13px; cursor: pointer; border: 1px solid #E2E8F0; transition: all 0.2s; }
+.tag:hover { background: #E8F0FE; border-color: #90CAF9; }
+.footer { text-align: center; padding: 24px; color: #94A3B8; font-size: 12px; }
+.quick-lookup { background: white; border-radius: 14px; padding: 28px; margin-bottom: 24px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.rate-cell { font-size: 18px; }
+@media (max-width: 640px) {
+  .deadline-grid { grid-template-columns: repeat(2, 1fr); }
+  .info-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>🌍 跨境多国税务速查</h1>
+    <p>查询时间: 2026-06-21 16:03 · 数据来源: 各国税务局/欧盟委员会/2026年公开数据</p>
+  </div>
+  
+    <div class="oss-section">
+      <h2>🇪🇺 EU OSS/IOSS 一站式申报方案</h2>
+      <p class="oss-intro">OSS（One-Stop Shop）是欧盟为简化跨境电商VAT申报推出的机制，允许卖家在一国注册后覆盖全EU申报。IOSS专用于从非欧盟进口的低价值商品。</p>
+
+      <h3>三种方案对比</h3>
+      <div class="table-wrapper">
+        <table class="oss-table">
+          <thead>
+            <tr><th>方案</th><th>适用对象</th><th>覆盖范围</th><th>申报频率</th><th>门槛</th><th>注册地</th></tr>
+          </thead>
+          <tbody>
+        <tr>
+          <td><strong>Union OSS</strong></td>
+          <td>在欧盟境内设立的卖家</td>
+          <td>跨境B2C商品销售（已在EU境内）+数字/TBE服务</td>
+          <td>季度一次</td>
+          <td>欧盟跨境B2C年销售合计>€10,000</td>
+          <td>卖家本国</td>
+        </tr>
+        <tr>
+          <td><strong>Non-Union OSS</strong></td>
+          <td>非欧盟设立的企业</td>
+          <td>向EU消费者提供数字/TBE服务</td>
+          <td>季度一次</td>
+          <td>无门槛，自愿注册</td>
+          <td>任选一个EU成员国</td>
+        </tr>
+        <tr>
+          <td><strong>IOSS (Import OSS)</strong></td>
+          <td>任何从非欧盟向EU发货的卖家</td>
+          <td>B2C进口商品，单件内在价值≤€150</td>
+          <td>月度一次</td>
+          <td>无门槛，自愿注册（仅限≤€150商品）</td>
+          <td>EU成员国 + 需指定财政代表（非EU卖家）</td>
+        </tr></tbody>
+        </table>
+      </div>
+
+      <h3>OSS季度申报截止日</h3>
+      <div class="deadline-grid">
+        <div class="deadline-card"><div>Q1</div><div>1-3月</div><div class="deadline-date">4月30日</div></div>
+        <div class="deadline-card"><div>Q2</div><div>4-6月</div><div class="deadline-date">7月31日</div></div>
+        <div class="deadline-card"><div>Q3</div><div>7-9月</div><div class="deadline-date">10月31日</div></div>
+        <div class="deadline-card"><div>Q4</div><div>10-12月</div><div class="deadline-date">次年1月31日</div></div>
+      </div>
+      <p style="text-align:center;color:#64748B;font-size:13px;margin-top:4px;">IOSS月度申报截止日：次月最后一天</p>
+
+      <h3>⚠ 重要提醒</h3>
+      <div class="special-rules"><div class="rule-tag alert-warn">即使低于€10,000阈值，如果在多个成员国持有库存（如泛欧FBA），也必须逐国注册！</div><div class="rule-tag alert-warn">非欧盟主体不能使用Union OSS，必须用IOSS（≤€150）或逐国注册</div><div class="rule-tag alert-warn">消费税商品（酒精、烟草、能源产品）不适用OSS，必须目的国注册</div><div class="rule-tag alert-warn">OSS申报中包含的VAT不能用于进项抵扣</div></div>
+
+      <h3>关键时间节点</h3>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-date">2025年7月1日</div>
+            <div class="timeline-text">平台视为供应商规则扩展（短租/客运推迟至2028/2030）</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-date">2026年7月1日</div>
+            <div class="timeline-text">⚠ 150欧元关税豁免废止，每个包裹征收€3过渡统一关税</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-date">约2028年3月1日</div>
+            <div class="timeline-text">IOSS 150欧元上限取消；平台成为视为进口商；€3过渡关税终止</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-date">2028年7月1日</div>
+            <div class="timeline-text">ViDA单一VAT注册生效：多库存国不再需要逐国注册</div>
+          </div>
+        </div></div>
+    </div>
+    <div class="compare-section">
+      <h2>📊 多国税务对比表</h2>
+      <div class="table-wrapper">
+        <table class="compare-table">
+          <thead>
+            <tr><th>国家/地区</th><th>标准税率</th><th>减税率</th><th>申报频率</th><th>截止日</th></tr>
+          </thead>
+          <tbody>
+        <tr>
+          <td><strong>法国</strong></td>
+          <td class="rate-cell" style="color:#FF9800; font-weight:700">20%</td>
+          <td>10%, 5.5%, 2.1%</td>
+          <td>月度（标准）/ 季度（可选）</td>
+          <td>每月15-24日（视地区）</td>
+        </tr>
+        <tr>
+          <td><strong>英国</strong></td>
+          <td class="rate-cell" style="color:#FF9800; font-weight:700">20%</td>
+          <td>5%, 0%</td>
+          <td>季度</td>
+          <td>季度结束后1个月+7天</td>
+        </tr>
+        <tr>
+          <td><strong>日本</strong></td>
+          <td class="rate-cell" style="color:#FFC107; font-weight:700">10%</td>
+          <td>8%</td>
+          <td>年度（可选择中期申报）</td>
+          <td>财年结束后2个月内（通常3月底→5月底）</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </div><div class="oss-reminder"><p>💡 涉及欧盟国家，<a href="#oss">查看EU OSS一站式申报方案↓</a></p></div>
+    <div class="country-card">
+      <div class="card-header">
+        <div class="country-flag">🇫🇷</div>
+        <div>
+          <div class="country-name">法国 <span class="country-code">FR</span></div>
+          <div class="country-tax-type">增值税 (VAT)</div>
+        </div>
+        <div class="card-badges"><span class="badge badge-oss">OSS</span></div>
+      </div>
+      <div class="rate-section" style="background:#FFF3E0; border-color:#FF9800">
+        <div class="rate-label">标准税率</div>
+        <div class="rate-value" style="color:#FF9800">20%</div>
+        <div class="rate-reduced">减税率：10%, 5.5%, 2.1%</div>
+      </div>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">💰 货币</div>
+          <div class="info-value">EUR (€)</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">📋 注册门槛</div>
+          <div class="info-value">无最低门槛（非欧盟卖家）/ 本国服务业€36,800/商品€91,900豁免</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">📅 申报频率</div>
+          <div class="info-value">月度（标准）/ 季度（可选）</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">⏰ 截止日期</div>
+          <div class="info-value">每月15-24日（视地区）</div>
+        </div>
+      </div>
+      <div class="notes">四档税率，注意区分商品类别</div>
+      <div class="special-rules"><div class="rule-tag alert-info">有四档税率（20%/10%/5.5%/2.1%），为EU最复杂税率体系之一</div><div class="rule-tag alert-info">电子书适用5.5%减税率</div><div class="rule-tag alert-info">2024年起平台代收代缴扩展</div></div>
+    </div>
+    <div class="country-card">
+      <div class="card-header">
+        <div class="country-flag">🇬🇧</div>
+        <div>
+          <div class="country-name">英国 <span class="country-code">GB</span></div>
+          <div class="country-tax-type">增值税 (VAT)</div>
+        </div>
+        <div class="card-badges"></div>
+      </div>
+      <div class="rate-section" style="background:#FFF3E0; border-color:#FF9800">
+        <div class="rate-label">标准税率</div>
+        <div class="rate-value" style="color:#FF9800">20%</div>
+        <div class="rate-reduced">减税率：5%, 0%</div>
+      </div>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">💰 货币</div>
+          <div class="info-value">GBP (£)</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">📋 注册门槛</div>
+          <div class="info-value">非英国卖家：无最低门槛（有销售即须注册）/ 本国£90,000（12个月滚动）</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">📅 申报频率</div>
+          <div class="info-value">季度</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">⏰ 截止日期</div>
+          <div class="info-value">季度结束后1个月+7天</div>
+        </div>
+      </div>
+      <div class="notes">脱欧后独立税制，≤£135商品平台强制代收</div>
+      <div class="special-rules"><div class="rule-tag alert-warn">⚠ B2C货值≤£135：VAT在销售点由卖家/平台收取并缴纳（平台代收代缴）</div><div class="rule-tag alert-info">B2C货值>£135：VAT与关税在边境向买方收取</div><div class="rule-tag alert-info">脱欧后不再适用EU OSS，需单独注册UK VAT</div><div class="rule-tag alert-info">英国有自己的OSS-like系统（UK OSS仅用于北爱尔兰）</div><div class="rule-tag alert-info">数字服务2%</div></div>
+    </div>
+    <div class="country-card">
+      <div class="card-header">
+        <div class="country-flag">🇯🇵</div>
+        <div>
+          <div class="country-name">日本 <span class="country-code">JP</span></div>
+          <div class="country-tax-type">消费税 (CT)</div>
+        </div>
+        <div class="card-badges"></div>
+      </div>
+      <div class="rate-section" style="background:#FFF8E1; border-color:#FFC107">
+        <div class="rate-label">标准税率</div>
+        <div class="rate-value" style="color:#FFC107">10%</div>
+        <div class="rate-reduced">减税率：8%</div>
+      </div>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">💰 货币</div>
+          <div class="info-value">JPY (¥)</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">📋 注册门槛</div>
+          <div class="info-value">年度应税销售>¥10,000,000（约$67,000）须注册</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">📅 申报频率</div>
+          <div class="info-value">年度（可选择中期申报）</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">⏰ 截止日期</div>
+          <div class="info-value">财年结束后2个月内（通常3月底→5月底）</div>
+        </div>
+      </div>
+      <div class="notes">发票制度改革后需注册开具合格发票</div>
+      <div class="special-rules"><div class="rule-tag alert-info">食品/饮料（不含酒类）适用8%减税率</div><div class="rule-tag alert-info">非居民企业须指定日本国内纳税管理人</div><div class="rule-tag alert-info">2023年10月发票制度改革（インボイス制度）</div><div class="rule-tag alert-info">跨境数字服务按消费者所在征税</div></div>
+    </div>
+  <div class="footer">
+    <p>⚠ 免责声明：本报告仅供参考，不构成税务/法律建议。税率和规则可能随时变化，请以各国官方税务局最新公告为准。</p>
+    <p style="margin-top: 8px;">Cross-Border Tax Quick Lookup v1.0 · Powered by WorkBuddy</p>
+  </div>
+</div>
+</body>
+</html>

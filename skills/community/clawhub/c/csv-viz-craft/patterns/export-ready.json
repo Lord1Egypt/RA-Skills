@@ -1,0 +1,10 @@
+{
+  "name": "export-ready",
+  "label": "打印/导出优化",
+  "description": "打印友好，去掉交互元素，保留数据和结构",
+  "layout": "table",
+  "features": ["print_optimized", "hide_interactive", "page_breaks", "header_repeat", "bordered"],
+  "page_size": "A4",
+  "orientation": "landscape",
+  "show_filters_print": false
+}

@@ -6,8 +6,8 @@ depends-on:
   - superpowers
 metadata:
   author: es6kr
-  version: "0.3.1" # x-release-please-version
-description: >-
+  version: "0.3.2" # x-release-please-version
+description: |
   Consolidate and respond to external feedback on PRs/issues. Topics —
   pr (workflow entrypoint + skip conditions),
   collect (gather AI reviews + superpowers load),

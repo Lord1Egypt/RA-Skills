@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://openclaw.dev/skills/rental-dispute-advisor/input.schema.json",
+  "title": "Rental Dispute Input",
+  "description": "Schema for rental dispute case data used by Rental Dispute Advisor",
+  "type": "object",
+  "required": ["dispute_type", "tenant", "incident"],
+  "properties": {
+    "dispute_type": {
+      "type": "string",
+      "enum": ["deposit_withheld", "rent_increase", "illegal_fees", "maintenance_failure", "eviction", "contract_trap", "roommate_dispute", "other"],
+      "description": "Type of rental dispute"
+    },
+    "tenant": {
+      "type": "object",
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string", "description": "Tenant's full name" },
+        "city": { "type": "string", "description": "City where the rental property is located" },
+        "role": { "type": "string", "description": "Tenant's occupation or role" },
+        "contact": { "type": "string", "description": "Tenant's contact information" }
+      },
+      "additionalProperties": false
+    },
+    "landlord": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Landlord's full name" },
+        "contact": { "type": "string", "description": "Landlord's contact information" },
+        "license": { "type": "string", "description": "Landlord or agency license number (if applicable)" }
+      },
+      "additionalProperties": false
+    },
+    "agency": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Real estate agency name" },
+        "license": { "type": "string", "description": "Agency license number" }
+      },
+      "additionalProperties": false
+    },
+    "lease": {
+      "type": "object",
+      "properties": {
+        "monthly_rent": { "type": "number", "minimum": 0, "description": "Monthly rent in RMB" },
+        "deposit_amount": { "type": "number", "minimum": 0, "description": "Deposit amount in RMB" },
+        "start_date": { "type": "string", "format": "date", "description": "Lease start date (YYYY-MM-DD)" },
+        "end_date": { "type": "string", "format": "date", "description": "Lease end date (YYYY-MM-DD)" },
+        "clauses": {
+          "type": "object",
+          "properties": {
+            "deposit_return": { "type": "string", "description": "Relevant deposit return clause text" },
+            "rent_adjustment": { "type": "string", "description": "Rent adjustment clause (if any)" },
+            "maintenance": { "type": "string", "description": "Maintenance responsibility clause" }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "incident": {
+      "type": "object",
+      "required": ["description"],
+      "properties": {
+        "description": { "type": "string", "description": "Description of the dispute incident" },
+        "date": { "type": "string", "format": "date", "description": "Date when the dispute arose" },
+        "timeline": {
+          "type": "array",
+          "description": "Chronological list of key events",
+          "items": {
+            "type": "object",
+            "required": ["date", "event"],
+            "properties": {
+              "date": { "type": "string", "description": "Event date (YYYY-MM-DD)" },
+              "event": { "type": "string", "description": "Description of the event" }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "array",
+      "description": "List of evidence items the tenant has or can obtain",
+      "items": {
+        "type": "object",
+        "required": ["type", "description"],
+        "properties": {
+          "type": { "type": "string", "enum": ["contract", "receipt", "photo", "video", "audio", "chat", "email", "witness", "appraisal", "other"], "description": "Type of evidence" },
+          "description": { "type": "string", "description": "Description of the evidence item" },
+          "file_path": { "type": "string", "description": "Path to evidence file (optional)" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "amount_disputed": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Total amount in dispute (RMB)"
+    },
+    "fees_disputed": {
+      "type": "array",
+      "description": "Specific fees being disputed (for illegal_fees type)",
+      "items": {
+        "type": "object",
+        "required": ["type", "amount", "description"],
+        "properties": {
+          "type": { "type": "string", "description": "Fee type (e.g., agency_fee, viewing_fee, management_fee)" },
+          "amount": { "type": "number", "minimum": 0, "description": "Fee amount in RMB" },
+          "description": { "type": "string", "description": "Description of the fee" }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

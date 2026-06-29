@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sage Router managed access margin policy for future bundled model-provider access." />
+  <link rel="canonical" href="https://sagerouter.dev/margin-policy" />
+  <meta property="og:title" content="Sage Router Managed Access Margin Policy" />
+  <meta property="og:description" content="Public margin, configured cost-model, and billing guardrails for any future managed provider access private beta." />
+  <meta property="og:url" content="https://sagerouter.dev/margin-policy" />
+  <meta property="og:type" content="website" />
+  <title>Sage Router Managed Access Margin Policy</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07100d;--panel:rgba(13,29,24,.84);--border:rgba(166,255,207,.16);--muted:#a9c5b8;--text:#edfdf5;--brand:#8df0b2;--amber:#f7d57a}*{box-sizing:border-box}body{margin:0;min-width:320px;background:linear-gradient(180deg,#07100d 0%,#0b1518 48%,#07100d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}.wrap{max-width:980px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}a{color:inherit;text-decoration:none}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;color:var(--muted)}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;color:var(--text)}.brandMark{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(141,240,178,.42);border-radius:8px;color:#062016;background:linear-gradient(135deg,var(--brand),var(--amber))}.navLinks,footer{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;font-weight:750}.navLinks a:hover,footer a:hover{color:var(--text)}main{padding:48px 0 64px}.eyebrow{color:var(--brand);text-transform:uppercase;letter-spacing:.16em;font-weight:900;font-size:12px;margin:0 0 16px}h1{font-size:clamp(42px,7vw,76px);line-height:.96;margin:0 0 20px}h2{font-size:clamp(24px,3vw,34px);line-height:1.08;margin:34px 0 10px}p,li{color:var(--muted)}.panel{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:26px;margin-top:24px}.note{border-color:rgba(141,240,178,.32);background:linear-gradient(180deg,rgba(26,67,50,.9),rgba(12,28,22,.86))}ul{padding-left:20px;display:grid;gap:8px}code{color:#d9f8e6}footer{padding:34px 0 54px;color:var(--muted);border-top:1px solid rgba(166,255,207,.1)}footer span{margin-right:auto}@media(max-width:760px){.nav{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+      <div class="navLinks">
+        <a href="/pricing">Pricing</a>
+        <a href="/provider-resale-terms">Provider Terms</a>
+        <a href="/acceptable-use">Acceptable Use</a>
+        <a href="/terms">Terms</a>
+        <a href="/privacy">Privacy</a>
+      </div>
+    </nav>
+
+    <main>
+      <p class="eyebrow">Managed access economics</p>
+      <h1>Sage Router Managed Access Margin Policy</h1>
+      <p>Effective June 19, 2026. This policy describes the unit-economics guardrails required before Sage Router can enable any private-beta managed model-provider access.</p>
+
+      <section class="panel note">
+        <h2>Positive Unit Economics Required</h2>
+        <p>Managed provider access may only be enabled when expected provider cost, infrastructure cost, payment risk, support load, quota enforcement, operator audit events, and abuse controls support positive unit economics. It is not unlimited unmetered resale.</p>
+        <p>The public guard uses a configured positive cents-per-thousand-request provider cost model, exposed operationally as <code>SAGEROUTER_PROVIDER_RESALE_COST_CENTS_PER_1K_REQUESTS</code>, plus plan-margin checks for Lite, Pro, and Max before managed access can be marked ready. Public readiness metadata may show whether the cost model is configured, each plan's public revenue per 1,000 requests, each plan's derived maximum safe provider cost for the minimum margin, and whether each plan meets the minimum gross-margin threshold, but it must not publish actual provider costs.</p>
+      </section>
+
+      <section class="panel">
+        <h2>Billing Boundary</h2>
+        <ul>
+          <li>Public hosted plans sell routing, account management, generated API keys, quotas, analytics, reliability tooling, and support by default.</li>
+          <li>Managed model-provider access, if introduced, may require a separate add-on, private-beta approval, metered usage, provider-specific limits, or plan-specific caps.</li>
+          <li>Sage Router may pause, downgrade, or require plan changes when usage exceeds safe cost, quota, fraud, payment, or abuse thresholds.</li>
+          <li>Refunds, credits, trials, and manual settlements may be limited when provider cost has already been incurred or when payment risk is elevated.</li>
+        </ul>
+
+        <h2>Quota and Cost Controls</h2>
+        <ul>
+          <li>Durable usage counters and secret-free operator audit events must track billable routed requests and sensitive operator actions before managed provider access is considered launchable.</li>
+          <li>Request-per-minute limits, monthly quotas, generated-key revocation, and inactive-account blocking must remain active at the public edge.</li>
+          <li>Provider cost model, minimum gross-margin threshold, and per-plan monthly quotas must be reviewed together before managed access can move from private-beta demand capture to active service.</li>
+          <li>The public pricing checkpoint may publish cost-model configured status, minimum gross-margin threshold, public revenue per 1,000 requests, derived maximum safe provider cost per plan, and per-plan pass/fail state without exposing actual costs.</li>
+          <li>Private-beta margin reviews may use aggregate usage, plan, provider, route, and cost metadata, without publishing prompts, message bodies, provider credentials, OAuth tokens, API keys, or raw provider responses.</li>
+        </ul>
+
+        <h2>Customer Expectation</h2>
+        <p>Managed provider access should be marketed as controlled, quota-bound convenience. It should not be sold as unlimited access, guaranteed model availability, provider-term bypass, or a substitute for customer-owned provider accounts when those are required.</p>
+      </section>
+    </main>
+
+    <footer>
+      <span>&copy; Sage Router</span>
+      <a href="/pricing">Pricing</a>
+      <a href="/provider-resale-terms">Provider Terms</a>
+      <a href="/acceptable-use">Acceptable Use</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+    </footer>
+  </div>
+</body>
+</html>

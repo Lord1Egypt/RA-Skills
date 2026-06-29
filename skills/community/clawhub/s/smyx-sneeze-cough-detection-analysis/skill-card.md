@@ -1,5 +1,5 @@
 ## Description: <br>
-AI-powered pet sneeze/cough detection from real-time camera video with optional audio fusion, producing behavior-level event detection, frequency counts, and history report views for pet respiratory monitoring. <br>
+Detects pet sneeze and cough events from video, with optional audio fusion, and returns structured behavior reports with event timing, frequency, risk prompts, recommendations, and report links. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,34 +11,37 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External pet owners, animal hospital staff, boarding center staff, and developers can use this skill to analyze pet videos or report history for sneeze and cough behavior patterns. The output is for behavior observation and does not provide a medical diagnosis. <br>
+External users, developers, and pet-care operators use this skill to analyze pet activity videos for sneeze and cough behavior, distinguish occasional events from repeated bursts, and review structured reports or cloud report history. The output is behavior observation support only and is not a veterinary diagnosis. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Pet videos, household imagery or audio, and persistent open-id values may be sent to remote Life Emergence/SMYX services during analysis or history lookup. <br>
-Mitigation: Use the skill only with informed user consent, avoid sensitive footage where possible, and avoid real phone numbers as open-id values unless required and consented to. <br>
-Risk: The release includes a bundled API key and account or token persistence behavior noted by the security evidence. <br>
-Mitigation: Treat bundled credentials as exposed and review or remove shared account and token persistence paths before deploying in multi-user or sensitive environments. <br>
-Risk: Detection results may be mistaken for medical conclusions. <br>
-Mitigation: Present results as behavior observations only and direct users to veterinary care for frequent events, breathing difficulty, or other concerning symptoms. <br>
+Risk: Pet video or audio and identifiers are processed by LifeEmergence cloud services. <br>
+Mitigation: Use only media that is appropriate for external cloud processing, and obtain any required user or organizational approval before running analysis or history queries. <br>
+Risk: The skill silently creates or reuses an internal identity and queries cloud report history. <br>
+Mitigation: Review local identity behavior and cloud-history access before deployment, especially in shared workspaces or environments with multiple users. <br>
+Risk: Authentication tokens and profile data may be stored in a local workspace database. <br>
+Mitigation: Run the skill in a controlled workspace, restrict filesystem access, and clear local token/profile storage when the skill is no longer needed. <br>
+Risk: Behavior detection output may be mistaken for medical diagnosis. <br>
+Mitigation: Present results as observation support only and route frequent, severe, or uncertain respiratory events to a veterinarian. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/smyx-sneeze-cough-detection-analysis) <br>
-- [API interface reference](references/api_doc.md) <br>
-- [Bundled SMYX analysis API reference](skills/smyx_analysis/references/api_doc.md) <br>
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-sneeze-cough-detection-analysis) <br>
+- [Publisher profile](https://clawhub.ai/user/18072937735) <br>
+- [API documentation](references/api_doc.md) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON-formatted detection reports, Markdown history tables, and optional saved output files] <br>
+**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
+**Output Format:** [Markdown text with embedded structured JSON and report links] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user-provided or configured open-id before remote analysis or history lookup; accepts local video paths or public video URLs.] <br>
+**Other Properties Related to Output:** [Can save analysis output to a file; history queries return a structured report list from the cloud service.] <br>
 
 ## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release metadata) <br>
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.3) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

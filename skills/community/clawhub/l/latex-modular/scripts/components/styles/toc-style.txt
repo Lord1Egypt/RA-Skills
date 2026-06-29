@@ -1,0 +1,51 @@
+% --- 目录样式调整 ---
+\usepackage{tocloft}
+
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}} % 一级标题添加虚线
+\renewcommand{\cfttoctitlefont}{\normalfont\Large\bfseries\centering} % 标准目录标题格式
+\renewcommand{\cftaftertoctitle}{\vskip10pt} % 适当调整标题间距
+
+% ------------------------- 目录标题样式 -------------------------
+\renewcommand{\contentsname}{% 
+  \begin{center}
+    \timucn\fontsize{19pt}{9pt}\selectfont\bfseries 目录
+  \end{center}
+}
+\addtocontents{toc}{\protect\vspace{-1.5em}} % 微调标题间距
+
+% ------------------------- 目录行距设置 -------------------------
+% 调整条目上下间距
+\setlength{\cftbeforesecskip}{0pt}    % 一级标题前的间距
+\setlength{\cftbeforesubsecskip}{0pt} % 二级标题前的间距
+% 调整条目内部行距（标题与页码之间的间距）
+\renewcommand{\cftsecafterpnum}{\vspace{0pt}} % 一级标题后
+\renewcommand{\cftsubsecafterpnum}{\vspace{0pt}} % 二级标题后
+
+% 通过重定义目录条目格式增加行距
+\makeatletter
+% 一级标题
+\renewcommand{\cftsecfont}{\baselineskip=2pt\selectfont} % 行距=6pt
+% 二级标题
+\renewcommand{\cftsubsecfont}{\baselineskip=2pt\selectfont} % 行距=6pt
+\makeatother
+
+\renewcommand{\cfttoctitlefont}{\timucn\hspace*{\fill}}   % 清除标题格式
+\renewcommand{\cftaftertoctitle}{\hspace*{\fill}}   % 清除标题后格式
+
+% 统一设置所有标题编号后缀
+\renewcommand{\cftsecaftersnum}{、}        % 一级标题添加顿号
+\renewcommand{\cftsubsecaftersnum}{）}     % 二级标题补全右括号
+\renewcommand{\cftsubsubsecaftersnum}{、}  % 三级标题添加顿号
+% 四级标题不需要后缀（原配置无后缀）
+\renewcommand{\cftparaaftersnum}{）}
+
+% 保持原有字体和缩进配置
+\renewcommand{\cftsecfont}{\timucn\small}
+\renewcommand{\cftsubsecfont}{\timucn\small}
+\renewcommand{\cftsubsubsecfont}{\timucn\small}
+\renewcommand{\cftparafont}{\timucn\small}
+
+\setlength{\cftsecindent}{0em}
+\setlength{\cftsubsecindent}{2em}
+\setlength{\cftsubsubsecindent}{4em}
+\setlength{\cftparaindent}{6em}

@@ -1,0 +1,55 @@
+{
+  "name": "网页批量截图",
+  "description": "批量打开多个网页并截图保存",
+  "params": {
+    "urls": [
+      "https://www.douyin.com",
+      "https://www.taobao.com",
+      "https://www.jd.com"
+    ],
+    "delayMs": 2000
+  },
+  "steps": [
+    {
+      "action": "open_urls",
+      "urls": ["https://www.douyin.com"],
+      "delayMs": 1000
+    },
+    {
+      "action": "wait",
+      "ms": 3000
+    },
+    {
+      "action": "take_screenshot",
+      "fullPage": true
+    },
+    {
+      "action": "get_page_structure",
+      "includeLinks": true,
+      "includeButtons": true,
+      "maxItems": 10
+    },
+    {
+      "action": "loop",
+      "count": 5,
+      "body": [
+        {
+          "action": "fast_scroll_down",
+          "speed": 1
+        },
+        {
+          "action": "wait",
+          "ms": 1000
+        }
+      ]
+    },
+    {
+      "action": "take_screenshot",
+      "fullPage": true
+    }
+  ],
+  "retry": {
+    "maxRetries": 2,
+    "onFailure": "skip"
+  }
+}

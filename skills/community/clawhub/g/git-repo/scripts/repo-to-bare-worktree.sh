@@ -71,8 +71,18 @@ mv "$WT/.git" "$BARE"
 git -C "$BARE" config core.bare true
 git -C "$BARE" config --unset core.worktree 2>/dev/null || true
 
-# --- (e) metadata relink (Windows-form abs paths via cygpath -m) ---
-to_win() { if command -v cygpath >/dev/null 2>&1; then cygpath -m "$1"; else echo "$1"; fi; }
+# --- (e) metadata relink (Windows-form abs paths via cygpath/wslpath) ---
+# MSYS (/c/...) and WSL (/mnt/c/...) both need conversion to C:/... — git
+# metadata is not aware of either guest-shell form.
+to_win() {
+  if command -v cygpath >/dev/null 2>&1; then
+    cygpath -m "$1"
+  elif command -v wslpath >/dev/null 2>&1 && [[ "$1" == /mnt/?/* ]]; then
+    wslpath -w "$1" | tr '\\' '/'
+  else
+    echo "$1"
+  fi
+}
 BARE_W="$(to_win "$BARE")"
 WT_W="$(to_win "$WT")"
 mkdir -p "$BARE/worktrees/$NAME"
@@ -82,11 +92,19 @@ echo "$WT_W/.git"              > "$BARE/worktrees/$NAME/gitdir"
 echo "gitdir: $BARE_W/worktrees/$NAME" > "$WT/.git"
 
 # --- (f) rebuild the worktree index from HEAD ---
-# Mixed-mode reset: working-tree files are preserved as-is. Any pre-conversion
-# staged-but-uncommitted changes are unstaged (re-stage with `git add` after
-# conversion if needed) — intentional, so the new worktree starts with a clean
-# index aligned to HEAD instead of an index inherited from the pre-move repo.
-git -C "$WT" reset HEAD -- . >/dev/null 2>&1 || true
+# `git reset --mixed HEAD -- .` is NOT destructive to the working tree:
+#   - --mixed (default for `reset`) keeps working-tree files as-is
+#   - the pathspec `-- .` restricts the operation to the index, not refs
+#   - it does NOT discard committed work or working-tree changes
+# What it DOES do (intentional):
+#   - any pre-conversion staged-but-uncommitted changes are unstaged
+#   - re-stage with `git add` after conversion if needed
+# Why: the new worktree starts with a clean index aligned to HEAD instead of
+# the index inherited from the pre-move repo, which may reference paths that
+# no longer resolve correctly after the bare/worktree split. The `--mixed`
+# flag is spelled out (it is the default) so downstream readers do not have
+# to look up reset's default mode.
+git -C "$WT" reset --mixed HEAD -- . >/dev/null 2>&1 || true
 
 # --- (g) verify ---
 echo ""

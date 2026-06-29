@@ -1,0 +1,17 @@
+# Python dependencies for archviz-skills templates
+# Install: pip install -r requirements.txt
+
+# Terminal Mermaid rendering (18 diagram types, 6 themes)
+termaid>=0.7
+
+# Data visualization (interactive HTML export)
+plotly>=5.0
+
+# Static charts (SVG/PNG/PDF export)
+matplotlib>=3.7
+
+# Statistical visualization
+seaborn>=0.12
+
+# Numerical computing (for box plots, distributions)
+numpy>=1.24

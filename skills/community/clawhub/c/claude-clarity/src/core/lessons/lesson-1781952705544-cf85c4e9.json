@@ -1,0 +1,13 @@
+{
+  "id": "lesson-1781952705544-cf85c4e9",
+  "type": "correction",
+  "content": "心虫引擎的clarity_think在PARSE阶段会将包含梦/记忆/感受/分析等关键词的任务错误路由到reception聆听模式，跳过假设检验、反方推理、证据检验等深度思考阶段。这导致心虫分析自己的梦境数据时无法展开完整的认知推理。修复方向：在PARSE策略判断中加入distinction——如果input中包含system_analysis标记或明确说明这不是人类经验分享，应路由到genera",
+  "context": "user_recorded",
+  "trigger": "clarity",
+  "importance": 3,
+  "frequency": 1,
+  "createdAt": "2026-06-20T10:51:45.548Z",
+  "lastSeen": "2026-06-20T10:51:45.548Z",
+  "sessionId": null,
+  "retentionScore": 3.3
+}

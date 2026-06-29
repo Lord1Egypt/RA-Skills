@@ -1,0 +1,9 @@
+# Manifest — axiom-luhn-check (public, clean)
+# Edition: Capafy voice (zero cluster jargon)
+# Generated: 2026-06-14T20:45:38Z
+
+14d7852767f91e0daa3bc270784b272adf8be2b02d03b6e95fb5ea8135197f57  LICENSE  (45 bytes)
+8c685312f22ea19ea57b52608df70d0458fb204799229554c4e9c4f914ad5c73  README.md  (1114 bytes)
+2ef58a174cd1dc46385c28a29e0dcc9762d33d4e5bb41d6751dc394547771397  SKILL.md  (427 bytes)
+2923dc9638e29034dc71d217e38014fed214f3e3a7ae2b6034aa5fd0cde1fc3c  axiom_luhn_check.py  (6450 bytes)
+19ddf734d5460534a3068294906ff801f68fcdab609f6dc35ef001da2f615e9c  test_axiom_luhn_check.py  (3092 bytes)

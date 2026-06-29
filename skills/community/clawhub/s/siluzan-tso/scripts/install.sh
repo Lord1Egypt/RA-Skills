@@ -9,7 +9,7 @@ set -euo pipefail
 # -- Package info (injected at build time) ------------------------------------
 readonly PKG_NAME="siluzan-tso-cli"
 # PKG_VERSION 锁定到与本脚本同批构建产物一致的版本，避免与 dist/skill 错位
-readonly PKG_VERSION="1.1.29"
+readonly PKG_VERSION="1.1.30"
 readonly CLI_BIN="siluzan-tso"
 readonly SKILL_LABEL="Siluzan TSO"
 readonly INSTALL_CMD="npm install -g siluzan-tso-cli"
@@ -152,10 +152,13 @@ main() {
   info "Registering Skill to all AI platform global directories..."
   ${CLI_BIN} init --global --force
 
-  # Step 3: Configure API Key
-  step "Step 3/4: Configure API Key"
-  echo ""
-  ${CLI_BIN} login
+  if [ "${CLI_BIN}" = "siluzan-seo" ]; then
+    info "siluzan-seo does not require login; skipping API Key setup."
+  else
+    step "Step 3/4: Configure API Key"
+    echo ""
+    ${CLI_BIN} login
+  fi
 
   # Step 4: Done
   step "Step 4/4: Complete"

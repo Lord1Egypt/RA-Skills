@@ -1,5 +1,5 @@
 ## Description: <br>
-AI full-stack teaching tutor for structured Python and AI learning, covering Python, FastAPI, prompt engineering, RAG, model fine-tuning, machine learning, deep learning, agent development, AI tools, hot AI topics, and agent selection guidance. <br>
+Python AI Course is an AI full-stack tutoring skill that creates personalized learning paths, lessons, exercises, and project guidance for learners studying Python, LLMs, RAG, agents, prompt engineering, model training, and AI engineering. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,35 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Learners, developers, and teams use this skill as a Chinese-first AI/Python tutor that assesses background, assigns a level, runs a placement test, and builds a customized AI learning path. It also provides structured lessons, exercises with answers, practical coding tasks, hot-topic briefings, and agent selection guidance. <br>
+External learners, developers, and career switchers use this skill as an AI learning coach to assess their current level, plan a full-stack AI curriculum, and receive structured lessons, practice questions, code examples, and project-oriented guidance. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may provide long or highly structured teaching workflows when a user expected a short answer. <br>
-Mitigation: Ask for a shorter workflow or a different language when needed, as recommended by the security guidance. <br>
-Risk: Generated lessons, code, agent comparisons, and production guidance may be outdated or incorrect for a specific environment. <br>
-Mitigation: Review generated content before relying on it, verify current platform details independently, and test code in a controlled environment. <br>
+Risk: The skill may activate on broad AI-learning questions and steer users into a fixed assessment-first coaching workflow. <br>
+Mitigation: Use it when a structured AI learning coach is desired; for quick factual AI questions, ask the assistant not to use this skill. <br>
+Risk: The skill provides educational guidance and generated examples that may be outdated, overconfident, or not matched to a user's context. <br>
+Mitigation: Review important technical recommendations, code, and career guidance before relying on them in production, coursework, or job decisions. <br>
 
 
 ## Reference(s): <br>
-- [Skill page](https://clawhub.ai/mxfwdream/python-ai-course) <br>
-- [Publisher profile](https://clawhub.ai/user/mxfwdream) <br>
-- [Curriculum reference](references/curriculum.md) <br>
-- [Assessment reference](references/assessment.md) <br>
-- [Hot topics reference](references/hot_topics.md) <br>
-- [Agent comparison reference](references/agent_comparison.md) <br>
+- [Agent comparison and selection guide](references/agent_comparison.md) <br>
+- [Assessment bank and practice rules](references/assessment_bank.md) <br>
+- [Full-stack AI curriculum](references/curriculum.md) <br>
+- [AI frontier topics overview](references/hot_topics.md) <br>
+- [Standard lesson template](references/lesson_template.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Structured Markdown with tables, diagrams or widget descriptions, code blocks, exercises, answers, and learning plans] <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
+**Output Format:** [Markdown instructional responses with code snippets, shell command examples, exercises, and structured learning plans] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May begin with assessment questions and a placement test before producing lessons; outputs are intended to be reviewed by the learner.] <br>
+**Other Properties Related to Output:** [Markdown-only skill; no hidden code, installer, credential handling, persistence, or destructive behavior was reported by the authoritative security evidence.] <br>
 
 ## Skill Version(s): <br>
-5.0.3 (source: server release metadata) <br>
+6.0.1 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

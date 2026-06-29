@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Editorial Card — archviz-skills</title>
+  <style>
+    /* Editorial Parchment — see references/editorial-parchment-language.md */
+    :root {
+      --pg: #f5f4ed;
+      --iv: #faf9f5;
+      --nk: #141413;
+      --ds: #30302e;
+      --tc: #c96442;
+      --og: #5e5d59;
+      --sg: #87867f;
+      --bw: #e8e6dc;
+      --ws: #b0aea5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--pg);
+      color: var(--nk);
+      font-family: -apple-system, system-ui, "Noto Sans SC", sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+    .canvas {
+      width: 1080px;
+      min-height: 1440px;
+      margin: 0 auto;
+      background: var(--iv);
+      box-shadow: 0 0 0 1px rgba(0,0,0,.08);
+      display: flex;
+      flex-direction: column;
+    }
+    .kicker {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--sg);
+      padding: 48px 56px 0;
+    }
+    .hero {
+      padding: 24px 56px 32px;
+      flex: 1;
+    }
+    h1 {
+      font-family: Georgia, "Noto Serif SC", "Times New Roman", serif;
+      font-weight: 500;
+      font-size: 72px;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      margin: 0 0 20px;
+      max-width: 16ch;
+    }
+    .promise {
+      font-size: 28px;
+      line-height: 1.35;
+      color: var(--og);
+      max-width: 28ch;
+      margin: 0 0 40px;
+    }
+    .evidence {
+      display: inline-block;
+      padding: 12px 18px;
+      border: 1px solid var(--bw);
+      border-radius: 8px;
+      font-size: 18px;
+      color: var(--nk);
+    }
+    .evidence strong {
+      font-family: ui-monospace, "JetBrains Mono", monospace;
+      font-weight: 500;
+      color: var(--tc);
+    }
+    .band-dark {
+      background: var(--ds);
+      color: var(--iv);
+      padding: 32px 56px;
+      font-size: 15px;
+      line-height: 1.55;
+    }
+    .band-dark .label { color: var(--ws); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .footer {
+      padding: 24px 56px 48px;
+      font-size: 13px;
+      color: var(--sg);
+      border-top: 1px solid var(--bw);
+    }
+    /* Family A cover: add class="canvas cover-wechat" and override width/height in inline style */
+    .canvas.cover-wechat { width: 900px; min-height: 383px; }
+    .canvas.cover-wechat h1 { font-size: 52px; max-width: 12ch; }
+  </style>
+</head>
+<body>
+  <!--
+    Format families (archviz-skills):
+    B — Knowledge artifact (default 1080×1440)
+    A — Add .cover-wechat | set width/height for 1280×720, 1080×1920
+    C — Square: width/height 1080
+    D — Long-form: remove fixed min-height, max-width 720–800px, --full-page screenshot
+    Replace: KICKER, HEADLINE, PROMISE, EVIDENCE, DARK_BAND, FOOTER
+  -->
+  <article class="canvas" role="img" aria-label="Editorial knowledge card">
+    <p class="kicker">KICKER · category or source</p>
+    <section class="hero">
+      <h1>Primary judgment headline</h1>
+      <p class="promise">One supporting promise — what the reader gains.</p>
+      <p class="evidence"><strong>42%</strong> one evidence cue only</p>
+    </section>
+    <section class="band-dark">
+      <p class="label">Supporting context</p>
+      <p>Optional dark band for contrast pacing — code, quote, or secondary finding.</p>
+    </section>
+    <footer class="footer">Caption = finding · archviz-skills Editorial Parchment</footer>
+  </article>
+</body>
+</html>

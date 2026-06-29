@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.2](https://github.com/es6kr/skills/compare/dotfile-v0.4.1...dotfile-v0.4.2) (2026-06-25)
+
+
+### Bug Fixes
+
+* **fix:** split Step 2 medium by content type — case history to failed-attempts.md ([#62](https://github.com/es6kr/skills/issues/62)) ([747b3f9](https://github.com/es6kr/skills/commit/747b3f957ca0fefdbc5044eb08f66b8aafc1e26a))
+* **skills:** apply PR [#50](https://github.com/es6kr/skills/issues/50) Phase 2 follow-up reviews ([33863d7](https://github.com/es6kr/skills/commit/33863d705f8b24051b030b839487e8b5a8bfd9df))
+
 ## [0.4.1](https://github.com/es6kr/skills/compare/dotfile-v0.4.0...dotfile-v0.4.1) (2026-06-19)
 
 

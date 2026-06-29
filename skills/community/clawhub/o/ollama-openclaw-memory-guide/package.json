@@ -1,0 +1,12 @@
+{
+  "name": "ollama-memory-setup",
+  "version": "1.0.0",
+  "description": "Windows 管控环境下 Ollama 便携版 + OpenClaw 本地记忆系统完整部署指南。涵盖 Ollama 安装、embedding 模型配置、向量索引重建、开机自启动、常见问题排查。",
+  "author": "Paudy Yin",
+  "license": "MIT-0",
+  "keywords": ["ollama", "embedding", "memory", "vector-search", "windows", "openclaw", "local-ai"],
+  "openclaw": {
+    "type": "skill",
+    "category": "infrastructure"
+  }
+}

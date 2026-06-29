@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="431" viewBox="0 0 1000 431">
+<defs>
+  <style>
+    text { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+  </style>
+</defs>
+<!-- 背景 -->
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<rect x="5.0" y="8.0" width="77.0" height="36.0" rx="4" fill="#5B7F9A" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="43.5" y="31.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#222222" text-anchor="middle" font-weight="bold">研究背景</text>
+<rect x="183.0" y="8.0" width="550.0" height="85.0" fill="none" stroke="#F5F7FA" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="380.0" y="13.0" width="156.0" height="26.0" rx="2" fill="#E1BEE7" stroke="#9C27B0" stroke-width="1.2"/>
+<text x="458.0" y="30.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#222222" text-anchor="middle" font-weight="bold">研究背景：智慧城市协同</text>
+<rect x="189.0" y="43.0" width="174.3" height="30.0" rx="2" fill="#E3F2FD" stroke="#90A4AE" stroke-width="1.2"/>
+<text x="276.2" y="62.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">政策背景</text>
+<rect x="368.3" y="43.0" width="174.3" height="30.0" rx="2" fill="#FFF3E0" stroke="#90A4AE" stroke-width="1.2"/>
+<text x="455.5" y="62.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">发展趋势</text>
+<rect x="547.7" y="43.0" width="174.3" height="30.0" rx="2" fill="#E3F2FD" stroke="#90A4AE" stroke-width="1.2"/>
+<text x="634.8" y="62.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">问题重要性</text>
+<rect x="741.0" y="30.5" width="94.0" height="40.0" rx="2" fill="#FAFAFA" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="788.0" y="42.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">文献分析</text>
+<text x="788.0" y="58.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">问卷调查</text>
+<polygon points="35.5,10.0 51.5,10.0 51.5,18.0 57.5,18.0 43.5,30.0 29.5,18.0 35.5,18.0" fill="#42A5F5"/>
+<rect x="5.0" y="99.0" width="77.0" height="36.0" rx="4" fill="#5B7F9A" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="43.5" y="122.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#222222" text-anchor="middle" font-weight="bold">提出问题</text>
+<rect x="183.0" y="99.0" width="550.0" height="49.0" fill="none" stroke="#F5F7FA" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="290.0" y="104.0" width="336.0" height="26.0" rx="2" fill="#FFCCBC" stroke="#E64A19" stroke-width="1.2"/>
+<text x="458.0" y="121.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#222222" text-anchor="middle" font-weight="bold">提出问题：智慧城市协同 @智慧城市协同；小白龙大智慧</text>
+<rect x="741.0" y="95.5" width="94.0" height="56.0" rx="2" fill="#FAFAFA" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="788.0" y="107.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">文献分析</text>
+<text x="788.0" y="123.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">调查访谈</text>
+<text x="788.0" y="139.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">......</text>
+<polygon points="35.5,101.0 51.5,101.0 51.5,109.0 57.5,109.0 43.5,121.0 29.5,109.0 35.5,109.0" fill="#42A5F5"/>
+<rect x="5.0" y="154.0" width="77.0" height="36.0" rx="4" fill="#5B7F9A" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="43.5" y="177.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#222222" text-anchor="middle" font-weight="bold">分析问题</text>
+<rect x="183.0" y="154.0" width="550.0" height="119.0" fill="none" stroke="#F5F7FA" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="284.0" y="159.0" width="348.0" height="26.0" rx="2" fill="#E1BEE7" stroke="#9C27B0" stroke-width="1.2"/>
+<text x="458.0" y="176.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#222222" text-anchor="middle" font-weight="bold">研究内容1：智慧城市协同 @智慧城市协同；小白龙大智慧</text>
+<rect x="189.0" y="189.0" width="129.5" height="30.0" rx="2" fill="#E3F2FD" stroke="#90A4AE" stroke-width="1.2"/>
+<text x="253.8" y="208.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal"></text>
+<rect x="323.5" y="189.0" width="129.5" height="30.0" rx="2" fill="#FFF3E0" stroke="#90A4AE" stroke-width="1.2"/>
+<text x="388.2" y="208.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal"></text>
+<rect x="458.0" y="189.0" width="129.5" height="30.0" rx="2" fill="#E3F2FD" stroke="#90A4AE" stroke-width="1.2"/>
+<text x="522.8" y="208.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal"></text>
+<rect x="592.5" y="189.0" width="129.5" height="30.0" rx="2" fill="#FFF3E0" stroke="#90A4AE" stroke-width="1.2"/>
+<text x="657.2" y="208.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal"></text>
+<rect x="189.0" y="223.0" width="129.5" height="30.0" rx="2" fill="#E3F2FD" stroke="#90A4AE" stroke-width="1.2"/>
+<text x="253.8" y="242.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal"></text>
+<rect x="323.5" y="223.0" width="129.5" height="30.0" rx="2" fill="#FFF3E0" stroke="#90A4AE" stroke-width="1.2"/>
+<text x="388.2" y="242.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">具体问题1</text>
+<rect x="458.0" y="223.0" width="129.5" height="30.0" rx="2" fill="#E3F2FD" stroke="#90A4AE" stroke-width="1.2"/>
+<text x="522.8" y="242.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">具体问题1</text>
+<rect x="741.0" y="185.5" width="94.0" height="56.0" rx="2" fill="#FAFAFA" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="788.0" y="197.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">层次分析</text>
+<text x="788.0" y="213.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">空间计量</text>
+<text x="788.0" y="229.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">......</text>
+<polygon points="35.5,156.0 51.5,156.0 51.5,164.0 57.5,164.0 43.5,176.0 29.5,164.0 35.5,164.0" fill="#42A5F5"/>
+<rect x="5.0" y="279.0" width="77.0" height="36.0" rx="4" fill="#5B7F9A" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="43.5" y="302.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#222222" text-anchor="middle" font-weight="bold">解决问题</text>
+<rect x="183.0" y="279.0" width="550.0" height="49.0" fill="none" stroke="#F5F7FA" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="290.0" y="284.0" width="336.0" height="26.0" rx="2" fill="#FFCCBC" stroke="#E64A19" stroke-width="1.2"/>
+<text x="458.0" y="301.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#222222" text-anchor="middle" font-weight="bold">智慧城市协同机理研究 @智慧城市协同; 小白龙大智慧</text>
+<rect x="741.0" y="283.5" width="94.0" height="40.0" rx="2" fill="#FAFAFA" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="788.0" y="295.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">多元回归</text>
+<text x="788.0" y="311.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">DSEE</text>
+<polygon points="35.5,281.0 51.5,281.0 51.5,289.0 57.5,289.0 43.5,301.0 29.5,289.0 35.5,289.0" fill="#42A5F5"/>
+<rect x="5.0" y="334.0" width="77.0" height="36.0" rx="4" fill="#5B7F9A" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="43.5" y="357.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#222222" text-anchor="middle" font-weight="bold">政策建议</text>
+<rect x="183.0" y="334.0" width="550.0" height="85.0" fill="none" stroke="#F5F7FA" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="302.0" y="339.0" width="312.0" height="26.0" rx="2" fill="#E1BEE7" stroke="#9C27B0" stroke-width="1.2"/>
+<text x="458.0" y="356.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#222222" text-anchor="middle" font-weight="bold">机理分析和政策建议 @智慧城市协同；小白龙大智慧</text>
+<rect x="189.0" y="369.0" width="174.3" height="30.0" rx="2" fill="#E3F2FD" stroke="#90A4AE" stroke-width="1.2"/>
+<text x="276.2" y="388.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">政策建议1</text>
+<rect x="368.3" y="369.0" width="174.3" height="30.0" rx="2" fill="#FFF3E0" stroke="#90A4AE" stroke-width="1.2"/>
+<text x="455.5" y="388.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">政策建议2</text>
+<rect x="547.7" y="369.0" width="174.3" height="30.0" rx="2" fill="#E3F2FD" stroke="#90A4AE" stroke-width="1.2"/>
+<text x="634.8" y="388.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">政策建议3</text>
+<rect x="741.0" y="356.5" width="94.0" height="40.0" rx="2" fill="#FAFAFA" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="788.0" y="368.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">案例分析</text>
+<text x="788.0" y="384.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">问卷调查</text>
+</svg>

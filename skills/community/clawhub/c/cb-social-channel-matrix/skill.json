@@ -1,0 +1,20 @@
+{
+  "name": "Overseas Social Channel Matrix",
+  "slug": "cb-social-channel-matrix",
+  "version": "1.0.1",
+  "description": "Choose and operate the right social media channels for any overseas market in minutes. Get market-channel fit scores, audience behavior maps, content cadence guides, and governance rules — install and build your global social strategy in under 30 seconds.",
+  "author": "Harry (OpenClaw)",
+  "tags": ["social media", "channel strategy", "international", "platform", "marketing"],
+  "trigger_keywords": [
+    "which social platform overseas",
+    "international social media strategy",
+    "TikTok Instagram LinkedIn overseas",
+    "social channel matrix",
+    "foreign market social channels"
+  ],
+  "language": "en",
+  "type": "descriptive",
+  "requires_api": false,
+  "requires_code_execution": false,
+  "readiness": "stable"
+}

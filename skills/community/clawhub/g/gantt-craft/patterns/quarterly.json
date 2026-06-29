@@ -1,0 +1,10 @@
+{
+  "name": "quarterly",
+  "label": "季度概览",
+  "description": "季度为单位，适合高层汇报和年度规划",
+  "layout": "horizontal",
+  "features": ["quarter_blocks", "month_markers", "phase_labels", "summary_stats"],
+  "time_unit": "quarter",
+  "show_quarters": true,
+  "phase_colors": true
+}

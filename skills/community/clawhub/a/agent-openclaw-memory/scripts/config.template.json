@@ -1,0 +1,22 @@
+{
+  "vault_dir": "/path/to/your/vault",
+  "llm": {
+    "baseUrl": "https://api.deepseek.com/v1",
+    "apiKey": "your-api-key",
+    "model": "deepseek-chat"
+  },
+  "embedder": {
+    "baseUrl": "http://localhost:1234/v1",
+    "apiKey": "lm-studio",
+    "model": "text-embedding-nomic-embed-text-v1.5",
+    "embeddingDims": 768
+  },
+  "qdrant": {
+    "host": "localhost",
+    "port": 6333,
+    "collection": "knowledge_base"
+  },
+  "sync_dirs": ["01-日记", "02-知识", "04-教训", "07-项目"],
+  "max_file_size_kb": 50,
+  "embedding_workers": 4
+}

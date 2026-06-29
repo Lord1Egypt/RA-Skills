@@ -1,0 +1,27 @@
+{
+  "emoji": "📈",
+  "displayName": "World Cup Head to Head Fixture Trader",
+  "primaryEnv": "SIMMER_API_KEY",
+  "skill_slug": "market-trading-workflow",
+  "requires": {
+    "pip": ["simmer-sdk"],
+    "env": ["SIMMER_API_KEY"]
+  },
+  "envVars": [
+    {
+      "name": "SIMMER_API_KEY",
+      "required": true,
+      "description": "Simmer API key used by SimmerClient.from_env()"
+    },
+    {
+      "name": "OWS_WALLET",
+      "required": false,
+      "description": "Optional OWS wallet name for routing trades"
+    },
+    {
+      "name": "WALLET_PRIVATE_KEY",
+      "required": false,
+      "description": "Optional external wallet private key for live trading"
+    }
+  ]
+}

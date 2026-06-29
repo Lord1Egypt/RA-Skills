@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "疯狂小龙虾",
+  "version": "6.1.0",
+  "description": "Browser Automation Controller - MCP Companion Plugin",
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab",
+    "bookmarks",
+    "debugger",
+    "windows",
+    "scripting"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1/*",
+    "http://localhost/*",
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["picker.js"],
+      "run_at": "document_end"
+    }
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "meta": {
+    "researcher": "John Doe",
+    "affiliation": "XX Medical School",
+    "generated_date": "2026-06-22"
+  },
+  "topic": {
+    "title_zh": "PD-1 Inhibitors Plus Lenvatinib Versus Lenvatinib Alone for Unresectable Hepatocellular Carcinoma: A Systematic Review and Meta-Analysis",
+    "title_en": "PD-1 Inhibitors Plus Lenvatinib Versus Lenvatinib Alone for Unresectable HCC: A Systematic Review and Meta-Analysis",
+    "research_field": "Hepatocellular carcinoma immunotherapy",
+    "background": "Unresectable hepatocellular carcinoma (HCC) has a poor prognosis; lenvatinib monotherapy is one standard first-line option. In recent years, multiple RCTs have explored PD-1 inhibitors combined with lenvatinib, but their conclusions are inconsistent; evidence synthesis is needed to guide clinical decision-making.",
+    "pico": {
+      "population": "Adults (>=18 years) with histologically or radiologically confirmed unresectable HCC, BCLC stage B-C, Child-Pugh A, no prior systemic therapy; exclude active HBV/HCV, HIV, other malignancy history.",
+      "intervention": "PD-1 inhibitor (pembrolizumab 200 mg q3w / nivolumab 240 mg q2w / tislelizumab 200 mg q3w) combined with lenvatinib (>=60 kg: 12 mg qd; <60 kg: 8 mg qd), treated until PD/toxicity/24 months.",
+      "comparator": "Lenvatinib monotherapy (same dose), or sorafenib 400 mg bid.",
+      "outcomes": [
+        {"type": "Primary", "name": "OS", "measurement": "Date of death", "timepoint": ">=12 months follow-up", "effect_measure": "HR"},
+        {"type": "Primary", "name": "PFS", "measurement": "RECIST 1.1", "timepoint": ">=12 months follow-up", "effect_measure": "HR"}
+      ],
+      "research_question": "In adults with unresectable HCC (BCLC B-C, Child-Pugh A, treatment-naive), does PD-1 inhibitor combined with lenvatinib compared with lenvatinib monotherapy improve OS and PFS?"
+    },
+    "meta_type": {
+      "type": "Traditional pairwise meta-analysis",
+      "rationale": "Intervention and comparator are both fixed two-arm comparisons with a simple evidence network; no NMA needed; all data are aggregate; no IPD needed.",
+      "methodological_details": {
+        "Effect size": "Time-to-event outcomes use HR + 95% CI; binary outcomes use RR + 95% CI",
+        "Synthesis model": "Random-effects model (DerSimonian-Laird), due to expected high heterogeneity",
+        "Heterogeneity assessment": "I2, tau2, Q test; I2 > 50% triggers subgroup analysis",
+        "Publication bias": "When >=10 studies are included, Egger test + funnel plot + Trim-and-fill"
+      }
+    },
+    "outcomes": {
+      "primary": [
+        {"name": "OS", "measurement": "Date of death", "timepoint": "Minimum 12 months", "effect_measure": "HR", "model": "Random effects"},
+        {"name": "PFS", "measurement": "RECIST 1.1", "timepoint": "Minimum 12 months", "effect_measure": "HR", "model": "Random effects"}
+      ],
+      "secondary": [
+        {"name": "ORR", "type": "Binary", "effect_measure": "RR"},
+        {"name": "DCR", "type": "Binary", "effect_measure": "RR"},
+        {"name": "SAE", "type": "Binary", "effect_measure": "RR"},
+        {"name": "Grade 3-4 TRAE", "type": "Binary", "effect_measure": "RR"}
+      ]
+    }
+  },
+  "assessment": {
+    "clinical_value": {"score": 5, "reason": "Directly addresses first-line treatment controversy; may change NCCN/CSCO guideline recommendations. Matches anchor 5: directly addresses a guideline-level controversy; expected to change clinical practice"},
+    "methodological_feasibility": {"score": 4, "reason": "Standard methods directly applicable; note potential heterogeneity across PD-1 inhibitors. Matches anchor 4: light methodological adaptation needed, but mature toolchain"},
+    "data_availability": {"score": 4, "reason": "Pre-search estimates 6-8 RCTs; outcomes mostly consistently reported. Matches anchor 4: 6-10 studies; outcomes mostly consistent"},
+    "novelty": {"score": 3, "reason": "A same-topic meta-analysis was published in 2024; must clearly state the new-study increment. Matches anchor 3: prior meta-analysis <3 years old, but with a clear evidence increment (pending Stage 4 dedup confirmation)"}
+  },
+  "dedup": {
+    "prospero": {
+      "query": "PD-1 AND lenvatinib AND HCC",
+      "search_date": "2026-06-22",
+      "hits": 2,
+      "key_hits": [
+        {"id": "CRD42024567890", "title": "Immunotherapy + Lenvatinib in HCC", "status": "Ongoing", "date": "2024-09-01"}
+      ]
+    },
+    "cochrane": {"query": "PD-1 AND lenvatinib", "search_date": "2026-06-22", "hits": 0, "key_hits": []},
+    "pubmed": {
+      "query": "(PD-1[Title/Abstract]) AND (lenvatinib[Title/Abstract]) AND (HCC[Title/Abstract]) AND (meta-analysis[Publication Type])",
+      "search_date": "2026-06-22",
+      "hits": 3,
+      "key_hits": [
+        {"pmid": "38512345", "title": "PD-1 + Lenvatinib in HCC: A Meta-analysis", "year": "2024", "journal": "J Hepatol"}
+      ]
+    },
+    "non_english_db": {
+      "databases": "CNKI, Wanfang, SinoMed",
+      "query": "(PD-1 OR pembrolizumab OR sintilimab) AND (lenvatinib) AND (HCC OR hepatocellular carcinoma) AND ('Meta' OR 'systematic review')",
+      "search_date": "2026-06-22",
+      "hits": 1,
+      "key_hits": [
+        {"title": "PD-1 + lenvatinib for advanced HCC: a Meta-analysis", "year": "2024", "journal": "Chinese Journal of Hepatobiliary Surgery"}
+      ]
+    },
+    "near_duplicates": [
+      {"type": "Switch within-class intervention", "changed": "I: PD-1 -> PD-L1", "is_duplicate": "No", "condition": "Justify within-class substitution clinically + subgroup by PD-1/PD-L1 type"}
+    ],
+    "novelty_judgment": {
+      "relation": "Update type",
+      "increment_type": "New-study increment + new-subgroup increment",
+      "increment_sufficiency": "Sufficient (>=2 new phase III RCTs added after 2024)",
+      "recommendation": "Proceed"
+    }
+  },
+  "presearch": {
+    "databases": "PubMed, Embase, Cochrane CENTRAL, CNKI",
+    "pubmed_query": "(PD-1 OR pembrolizumab OR nivolumab OR tislelizumab) AND lenvatinib AND (HCC OR hepatocellular carcinoma)",
+    "date_range": "Inception to 2026-06",
+    "estimated_hits": 280,
+    "estimated_included": 7,
+    "languages": "English + Chinese"
+  },
+  "prisma": {
+    "1": "PASS",
+    "4": "PASS",
+    "5": "PASS",
+    "6": "PASS",
+    "7": "PASS",
+    "8": "WARN",
+    "10": "PASS",
+    "11": "PASS",
+    "12": "PASS",
+    "13": "PASS",
+    "13c": "PASS",
+    "16": "PASS",
+    "equity": "WARN",
+    "overall_risk": "MEDIUM (two-reviewer screening and equity dimension need shoring up)"
+  },
+  "analyses": {
+    "prespecified": [
+      {"variable": "PD-1 inhibitor type", "rationale": "Different PD-1 inhibitors may differ in efficacy"},
+      {"variable": "BCLC stage", "rationale": "Stage B vs stage C populations may benefit differently"},
+      {"variable": "Region (Asia vs non-Asia)", "rationale": "HBV-dominant vs HCV-dominant populations may differ"}
+    ],
+    "sensitivity": [
+      "Re-pool after excluding high-risk-of-bias studies",
+      "Re-pool including only phase III RCTs",
+      "Re-pool using a fixed-effect model"
+    ]
+  },
+  "risks": [
+    {"risk": "High heterogeneity across PD-1 inhibitors", "level": "Medium", "mitigation": "Subgroup by PD-1 type; pool separately if needed"},
+    {"risk": "Fewer than 5 included studies", "level": "Low", "mitigation": "Extend gray-literature search; wait for new RCTs if needed"},
+    {"risk": "Two-reviewer screening not guaranteed", "level": "Medium", "mitigation": "Bring in a methodologist or a second reviewer"}
+  ],
+  "next_steps": [
+    "Finalize the search strategy and have a methodologist review it",
+    "Complete PROSPERO registration (within 2 weeks)",
+    "Draft the full protocol and have the team review it",
+    "Execute the three-database search and two-reviewer screening"
+  ]
+}

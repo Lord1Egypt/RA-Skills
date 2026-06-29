@@ -69,7 +69,6 @@
     "\\binstall(?:ed)?\\b",
     "\\bmodel\\b",
     "\\bonnx\\b",
-    "\\bsupertonic\\b",
     "\\bgithub trending cron\\b",
     "\\bgh cli\\b",
     "\\btavily\\b",

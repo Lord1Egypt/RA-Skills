@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Treemap</title></head>
+<body style="margin:0;background:#f5f0eb;font-family:system-ui">
+<!-- Treemap — archviz-skills (self-contained, no deps) -->
+<!-- Use for: part-to-whole, hierarchical composition, budget allocation -->
+<!-- Env: Obsidian (iframe/HTML block) or browser -->
+<canvas id="c" width="800" height="500"></canvas>
+<script>
+const data = [
+  {label:"Product A",value:45,color:"#002FA7"},
+  {label:"Product B",value:25,color:"#94a3b8"},
+  {label:"Product C",value:18,color:"#a8a29e"},
+  {label:"Product D",value:12,color:"#d6d3d1"}
+];
+const total=data.reduce((s,d)=>s+d.value,0);
+const ctx=document.getElementById("c").getContext("2d");
+let x=20,y=20,w=760,h=460;
+data.forEach(d=>{
+  const frac=d.value/total;
+  const isWide=w>h;
+  const dw=isWide?w*frac:h*frac;
+  if(isWide){ctx.fillStyle=d.color;ctx.fillRect(x,y,dw-4,h-4);ctx.fillStyle="#fff";ctx.fillText(d.label+" ("+d.value+"%)",x+8,y+24);x+=dw;}
+  else{ctx.fillStyle=d.color;ctx.fillRect(x,y,w-4,dw-4);ctx.fillStyle="#fff";ctx.fillText(d.label+" ("+d.value+"%)",x+8,y+24);y+=dw;}
+});
+</script>
+</body></html>

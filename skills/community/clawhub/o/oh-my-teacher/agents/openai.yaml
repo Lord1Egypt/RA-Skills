@@ -1,0 +1,26 @@
+interface:
+  display_name: "Oh My Teacher"
+  short_description: "跨 Agent、笔记软件和普通聊天框的期末复习助教"
+  default_prompt: "用 $oh-my-teacher 在我当前环境中复习课程：自动适配 Agent、NotebookLM/ima、Obsidian 或普通聊天框，并完成诊断、计划、苏格拉底引导、费曼讲解、练习、批改和错题复习。"
+
+adapter:
+  agent_id: "openai"
+  contract: "references/agent-adapter-contract.md"
+  inventory: "references/agent-inventory.md#openai"
+  optimization_profiles: ["prompt-agent", "retrieval-agent"]
+  source_status: "observed"
+
+instructions: |
+  Follow SKILL.md as the primary and authoritative guide. All operating principles, command routing, reference loading, environment detection, and output style rules are defined there and in the references it directs you to load.
+  Read references/agent-adapter-contract.md before using host-specific behavior.
+  Read references/agent-optimization.md to choose prompt-agent, retrieval-agent, or tool-backed behavior from confirmed host capabilities.
+  Consult references/agent-inventory.md for the openai record.
+
+  Best path: use prompt-agent for chat-only hosts; use retrieval-agent when files
+  or knowledge sources have citations; use scripted-agent or visual-agent only if
+  the host explicitly exposes code execution or rendering tools.
+  Treat OpenAI product identity as a hint only; actual exposed tools determine whether files, scripts, retrieval, citations, memory, or rendering may be used.
+  Do not duplicate or override those instructions here.
+
+policy:
+  allow_implicit_invocation: true

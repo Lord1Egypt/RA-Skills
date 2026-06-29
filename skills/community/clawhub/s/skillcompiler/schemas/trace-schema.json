@@ -1,0 +1,200 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Skill Compiler Trace",
+  "description": "Execution trace for the Skill Compiler pipeline",
+  "type": "object",
+  "required": ["skill_name", "invocation_id", "passes", "outcome"],
+  "properties": {
+    "skill_name": {
+      "type": "string",
+      "description": "Name of the compiler skill"
+    },
+    "invocation_id": {
+      "type": "string",
+      "description": "Unique ID for this compilation run"
+    },
+    "source_prompt_hash": {
+      "type": "string",
+      "description": "Hash of the input prompt for deduplication"
+    },
+    "compilation_config": {
+      "type": "object",
+      "description": "v1.2: 编译配置快照",
+      "properties": {
+        "target_platform": {
+          "type": "string",
+          "enum": ["trae", "claude", "generic"],
+          "description": "目标平台，由 Pass 0 确定"
+        },
+        "compilation_mode": {
+          "type": "string",
+          "enum": ["quick", "full", "audit"],
+          "description": "本次编译模式"
+        },
+        "token_budget": {
+          "type": "number",
+          "description": "Token 预算上限。0 表示无限制。"
+        },
+        "token_budget_exceeded": {
+          "type": "boolean",
+          "description": "是否因超预算而降级"
+        },
+        "mode_downgraded_to": {
+          "type": "string",
+          "enum": ["quick", "full", "audit", ""],
+          "description": "降级后的模式，如未降级则为空"
+        }
+      }
+    },
+    "passes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["pass_id", "status"],
+        "properties": {
+          "pass_id": {
+            "type": "string",
+            "enum": ["triage", "analyze", "extract", "design", "generate", "optimize", "validate", "plugin-discovery", "example-generation"]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["executed", "skipped", "failed"]
+          },
+          "trigger_reason": {
+            "type": "string",
+            "description": "Why this pass was triggered (or skipped)"
+          },
+          "duration_ms": {
+            "type": "number"
+          },
+          "tokens_in": {
+            "type": "number"
+          },
+          "tokens_out": {
+            "type": "number"
+          },
+          "ir_fields_written": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "IR fields produced by this pass"
+          },
+          "deviation_reason": {
+            "type": "string",
+            "description": "Only when status=failed"
+          }
+        }
+      }
+    },
+    "conditional_passes": {
+      "type": "object",
+      "properties": {
+        "optimize": {
+          "type": "object",
+          "properties": {
+            "triggered": { "type": "boolean" },
+            "trigger_conditions_met": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "plugin_discovery": {
+          "type": "object",
+          "properties": {
+            "triggered": { "type": "boolean" },
+            "plugins_found": { "type": "number" }
+          }
+        },
+        "example_generation": {
+          "type": "object",
+          "properties": {
+            "triggered": { "type": "boolean" },
+            "examples_generated": { "type": "number" }
+          }
+        }
+      }
+    },
+    "output": {
+      "type": "object",
+      "properties": {
+        "files_generated": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of generated file paths"
+        },
+        "skill_md_lines": {
+          "type": "number"
+        },
+        "validation_verdict": {
+          "type": "string",
+          "enum": ["pass", "conditional-pass", "fail"]
+        },
+        "evaluation": {
+          "type": "object",
+          "description": "Pass 6 三层评估结果（Layer A 结构 / Layer B IR 一致性 / Layer C 触发质量 / Layer D 平台合规）",
+          "properties": {
+            "layer_a_structural": {
+              "type": "object",
+              "properties": {
+                "pass_rate": { "type": "number", "minimum": 0, "maximum": 1 },
+                "issues_count": { "type": "number" }
+              }
+            },
+            "layer_b_ir_consistency": {
+              "type": "object",
+              "properties": {
+                "pass_rate": { "type": "number", "minimum": 0, "maximum": 1 },
+                "issues_count": { "type": "number" }
+              }
+            },
+            "layer_c_trigger_quality": {
+              "type": "object",
+              "properties": {
+                "positive_recall": { "type": "number", "minimum": 0, "maximum": 1 },
+                "negative_precision": { "type": "number", "minimum": 0, "maximum": 1 },
+                "trigger_precision": { "type": "number", "minimum": 0, "maximum": 1 }
+              }
+            },
+            "layer_d_platform_compliance": {
+              "type": "object",
+              "description": "v1.2: 平台合规检查",
+              "properties": {
+                "pass_rate": { "type": "number", "minimum": 0, "maximum": 1 },
+                "platform": { "type": "string", "enum": ["trae", "claude", "generic"] },
+                "issues_count": { "type": "number" }
+              }
+            },
+            "skill_quality_score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 100,
+              "description": "综合评分 = structural×0.2 + ir_consistency×0.3 + trigger_precision×0.25 + platform_compliance×0.25"
+            }
+          }
+        }
+      }
+    },
+    "cost_summary": {
+      "type": "object",
+      "description": "v1.2: 编译成本汇总",
+      "properties": {
+        "total_tokens_in": { "type": "number" },
+        "total_tokens_out": { "type": "number" },
+        "total_tokens": { "type": "number" },
+        "total_passes_executed": { "type": "number" },
+        "total_passes_skipped": { "type": "number" },
+        "skipped_pass_ids": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "outcome": {
+      "type": "string",
+      "enum": ["success", "partial", "failure"]
+    },
+    "total_tokens": {
+      "type": "number"
+    },
+    "total_duration_ms": {
+      "type": "number"
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "name": "抖音自动点赞",
+  "description": "浏览抖音视频并自动点赞，使用智能三级点击策略，兼容动态DOM结构",
+  "version": "2.0",
+  "targetUrl": "https://www.douyin.com",
+  "keyInfo": "右下角爱心 灰色=未赞 红色=已赞 | DOM频繁变化用smart_click",
+  "steps": [
+    {
+      "tool": "claw_navigate",
+      "args": {
+        "url": "https://www.douyin.com"
+      }
+    },
+    {
+      "tool": "claw_wait",
+      "args": {
+        "ms": 3000
+      },
+      "comment": "等待页面加载"
+    },
+    {
+      "tool": "claw_take_screenshot",
+      "args": {},
+      "comment": "确认已登录"
+    },
+    {
+      "loop": {
+        "count": 10,
+        "comment": "循环10个视频"
+      },
+      "body": [
+        {
+          "tool": "claw_wait",
+          "args": {
+            "ms": 8000
+          },
+          "comment": "观看视频8秒"
+        },
+        {
+          "tool": "claw_find_elements",
+          "args": {
+            "selector": "[aria-label*='赞'],[class*='like'],[class*='Like']",
+            "limit": 5
+          },
+          "comment": "探索点赞按钮坐标（动态DOM每次可能不同）"
+        },
+        {
+          "tool": "claw_smart_click",
+          "args": {
+            "text": "赞",
+            "x": 960,
+            "y": 620,
+            "timeout": 3000
+          },
+          "comment": "三级降级点击：文字匹配 → 坐标点击"
+        },
+        {
+          "tool": "claw_wait",
+          "args": {
+            "ms": 800
+          }
+        },
+        {
+          "tool": "claw_take_screenshot",
+          "args": {},
+          "comment": "验证爱心是否变红"
+        },
+        {
+          "tool": "claw_swipe_up",
+          "args": {
+            "distance": 700
+          },
+          "comment": "下一个视频"
+        },
+        {
+          "tool": "claw_wait",
+          "args": {
+            "ms": 1500
+          }
+        }
+      ]
+    }
+  ],
+  "onScreenshotTimeout": "改用 claw_get_page_structure 获取按钮列表",
+  "onClickFail": "先用 claw_find_elements 探索 + claw_scroll_to_element 确认坐标"
+}

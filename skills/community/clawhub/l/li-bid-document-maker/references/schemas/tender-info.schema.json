@@ -1,0 +1,130 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TenderDocumentInfo",
+  "description": "招标文件解析后的结构化信息",
+  "type": "object",
+
+  "properties": {
+    "project": {
+      "type": "object",
+      "description": "项目基本信息",
+      "properties": {
+        "name":            { "type": "string", "description": "项目名称" },
+        "number":          { "type": "string", "description": "项目编号" },
+        "purchaser":       { "type": "string", "description": "招标人/采购人" },
+        "agent":           { "type": "string", "description": "采购代理机构" },
+        "bidDeadline":     { "type": "string", "description": "投标截止时间" },
+        "bidOpenTime":     { "type": "string", "description": "开标时间" },
+        "bidLocation":     { "type": "string", "description": "开标地点" }
+      },
+      "required": ["name", "number", "bidDeadline"]
+    },
+
+    "budget": {
+      "type": "object",
+      "description": "采购预算信息",
+      "properties": {
+        "amount":     { "type": "number", "description": "预算金额" },
+        "currency":   { "type": "string", "description": "货币单位", "default": "RMB" },
+        "source":     { "type": "string", "description": "资金来源" }
+      },
+      "required": ["amount"]
+    },
+
+    "qualificationRequirements": {
+      "type": "array",
+      "description": "资格要求清单",
+      "items": {
+        "type": "object",
+        "properties": {
+          "requirement":       { "type": "string", "description": "资格要求描述" },
+          "isHardRequirement": { "type": "boolean", "description": "是否硬性门槛" },
+          "evidenceRequired":  { "type": "string", "description": "需提供的证明材料" },
+          "notes":             { "type": "string", "description": "备注" }
+        },
+        "required": ["requirement", "isHardRequirement", "evidenceRequired"]
+      }
+    },
+
+    "technicalParameters": {
+      "type": "array",
+      "description": "技术参数/技术要求清单",
+      "items": {
+        "type": "object",
+        "properties": {
+          "parameterName":  { "type": "string", "description": "参数名称" },
+          "requiredValue":  { "type": "string", "description": "要求值" },
+          "responseType":   { "type": "string", "enum": ["text", "numeric", "select", "boolean"], "description": "响应类型" },
+          "isScored":       { "type": "boolean", "description": "是否计分" }
+        },
+        "required": ["parameterName", "requiredValue"]
+      }
+    },
+
+    "scoringCriteria": {
+      "type": "array",
+      "description": "评分标准",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dimension":     { "type": "string", "description": "评分维度" },
+          "maxScore":      { "type": "number", "description": "满分" },
+          "scoringRules":  { "type": "string", "description": "评分细则" },
+          "weightPercent": { "type": "number", "description": "权重百分比" }
+        },
+        "required": ["dimension", "maxScore"]
+      }
+    },
+
+    "deliveryRequirements": {
+      "type": "object",
+      "description": "交付要求",
+      "properties": {
+        "deadline":          { "type": "string", "description": "交付/完工期限" },
+        "location":          { "type": "string", "description": "交付地点" },
+        "warrantyPeriod":    { "type": "string", "description": "质保期" },
+        "paymentTerms":      { "type": "string", "description": "付款方式" },
+        "acceptanceCriteria": { "type": "string", "description": "验收标准" }
+      }
+    },
+
+    "documentFormatRequirements": {
+      "type": "object",
+      "description": "投标文件格式要求",
+      "properties": {
+        "originalCopies":    { "type": "integer", "description": "正本份数" },
+        "copyCopies":        { "type": "integer", "description": "副本份数" },
+        "bindingType":       { "type": "string", "description": "装订要求" },
+        "sealingType":       { "type": "string", "description": "密封要求" },
+        "signatureRequired": { "type": "boolean", "description": "是否要求签字盖章" },
+        "electronicBid":     { "type": "boolean", "description": "是否电子投标" },
+        "sampleRequired":    { "type": "boolean", "description": "是否需要样品" }
+      }
+    },
+
+    "missingInfo": {
+      "type": "array",
+      "description": "缺失的关键信息列表",
+      "items": { "type": "string" }
+    },
+
+    "ambiguousItems": {
+      "type": "array",
+      "description": "模糊/不明确的信息列表",
+      "items": { "type": "string" }
+    },
+
+    "suggestedClarifications": {
+      "type": "array",
+      "description": "建议向招标人确认的问题",
+      "items": { "type": "string" }
+    }
+  },
+
+  "required": [
+    "project",
+    "qualificationRequirements",
+    "technicalParameters",
+    "scoringCriteria"
+  ]
+}

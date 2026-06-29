@@ -1,0 +1,30 @@
+interface:
+  display_name: "Oh My Teacher (Generic Agent)"
+  short_description: "Portable adapter for unverified agent runtimes."
+  default_prompt: "Use $oh-my-teacher in this agent. Probe available tools first, then follow the shared course-review workflow with conservative Markdown fallbacks."
+
+adapter:
+  agent_id: "generic"
+  contract: "references/agent-adapter-contract.md"
+  inventory: "references/agent-inventory.md#generic"
+  optimization_profiles: ["prompt-agent"]
+  source_status: "baseline"
+
+instructions: |
+  Follow SKILL.md as the primary and authoritative teaching workflow.
+  Read references/agent-adapter-contract.md before using host-specific behavior.
+  Read references/agent-optimization.md to select the best confirmed capability path.
+  Consult references/agent-inventory.md for the generic record.
+
+  Best path: start as prompt-agent. Use one-topic-at-a-time tutoring, copyable
+  Current Course Snapshot blocks, Markdown SRS tables, inline flashcards, and
+  ASCII diagrams until stronger tools are confirmed.
+
+  Treat all capabilities as unknown until tools are visible. If file access,
+  shell, retrieval, citations, memory, or rendering are not confirmed, use inline
+  Markdown snapshots, SRS tables, flashcards, plans, and explanations. Never
+  claim that a file was read, a script ran, a citation was retrieved, or memory
+  was written unless the operation actually succeeded.
+
+policy:
+  allow_implicit_invocation: true

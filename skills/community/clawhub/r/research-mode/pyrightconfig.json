@@ -1,0 +1,7 @@
+{
+  "include": ["scripts"],
+  "exclude": ["scripts/selftest", "**/__pycache__", "**/.runtime"],
+  "pythonVersion": "3.11",
+  "typeCheckingMode": "basic",
+  "reportMissingTypeStubs": "none"
+}

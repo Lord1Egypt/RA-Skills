@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Launch Doctor"
+  short_description: "Audit and improve agent skills"
+  default_prompt: "Use $skill-launch-doctor to audit this skill for trigger quality, compatibility, safety, and marketplace readiness."

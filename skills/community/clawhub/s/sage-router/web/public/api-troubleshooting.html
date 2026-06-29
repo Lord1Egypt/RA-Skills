@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Troubleshoot Sage Router hosted API 401, 402, 429, and 503 responses without sharing prompts, provider credentials, OAuth tokens, API keys, or customer data." />
+  <link rel="canonical" href="https://sagerouter.dev/api-troubleshooting" />
+  <meta property="og:title" content="Sage Router API Troubleshooting" />
+  <meta property="og:description" content="Diagnose hosted Sage Router API errors with safe checks for generated keys, billing, quotas, rate limits, and backend availability." />
+  <meta property="og:url" content="https://sagerouter.dev/api-troubleshooting" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Sage Router API Troubleshooting</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07100d;--panel:rgba(13,29,24,.84);--border:rgba(166,255,207,.16);--muted:#a9c5b8;--text:#edfdf5;--brand:#8df0b2;--blue:#8ab4ff;--amber:#f7d57a;--danger:#ff9f9f}*{box-sizing:border-box}body{margin:0;min-width:320px;background:linear-gradient(180deg,#07100d 0%,#0b1518 48%,#07100d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;color:var(--muted)}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;color:var(--text)}.brandMark{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(141,240,178,.42);border-radius:8px;color:#062016;background:linear-gradient(135deg,var(--brand),var(--amber))}.navLinks{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;font-weight:750}.navLinks a:hover{color:var(--text)}.hero{padding:74px 0 48px}.eyebrow{color:var(--brand);text-transform:uppercase;letter-spacing:.16em;font-weight:900;font-size:12px;margin:0 0 16px}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(44px,8vw,84px);line-height:.94;margin-bottom:24px;max-width:980px}h2{font-size:clamp(28px,4vw,46px);line-height:1;margin-bottom:18px}h3{font-size:21px;margin-bottom:10px}.lead{font-size:clamp(20px,2.2vw,27px);line-height:1.35;color:#d2eadf;max-width:920px}.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}.button{min-height:48px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:0 22px;font-weight:900}.primary{background:linear-gradient(135deg,var(--brand),#50d891);color:#04150d}.secondary{border:1px solid var(--border);background:rgba(255,255,255,.04)}.section{padding:48px 0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.grid2{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px}.card,.panel,.tableWrap{background:var(--panel);border:1px solid var(--border);border-radius:8px;box-shadow:0 18px 60px rgba(0,0,0,.18)}.card,.panel{padding:24px}.muted,.card li,td{color:var(--muted)}ul{padding-left:18px;margin:0;display:grid;gap:8px}.pill{display:inline-flex;width:max-content;border:1px solid rgba(138,180,255,.3);border-radius:999px;padding:6px 10px;color:var(--blue);font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:820px}th,td{text-align:left;border-bottom:1px solid rgba(166,255,207,.12);padding:16px 18px;vertical-align:top}th{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--text);background:rgba(255,255,255,.035)}td:first-child{color:var(--text);font-weight:850}.note{font-size:14px;color:var(--muted);max-width:900px}code{color:#d9f8e6}pre{overflow:auto;margin:0;border:1px solid rgba(166,255,207,.12);border-radius:8px;background:#050807;padding:16px;color:#d9f8e6}.warn{border-color:rgba(247,213,122,.34);background:rgba(247,213,122,.06)}.danger{border-color:rgba(255,159,159,.34);background:rgba(255,159,159,.06)}footer{display:flex;gap:18px;flex-wrap:wrap;padding:34px 0 54px;color:var(--muted);border-top:1px solid rgba(166,255,207,.1)}footer span{margin-right:auto}@media(max-width:920px){.grid,.grid2{grid-template-columns:1fr}.nav{align-items:flex-start;flex-direction:column}.button{width:100%}}@media(max-width:560px){.hero{padding-top:42px}.navLinks{gap:14px}}
+  </style>
+  <style>
+    .emailStart{display:flex;flex-wrap:wrap;gap:12px;align-items:center;max-width:760px;margin:22px 0 12px;padding:16px;border:1px solid rgba(141,240,178,.24);border-radius:8px;background:rgba(255,255,255,.045)}.emailStart label{flex:1 1 100%;font-weight:900}.emailStart input{flex:1 1 280px;min-height:48px;border:1px solid var(--border);border-radius:999px;background:rgba(5,15,11,.74);color:var(--text);padding:0 18px;font:inherit}.emailStart input::placeholder{color:#789184}.emailStart .button{border:0;cursor:pointer}.emailStart .button:disabled{opacity:.72;cursor:wait}.emailStartStatus{flex:1 1 100%;margin:0;color:var(--muted);font-size:14px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+      <div class="navLinks">
+        <a href="/">Home</a>
+        <a href="/quickstart">Quickstart</a>
+        <a href="/docs/api-reference">API Reference</a>
+        <a href="/docs/codex">Codex</a>
+        <a href="/models">Models</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/status">Status</a>
+        <a href="/support">Support</a>
+        <a href="https://app.sagerouter.dev/account.html">Account</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">API troubleshooting</p>
+        <h1>Fix hosted API errors without sharing secrets.</h1>
+        <p class="lead">Use safe checks for generated keys, billing state, quotas, rate limits, and backend availability before changing an agent or opening a support request.</p>
+        <div class="actions">
+          <a class="button primary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key">Open account</a>
+          <a class="button secondary" href="/docs/api-reference">API reference</a>
+          <a class="button secondary" href="/status">Check status</a>
+          <a class="button secondary" href="/quickstart">Read quickstart</a>
+          <a class="button secondary" href="/support">Support paths</a>
+        </div>
+        <form class="emailStart" id="api-troubleshooting-email-form" data-email-activation-form data-oauth-activation="github" data-event-prefix="api_troubleshooting" data-sent-event="api_troubleshooting_magic_link_sent" data-source="api-troubleshooting" data-status-id="api-troubleshooting-email-status">
+          <label for="api-troubleshooting-email">Get an API key setup link before debugging keys</label>
+          <input id="api-troubleshooting-email" type="email" name="email" autocomplete="email" placeholder="you@company.com" required />
+          <button class="button primary" type="submit">Email API key setup link</button>
+          <p class="emailStartStatus" id="api-troubleshooting-email-status" role="status">No provider key or credit card required until your generated sk_sage key exists.</p>
+        </form>
+        <p class="note">Hosted model traffic uses <code>https://api.sagerouter.dev/v1</code>, generated <code>sk_sage_*</code> keys, and route profiles such as <code>sage-router/frontier</code>.</p>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">Before support</p>
+          <h2>Do not paste prompts or credentials.</h2>
+        </div>
+        <div class="panel danger">
+          <ul>
+            <li>Do not paste prompts, workflow text, customer data, provider responses, or private business context.</li>
+            <li>Do not paste provider credentials, OAuth tokens, generated API keys, private keys, session cookies, or raw <code>Authorization</code> headers.</li>
+            <li>Safe context is limited to timestamp, HTTP status, safe error class, route profile, plan, request id if present, and the non-secret key prefix only.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section grid">
+        <article class="card">
+          <span class="pill">Endpoint</span>
+          <h3>Check base URL</h3>
+          <p class="muted">Use <code>https://api.sagerouter.dev/v1</code> for hosted OpenAI-compatible clients. Browser account UI lives on <code>https://app.sagerouter.dev</code>, not the API host.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Key</span>
+          <h3>Check prefix</h3>
+          <p class="muted">Hosted model traffic requires an active generated <code>sk_sage_*</code> key. Full keys are shown once and should never be pasted into support.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Route</span>
+          <h3>Check profile</h3>
+          <p class="muted">Start with <code>sage-router/frontier</code>. Use the public model catalog for discovery, but remember live <code>/v1/models</code> is authenticated.</p>
+        </article>
+      </section>
+
+      <section class="section tableWrap">
+        <table>
+          <thead>
+            <tr><th>Status</th><th>What it means</th><th>Useful response signals</th><th>Next action</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>401</td>
+              <td>The key is missing, revoked, inactive, malformed, or not a Sage Router generated key.</td>
+              <td><code>WWW-Authenticate</code>, JSON <code>accountUrl</code>, <code>pricingUrl</code>, <code>statusUrl</code>, <code>openaiBaseUrl</code>, <code>apiKeyPrefix</code>.</td>
+              <td>Confirm the client sends <code>Authorization: Bearer sk_sage_...</code>, regenerate the key if needed, then test <code>/v1/models</code> from the account page or curl.</td>
+            </tr>
+            <tr>
+              <td>402</td>
+              <td>The account, plan, billing, quota, or activation state blocks routing.</td>
+              <td><code>X-Quota-Limit</code>, <code>X-Quota-Used</code>, <code>X-Quota-Remaining</code>, <code>X-Quota-Period</code>, and account or pricing links in the JSON body.</td>
+              <td>Finish checkout or manual activation, review current usage, upgrade the plan, or wait for the quota period to reset.</td>
+            </tr>
+            <tr>
+              <td>429</td>
+              <td>The request-per-minute limit or abuse control was reached.</td>
+              <td><code>Retry-After</code>, <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code>, <code>X-RateLimit-Reset</code>, and quota headers.</td>
+              <td>Reduce concurrency, retry after the indicated delay, batch less aggressively, or upgrade to a plan with a higher rate limit.</td>
+            </tr>
+            <tr>
+              <td>403 / 1010</td>
+              <td>Cloudflare blocked the HTTP client fingerprint before the request reached Sage Router.</td>
+              <td>JSON body with <code>error_code: 1010</code> or <code>browser_signature_banned</code>; no <code>X-Sage-Router-*</code> headers.</td>
+              <td>Use the OpenAI SDK, curl, or set a normal <code>User-Agent</code> for raw urllib-style clients; then retry <code>/v1/models</code>.</td>
+            </tr>
+            <tr>
+              <td>503</td>
+              <td>No healthy authorized backend route is currently available.</td>
+              <td>Status page health, selected upstream, backend health checks, and any safe request id or route profile name.</td>
+              <td>Check public status, verify local/Tailnet router health if using a private install, and retry after failover or backend recovery.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">Safe probes</p>
+          <h2>Use headers first, then a tiny chat check.</h2>
+        </div>
+        <div class="panel">
+          <pre><code>curl -i https://api.sagerouter.dev/v1/models \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -H "User-Agent: OpenAI-compatible-client/1.0"
+
+curl -i https://api.sagerouter.dev/v1/chat/completions \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -H "User-Agent: OpenAI-compatible-client/1.0" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "sage-router/frontier",
+    "messages": [{"role": "user", "content": "Return ok."}]
+  }'</code></pre>
+        </div>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">Support packet</p>
+          <h2>Keep only safe diagnostics.</h2>
+        </div>
+        <div class="panel warn">
+          <ul>
+            <li>Keep HTTP status, timestamp with timezone, route profile, plan, and whether the same key passes the account-page API key test.</li>
+            <li>Keep non-secret headers such as <code>WWW-Authenticate</code>, <code>Retry-After</code>, <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code>, <code>X-RateLimit-Reset</code>, <code>X-Quota-Limit</code>, <code>X-Quota-Used</code>, <code>X-Quota-Remaining</code>, and <code>X-Quota-Period</code>.</li>
+            <li>Keep JSON onboarding links such as <code>accountUrl</code>, <code>pricingUrl</code>, <code>statusUrl</code>, <code>openaiBaseUrl</code>, and the non-secret <code>apiKeyPrefix</code>. Remove full bearer tokens and prompt bodies.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">Boundary</p>
+          <h2>Troubleshooting does not change provider authorization.</h2>
+        </div>
+        <div class="panel">
+          <p class="muted">Sage Router hosted plans sell routing infrastructure, account management, generated keys, quotas, analytics, and reliability checks. They do not bypass provider authorization, pool personal accounts, or grant unauthorized model access.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>&copy; Sage Router</span>
+      <a href="/">Home</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/quickstart">Quickstart</a>
+      <a href="/docs/api-reference">API Reference</a>
+      <a href="/docs/codex">Codex</a>
+      <a href="/models">Models</a>
+      <a href="/status">Status</a>
+      <a href="/support">Support</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/acceptable-use">Acceptable Use</a>
+      <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+    </footer>
+  </div>
+  <script src="/marketing-email-activation.js" defer></script>
+</body>
+</html>

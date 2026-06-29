@@ -1,0 +1,15 @@
+{
+  "name": "standard",
+  "label": "标准会议纪要",
+  "description": "通用会议纪要模板，适用大多数日常会议",
+  "sections": [
+    {"id": "header", "title": "会议信息", "fields": ["会议名称", "日期", "时间", "地点", "主持人", "参会人"]},
+    {"id": "agenda", "title": "会议议程", "type": "list"},
+    {"id": "discussion", "title": "讨论内容", "type": "list-para"},
+    {"id": "decisions", "title": "会议决议", "type": "list"},
+    {"id": "actions", "title": "行动项", "type": "table", "columns": ["事项", "责任人", "截止日期", "状态"]},
+    {"id": "notes", "title": "备注", "type": "free"}
+  ],
+  "layout": "vertical",
+  "actions_sort": "deadline"
+}

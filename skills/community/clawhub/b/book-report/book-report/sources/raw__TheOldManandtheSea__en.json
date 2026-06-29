@@ -1,0 +1,37 @@
+{
+  "title": "The Old Man and the Sea",
+  "author": "Hemingway",
+  "lang": "en",
+  "fetched_at": "2026-06-12T08:56:07",
+  "proxy": "on",
+  "sources": {
+    "baidu": {
+      "source": "baidu",
+      "ok": false,
+      "skipped": "lang=en (中文源) 跳过"
+    },
+    "wiki": {
+      "source": "wiki_en",
+      "url": "https://en.wikipedia.org/wiki/The_Old_Man_and_the_Sea",
+      "ok": true,
+      "title": "The Old Man and the Sea",
+      "body_excerpt": "1952 novella by Ernest Hemingway This article is about the novella by Ernest Hemingway. For other uses, see The Old Man and the Sea (disambiguation) . The Old Man and the Sea First edition cover Author Ernest Hemingway Language English Genre Literary fiction Publisher Charles Scribner's Sons Publication date September 1, 1952 Publication place United States Pages 140 (first edition hardcover) Awards Pulitzer Prize for Fiction (1953) ISBN 978-1-9075-9027-6 OCLC 9583168 Dewey Decimal 813.52 LC Class PS3515.E37 The Old Man and the Sea is a 1952 novella by the American author Ernest Hemingway . Written between December 1950 and February 1951, it was the last major fictional work Hemingway published during his lifetime. It tells the story of Santiago, an aging fisherman, and his long struggle to catch a giant marlin . Hemingway began writing The Old Man and the Sea in Cuba during a tumultuous period in his life. His previous novel Across the River and Into the Trees had met with negative reviews and, amid a breakdown in relations with his wife Mary , he had fallen in love with his muse Adriana Ivancich . Having completed one book in a planned \"sea trilogy\", Hemingway began to write as an addendum a story about an old man and a marlin that had originally been told to him fifteen years earlier. He wrote up to a thousand words a day, completing the 26,531-word manuscript in six weeks. Over the following year, Hemingway became increasingly convinced that the manuscript would stand on its own as a novella. Life magazine published the full novella in its September 1, 1952, issue. Hemingway's publisher, Scribner's , released their first edition a week later on the 8th. Thanks to favorable early reviews and word-of-mouth, popular anticipation was so high that both releases were heavily bootlegged. The magazine sold a record 5.3 million copies in two days, while Scribner's sold tens of thousands of copies. Translated into nine languages by the end of 1952, The Old Man and the Sea remained on the New York Times bestseller list for six months. In 1953, it received the Pulitzer Prize for Fiction , and it was the only work explicitly mentioned when Hemingway was awarded the Nobel Prize in Literature in 1954. Early reviews were positive, with many hailing what they saw as a return to form for Hemingway after Across the River ' s negative reception. The acclaim lessened over time, as literary critics began to think the initial reception overblown and over-enthusiastic. Whether The Old Man and the Sea is inferior or equal to Hemingway's other works has since been the subject of scholarly debate. Thematic analysis has focused on Christian imagery and symbolism, on the similarity of the novella's themes to its predecessors in the Hemingway canon, and on the character of the fisherman Santiago. Plot [ edit ] Santiago is an elderly fisherman who has not caught a fish in eighty-four days and is considered salao (very unlucky). Manolin, a boy trained by Santiago, has been forced by his parents to work on a different, luckier boat; Manolin still helps Santiago prepare his gear every morning and evening and brings him food. They talk about baseball and Joe DiMaggio , before the boy leaves and Santiago sleeps. He dreams of the sights and experiences of his youth. On the eighty-fifth day of his streak, Santiago takes his skiff out early, intending to row far into the Gulf Stream . He catches nothing except a small albacore in the morning before hooking a huge marlin . The fish is too heavy to haul in and begins to tow the skiff farther out to sea. Santiago holds on through the night, eating the albacore after sunrise. He sees the marlin for the first time—it is longer than the boat. Santiago increasingly appreciates the fish, showing respect and compassion towards his adversary. Sunset arrives for a second time and the fisherman manages some sleep; he is awoken by the fish panicking but manages to recover his equilibrium. On the third morning the marlin begins to circle. Almost delirious, Santiago draws the marlin in and harpoons it. He lashes the fish to his boat. A mako shark smells blood in the water and takes a forty-pound bite of the marlin. Killing the shark but losing his harpoon, Santiago lashes his knife to an oar as a makeshift spear and kills three more sharks before the knife blade snaps. Cursing himself for going out too far, he apologizes to the mutilated carcass of the marlin. He clubs two more sharks at sunset, but the marlin is now half-eaten. In the third night, the sharks come as a pack and leave only bones behind them. Santiago reaches shore and sleeps in his shack, leaving the skeleton tied to his skiff. In the morning, Manolin cries when he sees Santiago's state. He brings coffee and sits with Santiago until he wakes. He insists on accompanying Santiago in the future. A fisherman measures the marlin at eighteen feet long, and a pair of tourists mistake its skeleton for that of a shark. Santiago goes back to sleep an"
+    },
+    "zhihu": {
+      "source": "zhihu",
+      "ok": false,
+      "skipped": "lang=en (中文源) 跳过"
+    },
+    "goodreads": {
+      "source": "goodreads",
+      "url": "https://www.goodreads.com/search?q=The%20Old%20Man%20and%20the%20Sea",
+      "ok": true,
+      "snippets": []
+    },
+    "douban_en": {
+      "source": "douban_en",
+      "url": "https://book.douban.com/subject_search?search_text=The%20Old%20Man%20and%20the%20Sea&cat=1001",
+      "ok": false
+    }
+  }
+}

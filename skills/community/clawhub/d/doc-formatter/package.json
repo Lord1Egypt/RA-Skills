@@ -1,0 +1,37 @@
+{
+  "name": "doc-formatter",
+  "version": "1.0.0",
+  "description": "Official Document Formatter Skill — Automated generation of standardized Chinese official documents following GB/T 9704 national standard formatting. Supports 18 document types including notices, requests, reports, meeting minutes, letters, summaries, plans, and more.",
+  "keywords": [
+    "claude-code",
+    "claude-code-skill",
+    "document-formatter",
+    "official-documents",
+    "chinese-government-documents",
+    "GB-T9704",
+    "document-templates",
+    "office-automation",
+    "business-writing"
+  ],
+  "homepage": "https://github.com/Cryptocxf/doc-formatter#readme",
+  "bugs": {
+    "url": "https://github.com/Cryptocxf/doc-formatter/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cryptocxf/doc-formatter.git"
+  },
+  "license": "MIT",
+  "author": "Cryptocxf",
+  "files": [
+    "SKILL.md",
+    ".claude-plugin/plugin.json",
+    "references/*.md"
+  ],
+  "claude-code": {
+    "skill": true,
+    "name": "doc-formatter",
+    "title": "Official Document Formatter",
+    "icon": "📄"
+  }
+}

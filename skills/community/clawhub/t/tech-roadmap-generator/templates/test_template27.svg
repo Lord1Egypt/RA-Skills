@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="386" viewBox="0 0 900 386">
+<defs>
+  <style>
+    text { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+  </style>
+</defs>
+<!-- 背景 -->
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<rect x="3.0" y="10.0" width="56.0" height="36.0" rx="3" fill="#A5D6A7" stroke="#558B2F" stroke-width="1.2"/>
+<text x="31.0" y="33.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">分析问题</text>
+<rect x="70.0" y="10.0" width="822.0" height="56.0" fill="none" stroke="#E3F2FD" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="322.0" y="16.0" width="318.0" height="28.0" rx="2" fill="#E8EAF6" stroke="#7986CB" stroke-width="1.2"/>
+<text x="481.0" y="35.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="normal">乡村振兴政策特征、影响及成因分析 @乡村振兴政策</text>
+<polygon points="26.0,66.0 36.0,66.0 36.0,74.0 40.0,74.0 31.0,82.0 22.0,74.0 26.0,74.0" fill="#AED581"/>
+<rect x="3.0" y="86.0" width="56.0" height="36.0" rx="3" fill="#A5D6A7" stroke="#558B2F" stroke-width="1.2"/>
+<text x="31.0" y="109.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">理论基础</text>
+<rect x="70.0" y="86.0" width="822.0" height="56.0" fill="none" stroke="#E3F2FD" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="394.0" y="92.0" width="174.0" height="28.0" rx="2" fill="#E8EAF6" stroke="#7986CB" stroke-width="1.2"/>
+<text x="481.0" y="111.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="normal">生发乡村振兴政策理论内涵</text>
+<rect x="80.0" y="125.0" width="148.0" height="26.0" rx="3" fill="#F5B875" stroke="#888888" stroke-width="1.2"/>
+<text x="154.0" y="142.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="bold">@小紅书；小白龙大智慧</text>
+<rect x="80.0" y="155.0" width="90.0" height="28.0" rx="2" fill="#fff" stroke="#999" stroke-width="1.5"/>
+<text x="125.0" y="173.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal"></text>
+<rect x="180.0" y="155.0" width="90.0" height="28.0" rx="2" fill="#fff" stroke="#999" stroke-width="1.5"/>
+<text x="225.0" y="173.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal"></text>
+<rect x="280.0" y="155.0" width="90.0" height="28.0" rx="2" fill="#fff" stroke="#999" stroke-width="1.5"/>
+<text x="325.0" y="173.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal"></text>
+<polygon points="26.0,142.0 36.0,142.0 36.0,150.0 40.0,150.0 31.0,158.0 22.0,150.0 26.0,150.0" fill="#AED581"/>
+<rect x="3.0" y="162.0" width="56.0" height="36.0" rx="3" fill="#A5D6A7" stroke="#558B2F" stroke-width="1.2"/>
+<text x="31.0" y="185.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">实证检验</text>
+<rect x="70.0" y="162.0" width="822.0" height="96.0" fill="none" stroke="#E3F2FD" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="436.0" y="168.0" width="90.0" height="28.0" rx="2" fill="#E8EAF6" stroke="#7986CB" stroke-width="1.2"/>
+<text x="481.0" y="187.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="normal">实证内容1</text>
+<rect x="78.0" y="201.0" width="195.5" height="32.0" rx="2" fill="#FFF8E1" stroke="#CCA000" stroke-width="1.2"/>
+<text x="175.8" y="221.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">假设内容/数据
+基础1</text>
+<rect x="279.5" y="201.0" width="195.5" height="32.0" rx="2" fill="#FFF8E1" stroke="#CCA000" stroke-width="1.2"/>
+<text x="377.2" y="221.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">假设内容/数据
+基础2</text>
+<rect x="481.0" y="201.0" width="195.5" height="32.0" rx="2" fill="#FFF8E1" stroke="#CCA000" stroke-width="1.2"/>
+<text x="578.8" y="221.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">假设内容/数据
+基础3</text>
+<rect x="682.5" y="201.0" width="195.5" height="32.0" rx="2" fill="#FFF8E1" stroke="#CCA000" stroke-width="1.2"/>
+<text x="780.2" y="221.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">假设内容/数据
+基础4</text>
+<polygon points="26.0,258.0 36.0,258.0 36.0,266.0 40.0,266.0 31.0,274.0 22.0,266.0 26.0,266.0" fill="#AED581"/>
+<rect x="3.0" y="278.0" width="56.0" height="36.0" rx="3" fill="#A5D6A7" stroke="#558B2F" stroke-width="1.2"/>
+<text x="31.0" y="301.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">引导政策</text>
+<rect x="70.0" y="278.0" width="822.0" height="96.0" fill="none" stroke="#E3F2FD" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="358.0" y="284.0" width="246.0" height="28.0" rx="2" fill="#E8EAF6" stroke="#7986CB" stroke-width="1.2"/>
+<text x="481.0" y="303.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="normal">政策建议@乡村振兴政策；小白龙大智慧</text>
+<rect x="78.0" y="317.0" width="262.7" height="32.0" rx="2" fill="#FFF8E1" stroke="#CCA000" stroke-width="1.2"/>
+<text x="209.3" y="337.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">完善乡村振兴政
+策制度</text>
+<rect x="346.7" y="317.0" width="262.7" height="32.0" rx="2" fill="#FFF8E1" stroke="#CCA000" stroke-width="1.2"/>
+<text x="478.0" y="337.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">改革乡村振兴政
+策政策</text>
+<rect x="615.3" y="317.0" width="262.7" height="32.0" rx="2" fill="#FFF8E1" stroke="#CCA000" stroke-width="1.2"/>
+<text x="746.7" y="337.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">推动乡村振兴政
+策发展</text>
+</svg>

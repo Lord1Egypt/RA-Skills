@@ -1,0 +1,11 @@
+# cron-edit-safe 前置依赖
+# 注意：本 skill 是 bash 脚本，不需要 Python venv
+# 只依赖系统工具：
+
+# 必需（system tool）：
+# - bash >= 4.0
+# - jq >= 1.6  (apt install jq / brew install jq)
+# - openclaw CLI (https://docs.openclaw.ai)
+
+# 可选（如果有 python3 会用于 verify 阶段解析 plugin warnings）：
+# - python3 >= 3.6

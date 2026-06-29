@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "dev": "tsx scripts/supabase/use-branch-env.ts auto && next dev",
+    "dev:local": "tsx scripts/supabase/use-branch-env.ts local && next dev",
+    "env:preview": "tsx scripts/supabase/use-branch-env.ts",
+    "env:develop": "tsx scripts/supabase/use-branch-env.ts develop",
+    "env:local": "tsx scripts/supabase/use-branch-env.ts local",
+    "env:status": "tsx scripts/supabase/use-branch-env.ts status",
+    "preview:provision": "tsx scripts/supabase/provision-preview-branch.ts",
+    "preview:cleanup": "tsx scripts/supabase/cleanup-preview-branch.ts",
+    "preview:cleanup-orphans": "tsx scripts/supabase/cleanup-orphan-preview-branches.ts",
+    "migrations:apply": "tsx scripts/supabase/apply-migrations.ts",
+    "migrations:check": "tsx scripts/ci/check-migrations.ts",
+    "db:pull": "supabase db pull && npm run db:types",
+    "db:push": "supabase db push",
+    "db:diff": "supabase db diff",
+    "db:types": "supabase gen types typescript --local > src/types/supabase-generated.ts"
+  }
+}

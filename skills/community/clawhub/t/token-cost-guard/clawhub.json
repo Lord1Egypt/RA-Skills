@@ -1,0 +1,26 @@
+{
+  "name": "token-cost-guard",
+  "slug": "token-cost-guard",
+  "version": "0.2.4",
+  "description": "Token Cost Guard - realtime token spend monitor and Chinese threshold alert report skill that reads the active OpenClaw or Hermes runtime's own usage records, supports hourly windows and cron-safe alert exits, and prefers native billing fields when present.",
+  "keywords": [
+    "openclaw",
+    "hermes",
+    "token-cost",
+    "usage-monitoring",
+    "cost-alert",
+    "agent-ops",
+    "deepseek",
+    "kimi",
+    "gpt",
+    "budget-guard"
+  ],
+  "compatibility": {
+    "codex": true,
+    "openclaw": true,
+    "hermes": true,
+    "format": "AgentSkills SKILL.md"
+  },
+  "author": "harrylabsj",
+  "license": "MIT"
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Meta Service Lead Gen"
+  short_description: "Audit and build Meta lead funnels"
+  default_prompt: "Use $meta-service-lead-gen to diagnose my Meta ads funnel and tell me which lever to fix first."
+  brand_color: "#1877F2"
+policy:
+  allow_implicit_invocation: true

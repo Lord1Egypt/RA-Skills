@@ -1,0 +1,28 @@
+{
+  "description": "replace only the masked helmet plume with a blue feather plume, preserve the rest of the sprite exactly",
+  "inpainting_image": {
+    "image": {
+      "type": "base64",
+      "format": "png",
+      "base64": "REPLACE_WITH_BASE64_INPAINTING_IMAGE"
+    },
+    "size": {
+      "width": 64,
+      "height": 64
+    }
+  },
+  "mask_image": {
+    "image": {
+      "type": "base64",
+      "format": "png",
+      "base64": "REPLACE_WITH_BASE64_MASK_IMAGE"
+    },
+    "size": {
+      "width": 64,
+      "height": 64
+    }
+  },
+  "no_background": true,
+  "crop_to_mask": false,
+  "seed": 0
+}

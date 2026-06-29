@@ -1,0 +1,30 @@
+interface:
+  display_name: "Oh My Teacher (DeepSeek)"
+  short_description: "期末复习规划、严格批改、数学证明和苏格拉底引导（DeepSeek 适配版）"
+  default_prompt: "用 $oh-my-teacher 帮我做期末复习。请按 DeepSeek 模型特点加强严格批改、数学证明和苏格拉底引导，但只输出可审计的评分依据和关键步骤。"
+
+adapter:
+  agent_id: "deepseek"
+  contract: "references/agent-adapter-contract.md"
+  inventory: "references/agent-inventory.md#deepseek"
+  optimization_profiles: ["prompt-agent"]
+  source_status: "observed"
+
+instructions: |
+  Follow SKILL.md as the primary guide, with these model-specific adjustments for DeepSeek-R1/V3:
+  Read references/agent-adapter-contract.md before using host-specific behavior.
+  Read references/agent-optimization.md to keep model-only deployments in prompt-agent mode unless wrapper tools are confirmed.
+  Consult references/agent-inventory.md for the deepseek record.
+
+  Best path: use prompt-agent for strict proof review, calculation checking,
+  Chinese explanations, and audit-friendly grading. Use tool-backed profiles only
+  when the wrapper exposes them.
+
+  1. **Audit-friendly grading**: When grading proofs and calculations, show the theorem dependency path, checked conditions, lost points, and corrected answer. Do not expose private reasoning traces or use hidden-reasoning blocks.
+  2. **Strict proof mode by default**: For math, algorithms, and physics derivations, use strict proof mode unless the user explicitly asks for a high-level summary.
+  3. **Chinese preferred**: Default to Chinese output. Only switch to English when the course materials are in English.
+  4. **Definitions first**: Always start math/physics explanations with the formal definition or theorem statement before intuition.
+  5. **Delay loading**: Load reference files only when executing a specific command; do not pre-load at session start.
+
+policy:
+  allow_implicit_invocation: true

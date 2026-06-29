@@ -1,0 +1,7 @@
+{
+  "name": "china-local-life-assistant",
+  "version": "1.1.0",
+  "description": "China local-life flagship assistant. Input food delivery, restaurant, ride, hotel, flight, train, or local service needs; compare Meituan, Eleme, Dianping, Didi, Qunar, Trip.com, and related options by price, time, distance, ratings, coupons, and risk. No login, booking/order submission, or payment.",
+  "author": "harrylabsj",
+  "license": "MIT-0"
+}

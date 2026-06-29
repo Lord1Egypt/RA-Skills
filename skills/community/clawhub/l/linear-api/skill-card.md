@@ -11,22 +11,23 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and operators use this skill to inspect and manage Linear workspace data through Maton-managed OAuth, including issues, comments, projects, teams, cycles, labels, workflow states, and users. <br>
+Developers and agents use this skill to query Linear work and prepare or execute approved issue, project, team, cycle, label, and comment operations through Maton's Linear GraphQL integration. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can read and change Linear workspace data through a Maton-managed OAuth connection. <br>
-Mitigation: Install only when Maton is trusted with the connected Linear workspace, and keep the Maton API key scoped and stored as a sensitive credential. <br>
-Risk: Requests may target the wrong Linear account when multiple OAuth connections are available. <br>
-Mitigation: Confirm and specify the intended Linear connection before account-specific operations. <br>
-Risk: Create, update, or delete operations can affect Linear issues, comments, projects, or OAuth connections. <br>
-Mitigation: Require explicit user approval after reviewing the exact target resource and intended effect. <br>
+Risk: The skill uses Maton as a proxy for the connected Linear account and requires a MATON_API_KEY. <br>
+Mitigation: Install only when comfortable granting Maton-mediated access, keep MATON_API_KEY out of shared logs and terminal output, and rotate the key if exposure is suspected. <br>
+Risk: Create, update, delete, and comment operations can change Linear data. <br>
+Mitigation: Confirm the target resource and intended effect before running any write operation. <br>
+Risk: Multiple Linear OAuth connections can send requests to the wrong account if no connection is specified. <br>
+Mitigation: Specify the intended connection when more than one Linear connection is active. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/byungkyu/linear-api) <br>
+- [ClawHub Linear Skill](https://clawhub.ai/byungkyu/skills/linear-api) <br>
+- [byungkyu ClawHub Profile](https://clawhub.ai/user/byungkyu) <br>
 - [Linear API Overview](https://linear.app/developers) <br>
 - [Linear GraphQL Getting Started](https://linear.app/developers/graphql) <br>
 - [Linear GraphQL Schema](https://studio.apollographql.com/public/Linear-API/schema/reference?variant=current) <br>
@@ -36,12 +37,12 @@ Mitigation: Require explicit user approval after reviewing the exact target reso
 
 ## Skill Output: <br>
 **Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline shell, GraphQL, Python, and JavaScript examples] <br>
+**Output Format:** [Markdown with CLI examples, GraphQL snippets, and Python or JavaScript code examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires network access, MATON_API_KEY, and a selected Linear OAuth connection for account-specific operations.] <br>
+**Other Properties Related to Output:** [Requires network access, MATON_API_KEY, and a valid Maton Linear OAuth connection.] <br>
 
 ## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+1.0.6 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -13,6 +13,9 @@ Default to `normal` unless the user explicitly asks for debugging, tracing, rece
 ## Rules that apply in all modes
 1. Load `memory/always_on.md`.
 2. Route + retrieve according to `context_pipeline/router.yml` caps.
+   - When persistent memory is relevant, prefer semantic/hybrid memory search.
+   - Record retrieval mode as `semantic`, `hybrid`, `file_fallback`, or `not_needed`.
+   - If semantic memory is unavailable or not attempted, normal mode must say so compactly; debug/audit must include the reason.
 3. Build a Retrieval Bundle object internally.
 4. Compress to a Context Pack internally.
 5. Lint the Context Pack.
@@ -26,10 +29,15 @@ For `debug` and `audit`, persist runtime artifacts using `references/RUNTIME_ART
 
 ### `normal`
 Emit only:
-- task type
-- snippet IDs passed into reasoning
-- whether compression succeeded or raw-snippet fallback was used
 - the user-facing reasoning/output
+- a footer/footnote containing:
+  - task type
+  - snippet IDs passed into reasoning
+  - retrieval mode: `semantic`, `hybrid`, `file_fallback`, or `not_needed`
+  - whether compression succeeded or raw-snippet fallback was used
+  - model used
+  - files read
+  - files updated
 
 Do **not** emit the full Retrieval Bundle JSON or full Context Pack JSON unless the user explicitly asks for them.
 
@@ -39,8 +47,10 @@ Emit:
 - full Context Pack JSON
 - dropped entries with reasons
 - snippet summary + pass-through
+- retrieval mode and fallback/degradation reason, if any
 - runtime artifact paths
 - the user-facing reasoning/output
+- a footer/footnote containing model used, files read, and files updated
 
 If lint fails, explicitly state `CONTEXT PACK LINT FAILED` and include the lint error before falling back.
 
@@ -48,6 +58,7 @@ If lint fails, explicitly state `CONTEXT PACK LINT FAILED` and include the lint 
 Emit everything from `debug`, plus:
 - a structured Receipt Ledger that matches `context_pipeline/schemas/receipt_ledger.schema.json`
 - any command/tool proof needed to support claims of completion
+- a footer/footnote containing model used, files read, and files updated
 
 Receipt Ledger requirements:
 - one entry per required pipeline step

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Crypto One-Way Market"
+  short_description: "Fetch crypto candles and detect one-way trends"
+  default_prompt: "Use $crypto-one-way-market to fetch BTCUSDT 15m candles and judge whether it is a one-way market."

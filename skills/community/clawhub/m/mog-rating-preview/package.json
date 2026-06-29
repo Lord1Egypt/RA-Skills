@@ -1,0 +1,12 @@
+{
+  "name": "@mogscore/mog-rating-preview-openclaw-skill",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "playwright-core": "1.51.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

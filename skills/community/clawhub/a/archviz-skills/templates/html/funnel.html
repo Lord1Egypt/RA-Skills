@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Funnel Chart</title></head>
+<body style="margin:0;background:#f5f0eb;font-family:system-ui">
+<!-- Funnel Chart — archviz-skills -->
+<!-- Use for: conversion pipeline, progressive filtering, process stages -->
+<canvas id="c" width="600" height="400"></canvas>
+<script>
+const stages = [
+  {label:"Visitors",value:10000,color:"#94a3b8"},
+  {label:"Signups",value:3500,color:"#7a8fa0"},
+  {label:"Activated",value:1800,color:"#5e7588"},
+  {label:"Paid",value:600,color:"#002FA7"},
+  {label:"Retained",value:250,color:"#001a5e"}
+];
+const ctx=document.getElementById("c").getContext("2d");
+const cx=300, topY=40, segH=60, maxW=400;
+stages.forEach((s,i)=>{
+  const w1=maxW*(s.value/stages[0].value);
+  const nextV=i<stages.length-1?stages[i+1].value:s.value*0.8;
+  const w2=maxW*(nextV/stages[0].value);
+  const y=topY+i*segH;
+  ctx.beginPath();
+  ctx.moveTo(cx-w1/2,y);ctx.lineTo(cx+w1/2,y);
+  ctx.lineTo(cx+w2/2,y+segH-4);ctx.lineTo(cx-w2/2,y+segH-4);
+  ctx.closePath();ctx.fillStyle=s.color;ctx.fill();
+  ctx.fillStyle="#fff";ctx.font="bold 14px system-ui";ctx.textAlign="center";
+  ctx.fillText(s.label+" ("+s.value.toLocaleString()+")",cx,y+segH/2+5);
+});
+</script>
+</body></html>

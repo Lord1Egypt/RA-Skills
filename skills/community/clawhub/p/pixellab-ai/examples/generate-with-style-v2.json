@@ -1,0 +1,21 @@
+{
+  "style_images": [
+    {
+      "image": {
+        "type": "base64",
+        "format": "png",
+        "base64": "REPLACE_WITH_BASE64_STYLE_IMAGE"
+      },
+      "width": 64,
+      "height": 64
+    }
+  ],
+  "description": "matching 32x32 inventory icon of a silver key, same palette, outline, and shading as the style reference",
+  "image_size": {
+    "width": 64,
+    "height": 64
+  },
+  "style_description": "crisp readable low-color RPG inventory icon style",
+  "no_background": true,
+  "seed": 0
+}

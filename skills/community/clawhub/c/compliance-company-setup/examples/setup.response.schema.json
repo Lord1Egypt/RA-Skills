@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "recommendation": {
+      "type": "string"
+    },
+    "feasibilityScore": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "feasibilityStatus": {
+      "type": "string",
+      "enum": ["🟢 方案可行", "🟡 需改进", "🔴 需重点关注"]
+    },
+    "reasons": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "nextActions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "priority": {
+            "type": "string",
+            "enum": ["high", "medium", "low"]
+          },
+          "actionType": {
+            "type": "string",
+            "enum": ["SEARCH_COMPANY_NAME", "HIRE_REGISTERED_AGENT", "FILE_ARTICLES", "APPLY_EIN", "OPEN_BANK_ACCOUNT", "FILE_BOI", "REGISTER_TRADEMARK"]
+          },
+          "description": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["pending", "completed", "skipped"]
+          }
+        },
+        "required": ["priority", "actionType", "description", "status"]
+      }
+    }
+  },
+  "required": ["feasibilityScore", "feasibilityStatus", "nextActions"]
+}

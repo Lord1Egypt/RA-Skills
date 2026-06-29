@@ -1,6 +1,6 @@
 # 宿主编排：三类 Google 投放自控（详细步骤）
 
-> **主题索引**：[`operations/hosted-automation-scenarios.md`](operations/hosted-automation-scenarios.md)  
+> **主题索引**：[`references/operations/hosted-automation-scenarios.md`](references/operations/hosted-automation-scenarios.md)  
 > **编排责任**：定时、多条件 IF、滑动时间窗、通知（含 P1 /「空耗熔断」文案）由 **OpenClaw / WorkBuddy / Cron** 等宿主实现。  
 > **本页责任**：说明如何用 `siluzan-tso` **拉检查项**、**执行最终写操作**、**写后复核**。
 
@@ -10,7 +10,7 @@
 - `--json-out` 与 Node 过滤：`references/core/tips.md`
 - 写命令语法：`references/google-ads/google-ads.md`（系列编辑、广告组编辑、启停等）
 - 账户/维度分析、时间窗：`references/analytics/account-analytics.md`
-- **异常监控**（余额、小时花费、落地页、拒审等 **`--json-out` 落盘 JSON 键名**）：[`operations/hosted-automation-monitoring-json.md`](operations/hosted-automation-monitoring-json.md)
+- **异常监控**（余额、小时花费、落地页、拒审等 **`--json-out` 落盘 JSON 键名**）：[`references/operations/hosted-automation-monitoring-json.md`](references/operations/hosted-automation-monitoring-json.md)
 
 **前置**：已 `siluzan-tso login`，并已用 `list-accounts -m Google -k <mediaCustomerId> --json-out ./snap` 确认账户与 `mediaCustomerId`。
 
@@ -30,7 +30,7 @@
 | 日预算与费用比        | **`ad campaigns --json-out ./snap`**：`**budget`**（CLI 已为元）与 **`spend`**；比较时须**统一货币与单位\*\*（见 `SKILL.md` 金额硬规范）                                       |
 | 转化次数              | **`conversions`**（或报表里等价字段名）                                                                                                                                        |
 | 实际 CPA              | 宿主侧 **`spend / conversions`**（`conversions` 为 0 时不做 CPA 判断）                                                                                                         |
-| 目标 CPA（系列 / 组） | 系列列表 JSON 中的 **`targetCpa_BidingAmount`** 等；组列表 **`ad groups --json-out ./snap`** 中的 **`targetCpaAmount`**（写入口径见 `google-ads/google-ads.md`「广告组编辑」） |
+| 目标 CPA（系列 / 组） | 系列列表 JSON 中的 **`targetCpa_BidingAmount`** 等；组列表 **`ad groups --json-out ./snap`** 中的 **`targetCpaAmount`**（写入口径见 `references/google-ads/google-ads.md`「广告组编辑」） |
 
 若某条检查所需字段在**当前**落盘 JSON 中不存在，**禁止猜测**：先换用 `references/analytics/account-analytics.md` 中其它子命令拉数，或与维护方确认是否需扩展 `siluzan-tso`；宿主侧不得编造字段。
 
@@ -87,15 +87,15 @@ siluzan-tso ad campaign-status -a <mediaCustomerId> --id <campaignId> --status E
 **业务目标**：在过去 **X 小时**（或等价滑动窗口，由宿主定义）内 **`conversions ≥ 3`** 且 **实际 CPA > 目标 CPA × 飙升阈值**（如 **1.3**）时降价：
 
 - 系列为 **tCPA**：下调 **target_cpa** 约 **10%–15%**（具体比例配置在宿主）。
-- **eCPC**：下调 **cpc_bid_ceiling** 约 **15%**（系列侧多为 `ad campaign-edit --bid-ceiling` 等，见 `google-ads/google-ads.md`；组侧手动上限可用 **`ad adgroup-edit --max-cpc`**，策略以实际账户为准）。
+- **eCPC**：下调 **cpc_bid_ceiling** 约 **15%**（系列侧多为 `ad campaign-edit --bid-ceiling` 等，见 `references/google-ads/google-ads.md`；组侧手动上限可用 **`ad adgroup-edit --max-cpc`**，策略以实际账户为准）。
 
 ### 检查项（宿主每轮执行）
 
-1. **时间窗**：由宿主将「过去 X 小时」映射为 **`--start` / `--end`**（或按小时粒度拆多次拉取再聚合，以 `analytics/account-analytics.md` 与接口能力为准）。
+1. **时间窗**：由宿主将「过去 X 小时」映射为 **`--start` / `--end`**（或按小时粒度拆多次拉取再聚合，以 `references/analytics/account-analytics.md` 与接口能力为准）。
 2. **拉数**（至少覆盖费用、转化；字段以实际 JSON 为准）：
    - 系列维度：`ad campaigns … --json-out ./snap`
    - 组维度：`ad groups … --json-out ./snap`
-   - 若列表不足以算「过去 X 小时」，使用 **`account-analytics`** 或报表子命令中可下到系列/组且带时间粒度的接口（见 `analytics/account-analytics.md`）。
+   - 若列表不足以算「过去 X 小时」，使用 **`account-analytics`** 或报表子命令中可下到系列/组且带时间粒度的接口（见 `references/analytics/account-analytics.md`）。
 3. 对候选对象：
    - `conversions`（窗口内）**≥ 3**
    - `actual_cpa = spend / conversions`（`conversions > 0`）
@@ -176,7 +176,7 @@ siluzan-tso ad adgroup-status -a <mediaCustomerId> --id <adGroupId> --status Pau
 siluzan-tso ad ad-status -a <mediaCustomerId> --id <adId> --status Paused
 ```
 
-（`ad-status` 若需 `--start`/`--end` 见 `google-ads/google-ads.md`。）
+（`ad-status` 若需 `--start`/`--end` 见 `references/google-ads/google-ads.md`。）
 
 ### 通知（宿主）
 

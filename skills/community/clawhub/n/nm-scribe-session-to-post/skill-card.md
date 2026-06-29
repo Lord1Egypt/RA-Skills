@@ -11,31 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers, developer advocates, and technical writers use this skill after a coding session to turn git history, file changes, test evidence, metrics, and conversation context into public-facing engineering posts, case studies, social threads, or Reddit posts. <br>
+Developers, technical writers, and developer-relations teams use this skill to turn real Claude Code sessions into publishable engineering blog posts, case studies, social threads, or Reddit posts grounded in session evidence. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may surface session details, repository context, private prompts, internal URLs, customer data, proprietary code details, or configuration values in public-facing prose. <br>
-Mitigation: Review the generated post before publishing or committing it, remove sensitive details, and verify claims against the cited session and repository evidence. <br>
+Risk: Generated posts may expose credentials, private prompts, internal architecture, customer data, proprietary plans, or other sensitive repository context. <br>
+Mitigation: Review every generated draft before publication and remove private or proprietary details. <br>
+Risk: Generated posts may contain incorrect or misleading claims about the coding session. <br>
+Mitigation: Verify claims against git history, file changes, test output, metrics, and proof-of-work evidence before sharing. <br>
 
 
 ## Reference(s): <br>
-- [Night Market scribe source](https://github.com/athola/claude-night-market/tree/master/plugins/scribe) <br>
-- [Session Extraction Checklist](artifact/modules/session-extraction.md) <br>
-- [Narrative Structure](artifact/modules/narrative-structure.md) <br>
-- [Reddit Post Format](artifact/modules/reddit-format.md) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-scribe-session-to-post) <br>
+- [Clawdis homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scribe) <br>
+- [Narrative Structure module](artifact/modules/narrative-structure.md) <br>
+- [Reddit Post Format module](artifact/modules/reddit-format.md) <br>
+- [Session Extraction Checklist module](artifact/modules/session-extraction.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown draft plus a concise status report with format, word count, claim count, and recording notes when applicable] <br>
+**Output Type(s):** [Markdown, Guidance, Shell commands] <br>
+**Output Format:** [Markdown prose with optional shell command blocks and concise status fields.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May write the generated post to docs/posts/ or another requested path and may propose verification commands for evidence gathering.] <br>
+**Other Properties Related to Output:** [May include word count, verification status, target format, and publication-readiness notes.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release evidence; artifact frontmatter reports 1.9.8) <br>
+1.9.13 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

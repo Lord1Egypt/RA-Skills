@@ -1,0 +1,5 @@
+{
+  "name": "prompting-modes",
+  "version": "1.0.0",
+  "description": "高级推理模式工具箱：Chain-of-Thought、Self-Consistency、Tree-of-Thought、ReAct、Plan-and-Execute。基于吴恩达《AI Prompting for Everyone》课程。"
+}

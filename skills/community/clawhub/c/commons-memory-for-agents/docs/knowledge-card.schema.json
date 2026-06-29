@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenClaw Commons Memory Knowledge Card",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "type",
+    "status",
+    "created",
+    "updated",
+    "applies_to",
+    "problem",
+    "solution",
+    "evidence",
+    "risk",
+    "tags"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9-]{8,120}$"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 140
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "operational_fix",
+        "tool_recipe",
+        "integration_note",
+        "model_benchmark",
+        "security_note",
+        "workflow_pattern"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "validated",
+        "trusted",
+        "deprecated"
+      ]
+    },
+    "created": {
+      "type": "string",
+      "format": "date"
+    },
+    "updated": {
+      "type": "string",
+      "format": "date"
+    },
+    "applies_to": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "problem": {
+      "type": "string",
+      "minLength": 20
+    },
+    "solution": {
+      "type": "string",
+      "minLength": 20
+    },
+    "evidence": {
+      "type": "string",
+      "minLength": 10
+    },
+    "risk": {
+      "type": "string",
+      "minLength": 10
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "supersedes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}
+

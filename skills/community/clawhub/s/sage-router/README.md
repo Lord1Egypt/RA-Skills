@@ -5,7 +5,7 @@
 One endpoint. Any provider. The router figures out the rest.
 
 [![Umbrel](https://img.shields.io/badge/Umbrel-1.0.4-purple)](https://github.com/getumbrel/umbrel-apps/pull/5720)
-[![ClawHub](https://img.shields.io/badge/ClawHub-v4.157.5-blue)](https://clawhub.ai/earlvanze/sage-router)
+[![ClawHub](https://img.shields.io/badge/ClawHub-v4.157.9-blue)](https://clawhub.ai/earlvanze/sage-router)
 [![GitHub](https://img.shields.io/badge/GitHub-earlvanze%2Fsage--router-black)](https://github.com/earlvanze/sage-router)
 
 ---
@@ -14,7 +14,7 @@ One endpoint. Any provider. The router figures out the rest.
 
 Want the public OpenAI-compatible endpoint instead of self-hosting first?
 
-- [Create a hosted `sk_sage_*` key](https://app.sagerouter.dev/account.html?plan=pro&start=checkout&utm_source=github&utm_medium=readme&utm_campaign=sage-router-launch) for `https://api.sagerouter.dev/v1`
+- [Create a hosted `sk_sage_*` key](https://app.sagerouter.dev/account.html?plan=pro&start=create_key&utm_source=github&utm_medium=readme&utm_campaign=sage-router-launch) for `https://api.sagerouter.dev/v1`
 - [Copy the 60-second setup](https://sagerouter.dev/quickstart?utm_source=github&utm_medium=readme&utm_campaign=sage-router-launch)
 - [Compare hosted plans](https://sagerouter.dev/pricing?utm_source=github&utm_medium=readme&utm_campaign=sage-router-launch)
 
@@ -78,27 +78,38 @@ tailscale serve --bg --https=443 http://127.0.0.1:8790
 
 The edge health-checks each configured Tailnet upstream, routes OpenAI-compatible traffic to the lowest-latency healthy Sage Router node, and keeps provider credentials on the private routers. Publish it privately with Tailscale Serve/Funnel, or front a stable cloud VM edge with Cloudflare for a CDN-style public endpoint. See [deploy/tailnet-edge](deploy/tailnet-edge/README.md) for Google Cloud VM bootstrap and public monetization notes.
 
+After changing the public edge, verify generated-key routing preserves router-profile model aliases even when a stale Tailnet upstream serves the request:
+
+```bash
+python3 scripts/smoke_public_profile_alias.py \
+  --env-file /opt/sage-router/deploy/tailnet-edge/.env \
+  --api-base https://api.sagerouter.dev \
+  --model sage-router/frontier
+```
+
 ### sagerouter.dev Deployment Map
 
 The current public deployment is intentionally split:
 
 - `https://sagerouter.dev` and `https://www.sagerouter.dev` are static Cloudflare Pages (`sage-router-web`). They host marketing/docs/account UI only.
 - `https://app.sagerouter.dev` is the hosted account/login surface, served by the same Cloudflare Pages project with Supabase Auth redirects pointed at this host.
-- `https://app.sagerouter.dev/status` is the public reliability page. It reads `/edge/health` and `/pricing` from the public API edge to show selected upstream ID, Tailnet/cloud backend class, CDN-style reliability evidence, lowest-latency retry failover policy, control-plane health, auth mode, rate-limit/quota enforcement, pre-auth generated-key attempt throttling, generated-key revocation posture, customer endpoint, plan limits, and secret-free billing readiness without exposing customer data, internal upstream URLs, Tailnet hostnames, Stripe price IDs, provider credentials, or secrets.
+- `https://app.sagerouter.dev/status` is the public reliability and launch-actions page. It reads `/edge/health` and `/pricing` from the public API edge to show selected upstream ID, Tailnet/cloud backend class, CDN-style reliability evidence, lowest-latency retry failover policy, control-plane health, auth mode, rate-limit/quota enforcement, pre-auth generated-key attempt throttling, generated-key revocation posture, customer endpoint, plan limits, secret-free billing readiness, and copyable no-secret operator actions for activation email preflight, managed-provider resale dry-run/staging, first-request setup, and Cloudflare BIC verification without exposing customer data, internal upstream URLs, Tailnet hostnames, Stripe price IDs, provider credentials, private provider costs, or secrets.
 - `https://sagerouter.dev/billing` is the dedicated billing recovery page. It explains Stripe checkout, Stripe billing portal, manual/crypto settlement, activation states, generated `sk_sage_*` key behavior before and after payment, payment recovery, and safe no-secret support context.
 - `https://sagerouter.dev/fusion` is the premium compound-model page. It documents `sage-router/fusion`, the `sage-router:fusion` server tool, `tool_choice: "required"`, Pro/Max gating, and the `fusion_plan_required` upgrade path.
 - `https://sagerouter.dev/support` is the public support and billing help page. It routes customers to account setup, Stripe billing portal, manual/crypto settlement, quota/API-key troubleshooting, 503 reliability checks, security reporting, and abuse reporting while explicitly telling users not to send prompts, workflow text, provider credentials, OAuth tokens, API keys, private keys, cookies, raw provider responses, or customer data in public support channels.
 - `https://sagerouter.dev/managed-access` is the managed-provider-access private beta and Max implementation intake page. It captures contact plus allowlisted qualification buckets such as deployment preference, expected monthly routed request volume, provider access posture, target provider family, commercial preference, support need, and target launch window; it explains that managed access still requires provider authorization, provider terms acknowledgment, an authorized provider allowlist, a configured provider cost model, and plan-margin checks before activation; it does not collect prompts, workflow text, provider credentials, OAuth tokens, generated API keys, private keys, cookies, raw provider responses, actual provider costs, or customer data.
-- `https://api.sagerouter.dev` is a Cloudflare-proxied GCP edge VM. The edge health-checks Tailnet Sage Router installs plus the Google-hosted Sage Router API origin, then routes to the lowest-latency healthy backend. Public health and response headers identify the edge layer and selected backend only with stable public IDs such as `upstream-1`, never configured upstream URLs or Tailnet hostnames.
-- Tailnet Edge is the reliability layer for routing to healthy Sage Router installs on a Tailnet. In public mode, set `SAGE_ROUTER_EDGE_AUTH_MODE=supabase`: `/pricing`, `/plans`, `/model-catalog`, and `/features/agent-native` are public control-plane metadata; `/pricing` also exposes a `billing` object with secret-free Stripe checkout readiness, configured plan names, billing portal readiness, manual settlement status paths, activation statuses, and generated-key limits. The same metadata exposes `publicLaunch.managedProviderAccess`, which must stay disabled until provider resale terms are acknowledged, a provider-family allowlist is configured, a margin policy, positive unit economics backed by a positive `SAGEROUTER_PROVIDER_RESALE_COST_CENTS_PER_1K_REQUESTS`, durable quota/rate-limit enforcement, generated-key revocation, operator abuse review, durable operator audit events, and managed-access acceptable-use terms are ready. Public unit-economics rows expose plan revenue and derived maximum safe provider cost per 1,000 requests without exposing actual configured provider costs. `providerFamilyReadiness` and `oneSubscriptionReadiness` keep OpenRouter visible as supported BYOK routing while excluding it from the managed subscription resale offer unless separate provider authorization is added later. `SAGEROUTER_MANAGED_PROVIDER_RESALE_ENABLED=1` is treated as an operator request only; public metadata keeps `enabled: false` and reports missing controls until every prerequisite is satisfied. The marketing site publishes `/models`, `/provider-resale-terms`, and `/margin-policy` as reviewable prerequisites, but those pages do not enable managed resale by themselves; `/v1/*` and `/v1beta/*` model APIs accept active generated `sk_sage_*` customer API keys; anonymous model API failures stay fail-closed but include account, pricing, status, OpenAI base URL, and API-key-prefix guidance for setup debugging; account/billing UI requests preserve Supabase user JWTs and should be pinned to a hosted control-plane origin with `SAGE_ROUTER_CONTROL_PLANE_UPSTREAM`; operator analytics such as `/analytics/funnel` requires the private edge admin token, is pinned to the control plane, and can inject `SAGE_ROUTER_CONTROL_PLANE_TOKEN` separately from the Tailnet backend token. Browser login belongs on `app.sagerouter.dev`; `api.sagerouter.dev` should remain API-only. Browser-originating account, billing, and customer-suspension mutations are rejected at the edge unless `Origin` is a trusted Sage Router app/local/preview origin; CLI and server clients without `Origin` still pass through normal auth. Generated keys and account/billing JWT routes are rate-limited by `SAGE_ROUTER_EDGE_RATE_LIMITS`; generated-key-looking model API attempts are also throttled by client IP through `SAGE_ROUTER_EDGE_AUTH_ATTEMPT_RATE_LIMIT` before Supabase generated-key lookup, so random invalid keys cannot create unbounded service-role reads; generated model API keys can also be counted against durable monthly Supabase quotas with `SAGE_ROUTER_EDGE_QUOTA_ENABLED=1` after applying `supabase/migrations/20260619021500_sage_router_usage_quotas.sql`. Supabase user JWT validation uses `SAGE_ROUTER_EDGE_AUTH_CACHE_SECONDS`, but generated customer API keys default to `SAGE_ROUTER_EDGE_API_KEY_AUTH_CACHE_SECONDS=0` so revocation takes effect on the next request. The private edge admin token is exempt for recovery. Hosted origins should also set `SAGE_ROUTER_CLIENT_AUTH_REQUIRED=1`; direct origin requests to `/v1/models`, setup, admin, discovery, and dashboard config routes must fail closed unless they carry a valid operator token, and generated customer keys are only accepted for model metadata/traffic.
+- `https://api.sagerouter.dev` is a Cloudflare-proxied GCP edge VM. The edge health-checks Tailnet Sage Router installs plus the Google-hosted Sage Router API origin, then routes to the lowest-latency healthy backend. The Cloudflare API Worker can also retry replayable requests against the next healthy public origin on transient `502/503/504` failures before returning an error. Public health and response headers identify the edge layer and selected backend only with stable public IDs such as `upstream-1`, never configured upstream URLs or Tailnet hostnames.
+- Tailnet Edge is the reliability layer for routing to healthy Sage Router installs on a Tailnet. In public mode, set `SAGE_ROUTER_EDGE_AUTH_MODE=supabase`: `/pricing`, `/plans`, `/model-catalog`, and `/features/agent-native` are public control-plane metadata; `/pricing` also exposes a `billing` object with secret-free Stripe checkout readiness, configured plan names, billing portal readiness, manual settlement status paths, activation statuses, and generated-key limits. The same metadata exposes `publicLaunch.managedProviderAccess`, which must stay disabled until provider resale terms are acknowledged, a provider-family allowlist is configured, a margin policy, positive unit economics backed by a positive `SAGEROUTER_PROVIDER_RESALE_COST_CENTS_PER_1K_REQUESTS`, durable quota/rate-limit enforcement, generated-key revocation, operator abuse review, durable operator audit events, and managed-access acceptable-use terms are ready. Public unit-economics rows expose plan revenue and derived maximum safe provider cost per 1,000 requests without exposing actual configured provider costs. `providerFamilyReadiness` and `oneSubscriptionReadiness` keep OpenRouter visible as supported BYOK routing while excluding it from the managed subscription resale offer unless separate provider authorization is added later. `SAGEROUTER_MANAGED_PROVIDER_RESALE_ENABLED=1` is treated as an operator request only; public metadata keeps `enabled: false` and reports missing controls until every prerequisite is satisfied. The marketing site publishes `/models`, `/provider-resale-terms`, and `/margin-policy` as reviewable prerequisites, but those pages do not enable managed resale by themselves; `/v1/*` and `/v1beta/*` model APIs accept active generated `sk_sage_*` customer API keys; anonymous model API failures stay fail-closed but include account, pricing, status, OpenAI base URL, and API-key-prefix guidance for setup debugging; account/billing UI requests preserve Supabase user JWTs and should be pinned to a hosted control-plane origin with `SAGE_ROUTER_CONTROL_PLANE_UPSTREAM`; operator analytics such as `/analytics/funnel` accepts either the private edge admin token or `SAGE_ROUTER_ANALYTICS_TOKEN`, is pinned to the control plane, and can inject `SAGE_ROUTER_CONTROL_PLANE_TOKEN` separately from the Tailnet backend token. Browser login belongs on `app.sagerouter.dev`; `api.sagerouter.dev` should remain API-only. Browser-originating account, billing, and customer-suspension mutations are rejected at the edge unless `Origin` is a trusted Sage Router app/local/preview origin; CLI and server clients without `Origin` still pass through normal auth. Generated keys and account/billing JWT routes are rate-limited by `SAGE_ROUTER_EDGE_RATE_LIMITS`; generated-key-looking model API attempts are also throttled by client IP through `SAGE_ROUTER_EDGE_AUTH_ATTEMPT_RATE_LIMIT` before Supabase generated-key lookup, so random invalid keys cannot create unbounded service-role reads; generated model API keys can also be counted against durable monthly Supabase quotas with `SAGE_ROUTER_EDGE_QUOTA_ENABLED=1` after applying `supabase/migrations/20260619021500_sage_router_usage_quotas.sql`. Supabase user JWT validation uses `SAGE_ROUTER_EDGE_AUTH_CACHE_SECONDS`, but generated customer API keys default to `SAGE_ROUTER_EDGE_API_KEY_AUTH_CACHE_SECONDS=0` so revocation takes effect on the next request. The private edge admin token is exempt for recovery and remains required for `/admin*`. Hosted origins should also set `SAGE_ROUTER_CLIENT_AUTH_REQUIRED=1`; direct origin requests to `/v1/models`, setup, admin, discovery, and dashboard config routes must fail closed unless they carry a valid operator token, and generated customer keys are only accepted for model metadata/traffic.
 - After the edge validates a generated customer API key, it forwards customer id, user id, plan, and status as trusted internal headers while replacing the customer key with the private backend token. Hosted routers use those headers only after backend-token auth, keeping route telemetry, account analytics, first-request activation, quota support, and operator review attributed to the paying customer without exposing raw generated keys to Tailnet model backends.
-- `https://sagerouter.dev/quickstart` is the hosted API first-request path. It leads with `Copy 60-second setup bundle` and an always-visible `Create Pro key next` account handoff that records whether setup was copied first, then shows `OPENAI_BASE_URL=https://api.sagerouter.dev/v1`, generated `sk_sage_*` key setup, the `sage-router/frontier` profile, premium `sage-router/fusion`, curl, JavaScript, Python, and Codex examples, plus 401/402/429/503 troubleshooting.
-- `https://sagerouter.dev/pricing` uses the same measurable activation pattern for buyer-intent traffic: `Copy 60-second setup bundle` records `quickstart_snippet_copied` with `pricing-full-setup-bundle`, `Create Pro key next` stays visible before and after copy, plan links preserve `start=checkout`, and the key-first proof block makes the Pro path create a generated `sk_sage_*` key before checkout.
+- `https://sagerouter.dev/quickstart` is the hosted API first-request path. It leads with `Copy 60-second setup bundle` and an always-visible `Create API key next` account handoff that records whether setup was copied first, then shows `OPENAI_BASE_URL=https://api.sagerouter.dev/v1`, generated `sk_sage_*` key setup, the `sage-router/frontier` profile, premium `sage-router/fusion`, curl, JavaScript, Python, and Codex examples, plus 401/402/429/503 troubleshooting.
+- `https://sagerouter.dev/pricing` uses the same measurable activation pattern for buyer-intent traffic: `Copy 60-second setup bundle` records `quickstart_snippet_copied` with `pricing-full-setup-bundle`, Pro activation links use `start=create_key`, `Create API key next` stays visible before and after copy, Lite/Max checkout links preserve `start=checkout`, and the key-first proof block makes the Pro path create a generated `sk_sage_*` key before checkout.
+- `https://app.sagerouter.dev/login.html?start=create_key` is the no-key signup recovery bridge. It keeps same-email recovery first, shows the generated-key-before-checkout steps, preserves the `start=create_key` activation URL, and records `login_key_recovery_account_setup_clicked` as a key-first redirect signal so operators can distinguish passive login recovery views from users who clicked through toward API-key setup.
 - `https://sagerouter.dev/api-troubleshooting` is the no-secret diagnostic path for hosted 401/402/429/503 responses. It documents safe probes, `WWW-Authenticate`, `Retry-After`, `X-RateLimit-*`, `X-Quota-*`, account/pricing/status onboarding links, and the non-secret `apiKeyPrefix` without asking customers to paste prompts or credentials.
 - `https://sagerouter.dev/docs/api-reference` is the hosted API reference for OpenAI-compatible customers. It documents `GET /v1/models`, `POST /v1/chat/completions`, `POST /v1/responses`, public `/model-catalog`, generated `sk_sage_*` keys, quotas, rate limits, and failover signals.
 - `https://sagerouter.dev/docs/gateway-migration` is the Gateway migration guide for OpenAI-compatible customers. It maps `OPENAI_BASE_URL=https://gateway.example/api/v1` to `OPENAI_BASE_URL=https://api.sagerouter.dev/v1`, generated `sk_sage_*` keys, `sage-router/frontier`, premium `sage-router/fusion`, model catalog discovery, and the provider terms boundary.
 - `https://sagerouter.dev/compare/model-gateways` captures migration-intent traffic with a copy-first `Copy 60-second gateway setup` bundle and `gateway-compare-migration-bundle` setup telemetry.
 - `https://sagerouter.dev/reddit-ai-gateway-evaluation` packages Reddit-style AI gateway evaluation proof: local-first custody, OpenRouter as BYOK rather than bundled resale, multiple API-key load balancing, 429 failover, multimodal routing, hosted generated-key activation, and copyable evaluation/setup snippets.
+- `https://sagerouter.dev/reliability-proof` gives skeptical buyers copyable proof snippets for 429 failover, credential load balancing, multimodal routing safeguards, hosted generated-key activation, public edge health, and no-secret Reddit replies.
 - `https://sagerouter.dev/ollama-ai-model-router` captures Ollama and Ollama Cloud routing traffic with local Ollama setup, one OpenAI-compatible endpoint, multiple API-key load balancing, 429 failover, multimodal routing, hosted generated-key activation, and copyable Ollama setup telemetry.
 - `https://sagerouter.dev/openai-api-router` captures OpenAI-compatible gateway traffic with hosted `sk_sage_*` keys, `OPENAI_BASE_URL=https://api.sagerouter.dev/v1`, Responses API compatibility, multiple OpenAI API-key load balancing, 429 failover, multimodal routing, and copyable OpenAI setup telemetry.
 - `https://sagerouter.dev/azure-openai-router` captures Azure OpenAI routing traffic with hosted `sk_sage_*` keys, customer-owned `AZURE_OPENAI_API_KEY` and `AZURE_OPENAI_ENDPOINT` custody, Azure deployment routing, OpenAI-compatible setup, credential load balancing, 429 failover, multimodal safeguards, provider-authorization boundaries, and copyable Azure setup telemetry.
@@ -108,6 +119,8 @@ The current public deployment is intentionally split:
 - `https://sagerouter.dev/codex-cli-router` captures Codex CLI routing traffic with hosted `sk_sage_*` keys, `base_url = "https://api.sagerouter.dev/v1/"`, `wire_api = "responses"`, local port `8790`, Tailnet routes, 429 failover, multimodal routing, Codex OAuth boundary language, and copyable Codex setup telemetry.
 - `https://sagerouter.dev/aider-ai-model-router` captures Aider routing traffic with hosted `sk_sage_*` keys, `OPENAI_API_BASE=https://api.sagerouter.dev/v1`, `aider --model openai/auto`, local port `8790`, local Ollama fallback, Tailnet routing, 429 failover, multimodal routing, provider-authorization boundaries, and copyable Aider setup telemetry.
 - `https://sagerouter.dev/continue-ai-model-router` captures Continue routing traffic with hosted `sk_sage_*` keys, OpenAI-compatible `apiBase=https://api.sagerouter.dev/v1`, `model=auto`, local port `8790`, local Ollama fallback, Tailnet routing, 429 failover, multimodal routing, provider-authorization boundaries, and copyable Continue setup telemetry.
+- `https://sagerouter.dev/openhands-ai-model-router` captures OpenHands routing traffic with hosted `sk_sage_*` keys, `OPENAI_BASE_URL=https://api.sagerouter.dev/v1`, `model = "auto"`, local port `8790`, local Ollama fallback, Tailnet routing, 429 failover, multimodal routing, provider-authorization boundaries, and copyable OpenHands setup telemetry.
+- `https://sagerouter.dev/openclaw-ai-model-router` captures OpenClaw routing traffic with Sage Router skill setup, `OPENAI_BASE_URL=http://localhost:8790/v1`, `ANTHROPIC_BASE_URL=http://localhost:8790`, Codex OAuth passthrough from OpenClaw auth profiles, Tailnet routing, 429 failover, multimodal routing, provider-authorization boundaries, and copyable OpenClaw setup telemetry.
 - `https://sagerouter.dev/claude-code-router` captures Claude Code routing traffic with hosted `sk_sage_*` keys, `ANTHROPIC_BASE_URL=https://api.sagerouter.dev`, authorized Anthropic or Dario subscription paths, local/Tailnet fallback, 429 failover, multimodal routing, provider-authorization boundaries, and copyable Claude Code setup telemetry.
 - `https://sagerouter.dev/gemini-api-router` captures Gemini, Google AI, Vertex AI, and Gemini CLI routing traffic with hosted `sk_sage_*` keys, structured function-tool routing, 429 failover, multimodal routing, provider-authorization boundaries, and copyable Gemini setup telemetry.
 - `https://sagerouter.dev/xai-grok-router` captures xAI Grok API routing traffic with hosted `sk_sage_*` keys, customer-owned `XAI_API_KEY` custody, OpenAI-compatible setup, `/v1/models` discovery, credential load balancing, 429 failover, multimodal safeguards, xAI SSO proxy boundaries, and copyable Grok setup telemetry.
@@ -125,7 +138,7 @@ The hosted account page at `https://app.sagerouter.dev/account.html` is the cust
 
 1. Create an account or sign in with email, magic link, or an enabled Supabase OAuth provider.
 2. Choose Lite, Pro, or Max. Stripe checkout posts the selected plan to `/billing/stripe/checkout`; after checkout links a Stripe customer, the account page opens `/billing/stripe/portal` for self-service billing, payment-method changes, cancellation, and subscription management. Crypto/manual settlement stays available for accounts that are not ready for Stripe, with default settlement amounts derived from the selected monthly plan unless an agreed override is supplied. The account page can create a manual intent and refresh its bounded public status without echoing customer notes. Operators approve pending manual intents through the private `/admin/payment-intents/{intent_id}/approve` path; approval activates the selected plan, records a secret-free audit event, rejects replay/stale approvals, and still leaves suspended customers suspended.
-3. Generate an `sk_sage_*` API key, copy the raw key while it is shown once, test it against `/v1/models`, send a first browser-side `sage-router/frontier` chat completion from the account page, and use the copyable OpenAI SDK, Codex CLI, Anthropic-compatible, or curl quickstart. Saved `start=checkout` activation intent auto-creates the first generated key once after verified sign-in when no key exists, then proceeds toward checkout after the setup artifact exists.
+3. Generate an `sk_sage_*` API key, copy the raw key while it is shown once, test it against `/v1/models`, send a first browser-side `sage-router/frontier` chat completion from the account page, and use the copyable OpenAI SDK, Codex CLI, Anthropic-compatible, or curl quickstart. The signed-in account page auto-creates the first generated setup key once per session when no active key exists; saved `start=checkout` activation intent then proceeds toward checkout after the setup artifact exists. A persistent post-key activation panel keeps verification, first request, and Codex setup copy available after key creation without recording raw keys in funnel telemetry.
 
 The account page consumes the secret-free `/pricing.billing` readiness metadata
 before opening checkout. If Stripe or the selected plan is not configured, the
@@ -137,7 +150,7 @@ failure states such as `stripe_not_configured`, `unauthorized`,
 `rate_limited`, or `service_unavailable` so operators can fix conversion
 friction without collecting raw billing errors or customer secrets.
 
-Plan-specific pricing links such as `/account.html?plan=pro&start=checkout`
+Plan-specific pricing links such as `/account.html?plan=pro&start=create_key`
 preselect that checkout plan, remember it locally through signup/login,
 preserve the checkout intent after email/OAuth redirects, and restore the plan
 from Stripe success/cancel return URLs so new customers do not accidentally
@@ -151,7 +164,13 @@ Operator abuse controls are fail-closed. `GET /admin/customers?q=...&status=...&
 
 The account page also shows current-period usage from the same Supabase usage counter that the public edge enforces, including requests used, remaining monthly quota, the active request-per-minute limit, and upgrade recommendations when routing is blocked or usage passes 75%/90% of the current plan quota. The public edge publishes only safe enforcement metadata on `/edge/health` so launch readiness can verify Supabase auth, rate limits, pre-auth generated-key attempt throttling, durable quotas, immediate generated-key revocation, and non-wildcard browser CORS without exposing secrets. The built-in API key test calls the public edge's `/v1/models` endpoint with the generated key so a new customer can separate key, billing, quota, and backend availability problems before configuring an agent. The same account page can send a first browser-side `sage-router/frontier` chat completion with the session-only generated key, so users can prove paid routing works before copying client configuration. The support page gives those same customers a safe escalation path for account, billing, quota, generated-key, 401/402/429/503, reliability, security, and abuse issues without asking them to paste secrets into public channels. The signed-in account page renders a copyable safe support context packet with only plan, routing, quota, generated-key count, verification, first-request, endpoint, and support-path state; it omits prompts, provider credentials, OAuth tokens, generated API keys, private keys, cookies, raw provider responses, and customer data. The account launch checklist mirrors the `$10k MRR` activation funnel by marking signed-in account, generated key, paid routing, public-edge verification, and server-recorded first routed usage as separate steps. The hosted analytics dashboard at `https://app.sagerouter.dev/analytics.html` uses the signed-in account session and calls `/account/analytics`, so customers see only their own privacy-safe routing telemetry while `/analytics` and `/analytics/funnel` remain operator/global endpoints; it also reads the server-derived `/account/usage.activation` state for plan, usage, generated-key, first-request, quota, and routing status to show the next conversion action before or after checkout. Operators can view the private global launch funnel and operator customer review at `https://app.sagerouter.dev/launch-funnel.html` by entering the private admin or analytics token; the browser stores that token only in tab-scoped `sessionStorage` when explicitly requested. The launch funnel endpoint reports waitlist, managed-access beta interest, target provider family, commercial preference, support need, target launch window, and inbound intent demand, signup, generated-key, first-request, paid-conversion, retained-paid, estimated MRR, target attainment, target-aware bottlenecks, conversion actions with owner/surface/success metric, checkout-readiness friction from aggregate checkout unavailable, checkout failure, billing-portal failure, and manual-settlement failure events, anonymous marketing CTA event/plan/source/channel breakdowns, model catalog family/search-bucket demand, browser-visible auth provider state checks for OAuth onboarding, ranked acquisition actions, per-plan `$10k MRR` gaps, and prioritized plan revenue actions without returning email addresses, prompts, message bodies, API keys, provider credentials, OAuth tokens, raw campaign URLs, raw model search text, or raw responses. The managed-access intake also emits anonymous page-view, form-start, submit, and received events with only allowlisted qualification buckets, so one-subscription and Max implementation demand are visible before full contact submission while email and company fields remain confined to the waitlist path. When there are no qualified source/channel clicks yet, the same endpoint seeds zero-click acquisition actions for Gateway migration, GitHub builder traffic, pricing checkout proof, calculator qualification, model catalog activation, quickstart first-request activation, managed-access beta outreach, and launch-plan outreach so the operator view still points at concrete launch motions. The private launch funnel renders deterministic campaign links for those ranked acquisition actions, using only coarse action buckets to generate public UTM URLs rather than replaying raw visitor URLs, and each link can be copied from the dashboard for founder-sales outreach. The operator customer review calls `/admin/customers` through the control-plane edge and shows bounded customer, usage, activation, review flags, operator audit events, and public API-key metadata without raw generated keys, API-key hashes, provider credentials, prompts, or raw responses.
 
-The hosted operator dashboard also includes an operational readiness panel that reads public `/edge/health` and `/pricing` metadata to show live edge health, API-key enforcement, Stripe checkout/portal readiness, and managed-provider launch gating without using the private token or exposing secrets. It also renders a copyable no-secret operator launch brief that condenses the current `$10k MRR` snapshot, top conversion move, revenue motions, acquisition links, model catalog demand, managed-access demand, checkout friction, and GitHub OAuth onboarding state for founder-sales and support follow-up without emails, prompts, OAuth tokens, generated API keys, provider credentials, raw campaign URLs, raw model search text, or raw responses.
+The hosted operator dashboard also includes an operational readiness panel that reads public `/edge/health` and `/pricing` metadata to show live edge health, API-key enforcement, Stripe checkout/portal readiness, and managed-provider launch gating without using the private token or exposing secrets. The public status page mirrors the safe subset of that posture for customers: checkout readiness, activation-email configured-vs-copy-fallback state, managed-access gating, and Browser Integrity Check guidance for raw API clients. It also renders a copyable no-secret operator launch brief that condenses the current `$10k MRR` snapshot, top conversion move, revenue motions, acquisition links, model catalog demand, managed-access demand, checkout friction, no-key signup follow-up count/CTA from `activationFollowUps`, and GitHub OAuth onboarding state for founder-sales and support follow-up without emails, customer IDs, prompts, OAuth tokens, generated API keys, provider credentials, raw campaign URLs, raw model search text, or raw responses. `/analytics/funnel` also exposes `activationFollowUps.sendableQueued`, `reviewOnlyQueued`, `unknownQueued`, and segment lists, plus an aggregate `operatorExecutionPacket` with signup-to-key recovery URLs, segment counts, draft subject/body, telemetry event names, and privacy flags so dashboards, agents, and runbooks can execute the current activation action without scraping browser copy. The operator-only no-key signup queue pulls bounded customer review data from `/admin/customers`, shows generated-key-first follow-up links, and supports per-customer or batch snippet copy so activation outreach can be executed without exposing raw keys, key hashes, prompts, provider credentials, or provider responses. If `SAGE_ROUTER_ACTIVATION_EMAIL_FROM` and `SAGE_ROUTER_RESEND_API_KEY` are configured, the private `POST /admin/customers/send-activation-followups` endpoint can send the same generated-key-first recovery drafts through Resend; without those env vars it fails closed or can be used as a dry run. Public `/pricing` exposes a reduced, secret-free `activationEmailReadiness` object for the status page, while `/analytics/funnel` exposes full secret-free operator command templates in `activationFollowUps.emailReadiness` and `operatorExecutionPacket.emailReadiness` so operators can see whether real sending is configured or whether the copy/mailto fallback is the current path before clicking Send. Copying those snippets records privacy-safe `operator_no_key_followup_*` funnel events, and `/analytics/funnel` rolls them into `activationFollowUps.operatorFollowUpCopies` so queued follow-ups and worked follow-ups are visible separately.
+
+Real activation follow-up sends require the explicit
+`sendConfirmation: SEND_ACTIVATION_FOLLOWUPS` field in addition to the private
+operator token and trusted Sage Router browser origin. Dry runs do not require
+the confirmation field, so operators can verify queued counts, segments, and
+plan mix before a configured sender can deliver email.
 
 Programmatic clients should call the API edge directly:
 
@@ -240,7 +259,7 @@ rate limits, and failover signals,
 base-URL, generated-key, route-profile, and provider-boundary migration path,
 `https://sagerouter.dev/docs/codex` gives Codex CLI users hosted, local port 8790, and Tailnet profile examples, while
 `https://sagerouter.dev/agent-native` explains route profiles, Responses API and Codex compatibility, health-aware fallback, BYOK custody, local/Tailnet/hosted deployment choices, and public feature metadata for agent harnesses, and
-`https://sagerouter.dev/models` gives prospects a searchable public model catalog backed by safe `/model-catalog` metadata with embedded fallback, including `sage-router/fusion` as a Pro/Max synthesis route, while keeping live `/v1/models` behind generated `sk_sage_*` customer keys and exposing a copyable setup bundle plus always-visible `Create Pro key next` handoff, and
+`https://sagerouter.dev/models` gives prospects a searchable public model catalog backed by safe `/model-catalog` metadata with embedded fallback, including `sage-router/fusion` as a Pro/Max synthesis route, while keeping live `/v1/models` behind generated `sk_sage_*` customer keys and exposing a copyable setup bundle plus always-visible `Create API key next` handoff, and
 `https://sagerouter.dev/integrations` gives tool-specific setup choices for
 OpenAI-compatible clients, Codex, Cursor, Aider, Continue, Claude Code,
 OpenHands, Anthropic-compatible clients, Ollama, local port `8790`, and Tailnet
@@ -249,20 +268,25 @@ agents, and
 routing savings, escalation rules, fallback gaps, and review rates for one
 workflow before they create a hosted API key. The calculator recommends
 Lite/Pro/Max from workflow volume, risk flags, and routing score, then carries
-that plan into `/account.html?plan=...&start=checkout` for preselected checkout after account
-creation. It also reads public `/pricing` billing readiness metadata so it can
-use current plan limits and avoid promising a Stripe checkout when the selected
-plan is not configured; in that case it records `calculator_checkout_unavailable`
-and sends the prospect to the account/manual billing path.
+that plan into `/account.html?plan=...&start=create_key` for generated-key-first
+account setup before checkout. It also reads public `/pricing` billing readiness
+metadata so it can show current plan limits while keeping the primary handoff on
+the key activation path; clicks record `calculator_key_activation_clicked`.
 `https://sagerouter.dev/community-launch-kit` gives the operator copyable,
-owner-approved community launch posts, starting with Show HN, with measured
-campaign links and no-secret posting boundaries for the `$10k MRR` campaign.
+owner-approved community launch posts, including Show HN, Indie Hackers,
+Dev.to, X, and LinkedIn, with measured campaign links and no-secret posting
+boundaries for the `$10k MRR` campaign.
+`https://sagerouter.dev/founder-sales-kit` gives the operator copyable
+no-secret direct outreach for Pro activation, Max implementation review,
+gateway migration replies, and calculator follow-up with measured
+`utm_source=founder-sales` links for the same `$10k MRR` campaign.
 
 The public homepage now treats hosted signup as live: the homepage primary CTA
-is `Create hosted API key`, links directly to `https://app.sagerouter.dev/account.html?plan=pro&start=checkout`, and
-now promotes a no-secret `Copy 60-second setup bundle` action above the fold so
-visitors can copy hosted edge, `sage-router/frontier`, and Codex profile setup
-before signing in. A persistent bottom activation bar keeps `Create Pro key` and
+is `Create hosted API key`, links directly to `https://app.sagerouter.dev/account.html?plan=pro&start=create_key`, and
+the above-the-fold key-first panel leads with `Open account key creator` before
+GitHub, email magic-link, or setup-copy fallbacks. It also promotes a no-secret
+`Copy 60-second setup bundle` action so visitors can copy hosted edge,
+`sage-router/frontier`, and Codex profile setup before signing in. A persistent bottom activation bar keeps `Create API key` and
 the 60-second setup path visible after scrolling, using the same privacy-safe
 homepage funnel events. It keeps pricing, quickstart, status, model gateway comparison, model catalog,
 security, analytics, login, and local GitHub install paths available from the
@@ -278,7 +302,10 @@ migration, and implementation demand can be measured without enabling public
 provider resale. The intake asks which target provider family and commercial
 preference a prospect would buy first, plus support need and target launch
 window, including Ollama, OpenAI, and Anthropic private-beta interest for
-authorization review.
+authorization review. Before staging any managed-provider readiness env, run
+`scripts/configure_managed_provider_resale_readiness.sh --check`; the helper
+rejects BYOK-only families such as OpenRouter from the managed resale allowlist
+and refuses minimum gross-margin thresholds below the launch floor.
 Browser-originating waitlist writes are guarded before Supabase inserts: Sage
 Router production hosts, Cloudflare Pages previews, local development, and exact
 origins configured with `SAGEROUTER_WAITLIST_ALLOWED_ORIGINS` are accepted, and
@@ -305,10 +332,12 @@ responses, or customer data.
 
 Hosted customer actions require verified email by default when
 `SAGE_ROUTER_SUPABASE_AUTH_ENABLED=1`. The account page still loads for
-signed-in users and shows the verification state, but API-key creation, Stripe
-checkout, and manual crypto payment intent creation return
-`email_verification_required` until Supabase reports `email_confirmed_at`,
-`confirmed_at`, or verified email metadata. Set
+signed-in users and shows the verification state. Generated API keys may be
+created before verification so the raw setup artifact can be copied once, but
+those keys remain blocked from routing until the customer is on an active paid,
+trial, or manual plan. Stripe checkout and manual crypto payment intent creation
+return `email_verification_required` until Supabase reports
+`email_confirmed_at`, `confirmed_at`, or verified email metadata. Set
 `SAGE_ROUTER_REQUIRE_VERIFIED_EMAIL=0` only for trusted private/self-hosted
 deployments.
 When verification is required, the signed-in account page exposes a resend
@@ -481,7 +510,88 @@ set -a; source /home/digit/.openclaw/.env; set +a
 scripts/check_sagerouter_launch_readiness.sh
 ```
 
-The readiness check verifies the public API edge, visible edge-layer headers with redacted public upstream IDs, Supabase auth mode, authenticated rate limits, pre-auth generated-key attempt throttling, durable edge quotas, immediate generated-key revocation, non-wildcard browser CORS, lowest-latency retry failover metadata on `/edge/health`, redacted public health snapshots without internal upstream URLs, anonymous auth gating, the API-only browser/dashboard boundary on `api.sagerouter.dev`, browser CORS preflight for the hosted API-key verification, browser first-routed-request, and operator launch-funnel flows, hosted pricing metadata including secret-free Stripe checkout readiness, configured Lite/Pro/Max checkout plans, billing portal readiness, verified-email billing requirements, generated-key activation metadata, and absence of leaked Stripe price IDs or secret tokens, the managed provider access guard, provider-family BYOK boundary, direct origin auth gating, Supabase management auth settings, public browser-visible Supabase auth settings with email and GitHub OAuth enabled, quota, funnel-event, and operator-audit schema, hosted login/account/GitHub callback/operator launch funnel pages, hosted security headers, the public security/trust/support and terms/privacy/acceptable-use pages, the provider-resale terms and margin-policy prerequisite pages, the managed-access private beta intake page, the API quickstart, the API troubleshooting page, the hosted API reference, the Gateway migration guide, the Codex setup page, the agent-native routing page, the integrations index, the dedicated billing recovery page, the model routing calculator, the public launch plan, the operator-only privacy-safe `/analytics/funnel` endpoint including managed-access beta demand fields, marketing source/channel attribution, and target-aware bottlenecks, the bounded operator `/admin/customers` review endpoint with secret-free audit events and without raw keys or hashes, the non-mutating waitlist health endpoint on `SAGEROUTER_APP_BASE_URL` (default `https://app.sagerouter.dev`), optional Cloudflare Turnstile waitlist configuration, and the marketing comparison/migration/pricing/billing/model/quickstart/troubleshooting/API-reference/Codex/agent-native/integrations/launch-plan pages on `SAGEROUTER_MARKETING_BASE_URL` (default `https://sagerouter.dev`). By default, `publicLaunch.managedProviderAccess.enabled` must be false. If `SAGEROUTER_MANAGED_PROVIDER_RESALE_ENABLED=1`, readiness requires `SAGEROUTER_PROVIDER_RESALE_TERMS_URL`, `SAGEROUTER_PROVIDER_RESALE_TERMS_ACKNOWLEDGED=1`, `SAGEROUTER_PROVIDER_RESALE_ALLOWED_PROVIDERS`, `SAGEROUTER_PROVIDER_RESALE_MARGIN_POLICY_URL`, a positive `SAGEROUTER_PROVIDER_RESALE_COST_CENTS_PER_1K_REQUESTS`, positive unit economics across fixed API plans with `SAGEROUTER_PROVIDER_RESALE_MIN_GROSS_MARGIN_PERCENT` at 30 or higher, derived max-safe-cost thresholds in public metadata, durable quota/rate-limit enforcement, generated-key revocation, operator abuse review, durable operator audit events, and the managed-access acceptable-use boundary before treating bundled provider access as launchable. Until those checks pass, public metadata reports `requested: true`, `readinessSatisfied: false`, `enabled: false`, the remaining `missingControls`, provider-family readiness, and one-subscription readiness that keeps OpenRouter BYOK-supported but outside bundled managed resale. The direct-origin probe uses `SAGEROUTER_ORIGIN_BASE_URL` when set; otherwise it auto-discovers the Cloud Run URL from `SAGEROUTER_CLOUD_RUN_PROJECT`/`SAGEROUTER_CLOUD_RUN_REGION`/`SAGEROUTER_CLOUD_RUN_SERVICE`, defaulting to the live hosted service.
+Check activation email sender readiness without writing or printing secrets:
+
+```bash
+set -a; source /home/digit/.openclaw/.env; set +a
+scripts/configure_activation_email_sender.sh --check
+```
+
+The activation email preflight reports public `/pricing` readiness, Cloud Run
+binding presence, and local apply-input presence only as booleans or binding
+names. For the fastest hosted recovery path on the live Cloud Run deployment,
+reuse the existing Supabase auth email sender:
+
+```bash
+SAGE_ROUTER_ACTIVATION_EMAIL_PROVIDER=supabase-recovery \
+scripts/configure_activation_email_sender.sh
+```
+
+The Supabase recovery provider sends operator-confirmed password-recovery
+emails through the existing Cloud Run Supabase URL/anon-key bindings and
+redirects users back to the Sage Router account/key setup flow. For custom
+generated-key recovery copy, use the Resend provider instead; when sender inputs
+are present, the script verifies Resend API access and that the sender domain is
+verified/sending-enabled before binding Cloud Run secrets. The setup path does not print sender values or Resend API-key values. Resend follow-up sends use an idempotency key so an operator retry does not double-send the same generated-key recovery draft.
+
+Stage the non-secret one-subscription managed-access controls without enabling
+public resale or writing the private provider-cost model:
+
+```bash
+scripts/configure_managed_provider_resale_readiness.sh --stage-public-controls
+scripts/configure_managed_provider_resale_readiness.sh --check
+```
+
+That binds the provider-resale terms URL, margin-policy URL, resale-eligible
+allowlist (`ollama,openai,anthropic`), disabled public-enable flag, and minimum
+gross-margin floor. The remaining launch blockers should be the explicit terms
+acknowledgment, an operator-held provider authorization evidence reference, and
+private cost model / positive unit-economics review. The authorization reference
+is never printed in public metadata; `/pricing` exposes only whether it is
+configured.
+
+Before writing the private provider-cost model to Secret Manager, run the
+secret-safe unit-economics preflight with the candidate cost in the environment:
+
+```bash
+SAGEROUTER_PROVIDER_RESALE_COST_CENTS_PER_1K_REQUESTS='REVIEWED_PRIVATE_COST' \
+scripts/configure_managed_provider_resale_readiness.sh --unit-economics
+```
+
+The preflight reuses the same plan math as `/pricing`, returns nonzero when any
+fixed API plan fails the minimum gross-margin threshold, and prints only
+candidate presence, public plan revenue, derived max-safe provider-cost
+thresholds, and pass/fail status. It does not print the candidate cost, exact
+gross-margin percentages, provider credentials, prompts, raw provider
+responses, or customer data.
+
+If the readiness check reports Cloudflare `403` / `1010` before the Sage Router
+auth gate, use [docs/cloudflare-api-bic-skip.md](docs/cloudflare-api-bic-skip.md)
+to verify or apply the host-scoped Browser Integrity Check skip for
+`api.sagerouter.dev`. The launch gate fails when OpenAI-compatible SDK-style
+clients cannot reach the guided Sage Router auth response. If only raw default
+Python `urllib` is blocked and SDK-style probes reach auth, readiness reports a
+warning until the Cloudflare token has Rulesets permissions to verify the rule.
+
+The readiness check verifies the public API edge, visible edge-layer headers with redacted public upstream IDs, Supabase auth mode, authenticated rate limits, pre-auth generated-key attempt throttling, durable edge quotas, immediate generated-key revocation, non-wildcard browser CORS, lowest-latency retry failover metadata on `/edge/health`, redacted public health snapshots without internal upstream URLs, anonymous auth gating, the API-only browser/dashboard boundary on `api.sagerouter.dev`, browser CORS preflight for the hosted API-key verification, browser first-routed-request, and operator launch-funnel flows, hosted pricing metadata including secret-free Stripe checkout readiness, configured activation email sender readiness, configured Lite/Pro/Max checkout plans, billing portal readiness, verified-email billing requirements, generated-key activation metadata, and absence of leaked Stripe price IDs or secret tokens, the managed provider access guard, provider-family BYOK boundary, direct origin auth gating, Supabase management auth settings, public browser-visible Supabase auth settings with email and GitHub OAuth enabled, quota, funnel-event, and operator-audit schema, hosted login/account/GitHub callback/operator launch funnel pages, hosted security headers, the public security/trust/support and terms/privacy/acceptable-use pages, the provider-resale terms and margin-policy prerequisite pages, the managed-access private beta intake page, the API quickstart, the API troubleshooting page, the hosted API reference, the Gateway migration guide, the Codex setup page, the agent-native routing page, the integrations index, the dedicated billing recovery page, the model routing calculator, the public launch plan, the operator-only privacy-safe `/analytics/funnel` endpoint including managed-access beta demand fields, marketing source/channel attribution, and target-aware bottlenecks, the bounded operator `/admin/customers` review endpoint with secret-free audit events and without raw keys or hashes, the non-mutating waitlist health endpoint on `SAGEROUTER_APP_BASE_URL` (default `https://app.sagerouter.dev`), optional Cloudflare Turnstile waitlist configuration, and the marketing comparison/migration/pricing/billing/model/quickstart/troubleshooting/API-reference/Codex/agent-native/integrations/launch-plan pages on `SAGEROUTER_MARKETING_BASE_URL` (default `https://sagerouter.dev`). Use `scripts/configure_activation_email_sender.sh` to bind the Resend sender secrets before treating signup recovery as launch-ready; without it, `/pricing` still exposes fallback-only status but readiness fails the activation sender gate. By default, `publicLaunch.managedProviderAccess.enabled` must be false. If `SAGEROUTER_MANAGED_PROVIDER_RESALE_ENABLED=1`, readiness requires `SAGEROUTER_PROVIDER_RESALE_TERMS_URL`, `SAGEROUTER_PROVIDER_RESALE_TERMS_ACKNOWLEDGED=1`, `SAGEROUTER_PROVIDER_RESALE_ALLOWED_PROVIDERS`, `SAGEROUTER_PROVIDER_RESALE_MARGIN_POLICY_URL`, a positive `SAGEROUTER_PROVIDER_RESALE_COST_CENTS_PER_1K_REQUESTS`, positive unit economics across fixed API plans with `SAGEROUTER_PROVIDER_RESALE_MIN_GROSS_MARGIN_PERCENT` at 30 or higher, derived max-safe-cost thresholds in public metadata, durable quota/rate-limit enforcement, generated-key revocation, operator abuse review, durable operator audit events, and the managed-access acceptable-use boundary before treating bundled provider access as launchable. Use `scripts/configure_managed_provider_resale_readiness.sh` to stage the provider terms URLs, allowlist, and private provider-cost model through Cloud Run/Secret Manager; it keeps public managed resale disabled unless `SAGEROUTER_MANAGED_PROVIDER_RESALE_ENABLE_PUBLIC=1` is explicitly set. Until those checks pass, public metadata reports `requested: true`, `readinessSatisfied: false`, `enabled: false`, the remaining `missingControls`, provider-family readiness, one-subscription readiness, and the no-secret `readinessSetup` command packet that keeps OpenRouter BYOK-supported but outside bundled managed resale. The direct-origin probe uses `SAGEROUTER_ORIGIN_BASE_URL` when set; otherwise it auto-discovers the Cloud Run URL from `SAGEROUTER_CLOUD_RUN_PROJECT`/`SAGEROUTER_CLOUD_RUN_REGION`/`SAGEROUTER_CLOUD_RUN_SERVICE`, defaulting to the live hosted service.
+
+To refresh the current `$10k MRR` operating snapshot without opening the
+operator dashboard or printing secrets, run:
+
+```bash
+scripts/summarize_sagerouter_launch_funnel.sh --days 30
+```
+
+The helper reads `SAGE_ROUTER_ANALYTICS_TOKEN`, `SAGE_ROUTER_OPERATOR_TOKEN`,
+or `SAGE_ROUTER_API_KEY` from the environment or
+`SAGEROUTER_SECRET_ENV_FILE`/`/home/digit/.openclaw/.env`, calls
+`/analytics/funnel`, and prints only aggregate activation, acquisition, revenue,
+and privacy fields. Use its output to update
+`docs/launch/distribution-tracker.md` before broad community posting or
+activation outreach. Pass `--json` when another script needs the same bounded
+data; consume `activationQueue` for no-key follow-up counts, sendable and
+review-only segments, dry-run coverage, sent-recipient counts, and
+approval-required state.
 
 Use the public deploy helper to avoid branch/digest drift between the static
 site and hosted API:
@@ -575,6 +685,12 @@ codex --profile sage-router-frontier
 
 The `sage-router/frontier` model name selects the bundled `frontier` routing profile from `router-profiles.json`.
 
+Sage Router also normalizes Codex/OpenClaw goal traffic. Raw `/goal ...`
+messages and Codex `<codex_internal_context source="goal">` blocks are treated
+as persistent user-provided objective context instead of ordinary slash-command
+text, then routed with high-quality, reasoning-capable, long-context agent
+requirements.
+
 ---
 
 ## Integration Guides
@@ -631,6 +747,20 @@ the root URL (`/`). Open that private install URL in a browser to see:
 - API key management
 - Learned model modalities with per-model edit/reset controls
 
+Hosted/CDN deployments can make learned modalities persistent across all
+router nodes by applying
+`supabase/migrations/20260626003000_model_modalities.sql` and enabling
+`SAGE_ROUTER_MODEL_MODALITIES_SHARED_ENABLED=1` with Supabase service
+credentials. When `SAGE_ROUTER_SUPABASE_MIRROR_ENABLED=1`, the shared ledger is
+enabled by default and nodes merge observations from the
+`sage_router_model_modalities` table periodically.
+The Cloudflare API Worker also records `X-Sage-Router-Modalities` from
+successful routed responses into the same RPC when Supabase service credentials
+are configured, so observations made at CDN edges are shared by every backend
+node. Public Tailnet edge health exposes a secret-free
+`modelModalities.sharedEnabled` readiness bit, and the Cloudflare Worker only
+selects public-edge-ready origins that prove the shared RPC is configured.
+
 For programmatic clients (sending `Accept: application/json`), the private
 install root URL returns the JSON API descriptor instead. The dashboard is also
 available at `/dashboard` on private installs.
@@ -644,11 +774,37 @@ model traffic uses generated `sk_sage_*` API keys at
 
 ### outputProviderPrefix
 
-Enable `SAGE_ROUTER_SHOW_MODEL_PREFIX=1` to prefix every chat response with `[provider/model]` so you can see which model answered:
+Enable `SAGE_ROUTER_SHOW_MODEL_PREFIX=1` only for short manual diagnostics to
+prefix every chat response with `[provider/model]` so you can see which model
+answered:
 
 ```
 [openai-codex/gpt-5.5] Here is the response...
 ```
+
+Keep this disabled for Codex, OpenClaw, Discord, and other conversational
+clients. Those clients store assistant messages in history, so visible routing
+labels can be replayed by later turns and appear as duplicated content. Provider
+and model attribution remain available through Sage Router metadata, logs, and
+debug responses without adding labels to assistant text. Sage Router also strips
+known assistant replay artifacts such as duplicated `[provider/model]` labels and
+`[tool calls omitted]` placeholders before forwarding history or Responses output
+to Codex/OpenClaw clients, while preserving structured tool calls.
+
+For Docker Desktop Codex setups that need a local Responses-to-Chat shim, use
+[`scripts/codex_sage_router_proxy.py`](scripts/codex_sage_router_proxy.py) as
+the canonical source for the mounted proxy file. The shim preserves
+`function_call` / `function_call_output` pairs, drops orphan tool outputs without
+usable call ids, and applies the same visible replay sanitization before history
+is sent back through Sage Router.
+
+If a Codex JSONL session was already polluted before this sanitizer ran, repair
+only assistant-visible replay fields with:
+
+```bash
+python3 scripts/sanitize_codex_session_prefix_replay.py --in-place ~/.codex/sessions/YYYY/MM/DD/rollout-...jsonl
+```
+
 ## Supported API Formats
 
 | Endpoint | Format | Used By |
@@ -839,8 +995,10 @@ provider authorization is added later.
 ```
 
 Models are auto-discovered via `/v1/models`. Set
-`SAGE_ROUTER_OPENROUTER_FREE_ONLY=1` to keep discovery constrained to free
-model IDs when using that account mode.
+`SAGE_ROUTER_DISABLED_PROVIDERS` only for operational failures; do not disable
+OpenRouter merely to keep it out of Sage Router's managed subscription
+packaging. Set `SAGE_ROUTER_OPENROUTER_FREE_ONLY=1` to keep discovery
+constrained to free model IDs when using that account mode.
 
 
 ### Darkbloom
@@ -1134,7 +1292,7 @@ CODEX_ACCESS_TOKEN=                # fallback OAuth access token when no auth pr
 # Router behavior
 SAGE_ROUTER_DEFAULT_MODE=balanced
 SAGE_ROUTER_TIMEOUT=60
-SAGE_ROUTER_SHOW_MODEL_PREFIX=1   # prefix responses with [provider/model]
+SAGE_ROUTER_SHOW_MODEL_PREFIX=0   # diagnostic only; keep off for chat clients
 SAGE_ROUTER_DISABLED_PROVIDERS=    # comma-separated: ollama-cloud,anthropic,...
 ```
 {
@@ -1235,8 +1393,15 @@ Profiles live in `router-profiles.json` and can set:
 
 Bundled profiles:
 
+- `balanced` — Ollama subscription/local-first routing for everyday cost control, with Codex and cloud fallbacks for health and 429 resilience
 - `frontier` — public-channel quality profile, high thinking, quality/reasoning required, tiny/free filler models blocked, tool-call narration suppressed
 - `fusion` — premium multi-model panel plus judge synthesis for chat prompts where several authorized routes are worth the extra latency and cost
 - `frontier-large` — strict frontier/large-model-only routing
 - `fast-local` — low-latency local-first routing
 - `coding-max` — high-thinking coding route with weak model exclusions
+
+Codex/OpenClaw `/goal` compatibility is automatic for Chat Completions,
+Responses, and Anthropic-compatible requests. The router strips raw goal control
+markup from visible user text, injects a plain objective context message, and
+sets `best`/high-thinking agent requirements so local and hosted providers do
+not answer as if `/goal` is an unknown command.

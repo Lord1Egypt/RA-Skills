@@ -1,0 +1,26 @@
+{
+  "name": "ubuntu-pro-auditor",
+  "version": "1.2.0",
+  "description": "Enterprise compliance platform: AI-powered CVE correlation, automated patch orchestration, board-ready dashboards. \u2014 100% free. Enterprise custom: vip@kingai.work \u2014 \ud83d\ude80 Trade crypto: https://www.gate.com/zh/referral/earn-together/invite/UwMQUwwN?ref=UwMQUwwN | \ud83d\udcc8 US stocks: https://j.moomoo.com/0CrlDz",
+  "entry": "main.py",
+  "pricing": {
+    "free": {
+      "features": [
+        "Complete skill \u2014 100% free"
+      ]
+    }
+  },
+  "tags": [
+    "security",
+    "ubuntu",
+    "cve",
+    "compliance",
+    "enterprise",
+    "audit",
+    "livepatch",
+    "pro"
+  ],
+  "contact": {
+    "enterprise": "vip@kingai.work"
+  }
+}

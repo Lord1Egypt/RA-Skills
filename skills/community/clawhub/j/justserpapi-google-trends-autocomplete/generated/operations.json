@@ -1,0 +1,64 @@
+{
+  "baseUrl": "https://api.justserpapi.com",
+  "description": "Call GET /api/v1/google/trends/autocomplete for Google SERP Trends Autocomplete through Just Serp API with query.",
+  "displayName": "Google SERP Trends Autocomplete",
+  "endpointPath": "trends/autocomplete",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Google trends Autocomplete data, including topic IDs, for trend discovery and topic expansion.",
+      "method": "GET",
+      "operationId": "TrendsAutocomplete",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "The search query to get trending autocomplete suggestions for (e.g., 'artificial').",
+          "enumValues": [],
+          "location": "query",
+          "name": "query",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the language for the results using its two-letter code (e.g., 'en' for English, 'fr' for French). See <a href=\"/reference/google-language\">Google Language</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "language",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/v1/google/trends/autocomplete",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        },
+        {
+          "description": "Authentication failed: API Key is invalid or missing",
+          "statusCode": "401"
+        },
+        {
+          "description": "Access denied: Insufficient credits or quota exceeded",
+          "statusCode": "403"
+        },
+        {
+          "description": "Internal server error or upstream service exception",
+          "statusCode": "500"
+        }
+      ],
+      "summary": "Autocomplete",
+      "tags": [
+        "Google Trends"
+      ]
+    }
+  ],
+  "platformKey": "google",
+  "primaryTag": "Google SERP",
+  "skillName": "justserpapi_google_trends_autocomplete",
+  "skillType": "interface",
+  "slug": "justserpapi-google-trends-autocomplete",
+  "sourceTitle": "API Shop Documentation"
+}

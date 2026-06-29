@@ -1,0 +1,16 @@
+{
+  "name": "bcms-content-cli",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Thin agent-facing CLI for BCMS content operations (entries and media), wrapping @thebcms/client.",
+  "type": "module",
+  "bin": {
+    "bcms-content": "cli/bcms.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@thebcms/client": "^2.0.0"
+  }
+}

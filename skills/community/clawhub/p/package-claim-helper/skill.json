@@ -1,0 +1,132 @@
+{
+  "name": "package-claim-helper",
+  "slug": "package-claim-helper",
+  "description": "One-stop AI courier claim assistant for lost, damaged, or disputed packages: legal analysis, compensation calculation, escalation paths, and document generation for all major China express companies.",
+  "version": "1.0.0",
+  "author": "Harry (code agent)",
+  "created": "2026-06-21",
+  "category": "consumer-rights",
+  "tags": [
+    "logistics",
+    "courier",
+    "claim",
+    "compensation",
+    "express",
+    "dispute",
+    "china",
+    "legal",
+    "consumer-rights",
+    "package"
+  ],
+  "license": "MIT-0",
+  "type": "descriptive",
+  "language": "en",
+  "outputs": "markdown",
+  "requires_api": false,
+  "firstSuccessPath": "Paste your package issue → receive legal analysis, compensation calculation, escalation path, and ready-to-file appeal documents in under 60 seconds",
+  "safety_boundary": "Does not replace legal advice, does not intervene in litigation, does not handle non-courier logistics disputes, does not file complaints on user behalf.",
+  "references": {
+    "courier_hotlines": {
+      "SF Express": "95338",
+      "ZTO": "95311",
+      "YTO": "95554",
+      "Yunda": "95546",
+      "STO": "95543",
+      "J&T": "956025",
+      "JD Logistics": "950616",
+      "Deppon": "95353",
+      "EMS": "11183",
+      "Cainiao": "9519666"
+    },
+    "appeal_platforms": {
+      "National Post Office Appeal": "sswz.spb.gov.cn",
+      "12315 Consumer Rights": "12315.cn",
+      "Post Office WeChat Mini-Program": "邮政业消费者申诉",
+      "12315 WeChat Mini-Program": "全国12315平台"
+    }
+  },
+  "workflowSteps": [
+    {
+      "step": 1,
+      "name": "Event Reception → Intent Recognition",
+      "input": "Natural language description of courier issue",
+      "output": "Dispute type, courier company, user role identified; non-courier issues rejected"
+    },
+    {
+      "step": 2,
+      "name": "Information Collection",
+      "input": "User response with missing fields",
+      "output": "Complete set of required fields for claim analysis"
+    },
+    {
+      "step": 3,
+      "name": "Legal Matching → Liability Determination",
+      "input": "Dispute type + item details + courier company",
+      "output": "Responsible party, applicable laws, claimable rights"
+    },
+    {
+      "step": 4,
+      "name": "Compensation Calculation",
+      "input": "Insured status, item value, damage degree",
+      "output": "Compensation breakdown (insured/uninsured scenarios, optimistic/conservative)"
+    },
+    {
+      "step": 5,
+      "name": "Escalation Path Generation",
+      "input": "Liability determination + current situation",
+      "output": "5-level escalation route with channels, times, scripts"
+    },
+    {
+      "step": 6,
+      "name": "Legal Document Generation",
+      "input": "Case information + user personal details",
+      "output": "Claim letter, postal appeal, 12315 complaint, evidence checklist"
+    },
+    {
+      "step": 7,
+      "name": "Communication Script Generation",
+      "input": "Current escalation level + courier response",
+      "output": "3-tone scripts (polite/escalation/appeal)"
+    },
+    {
+      "step": 8,
+      "name": "Evidence Collection Checklist",
+      "input": "Case type + available evidence",
+      "output": "Personalized evidence checklist with priority and acquisition methods"
+    },
+    {
+      "step": 9,
+      "name": "Key Deadline Management",
+      "input": "Incident date",
+      "output": "Personalized deadline calendar with action reminders"
+    },
+    {
+      "step": 10,
+      "name": "Report Compilation → Delivery",
+      "input": "All previous step outputs",
+      "output": "Complete claim report in Markdown"
+    }
+  ],
+  "schemas": {
+    "input": {
+      "dispute_type": "enum (lost_package, damaged_goods, false_delivery, station_dispute, missing_items, cross_border, oversized_damage, customs_hold, service_complaint, wrong_delivery)",
+      "courier_company": "string",
+      "tracking_number": "string",
+      "item_description": "string",
+      "item_value": "number (CNY)",
+      "insured": "boolean",
+      "insured_amount": "number (CNY, conditional)",
+      "user_role": "enum (receiver, sender, merchant, cross_border_buyer)",
+      "platform": "enum (taobao, jd, pinduoduo, douyin, xianyu, other, none)"
+    },
+    "output": {
+      "case_summary": "object",
+      "legal_analysis": "object",
+      "compensation_calculation": "object",
+      "escalation_path": "array",
+      "generated_documents": "object",
+      "communication_scripts": "object",
+      "full_report": "string (Markdown)"
+    }
+  }
+}

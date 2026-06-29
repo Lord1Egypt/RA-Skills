@@ -7,7 +7,7 @@
 [![Version](https://img.shields.io/badge/version-v1-blue)](#)
 [![Local First](https://img.shields.io/badge/local--first-yes-brightgreen)](#)
 [![Obsidian](https://img.shields.io/badge/storage-Obsidian-purple)](#)
-[![License](https://img.shields.io/badge/license-MIT-lightgrey)](LICENSE)
+[![License](https://img.shields.io/badge/license-MIT--0-lightgrey)](#license)
 
 Agent memory should not vanish when a chat ends, hide inside one runtime, or force you to repeat the same context every morning.
 
@@ -22,6 +22,18 @@ In one line:
 ```text
 Remember first. Forget by disuse. Own the memory.
 ```
+
+## Privacy and Safety
+
+Memory Sync reads selected local agent memory and conversation stores, then persists reviewed source copies, summaries, profiles, and context in the configured Obsidian vault.
+
+- Treat the vault and any Git repository containing it as sensitive.
+- Review archived conversations and review packs before sharing or publishing them.
+- Do not store API keys, passwords, private keys, regulated data, or confidential customer material as durable memory.
+- `git sync` may create a local commit. Remote push is disabled by default; confirm the remote repository visibility before enabling `GIT_PUSH_ENABLED=true`.
+- Cleanup is recoverable by default through `.memory-sync/trash`; permanent deletion is opt-in.
+
+> 隐私提示：该工具会把本地 Agent 记忆与聊天记录的副本或摘要持久化到 Obsidian。请将 Vault 和 Git 仓库视为敏感数据，发布前检查内容与仓库可见性，不要把密钥或机密信息作为长期记忆保存。
 
 ## Product Positioning
 
@@ -51,6 +63,30 @@ Shared context for OpenClaw, Codex, Claude, OpenCode, Hermes, Qoder, and future 
 - **Agent adapters**: publish compact shared context so different agents can understand the same user faster.
 
 The goal is to turn agent conversations and working context into a personal knowledge base that is readable by humans, reusable by agents, and owned by the user.
+
+## Multi-Device Memory Sync
+
+Memory Sync is designed for the common case where you use more than one machine.
+
+The recommended model is:
+
+```text
+Laptop / desktop / server
+        |
+        v
+each machine contributes only its own evidence
+        |
+        v
+one publisher machine reviews, integrates, rebuilds indexes, and publishes the vault
+```
+
+Contributor machines write to device-scoped partitions such as `Sources/<agent>/<lane>/<device_id>/` and `Personal/Agent Knowledge/<agent>/<device_id>/`, so two machines do not fight over the same daily note or agent knowledge file.
+
+The publisher machine reads all contributor evidence and regenerates global human-facing outputs such as `Dashboard/`, `Context/`, and `Memories/`.
+
+Machine JSON state under `.memory-sync/` is local by default. It can be rebuilt and should not be treated as the cross-device source of truth unless you explicitly enable machine-state tracking.
+
+Cleanup is soft by default: unreferenced Obsidian copies are moved to `.memory-sync/trash`. Git push is also disabled by default; enable `GIT_PUSH_ENABLED=true` only on a machine that should publish to the remote.
 
 ## 产品定位
 
@@ -122,6 +158,7 @@ It can:
 - maintain S1-S4 memory stages, TTL, hit reinforcement, and safe cleanup
 - keep machine-readable state under `.memory-sync/` while keeping human review in Markdown
 - sync memory assets through Git when you explicitly ask it to
+- keep Git push disabled by default and move cleaned Obsidian copies to `.memory-sync/trash`
 
 ## Why It Is Different
 
@@ -154,9 +191,10 @@ Memory Sync writes a vault that is useful for both humans and agents:
 | `Dashboard/User Profile.md` | Evidence-backed dynamic user profile |
 | `Context/agent_brief.md` | Compact cross-agent context for handoff |
 | `Memories/memory_*.md` | Stable memory cards with frontmatter and source trace links |
-| `Sources/<agent>/...` | Source evidence such as daily memory copies, conversation summaries, and handoffs |
-| `Personal/Agent Knowledge/` | Agent rules, long-term notes, and installed skill inventories |
-| `.memory-sync/index/memory_index.json` | Machine source of truth |
+| `Sources/<agent>/<lane>/<device_id>/...` | Device-scoped source evidence such as daily memory copies, conversation summaries, and handoffs |
+| `Personal/Agent Knowledge/<agent>/<device_id>/...` | Device-scoped agent rules, long-term notes, and local configuration hints |
+| `Personal/Agent Knowledge/<agent>/Agent Skills.md` | Human-readable skill routing index for an agent |
+| `.memory-sync/index/memory_index.json` | Local rebuilt machine index, not the default cross-device Git truth |
 
 ## Memory Lifecycle
 
@@ -221,14 +259,19 @@ python scripts/main.py skills sync
 python scripts/main.py git sync
 ```
 
+For multi-device use, set a stable `MEMORY_SYNC_DEVICE_ID` on each machine. Keep `MEMORY_SYNC_CONTRIBUTE_ENABLED=true` everywhere, and set `MEMORY_SYNC_PUBLISH_ENABLED=true` only on the machine that should regenerate global Dashboard, Context, and Memories outputs automatically.
+
 ## Platform Notes
 
-Memory Sync is local-first and uses Python standard library APIs. It is expected to work on Windows, macOS, and Linux when Python, Git, an OpenClaw workspace, and an Obsidian vault path are available.
+Memory Sync is local-first and uses Python standard library APIs. It is expected to work on Windows, macOS, and Linux with Python 3.10+, an OpenClaw workspace, and an Obsidian vault path. Git is optional and is needed only for version synchronization.
 
 Obsidian does not need to be running. The script writes Markdown and JSON files directly to the vault.
 
-## Current Release
+## Current Release (1.0.3)
 
+- Removed personal vault and project defaults from the public package.
+- Added explicit privacy, retention, Git publication, and recoverable-cleanup guidance.
+- Aligned optional environment variable metadata with the runtime.
 - Added high-value process memories: success patterns, corrections, failure lessons, and user rules start at S2.
 - Added personal knowledge sync for non-daily agent knowledge such as `MEMORY.md`, `USER.md`, `AGENTS.md`, and `TOOLS.md`.
 - Added installed skill inventory sync under `.memory-sync/shared/agent_skills.json`, `.memory-sync/agents/<agent>/skills.json`, and `Personal/Agent Knowledge/Agent Skills.md`.
@@ -238,9 +281,15 @@ Obsidian does not need to be running. The script writes Markdown and JSON files 
 - Added Codex archived session scanning and OpenCode export/SQLite conversation capture.
 - Added stricter review grounding checks and read-only behavior for diagnostic context commands.
 - Added `Dashboard/Memory Directory.md` as a clean human navigation page without placeholder README links.
+- Added multi-device contributor/publisher mode to avoid same-file conflicts across machines.
+- Changed Git push to opt-in by default.
+- Changed cleanup of Obsidian copies to soft-delete into `.memory-sync/trash` by default.
 
-## 当前版本
+## 当前版本（1.0.3）
 
+- 移除公开发布包中的个人 Vault 名称和个人项目规则。
+- 补充隐私、持久化、Git 发布和可恢复清理说明。
+- 补齐运行时使用的可选环境变量声明。
 - 新增高价值过程记忆识别：成功步骤、纠正步骤、失败教训、用户约定直接从 S2 起步。
 - 新增非每日长期知识同步：同步 `MEMORY.md`、`USER.md`、`AGENTS.md`、`TOOLS.md` 到 `Personal/Agent Knowledge/`。
 - 新增已安装 skill 清单同步：输出到 `.memory-sync/shared/agent_skills.json`、`.memory-sync/agents/<agent>/skills.json` 和 `Personal/Agent Knowledge/Agent Skills.md`。
@@ -254,8 +303,7 @@ Obsidian does not need to be running. The script writes Markdown and JSON files 
 
 - [SKILL.md](SKILL.md): commands, workflows, trigger logic, configuration, and operating rules.
 - [config/](config): configurable filters, keywords, and trigger words.
-- [.env.example](.env.example): local path and sync configuration template.
 
 ## License
 
-MIT
+MIT-0

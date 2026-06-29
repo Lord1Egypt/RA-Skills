@@ -1,0 +1,101 @@
+{
+  "skill_name": "stellar-trails",
+  "notes": "Stellar Trails is a process-discipline skill (workflow enforcement), not a content-generation skill. Most of its value is subjective (did the agent follow the workflow?). The assertions below focus on the narrow, objectively verifiable signals — banner printed, worklog appended, report format matches template. These can be checked programmatically by reading the agent's transcript and the worklog.md file.",
+  "evals": [
+    {
+      "id": 1,
+      "name": "activation-banner-printed",
+      "prompt": "Build me a PDF report summarizing Q4 sales",
+      "expected_output": "Agent prints the activation banner (with ☄️ STELLAR TRAILS · v7.X.Y · ACTIVE header) within the first 3 messages of the conversation.",
+      "assertions": [
+        {
+          "text": "Activation banner containing '☄️ STELLAR TRAILS' appears in agent's first or second message",
+          "type": "transcript_grep",
+          "pattern": "☄️ STELLAR TRAILS · v[0-9]+\\.[0-9]+\\.[0-9]+ · ACTIVE"
+        },
+        {
+          "text": "Banner includes 'Activation checklist (1–9, every invoke)' line",
+          "type": "transcript_grep",
+          "pattern": "Activation checklist \\(1.9, every invoke\\)"
+        },
+        {
+          "text": "Banner shows at least 8 checkmark (✓) symbols for completed steps",
+          "type": "transcript_count",
+          "pattern": "✓",
+          "min_count": 8
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "worklog-snapshot-appended",
+      "prompt": "Fix the typo in /home/z/my-project/README.md line 5",
+      "expected_output": "After task completion, /home/z/my-project/worklog.md contains a new '---' delimited snapshot block with last_phase, task, complexity, task_type, files_modified, next_step fields.",
+      "assertions": [
+        {
+          "text": "worklog.md exists at /home/z/my-project/worklog.md",
+          "type": "file_exists",
+          "path": "/home/z/my-project/worklog.md"
+        },
+        {
+          "text": "worklog.md's last '---' block contains 'last_phase: DELIVER'",
+          "type": "file_grep_last_block",
+          "path": "/home/z/my-project/worklog.md",
+          "pattern": "last_phase: DELIVER"
+        },
+        {
+          "text": "Last block contains 'task:' field with non-empty value",
+          "type": "file_grep_last_block",
+          "path": "/home/z/my-project/worklog.md",
+          "pattern": "task: .+"
+        },
+        {
+          "text": "Last block contains 'complexity:' field with valid tier value",
+          "type": "file_grep_last_block",
+          "path": "/home/z/my-project/worklog.md",
+          "pattern": "complexity: (Minimal|Simple|Standard|Complex)"
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "report-format-matches-template",
+      "prompt": "Refactor the authentication module in /home/z/my-project/src/auth/ — split into separate files for JWT, OAuth, and session handling",
+      "expected_output": "Agent's final message contains a REPORT block matching the Standard template: ☄️ REPORT [Standard] header with tree-style fields (Continuation, IMPLEMENT, VERIFY, Pivot, Scope Drift, Outcome).",
+      "assertions": [
+        {
+          "text": "Final message contains '☄️ REPORT [Standard]' or '☄️ REPORT [Simple]' or '☄️ REPORT [Complex]' header",
+          "type": "transcript_grep",
+          "pattern": "☄️ REPORT \\[(Standard|Simple|Complex)\\]"
+        },
+        {
+          "text": "Report block contains '├─' or '└─' tree-style formatting characters",
+          "type": "transcript_grep",
+          "pattern": "[├└]─"
+        },
+        {
+          "text": "Report block contains 'Outcome' field",
+          "type": "transcript_grep",
+          "pattern": "Outcome\\s*:"
+        }
+      ],
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "askuserquestion-invoked-for-document-task",
+      "prompt": "Create a Word document about machine learning",
+      "expected_output": "Agent invokes AskUserQuestion (or prints the clarifying questions inline if AskUserQuestion tool is unavailable) BEFORE writing any document content. Questions should cover audience, purpose, length, design style at minimum.",
+      "assertions": [
+        {
+          "text": "Agent's response contains 'AskUserQuestion' invocation OR inline clarifying questions before any document content is generated",
+          "type": "transcript_grep",
+          "pattern": "(AskUserQuestion|audience|Audience|purpose|Purpose|length|Length|style|Style)"
+        }
+      ],
+      "files": []
+    }
+  ]
+}

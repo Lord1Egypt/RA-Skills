@@ -1,43 +1,80 @@
 ---
 name: live-qa-scripts
-description: Generate pre-written answers and talking points for common customer questions during TikTok live shopping sessions to reduce hesitation and close faster.
+description: Generate a tailored library of live-selling Q&A answers and objection-handling scripts so TikTok Live hosts respond instantly to buyer hesitations without losing momentum.
 ---
 
 # Live Q&A Scripts
 
-TikTok Live shopping sessions live and die by how confidently a host handles audience questions in real time. This skill generates a comprehensive library of pre-written answers and talking points tailored to your specific product, so your team can respond instantly to hesitations, doubts, and curiosity without breaking flow or losing momentum.
+TikTok Live shopping sessions live and die by how confidently a host handles audience questions in real time. This skill generates a comprehensive library of pre-written answers and talking points tailored to a specific product, so a host can respond instantly to hesitations, doubts, and curiosity without breaking flow or losing momentum.
 
-## Use when
+## Quick Reference
 
-- You are preparing for a TikTok Live shopping session and need ready-made answers for anticipated buyer questions about product quality, sizing, shipping, and returns.
-- A new product is launching on TikTok Shop and you want your live host or creator to be fully briefed on objection-handling scripts before going live.
-- Your live sessions have high comment volume but low conversion, and you need structured responses that guide viewers from curiosity to purchase decision.
-- You manage a team of live hosts and need a standardized Q&A reference library so every host answers questions consistently and on-brand.
+Judge each scripted answer against this table. A script is ready only when no row scores Weak.
 
-## What this skill does
+| Decision | Strong | Acceptable | Weak |
+|---|---|---|---|
+| Answer length for live delivery | 1–2 spoken sentences | 3 sentences | Paragraph the host can't say naturally |
+| Objection coverage | Top 10 objections + edge cases | Top 6 objections | Only generic FAQ |
+| Proof in the answer | Specific spec / demo / guarantee | Vague reassurance | None ("trust me") |
+| Call to action | Clear next step every answer | CTA on some | No CTA |
+| Tone | On-brand, warm, confident | Neutral | Defensive or scripted-robotic |
+| Real-time usability | Skimmable cue card format | Dense but usable | Wall of text |
+| Compliance | No banned claims, safe wording | Mostly safe | Risky claims present |
 
-This skill takes your product details and common objection categories as input, then generates a structured Q&A document organized by question type: product quality, pricing justification, size and fit, shipping timelines, return policies, ingredient or material safety, and comparison with competitor products. Each answer is calibrated for spoken delivery during live sessions — concise, warm, persuasive, and designed to reduce hesitation and build enough confidence for the viewer to tap the purchase button before the session ends.
+## Solves
 
-## Inputs required
+This skill addresses the moments where live sellers lose sales:
 
-- **Product name and category** (required): The exact product name and the type of product (e.g., "Collagen Cream – skincare moisturizer"), used to tailor all answers to your specific offering.
-- **Key product claims and proof points** (required): The main benefits, certifications, materials, or data points that support buyer confidence (e.g., "dermatologist tested, 92% saw results in 7 days").
-- **Pricing and promotion details** (required): Current price, any live-exclusive discount, bundle offers, or limited-time deal so hosts can justify value during live Q&A.
-- **Shipping and return policy** (optional): Your fulfillment SLA, return window, and refund process so the script includes accurate policy responses.
-- **Competitor context** (optional): Names of competing products or common objections referencing alternatives, used to generate comparison talking points.
+1. **Frozen on a hard question** — a host who pauses or fumbles on price or quality loses the room.
+2. **Inconsistent answers across hosts** — different hosts give different, sometimes contradictory, responses.
+3. **High comments, low conversion** — engagement that never gets steered toward a buy decision.
+4. **Objection blind spots** — predictable doubts (sizing, shipping, returns, authenticity) with no prepared rebuttal.
+5. **Off-brand or risky wording** — improvised claims that hurt the brand or trip compliance.
+6. **No CTA discipline** — answers that satisfy curiosity but never ask for the sale.
+7. **Cold-start hosts** — new or guest creators who go live underprepared.
 
-## Output format
+## Workflow
 
-The output is a formatted Q&A script document organized into thematic sections. Each section contains three to six common questions a live audience is likely to ask, followed by a scripted answer of two to four sentences suitable for spoken delivery. Answers are written in first-person host voice, include a soft close or micro-commitment phrase where appropriate, and flag questions that benefit from a visual demonstration cue (e.g., "hold up the product now"). The full output typically contains 20 to 35 question-answer pairs covering the most conversion-critical interaction moments in a TikTok Live session.
+**Step 1 — Capture product context.** Collect the product, price, key specs, differentiators, guarantee/returns policy, shipping terms, and known weaknesses. Note the brand voice and any banned claims.
 
-## Scope
+**Step 2 — Map the objection set.** List the top buyer objections for this product and category (price, quality, sizing/fit, authenticity, shipping speed, returns, comparison to competitors, "does it really work").
 
-- Designed for: TikTok Shop sellers, live streaming hosts, brand teams managing live commerce operations
-- Platform: TikTok Shop Live, compatible with Shopee Live and Lazada Live formats
-- Language: English
+**Step 3 — Write answers.** For each question write a 1–2 sentence spoken answer that (a) acknowledges, (b) gives specific proof, and (c) ends with a CTA. Keep it sayable out loud.
 
-## Limitations
+**Step 4 — Add rapid-fire variants.** Provide a short and a longer version of each answer so the host can match the pace of the room.
 
-- Scripts are templates and may require host personalization for tone and local dialect; review before use.
-- Accuracy of policy responses depends on inputs provided — always verify shipping and return details match your actual store settings.
-- This skill does not monitor live comments in real time; it produces a pre-session reference document only.
+**Step 5 — Build a cue-card layout.** Group answers by theme (product, price/promo, logistics, trust) so the host can find one mid-stream in seconds.
+
+**Step 6 — Compliance pass.** Remove banned or risky claims; soften anything unsubstantiated.
+
+**Step 7 — Output.** Render the library using the output template, organized by theme, with short/long variants and CTAs.
+
+## Worked Examples
+
+### Example 1 — Skincare serum, $29, solo creator
+
+Objection "It's expensive": *Short:* "It works out to under a dollar a day, and it's clinically tested for sensitive skin — tap the cart and the launch code drops it 15%." *Long* adds the per-use math and the 30-day guarantee. Every answer ends pointing to the pinned product. Library covers 12 objections grouped into Product / Price / Trust / Logistics, each with short+long variants.
+
+### Example 2 — Cookware set, $89, two rotating hosts
+
+Standardized answers so both hosts say the same thing on warranty and shipping. "Will it scratch?" → *Short:* "It's triple-coated non-stick — watch, I'm dragging a metal fork across it right now, no marks. That's why we back it with a 2-year warranty." CTA: "Grab the bundle while the timer's up." Includes a host handoff cue and a comment-pinning checklist.
+
+## Common Mistakes
+
+1. **Answers too long to say live.** If the host can't deliver it in one breath, it's not a live script.
+2. **No proof.** "It's great quality" persuades no one; show a spec, demo, or guarantee.
+3. **Forgetting the CTA.** Every answer should nudge toward the cart, code, or timer.
+4. **Ignoring the hard objections.** Price and authenticity are the ones that actually block the sale.
+5. **One version only.** Without short/long variants the host can't match the room's pace.
+6. **Off-brand tone.** Robotic or defensive wording breaks trust faster than silence.
+7. **Risky claims.** Unsubstantiated "cures/guaranteed" language invites compliance trouble.
+8. **No theme grouping.** A flat list is unusable mid-stream; group so answers are findable in seconds.
+9. **No handoff cues** for multi-host streams.
+10. **Never updated.** Refresh scripts when price, promo, or policy changes.
+
+## Resources
+
+- `references/output-template.md` — the Q&A library output format.
+- `references/objection-handling-playbook.md` — frameworks and reusable rebuttal patterns.
+- `references/live-host-delivery-guide.md` — pacing, CTA, and comment-management tips.
+- `assets/live-qa-quality-checklist.md` — a 40-item script quality checklist.

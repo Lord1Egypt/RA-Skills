@@ -1,0 +1,9 @@
+{
+  "protocol": "anthropic",
+  "endpoint": "https://api.minimaxi.com/anthropic",
+  "model": "MiniMax-M3",
+  "api_key": "${ANTHROPIC_AUTH_TOKEN}",
+  "max_tokens": 1024,
+  "temperature": 0.2,
+  "image_mode": "base64"
+}

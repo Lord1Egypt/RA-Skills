@@ -1,0 +1,7 @@
+interface:
+  display_name: "Financial Model Forecast Reviewer"
+  short_description: "Helps with Founders, analysts, and operators need help review..."
+  default_prompt: "Use $financial-model-forecast-reviewer to help me Founders, analysts, and operators need help reviewing financial models, checking assumptions, building revenue or expens."
+
+policy:
+  allow_implicit_invocation: true

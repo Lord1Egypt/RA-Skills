@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart.js 柱状图模板</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background: #ffffff;
+            color: #2C2C2A;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        h1 {
+            font-size: 15px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+        .chart-container {
+            width: 100%;
+            max-width: 680px;
+            background: #F1EFE8;
+            border-radius: 12px;
+            padding: 24px;
+            border: 0.5px solid #B4B2A9;
+        }
+        canvas {
+            width: 100% !important;
+            height: auto !important;
+        }
+        .save-btn {
+            margin-top: 20px;
+            padding: 10px 24px;
+            background: #378ADD;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .save-btn:hover {
+            background: #185FA5;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chart.js 柱状图模板</h1>
+
+    <div class="chart-container">
+        <canvas id="barChart"></canvas>
+    </div>
+
+    <button class="save-btn" onclick="saveAsImage()">保存为图片</button>
+
+    <script>
+        // 数据配置
+        const data = {
+            labels: ['1月', '2月', '3月', '4月', '5月', '6月'],
+            datasets: [{
+                label: '销售额',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(83, 74, 183, 0.8)',   // purple
+                    'rgba(15, 110, 86, 0.8)',    // teal
+                    'rgba(153, 60, 29, 0.8)',    // coral
+                    'rgba(153, 53, 86, 0.8)',    // pink
+                    'rgba(59, 109, 17, 0.8)',    // green
+                    'rgba(24, 95, 165, 0.8)'     // blue
+                ],
+                borderColor: [
+                    'rgb(83, 74, 183)',
+                    'rgb(15, 110, 86)',
+                    'rgb(153, 60, 29)',
+                    'rgb(153, 53, 86)',
+                    'rgb(59, 109, 17)',
+                    'rgb(24, 95, 165)'
+                ],
+                borderWidth: 1
+            }]
+        };
+
+        // 配置选项
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: {
+                                family: 'system-ui, -apple-system, sans-serif',
+                                size: 12
+                            },
+                            color: '#2C2C2A'
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: '月度销售额统计',
+                        font: {
+                            family: 'system-ui, -apple-system, sans-serif',
+                            size: 14,
+                            weight: '500'
+                        },
+                        color: '#2C2C2A'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            font: {
+                                family: 'system-ui, -apple-system, sans-serif',
+                                size: 11
+                            },
+                            color: '#5F5E5A'
+                        },
+                        grid: {
+                            color: '#D3D1C7'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            font: {
+                                family: 'system-ui, -apple-system, sans-serif',
+                                size: 11
+                            },
+                            color: '#5F5E5A'
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        };
+
+        // 创建图表
+        const ctx = document.getElementById('barChart').getContext('2d');
+        const chart = new Chart(ctx, config);
+
+        // 保存为图片
+        function saveAsImage() {
+            const link = document.createElement('a');
+            link.download = '柱状图.png';
+            link.href = document.getElementById('barChart').toDataURL('image/png');
+            link.click();
+        }
+    </script>
+</body>
+</html>

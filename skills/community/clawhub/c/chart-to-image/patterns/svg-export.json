@@ -1,0 +1,10 @@
+{
+  "name": "svg-export",
+  "label": "SVG 保留",
+  "description": "导出为矢量 SVG，保留可编辑性",
+  "format": "svg",
+  "background": "transparent",
+  "features": ["vector_preserve", "inline_style", "copy_code", "download"],
+  "default_width": 800,
+  "use_canvas": false
+}

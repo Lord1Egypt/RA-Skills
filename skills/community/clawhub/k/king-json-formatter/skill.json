@@ -1,0 +1,25 @@
+{
+  "name": "king-json-formatter",
+  "version": "1.0.0",
+  "description": "\u2728 COMPLETELY FREE: JSON Formatter & Validator \u2014 100% free. Enterprise custom: vip@kingai.work \u2014 \ud83d\ude80 Trade crypto: https://www.gate.com/zh/referral/earn-together/invite/UwMQUwwN?ref=UwMQUwwN | \ud83d\udcc8 US stocks: https://j.moomoo.com/0CrlDz",
+  "entry": "main.py",
+  "pricing": {
+    "free": {
+      "features": [
+        "Complete skill \u2014 100% free"
+      ]
+    }
+  },
+  "tags": [
+    "json",
+    "formatter",
+    "validator",
+    "developer-tools",
+    "cli",
+    "converter",
+    "pretty-print"
+  ],
+  "contact": {
+    "enterprise": "vip@kingai.work"
+  }
+}

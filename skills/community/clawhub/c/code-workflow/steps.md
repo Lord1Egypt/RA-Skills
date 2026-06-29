@@ -135,17 +135,52 @@ Per the always-on rule "target-unspecified document artifacts = file save defaul
 If the user explicitly states the medium ("just write it in chat", "show me as text"), follow that. Otherwise: file is default.
 
 - **Naming Rule**: Use the same issue number and slug as the research file (e.g., `plan-176-login-lock.md`).
-- **Mapping**: The plan MUST contain a link to its corresponding research file in the header:
-  ```markdown
-  # Plan: [Title]
-  - Related Research: [research-<N>-<slug>.md]
-  ```
+
+### Plan Frontmatter (MANDATORY)
+
+Every plan file MUST start with a YAML frontmatter block containing structured tracking metadata. Inline markdown metadata (e.g., `> **Posted to**: ...` or `- Related issue: ...`) is **forbidden** — all tracking info goes in frontmatter.
+
+```yaml
+---
+title: <plan title>
+status: draft              # draft | review | approved | implemented | closed
+relates_to: "#<N>"         # GitHub issue number (e.g., "#7"). "none" if no issue
+pr: null                   # PR number when implementation PR exists (e.g., 24)
+research: <filename>       # research file basename (e.g., research-7-phase3-auto-publish.md)
+posted_to: null            # URL if posted as issue comment (e.g., https://github.com/.../issues/7#issuecomment-xxx)
+created: <YYYY-MM-DD>      # creation date
+chain: []                  # optional: issue dependency chain (see github-flow/dependencies.md)
+---
+```
+
+**Field naming rules (unified convention)**:
+- Use `snake_case` for multi-word fields (e.g., `relates_to`, `posted_to`)
+- `relates_to` = the primary GitHub issue this plan addresses (not `related_issue` or `issue`)
+- `pr` = implementation PR number (not `pull_request` or `implementation_pr`)
+- `research` = basename only, not a relative path or markdown link
+- `status` lifecycle: `draft` → `review` → `approved` → `implemented` → `closed`
+
+| # | Don't | Do |
+|---|-------|-----|
+| 1 | Put tracking info as inline markdown (`> **Posted to**: ...`, `- Related issue: #7`) | All tracking metadata in YAML frontmatter |
+| 2 | Use inconsistent field names (`related_issue`, `issue`, `target_issue`) | Use `relates_to` for the primary issue reference |
+| 3 | Leave `pr` empty after implementation PR is merged | Update `pr:` and `status: implemented` after merge |
+| 4 | Omit frontmatter and write a bare `# Plan:` heading | Frontmatter is mandatory — plan is incomplete without it |
+
+The plan body starts after the frontmatter with `# Plan: [Title]` heading. The heading title should match the frontmatter `title` field.
 
 **Mandatory sections** (Plan is incomplete if any are missing):
 1. **Approach** — Detailed explanation of the chosen approach
 2. **Code snippets** — Code showing actual changes
 3. **Files to modify** — List of file paths to be modified
 4. **Trade-offs / Alternatives** — Comparison with other approaches, reasons for selection, known limitations. Even if there is only one approach, specify "why this is the best" and "what the drawbacks are". **Undecided items = mandatory AskUserQuestion after plan write (HARD STOP, see "Plan post-write ask" below)** — do not leave blank or "TBD" lines for the user to fill in passively
+
+   | # | Don't | Do |
+   |---|-------|-----|
+   | 1 | Omit trade-offs when proposing a single approach | Honestly state the strengths AND the limits/risks of the single approach |
+   | 2 | Multi-alternative comparison reduced to "this one is best" hand-wave | Pros, cons, cost, risk for each alternative — clear contrast/comparison |
+   | 3 | Hide security or downtime risk in a deployment plan | Mark expected risks + impact scope as Warning/Caution explicitly |
+
 5. **Verification plan** — Verification procedures, commands/URLs, and expected results for each change group.
    - **For regression cases**: manual commands (`curl`, `ssh`) are only auxiliary. **Independently runnable test code (Python, JS, etc.)** must be authored and included in the Plan.
 
@@ -164,6 +199,20 @@ If the user explicitly states the medium ("just write it in chat", "show me as t
    - **What changes?** — Concrete behavioral differences before vs. after this change
    - **Blast radius on failure?** — What breaks if this change is wrong, and how far the impact reaches
    - **Who owns this?** — The responsible person/team for the code being modified
+8. **Progress Checklist** — A `## Progress Checklist` section with one checkbox per phase/task, enabling at-a-glance progress tracking and a pre-archive completion gate. Author it **at plan creation time** with every item unchecked (`[ ]`); flip items to `[x]` as each lands. The frontmatter `status` is lifecycle-level (coarse); this checklist is the granular per-phase tracker.
+
+   ```markdown
+   ## Progress Checklist
+   - [ ] Phase 1: <task>
+   - [ ] Phase 2: <task>
+   - [ ] Verification: <test / URL>
+   ```
+
+   | # | Don't | Do |
+   |---|-------|-----|
+   | 1 | Track progress only via frontmatter `status` (lifecycle-level, coarse) | Add a granular `## Progress Checklist` — `status` is lifecycle, the checklist is per-phase |
+   | 2 | Author the plan without a checklist and bolt it on later | Create the checklist with the plan (all `[ ]`); update as work lands |
+   | 3 | Archive a plan with unchecked items | Pre-archive gate (see Plan Lifecycle Update): all items `[x]` + `status: implemented`/`closed` before archiving |
 
 ### Plan artifact dispatch (optional, abstract contract)
 
@@ -244,6 +293,35 @@ After writing or updating `plan-*.md`, **AI must actively scan the plan for unde
 ```
 
 **The loop is ask → reflect → save, all three (HARD STOP)**. Asking and then proceeding to Step 3 without writing the answer back into the plan loses the decision from the artifact. The plan file must reflect the confirmed decision (e.g., "one commit vs separate" heading → "Decision: one commit (user-approved 2026-05-27)") before the plan is considered complete.
+
+### Plan Lifecycle Update (MANDATORY after implementation)
+
+When implementation is complete (PR merged or changes landed), update the plan file's frontmatter:
+
+1. Set `status: implemented`
+2. Set `pr: <number>` with the merged PR number
+3. If the plan was posted to an issue comment, verify `posted_to:` is populated
+
+This ensures plan files remain accurate as living documents, not write-once artifacts.
+
+```bash
+# Self-check: find plan files with stale status after PR merge
+grep -l '^status: draft\|^status: approved' {output-dir}/plan-*.md
+```
+
+### Pre-archive Completion Gate (MANDATORY before archiving a plan)
+
+Before archiving a plan file (moving it to an archive dir, or marking the task done), verify completion:
+
+1. Every `## Progress Checklist` item is `[x]`
+2. Frontmatter `status:` is `implemented` or `closed`
+
+An unchecked checklist item OR a non-terminal `status` means the work is **not** done — do not archive. The checklist makes completion verifiable at a glance.
+
+```bash
+# Self-check: plan files with unchecked items (not archive-ready)
+grep -l '^- \[ \]' {output-dir}/plan-*.md
+```
 
 ## Step 3: User Review & Branch Creation
 

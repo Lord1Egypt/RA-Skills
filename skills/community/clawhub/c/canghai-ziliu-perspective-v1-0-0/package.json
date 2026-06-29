@@ -1,0 +1,27 @@
+﻿{
+  "name": "canghai-ziliu-perspective",
+  "version": "1.0.0",
+  "description": "沧海自流的投资思维框架与视角。基于2026年完整分享记录深度提炼，包含7个核心心智模型、12条决策启发式，用沧海老师的视角分析投资问题。",
+  "author": "学来学去教育科技",
+  "license": "MIT",
+  "keywords": [
+    "investment",
+    "value-investing",
+    "perspective",
+    "nuwa",
+    "canghai-ziliu",
+    "AI",
+    "stock",
+    "framework"
+  ],
+  "openclaw": {
+    "type": "perspective",
+    "trigger": [
+      "沧海老师",
+      "沧海自流",
+      "canghai",
+      "用沧海的视角",
+      "沧海模式"
+    ]
+  }
+}

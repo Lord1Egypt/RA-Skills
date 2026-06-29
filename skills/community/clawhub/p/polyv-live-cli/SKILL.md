@@ -59,6 +59,7 @@ npx --yes polyv-live-cli@latest
 
 - 频道基础、状态、角色、装修、分发、MR、频道 token：`channel`
 - 推流地址、直播状态、断流恢复、推流开关：`stream`
+- 本地图片上传为公网图片 URL：`web image-upload`
 - 观看页菜单、分享、退出跳转、页面信息、观看页打赏：`web`
 - 播放器 Logo、水印、暖场、片头、暂停页：`player`
 - 观看条件、鉴权、白名单观看：`watch-condition`、`whitelist`
@@ -91,6 +92,26 @@ npx --yes polyv-live-cli@latest
 ```
 
 示例里的 `<频道ID>`、`<商品ID>`、`<回放ID>`、`<账号名>` 都是占位符。不要直接执行 reference 中的示例 ID。
+
+## 本地图片与公网 URL
+
+很多图片参数只接受可公网访问的 HTTP(S) URL，不接受本地文件路径。用户提供本地图片、截图或附件，并要求设置频道封面、直播引导图、播放器 logo、暖场图、广告图、打赏图标、邀请卡、菜单图片、管理员/助教头像等图片类配置时，先用通用上传命令得到图片 URL，再把返回的 URL 用到目标命令。
+
+通用上传命令：
+
+```bash
+<CLI> web image-upload --type <图片类型> --files <本地图片路径> --force -o json
+```
+
+返回值是图片 URL 数组；单图场景通常取第一个 URL。`--type` 必须按用途选择并用 `web image-upload --help` 校验，常见值包括 `coverImage`、`splashImage`、`logoImage`、`warmImage`、`adImage`、`startAdImage`、`stopAdImage`、`goodImage`、`invitationImage`、`menuImage`、`adminAvatar`、`assistantAvatar`、`authCodeImage`。
+
+示例流程：用户给本地 logo 并要求设置播放器 logo 时，先上传：
+
+```bash
+<CLI> web image-upload --type logoImage --files ./logo.png --force -o json
+```
+
+然后把返回的 URL 填入播放器或频道配置命令。不要把本地路径直接传给只接受图片 URL 的参数。
 
 ## 参考资料路由
 

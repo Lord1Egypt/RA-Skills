@@ -1,0 +1,55 @@
+{
+  "baseUrl": "https://api.justserpapi.com",
+  "description": "Call GET /api/v1/web/rendered-html for Web Crawling Rendered Html through Just Serp API with url.",
+  "displayName": "Web Crawling Rendered Html",
+  "endpointPath": "rendered-html",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get webpage crawl data, including returns full raw Rendered HTML content, fast and cost-efficient, and optimized for static page crawling, for scraping, metadata extraction, and page structure analysis.",
+      "method": "GET",
+      "operationId": "renderedHtml",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "The full URL of the webpage to crawl (e.g., 'https://www.example.com').",
+          "enumValues": [],
+          "location": "query",
+          "name": "url",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/v1/web/rendered-html",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        },
+        {
+          "description": "Authentication failed: API Key is invalid or missing",
+          "statusCode": "401"
+        },
+        {
+          "description": "Access denied: Insufficient credits or quota exceeded",
+          "statusCode": "403"
+        },
+        {
+          "description": "Internal server error or upstream service exception",
+          "statusCode": "500"
+        }
+      ],
+      "summary": "Crawl Webpage (Rendered HTML)",
+      "tags": [
+        "Web Crawling"
+      ]
+    }
+  ],
+  "platformKey": "web",
+  "primaryTag": "Web Crawling",
+  "skillName": "justserpapi_web_rendered_html",
+  "skillType": "interface",
+  "slug": "justserpapi-web-rendered-html",
+  "sourceTitle": "API Shop Documentation"
+}

@@ -1,5 +1,5 @@
 ## Description: <br>
-Ru Text helps agents write, edit, review, and score Russian-language text across typography, information style, editorial style, UX writing, and business correspondence. <br>
+Use when writing, editing, or reviewing Russian-language text, or when the user mentions ru-text; covers typography, info-style, editorial, UX writing, and business correspondence, and auto-activates on Russian text output. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,39 +11,40 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Writers, editors, product teams, and agents use this skill to improve Russian-language output, apply Russian typography conventions, reduce bureaucratic phrasing, and produce clearer UX or business text. It can also return a structured 0-10 quality score across five text-quality dimensions. <br>
+Writers, editors, UX writers, product teams, and agents use this skill to draft, rewrite, proofread, and score Russian-language text across typography, editorial style, interface copy, and business correspondence. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Broad automatic activation can change Russian quotes, dashes, spacing, numbers, or similar formatting even when the user did not explicitly request editing. <br>
-Mitigation: For legal, brand, code, exact-quote, or locale-specific text, instruct the agent to preserve original formatting or disable the skill for that task. <br>
+Risk: The skill may change typography or wording where exact character-level reproduction is required. <br>
+Mitigation: Avoid or disable it for legal wording, code-adjacent strings, test fixtures, quoted material, and any task that requires exact Russian text fidelity. <br>
+Risk: Editorial normalization can conflict with a user's requested register or domain-specific voice. <br>
+Mitigation: Treat the user's explicit style request as higher priority than the default rules and review proposed changes before using them. <br>
 
 
 ## Reference(s): <br>
-- [Ru Text homepage](https://ru-text.org) <br>
-- [Russian Text Quality Skill](artifact/SKILL.md) <br>
-- [Addenda - rules added from usage experience](artifact/references/addenda.md) <br>
-- [Russian Text Anti-Patterns](artifact/references/anti-patterns.md) <br>
-- [Russian Business Writing Guide](artifact/references/business-writing.md) <br>
-- [Editorial: Grammar and Style](artifact/references/editorial-grammar.md) <br>
-- [Editorial: Punctuation](artifact/references/editorial-punctuation.md) <br>
-- [Information Style Methodology](artifact/references/info-style.md) <br>
-- [Scoring: text quality assessment](artifact/references/scoring.md) <br>
-- [Sources and Attribution](artifact/references/sources.md) <br>
-- [Russian Typography Rules](artifact/references/typography.md) <br>
-- [Russian UX Writing](artifact/references/ux-writing.md) <br>
+- [Ru Text Homepage](https://ru-text.org) <br>
+- [ClawHub Skill Page](https://clawhub.ai/talkstream/skills/ru-text) <br>
+- [Typography Reference](references/typography.md) <br>
+- [Info-Style Reference](references/info-style.md) <br>
+- [UX Writing Reference](references/ux-writing.md) <br>
+- [Business Writing Reference](references/business-writing.md) <br>
+- [Editorial Grammar Reference](references/editorial-grammar.md) <br>
+- [Editorial Punctuation Reference](references/editorial-punctuation.md) <br>
+- [Russian Text Anti-Patterns](references/anti-patterns.md) <br>
+- [Text Quality Scoring](references/scoring.md) <br>
+- [Sources and Attribution](references/sources.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Analysis] <br>
-**Output Format:** [Natural language text or Markdown, with optional structured scoring guidance] <br>
+**Output Type(s):** [text, markdown, guidance] <br>
+**Output Format:** [Markdown or plain text responses with corrected Russian text, change lists, and optional 0-10 scoring diagnostics.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May automatically adjust Russian-language quotes, dashes, spacing, numbers, and related formatting conventions.] <br>
+**Other Properties Related to Output:** [May modify typography and wording; for proofreading, it should return corrected text plus a change list unless explicit in-place editing is requested.] <br>
 
 ## Skill Version(s): <br>
-1.8.0 (source: server release metadata) <br>
+1.10.0 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

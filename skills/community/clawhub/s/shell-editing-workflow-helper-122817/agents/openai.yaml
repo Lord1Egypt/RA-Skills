@@ -1,0 +1,7 @@
+interface:
+  display_name: "Shell Editing Workflow Helper"
+  short_description: "Helps with [FEATURE]: 工具操作前置安全校验（edit/write/shell 防护）."
+  default_prompt: "Use $shell-editing-workflow-helper to help me [FEATURE]: 工具操作前置安全校验（edit/write/shell 防护）."
+
+policy:
+  allow_implicit_invocation: true

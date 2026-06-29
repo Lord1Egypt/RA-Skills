@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="576" viewBox="0 0 920 576">
+<defs>
+  <style>
+    text { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+  </style>
+</defs>
+<!-- 背景 -->
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<rect x="3.0" y="10.0" width="62.0" height="40.0" rx="4" fill="#9CCC65" stroke="#AED581" stroke-width="1.2"/>
+<text x="34.0" y="35.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">初期准备</text>
+<rect x="576.0" y="26.5" width="79.0" height="26.0" rx="3" fill="#BBDEFB" stroke="#AED581" stroke-width="1.2"/>
+<text x="615.5" y="38.5" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">SPSS 分析</text>
+<rect x="76.0" y="10.0" width="480.0" height="59.0" fill="none" stroke="#E8F5E9" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="86.0" y="18.0" width="145.3" height="32.0" rx="3" fill="#5B9BD5" stroke="#1565C0" stroke-width="1.2"/>
+<text x="158.7" y="39.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">调查研究背</text>
+<rect x="239.3" y="18.0" width="145.3" height="32.0" rx="3" fill="#5B9BD5" stroke="#1565C0" stroke-width="1.2"/>
+<text x="312.0" y="39.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">查找文献</text>
+<rect x="392.7" y="18.0" width="145.3" height="32.0" rx="3" fill="#5B9BD5" stroke="#1565C0" stroke-width="1.2"/>
+<text x="465.3" y="39.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">确定研究方</text>
+<line x1="65.0" y1="98.5" x2="29.0" y2="98.5" stroke="#AED581" stroke-width="2"/><polygon points="37.0,98.5 29.0,94.5 29.0,102.5" fill="#AED581"/>
+<polygon points="309.0,72.0 323.0,72.0 323.0,79.0 328.0,79.0 316.0,89.0 304.0,79.0 309.0,79.0" fill="#AED581"/>
+<line x1="615.5" y1="108.5" x2="615.5" y2="143.0" stroke="#AED581" stroke-width="2"/>
+<polygon points="610.5,143.0 620.5,143.0 615.5,151.0" fill="#AED581"/>
+<rect x="3.0" y="95.0" width="62.0" height="40.0" rx="4" fill="#9CCC65" stroke="#AED581" stroke-width="1.2"/>
+<text x="34.0" y="120.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">问卷调查</text>
+<rect x="576.0" y="103.5" width="79.0" height="42.0" rx="3" fill="#BBDEFB" stroke="#AED581" stroke-width="1.2"/>
+<text x="615.5" y="115.5" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">剔 XXX 有</text>
+<text x="615.5" y="131.5" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">效数据</text>
+<rect x="76.0" y="95.0" width="480.0" height="59.0" fill="none" stroke="#E8F5E9" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="86.0" y="103.0" width="145.3" height="32.0" rx="3" fill="#5B9BD5" stroke="#1565C0" stroke-width="1.2"/>
+<text x="158.7" y="124.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">设计问卷</text>
+<rect x="239.3" y="103.0" width="145.3" height="32.0" rx="3" fill="#5B9BD5" stroke="#1565C0" stroke-width="1.2"/>
+<text x="312.0" y="124.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">发放问卷</text>
+<rect x="392.7" y="103.0" width="145.3" height="32.0" rx="3" fill="#5B9BD5" stroke="#1565C0" stroke-width="1.2"/>
+<text x="465.3" y="124.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">收集问卷</text>
+<line x1="65.0" y1="183.5" x2="29.0" y2="183.5" stroke="#AED581" stroke-width="2"/><polygon points="37.0,183.5 29.0,179.5 29.0,187.5" fill="#AED581"/>
+<polygon points="309.0,157.0 323.0,157.0 323.0,164.0 328.0,164.0 316.0,174.0 304.0,164.0 309.0,164.0" fill="#AED581"/>
+<line x1="615.5" y1="193.5" x2="615.5" y2="228.0" stroke="#AED581" stroke-width="2"/>
+<polygon points="610.5,228.0 620.5,228.0 615.5,236.0" fill="#AED581"/>
+<rect x="3.0" y="180.0" width="62.0" height="40.0" rx="4" fill="#9CCC65" stroke="#AED581" stroke-width="1.2"/>
+<text x="34.0" y="205.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">数据分析</text>
+<rect x="576.0" y="324.0" width="79.0" height="42.0" rx="3" fill="#BBDEFB" stroke="#AED581" stroke-width="1.2"/>
+<text x="615.5" y="336.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">满足条件</text>
+<text x="615.5" y="352.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">满足条件</text>
+<rect x="76.0" y="180.0" width="480.0" height="330.0" fill="none" stroke="#E8F5E9" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="86.0" y="188.0" width="85.0" height="28.0" rx="3" fill="#5B9BD5" stroke="#F9A825" stroke-width="1.2"/>
+<text x="128.5" y="207.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">信效度分析</text>
+<rect x="183.0" y="190.0" width="140.0" height="24.0" rx="2" fill="#E0E0E0" stroke="#999" stroke-width="1.2"/>
+<text x="253.0" y="206.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">信度 XXX 分析</text>
+<rect x="323.0" y="190.0" width="140.0" height="24.0" rx="2" fill="#E0E0E0" stroke="#999" stroke-width="1.2"/>
+<text x="393.0" y="206.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">效度 XX 分析</text>
+<polygon points="122.5,224.0 134.5,224.0 134.5,230.0 138.5,230.0 128.5,238.0 118.5,230.0 122.5,230.0" fill="#AED581"/>
+<rect x="86.0" y="240.0" width="72.0" height="28.0" rx="3" fill="#5B9BD5" stroke="#F9A825" stroke-width="1.2"/>
+<text x="122.0" y="259.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">现状分析</text>
+<rect x="170.0" y="242.0" width="140.0" height="24.0" rx="2" fill="#E0E0E0" stroke="#999" stroke-width="1.2"/>
+<text x="240.0" y="258.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">XXX 值分析</text>
+<rect x="310.0" y="242.0" width="140.0" height="24.0" rx="2" fill="#E0E0E0" stroke="#999" stroke-width="1.2"/>
+<text x="380.0" y="258.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">XXX 偏差分析</text>
+<polygon points="116.0,276.0 128.0,276.0 128.0,282.0 132.0,282.0 122.0,290.0 112.0,282.0 116.0,282.0" fill="#AED581"/>
+<rect x="86.0" y="292.0" width="72.0" height="28.0" rx="3" fill="#5B9BD5" stroke="#F9A825" stroke-width="1.2"/>
+<text x="122.0" y="311.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">差异比较</text>
+<rect x="170.0" y="294.0" width="140.0" height="24.0" rx="2" fill="#E0E0E0" stroke="#999" stroke-width="1.2"/>
+<text x="240.0" y="310.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">xxx 差异比较</text>
+<rect x="310.0" y="294.0" width="140.0" height="24.0" rx="2" fill="#E0E0E0" stroke="#999" stroke-width="1.2"/>
+<text x="380.0" y="310.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">xxx 差异比较</text>
+<polygon points="116.0,328.0 128.0,328.0 128.0,334.0 132.0,334.0 122.0,342.0 112.0,334.0 116.0,334.0" fill="#AED581"/>
+<rect x="86.0" y="344.0" width="85.0" height="28.0" rx="3" fill="#5B9BD5" stroke="#F9A825" stroke-width="1.2"/>
+<text x="128.5" y="363.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">相关性分析</text>
+<rect x="183.0" y="346.0" width="140.0" height="24.0" rx="2" fill="#E0E0E0" stroke="#999" stroke-width="1.2"/>
+<text x="253.0" y="362.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">xxx 相关分析</text>
+<rect x="323.0" y="346.0" width="140.0" height="24.0" rx="2" fill="#E0E0E0" stroke="#999" stroke-width="1.2"/>
+<text x="393.0" y="362.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">多变 XXX 关分析</text>
+<polygon points="122.5,380.0 134.5,380.0 134.5,386.0 138.5,386.0 128.5,394.0 118.5,386.0 122.5,386.0" fill="#AED581"/>
+<rect x="86.0" y="396.0" width="98.0" height="28.0" rx="3" fill="#5B9BD5" stroke="#F9A825" stroke-width="1.2"/>
+<text x="135.0" y="415.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">影响因素分析</text>
+<rect x="196.0" y="398.0" width="140.0" height="24.0" rx="2" fill="#E0E0E0" stroke="#999" stroke-width="1.2"/>
+<text x="266.0" y="414.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">线性回归</text>
+<rect x="336.0" y="398.0" width="140.0" height="24.0" rx="2" fill="#E0E0E0" stroke="#999" stroke-width="1.2"/>
+<text x="406.0" y="414.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">XX 分析</text>
+<rect x="76.0" y="518.0" width="480.0" height="36.0" rx="4" fill="#66BB6A" stroke="#43A047" stroke-width="1.2"/>
+<text x="316.0" y="541.0" font-family="Microsoft YaHei, sans-serif" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">结合现实分析并反思总结</text>
+<rect x="576.0" y="518.0" width="100.0" height="36.0" rx="4" fill="#AED581" stroke="#66BB6A" stroke-width="1.2"/>
+<text x="626.0" y="541.0" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#333333" text-anchor="middle" font-weight="normal">展望未来</text>
+</svg>

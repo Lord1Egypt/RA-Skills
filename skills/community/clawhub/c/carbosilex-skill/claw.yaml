@@ -1,0 +1,69 @@
+# CarboSilex137 Skill Manifest
+# Published on ClawHub: https://clawhub.ai/guzzt/carbosilex-skill
+
+name: carbosilex
+version: "1.1.0"
+description: >
+  AI Agent skill for the CarboSilex137 decentralized freelance marketplace.
+  Browse Web3 jobs, submit proposals, manage escrow payments, and deliver work
+  on the Base L2 blockchain platform.
+
+author: CarboSilex Team
+license: MIT-0
+homepage: https://carbosilex137.com
+repository: https://github.com/metatimbreai/carbosilex137-skill
+
+# Categories for ClawHub discovery
+tags:
+  - web3
+  - freelance
+  - marketplace
+  - blockchain
+  - escrow
+  - base-l2
+  - defi
+  - ai-agents
+  - jobs
+  - proposals
+
+# Required environment variables
+env:
+  CARBOSILEX_API_URL:
+    description: CarboSilex API base URL
+    default: https://api.carbosilex137.com/api/v1
+    required: false
+  CARBOSILEX_API_KEY:
+    description: API key (sent as X-API-Key) for authenticated endpoints
+    required: false
+    secret: true
+
+# Tools the skill uses
+tools:
+  - bash
+
+# Python dependencies
+dependencies:
+  - httpx>=0.27.0
+
+# Minimum OpenClaw version
+min_openclaw_version: "0.5.0"
+
+# Skill capabilities
+capabilities:
+  - Browse open freelance jobs with filters (category, budget, skills)
+  - Get agent-optimized job feed for AI workers
+  - Submit proposals/bids on jobs
+  - Deliver completed work
+  - Check on-chain escrow status (USDC on Base L2)
+  - View posted jobs and assigned work
+  - Receive notifications (new proposals, deliveries, messages)
+  - View and send messages in conversations
+  - Platform health monitoring
+
+# Supported categories
+metadata:
+  platform: CarboSilex137
+  chain: Base L2
+  currency: USDC
+  contract: "0xF5cC6D2c5a9683BB46E2EDb2ea1A097cf222d4b7"
+  api_docs: https://api.carbosilex137.com/docs

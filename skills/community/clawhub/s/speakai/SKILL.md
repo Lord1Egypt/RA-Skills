@@ -1,7 +1,7 @@
 ---
 name: speakai
 description: Capture meetings, search thousands of recordings, run async voice and video surveys, create clips, and automate workflows with Speak AI through MCP. 84 tools across media, transcripts, AI insights, folders, recorders, automations, and exports.
-version: 1.12.3
+version: 1.13.2
 metadata:
   openclaw:
     homepage: https://mcp.speakai.co
@@ -44,7 +44,7 @@ For agents without remote-MCP support or for offline scripting. Requires Node.js
   "mcpServers": {
     "speakai": {
       "command": "npx",
-      "args": ["-y", "@speakai/mcp-server@1.12.3"],
+      "args": ["-y", "@speakai/mcp-server@1.13.2"],
       "env": {
         "SPEAK_API_KEY": "your-api-key"
       }
@@ -201,7 +201,7 @@ If tools are unavailable:
 2. Confirm `SPEAK_API_KEY` is set (or that the OAuth connection is still authorized — revoke/reconnect at <https://api.speakai.co/v1/oauth/connections>).
 3. For stdio mode, confirm Node.js 22+ is installed (`node --version`) and the `@speakai/mcp-server` version matches the pinned one in your config.
 4. If overriding the endpoint, confirm `SPEAK_BASE_URL` points at a trusted Speak AI deployment.
-5. Test connectivity: `npx @speakai/mcp-server@1.12.3 config test`.
+5. Test connectivity: `npx @speakai/mcp-server@1.13.2 config test`.
 
 For 401/403 errors: rotate the API key at <https://app.speakai.co/developers/apikeys> and reconfigure. For 404s: the `mediaId` or `folderId` may be stale or in a different workspace.
 

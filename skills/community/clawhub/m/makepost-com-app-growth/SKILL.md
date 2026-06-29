@@ -1,12 +1,12 @@
 ---
-name: makepost-app-growth
-version: 1.0.7
-title: App Growth Toolkit (via makepost.com)
-description: Manage social media across 9 platforms, track App Store analytics, monitor ASO keywords, analyze competitors, and control subscription pricing — all through conversation.
+name: makepost-com-app-growth
+version: 2.3.0
+title: Social Media Toolkit (via makepost.com)
+description: Manage your social media across 9 platforms — draft captions, hashtags & post ideas, generate AI images, schedule, publish, set recurring autopilot schedules, and trigger webhooks — all through conversation.
 license: MIT
 author: William Engbjerg
 homepage: https://makepost.com/openclaw
-keywords: social-media, app-store, aso, analytics, subscription-pricing, ios, app-growth
+keywords: social-media, scheduling, publishing, content, drafts, automation, ai-captions, image-generation, hashtags, webhooks, recurring-scheduling, autopilot, n8n, zapier
 metadata:
   openclaw:
     requires:
@@ -17,17 +17,16 @@ metadata:
     primaryEnv: MAKEPOST_API_KEY
 ---
 
-# App Growth Toolkit (via makepost.com)
+# Social Media Toolkit (via makepost.com)
 
-MakePost is a growth platform for iOS app developers. Publish to 9 social platforms, track downloads and revenue via App Store Connect, monitor ASO keyword rankings, watch competitor apps, and manage subscription pricing — from one place or from your AI agent.
+MakePost is a social media scheduling platform built to be driven by AI agents. Draft captions, hashtags, and post ideas, generate AI images, schedule, and publish videos, image carousels, and posts to 9 platforms — TikTok, Instagram, YouTube, Facebook, X, LinkedIn, Threads, Pinterest, and Bluesky — from one place or straight from your AI agent. Set recurring autopilot schedules that auto-publish a queue, and fire signed webhooks into n8n, Zapier, Make, or your own service.
 
 ## Setup
 
 1. Create a MakePost account at [makepost.com](https://makepost.com)
 2. Connect your social accounts (TikTok, Instagram, YouTube, etc.)
-3. Add your iOS apps and connect App Store Connect credentials
-4. Generate an API key from Settings
-5. Store your API key:
+3. Generate an API key from Settings
+4. Store your API key:
    ```
    MAKEPOST_API_KEY=sk_live_your_key_here
    ```
@@ -56,7 +55,7 @@ API docs: `https://api.makepost.com`
 - `video_url` (string, required) — Public URL to .mp4, .mov, .webm, or .m4v. Max 500MB, max 10 minutes.
 - `title` (string, required) — Video title.
 - `caption` (string) — Default caption for publishing. Falls back to title if empty.
-- `app_id` (string) — App to link to. Accepts app ID, name, or bundle ID. Auto-selects if you have one app.
+- `app_id` (string) — Project to link to. Accepts project ID or name. Auto-selects if you have one project.
 - `cover_timestamp` (float) — Seconds into the video to extract as cover frame (e.g. 5.5).
 - `cover_image_url` (string) — Public URL to a custom cover image (JPEG/PNG/WebP/GIF, max 10MB). Alternative to cover_timestamp. Accepts any public URL directly — no need to upload the cover image separately first.
 - Returns: video_id, url, title, duration, file_size, is_short_eligible, cover_url.
@@ -117,7 +116,7 @@ API docs: `https://api.makepost.com`
 - `timezone` (string) — IANA timezone for scheduled_at.
 - `is_draft` (bool, default false) — Save as draft without publishing. Account IDs and captions are stored for later use.
 - `title` (string) — Optional title (used by YouTube).
-- `app_id` (string) — App or project ID to associate content with (from list_apps).
+- `app_id` (string) — Project ID to associate content with (from list_apps).
 - `captions` (dict) — Per-platform caption overrides, e.g. {"linkedin": "Professional version", "x": "Short version"}.
 - `group_ids` (list of strings) — Account group IDs to resolve to individual accounts (from list_account_groups).
 - `tiktok_is_draft` (bool, default false) — Send to TikTok as a draft instead of publishing live. The video appears in the user's TikTok drafts for editing before posting.
@@ -126,7 +125,7 @@ API docs: `https://api.makepost.com`
 **upload_image** — Upload an image from a public URL into MakePost.
 - `image_url` (string, required) — Public URL to .jpg, .png, .webp, or .gif. Max 20MB.
 - `title` (string) — Image title.
-- `app_id` (string) — App to link to. Auto-selects if you have one app.
+- `app_id` (string) — Project to link to. Auto-selects if you have one project.
 - Returns: media_id, url, title. Use media_id with publish_content.
 - For direct file uploads (not URL), use the REST API endpoint `POST /v1/media/upload-file` with multipart form data.
 
@@ -182,83 +181,100 @@ API docs: `https://api.makepost.com`
 - Returns a list of per-item results with success/failure status and error details.
 - Rate limit: 10 requests per minute.
 
-### App Analytics
+### Projects
 
-**list_apps** — List your apps and projects.
-- Returns: app ID, name, type ("ios_app" or "project"), bundle ID, rating (1-5), rating_count.
-- Rating is null if the app has no ratings yet. Sorted newest first.
-- Use the type field to distinguish iOS apps from projects.
+**list_apps** — List your projects.
+- Returns: project ID, name, type, rating, rating_count.
+- Projects are optional containers to organize content by client, brand, or campaign.
+- Pass a project ID as the optional `app_id` when uploading or publishing to associate content with that project.
+- Sorted newest first.
 
-**get_app_analytics** — Get download and revenue stats for an app over a period.
-- `app_id` (string) — App ID, name, or bundle ID. Auto-selects if you have one app.
-- `days` (int, default 7) — Days of data to return (1-90).
-- Key fields:
-  - `net_revenue` — Your actual earnings after Apple's 15-30% commission. Use this for "total revenue" or "earnings" questions.
-  - `gross_revenue` — What customers paid before Apple's cut. Only use when specifically asked about gross amounts.
-  - `active_subscriptions` — Peak concurrent subscribers (max across the period, NOT a sum).
-  - `new_trials` — Free trial starts, summed across the period.
-  - `revenue_currency` — ISO 4217 code. Null on days with no data.
+### AI Generation
 
-### ASO (App Store Optimization)
+**generate_caption** — Draft a post caption from a short brief.
+- `brief` (string, required) — What the post is about (topic, angle, key points).
+- `platform` (string) — Target platform (e.g. "tiktok", "linkedin"). Tailors length and style to the platform's norms.
+- `tone` (string) — Desired tone (e.g. "casual", "professional", "playful").
+- Returns: a ready-to-use caption. Counts toward your monthly AI usage.
 
-**get_aso_keywords_tool** — Get tracked ASO keywords with latest rankings, difficulty, popularity, and 7-day rank change.
-- `app_id` (string) — App ID, name, or bundle ID. Auto-selects if you have one app.
-- `country` (string) — 2-letter country code to filter (e.g. "us", "gb", "de").
-- Key fields:
-  - `rank` — App Store search position. Lower is better. Null means no rank data.
-  - `rank_change` — Positive = improved (e.g. moved from #10 to #5 = +5). Negative = worsened.
-  - `difficulty` — How hard to rank (0-100).
-  - `popularity` — Search volume indicator (0-100).
+**generate_hashtags** — Generate relevant hashtags for a topic.
+- `topic` (string, required) — The subject to find hashtags for.
+- `count` (int) — How many hashtags to return.
+- `platform` (string) — Target platform for platform-appropriate tags.
+- Returns: a list of hashtags. Counts toward your monthly AI usage.
 
-**get_keyword_history** — Get full ranking history for a specific tracked keyword over time.
-- `keyword_id` (string, required) — Keyword ID from get_aso_keywords_tool.
-- `app_id` (string) — App ID, name, or bundle ID. Auto-selects if you have one app.
-- Returns daily snapshots ordered chronologically (oldest first).
-- Null rank means data was unavailable that day, not that the app was unranked.
+**generate_post_ideas** — Brainstorm distinct post ideas for a theme.
+- `topic` (string, required) — The theme or product to generate ideas for.
+- `count` (int) — How many ideas to return.
+- Returns: a list of distinct ideas, each with a hook, an angle, and a suggested caption. Counts toward your monthly AI usage.
 
-**get_aso_competitors_tool** — Get tracked competitor apps with App Store metadata.
-- `app_id` (string) — App ID, name, or bundle ID. Auto-selects if you have one app.
-- Returns: competitor name, rating, rating_count, category, icon URL, last_refreshed_at.
+**generate_title** — Write a short, viral hook or title.
+- `topic` (string, required) — What the content is about.
+- `platform` (string) — Target platform (e.g. "youtube" for a video title).
+- Returns: a short hook/title. Counts toward your monthly AI usage.
 
-**search_keyword** — Search for an ASO keyword and get cached analysis.
-- `keyword` (string, required) — Keyword or phrase to search.
-- `country` (string, default "us") — 2-letter country code.
-- `app_id` (string) — App ID, name, or bundle ID. Auto-selects if you have one app.
-- Cached lookup only (24h cache). If no cached data exists, search via the MakePost web UI first, then retry here.
+**generate_image** — Generate an AI image (Google Imagen) ready to post.
+- `prompt` (string, required) — Description of the image to create.
+- `aspect_ratio` (string) — Image shape: "1:1" (default), "3:4", "4:3", "9:16", or "16:9".
+- `app_id` (string) — Project to link the resulting media to.
+- Returns: a `media_id` plus the image URL — use the media_id directly with publish_content or schedule_post. Counts toward your monthly AI usage.
 
-**get_aso_score_tool** — Check the ASO metadata optimization score for an app.
-- `app_id` (string) — App ID, name, or bundle ID. Auto-selects if you have one app.
-- Returns: score (0-100 based on title, subtitle, keywords, description completeness), scored_at.
+**get_usage** — Check your AI usage and plan limits.
+- Returns: this month's AI generation usage (captions, hashtags, ideas, titles, images) and your plan's limits.
 
-### Subscription Pricing
+### Platform Info
 
-**list_subscriptions** — List Apple App Store subscription products for an app.
-- `app_id` (string) — App ID, name, or bundle ID. Auto-selects if you have one app.
-- CRITICAL: Two ID fields exist:
-  - `id` — Internal database ID. Do NOT use with other subscription tools.
-  - `apple_subscription_id` — Apple's numeric ID (e.g. "6757696252"). Use THIS for all pricing tools.
-- Returns: name, duration (ISO 8601, e.g. "P1M" = 1 month), state.
+**get_platform_rules** — Get per-platform posting rules so you post correctly.
+- `platform` (string) — Optional. A single platform to look up; omit to return rules for all 9.
+- Returns: caption character limits, supported media types (video/image/carousel/text), and carousel min/max sizes for each platform.
+- Use this before drafting captions or building carousels so content fits each platform's constraints.
 
-**get_subscription_prices** — Get subscription prices by territory with currency and pending changes.
-- `subscription_id` (string, required) — Apple's numeric subscription ID from list_subscriptions (the apple_subscription_id field).
-- `territory_code` (string) — ISO 3166-1 alpha-3 (e.g. "USA", "GBR", "JPN").
-- `app_id` (string) — App ID, name, or bundle ID. Auto-selects if you have one app.
-- Key fields: current_price, current_price_usd, pending_price (null if none), pending_source ("manual" or "automatic").
+### Webhooks
 
-**stage_price_change_tool** — Stage a pending price change for a subscription in a specific territory.
-- `subscription_id` (string, required) — Apple's numeric subscription ID.
-- `territory_code` (string, required) — Territory code (e.g. "USA", "GBR").
-- `new_price` (float, required) — New price in the territory's local currency.
-- `app_id` (string) — App ID, name, or bundle ID. Auto-selects if you have one app.
-- This only stages locally — does NOT push to Apple. Use push_price_changes to submit.
-- If new_price matches current price (within $0.01), the pending change is removed instead.
+**list_webhooks_tool** — List your registered webhook endpoints.
+- Returns: each endpoint's ID, URL, subscribed events, and the full list of available events.
 
-**push_price_changes** — Push all staged price changes to App Store Connect.
-- `subscription_id` (string, required) — Apple's numeric subscription ID.
-- `app_id` (string) — App ID, name, or bundle ID. Auto-selects if you have one app.
-- Asynchronous — returns immediately with status "started". Only one push per subscription at a time.
-- WARNING: Changes may take effect immediately once pushed. Review with get_subscription_prices first.
-- Requires App Store Connect credentials to be configured.
+**create_webhook_tool** — Register a webhook endpoint to receive signed events.
+- `url` (string, required) — HTTPS endpoint MakePost will POST to.
+- `events` (list of strings) — Events to subscribe to (e.g. "post.published", "post.failed"). Omit to receive all events.
+- Returns: the endpoint ID and a signing `secret` — shown only once. Each delivery includes an `X-MakePost-Signature` header (HMAC-SHA256 of the body using your secret); verify it to confirm authenticity.
+- Wire MakePost into n8n, Zapier, Make, or your own service.
+
+**delete_webhook_tool** — Remove a webhook endpoint.
+- `webhook_id` (string, required) — Endpoint ID to delete.
+
+### Recurring Scheduling
+
+Set-and-forget autopilot: create a posting plan with recurring weekday + time slots, add media to its queue, and each slot automatically publishes the next queued item.
+
+**create_posting_plan_tool** — Create a recurring posting plan.
+- `name` (string, required) — Plan name.
+- `account_ids` (list of strings, required) — Accounts the plan publishes to.
+- `slots` (list, required) — Recurring slots, each with a weekday and a time (e.g. Monday 09:00, Thursday 17:30).
+- `timezone` (string) — IANA timezone the slots are interpreted in (e.g. "America/New_York").
+- Returns: the plan ID. Each slot auto-publishes the next item from the plan's queue.
+
+**list_posting_plans_tool** — List your recurring posting plans.
+- Returns: each plan's ID, name, accounts, slots, timezone, and active/paused state.
+
+**add_to_posting_queue** — Add uploaded media to a plan's queue.
+- `plan_id` (string, required) — The posting plan.
+- `media_id` (string, required) — Pre-uploaded media (from upload_image, upload_video, generate_image, or bulk_upload_media).
+- `caption` (string) — Caption to use when this item publishes.
+- Items publish in queue order, one per upcoming slot.
+
+**list_posting_queue** — View the queued items for a plan.
+- `plan_id` (string, required) — The posting plan.
+- Returns: queued items in publish order.
+
+**pause_posting_plan** — Pause a plan so its slots stop auto-publishing.
+- `plan_id` (string, required) — The plan to pause.
+
+**resume_posting_plan** — Resume a paused plan.
+- `plan_id` (string, required) — The plan to resume.
+
+**delete_posting_plan_tool** — Delete a posting plan.
+- `plan_id` (string, required) — The plan to delete.
 
 ## Example Workflows
 
@@ -269,9 +285,9 @@ API docs: `https://api.makepost.com`
 - "Post to all accounts in my MakePost group" — Uses list_account_groups to find the group, then publishes with group_ids.
 - "Upload https://example.com/my-video.mp4 and schedule it to all my accounts tomorrow at noon" — Downloads the video, runs moderation, and schedules across all connected platforms.
 - "Post my latest video to TikTok and Instagram tomorrow at 3pm" — Finds your most recent video, picks the right accounts, and schedules it.
-- "How are my app downloads this week compared to last week?" — Pulls analytics for all your apps and compares the two periods.
-- "What keywords did my app gain or lose rankings on?" — Checks ASO keyword history and highlights changes.
-- "Lower my Pro subscription price to $4.99 in Brazil and push it live" — Stages the price change and pushes to App Store Connect after your confirmation.
+- "How did my last post do?" — Uses get_publishing_results to report status and engagement stats (views, likes, comments, shares).
+- "Show me my drafts and publish the one about the launch to LinkedIn" — Lists drafts, then publishes the right one to the selected account.
+- "List my projects and schedule this video under the Acme client" — Lists projects, then publishes with the project ID passed as app_id.
 
 ### Bulk Operations
 
@@ -280,20 +296,49 @@ API docs: `https://api.makepost.com`
 - "Cancel all my scheduled posts for next week" — Lists posts filtered by status "scheduled", identifies the ones in the target date range, then calls bulk_cancel_posts with their IDs.
 - "Move all my Friday posts to Saturday at the same times" — Lists scheduled posts, filters for Friday, then calls bulk_reschedule_posts with each post shifted by one day.
 
+### AI Generation
+
+- "Write me a punchy TikTok caption for our new feature launch" — Uses generate_caption with the brief and platform "tiktok", then you can publish it directly.
+- "Give me 10 hashtags for a fitness reel" — Uses generate_hashtags with the topic and count.
+- "Brainstorm 5 post ideas about productivity, each with a hook and caption" — Uses generate_post_ideas and returns distinct angles ready to schedule.
+- "Make an image of a sunset over mountains and post it to Instagram" — Uses generate_image to create the image (returns a media_id), then publish_content with that media_id.
+- "How much of my AI quota have I used this month?" — Uses get_usage to report generation counts against your plan limits.
+
+### Platform Rules
+
+- "What's the caption limit on X vs LinkedIn?" — Uses get_platform_rules to report per-platform caption limits.
+- "Build a carousel — how many images can I post on Instagram?" — Uses get_platform_rules to check carousel min/max sizes before assembling the carousel.
+
+### Webhooks
+
+- "Notify my n8n workflow whenever a post publishes" — Uses create_webhook_tool with the n8n URL and the "post.published" event, then returns the signing secret to configure signature verification.
+- "Show me my webhook endpoints" — Uses list_webhooks_tool to list registered endpoints and the available events.
+
+### Recurring Scheduling (Autopilot)
+
+- "Set up a plan that posts to TikTok every Mon/Wed/Fri at 9am, then queue these 6 videos" — Uses create_posting_plan_tool with three slots, then add_to_posting_queue for each video. Each slot auto-publishes the next queued item.
+- "Pause my autopilot plan while I'm on vacation" — Uses pause_posting_plan, then resume_posting_plan when you're back.
+- "What's left in my posting queue?" — Uses list_posting_queue to show upcoming items in publish order.
+
 ## Tips
 
-- **App auto-selection**: If you have only one app, you can omit app_id from any tool — it auto-selects.
-- **Flexible app lookup**: Pass an app name (case-insensitive) or bundle ID instead of the internal ID.
+- **Project auto-selection**: If you have only one project, you can omit app_id from any tool — it auto-selects.
+- **Flexible project lookup**: Pass a project name (case-insensitive) instead of the internal ID.
 - **Timezone handling**: schedule_post and reschedule default to your account timezone if you don't specify one.
 - **Caption fallbacks**: If no caption is provided, publishing uses the video's script, then its title.
-- **Revenue fields**: Use net_revenue for earnings questions (after Apple's cut). Use gross_revenue only when specifically asked.
-- **Subscription IDs**: Always use apple_subscription_id (not id) when calling pricing tools.
-- **Price push safety**: Always confirm with the user before calling push_price_changes — changes can take effect immediately.
+- **Per-platform captions**: Use the captions dict in publish_content to write a different caption per platform.
+- **Drafts**: Save content with is_draft=True, then publish or schedule it later with publish_draft_tool.
 - Post to multiple platforms simultaneously by including multiple account IDs in schedule_post.
 
 ## REST API
 
 The MCP tools above also have equivalent REST API endpoints at `https://api.makepost.com/v1/`. Full interactive docs at `https://api.makepost.com`.
+
+**New endpoint groups:**
+- AI generation: `POST /v1/ai/caption`, `POST /v1/ai/hashtags`, `POST /v1/ai/ideas`, `POST /v1/ai/title`, `POST /v1/ai/image`, and `GET /v1/ai/usage`.
+- Platform rules: `GET /v1/platforms` — per-platform caption limits, supported media, and carousel sizes.
+- Webhooks: `GET /v1/webhooks`, `POST /v1/webhooks`, `DELETE /v1/webhooks/{id}`, and `POST /v1/webhooks/{id}/test`. Deliveries are signed with an `X-MakePost-Signature` (HMAC-SHA256) header.
+- Recurring schedules: `GET /v1/schedules`, `POST /v1/schedules`, `DELETE /v1/schedules/{id}`, `POST /v1/schedules/{id}/pause`, `POST /v1/schedules/{id}/resume`, and `POST /v1/schedules/{id}/queue`.
 
 **Direct file upload** (REST API only — not available via MCP):
 ```

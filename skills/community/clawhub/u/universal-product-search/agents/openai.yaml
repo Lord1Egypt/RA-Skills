@@ -1,0 +1,4 @@
+interface:
+  display_name: "Universal Product Search"
+  short_description: "Search products across global merchants"
+  default_prompt: "Search for products matching my requirements and compare the best options across merchants."

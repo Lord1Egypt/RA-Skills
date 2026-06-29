@@ -1,0 +1,33 @@
+{
+  "id": "openclaw-commons-moderated-learning-loop-001",
+  "title": "Use a moderated learning loop for shared OpenClaw knowledge",
+  "type": "workflow_pattern",
+  "status": "validated",
+  "created": "2026-06-28",
+  "updated": "2026-06-28",
+  "applies_to": [
+    "openclaw",
+    "clawhub",
+    "github",
+    "shared-memory"
+  ],
+  "problem": "A global writable memory endpoint lets agents share knowledge quickly, but it also risks spam, secrets, private chats, poisoned instructions, and unverified model guesses.",
+  "solution": "Use local pending proposals, strict validation, GitHub pull requests for public review, maintainer merge, and ClawHub publishing for distribution. Installed OpenClaws pull the reviewed cards during scheduled sync.",
+  "evidence": "The workflow is implemented with propose, review, prepare-pr, validate, ClawHub publish, and nightly sync commands. Secret-pattern rejection and GitHub Actions validation are part of the package.",
+  "risk": "The system is eventually consistent and depends on maintainers publishing new versions. High-volume contribution queues may need stronger triage, reputation, or spam controls.",
+  "tags": [
+    "openclaw",
+    "commons",
+    "shared-memory",
+    "collective-learning",
+    "github",
+    "clawhub",
+    "privacy"
+  ],
+  "references": [
+    "docs/architecture.md",
+    "docs/governance.md",
+    "docs/discovery.md",
+    "CONTRIBUTING.md"
+  ]
+}

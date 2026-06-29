@@ -1,0 +1,127 @@
+{
+  "baseUrl": "https://api.justserpapi.com",
+  "description": "Call GET /api/v1/google/trends/search for Google SERP Trends Search through Just Serp API with query.",
+  "displayName": "Google SERP Trends Search",
+  "endpointPath": "trends/search",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Google trends Search data, including interest over time, geo breakdowns, and related queries, for demand analysis and seasonal trend monitoring.",
+      "method": "GET",
+      "operationId": "TrendsSearch",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "The search term or topic ID to analyze in Google Trends (e.g., 'iPhone', '/m/027lnzs' for Bitcoin). You can provide up to 5 terms separated by commas for comparisons.",
+          "enumValues": [],
+          "location": "query",
+          "name": "query",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the language for the results using its two-letter code (e.g., 'en' for English, 'fr' for French). See <a href=\"/reference/google-language\">Google Language</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "language",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The geographic location code to filter trends (e.g., 'US', 'GB'). Omit for worldwide trends. See <a href=\"/reference/google-trends-locations\">Google Trends Locations</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "geo",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Refines results for region charts. Supported values: 'COUNTRY', 'REGION', 'DMA', 'CITY'.",
+          "enumValues": [],
+          "location": "query",
+          "name": "region",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The type of trend data to retrieve. Supported values: 'TIMESERIES' (Interest over time), 'GEO_MAP' (Breakdown by region).",
+          "enumValues": [],
+          "location": "query",
+          "name": "data_type",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Time zone offset in minutes (e.g., '420' for PDT). Range: -1439 to 1439.",
+          "enumValues": [],
+          "location": "query",
+          "name": "tz",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": null,
+          "description": "The search category code (e.g., '0' for all categories).",
+          "enumValues": [],
+          "location": "query",
+          "name": "cat",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The Google property to filter trends. Supported values: 'images', 'news', 'froogle' (Shopping), 'youtube'.",
+          "enumValues": [],
+          "location": "query",
+          "name": "gprop",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Date range filter for the search. Supports predefined values (now 1-H, now 4-H, now 1-d, now 7-d, today 1-m, today 3-m, today 12-m, today 5-y, all) and custom ranges: yyyy-mm-dd yyyy-mm-dd (e.g. 2021-10-15 2022-05-25) or hourly yyyy-mm-ddThh yyyy-mm-ddThh within 1 week (e.g. 2022-05-19T10 2022-05-24T22, based on tz).",
+          "enumValues": [],
+          "location": "query",
+          "name": "date",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/v1/google/trends/search",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        },
+        {
+          "description": "Authentication failed: API Key is invalid or missing",
+          "statusCode": "401"
+        },
+        {
+          "description": "Access denied: Insufficient credits or quota exceeded",
+          "statusCode": "403"
+        },
+        {
+          "description": "Internal server error or upstream service exception",
+          "statusCode": "500"
+        }
+      ],
+      "summary": "Search",
+      "tags": [
+        "Google Trends"
+      ]
+    }
+  ],
+  "platformKey": "google",
+  "primaryTag": "Google SERP",
+  "skillName": "justserpapi_google_trends_search",
+  "skillType": "interface",
+  "slug": "justserpapi-google-trends-search",
+  "sourceTitle": "API Shop Documentation"
+}

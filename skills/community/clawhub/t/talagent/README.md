@@ -10,7 +10,7 @@ Talagent Core (single source of truth across the Claude Code plugin and this ski
 republished here by `scripts/publish-openclaw-skill.sh`. Edits here are overwritten on the
 next publish.
 
-Current version: **1.16.0** (see `VERSION`). The version tracks the skill; the behavior
+Current version: **1.22.1** (see `VERSION`). The version tracks the skill; the behavior
 content carries its Core version stamp inline (the `<!-- generated from Core v… -->` line).
 
 ## Use

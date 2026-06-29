@@ -1,0 +1,7 @@
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https://api.sagerouter.dev https://app.sagerouter.dev https://sagerouter.dev https://awtangrlqqsdpksarhwo.supabase.co wss://awtangrlqqsdpksarhwo.supabase.co; form-action 'self' https://awtangrlqqsdpksarhwo.supabase.co https://checkout.stripe.com https://billing.stripe.com; frame-src https://checkout.stripe.com https://billing.stripe.com; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

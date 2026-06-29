@@ -1,0 +1,35 @@
+{
+  "name": "xiaoqianran-duck",
+  "version": "1.0.0",
+  "description": "Local analytical data tool powered by **DuckDB**.",
+  "main": "index.js",
+  "directories": {
+    "example": "examples",
+    "lib": "lib"
+  },
+  "bin": {
+    "xiaoqianran-duck": "./bin/duck.js",
+    "duck": "./bin/duck.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cli": "node bin/duck.js",
+    "demo": "node examples/demo-local-import.js",
+    "hf-demo": "node examples/hf-import.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaoqianran/xiaoqianran-duck.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/xiaoqianran/xiaoqianran-duck/issues"
+  },
+  "homepage": "https://github.com/xiaoqianran/xiaoqianran-duck#readme",
+  "dependencies": {
+    "@duckdb/node-api": "^1.5.4-r.1"
+  }
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Radar Chart</title></head>
+<body style="margin:0;background:#f5f0eb;font-family:system-ui">
+<!-- Radar/Spider Chart — archviz-skills -->
+<!-- Use for: multi-dimensional comparison, skill assessment, KPI overview -->
+<!-- Env: Obsidian (iframe) or browser -->
+<canvas id="c" width="500" height="500"></canvas>
+<script>
+const labels = ["Speed", "Quality", "Cost", "Usability", "Scalability", "Design"];
+const data = [85, 72, 90, 68, 78, 92];
+const cx=250, cy=250, r=180, n=labels.length;
+const ctx = document.getElementById("c").getContext("2d");
+
+// Grid
+for(let level=1;level<=5;level++){
+  ctx.beginPath();
+  const lr=r*level/5;
+  for(let i=0;i<=n;i++){
+    const a=Math.PI*2*i/n-Math.PI/2;
+    const x=cx+lr*Math.cos(a), y=cy+lr*Math.sin(a);
+    i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+  }
+  ctx.strokeStyle="#d6d3d1"; ctx.lineWidth=1; ctx.stroke();
+}
+
+// Axes
+for(let i=0;i<n;i++){
+  const a=Math.PI*2*i/n-Math_PI/2;
+  ctx.beginPath(); ctx.moveTo(cx,cy);
+  ctx.lineTo(cx+r*Math.cos(a),cy+r*Math.sin(a));
+  ctx.strokeStyle="#a8a29e"; ctx.lineWidth=1; ctx.stroke();
+  // Labels
+  const lx=cx+(r+20)*Math.cos(a), ly=cy+(r+20)*Math.sin(a);
+  ctx.fillStyle="#44403c"; ctx.font="13px system-ui"; ctx.textAlign="center";
+  ctx.fillText(labels[i],lx,ly+4);
+}
+
+// Data polygon
+ctx.beginPath();
+for(let i=0;i<=n;i++){
+  const a=Math.PI*2*(i%n)/n-Math.PI/2;
+  const d=r*data[i%n]/100;
+  const x=cx+d*Math.cos(a), y=cy+d*Math.sin(a);
+  i===0?ctx.moveTo(x,y):ctx.lineTo(x,y);
+}
+ctx.fillStyle="rgba(0,47,167,0.15)"; ctx.fill();
+ctx.strokeStyle="#002FA7"; ctx.lineWidth=2; ctx.stroke();
+
+// Data points
+for(let i=0;i<n;i++){
+  const a=Math.PI*2*i/n-Math.PI/2;
+  const d=r*data[i]/100;
+  ctx.beginPath();
+  ctx.arc(cx+d*Math.cos(a),cy+d*Math.sin(a),4,0,Math.PI*2);
+  ctx.fillStyle="#002FA7"; ctx.fill();
+}
+</script>
+</body></html>

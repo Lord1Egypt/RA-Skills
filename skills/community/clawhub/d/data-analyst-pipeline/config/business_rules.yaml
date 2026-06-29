@@ -1,0 +1,49 @@
+# Business Rules Configuration
+# Define domain-specific validation rules for data quality auditing (Layer 3).
+# Remove or customize for your specific dataset.
+#
+# Usage: python run_analysis.py data.csv --rules config/business_rules.yaml
+
+# Example: Loan application business rules
+loan_application:
+  age:
+    min: 18
+    max: 70
+    unit: "years"
+    description: "Applicant age must be 18-70"
+  loan_amount:
+    min: 1000
+    max: 5000000
+    unit: "CNY"
+    description: "Loan amount range 1K-5M CNY"
+  employment_status:
+    allowed_values: ["employed", "self_employed", "unemployed", "retired"]
+    case_sensitive: false
+    description: "Valid employment status values"
+
+# Example: E-commerce transaction rules
+ecommerce:
+  order_amount:
+    min: 0.01
+    max: 100000
+    unit: "CNY"
+    description: "Order amount must be positive and reasonable"
+  payment_method:
+    allowed_values: ["credit_card", "debit_card", "alipay", "wechat_pay", "cash_on_delivery"]
+    case_sensitive: false
+  order_status:
+    allowed_values: ["pending", "confirmed", "shipped", "delivered", "cancelled", "returned"]
+    case_sensitive: false
+  rating:
+    min: 1
+    max: 5
+    description: "Customer rating must be 1-5"
+
+# Add your own domain rules below:
+# my_domain:
+#   column_name:
+#     min: 0
+#     max: 100
+#   column_name:
+#     allowed_values: ["value1", "value2", "value3"]
+#     case_sensitive: false

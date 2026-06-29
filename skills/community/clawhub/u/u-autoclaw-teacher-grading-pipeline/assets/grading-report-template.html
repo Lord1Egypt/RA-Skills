@@ -1,0 +1,402 @@
+﻿<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>学生试卷评估报告样张</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #edf2f7;
+      font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      color: #172033;
+    }
+    .page {
+      width: 1240px;
+      min-height: 1754px;
+      margin: 0 auto;
+      padding: 46px 56px;
+      background: #fdfefe;
+    }
+    .top {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 26px;
+      align-items: stretch;
+      margin-bottom: 24px;
+    }
+    .title-panel {
+      border: 1px solid #dbe4ef;
+      border-radius: 14px;
+      padding: 28px 30px;
+      background: linear-gradient(135deg, #ffffff 0%, #f5fbff 56%, #fff9f0 100%);
+      box-shadow: 0 18px 42px rgba(42, 62, 91, .10);
+    }
+    h1 {
+      margin: 0 0 14px;
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 22px;
+    }
+    .meta div, .score-card {
+      border: 1px solid #e2e9f1;
+      border-radius: 10px;
+      background: rgba(255,255,255,.78);
+      padding: 12px 14px;
+    }
+    .label {
+      display: block;
+      font-size: 13px;
+      color: #65748a;
+      margin-bottom: 5px;
+    }
+    .value {
+      font-size: 18px;
+      font-weight: 700;
+    }
+    .score-card {
+      background: #193b68;
+      color: white;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: 0 18px 40px rgba(25, 59, 104, .20);
+    }
+    .score {
+      font-size: 68px;
+      font-weight: 850;
+      line-height: 1;
+    }
+    .score span {
+      font-size: 24px;
+      color: #dbeafe;
+    }
+    .score-sub {
+      margin-top: 18px;
+      color: #d7e7f8;
+      line-height: 1.65;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1.18fr .82fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+    section {
+      border: 1px solid #dce5ef;
+      border-radius: 14px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 12px 32px rgba(44, 62, 80, .08);
+    }
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 18px;
+      border-bottom: 1px solid #e4ebf3;
+      background: #f7fafc;
+      font-size: 20px;
+      font-weight: 800;
+    }
+    .tag {
+      border-radius: 999px;
+      padding: 5px 10px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #24543c;
+      background: #dcfce7;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      font-size: 15px;
+    }
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #edf2f7;
+      text-align: left;
+      vertical-align: middle;
+      word-break: break-word;
+    }
+    th {
+      color: #42526b;
+      background: #fbfdff;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    tr:last-child td { border-bottom: none; }
+    .ok { color: #15803d; font-weight: 800; }
+    .bad { color: #c2410c; font-weight: 800; }
+    .warn { color: #a16207; font-weight: 800; }
+    .pill {
+      display: inline-block;
+      min-width: 58px;
+      text-align: center;
+      border-radius: 999px;
+      padding: 4px 8px;
+      font-size: 13px;
+      font-weight: 800;
+    }
+    .pill.ok { background: #dcfce7; }
+    .pill.bad { background: #ffedd5; }
+    .pill.warn { background: #fef9c3; }
+    .bars {
+      padding: 18px;
+      display: grid;
+      gap: 16px;
+    }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 90px 1fr 50px;
+      gap: 12px;
+      align-items: center;
+      font-size: 15px;
+    }
+    .track {
+      height: 14px;
+      border-radius: 999px;
+      background: #e7eef6;
+      overflow: hidden;
+    }
+    .fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #3b82f6, #16a34a);
+    }
+    .fill.mid { background: linear-gradient(90deg, #f59e0b, #22c55e); }
+    .fill.low { background: linear-gradient(90deg, #fb923c, #ef4444); }
+    .note {
+      padding: 18px 20px;
+      font-size: 17px;
+      line-height: 1.85;
+      color: #334155;
+    }
+    .note strong { color: #193b68; }
+    .footer {
+      margin-top: 22px;
+      color: #64748b;
+      font-size: 13px;
+      text-align: right;
+    }
+    .mistake-shots {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding: 18px;
+      border-top: 1px solid #edf2f7;
+      background: #fbfdff;
+    }
+    .shot-card {
+      border: 1px solid #dfe8f2;
+      border-radius: 12px;
+      background: #ffffff;
+      overflow: hidden;
+      box-shadow: 0 10px 24px rgba(44, 62, 80, .07);
+    }
+    .shot-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px;
+      border-bottom: 1px solid #edf2f7;
+      font-weight: 800;
+      color: #24364f;
+      background: #f8fafc;
+    }
+    .shot-img {
+      position: relative;
+      height: 146px;
+      padding: 15px 16px;
+      background:
+        linear-gradient(#eef3f8 1px, transparent 1px) 0 0 / 100% 29px,
+        #fffdfa;
+      color: #1e293b;
+      font-family: "KaiTi", "SimSun", serif;
+      font-size: 20px;
+      line-height: 1.75;
+    }
+    .shot-img::after {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 2px solid rgba(239, 68, 68, .72);
+      border-radius: 9px;
+      pointer-events: none;
+    }
+    .mark {
+      display: inline-block;
+      color: #dc2626;
+      font-family: "Microsoft YaHei", Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+      transform: rotate(-8deg);
+    }
+    .shot-note {
+      padding: 10px 12px 12px;
+      font-size: 14px;
+      line-height: 1.55;
+      color: #52637a;
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="top">
+      <div class="title-panel">
+        <h1>学生试卷评估报告</h1>
+        <div style="font-size:18px;color:#51627a;">三年级数学 · 第三单元测验 · 自动批改后教师复核版</div>
+        <div class="meta">
+          <div><span class="label">学生</span><span class="value">张小明</span></div>
+          <div><span class="label">学号</span><span class="value">20260101</span></div>
+          <div><span class="label">班级</span><span class="value">三年级 2 班</span></div>
+          <div><span class="label">任课老师</span><span class="value">王老师</span></div>
+          <div><span class="label">考试日期</span><span class="value">2026-06-10</span></div>
+          <div><span class="label">审核状态</span><span class="value">异常项已复核</span></div>
+        </div>
+      </div>
+      <div class="score-card">
+        <span class="label" style="color:#bfdbfe;">总分</span>
+        <div class="score">86<span>/100</span></div>
+        <div class="score-sub">班级平均：81.5<br>正确率：86%<br>本次重点：单位换算、两位数乘法</div>
+      </div>
+    </div>
+
+    <div class="grid">
+      <section>
+        <div class="section-title">逐题结果表 <span class="tag">表格化明细</span></div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width:80px;">题号</th>
+              <th style="width:90px;">题型</th>
+              <th style="width:80px;">得分</th>
+              <th style="width:90px;">结果</th>
+              <th>学生答案</th>
+              <th>标准答案</th>
+              <th>知识点</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>选择</td><td>2/2</td><td><span class="pill ok">正确</span></td><td>B</td><td>B</td><td>乘法意义</td></tr>
+            <tr><td>2</td><td>填空</td><td>2/2</td><td><span class="pill ok">正确</span></td><td>36</td><td>36</td><td>口算</td></tr>
+            <tr><td>3</td><td>判断</td><td>2/2</td><td><span class="pill ok">正确</span></td><td>√</td><td>√</td><td>概念辨析</td></tr>
+            <tr><td>4</td><td>计算</td><td>4/6</td><td><span class="pill warn">部分</span></td><td>428</td><td>432</td><td>两位数乘法</td></tr>
+            <tr><td>5</td><td>应用</td><td>6/8</td><td><span class="pill warn">部分</span></td><td>列式正确，单位漏写</td><td>18 千克</td><td>应用题表达</td></tr>
+            <tr><td>6</td><td>填空</td><td>0/2</td><td><span class="pill bad">错误</span></td><td>300 cm</td><td>3 m</td><td>单位换算</td></tr>
+            <tr><td>7</td><td>计算</td><td>6/6</td><td><span class="pill ok">正确</span></td><td>904</td><td>904</td><td>竖式计算</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <div class="section-title">知识点掌握表 <span class="tag">彩色打印</span></div>
+        <div class="bars">
+          <div class="bar-row"><span>口算</span><div class="track"><div class="fill" style="width:94%;"></div></div><strong>94%</strong></div>
+          <div class="bar-row"><span>竖式计算</span><div class="track"><div class="fill" style="width:88%;"></div></div><strong>88%</strong></div>
+          <div class="bar-row"><span>应用题</span><div class="track"><div class="fill mid" style="width:76%;"></div></div><strong>76%</strong></div>
+          <div class="bar-row"><span>单位换算</span><div class="track"><div class="fill low" style="width:52%;"></div></div><strong>52%</strong></div>
+        </div>
+      </section>
+    </div>
+
+    <section style="margin-bottom:24px;">
+      <div class="section-title">错题分析与提升建议 <span class="tag">鼓励提醒式评语</span></div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:90px;">题号</th>
+            <th style="width:90px;">失分</th>
+            <th>可能原因</th>
+            <th>复习建议</th>
+            <th style="width:160px;">建议练习</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>4</td><td class="warn">2 分</td>
+            <td>方法掌握较好，最后一步计算出现小偏差。</td>
+            <td>完成竖式后用估算或逆运算检查一次。</td>
+            <td>两位数乘法 5 题</td>
+          </tr>
+          <tr>
+            <td>5</td><td class="warn">2 分</td>
+            <td>列式方向正确，但答案单位表达不完整。</td>
+            <td>应用题写完答案后，提醒自己补上单位。</td>
+            <td>带单位应用题 3 题</td>
+          </tr>
+          <tr>
+            <td>6</td><td class="bad">2 分</td>
+            <td>米和厘米的换算关系还需要再巩固。</td>
+            <td>先背熟 1 米 = 100 厘米，再做换算。</td>
+            <td>单位换算 8 题</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="mistake-shots">
+        <div class="shot-card">
+          <div class="shot-head"><span>第 4 题截图</span><span class="bad">-2</span></div>
+          <div class="shot-img">
+            24 × 18 = 428 <span class="mark">×</span><br>
+            正确结果：432
+          </div>
+          <div class="shot-note">截图来源：原卷第 1 页计算题区域。系统保留红框裁剪图，方便老师复核。</div>
+        </div>
+        <div class="shot-card">
+          <div class="shot-head"><span>第 5 题截图</span><span class="warn">-2</span></div>
+          <div class="shot-img">
+            答：18 <span class="mark">单位?</span><br>
+            应写：18 千克
+          </div>
+          <div class="shot-note">问题集中在答案表达，列式方向正确，报告建议以提醒式评语呈现。</div>
+        </div>
+        <div class="shot-card">
+          <div class="shot-head"><span>第 6 题截图</span><span class="bad">-2</span></div>
+          <div class="shot-img">
+            3 m = 300 cm <span class="mark">题意读反</span><br>
+            300 cm = 3 m
+          </div>
+          <div class="shot-note">知识点：米和厘米换算。后续可自动生成同类专项练习。</div>
+        </div>
+      </div>
+      <div class="note">
+        <strong>老师式评语：</strong>这次基础计算完成得很稳，说明你平时练习是有效果的。接下来重点把“单位换算”和“答案表达”再细一点，做题最后多留十秒检查单位和结果，你的分数还有明显提升空间。
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">班级题目统计预览 <span class="tag">汇总表</span></div>
+      <table>
+        <thead>
+          <tr>
+            <th>题号</th>
+            <th>满分</th>
+            <th>正确人数</th>
+            <th>错误人数</th>
+            <th>正确率</th>
+            <th>主要错误类型</th>
+            <th>讲评建议</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>4</td><td>6</td><td>31</td><td>9</td><td>77.5%</td><td>乘法进位遗漏</td><td>课堂演示一步检查法</td></tr>
+          <tr><td>5</td><td>8</td><td>28</td><td>12</td><td>70.0%</td><td>单位漏写</td><td>强调完整答句格式</td></tr>
+          <tr><td>6</td><td>2</td><td>20</td><td>20</td><td>50.0%</td><td>单位换算混淆</td><td>安排 5 分钟专项练习</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="footer">HermesDesktop 教师批改流水线样张 · 数据为演示示例</div>
+  </main>
+</body>
+</html>
+

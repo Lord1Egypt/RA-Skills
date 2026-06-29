@@ -1,5 +1,5 @@
 ## Description: <br>
-Create comprehensive pre-launch, launch day, and post-launch checklists for new TikTok Shop products to avoid costly missed steps. <br>
+Create comprehensive pre-launch, launch day, and post-launch checklists for new TikTok Shop products to avoid costly missed steps during the critical first 72 hours. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,31 +11,33 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External TikTok Shop sellers, ecommerce brand teams, product managers, and seller operations leads use this skill to generate phase-by-phase launch checklists for new product SKUs, including owner roles, deadline offsets, pass/fail criteria, and post-launch monitoring steps. <br>
+External TikTok Shop sellers, operators, and brand teams use this skill to turn product-launch context into a phase-by-phase launch runbook with readiness checks, owners, deadlines, monitoring thresholds, and go/no-go blockers. <br>
 
 ### Deployment Geography for Use: <br>
-United States (US), United Kingdom (UK), and Southeast Asia (SEA) TikTok Shop contexts <br>
+Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Checklist items may be outdated or incomplete if TikTok Shop policies or category requirements have changed. <br>
-Mitigation: Verify launch requirements against current TikTok Shop Seller Center guidance before using the checklist for a launch. <br>
-Risk: Category-specific legal, regulatory, or advertising requirements may vary by product type and region. <br>
-Mitigation: Have responsible seller operations, compliance, or legal reviewers confirm claims, certifications, restricted product status, and advertising requirements before publication. <br>
-Risk: The skill does not connect to TikTok Shop APIs, so listing status, inventory, pricing, and promotion readiness are not automatically verified. <br>
-Mitigation: Treat checklist completion as manual evidence and confirm launch-blocking items directly in the relevant seller, inventory, ads, and promotion systems. <br>
+Risk: Users may treat TikTok Shop compliance notes as legal advice or as a substitute for current marketplace policy review. <br>
+Mitigation: Use the compliance section as operational launch guidance and confirm claims, restricted terms, certificates, category rules, and promo eligibility against the current TikTok Shop policy center for the target region. <br>
+Risk: Users may share unnecessary sensitive account credentials while providing launch context. <br>
+Mitigation: Provide only product, launch timing, inventory, fulfillment, pricing, owner, and monitoring details needed to build the checklist; do not include account credentials or unrelated sensitive data. <br>
 
 
 ## Reference(s): <br>
+- [Output Template](references/output-template.md) <br>
+- [Launch Phases Guide](references/launch-phases-guide.md) <br>
+- [TikTok Shop Compliance Quick Guide](references/tiktok-shop-compliance.md) <br>
+- [Launch Readiness Checklist](assets/launch-readiness-checklist.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown checklist with pre-launch, launch day, and post-launch sections] <br>
+**Output Type(s):** [text, markdown, guidance] <br>
+**Output Format:** [Markdown checklist and launch runbook with tables, blockers, owners, deadlines, monitoring thresholds, and a readiness verdict.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes task statements, responsible roles, deadline offsets, status criteria, notes, and critical path flags for copy into project management tools or spreadsheets.] <br>
+**Other Properties Related to Output:** [Generated from user-provided launch context; no executable files, shell commands, API calls, or hidden data access are part of the skill.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+1.1.0 (source: server-resolved release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

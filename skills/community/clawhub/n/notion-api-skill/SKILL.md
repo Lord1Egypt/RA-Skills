@@ -64,7 +64,7 @@ Notion-Version: 2025-09-03
 
 **NPM:**
 ```bash
-npm install -g @maton-ai/cli
+npm install -g @maton/cli
 ```
 
 **Homebrew:**

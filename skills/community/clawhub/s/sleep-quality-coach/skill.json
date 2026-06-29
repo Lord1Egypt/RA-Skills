@@ -1,0 +1,21 @@
+{
+  "name": "Sleep Quality Coach",
+  "slug": "sleep-quality-coach",
+  "description": "Personalized sleep improvement coach using CBT-I techniques, chronotype assessment, and progressive 7-day plans to help you sleep better naturally.",
+  "tags": ["sleep", "insomnia", "cbt-i", "chronotype", "sleep-hygiene", "wellness", "health", "behavior-change"],
+  "license": "MIT-0",
+  "version": "1.0.0",
+  "workflowSteps": [
+    "Sleep Profile Collection",
+    "Sleep Quality Assessment",
+    "Problem Diagnosis & Typing",
+    "Personalized Improvement Plan",
+    "Bedtime Ritual Design",
+    "Daytime Behavior Guidance",
+    "Sleep Aid Recommendations",
+    "Special Circumstance Handling",
+    "7-Day Progressive Plan",
+    "Summary & Follow-up"
+  ],
+  "firstSuccessPath": "Describe your sleep issue in natural language → Answer 3-5 questions → Receive sleep quality assessment (PSQI + chronotype + diagnosis) → Get personalized improvement plan with CBT-I techniques → Choose bedtime ritual and start 7-day progressive plan"
+}

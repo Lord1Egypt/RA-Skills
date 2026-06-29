@@ -11,29 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and architecture teams use this skill to evaluate CQRS and Event Sourcing for systems that need separate read/write models, durable event history, audit trails, and projection rebuilds. <br>
+Developers and architects use this skill to decide when CQRS and Event Sourcing fit systems with complex domain logic, separate read/write workloads, durable audit trails, projections, and event replay needs. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may activate in broad architecture or scalability conversations where CQRS and Event Sourcing are not a good fit. <br>
-Mitigation: Check the problem against the skill's stated when-to-use and when-not-to-use criteria before applying its recommendations. <br>
+Risk: CQRS and Event Sourcing can add operational complexity when applied to simple CRUD or small systems. <br>
+Mitigation: Use the skill's fit criteria before adoption and avoid these patterns when the system does not need complex domain logic, separate scaling, or a full audit trail. <br>
+Risk: Eventual consistency can make user-visible state lag behind accepted commands. <br>
+Mitigation: Define read-model update expectations and provide immediate command-side feedback where user experience depends on timely confirmation. <br>
+Risk: Event schema changes can break projections or consumers. <br>
+Mitigation: Document schema versioning, use validation gates, and plan migration or replay tooling before production use. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-archetypes-architecture-paradigm-cqrs-es) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-cqrs-es) <br>
+- [Publisher profile](https://clawhub.ai/user/athola) <br>
 - [OpenClaw homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown architecture guidance] <br>
+**Output Type(s):** [guidance, markdown, configuration] <br>
+**Output Format:** [Markdown architecture guidance with adoption steps, deliverables, component vocabulary, and risk notes] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no API calls, shell commands, credential handling, or tool use were reported.] <br>
+**Other Properties Related to Output:** [Documentation-only; no tools, credentials, API keys, or actions are requested.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release evidence; artifact frontmatter reports 1.9.8) <br>
+1.9.13 (source: server release evidence; artifact frontmatter lists 1.9.8) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

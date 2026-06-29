@@ -1,0 +1,28 @@
+{
+  "name": "map-planning-assistant",
+  "version": "1.0.0",
+  "description": "全能聚合地图规划助理 - 基于高德Web服务API打造的全场景、全周期LBS地图助理",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node test/test.js"
+  },
+  "keywords": [
+    "map",
+    "planner",
+    "amap",
+    "lbs",
+    "travel",
+    "food",
+    "running",
+    "dog-walking",
+    "parenting",
+    "camping"
+  ],
+  "author": "Map Planning Assistant Team",
+  "license": "MIT",
+  "dependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

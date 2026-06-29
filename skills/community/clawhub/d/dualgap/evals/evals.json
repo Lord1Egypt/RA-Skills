@@ -1,0 +1,43 @@
+{
+  "skill_name": "dualgap",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I have two folders of PDFs, one for federated learning and one for skill discovery. Build a reusable literature review packet with per-paper notes, separate LLM reviewer checks, cross-direction comparison, research gaps, and ranked improvement ideas. Use an OpenAI-compatible API from environment variables.",
+      "expected_output": "A result directory containing extracted texts, notes for both directions, review JSONL files, five synthesis Markdown files, a manifest, and an audit report.",
+      "files": [],
+      "expectations": [
+        "The workflow uses one LLM call for note generation and a separate LLM call for quality review.",
+        "The workflow uses a separate LLM call to review synthesis, cross-analysis, research-gap, and improvement-idea documents.",
+        "The output includes per-paper notes for both directions.",
+        "The output includes cross_direction_analysis.md, research_gaps.md, and improvement_ideas_ranked.md.",
+        "The output can be validated by scripts/validate_outputs.py."
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Turn my two research directions into a research-gap study, but make sure the notes are not generic summaries. I need assumptions, failure modes, concrete methods, and non-template implications for each paper.",
+      "expected_output": "The skill instructs the model to use the structured note schema and reviewer gate that rejects generic importance, vague methods, and repeated implications.",
+      "files": [],
+      "expectations": [
+        "The note schema requires background, core challenge, step-by-step method, evidence, assumptions, failure modes, and agenda-specific implications.",
+        "The reviewer checks whether importance and implications are generic.",
+        "The workflow accepts a user agenda or agenda file so final gaps and ideas can obey explicit priorities and exclusions.",
+        "The batch quality gate retries failed notes using reviewer feedback."
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I want to package this workflow as a skill and verify it. It should include scripts, not just a Markdown instruction file.",
+      "expected_output": "The skill includes executable scripts, an output validator, eval definitions, and can pass skill-creator quick validation.",
+      "files": [],
+      "expectations": [
+        "The skill directory contains SKILL.md.",
+        "The skill directory contains scripts/run_literature_workflow.py.",
+        "The skill directory contains scripts/validate_outputs.py.",
+        "The skill directory contains scripts/self_validate_skill.py.",
+        "The skill passes skill-creator/scripts/quick_validate.py."
+      ]
+    }
+  ]
+}

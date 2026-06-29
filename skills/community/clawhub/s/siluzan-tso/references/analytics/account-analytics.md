@@ -14,7 +14,7 @@
 | `google-analysis --sections campaign-types`（`types-summary`）                                                                                              | **实时**                                                                                                                                                            | ✅ 可查当天                       | 当天系列类型分布                                       |
 | `google-analysis` 其他维度（`campaigns` / `keywords` / `devices` / ...）                                                                                    | 实时（受 Google Ads API 同步延迟影响）                                                                                                                              | 可查当天，但当天可能尚未结算      | 周期分析、报告                                         |
 | `stats -m Google` / `balance-scan -m Google` / `accounts-digest -m Google` / `list-accounts -m Google` 合并消耗（TSO `account-spend-overview`，2026-05 起） | **后端自动分流**：窗口完全在历史 → `database` 模式（含余额/状态/币种/账户名 + 当期消耗）；窗口含今天 → `googleCombined` 模式（仅实时消耗，无余额/状态/币种/账户名） | ✅ 可查当天（含今天时切实时聚合） | 历史回溯、巡检、余额续航估算；含今天时也能给出实时消耗 |
-| `stats` / `balance-scan` / `accounts-digest` / `list-accounts` 的 **TikTok / Yandex / BingV2 / Kwai** 合并消耗（TSO `accountsoverview`）                    | **每日同步昨天**                                                                                                                                                    | ❌ 查今天会全为 0                 | 历史回溯、巡检、余额续航估算（口径为"截至昨天"）       |
+| `stats` / `balance-scan` / `accounts-digest` / `list-accounts` 的 **TikTok / Yandex / BingV2 / Kwai / MetaAd** 合并消耗（TSO `accountsoverview`；MetaAd OAuth 户走 `FacebookAds` 段） | **每日同步昨天**                                                                                                                                                    | ❌ 查今天会全为 0                 | 历史回溯、巡检、余额续航估算（口径为"截至昨天"）       |
 | `balance`（`GetMediaAccountInfo`）                                                                                                                          | 实时                                                                                                                                                                | —                                 | 仅当前余额，不反映消耗                                 |
 
 **选用规则**：
@@ -22,7 +22,7 @@
 - 「今天/当天/今日消耗」「实时消耗排行」 → 优先 `google-analysis(-batch) --sections overview`，`--start` / `--end` 都设为今天；
   - Google 单账户/批量取数也可直接 `stats -m Google` 把 `--end-date` 设为今天，后端会切到 `googleCombined` 模式给实时消耗（但**不会**返回余额/币种/账户名）。
 - 「最近 N 天消耗 / 周报 / 月报 / 余额续航」 → `stats` / `balance-scan` / `accounts-digest`，默认窗口截至昨天即可（Google 此时走 `database`，包含完整字段）。
-- **禁止**用 TikTok / Yandex / BingV2 / Kwai 的 `accountsoverview` 接口判断当天消耗（仍是每日同步）。
+- **禁止**用 TikTok / Yandex / BingV2 / Kwai / MetaAd 的 `accountsoverview` 接口判断当天消耗（仍是每日同步）。
 - **禁止**给非 Google 媒体的当天高消耗场景加 `--min-spend`：其预筛选来自非实时 `accountsoverview`，会把今天有消耗的账号当成 0 给筛掉。Google 媒体当 `--end-date` 设为今天时，预筛选走的是 `googleCombined` 实时数据，可以使用 `--min-spend`。
 
 ---
@@ -34,13 +34,13 @@
 > 「使用 okki 周报模板」固定话术 → **P6**，不按 `google-period-report.md` 默认 8 维追问。
 > 用户要 **Google 周期 Excel**（非 OKKI/询盘）→ **P4** + 全文 Read `report-templates/google-period-report-excel.md`（先 outline 后写 xlsx 脚本）。
 
-拉数落盘：`google-analysis … --json-out <dir>`（Google）或 `report <media>-*` 命令；目录内生成 `<section>-<accountId>.json` + `manifest-<accountId>.json`（Meta/TikTok/Bing 为 `report-manifest-<accountId>.json`）。读盘协议、交付自检与报告首行标注统一见 `core/agent-conventions.md` §三、§七。
+拉数落盘：`google-analysis … --json-out <dir>`（Google）或 `report <media>-*` 命令；目录内生成 `<section>-<accountId>.json` + `manifest-<accountId>.json`（Meta/TikTok/Bing 为 `report-manifest-<accountId>.json`）。读盘协议、交付自检与报告首行标注统一见 `references/core/agent-conventions.md` §三、§七。
 
 ---
 
 ## 报告硬约束
 
-报告中「系列状态列」不得来自账户接口（账户状态 ≠ 系列状态，见 `core/agent-conventions.md` §四）：系列是否启用**必须**来自 `ad campaigns`（含 `statusDisplay`）或 `google-analysis --sections campaigns` 落盘的系列数据。
+报告中「系列状态列」不得来自账户接口（账户状态 ≠ 系列状态，见 `references/core/agent-conventions.md` §四）：系列是否启用**必须**来自 `ad campaigns`（含 `statusDisplay`）或 `google-analysis --sections campaigns` 落盘的系列数据。
 
 ### 金额单位
 

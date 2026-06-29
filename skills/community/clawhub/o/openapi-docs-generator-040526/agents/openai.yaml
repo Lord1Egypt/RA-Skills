@@ -1,0 +1,7 @@
+interface:
+  display_name: "OpenAPI Docs Generator"
+  short_description: "Generate, repair, and validate OpenAPI or Swagger documentation for REST APIs from routes, handlers, schema..."
+  default_prompt: "Use $openapi-docs-generator to create an OpenAPI spec from these Express routes."
+
+policy:
+  allow_implicit_invocation: true

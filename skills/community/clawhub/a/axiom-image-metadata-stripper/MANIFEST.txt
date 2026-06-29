@@ -1,0 +1,9 @@
+# Manifest — axiom-image-metadata-stripper (public, clean)
+# Edition: Capafy voice (zero cluster jargon)
+# Generated: 2026-06-14T20:45:38Z
+
+14d7852767f91e0daa3bc270784b272adf8be2b02d03b6e95fb5ea8135197f57  LICENSE  (45 bytes)
+aacb5e5fd42b3bd98a8a548d7279c366a70a3627721618656449bcfc5d6257a8  README.md  (1257 bytes)
+e320b775033b835692d257cca0e20df11c82f82ff76c89b724dd30cc0aefaa09  SKILL.md  (460 bytes)
+e059e9f793d96cb8d453b97e96f61d5fbe09f53b00f4ef9f6798780507e4734d  axiom_image_metadata_stripper.py  (8540 bytes)
+c4d0e696e07600108881ac66acc068cceeead453d7bf8ff17fc1d9bc02ed3549  test_axiom_image_metadata_stripper.py  (3938 bytes)

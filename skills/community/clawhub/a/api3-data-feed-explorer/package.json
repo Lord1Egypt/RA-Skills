@@ -1,0 +1,9 @@
+{
+  "name": "api3-data-feed-explorer",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "@api3/dapi-management": "latest",
+    "ethers": "^6.16.0"
+  }
+}

@@ -1,0 +1,8 @@
+interface:
+  display_name: "HiAPI GPT Image 2"
+  short_description: "Generate GPT Image 2 images through HiAPI"
+  brand_color: "#10A37F"
+  default_prompt: "Use $hiapi-gpt-image-2 to generate a 16:9 launch poster through HiAPI."
+
+policy:
+  allow_implicit_invocation: true

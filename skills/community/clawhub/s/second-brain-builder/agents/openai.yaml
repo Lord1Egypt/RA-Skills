@@ -1,0 +1,4 @@
+interface:
+  display_name: "Second Brain Builder"
+  short_description: "把知识点研究、扩展、加 AI 注并写回第二大脑概念卡"
+  default_prompt: "Use $second-brain-builder to expand my second brain around a knowledge point."

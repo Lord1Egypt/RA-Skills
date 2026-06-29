@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/VKambulov/research-mode/schemas/state.v2.schema.json",
+  "title": "Research Mode task state v2",
+  "description": "Public contract slice for Research Mode task state. Older states may omit optional fields and should be read through lazy normalization.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["version", "id", "status", "phase", "goal", "artifacts", "working_memory", "review", "delivery"],
+  "properties": {
+    "version": {"type": "integer", "const": 2},
+    "id": {"type": "string"},
+    "title": {"type": ["string", "null"]},
+    "goal": {"type": "string"},
+    "status": {"type": "string"},
+    "phase": {"type": "string"},
+    "created_at": {"type": "string"},
+    "updated_at": {"type": "string"},
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["task_dir", "state_path", "sources_path", "findings_path", "runs_path"],
+      "properties": {
+        "task_dir": {"type": "string"},
+        "state_path": {"type": "string"},
+        "sources_path": {"type": "string"},
+        "findings_path": {"type": "string"},
+        "runs_path": {"type": "string"},
+        "final_report_path": {"type": ["string", "null"]}
+      }
+    },
+    "working_memory": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "output_contract": {
+          "type": ["object", "null"],
+          "additionalProperties": true,
+          "properties": {
+            "kind": {
+              "type": ["string", "null"],
+              "enum": [
+                null,
+                "markdown_report",
+                "pdf_report",
+                "docx_report",
+                "html_report",
+                "xlsx",
+                "csv",
+                "package",
+                "unknown"
+              ]
+            },
+            "quality_checks": {"type": "array"},
+            "search_profile": {"type": ["object", "null"]}
+          }
+        },
+        "search_profile": {"type": ["object", "null"]}
+      }
+    },
+    "review": {"type": "object", "additionalProperties": true},
+    "delivery": {"type": "object", "additionalProperties": true},
+    "delivery_intents": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "preflight": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "done": {"type": "boolean"},
+        "decision": {
+          "type": ["string", "null"],
+          "enum": ["go", "go_with_warnings", "needs_setup", "blocked", "skipped", null]
+        },
+        "iteration_index": {"type": "integer"},
+        "iteration_limit": {"type": "integer"},
+        "artifact_markdown": {"type": ["string", "null"]},
+        "warnings": {"type": "array", "items": {"type": "string"}},
+        "blockers": {"type": "array", "items": {"type": "string"}},
+        "target_phase": {"type": ["string", "null"]},
+        "completed_at": {"type": ["string", "null"]}
+      }
+    },
+    "adequacy": {"type": "object", "additionalProperties": true},
+    "finalization": {"type": "object", "additionalProperties": true},
+    "reliability": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "schema_version": {"type": "integer"},
+        "failure_counters": {"type": "object", "additionalProperties": true},
+        "last_events": {
+          "type": "array",
+          "items": {"type": "object"}
+        }
+      }
+    },
+    "queue": {"type": "object", "additionalProperties": true}
+  }
+}

@@ -1,0 +1,79 @@
+name: fortune-hub
+version: 0.3.0
+status: Public
+license: MIT
+author:
+  name: Light Tune Pty Ltd
+  url: https://github.com/tchen6500
+homepage: https://fortunehub.lighttune.com.au
+repository: https://github.com/tchen6500/fortune-hub-skill
+
+description: |
+  BaZi (八字) fortune-reading + 玄学社区 MCP gateway. Exposes 12 tools (4 fortune + 3 meta + 5 forum) over MCP JSON-RPC 2024-11-05 or universal REST. Agent authors call m1 → m2 first (live discovery + credits), then run t1→t2→t3→t4 sequentially for a full BaZi reading.
+
+tags:
+  - bazi
+  - fortune
+  - chinese-metaphysics
+  - mcp
+  - entertainment
+  - forum
+
+categories:
+  - lifestyle
+  - astrology
+  - community
+
+mcp:
+  transport: http
+  endpoint: https://fortunehub.lighttune.com.au/api/mcp
+  protocol_version: 2024-11-05
+  alt_endpoint: https://fortunehub.lighttune.com.au/api/universal/[category]/[name]
+  alt_transport: rest
+  discovery: https://fortunehub.lighttune.com.au/.well-known/mcp.json
+  auth:
+    type: api_key
+    header: x-api-key
+    alt_header: "Authorization: Bearer"
+    flavors:
+      - personal
+      - agent
+tool_count: 12
+
+tools:
+  meta:
+    - get_skill_info
+    - get_user_credits
+    - get_usage_history
+  fortune:
+    - bazi_basic_analysis
+    - bazi_pattern_analysis
+    - bigluck_year_analysis
+    - bigluck_year_fortune_eval
+  forum:
+    - forum_list_posts
+    - forum_get_post
+    - forum_create_post
+    - forum_create_comment
+    - forum_like_post
+
+dependencies:
+  skills: []
+  tools: []
+  env:
+    required: []
+    optional:
+      - FORTUNE_HUB_API_KEY
+
+client_requirements:
+  tool_call_timeout_seconds_min: 120
+  supported_transports:
+    - mcp-jsonrpc
+    - universal-rest
+
+not_for:
+  - real-time-streaming
+  - western-astrology
+  - tarot
+  - numerology
+  - high-frequency-polling

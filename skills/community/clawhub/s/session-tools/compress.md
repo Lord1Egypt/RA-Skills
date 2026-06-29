@@ -47,7 +47,7 @@ Call mcp__code-mode__register_manual tool:
 It is recommended to remove profanity from session files before compressing:
 
 ```bash
-~/.claude/skills/session/scripts/clean-profanity.py <session-file.jsonl>
+scripts/clean-profanity.py <session-file.jsonl>
 ```
 
 See [profanity-cleaner.md](./profanity-cleaner.md) for details.
@@ -61,7 +61,7 @@ Compress only that session.
 Batch compress all sessions containing `"hookEvent":"Stop"` or `"type":"saved_hook_context"`:
 
 1. **Confirm project path**: Generate project_name from current working directory (cwd)
-   - Example: `/Users/david/works/.vscode` → `-Users-david-works--vscode`
+   - Example: `/Users/es6kr/works/.vscode` → `-Users-es6kr-works--vscode`
 
 2. **Find target sessions**: Search for session files containing hook-related messages
    ```bash
@@ -92,7 +92,7 @@ cp ~/.claude/projects/<project_name>/<session_id>.jsonl ~/.claude/projects/.bak/
 
 ```
 Call mcp__claude-sessions-mcp__compress_session tool:
-- project_name: "<project folder name>"  // e.g. "-Users-david-works--vscode"
+- project_name: "<project folder name>"  // e.g. "-Users-es6kr-works--vscode"
 - session_id: "<session UUID>"
 - keep_snapshots: "first_last"  // options: "first_last", "all", "none"
 - max_tool_output_length: 5000  // optional: 0 means unlimited

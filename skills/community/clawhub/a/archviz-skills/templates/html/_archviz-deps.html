@@ -1,0 +1,36 @@
+<!--
+  archviz-skills 3D CDN Dependencies Reference
+  Copy this importmap block into any self-contained 3D HTML template.
+  Verified: 2026-06-11
+  
+  animejs v4.4.1 — API changed from v3:
+    v3: import anime from 'animejs'; anime({targets: obj, x: 1})
+    v4: import { animate } from 'animejs'; animate(obj, {x: 1})
+  
+  Use the tween() wrapper below to avoid future breakage.
+-->
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+    "animejs": "https://cdn.jsdelivr.net/npm/animejs@4.4.1/dist/bundles/anime.esm.js"
+  }
+}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { animate } from 'animejs';
+
+// animejs v4 wrapper — use this instead of calling animate() directly
+function tween(target, props) { return animate(target, props); }
+
+// Usage:
+// tween(camera.position, {x: 6, y: 4, z: 8, duration: 800, easing: 'easeInOutCubic'});
+// tween(obj.position, {z: -3, duration: 1000, delay: 200});
+// tween(obj.rotation, {y: Math.PI, duration: 600});
+
+// ⚠️ Do NOT name any function 'animate' — it shadows the animejs import
+// ⚠️ Objects at y=0 will be buried in the ground plane — offset to y=2+
+</script>

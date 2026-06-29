@@ -1,5 +1,5 @@
 ## Description: <br>
-Provides a Chinese-language strategic thinking lens based on Zhang Yiming-inspired public management, product, and long-term decision frameworks for business, startup, product, and team-management questions. <br>
+Provides a Chinese-language strategic reflection framework based on public Zhang Yiming thinking models for entrepreneurship, product direction, team management, and long-term decisions. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,31 +11,32 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and teams use this skill to frame strategy, startup, product-direction, personal-growth, and management decisions through a Chinese-language strategic analysis workflow. It is best used as a decision-framing and coaching aid, not as authoritative business, legal, financial, or personal advice. <br>
+Developers and end users can use this skill for structured brainstorming around startup decisions, strategic planning, product direction, and team-management questions. It is best suited for reflective analysis, not final decisions in regulated domains. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may present public sayings, management practices, and Zhang Yiming-inspired framing without verifiable source links. <br>
-Mitigation: Treat cited sayings and practices as prompts for analysis, verify important claims independently, and avoid relying on them as primary evidence. <br>
-Risk: The strategic framework may be applied too broadly to generic decision questions or contexts where it does not fit. <br>
-Mitigation: Use the output as a framing aid and compare it with domain-specific evidence, stakeholder input, and professional advice where appropriate. <br>
+Risk: Users may treat strategic brainstorming as qualified financial, legal, medical, or other regulated advice. <br>
+Mitigation: Use the skill for general reflection only and seek qualified advice before acting in regulated or high-stakes domains. <br>
+Risk: The skill defaults to Chinese-language guidance, which may be difficult for some users to review accurately. <br>
+Mitigation: Install it only when Chinese-language output is acceptable or request translation and review before relying on the result. <br>
+Risk: Broad strategy prompts can produce persuasive but incorrect or misleading recommendations. <br>
+Mitigation: Review outputs critically, verify claims against current sources, and treat recommendations as prompts for further analysis. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/zhangyiming-think-partner) <br>
-- [Publisher profile](https://clawhub.ai/user/gechengling) <br>
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/zhangyiming-think-partner) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Analysis, Guidance, Markdown, Text] <br>
-**Output Format:** [Chinese-language Markdown or structured text with decision prompts, framework analysis, and recommendations] <br>
+**Output Type(s):** [text, markdown, guidance] <br>
+**Output Format:** [Markdown-style advisory text with structured headings, questions, and scenario templates] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Coaching-style outputs may include quoted public sayings and broad strategic framing; users should verify source claims and adapt recommendations to their context.] <br>
+**Other Properties Related to Output:** [Chinese is the default language; English terms may be retained where useful.] <br>
 
 ## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+2.1.1 (source: server release evidence and artifact metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

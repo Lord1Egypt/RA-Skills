@@ -1,0 +1,23 @@
+name: agnes-image-generator
+version: 0.1.0
+description: Generate and edit images using Agnes Image 2.1 Flash API
+tools:
+  - name: generate_image
+    description: Generate an image from text or edit an existing image (Agnes API)
+    parameters:
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: Text description of the image to generate or edit
+        image:
+          type: string
+          description: Optional source image URL or Data URI (for img2img)
+        size:
+          type: string
+          description: Output size, e.g., "1024x1024"
+        filename:
+          type: string
+          description: Suggested filename for the output image
+      required:
+        - prompt

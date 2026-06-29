@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sage Router Status</title>
+  <meta name="description" content="Live Sage Router edge health, upstream latency, auth mode, and hosted plan metadata." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{color-scheme:dark;--bg:#080d10;--panel:#111a1c;--panel2:#0d1418;--border:rgba(182,210,218,.18);--muted:#9fb2b8;--text:#edf6f7;--brand:#74e0a3;--blue:#7eb7ff;--amber:#f3c969;--red:#ff9f9f;--shadow:0 18px 60px rgba(0,0,0,.34)}
+    *{box-sizing:border-box}
+    body{margin:0;min-width:320px;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:linear-gradient(180deg,#080d10 0%,#0f171a 46%,#080d10 100%);color:var(--text);line-height:1.5}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1180px;margin:0 auto;padding:0 24px}
+    .nav{position:sticky;top:0;z-index:10;background:rgba(8,13,16,.78);border-bottom:1px solid var(--border);backdrop-filter:blur(16px)}
+    .navInner{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 0}
+    .brand{display:inline-flex;align-items:center;gap:11px;font-weight:900}
+    .brandMark{display:grid;place-items:center;width:34px;height:34px;border:1px solid rgba(116,224,163,.38);border-radius:8px;color:#06140d;background:linear-gradient(135deg,var(--brand),var(--amber));box-shadow:0 10px 30px rgba(116,224,163,.18)}
+    .links{display:flex;align-items:center;gap:24px;color:var(--muted);font-size:14px}
+    .links a{color:var(--muted);font-weight:750}
+    .links a:hover,.links a.active{color:var(--text)}
+    main{padding:54px 0 80px}
+    .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,430px);gap:28px;align-items:end;margin-bottom:28px}
+    .eyebrow{display:block;color:var(--brand);text-transform:uppercase;letter-spacing:.14em;font-weight:900;font-size:12px;margin:0 0 14px}
+    h1{font-size:4rem;line-height:.98;margin:0 0 18px}
+    h2{font-size:2rem;line-height:1.08;margin:0 0 14px}
+    h3{margin:0 0 10px;font-size:1.05rem}
+    p{margin-top:0}
+    .muted,.status,p{color:var(--muted)}
+    .panel,.kpi,.upstream,.planCard{background:linear-gradient(180deg,rgba(17,26,28,.96),rgba(10,16,19,.96));border:1px solid var(--border);border-radius:8px;box-shadow:var(--shadow)}
+    .panel{padding:24px;margin-bottom:16px}
+    .kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:16px}
+    .kpi{padding:18px;box-shadow:none}
+    .value{font-size:1.8rem;font-weight:900;letter-spacing:0}
+    .label{color:var(--muted);font-size:.78rem;font-weight:900;text-transform:uppercase;letter-spacing:.08em}
+    .badge{display:inline-flex;align-items:center;border-radius:8px;border:1px solid rgba(126,183,255,.22);background:rgba(126,183,255,.11);color:#d6e8ff;padding:4px 8px;font-weight:900;font-size:.78rem}
+    .badge.good{border-color:rgba(116,224,163,.35);background:rgba(116,224,163,.12);color:#cff9df}
+    .badge.bad{border-color:rgba(255,159,159,.35);background:rgba(255,159,159,.10);color:#ffd7d7}
+    .badge.warn{border-color:rgba(243,201,105,.35);background:rgba(243,201,105,.12);color:#ffe7a3}
+    .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .upstreams,.plans,.controls,.evidenceGrid{display:grid;gap:10px}
+    .evidenceGrid{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .upstream,.planCard{padding:14px;box-shadow:none;background:rgba(255,255,255,.035)}
+    .row{display:flex;justify-content:space-between;gap:14px;align-items:center}
+    .host{font-weight:900;overflow-wrap:anywhere}
+    .meta{color:var(--muted);font-size:.9rem;margin-top:6px}
+    .selected{border-color:rgba(116,224,163,.64);background:rgba(116,224,163,.08)}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .btn{min-height:42px;border:0;border-radius:8px;padding:0 15px;background:linear-gradient(135deg,var(--brand),#48c97f);color:#04150d;font-weight:900;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+    .btn.secondary{background:rgba(255,255,255,.045);color:var(--text);border:1px solid var(--border)}
+    .commandText{margin:10px 0 0;padding:12px;border:1px solid rgba(182,210,218,.14);border-radius:8px;background:rgba(0,0,0,.22);color:#d9f8e6;font-size:.82rem;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+    .actionGrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+    .launchAction{padding:14px;border:1px solid var(--border);border-radius:8px;background:rgba(255,255,255,.035)}
+    code{color:#d9f8e6}
+    @media(max-width:900px){.links{display:none}.hero,.grid2,.kpis,.evidenceGrid{grid-template-columns:1fr}h1{font-size:2.8rem}}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container navInner">
+      <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+      <div class="links"><a href="/">Home</a><a href="/status" class="active">Status</a><a href="/support">Support</a><a href="https://app.sagerouter.dev/login.html?plan=pro&start=create_key&utm_source=status&utm_medium=recovery&utm_campaign=signup_to_key_recovery&auth=email" data-status-event="status_key_recovery_clicked" data-status-state="status-nav">Account</a><a href="/analytics.html">Analytics</a><a href="/login.html">Login</a></div>
+    </div>
+  </nav>
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Public edge status</span>
+        <h1>Live routing health.</h1>
+        <p>Sage Router checks each Tailnet and cloud backend, sends traffic to the lowest-latency healthy installation, and retries eligible failures on the next healthy route.</p>
+      </div>
+      <div class="panel">
+        <h2 id="headline">Checking edge...</h2>
+        <p id="summary">Loading public health and launch metadata from <code>api.sagerouter.dev</code>.</p>
+        <div class="actions"><button id="refresh" class="btn">Refresh</button><a class="btn secondary" href="https://app.sagerouter.dev/login.html?plan=pro&start=create_key&utm_source=status&utm_medium=recovery&utm_campaign=signup_to_key_recovery&auth=email" data-status-event="status_key_recovery_clicked" data-status-state="status-hero">Finish setup key</a><a class="btn secondary" href="/support">Get support</a></div>
+      </div>
+    </section>
+    <section class="kpis" aria-label="Edge status summary">
+      <div class="kpi"><div id="kpi-status" class="value">--</div><div class="label">Edge</div></div>
+      <div class="kpi"><div id="kpi-auth" class="value">--</div><div class="label">Auth mode</div></div>
+      <div class="kpi"><div id="kpi-selected" class="value">--</div><div class="label">Selected upstream</div></div>
+      <div class="kpi"><div id="kpi-latency" class="value">--</div><div class="label">Selected latency</div></div>
+    </section>
+    <section class="panel">
+      <h2>CDN-style reliability evidence</h2>
+      <p id="reliability-summary" class="muted">Loading public failover and cloud fallback posture.</p>
+      <div id="reliability-evidence" class="evidenceGrid"></div>
+    </section>
+    <section class="grid2">
+      <div class="panel">
+        <h2>Upstreams</h2>
+        <div id="upstreams" class="upstreams"></div>
+      </div>
+      <div class="panel">
+        <h2>Hosted Plans</h2>
+        <div id="plans" class="plans"></div>
+      </div>
+    </section>
+    <section class="panel">
+      <h2>Reliability Controls</h2>
+      <p id="resilience-summary" class="muted">Loading edge enforcement and failover posture.</p>
+      <div id="controls" class="controls"></div>
+    </section>
+    <section class="panel">
+      <h2>SaaS Launch Readiness</h2>
+      <p id="launch-readiness-summary" class="muted">Loading checkout, activation, managed-access, and API-client launch posture.</p>
+      <div id="launch-readiness" class="controls"></div>
+    </section>
+    <section class="panel">
+      <h2>Operator Launch Actions</h2>
+      <p id="operator-launch-summary" class="muted">Loading no-secret activation and managed-access action packet.</p>
+      <div id="operator-launch-actions" class="actionGrid"></div>
+    </section>
+    <section class="panel">
+      <h2>Endpoint</h2>
+      <p id="endpoint">OpenAI-compatible clients should use <code>https://api.sagerouter.dev/v1</code>.</p>
+      <p id="updated" class="muted"></p>
+    </section>
+  </main>
+  <script src="/status.js"></script>
+</body>
+</html>

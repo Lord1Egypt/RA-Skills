@@ -4,18 +4,12 @@
 
 ## 使用前提
 
-CLI 从 `~/.openclaw/qclaw/user-info.json` 读取 `accessToken`，请求 API 时使用：
-
-```http
-Authorization: Bearer <accessToken>
-```
-
-请确保该文件存在且 `accessToken` 有效。
+CLI 已内置在技能目录 `./cli/`，通过 FClaw 注入的 `FCLAW_OIDC_TOKEN_URL` 与 `FCLAW_OIDC_TOKEN_SECRET` 从本地 OIDC token 端点获取 access_token。请在 FClaw 中登录，并在技能根目录下执行命令（工作目录须包含 `cli/index.js`）。
 
 ## 命令格式
 
 ```bash
-feihuo insurance-search --country <目的地国家> --days <保障天数>
+node ./cli/index.js insurance-search --country <目的地国家> --days <保障天数>
 ```
 
 ## 参数
@@ -36,19 +30,19 @@ feihuo insurance-search --country <目的地国家> --days <保障天数>
 搜索日本 7 天旅行保险：
 
 ```bash
-feihuo insurance-search --country "日本" --days 7
+node ./cli/index.js insurance-search --country "日本" --days 7
 ```
 
 搜索泰国 15 天旅行保险：
 
 ```bash
-feihuo insurance-search --country "泰国" --days 15
+node ./cli/index.js insurance-search --country "泰国" --days 15
 ```
 
 查看帮助：
 
 ```bash
-feihuo insurance-search --help
+node ./cli/index.js insurance-search --help
 ```
 
 ## 输出

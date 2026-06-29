@@ -1,0 +1,69 @@
+# 三级权限策略
+# readonly_allowed：只读操作，OpenClaw 可自动执行，无需确认
+# confirmation_required：写操作，必须展示执行计划并等待用户确认
+# forbidden：危险操作，直接拒绝并记录审计日志
+
+policies:
+  default:
+    readonly_allowed:
+      - check_server_status
+      - check_disk
+      - check_memory
+      - check_cpu
+      - check_network
+      - check_database_status
+      - check_database_connections
+      - read_recent_logs
+      - generate_report
+      - list_instances
+      - get_instance
+      - describe_security_groups
+
+    confirmation_required:
+      - install_database
+      - create_database
+      - create_user
+      - apply_schema
+      - create_index
+      - seed_data
+      - restart_service
+      - install_monitoring_agent
+      - install_windows_exporter
+      - install_node_exporter
+      - configure_firewall
+      - modify_firewall
+      - modify_security_group
+      - backup_database
+      - restore_database
+      - reboot_instance
+      - configure_winrm
+
+    forbidden:
+      - delete_database
+      - drop_table
+      - truncate_table
+      - format_disk
+      - disable_firewall
+      - open_database_port_to_public
+      - reset_admin_password
+      - delete_instance
+      - release_eip
+      - delete_security_group
+
+  # 测试环境放宽策略（允许部分写操作自动执行）
+  test:
+    inherits: default
+    readonly_allowed_extra:
+      - install_database      # 测试环境可自动安装
+      - create_database       # 测试环境可自动建库
+    confirmation_required_remove:
+      - install_database
+      - create_database
+
+  # 生产环境收紧策略
+  prod:
+    inherits: default
+    confirmation_required_extra:
+      - check_server_status   # 生产环境即使只读也需记录
+    readonly_allowed_remove:
+      - check_server_status

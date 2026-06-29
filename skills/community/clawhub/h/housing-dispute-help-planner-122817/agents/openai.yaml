@@ -1,0 +1,7 @@
+interface:
+  display_name: "Housing Dispute Help Planner"
+  short_description: "Helps with Hello Landing Dispute – Furnished Apartments."
+  default_prompt: "Use $housing-dispute-help-planner to help me Hello Landing Dispute – Furnished Apartments."
+
+policy:
+  allow_implicit_invocation: true

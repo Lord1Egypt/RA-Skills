@@ -56,7 +56,7 @@ All requests use POST to the GraphQL endpoint. Maton proxies requests to `api.li
 
 **NPM:**
 ```bash
-npm install -g @maton-ai/cli
+npm install -g @maton/cli
 ```
 
 **Homebrew:**

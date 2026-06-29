@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.4.2](https://github.com/es6kr/skills/compare/github-flow-v0.4.1...github-flow-v0.4.2) (2026-06-25)
+
+
+### Bug Fixes
+
+* apply PR [#62](https://github.com/es6kr/skills/issues/62) AI review findings (14) ([8132a2b](https://github.com/es6kr/skills/commit/8132a2b001fbd10e3db618decf989f8cf84b1b6b))
+* **fix:** split Step 2 medium by content type — case history to failed-attempts.md ([#62](https://github.com/es6kr/skills/issues/62)) ([747b3f9](https://github.com/es6kr/skills/commit/747b3f957ca0fefdbc5044eb08f66b8aafc1e26a))
+* **github-flow:** split [e2e] into PR-CI required vs [deploy] deploy-gated ([f7cdada](https://github.com/es6kr/skills/commit/f7cdada2c06ea0608f1d73aaa8c53fa2d48a5143))
+* **github-flow:** translate Artifacts references to English ([1bc17a4](https://github.com/es6kr/skills/commit/1bc17a4e30ddb81f110c4f2cc2d5f232affade4e))
+
 ## [0.4.1](https://github.com/es6kr/skills/compare/github-flow-v0.4.0...github-flow-v0.4.1) (2026-06-19)
 
 

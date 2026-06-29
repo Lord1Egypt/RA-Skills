@@ -11,31 +11,32 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill to route data-heavy or multi-tool Claude Code workflows through MCP servers, subagents, execution patterns, and validation checks to reduce context pressure. <br>
+Developers and engineers use this skill to decide when data-heavy or multi-tool workflows should be routed through MCP servers, subagents, and validation modules. It provides workflow classification, orchestration patterns, and context-budget guidance for large datasets and pipelines. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can broadly affect multi-tool MCP workflows and may encourage external storage or logging of workflow state. <br>
-Mitigation: Narrow activation triggers, restrict available MCP connectors and subagents, and require redaction plus approved storage, retention, and cleanup rules. <br>
-Risk: Subagents that require MCP tools may fail if launched in a mode where MCP tools are unavailable. <br>
-Mitigation: Use foreground Task invocations or an isolation mode that preserves required MCP access, and validate tool availability before delegation. <br>
+Risk: Broad automatic activation for code-execution workflows may route sensitive context through MCP tools or subagents. <br>
+Mitigation: Use explicit invocation or narrow trigger conditions for sensitive work, and require approval before sending proprietary data, credentials, prompts, or full context snapshots to external tools. <br>
+Risk: External result storage and debug logging may expose intermediate workflow data. <br>
+Mitigation: Restrict external storage and logging to approved locations, minimize stored context, and review logs before using the skill on sensitive data. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-conserve-mcp-code-execution) <br>
-- [OpenClaw homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-conserve-mcp-code-execution) <br>
+- [athola publisher profile](https://clawhub.ai/user/athola) <br>
+- [ClawHub metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline code and shell command examples] <br>
+**Output Format:** [Markdown with workflow checklists, code examples, and shell command examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces workflow routing, MCP orchestration guidance, validation checks, and token-budget recommendations.] <br>
+**Other Properties Related to Output:** [Produces agent-facing orchestration guidance for MCP workflows, subagent coordination, pattern selection, and validation.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata; artifact frontmatter lists 1.9.8) <br>
+1.9.13 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

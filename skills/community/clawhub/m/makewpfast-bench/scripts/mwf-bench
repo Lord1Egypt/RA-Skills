@@ -1,0 +1,683 @@
+#!/usr/bin/env python3
+"""
+mwf-bench — CLI for the MakeWPFast Benchmark API.
+
+Wraps the paid REST API at https://makewpfast.com/wp-json/mwf-api/v1 with:
+  - name->slug resolution via the free WordPress.org API (don't waste paid quota guessing slugs)
+  - a local response cache (the API is not edge-cached; the client MUST cache)
+  - quota guards (refuse large uncached batches; never retry 429/403; surface remaining quota)
+  - a call journal so you can see exactly why your quota dropped
+
+Zero dependencies — Python 3 standard library only.
+
+Subcommands:
+  lookup <name-or-slug> [--theme]      Benchmark one plugin/theme
+  compare <a> <b> [c ...] [--theme]    Side-by-side comparison
+  me                                   Your tier / quota / usage (free, no quota charge)
+  resolve <name> [--theme]             Show the resolved slug (no paid call)
+  audit [--path .] [--top N]           Benchmark the heavy active plugins of a local WP site
+  auth                                 Store your API key (keychain or 0600 file)
+
+Key resolution order: $MWF_API_KEY  ->  macOS keychain  ->  ~/.config/makewpfast/key
+Get a key at https://makewpfast.com/api/
+"""
+
+import argparse
+import html
+import json
+import os
+import subprocess
+import sys
+import time
+import urllib.error
+import urllib.parse
+import urllib.request
+from datetime import datetime, timezone
+from pathlib import Path
+
+API_BASE = "https://makewpfast.com/wp-json/mwf-api/v1"
+WPORG_PLUGINS = "https://api.wordpress.org/plugins/info/1.2/"
+WPORG_THEMES = "https://api.wordpress.org/themes/info/1.2/"
+SUBSCRIBE_URL = "https://makewpfast.com/api/"
+USER_AGENT = "mwf-bench/1.0 (+https://makewpfast.com/api/)"
+
+KEYCHAIN_SERVICE = "makewpfast-bench"
+KEYCHAIN_ACCOUNT = "default"
+CONFIG_DIR = Path.home() / ".config" / "makewpfast"
+KEY_FILE = CONFIG_DIR / "key"
+
+CACHE_DIR = Path.home() / ".cache" / "makewpfast-bench"
+BENCH_CACHE = CACHE_DIR / "bench"          # paid API responses, keyed type|slug
+RESOLVE_CACHE = CACHE_DIR / "resolve.json"  # name -> slug (slugs are stable; cache forever)
+CALL_LOG = CACHE_DIR / "calls.log"
+
+BENCH_TTL_DAYS = 21          # re-fetch a benchmark row after this many days
+DEFAULT_UNCACHED_CAP = 8     # refuse bigger uncached batches unless --yes / --max-calls
+
+
+# ─────────────────────────── small utilities ───────────────────────────
+
+def _now_iso():
+    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def eprint(*a, **k):
+    print(*a, file=sys.stderr, **k)
+
+
+def ensure_dirs():
+    BENCH_CACHE.mkdir(parents=True, exist_ok=True)
+
+
+def log_call(endpoint, slug, cache_hit, status):
+    ensure_dirs()
+    line = f"{_now_iso()}\t{endpoint}\t{slug}\t{'HIT' if cache_hit else 'MISS'}\t{status}\n"
+    with CALL_LOG.open("a") as f:
+        f.write(line)
+
+
+# ─────────────────────────── key handling ───────────────────────────
+
+def get_key():
+    """Return the API key from env, then keychain, then the 0600 config file. Never printed."""
+    key = os.environ.get("MWF_API_KEY", "").strip()
+    if key:
+        return key
+    if sys.platform == "darwin":
+        try:
+            out = subprocess.run(
+                ["security", "find-generic-password", "-s", KEYCHAIN_SERVICE,
+                 "-a", KEYCHAIN_ACCOUNT, "-w"],
+                capture_output=True, text=True, timeout=5,
+            )
+            if out.returncode == 0 and out.stdout.strip():
+                return out.stdout.strip()
+        except (FileNotFoundError, subprocess.TimeoutExpired):
+            pass
+    if KEY_FILE.exists():
+        return KEY_FILE.read_text().strip()
+    return ""
+
+
+def require_key():
+    key = get_key()
+    if not key:
+        eprint("No MakeWPFast API key found.")
+        eprint(f"Subscribe at {SUBSCRIBE_URL} then either:")
+        eprint("  export MWF_API_KEY='mwf_live_...'   (or run: mwf-bench auth)")
+        sys.exit(2)
+    return key
+
+
+def cmd_auth(args):
+    import getpass
+    key = getpass.getpass("Paste your MakeWPFast API key (mwf_live_...): ").strip()
+    if not key:
+        eprint("No key entered; nothing stored.")
+        sys.exit(1)
+    stored_where = None
+    if sys.platform == "darwin":
+        try:
+            subprocess.run(
+                ["security", "add-generic-password", "-U", "-s", KEYCHAIN_SERVICE,
+                 "-a", KEYCHAIN_ACCOUNT, "-w", key],
+                capture_output=True, text=True, timeout=5, check=True,
+            )
+            stored_where = "macOS keychain"
+        except (FileNotFoundError, subprocess.TimeoutExpired, subprocess.CalledProcessError):
+            stored_where = None
+    if stored_where is None:
+        CONFIG_DIR.mkdir(parents=True, exist_ok=True)
+        KEY_FILE.write_text(key + "\n")
+        KEY_FILE.chmod(0o600)
+        stored_where = str(KEY_FILE)
+    print(f"Key stored in {stored_where}. Verify with: mwf-bench me")
+
+
+# ─────────────────────────── HTTP ───────────────────────────
+
+def _request(url, headers=None, timeout=12):
+    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, **(headers or {})})
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            body = resp.read().decode("utf-8")
+            return resp.status, dict(resp.headers), body
+    except urllib.error.HTTPError as e:
+        body = e.read().decode("utf-8", "replace")
+        return e.code, dict(e.headers), body
+    except urllib.error.URLError as e:
+        return 0, {}, json.dumps({"message": f"network error: {e.reason}"})
+
+
+def api_get(path, key):
+    """GET an authenticated API endpoint. Returns (status, headers, parsed_json|None)."""
+    url = f"{API_BASE}{path}"
+    status, headers, body = _request(url, headers={"Authorization": f"Bearer {key}"})
+    try:
+        data = json.loads(body) if body else None
+    except json.JSONDecodeError:
+        data = None
+    return status, headers, data
+
+
+def auth_error_message(status, data):
+    msg = (data or {}).get("message", "") if isinstance(data, dict) else ""
+    if status in (401, 403):
+        return (f"API key rejected ({status}: {msg or 'invalid/revoked'}).\n"
+                f"Check your key, or subscribe / renew at {SUBSCRIBE_URL}")
+    if status == 429:
+        return (f"Monthly quota exceeded (429). {msg}\n"
+                f"Run `mwf-bench me` for reset date, or upgrade at {SUBSCRIBE_URL}")
+    if status == 0:
+        return f"Could not reach the API. {msg}"
+    return f"API error {status}: {msg}"
+
+
+# ─────────────────────────── name -> slug resolver ───────────────────────────
+
+def _load_resolve_cache():
+    if RESOLVE_CACHE.exists():
+        try:
+            return json.loads(RESOLVE_CACHE.read_text())
+        except json.JSONDecodeError:
+            return {}
+    return {}
+
+
+def _save_resolve_cache(cache):
+    ensure_dirs()
+    RESOLVE_CACHE.write_text(json.dumps(cache, indent=0))
+
+
+def looks_like_slug(s):
+    return bool(s) and s == s.lower() and " " not in s and all(
+        c.isalnum() or c == "-" for c in s
+    )
+
+
+def wporg_search(term, is_theme):
+    """Return list of {slug, name} candidates from the free WordPress.org API."""
+    if is_theme:
+        params = {
+            "action": "query_themes",
+            "request[search]": term,
+            "request[per_page]": "5",
+            "request[fields][sections]": "false",
+        }
+        url = WPORG_THEMES + "?" + urllib.parse.urlencode(params)
+    else:
+        params = {
+            "action": "query_plugins",
+            "request[search]": term,
+            "request[per_page]": "5",
+            "request[fields][sections]": "false",
+            "request[fields][description]": "false",
+        }
+        url = WPORG_PLUGINS + "?" + urllib.parse.urlencode(params)
+    status, _, body = _request(url)
+    if status != 200:
+        return []
+    try:
+        data = json.loads(body)
+    except json.JSONDecodeError:
+        return []
+    items = data.get("themes" if is_theme else "plugins", []) or []
+    out = []
+    for it in items:
+        slug = it.get("slug")
+        name = it.get("name", slug)
+        if slug:
+            out.append({"slug": slug, "name": name})
+    return out
+
+
+def resolve_slug(term, is_theme):
+    """
+    Resolve a user-typed name to a wordpress.org slug WITHOUT a paid call.
+    Returns ("ok", slug) | ("ambiguous", [candidates]) | ("none", []).
+    """
+    term = term.strip()
+    if looks_like_slug(term):
+        return ("ok", term)
+
+    cache = _load_resolve_cache()
+    ckey = ("theme:" if is_theme else "plugin:") + term.lower()
+    if ckey in cache:
+        return ("ok", cache[ckey])
+
+    cands = wporg_search(term, is_theme)
+    if not cands:
+        return ("none", [])
+
+    low = term.lower()
+    exact = [c for c in cands if c["name"].lower() == low or c["slug"] == low]
+    if exact:
+        cache[ckey] = exact[0]["slug"]
+        _save_resolve_cache(cache)
+        return ("ok", exact[0]["slug"])
+    starts = [c for c in cands if c["name"].lower().startswith(low)]
+    if len(starts) == 1:
+        cache[ckey] = starts[0]["slug"]
+        _save_resolve_cache(cache)
+        return ("ok", starts[0]["slug"])
+    # Single result overall -> trust it.
+    if len(cands) == 1:
+        cache[ckey] = cands[0]["slug"]
+        _save_resolve_cache(cache)
+        return ("ok", cands[0]["slug"])
+    return ("ambiguous", cands)
+
+
+# ─────────────────────────── bench cache ───────────────────────────
+
+def _bench_cache_path(slug, typ):
+    safe = "".join(c if (c.isalnum() or c == "-") else "_" for c in slug)
+    return BENCH_CACHE / f"{typ}__{safe}.json"
+
+
+def cache_read(slug, typ):
+    p = _bench_cache_path(slug, typ)
+    if not p.exists():
+        return None
+    try:
+        entry = json.loads(p.read_text())
+    except json.JSONDecodeError:
+        return None
+    fetched = entry.get("_fetched_at", 0)
+    age_days = (time.time() - fetched) / 86400.0
+    if age_days > BENCH_TTL_DAYS:
+        return None
+    entry["_age_days"] = age_days
+    return entry
+
+
+def cache_write(slug, typ, data):
+    ensure_dirs()
+    p = _bench_cache_path(slug, typ)
+    entry = dict(data)
+    entry["_fetched_at"] = time.time()
+    p.write_text(json.dumps(entry))
+
+
+# ─────────────────────────── fetch one (resolve + cache + paid) ───────────────────────────
+
+def fetch_one(term, is_theme, key, refresh=False):
+    """
+    Returns (status, payload) where status is:
+      "ok"        payload = benchmark dict (+ _cache_age_days, _cached bool)
+      "ambiguous" payload = candidate list
+      "notfound"  payload = slug (404 in dataset)
+      "error"     payload = message string
+    """
+    typ = "theme" if is_theme else "plugin"
+    state, res = resolve_slug(term, is_theme)
+    if state == "ambiguous":
+        return ("ambiguous", res)
+    if state == "none":
+        return ("error", f'Could not find a WordPress.org {typ} matching "{term}".')
+    slug = res
+
+    if not refresh:
+        cached = cache_read(slug, typ)
+        if cached is not None:
+            log_call(f"{typ}s/{slug}", slug, True, "cache")
+            cached["_cached"] = True
+            return ("ok", cached)
+
+    path = f"/{typ}s/{slug}"
+    status, headers, data = api_get(path, key)
+    log_call(f"{typ}s/{slug}", slug, False, status)
+    if status == 200 and isinstance(data, dict):
+        cache_write(slug, typ, data)
+        data["_cached"] = False
+        data["_ratelimit_remaining"] = headers.get("X-RateLimit-Remaining")
+        return ("ok", data)
+    if status == 404:
+        return ("notfound", slug)
+    return ("error", auth_error_message(status, data))
+
+
+# ─────────────────────────── formatting ───────────────────────────
+
+def disp_name(d):
+    """Plugin/theme name with HTML entities decoded (wp.org stores e.g. &#8211;)."""
+    return html.unescape(d.get("name") or d.get("slug") or "?")
+
+
+def fmt_delta_ms(v):
+    return "n/a" if v is None else f"{v:+d}ms"
+
+
+def fmt_ctx(ctx):
+    if not ctx:
+        return "not measured"
+    ttfb = ctx.get("ttfb_delta_ms")
+    mem = ctx.get("memory_delta_kb")
+    q = ctx.get("queries_delta")
+    parts = []
+    parts.append("n/a TTFB" if ttfb is None else f"{ttfb:+d}ms TTFB")
+    parts.append("n/a mem" if mem is None else f"{mem:+d}KB")
+    parts.append("n/a queries" if q is None else f"{q:+d} queries")
+    return ", ".join(parts)
+
+
+def print_one_text(d):
+    score = d.get("speed_score") or {}
+    grade = score.get("grade") or "N/A"
+    num = score.get("numeric")
+    num_s = "" if num is None else f" ({num}/100)"
+    tag = ""
+    if d.get("_cached"):
+        age = d.get("_age_days", d.get("_cache_age_days", 0)) or 0
+        tag = f"  (cached, {age:.0f}d old)"
+    print(f"{disp_name(d)}  [{d.get('slug')}]{tag}")
+    if not d.get("benchmarked"):
+        print("  not yet benchmarked (slug known, no data)")
+        return
+    print(f"  Speed score: {grade}{num_s}   measured {d.get('benchmarked_at') or '?'}")
+    ctxs = d.get("contexts") or {}
+    for name in ("activation", "homepage", "admin"):
+        print(f"  {name:11s}: {fmt_ctx(ctxs.get(name))}")
+    meta = d.get("metadata") or {}
+    ai = meta.get("active_installs")
+    rp = meta.get("rating_percent")
+    bits = []
+    if ai:
+        bits.append(f"{ai:,} active installs")
+    if rp is not None:
+        bits.append(f"{rp}% rating")
+    if bits:
+        print("  " + " · ".join(bits))
+    rem = d.get("_ratelimit_remaining")
+    if rem is not None:
+        print(f"  quota remaining: {rem}")
+
+
+# ─────────────────────────── commands ───────────────────────────
+
+def cmd_lookup(args):
+    key = require_key()
+    state, payload = fetch_one(args.name, args.theme, key, refresh=args.refresh)
+    if args.format == "json":
+        print(json.dumps({"state": state, "result": payload}, indent=2))
+        if state != "ok":
+            sys.exit(1)
+        return
+    if state == "ok":
+        print_one_text(payload)
+    elif state == "ambiguous":
+        eprint(f'"{args.name}" is ambiguous. Candidates (pick one and re-run with the slug):')
+        for c in payload:
+            eprint(f"  {c['slug']:30s} {html.unescape(c['name'])}")
+        sys.exit(3)
+    elif state == "notfound":
+        eprint(f'Slug "{payload}" is not in the benchmark dataset (404).')
+        sys.exit(4)
+    else:
+        eprint(payload)
+        sys.exit(1)
+
+
+def cmd_resolve(args):
+    state, res = resolve_slug(args.name, args.theme)
+    if state == "ok":
+        print(res)
+    elif state == "ambiguous":
+        eprint("Ambiguous — candidates:")
+        for c in res:
+            print(f"{c['slug']}\t{html.unescape(c['name'])}")
+        sys.exit(3)
+    else:
+        eprint(f'No WordPress.org match for "{args.name}".')
+        sys.exit(4)
+
+
+def cmd_me(args):
+    key = require_key()
+    status, headers, data = api_get("/me", key)
+    log_call("me", "-", False, status)
+    if status != 200 or not isinstance(data, dict):
+        eprint(auth_error_message(status, data))
+        sys.exit(1)
+    if args.format == "json":
+        print(json.dumps(data, indent=2))
+        return
+    print(f"Tier:      {data.get('tier')}")
+    print(f"Quota:     {data.get('monthly_quota'):,} / month")
+    print(f"Used:      {data.get('used_this_period'):,}")
+    print(f"Remaining: {data.get('remaining'):,}")
+    print(f"Resets:    {data.get('period_resets_at')}")
+    print(f"Status:    {data.get('status')}")
+    # local cache stats
+    n_cached = len(list(BENCH_CACHE.glob('*.json'))) if BENCH_CACHE.exists() else 0
+    print(f"Local cache: {n_cached} benchmark rows cached (saves quota on repeats)")
+
+
+def _gather_lookups(terms, is_theme, key, refresh, assume_yes, max_calls):
+    """Resolve all terms, count uncached paid calls, enforce the guard, then fetch."""
+    typ = "theme" if is_theme else "plugin"
+    plan = []  # (term, slug_or_None, cached_entry_or_None, ambiguous_or_None)
+    uncached = 0
+    for t in terms:
+        state, res = resolve_slug(t, is_theme)
+        if state == "ambiguous":
+            plan.append((t, None, None, res))
+            continue
+        if state == "none":
+            plan.append((t, None, None, "none"))
+            continue
+        slug = res
+        cached = None if refresh else cache_read(slug, typ)
+        if cached is None:
+            uncached += 1
+        plan.append((t, slug, cached, None))
+
+    cap = max_calls if max_calls is not None else DEFAULT_UNCACHED_CAP
+    if uncached > cap and not assume_yes:
+        eprint(f"This would make {uncached} uncached paid API calls (cap {cap}).")
+        eprint("Re-run with --yes to proceed, or --max-calls N to raise the cap.")
+        sys.exit(5)
+
+    results = []
+    for term, slug, cached, amb in plan:
+        if amb == "none":
+            results.append((term, "error", f'no WordPress.org match for "{term}"'))
+            continue
+        if amb:
+            results.append((term, "ambiguous", amb))
+            continue
+        if cached is not None:
+            log_call(f"{typ}s/{slug}", slug, True, "cache")
+            cached["_cached"] = True
+            results.append((term, "ok", cached))
+            continue
+        status, headers, data = api_get(f"/{typ}s/{slug}", key)
+        log_call(f"{typ}s/{slug}", slug, False, status)
+        if status == 200 and isinstance(data, dict):
+            cache_write(slug, typ, data)
+            data["_cached"] = False
+            results.append((term, "ok", data))
+        elif status == 404:
+            results.append((term, "notfound", slug))
+        else:
+            results.append((term, "error", auth_error_message(status, data)))
+    return results
+
+
+def cmd_compare(args):
+    key = require_key()
+    results = _gather_lookups(args.names, args.theme, key, args.refresh, args.yes, args.max_calls)
+    oks = [(t, d) for (t, st, d) in results if st == "ok" and d.get("benchmarked")]
+    problems = [(t, st, d) for (t, st, d) in results if st != "ok" or not d.get("benchmarked")]
+
+    if args.format == "json":
+        print(json.dumps([{"term": t, "state": st, "result": d} for (t, st, d) in results], indent=2))
+        return
+
+    if oks:
+        rows = []
+        for term, d in oks:
+            sc = d.get("speed_score") or {}
+            act = (d.get("contexts") or {}).get("activation") or {}
+            home = (d.get("contexts") or {}).get("homepage") or {}
+            rows.append({
+                "name": disp_name(d)[:24],
+                "grade": sc.get("grade") or "N/A",
+                "num": sc.get("numeric"),
+                "act_ttfb": act.get("ttfb_delta_ms"),
+                "act_mem": act.get("memory_delta_kb"),
+                "home_ttfb": home.get("ttfb_delta_ms"),
+            })
+        hdr = f"{'Plugin/Theme':24s}  {'Grade':5s} {'Num':>4s}  {'Act TTFB':>9s} {'Act Mem':>9s}  {'Home TTFB':>9s}"
+        print(hdr)
+        print("-" * len(hdr))
+        for r in rows:
+            num = "" if r["num"] is None else str(r["num"])
+            am = "n/a" if r["act_mem"] is None else f"{r['act_mem']:+d}KB"
+            print(f"{r['name']:24s}  {r['grade']:5s} {num:>4s}  "
+                  f"{fmt_delta_ms(r['act_ttfb']):>9s} {am:>9s}  {fmt_delta_ms(r['home_ttfb']):>9s}")
+        # plain-English winner by numeric score
+        scored = [r for r in rows if r["num"] is not None]
+        if len(scored) >= 2:
+            best = max(scored, key=lambda r: r["num"])
+            worst = min(scored, key=lambda r: r["num"])
+            if best["num"] != worst["num"]:
+                print(f"\nFastest: {best['name']} ({best['grade']}, {best['num']}/100). "
+                      f"Slowest: {worst['name']} ({worst['grade']}, {worst['num']}/100).")
+
+    for term, st, d in problems:
+        if st == "ambiguous":
+            eprint(f'\n"{term}" ambiguous: ' + ", ".join(c["slug"] for c in d))
+        elif st == "notfound":
+            eprint(f'\n"{term}" -> slug "{d}" not in dataset (404).')
+        elif st == "error":
+            eprint(f'\n"{term}": {d}')
+        elif st == "ok" and not d.get("benchmarked"):
+            eprint(f'\n"{term}" ({d.get("slug")}): known but not yet benchmarked.')
+
+
+def detect_active_plugins(path):
+    """Use wp-cli to list active plugin slugs. Returns (slugs, error)."""
+    # wp-cli refuses to run as root without --allow-root (common in Docker/CI/managed hosts).
+    root_flag = ["--allow-root"] if hasattr(os, "geteuid") and os.geteuid() == 0 else []
+    wp = None
+    for cand in ("wp", "wp-cli", "wp-cli.phar"):
+        try:
+            subprocess.run([cand, "--version", *root_flag], capture_output=True,
+                           timeout=10, check=True)
+            wp = cand
+            break
+        except (FileNotFoundError, subprocess.TimeoutExpired, subprocess.CalledProcessError):
+            continue
+    if wp is None:
+        return [], ("wp-cli not found. Install it (https://wp-cli.org) and run inside a "
+                    "WordPress directory, or pass plugin names to `lookup`/`compare` directly.")
+    try:
+        out = subprocess.run(
+            [wp, "plugin", "list", "--status=active", "--field=name",
+             "--path=" + path, *root_flag],
+            capture_output=True, text=True, timeout=30,
+        )
+    except subprocess.TimeoutExpired:
+        return [], "wp-cli timed out listing plugins."
+    if out.returncode != 0:
+        # wp-cli phars often emit a wall of "PHP Deprecated/Notice/Warning" lines; keep
+        # only the meaningful error line(s).
+        noise = ("PHP Deprecated:", "Deprecated:", "PHP Notice:", "Notice:",
+                 "PHP Warning:", "Warning:")
+        lines = [ln for ln in out.stderr.splitlines()
+                 if ln.strip() and not ln.lstrip().startswith(noise)]
+        msg = " ".join(lines).strip() or "not a WordPress install?"
+        return [], f"wp-cli error: {msg}"
+    slugs = [ln.strip() for ln in out.stdout.splitlines() if ln.strip()]
+    return slugs, None
+
+
+def cmd_audit(args):
+    key = require_key()
+    slugs, err = detect_active_plugins(args.path)
+    if err:
+        eprint(err)
+        sys.exit(6)
+    if not slugs:
+        eprint("No active plugins found.")
+        return
+    eprint(f"Found {len(slugs)} active plugins. Benchmarking up to {args.top} "
+           f"(cached rows are free)...")
+    # Fetch all (cache-first). Guard applies to uncached count.
+    results = _gather_lookups(slugs, False, key, args.refresh, args.yes, args.max_calls)
+    ranked = []
+    for term, st, d in results:
+        if st == "ok" and d.get("benchmarked"):
+            act = (d.get("contexts") or {}).get("activation") or {}
+            ttfb = act.get("ttfb_delta_ms") or 0
+            ranked.append((ttfb, d))
+    ranked.sort(key=lambda x: x[0], reverse=True)
+    top = ranked[: args.top]
+    if args.format == "json":
+        print(json.dumps([d for _, d in top], indent=2))
+        return
+    print(f"\nHeaviest {len(top)} active plugins by activation TTFB delta:\n")
+    for ttfb, d in top:
+        sc = d.get("speed_score") or {}
+        print(f"  {fmt_delta_ms(ttfb):>9s}  {sc.get('grade') or 'N/A':4s}  "
+              f"{disp_name(d)[:40]}  [{d.get('slug')}]")
+
+
+# ─────────────────────────── argparse ───────────────────────────
+
+def build_parser():
+    p = argparse.ArgumentParser(
+        prog="mwf-bench",
+        description="MakeWPFast Benchmark API client. Get a key at " + SUBSCRIBE_URL,
+    )
+    sub = p.add_subparsers(dest="cmd", required=True)
+
+    def add_common(sp):
+        sp.add_argument("--theme", action="store_true", help="treat as a theme (default: plugin)")
+        sp.add_argument("--format", choices=["text", "json"], default="text")
+        sp.add_argument("--refresh", action="store_true", help="ignore cache, force a fresh paid call")
+
+    sp = sub.add_parser("lookup", help="benchmark one plugin/theme by name or slug")
+    sp.add_argument("name")
+    add_common(sp)
+    sp.set_defaults(func=cmd_lookup)
+
+    sp = sub.add_parser("compare", help="compare 2+ plugins/themes side by side")
+    sp.add_argument("names", nargs="+")
+    add_common(sp)
+    sp.add_argument("--yes", action="store_true", help="proceed past the uncached-call cap")
+    sp.add_argument("--max-calls", type=int, default=None, help="raise the uncached-call cap")
+    sp.set_defaults(func=cmd_compare)
+
+    sp = sub.add_parser("resolve", help="resolve a name to a wordpress.org slug (no paid call)")
+    sp.add_argument("name")
+    sp.add_argument("--theme", action="store_true")
+    sp.set_defaults(func=cmd_resolve)
+
+    sp = sub.add_parser("me", help="your tier / quota / usage (free, no quota charge)")
+    sp.add_argument("--format", choices=["text", "json"], default="text")
+    sp.set_defaults(func=cmd_me)
+
+    sp = sub.add_parser("audit", help="benchmark the heavy active plugins of a local WP site")
+    sp.add_argument("--path", default=".", help="path to the WordPress install (default: .)")
+    sp.add_argument("--top", type=int, default=10, help="how many heaviest to show")
+    sp.add_argument("--format", choices=["text", "json"], default="text")
+    sp.add_argument("--refresh", action="store_true")
+    sp.add_argument("--yes", action="store_true")
+    sp.add_argument("--max-calls", type=int, default=None)
+    sp.set_defaults(func=cmd_audit)
+
+    sp = sub.add_parser("auth", help="store your API key (keychain or 0600 file)")
+    sp.set_defaults(func=cmd_auth)
+
+    return p
+
+
+def main():
+    args = build_parser().parse_args()
+    args.func(args)
+
+
+if __name__ == "__main__":
+    main()

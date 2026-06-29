@@ -11,33 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and architects use this skill to evaluate when space-based architecture fits high-traffic, stateful systems and to plan data-grid adoption steps, deliverables, and tradeoffs. <br>
+Developers and architects use this skill to decide when to apply space-based architecture and to plan data-grid partitioning, persistence, failover, testing, and operational runbooks for high-traffic stateful systems. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Space-based architectures can introduce eventual consistency issues for systems that require strongly consistent state. <br>
-Mitigation: Document data-freshness service levels, use compensation logic where stale data is possible, and avoid this pattern when strong consistency is the primary requirement. <br>
-Risk: Data-grid orchestration, failover, and split-brain recovery can add operational complexity. <br>
-Mitigation: Invest in mature automation, leader election or heartbeat mechanisms, runbooks, monitoring, load testing, and chaos testing before relying on the architecture in production. <br>
-Risk: The security evidence is clean, but ClawScan guidance recommends reviewing the skill before installation when local access or data-changing actions are requested. <br>
-Mitigation: Review SKILL.md before installing or using the skill and reject any unexpected requests for credentials, broad local access, background execution, or data-changing actions. <br>
+Risk: Broad trigger terms may surface this skill during generic architecture or scalability discussions. <br>
+Mitigation: Confirm the workload has high traffic, substantial state volume, and an in-memory partitioning need before applying the recommendations. <br>
+Risk: Space-based architecture can introduce eventual consistency, operational complexity, and higher infrastructure cost. <br>
+Mitigation: Review consistency requirements, automation maturity, failover procedures, and cost controls before adopting the pattern. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-archetypes-architecture-paradigm-space-based) <br>
-- [Archetypes homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-space-based) <br>
+- [Metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance with architecture steps, deliverables, risks, and component vocabulary] <br>
+**Output Type(s):** [guidance, markdown, text, configuration] <br>
+**Output Format:** [Markdown guidance with bullet lists and architecture recommendations] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No shell commands, API calls, credential use, or required external tools are described in the artifact.] <br>
+**Other Properties Related to Output:** [Documentation-only; no tools, executable code, data access, or persistence per security evidence.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata; artifact frontmatter reports 1.9.8) <br>
+1.9.13 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

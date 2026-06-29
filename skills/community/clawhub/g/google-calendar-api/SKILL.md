@@ -55,7 +55,7 @@ Maton proxies requests to `www.googleapis.com` and automatically injects your OA
 
 **NPM:**
 ```bash
-npm install -g @maton-ai/cli
+npm install -g @maton/cli
 ```
 
 **Homebrew:**

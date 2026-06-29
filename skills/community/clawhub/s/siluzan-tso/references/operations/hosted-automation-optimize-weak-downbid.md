@@ -1,6 +1,6 @@
 # SOP：表现差广告 — 降价 / 关停（Ad Group / Ad）
 
-> **索引**：[`operations/hosted-automation-optimize-index.md`](operations/hosted-automation-optimize-index.md)  
+> **索引**：[`references/operations/hosted-automation-optimize-index.md`](references/operations/hosted-automation-optimize-index.md)  
 > **层级**：广告组与创意均可；组级用 **`ad groups`**，创意级用 **`ad list`**（或 **`google-analysis --sections ads`**，同源）。
 
 ---
@@ -44,7 +44,7 @@ siluzan-tso ad list -a <mediaCustomerId> --start <YYYY-MM-DD> --end <YYYY-MM-DD>
 
 组行上常见：
 
-- **`targetCpaAmountYuan`** / **`maxCPCAmountYuan`**（元，CLI 出口已统一；写入口径见 `google-ads/google-ads.md`）
+- **`targetCpaAmountYuan`** / **`maxCPCAmountYuan`**（元，CLI 出口已统一；写入口径见 `references/google-ads/google-ads.md`）
 - **`spend`**、**`conversions`**、**`impressions`**、**`ctr`**
 
 ### 3. 条件示例（仅示意，以宿主配置为准）
@@ -53,13 +53,13 @@ siluzan-tso ad list -a <mediaCustomerId> --start <YYYY-MM-DD> --end <YYYY-MM-DD>
 - **弱引流**：聚合后 CTR 低于「同池基准 × 配置比例」（基准由宿主对同类型/同系列池计算）。
 - **弱转化**：**`spend / conversions`**（或 **`costPerConversion`** 与目标同口径比较）高于 **目标 CPA × 配置倍数**，且 **`conversions`** 低于配置上限。
 
-目标 CPA：组级从 **`targetCpaAmount`** 与 `google-ads/google-ads.md` 货币单位说明读取；创意级通常需用 **`adGroupId`** 关联到对应组行再取目标。
+目标 CPA：组级从 **`targetCpaAmount`** 与 `references/google-ads/google-ads.md` 货币单位说明读取；创意级通常需用 **`adGroupId`** 关联到对应组行再取目标。
 
 ---
 
 ## 最终操作
 
-**下调组目标 CPA**（数值单位与 `ad groups --json-out ./snap` 一致，见 `google-ads/google-ads.md`「广告组编辑」）：
+**下调组目标 CPA**（数值单位与 `ad groups --json-out ./snap` 一致，见 `references/google-ads/google-ads.md`「广告组编辑」）：
 
 ```bash
 siluzan-tso ad adgroup-edit -a <mediaCustomerId> --id <adGroupId> --target-cpa <新值>
@@ -73,7 +73,7 @@ siluzan-tso ad adgroup-status -a <mediaCustomerId> --id <adGroupId> --status Pau
 siluzan-tso ad ad-status -a <mediaCustomerId> --id <adId> --status Paused
 ```
 
-（`ad-status` 若需 `--start`/`--end` 见 `google-ads/google-ads.md`。）
+（`ad-status` 若需 `--start`/`--end` 见 `references/google-ads/google-ads.md`。）
 
 ---
 

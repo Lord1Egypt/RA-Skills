@@ -1,0 +1,17 @@
+{
+  "name": "product-prd-generator",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "AI 编程导向的 PRD 文档生成器。每个功能模块自包含：实体字段、状态机、权限、Mermaid 流程图、业务规则。",
+  "keywords": [
+    "openclaw",
+    "workbuddy",
+    "prd",
+    "product-requirements",
+    "ai-coding",
+    "documentation",
+    "mermaid"
+  ],
+  "author": "jgsolar",
+  "license": "MIT"
+}

@@ -1,0 +1,190 @@
+{
+  "baseUrl": "https://api.justserpapi.com",
+  "description": "Call GET /api/v1/google/scholar/search for Google SERP Scholar Search through Just Serp API with query.",
+  "displayName": "Google SERP Scholar Search",
+  "endpointPath": "scholar/search",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Google scholar Search data, including papers, patents, and legal docs, citation and year filters, and versions and cited-by links, for literature review and academic result monitoring.",
+      "method": "GET",
+      "operationId": "ScholarSearch",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "The academic search query (e.g., 'machine learning', 'CRISPR gene editing'). Supports advanced operators like 'author:'.",
+          "enumValues": [],
+          "location": "query",
+          "name": "query",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set to true to return the raw HTML of the Google Scholar search page.",
+          "enumValues": [],
+          "location": "query",
+          "name": "html",
+          "required": false,
+          "schemaType": "boolean"
+        },
+        {
+          "defaultValue": null,
+          "description": "Return articles that cite the article with the specified ID.",
+          "enumValues": [],
+          "location": "query",
+          "name": "cites",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Minimum publication year filter (e.g., '2020').",
+          "enumValues": [],
+          "location": "query",
+          "name": "as_ylo",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Maximum publication year filter (e.g., '2024').",
+          "enumValues": [],
+          "location": "query",
+          "name": "as_yhi",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Controls whether to return only abstract results (1) or all results (0).",
+          "enumValues": [],
+          "location": "query",
+          "name": "scisbd",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique ID of an article cluster to retrieve all versions of a specific work.",
+          "enumValues": [],
+          "location": "query",
+          "name": "cluster",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the language for the results using its two-letter code (e.g., 'en' for English, 'fr' for French). See <a href=\"/reference/google-language\">Google Language</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "language",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Restrict results to one or more languages using the 'lang_{language_code}' format (e.g., 'lang_en'). See <a href=\"/reference/google-lr-language\">Google LR Language</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "lr",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The results page number. Use 0 for the first page, 1 for the second, and so on.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": null,
+          "description": "The number of search results to return per page.",
+          "enumValues": [],
+          "location": "query",
+          "name": "results",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": null,
+          "description": "Advanced filter for specific document types or legal jurisdictions. E.g., '7' to include patents.",
+          "enumValues": [],
+          "location": "query",
+          "name": "as_sdt",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "SafeSearch filter setting. Set to 'active' to filter adult content, or 'off' to disable it.",
+          "enumValues": [],
+          "location": "query",
+          "name": "safe",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Toggle 'Similar Results' and 'Omitted Results' filters. Set to '1' (default) to enable, '0' to disable.",
+          "enumValues": [],
+          "location": "query",
+          "name": "filter",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Controls whether citations are included in the results: 1 = exclude, 0 (default) = include.",
+          "enumValues": [],
+          "location": "query",
+          "name": "as_vis",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Controls whether to show only review articles (topic overviews or discussions of the searched works/authors). Set to 1 to enable the filter, or 0 (default) to return all results.",
+          "enumValues": [],
+          "location": "query",
+          "name": "as_rr",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/v1/google/scholar/search",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        },
+        {
+          "description": "Authentication failed: API Key is invalid or missing",
+          "statusCode": "401"
+        },
+        {
+          "description": "Access denied: Insufficient credits or quota exceeded",
+          "statusCode": "403"
+        },
+        {
+          "description": "Internal server error or upstream service exception",
+          "statusCode": "500"
+        }
+      ],
+      "summary": "Search",
+      "tags": [
+        "Google Scholar"
+      ]
+    }
+  ],
+  "platformKey": "google",
+  "primaryTag": "Google SERP",
+  "skillName": "justserpapi_google_scholar_search",
+  "skillType": "interface",
+  "slug": "justserpapi-google-scholar-search",
+  "sourceTitle": "API Shop Documentation"
+}

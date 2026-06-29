@@ -138,6 +138,7 @@ def default_config(
             "auto_pull_before_task": False,
             "auto_commit_after_task": False,
             "auto_push_after_task": False,
+            "defer_push_after_grading": False,
             "sync_full_learning_data": False,
             "public_repository_accepted": False,
             "commit_scope": DEFAULT_SYNC_SCOPE,

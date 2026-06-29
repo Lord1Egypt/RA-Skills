@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Research Music Video Run Manifest",
+  "type": "object",
+  "required": ["source", "settings", "scenes", "outputs"],
+  "properties": {
+    "source": {
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "url": { "type": "string" },
+        "path": { "type": "string" },
+        "extraction_status": { "type": "string" }
+      }
+    },
+    "settings": {
+      "type": "object",
+      "properties": {
+        "target_duration_seconds": { "type": "number" },
+        "aspect_ratio": { "type": "string" },
+        "image_provider": { "type": "string" },
+        "video_provider": { "type": "string" },
+        "audio_provider": { "type": "string" }
+      }
+    },
+    "scenes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "duration_seconds", "narrative_beat", "image_prompt", "video_prompt"],
+        "properties": {
+          "id": { "type": "string" },
+          "duration_seconds": { "type": "number" },
+          "narrative_beat": { "type": "string" },
+          "image_prompt": { "type": "string" },
+          "video_prompt": { "type": "string" },
+          "image_path": { "type": "string" },
+          "video_path": { "type": "string" },
+          "image_job_id": { "type": "string" },
+          "video_job_id": { "type": "string" },
+          "status": { "type": "string" }
+        }
+      }
+    },
+    "audio": {
+      "type": "object",
+      "properties": {
+        "prompt": { "type": "string" },
+        "provider": { "type": "string" },
+        "job_id": { "type": "string" },
+        "path": { "type": "string" }
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "properties": {
+        "storyboard_md": { "type": "string" },
+        "storyboard_pdf": { "type": "string" },
+        "final_video": { "type": "string" }
+      }
+    }
+  }
+}

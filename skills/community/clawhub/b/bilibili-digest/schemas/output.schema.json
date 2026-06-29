@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openclaw/skills/bilibili-digest/output.schema.json",
+  "title": "Bilibili Digest Output",
+  "description": "Structured output from bilibili-digest skill",
+  "type": "object",
+  "properties": {
+    "video_id": { "type": "string", "description": "Bilibili video BV/AV/CV ID" },
+    "title": { "type": "string", "description": "Video/column title" },
+    "author": { "type": "string", "description": "Content author name" },
+    "duration": { "type": "string", "description": "Video duration" },
+    "views": { "type": "integer", "description": "View count" },
+    "summary": { "type": "string", "description": "AI-generated content summary" },
+    "key_points": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "timestamp": { "type": "string" },
+          "point": { "type": "string" }
+        }
+      },
+      "description": "Timestamped key points"
+    },
+    "chapters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "start": { "type": "string" },
+          "end": { "type": "string" }
+        }
+      }
+    },
+    "resources": { "type": "array", "items": { "type": "string" } },
+    "action_steps": { "type": "array", "items": { "type": "string" } },
+    "markdown_output": { "type": "string" },
+    "output_file": { "type": "string" }
+  }
+}

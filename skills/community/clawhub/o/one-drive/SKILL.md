@@ -54,7 +54,7 @@ Maton proxies requests to `graph.microsoft.com` and automatically injects your O
 
 **NPM:**
 ```bash
-npm install -g @maton-ai/cli
+npm install -g @maton/cli
 ```
 
 **Homebrew:**

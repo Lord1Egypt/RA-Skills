@@ -11,32 +11,27 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and architects use this skill to evaluate when a microkernel architecture is appropriate and to plan core services, plugin contracts, extension loading, sandboxing, SDK support, and release governance. <br>
+Developers and software architects use this skill to plan microkernel or plugin-based platforms, including a minimal core, plugin contracts, sandboxing, validation pipelines, and governance for extensible systems. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Architecture recommendations may not fit every project or operational constraint. <br>
-Mitigation: Review the proposed microkernel guidance against the project context before applying it. <br>
-Risk: Plugin ecosystems can create governance, compatibility, and isolation risks. <br>
-Mitigation: Define formal plugin contracts, version compatibility checks, sandboxing, and a certification or marketplace review process. <br>
-
+Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
+Mitigation: Review and scan skill before deployment. <br>
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-archetypes-architecture-paradigm-microkernel) <br>
-- [Publisher profile](https://clawhub.ai/user/athola) <br>
-- [ClawDIS homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, code] <br>
-**Output Format:** [Markdown guidance with architecture steps, deliverables, and risk mitigations] <br>
+**Output Type(s):** [guidance, markdown] <br>
+**Output Format:** [Markdown architecture guidance] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory content only; no executable code or credential handling.] <br>
+**Other Properties Related to Output:** [Non-executable guidance; no tools or credential inputs detected.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release evidence) <br>
+1.9.13 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,0 +1,6 @@
+# Menstrual Health Tracker — minimal dependencies
+# Core Python standard library only (json, datetime, math, pathlib)
+# No pip install required for analysis engine
+
+# For dashboard template rendering (optional, CDN-based)
+# Chart.js is loaded from CDN in dashboard.html — no local install needed

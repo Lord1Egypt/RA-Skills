@@ -1,0 +1,4 @@
+interface:
+  display_name: "校园晨报 / Campus Morning Brief"
+  short_description: "个性化校园晨报 / Personalized student brief"
+  default_prompt: "Use $campus-morning-brief to create today’s personalized campus morning brief / 生成今天的个性化校园晨报。"

@@ -1,5 +1,5 @@
 ## Description: <br>
-Predicts near-term full-bloom dates for ornamental and cut-flower plants from bud images or videos, optional temperature and light data, and cloud API analysis. <br>
+AI-powered flowering-date prediction for ornamental and cut-flower plants using bud-stage images or videos, optional temperature and light data, and a phenology model to estimate full-bloom timing for production planning. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External growers, greenhouse operators, botanical gardens, tourism-park teams, and developers use this skill to analyze plant bud media and optional environmental data for flowering-date predictions and historical report lookup. <br>
+External growers, greenhouse operators, botanical gardens, and tourism park teams use this agent to analyze flower-bud media and estimate the likely full-bloom date within the next 3-7 days. The output supports scheduling decisions for pollination, harvesting, and visitor planning while remaining advisory. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Cloud processing of plant media, media URLs, and a persistent user identifier may expose sensitive greenhouse footage or identifying data. <br>
-Mitigation: Use only non-sensitive plant media, avoid footage containing people or private facilities, and review the publisher's retention and authorization controls before deployment. <br>
-Risk: Security evidence reports mismatched pet/human-health materials, broad cloud API access, local token storage, and an embedded API key. <br>
-Mitigation: Review carefully before installing; require the publisher to remove mismatched materials, rotate embedded credentials, narrow the API surface, and document credential handling. <br>
+Risk: Plant media and supplied URLs are processed by a cloud service. <br>
+Mitigation: Use only media that may be shared with the service provider, and confirm the receiving service and data-retention expectations before deployment. <br>
+Risk: The skill silently creates or reuses a local identity and stores service tokens. <br>
+Mitigation: Review identity and token storage behavior before installation, restrict local file access where possible, and define a token revocation or deletion process. <br>
+Risk: The artifact contains pet and video-analysis remnants in a flowering-date skill. <br>
+Mitigation: Have the publisher clarify the remaining references and verify that the deployed behavior matches the flowering-date use case. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/18072937735/smyx-flowering-date-prediction-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/18072937735) <br>
-- [API interface documentation](references/api_doc.md) <br>
-- [Common analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-flowering-date-prediction-analysis) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
+- [API documentation](artifact/references/api_doc.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, JSON API results, and shell command examples] <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
+**Output Format:** [Markdown or text report, with JSON available through the skill's detail mode and optional file output] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [History queries may return Markdown tables with report links; prediction results include estimated dates and confidence.] <br>
+**Other Properties Related to Output:** [May include predicted flowering date, confidence, phenological stage, advisory notes, historical report tables, and report links.] <br>
 
 ## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter states 1.0.2) <br>
+1.0.2 (source: server release metadata; artifact frontmatter reports 1.0.3) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

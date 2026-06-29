@@ -1,0 +1,37 @@
+{
+  "slug": "phone-call-prep-brief",
+  "name": "phone-call-prep-brief",
+  "displayName": "Phone Call Prep Brief",
+  "version": "1.0.0",
+  "description": "Build a one-page call brief before an AI agent or human places or takes an important phone call — objective, talking points, consent/disclosure checklist, voicemail script, and fallback plan.",
+  "triggerKeywords": [
+    "phone call prep",
+    "prepare for phone call",
+    "call brief before calling",
+    "agent phone call script",
+    "outbound call plan",
+    "inbound call prep",
+    "voicemail script",
+    "call talking points",
+    "phone call checklist",
+    "pre-call brief"
+  ],
+  "tags": [
+    "phone",
+    "calling",
+    "checklist",
+    "customer-service",
+    "agent"
+  ],
+  "license": "MIT",
+  "language": "en",
+  "promptOnly": true,
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "execution": "noExec",
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "safety": "Call planning only. Does not place calls, collect credentials, or provide legal advice. Includes high-level recording/consent reminders only."
+}

@@ -1,0 +1,22 @@
+﻿name: huawei-cloud-cce-ops-report-generator
+level: L4
+domain: governance-optimization
+description: |
+  Use when generating consolidated CCE operations reports that combine daily inspection,
+  capacity trend, availability risk, cost optimization, and on-call context into weekly,
+  monthly, SLA, capacity, or stability reports with Markdown and HTML output.
+  Trigger: user mentions "ops report", "运维报告", "report generation", "报告生成",
+  "cluster report", "集群报告", "weekly report", "月度报告", "SLA report", "capacity report",
+  "stability report", "operations summary", "运营总结", "consolidated report", "综合报告",
+  "CCE reporting", "oncall report", "值班报告"
+tools:
+  - huawei_generate_ops_report
+  - huawei_cce_auto_inspection
+  - huawei_analyze_cce_capacity_trend
+  - huawei_scan_cce_availability_risk
+  - huawei_analyze_cce_cost_optimization
+references:
+  - references/workflow.md
+  - references/output-schema.md
+guardrails:
+  max_auto_risk: R1

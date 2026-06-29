@@ -11,28 +11,29 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and agent users use this skill to make assistant responses more concise while preserving useful technical context and safety warnings. <br>
+Developers and agent users use this skill to keep assistant responses concise, reduce filler, and preserve context tokens while maintaining key technical information. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Broad activation terms may make the skill apply when detailed teaching, careful setup steps, or expanded reasoning would be more useful. <br>
-Mitigation: Disable or avoid the skill for tasks that require detailed explanation, first-time setup guidance, or expanded reasoning. <br>
+Risk: Shorter responses may reduce warmth, context, or useful detail for teaching, onboarding, or tasks that need expanded explanations. <br>
+Mitigation: Disable this skill or request more detail when explanatory depth, tone, or step-by-step guidance is important. <br>
 
 
 ## Reference(s): <br>
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-conserve-response-compression) <br>
+- [Conserve plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, text] <br>
-**Output Format:** [Concise natural-language responses, usually Markdown when structure is useful] <br>
+**Output Type(s):** [text, markdown, guidance] <br>
+**Output Format:** [Concise natural-language responses, with Markdown structure when useful.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, data access, persistence, or tool use is described by the security evidence.] <br>
+**Other Properties Related to Output:** [Optimizes for shorter responses and reduced conversational framing.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release evidence) <br>
+1.9.13 (source: server release metadata; artifact frontmatter says 1.9.8) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

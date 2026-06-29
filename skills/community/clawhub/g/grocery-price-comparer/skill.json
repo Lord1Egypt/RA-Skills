@@ -1,0 +1,39 @@
+{
+  "name": "Grocery Price Comparer",
+  "slug": "grocery-price-comparer",
+  "description": "Compare fresh grocery prices across Hema, Dingdong, Meituan Maicai & more — find the best deals on your shopping list.",
+  "tags": ["grocery", "price-comparison", "shopping", "fresh-food", "saving", "china"],
+  "license": "MIT-0",
+  "version": "1.0.0",
+  "scripts": {
+    "main": "scripts/compare.py",
+    "usage": "python scripts/compare.py --list \"猪肉500g, 西红柿3个, 鸡蛋一盒, 牛奶1L\"",
+    "validate": "python scripts/compare.py --validate-schemas"
+  },
+  "schemas": {
+    "input": "schemas/input.schema.json",
+    "output": "schemas/output.schema.json"
+  },
+  "references": {
+    "platforms": "references/platforms.json",
+    "categories": "references/categories.json"
+  },
+  "workflowSteps": [
+    { "step": 1, "name": "Parse Shopping List", "input": "Free-text list or screenshot", "output": "Structured item list" },
+    { "step": 2, "name": "Query All Platforms", "input": "Structured item list", "output": "Raw search results per platform" },
+    { "step": 3, "name": "Unit Normalization", "input": "Raw results with varying units", "output": "All prices in CNY/500g" },
+    { "step": 4, "name": "Price Matrix Construction", "input": "Normalized prices", "output": "Comparison matrix table" },
+    { "step": 5, "name": "Total Cost Calculation", "input": "Price matrix + quantities", "output": "Total cost per platform" },
+    { "step": 6, "name": "Trade-off Analysis", "input": "Total cost results", "output": "Strategy recommendations" },
+    { "step": 7, "name": "Generate Procurement Plan", "input": "Chosen strategy", "output": "Ready-to-shop list by platform" },
+    { "step": 8, "name": "Set Price Alerts (optional)", "input": "Item + target price", "output": "Alert confirmation" }
+  ],
+  "firstSuccessPath": {
+    "steps": [
+      "Say: 帮我比价鸡蛋、牛奶、猪肉，看看盒马和叮咚哪个便宜",
+      "Review the comparison matrix with unit prices",
+      "Get the recommendation — see your first price win in <30 seconds"
+    ],
+    "cli": "python scripts/compare.py --list \"鸡蛋, 牛奶, 猪肉\" --platforms hema,dingdong"
+  }
+}

@@ -1,5 +1,5 @@
 ## Description: <br>
-Web Development helps agents implement, integrate, debug, build, deploy, and validate web frontends after product direction is clear. <br>
+Use when users need to implement, integrate, debug, build, deploy, or validate a Web frontend after the product direction is already clear, especially for React, Vue, Vite, browser flows, or CloudBase Web integration. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineering agents use this skill to make targeted web frontend changes, follow React, Vue, Vite, and CloudBase Web conventions, and validate affected browser flows before completion. <br>
+Developers and engineers use this skill to implement, debug, build, deploy, and validate Web frontends or static sites. It is most relevant for React, Vue, Vite, browser validation workflows, routing, forms, and CloudBase Web integration. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may guide an agent to edit frontend code, install project dependencies, run local commands, or change build and hosting configuration. <br>
-Mitigation: Review proposed code and command changes before applying them, then run the relevant typecheck, lint, build, tests, and browser validation before relying on the result. <br>
-Risk: CloudBase hosting or authentication guidance can affect live route handling, deployment behavior, or sign-in flows. <br>
-Mitigation: Require explicit approval for deployment or CloudBase actions and verify hosting documents, route fallback behavior, and authentication settings before publishing. <br>
+Risk: Generated frontend changes or configuration advice may be incorrect for the target application if they are not validated in the actual project. <br>
+Mitigation: Run the relevant typecheck, lint, build, and test commands, then verify affected routes and interactions in a browser before accepting the change. <br>
+Risk: CloudBase SDK or static hosting guidance can break authentication, routing, or deployment when environment IDs, build output paths, or SPA fallback settings are wrong. <br>
+Mitigation: Confirm the canonical CloudBase environment ID, build output, routing mode, and static hosting index/error document settings before deployment. <br>
+Risk: The authoritative security evidence is clean, but it advises users to inspect installed skill contents against the advertised purpose. <br>
+Mitigation: Review the installed skill files at install time and confirm they match the Web frontend implementation and validation purpose. <br>
 
 
 ## Reference(s): <br>
 - [ClawHub Skill Page](https://clawhub.ai/binggg/skills/web-development) <br>
-- [CloudBase Main Skill Entry](https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/SKILL.md) <br>
-- [CloudBase Web Development Source](https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/references/web-development/SKILL.md) <br>
+- [Framework Guidance](artifact/frameworks.md) <br>
+- [Browser Validation](artifact/browser-testing.md) <br>
 - [CloudBase Integration Documentation](https://docs.cloudbase.net/integration/introduce/index.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, configuration notes, and validation summaries] <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
+**Output Format:** [Markdown guidance with inline code, shell commands, configuration snippets, and validation notes] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include implementation steps, browser validation notes, CloudBase deployment guidance, and remaining verification gaps.] <br>
+**Other Properties Related to Output:** [May include browser validation records, build or test commands, CloudBase SDK setup, and static hosting configuration guidance.] <br>
 
 ## Skill Version(s): <br>
-1.27.5 (source: ClawHub release evidence; artifact frontmatter lists 2.23.3) <br>
+1.27.7 (source: server release metadata; artifact frontmatter reports 2.23.5) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

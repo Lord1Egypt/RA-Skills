@@ -1,5 +1,5 @@
 ## Description: <br>
-为日语教师和学习者提供朗读作业批改流程，覆盖音频转写、宽松评分、发音纠错、薄弱点分析和练习建议生成。 <br>
+日语朗读作业AI批改（教师模式）——支持音频转写、CEFR分级评价、纠错与成绩录入。 <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,32 +11,32 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Teachers use this skill to batch grade Japanese reading audio for A1/A2/B1 learners, generate per-student feedback, and prepare class scoring records. Students may also use the workflow for adaptive self-checks when the same answer text and privacy controls are in place. <br>
+Teachers use this skill to grade Japanese reading-aloud audio submissions, transcribe audio with local Whisper, provide CEFR-aligned feedback, record Canvas grades, and generate class summaries. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Student audio, transcripts, reports, and progress files may contain personal or educational records stored locally. <br>
-Mitigation: Use a dedicated working directory, restrict access to generated files, and apply the school or organization's privacy and retention rules before using real submissions. <br>
-Risk: Local report files or moved failed audio files may overwrite or displace original student work if paths are reused. <br>
-Mitigation: Back up originals, use unique report filenames, and review the error-audio folder before cleanup or resubmission. <br>
-Risk: Speech transcription uncertainty can lead to incorrect grading decisions. <br>
-Mitigation: Treat failed or uncertain transcription as a manual review case before finalizing grades. <br>
+Risk: The workflow can post Canvas grades and upload class summaries without an explicit confirmation step. <br>
+Mitigation: Manually review every grade, comment, course ID, assignment ID, student ID, and summary file before running Canvas posting or upload commands. <br>
+Risk: Audio transcription uncertainty can lead to incorrect grading feedback. <br>
+Mitigation: Use the artifact's alignment check against the standard answer and send uncertain, missing, extra, or failed transcriptions to manual review instead of automatic scoring. <br>
+Risk: Canvas credentials and permissions are not described by the artifact. <br>
+Mitigation: Confirm credential storage, scope, and access controls before use, and run the workflow only for Canvas courses the user controls. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/bianmaxingkong/japanese-reading-grader) <br>
+- [ClawHub skill page](https://clawhub.ai/bianmaxingkong/skills/japanese-reading-grader) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with plain-text grading report templates and local file-path conventions] <br>
+**Output Type(s):** [text, markdown, shell commands, guidance] <br>
+**Output Format:** [Markdown-style guidance with plain-text grading feedback and bash command examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces student-facing feedback, score summaries, review flags for failed or uncertain transcription, and local report/progress file paths.] <br>
+**Other Properties Related to Output:** [Feedback comments are capped at 1000 characters; batch processing guidance limits a run to 50 students.] <br>
 
 ## Skill Version(s): <br>
-2.1.6 (source: server release metadata) <br>
+2.2.2 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,0 +1,203 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://openclaw.dev/skills/dianping-restaurant-guide/output.schema.json",
+  "title": "Dianping Restaurant Guide Output",
+  "description": "Schema for analysis, ranking, and ordering guide output",
+  "type": "object",
+  "oneOf": [
+    { "$ref": "#/definitions/AuthenticityReport" },
+    { "$ref": "#/definitions/SentimentSummary" },
+    { "$ref": "#/definitions/RankedResult" },
+    { "$ref": "#/definitions/OrderingGuide" },
+    { "$ref": "#/definitions/ExplorationRoute" }
+  ],
+  "definitions": {
+    "AuthenticityReport": {
+      "type": "object",
+      "required": ["restaurant", "authenticity_index", "total_reviews", "fake_count", "genuine_count", "signals_triggered"],
+      "properties": {
+        "restaurant": { "type": "string" },
+        "authenticity_index": { "type": "integer", "minimum": 0, "maximum": 100 },
+        "total_reviews": { "type": "integer" },
+        "fake_count": { "type": "integer" },
+        "genuine_count": { "type": "integer" },
+        "suspicious_count": { "type": "integer" },
+        "signals_triggered": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "signal": { "type": "string" },
+              "severity": { "type": "string", "enum": ["high", "medium", "low"] },
+              "details": { "type": "string" }
+            }
+          }
+        },
+        "verdict": {
+          "type": "string",
+          "enum": ["trustworthy", "some_concerns", "suspicious", "high_risk"]
+        },
+        "warnings": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "SentimentSummary": {
+      "type": "object",
+      "required": ["restaurant", "dimensions"],
+      "properties": {
+        "restaurant": { "type": "string" },
+        "authenticity": { "type": "integer" },
+        "dimensions": {
+          "type": "object",
+          "properties": {
+            "taste": {
+              "type": "object",
+              "properties": {
+                "score": { "type": "number", "minimum": 0, "maximum": 10 },
+                "positives": { "type": "array", "items": { "type": "string" } },
+                "negatives": { "type": "array", "items": { "type": "string" } },
+                "must_order_dishes": { "type": "array", "items": { "type": "string" } },
+                "avoid_dishes": { "type": "array", "items": { "type": "string" } }
+              }
+            },
+            "environment": {
+              "type": "object",
+              "properties": {
+                "score": { "type": "number" },
+                "positives": { "type": "array", "items": { "type": "string" } },
+                "negatives": { "type": "array", "items": { "type": "string" } }
+              }
+            },
+            "service": {
+              "type": "object",
+              "properties": {
+                "score": { "type": "number" },
+                "positives": { "type": "array", "items": { "type": "string" } },
+                "negatives": { "type": "array", "items": { "type": "string" } }
+              }
+            },
+            "value": {
+              "type": "object",
+              "properties": {
+                "score": { "type": "number" },
+                "positives": { "type": "array", "items": { "type": "string" } },
+                "negatives": { "type": "array", "items": { "type": "string" } }
+              }
+            }
+          }
+        }
+      }
+    },
+    "RankedResult": {
+      "type": "object",
+      "required": ["profile", "rankings"],
+      "properties": {
+        "profile": {
+          "type": "object",
+          "properties": {
+            "location": { "type": "string" },
+            "cuisine": { "type": "string" },
+            "budget_range": {
+              "type": "array",
+              "items": { "type": "number" },
+              "minItems": 2,
+              "maxItems": 2
+            }
+          }
+        },
+        "rankings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["rank", "restaurant", "overall_score"],
+            "properties": {
+              "rank": { "type": "integer" },
+              "restaurant": { "type": "string" },
+              "overall_score": { "type": "number", "minimum": 0, "maximum": 100 },
+              "cuisine_match": { "type": "number", "minimum": 0, "maximum": 100 },
+              "sentiment_score": { "type": "number", "minimum": 0, "maximum": 100 },
+              "value_score": { "type": "number", "minimum": 0, "maximum": 100 },
+              "occasion_fit": { "type": "number", "minimum": 0, "maximum": 100 },
+              "authenticity_index": { "type": "integer" },
+              "must_order_dishes": { "type": "array", "items": { "type": "string" } },
+              "best_time": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "OrderingGuide": {
+      "type": "object",
+      "required": ["restaurant", "party_size", "budget_estimate"],
+      "properties": {
+        "restaurant": { "type": "string" },
+        "party_size": { "type": "integer" },
+        "budget_estimate": {
+          "type": "object",
+          "properties": {
+            "min": { "type": "number" },
+            "max": { "type": "number" }
+          }
+        },
+        "must_order": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "dish": { "type": "string" },
+              "price": { "type": "number" },
+              "recommendations": { "type": "integer" },
+              "reason": { "type": "string" }
+            }
+          }
+        },
+        "recommended": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "dish": { "type": "string" },
+              "price": { "type": "number" },
+              "recommendations": { "type": "integer" }
+            }
+          }
+        },
+        "skip": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "dish": { "type": "string" },
+              "price": { "type": "number" },
+              "complaints": { "type": "integer" },
+              "reason": { "type": "string" }
+            }
+          }
+        },
+        "tips": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "ExplorationRoute": {
+      "type": "object",
+      "required": ["start_location", "stops", "total_distance_km"],
+      "properties": {
+        "start_location": { "type": "string" },
+        "stops": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "order": { "type": "integer" },
+              "restaurant": { "type": "string" },
+              "meal": { "type": "string", "enum": ["breakfast", "lunch", "afternoon_tea", "dinner", "snack"] },
+              "suggested_time": { "type": "string" },
+              "walk_minutes_from_previous": { "type": "number" },
+              "notes": { "type": "string" }
+            }
+          }
+        },
+        "total_distance_km": { "type": "number" },
+        "total_stops": { "type": "integer" }
+      }
+    }
+  }
+}

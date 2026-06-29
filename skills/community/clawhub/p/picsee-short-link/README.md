@@ -57,38 +57,72 @@ Place the skill in `.cursor/skills/picsee-short-link/`, then edit `~/.cursor/mcp
 ```json
 {
   "mcpServers": {
-    "picsee-short-link": { "url": "https://api.picsee.io/mcp" }
+    "picsee-short-link": { "url": "https://api.picsee.io/mcp/auth" }
   }
 }
 ```
 
+> For Cursor, use `https://api.picsee.io/mcp/auth` when you need to sign in (OAuth). Anonymous use (`create_short_link` only) can stay on `https://api.picsee.io/mcp`.
+
 ### Antigravity
 
-Add via Antigravity's MCP settings panel (Settings → MCP Servers → Add), or edit the config file directly:
+Antigravity speaks MCP Streamable HTTP **natively**. Edit `~/.gemini/config/mcp_config.json` (it shares Gemini's config dir, and uses the key `serverUrl`):
 
 ```json
 {
   "mcpServers": {
-    "picsee-short-link": { "url": "https://api.picsee.io/mcp" }
+    "picsee-short-link": { "serverUrl": "https://api.picsee.io/mcp" }
   }
 }
 ```
 
+Then open **Settings → Customizations → Installed MCP Servers**, click **Refresh**, and the server appears. Click **Authenticate** next to it to sign in via OAuth and unlock the full authenticated tool set (anonymous mode exposes only `create_short_link`).
+
 Place `SKILL.md` in Antigravity's skills directory so the agent picks up usage guidance.
+
+### Hermes Agent
+
+[Hermes Agent](https://hermes-agent.nousresearch.com) (Nous Research) speaks MCP **natively** as both client and server. Edit `~/.hermes/config.yaml` and add the server under `mcp_servers`, using `auth: oauth` so Hermes runs the browser sign-in flow on the first authenticated call:
+
+```yaml
+mcp_servers:
+  picsee-short-link:
+    url: "https://api.picsee.io/mcp"
+    auth: oauth
+```
+
+On first authenticated call, Hermes prints an authorize URL (and opens your browser when possible), then waits for the OAuth callback on a local loopback port. Tokens are cached at `~/.hermes/mcp-tokens/picsee-short-link.json` (mode `0o600`) and reused silently until refresh fails. For anonymous use (`create_short_link` only), drop the `auth: oauth` line.
+
+Drop the skill folder into `~/.hermes/skills/picsee-short-link/` (containing `SKILL.md`) — Hermes loads it immediately, no registration needed.
 
 ### Codex / Codex CLI
 
-Add to `~/.codex/config.toml`:
+Add the server with the Codex CLI:
+
+```bash
+codex mcp add picsee-short-link --url https://api.picsee.io/mcp
+```
+
+Or add it directly to `~/.codex/config.toml`:
 
 ```toml
 [mcp_servers.picsee-short-link]
-command = "npx"
-args = ["-y", "mcp-remote", "https://api.picsee.io/mcp"]
+url = "https://api.picsee.io/mcp"
 ```
 
-`mcp-remote` bridges stdio ↔ Streamable HTTP and handles OAuth in a browser. (Direct HTTP transport in Codex CLI is improving rapidly — check `codex mcp add --help` on your version.)
+Then authenticate it with OAuth:
 
-Place `SKILL.md` in `.codex/skills/picsee-short-link/` for skill discovery.
+```bash
+codex mcp login picsee-short-link --scopes user:read,user:write
+```
+
+Codex supports remote MCP servers over Streamable HTTP via --url, and MCP
+server configuration is shared between the CLI and the IDE extension.
+[platform.openai.com](https://platform.openai.com/docs/docs-mcp)
+
+If you use skills, place SKILL.md at:
+
+`~/.codex/skills/picsee-short-link/SKILL.md`
 
 ### OpenClaw / ClawHub
 
@@ -137,7 +171,8 @@ For clients that only support stdio, use the `mcp-remote` bridge from npm:
 |:---------|:----------------|:--------------|:-----------|:-------|
 | Claude Code | `~/.claude/skills/` | HTTP (native) | Browser popup, token in `~/.claude` | ✅ |
 | Cursor | `.cursor/skills/` | HTTP (native) | Browser popup, token in Cursor config | ✅ |
-| Antigravity | Antigravity skills dir | HTTP (native) | Browser popup | ✅ |
+| Antigravity | Antigravity skills dir | HTTP (native, `serverUrl`) | Browser popup (Authenticate button) | ✅ |
+| Hermes Agent | `~/.hermes/skills/` | HTTP (native, `config.yaml`) | Browser popup, token in `~/.hermes/mcp-tokens/` | ✅ |
 | Codex CLI | `.codex/skills/` | stdio via `mcp-remote` | Browser popup via `mcp-remote` | ✅ |
 | OpenClaw / ClawHub | auto (via `clawhub install`) | HTTP | Browser popup | ✅ |
 | claude.ai | Customize → Skills | HTTP connector | Browser popup | ✅ |

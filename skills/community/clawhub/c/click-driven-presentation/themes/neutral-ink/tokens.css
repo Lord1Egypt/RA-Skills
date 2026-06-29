@@ -1,0 +1,56 @@
+/*
+ * Theme: neutral-ink
+ * The single place colors, fonts, and primitive personality are defined.
+ * Scenes must reference these variables and primitive classes — never hardcode
+ * colors or font names. Swapping this file for another theme must not break a scene.
+ */
+:root {
+  /* surfaces */
+  --shell: #f4f1ea;        /* the stage background (warm off-white) */
+  --surface: #ffffff;      /* raised surfaces / cards */
+  --surface-2: #ebe7de;    /* sunken surfaces / tracks */
+  --surface-3: #e0dbd0;
+
+  /* text */
+  --text: #1a1a17;         /* primary ink (near-black) */
+  --text-2: #4a4843;       /* secondary */
+  --text-mute: #8a877f;    /* muted / captions */
+  --text-faint: #b7b3a8;   /* faint / dimmed context */
+
+  /* lines + accent */
+  --rule-color: #d8d3c8;
+  --accent: #b4471f;       /* restrained terracotta */
+  --accent-soft: #e6c9bb;
+  --accent-glow: rgba(180, 71, 31, 0.18);
+
+  /* type */
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", ui-monospace, "Cascadia Code", Consolas, monospace;
+}
+
+/* --- primitives: theme personality, do not redefine in scene CSS --- */
+
+.stage-frame {
+  background: var(--shell);
+}
+
+.hero-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--rule-color);
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.rule {
+  border: none;
+  border-top: 1px solid var(--rule-color);
+}

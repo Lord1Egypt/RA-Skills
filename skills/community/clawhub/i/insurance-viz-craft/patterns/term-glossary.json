@@ -1,0 +1,10 @@
+{
+  "name": "term-glossary",
+  "label": "术语词典",
+  "description": "保险术语列表+关联图谱，点击查看详细解释",
+  "layout": "glossary",
+  "features": ["term_list", "search", "category_filter", "related_terms", "expand_detail"],
+  "group_by_category": true,
+  "categories": ["基本概念", "保障责任", "免责条款", "理赔流程", "费用相关", "合同条款"],
+  "show_pinyin": true
+}

@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sage Router model catalog for OpenAI-compatible, Anthropic-compatible, Gemini, Ollama, Ollama Cloud, NVIDIA NIM, and BYOK routes." />
+  <link rel="canonical" href="https://sagerouter.dev/models" />
+  <meta property="og:title" content="Sage Router Model Catalog" />
+  <meta property="og:description" content="gateway-style model discovery for Sage Router without anonymous provider access or pooled credentials." />
+  <meta property="og:url" content="https://sagerouter.dev/models" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Sage Router Model Catalog</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07100d;--panel:rgba(13,29,24,.84);--panel2:rgba(255,255,255,.04);--border:rgba(166,255,207,.16);--muted:#a9c5b8;--text:#edfdf5;--brand:#8df0b2;--blue:#8ab4ff;--amber:#f7d57a;--danger:#ff9f9f;--shadow:0 24px 80px rgba(0,0,0,.36)}*{box-sizing:border-box}body{margin:0;min-width:320px;background:linear-gradient(180deg,#07100d 0%,#0b1518 48%,#07100d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;color:var(--muted)}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;color:var(--text)}.brandMark{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(141,240,178,.42);border-radius:8px;color:#062016;background:linear-gradient(135deg,var(--brand),var(--amber))}.navLinks{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;font-weight:750}.navLinks a:hover{color:var(--text)}.hero{padding:74px 0 48px}.eyebrow{color:var(--brand);text-transform:uppercase;letter-spacing:.16em;font-weight:900;font-size:12px;margin:0 0 16px}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(44px,8vw,84px);line-height:.94;margin-bottom:24px;max-width:980px}h2{font-size:clamp(28px,4vw,46px);line-height:1;margin-bottom:18px}h3{font-size:21px;margin-bottom:10px}.lead{font-size:clamp(20px,2.2vw,27px);line-height:1.35;color:#d2eadf;max-width:920px}.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}.button{min-height:48px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:0 22px;font-weight:900}.primary{background:linear-gradient(135deg,var(--brand),#50d891);color:#04150d}.secondary{border:1px solid var(--border);background:rgba(255,255,255,.04)}.emailStart{display:flex;flex-wrap:wrap;gap:12px;align-items:center;max-width:760px;margin:22px 0 12px;padding:16px;border:1px solid rgba(141,240,178,.24);border-radius:8px;background:rgba(255,255,255,.045)}.emailStart label{flex:1 1 100%;font-weight:900}.emailStart input{flex:1 1 280px;min-height:48px;border:1px solid var(--border);border-radius:999px;background:rgba(5,15,11,.74);color:var(--text);padding:0 18px;font:inherit}.emailStart input::placeholder{color:#789184}.emailStart .button{border:0;cursor:pointer}.emailStartStatus{flex:1 1 100%;margin:0;color:var(--muted);font-size:14px}.section{padding:48px 0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.grid2{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px}.card,.panel,.tableWrap{background:var(--panel);border:1px solid var(--border);border-radius:8px;box-shadow:0 18px 60px rgba(0,0,0,.18)}.card,.panel{padding:24px}.card{display:grid;gap:12px}.muted,.card li,td{color:var(--muted)}ul{padding-left:18px;margin:0;display:grid;gap:8px}.pill{display:inline-flex;width:max-content;border:1px solid rgba(138,180,255,.3);border-radius:999px;padding:6px 10px;color:var(--blue);font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.catalogPanel{display:grid;gap:18px}.catalogControls{display:grid;grid-template-columns:minmax(220px,1fr) auto;gap:14px;align-items:center}.searchBox{width:100%;min-height:48px;border:1px solid rgba(166,255,207,.22);border-radius:8px;background:rgba(3,12,9,.62);color:var(--text);padding:0 14px;font:inherit;font-weight:750}.searchBox::placeholder{color:#789184}.filterRow{display:flex;flex-wrap:wrap;gap:10px}.filterButton{min-height:38px;border:1px solid rgba(138,180,255,.28);border-radius:999px;background:rgba(138,180,255,.08);color:#d8e5ff;padding:0 12px;font:inherit;font-size:13px;font-weight:900;cursor:pointer}.filterButton[aria-pressed="true"]{border-color:rgba(247,213,122,.72);background:rgba(247,213,122,.14);color:#ffe8a6}.catalogIntent{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:18px}.catalogIntent button{min-height:68px;border:1px solid rgba(138,180,255,.28);border-radius:8px;background:rgba(255,255,255,.045);color:var(--text);padding:10px 12px;text-align:left;font:inherit;font-weight:900;cursor:pointer}.catalogIntent button.active{border-color:rgba(141,240,178,.62);background:linear-gradient(135deg,rgba(141,240,178,.18),rgba(80,216,145,.1))}.catalogIntent span{display:block;color:var(--muted);font-size:12px;font-weight:700}.catalogMeta{display:flex;gap:12px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:14px}.catalogResults{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.modelFamily{border:1px solid rgba(166,255,207,.14);border-radius:8px;background:rgba(255,255,255,.035);padding:18px;display:grid;gap:12px}.modelFamily h3{margin:0}.exampleList{display:flex;flex-wrap:wrap;gap:8px}.exampleList code{border:1px solid rgba(141,240,178,.22);border-radius:999px;padding:5px 8px;background:rgba(141,240,178,.06);font-size:13px}.empty{border:1px dashed rgba(166,255,207,.24);border-radius:8px;padding:18px;color:var(--muted)}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:780px}th,td{text-align:left;border-bottom:1px solid rgba(166,255,207,.12);padding:16px 18px;vertical-align:top}th{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--text);background:rgba(255,255,255,.035)}td:first-child{color:var(--text);font-weight:850}.note{font-size:14px;color:var(--muted);max-width:900px}code{color:#d9f8e6}footer{display:flex;gap:18px;flex-wrap:wrap;padding:34px 0 54px;color:var(--muted);border-top:1px solid rgba(166,255,207,.1)}footer span{margin-right:auto}@media(max-width:920px){.grid,.grid2,.catalogResults,.catalogIntent{grid-template-columns:1fr}.catalogControls{grid-template-columns:1fr}.nav{align-items:flex-start;flex-direction:column}.button{width:100%}}@media(max-width:560px){.hero{padding-top:42px}.navLinks{gap:14px}.filterButton{flex:1 1 auto}}
+  </style>
+  <style>
+    .copyRow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px}
+    .copyRow button{border:0;cursor:pointer}
+    .copyRow span{min-height:22px;color:var(--brand);font-size:14px}
+    .emailStart .oauthButton{background:linear-gradient(135deg,var(--brand),#50d891);color:#04150d}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+      <div class="navLinks">
+        <a href="/">Home</a>
+        <a href="/quickstart">Quickstart</a>
+        <a href="/fusion">Fusion</a>
+        <a href="/docs/codex">Codex</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/compare/model-gateways">Compare</a>
+        <a href="/model-routing-calculator">Calculator</a>
+        <a href="/status">Status</a>
+        <a href="https://app.sagerouter.dev/account.html">Account</a>
+        <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Model catalog</p>
+        <h1>One endpoint across authorized model routes.</h1>
+        <p class="lead">Use Sage Router profiles, OpenAI-compatible providers, Anthropic-compatible routes, Gemini, Ollama, Ollama Cloud, NVIDIA NIM, OpenRouter BYOK, and private gateways without exposing anonymous model traffic.</p>
+        <div class="actions">
+          <a class="button primary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key&utm_source=model-catalog&utm_medium=activation&utm_campaign=sage-router-launch" data-model-event="model_catalog_key_activation_clicked" data-model-button="create-key" data-model-account-link>Create hosted API key</a>
+          <a class="button secondary" href="https://app.sagerouter.dev/login.html?plan=pro&start=create_key&utm_source=model-catalog&utm_medium=recovery&utm_campaign=signup_to_key_recovery&auth=email" data-model-event="model_catalog_key_recovery_clicked" data-model-button="returning-user">Already signed up? Finish setup key</a>
+          <a class="button secondary" href="/quickstart" data-model-event="model_catalog_quickstart_clicked" data-model-button="quickstart">Read quickstart</a>
+          <a class="button secondary" href="/fusion" data-model-event="model_catalog_pricing_clicked" data-model-button="fusion">Fusion</a>
+          <a class="button secondary" href="/docs/codex" data-model-event="model_catalog_codex_clicked" data-model-button="codex">Configure Codex</a>
+          <a class="button secondary" href="https://api.sagerouter.dev/model-catalog" data-model-event="model_catalog_json_clicked" data-model-button="catalog-json">View catalog JSON</a>
+          <a class="button secondary" href="/pricing" data-model-event="model_catalog_pricing_clicked" data-model-button="pricing">View pricing</a>
+          <a class="button secondary" href="/compare/model-gateways" data-model-event="model_catalog_gateway_clicked" data-model-button="gateway-compare">Compare gateways</a>
+        </div>
+        <form class="emailStart" id="model-catalog-email-form">
+          <label for="model-catalog-email">Get an API key setup link</label>
+          <button id="model-catalog-github-pro" class="button primary oauthButton" type="button">Continue with GitHub for Pro</button>
+          <input id="model-catalog-email" type="email" name="email" autocomplete="email" placeholder="you@company.com" required />
+          <button class="button primary" type="submit">Email API key setup link</button>
+          <p class="emailStartStatus" id="model-catalog-email-status" role="status">No provider key or credit card required until your generated sk_sage key exists.</p>
+        </form>
+        <p class="note">The public catalog is discovery metadata. Live <code>/v1/models</code> and model requests require an active generated <code>sk_sage_*</code> key.</p>
+        <div class="copyRow">
+          <button id="model-catalog-copy-setup" class="button secondary" type="button">Copy 60-second catalog setup</button>
+          <a id="model-catalog-copy-next-account" class="button primary" data-model-account-link href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key&utm_source=model-catalog&utm_medium=activation&utm_campaign=sage-router-launch" data-setup-copied="false">Create API key next</a>
+          <span id="model-catalog-copy-status" role="status" aria-live="polite"></span>
+        </div>
+        <div class="catalogIntent" aria-label="Choose a model route family">
+          <button type="button" data-model-family-intent="sage-router-profiles">Profiles and Fusion <span>Start with frontier, agentic, or synthesis routes</span></button>
+          <button type="button" data-model-family-intent="openai-codex">OpenAI / Codex <span>Route coding agents and OpenAI-compatible clients</span></button>
+          <button type="button" data-model-family-intent="ollama">Ollama / local <span>Blend hosted control with local or Ollama Cloud models</span></button>
+          <button type="button" data-model-family-intent="anthropic">Anthropic-compatible <span>Use authorized Claude, Dario, or Anthropic-compatible routes</span></button>
+          <button type="button" data-model-family-intent="gemini">Gemini / Vertex <span>Use authorized Google AI or Vertex routes</span></button>
+          <button type="button" data-model-family-intent="byok-compatible">BYOK gateways <span>Route OpenRouter, NVIDIA NIM, or private endpoints</span></button>
+        </div>
+      </section>
+
+      <section class="section grid">
+        <article class="card">
+          <span class="pill">Profiles</span>
+          <h3>Sage Router aliases</h3>
+          <p class="muted"><code>sage-router/auto</code>, <code>sage-router/balanced</code>, <code>sage-router/frontier</code>, <code>sage-router/agentic</code>, and premium <code>sage-router/fusion</code> keep clients stable while the router selects the best healthy backend.</p>
+        </article>
+        <article class="card">
+          <span class="pill">BYOK</span>
+          <h3>Authorized providers</h3>
+          <p class="muted">Connect provider keys, subscriptions, local models, or team-approved endpoints you are authorized to use. Hosted plans sell routing control, not unauthorized model access.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Failover</span>
+          <h3>Private and cloud origins</h3>
+          <p class="muted">The public edge can select healthy Tailnet installs or hosted fallback origins, while customer credentials stay in the right custody boundary.</p>
+        </article>
+      </section>
+
+      <section class="section catalogPanel" aria-labelledby="catalog-explorer-title">
+        <div>
+          <p class="eyebrow">gateway-style discovery</p>
+          <h2 id="catalog-explorer-title">Search public route families.</h2>
+          <p class="muted">This explorer reads safe public <code>/model-catalog</code> metadata only. It never calls authenticated <code>/v1/models</code> without a customer key.</p>
+        </div>
+        <div class="panel catalogPanel">
+          <div class="catalogControls">
+            <label>
+              <span class="eyebrow">Search models</span>
+              <input id="model-search" class="searchBox" type="search" autocomplete="off" placeholder="Search frontier, codex, ollama, claude, gemini, BYOK..." />
+            </label>
+            <a class="button secondary" href="https://api.sagerouter.dev/model-catalog" data-model-event="model_catalog_json_clicked" data-model-button="catalog-json-explorer">Catalog JSON</a>
+          </div>
+          <div id="model-filters" class="filterRow" aria-label="Model family filters"></div>
+          <div class="catalogMeta">
+            <strong id="model-count">Loading catalog...</strong>
+            <span id="catalog-status">Fetching safe discovery metadata from <code>/model-catalog</code>.</span>
+          </div>
+          <div id="model-results" class="catalogResults" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section tableWrap">
+        <table>
+          <thead>
+            <tr><th>Family</th><th>Example models</th><th>Access boundary</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Sage Router profiles</td><td><code>sage-router/auto</code>, <code>sage-router/frontier</code>, <code>sage-router/agentic</code>, <code>sage-router/fusion</code></td><td>Stable aliases select across authorized providers and healthy fallback routes. Fusion is a Pro/Max multi-model synthesis route with a <a href="/fusion">dedicated guide</a>.</td></tr>
+            <tr><td>OpenAI and Codex-compatible</td><td><code>gpt-5.5</code>, <code>gpt-5.4</code>, <code>gpt-5.4-mini</code></td><td>Bring an authorized API key or compatible Codex/OpenClaw auth profile. <a href="/docs/codex">Codex setup</a> supports hosted and local port <code>8790</code> profiles.</td></tr>
+            <tr><td>Anthropic-compatible</td><td><code>claude-opus</code>, <code>claude-sonnet</code>, <code>claude-haiku</code></td><td>Bring authorized Anthropic/Dario access. Public plans do not pool personal accounts.</td></tr>
+            <tr><td>Google Gemini</td><td><code>gemini-3-pro</code>, <code>gemini-3-flash</code>, <code>gemini-2.5-pro</code></td><td>Bring authorized Google API or Vertex credentials.</td></tr>
+            <tr><td>Ollama and Ollama Cloud</td><td><code>llama3.3</code>, <code>qwen3-coder</code>, <code>gpt-oss:cloud</code></td><td>Use customer-controlled local Ollama or authorized Ollama Cloud models discovered through the runtime.</td></tr>
+            <tr><td>OpenAI-compatible BYOK</td><td><code>nvidia-nim/nemotron</code>, <code>openrouter/free-models</code>, <code>darkbloom/custom</code></td><td>Bring authorized provider keys for compatible endpoints such as NVIDIA NIM, OpenRouter, or private gateways.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">Client setup</p>
+          <h2>Keep the model API private.</h2>
+        </div>
+        <div class="panel">
+          <p class="muted">Use the public catalog to choose a route family, then verify the live model list with your account key:</p>
+          <p><code>OPENAI_BASE_URL=https://api.sagerouter.dev/v1</code></p>
+          <p><code>OPENAI_API_KEY=sk_sage_...</code></p>
+          <p><code>curl -H "Authorization: Bearer $OPENAI_API_KEY" https://api.sagerouter.dev/v1/models</code></p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>&copy; Sage Router</span>
+      <a href="/">Home</a>
+      <a href="/quickstart">Quickstart</a>
+      <a href="/docs/codex">Codex</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/models">Models</a>
+      <a href="/status">Status</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/acceptable-use">Acceptable Use</a>
+      <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+    </footer>
+  </div>
+  <script>
+    const ACCOUNT_PAGE_BASE_URL = 'https://app.sagerouter.dev/account.html';
+    function accountPageUrlForFamily(family) {
+      const safeFamily = modelFamilyForFilter(family || catalogState.activeFamily || 'all');
+      return `${ACCOUNT_PAGE_BASE_URL}?plan=pro&start=create_key&utm_source=model-catalog&utm_medium=activation&utm_campaign=sage-router-launch&utm_content=${encodeURIComponent(safeFamily)}`;
+    }
+    const ACCOUNT_PAGE_URL = `${ACCOUNT_PAGE_BASE_URL}?plan=pro&start=create_key&utm_source=model-catalog&utm_medium=activation&utm_campaign=sage-router-launch`;
+    const SUPABASE_URL = 'https://awtangrlqqsdpksarhwo.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3dGFuZ3JscXFzZHBrc2FyaHdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMTYzNzEsImV4cCI6MjA4ODU5MjM3MX0.U7TmEJMgYMH0rR8tTWFQ2tzReO5syRwnI3Ytg-BbDaw';
+    function loadSupabaseClient() {
+      return new Promise((resolve, reject) => {
+        if (window.supabase?.createClient) {
+          resolve(window.supabase);
+          return;
+        }
+        const existing = document.querySelector('script[data-supabase-js]');
+        if (existing) {
+          existing.addEventListener('load', () => resolve(window.supabase), { once: true });
+          existing.addEventListener('error', reject, { once: true });
+          return;
+        }
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+        script.async = true;
+        script.defer = true;
+        script.dataset.supabaseJs = 'true';
+        script.addEventListener('load', () => resolve(window.supabase), { once: true });
+        script.addEventListener('error', reject, { once: true });
+        document.head.appendChild(script);
+      });
+    }
+    const embeddedCatalog = {
+      recommendedModel: 'sage-router/frontier',
+      modelApiRequiresGeneratedKey: true,
+      openaiBaseUrl: 'https://api.sagerouter.dev/v1',
+      apiKeyPrefix: 'sk_sage_',
+      families: [
+        { id: 'sage-router-profiles', name: 'Sage Router profiles', examples: ['sage-router/auto', 'sage-router/balanced', 'sage-router/frontier', 'sage-router/agentic', 'sage-router/fusion'], access: 'Stable aliases select across authorized providers and healthy fallback routes. Fusion is a Pro/Max multi-model synthesis route.' },
+        { id: 'openai-codex', name: 'OpenAI and Codex-compatible routes', examples: ['gpt-5.5', 'gpt-5.4', 'gpt-5.4-mini'], access: 'Bring an authorized API key or compatible Codex/OpenClaw auth profile.' },
+        { id: 'anthropic', name: 'Anthropic-compatible routes', examples: ['claude-opus', 'claude-sonnet', 'claude-haiku'], access: 'Bring authorized Anthropic/Dario access; hosted public plans do not pool personal provider accounts.' },
+        { id: 'gemini', name: 'Google Gemini-compatible routes', examples: ['gemini-3-pro', 'gemini-3-flash', 'gemini-2.5-pro'], access: 'Bring authorized Google API or Vertex credentials.' },
+        { id: 'ollama', name: 'Ollama local and Ollama Cloud routes', examples: ['llama3.3', 'qwen3-coder', 'gpt-oss:cloud'], access: 'Use customer-controlled local Ollama or authorized Ollama Cloud models discovered through the runtime.' },
+        { id: 'byok-compatible', name: 'BYOK OpenAI-compatible providers', examples: ['nvidia-nim/nemotron', 'openrouter/free-models', 'darkbloom/custom'], access: 'Bring authorized provider keys for OpenAI-compatible endpoints such as NVIDIA NIM, OpenRouter, or private gateways.' }
+      ],
+      safetyBoundary: 'The public catalog is not a promise of bundled model resale. Provider access must be authorized by the customer or explicitly approved for managed access.'
+    };
+    const catalogState = { catalog: embeddedCatalog, source: 'embedded', activeFamily: 'all', query: '', visibleCount: 0 };
+    const familyKeywords = {
+      'sage-router-profiles': ['profiles', 'frontier', 'auto', 'balanced', 'agentic', 'fusion', 'synthesis', 'panel', 'judge'],
+      'openai-codex': ['openai', 'codex', 'gpt', 'chatgpt'],
+      anthropic: ['anthropic', 'claude', 'dario'],
+      gemini: ['google', 'gemini', 'vertex'],
+      ollama: ['ollama', 'local', 'cloud', 'llama', 'qwen'],
+      'byok-compatible': ['byok', 'gateway', 'openrouter', 'nvidia', 'nim', 'darkbloom', 'compatible']
+    };
+    const safeModelFamilies = new Set(['all', ...Object.keys(familyKeywords)]);
+    const $ = (id) => document.getElementById(id);
+    const normalize = (value) => String(value || '').toLowerCase();
+    let modelCatalogViewTracked = false;
+    let searchEventTimer = null;
+
+    function attributionContext() {
+      const params = new URLSearchParams(window.location.search);
+      let referrerHost = '';
+      try {
+        referrerHost = document.referrer ? new URL(document.referrer).hostname : '';
+      } catch {
+        referrerHost = '';
+      }
+      return {
+        utmSource: params.get('utm_source') || '',
+        utmMedium: params.get('utm_medium') || '',
+        utmCampaign: params.get('utm_campaign') || '',
+        referrerHost,
+        landingPath: window.location.pathname
+      };
+    }
+
+    function modelFamilyForFilter(value) {
+      const family = String(value || '').trim().toLowerCase();
+      return safeModelFamilies.has(family) ? family : 'other';
+    }
+
+    function queryBucketFor(value) {
+      const query = normalize(value);
+      if (!query.trim()) return 'empty';
+      for (const [family, keywords] of Object.entries(familyKeywords)) {
+        if (keywords.some((keyword) => query.includes(keyword))) return family;
+      }
+      return 'other';
+    }
+
+    function trackModelCatalogEvent(event, metadata = {}, targetUrl = null) {
+      const payload = {
+        event,
+        plan: metadata.plan || null,
+        sourcePage: window.location.href,
+        target: targetUrl,
+        metadata: {
+          source: 'model-catalog',
+          catalogSource: catalogState.source,
+          modelFamily: modelFamilyForFilter(metadata.modelFamily || catalogState.activeFamily),
+          queryBucket: metadata.queryBucket || queryBucketFor(catalogState.query),
+          resultCount: catalogState.visibleCount,
+          ...attributionContext(),
+          ...metadata
+        }
+      };
+      const body = JSON.stringify(payload);
+      if (navigator.sendBeacon) {
+        const blob = new Blob([body], { type: 'application/json' });
+        if (navigator.sendBeacon('/api/funnel-event', blob)) return;
+      }
+      fetch('/api/funnel-event', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        credentials: 'omit',
+        keepalive: true,
+        body
+      }).catch(() => {});
+    }
+
+    function updateCatalogAccountLinks(family = catalogState.activeFamily) {
+      const url = accountPageUrlForFamily(family);
+      document.querySelectorAll('[data-model-account-link]').forEach((link) => {
+        link.href = url;
+      });
+      const nextAccount = $('model-catalog-copy-next-account');
+      if (nextAccount) nextAccount.href = url;
+    }
+
+    function markCatalogFamilyIntent(family) {
+      const safeFamily = modelFamilyForFilter(family);
+      document.querySelectorAll('[data-model-family-intent]').forEach((button) => {
+        button.classList.toggle('active', modelFamilyForFilter(button.dataset.modelFamilyIntent) === safeFamily);
+      });
+    }
+
+    function chooseCatalogFamilyIntent(family, button = null) {
+      const safeFamily = modelFamilyForFilter(family);
+      catalogState.activeFamily = safeFamily;
+      catalogState.query = '';
+      const search = $('model-search');
+      if (search) search.value = '';
+      renderFilters();
+      markCatalogFamilyIntent(catalogState.activeFamily);
+      updateCatalogAccountLinks(catalogState.activeFamily);
+      catalogState.visibleCount = renderCatalog();
+      trackModelCatalogEvent('model_catalog_filter_clicked', {
+        modelFamily: safeFamily,
+        button: button?.textContent?.trim().slice(0, 80) || 'family-intent-card',
+        state: 'intent-card'
+      }, accountPageUrlForFamily(safeFamily));
+    }
+
+    function modelCatalogSetupBundleText() {
+      const accountUrl = accountPageUrlForFamily();
+      return `# Sage Router catalog-to-first-request setup
+# Create a hosted key:
+# ${accountUrl}
+
+export OPENAI_BASE_URL=https://api.sagerouter.dev/v1
+export OPENAI_API_KEY=sk_sage_your_key_here
+
+# Public route-family discovery is anonymous:
+curl https://api.sagerouter.dev/model-catalog
+
+# Authenticated live model list requires your generated key:
+curl "$OPENAI_BASE_URL/models" \\
+  -H "Authorization: Bearer $OPENAI_API_KEY"
+
+# First routed request:
+curl "$OPENAI_BASE_URL/chat/completions" \\
+  -H "Authorization: Bearer $OPENAI_API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "model": "sage-router/frontier",
+    "messages": [{"role": "user", "content": "Route this well"}]
+  }'`;
+    }
+
+    async function writeClipboardText(text) {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      textarea.remove();
+    }
+
+    async function copyModelCatalogSetupBundle() {
+      const status = $('model-catalog-copy-status');
+      const accountUrl = accountPageUrlForFamily();
+      try {
+        await writeClipboardText(modelCatalogSetupBundleText());
+        trackModelCatalogEvent('quickstart_snippet_copied', {
+          plan: 'pro',
+          button: 'Copy 60-second catalog setup',
+          state: 'catalog-setup-copy',
+          snippet: 'model-catalog-setup-bundle'
+        }, accountUrl);
+        const nextAccount = $('model-catalog-copy-next-account');
+        if (nextAccount) nextAccount.dataset.setupCopied = 'true';
+        if (status) status.textContent = 'Copied. Create your API key next; no provider key or credit card required yet.';
+      } catch {
+        if (status) status.textContent = 'Copy failed. Open the quickstart for manual setup.';
+      }
+    }
+
+    async function sendModelCatalogMagicLink(event) {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const emailInput = form.querySelector('input[type="email"]');
+      const status = $('model-catalog-email-status');
+      const email = (emailInput.value || '').trim();
+      const accountUrl = accountPageUrlForFamily();
+      if (!email) {
+        status.textContent = 'Enter an email address to receive the setup link.';
+        emailInput.focus();
+        return;
+      }
+      status.textContent = 'Sending setup link...';
+      trackModelCatalogEvent('model_catalog_magic_link_requested', {
+        plan: 'pro',
+        button: 'Email API key setup link',
+        state: 'email-start'
+      }, accountUrl);
+      try {
+        const api = await loadSupabaseClient();
+        const client = api.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const { error } = await client.auth.signInWithOtp({
+          email,
+          options: {
+            emailRedirectTo: accountUrl,
+            data: {
+              sage_router_onboarding: true,
+              signup_source: 'model-catalog',
+              model_family_intent: modelFamilyForFilter(catalogState.activeFamily),
+              selected_plan: 'pro',
+              auth_method: 'magic_link'
+            }
+          }
+        });
+        if (error) throw error;
+        trackModelCatalogEvent('model_catalog_magic_link_sent', {
+          plan: 'pro',
+          button: 'Email API key setup link',
+          state: 'email-start'
+        }, accountUrl);
+        status.textContent = 'Check your email for the API key setup link. It opens account setup with the Pro plan selected.';
+      } catch (error) {
+        trackModelCatalogEvent('model_catalog_magic_link_failed', {
+          plan: 'pro',
+          button: 'Email API key setup link',
+          state: 'email-start'
+        }, accountUrl);
+        status.textContent = 'Email setup is unavailable right now. Opening account setup instead...';
+        setTimeout(() => { window.location.href = accountUrl; }, 900);
+      }
+    }
+
+    async function modelCatalogOauthLogin(event) {
+      const button = event.currentTarget;
+      const original = button.textContent;
+      const status = $('model-catalog-email-status');
+      const accountUrl = accountPageUrlForFamily();
+      button.disabled = true;
+      button.textContent = 'Opening GitHub...';
+      if (status) status.textContent = 'Opening GitHub sign-in for Pro.';
+      trackModelCatalogEvent('model_catalog_oauth_clicked', {
+        plan: 'pro',
+        button: 'Continue with GitHub for Pro',
+        state: 'github'
+      }, accountUrl);
+      try {
+        const api = await loadSupabaseClient();
+        const client = api.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const { error } = await client.auth.signInWithOAuth({
+          provider: 'github',
+          options: { redirectTo: accountUrl }
+        });
+        if (error) throw error;
+      } catch (error) {
+        trackModelCatalogEvent('model_catalog_oauth_failed', {
+          plan: 'pro',
+          button: 'Continue with GitHub for Pro',
+          state: 'github'
+        }, accountUrl);
+        if (status) status.textContent = 'GitHub sign-in failed here. Opening account setup instead...';
+        setTimeout(() => { window.location.href = accountUrl; }, 900);
+      } finally {
+        button.disabled = false;
+        button.textContent = original;
+      }
+    }
+
+    function familyText(family) {
+      return [family.id, family.name, family.access, ...(family.examples || []), ...(familyKeywords[family.id] || [])].map(normalize).join(' ');
+    }
+    function renderFilters() {
+      const filters = $('model-filters');
+      const families = catalogState.catalog.families || [];
+      const buttons = [{ id: 'all', name: 'All families' }, ...families.map((family) => ({ id: family.id, name: family.name }))];
+      filters.innerHTML = '';
+      for (const row of buttons) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'filterButton';
+        button.textContent = row.name;
+        button.setAttribute('aria-pressed', row.id === catalogState.activeFamily ? 'true' : 'false');
+        button.addEventListener('click', () => {
+          catalogState.activeFamily = row.id;
+          markCatalogFamilyIntent(row.id);
+          updateCatalogAccountLinks(row.id);
+          renderFilters();
+          catalogState.visibleCount = renderCatalog();
+          trackModelCatalogEvent('model_catalog_filter_clicked', {
+            modelFamily: modelFamilyForFilter(row.id)
+          });
+        });
+        filters.appendChild(button);
+      }
+    }
+    function renderCatalog() {
+      const results = $('model-results');
+      const query = normalize(catalogState.query).trim();
+      const families = (catalogState.catalog.families || []).filter((family) => {
+        const matchesFamily = catalogState.activeFamily === 'all' || family.id === catalogState.activeFamily;
+        const matchesQuery = !query || familyText(family).includes(query);
+        return matchesFamily && matchesQuery;
+      });
+      $('model-count').textContent = `${families.length} route ${families.length === 1 ? 'family' : 'families'} shown`;
+      results.innerHTML = '';
+      if (!families.length) {
+        const empty = document.createElement('div');
+        empty.className = 'empty';
+        empty.textContent = 'No route families match this search. Try frontier, Codex, Ollama, Claude, Gemini, model gateway, NVIDIA, or BYOK.';
+        results.appendChild(empty);
+        return families.length;
+      }
+      for (const family of families) {
+        const card = document.createElement('article');
+        card.className = 'modelFamily';
+        const title = document.createElement('h3');
+        title.textContent = family.name;
+        const examples = document.createElement('div');
+        examples.className = 'exampleList';
+        for (const example of family.examples || []) {
+          const code = document.createElement('code');
+          code.textContent = example;
+          examples.appendChild(code);
+        }
+        const access = document.createElement('p');
+        access.className = 'muted';
+        access.textContent = family.access || 'Bring authorized provider access for this route family.';
+        card.append(title, examples, access);
+        results.appendChild(card);
+      }
+      return families.length;
+    }
+    function setCatalog(catalog, source) {
+      catalogState.catalog = catalog && Array.isArray(catalog.families) ? catalog : embeddedCatalog;
+      catalogState.source = source;
+      $('catalog-status').textContent = source === 'live'
+        ? `Loaded safe public catalog metadata from ${catalogState.catalog.openaiBaseUrl || 'https://api.sagerouter.dev/v1'}.`
+        : 'Using embedded safe catalog metadata while the public API edge is unreachable.';
+      renderFilters();
+      markCatalogFamilyIntent(catalogState.activeFamily);
+      updateCatalogAccountLinks(catalogState.activeFamily);
+      catalogState.visibleCount = renderCatalog();
+      if (!modelCatalogViewTracked) {
+        modelCatalogViewTracked = true;
+        trackModelCatalogEvent('model_catalog_viewed', {
+          catalogSource: source,
+          resultCount: catalogState.visibleCount
+        });
+      }
+    }
+    $('model-search').addEventListener('input', (event) => {
+      catalogState.query = event.target.value;
+      catalogState.visibleCount = renderCatalog();
+      clearTimeout(searchEventTimer);
+      searchEventTimer = setTimeout(() => {
+        trackModelCatalogEvent('model_catalog_search_bucketed', {
+          queryBucket: queryBucketFor(catalogState.query),
+          resultCount: catalogState.visibleCount
+        });
+      }, 500);
+    });
+    document.querySelectorAll('[data-model-family-intent]').forEach((button) => {
+      button.addEventListener('click', () => chooseCatalogFamilyIntent(button.dataset.modelFamilyIntent, button));
+    });
+    document.querySelectorAll('[data-model-event]').forEach((link) => {
+      link.addEventListener('click', () => {
+        trackModelCatalogEvent(link.dataset.modelEvent, {
+          button: link.dataset.modelButton || 'link'
+        }, link.href);
+      });
+    });
+    $('model-catalog-email-form')?.addEventListener('submit', sendModelCatalogMagicLink);
+    $('model-catalog-github-pro')?.addEventListener('click', modelCatalogOauthLogin);
+    $('model-catalog-copy-setup')?.addEventListener('click', copyModelCatalogSetupBundle);
+    $('model-catalog-copy-next-account')?.addEventListener('click', (event) => {
+      const link = event.currentTarget;
+      trackModelCatalogEvent('model_catalog_setup_next_clicked', {
+        plan: 'pro',
+        button: 'Create API key next',
+        state: link.dataset.setupCopied === 'true' ? 'post-copy' : 'pre-copy',
+        snippet: 'model-catalog-setup-bundle'
+      }, link.href);
+    });
+    setCatalog(embeddedCatalog, 'embedded');
+    fetch('https://api.sagerouter.dev/model-catalog', { credentials: 'omit', headers: { Accept: 'application/json' } })
+      .then((response) => response.ok ? response.json() : Promise.reject(new Error(`HTTP ${response.status}`)))
+      .then((payload) => setCatalog(payload.modelCatalog || payload, 'live'))
+      .catch(() => setCatalog(embeddedCatalog, 'embedded'));
+  </script>
+</body>
+</html>

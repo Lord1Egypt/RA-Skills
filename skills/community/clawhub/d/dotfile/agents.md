@@ -89,8 +89,14 @@ On a fresh environment (new install or rebuild), invoke the script via its
 on first run, but `~/.agents/skills/dotfile/` is always present:
 
 ```bash
-# macOS / Linux / WSL (sh)
-bash ~/.agents/skills/dotfile/scripts/link-shared-ai-configs.sh
+# macOS / Linux / WSL (sh) — uname gate guards against running on
+# native Windows shells (e.g. Git Bash on a system where the symlink
+# semantics differ); the Windows path goes through the PowerShell
+# variant below.
+case "$(uname -s)" in
+  Darwin|Linux) bash ~/.agents/skills/dotfile/scripts/link-shared-ai-configs.sh ;;
+  *) echo "Unsupported uname: $(uname -s). Use the Windows PowerShell variant below." >&2; exit 1 ;;
+esac
 ```
 
 <details>

@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:skill="https://clawhub.ai/schemas/skill-sitemap/1.0">
+  <url>
+    <loc>https://clawhub.ai/englandtong/agent-loop-engineering</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <skill:slug>agent-loop-engineering</skill:slug>
+    <skill:version>1.0.0</skill:version>
+    <skill:title><![CDATA[Agent Loop Engineering]]></skill:title>
+    <skill:name><![CDATA[Agent Loop Engineering]]></skill:name>
+    <skill:summary_en><![CDATA[A runner-neutral AI coding loop controller that keeps goals, acceptance criteria, verification evidence, stop rules, and loop history in project-local Docs/ files so multiple AI coding agents can safely continue the same development work. Includes production-system guidance adapted from TPS, TQC, Six Sigma, ISO, HACCP, and FSSC-style control systems.]]></skill:summary_en>
+    <skill:summary_zh><![CDATA[一个面向多 AI Coding Agent 的编码循环总控 Skill，用项目本地 Docs/ 文件保存目标、验收标准、验证证据、停止规则和循环历史，让不同 Agent 可以安全接力同一项开发工作。包含从 TPS、TQC、Six Sigma、ISO、HACCP、FSSC 等体系抽象出的 AI Coding Production System 控制规则。]]></skill:summary_zh>
+    <skill:functions><![CDATA[Controls bounded coding loops; bootstraps TARGET.md and ACCEPTANCE.md; enforces context budgets; classifies environment escalation; writes STATUS, PENDING, NEXT_ACTIONS, EVALUATION, COMPLETED, and LOOP_RUNS.jsonl; defines Done / Done with Risk / Blocked gates; provides AI Coding Production System guidance, Harness Engineering guidance, automation runner guidance, and runner adapter contracts for Codex, Claude Code, OpenCode, Cline, Qoder, CodeBuddy, Trae, Gemini CLI, Aider, and GitHub Actions.]]></skill:functions>
+    <skill:tags><![CDATA[ai-coding, agent-loop, ai-coding-production-system, harness-engineering, automation-runner, multi-agent, rubric-evaluation, coding-agent, project-memory, acceptance-criteria, verification, stop-gates, context-budget, handoff, runner-adapters]]></skill:tags>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/agent-loop-engineering/artifact/SKILL.md</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>SKILL.md</skill:file>
+    <skill:description><![CDATA[Main instruction file for Agent Loop Engineering.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/agent-loop-engineering/artifact/SECURITY.md</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>SECURITY.md</skill:file>
+    <skill:description><![CDATA[Security and privacy guidance for Agent Loop Engineering.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/agent-loop-engineering/artifact/references/loop-state-protocol.md</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>references/loop-state-protocol.md</skill:file>
+    <skill:description><![CDATA[Project-local Docs/ state protocol for multi-agent loop memory.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/agent-loop-engineering/artifact/references/completion-gate.md</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>references/completion-gate.md</skill:file>
+    <skill:description><![CDATA[Done, Done with Risk, Blocked, and Continue decision rules.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/agent-loop-engineering/artifact/references/runner-adapters.md</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>references/runner-adapters.md</skill:file>
+    <skill:description><![CDATA[Runner-neutral adapter contract and examples.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/agent-loop-engineering/artifact/references/automation-runner.md</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>references/automation-runner.md</skill:file>
+    <skill:description><![CDATA[Automation runner guidance for repeated one-loop scheduling, stop-state parsing, budgets, locking, and CI boundaries.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/agent-loop-engineering/artifact/references/harness-engineering.md</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>references/harness-engineering.md</skill:file>
+    <skill:description><![CDATA[Harness Engineering guidance for Planner / Developer / Evaluator separation, rubric evaluation, quality vision, environment observability, and low-gain stop rules.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/agent-loop-engineering/artifact/references/ai-coding-production-system.md</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>references/ai-coding-production-system.md</skill:file>
+    <skill:description><![CDATA[Production-system controls for AI coding adapted from TPS, TQC, Six Sigma, ISO, HACCP, FSSC, FSMA, GFSI, and root-cause methods.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/agent-loop-engineering/artifact/references/context-budget.md</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>references/context-budget.md</skill:file>
+    <skill:description><![CDATA[Progressive reading and context budget rules.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/agent-loop-engineering/artifact/references/checker-and-evidence.md</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>references/checker-and-evidence.md</skill:file>
+    <skill:description><![CDATA[Checker boundaries, strict evidence gate, command exit-code evidence, and cross-repo checker usage.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/agent-loop-engineering/artifact/references/host-runtime-integration.md</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>references/host-runtime-integration.md</skill:file>
+    <skill:description><![CDATA[Host runtime integration and feedback governance rules for separating development CMS, product runtime CMS, reusable Skill updates, AgentLoopRuntime hooks, evidence layers, and dogfooding feedback boundaries.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/agent-loop-engineering/artifact/agents/openai.yaml</loc>
+    <lastmod>2026-06-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>agents/openai.yaml</skill:file>
+    <skill:description><![CDATA[OpenAI agent configuration for this skill.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/agent-loop-engineering/artifact/scripts/agent-loop-check.ps1</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>scripts/agent-loop-check.ps1</skill:file>
+    <skill:description><![CDATA[CMS Lite v0.2 deterministic checker for TARGET.md, ACCEPTANCE.md, LOOP_STATE.md, LOOP_LOG.jsonl, code size, and strict verification evidence.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/agent-loop-engineering/artifact/scripts/agent-loop-health-check.mjs</loc>
+    <lastmod>2026-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <skill:file>scripts/agent-loop-health-check.mjs</skill:file>
+    <skill:description><![CDATA[Read-only expanded Docs health checker for duplicate acceptance IDs, WORK_ORDER environment-note gaps, LOOP_RUNS JSONL issues, and obvious completion gate contradictions.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/agent-loop-engineering/artifact/templates/TARGET.md</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <skill:file>templates/TARGET.md</skill:file>
+    <skill:description><![CDATA[CMS Lite target template.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/agent-loop-engineering/artifact/templates/ACCEPTANCE.md</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <skill:file>templates/ACCEPTANCE.md</skill:file>
+    <skill:description><![CDATA[CMS Lite acceptance criteria template.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/agent-loop-engineering/artifact/templates/LOOP_STATE.md</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <skill:file>templates/LOOP_STATE.md</skill:file>
+    <skill:description><![CDATA[CMS Lite loop state template.]]></skill:description>
+  </url>
+  <url>
+    <loc>https://clawhub.ai/englandtong/agent-loop-engineering/artifact/templates/LOOP_LOG.example.jsonl</loc>
+    <lastmod>2026-06-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+    <skill:file>templates/LOOP_LOG.example.jsonl</skill:file>
+    <skill:description><![CDATA[CMS Lite loop log JSONL example with strict evidence fields.]]></skill:description>
+  </url>
+</urlset>

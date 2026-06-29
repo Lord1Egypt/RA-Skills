@@ -1,0 +1,6 @@
+name: videolens-video-intelligence
+description: Manual-only OCC wrapper for VideoLens video intelligence analysis.
+enabled: true
+entry_point: skill.py
+timeout_seconds: 1800
+manual_only: true

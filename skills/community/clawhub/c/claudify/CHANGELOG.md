@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.1](https://github.com/es6kr/skills/compare/claudify-v0.3.0...claudify-v0.3.1) (2026-06-25)
+
+
+### Bug Fixes
+
+* apply PR [#62](https://github.com/es6kr/skills/issues/62) AI review findings (14) ([8132a2b](https://github.com/es6kr/skills/commit/8132a2b001fbd10e3db618decf989f8cf84b1b6b))
+* **claudify:** add Step 0 output-size routing guard ([e63b1d1](https://github.com/es6kr/skills/commit/e63b1d1a376cd874d6fc11024b6db4c7c859b444))
+* **fix:** split Step 2 medium by content type — case history to failed-attempts.md ([#62](https://github.com/es6kr/skills/issues/62)) ([747b3f9](https://github.com/es6kr/skills/commit/747b3f957ca0fefdbc5044eb08f66b8aafc1e26a))
+
 ## [0.3.0](https://github.com/es6kr/skills/compare/claudify-v0.2.0...claudify-v0.3.0) (2026-06-03)
 
 

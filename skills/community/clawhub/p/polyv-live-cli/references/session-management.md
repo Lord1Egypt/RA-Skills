@@ -2,12 +2,29 @@
 
 场次（Session）是直播频道的一次直播活动记录。每个频道可以有多个场次，用于记录不同的直播活动。
 
+## 重要：新版场次 vs 历史场次
+
+PolyV 直播存在两套场次数据，查询命令和 `session get` 的适用范围不同，混用会查不到数据：
+
+| 数据集 | 查询命令 | `session get` 是否支持 |
+|--------|----------|------------------------|
+| **新版场次**（通过新版场次系统创建/管理的场次） | `session list` | ✅ 支持 |
+| **历史场次**（早期直播产生的场次，新版列表查不到） | `session legacy-list` 或 `session data-list` | ❌ 不支持（`session get` 仅支持新版场次 ID） |
+
+典型坑：`session list` 返回空，但 `session legacy-list`/`session data-list` 能查到场次；此时拿到的历史 `sessionId` 不能再用 `session get` 查询（会返回"场次不存在"）。历史场次的详情请直接使用 `session legacy-list`/`session data-list` 的返回结果。
+
 ## 命令概览
 
 | 命令 | 说明 |
 |------|------|
-| `session list` | 获取场次列表 |
-| `session get` | 获取场次详情 |
+| `session list` | 获取**新版**场次列表（仅新版场次系统） |
+| `session legacy-list` | 查询频道**历史**场次信息 |
+| `session data-list` | 查询频道**历史**场次数据列表 |
+| `session get` | 获取**单个新版场次**详情（仅支持 `session list` 返回的 sessionId） |
+| `session create` | 创建新版场次 |
+| `session update` | 更新新版场次 |
+| `session delete` | 删除新版场次 |
+| `session external` | 管理外部场次 ID 关联 |
 
 ## 场次列表
 
@@ -58,6 +75,8 @@ k7d9f2h1l5     测试场次2     直播中    2024-01-15 14:00     -
 ## 场次详情
 
 获取指定场次的详细信息。
+
+> ⚠️ `session get` 仅支持**新版场次**的 `sessionId`（即 `session list` 返回的 ID）。历史场次的 `sessionId`（来自 `session legacy-list` / `session data-list`）不支持，会返回"场次不存在"，请直接使用历史列表命令的返回结果。
 
 ### 语法
 

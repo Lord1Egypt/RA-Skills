@@ -35,12 +35,13 @@ The reference documents themselves are currently maintained in Chinese.
 - [三大报表时点数据](../references/沪深京数据/财务数据/三大报表时点数据.md)
 - [三大报表TTM数据](../references/沪深京数据/财务数据/三大报表TTM数据.md)
 - [财务附注](../references/沪深京数据/财务数据/财务附注.md)
-### 特色数据 / 个股诊断V4
+### 特色数据 / 个股诊断
 
-- [财务面](../references/沪深京数据/特色数据/个股诊断V4/财务面.md)
+- [财务面](../references/沪深京数据/特色数据/个股诊断/财务面.md)
+- [dcf估值模型](../references/沪深京数据/特色数据/个股诊断/dcf估值模型.md)
 ### 特色数据
 
-- [个股诊断V4](../references/沪深京数据/特色数据/个股诊断V4.md)
+- [个股诊断](../references/沪深京数据/特色数据/个股诊断.md)
 - [公司分析](../references/沪深京数据/特色数据/公司分析.md)
 - [择时信号](../references/沪深京数据/特色数据/择时信号.md)
 - [解套信号](../references/沪深京数据/特色数据/解套信号.md)

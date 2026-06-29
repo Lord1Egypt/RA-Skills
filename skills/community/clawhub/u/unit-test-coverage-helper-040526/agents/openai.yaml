@@ -1,0 +1,7 @@
+interface:
+  display_name: "Unit Test Coverage Helper"
+  short_description: "Add meaningful unit tests to existing codebases by finding uncovered behavior, selecting high-value cases,..."
+  default_prompt: "Use $unit-test-coverage-helper to add regression tests for this bug fix."
+
+policy:
+  allow_implicit_invocation: true

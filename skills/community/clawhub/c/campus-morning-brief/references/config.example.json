@@ -1,0 +1,18 @@
+{
+  "student": {
+    "display_name": "Alex",
+    "age_group": "middle-school",
+    "language": "zh-CN",
+    "interests": ["science", "football", "animation"]
+  },
+  "location": {
+    "city": "Beijing",
+    "timezone": "Asia/Shanghai"
+  },
+  "brief": {
+    "general_news_count": 4,
+    "interest_news_count": 3,
+    "reading_minutes": 5
+  },
+  "reminders": []
+}

@@ -43,6 +43,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--check-push", action="store_true", help="Run git push --dry-run to test push authorization.")
     parser.add_argument("--write-config", action="store_true", help="Persist successful Git sync settings to .zhizhi-math-coach/config.json.")
     parser.add_argument("--auto-sync", action="store_true", help="When writing config, enable automatic pull, commit, and push.")
+    parser.add_argument("--defer-push-after-grading", action="store_true", help="When writing config, skip automatic push for grading tasks after committing locally.")
     parser.add_argument("--sync-full-learning-data", action="store_true", help="When writing config, allow committing learning records.")
     parser.add_argument("--public-repository-accepted", action="store_true", help="When writing config, record that the parent accepts public repository visibility.")
     return parser.parse_args()
@@ -127,6 +128,7 @@ def main() -> int:
                     "auto_pull_before_task": args.auto_sync,
                     "auto_commit_after_task": args.auto_sync,
                     "auto_push_after_task": args.auto_sync,
+                    "defer_push_after_grading": args.defer_push_after_grading,
                     "sync_full_learning_data": args.sync_full_learning_data or args.auto_sync,
                     "public_repository_accepted": args.public_repository_accepted,
                 },

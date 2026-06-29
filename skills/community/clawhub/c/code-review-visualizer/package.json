@@ -1,0 +1,5 @@
+{
+    "name":  "code-review-visualizer",
+    "version":  "1.0.0",
+    "description":  "Generate HTML code review pages with risk tags, diff highlights, and file-level annotations. 当用户需要代码审查可视化、PR审查报告、代码diff高亮、风险标签标注、审查页面生成时使用。"
+}

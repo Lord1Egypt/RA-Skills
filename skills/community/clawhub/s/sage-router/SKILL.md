@@ -1,7 +1,7 @@
 ---
 name: sage-router
 description: Local-first AI model routing for serious agents. One endpoint. Any provider. The router figures out the rest.
-version: 4.157.6
+version: 4.157.9
 env:
   - SAGE_ROUTER_HOME (required: path to sage-router repo)
   - SAGE_ROUTER_DISABLED_PROVIDERS (optional: comma-separated provider names to suppress)
@@ -121,11 +121,27 @@ flagged). The dashboard Health card renders all three summaries.
 ## Modality learning
 
 On every successful completion the router records the modalities that a model
-actually served (`vision`, `audio`, `video`, `document`, `text`) into an
+actually served (`image`, `audio`, `video`, `document`, `text`) into an
 append-only ledger persisted at `APP_MODEL_MODALITIES` (env
 `SAGE_ROUTER_MODEL_MODALITIES`, default
 `~/.openclaw/openclaw/model-modalities.json`). Disk writes are throttled (at
 most once per 5 s unless forced).
+
+Hosted/CDN deployments can share the ledger across all router nodes through
+Supabase by applying
+`supabase/migrations/20260626003000_model_modalities.sql` and enabling
+`SAGE_ROUTER_MODEL_MODALITIES_SHARED_ENABLED=1` with
+`SAGE_ROUTER_SUPABASE_URL` plus `SAGE_ROUTER_SUPABASE_SERVICE_ROLE_KEY`.
+When `SAGE_ROUTER_SUPABASE_MIRROR_ENABLED=1`, shared modality learning is on by
+default. Nodes merge the shared table into local memory periodically
+(`SAGE_ROUTER_MODEL_MODALITIES_SHARED_REFRESH_SECONDS`, default 60) and mirror
+new observations through the atomic `sage_router_record_model_modalities` RPC,
+so one CDN/Tailnet backend can benefit from modalities learned by another.
+The Cloudflare API Worker records the same response headers into that RPC with
+`ctx.waitUntil`, which keeps edge requests fast while making CDN observations
+durable in the shared ledger. Public Tailnet edge health exposes
+`modelModalities.sharedEnabled`, and the Cloudflare origin gate requires it
+before treating an origin as public-edge-ready.
 
 Learned modalities feed back into `model_capabilities` as an augmentation: a
 model is treated as supporting a modality if it declares it *or* it has served
@@ -241,3 +257,9 @@ Current profiles:
 - `frontier-large`: strict frontier-large-only routing.
 - `fast-local`: low-latency local-first routing.
 - `coding-max`: high-thinking code route with weak model exclusions.
+
+Codex/OpenClaw `/goal` compatibility is automatic. Raw `/goal ...` messages and
+Codex `<codex_internal_context source="goal">` blocks are normalized into
+plain persistent objective context, then routed with best/high, reasoning,
+long-context, agentic requirements so providers do not treat `/goal` as an
+ordinary unknown slash command.

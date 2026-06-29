@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sage Router billing help for hosted checkout, Stripe portal, manual and crypto settlement, plan activation, generated API keys, payment recovery, and safe support." />
+  <link rel="canonical" href="https://sagerouter.dev/billing" />
+  <meta property="og:title" content="Sage Router Billing" />
+  <meta property="og:description" content="Hosted billing, checkout, portal, manual settlement, crypto intent, and activation guidance for Sage Router customers." />
+  <meta property="og:url" content="https://sagerouter.dev/billing" />
+  <meta property="og:type" content="website" />
+  <title>Sage Router Billing</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07100d;--panel:rgba(13,29,24,.84);--panel2:rgba(255,255,255,.04);--border:rgba(166,255,207,.16);--muted:#a9c5b8;--text:#edfdf5;--brand:#8df0b2;--blue:#8ab4ff;--amber:#f7d57a;--danger:#ff9f9f}*{box-sizing:border-box}body{margin:0;min-width:320px;background:linear-gradient(180deg,#07100d 0%,#0b1518 48%,#07100d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}a{color:inherit;text-decoration:none}.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;color:var(--muted)}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;color:var(--text)}.brandMark{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(141,240,178,.42);border-radius:8px;color:#062016;background:linear-gradient(135deg,var(--brand),var(--amber))}.navLinks,footer{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;font-weight:750}.navLinks a:hover,footer a:hover{color:var(--text)}.hero{padding:68px 0 46px}.eyebrow{color:var(--brand);text-transform:uppercase;letter-spacing:.16em;font-weight:900;font-size:12px;margin:0 0 16px}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(42px,7vw,78px);line-height:.96;margin-bottom:22px;max-width:920px}h2{font-size:clamp(27px,3.6vw,44px);line-height:1.04;margin-bottom:14px}h3{font-size:21px;margin-bottom:10px}.lead{font-size:clamp(19px,2.1vw,26px);line-height:1.35;color:#d2eadf;max-width:920px}.muted,.panel li,.step li,td{color:var(--muted)}.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}.button{min-height:46px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;padding:0 18px;font-weight:900}.primary{background:linear-gradient(135deg,var(--brand),#50d891);color:#04150d}.secondary{border:1px solid var(--border);background:rgba(255,255,255,.04)}.section{padding:42px 0}.grid2{display:grid;grid-template-columns:.95fr 1.05fr;gap:22px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.panel,.step,.tableWrap{background:var(--panel);border:1px solid var(--border);border-radius:8px}.panel,.step{padding:24px}.step strong{display:inline-flex;color:var(--text);margin-bottom:8px}.callout{border-color:rgba(141,240,178,.34);background:linear-gradient(180deg,rgba(26,67,50,.9),rgba(12,28,22,.86))}.warning{border-color:rgba(247,213,122,.32);background:linear-gradient(180deg,rgba(65,48,18,.72),rgba(12,28,22,.86))}.danger{color:var(--danger)}ul{padding-left:20px;margin:0;display:grid;gap:8px}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:720px}th,td{text-align:left;border-bottom:1px solid rgba(166,255,207,.12);padding:15px 18px;vertical-align:top}th{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--text);background:rgba(255,255,255,.035)}td:first-child{color:var(--text);font-weight:850}.pill{display:inline-flex;width:max-content;border:1px solid rgba(138,180,255,.3);border-radius:999px;padding:6px 10px;color:var(--blue);font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.08em}code{color:#d9f8e6}.note{font-size:14px;color:var(--muted)}footer{padding:34px 0 54px;color:var(--muted);border-top:1px solid rgba(166,255,207,.1)}footer span{margin-right:auto}@media(max-width:900px){.nav{align-items:flex-start;flex-direction:column}.grid2,.grid3{grid-template-columns:1fr}.button{width:100%}.hero{padding-top:44px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+      <div class="navLinks">
+        <a href="/pricing">Pricing</a>
+        <a href="https://app.sagerouter.dev/login.html?plan=pro&start=create_key&utm_source=billing&utm_medium=recovery&utm_campaign=signup_to_key_recovery&auth=email">Account</a>
+        <a href="/quickstart">Quickstart</a>
+        <a href="/api-troubleshooting">Troubleshooting</a>
+        <a href="/status">Status</a>
+        <a href="/support">Support</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Hosted billing</p>
+        <h1>Sage Router Billing</h1>
+        <p class="lead">Use this page when checkout, plan activation, Stripe billing portal, manual or crypto settlement, invoice recovery, or generated <code>sk_sage_*</code> routing status is unclear.</p>
+        <div class="actions">
+          <a class="button primary" href="https://app.sagerouter.dev/login.html?plan=pro&start=create_key&utm_source=billing&utm_medium=recovery&utm_campaign=signup_to_key_recovery&auth=email" data-billing-event="billing_account_clicked" data-billing-state="key-recovery">Finish setup key</a>
+          <a class="button secondary" href="https://app.sagerouter.dev/account.html" data-billing-event="billing_payment_recovery_clicked" data-billing-state="payment-recovery">Open billing account</a>
+          <a class="button secondary" href="/pricing" data-billing-event="billing_pricing_clicked" data-billing-state="plan-selection">Compare plans</a>
+          <a class="button secondary" href="/support" data-billing-event="billing_support_clicked" data-billing-state="safe-support">Get support safely</a>
+          <a class="button secondary" href="/api-troubleshooting" data-billing-event="billing_troubleshooting_clicked" data-billing-state="api-errors">Troubleshoot API errors</a>
+        </div>
+        <p class="note">Generated-key setup URL: <code>https://app.sagerouter.dev/account.html?plan=pro&start=create_key</code>. Hosted model endpoint: <code>https://api.sagerouter.dev/v1</code>.</p>
+      </section>
+
+      <section class="section grid3" aria-label="Billing flow">
+        <article class="step">
+          <span class="pill">1</span>
+          <h3>Choose a plan</h3>
+          <ul>
+            <li>Lite, Pro, and Max are selected from <a href="/pricing" data-billing-event="billing_pricing_clicked" data-billing-state="plan-selection">pricing</a> or the account page.</li>
+            <li>Plan links such as <code>/account.html?plan=pro&start=checkout</code> preserve the selected tier through sign-in.</li>
+            <li>Checkout buys routing, account, quota, analytics, and reliability infrastructure.</li>
+          </ul>
+        </article>
+        <article class="step">
+          <span class="pill">2</span>
+          <h3>Finish checkout</h3>
+          <ul>
+            <li>Stripe checkout starts from the signed-in account page.</li>
+            <li>Email verification may be required before checkout, key creation, or manual payment intent creation.</li>
+            <li>Manual and crypto settlement are fallback paths when Stripe is unavailable or a separate activation is agreed.</li>
+          </ul>
+        </article>
+        <article class="step">
+          <span class="pill">3</span>
+          <h3>Route with a generated key</h3>
+          <ul>
+            <li>Create a generated <code>sk_sage_*</code> key after sign-in.</li>
+            <li>Keys can exist before payment, but hosted model traffic is blocked until the account is active, trialing, or manually enabled.</li>
+            <li>Revoked generated keys stay revoked and must be replaced with a fresh key.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">Activation states</p>
+          <h2>What each billing state means for API routing.</h2>
+          <p class="muted">The public edge enforces the same account state that the hosted account page shows. This keeps generated keys useful for setup while preventing unpaid or suspended accounts from routing model traffic.</p>
+          <p class="muted"><strong>Payment recovery:</strong> update the Stripe payment method, pay the invoice, or complete the agreed manual settlement before expecting hosted model traffic to resume.</p>
+        </div>
+        <div class="tableWrap">
+          <table>
+            <thead><tr><th>State</th><th>Customer action</th><th>API behavior</th></tr></thead>
+            <tbody>
+              <tr><td>Signed in, no paid plan</td><td>Choose Lite, Pro, or Max and finish checkout or manual activation.</td><td><code>/v1/*</code> returns guided <code>402</code> onboarding instead of provider traffic.</td></tr>
+              <tr><td>Active or trialing</td><td>Create or reuse an active <code>sk_sage_*</code> key and run the quickstart.</td><td>Model traffic routes within quota, request-per-minute limits, and provider availability.</td></tr>
+              <tr><td>Past due</td><td>Update payment method or pay the invoice through Stripe portal.</td><td>Routing can be blocked until payment recovery updates the account state.</td></tr>
+              <tr><td>Manual or crypto pending</td><td>Complete the agreed settlement and include the intent id in the memo/reference.</td><td>Routing stays blocked until the operator marks the account active.</td></tr>
+              <tr><td>Suspended</td><td>Resolve abuse, chargeback, provider-risk, or security review with support.</td><td>Routing stays blocked. Payment recovery does not override operator suspension.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section grid2">
+        <article class="panel callout">
+          <p class="eyebrow">Stripe portal</p>
+          <h2>Self-service billing after checkout.</h2>
+          <p class="muted">After a Stripe customer is linked, the account page opens the Stripe billing portal for payment methods, invoices, cancellation, and subscription changes. Signed webhooks update the Sage Router customer record and plan quota.</p>
+          <ul>
+            <li>Successful subscription create/update events enable active or trialing routing.</li>
+            <li>Failed or uncollectible invoices mark the account past due.</li>
+            <li>Later paid invoice events restore routing unless the account is operator-suspended.</li>
+          </ul>
+        </article>
+        <article class="panel warning">
+          <p class="eyebrow">Manual and crypto</p>
+          <h2>Fallback settlement is not instant entitlement.</h2>
+          <p class="muted">The account page can create a manual/crypto payment intent with amount, asset, network, address, and intent id. Treat this as a settlement instruction, not automatic API access.</p>
+          <ul>
+            <li>Include the intent id in the payment memo or reference.</li>
+            <li>Routing starts only after operator confirmation or a configured processor marks the account active.</li>
+            <li>Do not send wallet private keys, seed phrases, provider credentials, prompts, raw responses, or generated API keys to support.</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="section panel">
+        <p class="eyebrow">Safe recovery</p>
+        <h2>What to send when billing or routing looks wrong.</h2>
+        <p class="muted">Do not send prompts, workflow text, provider credentials, OAuth tokens, generated API keys, private keys, session cookies, raw provider responses, or customer data in public support channels.</p>
+        <ul>
+          <li>Safe: account email, selected plan, timestamp, HTTP status, safe error class, request id, and non-secret key prefix.</li>
+          <li>For <code>401</code>: confirm the key starts with <code>sk_sage_</code> and is active in the account page.</li>
+          <li>For <code>402</code>: use the response <code>upgradeUrl</code>, <code>billingUrl</code>, <code>supportUrl</code>, quota headers, and reset epoch to upgrade, recover payment, or request overflow review without sharing prompts or keys.</li>
+          <li>For <code>429</code>: check current plan quota and request-per-minute limits.</li>
+          <li>For <code>503</code>: check <a href="/status" data-billing-event="billing_status_clicked" data-billing-state="provider-availability">public status</a> and include timestamp, request id, route profile, and safe model name only.</li>
+        </ul>
+        <div class="actions">
+          <a class="button primary" href="/support" data-billing-event="billing_support_clicked" data-billing-state="safe-support">Open safe support path</a>
+          <a class="button secondary" href="/quickstart" data-billing-event="billing_quickstart_clicked" data-billing-state="activation-check">Run quickstart</a>
+          <a class="button secondary" href="/status" data-billing-event="billing_status_clicked" data-billing-state="provider-availability">View status</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>&copy; Sage Router</span>
+      <a href="/">Home</a>
+      <a href="/pricing">Pricing</a>
+      <a href="https://app.sagerouter.dev/login.html?plan=pro&start=create_key&utm_source=billing&utm_medium=recovery&utm_campaign=signup_to_key_recovery&auth=email">Account</a>
+      <a href="/quickstart">Quickstart</a>
+      <a href="/api-troubleshooting">Troubleshooting</a>
+      <a href="/status">Status</a>
+      <a href="/support">Support</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+    </footer>
+  </div>
+  <script>
+    function billingReferrerHost() {
+      try {
+        const referrer = document.referrer ? new URL(document.referrer) : null;
+        return referrer && referrer.host !== window.location.host ? referrer.host : null;
+      } catch {
+        return null;
+      }
+    }
+
+    function trackBillingFunnelEvent(event, data = {}) {
+      const params = new URLSearchParams(window.location.search);
+      const payload = JSON.stringify({
+        event,
+        plan: data.plan || null,
+        sourcePage: window.location.href,
+        target: data.target || null,
+        metadata: {
+          source: 'billing',
+          button: data.button || null,
+          state: data.state || null,
+          billing: data.billing || null,
+          utmSource: params.get('utm_source') || params.get('utmSource') || null,
+          utmMedium: params.get('utm_medium') || params.get('utmMedium') || null,
+          utmCampaign: params.get('utm_campaign') || params.get('utmCampaign') || null,
+          referrerHost: billingReferrerHost(),
+          landingPath: window.location.pathname
+        }
+      });
+      try {
+        if (navigator.sendBeacon) {
+          const blob = new Blob([payload], { type: 'application/json' });
+          if (navigator.sendBeacon('/api/funnel-event', blob)) return;
+        }
+      } catch {}
+      fetch('/api/funnel-event', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: payload,
+        keepalive: true,
+        credentials: 'omit'
+      }).catch(() => {});
+    }
+
+    document.querySelectorAll('[data-billing-event]').forEach((link) => {
+      link.addEventListener('click', () => {
+        trackBillingFunnelEvent(link.dataset.billingEvent, {
+          target: link.getAttribute('href') || null,
+          button: link.textContent.trim().slice(0, 60),
+          state: link.dataset.billingState || null,
+          billing: link.dataset.billingState || null
+        });
+      });
+    });
+  </script>
+</body>
+</html>

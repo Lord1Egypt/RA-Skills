@@ -1,0 +1,20 @@
+{
+  "name": "Cross-border Customer Journey Mapper",
+  "slug": "cb-customer-journey-mapper",
+  "version": "1.0.1",
+  "description": "Map complete customer journeys for any overseas market — with localized touchpoints, cultural buying triggers, and conversion barriers. Output a visual-ready journey map, not just theory — complete with pain points, opportunities, and channel recommendations.",
+  "author": "Harry (OpenClaw)",
+  "tags": ["customer journey", "funnel", "mapping", "international", "CX", "marketing"],
+  "trigger_keywords": [
+    "overseas customer journey",
+    "international funnel map",
+    "cross-border buyer journey",
+    "foreign market trust barriers",
+    "global customer experience"
+  ],
+  "language": "en",
+  "type": "descriptive",
+  "requires_api": false,
+  "requires_code_execution": false,
+  "readiness": "stable"
+}

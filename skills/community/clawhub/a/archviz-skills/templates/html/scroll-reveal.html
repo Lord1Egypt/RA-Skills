@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Scroll Reveal</title></head>
+<body style="margin:0;background:#f5f0eb;font-family:system-ui;color:#44403c">
+<!-- Scroll Reveal Chart — archviz-skills -->
+<!-- Use for: long-form storytelling, article integration, progressive disclosure -->
+<div style="max-width:700px;margin:0 auto;padding:40px 20px">
+  <h1 style="color:#1B365D;font-weight:300;font-size:28px">Scroll to reveal data</h1>
+  <p style="color:#a8a29e;margin-bottom:60px">Each section appears as you scroll</p>
+  
+  <div class="section" style="opacity:0;transform:translateY(30px);transition:all 0.6s ease;margin-bottom:60px">
+    <h3 style="color:#1B365D;font-weight:400">Revenue Growth</h3>
+    <div style="background:#e8e4e0;height:40px;border-radius:4px;overflow:hidden">
+      <div class="bar" style="background:#002FA7;height:100%;width:0;transition:width 1s ease 0.3s;border-radius:4px"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:8px">
+      <span style="color:#a8a29e;font-size:13px">Target: ¥120k</span>
+      <span style="color:#1B365D;font-weight:600">¥128k</span>
+    </div>
+  </div>
+  
+  <div class="section" style="opacity:0;transform:translateY(30px);transition:all 0.6s ease;margin-bottom:60px">
+    <h3 style="color:#1B365D;font-weight:400">User Acquisition</h3>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:16px">
+      <div style="text-align:center"><div class="bar-v" style="background:#94a3b8;height:0;transition:height 0.8s ease 0.2s;width:30px;margin:0 auto;border-radius:2px"></div><div style="font-size:11px;color:#a8a29e;margin-top:8px">Q1</div></div>
+      <div style="text-align:center"><div class="bar-v" style="background:#94a3b8;height:0;transition:height 0.8s ease 0.3s;width:30px;margin:0 auto;border-radius:2px"></div><div style="font-size:11px;color:#a8a29e;margin-top:8px">Q2</div></div>
+      <div style="text-align:center"><div class="bar-v" style="background:#002FA7;height:0;transition:height 0.8s ease 0.4s;width:30px;margin:0 auto;border-radius:2px"></div><div style="font-size:11px;color:#a8a29e;margin-top:8px">Q3</div></div>
+      <div style="text-align:center"><div class="bar-v" style="background:#94a3b8;height:0;transition:height 0.8s ease 0.5s;width:30px;margin:0 auto;border-radius:2px"></div><div style="font-size:11px;color:#a8a29e;margin-top:8px">Q4</div></div>
+      <div style="text-align:center"><div class="bar-v" style="background:#94a3b8;height:0;transition:height 0.8s ease 0.6s;width:30px;margin:0 auto;border-radius:2px"></div><div style="font-size:11px;color:#a8a29e;margin-top:8px">Q5</div></div>
+    </div>
+  </div>
+  
+  <div class="section" style="opacity:0;transform:translateY(30px);transition:all 0.6s ease;margin-bottom:60px">
+    <h3 style="color:#1B365D;font-weight:400">Key Insight</h3>
+    <blockquote style="border-left:3px solid #002FA7;padding-left:16px;color:#44403c;font-size:18px;line-height:1.6">
+      The data shows a clear correlation between user engagement and retention.
+    </blockquote>
+  </div>
+</div>
+
+<script>
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.style.opacity='1';
+      entry.target.style.transform='translateY(0)';
+      // Animate bars
+      entry.target.querySelectorAll('.bar').forEach(b=>b.style.width='78%');
+      entry.target.querySelectorAll('.bar-v').forEach((b,i)=>{
+        b.style.height=[60,80,120,90,70][i]+'px';
+      });
+    }
+  });
+},{threshold:0.3});
+document.querySelectorAll('.section').forEach(s=>observer.observe(s));
+</script>
+</body></html>

@@ -1,5 +1,5 @@
 ## Description: <br>
-Guarded DeFi orchestration layer for OpenClaw agents. Lists named multi-skill workflow recipes, builds quality gates, creates session-scoped workflow run records, and reports workflow status. Trail Marshal holds no keys and performs no on-chain action; every state-changing step remains delegated to the user's separately-installed execution skill under that skill's own confirmation gate. <br>
+FarmDash Trail Marshal helps agents plan guarded DeFi workflows by listing recipes, building quality gates, recording session workflow runs, and reporting status without executing wallet or trading actions. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,36 +11,33 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External OpenClaw agents use this skill to list FarmDash DeFi workflow recipes, check which companion skills are available, plan quality gates, and record guarded session workflow status before any separate execution skill asks the user for approval. <br>
+Developers and agent operators use this skill to coordinate DeFi workflow recipes, check installed companion skills, and keep state-changing actions behind separate confirmation gates. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill operates in a DeFi planning context and may use FarmDash session tokens and public wallet identifiers for run records. <br>
-Mitigation: Use it as a workflow planning layer only, keep private keys, seed phrases, wallet exports, and signed transactions out of the skill, and review companion execution skills separately. <br>
-Risk: A planned workflow may include trading, swapping, bridging, deposits, or perps actions handled by separately installed companion skills. <br>
-Mitigation: Require the owning execution skill to present fresh data and obtain explicit user confirmation for each state-changing step before any action is taken. <br>
-Risk: Missing companion skills can make a workflow only partially available or analysis-only. <br>
-Mitigation: Classify available, missing, and state-changing steps before presenting a workflow as executable, and continue only with the safe subset when required skills are absent. <br>
+Risk: DeFi workflow plans can lead to financial loss if stale quotes, market movement, or incomplete companion-skill coverage are ignored. <br>
+Mitigation: Verify each quote and required companion skill before confirmation, and keep execution in separately reviewed skills with their own confirmation gates. <br>
+Risk: Session workflow records and optional tokens may expose paid or session-tracking features when configured. <br>
+Mitigation: Provide FARMDASH_API_KEY or session tokens only when intentionally using those features, and do not provide wallet secrets or signing material. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/parmasanandgarlic/farmdash-trail-marshal) <br>
-- [Publisher Profile](https://clawhub.ai/user/parmasanandgarlic) <br>
-- [FarmDash Agent Hub](https://www.farmdash.one/agents) <br>
-- [FarmDash MCP Configuration](https://www.farmdash.one/.well-known/mcp.json) <br>
-- [FarmDash OpenAPI Specification](https://www.farmdash.one/agents/openapi.yaml) <br>
+- [ClawHub release page](https://clawhub.ai/parmasanandgarlic/skills/farmdash-trail-marshal) <br>
+- [FarmDash agents homepage](https://www.farmdash.one/agents) <br>
+- [FarmDash API schema](https://www.farmdash.one/agents/openapi.yaml) <br>
+- [FarmDash MCP server config](https://www.farmdash.one/.well-known/mcp.json) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration, shell commands] <br>
-**Output Format:** [Markdown guidance with JSON examples and optional shell commands] <br>
+**Output Type(s):** [text, markdown, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with structured workflow metadata and status records] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Returns workflow catalog, planning classifications, guarded run records, and workflow status guidance; it does not produce signed transactions or execute on-chain actions.] <br>
+**Other Properties Related to Output:** [Plans are advisory orchestration outputs; state-changing execution remains delegated to separately installed skills.] <br>
 
 ## Skill Version(s): <br>
-0.1.6 (source: server-resolved release metadata) <br>
+0.1.7 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Compare Sage Router with hosted model gateways for AI agents, BYOK routing, local Ollama, provider fallback, account security, and hosted API access." />
+  <link rel="canonical" href="https://sagerouter.dev/compare/model-gateways" />
+  <meta property="og:title" content="Sage Router model gateway" />
+  <meta property="og:description" content="A local-first model gateway for AI agents that need BYOK routing, private provider credentials, health-aware fallback, and hosted API access." />
+  <meta property="og:url" content="https://sagerouter.dev/compare/model-gateways" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Sage Router model gateway</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07100d;--panel:rgba(13,29,24,.78);--panel2:rgba(255,255,255,.035);--border:rgba(166,255,207,.16);--muted:#a9c5b8;--text:#edfdf5;--brand:#8df0b2;--brand2:#7eb7ff;--amber:#f7d57a;--shadow:0 24px 80px rgba(0,0,0,.36)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:linear-gradient(180deg,#07100d 0%,#0a1511 52%,#07100d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;color:var(--muted)}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;color:var(--text)}.brandMark{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(141,240,178,.42);border-radius:12px;color:#062016;background:linear-gradient(135deg,var(--brand),var(--amber))}.navLinks{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;font-weight:750}.navLinks a:hover{color:var(--text)}.hero{padding:74px 0 54px}.eyebrow{color:var(--brand);text-transform:uppercase;letter-spacing:.16em;font-weight:900;font-size:12px;margin:0 0 16px}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(44px,8vw,86px);line-height:.94;margin-bottom:24px;max-width:900px}h2{font-size:clamp(30px,4vw,50px);line-height:1;margin-bottom:18px}h3{font-size:21px;margin-bottom:10px}.lead{font-size:clamp(20px,2.2vw,27px);line-height:1.35;color:#d2eadf;max-width:920px}.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}.button{min-height:48px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:0 22px;font-weight:900}.primary{background:linear-gradient(135deg,var(--brand),#50d891);color:#04150d}.secondary{border:1px solid var(--border);background:rgba(255,255,255,.04)}.emailStart{display:flex;flex-wrap:wrap;gap:12px;align-items:center;max-width:760px;margin:22px 0 12px;padding:16px;border:1px solid rgba(141,240,178,.24);border-radius:8px;background:rgba(255,255,255,.045)}.emailStart label{flex:1 1 100%;font-weight:900}.emailStart input{flex:1 1 280px;min-height:48px;border:1px solid var(--border);border-radius:999px;background:rgba(5,15,11,.74);color:var(--text);padding:0 18px;font:inherit}.emailStart input::placeholder{color:#789689}.emailStart .button{border:0;cursor:pointer}.emailStartStatus{flex:1 1 100%;margin:0;color:var(--muted);font-size:14px}.section{padding:62px 0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.card,.tableWrap,.callout{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:26px;box-shadow:0 18px 60px rgba(0,0,0,.18)}.card p,.muted,td{color:var(--muted)}.card strong{color:var(--text)}.tableWrap{overflow:auto;padding:0}table{width:100%;border-collapse:collapse;min-width:760px}th,td{text-align:left;border-bottom:1px solid rgba(166,255,207,.12);padding:17px 18px;vertical-align:top}th{color:var(--text);font-size:14px;text-transform:uppercase;letter-spacing:.08em;background:rgba(255,255,255,.035)}td:first-child{color:var(--text);font-weight:850}.good{color:var(--brand);font-weight:900}.warn{color:var(--amber);font-weight:900}.split{display:grid;grid-template-columns:.92fr 1.08fr;gap:28px;align-items:start}.list{display:grid;gap:12px;margin:0;padding:0;list-style:none}.list li{border:1px solid var(--border);border-radius:8px;background:var(--panel2);padding:14px 16px;color:#d2eadf}.callout{background:linear-gradient(180deg,rgba(26,67,50,.9),rgba(12,28,22,.86));border-color:rgba(141,240,178,.28)}code{color:#d9f8e6}.note{font-size:14px;color:var(--muted);max-width:880px}footer{display:flex;gap:18px;flex-wrap:wrap;padding:34px 0 54px;color:var(--muted);border-top:1px solid rgba(166,255,207,.1)}footer span{margin-right:auto}@media(max-width:920px){.grid,.split{grid-template-columns:1fr}.nav{align-items:flex-start;flex-direction:column}.button{width:100%}}@media(max-width:560px){.hero{padding-top:42px}.navLinks{gap:14px}}
+  </style>
+  <style>
+    .copyRow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px;padding:14px 16px;border:1px solid rgba(126,183,255,.28);border-radius:8px;background:rgba(126,183,255,.07)}
+    .copyRow strong{margin-right:auto}
+    .copyRow button{border:0;cursor:pointer}
+    .copyRow span{min-height:22px;color:var(--brand);font-size:14px}
+    .emailStart .oauthButton{background:linear-gradient(135deg,var(--brand),#50d891);color:#04150d}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is Sage Router a model gateway for agents?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sage Router is a model gateway for teams that want local-first BYOK routing, private provider credentials, agent-focused fallback, and optional hosted account and API key management."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Sage Router resell model access?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sage Router routes authorized provider access, local models, and customer-controlled subscriptions. It does not claim to grant unauthorized provider access or pool customer accounts."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+      <div class="navLinks">
+        <a href="/">Home</a>
+        <a href="/compare/openrouter">OpenRouter</a>
+        <a href="/docs/gateway-migration">Migration</a>
+        <a href="/fusion">Fusion</a>
+        <a href="/model-routing-calculator">Calculator</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/managed-access">Managed Access</a>
+        <a href="/status">Status</a>
+        <a href="https://app.sagerouter.dev/account.html">Account</a>
+        <a href="/analytics.html">Dashboard</a>
+        <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Model gateway for agents</p>
+        <h1>Sage Router model gateway</h1>
+        <p class="lead">Hosted model gateways are useful when you want one marketplace-style API. Sage Router is built for teams and agents that want one endpoint too, but with local-first control, BYOK routing, private provider credentials, Ollama support, health-aware fallback, and an optional hosted account layer.</p>
+        <div class="actions">
+          <a class="button primary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key">Create hosted API key</a>
+          <a class="button secondary" href="/docs/gateway-migration">Migration guide</a>
+          <a class="button secondary" href="/fusion">Fusion compatibility</a>
+          <a class="button secondary" href="/pricing">Compare plans</a>
+          <a class="button secondary" href="/compare/openrouter">Compare OpenRouter</a>
+          <a class="button secondary" href="https://github.com/earlvanze/sage-router">Run locally</a>
+          <a class="button secondary" href="/status">View public edge status</a>
+          <a class="button secondary" href="/model-routing-calculator">Estimate routing savings</a>
+          <a class="button secondary" href="/managed-access?intent=max-implementation">Max implementation review</a>
+        </div>
+        <form class="emailStart" id="gateway-compare-email-form">
+          <label for="gateway-compare-email">Get an API key setup link</label>
+          <button id="gateway-compare-github-pro" class="button primary oauthButton" type="button">Continue with GitHub for Pro</button>
+          <input id="gateway-compare-email" type="email" name="email" autocomplete="email" placeholder="you@company.com" required />
+          <button class="button primary" type="submit">Email API key setup link</button>
+          <p class="emailStartStatus" id="gateway-compare-email-status" role="status">No provider key or credit card required until your generated sk_sage key exists.</p>
+        </form>
+        <p class="note">Compliance boundary: Sage Router routes access customers are authorized to use. The hosted service is account, billing, routing, telemetry, and reliability infrastructure, not a promise to bypass provider terms.</p>
+        <p class="note">Evaluating OpenRouter specifically? Read the focused <a href="/compare/openrouter">Sage Router vs OpenRouter</a> comparison for marketplace API vs local-first routing tradeoffs.</p>
+      </section>
+
+      <section class="section grid" aria-label="Positioning summary">
+        <article class="card">
+          <h3>Pick Sage Router when keys should stay under your control.</h3>
+          <p>Default deployments keep provider credentials on your machine, server, Tailnet, or private router. Hosted account access can manage keys and billing without becoming the only custody model.</p>
+        </article>
+        <article class="card">
+          <h3>Pick Sage Router when agents need fallback policy.</h3>
+          <p>Route by task, model profile, provider health, latency, local-vs-cloud preference, and failure history. Use one endpoint across Codex, OpenClaw, Cursor, Aider, Continue, and OpenAI-compatible tools.</p>
+        </article>
+        <article class="card">
+          <h3>Pick Sage Router when local models matter.</h3>
+          <p>Local Ollama and Ollama Cloud routes can sit beside OpenAI, Anthropic, Gemini, NVIDIA NIM, endpoints, and other authorized providers.</p>
+        </article>
+      </section>
+
+      <section class="section">
+        <h2>Comparison</h2>
+        <div class="tableWrap">
+          <table>
+            <thead>
+              <tr><th>Need</th><th>Sage Router</th><th>Hosted model gateway</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Credential custody</td><td><span class="good">Local-first by default.</span> Provider keys can remain on customer-controlled routers.</td><td>Typically centralized through the hosted API account.</td></tr>
+              <tr><td>Agent harness support</td><td>OpenAI-compatible, Anthropic-compatible, Codex, OpenClaw, Cursor, Aider, Continue, OpenHands, and harness fallback docs.</td><td>Strong hosted OpenAI-compatible API story.</td></tr>
+              <tr><td>Local models</td><td><span class="good">First-class.</span> Route local Ollama and local/cloud hybrid profiles beside hosted providers.</td><td>Usually focused on remote hosted model providers.</td></tr>
+              <tr><td>Provider selection</td><td>Policy, health, latency, capability, task intent, route profiles, and fallback chains.</td><td>Model catalog selection and provider routing through hosted infrastructure.</td></tr>
+              <tr><td>Fusion / compound answers</td><td><span class="good">Premium Pro/Max route.</span> Use <code>sage-router/fusion</code> or the <code>sage-router:fusion</code> server tool for panel-plus-judge synthesis.</td><td>Compound routing can expose a hosted multi-model deliberation flow.</td></tr>
+              <tr><td>Resilience model</td><td>Tailnet and edge routing can select the healthiest Sage Router installation and keep private routers behind the public API edge.</td><td>Depends on the hosted provider platform and upstream provider health.</td></tr>
+              <tr><td>Hosted SaaS</td><td>Hosted signup, Stripe checkout, API keys, usage quotas, status page, analytics, and Supabase-backed auth.</td><td>Mature hosted account and billing experience.</td></tr>
+              <tr><td>Best fit</td><td><span class="good">AI agents, teams with existing provider access, local-first deployments, private routing, and policy control.</span></td><td><span class="warn">Hosted model marketplace access with minimal local infrastructure.</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section split">
+        <div>
+          <p class="eyebrow">How to switch</p>
+          <h2>Use one OpenAI-compatible base URL.</h2>
+          <p class="muted">For hosted access, create an account and key, then point clients at the public Sage Router edge. For local-first access, run the router on port 8790 and keep provider credentials on your machine or Tailnet host.</p>
+        </div>
+        <div class="callout">
+          <pre><code>export OPENAI_BASE_URL="https://api.sagerouter.dev/v1"
+export OPENAI_API_KEY="sk_sage_..."
+
+curl "$OPENAI_BASE_URL/chat/completions" \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "sage-router/frontier",
+    "messages": [{"role": "user", "content": "Route this well"}]
+  }'</code></pre>
+          <div class="copyRow">
+            <strong>Copy setup first.</strong>
+            <span class="muted">Paste the bundle into your current OpenAI-compatible client, then replace the placeholder with your generated <code>sk_sage_*</code> key.</span>
+            <button id="gateway-copy-migration" class="button primary" type="button">Copy 60-second gateway setup</button>
+            <a id="gateway-copy-next-account" class="button primary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key" hidden>Create API key next</a>
+            <span id="gateway-copy-status" role="status" aria-live="polite"></span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section split">
+        <div>
+          <p class="eyebrow">Monetization fit</p>
+          <h2>Hosted convenience without losing local control.</h2>
+          <p class="muted">Sage Router can sell hosted API keys, usage analytics, fallback reliability, team policy sync, and support while keeping the core open-source router useful for local and private deployments.</p>
+        </div>
+        <ul class="list">
+          <li><strong>Lite:</strong> simple hosted routing and usage visibility for individual agent workflows.</li>
+          <li><strong>Pro:</strong> frontier routing profiles, premium Fusion synthesis, better fallback policy, and analytics for serious development work.</li>
+          <li><strong>Max:</strong> high-volume automation, priority fallback and Fusion budget, and team use.</li>
+          <li><strong>Max implementation review:</strong> request migration help, private deployment support, or future one-subscription model access only after provider authorization, margin, quota, operator-audit, and abuse-control gates are ready. <a href="/managed-access?intent=max-implementation">Request private-beta review</a>.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <span>&copy; Sage Router</span>
+      <a href="/">Home</a>
+      <a href="/compare/openrouter">OpenRouter</a>
+      <a href="/docs/gateway-migration">Migration</a>
+      <a href="https://app.sagerouter.dev/account.html">Account</a>
+      <a href="/fusion">Fusion</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/status">Status</a>
+      <a href="/model-routing-calculator">Calculator</a>
+      <a href="/managed-access">Managed Access</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/acceptable-use">Acceptable Use</a>
+      <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+    </footer>
+  </div>
+  <script>
+    const SUPABASE_URL = 'https://awtangrlqqsdpksarhwo.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3dGFuZ3JscXFzZHBrc2FyaHdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMTYzNzEsImV4cCI6MjA4ODU5MjM3MX0.U7TmEJMgYMH0rR8tTWFQ2tzReO5syRwnI3Ytg-BbDaw';
+    const ACCOUNT_PAGE_URL = 'https://app.sagerouter.dev/account.html?plan=pro&start=create_key';
+
+    function loadSupabaseClient() {
+      return new Promise((resolve, reject) => {
+        if (window.supabase?.createClient) {
+          resolve(window.supabase);
+          return;
+        }
+        const existing = document.querySelector('script[data-supabase-js]');
+        if (existing) {
+          existing.addEventListener('load', () => resolve(window.supabase), { once: true });
+          existing.addEventListener('error', reject, { once: true });
+          return;
+        }
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+        script.async = true;
+        script.defer = true;
+        script.dataset.supabaseJs = 'true';
+        script.addEventListener('load', () => resolve(window.supabase), { once: true });
+        script.addEventListener('error', reject, { once: true });
+        document.head.appendChild(script);
+      });
+    }
+
+    function trackGatewayComparisonEvent(event, data = {}) {
+      const params = new URLSearchParams(window.location.search);
+      let referrerHost = null;
+      try {
+        const referrer = document.referrer ? new URL(document.referrer) : null;
+        referrerHost = referrer && referrer.host !== window.location.host ? referrer.host : null;
+      } catch {}
+      const payload = JSON.stringify({
+        event,
+        plan: data.plan || null,
+        sourcePage: window.location.href,
+        target: data.target || null,
+        metadata: {
+          source: 'compare-gateways',
+          button: data.button || null,
+          utmSource: params.get('utm_source') || params.get('utmSource') || null,
+          utmMedium: params.get('utm_medium') || params.get('utmMedium') || null,
+          utmCampaign: params.get('utm_campaign') || params.get('utmCampaign') || null,
+          referrerHost,
+          landingPath: window.location.pathname,
+          snippet: data.snippet || null
+        }
+      });
+      try {
+        if (navigator.sendBeacon) {
+          const blob = new Blob([payload], { type: 'application/json' });
+          if (navigator.sendBeacon('/api/funnel-event', blob)) return;
+        }
+      } catch {}
+      fetch('/api/funnel-event', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: payload,
+        keepalive: true,
+        credentials: 'omit'
+      }).catch(() => {});
+    }
+
+    function gatewayMigrationBundleText() {
+      return `# Sage Router 60-second gateway setup
+# 1. Create or paste your generated key from:
+# https://app.sagerouter.dev/account.html?plan=pro&start=create_key
+# 2. Paste this into your current OpenAI-compatible client environment:
+
+export OPENAI_BASE_URL=https://api.sagerouter.dev/v1
+export OPENAI_API_KEY=sk_sage_your_key_here
+
+# Verify account access before migrating production traffic
+curl "$OPENAI_BASE_URL/models" \\
+  -H "Authorization: Bearer $OPENAI_API_KEY"
+
+# First routed request
+curl "$OPENAI_BASE_URL/chat/completions" \\
+  -H "Authorization: Bearer $OPENAI_API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "model": "sage-router/frontier",
+    "messages": [{"role": "user", "content": "Route this well"}]
+  }'
+
+# Local-first fallback option:
+# python3 router.py --port 8790
+# export OPENAI_BASE_URL=http://localhost:8790/v1`;
+    }
+
+    async function writeClipboardText(text) {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      textarea.remove();
+    }
+
+    async function copyGatewayMigrationBundle() {
+      const status = document.getElementById('gateway-copy-status');
+      try {
+        await writeClipboardText(gatewayMigrationBundleText());
+        trackGatewayComparisonEvent('quickstart_snippet_copied', {
+          plan: 'pro',
+          button: 'Copy 60-second gateway setup',
+          state: 'gateway-migration-copy',
+          snippet: 'gateway-compare-migration-bundle'
+        });
+        if (status) status.textContent = 'Copied. Create your API key next; no provider key or credit card required yet.';
+        document.getElementById('gateway-copy-next-account')?.removeAttribute('hidden');
+      } catch {
+        if (status) status.textContent = 'Copy failed. Open the migration guide for manual setup.';
+      }
+    }
+
+    async function sendGatewayCompareMagicLink(event) {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const emailInput = form.querySelector('input[type="email"]');
+      const status = document.getElementById('gateway-compare-email-status');
+      const email = (emailInput.value || '').trim();
+      if (!email) {
+        status.textContent = 'Enter an email address to receive the setup link.';
+        emailInput.focus();
+        return;
+      }
+      status.textContent = 'Sending setup link...';
+      trackGatewayComparisonEvent('gateway_compare_magic_link_requested', {
+        plan: 'pro',
+        target: ACCOUNT_PAGE_URL,
+        button: 'Email API key setup link',
+        state: 'email-start'
+      });
+      try {
+        const api = await loadSupabaseClient();
+        const client = api.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const { error } = await client.auth.signInWithOtp({
+          email,
+          options: {
+            emailRedirectTo: ACCOUNT_PAGE_URL,
+            data: {
+              sage_router_onboarding: true,
+              signup_source: 'compare-gateways',
+              selected_plan: 'pro',
+              auth_method: 'magic_link'
+            }
+          }
+        });
+        if (error) throw error;
+        trackGatewayComparisonEvent('gateway_compare_magic_link_sent', {
+          plan: 'pro',
+          target: ACCOUNT_PAGE_URL,
+          button: 'Email API key setup link',
+          state: 'email-start'
+        });
+        status.textContent = 'Check your email for the API key setup link. It opens account setup with the Pro plan selected.';
+      } catch (error) {
+        trackGatewayComparisonEvent('gateway_compare_magic_link_failed', {
+          plan: 'pro',
+          target: ACCOUNT_PAGE_URL,
+          button: 'Email API key setup link',
+          state: 'email-start'
+        });
+        status.textContent = 'Email setup is unavailable right now. Opening account setup instead...';
+        setTimeout(() => { window.location.href = ACCOUNT_PAGE_URL; }, 900);
+      }
+    }
+
+    async function gatewayCompareOauthLogin(event) {
+      const button = event.currentTarget;
+      const original = button.textContent;
+      const status = document.getElementById('gateway-compare-email-status');
+      button.disabled = true;
+      button.textContent = 'Opening GitHub...';
+      if (status) status.textContent = 'Opening GitHub sign-in for Pro.';
+      trackGatewayComparisonEvent('gateway_compare_oauth_clicked', {
+        plan: 'pro',
+        target: ACCOUNT_PAGE_URL,
+        button: 'Continue with GitHub for Pro',
+        state: 'github'
+      });
+      try {
+        const api = await loadSupabaseClient();
+        const client = api.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const { error } = await client.auth.signInWithOAuth({
+          provider: 'github',
+          options: { redirectTo: ACCOUNT_PAGE_URL }
+        });
+        if (error) throw error;
+      } catch (error) {
+        trackGatewayComparisonEvent('gateway_compare_oauth_failed', {
+          plan: 'pro',
+          target: ACCOUNT_PAGE_URL,
+          button: 'Continue with GitHub for Pro',
+          state: 'github'
+        });
+        if (status) status.textContent = 'GitHub sign-in failed here. Opening account setup instead...';
+        setTimeout(() => { window.location.href = ACCOUNT_PAGE_URL; }, 900);
+      } finally {
+        button.disabled = false;
+        button.textContent = original;
+      }
+    }
+
+    trackGatewayComparisonEvent('gateway_compare_viewed', { state: 'page-view' });
+    document.getElementById('gateway-compare-email-form')?.addEventListener('submit', sendGatewayCompareMagicLink);
+    document.getElementById('gateway-compare-github-pro')?.addEventListener('click', gatewayCompareOauthLogin);
+    document.getElementById('gateway-copy-migration')?.addEventListener('click', copyGatewayMigrationBundle);
+
+    document.querySelectorAll('a[href]').forEach((link) => {
+      const href = link.getAttribute('href') || '';
+      const button = link.textContent.trim().slice(0, 60);
+      const planMatch = href.match(/\/account\.html\?plan=(lite|pro|max)\b/);
+      if (planMatch) {
+        const eventName = href.includes('start=create_key') ? 'gateway_compare_key_activation_clicked' : 'gateway_compare_checkout_clicked';
+        link.addEventListener('click', () => trackGatewayComparisonEvent(eventName, {
+          plan: planMatch[1],
+          target: href,
+          button
+        }));
+      } else if ((href === '/account.html' || href === 'https://app.sagerouter.dev/account.html')) {
+        link.addEventListener('click', () => trackGatewayComparisonEvent('gateway_compare_account_clicked', {
+          target: href,
+          button
+        }));
+      } else if (href === '/pricing') {
+        link.addEventListener('click', () => trackGatewayComparisonEvent('gateway_compare_pricing_clicked', {
+          target: href,
+          button
+        }));
+      } else if (href === '/docs/gateway-migration') {
+        link.addEventListener('click', () => trackGatewayComparisonEvent('gateway_compare_migration_clicked', {
+          target: href,
+          button
+        }));
+      } else if (href === '/model-routing-calculator') {
+        link.addEventListener('click', () => trackGatewayComparisonEvent('gateway_compare_calculator_clicked', {
+          target: href,
+          button
+        }));
+      } else if (href === '/managed-access' || href.includes('managed-access')) {
+        link.addEventListener('click', () => trackGatewayComparisonEvent('gateway_compare_managed_access_clicked', {
+          plan: 'max',
+          target: href,
+          button
+        }));
+      }
+    });
+  </script>
+</body>
+</html>

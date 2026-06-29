@@ -1,0 +1,11 @@
+{
+  "name": "line-chart",
+  "label": "折线图",
+  "description": "时间序列趋势展示，支持多条折线",
+  "chart_type": "line",
+  "features": ["hover_tooltip", "data_points", "smooth_curve", "area_fill", "legend_toggle"],
+  "smooth": false,
+  "show_points": true,
+  "animation": true,
+  "max_points": 200
+}

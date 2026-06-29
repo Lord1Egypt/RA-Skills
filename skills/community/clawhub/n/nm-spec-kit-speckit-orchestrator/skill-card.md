@@ -11,31 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and agents use this skill to coordinate spec-driven development workflows, load complementary planning skills, and track specification, plan, and task artifacts across speckit commands. <br>
+Developers and engineers use this skill to coordinate Speckit-style specification, planning, task generation, implementation, and verification workflows across `/speckit-*` command phases. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Generic planning and workflow triggers may cause the skill to appear during ordinary planning discussions. <br>
-Mitigation: Prefer explicit /speckit-* command invocation or disable the skill when working outside spec-driven projects. <br>
-Risk: The skill guides agents to read or update planning artifacts such as spec.md, plan.md, and tasks.md. <br>
-Mitigation: Review proposed artifact changes before using them as implementation instructions. <br>
+Risk: Broad trigger words may cause the skill to activate during general planning requests. <br>
+Mitigation: Invoke or enable it around explicit `/speckit-*` workflows and confirm the current task is Spec Driven Development before following its coordination guidance. <br>
+Risk: Workflow guidance can produce or update specification, plan, task, and checklist artifacts that later steer implementation. <br>
+Mitigation: Review generated artifacts for project fit, consistency, and unresolved blockers before using them to guide code changes. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/athola/nm-spec-kit-speckit-orchestrator) <br>
-- [Project homepage from ClawHub metadata](https://github.com/athola/claude-night-market/tree/master/plugins/spec-kit) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-spec-kit-speckit-orchestrator) <br>
+- [Project homepage from release metadata](https://github.com/athola/claude-night-market/tree/master/plugins/spec-kit) <br>
+- [Command-skill matrix](modules/command-skill-matrix.md) <br>
+- [Artifact structure](modules/artifact-structure.md) <br>
+- [Progress tracking](modules/progress-tracking.md) <br>
+- [Writing-plans extensions](modules/writing-plans-extensions.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with command references and checklist-style progress items] <br>
+**Output Type(s):** [text, markdown, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with command mappings, progress checklists, artifact structure, and configuration examples.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces planning and orchestration guidance for spec, plan, task, checklist, and implementation workflows.] <br>
+**Other Properties Related to Output:** [Instruction-only; release security evidence reports no executable code, credential handling, or hidden data movement.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: ClawHub release metadata; artifact frontmatter reports 1.9.8) <br>
+1.9.13 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

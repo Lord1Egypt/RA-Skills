@@ -1,0 +1,10 @@
+{
+  "name": "pie-chart",
+  "label": "饼图",
+  "description": "占比构成展示，适合分类对比（≤10类）",
+  "chart_type": "pie",
+  "features": ["hover_tooltip", "data_labels", "legend", "explode_slice", "percentage"],
+  "max_slices": 10,
+  "min_percentage": 1,
+  "animation": true
+}

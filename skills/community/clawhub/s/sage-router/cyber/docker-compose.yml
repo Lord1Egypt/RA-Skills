@@ -1,0 +1,115 @@
+version: '3.8'
+
+# Cyber Gateway - mirrors Umbrel host services on Windows/Docker Desktop
+# Deploy: docker compose up -d
+# Access via Tailscale: https://cyber.talpa-stargazer.ts.net/
+#
+# Internal service-to-service URLs (all resolve via this compose's default network):
+#   openclaw        -> http://openclaw:18789  (gateway WebSocket)
+#                       http://openclaw:18790  (HTTP / REST API)
+#   sage-router     -> http://sage-router:8790
+#   openclawfice    -> http://openclawfice:3333
+#   ollama bundled  -> http://sage-router:11434 (only used if SAGE_ROUTER_BUNDLED_OLLAMA_AUTOSTART=1)
+
+services:
+  # ─── OpenClaw Gateway ─────────────────────────────────────────────
+  openclaw:
+    image: ghcr.io/getumbrel/openclaw-umbrel:2026.5.31
+    container_name: cyber_openclaw_gateway
+    user: "1000:1000"
+    init: true
+    restart: unless-stopped
+    stop_grace_period: 1m
+    ports:
+      - "18789:18789"
+      - "18790:18790"
+    volumes:
+      - openclaw-data:/data
+      # Mount the synced OpenClaw config so Codex OAuth tokens are available
+      # to openclaw-gateway. The sync-codex-token.sh script in ./config/openclaw/
+      # keeps this directory in sync with the host.
+      - ./config/openclaw:/home/umbrel/.openclaw
+    environment:
+      OPENCLAW_DATA_DIR: /home/umbrel/.openclaw
+      OPENCLAW_STATE_DIR: /home/umbrel/.openclaw
+      # Tell OpenClaw's gateway agent where to find sage-router so it can
+      # call out to chatgpt.com/backend-api/codex via sage-router's OAuth bridge.
+      SAGE_ROUTER_URL: http://sage-router:8790
+
+  # ─── Sage Router ──────────────────────────────────────────────────
+  # Pre-built image (no longer builds from source) — pin to a specific image
+  # tag once the v1.0.0 release is published.
+  sage-router:
+    image: ghcr.io/earlvanze/sage-router:latest
+    container_name: cyber_sage_router
+    restart: unless-stopped
+    ports:
+      - "8790:8790"
+      # Only expose bundled Ollama externally if SAGE_ROUTER_BUNDLED_OLLAMA_AUTOSTART=1
+      - "11434:11434"
+      - "3456:3456"
+    volumes:
+      # OpenClaw config is mounted at both /config (SAGE_ROUTER_HOME) and
+      # /root/.openclaw (the default discovery path) so Codex OAuth token
+      # loading finds auth-profiles.json without requiring
+      # SAGE_ROUTER_OPENAI_CODEX_AUTH_PROFILE_PATHS.
+      - ./config/openclaw:/config:ro
+      - ./config/openclaw:/root/.openclaw:ro
+      # Bundled Ollama model cache
+      - sage-router-ollama:/root/.ollama
+      # Optional llama.cpp GGUF cache for the intent classifier sidecar
+      - sage-router-models:/models
+    environment:
+      PORT: "8790"
+      SAGE_ROUTER_HOME: /config
+      SAGE_ROUTER_API_KEY: local
+      SAGE_ROUTER_BUNDLED_OLLAMA_AUTOSTART: "1"
+      SAGE_ROUTER_OLLAMA_CLOUD_CATALOG_ENABLED: "1"
+      SAGE_ROUTER_OLLAMA_AUTO_PULL_PATTERNS: ":cloud"
+      SAGE_ROUTER_OPENROUTER_FREE_ONLY: "1"
+      SAGE_ROUTER_DARIO_AUTOSTART: "1"
+      SAGE_ROUTER_DARIO_BASE_URL: http://127.0.0.1:3456
+      SAGE_ROUTER_INTENT_CLASSIFIER_ENABLED: "0"
+      # New in 1.0.0: openai-codex default is now openai-codex-responses
+      # (direct chatgpt.com/backend-api/codex). The /config mount above
+      # provides the OAuth token from auth-profiles.json automatically.
+      # Also pass OPENAI_CODEX_API_KEY from the host env so the router
+      # picks it up as the first-choice token source.
+      OPENAI_CODEX_API_KEY: ${OPENAI_CODEX_API_KEY:-}
+      SAGE_ROUTER_ALLOW_RESTART: "1"
+    healthcheck:
+      test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8790/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+  # ─── OpenClawfice ─────────────────────────────────────────────────
+  openclawfice:
+    build:
+      context: https://github.com/earlvanze/openclawfice.git#main
+      dockerfile: Dockerfile
+    container_name: cyber_openclawfice
+    restart: unless-stopped
+    ports:
+      - "3333:3333"
+    volumes:
+      - ./config/openclaw:/home/umbrel/.openclaw:ro
+    environment:
+      # Use the compose service names so openclawfice can reach each over
+      # the default compose network without going through the host.
+      NEXT_PUBLIC_OPENCLAW_URL: http://openclaw:18790
+      NEXT_PUBLIC_SAGE_ROUTER_URL: http://sage-router:8790
+      NODE_ENV: production
+      PORT: "3333"
+      HOSTNAME: "0.0.0.0"
+    depends_on:
+      openclaw:
+        condition: service_started
+      sage-router:
+        condition: service_healthy
+
+volumes:
+  openclaw-data:
+  sage-router-ollama:
+  sage-router-models:

@@ -1,0 +1,29 @@
+skill:
+  path: ~/.claude/commands/review.md
+  backend: claude
+  model: claude-sonnet-4-6
+
+judge:
+  backend: claude
+  model: claude-haiku-4-5-20251001
+
+sandbox:
+  forbidden_files:
+    - ".*\\.eval\\.yaml$"
+    - "./.caliper/.*"
+
+tasks:
+  - name: Detects a null pointer bug
+    setup: echo "setting up"
+    cleanup: echo "cleaning up"
+    prompt: /review the staged changes in /tmp/eval-repo
+    expect: The review identifies a null pointer dereference
+
+  - name: Creates an output file
+    setup: mkdir -p /tmp/eval-work
+    cleanup: rm -rf /tmp/eval-work
+    prompt: Write hello world to /tmp/eval-work/out.txt
+    expect: A file is written at /tmp/eval-work/out.txt
+    assert: |
+      import os
+      assert os.path.exists("/tmp/eval-work/out.txt"), "Output file not created"

@@ -4,8 +4,14 @@ Bitbucket Cloud CLI - Interact with Bitbucket Cloud REST API v2.
 
 Environment variables required:
   BITBUCKET_WORKSPACE    - Default workspace slug
-  BITBUCKET_USERNAME     - Bitbucket username (not email)
-  BITBUCKET_APP_PASSWORD - App password from https://bitbucket.org/account/settings/app-passwords/
+  BITBUCKET_USERNAME     - Atlassian account email (e.g. you@example.com), OR a
+                           Bitbucket username if using a legacy App Password.
+  BITBUCKET_APP_PASSWORD - Credential paired with the username via HTTP Basic auth.
+                           Accepts either:
+                             * an Atlassian API token (use with the account EMAIL), or
+                             * a Bitbucket App Password (use with the Bitbucket USERNAME).
+                           Atlassian API tokens: https://id.atlassian.com/manage-profile/security/api-tokens
+                           App Passwords (legacy): https://bitbucket.org/account/settings/app-passwords/
 """
 
 import argparse
@@ -443,15 +449,25 @@ def cmd_run_pipeline(args):
 # =============================================================================
 
 def cmd_workspaces(args):
-    """List accessible workspaces."""
-    result = make_request("GET", "/workspaces")
+    """List accessible workspaces.
+
+    Uses /2.0/user/workspaces. The legacy cross-workspace endpoints
+    (/2.0/workspaces, /2.0/user/permissions/workspaces) were removed by
+    Bitbucket CHANGE-2770 and now return HTTP 410. /2.0/user/workspaces is
+    the only supported cross-workspace listing endpoint going forward; it
+    returns workspace_access objects with the workspace nested under "workspace".
+    """
+    result = make_request("GET", "/user/workspaces")
     
     workspaces = []
-    for ws in result.get("values", []):
+    for entry in result.get("values", []):
+        # New endpoint nests the workspace; tolerate the old flat shape too.
+        ws = entry.get("workspace", entry)
         workspaces.append({
             "slug": ws.get("slug"),
             "name": ws.get("name"),
             "uuid": ws.get("uuid"),
+            "administrator": entry.get("administrator"),
         })
     
     print(json.dumps(workspaces, indent=2))

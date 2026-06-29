@@ -1,0 +1,22 @@
+{
+  "slug": "arabic-family-app-rtl-skill",
+  "name": "Arabic Family App RTL Skill",
+  "version": "0.1.0",
+  "tags": [
+    "arabic",
+    "rtl",
+    "bilingual",
+    "mobile-apps",
+    "localization",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Arabic Apps & Localization",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-06-16",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

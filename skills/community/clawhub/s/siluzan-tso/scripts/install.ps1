@@ -9,7 +9,7 @@ $ErrorActionPreference = 'Stop'
 # -- Package info (injected at build time) ------------------------------------
 $PKG_NAME    = 'siluzan-tso-cli'
 # PKG_VERSION 锁定到与本脚本同批构建产物一致的版本，避免与 dist/skill 错位
-$PKG_VERSION = '1.1.29'
+$PKG_VERSION = '1.1.30'
 $CLI_BIN     = 'siluzan-tso'
 $SKILL_LABEL = 'Siluzan TSO'
 $INSTALL_CMD = 'npm install -g siluzan-tso-cli'
@@ -242,10 +242,13 @@ function Main {
     Write-Info 'Registering Skill to all AI platform global directories...'
     & $CLI_BIN init --global --force
 
-    # Step 3: Configure API Key
-    Write-Step 'Step 3/4: Configure API Key'
-    Write-Host ''
-    & $CLI_BIN login
+    if ($CLI_BIN -eq 'siluzan-seo') {
+        Write-Info 'siluzan-seo does not require login; skipping API Key setup.'
+    } else {
+        Write-Step 'Step 3/4: Configure API Key'
+        Write-Host ''
+        & $CLI_BIN login
+    }
 
     # Step 4: Done
     Write-Step 'Step 4/4: Complete'

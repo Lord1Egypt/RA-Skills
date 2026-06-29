@@ -1,0 +1,4 @@
+interface:
+  display_name: "Setup Obsidian arXiv Daily"
+  short_description: "Deploy and schedule an Obsidian arXiv digest"
+  default_prompt: "Use $setup-obsidian-arxiv-daily to install an arXiv daily digest in my Obsidian Vault."

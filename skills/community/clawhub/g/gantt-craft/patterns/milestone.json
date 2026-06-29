@@ -1,0 +1,10 @@
+{
+  "name": "milestone",
+  "label": "里程碑导向",
+  "description": "突出里程碑节点，弱化日常任务",
+  "layout": "horizontal",
+  "features": ["milestone_diamonds", "milestone_labels", "task_groups", "timeline"],
+  "time_unit": "auto",
+  "milestone_size": "large",
+  "group_tasks": true
+}

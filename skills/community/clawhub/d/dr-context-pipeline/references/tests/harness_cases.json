@@ -92,7 +92,7 @@
         "expected_lint_status": "passed"
       },
       "artifacts": [],
-      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "answer_stub"],
+      "transcript_keys": ["mode", "footer_metadata", "answer_stub"],
       "forbidden_transcript_keys": ["retrieval_bundle", "context_pack", "artifact_paths", "receipt_ledger", "lint_result", "dropped_reasons"]
     }
   },
@@ -392,7 +392,7 @@
         "lint_errors_contains": ["sources must reference snippet IDs only; found non-schema-compliant path evidence"]
       },
       "artifacts": [],
-      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "answer_stub"],
+      "transcript_keys": ["mode", "footer_metadata", "answer_stub"],
       "forbidden_transcript_keys": ["retrieval_bundle", "context_pack", "artifact_paths", "receipt_ledger", "lint_result", "dropped_reasons"]
     }
   },
@@ -587,7 +587,7 @@
         "expected_lint_status": "passed"
       },
       "artifacts": [],
-      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "answer_stub"],
+      "transcript_keys": ["mode", "footer_metadata", "answer_stub"],
       "forbidden_transcript_keys": ["retrieval_bundle", "context_pack", "artifact_paths", "receipt_ledger", "lint_result", "dropped_reasons"]
     }
   },
@@ -681,7 +681,7 @@
         "expected_lint_status": "passed"
       },
       "artifacts": [],
-      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "answer_stub"],
+      "transcript_keys": ["mode", "footer_metadata", "answer_stub"],
       "forbidden_transcript_keys": ["retrieval_bundle", "context_pack", "artifact_paths", "receipt_ledger", "lint_result", "dropped_reasons"]
     }
   },
@@ -775,7 +775,7 @@
         "expected_lint_status": "passed"
       },
       "artifacts": [],
-      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "answer_stub"],
+      "transcript_keys": ["mode", "footer_metadata", "answer_stub"],
       "forbidden_transcript_keys": ["retrieval_bundle", "context_pack", "artifact_paths", "receipt_ledger", "lint_result", "dropped_reasons"]
     }
   },
@@ -873,7 +873,7 @@
         "expected_lint_status": "passed"
       },
       "artifacts": [],
-      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "answer_stub"],
+      "transcript_keys": ["mode", "footer_metadata", "answer_stub"],
       "forbidden_transcript_keys": ["retrieval_bundle", "context_pack", "artifact_paths", "receipt_ledger", "lint_result", "dropped_reasons"]
     }
   },
@@ -968,7 +968,7 @@
         "expected_lint_status": "passed"
       },
       "artifacts": [],
-      "transcript_keys": ["mode", "task_type", "snippet_ids", "compression_status", "answer_stub"],
+      "transcript_keys": ["mode", "footer_metadata", "answer_stub"],
       "forbidden_transcript_keys": ["retrieval_bundle", "context_pack", "artifact_paths", "receipt_ledger", "lint_result", "dropped_reasons"]
     }
   }

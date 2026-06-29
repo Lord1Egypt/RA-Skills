@@ -1,0 +1,22 @@
+{
+  "slug": "arabic-localization-review-skill",
+  "name": "Arabic Localization Review Skill",
+  "version": "0.1.0",
+  "tags": [
+    "arabic",
+    "localization",
+    "rtl",
+    "translation-review",
+    "bilingual",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Arabic & Localization",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-06-13",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

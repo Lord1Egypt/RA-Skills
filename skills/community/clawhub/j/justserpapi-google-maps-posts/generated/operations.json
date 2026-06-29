@@ -1,0 +1,64 @@
+{
+  "baseUrl": "https://api.justserpapi.com",
+  "description": "Call GET /api/v1/google/maps/posts for Google SERP Maps Posts through Just Serp API with data_id.",
+  "displayName": "Google SERP Maps Posts",
+  "endpointPath": "maps/posts",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Google maps Posts data, including business post content, post dates and images, and profile-specific feeds, for local business monitoring and promotion tracking.",
+      "method": "GET",
+      "operationId": "mapsPosts",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "The unique Google Maps location ID (feature ID). You can get this from our Google Maps Search API.",
+          "enumValues": [],
+          "location": "query",
+          "name": "data_id",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Token used to retrieve the next page of business posts.",
+          "enumValues": [],
+          "location": "query",
+          "name": "next_page_token",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/v1/google/maps/posts",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        },
+        {
+          "description": "Authentication failed: API Key is invalid or missing",
+          "statusCode": "401"
+        },
+        {
+          "description": "Access denied: Insufficient credits or quota exceeded",
+          "statusCode": "403"
+        },
+        {
+          "description": "Internal server error or upstream service exception",
+          "statusCode": "500"
+        }
+      ],
+      "summary": "Posts",
+      "tags": [
+        "Google Maps"
+      ]
+    }
+  ],
+  "platformKey": "google",
+  "primaryTag": "Google SERP",
+  "skillName": "justserpapi_google_maps_posts",
+  "skillType": "interface",
+  "slug": "justserpapi-google-maps-posts",
+  "sourceTitle": "API Shop Documentation"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "xiongtao-hanzi-center",
+  "version": "1.0.0",
+  "description": "雄韬汉字视觉重心 —— 基于像素分析的汉字视觉重心计算引擎",
+  "main": "scripts/analyze.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["hanzi", "calligraphy", "visual-center", "chinese-character", "雄韬"],
+  "author": "雄韬",
+  "license": "ISC",
+  "dependencies": {
+    "canvas": "^3.2.3"
+  }
+}

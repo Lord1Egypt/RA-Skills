@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>archviz-skills — Design System Preview</title>
+<style>
+  :root{
+    --warm-paper:#f5f0eb; --paper-beige:#e8e4e0; --mist:#f5f5f4; --stone:#a8a29e;
+    --pebble:#d6d3d1; --ink-navy:#1B365D; --warm-ink:#44403c; --charcoal:#292524;
+    --near-black:#0a0a0a; --ikb:#002FA7; --lemon:#FFD500;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,"Helvetica Neue",Arial,"Noto Sans SC",sans-serif;
+    background:var(--warm-paper);color:var(--ink-navy);padding:48px 24px;line-height:1.5}
+  main{max-width:920px;margin:0 auto}
+  h1{font-size:28px;font-weight:200;letter-spacing:.01em;margin-bottom:4px}
+  .sub{font-size:13px;font-weight:300;color:var(--warm-ink);margin-bottom:40px}
+  h2{font-size:15px;font-weight:200;margin:48px 0 16px;padding-bottom:6px;
+     border-bottom:1px solid var(--stone)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+  .swatch{border:1px solid var(--stone)}
+  .swatch .chip{height:56px}
+  .swatch .meta{padding:8px 10px;background:#fff9;font-size:11px;font-weight:600;color:var(--warm-ink)}
+  .meta b{display:block;font-weight:600;color:var(--ink-navy)}
+  table{border-collapse:collapse;width:100%;font-size:13px;font-weight:300}
+  th{font-size:11px;font-weight:600;text-align:left;color:var(--warm-ink);
+     border-bottom:1px solid var(--stone);padding:6px 10px}
+  td{border-bottom:1px solid var(--pebble);padding:8px 10px;vertical-align:middle}
+  .sys{display:inline-flex;align-items:center;gap:6px}
+  .sys i{width:14px;height:14px;border:1px solid var(--stone);display:inline-block}
+  .type-title{font-size:16px;font-weight:200}
+  .type-body{font-size:13px;font-weight:300}
+  .type-small{font-size:11px;font-weight:600}
+  .node-row{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end}
+  .node{padding:10px 18px;background:var(--warm-paper);border:1px solid var(--stone);
+        font-size:13px;font-weight:300;text-align:center}
+  .node.core{border:2px solid var(--ikb)}
+  .node.decision{transform:skewX(-12deg)}
+  .node.decision span{display:inline-block;transform:skewX(12deg)}
+  .node.data{background:var(--pebble)}
+  .node.round{border-radius:50%;padding:16px 14px}
+  .cap{font-size:10px;font-weight:600;color:var(--warm-ink);margin-top:6px;text-align:center}
+  .edges div{font-family:ui-monospace,Menlo,monospace;font-size:13px;margin:6px 0;color:var(--warm-ink)}
+  .accent-demo{display:flex;gap:12px;flex-wrap:wrap}
+  .pill{padding:8px 16px;font-size:12px;font-weight:600;border:1px solid var(--stone)}
+  .pill.ikb{background:var(--ikb);color:var(--mist);border-color:var(--ikb)}
+  .pill.lemon{background:var(--lemon);color:var(--near-black);border-color:#a8b898}
+  .warn{font-size:12px;font-weight:300;color:var(--warm-ink);margin-top:10px}
+  .warn b{color:var(--ikb)}
+  .bad{text-decoration:line-through}
+  footer{margin-top:56px;font-size:11px;font-weight:300;color:var(--warm-ink)}
+</style>
+</head>
+<body>
+<main>
+  <h1>archviz-skills</h1>
+  <p class="sub">Design system preview — restrained information visualization · warm paper · one accent max · contrast computed, not guessed</p>
+
+  <h2>Neutrals</h2>
+  <div class="grid">
+    <div class="swatch"><div class="chip" style="background:#f5f0eb"></div><div class="meta"><b>Warm Paper</b>#f5f0eb · default surface</div></div>
+    <div class="swatch"><div class="chip" style="background:#e8e4e0"></div><div class="meta"><b>Paper Beige</b>#e8e4e0 · 3D floor / legacy</div></div>
+    <div class="swatch"><div class="chip" style="background:#f5f5f4"></div><div class="meta"><b>Mist White</b>#f5f5f4 · Swiss surface</div></div>
+    <div class="swatch"><div class="chip" style="background:#a8a29e"></div><div class="meta"><b>Stone Gray</b>#a8a29e · border / lines</div></div>
+    <div class="swatch"><div class="chip" style="background:#d6d3d1"></div><div class="meta"><b>Pebble</b>#d6d3d1 · tertiary fill</div></div>
+    <div class="swatch"><div class="chip" style="background:#1B365D"></div><div class="meta"><b>Ink Navy</b>#1B365D · primary text</div></div>
+    <div class="swatch"><div class="chip" style="background:#44403c"></div><div class="meta"><b>Warm Ink</b>#44403c · secondary text</div></div>
+    <div class="swatch"><div class="chip" style="background:#292524"></div><div class="meta"><b>Charcoal</b>#292524 · Stone Mono text</div></div>
+  </div>
+
+  <h2>Accents — one per diagram set, never both</h2>
+  <div class="accent-demo">
+    <span class="pill ikb">International Klein Blue #002FA7</span>
+    <span class="pill lemon">Lemon #FFD500</span>
+  </div>
+  <p class="warn"><b>Contrast rule:</b> luminance(0.299R+0.587G+0.114B) &lt; 128 → light text, ≥ 128 → dark text.
+  Light warm surfaces <span class="bad">never take near-white text</span>; Mist White text is legal only on accent or dark fills.</p>
+
+  <h2>Palette systems</h2>
+  <table>
+    <tr><th>System</th><th>surface</th><th>text</th><th>border</th><th>accent</th><th>Use</th></tr>
+    <tr><td class="sys"><i style="background:#f5f0eb"></i>Warm Paper</td><td>#f5f0eb</td><td>#1B365D</td><td>#a8a29e</td><td>—</td><td>Default, academic</td></tr>
+    <tr><td class="sys"><i style="background:#f5f5f4"></i>Swiss Neutral</td><td>#f5f5f4</td><td>#1B365D</td><td>#d6d3d1</td><td>—</td><td>Clean, print</td></tr>
+    <tr><td class="sys"><i style="background:#e4e8f0"></i>IKB Accent</td><td>#e4e8f0</td><td>#0a0a0a</td><td>#94a3b8</td><td style="color:#002FA7;font-weight:600">#002FA7</td><td>guizang Swiss</td></tr>
+    <tr><td class="sys"><i style="background:#f0f4e0"></i>Lemon Accent</td><td>#f0f4e0</td><td>#0a0a0a</td><td>#a8b898</td><td style="font-weight:600">#FFD500</td><td>Tech</td></tr>
+    <tr><td class="sys"><i style="background:#e7e5e4"></i>Stone Mono</td><td>#e7e5e4</td><td>#292524</td><td>#a8a29e</td><td>—</td><td>Austerity</td></tr>
+    <tr><td class="sys"><i style="background:#f5f4ed"></i>Editorial Parchment</td><td>#f5f4ed</td><td>#141413</td><td>#e8e6dc</td><td style="color:#c96442;font-weight:600">#c96442</td><td>Cards, covers, publishable HTML</td></tr>
+  </table>
+
+  <h2>Dark Mode Palettes</h2>
+  <table>
+    <tr><th>System</th><th>surface</th><th>text</th><th>border</th><th>accent</th><th>Use</th></tr>
+    <tr><td class="sys"><i style="background:#1a1814"></i>Warm Paper Dark</td><td>#1a1814</td><td>#e8e4e0</td><td>#44403c</td><td>—</td><td>Default dark</td></tr>
+    <tr><td class="sys"><i style="background:#0a0a0a"></i>Swiss Neutral Dark</td><td>#0a0a0a</td><td>#d6d3d1</td><td>#333333</td><td>—</td><td>Clean dark</td></tr>
+    <tr><td class="sys"><i style="background:#0d1117"></i>IKB Accent Dark</td><td>#0d1117</td><td>#c9d1d9</td><td>#30363d</td><td style="color:#58a6ff;font-weight:600">#58a6ff</td><td>guizang dark</td></tr>
+    <tr><td class="sys"><i style="background:#0d1117"></i>Lemon Accent Dark</td><td>#0d1117</td><td>#c9d1d9</td><td>#30363d</td><td style="color:#e3b341;font-weight:600">#e3b341</td><td>Tech dark</td></tr>
+    <tr><td class="sys"><i style="background:#1c1917"></i>Stone Mono Dark</td><td>#1c1917</td><td>#d6d3d1</td><td>#44403c</td><td>—</td><td>Austerity dark</td></tr>
+  </table>
+
+  <h2>Type scale — 越大越细，越小越粗</h2>
+  <table>
+    <tr><th>Role</th><th>Sample</th><th>Spec</th></tr>
+    <tr><td>Diagram title</td><td><span class="type-title">三层闭环架构</span></td><td>15–16px · weight 200</td></tr>
+    <tr><td>Node label / body</td><td><span class="type-body">陪伴证据 · evidence</span></td><td>13–14px · weight 300 · ≤8 汉字</td></tr>
+    <tr><td>Caption / legend</td><td><span class="type-small">实线=主流程 · 虚线=反馈</span></td><td>11–13px · weight 500–600</td></tr>
+  </table>
+
+  <h2>Node vocabulary — shape is semantics</h2>
+  <div class="node-row">
+    <div><div class="node">process<br>过程</div><div class="cap">[ ] · 1px stone</div></div>
+    <div><div class="node core">core<br>数据主权</div><div class="cap">(( )) · 2px accent — the one emphasis</div></div>
+    <div><div class="node decision"><span>decision<br>判定</span></div><div class="cap">{ } · 1px</div></div>
+    <div><div class="node data">artifact<br>.md</div><div class="cap">[[ ]] · pebble fill</div></div>
+    <div><div class="node round">actor</div><div class="cap">(( )) · 1px</div></div>
+  </div>
+
+  <h2>Edge semantics</h2>
+  <div class="edges">
+    <div>─────►&nbsp;&nbsp;primary (solid)</div>
+    <div>- - -►&nbsp;&nbsp;secondary (dashed)</div>
+    <div style="color:#002FA7">═════►&nbsp;&nbsp;emphasized (2px accent, max one)</div>
+    <div>──标注──►&nbsp;&nbsp;labeled (explicit semantics)</div>
+  </div>
+  <p class="warn">Legend mandatory if &gt;2 edge types appear. Max 4–5 subgraphs · 50 nodes hard cap · sharp corners · no emoji · no gradients · no pie.</p>
+
+  <footer>archviz-skills · DESIGN.md visual catalog · Stitch DESIGN.md format · MIT</footer>
+</main>
+</body>
+</html>

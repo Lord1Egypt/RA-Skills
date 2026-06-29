@@ -1,0 +1,46 @@
+# 故障转移测试工作流
+name: test-fallback
+version: "1.0"
+description: "测试故障转移：故意失败→自动备选→降级"
+author: 小狗
+tags: [test, fallback]
+
+error_handling:
+  on_step_fail: pause
+
+steps:
+  - id: step1
+    name: "正常步骤"
+    type: terminal
+    depends: []
+    config:
+      command: "echo 'step1 ok'"
+    output:
+      type: text
+      variable: "step1_out"
+
+  - id: step2
+    name: "会失败的步骤（测试故障转移）"
+    type: terminal
+    depends: [step1]
+    config:
+      command: "exit 1"  # 故意失败
+    retry:
+      max_attempts: 2
+      on_fail: skip      # 失败后跳过
+      fallbacks:
+        - type: terminal
+          command: "echo 'fallback: 用备选方案完成'"
+    output:
+      type: text
+      variable: "step2_out"
+
+  - id: step3
+    name: "后续步骤（验证skip后继续）"
+    type: terminal
+    depends: [step2]
+    config:
+      command: "echo 'step3 ok - 工作流继续执行'"
+    output:
+      type: text
+      variable: "step3_out"

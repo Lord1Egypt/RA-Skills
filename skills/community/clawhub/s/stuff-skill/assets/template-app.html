@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark-roast">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="__THEME_COLOR__" />
+  <title>__APP_NAME__</title>
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="apple-touch-icon" href="./icon-180.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="__FONT_URL__" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <!-- Top bar -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="logo">__LOGO_EMOJI__</span>
+      <h1>__APP_NAME__</h1>
+    </div>
+    <div class="topbar-right">
+      <span class="count" id="count"></span>
+    </div>
+  </header>
+
+  <!-- Filter: Search -->
+  <section class="filters">
+    <div class="search-wrap">
+      <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/></svg>
+      <input id="search" placeholder="搜索__SEARCH_HINT__…" />
+    </div>
+
+    <!-- Filter: Status chips (enum field with filterable:true) -->
+    <!-- __STATUS_CHIPS__ -->
+
+    <!-- Filter: Additional filterable chips -->
+    <!-- __EXTRA_FILTER_CHIPS__ -->
+  </section>
+
+  <!-- Sort bar -->
+  <div class="sort-bar" id="sortBar">
+    <button class="sort-btn active" data-sort="status">默认排序</button>
+    <!-- __EXTRA_SORT_BUTTONS__ -->
+  </div>
+
+  <!-- Card list -->
+  <main id="list" class="cards"></main>
+
+  <!-- Empty state -->
+  <div id="empty" class="empty" style="display:none">
+    <div class="empty-icon">__EMPTY_EMOJI__</div>
+    <p>没有找到匹配的记录</p>
+  </div>
+
+  <!-- Editor modal -->
+  <dialog id="editor">
+    <form method="dialog" id="editorForm">
+      <div class="editor-header">
+        <h3 id="editorTitle">新增</h3>
+        <button type="button" class="close-btn" id="closeEditor">✕</button>
+      </div>
+      <div class="editor-body">
+        <!-- __EDITOR_FIELDS__ -->
+      </div>
+      <div class="editor-footer">
+        <button type="button" id="deleteInEditor" class="danger-btn" style="display:none">删除</button>
+        <div class="spacer"></div>
+        <button type="button" class="ghost-btn" id="cancelBtn">取消</button>
+        <button type="submit" class="primary-btn">保存</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Smart Select Manager Modal -->
+  <dialog id="smartSelectManager">
+    <div class="editor-header">
+      <h3 id="smartSelectManagerTitle">管理</h3>
+      <button type="button" class="close-btn" id="closeSmartSelectManager">✕</button>
+    </div>
+    <div class="smart-manager-body" id="smartSelectManagerList"></div>
+    <div class="editor-footer">
+      <div class="spacer"></div>
+      <button type="button" class="ghost-btn" id="closeSmartSelectManager2">关闭</button>
+    </div>
+  </dialog>
+
+  <!-- FAB add button -->
+  <button class="fab" id="addBtn" aria-label="新增">
+    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="14" y1="5" x2="14" y2="23"/><line x1="5" y1="14" x2="23" y2="14"/></svg>
+  </button>
+
+  <script src="./app.js" type="module"></script>
+</body>
+</html>

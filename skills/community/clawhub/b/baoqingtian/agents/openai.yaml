@@ -1,0 +1,4 @@
+interface:
+  display_name: "包青天"
+  short_description: "审需求证据并生成同款可截图HTML判牍卡和详细判词"
+  default_prompt: "用包青天审一下这个 idea："

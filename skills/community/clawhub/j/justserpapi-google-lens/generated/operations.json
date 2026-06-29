@@ -1,0 +1,100 @@
+{
+  "baseUrl": "https://api.justserpapi.com",
+  "description": "Call GET /api/v1/google/lens for Google SERP Lens through Just Serp API with url.",
+  "displayName": "Google SERP Lens",
+  "endpointPath": "lens",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Google lens Search data, including visual matches, product matches, and related links, for visual search analysis and product matching workflows.",
+      "method": "GET",
+      "operationId": "lens",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "The URL of the image you want to analyze with Google Lens. Must be a publicly accessible image URL.",
+          "enumValues": [],
+          "location": "query",
+          "name": "url",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the target country code (e.g., 'us', 'uk') to localize results. See <a href=\"/reference/google-countries\">Google Countries</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "country",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the language for the results using its two-letter code (e.g., 'en' for English, 'fr' for French). See <a href=\"/reference/google-language\">Google Language</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "language",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "If set to true, the API will specifically look for product matches and shopping results.",
+          "enumValues": [],
+          "location": "query",
+          "name": "product",
+          "required": false,
+          "schemaType": "boolean"
+        },
+        {
+          "defaultValue": null,
+          "description": "If set to true, the API will return visually similar images and matches.",
+          "enumValues": [],
+          "location": "query",
+          "name": "visual_matches",
+          "required": false,
+          "schemaType": "boolean"
+        },
+        {
+          "defaultValue": null,
+          "description": "If set to true, the API will search for exact duplicates of the provided image.",
+          "enumValues": [],
+          "location": "query",
+          "name": "exact_matches",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/v1/google/lens",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        },
+        {
+          "description": "Authentication failed: API Key is invalid or missing",
+          "statusCode": "401"
+        },
+        {
+          "description": "Access denied: Insufficient credits or quota exceeded",
+          "statusCode": "403"
+        },
+        {
+          "description": "Internal server error or upstream service exception",
+          "statusCode": "500"
+        }
+      ],
+      "summary": "Search",
+      "tags": [
+        "Google Lens"
+      ]
+    }
+  ],
+  "platformKey": "google",
+  "primaryTag": "Google SERP",
+  "skillName": "justserpapi_google_lens",
+  "skillType": "interface",
+  "slug": "justserpapi-google-lens",
+  "sourceTitle": "API Shop Documentation"
+}

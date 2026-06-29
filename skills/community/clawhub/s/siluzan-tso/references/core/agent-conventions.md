@@ -14,6 +14,7 @@
 | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **新的用户任务 / 同对话内换话题**（新需求、新账户、新媒体、新报告类型；例：刚查余额 → 改问建系列） | 按 `SKILL.md` 路由表 **重新 Read** 该任务的「必读文档」与工作流卡片后再执行 CLI；**禁止**沿用上一任务的参数记忆——对话会被压缩，「读过」≠ 当前上下文仍含正确字段名与 flags |
 | **工作流编号不同**（P1→P3、P4→P5）                                                                 | 即使刚做过 P1，仍须 Read 新卡片及其必读文档                                                                                                                               |
+| **报告 / 分析类话术模糊**（只说「报告/诊断/分析/检测/监测」、对象不清）                              | **必须先 Read** `references/core/intent-routing.md`，定唯一 P*/W* 后再 Read 工作流卡片；**禁止**默认 P4 或 P1                                                                 |
 | **专用 report-templates**（OKKI / 询盘分析 / 周期报告纲要）                                        | Read `references/report-templates/<名>.md` **全文**（与 `report-templates/<名>.md` 同源）；勿只凭 SKILL 摘要                                                              |
 | **上下文被压缩 / 记不清字段或命令**                                                                | 重读 `SKILL.md` 路由表 + 当次任务 references                                                                                                                              |
 | **CLI 返回 400 / 字段对不上**                                                                      | 回到对应 reference 核对参数名与口径，勿猜                                                                                                                                 |
@@ -31,7 +32,7 @@
 | 契约说明 / 规则 | `assets/<文件>.md` | 与上表 JSON **成对** Read；如 `assets/campaign-create-template.md` |
 | HTML 终稿模板 | `report-templates/*.html` | 由 CLI `render` 使用，Agent 通常只 Read 对应 `.md` 纲要 |
 
-路由表若写 `analytics/…` 或 `report-templates/…` 而无 `references/` 前缀，**Read 时仍须加上 `references/`**（`assets/`、`report-templates/*.html` 除外）。
+所有文档里的「必读文档」路径**一律相对 Skill 根目录、且已写全前缀**：域文档为 `references/<域>/<文件>.md`，报告纲要为 `references/report-templates/<文件>.md`，JSON 契约为 `assets/<文件>.json`，HTML 终稿模板为 `report-templates/*.html`。**按字面路径直接 Read 即可，无需自行增删前缀**；若仍 File not found，回到 `references/README.md` 核对真实路径。
 
 ---
 
@@ -53,6 +54,7 @@
 | **数据交付类**    | `google-analysis` / `stats` / `ad campaigns` 等带 `--json-out`：必须按 §三 协议脚本读盘转换      |
 | **客户/产品背景** | 拓词、方案、报告背景段：先 `rag list` + `rag query`，再衔接 `keyword` / `ad` / `google-analysis` |
 | **仅调接口**      | 优化记录、线索表单、预警、财务命令：无需输出转换                                                 |
+| **P9 市场报告**   | `market-analysis collect` → Agent 调研写 JSON → `market-analysis render`；**禁止**跳过 collect/render |
 
 ### Subagent（可选）
 
@@ -75,7 +77,7 @@
 | 允许 Read 的文件                                                                 | 必须用代码读取的文件                       |
 | -------------------------------------------------------------------------------- | ------------------------------------------ |
 | `references/**/*.md`、`assets/**/*.md`（Skill 文档）                             | 所有 `--json-out` 落盘业务 `*.json`（常为 MB 级） |
-| `assets/*-template.json`、`assets/*.schema.json`、`analytics/geo-continents.json` 等**小体积契约/映射** | manifest 中的路径索引（脚本 `JSON.parse`） |
+| `assets/*-template.json`、`assets/*.schema.json`、`references/analytics/geo-continents.json` 等**小体积契约/映射** | manifest 中的路径索引（脚本 `JSON.parse`） |
 | 当次 `*.outline.txt`                                                             | 用户提供的同构大 JSON                      |
 | stdout 一行摘要、你刚写出的最终产物文件                                          | —                                          |
 
@@ -91,7 +93,7 @@
 | `keywordText`           | `keyword`                                      |
 | `query`                 | `searchTermText`                               |
 
-国家名、ID、金额、词表等**业务值**禁止写成源码字面量；映射表/模板契约运行时加载（`analytics/geo-continents.json`、`campaign-create-template.json`）。允许的字面量：输出目录、Sheet/列标题、技术格式、用户当轮明确给出的配置（建议落盘 `config.json` 再脚本读）。
+国家名、ID、金额、词表等**业务值**禁止写成源码字面量；映射表/模板契约运行时加载（`references/analytics/geo-continents.json`、`campaign-create-template.json`）。允许的字面量：输出目录、Sheet/列标题、技术格式、用户当轮明确给出的配置（建议落盘 `config.json` 再脚本读）。
 
 **报告/Excel 全流程走本 Skill**：按工作流卡片与 `report-templates/*.md` 拉数、落盘、脚本转换；**禁止**加载宿主第三方 xlsx/Excel Skill 代劳（不知 TSO 字段口径与账户核验）。
 
@@ -119,6 +121,7 @@
   - 当前凭据未返回手机号且用户指定了手机号 → 视同未校验通过，引导重新用手机号登录。
 - **Google 新建搜索系列**：流程在 `references/google-ads/google-ads-campaign-plan.md`；填 JSON 前**必须先 Read** `assets/campaign-create-template.json`，再 Read `assets/campaign-create-template.md`。**禁止**只读 `.md` 手写 JSON。
 - **「根据官网生成 Google 搜索广告 / 表格格式」**：仍属新建搜索系列 → **W3 + 本文件上条**；用户要的「表格」是 `google-ads-launch-plan-template.md` 对 JSON 的投影，**不是**可跳过 JSON/`campaign-validate` 的独立交付物。**禁止**与 P8 网站诊断、P9 市场分析、W5 仅拓词混用。
+- **「行业分析 / 行业分析报告 / 生成 XX 行业报告」**（例：「帮我生成一份电商行业的行业分析报告」）→ **P9 战略市场分析**。**必须**先 `siluzan-tso market-analysis collect … --json-out`，再 WebSearch 补数据、写 `market-report.json`，最后 `market-analysis render` 出 HTML。**禁止**不调用 CLI、仅在对话里用 WebSearch 写 Markdown 充当终稿。**不是** `google-analysis`、**不是** P8 网站诊断。
 - **开户首次响应**：对话内首次进入开户话题时，**必须先**按 `references/accounts/open-account-by-media.md` §「首次响应硬规范」输出**完整必填清单**（未指明媒体则列全平台六表），再收集资料；**禁止**未列清单就执行 `open-account` 或零散追问。
 - **Google 开户**：`open-account google-wizard` 仅限真实 TTY；Agent/自动化用非交互 `open-account google ...`，审核进度用 `account-history`。
 - **主动更新**：详见 `references/core/setup.md`。
@@ -131,7 +134,7 @@
 
 **例外**（不反问）：
 
-- `list-accounts` 列全部 / 数个数：一次 `list-accounts -m <媒体> --page-size 999 --json-out <dir>`，脚本读落盘 `total` / `items[]`；**禁止**默认 page-size 20 再翻页（详见 `accounts/accounts.md` § Agent 意图速查）。
+- `list-accounts` 列全部 / 数个数：一次 `list-accounts -m <媒体> --page-size 999 --json-out <dir>`，脚本读落盘 `total` / `items[]`；**禁止**默认 page-size 20 再翻页（详见 `references/accounts/accounts.md` § Agent 意图速查）。
 - 「昨天」单日 stats：默认 `Asia/Shanghai` 日历日；先 `list-accounts` 再 `stats`。
 - `forewarning records`、`invoice list`「本月」、TikTok `clue`「最近一周」：见对应 references。
 

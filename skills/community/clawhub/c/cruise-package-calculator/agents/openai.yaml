@@ -1,0 +1,3 @@
+display_name: Cruise Package Calculator
+short_description: Decide whether cruise add-on packages are worth buying.
+default_prompt: Should I buy the drink package, Wi-Fi, or dining bundle for my cruise?

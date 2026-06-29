@@ -16,7 +16,7 @@ def main():
     parser.add_argument("--search", default=None, help="搜索板块名称或代码")
     args = parser.parse_args()
 
-    url = f"{BASE_URL}/data/api/v1/market/data/ths-board-list"
+    url = f"{BASE_URL}/gateway/api/v1/market/data/ths-board-list"
     req = urllib.request.Request(url, method="GET")
     req.add_header("Accept", "application/json")
 

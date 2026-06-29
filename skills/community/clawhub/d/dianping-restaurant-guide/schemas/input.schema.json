@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://openclaw.dev/skills/dianping-restaurant-guide/input.schema.json",
+  "title": "Dianping Restaurant Guide Input",
+  "description": "Schema for dining profile and restaurant analysis input",
+  "type": "object",
+  "properties": {
+    "dining_profile": {
+      "type": "object",
+      "description": "User-defined dining context",
+      "properties": {
+        "location": {
+          "type": "string",
+          "description": "City + district/landmark (e.g. 上海静安寺, 北京三里屯)",
+          "examples": ["上海静安寺", "北京三里屯", "成都宽窄巷子"]
+        },
+        "cuisine": {
+          "type": "string",
+          "description": "Cuisine preference (川菜/日料/西餐/火锅 or 'any')",
+          "default": "any"
+        },
+        "budget_min": {
+          "type": "number",
+          "description": "Minimum per-person budget (CNY)",
+          "minimum": 0,
+          "default": 50
+        },
+        "budget_max": {
+          "type": "number",
+          "description": "Maximum per-person budget (CNY)",
+          "minimum": 0,
+          "default": 150
+        },
+        "occasion": {
+          "type": "string",
+          "description": "Dining occasion",
+          "enum": ["date", "family", "solo", "group_dinner", "business", "casual", "any"],
+          "default": "any"
+        },
+        "radius_km": {
+          "type": "number",
+          "description": "Search radius in kilometers",
+          "minimum": 0.5,
+          "maximum": 50,
+          "default": 3
+        },
+        "party_size": {
+          "type": "integer",
+          "description": "Number of diners",
+          "minimum": 1,
+          "maximum": 50,
+          "default": 2
+        }
+      },
+      "required": ["location"]
+    },
+    "restaurants": {
+      "type": "array",
+      "description": "Restaurant data for analysis (from discovery)",
+      "items": {
+        "type": "object",
+        "required": ["name", "rating", "review_count"],
+        "properties": {
+          "name": { "type": "string" },
+          "rating": { "type": "number", "minimum": 0, "maximum": 5 },
+          "review_count": { "type": "integer", "minimum": 0 },
+          "cuisine_type": { "type": "string" },
+          "address": { "type": "string" },
+          "lat": { "type": "number" },
+          "lng": { "type": "number" },
+          "price_per_person": { "type": "number", "minimum": 0 },
+          "tags": { "type": "array", "items": { "type": "string" } },
+          "reviews": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "text": { "type": "string" },
+                "rating": { "type": "number", "minimum": 0, "maximum": 5 },
+                "timestamp": { "type": "string" },
+                "reviewer_id": { "type": "string" },
+                "reviewer_age_days": { "type": "integer" },
+                "reviewer_total_reviews": { "type": "integer" },
+                "reviewer_followers": { "type": "integer" },
+                "photo_count": { "type": "integer" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "anyOf": [
+    { "required": ["dining_profile"] },
+    { "required": ["restaurants"] }
+  ],
+  "additionalProperties": false
+}

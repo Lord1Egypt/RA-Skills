@@ -1,0 +1,10 @@
+const os = require('os');
+const free = os.freemem();
+const total = os.totalmem();
+const freeMB = Math.round(free / 1024 / 1024);
+const totalMB = Math.round(total / 1024 / 1024);
+const usedPct = Math.round((1 - free / total) * 100);
+let status = 'OK';
+if (freeMB < 300) status = 'CRITICAL';
+else if (freeMB < 600) status = 'WARNING';
+console.log(JSON.stringify({ freeMB, totalMB, usedPct, status }));

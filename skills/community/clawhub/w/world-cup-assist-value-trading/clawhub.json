@@ -1,0 +1,13 @@
+{
+  "emoji": "soccer",
+  "primaryEnv": "SIMMER_API_KEY",
+  "requires": {
+    "pip": ["simmer-sdk"],
+    "env": ["SIMMER_API_KEY", "TAVILY_API_KEY"]
+  },
+  "envVars": [
+    {"name": "SIMMER_API_KEY", "required": true, "description": "Your Simmer SDK API key — get from simmer.markets/dashboard"},
+    {"name": "TAVILY_API_KEY", "required": true, "description": "Tavily search API key, used to fetch player stats from FBref/ESPN/WhoScored"}
+  ],
+  "tags": ["world-cup"]
+}

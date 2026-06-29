@@ -1,0 +1,26 @@
+Display Name:
+AutoPostOnline Agents
+
+Slug:
+autopostonline-agents
+
+Icon:
+Upload icon.svg from the skill folder.
+
+Owner:
+AutoPostOnline
+
+Version:
+1.0.1
+
+Tags:
+social-media, publishing, autonomous-agents, mcp, api, marketing-automation, postiz, scheduling, analytics, content-agents, openclaw
+
+License:
+MIT
+
+Tagline:
+Autonomous social publishing infrastructure for AI agents.
+
+Short Description:
+Give your OpenClaw agent one publishing API key. AutoPostOnline lets agents draft, schedule, publish, upload media, and retrieve analytics across connected social channels without social passwords or brittle browser automation.

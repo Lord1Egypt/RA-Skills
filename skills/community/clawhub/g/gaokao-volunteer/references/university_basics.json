@@ -1,0 +1,407 @@
+{
+  "_description": "中国本科院校基础信息库",
+  "_updated": "2026-06-11",
+  "_note": "包含院校代码、层次、所在地、排名参考，分数线需实时搜索",
+  "universities": {
+    "10001": {
+      "name": "北京大学",
+      "short_name": "北大",
+      "city": "北京",
+      "province": "北京",
+      "level": "985",
+      "type": "综合",
+      "is_double_first_class": true,
+      "ranking_2025": 2
+    },
+    "10002": {
+      "name": "中国人民大学",
+      "short_name": "人大",
+      "city": "北京",
+      "province": "北京",
+      "level": "985",
+      "type": "综合",
+      "is_double_first_class": true,
+      "ranking_2025": 18
+    },
+    "10003": {
+      "name": "清华大学",
+      "short_name": "清华",
+      "city": "北京",
+      "province": "北京",
+      "level": "985",
+      "type": "综合",
+      "is_double_first_class": true,
+      "ranking_2025": 1
+    },
+    "10248": {
+      "name": "上海交通大学",
+      "short_name": "上交",
+      "city": "上海",
+      "province": "上海",
+      "level": "985",
+      "type": "综合",
+      "is_double_first_class": true,
+      "ranking_2025": 4
+    },
+    "10246": {
+      "name": "复旦大学",
+      "short_name": "复旦",
+      "city": "上海",
+      "province": "上海",
+      "level": "985",
+      "type": "综合",
+      "is_double_first_class": true,
+      "ranking_2025": 5
+    },
+    "10335": {
+      "name": "浙江大学",
+      "short_name": "浙大",
+      "city": "杭州",
+      "province": "浙江",
+      "level": "985",
+      "type": "综合",
+      "is_double_first_class": true,
+      "ranking_2025": 3
+    },
+    "10284": {
+      "name": "南京大学",
+      "short_name": "南大",
+      "city": "南京",
+      "province": "江苏",
+      "level": "985",
+      "type": "综合",
+      "is_double_first_class": true,
+      "ranking_2025": 6
+    },
+    "10358": {
+      "name": "中国科学技术大学",
+      "short_name": "中科大",
+      "city": "合肥",
+      "province": "安徽",
+      "level": "985",
+      "type": "理工",
+      "is_double_first_class": true,
+      "ranking_2025": 7
+    },
+    "10486": {
+      "name": "武汉大学",
+      "short_name": "武大",
+      "city": "武汉",
+      "province": "湖北",
+      "level": "985",
+      "type": "综合",
+      "is_double_first_class": true,
+      "ranking_2025": 8
+    },
+    "10487": {
+      "name": "华中科技大学",
+      "short_name": "华科",
+      "city": "武汉",
+      "province": "湖北",
+      "level": "985",
+      "type": "理工",
+      "is_double_first_class": true,
+      "ranking_2025": 9
+    },
+    "10610": {
+      "name": "四川大学",
+      "short_name": "川大",
+      "city": "成都",
+      "province": "四川",
+      "level": "985",
+      "type": "综合",
+      "is_double_first_class": true,
+      "ranking_2025": 14
+    },
+    "10611": {
+      "name": "重庆大学",
+      "short_name": "重大",
+      "city": "重庆",
+      "province": "重庆",
+      "level": "985",
+      "type": "综合",
+      "is_double_first_class": true,
+      "ranking_2025": 33
+    },
+    "10558": {
+      "name": "中山大学",
+      "short_name": "中大",
+      "city": "广州",
+      "province": "广东",
+      "level": "985",
+      "type": "综合",
+      "is_double_first_class": true,
+      "ranking_2025": 11
+    },
+    "10384": {
+      "name": "厦门大学",
+      "short_name": "厦大",
+      "city": "厦门",
+      "province": "福建",
+      "level": "985",
+      "type": "综合",
+      "is_double_first_class": true,
+      "ranking_2025": 24
+    },
+    "10614": {
+      "name": "电子科技大学",
+      "short_name": "成电",
+      "city": "成都",
+      "province": "四川",
+      "level": "985",
+      "type": "理工",
+      "is_double_first_class": true,
+      "ranking_2025": 28
+    },
+    "10701": {
+      "name": "西安电子科技大学",
+      "short_name": "西电",
+      "city": "西安",
+      "province": "陕西",
+      "level": "211",
+      "type": "理工",
+      "is_double_first_class": true,
+      "ranking_2025": 40
+    },
+    "10007": {
+      "name": "北京理工大学",
+      "short_name": "北理",
+      "city": "北京",
+      "province": "北京",
+      "level": "985",
+      "type": "理工",
+      "is_double_first_class": true,
+      "ranking_2025": 16
+    },
+    "10006": {
+      "name": "北京航空航天大学",
+      "short_name": "北航",
+      "city": "北京",
+      "province": "北京",
+      "level": "985",
+      "type": "理工",
+      "is_double_first_class": true,
+      "ranking_2025": 12
+    },
+    "10213": {
+      "name": "哈尔滨工业大学",
+      "short_name": "哈工大",
+      "city": "哈尔滨",
+      "province": "黑龙江",
+      "level": "985",
+      "type": "理工",
+      "is_double_first_class": true,
+      "ranking_2025": 13
+    },
+    "10698": {
+      "name": "西安交通大学",
+      "short_name": "西交",
+      "city": "西安",
+      "province": "陕西",
+      "level": "985",
+      "type": "综合",
+      "is_double_first_class": true,
+      "ranking_2025": 10
+    },
+    "10056": {
+      "name": "天津大学",
+      "short_name": "天大",
+      "city": "天津",
+      "province": "天津",
+      "level": "985",
+      "type": "理工",
+      "is_double_first_class": true,
+      "ranking_2025": 20
+    },
+    "10141": {
+      "name": "大连理工大学",
+      "short_name": "大工",
+      "city": "大连",
+      "province": "辽宁",
+      "level": "985",
+      "type": "理工",
+      "is_double_first_class": true,
+      "ranking_2025": 30
+    },
+    "10286": {
+      "name": "东南大学",
+      "short_name": "东大",
+      "city": "南京",
+      "province": "江苏",
+      "level": "985",
+      "type": "综合",
+      "is_double_first_class": true,
+      "ranking_2025": 17
+    },
+    "10532": {
+      "name": "湖南大学",
+      "short_name": "湖大",
+      "city": "长沙",
+      "province": "湖南",
+      "level": "985",
+      "type": "综合",
+      "is_double_first_class": true,
+      "ranking_2025": 32
+    },
+    "10533": {
+      "name": "中南大学",
+      "short_name": "中南",
+      "city": "长沙",
+      "province": "湖南",
+      "level": "985",
+      "type": "综合",
+      "is_double_first_class": true,
+      "ranking_2025": 23
+    },
+    "10422": {
+      "name": "山东大学",
+      "short_name": "山大",
+      "city": "济南",
+      "province": "山东",
+      "level": "985",
+      "type": "综合",
+      "is_double_first_class": true,
+      "ranking_2025": 22
+    },
+    "10561": {
+      "name": "华南理工大学",
+      "short_name": "华工",
+      "city": "广州",
+      "province": "广东",
+      "level": "985",
+      "type": "理工",
+      "is_double_first_class": true,
+      "ranking_2025": 26
+    },
+    "10004": {
+      "name": "北京交通大学",
+      "short_name": "北交",
+      "city": "北京",
+      "province": "北京",
+      "level": "211",
+      "type": "理工",
+      "is_double_first_class": true,
+      "ranking_2025": 38
+    },
+    "10013": {
+      "name": "北京邮电大学",
+      "short_name": "北邮",
+      "city": "北京",
+      "province": "北京",
+      "level": "211",
+      "type": "理工",
+      "is_double_first_class": true,
+      "ranking_2025": 50
+    },
+    "10287": {
+      "name": "南京航空航天大学",
+      "short_name": "南航",
+      "city": "南京",
+      "province": "江苏",
+      "level": "211",
+      "type": "理工",
+      "is_double_first_class": true,
+      "ranking_2025": 35
+    },
+    "10288": {
+      "name": "南京理工大学",
+      "short_name": "南理",
+      "city": "南京",
+      "province": "江苏",
+      "level": "211",
+      "type": "理工",
+      "is_double_first_class": true,
+      "ranking_2025": 37
+    },
+    "10497": {
+      "name": "武汉理工大学",
+      "short_name": "武理",
+      "city": "武汉",
+      "province": "湖北",
+      "level": "211",
+      "type": "理工",
+      "is_double_first_class": true,
+      "ranking_2025": 52
+    },
+    "10504": {
+      "name": "华中农业大学",
+      "short_name": "华农",
+      "city": "武汉",
+      "province": "湖北",
+      "level": "211",
+      "type": "农林",
+      "is_double_first_class": true,
+      "ranking_2025": 48
+    },
+    "10511": {
+      "name": "华中师范大学",
+      "short_name": "华师",
+      "city": "武汉",
+      "province": "湖北",
+      "level": "211",
+      "type": "师范",
+      "is_double_first_class": true,
+      "ranking_2025": 42
+    },
+    "10520": {
+      "name": "中南财经政法大学",
+      "short_name": "中南财大",
+      "city": "武汉",
+      "province": "湖北",
+      "level": "211",
+      "type": "财经",
+      "is_double_first_class": true,
+      "ranking_2025": 55
+    },
+    "10491": {
+      "name": "中国地质大学(武汉)",
+      "short_name": "地大",
+      "city": "武汉",
+      "province": "湖北",
+      "level": "211",
+      "type": "理工",
+      "is_double_first_class": true,
+      "ranking_2025": 58
+    },
+    "10251": {
+      "name": "华东理工大学",
+      "short_name": "华理",
+      "city": "上海",
+      "province": "上海",
+      "level": "211",
+      "type": "理工",
+      "is_double_first_class": true,
+      "ranking_2025": 45
+    },
+    "10651": {
+      "name": "西南财经大学",
+      "short_name": "西财",
+      "city": "成都",
+      "province": "四川",
+      "level": "211",
+      "type": "财经",
+      "is_double_first_class": true,
+      "ranking_2025": 75
+    },
+    "10699": {
+      "name": "西北工业大学",
+      "short_name": "西工大",
+      "city": "西安",
+      "province": "陕西",
+      "level": "985",
+      "type": "理工",
+      "is_double_first_class": true,
+      "ranking_2025": 25
+    },
+    "10712": {
+      "name": "西北农林科技大学",
+      "short_name": "西农",
+      "city": "杨凌",
+      "province": "陕西",
+      "level": "985",
+      "type": "农林",
+      "is_double_first_class": true,
+      "ranking_2025": 65
+    }
+  }
+}

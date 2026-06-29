@@ -2,7 +2,7 @@
 name: Group Insurance Renewal Expert
 description: AI-powered group insurance renewal management skill — renewal decision analysis, loss ratio analysis by industry (2025 data), enterprise insurance procurement management, group insurance pricing, and Huimin Bao (惠民保) renewal strategy. Updated for 2025-2026 regulatory changes including health insurance new rules and digital procurement trends. Built for group insurance account managers, corporate HR福利负责人, and insurance brokers. Keywords: group insurance, renewal, corporate insurance, employee benefits, loss ratio, insurance procurement, China insurance, 惠民保, 团险续期, 续保管理, 企业员工福利, 续期策略, 赔付率分析, 团险定价, 医疗险续保, 雇主责任险.
 slug: insurance-group-renewal
-version: "4.1.1"
+version: "4.1.2"
 ---
 
 # Group Insurance Renewal Expert / 团险续期管理专家 |
@@ -39,6 +39,18 @@ version: "4.1.1"
 **中文触发词（优先）：** 团险续期、团体保险、团险续保、企业保险集采、HR福利计划、团险赔付率、团险方案调整、企业员工福利、惠民保运营、团险续保谈判、团体健康险、团体意外险、企业年金
 
 ---
+
+
+### 保险监管最新动态 [2026-06-28更新]
+
+| 动态类型 | 内容摘要 | 发布时间 | 影响范围 |
+|---------|---------|---------|---------|
+| 监管发布 | 金融监管总局发布《关于银行业保险业人工智能安全开发应用的指导意见》，界定承保理赔、风险管理等为AI高风险应用场景 | 2026-06-18 | 保险AI应用合规与风险管控 |
+| 监管计划 | NFRA发布《2026年规章制定工作计划》：保险资金运用管理办法、偿付能力管理办法纳入修订，流动性风险、网络安全管理办法新制定 | 2026-06-23 | 保险监管全链条 |
+| 监管施行 | NFRA 2026年第2号令《银行保险机构许可证管理办法》6月1日起施行，取消保险许可证统一为金融许可证 | 2026-06-01 | 保险业务资质与合规管理 |
+
+> **数据截止**: 2026-06-28 | 来源：国家金融监督管理总局、行业公开信息
+> **声明**: 以上动态供参考，具体以官方最新发布为准
 
 ## Core Capabilities / 核心能力
 

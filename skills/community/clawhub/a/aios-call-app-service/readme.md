@@ -14,12 +14,13 @@
 
 - 先读取 `AIOS_ONTOLOGY_DIR`
 - 再确认应用、命令、参数结构和枚举映射
-- 统一通过 `aios-apps-invoke-cli` 发起调用
+- 统一通过 `aios-apps-invoke-cli` 发起调用；CLI 会把请求交给本地 app invoke socket service
 - 当前 CLI 只支持 `provider=hzg`
 - 当前会话标识使用 `SessionId`
 - 调用 `aios-apps-invoke-cli` 时：
   - `-p` 对应 `provider`
   - `-s` 对应 `SessionId`
+- 不要绕过 CLI 直接访问业务系统 HTTP 接口；局域网业务系统访问由 `aios-apps-invoke-cli serve` 进程完成
 - `binding` 参数优先从 `binding-*.md` 的 `CandidatesBindings`、`TableBindings`、`DataSourceBindings` 文档生成兼容 schema
 - `servercommand` 参数严格按 ontology 的 `Input Arguments` 生成
 

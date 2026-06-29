@@ -11,18 +11,16 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Employees, external users, and agents use this skill to draft, revise, and review Chinese official documents and formal work materials such as notices, requests, reports, letters, plans, feasibility studies, speech drafts, and AI-compute procurement or rental materials. It supports document-genre routing, handling-element checks, formal style review, anti-AI-phrasing review, compression, and format-oriented preflight guidance. <br>
+Employees and external users who draft or review Chinese official work documents use this skill to route document types, check required handling elements, revise style, and produce formal Chinese drafts or review guidance while keeping legal, financial, procurement, audit, and signing judgments under human review. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Document guidance may be mistaken for legal, procurement, finance, audit, confidentiality, or formal signing approval. <br>
-Mitigation: Use outputs as drafting and review assistance only, and require qualified human review before relying on sensitive, official, or approval-bearing materials. <br>
-Risk: Generated official-document drafts can omit required facts, preserve unresolved placeholders, or include unsupported dates, data, or conclusions. <br>
-Mitigation: Check handling elements, missing-information notes, source traceability, and final placeholders before circulation or signing. <br>
-Risk: The optional local prose lint script reports writing risks but does not prove correctness or compliance. <br>
-Mitigation: Treat lint findings as advisory signals and combine them with manual review against the relevant document genre, format requirements, and organizational process. <br>
+Risk: Generated official-document drafts may contain incorrect or misleading legal, financial, procurement, audit, signing, date, document-number, name, or formatting details. <br>
+Mitigation: Manually verify those details and route final documents through the responsible human review process before relying on, signing, or filing them. <br>
+Risk: The optional lint script can be run against sensitive local documents. <br>
+Mitigation: Run linting only in trusted local environments and keep sensitive drafts within the user's approved document-handling workflow. <br>
 
 
 ## Reference(s): <br>
@@ -31,6 +29,7 @@ Mitigation: Treat lint findings as advisory signals and combine them with manual
 - [反 AI 表达检查](references/anti-ai-patterns.md) <br>
 - [论证链条](references/argument-chains.md) <br>
 - [总审层级](references/final-review-layers.md) <br>
+- [敬谦称谓和机关用语](references/formal-addressing.md) <br>
 - [GB/T 9704-2012 常用格式参考](references/format-gbt9704.md) <br>
 - [文种清单](references/genre-checklist.md) <br>
 - [文种路由](references/genre-routing.md) <br>
@@ -41,13 +40,13 @@ Mitigation: Treat lint findings as advisory signals and combine them with manual
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or plain text, with optional shell commands and configuration snippets when installation, linting, or agent setup is requested.] <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
+**Output Format:** [Plain text or Markdown Chinese official-document drafts, review notes, and optional lint command output] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include drafted Chinese official-document text, review findings, risk levels, revision suggestions, checklists, missing-information notes, or local lint findings; legal, procurement, finance, audit, confidentiality, and signing decisions require human review.] <br>
+**Other Properties Related to Output:** [May reference a local lint script for draft risk checks; the script reports findings and does not rewrite text.] <br>
 
 ## Skill Version(s): <br>
-1.4.8 (source: SKILL.md frontmatter and server release metadata) <br>
+1.4.11 (source: SKILL.md frontmatter and server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

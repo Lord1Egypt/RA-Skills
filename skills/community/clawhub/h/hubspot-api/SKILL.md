@@ -52,7 +52,7 @@ Maton proxies requests to `api.hubapi.com` and automatically injects your OAuth 
 
 **NPM:**
 ```bash
-npm install -g @maton-ai/cli
+npm install -g @maton/cli
 ```
 
 **Homebrew:**

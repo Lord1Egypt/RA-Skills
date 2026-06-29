@@ -1,0 +1,496 @@
+{
+  "_meta": {
+    "tournament": "2026 FIFA World Cup",
+    "fifa_rank_source": "Snapshot pre-tournament (March 2026 update approximated, manually curated)",
+    "odds_source": "Pre-tournament outright winner odds, market consensus snapshot. Update this file to refresh live odds.",
+    "tiers": {
+      "S": "Top title contenders (FIFA rank top 8)",
+      "A": "Strong contenders, regular knockout stage",
+      "B": "Competitive, can upset on the day",
+      "C": "Underdogs, dark-horse potential",
+      "D": "Tourists, group stage exit likely"
+    },
+    "schema": "teamKey: { name, nameCN, fifaRank, tier, group, oddsWin, oddsTopScorer, notes }",
+    "notes": "Updated 2026-06-12: group assignments derived from user-authoritative schedule. Times in BJT."
+  },
+  "mexico": {
+    "name": "Mexico",
+    "nameCN": "墨西哥",
+    "fifaRank": 14,
+    "tier": "A",
+    "group": "A",
+    "oddsWin": 51,
+    "oddsTopScorer": 50,
+    "notes": "Hosts, home advantage in Mexico City"
+  },
+  "south_africa": {
+    "name": "South Africa",
+    "nameCN": "南非",
+    "fifaRank": 60,
+    "tier": "C",
+    "group": "A",
+    "oddsWin": 500,
+    "oddsTopScorer": 300,
+    "notes": "Return to WC after long absence"
+  },
+  "south_korea": {
+    "name": "South Korea",
+    "nameCN": "韩国",
+    "fifaRank": 22,
+    "tier": "B",
+    "group": "A",
+    "oddsWin": 200,
+    "oddsTopScorer": 100,
+    "notes": "Son Heung-min farewell tour"
+  },
+  "czech_republic": {
+    "name": "Czechia",
+    "nameCN": "捷克",
+    "fifaRank": 36,
+    "tier": "B",
+    "group": "A",
+    "oddsWin": 250,
+    "oddsTopScorer": 150,
+    "notes": "Came through UEFA Path D playoffs"
+  },
+  "canada": {
+    "name": "Canada",
+    "nameCN": "加拿大",
+    "fifaRank": 33,
+    "tier": "B",
+    "group": "B",
+    "oddsWin": 250,
+    "oddsTopScorer": 200,
+    "notes": "Hosts, Alphonso Davies-led"
+  },
+  "bosnia": {
+    "name": "Bosnia & Herzegovina",
+    "nameCN": "波黑",
+    "fifaRank": 71,
+    "tier": "C",
+    "group": "B",
+    "oddsWin": 500,
+    "oddsTopScorer": 250,
+    "notes": "Edin Džeko swansong; came through Path A playoffs"
+  },
+  "qatar": {
+    "name": "Qatar",
+    "nameCN": "卡塔尔",
+    "fifaRank": 43,
+    "tier": "B",
+    "group": "B",
+    "oddsWin": 500,
+    "oddsTopScorer": 250,
+    "notes": "Defending Asian champions, 2022 hosts return"
+  },
+  "switzerland": {
+    "name": "Switzerland",
+    "nameCN": "瑞士",
+    "fifaRank": 19,
+    "tier": "A",
+    "group": "B",
+    "oddsWin": 100,
+    "oddsTopScorer": 80,
+    "notes": "Always dangerous, knockout regular"
+  },
+  "brazil": {
+    "name": "Brazil",
+    "nameCN": "巴西",
+    "fifaRank": 5,
+    "tier": "S",
+    "group": "D",
+    "oddsWin": 6.5,
+    "oddsTopScorer": 7,
+    "notes": "Vinicius Jr., Rodrygo, Endrick; title favorites"
+  },
+  "morocco": {
+    "name": "Morocco",
+    "nameCN": "摩洛哥",
+    "fifaRank": 11,
+    "tier": "A",
+    "group": "D",
+    "oddsWin": 30,
+    "oddsTopScorer": 40,
+    "notes": "2022 semifinalist, Regragui stays"
+  },
+  "haiti": {
+    "name": "Haiti",
+    "nameCN": "海地",
+    "fifaRank": 84,
+    "tier": "D",
+    "group": "D",
+    "oddsWin": 1000,
+    "oddsTopScorer": 500,
+    "notes": "First WC since 1974, Cinderella story"
+  },
+  "scotland": {
+    "name": "Scotland",
+    "nameCN": "苏格兰",
+    "fifaRank": 35,
+    "tier": "B",
+    "group": "D",
+    "oddsWin": 200,
+    "oddsTopScorer": 100,
+    "notes": "First WC since 1998"
+  },
+  "usa": {
+    "name": "USA",
+    "nameCN": "美国",
+    "fifaRank": 13,
+    "tier": "A",
+    "group": "C",
+    "oddsWin": 35,
+    "oddsTopScorer": 30,
+    "notes": "Hosts, Pulisic, Reyna, McKennie"
+  },
+  "paraguay": {
+    "name": "Paraguay",
+    "nameCN": "巴拉圭",
+    "fifaRank": 40,
+    "tier": "B",
+    "group": "C",
+    "oddsWin": 350,
+    "oddsTopScorer": 200,
+    "notes": "South American dark horse"
+  },
+  "australia": {
+    "name": "Australia",
+    "nameCN": "澳大利亚",
+    "fifaRank": 26,
+    "tier": "B",
+    "group": "C",
+    "oddsWin": 250,
+    "oddsTopScorer": 150,
+    "notes": "Asian qualifiers, veteran squad"
+  },
+  "turkey": {
+    "name": "Türkiye",
+    "nameCN": "土耳其",
+    "fifaRank": 25,
+    "tier": "B",
+    "group": "C",
+    "oddsWin": 80,
+    "oddsTopScorer": 60,
+    "notes": "Came through Path C playoffs"
+  },
+  "germany": {
+    "name": "Germany",
+    "nameCN": "德国",
+    "fifaRank": 9,
+    "tier": "S",
+    "group": "E",
+    "oddsWin": 14,
+    "oddsTopScorer": 12,
+    "notes": "Wirtz & Musiala era, Nagelsmann project"
+  },
+  "curacao": {
+    "name": "Curaçao",
+    "nameCN": "库拉索",
+    "fifaRank": 82,
+    "tier": "D",
+    "group": "E",
+    "oddsWin": 2500,
+    "oddsTopScorer": 1000,
+    "notes": "Smallest nation ever at WC"
+  },
+  "ivory_coast": {
+    "name": "Côte d'Ivoire",
+    "nameCN": "科特迪瓦",
+    "fifaRank": 37,
+    "tier": "B",
+    "group": "E",
+    "oddsWin": 200,
+    "oddsTopScorer": 100,
+    "notes": "Haller, Pepe, Fofana"
+  },
+  "ecuador": {
+    "name": "Ecuador",
+    "nameCN": "厄瓜多尔",
+    "fifaRank": 30,
+    "tier": "B",
+    "group": "E",
+    "oddsWin": 150,
+    "oddsTopScorer": 100,
+    "notes": "Caicedo & Paez, altitude-tested"
+  },
+  "netherlands": {
+    "name": "Netherlands",
+    "nameCN": "荷兰",
+    "fifaRank": 7,
+    "tier": "S",
+    "group": "F",
+    "oddsWin": 12,
+    "oddsTopScorer": 10,
+    "notes": "Van Dijk, Depay, Gakpo"
+  },
+  "japan": {
+    "name": "Japan",
+    "nameCN": "日本",
+    "fifaRank": 15,
+    "tier": "A",
+    "group": "F",
+    "oddsWin": 60,
+    "oddsTopScorer": 50,
+    "notes": "Mitoma, Kubo, Tomiyasu"
+  },
+  "sweden": {
+    "name": "Sweden",
+    "nameCN": "瑞典",
+    "fifaRank": 28,
+    "tier": "B",
+    "group": "F",
+    "oddsWin": 200,
+    "oddsTopScorer": 100,
+    "notes": "Came through Path B playoffs"
+  },
+  "tunisia": {
+    "name": "Tunisia",
+    "nameCN": "突尼斯",
+    "fifaRank": 41,
+    "tier": "B",
+    "group": "F",
+    "oddsWin": 350,
+    "oddsTopScorer": 200,
+    "notes": "Solid African side"
+  },
+  "belgium": {
+    "name": "Belgium",
+    "nameCN": "比利时",
+    "fifaRank": 8,
+    "tier": "S",
+    "group": "G",
+    "oddsWin": 18,
+    "oddsTopScorer": 12,
+    "notes": "Last dance for golden generation"
+  },
+  "egypt": {
+    "name": "Egypt",
+    "nameCN": "埃及",
+    "fifaRank": 33,
+    "tier": "B",
+    "group": "G",
+    "oddsWin": 200,
+    "oddsTopScorer": 80,
+    "notes": "Salah-led, AFCON pedigree"
+  },
+  "iran": {
+    "name": "IR Iran",
+    "nameCN": "伊朗",
+    "fifaRank": 21,
+    "tier": "B",
+    "group": "G",
+    "oddsWin": 250,
+    "oddsTopScorer": 150,
+    "notes": "Asian power, Azmoun & Taremi"
+  },
+  "new_zealand": {
+    "name": "New Zealand",
+    "nameCN": "新西兰",
+    "fifaRank": 95,
+    "tier": "D",
+    "group": "G",
+    "oddsWin": 2500,
+    "oddsTopScorer": 1000,
+    "notes": "OFC champion, ranked low but physical"
+  },
+  "spain": {
+    "name": "Spain",
+    "nameCN": "西班牙",
+    "fifaRank": 3,
+    "tier": "S",
+    "group": "H",
+    "oddsWin": 7,
+    "oddsTopScorer": 8,
+    "notes": "Yamal, Pedri, Nico Williams; Euro 2024 winners"
+  },
+  "cape_verde": {
+    "name": "Cabo Verde",
+    "nameCN": "佛得角",
+    "fifaRank": 65,
+    "tier": "C",
+    "group": "H",
+    "oddsWin": 750,
+    "oddsTopScorer": 400,
+    "notes": "First WC ever"
+  },
+  "saudi_arabia": {
+    "name": "Saudi Arabia",
+    "nameCN": "沙特阿拉伯",
+    "fifaRank": 56,
+    "tier": "C",
+    "group": "H",
+    "oddsWin": 750,
+    "oddsTopScorer": 400,
+    "notes": "2022 Argentina-slayers still here"
+  },
+  "uruguay": {
+    "name": "Uruguay",
+    "nameCN": "乌拉圭",
+    "fifaRank": 16,
+    "tier": "A",
+    "group": "H",
+    "oddsWin": 40,
+    "oddsTopScorer": 25,
+    "notes": "Last WC for Suárez, Valverde era peaks"
+  },
+  "france": {
+    "name": "France",
+    "nameCN": "法国",
+    "fifaRank": 2,
+    "tier": "S",
+    "group": "I",
+    "oddsWin": 6,
+    "oddsTopScorer": 6,
+    "notes": "Mbappé, Bellingham-style depth; defending aura"
+  },
+  "senegal": {
+    "name": "Senegal",
+    "nameCN": "塞内加尔",
+    "fifaRank": 20,
+    "tier": "B",
+    "group": "I",
+    "oddsWin": 80,
+    "oddsTopScorer": 40,
+    "notes": "Mane or no Mane, AFCON champions"
+  },
+  "iraq": {
+    "name": "Iraq",
+    "nameCN": "伊拉克",
+    "fifaRank": 58,
+    "tier": "C",
+    "group": "I",
+    "oddsWin": 1000,
+    "oddsTopScorer": 500,
+    "notes": "Came through Pathway 2 playoffs"
+  },
+  "norway": {
+    "name": "Norway",
+    "nameCN": "挪威",
+    "fifaRank": 32,
+    "tier": "B",
+    "group": "I",
+    "oddsWin": 80,
+    "oddsTopScorer": 4,
+    "notes": "Haaland GOAT-mode, Odegaard"
+  },
+  "argentina": {
+    "name": "Argentina",
+    "nameCN": "阿根廷",
+    "fifaRank": 1,
+    "tier": "S",
+    "group": "J",
+    "oddsWin": 5,
+    "oddsTopScorer": 5.5,
+    "notes": "Defending champions, Messi's last dance"
+  },
+  "algeria": {
+    "name": "Algeria",
+    "nameCN": "阿尔及利亚",
+    "fifaRank": 44,
+    "tier": "B",
+    "group": "J",
+    "oddsWin": 300,
+    "oddsTopScorer": 150,
+    "notes": "Mahrez generation"
+  },
+  "austria": {
+    "name": "Austria",
+    "nameCN": "奥地利",
+    "fifaRank": 24,
+    "tier": "B",
+    "group": "J",
+    "oddsWin": 100,
+    "oddsTopScorer": 80,
+    "notes": "Solid, Rangnick's pressing machine"
+  },
+  "jordan": {
+    "name": "Jordan",
+    "nameCN": "约旦",
+    "fifaRank": 64,
+    "tier": "C",
+    "group": "J",
+    "oddsWin": 1000,
+    "oddsTopScorer": 500,
+    "notes": "First WC ever"
+  },
+  "portugal": {
+    "name": "Portugal",
+    "nameCN": "葡萄牙",
+    "fifaRank": 6,
+    "tier": "S",
+    "group": "L",
+    "oddsWin": 12,
+    "oddsTopScorer": 7,
+    "notes": "Ronaldo farewell, Fernandes & Leão"
+  },
+  "dr_congo": {
+    "name": "Congo DR",
+    "nameCN": "刚果民主共和国",
+    "fifaRank": 53,
+    "tier": "C",
+    "group": "L",
+    "oddsWin": 500,
+    "oddsTopScorer": 200,
+    "notes": "Came through Pathway 1 playoffs"
+  },
+  "uzbekistan": {
+    "name": "Uzbekistan",
+    "nameCN": "乌兹别克斯坦",
+    "fifaRank": 62,
+    "tier": "C",
+    "group": "L",
+    "oddsWin": 750,
+    "oddsTopScorer": 400,
+    "notes": "First WC ever"
+  },
+  "colombia": {
+    "name": "Colombia",
+    "nameCN": "哥伦比亚",
+    "fifaRank": 17,
+    "tier": "A",
+    "group": "L",
+    "oddsWin": 35,
+    "oddsTopScorer": 20,
+    "notes": "Diaz, Lerma; no James but elite squad"
+  },
+  "england": {
+    "name": "England",
+    "nameCN": "英格兰",
+    "fifaRank": 4,
+    "tier": "S",
+    "group": "K",
+    "oddsWin": 7.5,
+    "oddsTopScorer": 9,
+    "notes": "Bellingham, Saka, Foden; near-miss specialists"
+  },
+  "croatia": {
+    "name": "Croatia",
+    "nameCN": "克罗地亚",
+    "fifaRank": 12,
+    "tier": "A",
+    "group": "K",
+    "oddsWin": 30,
+    "oddsTopScorer": 60,
+    "notes": "Modrić's last dance, Kovačić & Gvardiol"
+  },
+  "ghana": {
+    "name": "Ghana",
+    "nameCN": "加纳",
+    "fifaRank": 73,
+    "tier": "C",
+    "group": "K",
+    "oddsWin": 500,
+    "oddsTopScorer": 200,
+    "notes": "2022 group stage exit; rebuilding"
+  },
+  "panama": {
+    "name": "Panama",
+    "nameCN": "巴拿马",
+    "fifaRank": 45,
+    "tier": "C",
+    "group": "K",
+    "oddsWin": 750,
+    "oddsTopScorer": 400,
+    "notes": "CONCACAF dark horse"
+  }
+}

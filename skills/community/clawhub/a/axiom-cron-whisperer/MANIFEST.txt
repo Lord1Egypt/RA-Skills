@@ -1,0 +1,9 @@
+# Manifest — axiom-cron-whisperer (public, clean)
+# Edition: Capafy voice (zero cluster jargon)
+# Generated: 2026-06-14T20:45:37Z
+
+6ff033c15fb1cb226fa8a6f72f74705e977a79516aa9c3c7b1eaabe69f3fe3a5  LICENSE  (447 bytes)
+9cefab401e4ca0173779f81111149c26af32f8704c77b3c93d35c324b5669e61  README.md  (2586 bytes)
+8d8b7f076286865c8131a17d8c8470a085d794776a1780695b93d19566fe232e  SKILL.md  (1148 bytes)
+9479a55f3a813c33bf22503130ba65ed3a9f608b8f0a18e954d2d008fab8e30e  axiom_cron_whisperer.py  (9122 bytes)
+4105d0a6b7f78a1dac50cccf2c79ed8d81767b9c488f32f1b1c60edd75e703cb  test_axiom_cron_whisperer.py  (4089 bytes)

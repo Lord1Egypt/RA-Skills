@@ -1,0 +1,4 @@
+interface:
+  display_name: "SkillHub Publish Auditor"
+  short_description: "Audit skills before public release."
+  default_prompt: "Use $skillhub-publish-auditor to audit this skill folder before I publish it to SkillHub or ClawHub."

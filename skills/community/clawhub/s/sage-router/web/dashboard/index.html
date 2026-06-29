@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sage Router — Config Dashboard</title>
+  <style>
+    :root {
+      --bg: #0d1b2a;
+      --card: #1b2838;
+      --border: #2a3f5f;
+      --accent: #00b4d8;
+      --text: #e0e0e0;
+      --success: #4caf50;
+      --warning: #ffc107;
+      --danger: #e63946;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); padding: 20px; }
+    .header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid var(--border); }
+    .header h1 { font-size: 24px; color: var(--accent); }
+    .header .status { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+    .status-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--success); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .card h2 { font-size: 16px; color: var(--accent); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .provider { display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; margin: 4px 0; border-radius: 6px; background: rgba(255,255,255,0.03); }
+    .provider:hover { background: rgba(0,180,216,0.1); }
+    .provider-name { font-weight: 600; font-size: 14px; }
+    .provider-status { font-size: 12px; padding: 2px 8px; border-radius: 10px; }
+    .provider-status.healthy { background: rgba(76,175,80,0.2); color: var(--success); }
+    .provider-status.unhealthy { background: rgba(230,57,70,0.2); color: var(--danger); }
+    .provider-status.disabled { background: rgba(255,255,255,0.05); color: #666; }
+    .provider-actions { display: flex; align-items: center; gap: 6px; }
+    .mini-toggle { background: none; border: 1px solid var(--border); color: var(--text); border-radius: 5px; padding: 2px 7px; cursor: pointer; font-size: 11px; }
+    .mini-toggle:hover { border-color: var(--accent); color: var(--accent); }
+    .mini-toggle.danger { border-color: var(--danger); color: var(--danger); }
+    .mini-toggle.danger:hover { background: rgba(230,57,70,0.12); }
+    .stat { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .stat:last-child { border: none; }
+    .stat-label { color: #888; font-size: 13px; }
+    .stat-value { font-weight: 600; font-size: 14px; }
+    .btn { padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-size: 13px; font-weight: 600; transition: .2s; }
+    .btn-primary { background: var(--accent); color: #000; }
+    .btn-primary:hover { background: #0096c7; }
+    .btn-danger { background: var(--danger); color: #fff; }
+    .btn-danger:hover { background: #c1121f; }
+    .models { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+    .model-tag { font-size: 11px; padding: 2px 6px; border-radius: 4px; background: rgba(0,180,216,0.15); color: var(--accent); }
+    .model-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 3px 0; font-size: 12px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+    .model-row:last-child { border: none; }
+    .model-row.disabled { opacity: .55; }
+    #analytics { max-height: 300px; overflow-y: auto; }
+    .analytics-row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 12px; }
+    .refresh-btn { background: none; border: 1px solid var(--border); color: var(--text); padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; }
+    .refresh-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .disabled-list { color: #666; font-size: 12px; margin-top: 8px; }
+    .setup-card { grid-column: 1 / -1; display: none; }
+    .setup-card.active { display: block; }
+    .setup-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+    .setup-step { border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px; background: rgba(255,255,255,0.025); }
+    .setup-step h3 { font-size: 14px; color: var(--text); margin-bottom: 8px; }
+    .setup-step p { color: #a9b8c8; font-size: 13px; line-height: 1.45; margin-bottom: 8px; }
+    .setup-step code { display: block; overflow-wrap: anywhere; color: var(--accent); font-size: 12px; line-height: 1.45; }
+    .field { display: grid; gap: 5px; margin-bottom: 10px; }
+    .field label { color: #a9b8c8; font-size: 12px; }
+    .field input, .field select, .field textarea { width: 100%; background: #101c2a; color: var(--text); border: 1px solid var(--border); border-radius: 6px; padding: 8px; font: inherit; font-size: 13px; }
+    .field textarea { min-height: 94px; resize: vertical; }
+    .setup-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 8px; }
+    .muted { color: #8898a8; font-size: 12px; line-height: 1.4; }
+    .cred-prov { border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 10px; margin: 8px 0; background: rgba(255,255,255,0.02); }
+    .cred-prov-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .cred-prov-head .pn { font-weight: 600; font-size: 13px; }
+    .cred-prov-head .pm { color: #8898a8; font-size: 11px; }
+    .cred-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 4px 0; font-size: 12px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .cred-row:last-child { border: none; }
+    .cred-badge { font-size: 10px; padding: 1px 6px; border-radius: 8px; background: rgba(0,180,216,0.15); color: var(--accent); text-transform: uppercase; letter-spacing: .3px; }
+    .cred-badge.oauth { background: rgba(255,193,7,0.15); color: var(--warning); }
+    .cred-masked { color: #a9b8c8; font-family: monospace; font-size: 11px; overflow-wrap: anywhere; }
+    .cred-label { color: var(--text); font-size: 12px; }
+    .cred-remove { background: none; border: 1px solid var(--danger); color: var(--danger); border-radius: 5px; padding: 2px 8px; cursor: pointer; font-size: 11px; }
+    .cred-remove:hover { background: rgba(230,57,70,0.15); }
+    .cred-add { margin-top: 10px; border-top: 1px solid var(--border); padding-top: 10px; }
+    .cred-add h3 { font-size: 13px; color: var(--text); margin-bottom: 8px; }
+    .cred-segmented { display: flex; gap: 6px; margin-bottom: 8px; }
+    .cred-segmented button { flex: 1; padding: 6px; border: 1px solid var(--border); background: transparent; color: var(--text); border-radius: 6px; cursor: pointer; font-size: 12px; }
+    .cred-segmented button.active { border-color: var(--accent); color: var(--accent); background: rgba(0,180,216,0.08); }
+    .cred-status { margin-top: 6px; font-size: 12px; }
+    .cred-strategy { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+    .cred-strategy label { color: #8898a8; font-size: 11px; }
+    .cred-strategy select { background: #101c2a; color: var(--text); border: 1px solid var(--border); border-radius: 6px; padding: 3px 6px; font-size: 12px; }
+    .cred-state { font-size: 10px; color: #6f8197; margin-left: 6px; }
+    .cred-state.cooldown { color: var(--warning); }
+    .cred-state.err { color: var(--danger); }
+    .mm-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 4px 0; font-size: 12px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .mm-row:last-child { border: none; }
+    .mm-model { font-weight: 600; }
+    .mm-mods { display: flex; gap: 4px; flex-wrap: wrap; justify-content: flex-end; align-items: center; }
+    .mm-mod { font-size: 10px; padding: 1px 6px; border-radius: 8px; background: rgba(0,180,216,0.12); color: var(--accent); }
+    .mm-mod.image { background: rgba(0,180,216,0.18); }
+    .mm-mod.audio { background: rgba(255,193,7,0.15); color: var(--warning); }
+    .mm-mod.video { background: rgba(230,57,70,0.15); color: var(--danger); }
+    .mm-mod.document { background: rgba(76,175,80,0.15); color: var(--success); }
+    .mm-mod.text { background: rgba(255,255,255,0.06); color: #8898a8; }
+    .mm-check { display: inline-flex; align-items: center; gap: 3px; font-size: 10px; color: #a9b8c8; }
+    .mm-check input { accent-color: var(--accent); }
+    .mm-action { background: none; border: 1px solid var(--border); color: var(--text); border-radius: 5px; padding: 2px 7px; cursor: pointer; font-size: 10px; }
+    .mm-action:hover { border-color: var(--accent); color: var(--accent); }
+    .mm-action.danger { border-color: var(--danger); color: var(--danger); }
+    .mm-card-actions { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🔮 Sage Router</h1>
+    <div class="status">
+      <span class="status-dot" id="statusDot"></span>
+      <span id="statusText">Connecting...</span>
+      <button class="refresh-btn" onclick="loadAll()">↻ Refresh</button>
+    </div>
+  </div>
+  <div class="grid">
+    <div class="card setup-card" id="setupCard">
+      <h2>First-run setup</h2>
+      <div class="setup-grid">
+        <div class="setup-step">
+          <h3>Add provider</h3>
+          <div class="field">
+            <label for="providerKind">Provider type</label>
+            <select id="providerKind" onchange="applyProviderDefaults()">
+              <option value="ollama">Ollama</option>
+              <option value="openai-completions">OpenAI compatible</option>
+              <option value="anthropic-messages">Anthropic</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="providerName">Provider name</label>
+            <input id="providerName" value="ollama" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="providerBaseUrl">Base URL</label>
+            <input id="providerBaseUrl" value="http://host.docker.internal:11434" autocomplete="off">
+          </div>
+          <div class="field">
+            <label for="providerApiKey">API key or token</label>
+            <input id="providerApiKey" type="password" autocomplete="new-password">
+          </div>
+          <div class="field">
+            <label for="providerModels">Models</label>
+            <textarea id="providerModels" placeholder="Leave blank for provider discovery, or enter one model per line"></textarea>
+          </div>
+          <div class="setup-actions">
+            <button class="btn btn-primary" onclick="saveProvider()">Save provider</button>
+            <span class="muted" id="providerSetupStatus"></span>
+          </div>
+        </div>
+        <div class="setup-step">
+          <h3>Codex auth</h3>
+          <div class="field">
+            <label for="codexToken">Access token</label>
+            <input id="codexToken" type="password" autocomplete="new-password">
+          </div>
+          <div class="field">
+            <label for="codexAuthJson">Codex auth JSON</label>
+            <textarea id="codexAuthJson" placeholder='Paste auth.json or auth-profiles.json content'></textarea>
+          </div>
+          <div class="setup-actions">
+            <button class="btn btn-primary" onclick="saveCodexAuth()">Save Codex auth</button>
+            <span class="muted" id="codexSetupStatus"></span>
+          </div>
+        </div>
+        <div class="setup-step">
+          <h3>Client endpoint</h3>
+          <p>Point OpenAI-compatible clients at the app URL. Provider credentials are stored only in this app's data directory.</p>
+          <code>http://sage-router:8790/v1</code>
+          <code id="setupProviderPath"></code>
+          <code id="setupCodexPath"></code>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Providers</h2>
+      <div id="providers"></div>
+    </div>
+    <div class="card">
+      <h2>Credentials</h2>
+      <p class="muted" style="margin-bottom:8px">Multiple API keys and OAuth subscription paths per provider. Tried in order with automatic failover on auth/quota errors.</p>
+      <div id="credentials"></div>
+      <div class="cred-add">
+        <h3>Add credential</h3>
+        <div class="cred-segmented" id="credTypeToggle">
+          <button type="button" class="active" data-type="api_key" onclick="setCredType('api_key')">API key</button>
+          <button type="button" data-type="oauth" onclick="setCredType('oauth')">OAuth subscription path</button>
+        </div>
+        <div class="field">
+          <label for="credProvider">Provider</label>
+          <select id="credProvider" onchange="onCredProviderChange()"></select>
+        </div>
+        <div class="field" id="credNewProviderField" style="display:none">
+          <label for="credNewProvider">New provider name (creates provider)</label>
+          <input id="credNewProvider" placeholder="e.g. ollama-team-b, openai-work, anthropic-alt" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="credLabel">Label <span class="muted">(optional)</span></label>
+          <input id="credLabel" placeholder="e.g. team-a, pro-account" autocomplete="off">
+        </div>
+        <div class="field" id="credKeyField">
+          <label for="credKey">API key / token</label>
+          <input id="credKey" type="password" autocomplete="new-password" placeholder="sk-...">
+        </div>
+        <div class="field" id="credAccessField" style="display:none">
+          <label for="credAccess">OAuth access token</label>
+          <input id="credAccess" type="password" autocomplete="new-password" placeholder="eyJhbGci...">
+        </div>
+        <div class="field" id="credRefreshField" style="display:none">
+          <label for="credRefresh">Refresh token <span class="muted">(optional, enables renewal)</span></label>
+          <input id="credRefresh" type="password" autocomplete="new-password">
+        </div>
+        <div class="field" id="credApiField">
+          <label for="credApi">Provider API type</label>
+          <select id="credApi" onchange="applyCredentialProviderDefaults()">
+            <option value="openai-completions">OpenAI compatible</option>
+            <option value="openai-codex-responses">OpenAI Codex (ChatGPT subscription)</option>
+            <option value="anthropic-messages">Anthropic</option>
+            <option value="ollama">Ollama</option>
+          </select>
+        </div>
+        <div class="field" id="credBaseUrlField">
+          <label for="credBaseUrl">Endpoint URL <span class="muted">(auto-filled from provider default)</span></label>
+          <input id="credBaseUrl" placeholder="https://ollama.com" autocomplete="off">
+        </div>
+        <div class="field" id="credStrategyField" style="display:none">
+          <label for="credStrategy">Credential strategy <span class="muted">(for new provider)</span></label>
+          <select id="credStrategy">
+            <option value="failover">failover (ordered, primary first)</option>
+            <option value="round-robin">round-robin (spread load)</option>
+            <option value="lru">lru (least-recently-used)</option>
+            <option value="random">random</option>
+          </select>
+        </div>
+        <div class="setup-actions">
+          <button class="btn btn-primary" onclick="addCredential()">Add credential</button>
+          <span class="muted cred-status" id="credStatus"></span>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Health</h2>
+      <div id="health"></div>
+    </div>
+    <div class="card">
+      <h2>Learned Modalities</h2>
+      <p class="muted" style="margin-bottom:8px">Modalities each model has actually served, recorded to improve future routing.</p>
+      <div id="learnedModalities"></div>
+    </div>
+    <div class="card">
+      <h2>Models</h2>
+      <div id="models"></div>
+    </div>
+    <div class="card">
+      <h2>Analytics (7d)</h2>
+      <div id="analytics"></div>
+    </div>
+    <div class="card">
+      <h2>Routing Profile</h2>
+      <div id="profile"></div>
+    </div>
+    <div class="card">
+      <h2>First Request Smoke</h2>
+      <p class="muted" style="margin-bottom:8px">Verify generated-key routing end-to-end. Uses the operator token as a generated-key substitute.</p>
+      <button class="btn btn-primary" onclick="runFirstRequestSmoke()" style="margin:4px 4px 4px 0">🧪 Probe /v1/models</button>
+      <div id="firstRequestSmokeStatus" class="muted" style="margin-top:8px">Not run</div>
+    </div>
+    <div class="card">
+      <h2>Quick Actions</h2>
+      <div class="form-grid" style="margin-bottom:10px">
+        <label for="operatorToken">Operator token <span class="muted">(stored in this tab only)</span></label>
+        <input id="operatorToken" type="password" placeholder="Paste operator/API token for setup changes">
+      </div>
+      <button class="btn btn-primary" onclick="saveOperatorToken()" style="margin:4px">🔐 Use Token</button>
+      <button class="btn" onclick="clearOperatorToken()" style="margin:4px">Clear Token</button>
+      <div id="operatorTokenStatus" class="muted" style="margin:4px 4px 10px"></div>
+      <button class="btn btn-primary" onclick="healthCheck()" style="margin:4px">🔄 Health Check All</button>
+      <button class="btn btn-primary" onclick="refreshModels()" style="margin:4px">📋 Refresh Models</button>
+      <button class="btn btn-danger" onclick="if(confirm('Restart router? This drops in-flight requests.'))restartRouter()" style="margin:4px">⛔ Restart Router</button>
+      <div id="actions" style="margin-top:8px"></div>
+    </div>
+  </div>
+  <script>
+    const API = window.location.origin;
+    const providerDefaults = {
+      'ollama': {name: 'ollama', api: 'ollama', baseUrl: 'https://ollama.com'},
+      'openai-completions': {name: 'openai', api: 'openai-completions', baseUrl: 'https://api.openai.com/v1'},
+      'openai-codex-responses': {name: 'openai-codex', api: 'openai-codex-responses', baseUrl: 'https://chatgpt.com/backend-api/codex'},
+      'anthropic-messages': {name: 'anthropic', api: 'anthropic-messages', baseUrl: 'https://api.anthropic.com'}
+    };
+    function escapeHtml(s) { const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+    const OPERATOR_TOKEN_KEY = 'sageRouterOperatorToken';
+    function operatorToken() { return sessionStorage.getItem(OPERATOR_TOKEN_KEY) || ''; }
+    function authHeaders(headers = {}) {
+      const token = operatorToken();
+      return token ? {...headers, Authorization: `Bearer ${token}`} : headers;
+    }
+    function updateOperatorTokenStatus() {
+      const status = document.getElementById('operatorTokenStatus');
+      if (!status) return;
+      status.textContent = operatorToken() ? 'Operator token active for this tab.' : 'No operator token set; setup buttons may return 401/403.';
+    }
+    function saveOperatorToken() {
+      const input = document.getElementById('operatorToken');
+      const token = (input && input.value || '').trim();
+      if (token) sessionStorage.setItem(OPERATOR_TOKEN_KEY, token);
+      if (input) input.value = '';
+      updateOperatorTokenStatus();
+      loadAll().catch(() => document.getElementById('statusText').textContent = 'Connection failed');
+    }
+    function clearOperatorToken() {
+      sessionStorage.removeItem(OPERATOR_TOKEN_KEY);
+      updateOperatorTokenStatus();
+    }
+    async function api(path, opts = {}) {
+      const r = await fetch(API + path, {...opts, headers: authHeaders(opts.headers || {})});
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json();
+    }
+    function applyProviderDefaults() {
+      const kind = document.getElementById('providerKind').value;
+      const defaults = providerDefaults[kind] || {};
+      document.getElementById('providerName').value = defaults.name || '';
+      document.getElementById('providerBaseUrl').value = defaults.baseUrl || '';
+    }
+    async function postJson(path, payload) {
+      const r = await fetch(API + path, {
+        method: 'POST',
+        headers: authHeaders({'Content-Type': 'application/json'}),
+        body: JSON.stringify(payload)
+      });
+      const body = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(body.error || `HTTP ${r.status}`);
+      return body;
+    }
+    async function saveProvider() {
+      const status = document.getElementById('providerSetupStatus');
+      status.textContent = 'Saving...';
+      try {
+        await postJson('/setup/provider', {
+          name: document.getElementById('providerName').value,
+          api: document.getElementById('providerKind').value,
+          baseUrl: document.getElementById('providerBaseUrl').value,
+          apiKey: document.getElementById('providerApiKey').value,
+          models: document.getElementById('providerModels').value
+        });
+        document.getElementById('providerApiKey').value = '';
+        status.textContent = 'Saved';
+        await loadAll();
+      } catch (e) {
+        status.textContent = `Failed: ${e.message || e}`;
+      }
+    }
+    async function saveCodexAuth() {
+      const status = document.getElementById('codexSetupStatus');
+      const token = document.getElementById('codexToken').value.trim();
+      const rawJson = document.getElementById('codexAuthJson').value.trim();
+      const payload = {};
+      status.textContent = 'Saving...';
+      try {
+        if (rawJson) {
+          const parsed = JSON.parse(rawJson);
+          if (parsed && parsed.profiles) payload.authProfileJson = parsed;
+          else payload.authJson = parsed;
+        } else {
+          payload.accessToken = token;
+        }
+        await postJson('/setup/codex-auth', payload);
+        document.getElementById('codexToken').value = '';
+        document.getElementById('codexAuthJson').value = '';
+        status.textContent = 'Saved';
+        await loadAll();
+      } catch (e) {
+        status.textContent = `Failed: ${e.message || e}`;
+      }
+    }
+    let currentCredType = 'api_key';
+    function setCredType(t) {
+      currentCredType = t;
+      document.querySelectorAll('#credTypeToggle button').forEach(b => b.classList.toggle('active', b.dataset.type === t));
+      const isOauth = t === 'oauth';
+      document.getElementById('credKeyField').style.display = isOauth ? 'none' : '';
+      document.getElementById('credAccessField').style.display = isOauth ? '' : 'none';
+      document.getElementById('credRefreshField').style.display = isOauth ? '' : 'none';
+      refreshCredProviderOptions();
+    }
+    function refreshCredProviderOptions() {
+      const sel = document.getElementById('credProvider');
+      const configured = (window.__sageProviders || []);
+      const hasNew = !configured.length;
+      let opts = configured.map(n => `<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join('');
+      opts += `<option value="__new__">+ New provider…</option>`;
+      sel.innerHTML = opts;
+      sel.value = configured.length ? configured[0] : '__new__';
+      onCredProviderChange();
+    }
+    function selectedCredentialProviderDefaults() {
+      const sel = document.getElementById('credProvider');
+      if (sel.value !== '__new__') {
+        const group = (window.__sageCredentialProviders || {})[sel.value] || {};
+        const defaultForApi = providerDefaults[group.api || ''] || {};
+        return {
+          name: sel.value,
+          api: group.api || '',
+          baseUrl: group.api === 'ollama' ? (defaultForApi.baseUrl || group.baseUrl || '') : (group.baseUrl || defaultForApi.baseUrl || ''),
+          strategy: group.strategy || 'failover'
+        };
+      }
+      const kind = document.getElementById('credApi').value;
+      return providerDefaults[kind] || {};
+    }
+    function onCredProviderChange() {
+      const sel = document.getElementById('credProvider');
+      document.getElementById('credNewProviderField').style.display = (sel.value === '__new__') ? '' : 'none';
+      const showNewFields = sel.value === '__new__';
+      document.getElementById('credStrategyField').style.display = showNewFields ? '' : 'none';
+      const defaults = selectedCredentialProviderDefaults();
+      if (defaults.api) document.getElementById('credApi').value = defaults.api;
+      document.getElementById('credBaseUrl').value = defaults.baseUrl || '';
+      if (showNewFields) applyCredentialProviderDefaults();
+    }
+    function applyCredentialProviderDefaults() {
+      const defaults = selectedCredentialProviderDefaults();
+      const nameInput = document.getElementById('credNewProvider');
+      const endpointInput = document.getElementById('credBaseUrl');
+      if (!nameInput.value.trim()) nameInput.value = defaults.name || '';
+      if (!endpointInput.value.trim()) endpointInput.value = defaults.baseUrl || '';
+    }
+    function credStateText(st) {
+      if (!st) return '';
+      const parts = [];
+      if (st.uses) parts.push(`${st.uses} uses`);
+      if (st.errors) parts.push(`${st.errors} errs`);
+      if (st.inCooldown) parts.push('cooldown');
+      if (!parts.length) return '';
+      const cls = st.inCooldown ? 'cooldown' : (st.errors ? 'err' : '');
+      return ` <span class="cred-state ${cls}">${parts.join(' · ')}</span>`;
+    }
+    function renderCredentials(creds) {
+      const el = document.getElementById('credentials');
+      if (!Array.isArray(creds) || !creds.length) {
+        el.innerHTML = '<div class="muted">No credentials configured yet. Add one below.</div>';
+        return;
+      }
+      el.innerHTML = creds.map(group => {
+        const strategies = group.strategies || ['failover','lru','random','round-robin'];
+        const stratOpts = strategies.map(s => `<option value="${escapeHtml(s)}" ${s === group.strategy ? 'selected' : ''}>${escapeHtml(s)}</option>`).join('');
+        const rows = (group.credentials || []).map((c, i) => {
+          return `<div class="cred-row">
+            <span><span class="cred-badge ${c.type === 'oauth' ? 'oauth' : ''}">${escapeHtml(c.type || 'api_key')}</span> <span class="cred-label">${escapeHtml(c.label || '')}</span> <span class="cred-masked">${escapeHtml(c.masked || '')}</span>${credStateText(c.state)}</span>
+            <button class="cred-remove" onclick="removeCredential('${escapeHtml(group.provider)}', '${escapeHtml(c.label || '')}', '${escapeHtml(c.slot || '')}')">Remove</button>
+          </div>`;
+        }).join('');
+        return `<div class="cred-prov">
+          <div class="cred-prov-head"><span class="pn">${escapeHtml(group.provider)}</span><span class="pm">api=${escapeHtml(group.api || '')} · endpoint=${escapeHtml(group.baseUrl || '')}</span></div>
+          <div class="cred-strategy"><label>strategy</label><select onchange="setCredentialStrategy('${escapeHtml(group.provider)}', this.value)">${stratOpts}</select></div>
+          ${rows || '<div class="muted">no credentials</div>'}
+        </div>`;
+      }).join('');
+    }
+    async function setCredentialStrategy(provider, strategy) {
+      const status = document.getElementById('credStatus');
+      const prev = status.textContent;
+      status.textContent = 'Saving strategy...';
+      try {
+        await postJson('/setup/credentials/strategy', {provider, strategy});
+        status.textContent = 'Strategy saved';
+        await loadAll();
+      } catch (e) {
+        status.textContent = `Failed: ${e.message || e}`;
+        await loadAll();
+      }
+    }
+    async function addCredential() {
+      const status = document.getElementById('credStatus');
+      status.textContent = 'Saving...';
+      const sel = document.getElementById('credProvider');
+      let provider = sel.value;
+      const isNew = provider === '__new__';
+      if (isNew) provider = document.getElementById('credNewProvider').value.trim().toLowerCase();
+      if (!provider) { status.textContent = 'Failed: provider name required'; return; }
+      const payload = {
+        provider,
+        type: currentCredType,
+        label: document.getElementById('credLabel').value.trim(),
+      };
+      if (currentCredType === 'oauth') {
+        payload.accessToken = document.getElementById('credAccess').value.trim();
+        payload.refreshToken = document.getElementById('credRefresh').value.trim();
+      } else {
+        payload.key = document.getElementById('credKey').value.trim();
+      }
+      payload.api = document.getElementById('credApi').value;
+      payload.baseUrl = document.getElementById('credBaseUrl').value.trim();
+      if (isNew) {
+        payload.credentialStrategy = document.getElementById('credStrategy').value;
+      }
+      try {
+        const res = await postJson('/setup/credentials/add', payload);
+        ['credKey','credAccess','credRefresh','credLabel','credNewProvider','credBaseUrl'].forEach(id => { const e = document.getElementById(id); if (e) e.value = ''; });
+        status.textContent = 'Saved';
+        await loadAll();
+      } catch (e) {
+        status.textContent = `Failed: ${e.message || e}`;
+      }
+    }
+    async function removeCredential(provider, label, slot) {
+      if (!confirm(`Remove credential "${label || slot}" from ${provider}?`)) return;
+      const status = document.getElementById('credStatus');
+      status.textContent = 'Removing...';
+      try {
+        await postJson('/setup/credentials/remove', {provider, label, slot});
+        status.textContent = 'Removed';
+        await loadAll();
+      } catch (e) {
+        status.textContent = `Failed: ${e.message || e}`;
+      }
+    }
+    async function setProviderEnabled(provider, enabled) {
+      const status = document.getElementById('actions');
+      status.textContent = `${enabled ? 'Enabling' : 'Disabling'} ${provider}...`;
+      try {
+        const res = await postJson('/setup/provider/enabled', {provider, enabled});
+        if (res.envDisabled && !res.enabled) {
+          status.textContent = `${provider} is locked by SAGE_ROUTER_DISABLED_PROVIDERS`;
+        } else {
+          status.textContent = `${provider} ${res.enabled ? 'enabled' : 'disabled'}`;
+        }
+        await loadAll();
+      } catch (e) {
+        status.textContent = `Failed: ${e.message || e}`;
+      }
+    }
+    function modelDisabled(disabledModels, provider, model) {
+      const keys = [`${provider}/${model}`, model];
+      return keys.some(k => disabledModels.includes(k)) || disabledModels.some(k => k.includes('/') && k.endsWith('/' + model));
+    }
+    async function setModelEnabled(provider, model, enabled) {
+      const status = document.getElementById('actions');
+      status.textContent = `${enabled ? 'Enabling' : 'Disabling'} ${model}...`;
+      try {
+        const res = await postJson('/setup/model/enabled', {provider, model, enabled});
+        if (res.envDisabled && !res.enabled) {
+          status.textContent = `${model} is locked by SAGE_ROUTER_DISABLED_MODELS`;
+        } else {
+          status.textContent = `${model} ${res.enabled ? 'enabled' : 'disabled'}`;
+        }
+        await loadAll();
+      } catch (e) {
+        status.textContent = `Failed: ${e.message || e}`;
+      }
+    }
+    function bindEnablementButtons() {
+      document.querySelectorAll('.provider-toggle').forEach(btn => {
+        btn.onclick = () => setProviderEnabled(btn.dataset.provider || '', btn.dataset.enabled === 'true');
+      });
+      document.querySelectorAll('.model-toggle').forEach(btn => {
+        btn.onclick = () => setModelEnabled(btn.dataset.provider || '', btn.dataset.model || '', btn.dataset.enabled === 'true');
+      });
+    }
+
+    async function runFirstRequestSmoke() {
+      const status = document.getElementById('firstRequestSmokeStatus');
+      status.textContent = 'Probing...';
+      status.className = 'muted';
+      const token = operatorToken();
+      if (!token) {
+        status.textContent = 'Set an operator token in Quick Actions first.';
+        status.className = 'muted';
+        return;
+      }
+      const start = performance.now();
+      try {
+        const r = await fetch(API + '/v1/models', { headers: { Authorization: `Bearer ${token}` } });
+        const elapsed = Math.round(performance.now() - start);
+        if (!r.ok) {
+          const body = await r.text().catch(() => '');
+          status.innerHTML = `<span style="color:var(--danger)">Failed: HTTP ${r.status} (${elapsed}ms)</span><br><span class="muted">${body.slice(0,200)}</span>`;
+          return;
+        }
+        const data = await r.json().catch(() => ({}));
+        const count = (data.models || []).length;
+        status.innerHTML = `<span style="color:var(--success)">OK: ${count} model(s) reachable (${elapsed}ms)</span><br><span class="muted">Routing is alive. If a generated-key customer cannot reach this, check key state and provider health.</span>`;
+      } catch (err) {
+        status.innerHTML = `<span style="color:var(--danger)">Error: ${err.message}</span>`;
+      }
+    }
+
+    const MOD_ORDER = ['text','image','audio','video','document'];
+    function modClass(m){ return m; }
+    function renderLearnedModalities(resp) {
+      const el = document.getElementById('learnedModalities');
+      const data = (resp || {}).modelModalities || {};
+      const shared = (resp || {}).shared || {};
+      const entries = Object.entries(data || {});
+      const sharedLabel = shared.enabled ? 'CDN-wide Supabase ledger enabled' : (shared.configured ? 'Shared ledger configured but disabled' : 'Local ledger only');
+      const sharedDetail = shared.enabled ? `refresh ${shared.refreshSeconds || 60}s · ${escapeHtml(shared.table || 'sage_router_model_modalities')}` : escapeHtml((resp || {}).path || '');
+      const sharedHtml = `<div class="mm-card-actions"><span class="muted">${escapeHtml(sharedLabel)}${sharedDetail ? ` · ${sharedDetail}` : ''}</span></div>`;
+      if (!entries.length) {
+        el.innerHTML = `${sharedHtml}<div class="mm-card-actions"><button class="mm-action danger" disabled>Reset all</button><span class="muted">No modalities recorded yet.</span></div>`;
+        return;
+      }
+      entries.sort((a, b) => (b[1].lastSeen || 0) - (a[1].lastSeen || 0));
+      const body = entries.map(([key, info], idx) => {
+        const mods = (info.modalities || []).slice().sort((a,b) => MOD_ORDER.indexOf(a) - MOD_ORDER.indexOf(b));
+        const checks = MOD_ORDER.map(m => `<label class="mm-check"><input type="checkbox" value="${escapeHtml(m)}" ${mods.includes(m) ? 'checked' : ''}>${escapeHtml(m)}</label>`).join('');
+        return `<div class="mm-row" id="mm-row-${idx}" data-key="${escapeHtml(key)}"><span class="mm-model">${escapeHtml(key)} <span class="muted">×${info.count || 0}</span></span><span class="mm-mods">${checks}<button class="mm-action" onclick="saveModalities(${idx})">Save</button><button class="mm-action danger" onclick="resetModalities(${idx})">Reset</button></span></div>`;
+      }).join('');
+      el.innerHTML = `${sharedHtml}<div class="mm-card-actions"><button class="mm-action danger" onclick="resetAllModalities()">Reset all</button><span class="muted">${entries.length} model(s) learned</span></div>${body}`;
+    }
+    function rowModalities(idx) {
+      const row = document.getElementById(`mm-row-${idx}`);
+      if (!row) return {key: '', modalities: []};
+      const modalities = Array.from(row.querySelectorAll('input[type="checkbox"]:checked')).map(el => el.value);
+      return {key: row.dataset.key || '', modalities};
+    }
+    async function saveModalities(idx) {
+      const {key, modalities} = rowModalities(idx);
+      if (!key || !modalities.length) return;
+      await postJson('/setup/model-modalities/update', {key, modalities});
+      await loadAll();
+    }
+    async function resetModalities(idx) {
+      const row = document.getElementById(`mm-row-${idx}`);
+      const key = row ? row.dataset.key : '';
+      if (!key || !confirm(`Reset learned modalities for ${key}?`)) return;
+      await postJson('/setup/model-modalities/reset', {key});
+      await loadAll();
+    }
+    async function resetAllModalities() {
+      if (!confirm('Reset all learned model modalities?')) return;
+      await postJson('/setup/model-modalities/reset', {});
+      await loadAll();
+    }
+
+    async function loadAll() {
+      document.getElementById('statusText').textContent = 'Loading...';
+      const [health, modelsResp, analytics, setup, credsResp, modalitiesResp] = await Promise.all([
+        api('/health').catch(() => ({})),
+        api('/v1/models').catch(() => ({})),
+        api('/analytics?days=7').catch(() => ({})),
+        api('/setup/state').catch(() => ({})),
+        api('/setup/credentials').catch(() => ({})),
+        api('/setup/model-modalities').catch(() => ({}))
+      ]);
+      // Status
+      const ok = health.status === 'ok';
+      document.getElementById('statusDot').style.background = ok ? 'var(--success)' : 'var(--danger)';
+      document.getElementById('statusText').textContent = ok ? 'Healthy' : 'Error';
+      // Providers — from /health which has configured[] and disabled[]
+      const configured = health.configured || health.providers || [];
+      const disabled = health.disabled || [];
+      const disabledModels = health.disabledModels || [];
+      let provHtml = '';
+      // Configured providers
+      if (Array.isArray(configured)) {
+        configured.forEach(p => {
+          const name = typeof p === 'string' ? p : (p.name || p.id || '?');
+          const h = (health.reasoningCapabilities && health.reasoningCapabilities[name]) || {};
+          const reachable = h.reachable !== false;
+          provHtml += `<div class="provider"><span class="provider-name">${escapeHtml(name)}</span><span class="provider-actions"><span class="provider-status ${reachable ? 'healthy' : 'unhealthy'}">${reachable ? '✓ healthy' : '✗ down'}</span><button class="mini-toggle danger provider-toggle" data-provider="${escapeHtml(name)}" data-enabled="false">Disable</button></span></div>`;
+          // Show models for this provider from reasoningCapabilities
+          const provModels = h.models || [];
+          if (provModels.length) {
+            provHtml += `<div class="models">${provModels.slice(0,16).map(m => `<span class="model-tag">${escapeHtml(typeof m === 'string' ? m : m.id || m.name || '?')}</span>`).join('')}${provModels.length > 16 ? `<span class="model-tag">+${provModels.length-16} more</span>` : ''}</div>`;
+          }
+        });
+      }
+      if (!provHtml) provHtml = '<div style="color:#888">No providers configured</div>';
+      // Disabled providers
+      if (disabled.length) {
+        provHtml += `<div class="disabled-list">Disabled: ${disabled.map(p => `${escapeHtml(p)} <button class="mini-toggle provider-toggle" data-provider="${escapeHtml(p)}" data-enabled="true">Enable</button>`).join(' ')}</div>`;
+      }
+      document.getElementById('providers').innerHTML = provHtml;
+      const modelList = (modelsResp && modelsResp.models) || [];
+      let modelsHtml = '';
+      const providerModels = health.reasoningCapabilities || {};
+      if (Object.keys(providerModels).length) {
+        modelsHtml = Object.entries(providerModels).map(([prov, info]) => {
+          const ids = (info.models || []).map(m => typeof m === 'string' ? m : (m.id || m.name || '?'));
+          const rows = ids.slice(0,24).map(id => {
+            const isDisabled = modelDisabled(disabledModels, prov, id);
+            return `<div class="model-row ${isDisabled ? 'disabled' : ''}"><span>${escapeHtml(id)}</span><button class="mini-toggle ${isDisabled ? '' : 'danger'} model-toggle" data-provider="${escapeHtml(prov)}" data-model="${escapeHtml(id)}" data-enabled="${isDisabled ? 'true' : 'false'}">${isDisabled ? 'Enable' : 'Disable'}</button></div>`;
+          }).join('');
+          return `<div style="margin-bottom:10px"><strong>${escapeHtml(prov)}</strong> (${ids.length})${rows}${ids.length > 24 ? `<div class="muted">+${ids.length-24} more</div>` : ''}</div>`;
+        }).join('');
+      } else {
+        modelsHtml = '<div style="color:#888">No models discovered</div>';
+      }
+      document.getElementById('models').innerHTML = modelsHtml;
+      bindEnablementButtons();
+      const setupCard = document.getElementById('setupCard');
+      if (setupCard) {
+        const configuredCount = Array.isArray(configured) ? configured.length : Object.keys(configured || {}).length;
+        setupCard.classList.toggle('active', configuredCount === 0 || modelList.length === 0);
+        const paths = setup.paths || {};
+        document.getElementById('setupProviderPath').textContent = paths.providerConfig || '';
+        document.getElementById('setupCodexPath').textContent = paths.codexAuthJson || paths.codexAuthProfile || '';
+      }
+      // Credentials
+      const credentialGroups = credsResp.credentials || setup.credentials || [];
+      window.__sageCredentialProviders = Object.fromEntries((credentialGroups || []).map(group => [group.provider, group]));
+      renderCredentials(credentialGroups);
+      // Learned modalities
+      renderLearnedModalities(modalitiesResp || {});
+      const configuredNames = (Array.isArray(configured) ? configured : Object.keys(configured || {}))
+        .map(p => (typeof p === 'string' ? p : (p && (p.name || p.id)) || null))
+        .filter(Boolean);
+      window.__sageProviders = Array.from(new Set([...(credentialGroups || []).map(c => c.provider), ...configuredNames])).sort();
+      refreshCredProviderOptions();
+
+      // Health details
+      const hEntries = health.reasoningCapabilities || {};
+      let healthHtml = '';
+      Object.entries(hEntries).forEach(([name, info]) => {
+        const reachable = info.reachable !== false;
+        const api = info.api || '';
+        const count = (info.models || []).length;
+        healthHtml += `<div class="stat"><span class="stat-label">${escapeHtml(name)} ${api ? '(' + escapeHtml(api) + ')' : ''}</span><span class="stat-value" style="color:${reachable ? 'var(--success)' : 'var(--danger)'}">${reachable ? '✓' : '✗'} ${count} models</span></div>`;
+      });
+      if (health.thinking) {
+        healthHtml += `<div class="stat"><span class="stat-label">Default thinking</span><span class="stat-value">${escapeHtml(health.thinking.default || '?')}</span></div>`;
+        healthHtml += `<div class="stat"><span class="stat-label">Route modes</span><span class="stat-value">${(health.thinking.routeModes||[]).map(escapeHtml).join(', ')}</span></div>`;
+      }
+      if (health.dario) {
+        healthHtml += `<div class="stat"><span class="stat-label">Dario (Anthropic)</span><span class="stat-value" style="color:${health.dario.reachable ? 'var(--success)' : 'var(--danger)'}">${health.dario.reachable ? '✓' : '✗'} ${health.dario.autostart ? 'auto' : 'manual'}</span></div>`;
+      }
+      function modalitySummary(label, obj) {
+        if (!obj || !Object.keys(obj).length) {
+          healthHtml += `<div class="stat"><span class="stat-label">${escapeHtml(label)}</span><span class="stat-value" style="color:var(--warning)">none — requests will fail</span></div>`;
+          return;
+        }
+        const entries = Object.entries(obj);
+        const total = entries.reduce((n, [, ms]) => n + (ms.length || 0), 0);
+        healthHtml += `<div class="stat"><span class="stat-label">${escapeHtml(label)}</span><span class="stat-value" style="color:var(--accent)">${total} across ${entries.length} provider(s)</span></div>`;
+        healthHtml += entries.map(([prov, ms]) => {
+          const tags = (ms || []).slice(0, 12).map(m => `<span class="model-tag" style="${m.glm ? 'border:1px solid var(--warning);' : ''}">${escapeHtml(m.id)}${m.glm ? ' ·glm' : ''}${m.audio ? ' 🎵' : ''}${m.video ? ' 🎬' : ''}</span>`).join('');
+          return `<div class="models" style="margin-top:6px"><strong>${escapeHtml(prov)}</strong> ${tags}${(ms||[]).length > 12 ? `<span class="model-tag">+${ms.length-12} more</span>` : ''}</div>`;
+        }).join('');
+      }
+      modalitySummary('Image-capable models', health.imageCapable);
+      modalitySummary('Audio-capable models', health.audioCapable);
+      modalitySummary('Video-capable models', health.videoCapable);
+      document.getElementById('health').innerHTML = healthHtml || '<div style="color:#888">No health data</div>';
+      // Analytics
+      const a = analytics || {};
+      const rows = [];
+      if (a.total_requests) rows.push(['Total Requests', a.total_requests]);
+      if (a.total_tokens) rows.push(['Total Tokens', a.total_tokens.toLocaleString()]);
+      if (a.total_cost) rows.push(['Total Cost', `$${Number(a.total_cost).toFixed(4)}`]);
+      if (a.avg_latency_ms) rows.push(['Avg Latency', `${Math.round(a.avg_latency_ms)}ms`]);
+      if (a.by_provider && typeof a.by_provider === 'object') {
+        Object.entries(a.by_provider).forEach(([k,v]) => {
+          const val = v && typeof v === 'object' ? (v.requests || v.count || 0) : v;
+          rows.push([k, `${val} reqs`]);
+        });
+      }
+      document.getElementById('analytics').innerHTML = rows.map(([l,v]) =>
+        `<div class="analytics-row"><span>${escapeHtml(l)}</span><span style="color:var(--accent)">${escapeHtml(v)}</span></div>`
+      ).join('') || '<div style="color:#888">No analytics data</div>';
+      // Profile
+      const profile = health.router_profile || health.activeProfile || 'default';
+      document.getElementById('profile').innerHTML = `<div class="stat"><span class="stat-label">Active Profile</span><span class="stat-value">${escapeHtml(profile)}</span></div><div class="stat"><span class="stat-label">Intent Classifier</span><span class="stat-value">${health.intentClassifier && health.intentClassifier.enabled ? '✓ on' : '✗ off'}</span></div>`;
+    }
+    async function healthCheck() {
+      document.getElementById('actions').innerHTML = '<span style="color:var(--warning)">Running health check...</span>';
+      const h = await api('/health').catch(() => null);
+      if (!h || h.error) {
+        document.getElementById('health').innerHTML = `<div style="color:var(--danger)">Health check failed</div>`;
+        document.getElementById('actions').innerHTML = '<span style="color:var(--danger)">Failed</span>';
+        return;
+      }
+      await loadAll();
+      document.getElementById('actions').innerHTML = '<span style="color:var(--success)">Health check complete</span>';
+    }
+    async function refreshModels() {
+      document.getElementById('actions').innerHTML = '<span style="color:var(--warning)">Refreshing models...</span>';
+      await loadAll();
+      document.getElementById('actions').innerHTML = '<span style="color:var(--success)">Models refreshed</span>';
+    }
+    async function restartRouter() {
+      const actions = document.getElementById('actions');
+      actions.innerHTML = '<span style="color:var(--warning)">Restarting...</span>';
+      try {
+        const r = await fetch(API + '/api/restart', {method: 'POST'});
+        if (!r.ok && r.status !== 202 && r.status !== 403) {
+          const body = await r.json().catch(() => ({}));
+          actions.innerHTML = `<span style="color:var(--danger)">Restart failed: ${escapeHtml(body.error || ('HTTP ' + r.status))}</span>`;
+          return;
+        }
+        let attempts = 0;
+        const poll = async () => {
+          attempts += 1;
+          try {
+            const h = await fetch(API + '/health', {cache: 'no-store'});
+            if (h.ok) { location.reload(); return; }
+          } catch (_) {}
+          if (attempts < 20) setTimeout(poll, 1500);
+          else { actions.innerHTML = '<span style="color:var(--warning)">Restart pending — please refresh manually.</span>'; }
+        };
+        setTimeout(poll, 1500);
+      } catch (e) {
+        actions.innerHTML = `<span style="color:var(--danger)">Restart failed: ${escapeHtml(e.message || String(e))}</span>`;
+      }
+    }
+    updateOperatorTokenStatus();
+    loadAll().catch(() => document.getElementById('statusText').textContent = 'Connection failed');
+  </script>
+</body>
+</html>

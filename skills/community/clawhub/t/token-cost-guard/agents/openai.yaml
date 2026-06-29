@@ -1,0 +1,7 @@
+interface:
+  display_name: "Token Cost Guard"
+  short_description: "Monitor token spend and alert on spikes"
+  default_prompt: "Use $token-cost-guard to check today's agent token spend from the active runtime and alert if cost jumped."
+
+policy:
+  allow_implicit_invocation: true

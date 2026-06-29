@@ -1,0 +1,4 @@
+interface:
+  display_name: "Scholar Paper Finder"
+  short_description: "用 Scholar MCP 检索 50 篇并按相关性和质量排序。"
+  default_prompt: "Use $scholar-paper-finder with google-scholar-search-mcp to retrieve 50 real Google Scholar papers, dedupe them, and return a relevance-and-quality-ranked table with venue metrics and access links."

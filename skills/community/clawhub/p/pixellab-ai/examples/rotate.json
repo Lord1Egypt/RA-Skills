@@ -1,0 +1,16 @@
+{
+  "from_image": {
+    "type": "base64",
+    "format": "png",
+    "base64": "REPLACE_WITH_BASE64_SOURCE_IMAGE"
+  },
+  "image_size": {
+    "width": 64,
+    "height": 64
+  },
+  "from_view": "side",
+  "to_view": "side",
+  "from_direction": "south",
+  "to_direction": "east",
+  "seed": 0
+}

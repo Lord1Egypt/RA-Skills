@@ -1,0 +1,29 @@
+{
+  "name": "my-template",
+  "version": "1.0.0",
+  "description": "我的模板",
+  "type": "custom",
+  "styles": {
+    "title_font_cmd": "\\timu",
+    "body_font_cmd": "\\dw",
+    "section_font_cmd": "\\erjitimu",
+    "sub_section_font_cmd": "\\sanjitimu"
+  },
+  "body_template": "% --- 标题 ---\n\\title{\\timu{__TITLE__}}\n\\author{__AUTHOR__}\n\\date{\\today}\n\n% --- 摘要 ---\n\\begin{abstract}\n__ABSTRACT__\n\\end{abstract}\n\n__CONTENT__\n",
+  "body_abstract": "本文基于模块化设计理念，提出了一种全新的文档生成方法。通过将文档结构拆分为独立组件，实现了高效复用与灵活组合。",
+  "body_skeleton": "% --- 标题 ---\n\\title{\\timu{__TITLE__}}\n\\author{__AUTHOR__}\n\\date{\\today}\n\n\\maketitle\n\n\\section{引言}\n\n在此处撰写引言内容。\n\n\\section{主体}\n\n在此处撰写主体内容。\n\n\\section{结论}\n\n在此处撰写结论。\n",
+  "sample_sections": [
+    {
+      "heading": "引言",
+      "content": "随着学术写作需求的日益增长，\\timu{LaTeX} 作为一种高质量的排版系统，在学术界得到了广泛应用。本文提出的\\erjitimu{模块化模板方案}通过以下方式解决上述问题：\n\n\\begin{mylist}\n  \\item 将导言区拆分为独立组件，按需组合\n  \\item 预设常用宏包和样式，开箱即用\n  \\item 支持多种文档类型，一键生成完整模板\n\\end{mylist}"
+    },
+    {
+      "heading": "方法",
+      "content": "\\subsection{组件化架构}\n\n本系统的核心思想是将 LaTeX 文档划分为若干独立组件，每个组件负责一个功能模块。这种设计带来了以下优势：\n\n\\begin{mylist}\n  \\item 组件可独立维护和更新\n  \\item 不同文档可复用相同组件\n  \\item 新增功能只需添加新组件\n\\end{mylist}"
+    },
+    {
+      "heading": "结论",
+      "content": "本文提出的\\erjitimu{模块化 LaTeX 文档生成方案}，通过组件化设计和智能模板生成，\\sanjitimu{显著简化了文档编写流程}。"
+    }
+  ]
+}

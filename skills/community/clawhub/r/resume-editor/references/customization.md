@@ -70,6 +70,21 @@ python3 scripts/export_resume.py --theme editorial --format html resume.json out
 
 Only include a photo when the target market expects one — many regions (US, UK, Canada, Australia, much of the EU) penalize or reject photo resumes for anti-discrimination reasons.
 
+## Restyling the Edit Toolbar
+
+The editable HTML (`--editable`) ships with its own self-contained edit-mode UI. Custom themes should generally leave it alone, but you can restyle it from your theme's CSS via these classes/IDs:
+
+- `#resume-edit-btn` — the floating pencil button (top-right corner).
+- `#resume-edit-toolbar` — the top toolbar shown while editing.
+- `#resume-edit-toolbar .toolbar-btn-format` — the B / I / U / color buttons.
+- `#resume-edit-toolbar .toolbar-btn-save` — the Save button (writes to disk via the local sync server).
+- `#resume-edit-toolbar .toolbar-btn-copy` — the Copy JSON button (fallback).
+- `#resume-edit-toolbar .toolbar-btn-cancel` — the Done button.
+- `#resume-color-popover` — the color swatch/hex dropdown.
+- `#resume-edit-toast` — transient confirmation toast.
+
+The toolbar UI is hidden during `@media print`, so it never appears in PDF output.
+
 ## Modifying Resume Data Structure
 
 To add custom fields:

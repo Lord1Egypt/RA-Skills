@@ -1,0 +1,53 @@
+{
+  "schema_version": "s2t-workflow-orchestration-patterns-v1",
+  "principle": "Workflow orchestration is the runtime control flow, not the agent architecture topology.",
+  "workflow_primitives": [
+    "sequence",
+    "branch",
+    "conditional_edge",
+    "loop_retry",
+    "gate",
+    "fan_out",
+    "fan_in_merge",
+    "human_wait",
+    "checkpoint_resume",
+    "terminal_boundary"
+  ],
+  "patterns": [
+    {
+      "id": "linear_sequence",
+      "name": "Linear Sequence",
+      "use_when": "Ordered stages with no meaningful branch or rerun."
+    },
+    {
+      "id": "gated_pipeline",
+      "name": "Gated Pipeline",
+      "use_when": "A stage cannot advance until an independent gate passes."
+    },
+    {
+      "id": "work_order_loop",
+      "name": "Work-Order Loop",
+      "use_when": "Review or user feedback may trigger bounded reruns."
+    },
+    {
+      "id": "conditional_route",
+      "name": "Conditional Route",
+      "use_when": "Different input classes need different stage paths."
+    },
+    {
+      "id": "fanout_fanin",
+      "name": "Fan-out / Fan-in",
+      "use_when": "Independent items or perspectives can run in parallel and then merge."
+    },
+    {
+      "id": "human_interrupt_resume",
+      "name": "Human Wait / Resume",
+      "use_when": "A human decision or missing input must pause the workflow safely."
+    },
+    {
+      "id": "dependency_aware_rerun",
+      "name": "Dependency-Aware Rerun",
+      "use_when": "Changed artifacts should invalidate and recompute only affected downstream work."
+    }
+  ]
+}

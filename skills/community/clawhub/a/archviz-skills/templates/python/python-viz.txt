@@ -1,0 +1,44 @@
+%% Python viz template for final deliverables (per archviz-skills env control + research report).
+%% Use when env=deliverables/exports: Generate runnable Python (Plotly for interactive HTML, Matplotlib for precise exports).
+%% Follow DESIGN.md: restrained tokens (warm paper, IKB accent), taxonomy from report, short labels/codes, icons if needed.
+%% Agent vibe: output code + brief explanation. User runs it for "落作品".
+%% Example: Bar for ranking or Gantt-like timeline (adapt per type).
+
+import plotly.express as px
+import pandas as pd
+
+# Data from brief + taxonomy (e.g., ranking or temporal).
+df = pd.DataFrame({
+    'Task': ['V1.1 环境搭建', 'V1.2 流水账台账', 'V1.3 结算首页'],
+    'Duration': [6, 7, 4],
+    'Start': ['2026-07-01', '2026-08-12', '2026-10-01']
+})
+
+# Restrained style: single IKB accent, minimal.
+fig = px.bar(df, x='Task', y='Duration', title='ArchViz: Project Roadmap (restrained)',
+             color_discrete_sequence=['#002FA7'])  # IKB
+
+fig.update_layout(
+    plot_bgcolor='#f5f0eb',  # Warm paper
+    paper_bgcolor='#f5f0eb',
+    font_color='#1B365D',
+    xaxis_title=None,
+    yaxis_title='Weeks',
+    showlegend=False
+)
+
+# For deliverables: write interactive HTML.
+fig.write_html('archviz_roadmap.html')
+print('Generated: archviz_roadmap.html (open in browser)')
+
+# Alternative for static export:
+# import matplotlib.pyplot as plt
+# ... (restrained plot, savefig('archviz.png', dpi=300, facecolor='#f5f0eb'))
+
+%% Notes:
+%% - Env check: Only for deliverables (not OB lightweight).
+%% - Use report taxonomy to pick chart (bar/line/scatter etc.).
+%% - Add icons via text annotations or plotly shapes (minimal).
+%% - For Gantt: Use px.timeline with codes + separate table.
+%% - Combine with ASCII for hybrid docs.
+%% - Author habit: Direct, no filler, restrained.

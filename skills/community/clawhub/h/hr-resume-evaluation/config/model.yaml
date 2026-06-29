@@ -1,0 +1,8 @@
+provider: openai_compatible
+base_url: "https://api.deepseek.com"
+chat_completions_path: "/chat/completions"
+model: "deepseek-v4-pro"
+api_key_env: "DEEPSEEK_API_KEY"
+timeout_seconds: 120
+max_retries: 2
+temperature: 0.1

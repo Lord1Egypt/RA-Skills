@@ -1,0 +1,9 @@
+# Manifest — axiom-url-canonicalizer (public, clean)
+# Edition: Capafy voice (zero cluster jargon)
+# Generated: 2026-06-14T20:45:39Z
+
+14d7852767f91e0daa3bc270784b272adf8be2b02d03b6e95fb5ea8135197f57  LICENSE  (45 bytes)
+3ae6afb7e430ca4a3544d43dddf17483ffc6171c76bcf08639765bce41396395  README.md  (1409 bytes)
+c7ba647935cbf70dfc66131ba2af28cae9cd463eb727ab4d3fbe858e9c1d48ba  SKILL.md  (608 bytes)
+1d9c03d5417fb12558a5e4b181aa4eac4236bb877b3c37940e32ef5223d56ab9  axiom_url_canonicalizer.py  (8066 bytes)
+99e9a5efda46168acebb65480c771787c5b793f2621f9320ae0a83147caf25da  test_axiom_url_canonicalizer.py  (4182 bytes)

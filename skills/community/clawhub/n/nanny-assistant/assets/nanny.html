@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>月嫂助手 - 母婴护理全流程管理</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #fdf2f8;
+  --sidebar-bg: #4a1942;
+  --sidebar-hover: #6b2d5c;
+  --sidebar-active: #8b3a7a;
+  --primary: #db2777;
+  --primary-light: #fce7f3;
+  --primary-dark: #9d174d;
+  --success: #059669;
+  --success-light: #d1fae5;
+  --warning: #f59e0b;
+  --warning-light: #fef3c7;
+  --danger: #dc2626;
+  --danger-light: #fee2e2;
+  --baby-blue: #7dd3fc;
+  --baby-blue-light: #e0f2fe;
+  --white: #ffffff;
+  --text: #1e293b;
+  --text-secondary: #64748b;
+  --border: #f0d5e7;
+  --card-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  --radius: 10px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); display:flex; min-height:100vh; }
+
+/* Sidebar */
+.sidebar { width:240px; min-width:240px; background:var(--sidebar-bg); color:#e2e8f0; display:flex; flex-direction:column; position:fixed; top:0; left:0; bottom:0; z-index:100; overflow-y:auto; }
+.sidebar-logo { padding:20px; font-size:19px; font-weight:700; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; gap:10px; letter-spacing:-0.5px; }
+.sidebar-logo span { font-size:28px; }
+.sidebar-nav { flex:1; padding:12px 0; }
+.nav-group { margin-bottom:4px; }
+.nav-group-title { padding:12px 20px 6px; font-size:10px; text-transform:uppercase; color:#9a7e94; letter-spacing:1.5px; }
+.nav-item { display:flex; align-items:center; gap:10px; padding:10px 20px; cursor:pointer; transition:all 0.15s; font-size:14px; border-left:3px solid transparent; margin:2px 0; color:#c4b5bf; }
+.nav-item:hover { background:var(--sidebar-hover); color:#f0e6ed; }
+.nav-item.active { background:var(--sidebar-active); border-left-color:var(--primary); color:#fff; }
+.nav-item .icon { font-size:18px; width:24px; text-align:center; }
+.nav-badge { background:var(--danger); color:#fff; font-size:10px; border-radius:10px; padding:1px 7px; margin-left:auto; }
+.sidebar-footer { padding:16px 20px; border-top:1px solid rgba(255,255,255,0.08); font-size:12px; color:#9a7e94; display:flex; gap:8px; flex-wrap:wrap; }
+.sidebar-footer button { background:rgba(255,255,255,0.1); border:none; color:#c4b5bf; padding:6px 10px; border-radius:6px; cursor:pointer; font-size:11px; transition:all 0.15s; }
+.sidebar-footer button:hover { background:rgba(255,255,255,0.2); color:#fff; }
+
+/* Main */
+.main { margin-left:240px; flex:1; padding:24px; max-width:1200px; }
+.header { display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; flex-wrap:wrap; gap:12px; }
+.header h1 { font-size:22px; font-weight:700; display:flex; align-items:center; gap:10px; }
+.header-right { display:flex; align-items:center; gap:12px; }
+.header-date { color:var(--text-secondary); font-size:14px; }
+.stage-badge { display:inline-block; padding:4px 12px; border-radius:14px; font-size:12px; font-weight:600; background:var(--primary-light); color:var(--primary); }
+
+.btn { padding:8px 16px; border-radius:8px; border:none; font-size:14px; cursor:pointer; font-weight:500; transition:all 0.15s; display:inline-flex; align-items:center; gap:6px; white-space:nowrap; }
+.btn-primary { background:var(--primary); color:#fff; }
+.btn-primary:hover { background:var(--primary-dark); }
+.btn-success { background:var(--success); color:#fff; }
+.btn-success:hover { background:#047857; }
+.btn-danger { background:var(--danger); color:#fff; }
+.btn-danger:hover { background:#b91c1c; }
+.btn-outline { background:transparent; border:1px solid var(--border); color:var(--text-secondary); }
+.btn-outline:hover { border-color:var(--primary); color:var(--primary); }
+.btn-sm { padding:5px 10px; font-size:12px; }
+.btn-xs { padding:3px 8px; font-size:11px; border-radius:6px; }
+
+/* Stat cards */
+.stat-cards { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:14px; margin-bottom:24px; }
+.stat-card { background:var(--white); border-radius:var(--radius); padding:16px 18px; box-shadow:var(--card-shadow); }
+.stat-card .label { font-size:12px; color:var(--text-secondary); margin-bottom:4px; }
+.stat-card .value { font-size:28px; font-weight:700; }
+.stat-card .sub { font-size:11px; color:var(--text-secondary); margin-top:2px; }
+.stat-card.pink { border-left:4px solid var(--primary); }
+.stat-card.blue { border-left:4px solid #3b82f6; }
+.stat-card.green { border-left:4px solid var(--success); }
+.stat-card.orange { border-left:4px solid var(--warning); }
+.stat-card.red { border-left:4px solid var(--danger); }
+
+/* Panel */
+.content-panel { display:none; }
+.content-panel.active { display:block; }
+.panel-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:8px; }
+.panel-header h2 { font-size:19px; }
+
+/* Tables */
+.table-wrap { background:var(--white); border-radius:var(--radius); box-shadow:var(--card-shadow); overflow:auto; }
+.table-wrap table { width:100%; border-collapse:collapse; min-width:600px; }
+th, td { padding:10px 14px; text-align:left; font-size:13px; }
+th { background:#fdf2f8; color:var(--text-secondary); font-weight:600; border-bottom:2px solid var(--border); white-space:nowrap; }
+td { border-bottom:1px solid var(--border); }
+tr:hover td { background:#fef7fa; }
+
+.badge { display:inline-block; padding:3px 10px; border-radius:12px; font-size:11px; font-weight:600; }
+.badge-success { background:var(--success-light); color:var(--success); }
+.badge-warning { background:var(--warning-light); color:var(--warning); }
+.badge-danger { background:var(--danger-light); color:var(--danger); }
+.badge-primary { background:var(--primary-light); color:var(--primary); }
+.badge-blue { background:var(--baby-blue-light); color:#0369a1; }
+
+/* Forms */
+.form-group { margin-bottom:12px; }
+.form-group label { display:block; font-size:13px; font-weight:600; margin-bottom:4px; color:var(--text-secondary); }
+.form-group input, .form-group select, .form-group textarea { width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:8px; font-size:14px; transition:border 0.15s; font-family:inherit; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline:none; border-color:var(--primary); box-shadow:0 0 0 3px var(--primary-light); }
+.form-group textarea { resize:vertical; min-height:60px; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.form-row-3 { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; }
+.form-inline { display:flex; gap:10px; align-items:flex-end; flex-wrap:wrap; margin-bottom:16px; }
+.form-inline .form-group { margin-bottom:0; }
+
+/* Modal */
+.modal-overlay { display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.4); z-index:200; align-items:center; justify-content:center; }
+.modal-overlay.active { display:flex; }
+.modal { background:var(--white); border-radius:12px; padding:24px; width:90%; max-width:560px; max-height:85vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,0.15); }
+.modal h3 { font-size:17px; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+.modal-actions { display:flex; gap:10px; justify-content:flex-end; margin-top:20px; }
+
+/* Tabs */
+.tabs { display:flex; gap:0; margin-bottom:14px; background:var(--white); border-radius:var(--radius); padding:4px; box-shadow:var(--card-shadow); }
+.tab { padding:7px 16px; border-radius:8px; cursor:pointer; font-size:13px; font-weight:500; color:var(--text-secondary); border:none; background:none; transition:all 0.15s; }
+.tab.active { background:var(--primary); color:#fff; }
+
+/* Cards for lists */
+.card-list { display:grid; gap:12px; }
+.card-item { background:var(--white); border-radius:var(--radius); padding:16px; box-shadow:var(--card-shadow); display:flex; gap:12px; align-items:flex-start; }
+.card-item .card-icon { font-size:28px; flex-shrink:0; width:44px; text-align:center; }
+.card-item .card-body { flex:1; }
+.card-item .card-title { font-weight:600; font-size:14px; margin-bottom:4px; }
+.card-item .card-meta { font-size:12px; color:var(--text-secondary); }
+.card-item .card-actions { display:flex; gap:6px; flex-shrink:0; }
+
+/* Vital cards */
+.vital-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); gap:12px; margin-bottom:16px; }
+.vital-card { background:var(--white); border-radius:var(--radius); padding:14px; box-shadow:var(--card-shadow); text-align:center; }
+.vital-card .vital-name { font-size:12px; color:var(--text-secondary); margin-bottom:4px; }
+.vital-card .vital-value { font-size:26px; font-weight:700; }
+.vital-card .vital-unit { font-size:11px; color:var(--text-secondary); }
+.vital-card .vital-time { font-size:11px; color:var(--text-secondary); margin-top:3px; }
+.vital-card.abnormal { border:2px solid var(--danger); background:var(--danger-light); }
+.vital-card.abnormal .vital-value { color:var(--danger); }
+
+/* Med tracker */
+.med-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:12px; }
+.med-card { background:var(--white); border-radius:var(--radius); padding:16px; box-shadow:var(--card-shadow); }
+.med-card .med-name { font-weight:700; font-size:15px; margin-bottom:2px; }
+.med-card .med-info { font-size:12px; color:var(--text-secondary); margin-bottom:10px; }
+.med-card .med-slots { display:flex; gap:6px; flex-wrap:wrap; }
+.med-slot { padding:5px 10px; border-radius:6px; font-size:11px; border:1px solid var(--border); cursor:pointer; transition:all 0.15s; background:#f8fafc; }
+.med-slot.taken { background:var(--success-light); border-color:var(--success); color:var(--success); font-weight:600; }
+.med-slot.missed { background:var(--danger-light); border-color:var(--danger); color:var(--danger); }
+.med-slot.pending { background:#fef7fa; }
+.med-slot:hover { transform:scale(1.05); }
+
+/* Timeline */
+.timeline { position:relative; padding-left:30px; }
+.timeline::before { content:''; position:absolute; left:10px; top:0; bottom:0; width:2px; background:var(--border); }
+.tl-item { position:relative; margin-bottom:16px; }
+.tl-item::before { content:''; position:absolute; left:-24px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--primary); border:2px solid var(--primary-light); }
+.tl-item.done::before { background:var(--success); border-color:var(--success-light); }
+.tl-item .tl-time { font-size:11px; color:var(--text-secondary); margin-bottom:2px; }
+.tl-item .tl-content { font-size:13px; font-weight:500; }
+
+/* Chart */
+.chart-wrap { background:var(--white); border-radius:var(--radius); padding:16px; box-shadow:var(--card-shadow); margin-bottom:16px; }
+.chart-wrap h3 { margin-bottom:10px; font-size:14px; color:var(--text-secondary); }
+canvas { width:100%; max-height:260px; }
+
+/* Report */
+.report-block { background:var(--white); border-radius:var(--radius); padding:20px; box-shadow:var(--card-shadow); margin-bottom:16px; line-height:1.8; font-size:14px; }
+.report-block h3 { color:var(--primary); margin-bottom:10px; font-size:16px; }
+.report-block .section-title { font-weight:700; color:var(--text); margin:12px 0 6px; font-size:13px; }
+
+/* Knowledge cards */
+.kb-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:12px; }
+.kb-card { background:var(--white); border-radius:var(--radius); padding:16px; box-shadow:var(--card-shadow); cursor:pointer; transition:all 0.2s; }
+.kb-card:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,0.1); }
+.kb-card .kb-icon { font-size:32px; margin-bottom:6px; }
+.kb-card .kb-title { font-weight:700; font-size:15px; margin-bottom:4px; }
+.kb-card .kb-desc { font-size:12px; color:var(--text-secondary); }
+
+/* Empty */
+.empty-state { text-align:center; padding:50px 20px; color:var(--text-secondary); }
+.empty-state .empty-icon { font-size:48px; margin-bottom:10px; }
+.empty-state p { font-size:14px; margin-bottom:12px; }
+
+/* Toast */
+.toast { position:fixed; top:20px; right:20px; padding:12px 20px; border-radius:8px; color:#fff; font-size:14px; z-index:300; transform:translateX(120%); transition:transform 0.3s; }
+.toast.show { transform:translateX(0); }
+.toast.success { background:var(--success); }
+.toast.error { background:var(--danger); }
+
+/* Meal section */
+.meal-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:10px; }
+.meal-card { background:var(--white); border-radius:var(--radius); padding:14px; box-shadow:var(--card-shadow); }
+.meal-card .meal-label { font-size:12px; color:var(--text-secondary); margin-bottom:4px; }
+.meal-card .meal-content { font-size:13px; line-height:1.6; }
+.meal-card .meal-empty { color:var(--text-secondary); font-style:italic; font-size:12px; }
+
+/* Checkbox list for handover */
+.checklist { list-style:none; }
+.checklist li { padding:8px 0; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:8px; font-size:13px; }
+.checklist li input[type="checkbox"] { width:18px; height:18px; accent-color:var(--success); }
+
+/* Responsive */
+@media (max-width:768px) {
+  .sidebar { width:56px; min-width:56px; }
+  .sidebar-logo { justify-content:center; font-size:0; }
+  .sidebar-logo span { font-size:24px; margin:0; }
+  .nav-item { justify-content:center; padding:12px; }
+  .nav-item span:not(.icon) { display:none; }
+  .nav-group-title { display:none; }
+  .nav-badge { display:none; }
+  .main { margin-left:56px; }
+  .form-row, .form-row-3 { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-logo"><span>🤱</span> 月嫂助手</div>
+  <nav class="sidebar-nav">
+    <div class="nav-group"><div class="nav-group-title">总览</div>
+      <div class="nav-item active" data-panel="dashboard"><span class="icon">📊</span><span>工作台</span></div>
+    </div>
+    <div class="nav-group"><div class="nav-group-title">👶 婴儿护理</div>
+      <div class="nav-item" data-panel="baby-feeding"><span class="icon">🍼</span><span>喂养记录</span></div>
+      <div class="nav-item" data-panel="baby-diaper"><span class="icon">🧷</span><span>排泄记录</span></div>
+      <div class="nav-item" data-panel="baby-care"><span class="icon">🛁</span><span>日常护理</span></div>
+    </div>
+    <div class="nav-group"><div class="nav-group-title">👩 产妇护理</div>
+      <div class="nav-item" data-panel="mother-care"><span class="icon">💆</span><span>产后护理</span></div>
+      <div class="nav-item" data-panel="meals"><span class="icon">🍲</span><span>月子餐</span></div>
+    </div>
+    <div class="nav-group"><div class="nav-group-title">📊 健康</div>
+      <div class="nav-item" data-panel="health"><span class="icon">📈</span><span>健康监测</span></div>
+      <div class="nav-item" data-panel="medication"><span class="icon">💊</span><span>用药管理</span></div>
+    </div>
+    <div class="nav-group"><div class="nav-group-title">📝 其他</div>
+      <div class="nav-item" data-panel="diary"><span class="icon">📋</span><span>护理日志</span></div>
+      <div class="nav-item" data-panel="knowledge"><span class="icon">📖</span><span>知识库</span></div>
+      <div class="nav-item" data-panel="reports"><span class="icon">📄</span><span>家属报告</span></div>
+      <div class="nav-item" data-panel="handover"><span class="icon">🔄</span><span>下户交接</span></div>
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <button onclick="exportData()">📥 导出</button>
+    <button onclick="importDataPrompt()">📤 导入</button>
+    <button onclick="resetData()">🔄 重置</button>
+  </div>
+</aside>
+
+<div class="main" id="main-content"></div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal-content"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// ========== DATA LAYER ==========
+const STORAGE_KEY = 'nanny_data_v1';
+
+const defaultData = {
+  profile: { motherName:'', deliveryType:'顺产', deliveryDate:new Date().toISOString().slice(0,10), babyName:'', babyGender:'男', babyBirthWeight:'', feedingType:'母乳' },
+  feedingRecords: [],
+  diaperRecords: [],
+  cordCareRecords: [],
+  bathRecords: [],
+  babyVitals: [],
+  motherVitals: [],
+  lochiaRecords: [],
+  woundCareRecords: [],
+  breastCareRecords: [],
+  mealRecords: [],
+  medications: [],
+  medicationLogs: [],
+  careDiary: []
+};
+
+function loadData() { try { const raw = localStorage.getItem(STORAGE_KEY); return raw ? {...defaultData, ...JSON.parse(raw)} : {...defaultData}; } catch(e) { return {...defaultData}; } }
+function saveData(d) { localStorage.setItem(STORAGE_KEY, JSON.stringify(d)); }
+let data = loadData();
+function refreshData() { data = loadData(); }
+
+// ========== UTILS ==========
+function $(sel) { return document.querySelector(sel); }
+function $$(sel) { return document.querySelectorAll(sel); }
+function genId() { return Date.now().toString(36)+Math.random().toString(36).slice(2,8); }
+function fmtDate(d) { return new Date(d).toISOString().slice(0,10); }
+function fmtTime(d) { return new Date(d).toTimeString().slice(0,5); }
+function today() { return fmtDate(new Date()); }
+function daysSince(d) { return Math.floor((new Date()-new Date(d))/(86400000))+1; }
+
+function showToast(msg, type='success') {
+  const t = $('#toast'); t.textContent = msg; t.className = 'toast '+type+' show';
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function openModal(title, bodyHtml, onSave) {
+  $('#modal-content').innerHTML = '<h3>'+title+'</h3>'+bodyHtml+'<div class="modal-actions"><button class="btn btn-outline" onclick="closeModal()">取消</button><button class="btn btn-primary" id="modal-save-btn">保存</button></div>';
+  $('#modal-overlay').classList.add('active');
+  document.getElementById('modal-save-btn').onclick = () => { if(onSave) onSave(); closeModal(); };
+}
+function closeModal() { $('#modal-overlay').classList.remove('active'); }
+
+function exportData() {
+  const blob = new Blob([JSON.stringify(data,null,2)], {type:'application/json'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'nanny-backup-'+today()+'.json'; a.click();
+  showToast('数据已导出');
+}
+function importDataPrompt() {
+  const input = document.createElement('input'); input.type = 'file'; input.accept = '.json';
+  input.onchange = (e) => {
+    const reader = new FileReader();
+    reader.onload = (ev) => { try { data = {...defaultData, ...JSON.parse(ev.target.result)}; saveData(data); refreshData(); renderPanel(currentPanel); showToast('数据已导入'); } catch(ex) { showToast('导入失败：文件格式错误','error'); } };
+    reader.readAsText(e.target.files[0]);
+  };
+  input.click();
+}
+function resetData() { if(confirm('⚠️ 确定要重置所有数据吗？此操作不可恢复！')) { data = {...defaultData}; saveData(data); refreshData(); renderPanel(currentPanel); showToast('数据已重置'); } }
+
+// Get postpartum stage
+function postpartumStage() {
+  const days = daysSince(data.profile.deliveryDate);
+  if(days<=7) return {stage:'第一阶段',sub:'排恶露·稳身体',days};
+  if(days<=14) return {stage:'第二阶段',sub:'促恢复·通乳汁',days};
+  if(days<=21) return {stage:'第三阶段',sub:'补营养·调气血',days};
+  return {stage:'第四阶段',sub:'养体质·做准备',days};
+}
+
+// ========== NAVIGATION ==========
+let currentPanel = 'dashboard';
+document.querySelectorAll('.nav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+    currentPanel = item.dataset.panel;
+    renderPanel(currentPanel);
+  });
+});
+
+function renderPanel(panel) {
+  currentPanel = panel; refreshData();
+  const map = {
+    dashboard:renderDashboard, 'baby-feeding':renderBabyFeeding, 'baby-diaper':renderBabyDiaper,
+    'baby-care':renderBabyCare, 'mother-care':renderMotherCare, meals:renderMeals,
+    health:renderHealth, medication:renderMedication, diary:renderDiary,
+    knowledge:renderKnowledge, reports:renderReports, handover:renderHandover
+  };
+  if(map[panel]) map[panel]();
+}
+
+// ========== HEADER ==========
+function renderHeader(title, extra) {
+  const stage = postpartumStage();
+  let h = '<div class="header"><h1>'+title+'</h1>';
+  h += '<div class="header-right"><span class="stage-badge">'+stage.stage+'：'+stage.sub+'（第'+stage.days+'天）</span>';
+  h += '<span class="header-date">📅 '+today()+'</span>'+ (extra||'') +'</div></div>';
+  return h;
+}
+
+// ========== 1. DASHBOARD ==========
+function renderDashboard() {
+  const stage = postpartumStage();
+  const todayFeeds = data.feedingRecords.filter(f=>f.date===today());
+  const todayDiapers = data.diaperRecords.filter(f=>f.date===today());
+  const todayMedLogs = data.medicationLogs.filter(f=>f.date===today() && f.taken);
+  const babyVitalsToday = data.babyVitals.filter(f=>f.date===today());
+  const motherVitalsToday = data.motherVitals.filter(f=>f.date===today());
+  const latestBabyVital = data.babyVitals[data.babyVitals.length-1];
+  const latestMotherVital = data.motherVitals[data.motherVitals.length-1];
+
+  let h = renderHeader('🤱 工作台');
+  
+  // Stat cards
+  h += '<div class="stat-cards">';
+  h += '<div class="stat-card pink"><div class="label">🍼 今日喂养</div><div class="value">'+todayFeeds.length+'<span style="font-size:14px">次</span></div><div class="sub">总量 '+todayFeeds.reduce((s,f)=>s+(parseFloat(f.amount)||0),0)+' ml</div></div>';
+  h += '<div class="stat-card blue"><div class="label">🧷 今日排泄</div><div class="value">'+todayDiapers.length+'<span style="font-size:14px">次</span></div><div class="sub">大便 '+todayDiapers.filter(d=>d.type==='大便'||d.type==='均有').length+' 次</div></div>';
+  h += '<div class="stat-card green"><div class="label">💊 今日用药</div><div class="value">'+todayMedLogs.length+'<span style="font-size:14px">项</span></div><div class="sub">已完成打卡</div></div>';
+  h += '<div class="stat-card orange"><div class="label">👶 宝宝体温</div><div class="value">'+(latestBabyVital?latestBabyVital.temp+'<span style="font-size:14px">°C</span>':'--')+'</div><div class="sub">'+(latestBabyVital?latestBabyVital.time:'尚未记录')+'</div></div>';
+  h += '<div class="stat-card pink"><div class="label">🤱 产后天数</div><div class="value">'+stage.days+'<span style="font-size:14px">天</span></div><div class="sub">'+stage.sub+'</div></div>';
+  h += '</div>';
+
+  // Timeline
+  h += '<div class="table-wrap" style="padding:20px;"><h3 style="margin-bottom:14px;">📋 今日时间线</h3><div class="timeline">';
+  const timeline = [
+    {time:'06:00-07:00', text:'晨起准备：查看宝宝睡眠/体温，更换尿布，清洁臀部；协助产妇起床洗漱', done:true},
+    {time:'07:00-08:00', text:'早餐准备：为产妇准备清淡早餐，协助进食；清洗婴儿衣物', done:true},
+    {time:'08:00-10:00', text:'新生儿喂养：协助哺乳/冲调配方奶，拍嗝；脐带护理，日光浴（天气允许）', done:todayFeeds.some(f=>f.time<='10:00')},
+    {time:'10:00-11:30', text:'产妇康复：指导盆底肌/腹直肌修复训练；协助擦浴；准备午餐食材', done:false},
+    {time:'11:30-13:00', text:'午餐与午休：准备产妇午餐，协助进食；安排午休', done:false},
+    {time:'13:00-15:00', text:'新生儿护理：换尿布，被动操/抚触；产妇乳房护理指导', done:false},
+    {time:'15:00-16:30', text:'加餐与互动：产妇加餐；母婴互动；记录体温/黄疸/体重', done:false},
+    {time:'16:30-18:00', text:'晚餐准备：准备产妇晚餐；新生儿护理及安抚', done:false},
+    {time:'18:00-19:30', text:'晚餐与休息：协助产妇晚餐，安排休息；新生儿喂养、安抚入睡', done:false},
+    {time:'19:30-22:00', text:'夜间准备：查看新生儿，准备夜间护理用品；与雇主沟通当日情况', done:false},
+    {time:'22:00-06:00', text:'夜间值守：每2-3小时查看新生儿，更换尿布、喂养，安抚夜醒', done:false}
+  ];
+  timeline.forEach(t=>{
+    h += '<div class="tl-item'+(t.done?' done':'')+'"><div class="tl-time">'+t.time+'</div><div class="tl-content">'+t.text+'</div></div>';
+  });
+  h += '</div></div>';
+
+  // Quick actions
+  h += '<div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;">';
+  h += '<button class="btn btn-primary" onclick="quickRecord(\'feeding\')">🍼 记录喂养</button>';
+  h += '<button class="btn btn-outline" onclick="quickRecord(\'diaper\')">🧷 记录排泄</button>';
+  h += '<button class="btn btn-outline" onclick="quickRecord(\'vital\')">🌡 记录体征</button>';
+  h += '<button class="btn btn-outline" onclick="quickRecord(\'diary\')">📝 写护理日志</button>';
+  h += '<button class="btn btn-outline" onclick="renderPanel(\'reports\')">📄 家属报告</button>';
+  h += '</div>';
+
+  $('#main-content').innerHTML = h;
+}
+
+// ========== 2. BABY FEEDING ==========
+function renderBabyFeeding() {
+  let h = renderHeader('🍼 喂养记录', '<button class="btn btn-primary btn-sm" onclick="addFeedingRecord()">+ 记录喂养</button>');
+  
+  // Stats
+  const todayRecords = data.feedingRecords.filter(f=>f.date===today());
+  const totalMl = todayRecords.reduce((s,f)=>s+(parseFloat(f.amount)||0),0);
+  h += '<div class="stat-cards">';
+  h += '<div class="stat-card pink"><div class="label">今日喂养次数</div><div class="value">'+todayRecords.length+'<span style="font-size:14px">次</span></div></div>';
+  h += '<div class="stat-card blue"><div class="label">今日总奶量</div><div class="value">'+totalMl+'<span style="font-size:14px">ml</span></div></div>';
+  h += '<div class="stat-card green"><div class="label">平均每次</div><div class="value">'+(todayRecords.length?(totalMl/todayRecords.length).toFixed(0):'0')+'<span style="font-size:14px">ml</span></div></div>';
+  h += '</div>';
+
+  // Filter
+  h += '<div class="form-inline"><div class="form-group"><label>筛选日期</label><input type="date" id="feed-filter-date" value="'+today()+'" onchange="renderBabyFeeding()"></div></div>';
+
+  const filterDate = document.getElementById('feed-filter-date')?.value || today();
+  const records = data.feedingRecords.filter(f=>f.date===filterDate).sort((a,b)=>a.time.localeCompare(b.time));
+
+  h += '<div class="table-wrap"><table><thead><tr><th>时间</th><th>方式</th><th>量(ml)</th><th>时长(分)</th><th>拍嗝</th><th>备注</th><th>操作</th></tr></thead><tbody>';
+  if(records.length===0) {
+    h += '<tr><td colspan="7" style="text-align:center;color:var(--text-secondary);padding:30px;">暂无记录</td></tr>';
+  } else {
+    records.forEach(r=>{
+      h += '<tr><td>'+r.time+'</td><td><span class="badge '+(r.type==='母乳'?'badge-primary':'badge-blue')+'">'+r.type+'</span></td><td>'+r.amount+'</td><td>'+(r.duration||'--')+'</td><td>'+(r.burped?'✅ 已拍':'--')+'</td><td>'+(r.notes||'')+'</td>';
+      h += '<td><button class="btn btn-xs btn-danger" onclick="deleteRecord(\'feedingRecords\',\''+r.id+'\')">删除</button></td></tr>';
+    });
+  }
+  h += '</tbody></table></div>';
+
+  // 7 day summary
+  const last7 = []; 
+  for(let i=6;i>=0;i--) { const d = fmtDate(new Date(Date.now()-i*86400000)); const recs = data.feedingRecords.filter(f=>f.date===d); last7.push({date:d.slice(5), count:recs.length, ml:recs.reduce((s,f)=>s+(parseFloat(f.amount)||0),0)}); }
+  h += '<div class="chart-wrap" style="margin-top:16px;"><h3>近7天喂养趋势</h3><canvas id="feedChart"></canvas></div>';
+
+  $('#main-content').innerHTML = h;
+  setTimeout(()=>{
+    const ctx = document.getElementById('feedChart');
+    if(ctx) new Chart(ctx, {type:'bar', data:{labels:last7.map(d=>d.date), datasets:[
+      {label:'次数',data:last7.map(d=>d.count),backgroundColor:'rgba(219,39,119,0.3)',borderColor:'#db2777',yAxisID:'y'},
+      {label:'总奶量(ml)',data:last7.map(d=>d.ml),type:'line',borderColor:'#3b82f6',backgroundColor:'transparent',yAxisID:'y1'}
+    ]}, options:{responsive:true, scales:{y:{beginAtZero:true,position:'left',title:{display:true,text:'次数'}},y1:{beginAtZero:true,position:'right',grid:{display:false},title:{display:true,text:'ml'}}}}});
+  },200);
+}
+
+function addFeedingRecord() {
+  const now = new Date();
+  openModal('🍼 记录喂养', `
+    <div class="form-row">
+      <div class="form-group"><label>日期</label><input type="date" id="feed-date" value="${today()}"></div>
+      <div class="form-group"><label>时间</label><input type="time" id="feed-time" value="${fmtTime(now)}"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>喂养方式</label><select id="feed-type"><option>母乳</option><option>配方奶</option><option>混合</option></select></div>
+      <div class="form-group"><label>奶量(ml)</label><input type="number" id="feed-amount" placeholder="估算或实际量"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>喂养时长(分钟)</label><input type="number" id="feed-duration" placeholder="母乳喂养填写"></div>
+      <div class="form-group"><label>是否拍嗝</label><select id="feed-burped"><option value="1">✅ 已拍</option><option value="0">❌ 未拍</option></select></div>
+    </div>
+    <div class="form-group"><label>备注</label><textarea id="feed-notes" rows="2" placeholder="溢奶、呛奶等情况..."></textarea></div>
+  `, ()=>{
+    data.feedingRecords.push({id:genId(),date:$('#feed-date').value,time:$('#feed-time').value,type:$('#feed-type').value,amount:$('#feed-amount').value,duration:$('#feed-duration').value,burped:$('#feed-burped').value==='1',notes:$('#feed-notes').value});
+    saveData(data); renderPanel('baby-feeding'); showToast('喂养记录已保存');
+  });
+}
+
+// ========== 3. BABY DIAPER ==========
+function renderBabyDiaper() {
+  let h = renderHeader('🧷 排泄记录', '<button class="btn btn-primary btn-sm" onclick="addDiaperRecord()">+ 记录排泄</button>');
+  const todayRecords = data.diaperRecords.filter(f=>f.date===today());
+  h += '<div class="stat-cards">';
+  h += '<div class="stat-card blue"><div class="label">今日总计</div><div class="value">'+todayRecords.length+'<span style="font-size:14px">次</span></div></div>';
+  h += '<div class="stat-card orange"><div class="label">大便</div><div class="value">'+todayRecords.filter(d=>d.type==='大便'||d.type==='均有').length+'<span style="font-size:14px">次</span></div></div>';
+  h += '<div class="stat-card pink"><div class="label">小便</div><div class="value">'+todayRecords.filter(d=>d.type==='小便'||d.type==='均有').length+'<span style="font-size:14px">次</span></div></div>';
+  h += '</div>';
+  h += '<div class="form-inline"><div class="form-group"><label>筛选日期</label><input type="date" id="diaper-filter-date" value="'+today()+'" onchange="renderBabyDiaper()"></div></div>';
+
+  const filterDate = document.getElementById('diaper-filter-date')?.value || today();
+  const records = data.diaperRecords.filter(f=>f.date===filterDate).sort((a,b)=>a.time.localeCompare(b.time));
+  h += '<div class="table-wrap"><table><thead><tr><th>时间</th><th>类型</th><th>大便颜色</th><th>大便性状</th><th>备注</th><th>操作</th></tr></thead><tbody>';
+  if(records.length===0) h += '<tr><td colspan="6" style="text-align:center;color:var(--text-secondary);padding:30px;">暂无记录</td></tr>';
+  else records.forEach(r=>{
+    h += '<tr><td>'+r.time+'</td><td><span class="badge '+(r.type.includes('大便')?'badge-warning':'badge-blue')+'">'+r.type+'</span></td><td>'+(r.stoolColor||'--')+'</td><td>'+(r.stoolTexture||'--')+'</td><td>'+(r.notes||'')+'</td>';
+    h += '<td><button class="btn btn-xs btn-danger" onclick="deleteRecord(\'diaperRecords\',\''+r.id+'\')">删除</button></td></tr>';
+  });
+  h += '</tbody></table></div>';
+  $('#main-content').innerHTML = h;
+}
+
+function addDiaperRecord() {
+  openModal('🧷 记录排泄', `
+    <div class="form-row">
+      <div class="form-group"><label>日期</label><input type="date" id="diaper-date" value="${today()}"></div>
+      <div class="form-group"><label>时间</label><input type="time" id="diaper-time" value="${fmtTime(new Date())}"></div>
+    </div>
+    <div class="form-group"><label>类型</label><select id="diaper-type"><option>大便</option><option>小便</option><option>均有</option></select></div>
+    <div class="form-row">
+      <div class="form-group"><label>大便颜色</label><select id="diaper-color"><option value="">--</option><option>黄色</option><option>金黄色</option><option>黄绿色</option><option>墨绿色(胎便)</option><option>绿色</option><option>棕色</option></select></div>
+      <div class="form-group"><label>大便性状</label><select id="diaper-texture"><option value="">--</option><option>稀糊状</option><option>软膏状</option><option>糊状</option><option>成形软便</option><option>稀水样</option><option>泡沫样</option></select></div>
+    </div>
+    <div class="form-group"><label>备注</label><textarea id="diaper-notes" rows="2"></textarea></div>
+  `, ()=>{
+    data.diaperRecords.push({id:genId(),date:$('#diaper-date').value,time:$('#diaper-time').value,type:$('#diaper-type').value,stoolColor:$('#diaper-color').value,stoolTexture:$('#diaper-texture').value,notes:$('#diaper-notes').value});
+    saveData(data); renderPanel('baby-diaper'); showToast('排泄记录已保存');
+  });
+}
+
+// ========== 4. BABY CARE (脐带/沐浴/抚触) ==========
+function renderBabyCare() {
+  let h = renderHeader('🛁 日常护理', 
+    '<button class="btn btn-primary btn-sm" onclick="addBathRecord()">+ 沐浴抚触</button>'+
+    '<button class="btn btn-outline btn-sm" onclick="addCordRecord()">+ 脐带护理</button>');
+  
+  // Cord care
+  h += '<h3 style="font-size:15px;margin-bottom:10px;">🩹 脐带护理记录</h3>';
+  h += '<div class="form-inline"><div class="form-group"><label>日期</label><input type="date" id="cord-filter-date" value="'+today()+'" onchange="renderBabyCare()"></div></div>';
+  const cordFilterDate = document.getElementById('cord-filter-date')?.value || today();
+  const cordRecords = data.cordCareRecords.filter(r=>r.date===cordFilterDate);
+  h += '<div class="table-wrap" style="margin-bottom:16px;"><table><thead><tr><th>日期</th><th>状态</th><th>消毒</th><th>备注</th><th>操作</th></tr></thead><tbody>';
+  if(cordRecords.length===0) h += '<tr><td colspan="5" style="text-align:center;color:var(--text-secondary);padding:20px;">暂无记录</td></tr>';
+  else cordRecords.forEach(r=>{
+    h += '<tr><td>'+r.date+'</td><td><span class="badge '+(r.status==='已脱落'?'badge-success':r.status==='干燥'?'badge-blue':'badge-warning')+'">'+r.status+'</span></td><td>'+(r.disinfected?'✅':'❌')+'</td><td>'+(r.notes||'')+'</td>';
+    h += '<td><button class="btn btn-xs btn-danger" onclick="deleteRecord(\'cordCareRecords\',\''+r.id+'\')">删除</button></td></tr>';
+  });
+  h += '</tbody></table></div>';
+
+  // Bath records
+  h += '<h3 style="font-size:15px;margin-bottom:10px;">🛁 沐浴与抚触记录</h3>';
+  const bathFilterDate = document.getElementById('bath-filter-date2')?.value || '';
+  const bathRecords = data.bathRecords.sort((a,b)=>b.date.localeCompare(a.date)||b.time?.localeCompare(a.time||'')).slice(0,30);
+  h += '<div class="table-wrap"><table><thead><tr><th>日期</th><th>时间</th><th>类型</th><th>水温</th><th>备注</th><th>操作</th></tr></thead><tbody>';
+  if(bathRecords.length===0) h += '<tr><td colspan="6" style="text-align:center;color:var(--text-secondary);padding:20px;">暂无记录</td></tr>';
+  else bathRecords.forEach(r=>{
+    h += '<tr><td>'+r.date+'</td><td>'+(r.time||'--')+'</td><td><span class="badge badge-primary">'+r.type+'</span></td><td>'+(r.waterTemp||'--')+'°C</td><td>'+(r.notes||'')+'</td>';
+    h += '<td><button class="btn btn-xs btn-danger" onclick="deleteRecord(\'bathRecords\',\''+r.id+'\')">删除</button></td></tr>';
+  });
+  h += '</tbody></table></div>';
+  $('#main-content').innerHTML = h;
+}
+
+function addBathRecord() {
+  openModal('🛁 记录沐浴/抚触', `
+    <div class="form-row">
+      <div class="form-group"><label>日期</label><input type="date" id="bath-date" value="${today()}"></div>
+      <div class="form-group"><label>时间</label><input type="time" id="bath-time" value="${fmtTime(new Date())}"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>类型</label><select id="bath-type"><option>沐浴</option><option>抚触</option><option>被动操</option><option>沐浴+抚触</option></select></div>
+      <div class="form-group"><label>水温(°C)</label><input type="number" id="bath-temp" placeholder="37-40" value="38"></div>
+    </div>
+    <div class="form-group"><label>备注</label><textarea id="bath-notes" rows="2"></textarea></div>
+  `, ()=>{
+    data.bathRecords.push({id:genId(),date:$('#bath-date').value,time:$('#bath-time').value,type:$('#bath-type').value,waterTemp:$('#bath-temp').value,notes:$('#bath-notes').value});
+    saveData(data); renderPanel('baby-care'); showToast('护理记录已保存');
+  });
+}
+
+function addCordRecord() {
+  openModal('🩹 脐带护理', `
+    <div class="form-group"><label>日期</label><input type="date" id="cord-date" value="${today()}"></div>
+    <div class="form-row">
+      <div class="form-group"><label>脐带状态</label><select id="cord-status"><option>湿润</option><option>半干</option><option>干燥</option><option>已脱落</option></select></div>
+      <div class="form-group"><label>是否消毒</label><select id="cord-disinfected"><option value="1">✅ 已消毒</option><option value="0">❌ 未消毒</option></select></div>
+    </div>
+    <div class="form-group"><label>备注</label><textarea id="cord-notes" rows="2" placeholder="有无渗血、异味、红肿等..."></textarea></div>
+  `, ()=>{
+    data.cordCareRecords.push({id:genId(),date:$('#cord-date').value,status:$('#cord-status').value,disinfected:$('#cord-disinfected').value==='1',notes:$('#cord-notes').value});
+    saveData(data); renderPanel('baby-care'); showToast('脐带护理记录已保存');
+  });
+}
+
+// ========== 5. MOTHER CARE ==========
+function renderMotherCare() {
+  let h = renderHeader('💆 产后护理', 
+    '<button class="btn btn-primary btn-sm" onclick="addLochiaRecord()">+ 恶露记录</button>'+
+    '<button class="btn btn-outline btn-sm" onclick="addBreastRecord()">+ 乳房护理</button>'+
+    '<button class="btn btn-outline btn-sm" onclick="addWoundRecord()">+ 伤口护理</button>');
+  
+  // Lochia
+  h += '<h3 style="font-size:15px;margin-bottom:10px;">🩸 恶露观察</h3>';
+  const lochiaRecords = data.lochiaRecords.sort((a,b)=>b.date.localeCompare(a.date)).slice(0,14);
+  h += '<div class="table-wrap" style="margin-bottom:16px;"><table><thead><tr><th>日期</th><th>颜色</th><th>量</th><th>气味</th><th>备注</th><th>操作</th></tr></thead><tbody>';
+  if(lochiaRecords.length===0) h += '<tr><td colspan="6" style="text-align:center;color:var(--text-secondary);padding:20px;">暂无记录</td></tr>';
+  else lochiaRecords.forEach(r=>{
+    h += '<tr><td>'+r.date+'</td><td><span class="badge '+(r.color==='红色'?'badge-danger':r.color==='浆性'?'badge-warning':'badge-success')+'">'+r.color+'</span></td><td>'+r.amount+'</td><td>'+(r.odor||'正常')+'</td><td>'+(r.notes||'')+'</td>';
+    h += '<td><button class="btn btn-xs btn-danger" onclick="deleteRecord(\'lochiaRecords\',\''+r.id+'\')">删除</button></td></tr>';
+  });
+  h += '</tbody></table></div>';
+
+  // Breast care
+  h += '<h3 style="font-size:15px;margin-bottom:10px;">🍼 乳房护理</h3>';
+  const breastRecords = data.breastCareRecords.sort((a,b)=>b.date.localeCompare(a.date)).slice(0,14);
+  h += '<div class="table-wrap" style="margin-bottom:16px;"><table><thead><tr><th>日期</th><th>类型</th><th>备注</th><th>操作</th></tr></thead><tbody>';
+  if(breastRecords.length===0) h += '<tr><td colspan="4" style="text-align:center;color:var(--text-secondary);padding:20px;">暂无记录</td></tr>';
+  else breastRecords.forEach(r=>{
+    h += '<tr><td>'+r.date+'</td><td><span class="badge badge-primary">'+r.type+'</span></td><td>'+(r.notes||'')+'</td>';
+    h += '<td><button class="btn btn-xs btn-danger" onclick="deleteRecord(\'breastCareRecords\',\''+r.id+'\')">删除</button></td></tr>';
+  });
+  h += '</tbody></table></div>';
+
+  // Wound care
+  h += '<h3 style="font-size:15px;margin-bottom:10px;">🩹 伤口护理</h3>';
+  const woundRecords = data.woundCareRecords.sort((a,b)=>b.date.localeCompare(a.date)).slice(0,14);
+  h += '<div class="table-wrap"><table><thead><tr><th>日期</th><th>类型</th><th>状态</th><th>备注</th><th>操作</th></tr></thead><tbody>';
+  if(woundRecords.length===0) h += '<tr><td colspan="5" style="text-align:center;color:var(--text-secondary);padding:20px;">暂无记录</td></tr>';
+  else woundRecords.forEach(r=>{
+    let stateBadge = 'badge-success';
+    if(r.status==='红肿') stateBadge = 'badge-warning';
+    if(r.status==='感染/异常') stateBadge = 'badge-danger';
+    h += '<tr><td>'+r.date+'</td><td><span class="badge badge-primary">'+r.type+'</span></td><td><span class="badge '+stateBadge+'">'+r.status+'</span></td><td>'+(r.notes||'')+'</td>';
+    h += '<td><button class="btn btn-xs btn-danger" onclick="deleteRecord(\'woundCareRecords\',\''+r.id+'\')">删除</button></td></tr>';
+  });
+  h += '</tbody></table></div>';
+  $('#main-content').innerHTML = h;
+}
+
+function addLochiaRecord() {
+  openModal('🩸 恶露观察', `
+    <div class="form-group"><label>日期</label><input type="date" id="lochia-date" value="${today()}"></div>
+    <div class="form-row">
+      <div class="form-group"><label>颜色</label><select id="lochia-color"><option>红色(血性)</option><option>浆性(淡红)</option><option>白色</option></select></div>
+      <div class="form-group"><label>量</label><select id="lochia-amount"><option>少</option><option>中等</option><option>多</option></select></div>
+    </div>
+    <div class="form-group"><label>气味</label><select id="lochia-odor"><option>正常</option><option>轻微异味</option><option>腥臭⚠️</option></select></div>
+    <div class="form-group"><label>备注</label><textarea id="lochia-notes" rows="2"></textarea></div>
+  `, ()=>{
+    data.lochiaRecords.push({id:genId(),date:$('#lochia-date').value,color:$('#lochia-color').value,amount:$('#lochia-amount').value,odor:$('#lochia-odor').value,notes:$('#lochia-notes').value});
+    saveData(data); renderPanel('mother-care'); showToast('恶露记录已保存');
+  });
+}
+
+function addBreastRecord() {
+  openModal('🍼 乳房护理', `
+    <div class="form-group"><label>日期</label><input type="date" id="breast-date" value="${today()}"></div>
+    <div class="form-group"><label>护理类型</label><select id="breast-type"><option>开奶</option><option>通乳</option><option>乳头护理</option><option>冷/热敷</option><option>其他</option></select></div>
+    <div class="form-group"><label>备注</label><textarea id="breast-notes" rows="2" placeholder="描述状况、处理方式..."></textarea></div>
+  `, ()=>{
+    data.breastCareRecords.push({id:genId(),date:$('#breast-date').value,type:$('#breast-type').value,notes:$('#breast-notes').value});
+    saveData(data); renderPanel('mother-care'); showToast('乳房护理记录已保存');
+  });
+}
+
+function addWoundRecord() {
+  openModal('🩹 伤口护理', `
+    <div class="form-group"><label>日期</label><input type="date" id="wound-date" value="${today()}"></div>
+    <div class="form-row">
+      <div class="form-group"><label>伤口类型</label><select id="wound-type"><option>${data.profile.deliveryType==='剖腹产'?'剖腹产伤口':'顺产侧切'}</option><option>${data.profile.deliveryType==='剖腹产'?'顺产侧切':'剖腹产伤口'}</option></select></div>
+      <div class="form-group"><label>恢复状态</label><select id="wound-status"><option>正常愈合</option><option>红肿</option><option>感染/异常</option></select></div>
+    </div>
+    <div class="form-group"><label>备注</label><textarea id="wound-notes" rows="2"></textarea></div>
+  `, ()=>{
+    data.woundCareRecords.push({id:genId(),date:$('#wound-date').value,type:$('#wound-type').value,status:$('#wound-status').value,notes:$('#wound-notes').value});
+    saveData(data); renderPanel('mother-care'); showToast('伤口护理记录已保存');
+  });
+}
+
+// ========== 6. MEALS ==========
+function renderMeals() {
+  let h = renderHeader('🍲 月子餐', '<button class="btn btn-primary btn-sm" onclick="addMealRecord()">+ 记录餐食</button>');
+  
+  h += '<div class="form-inline"><div class="form-group"><label>日期</label><input type="date" id="meal-filter-date" value="'+today()+'" onchange="renderMeals()"></div></div>';
+
+  const filterDate = document.getElementById('meal-filter-date')?.value || today();
+  const mealSlots = ['早餐','加餐(早)','午餐','午点','晚餐','晚点'];
+  h += '<div class="meal-grid">';
+  mealSlots.forEach(slot=>{
+    const rec = data.mealRecords.find(r=>r.date===filterDate && r.mealType===slot);
+    h += '<div class="meal-card"><div class="meal-label">'+slot+'</div>';
+    h += '<div class="meal-content">'+(rec?rec.foods.replace(/\n/g,'<br>')+'<br><small style="color:var(--text-secondary)">'+(rec.notes||'')+'</small>':'<span class="meal-empty">未记录</span>')+'</div>';
+    if(rec) h += '<button class="btn btn-xs btn-danger" style="margin-top:6px;" onclick="deleteRecord(\'mealRecords\',\''+rec.id+'\')">删除</button>';
+    h += '</div>';
+  });
+  h += '</div>';
+
+  // Meal templates
+  h += '<h3 style="font-size:15px;margin:20px 0 10px;">📖 分阶段食谱参考</h3>';
+  const stage = postpartumStage();
+  const recipes = {
+    '第一阶段': [
+      {meal:'早餐',food:'小米红枣粥 + 水煮蛋 + 清炒时蔬'},
+      {meal:'加餐',food:'红糖姜水 / 藕粉'},
+      {meal:'午餐',food:'麻油猪肝 + 清炒西兰花 + 软米饭'},
+      {meal:'午点',food:'红豆汤 / 蒸苹果'},
+      {meal:'晚餐',food:'生化汤 + 清蒸鲈鱼 + 炒青菜'},
+      {meal:'晚点',food:'牛奶燕麦粥'}
+    ],
+    '第二阶段': [
+      {meal:'早餐',food:'花生红枣粥 + 鸡蛋饼 + 拌黄瓜'},
+      {meal:'加餐',food:'木瓜炖牛奶'},
+      {meal:'午餐',food:'通草鲫鱼汤 + 香菇青菜 + 杂粮饭'},
+      {meal:'午点',food:'银耳莲子羹'},
+      {meal:'晚餐',food:'花生猪蹄汤 + 清炒山药 + 米饭'},
+      {meal:'晚点',food:'芝麻糊'}
+    ],
+    '第三阶段': [
+      {meal:'早餐',food:'核桃芝麻糊 + 全麦面包 + 水果'},
+      {meal:'加餐',food:'红枣枸杞茶 + 坚果'},
+      {meal:'午餐',food:'当归鸡汤 + 虾仁西兰花 + 米饭'},
+      {meal:'午点',food:'酒酿圆子'},
+      {meal:'晚餐',food:'乌鸡汤 + 蒸排骨 + 时蔬 + 米饭'},
+      {meal:'晚点',food:'牛奶 + 苏打饼干'}
+    ],
+    '第四阶段': [
+      {meal:'早餐',food:'杂粮粥 + 蒸蛋 + 水果'},
+      {meal:'加餐',food:'酸奶 + 燕麦'},
+      {meal:'午餐',food:'黄芪炖鸡 + 五彩时蔬 + 米饭'},
+      {meal:'午点',food:'蒸紫薯 / 水果'},
+      {meal:'晚餐',food:'鲫鱼豆腐汤 + 清炒时蔬 + 杂粮饭'},
+      {meal:'晚点',food:'热牛奶'}
+    ]
+  };
+  const currentRecipes = recipes[stage.stage] || recipes['第一阶段'];
+  h += '<div class="table-wrap"><table><thead><tr><th>餐次</th><th>推荐食谱</th></tr></thead><tbody>';
+  currentRecipes.forEach(r=>{
+    h += '<tr><td>'+r.meal+'</td><td>'+r.food+'</td></tr>';
+  });
+  h += '</tbody></table></div>';
+
+  // Diet taboos
+  h += '<div style="margin-top:16px;padding:16px;background:var(--white);border-radius:var(--radius);box-shadow:var(--card-shadow);">';
+  h += '<h3 style="font-size:14px;color:var(--danger);margin-bottom:8px;">⚠️ 饮食禁忌</h3>';
+  h += '<p style="font-size:13px;color:var(--text-secondary);line-height:1.8;">';
+  h += '🚫 <b>回奶食物</b>：韭菜、麦芽、花椒、大料、苦瓜、山楂<br>';
+  h += '🚫 <b>寒凉食物</b>：西瓜、苦瓜、螃蟹、冰饮、生冷沙拉<br>';
+  h += '🚫 <b>辛辣刺激</b>：辣椒、大蒜、芥末、酒精、咖啡<br>';
+  h += '🚫 <b>油腻食物</b>：油炸食品、肥肉、奶油蛋糕<br>';
+  h += '✅ <b>催乳推荐</b>：通草鲫鱼汤、花生猪蹄汤、木瓜牛奶、丝瓜鸡蛋汤</p></div>';
+
+  $('#main-content').innerHTML = h;
+}
+
+function addMealRecord() {
+  openModal('🍲 记录餐食', `
+    <div class="form-row">
+      <div class="form-group"><label>日期</label><input type="date" id="meal-date" value="${today()}"></div>
+      <div class="form-group"><label>餐次</label><select id="meal-type"><option>早餐</option><option>加餐(早)</option><option>午餐</option><option>午点</option><option>晚餐</option><option>晚点</option></select></div>
+    </div>
+    <div class="form-group"><label>食物内容</label><textarea id="meal-foods" rows="3" placeholder="菜名+食材，每行一个..."></textarea></div>
+    <div class="form-group"><label>备注</label><input id="meal-notes" placeholder="进食量、反应等..."></div>
+  `, ()=>{
+    data.mealRecords.push({id:genId(),date:$('#meal-date').value,mealType:$('#meal-type').value,foods:$('#meal-foods').value,notes:$('#meal-notes').value});
+    saveData(data); renderPanel('meals'); showToast('餐食记录已保存');
+  });
+}
+
+// ========== 7. HEALTH MONITORING ==========
+function renderHealth() {
+  let h = renderHeader('📈 健康监测', '<button class="btn btn-primary btn-sm" onclick="addBabyVital()">+ 宝宝体征</button><button class="btn btn-outline btn-sm" onclick="addMotherVital()" style="margin-left:6px;">+ 产妇体征</button>');
+  
+  // Baby vitals
+  const latestBaby = data.babyVitals[data.babyVitals.length-1];
+  h += '<h3 style="font-size:15px;margin-bottom:10px;">👶 宝宝体征（最新）</h3>';
+  h += '<div class="vital-grid">';
+  h += '<div class="vital-card'+(latestBaby&&latestBaby.temp>37.5?' abnormal':'')+'"><div class="vital-name">🌡 体温</div><div class="vital-value">'+(latestBaby?latestBaby.temp:'--')+'</div><div class="vital-unit">°C</div><div class="vital-time">'+(latestBaby?latestBaby.date+' '+latestBaby.time:'未记录')+'</div></div>';
+  h += '<div class="vital-card'+(latestBaby&&latestBaby.jaundice>15?' abnormal':'')+'"><div class="vital-name">🟡 黄疸</div><div class="vital-value">'+(latestBaby?latestBaby.jaundice:'--')+'</div><div class="vital-unit">mg/dL</div><div class="vital-time">'+(latestBaby?latestBaby.date+' '+latestBaby.time:'未记录')+'</div></div>';
+  h += '<div class="vital-card"><div class="vital-name">⚖ 体重</div><div class="vital-value">'+(latestBaby?latestBaby.weight:'--')+'</div><div class="vital-unit">g</div><div class="vital-time">'+(latestBaby?latestBaby.date+' '+latestBaby.time:'未记录')+'</div></div>';
+  h += '<div class="vital-card"><div class="vital-name">😴 睡眠</div><div class="vital-value">'+(latestBaby?latestBaby.sleepHours:'--')+'</div><div class="vital-unit">小时</div><div class="vital-time">'+(latestBaby?latestBaby.date+' '+latestBaby.time:'未记录')+'</div></div>';
+  h += '</div>';
+
+  // Baby chart
+  const babyRecs = data.babyVitals.slice(-14);
+  h += '<div class="chart-wrap"><h3>宝宝黄疸+体温趋势（近14天）</h3><canvas id="babyHealthChart"></canvas></div>';
+
+  // Mother vitals
+  const latestMother = data.motherVitals[data.motherVitals.length-1];
+  h += '<h3 style="font-size:15px;margin:16px 0 10px;">👩 产妇体征（最新）</h3>';
+  h += '<div class="vital-grid">';
+  h += '<div class="vital-card'+(latestMother&&latestMother.temp>37.5?' abnormal':'')+'"><div class="vital-name">🌡 体温</div><div class="vital-value">'+(latestMother?latestMother.temp:'--')+'</div><div class="vital-unit">°C</div></div>';
+  h += '<div class="vital-card"><div class="vital-name">💓 血压</div><div class="vital-value">'+(latestMother?latestMother.bpSystolic+'/'+latestMother.bpDiastolic:'--')+'</div><div class="vital-unit">mmHg</div></div>';
+  h += '<div class="vital-card"><div class="vital-name">⚖ 体重</div><div class="vital-value">'+(latestMother?latestMother.weight:'--')+'</div><div class="vital-unit">kg</div></div>';
+  h += '<div class="vital-card"><div class="vital-name">😊 情绪</div><div class="vital-value">'+(latestMother?latestMother.mood:'--')+'</div><div class="vital-unit"></div></div>';
+  h += '</div>';
+
+  // Mother chart
+  const motherRecs = data.motherVitals.slice(-14);
+  h += '<div class="chart-wrap"><h3>产妇体温趋势（近14天）</h3><canvas id="motherHealthChart"></canvas></div>';
+
+  $('#main-content').innerHTML = h;
+
+  setTimeout(()=>{
+    const ctx1 = document.getElementById('babyHealthChart');
+    if(ctx1) new Chart(ctx1, {type:'line', data:{labels:babyRecs.map(r=>r.date.slice(5)),datasets:[
+      {label:'黄疸(mg/dL)',data:babyRecs.map(r=>r.jaundice),borderColor:'#f59e0b',backgroundColor:'rgba(245,158,11,0.1)',fill:true,tension:0.3},
+      {label:'体温(°C)',data:babyRecs.map(r=>r.temp),borderColor:'#dc2626',backgroundColor:'transparent',tension:0.3,yAxisID:'y1'}
+    ]}, options:{responsive:true, scales:{y:{title:{display:true,text:'黄疸 mg/dL'}},y1:{position:'right',grid:{display:false},min:36,max:38,title:{display:true,text:'体温 °C'}}}}});
+    const ctx2 = document.getElementById('motherHealthChart');
+    if(ctx2) new Chart(ctx2, {type:'line', data:{labels:motherRecs.map(r=>r.date.slice(5)),datasets:[
+      {label:'体温(°C)',data:motherRecs.map(r=>r.temp),borderColor:'#db2777',backgroundColor:'rgba(219,39,119,0.1)',fill:true,tension:0.3}
+    ]}, options:{responsive:true, scales:{y:{min:36,max:39,title:{display:true,text:'°C'}}}}});
+  },200);
+}
+
+function addBabyVital() {
+  openModal('👶 记录宝宝体征', `
+    <div class="form-row">
+      <div class="form-group"><label>日期</label><input type="date" id="bv-date" value="${today()}"></div>
+      <div class="form-group"><label>时间</label><input type="time" id="bv-time" value="${fmtTime(new Date())}"></div>
+    </div>
+    <div class="form-row-3">
+      <div class="form-group"><label>体温(°C)</label><input type="number" id="bv-temp" step="0.1" placeholder="36.0-37.5"></div>
+      <div class="form-group"><label>黄疸(mg/dL)</label><input type="number" id="bv-jaundice" step="0.1" placeholder="经皮测值"></div>
+      <div class="form-group"><label>体重(g)</label><input type="number" id="bv-weight" step="10" placeholder="克"></div>
+    </div>
+    <div class="form-group"><label>今日睡眠(小时)</label><input type="number" id="bv-sleep" step="0.5" placeholder="14-20小时"></div>
+  `, ()=>{
+    data.babyVitals.push({id:genId(),date:$('#bv-date').value,time:$('#bv-time').value,temp:$('#bv-temp').value,jaundice:$('#bv-jaundice').value,weight:$('#bv-weight').value,sleepHours:$('#bv-sleep').value});
+    saveData(data); renderPanel('health'); showToast('宝宝体征已记录');
+  });
+}
+
+function addMotherVital() {
+  openModal('👩 记录产妇体征', `
+    <div class="form-group"><label>日期</label><input type="date" id="mv-date" value="${today()}"></div>
+    <div class="form-row-3">
+      <div class="form-group"><label>体温(°C)</label><input type="number" id="mv-temp" step="0.1" placeholder="36.0-37.5"></div>
+      <div class="form-group"><label>收缩压</label><input type="number" id="mv-bps" placeholder="mmHg"></div>
+      <div class="form-group"><label>舒张压</label><input type="number" id="mv-bpd" placeholder="mmHg"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>体重(kg)</label><input type="number" id="mv-weight" step="0.1"></div>
+      <div class="form-group"><label>情绪状态</label><select id="mv-mood"><option>😊 良好</option><option>😐 一般</option><option>😢 低落</option><option>😰 焦虑</option></select></div>
+    </div>
+  `, ()=>{
+    data.motherVitals.push({id:genId(),date:$('#mv-date').value,temp:$('#mv-temp').value,bpSystolic:$('#mv-bps').value,bpDiastolic:$('#mv-bpd').value,weight:$('#mv-weight').value,mood:$('#mv-mood').value});
+    saveData(data); renderPanel('health'); showToast('产妇体征已记录');
+  });
+}
+
+// ========== 8. MEDICATION ==========
+function renderMedication() {
+  let h = renderHeader('💊 用药管理', '<button class="btn btn-primary btn-sm" onclick="addMedication()">+ 添加药品</button>');
+  
+  h += '<div class="med-grid">';
+  if(data.medications.length===0) {
+    h += '<div class="empty-state" style="grid-column:1/-1;"><div class="empty-icon">💊</div><p>暂无用药计划</p></div>';
+  } else {
+    data.medications.forEach(med=>{
+      const todayLog = data.medicationLogs.find(l=>l.medId===med.id && l.date===today());
+      const isActive = !med.endDate || med.endDate >= today();
+      h += '<div class="med-card">';
+      h += '<div class="med-name">'+med.name+' <span class="badge '+(med.target==='产妇'?'badge-primary':'badge-blue')+'">'+med.target+'</span></div>';
+      h += '<div class="med-info">'+med.dosage+' | '+med.frequency+' | '+(med.startDate||'')+(med.endDate?' ~ '+med.endDate:'')+'</div>';
+      h += '<div class="med-info">'+(med.notes||'')+'</div>';
+      if(isActive) {
+        h += '<div class="med-slots">';
+        const slots = med.frequency.includes('3次')?['早','中','晚']:med.frequency.includes('2次')?['早','晚']:['每日'];
+        slots.forEach(s=>{
+          const logExists = data.medicationLogs.find(l=>l.medId===med.id && l.date===today() && l.slot===s);
+          const cls = logExists?(logExists.taken?'taken':'missed'):'pending';
+          h += '<span class="med-slot '+cls+'" onclick="toggleMedSlot(\''+med.id+'\',\''+s+'\')">'+s+'</span>';
+        });
+        h += '</div>';
+      }
+      h += '<button class="btn btn-xs btn-danger" style="margin-top:8px;" onclick="deleteRecord(\'medications\',\''+med.id+'\'); alsoDeleteMedLogs(\''+med.id+'\')">删除药品</button>';
+      h += '</div>';
+    });
+  }
+  h += '</div>';
+
+  // Med log history
+  if(data.medicationLogs.length>0){
+    h += '<h3 style="font-size:15px;margin:16px 0 10px;">📋 用药历史</h3>';
+    const logs = data.medicationLogs.sort((a,b)=>b.date.localeCompare(a.date)||b.slot?.localeCompare(a.slot||'')).slice(0,30);
+    h += '<div class="table-wrap"><table><thead><tr><th>日期</th><th>时间</th><th>药品</th><th>状态</th></tr></thead><tbody>';
+    logs.forEach(l=>{
+      const med = data.medications.find(m=>m.id===l.medId);
+      h += '<tr><td>'+l.date+'</td><td>'+l.slot+'</td><td>'+(med?med.name:'已删除')+'</td><td><span class="badge '+(l.taken?'badge-success':'badge-danger')+'">'+(l.taken?'已服':'未服')+'</span></td></tr>';
+    });
+    h += '</tbody></table></div>';
+  }
+
+  $('#main-content').innerHTML = h;
+}
+
+function addMedication() {
+  openModal('💊 添加药品', `
+    <div class="form-row">
+      <div class="form-group"><label>用药对象</label><select id="med-target"><option>产妇</option><option>婴儿</option></select></div>
+      <div class="form-group"><label>药品名称</label><input id="med-name" placeholder="如：益母草颗粒"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>剂量</label><input id="med-dosage" placeholder="如：1袋/次"></div>
+      <div class="form-group"><label>频次</label><select id="med-frequency"><option>每日1次</option><option>每日2次</option><option>每日3次</option><option>每日4次</option></select></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>开始日期</label><input type="date" id="med-start" value="${today()}"></div>
+      <div class="form-group"><label>结束日期</label><input type="date" id="med-end"></div>
+    </div>
+    <div class="form-group"><label>备注</label><input id="med-notes" placeholder="注意事项..."></div>
+  `, ()=>{
+    data.medications.push({id:genId(),target:$('#med-target').value,name:$('#med-name').value,dosage:$('#med-dosage').value,frequency:$('#med-frequency').value,startDate:$('#med-start').value,endDate:$('#med-end').value,notes:$('#med-notes').value});
+    saveData(data); renderPanel('medication'); showToast('药品已添加');
+  });
+}
+
+function toggleMedSlot(medId, slot) {
+  const existing = data.medicationLogs.find(l=>l.medId===medId && l.date===today() && l.slot===slot);
+  if(existing) { existing.taken = !existing.taken; }
+  else { data.medicationLogs.push({id:genId(),medId,date:today(),slot,taken:true,time:fmtTime(new Date())}); }
+  saveData(data); renderPanel('medication');
+}
+
+function alsoDeleteMedLogs(medId) { data.medicationLogs = data.medicationLogs.filter(l=>l.medId!==medId); saveData(data); }
+
+// ========== 9. CARE DIARY ==========
+function renderDiary() {
+  let h = renderHeader('📋 护理日志', '<button class="btn btn-primary btn-sm" onclick="addDiaryEntry()">+ 写日志</button>');
+  h += '<div class="form-inline"><div class="form-group"><label>日期</label><input type="date" id="diary-filter-date" value="'+today()+'" onchange="renderDiary()"></div></div>';
+
+  const filterDate = document.getElementById('diary-filter-date')?.value || today();
+  const entries = data.careDiary.filter(d=>d.date===filterDate).sort((a,b)=>a.time?.localeCompare(b.time||''));
+  h += '<div class="card-list">';
+  if(entries.length===0) h += '<div class="empty-state"><div class="empty-icon">📋</div><p>今日暂无护理日志</p></div>';
+  else entries.forEach(e=>{
+    h += '<div class="card-item"><div class="card-icon">'+e.icon+'</div><div class="card-body"><div class="card-title">'+e.title+' <small style="color:var(--text-secondary);font-weight:normal;">'+e.time+'</small></div>';
+    h += '<div class="card-meta">'+e.content+'</div></div>';
+    h += '<div class="card-actions"><button class="btn btn-xs btn-danger" onclick="deleteRecord(\'careDiary\',\''+e.id+'\')">删除</button></div></div>';
+  });
+  h += '</div>';
+  $('#main-content').innerHTML = h;
+}
+
+function addDiaryEntry() {
+  openModal('📋 护理日志', `
+    <div class="form-row">
+      <div class="form-group"><label>日期</label><input type="date" id="diary-date" value="${today()}"></div>
+      <div class="form-group"><label>时间</label><input type="time" id="diary-time" value="${fmtTime(new Date())}"></div>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>图标</label><select id="diary-icon"><option>📝</option><option>🍼</option><option>🛁</option><option>💆</option><option>🍲</option><option>💊</option><option>⚠️</option><option>✅</option></select></div>
+      <div class="form-group"><label>标题</label><input id="diary-title" placeholder="如：脐带护理完成"></div>
+    </div>
+    <div class="form-group"><label>内容</label><textarea id="diary-content" rows="3" placeholder="详细描述护理过程和观察..."></textarea></div>
+  `, ()=>{
+    data.careDiary.push({id:genId(),date:$('#diary-date').value,time:$('#diary-time').value,icon:$('#diary-icon').value,title:$('#diary-title').value,content:$('#diary-content').value});
+    saveData(data); renderPanel('diary'); showToast('护理日志已保存');
+  });
+}
+
+// ========== 10. KNOWLEDGE BASE ==========
+function renderKnowledge() {
+  let h = renderHeader('📖 母婴知识库');
+
+  const kbItems = [
+    {icon:'🟡',title:'新生儿黄疸',desc:'生理性vs病理性黄疸的识别与护理，胆红素监测，蓝光治疗指征'},
+    {icon:'💨',title:'肠胀气与肠绞痛',desc:'飞机抱、排气操、腹部按摩手法，安抚技巧'},
+    {icon:'🔴',title:'红臀/尿布疹',desc:'预防与分级护理，护臀膏使用，保持干燥的方法'},
+    {icon:'🩹',title:'脐带护理',desc:'每日消毒规范，异常分泌物识别，脱落时间预期'},
+    {icon:'🛁',title:'新生儿沐浴',desc:'水温控制(37-40°C)、室温要求、洗浴顺序、安全要点'},
+    {icon:'🤱',title:'母乳喂养指南',desc:'正确哺乳姿势、含接要点、按需喂养、追奶方法'},
+    {icon:'🍼',title:'堵奶/乳腺炎处理',desc:'冷热敷时机、通乳手法、何时需要就医'},
+    {icon:'😢',title:'宝宝哭声识别',desc:'饥饿哭/尿布湿哭/困倦哭/肠胀气哭的辨别方法'},
+    {icon:'😴',title:'新生儿睡眠',desc:'睡眠时长标准、安全睡姿、昼夜节律建立方法'},
+    {icon:'🤒',title:'新生儿发热',desc:'发热标准(>37.5°C)、物理降温、就医指征'},
+    {icon:'🩸',title:'恶露观察指南',desc:'颜色变化(红→浆→白)、正常量与异常信号'},
+    {icon:'💪',title:'产后恢复运动',desc:'凯格尔运动、腹直肌修复、盆底肌训练循序渐进'},
+    {icon:'😰',title:'产后抑郁预警',desc:'爱丁堡量表筛查、情绪观察要点、心理疏导技巧'},
+    {icon:'🚨',title:'呛奶急救',desc:'海姆立克婴儿版、体位处理、紧急就医判断'},
+    {icon:'📏',title:'生长发育指标',desc:'0-1月龄体重/身长/头围标准、里程碑发育项'}
+  ];
+
+  h += '<div class="kb-grid">';
+  kbItems.forEach(kb=>{
+    h += '<div class="kb-card" onclick="showKbDetail(\''+kb.title+'\')"><div class="kb-icon">'+kb.icon+'</div><div class="kb-title">'+kb.title+'</div><div class="kb-desc">'+kb.desc+'</div></div>';
+  });
+  h += '</div>';
+
+  $('#main-content').innerHTML = h;
+}
+
+function showKbDetail(title) {
+  const details = {
+    '新生儿黄疸': '🟡 <b>新生儿黄疸</b><br><br><b>生理性黄疸：</b>出生后2-3天出现，4-5天达高峰，7-10天消退。足月儿<12.9mg/dL，早产儿<15mg/dL。<br><br><b>病理性黄疸：</b>24小时内出现、上升过快(>5mg/dL/天)、持续时间长、直接胆红素升高。<br><br><b>护理要点：</b>① 勤喂母乳(每2-3小时)促进排便 ② 日光浴(避开强光，遮挡眼睛) ③ 每日监测黄疸值 ④ 超标及时就医考虑蓝光治疗',
+    '肠胀气与肠绞痛': '💨 <b>肠胀气/肠绞痛</b><br><br><b>表现：</b>哭闹不止、双腿蜷缩、腹部紧绷、放屁后缓解<br><br><b>缓解方法：</b>① 飞机抱 ② 顺时针腹部按摩 ③ 排气操（蹬自行车） ④ 趴卧（需监护） ⑤ 西甲硅油（遵医嘱）<br><br><b>预防：</b>母乳妈妈避免产气食物（豆类、洋葱、花椰菜）；配方奶注意冲泡方式减少气泡',
+    '红臀/尿布疹': '🔴 <b>红臀护理</b><br><br><b>分级：</b>轻度（局部潮红）→中度（丘疹/红斑）→重度（糜烂/溃疡）<br><br><b>护理：</b>① 勤换尿布（每2-3小时） ② 温水清洗→轻拍吸干（勿擦拭） ③ 涂抹护臀膏/氧化锌 ④ 每天"光屁屁"通风15分钟 ⑤ 重度需就医，可能真菌感染需用药',
+    '呛奶急救': '🚨 <b>呛奶急救处理</b><br><br><b>轻度呛奶：</b>立即停止喂养→侧卧→轻拍背部→清理口鼻奶液<br><br><b>严重呛奶（面色发紫/无法呼吸）：</b><br>① 立即将婴儿面朝下置于前臂，头低于躯干<br>② 用掌根在肩胛骨间快速拍击5次<br>③ 翻转面朝上，两指在胸骨下半段快速按压5次<br>④ 交替进行至异物排出<br>⑤ 同时呼叫120<br><br><b>预防：</b>喂奶时保持半卧位、奶嘴孔大小合适、喂后竖抱拍嗝20分钟、右侧卧防溢奶'
+  };
+
+  const content = details[title] || '<p>该知识点内容正在完善中...</p>';
+  openModal(title, '<div style="line-height:1.8;font-size:14px;">'+content+'</div>', null);
+  document.getElementById('modal-save-btn').style.display = 'none';
+  document.querySelector('.modal-actions button:first-child').textContent = '关闭';
+}
+
+// ========== 11. FAMILY REPORT ==========
+function renderReports() {
+  let h = renderHeader('📄 家属报告');
+  
+  // Daily report
+  const todayFeeds = data.feedingRecords.filter(f=>f.date===today());
+  const todayDiapers = data.diaperRecords.filter(f=>f.date===today());
+  const babyVital = data.babyVitals.filter(f=>f.date===today())[0];
+  const motherVital = data.motherVitals.filter(f=>f.date===today())[0];
+  const todayMeds = data.medicationLogs.filter(f=>f.date===today() && f.taken);
+  const todayDiary = data.careDiary.filter(f=>f.date===today());
+
+  h += '<div class="report-block" id="daily-report">';
+  h += '<h3>📅 '+today()+' 母婴护理日报</h3>';
+  h += '<p><span class="section-title">👶 宝宝情况：</span></p>';
+  h += '<p>喂养 '+todayFeeds.length+' 次，总量 '+todayFeeds.reduce((s,f)=>s+(parseFloat(f.amount)||0),0)+' ml；排泄 '+todayDiapers.length+' 次（大便 '+todayDiapers.filter(d=>d.type==='大便'||d.type==='均有').length+' 次）</p>';
+  if(babyVital) h += '<p>体温 '+babyVital.temp+'°C | 黄疸 '+babyVital.jaundice+' mg/dL | 体重 '+babyVital.weight+'g | 睡眠 '+babyVital.sleepHours+'h</p>';
+  
+  h += '<p><span class="section-title">👩 产妇情况：</span></p>';
+  if(motherVital) h += '<p>体温 '+motherVital.temp+'°C | 血压 '+(motherVital.bpSystolic||'--')+'/'+(motherVital.bpDiastolic||'--')+' mmHg | 体重 '+(motherVital.weight||'--')+'kg | 情绪 '+motherVital.mood+'</p>';
+
+  if(todayMeds.length>0) {
+    h += '<p><span class="section-title">💊 用药情况：</span></p>'; 
+    const medNames = [...new Set(todayMeds.map(l=>{const m=data.medications.find(mm=>mm.id===l.medId);return m?m.name:'';}).filter(Boolean))];
+    h += '<p>已完成 '+medNames.join('、')+'</p>';
+  }
+
+  if(todayDiary.length>0) {
+    h += '<p><span class="section-title">📝 护理备注：</span></p>';
+    todayDiary.forEach(d=>{ h += '<p>'+d.icon+' '+d.title+'：'+d.content+'</p>'; });
+  }
+  h += '</div>';
+
+  h += '<button class="btn btn-primary" onclick="copyReport()">📋 复制报告文本</button>';
+
+  // Weekly report
+  h += '<div class="report-block" style="margin-top:16px;">';
+  h += '<h3>📊 本周汇总</h3>';
+  const weekStart = fmtDate(new Date(Date.now()-6*86400000));
+  const weekFeeds = data.feedingRecords.filter(f=>f.date>=weekStart);
+  const weekDiapers = data.diaperRecords.filter(f=>f.date>=weekStart);
+  h += '<p>本周喂养 '+weekFeeds.length+' 次 | 排泄 '+weekDiapers.length+' 次 | 护理日志 '+data.careDiary.filter(f=>f.date>=weekStart).length+' 条</p>';
+  
+  if(data.babyVitals.length>=2){
+    const firstWeek = data.babyVitals.filter(v=>v.date>=weekStart);
+    if(firstWeek.length>=2){
+      const weightChange = (parseFloat(firstWeek[firstWeek.length-1].weight)||0)-(parseFloat(firstWeek[0].weight)||0);
+      h += '<p>宝宝体重变化：'+(weightChange>=0?'+':'')+weightChange+'g</p>';
+    }
+  }
+  h += '</div>';
+
+  $('#main-content').innerHTML = h;
+}
+
+function copyReport() {
+  const report = document.getElementById('daily-report');
+  if(report) { navigator.clipboard.writeText(report.innerText).then(()=>showToast('报告已复制到剪贴板')); }
+}
+
+// ========== 12. HANDOVER ==========
+function renderHandover() {
+  let h = renderHeader('🔄 下户交接');
+
+  const stage = postpartumStage();
+  const totalFeeds = data.feedingRecords.length;
+  const totalDiapers = data.diaperRecords.length;
+  const babyVitals = data.babyVitals;
+  const firstWeight = babyVitals.length>0?parseFloat(babyVitals[0].weight)||0:0;
+  const lastWeight = babyVitals.length>0?parseFloat(babyVitals[babyVitals.length-1].weight)||0:0;
+
+  h += '<div class="report-block">';
+  h += '<h3>📊 '+data.profile.motherName+' & '+data.profile.babyName+' 护理总结</h3>';
+  h += '<p><b>服务周期：</b>'+data.profile.deliveryDate+' 至 '+today()+'（共 '+stage.days+' 天）</p>';
+  h += '<p><b>分娩方式：</b>'+data.profile.deliveryType+' | <b>喂养方式：</b>'+data.profile.feedingType+'</p>';
+  
+  h += '<p><span class="section-title">👶 新生儿总数据：</span></p>';
+  h += '<p>喂养 '+totalFeeds+' 次 | 排泄 '+totalDiapers+' 次 | 沐浴抚触 '+data.bathRecords.length+' 次 | 脐护 '+data.cordCareRecords.length+' 次</p>';
+  if(firstWeight && lastWeight) h += '<p>体重：'+firstWeight+'g → '+lastWeight+'g（增长 '+(lastWeight-firstWeight)+'g）</p>';
+
+  const latestBabyVital = babyVitals[babyVitals.length-1];
+  if(latestBabyVital) h += '<p>最新体征：体温 '+latestBabyVital.temp+'°C | 黄疸 '+latestBabyVital.jaundice+' mg/dL | 体重 '+latestBabyVital.weight+'g</p>';
+
+  h += '<p><span class="section-title">👩 产妇恢复情况：</span></p>';
+  h += '<p>恶露记录 '+data.lochiaRecords.length+' 次 | 伤口护理 '+data.woundCareRecords.length+' 次 | 乳房护理 '+data.breastCareRecords.length+' 次</p>';
+  const latestMotherVital = data.motherVitals[data.motherVitals.length-1];
+  if(latestMotherVital) h += '<p>体温 '+latestMotherVital.temp+'°C | 情绪 '+latestMotherVital.mood+'</p>';
+  h += '</div>';
+
+  // Skill checklist
+  h += '<div class="report-block" style="margin-top:16px;">';
+  h += '<h3>✅ 技能传授清单</h3>';
+  h += '<ul class="checklist">';
+  const skills = [
+    '正确母乳喂养姿势（摇篮式/交叉式/橄榄球式/侧卧式）',
+    '配方奶冲调方法（水温40-50°C、先水后粉、水平摇匀）',
+    '正确拍嗝方法（竖抱、空心掌、背部由下至上）',
+    '新生儿沐浴（水温37-40°C、室温26-28°C、洗浴顺序）',
+    '脐带护理（75%酒精/碘伏、由内向外消毒）',
+    '尿布更换与红臀预防',
+    '新生儿抚触手法（头面→胸部→腹部→上肢→下肢→背部）',
+    '黄疸观察方法（自然光下看皮肤、巩膜颜色）',
+    '体温测量与发热处理',
+    '产妇伤口护理（顺产侧切/剖腹产伤口）',
+    '恶露观察（颜色/量/气味）',
+    '月子餐基本原则（四阶段饮食）',
+    '呛奶急救处理'
+  ];
+  skills.forEach((s,i)=>{
+    h += '<li><input type="checkbox" id="skill-'+i+'" onchange="saveSkillCheck()"> '+s+'</li>';
+  });
+  h += '</ul></div>';
+
+  h += '<div class="report-block" style="margin-top:16px;background:var(--warning-light);">';
+  h += '<h3 style="color:var(--warning);">⚠️ 下户注意事项</h3>';
+  h += '<p style="font-size:13px;line-height:1.8;">';
+  h += '① 保持喂养规律，按需哺乳，记录喂养量<br>';
+  h += '② 继续观察黄疸消退情况，如有反弹及时就医<br>';
+  h += '③ 产后42天务必回医院做产后复查<br>';
+  h += '④ 保持伤口干燥清洁，异常红肿及时就医<br>';
+  h += '⑤ 注意产妇情绪变化，持续给予心理支持<br>';
+  h += '⑥ 恶露如有反复（颜色转红、量增多），立即就医<br>';
+  h += '⑦ 宝宝满月后按时接种疫苗<br>';
+  h += '⑧ 月嫂服务结束后如有疑问，可参考知识库内容</p>';
+  h += '</div>';
+
+  $('#main-content').innerHTML = h;
+}
+
+function saveSkillCheck() {
+  const checks = [];
+  document.querySelectorAll('.checklist input[type="checkbox"]').forEach((cb,i)=>checks.push({id:i,checked:cb.checked}));
+  localStorage.setItem('nanny_skill_checks', JSON.stringify(checks));
+}
+
+// ========== DELETE & QUICK RECORD ==========
+function deleteRecord(arrayName, id) {
+  if(!confirm('确定删除此条记录？')) return;
+  data[arrayName] = data[arrayName].filter(r=>r.id!==id);
+  saveData(data); renderPanel(currentPanel); showToast('记录已删除');
+}
+
+function quickRecord(type) {
+  if(type==='feeding') addFeedingRecord();
+  else if(type==='diaper') addDiaperRecord();
+  else if(type==='vital') addBabyVital();
+  else if(type==='diary') addDiaryEntry();
+}
+
+// ========== INIT ==========
+document.addEventListener('DOMContentLoaded', ()=>{
+  // Load skill checks
+  try{
+    const checks = JSON.parse(localStorage.getItem('nanny_skill_checks')||'[]');
+    checks.forEach(c=>{
+      const cb = document.getElementById('skill-'+c.id);
+      if(cb) cb.checked = c.checked;
+    });
+  }catch(e){}
+  renderPanel('dashboard');
+});
+
+// Close modal on overlay click
+document.addEventListener('click', (e)=>{ if(e.target.id==='modal-overlay') closeModal(); });
+</script>
+</body>
+</html>

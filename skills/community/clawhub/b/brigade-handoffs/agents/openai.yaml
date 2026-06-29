@@ -1,0 +1,4 @@
+interface:
+  display_name: "Brigade Handoffs"
+  short_description: "Use Brigade to set up and review agent memory handoffs."
+  default_prompt: "Set up or review Brigade handoffs for this workspace."

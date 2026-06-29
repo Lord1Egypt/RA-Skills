@@ -1,0 +1,12 @@
+{
+  "input": {"mode": "audit"},
+  "expected": {
+    "ufw": true,
+    "fail2ban": true,
+    "sshd": {
+      "PermitRootLogin": true,
+      "PasswordAuthentication": true,
+      "PubkeyAuthentication": true
+    }
+  }
+}

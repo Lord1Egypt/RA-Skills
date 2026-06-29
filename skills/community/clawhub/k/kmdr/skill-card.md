@@ -1,5 +1,5 @@
 ## Description: <br>
-kmdr helps agents search Kmoe, download manga volumes, track background download progress, and manage local Kmoe credentials and quota. <br>
+Guides an agent in using the kmdr CLI to search Kmoe manga, plan downloads, start background downloads, check quota and progress, and manage credentials. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,36 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and agents use this skill to operate the kmdr CLI for Kmoe manga search, download planning, background downloads, progress checks, and credential pool management. <br>
+External users and agents use this skill to operate the Kmoe Manga Downloader CLI for manga search, download planning, quota checks, background download tracking, and credential-pool management. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill uses local Kmoe credentials and may expose usernames, passwords, cookies, or quota information if credentials are shared with an agent or shown in outputs. <br>
-Mitigation: Prefer manual login, avoid sharing passwords in chat, review any displayed credential data, and remove stored credentials on shared or sensitive machines. <br>
-Risk: The kmdr configuration supports a post-download callback command, which can run local commands after downloads. <br>
-Mitigation: Use callback configuration only when the exact command is trusted and understood. <br>
-Risk: Downloads can consume account quota and write files to local destinations. <br>
-Mitigation: Run download planning with --explain before large downloads and use explicit destination paths. <br>
+Risk: The skill installs and invokes an external kmdr CLI package and uses the Kmoe service. <br>
+Mitigation: Confirm trust in the external CLI package and Kmoe service before installation or execution. <br>
+Risk: Login commands can expose passwords if credentials are passed through the agent chat. <br>
+Mitigation: Prefer user-managed terminal login so passwords do not enter the conversation history. <br>
+Risk: Background downloads and saved credentials or configuration may persist outside the current conversation. <br>
+Mitigation: Review the configured download destination and credential/configuration state before starting downloads. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/chrisis58/kmdr) <br>
+- [ClawHub skill page](https://clawhub.ai/chrisis58/skills/kmdr) <br>
 - [Kmoe website](https://kxx.moe/) <br>
-- [Command Reference](references/commands.md) <br>
-- [JSON Output Format](references/output-format.md) <br>
-- [Error Codes](references/error-codes.md) <br>
+- [JSON output format](references/output-format.md) <br>
+- [Error status codes](references/error-codes.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON result interpretation] <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with inline shell commands and NDJSON output interpretation] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Commands are expected to use kmdr toolcall mode and return structured result or progress JSON.] <br>
+**Other Properties Related to Output:** [Requires the external kmdr CLI, valid credentials, and review of structured result codes before recovery actions.] <br>
 
 ## Skill Version(s): <br>
-1.0.0-a1 (source: server release evidence) <br>
+1.0.0-a3 (source: server-resolved release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

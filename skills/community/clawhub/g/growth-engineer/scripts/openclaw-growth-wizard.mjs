@@ -863,6 +863,42 @@ function quote(value) {
 function escapeRegExp(value) {
     return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
+function decodeJwtPayload(token) {
+    const parts = String(token || '').split('.');
+    if (parts.length < 2)
+        return null;
+    try {
+        const normalized = parts[1].replace(/-/g, '+').replace(/_/g, '/');
+        const padded = normalized.padEnd(normalized.length + ((4 - (normalized.length % 4)) % 4), '=');
+        return JSON.parse(Buffer.from(padded, 'base64').toString('utf8'));
+    }
+    catch {
+        return null;
+    }
+}
+function validateOpenClawAnalyticsToken(token) {
+    const trimmed = String(token || '').trim();
+    if (!trimmed)
+        return { ok: true, detail: '' };
+    const payload = decodeJwtPayload(trimmed);
+    if (!payload)
+        return { ok: true, detail: '' };
+    const scopes = Array.isArray(payload.scopes) ? payload.scopes.map((scope) => String(scope)) : [];
+    const hasReadonlyOnly = scopes.length === 1 && scopes[0] === 'read:queries';
+    if (!hasReadonlyOnly) {
+        return {
+            ok: false,
+            detail: 'This is not a readonly CLI token. Use Dashboard -> API Keys -> Create Access Token; the token must have only read:queries scope.',
+        };
+    }
+    if (typeof payload.exp === 'number') {
+        return {
+            ok: false,
+            detail: 'This token expires. OpenClaw scheduled runs need the current non-expiring readonly CLI token from Dashboard -> API Keys.',
+        };
+    }
+    return { ok: true, detail: '' };
+}
 function resolveRuntimeScriptPath(scriptName) {
     const candidates = [
         path.join(RUNTIME_DIR, scriptName),
@@ -3710,9 +3746,19 @@ async function guideAnalyticsConnector(rl, secrets, options = {}) {
     if (forceFresh && process.env.ANALYTICSCLI_ACCESS_TOKEN) {
         process.stdout.write('Stored token failed. Paste a new token.\n\n');
     }
-    const token = forceFresh
-        ? await ask(rl, 'Paste the new AnalyticsCLI readonly CLI token into this local terminal', '')
-        : await maybePromptSecret(rl, 'Paste AnalyticsCLI readonly CLI token into this local terminal', 'ANALYTICSCLI_ACCESS_TOKEN');
+    let token = '';
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+        token = forceFresh
+            ? await ask(rl, 'Paste the new AnalyticsCLI readonly CLI token into this local terminal', '')
+            : await maybePromptSecret(rl, 'Paste AnalyticsCLI readonly CLI token into this local terminal', 'ANALYTICSCLI_ACCESS_TOKEN');
+        const validation = validateOpenClawAnalyticsToken(token);
+        if (validation.ok)
+            break;
+        process.stdout.write(`Not saved: ${validation.detail}\n\n`);
+        token = '';
+        if (!forceFresh)
+            break;
+    }
     if (token) {
         secrets.ANALYTICSCLI_ACCESS_TOKEN = token;
         secrets.ANALYTICSCLI_READONLY_TOKEN = token;

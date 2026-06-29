@@ -1,0 +1,96 @@
+{
+  "name": "sidescroller-tileset",
+  "description": "Focused side-scroller terrain, platform edge, props, and background recipe.",
+  "defaults": {
+    "style": "cohesive side-scroller pixel art tiles, crisp 16x16 grid, readable repeating texture, no antialiasing",
+    "palette": "moss green, dark soil, ancient brick, clear blue highlights, warm cream",
+    "tile_size": 16,
+    "seed": 0
+  },
+  "references": [
+    "references/youtube-workflow-playbook.md",
+    "references/community-discord-workflows.md"
+  ],
+  "qa": [
+    "Check repeating platform edges for seams.",
+    "Confirm upper/lower/transition tiles are visually distinct.",
+    "Use inpaint/edit passes for only the broken area, not the whole sheet."
+  ],
+  "assets": [
+    {
+      "id": "primary-ground",
+      "asset_type": "tile",
+      "endpoint": "/v2/create-tileset-sidescroller",
+      "credit_risk": "medium",
+      "prompt": "{{brief}} side-scroller terrain, {{style}}, {{palette}}",
+      "payload": {
+        "lower_description": "solid platform wall: ancient dirt and brick, {{palette}}, {{style}}",
+        "transition_description": "top edge: moss grass and carved stone trim, clean collision edge, {{palette}}, {{style}}",
+        "tile_size": {
+          "width": "{{tile_size}}",
+          "height": "{{tile_size}}"
+        },
+        "transition_size": 0.25,
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "tilesets/primary-ground"
+    },
+    {
+      "id": "cave-ground",
+      "asset_type": "tile",
+      "endpoint": "/v2/create-tileset-sidescroller",
+      "seed_offset": 1,
+      "credit_risk": "medium",
+      "prompt": "{{brief}} underground terrain, {{style}}, {{palette}}",
+      "payload": {
+        "lower_description": "dark cave platform wall with embedded crystals and fossils, {{palette}}, {{style}}",
+        "transition_description": "rocky lip and moss top edge, readable collision line, {{palette}}, {{style}}",
+        "tile_size": {
+          "width": "{{tile_size}}",
+          "height": "{{tile_size}}"
+        },
+        "transition_size": 0.25,
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "tilesets/cave-ground"
+    },
+    {
+      "id": "small-props",
+      "asset_type": "map_object",
+      "endpoint": "/v2/create-1-direction-object",
+      "seed_offset": 2,
+      "credit_risk": "low",
+      "prompt": "small reusable side-scroller props for {{brief}}, {{style}}, {{palette}}",
+      "payload": {
+        "description": "{{prompt}}",
+        "size": 64,
+        "view": "sidescroller",
+        "item_descriptions": [
+          "signpost",
+          "breakable brick",
+          "spring mushroom",
+          "rune switch"
+        ]
+      },
+      "output_subdir": "props/small"
+    },
+    {
+      "id": "far-background",
+      "asset_type": "background",
+      "endpoint": "/v2/create-image-pixflux-background",
+      "seed_offset": 3,
+      "credit_risk": "medium",
+      "prompt": "wide low-contrast parallax background for {{brief}}, distant hills, old ruins, readable silhouettes, not distracting behind gameplay, {{style}}, {{palette}}",
+      "payload": {
+        "description": "{{prompt}}",
+        "image_size": {
+          "width": 256,
+          "height": 128
+        },
+        "no_background": false,
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "backgrounds/far"
+    }
+  ]
+}

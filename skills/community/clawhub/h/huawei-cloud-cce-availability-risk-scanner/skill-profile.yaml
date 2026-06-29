@@ -1,0 +1,25 @@
+﻿name: huawei-cloud-cce-availability-risk-scanner
+level: L4
+domain: availability-resilience
+description: Scan Huawei Cloud CCE availability risks including single replicas, missing PDBs, unhealthy probes, unreasonable affinity, node and workload AZ imbalance, gateway concentration, core addon anti-affinity, and resource request/limit overcommit.
+tools:
+  - huawei_scan_cce_availability_risk
+  - huawei_list_cce_clusters
+  - huawei_get_kubernetes_nodes
+  - huawei_get_cce_pods
+  - huawei_get_cce_deployments
+  - huawei_get_cce_services
+  - huawei_get_cce_ingresses
+  - huawei_list_cce_nodepools
+  - huawei_list_cce_daemonsets
+  - huawei_list_cce_statefulsets
+  - huawei_get_cce_node_metrics_topN
+  - huawei_get_aom_metrics
+references:
+  - references/workflow.md
+  - references/risk-rules.md
+  - references/output-schema.md
+  - references/verification-method.md
+  - references/common-pitfalls.md
+guardrails:
+  max_auto_risk: R1

@@ -1,0 +1,8 @@
+interface:
+  display_name: "高德 AI 路书"
+  short_description: "生成高德路线式旅行路书"
+  brand_color: "#1B8F5A"
+  default_prompt: "使用 $amap-roadbook，根据我的旅行想法生成包含反问、路线和每日时间线的高德路书。"
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,116 @@
+{
+  "schemaVersion": "1.0.0",
+  "skill": "blind-nav-gaode",
+  "runtime": {
+    "type": "python3",
+    "entrypoint": "SKILL.md"
+  },
+  "tools": [
+    {
+      "name": "get_current_location",
+      "description": "获取用户当前位置，并转换为人类可读的中文地址，适合语音播报。",
+      "parameters": {
+        "latitude": {
+          "type": "number",
+          "description": "纬度（可选，不传则使用设备定位）"
+        },
+        "longitude": {
+          "type": "number",
+          "description": "经度（可选，不传则使用设备定位）"
+        }
+      },
+      "returns": {
+        "voice_friendly": "您当前位于厦门市思明区厦禾路附近"
+      }
+    },
+    {
+      "name": "search_nearby",
+      "description": "搜索用户附近的指定设施，如医院、药店、超市、银行等。",
+      "parameters": {
+        "keyword": {
+          "type": "string",
+          "description": "搜索关键词，例如：医院、药店、超市",
+          "required": true
+        },
+        "radius": {
+          "type": "number",
+          "description": "搜索半径（米），默认 3000",
+          "default": 3000
+        }
+      },
+      "returns": {
+        "voice_summary": "找到 2 家医院，最近的是第一医院，距离 800 米"
+      }
+    },
+    {
+      "name": "search_accessible",
+      "description": "搜索附近的无障碍设施，包括无障碍厕所、电梯、坡道等。",
+      "parameters": {
+        "type": {
+          "type": "string",
+          "description": "设施类型：toilet / elevator / ramp / all",
+          "default": "all"
+        },
+        "radius": {
+          "type": "number",
+          "description": "搜索半径（米），默认 2000",
+          "default": 2000
+        }
+      },
+      "returns": {
+        "voice_summary": "找到 2 个无障碍设施"
+      }
+    },
+    {
+      "name": "plan_walking_route",
+      "description": "规划步行路线，返回适合语音播报的分步导航指令。",
+      "parameters": {
+        "destination": {
+          "type": "string",
+          "description": "目的地名称或地址",
+          "required": true
+        },
+        "prefer_accessible": {
+          "type": "boolean",
+          "description": "是否优先无障碍路线",
+          "default": true
+        }
+      },
+      "returns": {
+        "voice_summary": "已为您规划步行路线，全程约 600 米",
+        "steps[].voice_friendly": "左转，沿厦禾路步行 300 米"
+      }
+    },
+    {
+      "name": "search_transit",
+      "description": "查询公交或地铁出行方案，返回换乘摘要。",
+      "parameters": {
+        "destination": {
+          "type": "string",
+          "description": "目的地名称或地址",
+          "required": true
+        },
+        "city": {
+          "type": "string",
+          "description": "当前城市（可选，自动推断）"
+        }
+      },
+      "returns": {
+        "voice_summary": "推荐公交方案：乘坐 19 路公交，全程约 25 分钟"
+      }
+    },
+    {
+      "name": "sos_location_share",
+      "description": "紧急求助：获取当前精确位置并生成可语音播报的求助信息。",
+      "parameters": {
+        "message": {
+          "type": "string",
+          "description": "求助附加信息（可选）"
+        }
+      },
+      "returns": {
+        "voice_alert": "紧急求助！您位于厦门市思明区厦禾路附近，需要帮助！"
+      }
+    }
+  ]
+}

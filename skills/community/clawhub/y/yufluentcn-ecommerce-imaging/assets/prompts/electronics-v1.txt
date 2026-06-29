@@ -1,0 +1,11 @@
+# 电子产品 Prompt 模板
+# 用法：把 {product} 替换为实际产品英文描述
+
+## 桌面场景
+A {product} on a clean minimalist desk, soft desk lamp lighting from left, tech aesthetic, dark gradient background, product photography, 8K, no text, no watermark
+
+## 生活场景
+A {product} being used in a coffee shop, natural light through window, casual lifestyle photography, shallow depth of field, no text, no watermark
+
+## 纯白背景
+A {product} on pure white background, studio lighting, clean e-commerce product shot, sharp focus, 8K resolution, no text, no watermark

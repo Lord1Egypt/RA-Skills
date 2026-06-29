@@ -1,0 +1,1 @@
+This skill searches sources, verifies facts, analyzes options, writes reports, checks quality, and supports repeated revisions. It may need to convert an existing workflow into a multi-agent team.

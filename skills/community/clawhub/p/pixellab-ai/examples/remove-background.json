@@ -1,0 +1,12 @@
+{
+  "image": {
+    "type": "base64",
+    "format": "png",
+    "base64": "REPLACE_WITH_BASE64_SOURCE_IMAGE"
+  },
+  "image_size": {
+    "width": 128,
+    "height": 128
+  },
+  "background_removal_task": "remove_simple_background"
+}

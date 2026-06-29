@@ -1,0 +1,7 @@
+interface:
+  display_name: "Portfolio Risk Allocation Reviewer"
+  short_description: "Helps with Investors and advisors need local workflows for re..."
+  default_prompt: "Use $portfolio-risk-allocation-reviewer to help me Investors and advisors need local workflows for reviewing portfolio allocation, concentration risk, fees, rebalancing ne."
+
+policy:
+  allow_implicit_invocation: true

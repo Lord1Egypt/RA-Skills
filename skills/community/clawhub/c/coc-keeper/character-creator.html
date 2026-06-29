@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>调查员档案 · 密斯卡塔尼克大学</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cabinet: #1e2c25;
+    --manila: #f2ebd8;
+    --manila-dark: #e8dfc5;
+    --ink: #1c1814;
+    --ink-faded: #8a8278;
+    --stamp: #b83838;
+    --brass: #b89050;
+    --brass-dim: #8a7040;
+    --divider: #d4c9b0;
+    --shadow: rgba(0,0,0,0.25);
+    --bg-cell: rgba(0,0,0,0.02);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{font-size:16px;-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+  body{
+    background:var(--cabinet);
+    background-image:radial-gradient(ellipse at 50% 0%,rgba(255,255,255,0.03) 0%,transparent 60%),linear-gradient(180deg,#1a2720 0%,#1e2c25 30%,#1b2822 100%);
+    min-height:100vh;display:flex;justify-content:center;padding:2rem 0.75rem 4rem;
+    font-family:Georgia,'Times New Roman',serif;color:var(--ink);
+  }
+  .archive-card{
+    background:var(--manila);max-width:900px;width:100%;border-radius:2px;
+    box-shadow:0 1px 0 rgba(255,255,255,0.05) inset,0 4px 24px var(--shadow),0 12px 48px rgba(0,0,0,0.3);
+    position:relative;overflow:hidden;
+  }
+  .archive-card::before{
+    content:'';position:absolute;inset:0;
+    background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(139,119,90,0.03) 2px,rgba(139,119,90,0.03) 4px);
+    pointer-events:none;z-index:0;
+  }
+  .card-header{padding:2.5rem 2.5rem 0;position:relative;z-index:1;display:flex;justify-content:space-between;align-items:flex-start}
+  .letterhead{text-align:center;margin-bottom:0.5rem;flex:1}
+  .letterhead-university{font-family:'Playfair Display',Georgia,serif;font-size:0.75rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--ink-faded);margin-bottom:0.15rem}
+  .letterhead-dept{font-family:'Playfair Display',Georgia,serif;font-size:1.3rem;font-weight:500;letter-spacing:0.08em;color:var(--ink);font-style:italic}
+  .file-meta{display:flex;justify-content:space-between;align-items:baseline;font-family:'Courier Prime',monospace;font-size:0.7rem;color:var(--ink-faded);letter-spacing:0.05em;padding-top:0.75rem}
+  .lang-toggle{
+    font-family:'Courier Prime',monospace;font-size:0.65rem;color:var(--ink-faded);
+    background:transparent;border:1px solid var(--divider);padding:0.2rem 0.5rem;
+    cursor:pointer;border-radius:1px;letter-spacing:0.05em;transition:all 0.2s;
+    position:relative;z-index:2;margin-top:0.5rem;
+  }
+  .lang-toggle:hover{color:var(--ink);border-color:var(--brass)}
+  .type-rule{
+    font-family:'Courier Prime',monospace;font-size:0.65rem;color:var(--divider);
+    letter-spacing:0.3em;text-align:center;padding:1rem 2.5rem 0.5rem;
+    user-select:none;position:relative;z-index:1;overflow:hidden;
+  }
+  .type-rule::after{content:'- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -'}
+  .card-body{padding:0 2.5rem;position:relative;z-index:1}
+  .card-footer{padding:0 2.5rem 2.5rem;position:relative;z-index:1}
+  .form-section{padding:0.75rem 0}
+  .section-label{
+    font-family:'Courier Prime',monospace;font-size:0.65rem;letter-spacing:0.2em;
+    color:var(--ink-faded);text-transform:uppercase;margin-bottom:0.75rem;
+    cursor:pointer;user-select:none;display:flex;align-items:center;
+  }
+  .section-label:hover{color:var(--ink)}
+  .section-label::after{content:' ▾';font-size:0.55rem;margin-left:0.5rem;transition:transform 0.2s}
+  .section-label.collapsed::after{transform:rotate(-90deg)}
+  .section-content{transition:max-height 0.3s ease,opacity 0.2s;overflow:hidden}
+  .section-content.hidden{max-height:0!important;opacity:0;padding:0;margin:0}
+  .identity-row{display:flex;gap:2rem;align-items:baseline;flex-wrap:wrap;margin-bottom:1.5rem}
+  .field-group{display:flex;align-items:baseline;gap:0.5rem}
+  .field-label{font-family:'Courier Prime',monospace;font-size:0.75rem;color:var(--ink-faded);letter-spacing:0.05em;white-space:nowrap}
+  .field-label::after{content:':'}
+  .field-input{font-family:'Courier Prime',monospace;font-size:0.95rem;color:var(--ink);background:transparent;border:none;border-bottom:1px dashed var(--divider);padding:0.15em 0;width:180px;outline:none;transition:border-color 0.2s}
+  .field-input:focus{border-bottom-color:var(--brass);border-bottom-style:solid}
+  .field-input--short{width:3.5em;text-align:center}
+  .attr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.5rem;margin-bottom:1.25rem}
+  .attr-cell{display:flex;align-items:baseline;gap:0.4rem;padding:0.55rem 0.75rem;background:var(--bg-cell);border-bottom:1px solid var(--divider);transition:background 0.2s}
+  .attr-cell:hover{background:rgba(0,0,0,0.04)}
+  .attr-abbr{font-family:'Courier Prime',monospace;font-size:0.7rem;font-weight:700;color:var(--ink-faded);letter-spacing:0.1em;min-width:2.2em}
+  .attr-name-zh{font-size:0.82rem;color:var(--ink-faded);min-width:2em}
+  .attr-value{font-family:'Courier Prime',monospace;font-size:1.4rem;color:var(--ink);margin-left:auto;letter-spacing:-0.02em;min-width:2.2em;text-align:right}
+  .attr-value--empty{color:var(--divider);font-style:italic;font-size:0.9rem}
+  .attr-half-fifth{font-family:'Courier Prime',monospace;font-size:0.55rem;color:var(--ink-faded);opacity:0.6;margin-left:0.4rem;text-align:right;line-height:1.3}
+  .derived-strip{display:flex;gap:1.5rem;flex-wrap:wrap;padding:0.75rem 1rem;background:var(--bg-cell);border:1px solid var(--divider);border-left:3px solid var(--brass-dim);border-radius:0 2px 2px 0;margin-bottom:1rem}
+  .derived-item{display:flex;align-items:baseline;gap:0.35rem}
+  .derived-label{font-family:'Courier Prime',monospace;font-size:0.7rem;font-weight:700;color:var(--ink-faded);letter-spacing:0.05em}
+  .derived-value{font-family:'Courier Prime',monospace;font-size:0.95rem;color:var(--ink)}
+  .derived-sep{color:var(--divider);font-family:'Courier Prime',monospace;font-size:0.7rem}
+  .btn-row{display:flex;gap:0.5rem;flex-wrap:wrap}
+  .btn{font-family:'Courier Prime',monospace;font-size:0.75rem;letter-spacing:0.06em;padding:0.5rem 1rem;border:1px solid var(--divider);background:transparent;color:var(--ink-faded);cursor:pointer;transition:all 0.2s;border-radius:1px}
+  .btn:hover{color:var(--ink);border-color:var(--brass);background:rgba(184,144,80,0.06)}
+  .btn:focus-visible{outline:2px solid var(--brass);outline-offset:2px}
+  .btn:active{transform:translateY(1px)}
+  .btn--primary{background:var(--ink);color:var(--manila);border-color:var(--ink);font-weight:700}
+  .btn--primary:hover{background:#2d2820;border-color:#2d2820;color:#fff}
+  .btn--stamp{border-color:var(--stamp);color:var(--stamp);letter-spacing:0.1em}
+  .btn--stamp:hover{background:rgba(184,56,56,0.08);border-color:#9e2e2e;color:#9e2e2e}
+  .btn--small{font-size:0.65rem;padding:0.2rem 0.5rem;min-width:1.8em;text-align:center}
+  .btn--tiny{font-family:'Courier Prime',monospace;font-size:0.6rem;padding:0 0.3rem;line-height:1.2;border:1px solid var(--divider);background:transparent;color:var(--ink-faded);cursor:pointer;transition:all 0.15s;border-radius:1px}
+  .btn--tiny:hover{color:var(--ink);border-color:var(--brass)}
+  .btn--tiny:focus-visible{outline:1px solid var(--brass);outline-offset:1px}
+  .btn:disabled{opacity:0.35;cursor:not-allowed;pointer-events:none}
+  .select-wrap{position:relative;display:inline-block;min-width:280px}
+  .select-wrap select{font-family:'Courier Prime',monospace;font-size:0.85rem;color:var(--ink);background:transparent;border:1px solid var(--divider);border-radius:1px;padding:0.5rem 2rem 0.5rem 0.75rem;width:100%;appearance:none;cursor:pointer;outline:none}
+  .select-wrap select:focus{border-color:var(--brass)}
+  .select-wrap::after{content:'';position:absolute;right:0.75rem;top:50%;transform:translateY(-50%);width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid var(--ink-faded);pointer-events:none}
+  .prof-detail{margin-top:0.75rem;font-family:'Courier Prime',monospace;font-size:0.7rem;color:var(--ink-faded);line-height:1.6;padding:0.75rem;border-left:2px solid var(--brass-dim);display:none}
+  .prof-detail--visible{display:block}
+  .prof-detail strong{color:var(--ink);font-weight:700}
+  .points-bar{display:flex;gap:2rem;flex-wrap:wrap;margin-bottom:1rem;font-family:'Courier Prime',monospace}
+  .points-item{font-size:0.75rem;color:var(--ink-faded)}
+  .points-num{font-size:1.1rem;font-weight:700;color:var(--ink);margin:0 0.15em}
+  .points-num--empty{color:var(--stamp)}
+  .skill-category{margin-bottom:1rem}
+  .skill-cat-label{font-family:'Courier Prime',monospace;font-size:0.6rem;letter-spacing:0.25em;color:var(--brass-dim);margin-bottom:0.25rem;padding-bottom:0.2rem;border-bottom:1px solid var(--divider)}
+  .skill-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.25rem 1.5rem}
+  .skill-row{display:flex;align-items:center;gap:0.3rem;padding:0.25rem 0;font-size:0.8rem}
+  .skill-name{font-size:0.82rem;color:var(--ink);min-width:5em}
+  .skill-name--occupation{font-weight:600}
+  .skill-name--occupation::after{content:'*';color:var(--stamp);font-size:0.7rem;vertical-align:super}
+  .skill-base{font-family:'Courier Prime',monospace;font-size:0.6rem;color:var(--ink-faded);min-width:2.2em;text-align:right}
+  .skill-alloc{display:flex;align-items:center;gap:0.15rem}
+  .skill-alloc-label{font-family:'Courier Prime',monospace;font-size:0.5rem;color:var(--ink-faded)}
+  .skill-input{font-family:'Courier Prime',monospace;font-size:0.7rem;color:var(--ink);background:transparent;border:none;border-bottom:1px solid var(--divider);width:2.2em;text-align:center;padding:0.1em 0;outline:none}
+  .skill-input:focus{border-bottom-color:var(--brass)}
+  .skill-total{font-family:'Courier Prime',monospace;font-size:0.85rem;font-weight:700;color:var(--ink);min-width:2.2em;text-align:right}
+  .bg-fields{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem}
+  .bg-field{display:flex;flex-direction:column;gap:0.2rem}
+  .bg-field.full{grid-column:1/-1}
+  .bg-label{font-family:'Courier Prime',monospace;font-size:0.65rem;color:var(--ink-faded);letter-spacing:0.05em}
+  .bg-input,.bg-textarea{font-family:Georgia,'Times New Roman',serif;font-size:0.82rem;color:var(--ink);background:var(--bg-cell);border:1px solid var(--divider);padding:0.35rem 0.5rem;border-radius:1px;outline:none;transition:border-color 0.2s;width:100%}
+  .bg-input:focus,.bg-textarea:focus{border-color:var(--brass)}
+  .bg-textarea{height:3.5rem;resize:vertical}
+  .mini-table{width:100%;border-collapse:collapse;font-size:0.78rem;margin-bottom:0.5rem}
+  .mini-table th{font-family:'Courier Prime',monospace;font-size:0.6rem;letter-spacing:0.1em;color:var(--ink-faded);text-align:left;padding:0.35rem 0.4rem;border-bottom:1px solid var(--divider);font-weight:400;white-space:nowrap}
+  .mini-table td{padding:0.25rem 0.4rem;border-bottom:1px dotted var(--divider);vertical-align:middle}
+  .mini-table input,.mini-table select{font-family:'Courier Prime',monospace;font-size:0.72rem;color:var(--ink);background:transparent;border:none;border-bottom:1px dashed var(--divider);padding:0.1em 0;outline:none;width:100%;min-width:3em}
+  .mini-table input:focus,.mini-table select:focus{border-bottom-color:var(--brass)}
+  .mini-table .col-narrow{width:3.5em}
+  .mini-table .col-med{width:6em}
+  .row-del{color:var(--stamp);cursor:pointer;font-size:0.8rem;padding:0 0.3rem}
+  .row-del:hover{opacity:0.7}
+  .asset-summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:0.75rem;margin-top:0.5rem}
+  .asset-card{padding:0.6rem 0.75rem;background:var(--bg-cell);border:1px solid var(--divider);border-radius:1px}
+  .asset-card-label{font-family:'Courier Prime',monospace;font-size:0.6rem;color:var(--ink-faded);letter-spacing:0.08em}
+  .asset-card-value{font-family:'Courier Prime',monospace;font-size:1rem;color:var(--ink);font-weight:700}
+  .custom-prof-form{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-top:0.75rem;padding:0.75rem;background:var(--bg-cell);border:1px dashed var(--divider);border-radius:1px}
+  .custom-prof-form .full{grid-column:1/-1}
+  .check-grid{display:flex;flex-wrap:wrap;gap:0.25rem 0.75rem}
+  .check-item{display:flex;align-items:center;gap:0.25rem;font-size:0.78rem;white-space:nowrap;cursor:pointer}
+  .check-item input{accent-color:var(--brass)}
+  .export-area,.bg-story-area{font-family:'Courier Prime',monospace;font-size:0.8rem;color:var(--ink);background:var(--bg-cell);border:1px solid var(--divider);padding:1rem;width:100%;height:10rem;resize:vertical;line-height:1.6;outline:none}
+  .export-area:focus,.bg-story-area:focus{border-color:var(--brass)}
+  .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);font-family:'Courier Prime',monospace;font-size:0.75rem;background:var(--ink);color:var(--manila);padding:0.5rem 1.25rem;border-radius:2px;opacity:0;transition:opacity 0.25s;pointer-events:none;z-index:100}
+  .toast--show{opacity:1}
+  @keyframes typeIn{from{opacity:0;transform:translateY(0.3em)}to{opacity:1;transform:translateY(0)}}
+  .type-in{animation:typeIn 0.12s ease-out both}
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+  @media(max-width:768px){
+    body{padding:1rem 0.5rem 3rem}
+    .card-header,.card-body,.card-footer{padding-left:1.25rem;padding-right:1.25rem}
+    .attr-grid{grid-template-columns:repeat(3,1fr);gap:0.25rem}
+    .attr-cell{padding:0.4rem 0.5rem}
+    .attr-value{font-size:1.15rem}
+    .attr-half-fifth{display:none}
+    .skill-grid{grid-template-columns:1fr}
+    .derived-strip{gap:0.75rem 1rem}
+    .bg-fields{grid-template-columns:1fr}
+    .custom-prof-form{grid-template-columns:1fr}
+    .asset-summary{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:480px){
+    .attr-grid{grid-template-columns:repeat(2,1fr)}
+    .derived-strip{flex-direction:column;gap:0.4rem;padding:0.6rem 0.75rem}
+    .btn-row{flex-direction:column}
+    .points-bar{flex-direction:column;gap:0.35rem}
+    .skill-grid{grid-template-columns:1fr}
+    .asset-summary{grid-template-columns:1fr 1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="archive-card">
+  <header class="card-header">
+    <div class="letterhead">
+      <div class="letterhead-university">Miskatonic University</div>
+      <div class="letterhead-dept" data-t="dept">调查员档案室</div>
+    </div>
+    <button class="lang-toggle" onclick="toggleLang()" title="Switch Language">EN</button>
+  </header>
+  <div class="file-meta" style="padding:0 2.5rem;position:relative;z-index:1">
+    <span data-t="dossier">INVESTIGATOR DOSSIER</span>
+    <span>FILE #<span id="fileNum">—</span></span>
+  </div>
+
+  <div class="type-rule"></div>
+
+  <div class="card-body">
+
+    <!-- Identity -->
+    <div class="form-section">
+      <div class="identity-row">
+        <div class="field-group"><span class="field-label" data-t="charName">调查员姓名</span><input type="text" class="field-input" id="charName" data-t-placeholder="charNamePh" autocomplete="off"></div>
+        <div class="field-group"><span class="field-label" data-t="age">年龄</span><input type="number" class="field-input field-input--short" id="charAge" value="25" min="15" max="90"></div>
+        <div class="field-group"><span class="field-label" data-t="gender">性别</span><input type="text" class="field-input field-input--short" id="charGender" autocomplete="off"></div>
+      </div>
+    </div>
+
+    <!-- Attributes -->
+    <div class="form-section">
+      <div class="section-label" data-t="attrs">§ 基础属性</div>
+      <div class="attr-grid" id="attrGrid"></div>
+      <div class="derived-strip" id="derivedStrip">
+        <div class="derived-item"><span class="derived-label">HP</span><span class="derived-value" id="dvHp">—</span></div><span class="derived-sep">·</span>
+        <div class="derived-item"><span class="derived-label">MP</span><span class="derived-value" id="dvMp">—</span></div><span class="derived-sep">·</span>
+        <div class="derived-item"><span class="derived-label">SAN</span><span class="derived-value" id="dvSan">—</span></div><span class="derived-sep">·</span>
+        <div class="derived-item"><span class="derived-label">DB</span><span class="derived-value" id="dvDb">—</span></div><span class="derived-sep">·</span>
+        <div class="derived-item"><span class="derived-label" data-t="build">体格</span><span class="derived-value" id="dvBuild">—</span></div><span class="derived-sep">·</span>
+        <div class="derived-item"><span class="derived-label">MOV</span><span class="derived-value" id="dvMov">—</span></div><span class="derived-sep">·</span>
+        <div class="derived-item"><span class="derived-label" data-t="dodge">闪避</span><span class="derived-value" id="dvDodge">—</span></div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn--primary" id="btnRollAll" data-t="rollAll" onclick="rollAll()">掷骰生成属性</button>
+      </div>
+      <div class="btn-row" style="margin-top:0.5rem;" id="rerollButtons"></div>
+      <div id="ageNote" style="font-family:'Courier Prime',monospace;font-size:0.65rem;color:var(--ink-faded);margin-top:0.5rem;display:none;"></div>
+    </div>
+
+    <div class="type-rule"></div>
+
+    <!-- Profession -->
+    <div class="form-section">
+      <div class="section-label" data-t="profession">§ 职业</div>
+      <div class="select-wrap"><select id="profSelect" onchange="onProfessionChange()"><option value="" data-t="selectProf">— 选择职业 —</option><option value="__custom__" data-t="customProf">✎ 自定义职业…</option></select></div>
+      <div class="prof-detail" id="profDetail"></div>
+      <div class="custom-prof-form" id="customProfForm" style="display:none;">
+        <div class="field-group"><span class="field-label" data-t="profName">职业名称</span><input type="text" class="field-input" id="custProfName" style="width:200px;"></div>
+        <div class="field-group"><span class="field-label" data-t="profCR">信用评级</span><input type="text" class="field-input field-input--short" id="custProfCR" placeholder="9-30"></div>
+        <div class="field-group"><span class="field-label" data-t="profPts">技能点公式</span><input type="text" class="field-input" id="custProfPts" placeholder="EDU×4" style="width:180px;"></div>
+        <div class="full"><span class="field-label" data-t="occSkills">本职技能 (选8个)</span></div>
+        <div class="check-grid full" id="custProfSkills"></div>
+      </div>
+    </div>
+
+    <div class="type-rule"></div>
+
+    <!-- Skills -->
+    <div class="form-section">
+      <div class="section-label" data-t="skills">§ 技能分配</div>
+      <div class="points-bar" id="pointsBar">
+        <div class="points-item"><span data-t="occPtsRemain">本职技能点 剩余</span> <span class="points-num" id="ptsPro">—</span></div>
+        <div class="points-item"><span data-t="intPtsRemain">兴趣技能点 剩余</span> <span class="points-num" id="ptsInt">—</span></div>
+      </div>
+      <div id="skillsContainer"></div>
+      <div style="margin-top:0.5rem;font-family:'Courier Prime',monospace;font-size:0.6rem;color:var(--ink-faded);">
+        <button class="btn--tiny" onclick="addCustomSkill()" data-t="addCustomSkill">+ 自定义技能</button>
+        <span style="margin-left:0.5rem;" data-t="customSkillHint">提示：其他语言可添加自定义技能（如"拉丁文40"）</span>
+      </div>
+    </div>
+
+    <div class="type-rule"></div>
+
+    <!-- Background -->
+    <div class="form-section">
+      <div class="section-label" data-t="background" onclick="toggleSection('bgContent',this)">§ 背景故事</div>
+      <div class="section-content" id="bgContent"><div class="bg-fields" id="bgFields"></div></div>
+    </div>
+
+    <div class="type-rule"></div>
+
+    <!-- Inventory -->
+    <div class="form-section">
+      <div class="section-label" data-t="inventory" onclick="toggleSection('invContent',this)">§ 随身物品</div>
+      <div class="section-content" id="invContent">
+        <table class="mini-table" id="invTable">
+          <thead><tr><th data-t="invStatus">状态</th><th data-t="invLocation">部位</th><th data-t="invName">物品名称</th><th class="col-narrow" data-t="invSlots">背包格</th><th></th></tr></thead>
+          <tbody id="invBody"></tbody>
+        </table>
+        <button class="btn--tiny" onclick="addInventoryRow()" data-t="addItem">+ 添加物品</button>
+      </div>
+    </div>
+
+    <div class="type-rule"></div>
+
+    <!-- Assets -->
+    <div class="form-section">
+      <div class="section-label" data-t="assets" onclick="toggleSection('assetContent',this)">§ 资产</div>
+      <div class="section-content" id="assetContent">
+        <div class="identity-row">
+          <div class="field-group"><span class="field-label" data-t="creditRating">信用评级</span><input type="number" class="field-input field-input--short" id="crInput" value="0" min="0" max="99" onchange="updateAssets()"></div>
+          <div class="field-group"><span class="field-label" data-t="currency">单位</span><select class="field-input" id="currencyUnit" style="width:auto;min-width:5em;" onchange="updateAssets()"><option value="1920">1920s USD</option><option value="modern">Modern USD</option></select></div>
+        </div>
+        <div class="asset-summary" id="assetSummary">
+          <div class="asset-card"><div class="asset-card-label" data-t="livingStd">生活水平</div><div class="asset-card-value" id="asLiving">—</div></div>
+          <div class="asset-card"><div class="asset-card-label" data-t="spendingLvl">消费水平</div><div class="asset-card-value" id="asSpending">—</div></div>
+          <div class="asset-card"><div class="asset-card-label" data-t="cash">现金</div><div class="asset-card-value" id="asCash">—</div></div>
+          <div class="asset-card"><div class="asset-card-label" data-t="otherAssets">其他资产</div><div class="asset-card-value" id="asAssets">—</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="type-rule"></div>
+
+    <!-- Weapons -->
+    <div class="form-section">
+      <div class="section-label" data-t="weapons" onclick="toggleSection('wpnContent',this)">§ 武器表</div>
+      <div class="section-content" id="wpnContent">
+        <div class="btn-row" style="margin-bottom:0.5rem;">
+          <select id="wpnPreset" class="field-input" style="width:auto;min-width:16em;font-family:'Courier Prime',monospace;font-size:0.72rem;" onchange="addPresetWeapon()">
+            <option value="" data-t="selectWeapon">— 选择预设武器 —</option>
+          </select>
+          <button class="btn--tiny" onclick="addWeaponRow()" data-t="addWeapon">+ 自定义武器</button>
+        </div>
+        <table class="mini-table" id="wpnTable">
+          <thead><tr><th data-t="wpnName">武器名称</th><th data-t="wpnType">类型</th><th data-t="wpnSkill">使用技能</th><th class="col-narrow" data-t="wpnRate">成功率</th><th data-t="wpnDmg">伤害</th><th class="col-narrow" data-t="wpnRange">基础射程</th><th class="col-narrow" data-t="wpnImpale">贯穿</th><th class="col-narrow" data-t="wpnAttacks">次数/轮</th><th class="col-narrow" data-t="wpnAmmo">装弹量</th><th class="col-narrow" data-t="wpnMal">故障值</th><th></th></tr></thead>
+          <tbody id="wpnBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="type-rule"></div>
+
+    <!-- Export -->
+    <div class="form-section">
+      <div class="section-label" data-t="export">§ 导出档案</div>
+      <textarea class="export-area" id="exportText" readonly data-t-placeholder="exportPh"></textarea>
+      <div class="btn-row" style="margin-top:0.75rem;">
+        <button class="btn btn--stamp" onclick="copyExport()" data-t="copyExport">复制导出文本</button>
+        <button class="btn" onclick="downloadMarkdown()" data-t="downloadMD">下载 Markdown 档案</button>
+        <button class="btn" onclick="resetAll()" data-t="reset">重新建档</button>
+      </div>
+    </div>
+
+  </div>
+  <div class="card-footer">
+    <div class="file-meta" style="border-top:1px solid var(--divider);padding-top:0.75rem;">
+      <span>FORM 47-B · REV. 1925</span>
+      <span id="fileDate"></span>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════════════════════ LANGUAGE ═══════════════════════════
+let L = 'zh';
+const T = {
+  zh: {
+    rollAll:'掷骰生成属性', dept:'调查员档案室', dossier:'INVESTIGATOR DOSSIER',
+    charName:'调查员姓名', charNamePh:'在此键入姓名', age:'年龄', gender:'性别',
+    attrs:'§ 基础属性', build:'体格', dodge:'闪避',
+    profession:'§ 职业', selectProf:'— 选择职业 —', customProf:'✎ 自定义职业…',
+    profName:'职业名称', profCR:'信用评级', profPts:'技能点公式', occSkills:'本职技能 (选8个)',
+    skills:'§ 技能分配', occPtsRemain:'本职技能点 剩余', intPtsRemain:'兴趣技能点 剩余',
+    addCustomSkill:'+ 自定义技能', customSkillHint:'提示：其他语言可添加自定义技能（如"拉丁文40"）',
+    background:'§ 背景故事', inventory:'§ 随身物品', assets:'§ 资产', weapons:'§ 武器表', export:'§ 导出档案',
+    invStatus:'状态', invLocation:'部位', invName:'物品名称', invSlots:'背包格', addItem:'+ 添加物品',
+    creditRating:'信用评级', currency:'单位', livingStd:'生活水平', spendingLvl:'消费水平', cash:'现金', otherAssets:'其他资产',
+    wpnName:'武器名称', wpnType:'类型', wpnSkill:'使用技能', wpnRate:'成功率', wpnDmg:'伤害', wpnRange:'基础射程', wpnImpale:'贯穿', wpnAttacks:'次数/轮', wpnAmmo:'装弹量', wpnMal:'故障值',
+    selectWeapon:'— 选择预设武器 —', addWeapon:'+ 自定义武器',
+    copyExport:'复制导出文本', downloadMD:'下载 Markdown 档案', reset:'重新建档',
+    exportPh:'完成属性掷骰与技能分配后，导出文本将在此生成…',
+    tagLiterary:'原作向', tagModern:'现代',
+    bgAppearance:'形象描述', bgAppearancePh:'外貌、气质、穿着…',
+    bgTraits:'特质', bgTraitsPh:'混混、大嗓门、心浮气躁…',
+    bgBeliefs:'思想与信念', bgBeliefsPh:'信仰、人生信条…',
+    bgImportantPeople:'重要之人', bgImportantPeoplePh:'亲友、爱人、导师、仇敌…',
+    bgPlaces:'意义非凡之地', bgPlacesPh:'故乡、初恋之地、静思之所…',
+    bgValuables:'宝贵之物', bgValuablesPh:'随身物品、遗物、收藏品…',
+    bgPhobias:'恐惧症和狂躁症', bgPhobiasPh:'幽闭恐惧、恐高、恋书狂…',
+    bgWounds:'伤口与疤痕', bgWoundsPh:'重伤遗留的疤痕…',
+    bgMythos:'神话典籍、法术和魔法物品', bgMythosPh:'所知的神话典籍、习得的法术、持有的魔法物品…',
+    bgEncounters:'第三类接触', bgEncountersPh:'遭遇的怪物与神灵、造成的理智值损失…',
+    bgPast:'过去的经历', bgPastPh:'关键人生经历、创伤、成就…',
+    ageNote15:'年龄调整：STR+SIZ −5，EDU −5，幸运取两次中较高者',
+    ageNote20:'年龄调整：教育增强检定 ×1',
+    ageNote40:'年龄调整：STR+CON+DEX −5，APP −5，EDU增强×2，MOV−1',
+    ageNote50:'年龄调整：STR+CON+DEX −10，APP −10，EDU增强×3，MOV−2',
+    ageNote60:'年龄调整：STR+CON+DEX −20，APP −15，EDU增强×4，MOV−3',
+    ageNote70:'年龄调整：STR+CON+DEX −40，APP −20，EDU增强×4，MOV−4',
+    ageNote80:'年龄调整：STR+CON+DEX −80，APP −25，EDU增强×4，MOV−5',
+    penniless:'身无分文', poor:'贫穷', standard:'标准', affluent:'小康', wealthy:'富裕', superRich:'豪富',
+    equipCarry:'携带', equipEquip:'装备',
+    rerolled:'该项属性已经重骰过了', rollFirst:'请先掷骰生成所有属性',
+    copied:'已复制到剪贴板 · 发送给 KP 即可导入', mdDownloaded:'Markdown 档案已下载',
+    noExport:'尚未生成导出文本', confirmReset:'确定要重新建档吗？所有数据将清除。',
+    addCustomSkillPrompt:'输入自定义技能名称（如"拉丁文"或"其他语言(拉丁文)"）：',
+    addCustomSkillBase:'输入基础值（默认1）：',
+  },
+  en: {
+    rollAll:'Roll Attributes', dept:'Investigator Archives', dossier:'INVESTIGATOR DOSSIER',
+    charName:'Name', charNamePh:'Type investigator name', age:'Age', gender:'Gender',
+    attrs:'§ Attributes', build:'Build', dodge:'Dodge',
+    profession:'§ Profession', selectProf:'— Select Profession —', customProf:'✎ Custom Profession…',
+    profName:'Profession Name', profCR:'Credit Rating', profPts:'Skill Points Formula', occSkills:'Occupation Skills (select 8)',
+    skills:'§ Skill Points', occPtsRemain:'Occupation Points Remaining', intPtsRemain:'Interest Points Remaining',
+    addCustomSkill:'+ Custom Skill', customSkillHint:'Tip: Add custom skills for "Other Language" (e.g. "Latin 40")',
+    background:'§ Background', inventory:'§ Inventory', assets:'§ Assets', weapons:'§ Weapons', export:'§ Export',
+    invStatus:'Status', invLocation:'Location', invName:'Item Name', invSlots:'Slots', addItem:'+ Add Item',
+    creditRating:'Credit Rating', currency:'Unit', livingStd:'Living Standard', spendingLvl:'Spending Level', cash:'Cash', otherAssets:'Other Assets',
+    wpnName:'Name', wpnType:'Type', wpnSkill:'Skill Used', wpnRate:'Success%', wpnDmg:'Damage', wpnRange:'Base Range', wpnImpale:'Impale', wpnAttacks:'Attacks/Round', wpnAmmo:'Ammo', wpnMal:'Malfunc.',
+    selectWeapon:'— Select Preset —', addWeapon:'+ Custom Weapon',
+    copyExport:'Copy Export Text', downloadMD:'Download Markdown', reset:'Reset',
+    exportPh:'Export text will be generated here after rolling attributes and allocating skills…',
+    tagLiterary:'Literary', tagModern:'Modern',
+    bgAppearance:'Appearance', bgAppearancePh:'Looks, style, clothing…',
+    bgTraits:'Traits', bgTraitsPh:'Loudmouth, absent-minded…',
+    bgBeliefs:'Beliefs', bgBeliefsPh:'Faith, life philosophy…',
+    bgImportantPeople:'Significant People', bgImportantPeoplePh:'Family, lover, mentor, enemy…',
+    bgPlaces:'Meaningful Locations', bgPlacesPh:'Hometown, first love spot, sanctuary…',
+    bgValuables:'Treasured Possessions', bgValuablesPh:'Keepsakes, heirlooms, collections…',
+    bgPhobias:'Phobias & Manias', bgPhobiasPh:'Claustrophobia, acrophobia, bibliomania…',
+    bgWounds:'Wounds & Scars', bgWoundsPh:'Scars from serious injuries…',
+    bgMythos:'Mythos Tomes, Spells & Artifacts', bgMythosPh:'Known tomes, learned spells, possessed artifacts…',
+    bgEncounters:'Encounters with Strange Entities', bgEncountersPh:'Monsters and gods encountered, SAN loss incurred…',
+    bgPast:'Past Experiences', bgPastPh:'Key life events, trauma, achievements…',
+    ageNote15:'Age: STR+SIZ −5, EDU −5, roll Luck twice (take best)',
+    ageNote20:'Age: EDU improvement check ×1',
+    ageNote40:'Age: STR+CON+DEX −5, APP −5, EDU improvement ×2, MOV−1',
+    ageNote50:'Age: STR+CON+DEX −10, APP −10, EDU improvement ×3, MOV−2',
+    ageNote60:'Age: STR+CON+DEX −20, APP −15, EDU improvement ×4, MOV−3',
+    ageNote70:'Age: STR+CON+DEX −40, APP −20, EDU improvement ×4, MOV−4',
+    ageNote80:'Age: STR+CON+DEX −80, APP −25, EDU improvement ×4, MOV−5',
+    penniless:'Penniless', poor:'Poor', standard:'Standard', affluent:'Affluent', wealthy:'Wealthy', superRich:'Super Rich',
+    equipCarry:'Carried', equipEquip:'Equipped',
+    rerolled:'This attribute has already been rerolled', rollFirst:'Please roll all attributes first',
+    copied:'Copied to clipboard — send to Keeper to import', mdDownloaded:'Markdown file downloaded',
+    noExport:'No export text generated yet', confirmReset:'Are you sure? All data will be lost.',
+    addCustomSkillPrompt:'Enter custom skill name (e.g. "Latin" or "Other Language (Latin)"):',
+    addCustomSkillBase:'Enter base value (default 1):',
+  }
+};
+function _(k){return T[L][k]||k}
+function toggleLang(){
+  L=L==='zh'?'en':'zh';
+  document.querySelector('.lang-toggle').textContent=L==='zh'?'EN':'中';
+  document.documentElement.lang=L==='zh'?'zh-CN':'en';
+  // Translate static text
+  document.querySelectorAll('[data-t]').forEach(el=>{el.textContent=_(el.dataset.t)});
+  document.querySelectorAll('[data-t-placeholder]').forEach(el=>{el.placeholder=_(el.dataset.tPlaceholder)});
+  // Re-render dynamic content
+  populateProfessions();populateWeaponPresets();populateCustomProfCheckboxes();
+  renderAll();
+}
+
+// ═══════════════════════════ DATA ═══════════════════════════
+const ATTR_DEFS = [
+  { key:'str', abbr:'STR', zh:'力量', en:'Strength', dice:'3d6×5', gen:()=>roll3d6()*5 },
+  { key:'con', abbr:'CON', zh:'体质', en:'Constitution', dice:'3d6×5', gen:()=>roll3d6()*5 },
+  { key:'siz', abbr:'SIZ', zh:'体型', en:'Size', dice:'(2d6+6)×5', gen:()=>(r6()+r6()+6)*5 },
+  { key:'dex', abbr:'DEX', zh:'敏捷', en:'Dexterity', dice:'3d6×5', gen:()=>roll3d6()*5 },
+  { key:'app', abbr:'APP', zh:'外貌', en:'Appearance', dice:'3d6×5', gen:()=>roll3d6()*5 },
+  { key:'int', abbr:'INT', zh:'智力', en:'Intelligence', dice:'(2d6+6)×5', gen:()=>(r6()+r6()+6)*5 },
+  { key:'pow', abbr:'POW', zh:'意志', en:'Power', dice:'3d6×5', gen:()=>roll3d6()*5 },
+  { key:'edu', abbr:'EDU', zh:'教育', en:'Education', dice:'(2d6+6)×5', gen:()=>(r6()+r6()+6)*5 },
+  { key:'luck',abbr:'LUK', zh:'幸运', en:'Luck', dice:'3d6×5', gen:()=>roll3d6()*5 },
+];
+function an(def){return L==='zh'?def.zh:def.en}
+
+const SKILL_CATEGORIES = {
+  'body': { zh:'身体', en:'Physical', skills:[
+    { key:'climb', zh:'攀爬', en:'Climb', base:20 },{ key:'jump', zh:'跳跃', en:'Jump', base:20 },
+    { key:'ride', zh:'骑术', en:'Ride', base:5 },{ key:'swim', zh:'游泳', en:'Swim', base:20 },
+    { key:'throw', zh:'投掷', en:'Throw', base:20 },{ key:'fight', zh:'格斗', en:'Fighting', base:25 },
+    { key:'firearms', zh:'射击', en:'Firearms', base:20 },
+  ]},
+  'social': { zh:'社交', en:'Social', skills:[
+    { key:'charm', zh:'取悦', en:'Charm', base:15 },{ key:'fast_talk', zh:'话术', en:'Fast Talk', base:5 },
+    { key:'intimidate', zh:'恐吓', en:'Intimidate', base:15 },{ key:'persuade', zh:'说服', en:'Persuade', base:10 },
+    { key:'psychology', zh:'心理学', en:'Psychology', base:10 },{ key:'credit', zh:'信用评级', en:'Credit Rating', base:0 },
+  ]},
+  'knowledge': { zh:'知识', en:'Knowledge', skills:[
+    { key:'accounting', zh:'会计', en:'Accounting', base:5 },{ key:'anthropology', zh:'人类学', en:'Anthropology', base:1 },
+    { key:'appraise', zh:'估价', en:'Appraise', base:5 },{ key:'archaeology', zh:'考古学', en:'Archaeology', base:1 },
+    { key:'history', zh:'历史', en:'History', base:5 },{ key:'law', zh:'法律', en:'Law', base:5 },
+    { key:'library', zh:'图书馆使用', en:'Library Use', base:20 },{ key:'medicine', zh:'医学', en:'Medicine', base:1 },
+    { key:'natural', zh:'博物学', en:'Natural World', base:10 },{ key:'occult', zh:'神秘学', en:'Occult', base:5 },
+    { key:'science', zh:'科学', en:'Science', base:1 },
+  ]},
+  'tech': { zh:'技术', en:'Technical', skills:[
+    { key:'drive', zh:'汽车驾驶', en:'Drive Auto', base:20 },{ key:'elec_repair', zh:'电气维修', en:'Elec. Repair', base:10 },
+    { key:'electronics', zh:'电子学', en:'Electronics', base:1 },{ key:'first_aid', zh:'急救', en:'First Aid', base:30 },
+    { key:'locksmith', zh:'锁匠', en:'Locksmith', base:1 },{ key:'mech_repair', zh:'机械维修', en:'Mech. Repair', base:10 },
+    { key:'heavy_mach', zh:'重型操作', en:'Heavy Machinery', base:1 },{ key:'computer', zh:'计算机使用', en:'Computer Use', base:5 },
+  ]},
+  'perception': { zh:'感知', en:'Perception', skills:[
+    { key:'spot_hidden', zh:'侦查', en:'Spot Hidden', base:25 },{ key:'listen', zh:'聆听', en:'Listen', base:20 },
+    { key:'track', zh:'追踪', en:'Track', base:10 },{ key:'navigate', zh:'导航', en:'Navigate', base:10 },
+  ]},
+  'other': { zh:'其他', en:'Other', skills:[
+    { key:'disguise', zh:'乔装', en:'Disguise', base:5 },{ key:'sleight', zh:'妙手', en:'Sleight of Hand', base:10 },
+    { key:'stealth', zh:'潜行', en:'Stealth', base:20 },{ key:'survival', zh:'生存', en:'Survival', base:10 },
+    { key:'animal', zh:'驯兽', en:'Animal Handling', base:5 },{ key:'native_lang', zh:'母语', en:'Native Language', base:0 },
+    { key:'other_lang', zh:'其他语言', en:'Other Language', base:1 },{ key:'psychoanalysis', zh:'精神分析', en:'Psychoanalysis', base:1 },
+  ]},
+};
+function sn(skill){return L==='zh'?skill.zh:skill.en}
+function cn(cat){return L==='zh'?SKILL_CATEGORIES[cat].zh:SKILL_CATEGORIES[cat].en}
+
+const PROFESSIONS = [
+  { zh:'古文物学家', en:'Antiquarian', tag:'zh', credit:'30–70', pts:'EDU×4', occ:['appraise','history','library','other_lang','spot_hidden','charm','fast_talk','intimidate','persuade'] },
+  { zh:'艺术家', en:'Artist', tag:'', credit:'9–50', pts:'EDU×2 + POW×2/DEX×2', occ:['history','natural','other_lang','psychology','spot_hidden','charm','fast_talk','intimidate','persuade'] },
+  { zh:'运动员', en:'Athlete', tag:'', credit:'9–70', pts:'EDU×2 + DEX×2/STR×2', occ:['climb','jump','fight','ride','swim','throw','charm','fast_talk','intimidate','persuade'] },
+  { zh:'作家', en:'Author', tag:'zh', credit:'9–30', pts:'EDU×4', occ:['history','library','natural','occult','other_lang','native_lang','psychology'] },
+  { zh:'神职人员', en:'Clergy', tag:'', credit:'9–60', pts:'EDU×4', occ:['accounting','history','library','listen','other_lang','psychology','charm','fast_talk','intimidate','persuade'] },
+  { zh:'罪犯', en:'Criminal', tag:'', credit:'5–65', pts:'EDU×2 + DEX×2/STR×2', occ:['psychology','spot_hidden','stealth','appraise','disguise','fight','firearms','locksmith','mech_repair','sleight','charm','fast_talk','intimidate','persuade'] },
+  { zh:'业余艺术爱好者', en:'Dilettante', tag:'zh', credit:'50–99', pts:'EDU×2 + APP×2', occ:['firearms','other_lang','ride','charm','fast_talk','intimidate','persuade'] },
+  { zh:'医生', en:'Doctor', tag:'zh', credit:'30–80', pts:'EDU×4', occ:['first_aid','other_lang','medicine','psychology','science','spot_hidden'] },
+  { zh:'流浪者', en:'Drifter', tag:'', credit:'0–5', pts:'EDU×2 + STR×2/DEX×2', occ:['climb','jump','listen','navigate','stealth','charm','fast_talk','intimidate','persuade'] },
+  { zh:'工程师', en:'Engineer', tag:'', credit:'30–60', pts:'EDU×4', occ:['elec_repair','library','mech_repair','heavy_mach','science','drive','spot_hidden','accounting'] },
+  { zh:'艺人', en:'Entertainer', tag:'', credit:'9–70', pts:'EDU×2 + APP×2', occ:['disguise','listen','psychology','charm','fast_talk','intimidate','persuade'] },
+  { zh:'农民', en:'Farmer', tag:'', credit:'9–30', pts:'EDU×2 + DEX×2/STR×2', occ:['drive','mech_repair','natural','heavy_mach','track','charm','fast_talk','intimidate','persuade'] },
+  { zh:'黑客', en:'Hacker', tag:'en', credit:'10–70', pts:'EDU×4', occ:['computer','elec_repair','electronics','library','spot_hidden','other_lang','charm','fast_talk','intimidate','persuade'] },
+  { zh:'记者', en:'Journalist', tag:'zh', credit:'9–30', pts:'EDU×4', occ:['history','library','other_lang','psychology','spot_hidden','charm','fast_talk','intimidate','persuade'] },
+  { zh:'律师', en:'Lawyer', tag:'', credit:'30–80', pts:'EDU×4', occ:['accounting','law','library','psychology','charm','fast_talk','intimidate','persuade'] },
+  { zh:'图书馆管理员', en:'Librarian', tag:'zh', credit:'9–35', pts:'EDU×4', occ:['accounting','library','other_lang','native_lang'] },
+  { zh:'军官', en:'Military Officer', tag:'', credit:'20–70', pts:'EDU×2 + DEX×2/STR×2', occ:['accounting','firearms','navigate','psychology','survival','charm','fast_talk','intimidate','persuade'] },
+  { zh:'传教士', en:'Missionary', tag:'', credit:'0–30', pts:'EDU×4', occ:['mech_repair','medicine','natural','charm','fast_talk','intimidate','persuade'] },
+  { zh:'音乐家', en:'Musician', tag:'', credit:'9–30', pts:'EDU×2 + DEX×2/POW×2', occ:['listen','psychology','charm','fast_talk','intimidate','persuade'] },
+  { zh:'超心理学家', en:'Parapsychologist', tag:'', credit:'9–30', pts:'EDU×4', occ:['anthropology','history','library','occult','other_lang','psychology','science','spot_hidden'] },
+  { zh:'飞行员', en:'Pilot', tag:'', credit:'20–70', pts:'EDU×2 + DEX×2', occ:['elec_repair','mech_repair','navigate','heavy_mach','science'] },
+  { zh:'警探', en:'Police Detective', tag:'zh', credit:'20–50', pts:'EDU×2 + DEX×2/STR×2', occ:['disguise','firearms','law','listen','psychology','spot_hidden','charm','fast_talk','intimidate','persuade'] },
+  { zh:'警察', en:'Police Officer', tag:'', credit:'9–30', pts:'EDU×2 + DEX×2/STR×2', occ:['fight','firearms','first_aid','law','psychology','spot_hidden','drive','ride'] },
+  { zh:'私家侦探', en:'Private Investigator', tag:'', credit:'9–30', pts:'EDU×2 + DEX×2/STR×2', occ:['disguise','law','library','psychology','spot_hidden','charm','fast_talk','intimidate','persuade'] },
+  { zh:'教授', en:'Professor', tag:'zh', credit:'20–70', pts:'EDU×4', occ:['library','other_lang','native_lang','psychology','history','natural','science','occult'] },
+  { zh:'士兵', en:'Soldier', tag:'', credit:'9–30', pts:'EDU×2 + DEX×2/STR×2', occ:['climb','swim','fight','firearms','stealth','survival','first_aid','mech_repair','other_lang'] },
+  { zh:'部落成员', en:'Tribal Member', tag:'', credit:'0–15', pts:'EDU×2 + DEX×2/STR×2', occ:['climb','fight','throw','natural','listen','occult','spot_hidden','swim','survival'] },
+  { zh:'狂热者', en:'Zealot', tag:'', credit:'0–30', pts:'EDU×2 + APP×2/POW×2', occ:['history','psychology','stealth','charm','fast_talk','intimidate','persuade'] },
+];
+function pn(p){return L==='zh'?p.zh:p.en}
+function ptag(p){
+  if(!p.tag)return'';
+  if(p.tag==='zh')return L==='zh'?'原作向':'Literary';
+  if(p.tag==='en')return L==='zh'?'现代':'Modern';
+  return'';
+}
+
+const WEAPON_PRESETS = [
+  { zh:'拳头/脚踢', en:'Fist/Kick', type:'melee', skill:'fighting', rate:'1D3+DB', range:'touch', impale:'no', attacks:'1', ammo:'—', mal:'—' },
+  { zh:'短棍/棍棒', en:'Club/Nightstick', type:'melee', skill:'fighting', rate:'1D6+DB', range:'touch', impale:'no', attacks:'1', ammo:'—', mal:'—' },
+  { zh:'大型刀', en:'Large Knife', type:'melee', skill:'fighting', rate:'1D4+2', range:'touch', impale:'yes', attacks:'1', ammo:'—', mal:'—' },
+  { zh:'手斧', en:'Hand Axe', type:'melee', skill:'fighting', rate:'1D6+1', range:'touch', impale:'yes', attacks:'1', ammo:'—', mal:'—' },
+  { zh:'大型斧', en:'Great Axe', type:'melee', skill:'axe', rate:'1D8+2', range:'touch', impale:'yes', attacks:'1', ammo:'—', mal:'—' },
+  { zh:'剑', en:'Sword', type:'melee', skill:'sword', rate:'1D8+1', range:'touch', impale:'yes', attacks:'1', ammo:'—', mal:'—' },
+  { zh:'矛', en:'Spear', type:'melee', skill:'spear', rate:'1D8', range:'touch', impale:'yes', attacks:'1', ammo:'—', mal:'—' },
+  { zh:'鞭', en:'Whip', type:'melee', skill:'whip', rate:'1D3+DB/2', range:'touch', impale:'no', attacks:'1', ammo:'—', mal:'—' },
+  { zh:'链锯', en:'Chainsaw', type:'melee', skill:'chainsaw', rate:'2D8', range:'touch', impale:'yes', attacks:'1', ammo:'—', mal:'—' },
+  { zh:'小型手枪(.22)', en:'Small Pistol (.22)', type:'ranged', skill:'handgun', rate:'1D6', range:'10yd', impale:'yes', attacks:'1', ammo:'6', mal:'99' },
+  { zh:'中型手枪(.32)', en:'Medium Pistol (.32)', type:'ranged', skill:'handgun', rate:'1D8', range:'15yd', impale:'yes', attacks:'1', ammo:'6', mal:'99' },
+  { zh:'大型手枪(.45)', en:'Large Pistol (.45)', type:'ranged', skill:'handgun', rate:'1D10+2', range:'15yd', impale:'yes', attacks:'1', ammo:'7', mal:'99' },
+  { zh:'步枪(.30)', en:'Rifle (.30)', type:'ranged', skill:'rifle', rate:'2D6', range:'110yd', impale:'yes', attacks:'1', ammo:'5', mal:'99' },
+  { zh:'霰弹枪(12号)', en:'Shotgun (12-gauge)', type:'ranged', skill:'rifle', rate:'4D6/2D6/1D6', range:'10/20/50yd', impale:'no', attacks:'1', ammo:'2', mal:'99' },
+  { zh:'冲锋枪(.45)', en:'SMG (.45)', type:'ranged', skill:'smg', rate:'1D10', range:'20yd', impale:'yes', attacks:'auto', ammo:'30', mal:'96' },
+  { zh:'机枪(.30)', en:'Machine Gun (.30)', type:'ranged', skill:'machinegun', rate:'2D6', range:'100yd', impale:'yes', attacks:'auto', ammo:'250', mal:'96' },
+  { zh:'弓', en:'Bow', type:'ranged', skill:'bow', rate:'1D6+DB/2', range:'25yd', impale:'yes', attacks:'1', ammo:'1', mal:'—' },
+  { zh:'弩', en:'Crossbow', type:'ranged', skill:'bow', rate:'1D8+2', range:'50yd', impale:'yes', attacks:'1/2r', ammo:'1', mal:'—' },
+  { zh:'火焰喷射器', en:'Flamethrower', type:'ranged', skill:'flamethrower', rate:'2D6+DB/2', range:'25yd', impale:'yes', attacks:'1', ammo:'7', mal:'96' },
+  { zh:'手雷', en:'Grenade', type:'explosive', skill:'throw', rate:'4D10/2D10/1D10', range:'STR/5yd', impale:'—', attacks:'1', ammo:'1', mal:'—' },
+  { zh:'炸药棒', en:'Dynamite', type:'explosive', skill:'demolitions', rate:'4D10/2D10/1D10', range:'—', impale:'—', attacks:'1', ammo:'1', mal:'—' },
+];
+function wn(w){return L==='zh'?w.zh:w.en}
+const WPN_TYPE_MAP = { melee:{zh:'近战',en:'Melee'}, ranged:{zh:'射击',en:'Ranged'}, explosive:{zh:'爆炸',en:'Explosive'} };
+const IMPALE_MAP = { yes:{zh:'是',en:'Yes'}, no:{zh:'否',en:'No'} };
+const EQUIP_MAP = ['equipCarry','equipEquip'];
+
+// ═══════════════════════════ STATE ═══════════════════════════
+const attrs = {};
+ATTR_DEFS.forEach(a=>{attrs[a.key]={value:0,rerolled:false}});
+let skillAlloc={},selectedProfession=null,isCustomProfession=false,customProfData={name:'',credit:'9-30',pts:'EDU×4',skills:[]};
+let customSkills=[],inventory=[],weapons=[],fileNumber='';
+
+// ═══════════════════════════ HELPERS ═══════════════════════════
+function r6(){return Math.floor(Math.random()*6)+1}
+function roll3d6(){return r6()+r6()+r6()}
+function av(k){return attrs[k]?.value||0}
+function getAge(){return Math.max(15,Math.min(90,parseInt(document.getElementById('charAge').value)||25))}
+function toast(m){const el=document.getElementById('toast');el.textContent=m;el.classList.add('toast--show');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('toast--show'),1800)}
+function toggleSection(id,label){const el=document.getElementById(id);if(el.classList.contains('hidden')){el.classList.remove('hidden');label.classList.remove('collapsed')}else{el.classList.add('hidden');label.classList.add('collapsed')}}
+function allSkills(){return Object.values(SKILL_CATEGORIES).flatMap(c=>c.skills).concat(customSkills)}
+
+// ═══════════════════════════ RENDER ═══════════════════════════
+
+function renderAttrs(){
+  document.getElementById('attrGrid').innerHTML=ATTR_DEFS.map(a=>{
+    const v=attrs[a.key].value,h=v?Math.floor(v/2):'—',f=v?Math.floor(v/5):'—',cls=v?'':' attr-value--empty';
+    return `<div class="attr-cell"><span class="attr-abbr">${a.abbr}</span><span class="attr-name-zh">${an(a)}</span><span class="attr-value${cls}">${v||'—'}</span><span class="attr-half-fifth">½${h}<br>⅕${f}</span></div>`;
+  }).join('');
+}
+
+function renderRerollButtons(){
+  document.getElementById('rerollButtons').innerHTML=ATTR_DEFS.map(a=>
+    `<button class="btn" onclick="rerollAttr('${a.key}')" ${!attrs[a.key].value?'disabled':''}>${L==='zh'?'重骰':'Reroll'} ${an(a)}</button>`
+  ).join('');
+}
+
+function renderDerived(){
+  const s=av('str'),c=av('con'),z=av('siz'),d=av('dex'),p=av('pow'),age=getAge();
+  if(!c||!z||!p||!s||!d){['dvHp','dvMp','dvSan','dvDb','dvBuild','dvMov','dvDodge'].forEach(id=>document.getElementById(id).textContent='—');return}
+  const hp=Math.floor((c+z)/10),mp=Math.floor(p/5),san=p,sz=s+z;let db,build;
+  if(sz<=64){db='-2';build=-2}else if(sz<=84){db='-1';build=-1}else if(sz<=124){db='0';build=0}
+  else if(sz<=164){db='+1d4';build=1}else if(sz<=204){db='+1d6';build=2}else{const ex=Math.floor((sz-205)/80)+2;db=`+${ex}d6`;build=ex}
+  let mov=8;if(d<z&&s<z)mov=7;else if(d>z&&s>z)mov=9;
+  if(age>=80)mov-=5;else if(age>=70)mov-=4;else if(age>=60)mov-=3;else if(age>=50)mov-=2;else if(age>=40)mov-=1;
+  mov=Math.max(1,mov);
+  document.getElementById('dvHp').textContent=hp;document.getElementById('dvMp').textContent=mp;
+  document.getElementById('dvSan').textContent=san;document.getElementById('dvDb').textContent=db;
+  document.getElementById('dvBuild').textContent=build;document.getElementById('dvMov').textContent=mov;
+  document.getElementById('dvDodge').textContent=Math.floor(d/2);
+}
+
+function renderAgeNote(){
+  const age=getAge(),el=document.getElementById('ageNote');let k='';
+  if(age>=15&&age<=19)k='ageNote15';else if(age>=20&&age<=39)k='ageNote20';else if(age>=40&&age<=49)k='ageNote40';
+  else if(age>=50&&age<=59)k='ageNote50';else if(age>=60&&age<=69)k='ageNote60';else if(age>=70&&age<=79)k='ageNote70';
+  else if(age>=80&&age<=89)k='ageNote80';
+  if(k){el.style.display='block';el.textContent='※ '+_(k)}else el.style.display='none';
+}
+
+function initSkillAlloc(){skillAlloc={};allSkills().forEach(s=>{skillAlloc[s.key]={pro:0,int:0}})}
+function getOccSkills(){if(isCustomProfession)return new Set(customProfData.skills);if(!selectedProfession)return new Set();return new Set(selectedProfession.occ||[])}
+function countPoints(){let pu=0,iu=0;Object.values(skillAlloc).forEach(a=>{pu+=a.pro;iu+=a.int});return{proUsed:pu,intUsed:iu}}
+function getSkillBase(key){
+  for(const cat of Object.values(SKILL_CATEGORIES)){for(const s of cat.skills){if(s.key===key)return s.base}}
+  const cs=customSkills.find(s=>s.key===key);if(cs)return cs.base;
+  if(key==='native_lang')return av('edu');return 0;
+}
+
+function renderSkills(){
+  const edu=av('edu'),intv=av('int'),occ=getOccSkills(),maxPro=(selectedProfession||isCustomProfession)?edu*4:0,maxInt=intv*2;
+  const{proUsed,intUsed}=countPoints();
+  document.getElementById('ptsPro').textContent=(selectedProfession||isCustomProfession)?(maxPro-proUsed):'—';
+  document.getElementById('ptsInt').textContent=intv?(maxInt-intUsed):'—';
+  let html='';
+  for(const[catKey,cat]of Object.entries(SKILL_CATEGORIES)){
+    html+=`<div class="skill-category"><div class="skill-cat-label">${cn(catKey)}</div><div class="skill-grid">`;
+    for(const s of cat.skills){
+      const base=s.key==='native_lang'?av('edu'):s.base,alloc=skillAlloc[s.key]||{pro:0,int:0},total=base+alloc.pro+alloc.int;
+      const isOcc=occ.has(s.key),nameCls=isOcc?' skill-name--occupation':'';
+      html+=`<div class="skill-row"><span class="skill-name${nameCls}">${sn(s)}</span><span class="skill-base">${base}%</span><span class="skill-alloc"><span class="skill-alloc-label">${L==='zh'?'职':'O'}</span><button class="btn--tiny" onclick="adjSkill('${s.key}','pro',-5)" ${(alloc.pro<=0||(!selectedProfession&&!isCustomProfession))?'disabled':''}>−</button><input class="skill-input" value="${alloc.pro}" onchange="setSkill('${s.key}','pro',this.value)" ${(!selectedProfession&&!isCustomProfession)?'disabled':''}><button class="btn--tiny" onclick="adjSkill('${s.key}','pro',5)" ${(maxPro-proUsed<=0||(!selectedProfession&&!isCustomProfession))?'disabled':''}>+</button></span><span class="skill-alloc"><span class="skill-alloc-label">${L==='zh'?'兴':'I'}</span><button class="btn--tiny" onclick="adjSkill('${s.key}','int',-5)" ${alloc.int<=0?'disabled':''}>−</button><input class="skill-input" value="${alloc.int}" onchange="setSkill('${s.key}','int',this.value)"><button class="btn--tiny" onclick="adjSkill('${s.key}','int',5)" ${maxInt-intUsed<=0?'disabled':''}>+</button></span><span class="skill-total">${total}%</span></div>`;
+    }
+    html+=`</div></div>`;
+  }
+  if(customSkills.length){
+    html+=`<div class="skill-category"><div class="skill-cat-label">${L==='zh'?'自定义':'Custom'}</div><div class="skill-grid">`;
+    for(const s of customSkills){
+      const alloc=skillAlloc[s.key]||{pro:0,int:0},total=s.base+alloc.pro+alloc.int,isOcc=occ.has(s.key),nameCls=isOcc?' skill-name--occupation':'';
+      html+=`<div class="skill-row"><span class="skill-name${nameCls}">${sn(s)}</span><span class="skill-base">${s.base}%</span><span class="skill-alloc"><span class="skill-alloc-label">${L==='zh'?'职':'O'}</span><button class="btn--tiny" onclick="adjSkill('${s.key}','pro',-5)" ${(alloc.pro<=0||(!selectedProfession&&!isCustomProfession))?'disabled':''}>−</button><input class="skill-input" value="${alloc.pro}" onchange="setSkill('${s.key}','pro',this.value)" ${(!selectedProfession&&!isCustomProfession)?'disabled':''}><button class="btn--tiny" onclick="adjSkill('${s.key}','pro',5)" ${(maxPro-proUsed<=0||(!selectedProfession&&!isCustomProfession))?'disabled':''}>+</button></span><span class="skill-alloc"><span class="skill-alloc-label">${L==='zh'?'兴':'I'}</span><button class="btn--tiny" onclick="adjSkill('${s.key}','int',-5)" ${alloc.int<=0?'disabled':''}>−</button><input class="skill-input" value="${alloc.int}" onchange="setSkill('${s.key}','int',this.value)"><button class="btn--tiny" onclick="adjSkill('${s.key}','int',5)" ${maxInt-intUsed<=0?'disabled':''}>+</button></span><span class="skill-total">${total}%</span> <button class="btn--tiny" style="color:var(--stamp)" onclick="removeCustomSkill('${s.key}')">×</button></div>`;
+    }
+    html+=`</div></div>`;
+  }
+  document.getElementById('skillsContainer').innerHTML=html;
+}
+
+function renderBackgroundFields(){
+  const fields=[
+    ['Appearance','bg-input','bgAppearancePh'],['Traits','bg-input','bgTraitsPh'],['Beliefs','bg-input','bgBeliefsPh'],
+    ['ImportantPeople','bg-input','bgImportantPeoplePh'],['Places','bg-input','bgPlacesPh'],['Valuables','bg-input','bgValuablesPh'],
+    ['Phobias','bg-input','bgPhobiasPh'],['Wounds','bg-input','bgWoundsPh'],['Mythos','bg-textarea full','bgMythosPh'],
+    ['Encounters','bg-textarea full','bgEncountersPh'],['Past','bg-textarea full','bgPastPh'],
+  ];
+  document.getElementById('bgFields').innerHTML=fields.map(([id,cls,ph])=>{
+    const isFull=cls.includes('full'),tag=cls.includes('textarea')?'textarea':'input',labelKey='bg'+id;
+    if(tag==='textarea')return `<div class="bg-field full"><span class="bg-label">${_(labelKey)}</span><textarea class="bg-textarea" id="bg${id}" placeholder="${_(ph)}"></textarea></div>`;
+    return `<div class="bg-field"><span class="bg-label">${_(labelKey)}</span><input class="bg-input" id="bg${id}" placeholder="${_(ph)}"></div>`;
+  }).join('');
+}
+
+function renderAll(){
+  renderAttrs();renderRerollButtons();renderDerived();renderAgeNote();renderBackgroundFields();
+  renderSkills();renderWeaponTable();renderInventory();updateAssets();updateExport();updateFileDate();
+}
+
+// ═══════════════════════════ PROFESSION ═══════════════════════════
+
+function populateProfessions(){
+  const sel=document.getElementById('profSelect');
+  while(sel.options.length>2)sel.remove(2);
+  PROFESSIONS.forEach((p,i)=>{
+    const o=document.createElement('option');o.value=i;
+    const t=ptag(p);o.textContent=pn(p)+(t?' ['+t+']':'');
+    sel.appendChild(o);
+  });
+  if(sel.value==='__custom__')document.getElementById('profDetail').innerHTML='';
+}
+
+function populateCustomProfCheckboxes(){
+  document.getElementById('custProfSkills').innerHTML=allSkills().map(s=>
+    `<label class="check-item"><input type="checkbox" value="${s.key}" onchange="updateCustomProfSkills()"><span>${sn(s)}</span></label>`
+  ).join('');
+}
+
+function updateCustomProfSkills(){
+  customProfData.skills=[];
+  document.querySelectorAll('#custProfSkills input:checked').forEach(cb=>{if(customProfData.skills.length<8)customProfData.skills.push(cb.value)});
+}
+
+function onProfessionChange(){
+  const idx=document.getElementById('profSelect').value;
+  if(idx==='__custom__'){
+    isCustomProfession=true;selectedProfession=null;
+    document.getElementById('profDetail').classList.remove('prof-detail--visible');
+    document.getElementById('customProfForm').style.display='grid';initSkillAlloc();renderAll();return;
+  }
+  isCustomProfession=false;document.getElementById('customProfForm').style.display='none';
+  const ip=parseInt(idx);
+  if(isNaN(ip)){selectedProfession=null;document.getElementById('profDetail').classList.remove('prof-detail--visible');initSkillAlloc();renderAll();return}
+  selectedProfession=PROFESSIONS[ip];
+  const occNames=selectedProfession.occ.map(k=>{const s=findSkillByKey(k);return s?sn(s):k}).join(' · ');
+  document.getElementById('profDetail').innerHTML=`<strong>${pn(selectedProfession)}</strong>${ptag(selectedProfession)?' <span style="color:var(--ink-faded)">['+ptag(selectedProfession)+']</span>':''}<br>${_('profCR')}: ${selectedProfession.credit}　|　${_('profPts')}: ${selectedProfession.pts}<br>${_('occSkills')}: ${occNames} <span style="font-size:0.6rem;color:var(--ink-faded);">（*）</span>`;
+  document.getElementById('profDetail').classList.add('prof-detail--visible');
+  initSkillAlloc();renderAll();
+}
+
+function findSkillByKey(key){for(const cat of Object.values(SKILL_CATEGORIES)){const s=cat.skills.find(s=>s.key===key);if(s)return s}return customSkills.find(s=>s.key===key)||null}
+
+// ═══════════════════════════ SKILLS ═══════════════════════════
+
+function adjSkill(key,type,delta){
+  if(!skillAlloc[key])skillAlloc[key]={pro:0,int:0};
+  const edu=av('edu'),intv=av('int'),maxPro=(selectedProfession||isCustomProfession)?edu*4:0,maxInt=intv*2;
+  const{proUsed,intUsed}=countPoints(),base=getSkillBase(key),nv=skillAlloc[key][type]+delta;
+  if(nv<0)return;if(base+skillAlloc[key].pro+skillAlloc[key].int+delta>99)return;
+  if(type==='pro'&&proUsed+delta>maxPro)return;if(type==='int'&&intUsed+delta>maxInt)return;
+  skillAlloc[key][type]=nv;renderAll();
+}
+function setSkill(key,type,val){
+  const v=parseInt(val)||0;if(v<0)return;if(!skillAlloc[key])skillAlloc[key]={pro:0,int:0};
+  const edu=av('edu'),intv=av('int'),maxPro=(selectedProfession||isCustomProfession)?edu*4:0,maxInt=intv*2;
+  const base=getSkillBase(key),old=skillAlloc[key][type];skillAlloc[key][type]=v;
+  const{proUsed,intUsed}=countPoints();
+  if(type==='pro'&&proUsed>maxPro){skillAlloc[key][type]=old;return}
+  if(type==='int'&&intUsed>maxInt){skillAlloc[key][type]=old;return}
+  if(base+v+(type==='pro'?skillAlloc[key].int:skillAlloc[key].pro)>99){skillAlloc[key][type]=old;return}
+  renderAll();
+}
+function addCustomSkill(){
+  const name=prompt(_('addCustomSkillPrompt'));if(!name||!name.trim())return;
+  const base=parseInt(prompt(_('addCustomSkillBase'),'1'))||1;
+  const key='custom_'+Date.now();
+  customSkills.push({key,zh:name.trim(),en:name.trim(),base});
+  skillAlloc[key]={pro:0,int:0};renderAll();
+}
+function removeCustomSkill(key){customSkills=customSkills.filter(s=>s.key!==key);delete skillAlloc[key];renderAll()}
+
+// ═══════════════════════════ ROLLING ═══════════════════════════
+
+function rollAll(){
+  if(!fileNumber){fileNumber=String(Math.floor(Math.random()*9000)+1000);document.getElementById('fileNum').textContent=fileNumber}
+  ATTR_DEFS.forEach(a=>{attrs[a.key].value=a.gen();attrs[a.key].rerolled=false});
+  initSkillAlloc();renderAll();animateAttrCells();updateFileDate();
+}
+function rerollAttr(key){
+  const def=ATTR_DEFS.find(a=>a.key===key);if(!def)return;
+  if(attrs[key].rerolled){toast(_('rerolled'));return}
+  if(!attrs[key].value){toast(_('rollFirst'));return}
+  attrs[key].value=def.gen();attrs[key].rerolled=true;
+  if(key==='edu')initSkillAlloc();renderAll();animateAttrCells();
+}
+function animateAttrCells(){
+  document.querySelectorAll('.attr-value:not(.attr-value--empty)').forEach((el,i)=>{
+    el.classList.remove('type-in');void el.offsetWidth;el.style.animationDelay=(i*0.04)+'s';el.classList.add('type-in');
+  });
+}
+
+// ═══════════════════════════ INVENTORY ═══════════════════════════
+
+function renderInventory(){
+  document.getElementById('invBody').innerHTML=inventory.map((item,i)=>`<tr>
+    <td><select onchange="inventory[${i}].equipped=this.value">${EQUIP_MAP.map(k=>`<option value="${_(k)}" ${item.equipped===_(k)?'selected':''}>${_(k)}</option>`).join('')}</select></td>
+    <td><input value="${item.location||''}" placeholder="${L==='zh'?'手持/背包/…':'Hand/Backpack/…'}" onchange="inventory[${i}].location=this.value"></td>
+    <td><input value="${item.name||''}" placeholder="${_('invName')}" onchange="inventory[${i}].name=this.value"></td>
+    <td><input class="col-narrow" value="${item.slots||0}" onchange="inventory[${i}].slots=parseInt(this.value)||0"></td>
+    <td><span class="row-del" onclick="inventory.splice(${i},1);renderInventory()">×</span></td>
+  </tr>`).join('');
+}
+function addInventoryRow(){inventory.push({equipped:_('equipCarry'),location:'',name:'',slots:0});renderInventory()}
+
+// ═══════════════════════════ ASSETS ═══════════════════════════
+
+function updateAssets(){
+  const cr=parseInt(document.getElementById('crInput').value)||0,era=document.getElementById('currencyUnit').value;
+  let living,spending,cash,assets,unit='$';
+  if(era==='1920'){
+    if(cr<=0){living='penniless';cash=0.5;assets=0;spending=0.5}
+    else if(cr<=9){living='poor';cash=cr*1;assets=cr*10;spending=2}
+    else if(cr<=49){living='standard';cash=cr*2;assets=cr*50;spending=10}
+    else if(cr<=89){living='affluent';cash=cr*5;assets=cr*500;spending=50}
+    else if(cr<=98){living='wealthy';cash=cr*20;assets=cr*2000;spending=250}
+    else{living='superRich';cash=50000;assets=5000000;spending=5000}
+  }else{
+    if(cr<=0){living='penniless';cash=10;assets=0;spending=10}
+    else if(cr<=9){living='poor';cash=cr*20;assets=cr*200;spending=40}
+    else if(cr<=49){living='standard';cash=cr*40;assets=cr*1000;spending=200}
+    else if(cr<=89){living='affluent';cash=cr*100;assets=cr*10000;spending=1000}
+    else if(cr<=98){living='wealthy';cash=cr*400;assets=cr*40000;spending=5000}
+    else{living='superRich';cash=1000000;assets=100000000;spending=100000}
+  }
+  document.getElementById('asLiving').textContent=_(living);
+  document.getElementById('asSpending').textContent=unit+spending.toLocaleString();
+  document.getElementById('asCash').textContent=unit+cash.toLocaleString();
+  document.getElementById('asAssets').textContent=unit+assets.toLocaleString();
+  updateExport();
+}
+
+// ═══════════════════════════ WEAPONS ═══════════════════════════
+
+function populateWeaponPresets(){
+  const sel=document.getElementById('wpnPreset');while(sel.options.length>1)sel.remove(1);
+  WEAPON_PRESETS.forEach((w,i)=>{const o=document.createElement('option');o.value=i;o.textContent=wn(w);sel.appendChild(o)});
+}
+function addPresetWeapon(){
+  const idx=parseInt(document.getElementById('wpnPreset').value);if(isNaN(idx))return;
+  const p=WEAPON_PRESETS[idx];
+  weapons.push({
+    name:wn(p),type:WPN_TYPE_MAP[p.type][L],skill:p.skill,successRate:'',rate:p.rate,range:p.range,
+    impale:IMPALE_MAP[p.impale][L],attacks:p.attacks,ammo:p.ammo,mal:p.mal
+  });
+  document.getElementById('wpnPreset').value='';renderWeaponTable();
+}
+function addWeaponRow(){weapons.push({name:'',type:'Melee',skill:'',successRate:'',rate:'',range:'',impale:'No',attacks:'1',ammo:'',mal:''});renderWeaponTable()}
+function renderWeaponTable(){
+  const typeOpts=[WPN_TYPE_MAP.melee[L],WPN_TYPE_MAP.ranged[L],WPN_TYPE_MAP.explosive[L]];
+  const impaleOpts=[IMPALE_MAP.yes[L],IMPALE_MAP.no[L]];
+  document.getElementById('wpnBody').innerHTML=weapons.map((w,i)=>`<tr>
+    <td><input value="${w.name||''}" onchange="weapons[${i}].name=this.value"></td>
+    <td><select onchange="weapons[${i}].type=this.value">${typeOpts.map(t=>`<option ${w.type===t?'selected':''}>${t}</option>`).join('')}</select></td>
+    <td><input value="${w.skill||''}" placeholder="${L==='zh'?'格斗(斗殴)':'Fighting(Brawl)'}" onchange="weapons[${i}].skill=this.value"></td>
+    <td><input class="col-narrow" value="${w.successRate||''}" placeholder="${L==='zh'?'自动':'Auto'}" onchange="weapons[${i}].successRate=this.value"></td>
+    <td><input value="${w.rate||''}" onchange="weapons[${i}].rate=this.value"></td>
+    <td><input class="col-narrow" value="${w.range||''}" onchange="weapons[${i}].range=this.value"></td>
+    <td><select onchange="weapons[${i}].impale=this.value">${impaleOpts.map(o=>`<option ${w.impale===o?'selected':''}>${o}</option>`).join('')}</select></td>
+    <td><input class="col-narrow" value="${w.attacks||''}" onchange="weapons[${i}].attacks=this.value"></td>
+    <td><input class="col-narrow" value="${w.ammo||''}" onchange="weapons[${i}].ammo=this.value"></td>
+    <td><input class="col-narrow" value="${w.mal||''}" onchange="weapons[${i}].mal=this.value"></td>
+    <td><span class="row-del" onclick="weapons.splice(${i},1);renderWeaponTable()">×</span></td>
+  </tr>`).join('');
+}
+
+// ═══════════════════════════ EXPORT ═══════════════════════════
+
+function updateExport(){
+  const name=document.getElementById('charName').value||'未命名调查员',age=getAge();
+  if(!Object.values(attrs).some(a=>a.value>0)){document.getElementById('exportText').value='';return}
+  let t=`${name}\n${_('age')}${age}\n\n`;ATTR_DEFS.forEach(a=>{t+=`${an(a)}${attrs[a.key].value} `});t+='\n';
+  t+=`HP${document.getElementById('dvHp').textContent} MP${document.getElementById('dvMp').textContent} SAN${document.getElementById('dvSan').textContent} ${_('dodge')}${document.getElementById('dvDodge').textContent}\n`;
+  const pn2=isCustomProfession?customProfData.name:(selectedProfession?pn(selectedProfession):'');
+  if(pn2)t+=`\n${_('profession')}${pn2}\n`;
+  allSkills().forEach(s=>{const alloc=skillAlloc[s.key]||{pro:0,int:0};if(alloc.pro>0||alloc.int>0){const base=s.key==='native_lang'?av('edu'):s.base;t+=`${sn(s)}${base+alloc.pro+alloc.int} `;}});
+  t+='\n';document.getElementById('exportText').value=t;
+}
+
+function copyExport(){const el=document.getElementById('exportText');if(!el.value){toast(_('noExport'));return}el.select();document.execCommand('copy');toast(_('copied'))}
+
+function downloadMarkdown(){
+  const name=document.getElementById('charName').value||'Investigator',age=getAge(),gender=document.getElementById('charGender').value||'';
+  let md=`# ${name}\n\n**${_('age')}:** ${age}${gender?'  \n**'+_('gender')+':** '+gender:''}\n`;
+  if(isCustomProfession)md+=`**${_('profession')}:** ${customProfData.name} (${_('customProf')})\n`;
+  else if(selectedProfession)md+=`**${_('profession')}:** ${pn(selectedProfession)}\n`;
+  md+=`\n## ${_('attrs')}\n\n`;const cols=ATTR_DEFS.map(a=>an(a)),vals=ATTR_DEFS.map(a=>attrs[a.key].value||'—');
+  md+=`| ${cols.join(' | ')} |\n|${cols.map(()=>':---:').join('|')}|\n| ${vals.join(' | ')} |\n\n`;
+  md+=`## ${_('attrs')}\n\n| HP | MP | SAN | ${_('dodge')} | DB | ${_('build')} | MOV |\n|---|---|---|---|---|---|---|\n`;
+  md+=`| ${document.getElementById('dvHp').textContent} | ${document.getElementById('dvMp').textContent} | ${document.getElementById('dvSan').textContent} | ${document.getElementById('dvDodge').textContent} | ${document.getElementById('dvDb').textContent} | ${document.getElementById('dvBuild').textContent} | ${document.getElementById('dvMov').textContent} |\n\n`;
+  md+=`## ${_('skills')}\n\n| ${_('skills')} | ${L==='zh'?'总值':'Total'} |\n|---|---|\n`;
+  allSkills().forEach(s=>{const alloc=skillAlloc[s.key]||{pro:0,int:0};if(alloc.pro>0||alloc.int>0){const base=s.key==='native_lang'?av('edu'):s.base;md+=`| ${sn(s)} | ${base+alloc.pro+alloc.int}% |\n`;}});
+  // Background
+  const bgFields=[['Appearance','bgAppearance'],['Traits','bgTraits'],['Beliefs','bgBeliefs'],['ImportantPeople','bgImportantPeople'],['Places','bgPlaces'],['Valuables','bgValuables'],['Phobias','bgPhobias'],['Wounds','bgWounds'],['Mythos','bgMythos'],['Encounters','bgEncounters'],['Past','bgPast']];
+  let hasBg=false;
+  for(const[id,labelKey]of bgFields){const v=document.getElementById('bg'+id)?.value;if(v&&v.trim()){if(!hasBg){md+=`\n## ${_('background')}\n\n`;hasBg=true}md+=`**${_(labelKey)}：** ${v.trim()}\n\n`}}
+  if(inventory.length){md+=`## ${_('inventory')}\n\n| ${_('invStatus')} | ${_('invLocation')} | ${_('invName')} | ${_('invSlots')} |\n|---|---|---|---|\n`;inventory.forEach(item=>{md+=`| ${item.equipped||'—'} | ${item.location||'—'} | ${item.name||'—'} | ${item.slots||0} |\n`});md+=`\n`}
+  md+=`## ${_('assets')}\n\n| ${_('creditRating')} | ${_('livingStd')} | ${_('spendingLvl')} | ${_('cash')} | ${_('otherAssets')} |\n|---|---|---|---|---|\n`;
+  md+=`| ${document.getElementById('crInput').value||'—'} | ${document.getElementById('asLiving').textContent} | ${document.getElementById('asSpending').textContent} | ${document.getElementById('asCash').textContent} | ${document.getElementById('asAssets').textContent} |\n\n`;
+  if(weapons.length){md+=`## ${_('weapons')}\n\n| ${_('wpnName')} | ${_('wpnType')} | ${_('wpnSkill')} | ${_('wpnRate')} | ${_('wpnDmg')} | ${_('wpnRange')} | ${_('wpnImpale')} | ${_('wpnAttacks')} | ${_('wpnAmmo')} | ${_('wpnMal')} |\n|---|---|---|---|---|---|---|---|---|---|\n`;weapons.forEach(w=>{md+=`| ${w.name||'—'} | ${w.type||'—'} | ${w.skill||'—'} | ${w.successRate||'—'} | ${w.rate||'—'} | ${w.range||'—'} | ${w.impale||'—'} | ${w.attacks||'—'} | ${w.ammo||'—'} | ${w.mal||'—'} |\n`});md+=`\n`}
+  const blob=new Blob([md],{type:'text/markdown;charset=utf-8'});const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');a.href=url;a.download=`${name}_档案.md`;document.body.appendChild(a);a.click();
+  document.body.removeChild(a);URL.revokeObjectURL(url);toast(_('mdDownloaded'));
+}
+
+function updateFileDate(){document.getElementById('fileDate').textContent=new Date().toISOString().slice(0,10)}
+
+function resetAll(){
+  if(!confirm(_('confirmReset')))return;
+  ATTR_DEFS.forEach(a=>{attrs[a.key]={value:0,rerolled:false}});
+  selectedProfession=null;isCustomProfession=false;fileNumber='';customProfData={name:'',credit:'9-30',pts:'EDU×4',skills:[]};
+  customSkills=[];inventory=[];weapons=[];
+  document.getElementById('fileNum').textContent='—';document.getElementById('profSelect').value='';
+  document.getElementById('profDetail').classList.remove('prof-detail--visible');
+  document.getElementById('customProfForm').style.display='none';document.getElementById('crInput').value='0';
+  'Appearance,Traits,Beliefs,ImportantPeople,Places,Valuables,Phobias,Wounds,Mythos,Encounters,Past'.split(',').forEach(id=>{
+    const el=document.getElementById('bg'+id);if(el)el.value='';
+  });
+  initSkillAlloc();renderAll();
+}
+
+// ═══════════════════════════ INIT ═══════════════════════════
+
+function init(){
+  initSkillAlloc();populateProfessions();populateCustomProfCheckboxes();populateWeaponPresets();renderBackgroundFields();
+  renderAll();
+  document.getElementById('charAge').addEventListener('change',()=>{renderAgeNote();renderDerived();renderSkills();updateExport()});
+  document.getElementById('crInput').addEventListener('change',updateAssets);
+  // Custom profession input listeners
+  ['custProfName','custProfCR','custProfPts'].forEach(id=>{
+    document.getElementById(id).addEventListener('change',()=>{if(!isCustomProfession)return;
+      customProfData.name=document.getElementById('custProfName').value;
+      customProfData.credit=document.getElementById('custProfCR').value;
+      customProfData.pts=document.getElementById('custProfPts').value;renderAll()});
+  });
+}
+
+document.addEventListener('DOMContentLoaded',init);
+</script>
+</body>
+</html>

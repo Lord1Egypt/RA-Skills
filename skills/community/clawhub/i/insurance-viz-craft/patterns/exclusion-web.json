@@ -1,0 +1,10 @@
+{
+  "name": "exclusion-web",
+  "label": "免责条款网络",
+  "description": "网络图展示所有免责情形及关联关系",
+  "layout": "network",
+  "features": ["node_link", "category_colors", "hover_detail", "severity_indicator", "link_annotations"],
+  "node_types": ["exclusion_category", "exclusion_item", "exception"],
+  "colors": {"exclusion_category": "#ef4444", "exclusion_item": "#f87171", "exception": "#34d399"},
+  "group_by_category": true
+}

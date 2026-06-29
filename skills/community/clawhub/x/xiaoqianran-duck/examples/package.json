@@ -1,0 +1,12 @@
+{
+  "name": "xiaoqianran-duck-examples",
+  "version": "0.1.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "hf": "node hf-import.js"
+  },
+  "dependencies": {
+    "@duckdb/node-api": "1.5.4-r.1"
+  }
+}

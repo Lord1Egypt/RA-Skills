@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>活动历时估算评估报告</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#f0f2f6;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;color:#1a1a2e;padding:20px}
+.report{max-width:1100px;margin:0 auto}
+
+/* Header */
+.header{background:linear-gradient(135deg,#667eea,#764ba2);border-radius:16px;padding:36px 40px;color:#fff;margin-bottom:24px;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;top:-50%;right:-30%;width:400px;height:400px;border-radius:50%;background:rgba(255,255,255,0.06)}
+.header h1{font-size:28px;font-weight:700;margin-bottom:8px;position:relative}
+.header .sub{font-size:14px;opacity:0.85;position:relative}
+.header .meta{display:flex;gap:24px;margin-top:16px;flex-wrap:wrap;position:relative}
+.header .meta span{font-size:13px;opacity:0.9;background:rgba(255,255,255,0.15);padding:4px 14px;border-radius:20px}
+
+/* Section */
+.section{background:#fff;border-radius:14px;padding:28px 32px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,0.06)}
+.section h2{font-size:18px;font-weight:600;color:#1a1a2e;margin-bottom:18px;padding-bottom:10px;border-bottom:2px solid #eef0f6}
+.section h2 span{display:inline-block;width:4px;height:18px;background:linear-gradient(180deg,#667eea,#764ba2);border-radius:2px;margin-right:10px;vertical-align:middle}
+
+/* Method cards */
+.methods{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:4px}
+.method-card{background:linear-gradient(135deg,#f8f9ff,#eef0ff);border-radius:12px;padding:18px 20px;border:1px solid #e8eaff;transition:transform 0.15s}
+.method-card.recommended{border-color:#667eea;background:linear-gradient(135deg,#f0f2ff,#e4e8ff);box-shadow:0 0 0 1px #667eea}
+.method-card .tag{display:inline-block;font-size:11px;padding:2px 10px;border-radius:12px;font-weight:600;margin-bottom:6px}
+.method-card .tag.active{background:#667eea;color:#fff}
+.method-card .tag.optional{background:#e8eaff;color:#667eea}
+.method-card .name{font-size:16px;font-weight:600;color:#1a1a2e;margin-bottom:4px}
+.method-card .desc{font-size:13px;color:#666;line-height:1.5}
+
+/* Tables */
+.data-table{width:100%;border-collapse:collapse;font-size:14px}
+.data-table th{background:#f6f8fc;padding:10px 14px;text-align:center;font-weight:600;color:#333;border:1px solid #e0e4ec}
+.data-table td{padding:9px 14px;text-align:center;border:1px solid #e0e4ec;color:#444}
+.data-table tr:nth-child(even){background:#fafbff}
+.data-table td:first-child{font-weight:600;color:#1a1a2e}
+
+/* Charts container */
+.chart-container{position:relative;width:100%;margin:16px 0 10px}
+.chart-container canvas{width:100% !important;max-height:320px}
+.charts-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:768px){.charts-row{grid-template-columns:1fr}}
+
+/* Results comparison */
+.result-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.result-item{background:#f8f9ff;border-radius:10px;padding:16px 18px;text-align:center;border:1px solid #e8eaff}
+.result-item .label{font-size:12px;color:#888;margin-bottom:4px}
+.result-item .value{font-size:26px;font-weight:700;background:linear-gradient(135deg,#667eea,#764ba2);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.result-item .note{font-size:12px;color:#999;margin-top:4px}
+.svg-container svg{max-width:100%;height:auto}
+
+/* P50/P90 */
+.p50p90{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.p50p90-item{padding:20px 24px;border-radius:12px;color:#fff}
+.p50p90-item.p50{background:linear-gradient(135deg,#667eea,#5a6fd6)}
+.p50p90-item.p90{background:linear-gradient(135deg,#f093fb,#f5576c)}
+.p50p90-item .big{font-size:36px;font-weight:700;margin:4px 0}
+.p50p90-item .desc{font-size:13px;opacity:0.9;line-height:1.5}
+
+/* Analysis */
+.analysis-list{list-style:none;padding:0}
+.analysis-list li{padding:10px 0;border-bottom:1px solid #f0f2f6;font-size:14px;line-height:1.6;display:flex;gap:10px}
+.analysis-list li:last-child{border-bottom:none}
+.analysis-list .icon{flex-shrink:0;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;margin-top:1px}
+.analysis-list .icon.green{background:#e6f7ee;color:#1a9d5a}
+.analysis-list .icon.yellow{background:#fff7e6;color:#d48a00}
+.analysis-list .icon.red{background:#ffe6e6;color:#d93030}
+
+/* Footer */
+.footer{text-align:center;padding:20px;color:#999;font-size:13px}
+</style>
+</head>
+<body>
+<div class="report" id="reportRoot">
+
+<!-- ============= HEADER ============= -->
+<div class="header">
+  <h1>📋 活动历时估算评估报告</h1>
+  <div class="sub">{{REPORT_SUBTITLE}}</div>
+  <div class="meta">
+    <span>📌 {{TASK_NAME}}</span>
+    <span>🔬 {{REPORT_SUBTITLE}}</span>
+    <span>📅 {{REPORT_DATE}}</span>
+  </div>
+</div>
+
+<!-- ============= METHOD CARDS ============= -->
+<div class="section">
+  <h2><span></span>使用估算方法</h2>
+  <div class="methods" id="methodCards"></div>
+</div>
+
+<!-- ============= INPUT PARAMETERS ============= -->
+<div class="section">
+  <h2><span></span>输入参数</h2>
+  <table class="data-table" id="inputTable">
+    <thead><tr><th>阶段</th><th>乐观 (O)</th><th>最可能 (M)</th><th>悲观 (P)</th><th>α</th><th>β</th></tr></thead>
+    <tbody id="inputBody"></tbody>
+  </table>
+</div>
+
+<!-- ============= RESULTS COMPARISON ============= -->
+<div class="section">
+  <h2><span></span>计算结果对比</h2>
+  <div class="result-grid" id="resultGrid"></div>
+  <div class="chart-container"><canvas id="compareChart" height="240"></canvas></div>
+</div>
+
+<!-- ============= MONTE CARLO SIMULATION ============= -->
+<div class="section" id="mcSection" style="display:none">
+  <h2><span></span>蒙特卡洛模拟结果</h2>
+  <div class="result-grid" id="mcStats"></div>
+  <div class="charts-row">
+    <div class="chart-container"><canvas id="mcDensityChart" height="280"></canvas><p style="text-align:center;font-size:13px;color:#888;margin-top:6px">▲ 概率密度分布（工期密度）</p></div>
+    <div class="chart-container"><canvas id="mcCumulativeChart" height="280"></canvas><p style="text-align:center;font-size:13px;color:#888;margin-top:6px">▲ 累计概率曲线</p></div>
+  </div>
+</div>
+
+<!-- ============= MULTI-DISTRIBUTION MC ============= -->
+<div class="section" id="multiMcSection" style="display:none">
+  <h2><span></span>多分布蒙特卡洛对比</h2>
+  <div class="svg-container" id="multiMcSvg" style="text-align:center;overflow-x:auto"></div>
+  <div class="result-grid" id="multiMcStats"></div>
+  <p style="font-size:13px;color:#888;margin-top:10px">▲ 支持PERT-Beta、三角分布、泊松近似三种分布，提供多维度概率评估</p>
+</div>
+
+<!-- ============= CPM / GANTT ============= -->
+<div class="section" id="cpmSection" style="display:none">
+  <h2><span></span>紧前关系与关键路径分析 (CPM)</h2>
+  <div id="depTableWrapper" style="margin-bottom:16px"></div>
+  <div class="svg-container" id="ganttSvg" style="text-align:center;overflow-x:auto"></div>
+  <div id="cpmTableWrapper" style="margin-top:16px"></div>
+</div>
+
+<!-- ============= OVERLAP ANALYSIS ============= -->
+<div class="section" id="overlapSection" style="display:none">
+  <h2><span></span>任务重叠分析</h2>
+  <div class="svg-container" id="overlapSvg" style="text-align:center;overflow-x:auto"></div>
+  <div class="result-grid" id="overlapStats"></div>
+</div>
+
+<!-- ============= P50/P90 ============= -->
+<div class="section">
+  <h2><span></span>概率工期解读</h2>
+  <div class="p50p90" id="p50p90Container">
+    <div class="p50p90-item p50">
+      <div>P50（中位数工期）</div>
+      <div class="big" id="p50Val">--</div>
+      <div class="desc" id="p50Desc">50% 概率在此工期内完成</div>
+    </div>
+    <div class="p50p90-item p90">
+      <div>P90（风险缓冲工期）</div>
+      <div class="big" id="p90Val">--</div>
+      <div class="desc" id="p90Desc">90% 概率在此工期内完成</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============= ANALYSIS ============= -->
+<div class="section">
+  <h2><span></span>分析建议</h2>
+  <p style="font-size:13px;color:#888;margin-bottom:12px">每条建议由 LLM 根据分析结果生成，包含维度标签(type)+正文(text)。<br>
+  维度说明：<strong>positive</strong>=正面结论/验证通过、<strong>warning</strong>=风险提示/改进建议。<br>
+  覆盖范围：工期结论、关键路径分析、任务重叠影响、多分布对比、风险缓冲建议。</p>
+  <ul class="analysis-list" id="analysisList"></ul>
+</div>
+
+<div class="footer">
+  由 Activity Duration Estimation Skill 生成 · 仅供决策参考
+</div>
+
+</div>
+
+<script>
+// 数据接口 — 生成报告时直接替换此结构
+const REPORT_DATA = {{REPORT_DATA_JSON}};
+
+function initReport() {
+  const d = REPORT_DATA;
+  document.querySelector('.header h1').textContent = '📋 活动历时估算评估报告';
+  const sub = document.querySelector('.header .sub');
+  if (d.subtitle) sub.textContent = d.subtitle;
+  const meta = document.querySelectorAll('.header .meta span');
+  if (meta[0]) meta[0].textContent = '📌 ' + d.title;
+  if (meta[1]) meta[1].textContent = '🔬 ' + d.subtitle;
+  if (meta[2]) meta[2].textContent = '📅 ' + d.date;
+
+  // Methods
+  renderMethods(d.methods);
+  // Input table
+  renderInputTable(d.phases);
+  // Results
+  renderResults(d.results);
+  // MC
+  if (d.monteCarlo) renderMonteCarlo(d.monteCarlo);
+  // Multi-dist MC
+  if (d.multiMcSvg) renderMultiMc(d);
+  // CPM / Gantt
+  if (d.ganttSvg) renderCpm(d);
+  // Overlap
+  if (d.overlapSvg) renderOverlap(d);
+  // Analysis
+  renderAnalysis(d.analysis);
+}
+
+function renderMethods(methods) {
+  const container = document.getElementById('methodCards');
+  if (!methods || methods.length === 0) {
+    container.innerHTML = '<p style="color:#888">暂无方法信息</p>';
+    return;
+  }
+  container.innerHTML = methods.map((m, i) => {
+    const cls = i === 0 ? 'active' : 'optional';
+    const extra = i === 0 ? ' recommended' : '';
+    return `<div class="method-card${extra}">
+      <span class="tag ${cls}">${i === 0 ? '★ 推荐' : '备选'}</span>
+      <div class="name">${m.name}</div>
+      <div class="desc">${m.desc}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderInputTable(phases) {
+  const tbody = document.getElementById('inputBody');
+  if (!phases || phases.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="6" style="color:#888">暂无阶段数据</td></tr>';
+    return;
+  }
+  tbody.innerHTML = phases.map(p => {
+    const alpha = p.alpha !== undefined ? p.alpha.toFixed(2) : '--';
+    const beta = p.beta !== undefined ? p.beta.toFixed(2) : '--';
+    return `<tr><td>${p.name}</td><td>${p.o}</td><td>${p.m}</td><td>${p.p}</td><td>${alpha}</td><td>${beta}</td></tr>`;
+  }).join('');
+}
+
+function renderResults(results) {
+  if (!results || Object.keys(results).length === 0) return;
+  const grid = document.getElementById('resultGrid');
+  grid.innerHTML = Object.entries(results).map(([key, val]) => {
+    let value = val.value.toFixed(1) + (val.unit || '天');
+    let note = val.note || '';
+    return `<div class="result-item"><div class="label">${key}</div><div class="value">${value}</div><div class="note">${note}</div></div>`;
+  }).join('');
+
+  // Draw compare chart
+  const labels = Object.keys(results);
+  const values = Object.values(results).map(v => v.value);
+  drawCompareChart(labels, values);
+}
+
+function drawCompareChart(labels, values) {
+  const canvas = document.getElementById('compareChart');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.parentElement.getBoundingClientRect();
+  const w = rect.width || 600;
+  const h = 240;
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  canvas.style.width = w + 'px';
+  canvas.style.height = h + 'px';
+  ctx.scale(dpr, dpr);
+
+  const pad = { top: 30, bottom: 50, left: 60, right: 30 };
+  const chartW = w - pad.left - pad.right;
+  const chartH = h - pad.top - pad.bottom;
+
+  // Clear
+  ctx.clearRect(0, 0, w, h);
+
+  if (!labels || labels.length === 0) return;
+
+  const maxVal = Math.max(...values) * 1.15;
+  const barW = Math.min(chartW / labels.length * 0.55, 80);
+  const colors = ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#43e97b'];
+
+  // Y axis
+  ctx.strokeStyle = '#e0e4ec';
+  ctx.lineWidth = 1;
+  ctx.beginPath();
+  ctx.moveTo(pad.left, pad.top);
+  ctx.lineTo(pad.left, pad.top + chartH);
+  ctx.stroke();
+
+  // Y ticks
+  ctx.fillStyle = '#999';
+  ctx.font = '12px sans-serif';
+  ctx.textAlign = 'right';
+  const ySteps = 5;
+  for (let i = 0; i <= ySteps; i++) {
+    const yVal = (maxVal / ySteps) * (ySteps - i);
+    const yPos = pad.top + (chartH / ySteps) * i;
+    ctx.fillText(yVal.toFixed(1), pad.left - 8, yPos + 4);
+    ctx.strokeStyle = '#f0f2f6';
+    ctx.beginPath();
+    ctx.moveTo(pad.left, yPos);
+    ctx.lineTo(w - pad.right, yPos);
+    ctx.stroke();
+  }
+
+  // X axis
+  ctx.strokeStyle = '#e0e4ec';
+  ctx.beginPath();
+  ctx.moveTo(pad.left, pad.top + chartH);
+  ctx.lineTo(w - pad.right, pad.top + chartH);
+  ctx.stroke();
+
+  // Bars
+  const gap = (chartW - labels.length * barW) / (labels.length + 1);
+  labels.forEach((label, i) => {
+    const x = pad.left + gap + i * (barW + gap);
+    const barH = (values[i] / maxVal) * chartH;
+    const y = pad.top + chartH - barH;
+
+    // Gradient
+    const grad = ctx.createLinearGradient(x, y, x, pad.top + chartH);
+    grad.addColorStop(0, colors[i % colors.length]);
+    grad.addColorStop(1, colors[(i + 1) % colors.length] || colors[i % colors.length]);
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.roundRect(x, y, barW, barH, [4, 4, 0, 0]);
+    ctx.fill();
+
+    // Label
+    ctx.fillStyle = '#333';
+    ctx.font = '12px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(label, x + barW / 2, pad.top + chartH + 20);
+  });
+}
+
+function renderMultiMc(d) {
+  document.getElementById('multiMcSection').style.display = 'block';
+  if (d.multiMcSvg) document.getElementById('multiMcSvg').innerHTML = d.multiMcSvg;
+  if (d.multiMcStats) {
+    const container = document.getElementById('multiMcStats');
+    container.innerHTML = d.multiMcStats.map(s =>
+      `<div class="result-item"><div class="label">${s.label}</div><div class="value">${s.value}</div><div class="note">${s.note||''}</div></div>`
+    ).join('');
+  }
+}
+
+function renderCpm(d) {
+  document.getElementById('cpmSection').style.display = 'block';
+  if (d.depTable) document.getElementById('depTableWrapper').innerHTML = d.depTable;
+  if (d.ganttSvg) document.getElementById('ganttSvg').innerHTML = d.ganttSvg;
+  if (d.cpmTable) document.getElementById('cpmTableWrapper').innerHTML = d.cpmTable;
+}
+
+function renderOverlap(d) {
+  document.getElementById('overlapSection').style.display = 'block';
+  if (d.overlapSvg) document.getElementById('overlapSvg').innerHTML = d.overlapSvg;
+  if (d.overlapStats) {
+    const container = document.getElementById('overlapStats');
+    container.innerHTML = d.overlapStats.map(s =>
+      `<div class="result-item"><div class="label">${s.label}</div><div class="value">${s.value}</div><div class="note">${s.note||''}</div></div>`
+    ).join('');
+  }
+}
+
+function renderMonteCarlo(mc) {
+  document.getElementById('mcSection').style.display = 'block';
+
+  // Stats
+  const stats = document.getElementById('mcStats');
+  if (mc.stats) {
+    const items = [
+      { label: '模拟次数', value: mc.stats.count.toLocaleString(), note: '每次 = 一条路径', unit: '' },
+      { label: '最短工期', value: mc.stats.min.toFixed(1), note: '理想情况', unit: '天' },
+      { label: '最长工期', value: mc.stats.max.toFixed(1), note: '最差情况', unit: '天' },
+      { label: '均值', value: mc.stats.mean.toFixed(1), note: '期望值', unit: '天' },
+      { label: '标准差', value: (mc.stats.stddev || 0).toFixed(1), note: '不确定性程度', unit: '天' },
+    ];
+    stats.innerHTML = items.map(item => {
+      const val = item.value + (item.unit || '');
+      return `<div class="result-item"><div class="label">${item.label}</div><div class="value" style="background:none;-webkit-text-fill-color:#1a1a2e">${val}</div><div class="note">${item.note}</div></div>`;
+    }).join('');
+  }
+
+  // Density chart
+  if (mc.density && mc.density.length > 0) {
+    drawMCCharts(mc.density, mc.binLabels, mc.cumulative);
+  }
+
+  // P50/P90
+  if (mc.p50 !== undefined) document.getElementById('p50Val').textContent = mc.p50.toFixed(1) + ' 天';
+  if (mc.p90 !== undefined) document.getElementById('p90Val').textContent = mc.p90.toFixed(1) + ' 天';
+  if (mc.p50Desc) document.getElementById('p50Desc').textContent = mc.p50Desc;
+  if (mc.p90Desc) document.getElementById('p90Desc').textContent = mc.p90Desc;
+}
+
+function drawMCCharts(density, binLabels, cumulative) {
+  // Density bar chart
+  const canvas1 = document.getElementById('mcDensityChart');
+  const canvas2 = document.getElementById('mcCumulativeChart');
+  if (!canvas1 || !canvas2) return;
+
+  const dpr = window.devicePixelRatio || 1;
+
+  [canvas1, canvas2].forEach((cv, idx) => {
+    const rect = cv.parentElement.getBoundingClientRect();
+    const w = rect.width || 500;
+    const h = 280;
+    cv.width = w * dpr;
+    cv.height = h * dpr;
+    cv.style.width = w + 'px';
+    cv.style.height = h + 'px';
+    const ctx = cv.getContext('2d');
+    ctx.scale(dpr, dpr);
+
+    const pad = { top: 20, bottom: 50, left: 60, right: 20 };
+    const chartW = w - pad.left - pad.right;
+    const chartH = h - pad.top - pad.bottom;
+    ctx.clearRect(0, 0, w, h);
+
+    let data, maxVal, color;
+
+    if (idx === 0) {
+      // Density: bar chart
+      data = density;
+      maxVal = Math.max(...data) * 1.15;
+      color = '#667eea';
+    } else {
+      // Cumulative: line chart
+      data = cumulative || density.map((_, i) => (i + 1) / density.length);
+      maxVal = 1.1;
+      color = '#764ba2';
+    }
+
+    const n = data.length;
+    if (n === 0) return;
+
+    // Axes
+    ctx.strokeStyle = '#e0e4ec';
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(pad.left, pad.top);
+    ctx.lineTo(pad.left, pad.top + chartH);
+    ctx.lineTo(w - pad.right, pad.top + chartH);
+    ctx.stroke();
+
+    // Y ticks
+    ctx.fillStyle = '#999';
+    ctx.font = '11px sans-serif';
+    ctx.textAlign = 'right';
+    for (let i = 0; i <= 4; i++) {
+      const yVal = (maxVal / 4) * (4 - i);
+      const yPos = pad.top + (chartH / 4) * i;
+      ctx.fillText(yVal.toFixed(idx === 0 ? 3 : 2), pad.left - 6, yPos + 4);
+      ctx.strokeStyle = '#f0f2f6';
+      ctx.beginPath();
+      ctx.moveTo(pad.left, yPos);
+      ctx.lineTo(w - pad.right, yPos);
+      ctx.stroke();
+    }
+
+    if (idx === 0) {
+      // Density bars
+      const barW = Math.max(chartW / n * 0.7, 2);
+      const gap = (chartW - n * barW) / (n + 1);
+      data.forEach((v, i) => {
+        const x = pad.left + gap + i * (barW + gap);
+        const barH = (v / maxVal) * chartH;
+        const y = pad.top + chartH - barH;
+        ctx.fillStyle = color;
+        ctx.globalAlpha = 0.7;
+        ctx.beginPath();
+        ctx.roundRect(x, y, barW, barH, [2, 2, 0, 0]);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      });
+    } else {
+      // Cumulative line
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      data.forEach((v, i) => {
+        const x = pad.left + (i / (n - 1)) * chartW;
+        const y = pad.top + chartH - (v / maxVal) * chartH;
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      });
+      ctx.stroke();
+
+      // Fill under curve
+      const lastX = pad.left + chartW;
+      const firstX = pad.left;
+      ctx.lineTo(lastX, pad.top + chartH);
+      ctx.lineTo(firstX, pad.top + chartH);
+      ctx.closePath();
+      ctx.fillStyle = color;
+      ctx.globalAlpha = 0.08;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+
+      // Highlight P50/P90
+      const p50Idx = Math.round(n * 0.5);
+      const p90Idx = Math.round(n * 0.9);
+      [p50Idx, p90Idx].forEach((idx2, ii) => {
+        if (idx2 >= 0 && idx2 < n) {
+          const x = pad.left + (idx2 / (n - 1)) * chartW;
+          const y = pad.top + chartH - (data[idx2] / maxVal) * chartH;
+          ctx.fillStyle = ii === 0 ? '#667eea' : '#f5576c';
+          ctx.beginPath();
+          ctx.arc(x, y, 5, 0, 2 * Math.PI);
+          ctx.fill();
+          ctx.fillStyle = '#333';
+          ctx.font = 'bold 11px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText(ii === 0 ? 'P50' : 'P90', x + 16, y - 6);
+        }
+      });
+    }
+  });
+}
+
+function renderAnalysis(analysis) {
+  const list = document.getElementById('analysisList');
+  if (!analysis || analysis.length === 0) {
+    list.innerHTML = '<li style="color:#888">暂无分析建议</li>';
+    return;
+  }
+  list.innerHTML = analysis.map(a => {
+    const iconClass = a.type === 'positive' ? 'green' : a.type === 'warning' ? 'yellow' : 'red';
+    const icon = a.type === 'positive' ? '✓' : a.type === 'warning' ? '⚠' : '✗';
+    return `<li><span class="icon ${iconClass}">${icon}</span><span>${a.text}</span></li>`;
+  }).join('');
+}
+
+// RoundRect polyfill (for older browsers)
+if (!CanvasRenderingContext2D.prototype.roundRect) {
+  CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, radii) {
+    const r = Array.isArray(radii) ? radii : [radii, radii, radii, radii];
+    const [tl, tr, br, bl] = r.map(v => Math.min(v || 0, Math.min(w, h) / 2));
+    this.moveTo(x + tl, y);
+    this.lineTo(x + w - tr, y);
+    this.quadraticCurveTo(x + w, y, x + w, y + tr);
+    this.lineTo(x + w, y + h - br);
+    this.quadraticCurveTo(x + w, y + h, x + w - br, y + h);
+    this.lineTo(x + bl, y + h);
+    this.quadraticCurveTo(x, y + h, x, y + h - bl);
+    this.lineTo(x, y + tl);
+    this.quadraticCurveTo(x, y, x + tl, y);
+    this.closePath();
+    return this;
+  };
+}
+
+// Auto-init
+document.addEventListener('DOMContentLoaded', initReport);
+</script>
+</body>
+</html>

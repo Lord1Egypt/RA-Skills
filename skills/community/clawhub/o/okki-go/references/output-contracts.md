@@ -25,6 +25,7 @@ This reference owns compact stdout, detail, debug metadata, raw/export behavior,
 |---|---|---|
 | `domain` | Scripts and saved batch/raw files. | Do not print; model does not copy or preserve it. |
 | raw IDs / `companyHashId` / contact IDs | Scripts and raw/debug output. | Do not print. |
+| free-search ID vs `companyHashId` | Scripts. | Free-search ID/raw `id` is never a `companyHashId`; the only valid source for `companyHashId` is the `/companies/unlock` response. |
 | `batch_id` | Scripts derive from saved path/latest pointer. | Under `debug_metadata` only. |
 | `raw_path` | Scripts. | Under `debug_metadata` only; raw is still saved. |
 | `private_mapping_saved` | Scripts. | Under `debug_metadata` only. |
@@ -43,6 +44,8 @@ This reference owns compact stdout, detail, debug metadata, raw/export behavior,
 | user-facing explanation | Model. | Same language as user; no raw/private fields. |
 
 ## 3. Wrapper Contracts
+
+When Context Firewall is active, the Output Renderer Lock allows only the wrapper compact output, the current Action Envelope, the user's latest request, and minimal digest facts needed for one-sentence explanation. Full PDFs, web notes, spreadsheets, raw API JSON, and old unreferenced batches must not shape the primary display.
 
 Company discovery:
 
@@ -67,6 +70,7 @@ Selected-company unlock:
 - normal compact: script-rendered `unlock_details_markdown` for chat display, `run_status`, `planned_count`, `success_count`, `failed_count`, `stopped_count` only when positive, charged count, balance when available, `company_details` compatibility data for at most 5 successful companies, `details_markdown_path` for all unlocked company details, `details_markdown_artifact`, `artifact_dir`, `artifact_access_note`, warnings, and `next_action`: `draft_outreach` when at least one company unlock succeeds
 - debug metadata: raw path, batch ID, output budget
 - raw file only: domains, company hash IDs, raw profile/email payloads
+- companyHashId provenance: do not use free-search ID, raw `id`, row number, domain, or model memory as `companyHashId`; profile/profileEmails lookups use only the hash returned by `/companies/unlock`
 - chat display: `unlock_details_markdown` uses vertical tables for at most 5 successful companies and includes the full `details_markdown_path`; the top summary shows planned, success, failure, charge, and balance only; it does not expose attempted/not-attempted counters; the model does not rebuild it from `company_details`
 - failure or not-executed rows appear only when they exist, as script-rendered concise rows; the model does not invent fixed failure sections
 - user-facing detail artifact: `details_markdown_path` uses the full detail-block Markdown template for all successful companies and concise failure rows when present; no normal JSON export recommendation. `--markdown-file` wins, then `--artifact-dir`, then `OKKIGO_ARTIFACT_DIR`, then current working directory `okki-go-artifacts/`, then internal temporary storage.

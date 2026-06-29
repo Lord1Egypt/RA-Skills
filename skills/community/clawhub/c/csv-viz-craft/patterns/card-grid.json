@@ -1,0 +1,10 @@
+{
+  "name": "card-grid",
+  "label": "卡片网格",
+  "description": "卡片式布局，适合展示产品、人员、图片类数据",
+  "layout": "grid",
+  "features": ["card_layout", "image_thumbnails", "responsive_grid", "hover_effect", "click_detail"],
+  "columns_auto": true,
+  "card_fields": ["title", "description", "image", "tags"],
+  "max_columns": 4
+}

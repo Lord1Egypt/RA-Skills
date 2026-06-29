@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "complianceScore": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "complianceStatus": { "type": "string", "enum": ["🟢 合规良好", "🟡 需改进", "🔴 需重点关注"] },
+    "nationalRequirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "certifications": { "type": "array", "items": { "type": "object" } },
+        "tests": { "type": "array", "items": { "type": "object" } },
+        "labels": { "type": "array", "items": { "type": "object" } },
+        "packaging": { "type": "array", "items": { "type": "object" } }
+      }
+    },
+    "platformRequirements": { "type": "array", "items": { "type": "object" } },
+    "deductedRequirements": { "type": "array", "items": { "type": "object" } },
+    "nextActions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "priority": { "type": "string", "enum": ["high", "medium", "low"] },
+          "actionType": { "type": "string", "enum": ["APPLY_CERT", "ISSUE_DOC", "BOOK_TESTING", "PREPARE_DOC"] },
+          "description": { "type": "string" },
+          "status": { "type": "string", "enum": ["pending", "completed", "skipped"] }
+        },
+        "required": ["priority", "actionType", "description", "status"]
+      }
+    },
+    "warnings": { "type": "array", "items": { "type": "string" } }
+  },
+  "required": ["complianceScore", "complianceStatus", "nextActions"]
+}

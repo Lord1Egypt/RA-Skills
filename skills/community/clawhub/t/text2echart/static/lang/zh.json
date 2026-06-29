@@ -1,0 +1,35 @@
+{
+  "status": {
+    "idle": "等待配置",
+    "valid": "配置有效",
+    "error": "配置错误",
+    "rendering": "图表生成中…",
+    "done": "图表生成完成"
+  },
+  "error": {
+    "parse": "转换配置错误",
+    "parseDetail": "转换配置错误：",
+    "empty": "配置为空",
+    "func": "转换函数错误",
+    "funcDetail": "转换函数错误：",
+    "render": "生成错误：",
+    "renderFail": "生成失败",
+    "noChart": "错误: 请先生成有效的图表",
+    "export": "导出错误: ",
+    "parseError": "解析错误: ",
+    "position": "错误位置: 第 ",
+    "line": " 行, 第 ",
+    "col": " 列, 即 ",
+    "context": "上下文: ",
+    "detail": "错误详情: "
+  },
+  "action": {
+    "formatted": "JSON已格式化",
+    "formatError": "JSON格式化错误: ",
+    "exported": "图表已导出为",
+    "exportedConfig": "配置已导出为JSON",
+    "funcOk": "变量赋值正确，函数返回结果：",
+    "funcErr": "变量赋值错误：",
+    "funcParseFail": "函数转换失败: "
+  }
+}

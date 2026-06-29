@@ -1,0 +1,62 @@
+[
+  {
+    "id": "entry_coordinator",
+    "name": "Entry Coordinator / S2T Lead",
+    "top_level_default": true,
+    "notes": "User intake, route/delivery selection, state lookup, and synthesis ownership."
+  },
+  {
+    "id": "source_mapper",
+    "name": "Source Mapper",
+    "top_level_default": true,
+    "notes": "Asset inventory and original workflow extraction."
+  },
+  {
+    "id": "architecture_designer",
+    "name": "Architecture Designer",
+    "top_level_default": true,
+    "notes": "Agent Architecture Map, role boundaries, skill allocation, agent-count rationale."
+  },
+  {
+    "id": "workflow_orchestrator",
+    "name": "Workflow Orchestrator",
+    "top_level_default": true,
+    "notes": "Workflow Orchestration Map, handoff rules, gates, loops, checkpoint/resume."
+  },
+  {
+    "id": "producer_or_domain_analyst",
+    "name": "Producer / Domain Analyst",
+    "top_level_default": true,
+    "notes": "Primary analysis, composition, or execution role depending on target domain."
+  },
+  {
+    "id": "independent_reviewer",
+    "name": "Independent Acceptance Reviewer",
+    "top_level_default": true,
+    "notes": "Independent fact/logic/risk/acceptance gate."
+  },
+  {
+    "id": "runtime_adapter",
+    "name": "Runtime Adapter",
+    "top_level_default": false,
+    "notes": "Needed for package delivery, Codex artifact planning, design-output archiving, entry-agent startup welcome generation, and Codex-only package-end guidance."
+  },
+  {
+    "id": "data_collector",
+    "name": "Data Collector",
+    "top_level_default": false,
+    "notes": "Promote to top-level only when raw source gathering is high-risk or data-heavy."
+  },
+  {
+    "id": "evidence_verifier",
+    "name": "Evidence Verifier",
+    "top_level_default": false,
+    "notes": "Promote to top-level when facts/sources are critical or conflicting."
+  },
+  {
+    "id": "execution_approver",
+    "name": "Execution Approver",
+    "top_level_default": false,
+    "notes": "Promote to top-level when tools have side effects or require approval."
+  }
+]

@@ -1,0 +1,454 @@
+<!--
+  吹风机爆炸图 — Three.js + animejs (archviz-skills)
+  Use for: product exploded view, component breakdown, assembly animation
+  Stack: Three.js (CDN) + animejs (CDN) + OrbitControls
+  Dials: Complexity 6, Density 4, Restraint 7
+  Tokens: structure=#a8a29e, accent=#002FA7, surface=#e8e4e0
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>吹风机爆炸图 · Exploded View</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f5f5f4; font-family: -apple-system, 'Helvetica Neue', sans-serif; overflow: hidden; }
+  #canvas { width: 100vw; height: 100vh; display: block; }
+  #ui {
+    position: fixed; top: 20px; left: 20px; z-index: 10;
+    display: flex; gap: 6px; flex-direction: column;
+  }
+  .btn {
+    background: #e8e4e0; border: 1px solid #a8a29e; color: #1B365D;
+    padding: 8px 14px; font-size: 13px; cursor: pointer;
+    font-weight: 500; text-align: left; transition: all 0.2s;
+  }
+  .btn:hover { background: #d6d3d1; }
+  .btn.active { background: #002FA7; color: #f5f5f4; border-color: #002FA7; }
+  #info {
+    position: fixed; bottom: 20px; left: 20px; z-index: 10;
+    color: #78716c; font-size: 11px; line-height: 1.6;
+  }
+  #parts-list {
+    position: fixed; top: 20px; right: 24px; z-index: 10;
+    background: rgba(232,228,224,0.92); border: 1px solid #a8a29e;
+    padding: 16px 20px; min-width: 200px;
+  }
+  #parts-list h3 {
+    font-size: 13px; font-weight: 600; color: #1B365D;
+    margin-bottom: 10px; letter-spacing: 0.03em;
+  }
+  .part-item {
+    font-size: 12px; color: #78716c; padding: 3px 0;
+    display: flex; align-items: center; gap: 8px;
+    cursor: pointer; transition: color 0.2s;
+  }
+  .part-item:hover { color: #1B365D; }
+  .part-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .part-num {
+    font-weight: 600; color: #a8a29e; font-size: 11px;
+    min-width: 16px;
+  }
+</style>
+</head>
+<body>
+<div id="ui">
+  <button class="btn active" onclick="toggleExplode()">爆炸 / 还原</button>
+  <button class="btn" onclick="spinSlow()">慢速旋转</button>
+  <button class="btn" onclick="resetView()">重置视角</button>
+</div>
+<div id="parts-list">
+  <h3>零部件清单</h3>
+  <div class="part-item" data-idx="0"><span class="part-dot" style="background:#a8a29e"></span><span class="part-num">01</span>风嘴</div>
+  <div class="part-item" data-idx="1"><span class="part-dot" style="background:#b8a090"></span><span class="part-num">02</span>外壳（前段）</div>
+  <div class="part-item" data-idx="2"><span class="part-dot" style="background:#002FA7"></span><span class="part-num">03</span>发热丝支架</div>
+  <div class="part-item" data-idx="3"><span class="part-dot" style="background:#d6d3d1"></span><span class="part-num">04</span>发热丝</div>
+  <div class="part-item" data-idx="4"><span class="part-dot" style="background:#94a3b8"></span><span class="part-num">05</span>隔热棉</div>
+  <div class="part-item" data-idx="5"><span class="part-dot" style="background:#78716c"></span><span class="part-num">06</span>风扇电机</div>
+  <div class="part-item" data-idx="6"><span class="part-dot" style="background:#a8b898"></span><span class="part-num">07</span>扇叶</div>
+  <div class="part-item" data-idx="7"><span class="part-dot" style="background:#b8a0aa"></span><span class="part-num">08</span>外壳（后段）</div>
+  <div class="part-item" data-idx="8"><span class="part-dot" style="background:#e8e4e0"></span><span class="part-num">09</span>进风网</div>
+  <div class="part-item" data-idx="9"><span class="part-dot" style="background:#1B365D"></span><span class="part-num">10</span>开关 / 电路板</div>
+  <div class="part-item" data-idx="10"><span class="part-dot" style="background:#a8a29e"></span><span class="part-num">11</span>电源线</div>
+</div>
+<div id="info">
+  吹风机爆炸图 · archviz-skills<br>
+  鼠标拖拽旋转 · 滚轮缩放 · 点击零部件高亮
+</div>
+<canvas id="canvas"></canvas>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+    "animejs": "https://cdn.jsdelivr.net/npm/animejs@4.4.1/dist/bundles/anime.esm.js"
+  }
+}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { animate } from 'animejs';
+
+// === Tokens ===
+const C = {
+  bg: 0xf5f5f4, ground: 0xd6d3d1,
+  metal: 0xa8a29e, dark: 0x78716c,
+  accent: 0x002FA7, warm: 0xb8a090,
+  surface: 0xe8e4e0, green: 0xa8b898, rose: 0xb8a0aa,
+  blue: 0x94a3b8, navy: 0x1B365D,
+};
+
+// === Scene ===
+const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.1;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(C.bg);
+scene.fog = new THREE.Fog(C.bg, 25, 60);
+
+const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.set(6, 4, 8);
+
+const ctrl = new OrbitControls(camera, renderer.domElement);
+ctrl.enableDamping = true;
+ctrl.dampingFactor = 0.05;
+ctrl.minDistance = 3;
+ctrl.maxDistance = 25;
+ctrl.target.set(0, 0, 0);
+
+// Lights
+scene.add(new THREE.HemisphereLight(0xf5f5f4, 0xd6d3d1, 0.5));
+const sun = new THREE.DirectionalLight(0xfff8f0, 1.2);
+sun.position.set(8, 12, 6);
+sun.castShadow = true;
+sun.shadow.mapSize.set(1024, 1024);
+scene.add(sun);
+scene.add(new THREE.AmbientLight(0xffffff, 0.2));
+
+// Ground
+const gMesh = new THREE.Mesh(
+  new THREE.PlaneGeometry(30, 30),
+  new THREE.MeshStandardMaterial({ color: C.ground, roughness: 1 })
+);
+gMesh.rotation.x = -Math.PI / 2; gMesh.receiveShadow = true;
+scene.add(gMesh);
+const grid = new THREE.GridHelper(30, 30, 0xa8a29e, 0xd6d3d1);
+grid.material.transparent = true; grid.material.opacity = 0.3;
+scene.add(grid);
+
+// === Hair dryer parts (procedural geometry) ===
+const dryer = new THREE.Group();
+const parts = [];
+const partData = [];
+
+// Helper: lathe body (revolution surface)
+function makeBody(points, color, roughness = 0.6) {
+  const pts = points.map(([x, y]) => new THREE.Vector2(x, y));
+  const geo = new THREE.LatheGeometry(pts, 32);
+  const mat = new THREE.MeshStandardMaterial({ color, roughness, metalness: 0.15 });
+  const mesh = new THREE.Mesh(geo, mat);
+  mesh.castShadow = true;
+  return mesh;
+}
+
+// 01: 风嘴 (nozzle — tapered cylinder)
+{
+  const geo = new THREE.CylinderGeometry(0.25, 0.4, 1.2, 24);
+  const mat = new THREE.MeshStandardMaterial({ color: C.metal, roughness: 0.4, metalness: 0.3 });
+  const m = new THREE.Mesh(geo, mat);
+  m.rotation.x = Math.PI / 2;
+  m.position.z = -3.8;
+  m.castShadow = true;
+  dryer.add(m); parts.push(m);
+  partData.push({ name: '风嘴', baseZ: -3.8, explodeZ: -6.5 });
+}
+
+// 02: 外壳前段 (front barrel)
+{
+  const geo = new THREE.CylinderGeometry(0.45, 0.5, 2.0, 24);
+  const mat = new THREE.MeshStandardMaterial({ color: C.warm, roughness: 0.55, metalness: 0.1 });
+  const m = new THREE.Mesh(geo, mat);
+  m.rotation.x = Math.PI / 2;
+  m.position.z = -2.2;
+  m.castShadow = true;
+  dryer.add(m); parts.push(m);
+  partData.push({ name: '外壳前段', baseZ: -2.2, explodeZ: -4.0 });
+}
+
+// 03: 发热丝支架 (heating element frame)
+{
+  const geo = new THREE.TorusGeometry(0.32, 0.04, 8, 24);
+  const mat = new THREE.MeshStandardMaterial({ color: C.accent, roughness: 0.3, metalness: 0.5 });
+  const m = new THREE.Mesh(geo, mat);
+  m.rotation.x = Math.PI / 2;
+  m.position.z = -1.0;
+  m.castShadow = true;
+  dryer.add(m); parts.push(m);
+  partData.push({ name: '发热丝支架', baseZ: -1.0, explodeZ: -2.0 });
+}
+
+// 04: 发热丝 (heating coil — torus knot)
+{
+  const geo = new THREE.TorusKnotGeometry(0.22, 0.025, 64, 8, 2, 3);
+  const mat = new THREE.MeshStandardMaterial({ color: C.metal, roughness: 0.3, metalness: 0.6, emissive: 0x331100, emissiveIntensity: 0.3 });
+  const m = new THREE.Mesh(geo, mat);
+  m.position.z = -1.0;
+  m.castShadow = true;
+  dryer.add(m); parts.push(m);
+  partData.push({ name: '发热丝', baseZ: -1.0, explodeZ: -0.5 });
+}
+
+// 05: 隔热棉 (insulation — flat ring)
+{
+  const geo = new THREE.CylinderGeometry(0.42, 0.42, 0.3, 24);
+  const mat = new THREE.MeshStandardMaterial({ color: C.blue, roughness: 0.9, metalness: 0.0 });
+  const m = new THREE.Mesh(geo, mat);
+  m.rotation.x = Math.PI / 2;
+  m.position.z = -0.3;
+  m.castShadow = true;
+  dryer.add(m); parts.push(m);
+  partData.push({ name: '隔热棉', baseZ: -0.3, explodeZ: 1.0 });
+}
+
+// 06: 风扇电机 (motor — solid cylinder)
+{
+  const geo = new THREE.CylinderGeometry(0.3, 0.3, 0.8, 24);
+  const mat = new THREE.MeshStandardMaterial({ color: C.dark, roughness: 0.5, metalness: 0.4 });
+  const m = new THREE.Mesh(geo, mat);
+  m.rotation.x = Math.PI / 2;
+  m.position.z = 0.5;
+  m.castShadow = true;
+  dryer.add(m); parts.push(m);
+  partData.push({ name: '风扇电机', baseZ: 0.5, explodeZ: 2.5 });
+}
+
+// 07: 扇叶 (fan blades — 5 blades via instanced cone)
+{
+  const bladeGeo = new THREE.BoxGeometry(0.08, 0.5, 0.2);
+  const bladeMat = new THREE.MeshStandardMaterial({ color: C.green, roughness: 0.6 });
+  const fanGroup = new THREE.Group();
+  for (let i = 0; i < 5; i++) {
+    const blade = new THREE.Mesh(bladeGeo, bladeMat);
+    const angle = (i / 5) * Math.PI * 2;
+    blade.position.set(Math.cos(angle) * 0.2, Math.sin(angle) * 0.2, 0);
+    blade.rotation.z = angle;
+    blade.castShadow = true;
+    fanGroup.add(blade);
+  }
+  fanGroup.position.z = 0.5;
+  dryer.add(fanGroup); parts.push(fanGroup);
+  partData.push({ name: '扇叶', baseZ: 0.5, explodeZ: 4.0 });
+}
+
+// 08: 外壳后段 (rear barrel)
+{
+  const geo = new THREE.CylinderGeometry(0.5, 0.4, 1.8, 24);
+  const mat = new THREE.MeshStandardMaterial({ color: C.rose, roughness: 0.55, metalness: 0.1 });
+  const m = new THREE.Mesh(geo, mat);
+  m.rotation.x = Math.PI / 2;
+  m.position.z = 1.8;
+  m.castShadow = true;
+  dryer.add(m); parts.push(m);
+  partData.push({ name: '外壳后段', baseZ: 1.8, explodeZ: 5.5 });
+}
+
+// 09: 进风网 (intake grill — torus + spokes)
+{
+  const grillGroup = new THREE.Group();
+  const ring = new THREE.Mesh(
+    new THREE.TorusGeometry(0.38, 0.03, 8, 24),
+    new THREE.MeshStandardMaterial({ color: C.surface, roughness: 0.7 })
+  );
+  ring.rotation.x = Math.PI / 2;
+  grillGroup.add(ring);
+  // Spokes
+  for (let i = 0; i < 8; i++) {
+    const spoke = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.01, 0.01, 0.72, 4),
+      new THREE.MeshStandardMaterial({ color: C.surface, roughness: 0.7 })
+    );
+    spoke.rotation.z = (i / 8) * Math.PI;
+    grillGroup.add(spoke);
+  }
+  grillGroup.position.z = 2.7;
+  dryer.add(grillGroup); parts.push(grillGroup);
+  partData.push({ name: '进风网', baseZ: 2.7, explodeZ: 7.0 });
+}
+
+// 10: 开关/电路板 (switch + PCB — flat box)
+{
+  const pcb = new THREE.Mesh(
+    new THREE.BoxGeometry(0.6, 0.3, 0.05),
+    new THREE.MeshStandardMaterial({ color: C.green, roughness: 0.7 })
+  );
+  const sw = new THREE.Mesh(
+    new THREE.BoxGeometry(0.15, 0.08, 0.12),
+    new THREE.MeshStandardMaterial({ color: C.navy, roughness: 0.5, metalness: 0.3 })
+  );
+  sw.position.set(0.2, 0, 0.06);
+  const group = new THREE.Group();
+  group.add(pcb); group.add(sw);
+  group.position.set(0.55, 0, 0.5);
+  group.rotation.y = Math.PI / 2;
+  dryer.add(group); parts.push(group);
+  partData.push({ name: '开关/电路板', baseX: 0.55, explodeX: 2.0, baseZ: 0.5, explodeZ: 0.5 });
+}
+
+// 11: 电源线 (power cord — curved tube)
+{
+  const curve = new THREE.CatmullRomCurve3([
+    new THREE.Vector3(0, 0, 2.7),
+    new THREE.Vector3(0, -0.5, 3.5),
+    new THREE.Vector3(0.3, -1.0, 4.5),
+    new THREE.Vector3(0, -1.2, 5.5),
+  ]);
+  const geo = new THREE.TubeGeometry(curve, 20, 0.04, 8, false);
+  const mat = new THREE.MeshStandardMaterial({ color: C.dark, roughness: 0.8 });
+  const m = new THREE.Mesh(geo, mat);
+  m.castShadow = true;
+  dryer.add(m); parts.push(m);
+  partData.push({ name: '电源线', baseZ: 2.7, explodeZ: 8.5 });
+}
+
+scene.add(dryer);
+dryer.position.y = 2; // lift above ground plane
+
+// === animejs v4 helper ===
+// v4 API: animate(target, params) — no 'targets' key
+function tween(target, props) {
+  return animate(target, props);
+}
+
+// === Explode state ===
+let exploded = false;
+
+window.toggleExplode = function() {
+  exploded = !exploded;
+  document.querySelector('.btn').classList.toggle('active', exploded);
+
+  parts.forEach((part, i) => {
+    const d = partData[i];
+    const props = { duration: 1000, easing: 'easeInOutCubic', delay: i * 60 };
+
+    if (d.explodeZ !== undefined) props.z = exploded ? d.explodeZ : d.baseZ;
+    if (d.explodeX !== undefined) props.x = exploded ? d.explodeX : (d.baseX || 0);
+
+    tween(part.position, props);
+  });
+};
+
+// === Highlight on click ===
+const raycaster = new THREE.Raycaster();
+const mouse = new THREE.Vector2();
+let highlighted = null;
+
+renderer.domElement.addEventListener('click', (e) => {
+  mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+  raycaster.setFromCamera(mouse, camera);
+
+  const meshes = [];
+  parts.forEach(p => {
+    if (p.isMesh) meshes.push(p);
+    else p.traverse(c => { if (c.isMesh) meshes.push(c); });
+  });
+
+  const hits = raycaster.intersectObjects(meshes);
+  if (hits.length > 0) {
+    let hitObj = hits[0].object;
+    let partIdx = parts.findIndex(p => {
+      if (p === hitObj) return true;
+      let found = false;
+      p.traverse(c => { if (c === hitObj) found = true; });
+      return found;
+    });
+
+    if (partIdx >= 0 && partIdx !== highlighted) {
+      if (highlighted !== null) setPartEmissive(highlighted, 0x000000, 0);
+      setPartEmissive(partIdx, 0x002FA7, 0.25);
+      highlighted = partIdx;
+      document.querySelectorAll('.part-item').forEach((el, i) => {
+        el.style.color = (i === partIdx) ? '#002FA7' : '';
+        el.style.fontWeight = (i === partIdx) ? '600' : '';
+      });
+    }
+  } else {
+    if (highlighted !== null) {
+      setPartEmissive(highlighted, 0x000000, 0);
+      highlighted = null;
+      document.querySelectorAll('.part-item').forEach(el => {
+        el.style.color = '';
+        el.style.fontWeight = '';
+      });
+    }
+  }
+});
+
+// Parts list click
+document.querySelectorAll('.part-item').forEach((el, i) => {
+  el.addEventListener('click', () => {
+    if (highlighted !== null) setPartEmissive(highlighted, 0x000000, 0);
+    setPartEmissive(i, 0x002FA7, 0.25);
+    highlighted = i;
+    document.querySelectorAll('.part-item').forEach((e, j) => {
+      e.style.color = (j === i) ? '#002FA7' : '';
+      e.style.fontWeight = (j === i) ? '600' : '';
+    });
+    const p = parts[i];
+    tween(ctrl.target, {
+      x: p.position.x, y: p.position.y, z: p.position.z,
+      duration: 600, easing: 'easeInOutCubic',
+    });
+  });
+});
+
+function setPartEmissive(idx, color, intensity) {
+  const part = parts[idx];
+  part.traverse(c => {
+    if (c.isMesh && c.material && c.material.emissive) {
+      c.material.emissive.setHex(color);
+      c.material.emissiveIntensity = intensity;
+    }
+  });
+}
+
+// === Slow rotation ===
+let spinning = false;
+window.spinSlow = function() {
+  spinning = !spinning;
+  document.querySelectorAll('.btn')[1].classList.toggle('active', spinning);
+};
+
+// === Reset view ===
+window.resetView = function() {
+  tween(camera.position, { x: 6, y: 4, z: 8, duration: 800, easing: 'easeInOutCubic' });
+  tween(ctrl.target, { x: 0, y: 0, z: 0, duration: 800, easing: 'easeInOutCubic' });
+};
+
+// Responsive
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// Render
+(function loop() {
+  requestAnimationFrame(loop);
+  if (spinning) dryer.rotation.y += 0.003;
+  ctrl.update();
+  renderer.render(scene, camera);
+})();
+</script>
+</body>
+</html>

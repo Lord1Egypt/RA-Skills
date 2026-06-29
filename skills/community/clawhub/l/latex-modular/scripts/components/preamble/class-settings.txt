@@ -1,0 +1,3 @@
+%!TEX program = lualatex
+\documentclass[12pt,a4paper,oneside,UTF8,fontset=none,titlepage]{ctexart}
+\linespread{1.5}

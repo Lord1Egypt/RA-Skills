@@ -1,0 +1,161 @@
+{
+  "summary": "Completed the remaining official-source candidate pass for Evidently, W&B Weave, LlamaIndex evaluators, Haystack evaluation, and OpenAI Evals. Classified framework-native tools and deprecated OpenAI Evals as caveat rows rather than default primary stack choices, and saved a compact evidence note for the next analysis/synthesis step.",
+  "next_angle": "Move into analysis: consolidate all 15 candidate rows, assign primary vs caveat/exclusion status, define workbook scoring dimensions and weights, and separately verify deployment/governance attributes before scoring them.",
+  "meaningful_progress": true,
+  "code_used": false,
+  "phase": "search",
+  "open_questions": [
+    "Which exact candidates should be primary workbook rows versus caveat/exclusion rows after consolidation across all iterations?",
+    "What scoring weights should the workbook use for RAG-specific metrics, repeatable CI/regression workflows, observability, datasets, human review, integration fit, deployment/governance, and evidence maturity?",
+    "Which deployment/governance attributes can be publicly verified for each primary candidate: OSS license, self-hosting, SaaS availability, RBAC, data retention, and enterprise controls?"
+  ],
+  "sources": [
+    {
+      "url": "https://docs.evidentlyai.com/examples/LLM_rag_evals",
+      "title": "Evidently documentation: RAG evals",
+      "note": "Official Evidently tutorial for evaluating RAG retrieval and generation quality with a local open-source workflow, pandas dataframe output, visual reports, and optional platform upload."
+    },
+    {
+      "url": "https://docs.wandb.ai/weave/tutorial-rag",
+      "title": "W&B Weave documentation: Evaluate RAG applications",
+      "note": "Official Weave guide showing retrieval-step tracing and RAG response evaluation with LLM judges, context precision, datasets, and scorers."
+    },
+    {
+      "url": "https://developers.llamaindex.ai/python/framework/module_guides/evaluating/",
+      "title": "LlamaIndex documentation: Evaluating",
+      "note": "Official LlamaIndex framework docs covering response evaluation, retrieval evaluation, faithfulness, relevancy, semantic similarity, guideline adherence, synthetic question generation, and retrieval metrics."
+    },
+    {
+      "url": "https://docs.haystack.deepset.ai/docs/model-based-evaluation",
+      "title": "Haystack documentation: Model-Based Evaluation",
+      "note": "Official Haystack docs for model-based RAG pipeline evaluation, context relevance, faithfulness/groundedness, local evaluator models, and integrations with Ragas and DeepEval."
+    },
+    {
+      "url": "https://developers.openai.com/api/docs/guides/evals",
+      "title": "OpenAI API documentation: Working with evals",
+      "note": "Official OpenAI Evals API docs describing eval creation/runs and stating the Evals platform deprecation timeline: read-only on 2026-10-31 and shutdown on 2026-11-30."
+    }
+  ],
+  "findings": [
+    {
+      "kind": "fact",
+      "text": "Evidently is a plausible primary matrix row for notebook/report-driven RAG quality checks: official docs demonstrate a local open-source workflow that evaluates retrieval context quality and generation quality, then produces dataframe and visual report outputs.",
+      "source_urls": [
+        "https://docs.evidentlyai.com/examples/LLM_rag_evals"
+      ]
+    },
+    {
+      "kind": "fact",
+      "text": "W&B Weave is a plausible primary matrix row for teams that want managed observability plus evaluation: its official RAG tutorial tracks retrieval steps, evaluates responses with LLM judges, and uses datasets/scorers inside Weave evaluations.",
+      "source_urls": [
+        "https://docs.wandb.ai/weave/tutorial-rag"
+      ]
+    },
+    {
+      "kind": "synthesis",
+      "text": "LlamaIndex evaluators should be treated as a framework-fit caveat row unless the production RAG stack already uses LlamaIndex. The official docs are strong on response/retrieval evaluation and generated test questions, but the capability is primarily framework-native rather than a standalone evaluation platform.",
+      "source_urls": [
+        "https://developers.llamaindex.ai/python/framework/module_guides/evaluating/"
+      ]
+    },
+    {
+      "kind": "synthesis",
+      "text": "Haystack evaluation should be treated as a framework-fit caveat row unless the production RAG stack already uses Haystack. Official docs cover component and pipeline evaluation, RAG model-based evaluation, statistical retriever metrics, and Ragas/DeepEval integrations, but the strongest value is inside Haystack pipelines.",
+      "source_urls": [
+        "https://docs.haystack.deepset.ai/docs/model-based-evaluation",
+        "https://docs.haystack.deepset.ai/docs/evaluation"
+      ]
+    },
+    {
+      "kind": "risk",
+      "text": "OpenAI Evals should not be scored as a long-term primary RAG evaluation stack because official OpenAI docs now mark the Evals platform as deprecated, with read-only status for existing users on 2026-10-31 and shutdown on 2026-11-30. It belongs in a caveat or legacy row unless the final matrix explicitly covers OpenAI-specific evaluation surfaces.",
+      "source_urls": [
+        "https://developers.openai.com/api/docs/guides/evals"
+      ]
+    },
+    {
+      "kind": "plan",
+      "text": "The analysis phase should separate capability scoring from packaging/governance scoring. Public eval capability docs are enough to classify RAG metrics, CI/regression fit, observability, datasets, and framework fit, but license, self-hosting, SaaS, RBAC, retention, and enterprise controls need dedicated public-source verification.",
+      "source_urls": [
+        "https://docs.evidentlyai.com/examples/LLM_rag_evals",
+        "https://docs.wandb.ai/weave/tutorial-rag",
+        "https://developers.llamaindex.ai/python/framework/module_guides/evaluating/",
+        "https://docs.haystack.deepset.ai/docs/model-based-evaluation",
+        "https://developers.openai.com/api/docs/guides/evals"
+      ]
+    }
+  ],
+  "analysis_artifacts": [
+    {
+      "path": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/analysis/remaining-candidates-iteration-003.md",
+      "kind": "artifact",
+      "note": "Compact evidence table classifying the five remaining candidates and reducing the framework-native/OpenAI Evals open questions for the next analysis phase."
+    }
+  ],
+  "packages_used": [],
+  "database_used": false,
+  "database_artifacts": [],
+  "database_summary": null,
+  "vision_used": false,
+  "vision_artifacts": [],
+  "vision_summary": null,
+  "adequacy": {
+    "status": "not_started",
+    "goal_alignment": "This was a search-phase iteration, not the adequacy gate. It materially improves goal alignment by completing official-source evidence coverage for the remaining named candidates.",
+    "coverage_summary": "All five remaining named candidates now have official-source evidence and initial matrix treatment. The full candidate set still needs consolidation, scoring design, and governance/deployment verification before synthesis.",
+    "covered_requirements": [
+      {
+        "requirement": "Use current public sources and prefer official documentation, GitHub repositories, release docs, and vendor docs over blog summaries.",
+        "evidence": "Used official docs from Evidently, W&B Weave, LlamaIndex, Haystack, and OpenAI."
+      },
+      {
+        "requirement": "Resolve framework-native evaluator treatment.",
+        "evidence": "Classified LlamaIndex and Haystack as framework-fit caveat rows unless the target stack already uses those frameworks."
+      },
+      {
+        "requirement": "Resolve OpenAI Evals treatment.",
+        "evidence": "Classified OpenAI Evals as caveat/legacy because official docs state platform deprecation dates."
+      }
+    ],
+    "coverage_gaps": [
+      {
+        "gap": "Deployment/governance attributes still need public-source verification across primary candidates before scoring.",
+        "severity": "blocking"
+      },
+      {
+        "gap": "Consolidated workbook schema and scoring weights have not yet been produced.",
+        "severity": "blocking"
+      }
+    ],
+    "evidence_risks": [
+      {
+        "risk": "Evaluation capability pages do not by themselves prove license, hosting, RBAC, retention, or enterprise controls.",
+        "severity": "blocking"
+      }
+    ],
+    "contradictions": [],
+    "recommended_next_phase": "analyze",
+    "recommended_next_angle": "Build a consolidated evidence table from iterations 1-3, mark primary/caveat/exclusion status, and design the scoring workbook schema while flagging governance fields that require separate verification.",
+    "blocking_reasons": [],
+    "validation_evidence": [
+      {
+        "check": "source_diversity",
+        "result": "passed",
+        "reason": "Five distinct official documentation sources were used for the remaining candidate set."
+      },
+      {
+        "check": "explicit_constraints",
+        "result": "passed",
+        "reason": "No private data, local-only tool names, contact data, or non-public sources were included in the research result."
+      },
+      {
+        "check": "next_phase_decision",
+        "result": "passed",
+        "reason": "Search coverage for the named remaining candidates is complete enough to move to analysis, while final adequacy remains not started."
+      }
+    ]
+  },
+  "notify_recommendation": "silent",
+  "should_complete": false,
+  "final_report_markdown": null
+}

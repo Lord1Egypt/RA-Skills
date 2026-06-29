@@ -1,0 +1,9 @@
+# Manifest — axiom-regex-visualizer (public, clean)
+# Edition: Capafy voice (zero cluster jargon)
+# Generated: 2026-06-14T20:45:39Z
+
+14d7852767f91e0daa3bc270784b272adf8be2b02d03b6e95fb5ea8135197f57  LICENSE  (45 bytes)
+fe85ec66782693e2f8966abd533f5098a3c27f8083400112524f84a09eb35e33  README.md  (859 bytes)
+6361e49ff0b0475c8b90937883025ce06b1004b06ab6f1f8363d07bbb951e8d9  SKILL.md  (444 bytes)
+4ee57d02237d7c52721e428e419feba73a141ad78949860cd04a41440bcb2d12  axiom_regex_visualizer.py  (8547 bytes)
+f323b04d96174eec9b25fbbcf111b676acceb4b185204b714e02a67d061281c1  test_axiom_regex_visualizer.py  (2916 bytes)

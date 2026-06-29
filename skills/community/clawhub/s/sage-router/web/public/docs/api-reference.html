@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sage Router hosted API reference for OpenAI-compatible models, chat completions, Responses API, generated sk_sage keys, quotas, rate limits, and public model catalog discovery." />
+  <link rel="canonical" href="https://sagerouter.dev/docs/api-reference" />
+  <meta property="og:title" content="Sage Router Hosted API Reference" />
+  <meta property="og:description" content="OpenAI-compatible hosted API reference for Sage Router accounts, generated keys, models, chat completions, responses, quotas, and error headers." />
+  <meta property="og:url" content="https://sagerouter.dev/docs/api-reference" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Sage Router Hosted API Reference</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07100d;--panel:rgba(13,29,24,.84);--border:rgba(166,255,207,.16);--muted:#a9c5b8;--text:#edfdf5;--brand:#8df0b2;--blue:#8ab4ff;--amber:#f7d57a;--danger:#ff9f9f}*{box-sizing:border-box}body{margin:0;min-width:320px;background:linear-gradient(180deg,#07100d 0%,#0b1518 48%,#07100d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;color:var(--muted)}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;color:var(--text)}.brandMark{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(141,240,178,.42);border-radius:8px;color:#062016;background:linear-gradient(135deg,var(--brand),var(--amber))}.navLinks{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;font-weight:750}.navLinks a:hover{color:var(--text)}.hero{padding:74px 0 48px}.eyebrow{color:var(--brand);text-transform:uppercase;letter-spacing:.16em;font-weight:900;font-size:12px;margin:0 0 16px}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(44px,8vw,84px);line-height:.94;margin-bottom:24px;max-width:980px}h2{font-size:clamp(28px,4vw,46px);line-height:1;margin-bottom:18px}h3{font-size:21px;margin-bottom:10px}.lead{font-size:clamp(20px,2.2vw,27px);line-height:1.35;color:#d2eadf;max-width:920px}.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}.button{min-height:48px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:0 22px;font-weight:900}.primary{background:linear-gradient(135deg,var(--brand),#50d891);color:#04150d}.secondary{border:1px solid var(--border);background:rgba(255,255,255,.04)}.section{padding:48px 0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.grid2{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px}.card,.panel,.tableWrap{background:var(--panel);border:1px solid var(--border);border-radius:8px;box-shadow:0 18px 60px rgba(0,0,0,.18)}.card,.panel{padding:24px}.muted,.card li,td{color:var(--muted)}ul{padding-left:18px;margin:0;display:grid;gap:8px}.pill{display:inline-flex;width:max-content;border:1px solid rgba(138,180,255,.3);border-radius:999px;padding:6px 10px;color:var(--blue);font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:840px}th,td{text-align:left;border-bottom:1px solid rgba(166,255,207,.12);padding:16px 18px;vertical-align:top}th{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--text);background:rgba(255,255,255,.035)}td:first-child{color:var(--text);font-weight:850}.note{font-size:14px;color:var(--muted);max-width:900px}code{color:#d9f8e6}pre{overflow:auto;margin:0;border:1px solid rgba(166,255,207,.12);border-radius:8px;background:#050807;padding:16px;color:#d9f8e6}.warn{border-color:rgba(247,213,122,.34);background:rgba(247,213,122,.06)}footer{display:flex;gap:18px;flex-wrap:wrap;padding:34px 0 54px;color:var(--muted);border-top:1px solid rgba(166,255,207,.1)}footer span{margin-right:auto}@media(max-width:920px){.grid,.grid2{grid-template-columns:1fr}.nav{align-items:flex-start;flex-direction:column}.button{width:100%}}@media(max-width:560px){.hero{padding-top:42px}.navLinks{gap:14px}}
+  </style>
+  <style>
+    .emailStart{display:flex;flex-wrap:wrap;gap:12px;align-items:center;max-width:760px;margin:22px 0 12px;padding:16px;border:1px solid rgba(141,240,178,.24);border-radius:8px;background:rgba(255,255,255,.045)}.emailStart label{flex:1 1 100%;font-weight:900}.emailStart input{flex:1 1 280px;min-height:48px;border:1px solid var(--border);border-radius:999px;background:rgba(5,15,11,.74);color:var(--text);padding:0 18px;font:inherit}.emailStart input::placeholder{color:#789184}.emailStart .button{border:0;cursor:pointer}.emailStart .button:disabled{opacity:.72;cursor:wait}.emailStartStatus{flex:1 1 100%;margin:0;color:var(--muted);font-size:14px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+      <div class="navLinks">
+        <a href="/">Home</a>
+        <a href="/quickstart">Quickstart</a>
+        <a href="/docs/gateway-migration">Migration</a>
+        <a href="/api-troubleshooting">Troubleshooting</a>
+        <a href="/docs/codex">Codex</a>
+        <a href="/models">Models</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/status">Status</a>
+        <a href="https://app.sagerouter.dev/account.html">Account</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Hosted API reference</p>
+        <h1>OpenAI-compatible routing with Sage Router accounts.</h1>
+        <p class="lead">Use one hosted base URL, generated <code>sk_sage_*</code> keys, route profiles such as <code>sage-router/frontier</code>, and public model discovery without opening anonymous model traffic.</p>
+        <div class="actions">
+          <a class="button primary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key">Create API key</a>
+          <a class="button secondary" href="/quickstart">Quickstart</a>
+          <a class="button secondary" href="/docs/gateway-migration">Gateway migration</a>
+          <a class="button secondary" href="/api-troubleshooting">Troubleshooting</a>
+          <a class="button secondary" href="/models">Model catalog</a>
+          <a class="button secondary" href="/pricing">Pricing</a>
+        </div>
+        <form class="emailStart" id="api-reference-email-form" data-email-activation-form data-oauth-activation="github" data-event-prefix="api_reference" data-sent-event="api_reference_magic_link_sent" data-source="api-reference" data-status-id="api-reference-email-status">
+          <label for="api-reference-email">Get an API key setup link before wiring the API</label>
+          <input id="api-reference-email" type="email" name="email" autocomplete="email" placeholder="you@company.com" required />
+          <button class="button primary" type="submit">Email API key setup link</button>
+          <p class="emailStartStatus" id="api-reference-email-status" role="status">No provider key or credit card required until your generated sk_sage key exists.</p>
+        </form>
+        <p class="note">Hosted API base URL: <code>https://api.sagerouter.dev/v1</code>. Browser account and billing UI live at <code>https://app.sagerouter.dev</code>.</p>
+      </section>
+
+      <section class="section grid">
+        <article class="card">
+          <span class="pill">Auth</span>
+          <h3>Bearer key</h3>
+          <p class="muted">Send <code>Authorization: Bearer sk_sage_...</code>. Generated keys are scoped to a Sage Router account and should be rotated from the account page if exposed.</p>
+        </article>
+        <article class="card">
+          <span class="pill">OpenAI</span>
+          <h3>Drop-in clients</h3>
+          <p class="muted">Point OpenAI-compatible SDKs and tools at <code>https://api.sagerouter.dev/v1</code>. Use <code>sage-router/frontier</code> as the first route profile, or <code>sage-router/fusion</code> on Pro/Max for judged multi-model synthesis.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Limits</span>
+          <h3>Quota aware</h3>
+          <p class="muted">Plans enforce monthly request quotas and request-per-minute limits. Responses include safe quota and rate-limit headers for client backoff.</p>
+        </article>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">Client setup</p>
+          <h2>Use OpenAI SDK configuration.</h2>
+        </div>
+        <div class="panel">
+          <pre><code>export OPENAI_BASE_URL=https://api.sagerouter.dev/v1
+export OPENAI_API_KEY=sk_sage_your_key_here
+
+curl "$OPENAI_BASE_URL/chat/completions" \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -H "User-Agent: OpenAI-compatible-client/1.0" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "sage-router/frontier",
+    "messages": [{"role": "user", "content": "Return ok."}]
+  }'</code></pre>
+          <p class="muted">Standard SDKs such as OpenAI Python/JavaScript reach the edge auth gate. Raw HTTP stacks that trigger Cloudflare <code>1010</code> should set a descriptive <code>User-Agent</code>.</p>
+        </div>
+      </section>
+
+      <section class="section tableWrap">
+        <table>
+          <thead>
+            <tr><th>Endpoint</th><th>Auth</th><th>Purpose</th><th>Notes</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>GET /v1/models</code></td>
+              <td>Generated key</td>
+              <td>Authenticated model list for OpenAI-compatible clients.</td>
+              <td>Use this to verify keys before wiring agents. Anonymous requests return guided <code>401</code>.</td>
+            </tr>
+            <tr>
+              <td><code>POST /v1/chat/completions</code></td>
+              <td>Generated key</td>
+              <td>OpenAI-compatible chat completions with routing profiles and provider fallback.</td>
+              <td>Supports common chat client flows, including streaming-shaped compatibility responses. <code>sage-router/fusion</code> is a premium chat model alias, and <code>{"type":"sage-router:fusion"}</code> is accepted as a premium server tool for Pro/Max-style synthesis.</td>
+            </tr>
+            <tr>
+              <td><code>POST /v1/responses</code></td>
+              <td>Generated key</td>
+              <td>OpenAI Responses-compatible shape for Codex and agent harnesses that use Responses wiring.</td>
+              <td>Codex profiles should set <code>wire_api = "responses"</code>.</td>
+            </tr>
+            <tr>
+              <td><code>GET /model-catalog</code></td>
+              <td>Public metadata</td>
+              <td>gateway-style discovery metadata for route families and model catalog pages.</td>
+              <td>Discovery only. Live <code>/v1/models</code> and model traffic still require an active generated key.</td>
+            </tr>
+            <tr>
+              <td><code>GET /pricing</code></td>
+              <td>Public metadata</td>
+              <td>Hosted plans, limits, API base URL, checkout path, and public launch boundary.</td>
+              <td>Managed provider access remains disabled unless provider resale controls, durable quotas, and durable operator audit events are explicitly ready.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">Responses API</p>
+          <h2>Use Responses wiring for Codex-style clients.</h2>
+        </div>
+        <div class="panel">
+          <pre><code>curl https://api.sagerouter.dev/v1/responses \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "sage-router/frontier",
+    "input": "Return one sentence about Sage Router."
+  }'</code></pre>
+        </div>
+      </section>
+
+      <section class="section tableWrap">
+        <table>
+          <thead>
+            <tr><th>Signal</th><th>Header or field</th><th>When to use it</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Authentication</td><td><code>WWW-Authenticate</code>, <code>apiKeyPrefix</code>, <code>accountUrl</code></td><td>Diagnose missing, inactive, malformed, or revoked generated keys.</td></tr>
+            <tr><td>Billing or quota</td><td><code>X-Quota-Limit</code>, <code>X-Quota-Used</code>, <code>X-Quota-Remaining</code>, <code>X-Quota-Period</code>, <code>X-Quota-Reset</code>, <code>upgradeUrl</code>, <code>billingUrl</code>, <code>supportUrl</code></td><td>Show plan usage, monthly reset timing, and safe recovery links without exposing prompts or generated keys.</td></tr>
+            <tr><td>Rate limit</td><td><code>Retry-After</code>, <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code>, <code>X-RateLimit-Reset</code></td><td>Back off safely when clients exceed request-per-minute limits.</td></tr>
+            <tr><td>Reliability</td><td><code>X-Sage-Router-Retry-Count</code>, status page health, selected upstream</td><td>Understand failover behavior when a backend returns <code>401</code>, <code>429</code>, <code>502</code>, <code>503</code>, or <code>504</code>.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">Boundary</p>
+          <h2>The hosted API is authenticated and customer-authorized.</h2>
+        </div>
+        <div class="panel warn">
+          <ul>
+            <li>Anonymous <code>/v1/*</code> model traffic is blocked with guided onboarding errors.</li>
+            <li>Sage Router does not grant unauthorized provider access or pool personal provider accounts by default.</li>
+            <li>Do not send prompts, provider credentials, OAuth tokens, generated keys, private keys, session cookies, raw provider responses, or customer data in support requests.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>&copy; Sage Router</span>
+      <a href="/">Home</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/quickstart">Quickstart</a>
+      <a href="/docs/gateway-migration">Migration</a>
+      <a href="/api-troubleshooting">Troubleshooting</a>
+      <a href="/docs/codex">Codex</a>
+      <a href="/models">Models</a>
+      <a href="/status">Status</a>
+      <a href="/support">Support</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/acceptable-use">Acceptable Use</a>
+      <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+    </footer>
+  </div>
+  <script src="/marketing-email-activation.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "name": "Overseas Local Partnership Assessor",
+  "slug": "cb-local-partnership-assessor",
+  "version": "1.0.1",
+  "description": "Evaluate overseas distributors, agencies, resellers, and ecosystem partners in minutes. Get weighted scorecards, due-diligence checklists, commercial model comparisons, and pilot plans with exit guardrails — not generic advice, but ready-to-use assessment frameworks.",
+  "author": "Pearl-led OpenClaw team",
+  "tags": [
+    "cross-border",
+    "overseas",
+    "global-expansion",
+    "influencer-marketing",
+    "partnerships"
+  ],
+  "trigger_keywords": [
+    "overseas partner assessment",
+    "local distributor evaluation",
+    "international agency vetting",
+    "foreign market partner",
+    "channel partner due diligence"
+  ],
+  "language": "en",
+  "type": "descriptive",
+  "category": "cross-border-expansion",
+  "requires_api": false,
+  "requires_code_execution": false,
+  "outputs": "structured descriptive framework",
+  "readiness": "stable",
+  "safety": "Partnership assessment is not legal, financial, or anti-corruption due diligence; obtain professional review before signing agreements."
+}

@@ -1,5 +1,5 @@
 ## Description: <br>
-Detects whether anyone has fallen within a specified target area and supports image and short video analysis for home elder care and nursing home safety monitoring. <br>
+Detects fall events in target areas from images or short videos for elder-care and nursing-home monitoring. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,38 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users, caregivers, and safety-monitoring operators use this skill to analyze uploaded images or short videos for possible falls in a target area. It can also retrieve cloud-hosted historical fall detection reports associated with the user's resolved identity. <br>
+External caregivers, family members, and care-facility operators use this skill to submit local files or public URLs for fall-detection analysis and to retrieve cloud-hosted historical reports. Results are safety references and should be confirmed by a person before emergency or care decisions. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Sensitive home, elder-care, or medical-adjacent images and videos may be sent to the provider's cloud service for analysis. <br>
-Mitigation: Use only media that the user is authorized to upload, disclose cloud processing before use, and verify the provider's storage, retention, and deletion practices. <br>
-Risk: Historical report lookup may expose cloud-hosted fall detection reports tied to a local or remote identity. <br>
-Mitigation: Require explicit user confirmation before report-history lookup and avoid displaying internal identity values in user-facing output. <br>
-Risk: The analysis result is safety-related and may be incorrect or incomplete. <br>
-Mitigation: Treat results as safety reference only and require human confirmation and emergency response follow-up for suspected falls. <br>
-Risk: Local token or identity storage may create privacy and account-security exposure. <br>
-Mitigation: Review where local database entries and tokens are stored, restrict filesystem access, and document how users can revoke tokens or delete stored data. <br>
+Risk: Private home, elder-care, or nursing-facility images and videos may be sent to a third-party cloud service for analysis. <br>
+Mitigation: Use the skill only when that cloud data handling is acceptable, the publisher's service is trusted, and the people shown in the media have appropriate authorization or consent. <br>
+Risk: The skill may create or reuse local identity state and store remote service tokens. <br>
+Mitigation: Run it in a controlled workspace, restrict access to workspace data, and review or remove locally stored identity and token state when the skill is no longer needed. <br>
+Risk: Fall-detection output may be incomplete or incorrect and is not a substitute for human confirmation. <br>
+Mitigation: Treat reports as safety signals, review the underlying situation directly, and escalate suspected falls through the relevant care or emergency process. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-fall-detection-image-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/18072937735) <br>
-- [Skill demo](https://lifeemergence.com/sample.html) <br>
-- [Fall detection API documentation](references/api_doc.md) <br>
-- [Shared analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+- [ClawHub Skill Page](https://clawhub.ai/18072937735/skills/smyx-fall-detection-image-analysis) <br>
+- [API Interface Documentation](references/api_doc.md) <br>
+- [Analysis API Error Codes](skills/smyx_analysis/references/api_doc.md) <br>
+- [Skill Demo](https://lifeemergence.com/sample.html) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
-**Output Format:** [Markdown and plain text reports, with JSON available through the detailed output mode] <br>
+**Output Type(s):** [Text, Markdown, JSON, Files] <br>
+**Output Format:** [Markdown text with JSON-formatted structured analysis results, historical report lists, and report export links.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include report links, risk suggestions, status messages, and Markdown tables for historical report listings.] <br>
+**Other Properties Related to Output:** [Can write result text to an output file; supports image and short-video inputs within the documented size and format limits.] <br>
 
 ## Skill Version(s): <br>
-1.0.5 (source: frontmatter and server release metadata) <br>
+1.0.6 (source: server release evidence; artifact frontmatter says 1.0.5) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

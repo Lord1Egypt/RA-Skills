@@ -597,7 +597,7 @@ When the user asks something that doesn't map cleanly, default to `open` if a ti
 
 ## Headline Resolution Pattern
 
-The SentiSense public document API returns `{ url, source, sentiment, timestamp }` for each document, and the per-ticker feed wraps them as `{ documents, totalCount, searchTicker, source, startDate, endDate }` (read `response.documents[]`). By API design it does **not** include the publisher's article headline, and there is no `summary` field. The API provides derived analytics, not source content. If your application needs to display titles, resolve them yourself from the `url` field. Any content retrieval from source URLs is your agent application's independent action, subject to the source platform's terms.
+The SentiSense public document API returns `{ id, url, source, sourceName, published, averageSentiment, reliability, sentiment }` for each document, and the per-ticker feed wraps them as `{ documents, totalCount, searchTicker, source, startDate, endDate }` (read `response.documents[]`). Two field-name traps in the `news` template: the timestamp is `published` (epoch **seconds**), not `timestamp`; and the scalar polarity is `averageSentiment` (a float in [-1,1]) while `sentiment` itself is a per-entity array (`[{ ticker, name, entityType, sentiment }]`), not a scalar. So `{time}` reads `published` and `{sentiment}` reads `averageSentiment`. By API design it does **not** include the publisher's article headline, and there is no `summary` field. The API provides derived analytics, not source content. If your application needs to display titles, resolve them yourself from the `url` field. Any content retrieval from source URLs is your agent application's independent action, subject to the source platform's terms.
 
 Use this two-phase pattern, in order:
 
@@ -683,7 +683,7 @@ ACTIONS     {U} upgrades, {D} downgrades (30d)
 THESIS      {one-line synthesis: bullish/bearish/mixed}
 ```
 
-Calls: `/calendar/earnings?ticker={T}`, `/profile`, `/analyst/{T}/estimates`, `/analyst/{T}/actions?lookbackDays=30`, sentiment 30d, insider 60d. The report **date** and `daysOut` come from `/calendar/earnings?ticker={T}` (`data.earnings[0].earningsDate` and `confirmed`); if that returns empty, the company is outside the forward window, so omit the date line rather than guessing. Note: `/estimates` returns `estimateLow / estimateMean / estimateHigh / numberOfAnalysts / periodLabel / periodType` plus a `surprises[]` history. It has no revenue figure and no revision history, so do not render `Rev` or "revised from".
+Calls: `/calendar/earnings?ticker={T}`, `/profile`, `/analyst/{T}/estimates`, `/analyst/{T}/actions?lookbackDays=30`, sentiment 30d, insider 60d. The report **date** and `daysOut` come from `/calendar/earnings?ticker={T}` (`data.earnings[0].earningsDate` and `confirmed`); if that returns empty, the company is outside the forward window, so omit the date line rather than guessing. Note: `/estimates` returns `data.estimates[]` (each `{ periodLabel, periodType, estimateLow, estimateMean, estimateHigh, numberOfAnalysts }`) plus `data.surprises[]` (each `{ periodLabel, reportDate, estimateEps, actualEps, surprisePercent }`); read the consensus band from `data.estimates[0]`, not from `data` directly. It has no revenue figure and no revision history, so do not render `Rev` or "revised from".
 
 ### Sector deep-dive
 
@@ -783,6 +783,8 @@ function extractMetric(m) {
 ```
 
 The values are share-of-voice percentages summing to roughly 100, **not** per-source sentiment scores. Render the breakdown as a "where this signal came from" panel, not as four sentiment bars.
+
+**`v2/market-mood` nests the composite under `market`.** The response is flat (no `isPreview/data` envelope), but the fear/greed score, phase, weekly change, and sub-signals live one level down at `response.market.{ currentScore, phase, weeklyChange, signals[] }`, and per-sector breakdowns at `response.sectors.{SectorName}.{ currentScore, phase, weeklyChange }` (NOT at the root). Map the `mood` / `daily brief` tokens accordingly: `{score}` = `market.currentScore`, `{phase}` = `market.phase`, `{weeklyChange}` = `market.weeklyChange`, and each signal `{v}`/`{d}` = `market.signals[i].value`/`.change`.
 
 **`GET /api/v1/stocks/images?tickers={T}` (comma-separated, plural `tickers`) returns third-party CDN logo URLs that don't carry an embedded API key.** Direct `<img src>` will 401/403. Wrap with the SentiSense anonymous image proxy:
 

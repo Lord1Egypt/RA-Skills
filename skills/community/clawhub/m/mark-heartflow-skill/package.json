@@ -1,0 +1,81 @@
+{
+  "name": "@yun520-1/heartflow",
+  "version": "5.4.8",
+  "description": "HeartFlow — AI judgment engine with multi-path evaluation, self-correcting RL, 3-layer memory, and U/D/A/H field tracking. Zero external dependencies.",
+  "main": "src/core/heartflow.js",
+  "bin": {
+    "heartflow": "bin/cli.js"
+  },
+  "scripts": {
+    "start": "node bin/cli.js chat",
+    "status": "node bin/cli.js status",
+    "test": "node tests/integration.test.js",
+    "verify": "node bin/verify.js",
+    "check": "node -e \"require('fs').readdirSync('src',{recursive:true}).filter(f=>f.endsWith('.js')).forEach(f=>require('child_process').execSync('node --check '+f,{stdio:'inherit'}))\""
+  },
+  "files": [
+    "SKILL.md",
+    "VERSION",
+    "INSTALL.md",
+    "README.md",
+    "LICENSE",
+    "bin/",
+    "src/core/**/*.js",
+    "src/core/**/*.json",
+    "src/core/**/*.md",
+    "src/shield/**/*.js",
+    "src/cortex/**/*.js",
+    "src/memory/**/*.js",
+    "src/workflow/**/*.js",
+    "src/identity/**/*.js",
+    "src/bridge/**/*.js",
+    "src/emotion/**/*.js",
+    "src/dream/**/*.js",
+    "src/reasoning/**/*.js",
+    "src/planner/**/*.js",
+    "src/code/**/*.js",
+    "src/consciousness/**/*.js",
+    "src/search/**/*.js",
+    "src/utils/**/*.js",
+    "src/behavior-tracker.js",
+    "src/pattern-detector.js",
+    "src/report/**/*.js",
+    "mcp/"
+  ],
+  "keywords": [
+    "cognitive",
+    "memory",
+    "self-healing",
+    "verification",
+    "reasoning",
+    "ai-engine",
+    "judgment",
+    "decision-routing",
+    "llm",
+    "heartflow"
+  ],
+  "security": {
+    "audit": "Run 'npm audit fix' to fix vulnerabilities in @xenova/transformers transitive dependencies. If major version conflicts prevent auto-fix, pin resolutions manually in package.json or update @xenova/transformers.",
+    "warnings": [
+      "此技能包含高级 AI 认知能力。desktop-agent 和 video-generate 等子技能包含高风险功能，需要明确用户授权才能使用。",
+      "不会自动发送数据到外部服务。所有网络通信需要显式配置。",
+      "不会自动写入 API 密钥到环境变量文件。用户必须显式提供密钥。"
+    ]
+  },
+  "license": "MIT",
+  "dependencies": {},
+  "optionalDependencies": {
+    "@xenova/transformers": "^2.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yun520-1/mark-heartflow-skill.git"
+  },
+  "homepage": "https://github.com/yun520-1/mark-heartflow-skill#readme",
+  "bugs": {
+    "url": "https://github.com/yun520-1/mark-heartflow-skill/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

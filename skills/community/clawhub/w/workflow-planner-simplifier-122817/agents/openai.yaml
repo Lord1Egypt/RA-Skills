@@ -1,0 +1,7 @@
+interface:
+  display_name: "Workflow Planner Simplifier"
+  short_description: "Helps with enhancement(adaptive/planner): remove adaptive per..."
+  default_prompt: "Use $workflow-planner-simplifier to help me enhancement(adaptive/planner): remove adaptive per-node FILE_CEILING and let planner group cohesive write sets."
+
+policy:
+  allow_implicit_invocation: true

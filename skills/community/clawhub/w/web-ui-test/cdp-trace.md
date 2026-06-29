@@ -32,7 +32,7 @@ node scripts/cdp-trace.js --url http://<target>/<path> --parts "app-group,card-w
 const { chromium } = require('playwright');
 
 (async () => {
-  // headless: false — user-visible (per web-ui-test rule)
+  // headless: false — user-visible (per web-browser SKILL.md Step 0 user-visibility rule)
   const browser = await chromium.launch({ headless: false, slowMo: 800 });
   const page = await browser.newContext({ ignoreHTTPSErrors: true, viewport: null }).then(c => c.newPage());
 
@@ -114,7 +114,7 @@ const { chromium } = require('playwright');
 
 | # | Don't | Do |
 |---|-------|-----|
-| 1 | Run CDP trace with `headless: true` | `headless: false, slowMo: 800` — user-visibility rule (first section of web-ui-test/SKILL.md) |
+| 1 | Run CDP trace with `headless: true` | `headless: false, slowMo: 800` — user-visibility rule (web-browser SKILL.md Step 0) |
 | 2 | `::part(...)` doesn't work → only report "no visible effect" | Use CDP `getMatchedStylesForNode` to confirm whether the cascade is entered and identify the carrier |
 | 3 | Retry the same selector form 5+ times | 0 matched CSS rules = evidence of spec/runtime divergence. Switch carrier immediately (`:host` / `[part="..."]` direct) |
 | 4 | Leave `DOM.getDocument` with `pierce: false` (default) | Set `pierce: true` explicitly — exposes closed shadow roots too |

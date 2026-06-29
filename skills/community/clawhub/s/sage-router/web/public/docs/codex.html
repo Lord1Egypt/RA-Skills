@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Configure Codex CLI to use Sage Router hosted keys or a local Tailnet Sage Router on port 8790 with the frontier profile." />
+  <link rel="canonical" href="https://sagerouter.dev/docs/codex" />
+  <meta property="og:title" content="Sage Router Codex Setup" />
+  <meta property="og:description" content="Use Sage Router as a Codex model provider with hosted sk_sage keys or local port 8790 routing." />
+  <meta property="og:url" content="https://sagerouter.dev/docs/codex" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Sage Router Codex Setup</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07100d;--panel:rgba(13,29,24,.84);--border:rgba(166,255,207,.16);--muted:#a9c5b8;--text:#edfdf5;--brand:#8df0b2;--blue:#8ab4ff;--amber:#f7d57a}*{box-sizing:border-box}body{margin:0;min-width:320px;background:linear-gradient(180deg,#07100d 0%,#0b1518 48%,#07100d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;color:var(--muted)}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;color:var(--text)}.brandMark{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(141,240,178,.42);border-radius:8px;color:#062016;background:linear-gradient(135deg,var(--brand),var(--amber))}.navLinks{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;font-weight:750}.navLinks a:hover{color:var(--text)}.hero{padding:74px 0 48px}.eyebrow{color:var(--brand);text-transform:uppercase;letter-spacing:.16em;font-weight:900;font-size:12px;margin:0 0 16px}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(44px,8vw,84px);line-height:.94;margin-bottom:24px;max-width:980px}h2{font-size:clamp(28px,4vw,46px);line-height:1;margin-bottom:18px}h3{font-size:21px;margin-bottom:10px}.lead{font-size:clamp(20px,2.2vw,27px);line-height:1.35;color:#d2eadf;max-width:920px}.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}.button{min-height:48px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:0 22px;font-weight:900}.primary{background:linear-gradient(135deg,var(--brand),#50d891);color:#04150d}.secondary{border:1px solid var(--border);background:rgba(255,255,255,.04)}.emailStart{display:flex;flex-wrap:wrap;gap:12px;align-items:center;max-width:760px;margin:22px 0 12px;padding:16px;border:1px solid rgba(141,240,178,.24);border-radius:8px;background:rgba(255,255,255,.045)}.emailStart label{flex:1 1 100%;font-weight:900}.emailStart input{flex:1 1 280px;min-height:48px;border:1px solid var(--border);border-radius:999px;background:rgba(5,15,11,.74);color:var(--text);padding:0 18px;font:inherit}.emailStart input::placeholder{color:#789184}.emailStart .button{border:0;cursor:pointer}.emailStartStatus{flex:1 1 100%;margin:0;color:var(--muted);font-size:14px}.section{padding:48px 0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.grid2{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px}.card,.panel,.tableWrap{background:var(--panel);border:1px solid var(--border);border-radius:8px;box-shadow:0 18px 60px rgba(0,0,0,.18)}.card,.panel{padding:24px}.muted,.card li,td{color:var(--muted)}ul,ol{padding-left:18px;margin:0;display:grid;gap:8px}.pill{display:inline-flex;width:max-content;border:1px solid rgba(138,180,255,.3);border-radius:999px;padding:6px 10px;color:var(--blue);font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:760px}th,td{text-align:left;border-bottom:1px solid rgba(166,255,207,.12);padding:16px 18px;vertical-align:top}th{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--text);background:rgba(255,255,255,.035)}td:first-child{color:var(--text);font-weight:850}.note{font-size:14px;color:var(--muted);max-width:900px}code{color:#d9f8e6}pre{overflow:auto;margin:0;border:1px solid rgba(166,255,207,.12);border-radius:8px;background:#050807;padding:16px;color:#d9f8e6}.snippetHeader{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;color:var(--muted);font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}.copyCodeButton{min-width:72px;min-height:34px;border:1px solid rgba(141,240,178,.34);border-radius:999px;background:rgba(141,240,178,.09);color:var(--text);font:inherit;font-size:13px;font-weight:900;cursor:pointer}.copyCodeButton:hover,.copyCodeButton:focus-visible{background:rgba(141,240,178,.16);outline:none}.copyStatus{min-height:22px;margin:14px 0 0;color:var(--brand);font-size:14px}.warn{border-color:rgba(247,213,122,.34);background:rgba(247,213,122,.06)}footer{display:flex;gap:18px;flex-wrap:wrap;padding:34px 0 54px;color:var(--muted);border-top:1px solid rgba(166,255,207,.1)}footer span{margin-right:auto}@media(max-width:920px){.grid,.grid2{grid-template-columns:1fr}.nav{align-items:flex-start;flex-direction:column}.button{width:100%}}@media(max-width:560px){.hero{padding-top:42px}.navLinks{gap:14px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+      <div class="navLinks">
+        <a href="/">Home</a>
+        <a href="/quickstart">Quickstart</a>
+        <a href="/docs/api-reference">API Reference</a>
+        <a href="/api-troubleshooting">Troubleshooting</a>
+        <a href="/models">Models</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/status">Status</a>
+        <a href="https://app.sagerouter.dev/account.html">Account</a>
+        <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Codex CLI setup</p>
+        <h1>Use Sage Router as the Codex model provider.</h1>
+        <p class="lead">Point Codex at the hosted Sage Router API or a local/Tailnet router on port <code>8790</code>, then run the stable <code>sage-router/frontier</code> profile.</p>
+        <div class="actions">
+          <a class="button primary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key" data-codex-event="codex_docs_key_activation_clicked" data-codex-button="create-hosted-key" data-codex-plan="pro">Create hosted API key</a>
+          <a class="button secondary" href="/docs/api-reference" data-codex-event="codex_docs_api_reference_clicked" data-codex-button="api-reference">API reference</a>
+          <a class="button secondary" href="/quickstart" data-codex-event="codex_docs_quickstart_clicked" data-codex-button="quickstart">Read quickstart</a>
+          <a class="button secondary" href="/api-troubleshooting" data-codex-event="codex_docs_troubleshooting_clicked" data-codex-button="troubleshooting">Troubleshoot API errors</a>
+          <a class="button secondary" href="/models" data-codex-event="codex_docs_models_clicked" data-codex-button="models">Browse models</a>
+          <a class="button secondary" href="/status" data-codex-event="codex_docs_status_clicked" data-codex-button="status">Check status</a>
+        </div>
+        <form class="emailStart" id="codex-docs-email-form">
+          <label for="codex-docs-email">Get an API key setup link</label>
+          <input id="codex-docs-email" type="email" name="email" autocomplete="email" placeholder="you@company.com" required />
+          <button class="button primary" type="submit">Email API key setup link</button>
+          <p class="emailStartStatus" id="codex-docs-email-status" role="status">No provider key or credit card required until your generated sk_sage key exists.</p>
+        </form>
+        <p class="note">Hosted Codex setup requires a generated <code>sk_sage_*</code> customer key. Local and Tailnet setup requires your own authorized provider credentials on the router host.</p>
+      </section>
+
+      <section class="section grid">
+        <article class="card">
+          <span class="pill">Hosted</span>
+          <h3>Use the public edge</h3>
+          <p class="muted">Use <code>https://api.sagerouter.dev/v1/</code> with a generated account key when you want billing, quotas, and hosted reliability checks.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Local</span>
+          <h3>Use port 8790</h3>
+          <p class="muted">Use <code>http://127.0.0.1:8790/v1/</code> when Codex and Sage Router run on the same workstation or Docker host.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Tailnet</span>
+          <h3>Use a private host</h3>
+          <p class="muted">Use <code>http://&lt;tailnet-host&gt;:8790/v1/</code> for a private Sage Router installation reachable through your Tailnet.</p>
+        </article>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">Hosted profile</p>
+          <h2>Append the hosted provider and profile.</h2>
+          <p class="note">Start here if you want one hosted <code>sk_sage_*</code> key for Codex. Copying this snippet is tracked as setup intent, without storing prompts or API keys.</p>
+        </div>
+        <div class="panel">
+          <div class="snippetHeader"><span>Hosted Codex</span><button class="copyCodeButton" type="button" data-copy-code="codex-hosted">Copy</button></div>
+          <pre><code id="codex-hosted">export OPENAI_API_KEY=sk_sage_your_key_here
+mkdir -p ~/.codex
+cat &gt;&gt; ~/.codex/config.toml &lt;&lt;'TOML'
+[model_providers.sage-router-hosted]
+name = "Sage Router Hosted"
+base_url = "https://api.sagerouter.dev/v1/"
+env_key = "OPENAI_API_KEY"
+wire_api = "responses"
+
+[profiles.sage-router-frontier]
+model_provider = "sage-router-hosted"
+model = "sage-router/frontier"
+TOML
+
+codex --profile sage-router-frontier</code></pre>
+          <p class="copyStatus" id="copy-status" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">Local profile</p>
+          <h2>Use the same route through port 8790.</h2>
+        </div>
+        <div class="panel">
+          <div class="snippetHeader"><span>Local Codex</span><button class="copyCodeButton" type="button" data-copy-code="codex-local">Copy</button></div>
+          <pre><code id="codex-local">export SAGE_ROUTER_API_KEY=local
+cat &gt;&gt; ~/.codex/config.toml &lt;&lt;'TOML'
+[model_providers.sage-router-local]
+name = "Sage Router Local"
+base_url = "http://127.0.0.1:8790/v1/"
+env_key = "SAGE_ROUTER_API_KEY"
+wire_api = "responses"
+
+[profiles.sage-router-local-frontier]
+model_provider = "sage-router-local"
+model = "sage-router/frontier"
+TOML
+
+codex --profile sage-router-local-frontier</code></pre>
+        </div>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">Tailnet profile</p>
+          <h2>Point Codex at a private Sage Router host.</h2>
+        </div>
+        <div class="panel">
+          <div class="snippetHeader"><span>Tailnet Codex</span><button class="copyCodeButton" type="button" data-copy-code="codex-tailnet">Copy</button></div>
+          <pre><code id="codex-tailnet">cat &gt;&gt; ~/.codex/config.toml &lt;&lt;'TOML'
+[model_providers.sage-router-tailnet]
+name = "Sage Router Tailnet"
+base_url = "http://&lt;tailnet-host&gt;:8790/v1/"
+env_key = "SAGE_ROUTER_API_KEY"
+wire_api = "responses"
+
+[profiles.sage-router-tailnet-frontier]
+model_provider = "sage-router-tailnet"
+model = "sage-router/frontier"
+TOML
+
+codex --profile sage-router-tailnet-frontier</code></pre>
+        </div>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">Verify</p>
+          <h2>Test the model list before starting Codex.</h2>
+        </div>
+        <div class="panel">
+          <div class="snippetHeader"><span>Model-list probes</span><button class="copyCodeButton" type="button" data-copy-code="codex-verify">Copy</button></div>
+          <pre><code id="codex-verify">curl https://api.sagerouter.dev/v1/models \
+  -H "Authorization: Bearer $OPENAI_API_KEY"
+
+curl http://127.0.0.1:8790/v1/models \
+  -H "Authorization: Bearer $SAGE_ROUTER_API_KEY"</code></pre>
+        </div>
+      </section>
+
+      <section class="section tableWrap">
+        <table>
+          <thead>
+            <tr><th>Status</th><th>Likely cause</th><th>Next action</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>401</td><td>The Codex environment variable is missing, revoked, or not the key expected by the selected provider.</td><td>Check <code>env_key</code>, regenerate a hosted <code>sk_sage_*</code> key, or set the local router token.</td></tr>
+            <tr><td>402</td><td>The hosted account plan, quota, or billing state blocks model traffic.</td><td>Finish checkout, choose a plan, or review usage on the account page.</td></tr>
+            <tr><td>429</td><td>The account or router is rate limited.</td><td>Reduce Codex concurrency, retry later, or upgrade the hosted plan limit.</td></tr>
+            <tr><td>503</td><td>No authorized healthy backend route is currently available.</td><td>Check public status, local provider credentials, router health, and fallback policy.</td></tr>
+          </tbody>
+        </table>
+        <p class="note">For response headers, safe curl probes, and no-secret support context, use the <a href="/api-troubleshooting">hosted API troubleshooting page</a>.</p>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">Support boundary</p>
+          <h2>Keep prompts and secrets out of support requests.</h2>
+        </div>
+        <div class="panel warn">
+          <p class="muted">Do not paste prompts, provider credentials, OAuth tokens, generated API keys, private keys, session cookies, raw provider responses, or customer data into public support channels. Safe troubleshooting context is limited to account email, plan, timestamp, request id, HTTP status, safe error class, and non-secret key prefix.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>&copy; Sage Router</span>
+      <a href="/">Home</a>
+      <a href="/quickstart">Quickstart</a>
+      <a href="/docs/api-reference">API Reference</a>
+      <a href="/api-troubleshooting">Troubleshooting</a>
+      <a href="/models">Models</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/status">Status</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/acceptable-use">Acceptable Use</a>
+      <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+    </footer>
+  </div>
+  <script>
+    const ACCOUNT_PAGE_URL = 'https://app.sagerouter.dev/account.html?plan=pro&start=create_key';
+    const SUPABASE_URL = 'https://awtangrlqqsdpksarhwo.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3dGFuZ3JscXFzZHBrc2FyaHdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMTYzNzEsImV4cCI6MjA4ODU5MjM3MX0.U7TmEJMgYMH0rR8tTWFQ2tzReO5syRwnI3Ytg-BbDaw';
+    const copyStatus = document.getElementById('copy-status');
+
+    function loadSupabaseClient() {
+      return new Promise((resolve, reject) => {
+        if (window.supabase?.createClient) {
+          resolve(window.supabase);
+          return;
+        }
+        const existing = document.querySelector('script[data-supabase-js]');
+        if (existing) {
+          existing.addEventListener('load', () => resolve(window.supabase), { once: true });
+          existing.addEventListener('error', reject, { once: true });
+          return;
+        }
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+        script.async = true;
+        script.defer = true;
+        script.dataset.supabaseJs = 'true';
+        script.addEventListener('load', () => resolve(window.supabase), { once: true });
+        script.addEventListener('error', reject, { once: true });
+        document.head.appendChild(script);
+      });
+    }
+
+    function codexMetadata(extra = {}) {
+      const params = new URLSearchParams(window.location.search);
+      return {
+        source: 'codex-docs',
+        utmSource: params.get('utm_source') || 'sagerouter',
+        utmMedium: params.get('utm_medium') || '',
+        utmCampaign: params.get('utm_campaign') || '',
+        referrerHost: document.referrer ? new URL(document.referrer).hostname : '',
+        landingPath: window.location.pathname,
+        ...extra,
+      };
+    }
+
+    function trackCodexFunnelEvent(event, extra = {}) {
+      const payload = JSON.stringify({
+        event,
+        plan: extra.plan || null,
+        sourcePage: window.location.href,
+        target: extra.target || window.location.href,
+        metadata: codexMetadata(extra),
+      });
+      if (navigator.sendBeacon?.('/api/funnel-event', new Blob([payload], { type: 'application/json' }))) return;
+      fetch('/api/funnel-event', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: payload,
+        keepalive: true,
+      }).catch(() => {});
+    }
+
+    async function writeClipboard(text) {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      const area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.position = 'fixed';
+      area.style.left = '-9999px';
+      document.body.appendChild(area);
+      area.select();
+      document.execCommand('copy');
+      area.remove();
+    }
+
+    async function copyCodeSnippet(button) {
+      const snippet = button.getAttribute('data-copy-code');
+      const target = snippet && document.getElementById(snippet);
+      if (!target) return;
+      const original = button.textContent;
+      try {
+        await writeClipboard(target.textContent);
+        button.textContent = 'Copied';
+        if (copyStatus) copyStatus.textContent = `Copied ${snippet.replace('codex-', '')} snippet.`;
+        trackCodexFunnelEvent('codex_docs_snippet_copied', { state: 'copied', snippet });
+      } catch (_error) {
+        button.textContent = 'Select';
+        if (copyStatus) copyStatus.textContent = 'Copy failed; select the snippet manually.';
+      }
+      setTimeout(() => { button.textContent = original || 'Copy'; }, 1200);
+    }
+
+    async function sendCodexMagicLink(event) {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const emailInput = form.querySelector('input[type="email"]');
+      const status = document.getElementById('codex-docs-email-status');
+      const email = (emailInput.value || '').trim();
+      if (!email) {
+        status.textContent = 'Enter an email address to receive the setup link.';
+        emailInput.focus();
+        return;
+      }
+      status.textContent = 'Sending setup link...';
+      trackCodexFunnelEvent('codex_docs_magic_link_requested', {
+        plan: 'pro',
+        target: ACCOUNT_PAGE_URL,
+        button: 'Email API key setup link',
+        state: 'email-start'
+      });
+      try {
+        const api = await loadSupabaseClient();
+        const client = api.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const { error } = await client.auth.signInWithOtp({
+          email,
+          options: {
+            emailRedirectTo: ACCOUNT_PAGE_URL,
+            data: {
+              sage_router_onboarding: true,
+              signup_source: 'codex-docs',
+              selected_plan: 'pro',
+              auth_method: 'magic_link'
+            }
+          }
+        });
+        if (error) throw error;
+        trackCodexFunnelEvent('codex_docs_magic_link_sent', {
+          plan: 'pro',
+          target: ACCOUNT_PAGE_URL,
+          button: 'Email API key setup link',
+          state: 'email-start'
+        });
+        status.textContent = 'Check your email for the API key setup link. It opens account setup with the Pro plan selected.';
+      } catch (error) {
+        trackCodexFunnelEvent('codex_docs_magic_link_failed', {
+          plan: 'pro',
+          target: ACCOUNT_PAGE_URL,
+          button: 'Email API key setup link',
+          state: 'email-start'
+        });
+        status.textContent = 'Email setup is unavailable right now. Opening account setup instead...';
+        setTimeout(() => { window.location.href = ACCOUNT_PAGE_URL; }, 900);
+      }
+    }
+
+    document.querySelectorAll('[data-copy-code]').forEach((button) => {
+      button.addEventListener('click', () => copyCodeSnippet(button));
+    });
+    document.querySelectorAll('[data-codex-event]').forEach((link) => {
+      link.addEventListener('click', () => {
+        const planMatch = link.href.match(/[?&]plan=([^&]+)/);
+        trackCodexFunnelEvent(link.dataset.codexEvent, {
+          button: link.dataset.codexButton || link.textContent.trim().toLowerCase(),
+          target: link.href,
+          plan: link.dataset.codexPlan || planMatch?.[1] || undefined,
+        });
+      });
+    });
+    document.getElementById('codex-docs-email-form')?.addEventListener('submit', sendCodexMagicLink);
+    trackCodexFunnelEvent('codex_docs_viewed', { state: 'page-view' });
+  </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "png-export",
+  "label": "PNG 导出",
+  "description": "导出为 PNG 图片，支持透明背景",
+  "format": "png",
+  "background": "transparent",
+  "features": ["transparent_bg", "resolution_setting", "crop", "preview"],
+  "default_width": 800,
+  "default_quality": 1.0,
+  "use_canvas": true
+}

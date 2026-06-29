@@ -16,6 +16,68 @@ Conventional Commit conventions, PUBLIC repo English enforcement, Git operation-
 - Open-source contributions: see `opensource.md`
 - Wrong commits → fix with a new commit. `--amend` + force-push is allowed only when the user explicitly instructs it
 
+## Default commit message structure (HARD STOP)
+
+**Default commit message form is a `<subject>` line, a blank line, a `<body>`, optionally another blank line and a `<footer>`.** A body is recommended for every commit. A footer is optional.
+
+```text
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+### Body authoring
+
+- **Recommended for every commit.** Do not stop at the subject line by default
+- **Not restricted to per-file enumeration** — the body may be free-form prose, a bulleted list of changes, motivation, before/after, trade-offs, or any combination. Per-file enumeration is one option, not the required form
+- The subject explains the *what* compactly. The body adds the *why* and the wider *what* that does not fit in the subject (rationale, scope details, behavioral consequences)
+
+### Footer
+
+- **Optional**
+- Common uses: `Closes #<issue>`, `Fixes #<issue>`, `Refs #<issue>`, `BREAKING CHANGE: <description>`, `Co-Authored-By: <name> <email>`, `Reviewed-by: <name>`
+
+### Subject-only acceptable cases
+
+- Typo / single-character fix where a body would only repeat the subject
+- Routine dependency bump where the body adds no information
+
+### Don't / Do
+
+| # | Don't | Do |
+|---|-------|-----|
+| 1 | `git commit -m "feat(scope): subject"` — stop at the subject line | `git commit -m "feat(scope): subject" -m "<body>"` or HEREDOC (`git commit -F -`) for multi-line body |
+| 2 | Body restricted to a per-file enumeration | Body can be free-form (prose / bullets / sections / mixed). Per-file enumeration is one option, not the only one |
+| 3 | "Diff is small, so subject is enough" autonomous skip | Author a body whenever a body would help future readers — most commits qualify. Subject-only is the exception, not the default |
+| 4 | Use the footer for prose that belongs in the body (e.g., motivation, trade-offs) | Footer = machine-readable references (`Closes`, `BREAKING CHANGE:`, `Co-Authored-By:`). Prose goes in the body |
+| 5 | Skip the blank line between subject ↔ body ↔ footer | Maintain blank-line separators — Git tooling (`git log --oneline`, GitHub squash) relies on them |
+
+### Bash invocation forms
+
+```bash
+# Form 1 — repeated -m (each -m becomes a paragraph; Git inserts blank lines between them)
+git commit -m "feat(scope): subject" -m "<body prose or bullets>" -m "Closes #<issue>"
+
+# Form 2 — HEREDOC via -F - (preferred for richer body / footer)
+git commit -F - <<'EOF'
+feat(scope): subject
+
+<body — prose or bullets, multi-paragraph if needed>
+
+Closes #<issue>
+EOF
+```
+
+### Self-check (every time before writing a commit message)
+
+1. Did you author a body? — subject-only is the exception (typo / dep bump). Default = body present
+2. Is the body restricted to per-file enumeration when free-form would explain more? — switch to free-form prose / bullets
+3. Footer present? — only for `Closes` / `Fixes` / `Refs` / `BREAKING CHANGE:` / `Co-Authored-By:` / `Reviewed-by:` style references. Prose belongs in the body
+4. Blank line between subject ↔ body ↔ footer? — Git tooling depends on the blank-line separators
+5. PUBLIC repo? — body + footer are also subject to the English enforcement rule below
+
 ## PUBLIC repo English enforcement (HARD STOP)
 
 **Before every commit, verify repo visibility + commit-message language as primary sources. If PUBLIC, English is mandatory.** Stops the pattern where native-language thinking leaks straight into the commit body.
@@ -42,7 +104,7 @@ Conventional Commit conventions, PUBLIC repo English enforcement, Git operation-
 2. Does the drafted subject + body contain any non-English characters in the relevant native script? — mental grep right before the Edit / Bash call
 3. 1+ matches → translate immediately. Parenthetical asides, post-hyphen notes, code-review summaries all included
 4. Visual whole-message inspection right before `git commit -m` / `-F` / heredoc
-5. Post-amend force-push: verify with `git log -1 --format=%B | grep -P '[^[:ascii:]]'` — must return zero matches for the relevant script
+5. Post-amend force-push: visually verify the final commit message is English. Mechanical check is a heuristic only: `git log -1 --format=%B | grep -P '[^[:ascii:]]'` rejects non-ASCII characters (catches CJK/accented native scripts) but does NOT cover ASCII-only non-English text (e.g., romanized Korean/Japanese) — pair with a language-aware validator when available, or scope the check to "non-ASCII characters" rather than treating it as definitive "non-English"
 
 ### Exceptions
 
@@ -93,6 +155,17 @@ Cumulative violations → escalate to a PreToolUse:Bash hook (`git commit` comma
 - `--no-edit` is forbidden (the message ends up inconsistent with the actual change)
 - **Exception**: typo fixes, formatting, etc. — change types that do NOT need a message update
 
+## Semantic Versioning order
+
+**Pre-release tags are always ORDERED BEFORE their corresponding release** (semver 2.0.0 spec):
+
+```text
+v0.4.7 < v0.4.8-beta.0 < v0.4.8-beta.1 < v0.4.8
+```
+
+- `v0.4.8-beta.0` is a **pre-release of `v0.4.8`** — it ships earlier than `v0.4.8`
+- Apply this ordering when comparing tags, computing changelog ranges, or sorting
+
 ## Tag selection criteria
 
 - `feat`: user-facing functional additions (UI, API endpoints, CLI commands)
@@ -100,6 +173,45 @@ Cumulative violations → escalate to a PreToolUse:Bash hook (`git commit` comma
 - `ci`: CI/CD workflows, test infrastructure setup (GitHub Actions, Playwright config, CI config)
 - **Test infrastructure + test code mixed** → `ci`
 - `feat` NOT allowed for: e2e test additions, test fixture additions, CI pipeline additions
+
+## Working-tree-specific commit-type override (HARD STOP)
+
+**Before applying the global tag-selection criteria above (or the "Verb selection" defaults below), check the working tree's local rules directory (`<repo>/.claude/rules/*.md`) for a commit-type / version-bump override. Local rules take precedence over the global defaults.**
+
+### Why
+
+- Release automation (release-please, semantic-release, changesets) reads commit types as version-bump signals. A workspace may bind `feat:` to "new topic / new skill" and a more restrictive type (`fix:` / `chore:`) to in-place edits of existing topics, precisely to keep `minor` bumps tied to publish-worthy surface changes.
+- The global default "skill/rule `.md` behavior change ⇒ `feat:`" (Verb selection row 3) is too coarse for these workspaces — every HARD STOP added inside an existing topic would trigger a `minor` bump even when the topic's surface is unchanged.
+- Local rules in `.claude/rules/` are loaded into the assistant's context but are not reached automatically during commit drafting. A procedural self-check is required.
+
+### Self-check (every time before drafting a commit message)
+
+1. `git rev-parse --show-toplevel` → `<repo>`
+2. `find <repo>/.claude/rules/ -name '*.md' 2>/dev/null` — does the workspace ship any local rules?
+3. If 1+ files exist, grep them for commit-type / version semantics: `grep -liE 'commit type|conventional commit|version bump|feat|fix|topic' <repo>/.claude/rules/*.md`
+4. Read each match. If a local rule defines its own mapping (e.g., "new topic = feat, in-place edit of existing topic = fix"), **the local rule wins**. Re-classify the staged diff under the local rule before composing the subject
+5. If no local rule applies, fall back to the global defaults below ("Verb selection" + "Tag selection criteria")
+
+### Don't / Do
+
+| # | Don't | Do |
+|---|-------|-----|
+| 1 | Apply the global "`.md` behavior-change addition ⇒ `feat:`" rule without checking the working tree's `.claude/rules/` | Run the self-check (`find <repo>/.claude/rules/ -name '*.md'`) first. If a local mapping exists, defer to it |
+| 2 | Treat the local rule as "informational only" and stick with the global default | Local rule overrides the global default. The override is the source of truth for the commit type, not a suggestion |
+| 3 | Add an HARD STOP / Don't-Do row to an existing topic and prefix `feat(skill-X):` autonomously | Inspect the diff for "new topic file / new SKILL.md Topics-table row." None? → look for the local rule's classification (`fix` / `chore` / etc.). Many → `feat:` only when a topic file actually appears |
+| 4 | Self-check the local rule once per session and assume it still holds for later commits | The diff scope changes per commit. The classification is per-commit, not per-session |
+
+### Example mapping (illustrative — actual mapping comes from the local rule file)
+
+A workspace whose `.claude/rules/branch-policy.md` defines:
+
+| Change | Tag | Bump |
+|--------|-----|------|
+| New topic file added (e.g., `skills/<slug>/<new-topic>.md`) | `feat:` | minor |
+| In-place edit of an existing topic (new HARD STOP / Don't-Do row / Self-check) | `fix:` | patch |
+| Body cleanup / wording only | `chore:` | none |
+
+… would classify a commit that adds 3 HARD STOP sections inside `skills/X/existing-topic.md` (no new topic file, no new Topics-table row) as `fix(X): …`, **not** `feat(X): …` — even though the diff adds new agent behavior.
 
 ## Verb selection — skill/rule `.md` is source code (HARD STOP)
 
@@ -120,7 +232,7 @@ Why: these files are **runtime instructions consumed by AI agents**. Adding / ed
 |---|-------|-----|
 | 1 | `feat(wip): document Copilot rate-limit cache write` | `feat(wip): require Copilot rate-limit reset timestamp shared-cache write` |
 | 2 | `docs(skill-X): describe new behavior` (when actually adding new behavior) | `feat(skill-X): add / introduce / enforce new behavior` — `docs:` is for **behavior-unchanged** changes only |
-| 3 | "`.md` text addition = `docs:`" reasoning | skill/rule `.md` is AI source. New rule / HARD STOP / Don't-Do row addition = `feat:`. Rule removal = `feat:` (behavior change). Meaning-preserving refactor = `refactor:` |
+| 3 | "`.md` text addition = `docs:`" reasoning | skill/rule `.md` is AI source. New rule / HARD STOP / Don't-Do row addition = `feat:` **by global default**, but the "Working-tree-specific commit-type override" above wins when the workspace's `.claude/rules/` defines a stricter mapping (e.g., in-place edit of an existing topic = `fix:`). Rule removal = `feat:` (behavior change) by default, also subject to the local override. Meaning-preserving refactor = `refactor:` |
 | 4 | Use a behavior verb but body says "documents that X must Y" — prose-frames it as documentation | Body too: "this commit changes how the agent behaves: X must now Y". Avoid "documents …" phrasing |
 
 ### Self-check (every time before drafting a commit message)

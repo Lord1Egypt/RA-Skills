@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Campus Morning Brief / 校园晨报",
+  "type": "object",
+  "required": ["date", "profile", "weather", "quote", "general_news", "interest_news", "study_tip", "action_anchor"],
+  "properties": {
+    "date": {"type": "string", "format": "date"},
+    "profile": {
+      "type": "object",
+      "required": ["display_name", "city", "age_group", "language"],
+      "properties": {
+        "display_name": {"type": "string"},
+        "city": {"type": "string"},
+        "age_group": {"enum": ["primary-school", "middle-school", "high-school", "college"]},
+        "language": {"type": "string"}
+      }
+    },
+    "weather": {
+      "type": "object",
+      "required": ["condition", "low_c", "high_c", "outfit", "campus_tip"],
+      "properties": {
+        "condition": {"type": "string"},
+        "low_c": {"type": "number"},
+        "high_c": {"type": "number"},
+        "rain_probability": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+        "outfit": {"type": "string"},
+        "campus_tip": {"type": "string"},
+        "source_url": {"type": "string", "format": "uri"}
+      }
+    },
+    "quote": {
+      "type": "object",
+      "required": ["primary", "english", "author"],
+      "properties": {
+        "primary": {"type": "string"},
+        "english": {"type": "string"},
+        "author": {"type": "string"}
+      }
+    },
+    "general_news": {"type": "array", "items": {"$ref": "#/$defs/news"}},
+    "interest_news": {"type": "array", "items": {"$ref": "#/$defs/news"}},
+    "study_tip": {"type": "string"},
+    "action_anchor": {"type": "string"},
+    "reminders": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "news": {
+      "type": "object",
+      "required": ["title", "summary", "publisher", "published_date", "url"],
+      "properties": {
+        "title": {"type": "string"},
+        "summary": {"type": "string"},
+        "publisher": {"type": "string"},
+        "published_date": {"type": "string", "format": "date"},
+        "url": {"type": "string", "format": "uri"},
+        "category": {"type": "string"}
+      }
+    }
+  }
+}

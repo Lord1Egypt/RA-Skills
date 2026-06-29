@@ -1,5 +1,5 @@
 ## Description: <br>
-Uses the Feynman learning method and physics-style first-principles thinking to help users explain complex concepts, identify knowledge gaps, and build clearer understanding. <br>
+Helps agents guide Chinese-first Feynman-style learning conversations that simplify complex concepts, expose blind spots, and rebuild understanding through first-principles questions and analogies. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,32 +11,33 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Learners, researchers, and knowledge workers use this skill to test whether they truly understand a concept, explain it simply, find weak points in their reasoning, and refine their understanding through analogy and first-principles questions. <br>
+Learners, researchers, and knowledge workers use this skill to test whether they truly understand a concept, simplify explanations, identify knowledge gaps, and reason from first principles. It is primarily intended for Chinese-language learning support while preserving English technical terms where useful. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may steer loosely related concept questions into a Feynman-method learning format. <br>
-Mitigation: Apply it when the user wants learning, explanation, or understanding-check support, and clarify intent when the request needs a different response style. <br>
-Risk: The skill may answer primarily in Chinese unless the user or agent asks otherwise. <br>
-Mitigation: Follow the user's requested language and ask for a preference when language choice is unclear. <br>
+Risk: The skill may activate for broad learning prompts when a narrower method is intended. <br>
+Mitigation: Invoke it explicitly for Feynman-style explanation, blind-spot discovery, or first-principles questioning tasks. <br>
+Risk: The skill may default to Chinese when another response language is expected. <br>
+Mitigation: Specify the desired language in the user prompt or agent configuration. <br>
+Risk: Educational reasoning about time-sensitive AI, finance, or industry topics can become stale or incomplete. <br>
+Mitigation: Treat those sections as learning prompts and verify factual or investment-relevant claims against current authoritative sources. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/feynman-think-method) <br>
+- [ClawHub skill listing](https://clawhub.ai/gechengling/skills/feynman-think-method) <br>
 - [Publisher profile](https://clawhub.ai/user/gechengling) <br>
-- [Artifact skill source](artifact/SKILL.md) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown or plain text learning guidance with structured Feynman-method steps] <br>
+**Output Format:** [Markdown or conversational text] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-first responses with English key terms retained when useful] <br>
+**Other Properties Related to Output:** [Chinese-first responses with English technical terms preserved when useful; no code execution or file output.] <br>
 
 ## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+2.1.1 (source: server release metadata and artifact metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

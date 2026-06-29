@@ -1,5 +1,5 @@
 ## Description: <br>
-Builds composable skill modules with hub-and-spoke loading. <br>
+Build composable skill modules with hub-and-spoke loading. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,27 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and skill authors use this skill to design, audit, and refactor agent skills into modular hub-and-spoke structures that manage token usage and keep documentation maintainable. <br>
+Developers and skill authors use this skill to design modular agent skills, split large skill files into focused modules, and manage token usage with progressive disclosure. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may inspect many documentation and governance files during repository audits. <br>
-Mitigation: Run it in an appropriate repository workspace and request report-only mode when broad inspection is not desired. <br>
-Risk: Documentation fixes may change skill guidance or repository standards. <br>
-Mitigation: Review proposed diffs before accepting edits, especially for governance or deployment-facing documentation. <br>
-Risk: Incorrect modularization advice could introduce misleading or incomplete skill guidance. <br>
-Mitigation: Validate recommendations with the documented module validation workflow and human review before deployment. <br>
-
+Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
+Mitigation: Review and scan skill before deployment. <br>
 
 ## Reference(s): <br>
-- [Claude Night Market abstract plugin](https://github.com/athola/claude-night-market/tree/master/plugins/abstract) <br>
-- [Nm Abstract Modular Skills on ClawHub](https://clawhub.ai/athola/nm-abstract-modular-skills) <br>
+- [OpenClaw homepage](https://github.com/athola/claude-night-market/tree/master/plugins/abstract) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with YAML examples and inline shell commands] <br>
+**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
+**Output Format:** [Markdown guidance with inline shell commands and configuration examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose repository documentation audits or edits; report-only mode can be requested.] <br>
+**Other Properties Related to Output:** [Documentation-only skill. Security evidence reports no hidden code execution or suspicious data handling; review broad-trigger activation and chmod troubleshooting commands before use.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: ClawHub release metadata; artifact frontmatter: 1.9.8) <br>
+1.9.13 (source: server release evidence; SKILL.md frontmatter reports 1.9.8) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

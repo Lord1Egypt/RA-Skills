@@ -13,7 +13,7 @@ metadata:
             {
               "id": "go",
               "kind": "go",
-              "module": "github.com/galjos/odh-cli/cmd/odh@v0.3.0",
+              "module": "github.com/galjos/odh-cli/cmd/odh@v0.4.0",
               "bins": ["odh"],
               "label": "Install odh CLI (go)",
             },
@@ -33,13 +33,16 @@ odh version
 odh doctor --timeout 10s
 ```
 
-Need `odh v0.3.0+` for the current command contracts, source/provenance fields, traffic helpers, GTFS/transit, filtered latest measurements, comma-safe `--param`, `transit journey --with-realtime`, and MCP server mode.
+Need `odh v0.4.0+` for the current command contracts, dataset guidance, source/provenance fields, traffic helpers, GTFS/transit, filtered latest measurements, comma-safe `--param`, `transit journey --with-realtime`, and MCP server mode.
+
+Preferred manual install options:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/galjos/odh-cli/main/scripts/install.sh | sh -s -- --version v0.3.0 --dir "$HOME/bin"
+go install github.com/galjos/odh-cli/cmd/odh@v0.4.0
+brew install galjos/odh/odh
 ```
 
-If running from the source repo, use `./odh`.
+Agent hosts can also use the declared OpenClaw Go installer metadata in this skill. If running from the source repo, use `./odh`.
 
 Agent hosts that prefer MCP over shell commands can run the same curated surface as Model Context Protocol tools with `odh mcp serve`; tool outputs follow the same JSON contracts and warnings as the CLI.
 
@@ -59,6 +62,7 @@ Agent hosts that prefer MCP over shell commands can run the same curated surface
 
 ```bash
 odh apis
+odh datasets guide "ev charging availability" --format json
 odh datasets search parking
 odh openapi mobility
 odh openapi tourism
@@ -66,6 +70,8 @@ odh mobility types --kind station
 odh mobility origins --station-type ParkingStation
 odh mobility datatypes --station-type TrafficSensor --origin A22 --limit 1000 --json
 ```
+
+For unfamiliar data questions, run `odh datasets guide <topic> --format json` first and follow its `discovery`, `verify`, and `caveats` fields before choosing lower-level commands.
 
 Always run `odh mobility origins --station-type <type>` before filtering any query with `--origin`, even when the origin seems obvious (A22, ALPERIA, PROVINCE_BZ): origin names are upstream vocabulary, and a catalogued origin or datatype is not proof that open measurement rows exist.
 

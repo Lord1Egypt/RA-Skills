@@ -1,0 +1,39 @@
+{
+  "name": "Rental Dispute Advisor",
+  "slug": "rental-dispute-advisor",
+  "displayName": "租房押金纠纷助手",
+  "description": "处理中国租房押金不退、房东扣押金、提前退租、中介费、维修责任、涨租和退租争议；输出事实清单、证据包、赔偿估算、催告函、12315/住建委投诉路径和协商话术。",
+  "tags": ["rental-dispute", "deposit-refund", "landlord-deduction", "tenant-rights", "china-rental-law", "complaint-letter", "housing-authority", "12315", "legal-aid"],
+  "license": "MIT-0",
+  "version": "1.1.0",
+  "scripts": {
+    "main": "scripts/rental-dispute.sh",
+    "description": "CLI for rental dispute analysis, compensation calculation, document generation, and escalation planning."
+  },
+  "schemas": {
+    "input": "schemas/input.schema.json",
+    "output": "schemas/output.schema.json"
+  },
+  "workflowSteps": [
+    { "step": 1, "name": "Parse Dispute Scenario", "input": "rental-dispute.sh collect --input <case.json>", "output": "Validated dispute JSON with type classification" },
+    { "step": 2, "name": "Information Collection", "input": "rental-dispute.sh collect --input <case.json>", "output": "Structured case file with evidence inventory and timeline" },
+    { "step": 3, "name": "Legal Provision Matching", "input": "rental-dispute.sh analyze --input <case.json>", "output": "Applicable laws mapped to dispute type with citations" },
+    { "step": 4, "name": "Responsibility Assessment", "input": "rental-dispute.sh analyze --input <case.json>", "output": "Party-by-party responsibility breakdown with legal basis" },
+    { "step": 5, "name": "Compensation Calculation", "input": "rental-dispute.sh calculate --input <case.json>", "output": "Itemized compensation report: deposit, penalty, damages" },
+    { "step": 6, "name": "Document Generation", "input": "rental-dispute.sh letter --type demand|complaint|civil --input <case.json>", "output": "Legal document as Markdown (催告函/投诉信/起诉状)" },
+    { "step": 7, "name": "Evidence Checklist", "input": "rental-dispute.sh evidence --input <case.json>", "output": "Prioritized evidence checklist with collection instructions" },
+    { "step": 8, "name": "Negotiation Scripts", "input": "rental-dispute.sh negotiate --style soft|firm --input <case.json>", "output": "Turn-by-turn negotiation dialogue script" },
+    { "step": 9, "name": "Escalation Path", "input": "rental-dispute.sh escalate --input <case.json>", "output": "Step-by-step escalation route with timeline, cost, probability" },
+    { "step": 10, "name": "Timeline Tracking", "input": "rental-dispute.sh escalate --input <case.json>", "output": "Key dates timeline with follow-up reminders" }
+  ],
+  "firstSuccessPath": {
+    "steps": [
+      "Prepare your dispute data as a JSON file (see SKILL.md Real Task Example 1 for template)",
+      "Run: rental-dispute.sh collect --input my-case.json — validates your input",
+      "Run: rental-dispute.sh analyze --input my-case.json — see your legal standing",
+      "Run: rental-dispute.sh calculate --input my-case.json — see your compensation",
+      "Run: rental-dispute.sh letter --type demand --input my-case.json — get your demand letter",
+      "Send the demand letter to your landlord. ~40% of disputes resolve at this step."
+    ]
+  }
+}

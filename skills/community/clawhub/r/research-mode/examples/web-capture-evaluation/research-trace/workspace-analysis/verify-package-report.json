@@ -1,0 +1,149 @@
+{
+  "coverage": {
+    "artifacts_analysis_notes": {
+      "passed": true,
+      "terms": [
+        "Analysis notes"
+      ]
+    },
+    "artifacts_converted_markdown": {
+      "passed": true,
+      "terms": [
+        "Converted Markdown"
+      ]
+    },
+    "artifacts_fetch_metadata": {
+      "passed": true,
+      "terms": [
+        "Fetch metadata"
+      ]
+    },
+    "artifacts_final_report": {
+      "passed": true,
+      "terms": [
+        "Final report"
+      ]
+    },
+    "artifacts_source_log": {
+      "passed": true,
+      "terms": [
+        "Source log"
+      ]
+    },
+    "provider_neutral": {
+      "passed": true,
+      "terms": [
+        "provider-neutral",
+        "converter-neutral"
+      ]
+    },
+    "risks_conversion_markdown": {
+      "passed": true,
+      "terms": [
+        "Markdown conversion is not sanitization",
+        "untrusted text"
+      ]
+    },
+    "risks_permission_politeness": {
+      "passed": true,
+      "terms": [
+        "robots",
+        "politeness",
+        "authorization"
+      ]
+    },
+    "risks_prompt_injection": {
+      "passed": true,
+      "terms": [
+        "embedded instructions",
+        "reveal secrets",
+        "tool"
+      ]
+    },
+    "risks_request_safety": {
+      "passed": true,
+      "terms": [
+        "safe read-only HTTP methods",
+        "redirect",
+        "timeout",
+        "byte"
+      ]
+    },
+    "risks_url_network": {
+      "passed": true,
+      "terms": [
+        "scheme",
+        "host",
+        "internal",
+        "private",
+        "redirect"
+      ]
+    },
+    "workflow_analyze": {
+      "passed": true,
+      "terms": [
+        "Analyze"
+      ]
+    },
+    "workflow_convert": {
+      "passed": true,
+      "terms": [
+        "Convert"
+      ]
+    },
+    "workflow_fetch": {
+      "passed": true,
+      "terms": [
+        "Fetch"
+      ]
+    },
+    "workflow_intake": {
+      "passed": true,
+      "terms": [
+        "Intake"
+      ]
+    },
+    "workflow_preflight": {
+      "passed": true,
+      "terms": [
+        "Preflight"
+      ]
+    },
+    "workflow_synthesize": {
+      "passed": true,
+      "terms": [
+        "Synthesize"
+      ]
+    },
+    "workflow_verify": {
+      "passed": true,
+      "terms": [
+        "Verify"
+      ]
+    }
+  },
+  "missing_files": [],
+  "package_dir": "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation",
+  "passed": true,
+  "privacy_issues": [],
+  "required_files": [
+    "README.md",
+    "prompt.md",
+    "research-plan.md",
+    "sources.md",
+    "final-report.md"
+  ],
+  "source_coverage": {
+    "expected_count": 7,
+    "missing": [],
+    "present": [
+      "https://datatracker.ietf.org/doc/html/rfc9309",
+      "https://datatracker.ietf.org/doc/html/rfc9110",
+      "https://docs.python.org/3/library/urllib.parse.html",
+      "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+      "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html",
+      "https://spec.commonmark.org/0.31.2/",
+      "https://github.com/microsoft/markitdown"
+    ]
+  }
+}

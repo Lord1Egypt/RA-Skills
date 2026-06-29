@@ -1,0 +1,11 @@
+# Manifest — axiom-hash-multi (public, clean)
+# Edition: Capafy voice (zero cluster jargon)
+# Generated: 2026-06-14T20:45:38Z
+
+c5b9e0bb6ce9d5f964d0a1467876baa512752189e2da7d7e04b7905273d55c30  LICENSE  (1210 bytes)
+59296276d1ec0489bd4b9b002e5627dbf3a464e2368e65ba785b0dbafcc56656  README.md  (5527 bytes)
+c1bc0431102be4145c23cd9b523dc9d6abb3770ea5773fe60a74ade603174a44  SKILL.md  (3028 bytes)
+080065f06717c2d2705f97b9f05d26d6e3f3630c70b54f1188b3e38fbe674f79  axiom_hash_multi.py  (14693 bytes)
+759304aeb2b5076f07477b3cd81b505cb301c36243b4455dc7b689029f383a65  stress_test.py  (19576 bytes)
+0fe72af3110cc162d2cd316da68b8e6a04b53aaabe057e65fc75cda34ab4e8f5  test_axiom_hash_multi.py  (9031 bytes)
+6facc1c5f4223b2e2725a091d30613e06b914729a4c44422f6c877e5828fcedb  test_v110_new_features.py  (10660 bytes)

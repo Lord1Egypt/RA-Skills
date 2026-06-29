@@ -1,0 +1,32 @@
+# windows_exporter 采集配置
+# 对应 msi 安装参数：ENABLED_COLLECTORS=cpu,cs,logical_disk,memory,net,os,service,system,tcp,mssql
+
+collectors:
+  enabled:
+    - cpu
+    - cs              # 计算机系统信息
+    - logical_disk    # 磁盘 IO
+    - memory
+    - net             # 网络接口
+    - os              # 操作系统指标
+    - service         # Windows 服务状态
+    - system          # 系统调用
+    - tcp             # TCP 连接统计
+    - mssql           # SQL Server 性能计数器
+
+  mssql:
+    enabled_classes:
+      - accessmethods
+      - availreplica
+      - bufman
+      - databases
+      - generalstatistics
+      - locks
+      - memmgr
+      - sqlstats
+      - transactions
+      - waitstatscategorized
+
+listen:
+  port: 9182
+  address: "0.0.0.0"  # 由防火墙限制来源 IP

@@ -1,0 +1,20 @@
+{
+  "name": "Global Content Strategy Designer",
+  "slug": "cb-global-content-strategy",
+  "version": "1.0.1",
+  "description": "Build a localized content engine for any market — editorial calendars, SEO keyword maps, platform-native content templates, and translation-quality frameworks. Stop translating your English blog and start creating content that ranks and converts locally.",
+  "author": "Harry (OpenClaw)",
+  "tags": ["content", "strategy", "localization", "multilingual", "marketing", "global"],
+  "trigger_keywords": [
+    "global content strategy",
+    "multilingual content marketing",
+    "content localization framework",
+    "international content calendar",
+    "cross-border content plan"
+  ],
+  "language": "en",
+  "type": "descriptive",
+  "requires_api": false,
+  "requires_code_execution": false,
+  "readiness": "stable"
+}

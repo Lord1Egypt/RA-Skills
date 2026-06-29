@@ -6,25 +6,25 @@
 
 | 编号 | 业务                            | 必读                                                                  |
 | ---- | ------------------------------- | --------------------------------------------------------------------- |
-| W1   | 账户查询（列表/余额/消耗/账单） | `accounts/accounts.md`                                                |
-| W2   | 开户申请（六大媒体）            | `accounts/open-account-by-media.md`                                   |
-| W3   | Google 广告创建与精细管理       | `google-ads/google-ads-campaign-plan.md` + `google-ads/google-ads.md` |
-| W4   | AI 智投草稿 → 发布              | `google-ads/google-ads.md`（ad batch）                                |
-| W5   | 拓词 / RAG                      | `analytics/keyword-planner-workflows.md` + `analytics/rag.md`         |
-| W6   | AI 广告优化记录查看与执行       | `operations/optimize.md`                                              |
-| W7   | TSO 优化报告生成 → 推送         | `analytics/reporting.md`                                              |
-| W8   | 财务：充值 / 转账 / 开票        | `accounts/finance.md`                                                 |
-| W9   | 账户权限管理                    | `accounts/accounts.md`（account 子命令）                              |
-| W10  | 智能预警规则管理                | `operations/forewarning.md`                                           |
-| W11  | 广告线索提取                    | `operations/clue.md`                                                  |
-| W12  | 日 / 周巡检                     | `accounts/accounts.md` + 各域                                         |
+| W1   | 账户查询（列表/余额/消耗/账单） | `references/accounts/accounts.md`                                                |
+| W2   | 开户申请（六大媒体）            | `references/accounts/open-account-by-media.md`                                   |
+| W3   | Google 广告创建与精细管理       | `references/google-ads/google-ads-campaign-plan.md` + `references/google-ads/google-ads.md` |
+| W4   | AI 智投草稿 → 发布              | `references/google-ads/google-ads.md`（ad batch）                                |
+| W5   | 拓词 / RAG                      | `references/analytics/keyword-planner-workflows.md` + `references/analytics/rag.md`         |
+| W6   | AI 广告优化记录查看与执行       | `references/operations/optimize.md`                                              |
+| W7   | TSO 优化报告生成 → 推送         | `references/analytics/reporting.md`                                              |
+| W8   | 财务：充值 / 转账 / 开票        | `references/accounts/finance.md`                                                 |
+| W9   | 账户权限管理                    | `references/accounts/accounts.md`（account 子命令）                              |
+| W10  | 智能预警规则管理                | `references/operations/forewarning.md`                                           |
+| W11  | 广告线索提取                    | `references/operations/clue.md`                                                  |
+| W12  | 日 / 周巡检                     | `references/accounts/accounts.md` + 各域                                         |
 
 ---
 
 ## W1 · 账户查询（列表 / 余额 / 消耗 / 账单）
 
 - **触发**：账户列表/有多少、单户余额、单户消耗、激活充值账单。
-- **必读**：`accounts/accounts.md`。
+- **必读**：`references/accounts/accounts.md`。
 - **步骤**：
   1. 列表/数量：`list-accounts -m <媒体> --page-size 999 --json-out ./snap`，脚本读 `list-accounts-*.json` 的 `total` / `items[]`（**禁止**默认 20 条再翻页）。
   2. 单户余额：`balance -m <媒体> -a <mediaCustomerId>`。
@@ -37,7 +37,7 @@
 ## W2 · 开户申请（Google / TikTok / Yandex / BingV2 / Kwai / MetaAd）
 
 - **触发**：申请开户、新开广告账户、查开户进度。
-- **必读**：`accounts/open-account-by-media.md`（各媒体必填项与参数，**含 §「首次响应硬规范」：首次进入开户话题必须先列全必填清单**）；Google 字段加 `accounts/open-account-google-ui.md`。所有媒体均**无需**手动查 magKey，CLI 按公司名自动创建/关联广告主组。
+- **必读**：`references/accounts/open-account-by-media.md`（各媒体必填项与参数，**含 §「首次响应硬规范」：首次进入开户话题必须先列全必填清单**）；Google 字段加 `references/accounts/open-account-google-ui.md`。所有媒体均**无需**手动查 magKey，CLI 按公司名自动创建/关联广告主组。
 - **步骤**：
   1. 列出必填项 → 收集资料（TikTok/Bing/Kwai 需营业执照图片本地路径；CLI 无 OCR）。
   2. 前置查询（按需）：TikTok `open-account tiktok-areas/-industries/-timezones`；Bing `open-account bing-industries`；Google `open-account google-timezones`。
@@ -57,7 +57,7 @@
 
 - **触发**：新建搜索系列、出投放方案、**根据官网/网站/URL 生成 Google 搜索广告（含「表格格式」）**、搜索广告文案/关键词/计划表、系列/组/广告/关键词 CRUD、PMax、拒审处理、日常调价/启停。
 - **勿误判**：仅给官网 URL 且目标是「写/生成搜索广告」→ **本卡片（W3）**，不是 P8 网站诊断、不是 P9 市场分析；若用户只要拓词无系列结构 → **W5**。
-- **必读**：方案与门禁 `google-ads/google-ads-campaign-plan.md` + **`assets/campaign-create-template.json`**（先 Read）+ `assets/campaign-create-template.md`；命令参数 `google-ads/google-ads.md`；PMax 加 **`assets/pmax-create-template.json`** + `assets/pmax-create-template.md` + `google-ads/pmax-api.md`。
+- **必读**：方案与门禁 `references/google-ads/google-ads-campaign-plan.md` + **`assets/campaign-create-template.json`**（先 Read）+ `assets/campaign-create-template.md`；命令参数 `references/google-ads/google-ads.md`；PMax 加 **`assets/pmax-create-template.json`** + `assets/pmax-create-template.md` + `references/google-ads/pmax-api.md`。
 - **创建路径选择**：
   - 已有 AI 智投草稿 → 走 **W4**。
   - **PMax 出方案/创建** → **`assets/pmax-create-template.json`**（先 Read）+ `pmax-create-template.md` + `pmax-api.md`：`pmax-validate` → 用户确认 → `pmax-create`（**勿**用 Search `campaign-create`）。
@@ -76,7 +76,7 @@
   3. 用户确认后创建：`ad campaign-create --config-file ./campaign.json`，记录返回 taskId。
   4. 轮询：`ad batch get --id <taskId>`（Creating → Successfully）。
   5. 复核：`ad campaigns -a <id> --json-out ./snap` 取 `campaignId` 供后续精细操作。
-- **精细管理与日常运营**：`ad adgroup-create` / `ad keyword-create` / `ad keyword-negative-create` / `ad ad-create`（拓词辅助见 **W5**）；调整用 `ad adgroup-status` / `ad campaign-status` / `ad ad-delete` / `ad keyword-negative-delete`。完整参数见 `google-ads/google-ads.md`。
+- **精细管理与日常运营**：`ad adgroup-create` / `ad keyword-create` / `ad keyword-negative-create` / `ad ad-create`（拓词辅助见 **W5**）；调整用 `ad adgroup-status` / `ad campaign-status` / `ad ad-delete` / `ad keyword-negative-delete`。完整参数见 `references/google-ads/google-ads.md`。
 - **交付/确认**：关键词匹配格式 `running shoes`=广泛 / `"..."`=词组 / `[...]`=精确；结构性写操作（新建/暂停/删除）须用户确认；写后用成对读命令复核。
 
 ---
@@ -84,7 +84,7 @@
 ## W4 · AI 智投草稿 → 发布
 
 - **触发**：查询/修改/发布 AI 智投（AICreation）已保存草稿。
-- **必读**：`google-ads/google-ads.md` § ad batch。
+- **必读**：`references/google-ads/google-ads.md` § ad batch。
 - **步骤**：
   1. 列表找目标：`ad batch list --customer-id <mediaCustomerId>`（可 `--state Unpublished --json-out ./snap`）。
   2. 详情：`ad batch get --id <recordId>`。
@@ -98,7 +98,7 @@
 ## W5 · 拓词 / RAG
 
 - **触发**：拓词、关键词规划、词包、否词线索；或写文案/方案需客户产品背景。
-- **必读**：`analytics/keyword-planner-workflows.md`；客户/品牌背景先 `analytics/rag.md`。
+- **必读**：`references/analytics/keyword-planner-workflows.md`；客户/品牌背景先 `references/analytics/rag.md`。
 - **步骤**：
   1. （需背景时）RAG：`rag list --rag-only --json-out ./snap` → `rag query -q "型号 英文类目 应用场景" --folder-id <id> --partition wiki --top-k 12 --json-out ./snap`，归纳 2–8 个种子词。
   2. 拓词：`keyword -k "种子1,种子2,..." [--geo <id>] [--url <落地页>] [--google-only] --json-out ./snap-kw`（仅 Google 数据加 `--google-only`；分市场对比每次只传一个 `--geo`）。
@@ -110,7 +110,7 @@
 ## W6 · AI 广告优化记录查看与执行
 
 - **触发**：查看 AI 优化建议/记录，并按建议执行。
-- **必读**：`operations/optimize.md`；执行写操作参数见 `google-ads/google-ads.md`。
+- **必读**：`references/operations/optimize.md`；执行写操作参数见 `references/google-ads/google-ads.md`。
 - **步骤**：
   1. 账户级列表（仍托管）：`optimize list -a <mediaCustomerId>`；**已脱管**改 `optimize list --match-media-customer-id <Google客户号> [--start …] --json-out ./snap` 取 `items[].id`。
   2. 系列级记录：`optimize records --start <S>`；明细 `optimize children --parent-id <id>`；单条 `optimize get --id <uuid>`。
@@ -122,7 +122,7 @@
 ## W7 · TSO 优化报告生成 → 推送
 
 - **触发**：TSO 平台「优化报告」列表/生成/删除、邮件推送配置与记录（**非** Agent 撰写的分析报告，那走 P1/P4）。
-- **必读**：`analytics/reporting.md`。
+- **必读**：`references/analytics/reporting.md`。
 - **步骤**：
   1. 账户：`list-accounts -m Google --json-out ./snap`。
   2. 生成：`report create -m Google -a <mediaCustomerId,...> -t Daily --start <S> --end <D>`（`-a` 传 mediaCustomerId）。
@@ -136,7 +136,7 @@
 ## W8 · 财务：充值 / 转账 / 开票
 
 - **触发**：充值、钱包、账户间转账、转账记录、开票、发票抬头。
-- **必读**：`accounts/finance.md`。
+- **必读**：`references/accounts/finance.md`。
 - **步骤**：
   1. 充值/钱包：CLI 不支持，`config show` 取 `webUrl` 后按 `finance.md` 给对应媒体充值页链接（Yandex/Kwai 无充值页，引导联系客服）。
   2. 转账：记录 `transfer list -m <媒体>`；同媒体账户间 `transfer create -m <媒体> --out <id> --in <id> --amount <n>`（写操作先确认）。
@@ -148,7 +148,7 @@
 ## W9 · 账户权限管理
 
 - **触发**：分享/取消分享、解绑、OAuth 重授权、Google MCC 绑定/解绑、TikTok BC 绑定/解绑、Meta BM 绑定、TikTok 关闭账户、Google 被封提现、Google 邮箱授权管理。
-- **必读**：`accounts/accounts.md`（各 `account` 子命令参数与 ID 口径）。
+- **必读**：`references/accounts/accounts.md`（各 `account` 子命令参数与 ID 口径）。
 - **步骤（按场景）**：
   - **分享**：`list-accounts --json-out` 取 `entityId` → `account share --id <entityId> --phone <手机号>`；查 `account share-detail --customer-id <mediaCustomerId>`；取消 `account unshare --id <entityId> --account-id <userId>`。
   - **解绑**：`account delink --id <entityId>` / `--ids id1,id2`。
@@ -166,7 +166,7 @@
 ## W10 · 智能预警规则管理
 
 - **触发**：创建/查询/启停/删除预警规则、查触发记录（默认不主动推荐，用户提出再用）。
-- **必读**：`operations/forewarning.md`。
+- **必读**：`references/operations/forewarning.md`。
 - **步骤**：
   1. 通知对象：`forewarning notify-accounts` 取微信对象 `entityId`（须已关注服务号）。
   2. 监控账户：`list-accounts -m <媒体> --json-out ./snap` 取账户 `entityId`。
@@ -180,7 +180,7 @@
 ## W11 · 广告线索提取
 
 - **触发**：拉取 TikTok / Meta 广告表单留资线索。
-- **必读**：`operations/clue.md`。
+- **必读**：`references/operations/clue.md`。
 - **步骤**：
   1. 确认账户：TikTok `list-accounts -m TikTok`；Meta 取 Facebook 页面 ID。
   2. TikTok：`clue -m TikTok -a <advertiserId> [--region eu|us|other|ALL] --json-out ./snap`（「最近一周」直接按默认窗口执行，不做日期反问）。
@@ -192,7 +192,7 @@
 ## W12 · 日 / 周巡检
 
 - **触发**：日常/每周快速了解各媒体余额、消耗、预警与报告/智投状态。
-- **必读**：`accounts/accounts.md`；首页看板口径见 `references/misc/tso-home.md`。
+- **必读**：`references/accounts/accounts.md`；首页看板口径见 `references/misc/tso-home.md`。
 - **步骤**：
   1. 余额：`list-accounts -m <媒体> --json-out ./snap` → `balance -m <媒体> -a <mediaCustomerId,...>`（多户续航预警走 **P2**）。
   2. 消耗：`stats -m <媒体> -a <id> --start <昨天/上周一> --end <昨天/上周日>`（多户汇总走 **P3**）。

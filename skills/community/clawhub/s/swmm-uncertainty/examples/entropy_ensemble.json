@@ -1,0 +1,11 @@
+{
+  "metric": "example_node_total_inflow_cms",
+  "time": [0, 1, 2, 3],
+  "value_min": 0.0,
+  "value_max": 1.0,
+  "values": [
+    [0.0, 0.2, 0.5, 0.2],
+    [0.0, 0.3, 0.7, 0.3],
+    [0.0, 0.4, 0.9, 0.4]
+  ]
+}

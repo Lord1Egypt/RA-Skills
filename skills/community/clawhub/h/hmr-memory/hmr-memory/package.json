@@ -1,0 +1,22 @@
+{
+  "name": "hmr-memory",
+  "version": "1.0.0",
+  "description": "Persistent cross-session memory for OpenClaw agents, powered by HMR (Hestia Memory Runtime)",
+  "keywords": ["openclaw", "agent-skill", "memory", "hmr", "persistent-memory", "cross-session"],
+  "license": "MIT",
+  "homepage": "https://github.com/snowfoxHQ/HMR",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/snowfoxHQ/HMR.git"
+  },
+  "agentSkill": {
+    "name": "hmr-memory",
+    "category": "memory",
+    "requires": {
+      "service": "HMR (Hestia Memory Runtime) running locally on http://127.0.0.1:8077"
+    },
+    "network": ["127.0.0.1:8077"],
+    "shellCommands": false,
+    "secrets": false
+  }
+}

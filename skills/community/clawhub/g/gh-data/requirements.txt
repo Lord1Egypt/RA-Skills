@@ -1,0 +1,4 @@
+﻿requests>=2.28.0
+python-docx>=1.0.0
+matplotlib>=3.6.0
+mplfinance>=0.12.10

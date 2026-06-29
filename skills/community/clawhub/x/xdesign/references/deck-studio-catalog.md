@@ -2,9 +2,9 @@
 
 > **目的**：deck-studio 子模块（html-ppt-skill）资源的快速查找手册
 > **范围**：themes / layouts / animations / FX / full-deck 模板
-> **数据快照**：基于本仓库当前下载的资源（18 themes / 31 single-page / 5 full-decks / 20 FX / 27 CSS animations）
+> **数据快照**：基于本仓库当前下载的资源（36 themes / 31 single-page / 15 full-decks / 20 FX / 27 CSS animations）
 
-## 1. 主题（18 themes）
+## 1. 主题（36 themes）
 
 按"使用场景"快速匹配。所有主题文件位于 `deck-studio/assets/themes/<name>.css`。
 
@@ -27,6 +27,14 @@
 | `memphis-pop` | 年轻、潮流、品牌合作 | 孟菲斯波普背景点 + 大字标题 |
 | `magazine-bold` | 专栏文章、品牌月刊 | 奶油底 + 超大 Playfair + 橙色 spot |
 | `midcentury` | 设计史、家居美学 | 奶油底 + 芥末/青/焦橙 |
+| `neo-brutalism` | 设计系统、高辨识度 | 粗边框 + 高对比 + 硬阴影 |
+| `sharp-mono` | 极简主义、黑白双色 | 锐利黑白 + 粗等宽字 |
+| `sunset-warm` | 品牌故事、情感表达 | 暖色调橘/珊瑚/琥珀渐变 |
+| `soft-pastel` | 生活分享、柔和调性 | 马卡龙粉蓝/淡紫/薄荷 |
+| `rose-pine` | 创意、写作、浪漫 | 松木玫瑰低饱和度深色 |
+| `retro-tv` | 怀旧、复古发布会 | 显像管圆角 + 扫描线 + 棕调 |
+| `news-broadcast` | 新闻播报、官方信息 | 蓝底白色新闻频道风格 |
+| `swiss-grid` | 极简主义、国际主义风格 | 瑞士网格 + 无衬线 + 严格对齐 |
 | `glassmorphism` | Apple 发布会、产品特性 | 毛玻璃 + 多色光斑 |
 
 ### 1.3 暗色 / 开发者
@@ -36,6 +44,9 @@
 | `catppuccin-mocha` | 开发者内部分享、长时间观看 | catppuccin 深色 |
 | `dracula` | 代码密集的技术分享 | 经典 Dracula 紫红 |
 | `gruvbox-dark` | Terminal / vim 社群 | 温暖复古深色 |
+| `tokyo-night` | 开发者深夜分享、高颜值 | 东京夜蓝紫色深色 |
+| `vaporwave` | 赛博美学、复古未来 | 蒸汽波动画渐变 |
+| `terminal-green` | 黑客风、CLI demo | 绿屏终端 + CRT 效果 |
 | `cyberpunk-neon` | 赛博朋克、发布 | 霓虹粉 + 青蓝 |
 
 ### 1.4 工程 / 文档
@@ -44,6 +55,7 @@
 |---|---|---|
 | `blueprint` | 系统架构、工程蓝图 | 蓝图工程 + 网格 + 蒙太奇 |
 | `engineering-whiteprint` | API 文档、架构白皮书 | 白底 + 坐标纸 + 等宽字 |
+| `solarized-light` | 学术、开源文档 | Solarized 浅色 + 科学感 |
 | `arctic-cool` | 商业分析、金融 | 蓝/青/石板灰 |
 
 ### 1.5 氛围 / 渐变
@@ -51,9 +63,13 @@
 | 主题 | 适用场景 | 视觉特征 |
 |---|---|---|
 | `aurora` | 封面 / CTA / 结语页 | 极光渐变 + blur + saturate |
+| `nord` | 北欧、冷静专业 | 北欧蓝灰色系 |
+| `rainbow-gradient` | 多彩发布会、创意展示 | 彩虹渐变点缀 + 亮色 |
+| `y2k-chrome` | 千禧科技、金属质感 | 银色铬金属 + 反光 |
+| `xiaohongshu-white` | 小红书图文、种草 | 白底高级感 + 柔色标签 |
 | `catppuccin-latte` | 开发者友好的浅色 | catppuccin 浅 |
 
-> ⚠️ 上游 html-ppt-skill 主题数 = 36（`references/themes.md`），本仓库已下载 19 个。Agent 在选主题前**必须先检查 `ls deck-studio/assets/themes/`**，未列出的主题不可虚构。
+> ✅ 全部 36 个主题已从上游仓库下载完成。Agent 可直接使用任意主题。**36 个主题清单见上文各表。**
 
 ## 2. 布局（28 single-page templates）
 
@@ -125,17 +141,27 @@
 |---|---|
 | `cta.html` | CTA，大渐变标题 + 按钮 |
 
-## 3. 完整 deck 模板（5 full-decks）
+## 3. 完整 deck 模板（15 full-decks）
 
-位于 `deck-studio/templates/full-decks/<name>/`，每个是自包含的目录（带 scoped `style.css`）。
+位于 `deck-studio/templates/full-decks/<name>/`，每个是自包含的目录（带 scoped `style.css` + `README.md`）。
 
-| 模板 | 用途 | 适用场景 |
-|---|---|---|
-| `product-launch/` | 产品发布会 deck | 9-15 页产品介绍 + demo + 路线图 |
-| `pitch-deck/` | YC 风融资 pitch | 12 页问题/方案/市场/团队/融资 |
-| `tech-sharing/` | 技术分享 + 提词器 | 15-30 页技术深度分享 + 演讲稿 |
-| `weekly-report/` | 周报 deck | 5-8 页本周进展 + 数据 + 下周计划 |
-| `course-module/` | 课程模块 | 20+ 页章节化教学内容 + 练习 |
+| 模板 | 类型 | 用途 | 适用场景 |
+|---|---|---|---|
+| `product-launch-bento/` | scenario | 产品发布会 deck | 9-15 页产品介绍 + demo + 路线图 |
+| `agent-orchestration/` | scenario | Agent 编排演示 | AI Agent 工作流/编排展示 |
+| `storybook-presentation/` | scenario | 叙事风格分享 | 故事化品牌叙事 |
+| `tech-vision/` | scenario | 技术愿景宣讲 | 技术战略/赋能分享 |
+| `full-deck-engine/` | scenario | 完整 deck 引擎 | 通用全页模板 |
+| `xhs-white-editorial/` | extracted | 白底杂志风 | 小红书图文/观点输出 |
+| `graphify-dark-graph/` | extracted | 暗底知识图谱 | AI/数据产品展示 |
+| `knowledge-arch-blueprint/` | extracted | 奶油蓝图架构 | 架构设计/系统思考 |
+| `hermes-cyber-terminal/` | extracted | 暗终端 cyber | 开发者工具/Agent demo |
+| `obsidian-claude-gradient/` | extracted | GitHub 暗紫渐变 | 工具 walkthrough/LLM 产品 |
+| `testing-safety-alert/` | extracted | 红琥珀警示 | 安全/测试/风险主题 |
+| `xhs-pastel-card/` | extracted | 柔和马卡龙 | 生活方式/情感内容 |
+| `xhs-post/` | scenario | 小红书 3:4 图文 | 小红书/IG 轮播 |
+| `dir-key-nav-minimal/` | extracted | 方向键 8 色极简 | Keynote/单页概念 |
+| `presenter-mode-reveal/` | scenario | 演讲者模式 + 逐字稿 | 技术分享/带演讲稿的 talk |
 
 ## 4. CSS 动画（27 named entry animations）
 

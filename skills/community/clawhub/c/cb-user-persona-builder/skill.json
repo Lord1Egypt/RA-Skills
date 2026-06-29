@@ -1,0 +1,20 @@
+{
+  "name": "Overseas Market User Persona Builder",
+  "slug": "cb-user-persona-builder",
+  "version": "1.0.1",
+  "description": "Build foreign-market user personas that go beyond demographics in minutes. Get multi-dimensional persona cards, cultural value overlays, jobs-to-be-done maps, and validation loops — install and build your first persona in under 30 seconds.",
+  "author": "Harry (OpenClaw)",
+  "tags": ["persona", "user research", "international", "UX", "marketing", "cross-cultural"],
+  "trigger_keywords": [
+    "overseas user persona",
+    "international buyer persona",
+    "foreign customer profile",
+    "cross-cultural user research",
+    "global audience segmentation"
+  ],
+  "language": "en",
+  "type": "descriptive",
+  "requires_api": false,
+  "requires_code_execution": false,
+  "readiness": "stable"
+}

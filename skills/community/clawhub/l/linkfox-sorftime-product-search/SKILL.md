@@ -1,6 +1,6 @@
----
+﻿---
 name: linkfox-sorftime-product-search
-description: 基于Sorftime数据的亚马逊多维度产品搜索与筛选，涵盖14个站点，支持历史月份快照回看。当用户提到Sorftime产品搜索、亚马逊产品筛选、竞品调研、类目分析、品牌热销、卖家分析、季节性产品、历史快照回看、产品搜索、月销量月销额、ABA关键词找产品、价格范围筛选、新品发现、多条件组合筛选、product search, competitor research, category analysis, brand bestsellers, seller analysis, seasonal products, historical snapshot时触发此技能。即使用户未明确提及"Sorftime"，只要其需求涉及亚马逊产品搜索、筛选、对比或类目/品牌/卖家维度的产品探索，也应触发此技能。
+description: "基于Sorftime数据的亚马逊多维度产品搜索与筛选，涵盖14个站点，支持历史月份快照回看。当用户提到Sorftime产品搜索、亚马逊产品筛选、竞品调研、类目分析、品牌热销、卖家分析、季节性产品、历史快照回看、产品搜索、月销量月销额、ABA关键词找产品、价格范围筛选、新品发现、多条件组合筛选、product search, competitor research, category analysis, brand bestsellers, seller analysis, seasonal products, historical snapshot时触发此技能。即使用户未明确提及\"Sorftime\"，只要其需求涉及亚马逊产品搜索、筛选、对比或类目/品牌/卖家维度的产品探索，也应触发此技能。"
 ---
 
 # Sorftime Product Search
@@ -15,40 +15,16 @@ Sorftime Product Search supports multi-dimensional product retrieval with 16 que
 
 ## Data Fields
 
-| Field | API Name | Description | Example |
-|-------|----------|-------------|---------|
-| ASIN | asin | Amazon Standard Identification Number | B0CVM8TXHP |
-| Product Title | title | Product listing title | Anker Portable Charger... |
-| Brand | brand | Brand name | Anker |
-| Current Price | price | Price before Coupon, local currency (e.g., USD) | 29.99 |
-| Sale Price | salesPrice | Actual selling price after Coupon, local currency | 25.99 |
-| Strikethrough Price | oldPrice | Original list price, local currency | 39.99 |
-| Coupon | coupon | >0 = discount amount (500=$5); <0 = percentage (-10=10% off) | -15 |
-| BSR Rank | salesRank | Best Seller Rank in main category | 1523 |
-| Monthly Sales | monthlySalesUnits | 30-day sales volume (Listing level); -1 = cannot estimate | 4500 |
-| Monthly Revenue | monthlySalesRevenue | Estimated monthly revenue, local currency; -1 = N/A | 116955.00 |
-| Daily Sales | listingSalesVolumeOfDaily | Daily sales volume; -1 = cannot estimate | 150 |
-| Daily Revenue | listingSalesOfDaily | Daily revenue, local currency; -1 = N/A | 3898.50 |
-| Rating | rating | Current rating (0.0-5.0) | 4.70 |
-| Rating Count | ratings | Number of ratings | 12580 |
-| Listing Date | availableDate | Listing date (yyyy-MM-dd) | 2022-03-15 |
-| Days Online | onlineDays | Days since listing | 850 |
-| FBA Fees | fbaFees | FBA fulfillment fee, local currency | 5.40 |
-| Platform Fee | platformFee | Platform commission, local currency | 3.90 |
-| Profit | profitAmount | Sale price - FBA - commission, local currency | 16.69 |
-| Profit Rate | profitRate | Profit margin, e.g., 25.83 = 25.83% | 25.83 |
-| FBA Status | isFBA | Whether Buybox seller uses FBA | true |
-| Buybox Seller | buyboxSeller | Buybox winning seller name | AnkerDirect |
-| Seller Country | buyboxSellerAddress | Seller country code (CN, US); null if Amazon-operated | CN |
-| Seller ID | buyBoxSellerId | Buybox seller ID | A294P4X9EWVXLJ |
-| Category | category | Main category [name, NodeId] | ["Cell Phones", "2811119011"] |
-| Sub-category | bsrCategory | Sub-category rankings list | [{nodeId, name, rank, date}] |
-| Variations | variationNum | Number of variations | 5 |
-| Parent ASIN | parentAsin | Parent ASIN if has variations, null otherwise | B0088PUEPK |
-| Weight | weight | Weight in grams | 350 |
-| Size | size | Dimensions in cm [longest, 2nd, shortest] | [18.5, 8.2, 3.1] |
-| Main Image | imageUrl | Main product image URL | https://... |
-| Listing URL | asinUrl | Amazon product page URL | https://www.amazon.com/dp/... |
+Response data covers the following categories (see `references/api.md` for complete field reference):
+
+- **Basic info**: ASIN, title, brand, listing URL, images (main + list), parent ASIN, variation count, weight, size
+- **Pricing & profit**: current price, sale price (after coupon), strikethrough price, coupon, FBA fees (with detail breakdown), platform fee, profit amount & rate
+- **Sales**: monthly sales units, monthly revenue, daily sales, daily revenue (values of -1 = cannot estimate)
+- **Rankings**: BSR rank, category, sub-category rankings
+- **Ratings**: rating score, rating count
+- **Listing info**: listing date, days online
+- **Seller**: Buybox seller name/ID/country, FBA status, seller count
+- **Listing features**: A+ content, video, brand store
 
 ## Supported Marketplaces
 
@@ -70,9 +46,9 @@ The key parameters are `marketplace` (required), `queryMode`, `queryType`, and `
 
 1. **Always specify the marketplace**: Use lowercase site codes, e.g., `us`, `de`, `jp`
 2. **Choose the right query mode**: Use `queryMode=1` for a single filter; use `queryMode=2` to combine multiple filters with AND logic
-3. **Match queryType with queryValue format**: Each queryType expects a specific format — see the table below. Mismatched formats will cause errors
-4. **Mind price units**: Price filters (queryType=8) use smallest currency unit (cents for USD), so $19.99 = `1999`
-5. **Use open ranges when appropriate**: Omit one end for open range — `,1000` means "up to 1000"; `100,` means "100 or more"
+3. **Match queryType with queryValue format**: Each queryType expects a specific format - see the table below. Mismatched formats will cause errors
+4. **Mind price units**: Price filters (queryType=8) use smcurrency unit (cents for USD), so $19.99 = `1999`
+5. **Use open ranges when appropriate**: Omit one end for open range - `,1000` means "up to 1000"; `100,` means "100 or more"
 6. **Use queryMonth for historical comparison**: Format `yyyy-MM`; compare with a second call without queryMonth to see changes over time
 
 ### Query Types (queryType, for queryMode=1)
@@ -109,7 +85,7 @@ Set `queryMonth` (format `yyyy-MM`) to query a past month's product data snapsho
 
 ### Query Examples for Common Scenarios
 
-**1. Find competitors of a given ASIN**
+**1. Fititors of a given ASIN**
 ```
 queryMode: 1, queryType: 1, queryValue: B0CVM8TXHP, marketplace: us
 ```
@@ -137,7 +113,7 @@ queryMode: 1, queryType: 10, queryValue: 10,11,12, marketplace: us
 **6. Compare historical vs current data**
 ```
 queryMonth: 2024-11, queryMode: 1, queryType: 2, queryValue: 3743561, marketplace: us
-→ Compare with current data (no queryMonth) to see price/sales changes
+-> Compare with current data (no queryMonth) to see price/sales changes
 ```
 
 **7. Multi-condition: new FBA products with good sales**
@@ -164,13 +140,13 @@ queryMode: 1, queryType: 4, queryValue: AnkerDirect, marketplace: us
 1. **Present data only**: Show query results in clear tables without subjective business advice
 2. **Ranking clarification**: When showing ranking data, remind users that lower values mean better rankings
 3. **Pagination notice**: Search results return max 100 products per page, up to 200 pages. If results are large, show highlights and remind users to paginate
-4. **Sales estimation caveat**: Values of `-1` in sales/revenue fields mean "cannot estimate" — explain this to the user rather than showing -1 directly
+4. **Sales estimation caveat**: Values of `-1` in sales/revenue fields mean "cannot estimate" - explain this to the user rather than showing -1 directly
 5. **Error handling**: When a query fails, explain the reason based on the `msg` field and suggest adjusting query criteria
 
 ## Important Limitations
 
 - **Pagination**: Max 100 products per page, max 200 pages
-- **Historical lookback**: Only from January 2024; AU, BR, IN not supported
+- **Historisupported
 - **Non-structured data**: Results do not support secondary analysis via `_dataQuery_executeDynamicQuery`
 - **Sales estimation**: Products in non-standard categories may return -1 for sales fields
 - **ABA keyword search** (queryType=6): Currently only supports ABA keywords, not arbitrary search terms
@@ -180,7 +156,7 @@ queryMode: 1, queryType: 4, queryValue: AnkerDirect, marketplace: us
 **Applicable** - Product search and filtering on Amazon:
 
 | User Says | Scenario |
-|-----------|----------|
+|-----------|--------|
 | "找一下这个类目下卖得好的产品" | Category exploration |
 | "Anker品牌有哪些热销产品" | Brand analysis |
 | "这个ASIN的竞品有哪些" | Competitor discovery |
@@ -199,7 +175,7 @@ queryMode: 1, queryType: 4, queryValue: AnkerDirect, marketplace: us
 - Product reviews content analysis
 - Patent or trademark checks
 
-**Boundary judgment**: When users say "competitor analysis" or "market research", if they need to discover and compare products across dimensions (category, brand, price range, etc.), this skill applies. If they need historical trend curves for a specific ASIN, use the Product Detail skill. If they need keyword search volume data, use ABA Data Explorer.
+**Boundary judgment**: When users say "competitor analysis" or "market research", if they need to discover and compare products across dimensions (category, brand, price range, etc.), this skill applies. If they need historical trend curves for a specific ASIN, use the Prt Detail skill. If they need keyword search volume data, use ABA Data Explorer.
 
 
 **Feedback:**
@@ -211,6 +187,31 @@ Auto-detect and report feedback via the Feedback API when any of the following a
 4. Anything you believe could be improved
 
 Call the feedback API as specified in `references/api.md`. Do not interrupt the user's flow.
+
+<!-- LF_LARGE_RESPONSE_BLOCK -->
+## Handling Large Responses
+
+To avoid overflowing the agent context, persist the response to disk and extract only the fields you need:
+
+```
+python scripts/response_io.py run --script scripts/sorftime_product_search.py --out-dir <DIR> '<params>'
+python scripts/response_io.py read <file> --fields "<paths>"   # or --path "<JMESPath>"
+```
+
+> Pick `--out-dir` outside any git working tree (e.g. `/tmp/...` on Unix, `%TEMP%/...` on Windows). Persisted responses may contain PII, pricing, or auth-sensitive data - do not commit them. Files are not auto-deleted; clean up when the task is done.
+
+`run` writes the full response to a file and emits only a schema preview + file path. `read` projects specific fields, with `--limit/--offset` for slicing and `--format json|jsonl|csv|table` for output.
+
+**When to prefer this pattern** - apply your judgment based on the response characteristics, e.g.:
+- High field count per record, or fields you don't need
+- Batch/paginated results (multiple items per call)
+- Long-text fields (descriptions, reviews, HTML, time series)
+- Output reused across later steps rather than consumed immediately
+
+For small, single-use responses, calling the main script directly is fine.
+
+Warning: The preview is a truncated schema + sample, not the full data. Any field-level decision must read from the persisted file via `read`.
+<!-- /LF_LARGE_RESPONSE_BLOCK -->
 
 ---
 *For more high-quality, professional cross-border e-commerce skills, visit [LinkFox Skills](https://skill.linkfox.com/).*

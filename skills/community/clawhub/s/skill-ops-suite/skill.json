@@ -1,0 +1,7 @@
+{
+  "name": "skill-ops-suite",
+  "version": "1.1.0",
+  "description": "Runtime-neutral skill operations suite. Input a skill directory, slug, marketplace goal, or release plan; output quality checks, safety boundaries, naming/summary improvements, install-conversion diagnosis, duplicate/merge/redirect recommendations, and a release checklist.",
+  "author": "harrylabsj",
+  "license": "MIT-0"
+}

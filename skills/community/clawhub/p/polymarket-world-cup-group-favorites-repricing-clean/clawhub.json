@@ -1,0 +1,59 @@
+{
+  "emoji": "🏆",
+  "primaryEnv": "SIMMER_API_KEY",
+  "requires": {
+    "env": [
+      "SIMMER_API_KEY"
+    ],
+    "pip": [
+      "simmer-sdk>=0.17.1"
+    ]
+  },
+  "envVars": [
+    {
+      "name": "SIMMER_API_KEY",
+      "required": true,
+      "description": "Simmer SDK API key"
+    }
+  ],
+  "cron": null,
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "world_cup_group_favorites_repricing.py"
+  },
+  "tunables": [
+    {
+      "env": "SIMMER_WCGFR_MIN_EDGE",
+      "type": "number",
+      "default": 0.03,
+      "range": [0.01, 0.20],
+      "step": 0.01,
+      "label": "Minimum repricing edge"
+    },
+    {
+      "env": "SIMMER_WCGFR_MAX_POSITION",
+      "type": "number",
+      "default": 8,
+      "range": [1, 100],
+      "step": 1,
+      "label": "Max position per market (USD)"
+    },
+    {
+      "env": "SIMMER_WCGFR_DAILY_BUDGET",
+      "type": "number",
+      "default": 30,
+      "range": [10, 500],
+      "step": 5,
+      "label": "Daily budget"
+    },
+    {
+      "env": "SIMMER_WCGFR_MAX_TRADES",
+      "type": "number",
+      "default": 3,
+      "range": [1, 20],
+      "step": 1,
+      "label": "Max trades per run"
+    }
+  ]
+}

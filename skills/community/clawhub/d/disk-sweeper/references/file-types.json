@@ -1,0 +1,13 @@
+{
+  "_comment": "File extension to type category mapping",
+  "video": [".mp4", ".mov", ".avi", ".mkv", ".flv", ".wmv", ".webm", ".m4v", ".mts", ".m2ts"],
+  "image": [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".webp", ".heic", ".svg", ".raw", ".cr2", ".nef"],
+  "document": [".pdf", ".doc", ".docx", ".xls", ".xlsx", ".ppt", ".pptx", ".txt", ".md", ".csv", ".json", ".xml", ".yaml", ".yml"],
+  "archive": [".zip", ".tar", ".gz", ".bz2", ".7z", ".rar", ".dmg", ".iso", ".xz"],
+  "code": [".py", ".js", ".ts", ".jsx", ".tsx", ".java", ".cpp", ".c", ".h", ".go", ".rs", ".rb", ".php", ".swift", ".kt", ".scala", ".sh", ".bash", ".zsh"],
+  "audio": [".mp3", ".wav", ".aac", ".flac", ".m4a", ".wma", ".ogg"],
+  "cache": [".cache", ".db-journal", ".db-wal", ".swp"],
+  "log": [".log", ".out"],
+  "temp": [".tmp", ".temp", ".bak", ".swp", ".~lock."],
+  "app": [".app", ".pkg"]
+}

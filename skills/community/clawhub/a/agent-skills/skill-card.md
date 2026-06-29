@@ -1,5 +1,5 @@
 ## Description: <br>
-Agent Skills standard reference guide covering SKILL.md specification format, progressive disclosure, skill discovery and activation, frontmatter metadata fields, and directory structure conventions. <br>
+Agent Skills standard reference guide. Covers SKILL.md specification format, progressive loading, skill discovery and activation, authoring best practices, quality evaluation, description optimization, and more. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,36 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and agent builders use this skill as a reference when creating, validating, evaluating, or integrating Agent Skills across supported agent products. <br>
+Developers and engineers use this skill as a reference guide for creating, validating, optimizing, and integrating Agent Skills across supported agent products. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Copied integration guidance could expose full local filesystem paths to a model or user. <br>
-Mitigation: Avoid disclosing full local filesystem paths when adapting the guidance into an agent integration. <br>
-Risk: Skill descriptions may trigger too broadly if adapted without testing. <br>
-Mitigation: Test descriptions with near-miss negative cases before deployment so the skill activates only for appropriate tasks. <br>
+Risk: Command examples and script patterns may be copied into an environment without checking that they match the user's project. <br>
+Mitigation: Review examples as guidance, adapt them to the intended skill project, and validate the resulting skill before deployment. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Agent Skills release](https://clawhub.ai/openlark/agent-skills) <br>
-- [Integration guide](references/integrate.md) <br>
-- [Skill creation best practices](references/best-practices.md) <br>
-- [Skill quality evaluation](references/eval-skills.md) <br>
-- [Optimizing skill descriptions](references/optimize-desc.md) <br>
-- [Bundling scripts in skills](references/using-scripts.md) <br>
-- [Products supporting Agent Skills](references/products.md) <br>
+- [Quick Start](references/quick-start.md) <br>
+- [Agent Skills Specification Reference](references/spec.md) <br>
+- [Skill Authoring Guide](references/authoring.md) <br>
+- [Skill Authoring Anti-Patterns](references/anti-patterns.md) <br>
+- [Binding Scripts in Skills](references/using-scripts.md) <br>
+- [Products Supporting Agent Skills](references/products.md) <br>
+- [Agent Skills Official Documentation](https://agentskills.io) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with tables, examples, and inline shell commands] <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with inline code and shell command examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only output; no executable code is bundled with this release.] <br>
+**Other Properties Related to Output:** [Documentation-only guidance; no bundled executable code is present.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+1.0.1 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

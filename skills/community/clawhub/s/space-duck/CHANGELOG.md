@@ -1,5 +1,22 @@
 # Space Duck skill — changelog
 
+## 0.4.15 — 2026-06-27
+
+**Fix telegram_listener SIGTERM deadlock (Wayne 0.4.x force-SIGKILL on restart).**
+
+- `telegram_listener.py`: the SIGTERM/SIGINT handler called `srv.shutdown()`
+  directly, which runs on the main thread — the same thread blocked inside
+  `srv.serve_forever()`. `ThreadingHTTPServer.shutdown()` waits for the serve
+  loop to acknowledge the stop flag, but that loop can't resume until the
+  signal handler returns → deadlock → supervisor force-kills with SIGKILL
+  after its timeout, and the `_send_shutdown_pulse` never completes (MC shows
+  the duck "online" for the 240s stale window while it's actually down).
+- Fix: the handler now spawns a daemon thread that runs the shutdown pulse +
+  `srv.shutdown()`, then returns immediately. `serve_forever()` wakes, sees the
+  flag, and exits cleanly. Verified: SIGTERM → clean exit ~1s, no SIGKILL.
+- Also corrected the stale `SKILL_VERSION` constant (was `0.3.11`, now `0.4.15`)
+  so the listener-status pulse reports the real version to Mission Control.
+
 ## 0.4.14 — 2026-06-24
 
 **Deterministic peck-chain termination on initial pecks (Wayne assessment B5).**

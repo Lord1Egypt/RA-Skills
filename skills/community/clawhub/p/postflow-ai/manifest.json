@@ -1,0 +1,39 @@
+{
+  "name": "postflow-ai",
+  "version": "1.3.0",
+  "description": "PostFlow AI - AI\u5185\u5bb9\u4e2d\u53f0\uff1a\u6279\u91cf\u751f\u6210\u3001\u667a\u80fd\u6a21\u677f\u3001SEO\u4f18\u5316\u3001\u8de8\u5e73\u53f0\u9002\u914d\u3001\u5185\u5bb9\u5bf9\u6bd4 (\u95ed\u6e90\u4e13\u4e1a\u7248)",
+  "author": "Qiyuan Studio",
+  "license": "Proprietary",
+  "type": "nextjs",
+  "min_clawhub_version": "1.0.0",
+  "features": [
+    "content-compare",
+    "docker-deploy",
+    "content-scoring",
+    "ai-content-generation",
+    "webhook-notifications",
+    "api-key-management",
+    "license-distribution",
+    "self-purchase",
+    "free-demo",
+    "batch-content-generation",
+    "license-portal",
+    "analytics-dashboard",
+    "open-api-v1",
+    "content-calendar",
+    "content-templates",
+    "landing-page-cta",
+    "cross-platform-adaptation",
+    "seo-optimization",
+    "publish-scheduling"
+  ],
+  "pricing": {
+    "pro": 19900,
+    "enterprise": 49900
+  },
+  "requirements": {
+    "node": ">=18",
+    "memory": "1GB",
+    "storage": "500MB"
+  }
+}

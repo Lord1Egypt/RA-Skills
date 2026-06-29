@@ -1,0 +1,70 @@
+[
+  {
+    "id": "orchestration",
+    "name": "Orchestration and architecture"
+  },
+  {
+    "id": "research",
+    "name": "Research and knowledge work"
+  },
+  {
+    "id": "data_collection",
+    "name": "Data collection and extraction"
+  },
+  {
+    "id": "evidence",
+    "name": "Evidence verification and fact governance"
+  },
+  {
+    "id": "analysis",
+    "name": "Analysis and decision support"
+  },
+  {
+    "id": "software",
+    "name": "Software engineering"
+  },
+  {
+    "id": "data_science",
+    "name": "Data science and analytics"
+  },
+  {
+    "id": "content",
+    "name": "Documentation and content creation"
+  },
+  {
+    "id": "creative",
+    "name": "Creative media and design"
+  },
+  {
+    "id": "education",
+    "name": "Education and coaching"
+  },
+  {
+    "id": "operations",
+    "name": "Business operations"
+  },
+  {
+    "id": "marketing_sales",
+    "name": "Marketing, growth, and sales"
+  },
+  {
+    "id": "support",
+    "name": "Customer support and communication"
+  },
+  {
+    "id": "lifestyle",
+    "name": "Lifestyle and entertainment"
+  },
+  {
+    "id": "high_impact",
+    "name": "High-impact domains"
+  },
+  {
+    "id": "execution",
+    "name": "Tool/Codex execution"
+  },
+  {
+    "id": "qa",
+    "name": "QA, review, and acceptance"
+  }
+]

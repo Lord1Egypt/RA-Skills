@@ -1,0 +1,207 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:go-get-uncle-matts-hammerrr:project-truth-audit",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "skill_name",
+    "audit_mode",
+    "write_policy",
+    "coverage_ledger",
+    "claims",
+    "proof_records",
+    "findings",
+    "commands",
+    "summary"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "skill_name": {
+      "const": "go-get-uncle-matts-hammerrr"
+    },
+    "audit_mode": {
+      "enum": [
+        "quick",
+        "standard",
+        "deep"
+      ]
+    },
+    "write_policy": {
+      "type": "object",
+      "required": [
+        "default_mode",
+        "allowed_outputs"
+      ],
+      "properties": {
+        "default_mode": {
+          "const": "read-only"
+        },
+        "allowed_outputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "coverage_ledger": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "unit_type",
+          "unit",
+          "included",
+          "reason",
+          "inspected",
+          "residual_gap"
+        ],
+        "properties": {
+          "unit_type": {
+            "type": "string"
+          },
+          "unit": {
+            "type": "string"
+          },
+          "included": {
+            "type": "boolean"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "inspected": {
+            "type": "boolean"
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "residual_gap": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "claims": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "claim_id",
+          "claim",
+          "authority",
+          "claim_source",
+          "runtime_enforcement",
+          "reachability",
+          "required_proof",
+          "truth_status",
+          "proof_status",
+          "confidence"
+        ],
+        "properties": {
+          "claim_id": {
+            "type": "string",
+            "pattern": "^C-[0-9]{3}$"
+          },
+          "claim": {
+            "type": "string"
+          },
+          "authority": {
+            "enum": [
+              "PUBLIC_CONTRACT",
+              "OPERATIONAL_CONTRACT",
+              "DESIGN_DECISION",
+              "INTERNAL_INTENT",
+              "INFORMAL_CONTEXT"
+            ]
+          },
+          "claim_source": {
+            "type": "string"
+          },
+          "runtime_enforcement": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reachability": {
+            "type": "string"
+          },
+          "required_proof": {
+            "enum": [
+              "P4",
+              "P3",
+              "P2",
+              "P1",
+              "P0"
+            ]
+          },
+          "truth_status": {
+            "enum": [
+              "VERIFIED",
+              "PARTIAL",
+              "CONTRADICTED",
+              "STALE",
+              "DEAD",
+              "UNKNOWN"
+            ]
+          },
+          "proof_status": {
+            "enum": [
+              "EXECUTED_STRONG",
+              "EXECUTED_LIMITED",
+              "STATIC_ONLY",
+              "MISSING",
+              "BLOCKED"
+            ]
+          },
+          "modifiers": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "BYPASSABLE",
+                "DEGRADED_SUCCESS",
+                "CONFIG_DEPENDENT",
+                "DEPLOYMENT_DEPENDENT",
+                "PRODUCTION_ONLY",
+                "PLATFORM_SPECIFIC",
+                "ROLE_SPECIFIC",
+                "RELEASE_ONLY",
+                "MANUAL_BYPASS",
+                "EXPERIMENTAL",
+                "UNDECLARED_PREREQUISITE"
+              ]
+            }
+          },
+          "confidence": {
+            "enum": [
+              "HIGH",
+              "MEDIUM",
+              "LOW"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "proof_records": {
+      "type": "array"
+    },
+    "findings": {
+      "type": "array"
+    },
+    "commands": {
+      "type": "array"
+    },
+    "summary": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}

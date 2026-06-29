@@ -1,0 +1,9 @@
+# Manifest — axiom-css-specificity (public, clean)
+# Edition: Capafy voice (zero cluster jargon)
+# Generated: 2026-06-14T20:45:38Z
+
+14d7852767f91e0daa3bc270784b272adf8be2b02d03b6e95fb5ea8135197f57  LICENSE  (45 bytes)
+d748b41d451811fc32236498ce5a199a40e2c0905ac06d24c505d2eab43da19a  README.md  (1434 bytes)
+8966127fc03613c6ddb785a8907b808b133b8a8ff617616743c19c992c3ecfba  SKILL.md  (514 bytes)
+a9f989f00e941edd16f013a76d1f4935e02c8b5db9e3709ed2bd43918200c9fd  axiom_css_specificity.py  (10511 bytes)
+9b65f2226d07d13229d928b2ef781e255c2793c7c2c99b1ac7a2ab40a83fd556  test_axiom_css_specificity.py  (4005 bytes)

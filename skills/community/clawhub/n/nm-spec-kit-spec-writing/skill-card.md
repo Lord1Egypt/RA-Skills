@@ -11,33 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers, product teams, and agents use this skill to turn natural-language feature ideas into user-focused specifications with scenarios, functional requirements, success criteria, and quality checklists. <br>
+Developers, product managers, and agents use this skill to turn feature ideas into user-focused specifications with scenarios, functional requirements, acceptance criteria, quality checklists, and measurable success criteria. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad terms such as requirements or specification. <br>
-Mitigation: Review generated specifications and checklists before using them as project commitments. <br>
-Risk: The artifact references a separate Claude Code/Night Market plugin that is not included in this release artifact. <br>
-Mitigation: Review and scan any external plugin separately before installing it. <br>
+Risk: Broad trigger terms may activate the skill during ordinary requirements discussions. <br>
+Mitigation: Invoke it deliberately for specification-writing work, or disable it when its workflow interruption is not desired. <br>
+Risk: Generated specifications or checklists may include incorrect assumptions, vague requirements, or misleading acceptance criteria. <br>
+Mitigation: Review the drafted specification against project context and scan outputs before using it for planning or implementation. <br>
 
 
 ## Reference(s): <br>
-- [Spec Kit source plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/spec-kit) <br>
-- [Specification structure module](artifact/modules/specification-structure.md) <br>
-- [Success criteria patterns module](artifact/modules/success-criteria-patterns.md) <br>
-- [Checklist quality dimensions module](artifact/modules/checklist-dimensions.md) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-spec-kit-spec-writing) <br>
+- [Declared homepage](https://github.com/athola/claude-night-market/tree/master/plugins/spec-kit) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown-oriented prose with requirement templates, user stories, acceptance criteria, and checklists] <br>
+**Output Format:** [Markdown guidance and specification text] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution or credential access is described by the artifact.] <br>
+**Other Properties Related to Output:** [Documentation-only skill; produces drafting and review guidance rather than executing commands.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata; artifact frontmatter lists 1.9.8) <br>
+1.9.13 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

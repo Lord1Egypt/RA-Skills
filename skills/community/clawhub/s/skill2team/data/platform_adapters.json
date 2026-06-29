@@ -1,0 +1,30 @@
+[
+  {
+    "id": "codex",
+    "label": "Codex custom agents",
+    "agent_packaging": "one TOML file per custom agent plus project .codex/config.toml entries",
+    "supports_runtime_independence": "spawned subagent session/config layer",
+    "target_subagent_fanout_supported": "runtime-dependent",
+    "tested_runtime": true,
+    "only_supported_runtime_in_this_build": true,
+    "required_feature_flags": {
+      "multi_agent": true,
+      "enable_fanout": true
+    },
+    "agent_config_key": "config_file",
+    "agent_config_file_base": "relative_to_project_codex_config",
+    "caution": "Generated files are not execution proof. Do not mark entry_agent_runnable=true until Codex entry invocation, specialist handoff, strict gate blocking, and state/artifact handoff smoke tests pass.",
+    "outputs": [
+      ".codex/config.toml",
+      ".codex/agents/<agent_id>.toml",
+      ".codex/s2t-agent-registrations/<team_id>.json",
+      "AGENTS.md",
+      "s2t-agent-registry.json",
+      "register-readiness-contract.json",
+      "runtime-invocation-contract.json",
+      "docs/team-usage-guide.md",
+      "docs/runtime-invocation-contract.md",
+      "docs/register-readiness-contract.md"
+    ]
+  }
+]

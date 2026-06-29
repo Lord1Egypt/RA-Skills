@@ -1,0 +1,38 @@
+{
+  "image_size": {
+    "width": 64,
+    "height": 64
+  },
+  "reference_image": {
+    "type": "base64",
+    "format": "png",
+    "base64": "REPLACE_WITH_BASE64_REFERENCE_IMAGE"
+  },
+  "skeleton_keypoints": [
+    [
+      {
+        "x": 32,
+        "y": 10,
+        "label": "NOSE"
+      },
+      {
+        "x": 32,
+        "y": 22,
+        "label": "NECK"
+      },
+      {
+        "x": 22,
+        "y": 26,
+        "label": "LEFT SHOULDER"
+      },
+      {
+        "x": 42,
+        "y": 26,
+        "label": "RIGHT SHOULDER"
+      }
+    ]
+  ],
+  "view": "side",
+  "direction": "east",
+  "seed": 0
+}

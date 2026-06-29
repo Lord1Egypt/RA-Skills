@@ -1,0 +1,51 @@
+{
+  "id": "skill-sediment",
+  "name": "Skill Sedimentation",
+  "description": "Agent-managed skill creation, editing, and security scanning. Turns successful approaches into reusable procedural knowledge stored as SKILL.md files.",
+  "version": "0.1.0",
+  "main": "index.ts",
+  "configSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "enableAutoReview": {
+        "type": "boolean",
+        "description": "Enable automatic background skill review after sessions with significant tool usage. Defaults to true."
+      },
+      "nudgeInterval": {
+        "type": "integer",
+        "description": "Minimum number of new tool-calling iterations since the last review before triggering another automatic skill review. Defaults to 15.",
+        "minimum": 1,
+        "maximum": 100
+      },
+      "validAgentId": {
+        "type": "string",
+        "description": "Restrict this plugin to specific agent IDs. Accepts a single agent ID, a comma-separated list (e.g. \"coder,assistant\"), \"*\" for all agents (same as omitted), or \"\" to disable for all agents. When omitted, the plugin applies to all agents."
+      },
+      "sedimentTtlDays": {
+        "type": "integer",
+        "description": "Auto-evict sediment skills that have not been touched (created/viewed/edited/matched) for this many days. Sediments still within the grace period (see sedimentGracePeriodDays) since creation are exempt, and promoted skills (now in skills/) are never affected. Set to 0 to disable TTL eviction. Defaults to 10.",
+        "minimum": 0,
+        "maximum": 365
+      },
+      "sedimentMaxCount": {
+        "type": "integer",
+        "description": "Maximum number of sediment skills retained per agent. When exceeded, oldest-touched sediments are evicted (LRU) on each successful create. Sediments within the grace period (see sedimentGracePeriodDays) and promoted skills are exempt. Set to 0 to disable LRU eviction. Defaults to 20.",
+        "minimum": 0,
+        "maximum": 500
+      },
+      "sedimentGracePeriodDays": {
+        "type": "integer",
+        "description": "Protection window (in days) for newly-created sediment skills: within this period, they are exempt from BOTH TTL eviction and LRU quota eviction — giving each new sediment a fair chance to be hit by a future cross-session review and promoted to skills/. Set to 0 to disable the grace period (a brand-new sediment may then be evicted immediately if the pool is over quota). Defaults to 3.",
+        "minimum": 0,
+        "maximum": 30
+      },
+      "promoteMaturationDays": {
+        "type": "integer",
+        "description": "Time-based second-hit path for promote (in days). A sediment older than this is considered MATURE: a re-match in ANY session — even within the same parent conversation that created it — can promote it. This complements the cross-parent-session path, which alone is insufficient when the parent agent has a stable single sessionKey (e.g. desktop main agent). Also unlocks legacy sediments that lack the createdInParentSession marker. Set to 0 to disable the time path (promote will then require strict cross-parent-session second-hit). Defaults to 1.",
+        "minimum": 0,
+        "maximum": 90
+      }
+    }
+  }
+}

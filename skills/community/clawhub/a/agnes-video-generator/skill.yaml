@@ -1,0 +1,32 @@
+name: agnes-video-generator
+version: 0.1.0
+description: Generate videos using Agnes-Video-V2.0 API (async polling)
+tools:
+  - name: generate_video
+    description: Create a video from text prompt or image (Agnes API)
+    parameters:
+      type: object
+      properties:
+        prompt:
+          type: string
+          description: Video description
+        image:
+          type: string
+          description: Optional source image URL (for img2vid)
+        num_frames:
+          type: integer
+          description: Frame count, must be 8n+1 (e.g., 81, 121, 241, 441)
+        frame_rate:
+          type: number
+          description: Frames per second (1-60, default 24)
+        size:
+          type: string
+          description: Resolution like "1152x768"
+        seed:
+          type: integer
+          description: Random seed for reproducibility
+        negative_prompt:
+          type: string
+          description: What to avoid in the video
+      required:
+        - prompt

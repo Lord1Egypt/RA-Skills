@@ -1,0 +1,5 @@
+% --- 表格系统 ---
+\usepackage{varwidth, tabularx,booktabs,multirow,float,subcaption,makecell,longtable,array}
+
+\newlength{\tablegap}
+\setlength{\tablegap}{10em}

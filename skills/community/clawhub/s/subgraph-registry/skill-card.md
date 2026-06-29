@@ -1,5 +1,5 @@
 ## Description: <br>
-Discover and filter 15,500+ The Graph subgraphs by domain, network, protocol type, or natural language goal, with x402 query URLs for $0.01 USDC on Base per call and no API key required. <br>
+Discover and filter 15,500+ The Graph subgraphs by domain, network, protocol type, or natural language goal, returning reliability-scored results with x402 and legacy query URLs. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,40 +11,39 @@ MIT <br>
 
 
 ## Use Case: <br>
-External developers and agent operators use this skill to discover reliable subgraphs on The Graph Network, inspect schemas and classifications, and obtain x402 or legacy query instructions before querying data. <br>
+Developers and agent builders use this MCP server to find suitable The Graph subgraphs, compare reliability signals, retrieve schemas and endpoints, and choose between x402 paid queries or legacy Studio API-key flows. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The security evidence flags the artifact as suspicious because it bundles an analytics web app with LLM-to-SQL, cloud credential use, and wallet identity enrichment outside the stated MCP purpose. <br>
-Mitigation: Install only when the MCP registry is needed, review the bundled dashboard code before deployment, and do not configure Anthropic, AWS, or Graph credentials unless intentionally running that dashboard. <br>
-Risk: Returned x402 URLs can trigger USDC spending when followed by an x402-capable client. <br>
-Mitigation: Require explicit user approval, wallet separation, and spending limits before an agent signs or retries paid x402 queries. <br>
-Risk: The optional HTTP/SSE transport starts a local server on a configurable port. <br>
-Mitigation: Prefer the default stdio transport for agent runtimes and bind HTTP transport only in trusted local or isolated environments. <br>
-Risk: The registry database is downloaded and cached on first run. <br>
-Mitigation: Keep package versions pinned and leave database hash verification enabled unless deliberately rebuilding the registry in a controlled development environment. <br>
+Risk: An autonomous agent could follow paid x402 query URLs and spend USDC without explicit budget controls. <br>
+Mitigation: Require approved budgets, wallet restrictions, and per-query confirmation before agents use x402 URLs. <br>
+Risk: Studio API keys or signing wallets could be mishandled in autonomous runtimes. <br>
+Mitigation: Keep credentials out of prompts and logs, scope credentials tightly, and allow access only from trusted clients. <br>
+Risk: HTTP/SSE mode can expose the local MCP server beyond the intended client. <br>
+Mitigation: Run HTTP/SSE mode only on trusted networks and restrict access to localhost or controlled infrastructure. <br>
+Risk: Bypassing registry database verification can load untrusted or locally altered data. <br>
+Mitigation: Do not set SUBGRAPH_REGISTRY_SKIP_VERIFY=1 unless you intentionally built the database and verified its source. <br>
 
 
 ## Reference(s): <br>
 - [ClawHub skill page](https://clawhub.ai/paulieb14/skills/subgraph-registry) <br>
-- [Project homepage from ClawDIS metadata](https://github.com/PaulieB14/subgraph-registry) <br>
-- [MCP server manifest](server.json) <br>
-- [OpenAPI 3.1 specification](data/openapi.json) <br>
+- [Publisher profile](https://clawhub.ai/user/paulieb14) <br>
+- [Project homepage](https://github.com/PaulieB14/subgraph-registry) <br>
+- [OpenAPI specification](artifact/openapi.yaml) <br>
 - [The Graph Network](https://thegraph.com) <br>
-- [The Graph Studio API keys](https://thegraph.com/studio/apikeys/) <br>
-- [@graphprotocol/client-x402](https://www.npmjs.com/package/@graphprotocol/client-x402) <br>
+- [Graph x402 client package](https://www.npmjs.com/package/@graphprotocol/client-x402) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [JSON, text, code, guidance] <br>
-**Output Format:** [MCP tool results with subgraph metadata, query URLs, pricing details, and GraphQL starter-query guidance.] <br>
+**Output Type(s):** [JSON, text, guidance, API calls] <br>
+**Output Format:** [MCP tool responses and REST/OpenAPI JSON with subgraph rankings, details, query URLs, pricing manifests, and query instructions.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include x402 payment manifests and legacy API-key query URLs; agents should require approval before spending USDC.] <br>
+**Other Properties Related to Output:** [Results may include x402 query URLs that require about $0.01 USDC on Base per query, plus legacy query URLs that require a Graph Studio API key.] <br>
 
 ## Skill Version(s): <br>
-0.8.7 (source: evidence.release.version, package.json, server.json, and OpenAPI) <br>
+0.8.9 (source: package.json, server.json, release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

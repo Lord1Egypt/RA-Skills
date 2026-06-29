@@ -1,0 +1,4 @@
+interface:
+  display_name: "Image to Video Prompt Director"
+  short_description: "Motion prompts for image-to-video clips"
+  default_prompt: "Use $image-to-video-prompt-director to turn my still image idea into a cinematic image-to-video prompt."

@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes fixed-camera elder-care video, with optional audio, to estimate loneliness-related behavior signals, produce a loneliness index, and suggest warm companionship actions without making a medical diagnosis. <br>
+Analyzes fixed-camera elder-care video to identify loneliness-related behaviors, produce a loneliness index, and suggest warm companionship actions without making medical diagnoses. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,36 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and care-platform developers use this skill to analyze elderly living-space video or history reports, summarize behavior metrics, and recommend consent-based companionship follow-up for smart-aging scenarios. <br>
+External caregivers, elder-care platform operators, and authorized family-support workflows use this skill to analyze videos from solitary-living elder homes or private nursing-home rooms. It returns behavior statistics, loneliness-level output, report links, and companionship recommendations for human review and follow-up. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive elder-care video, identities, and history reports through remote processing. <br>
-Mitigation: Confirm the publisher, remote API operator, consent from the monitored elder and bystanders, retention/deletion terms, and history-report access controls before installation or use. <br>
-Risk: The security review flags silent account/token handling, broad history access, and local token storage concerns. <br>
-Mitigation: Use dedicated non-personal test identifiers first, avoid real phone numbers or private-room video until account creation and token storage are explicit, and restrict report access to authorized caregivers. <br>
-Risk: Loneliness scoring and companionship actions could be mistaken for clinical mental-health diagnosis or automated care decisions. <br>
-Mitigation: Treat outputs as behavior-based support signals only, keep the no-diagnosis boundary visible, and refer concerning cases to qualified elder mental-health or community-care professionals. <br>
-Risk: Bundled artifacts include mismatched pet/medical implementation remnants and a dependency issue identified by the security guidance. <br>
-Mitigation: Review and test the packaged scripts before deployment, fix dependency declarations, and remove unrelated artifacts that could confuse operators or reviewers. <br>
+Risk: Highly private elder-care video or optional audio may be sent to a cloud API and associated with report history. <br>
+Mitigation: Use only with informed consent from the monitored elder and authorized family, clear notice about cloud processing, and strict limits on who can query historical reports. <br>
+Risk: Silent identity setup and local token persistence can reduce user control over identity linkage. <br>
+Mitigation: Run only in controlled deployments that explicitly approve local identity and token persistence, restrict workspace access, and review identity handling before installation. <br>
+Risk: Loneliness-related behavior output could be mistaken for a psychiatric diagnosis or trigger intrusive interventions. <br>
+Mitigation: Present outputs as behavioral statistics and recommendations only, avoid medical diagnosis, support the elder's ability to turn off reminders, and route serious concerns to appropriate human or clinical support. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/smyx-sunjinhui/smyx-elderly-loneliness-comfort-analysis) <br>
-- [API interface documentation](artifact/references/api_doc.md) <br>
-- [Analysis API documentation](artifact/skills/smyx_analysis/references/api_doc.md) <br>
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-elderly-loneliness-comfort-analysis) <br>
+- [API documentation](references/api_doc.md) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Analysis, API Calls, Markdown, JSON, Shell commands, Configuration] <br>
-**Output Format:** [Markdown and JSON reports, with shell command examples for running the packaged scripts] <br>
+**Output Type(s):** [text, markdown, JSON, guidance] <br>
+**Output Format:** [Markdown text containing structured JSON analysis, report links, and recommendations.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include loneliness index, level, behavior metrics, comfort-action recommendations, history tables, and report links.] <br>
+**Other Properties Related to Output:** [May include cloud report export links and warm-companionship action suggestions; output should be treated as behavioral support information, not a medical diagnosis.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+1.0.1 (source: server release evidence; artifact frontmatter reports 1.0.2) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Creamlon"
+  short_description: "Delegate tasks and operate verifiable agent nodes"
+  default_prompt: "Use $creamlon-skill to complete this Creamlon caller or node operation."

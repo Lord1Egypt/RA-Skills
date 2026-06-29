@@ -1,0 +1,55 @@
+{
+  "baseUrl": "https://api.justserpapi.com",
+  "description": "Call GET /api/v1/web/markdown for Web Crawling Markdown through Just Serp API with url.",
+  "displayName": "Web Crawling Markdown",
+  "endpointPath": "markdown",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get webpage crawl data, including removing boilerplate, for readable extraction, documentation workflows, and LLM input.",
+      "method": "GET",
+      "operationId": "markdown",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "The full URL of the webpage to crawl and convert to Markdown (e.g., 'https://www.example.com').",
+          "enumValues": [],
+          "location": "query",
+          "name": "url",
+          "required": true,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/v1/web/markdown",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        },
+        {
+          "description": "Authentication failed: API Key is invalid or missing",
+          "statusCode": "401"
+        },
+        {
+          "description": "Access denied: Insufficient credits or quota exceeded",
+          "statusCode": "403"
+        },
+        {
+          "description": "Internal server error or upstream service exception",
+          "statusCode": "500"
+        }
+      ],
+      "summary": "Crawl Webpage (Markdown)",
+      "tags": [
+        "Web Crawling"
+      ]
+    }
+  ],
+  "platformKey": "web",
+  "primaryTag": "Web Crawling",
+  "skillName": "justserpapi_web_markdown",
+  "skillType": "interface",
+  "slug": "justserpapi-web-markdown",
+  "sourceTitle": "API Shop Documentation"
+}

@@ -1,0 +1,15 @@
+{
+  "name": "action-tracker",
+  "label": "行动项追踪型",
+  "description": "以行动项为核心的会议记录，适合进度同步会",
+  "sections": [
+    {"id": "header", "title": "会议信息", "fields": ["会议名称", "日期", "项目名称"]},
+    {"id": "previous", "title": "上次行动项回顾", "type": "table", "columns": ["事项", "状态", "备注"]},
+    {"id": "progress", "title": "进度更新", "type": "list-para"},
+    {"id": "blockers", "title": "阻塞项", "type": "list-em"},
+    {"id": "new-actions", "title": "新行动项", "type": "table", "columns": ["事项", "责任人", "截止日期", "优先级"]},
+    {"id": "next", "title": "下次会议前", "type": "list"}
+  ],
+  "layout": "vertical",
+  "action_table_full": true
+}

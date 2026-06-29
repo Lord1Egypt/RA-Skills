@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-욕설 제거 스크립트 - XX 처리
+Profanity removal script - replaces with ****
 """
 
 import json
@@ -8,17 +8,21 @@ import re
 import sys
 from pathlib import Path
 
-# 욕설 패턴 (접두사 포함: 개병신→XX, 개새끼→XX)
-PROFANITY_PATTERNS = [
-    (r'개?(씨발)?(병신)?(새끼)', 'XX'),
-    (r'존나', 'XX'),
-    (r'좆', 'XX'),
-    (r'개?지랄', 'XX'),
-]
+def load_profanity_patterns():
+    """Load patterns from data/profanity-patterns.json"""
+    data_path = Path(__file__).parent.parent / "data" / "profanity-patterns.json"
+    if data_path.exists():
+        with open(data_path, "r", encoding="utf-8") as f:
+            entries = json.load(f)
+        return [(e["pattern"], e["replacement"]) for e in entries]
+    # Fallback if data file missing (\b avoids matching "ass" inside "assistant", etc.)
+    return [(r'\b(fuck|shit|damn|bitch|ass)\b', '****')]
+
+PROFANITY_PATTERNS = load_profanity_patterns()
 
 def clean_text(text: str) -> tuple[str, bool]:
     """
-    텍스트에서 욕설 제거
+    Remove profanity from text
     Returns: (cleaned_text, was_modified)
     """
     if not text:
@@ -29,7 +33,7 @@ def clean_text(text: str) -> tuple[str, bool]:
 
     for pattern, replacement in PROFANITY_PATTERNS:
         if re.search(pattern, text):
-            # 단독으로 사용된 경우 XX 처리
+            # Replace standalone occurrences with XX
             text = re.sub(pattern, replacement, text)
             modified = True
 
@@ -37,7 +41,7 @@ def clean_text(text: str) -> tuple[str, bool]:
 
 def clean_value(obj):
     """
-    재귀적으로 JSON 값에서 욕설 제거
+    Recursively remove profanity from JSON values
     Returns: (cleaned_obj, was_modified)
     """
     if isinstance(obj, str):
@@ -54,17 +58,19 @@ def clean_value(obj):
         modified = False
         keys_to_rename = []
         for key in obj:
-            # 값 처리
+            # Process value
             cleaned, was_modified = clean_value(obj[key])
             if was_modified:
                 obj[key] = cleaned
                 modified = True
-            # 키 처리
+            # Process key
             if isinstance(key, str):
                 cleaned_key, key_modified = clean_text(key)
                 if key_modified:
                     keys_to_rename.append((key, cleaned_key))
         for old_key, new_key in keys_to_rename:
+            if new_key in obj and new_key != old_key:
+                continue  # skip if cleaned key already exists
             obj[new_key] = obj.pop(old_key)
             modified = True
         return obj, modified
@@ -73,8 +79,8 @@ def clean_value(obj):
 
 def process_jsonl_file(file_path: Path) -> int:
     """
-    JSONL 파일 처리
-    Returns: 수정된 줄 수
+    Process a JSONL file
+    Returns: number of modified lines
     """
     lines = []
     modified_count = 0
@@ -103,18 +109,17 @@ def process_jsonl_file(file_path: Path) -> int:
         print(f"Error reading {file_path}: {e}", file=sys.stderr)
         return 0
 
-    # 백업 생성 (~/.claude/projects/.bak/ 중앙 디렉토리에 저장)
+    # Create backup (stored in ~/.claude/projects/.bak/ central directory)
     if modified_count > 0:
         bak_dir = Path.home() / '.claude' / 'projects' / '.bak'
         bak_dir.mkdir(exist_ok=True)
-        backup_path = bak_dir / file_path.name
-        if backup_path.exists():
-            # 충돌 시 .orig 접미사
-            stem = file_path.stem
-            backup_path = bak_dir / f"{stem}.orig{file_path.suffix}"
+        from datetime import datetime
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        stem = file_path.stem
+        backup_path = bak_dir / f"{stem}.{timestamp}{file_path.suffix}"
         file_path.rename(backup_path)
 
-        # 수정된 내용 저장
+        # Save modified content
         with open(file_path, 'w', encoding='utf-8') as f:
             f.writelines(lines)
 

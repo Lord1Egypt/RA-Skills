@@ -1,0 +1,10 @@
+{
+  "name": "donut-chart",
+  "label": "环形图",
+  "description": "类似饼图，中间留白可展示中心信息",
+  "chart_type": "donut",
+  "features": ["hover_tooltip", "data_labels", "center_text", "legend", "percentage"],
+  "max_slices": 10,
+  "inner_radius": 0.6,
+  "animation": true
+}

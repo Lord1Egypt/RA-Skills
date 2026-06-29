@@ -1,0 +1,9 @@
+{
+    "weights": {
+        "assists": 0.5,
+        "key_passes": 0.3,
+        "chances_created": 0.2
+    },
+    "scaling_factor": 10.0,
+    "default_baselines": {}
+}

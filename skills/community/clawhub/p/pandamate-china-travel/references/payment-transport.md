@@ -1,5 +1,9 @@
 # 中国支付与交通实战指南（2026最新版）
 
+> 📖 **2026年深度攻略**：[Essential Apps Every Foreign Tourist Needs in China 2026](https://www.pandamate.wiki/blog/china-essential-apps-foreign-tourists-2026.html)
+>
+> 📖 **支付失败/卡顿问题**：[China Hotels for Foreigners 2026: How to Avoid Payment Issues](https://www.pandamate.wiki/payment.html)
+
 ## 支付解决方案
 
 ### 方案一：支付宝国际版（推荐）

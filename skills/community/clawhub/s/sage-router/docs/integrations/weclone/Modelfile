@@ -1,0 +1,7 @@
+# WeClone v14.3 is exposed to Sage Router via an Ollama-compatible HTTP bridge.
+# This Modelfile is a documentation/checkpoint artifact, not the active runtime.
+# Active model endpoint: http://[::1]:11435/api/chat
+# Active Sage Router provider/model: weclone-cyber/weclone:v14.3
+FROM qwen2.5:14b-instruct
+PARAMETER temperature 0
+SYSTEM "WeClone v14.3 production candidate. Runtime behavior is implemented by /workspace/weclone_http_adapter/main.py plus /workspace/weclone_releases/v14_3_20260510/adapter."

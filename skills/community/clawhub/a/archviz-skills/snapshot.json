@@ -1,0 +1,66 @@
+{
+  "hermes_version": "0.1.0",
+  "exported_at": "2026-06-11T14:01:35.570379+00:00",
+  "skills": [
+    {
+      "name": "blender-mcp",
+      "source": "official",
+      "identifier": "official/creative/blender-mcp",
+      "category": "creative"
+    },
+    {
+      "name": "scrapling",
+      "source": "official",
+      "identifier": "official/research/scrapling",
+      "category": "research"
+    },
+    {
+      "name": "concept-diagrams",
+      "source": "official",
+      "identifier": "official/creative/concept-diagrams",
+      "category": "creative"
+    },
+    {
+      "name": "baoyu-article-illustrator",
+      "source": "official",
+      "identifier": "official/creative/baoyu-article-illustrator",
+      "category": "creative"
+    },
+    {
+      "name": "baoyu-comic",
+      "source": "official",
+      "identifier": "official/creative/baoyu-comic",
+      "category": "creative"
+    },
+    {
+      "name": "creative-ideation",
+      "source": "official",
+      "identifier": "official/creative/creative-ideation",
+      "category": "creative"
+    },
+    {
+      "name": "pixel-art",
+      "source": "official",
+      "identifier": "official/creative/pixel-art",
+      "category": "creative"
+    },
+    {
+      "name": "pptx-author",
+      "source": "official",
+      "identifier": "official/finance/pptx-author",
+      "category": "finance"
+    },
+    {
+      "name": "excel-author",
+      "source": "official",
+      "identifier": "official/finance/excel-author",
+      "category": "finance"
+    }
+  ],
+  "taps": [
+    {
+      "repo": "archsueh/archviz-skills",
+      "path": "skills/"
+    }
+  ]
+}

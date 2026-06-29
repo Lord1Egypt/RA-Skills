@@ -1,0 +1,2 @@
+# financial-categorizer has no external dependencies
+# All requirements are Python stdlib (sqlite3, csv, argparse, datetime, logging)

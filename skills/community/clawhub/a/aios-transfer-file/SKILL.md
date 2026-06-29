@@ -110,14 +110,12 @@ node scripts/transfer_s3.mjs upload-file --source "/abs/path/to/file.bin" --work
 
 1. 先用普通 assistant 消息说明文件内容以及用户该如何使用。
 2. 从 `AIOS_S3_AGENT_OUTBOX_BUCKET` 解析发件箱 bucket。
-3. 把文件复制到工作区的 `file_output` 目录。
-4. 将复制后的文件重命名为带时间戳前缀的格式，例如 `123456_fname.bin`。
-5. 如果原始 basename 已经有时间戳前缀，则替换原前缀，不要叠加。
-6. 将最终文件名中的所有空格替换为 `_`。
-7. 远端目标必须使用发件箱 bucket 根目录，不要额外添加子目录。
-8. 如果发件箱 bucket 不存在，通过 SDK 先创建，再上传。
-9. 使用 SDK 上传复制后的文件。
-10. 上传成功后，再发送第二条回复，内容只能是 `file_output://<bucket>/<new_name>`。
+3. 把文件重命名为带时间戳前缀的格式，例如 `123456_fname.bin`（如果原始 basename 已经有时间戳前缀，则替换原前缀，不要叠加），然后将最终文件名中的所有空格替换为 `_`，最后将该文件移动到工作区的 `file_output` 目录。
+4. 远端目标必须使用发件箱 bucket 根目录，不要额外添加子目录。
+5. 如果发件箱 bucket 不存在，通过 SDK 先创建，再上传。
+6. 使用 SDK 上传复制后的文件。
+7. 上传成功后，再发送第二条回复，内容只能是 `file_output://<bucket>/<new_name>`。不要在同一条消息里同时输出说明性文字和 `file_output://...` URI。
+8. 从工作区的 `file_output` 目录中删除该文件，避免占用空间。
 
 实现要求：
 

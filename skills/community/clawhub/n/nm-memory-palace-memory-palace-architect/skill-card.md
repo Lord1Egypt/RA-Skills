@@ -11,31 +11,32 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers, writers, learners, and knowledge workers use this skill to plan memory palace structures, map concepts into spatial layouts, define sensory associations, and validate recall paths for complex information. <br>
+Developers, writers, researchers, and other knowledge workers use this skill to design spatial mnemonic structures for organizing complex topics, documentation, learning paths, and project knowledge. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Broad trigger words such as memory, knowledge, organization, spatial, and architecture may activate the skill in unrelated or sensitive conversations. <br>
-Mitigation: Review whether the skill is relevant before applying its guidance, especially when the user is not explicitly asking for memory palace or mnemonic layout design. <br>
-Risk: Example commands reference local palace management tooling that is not included in this artifact. <br>
-Mitigation: Verify the referenced scripts and environment exist before running commands; otherwise treat the examples as illustrative workflow guidance. <br>
+Risk: The skill uses broad activation keywords and may activate in conversations where mnemonic architecture is not needed. <br>
+Mitigation: Use it when intentionally designing memory-palace structures and disable or avoid it for ordinary memory, search, or organization requests. <br>
+Risk: The documented palace_manager.py commands require files that are not included in this package. <br>
+Mitigation: Treat the package as markdown guidance unless the separate source plugin or required scripts are installed. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-memory-palace-memory-palace-architect) <br>
-- [Project homepage from package metadata](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-memory-palace-memory-palace-architect) <br>
+- [Memory Palace source homepage](https://github.com/athola/claude-night-market/tree/master/plugins/memory-palace) <br>
+- [Franklin Protocol reference](https://spf13.com/p/how-benjamin-franklin-invented-machine-learning-in-1720/) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with YAML examples and occasional shell command snippets] <br>
+**Output Format:** [Markdown guidance with structured examples and inline shell commands] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce palace schemas, spatial coordinates, sensory encoding profiles, navigation maps, recall test plans, and optimization recommendations.] <br>
+**Other Properties Related to Output:** [May produce palace schemas, sensory encoding profiles, navigation maps, recall testing notes, and optimization recommendations.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: ClawHub release evidence) <br>
+1.9.13 (source: server release evidence; artifact frontmatter reports 1.9.8) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

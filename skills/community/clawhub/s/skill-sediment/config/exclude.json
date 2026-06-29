@@ -1,0 +1,55 @@
+{
+  "_comment": "Edit to customize. dirs/files = exact match. exts = with dot. patterns = fnmatch.",
+  "dirs": [
+    ".git",
+    ".github",
+    "__pycache__",
+    ".pytest_cache",
+    ".mypy_cache",
+    ".ruff_cache",
+    ".tox",
+    ".hypothesis",
+    "htmlcov",
+    "dist",
+    "build",
+    "node_modules",
+    ".cache",
+    ".next",
+    ".nuxt",
+    ".vite",
+    ".turbo",
+    ".idea",
+    ".vscode",
+    "archived",
+    "tests",
+    ".tmp",
+    "tmp",
+    ".secrets"
+  ],
+  "files": [
+    ".DS_Store",
+    "._.DS_Store",
+    "Thumbs.db",
+    ".coverage",
+    "coverage.xml",
+    ".env",
+    ".env.local",
+    "__skill_meta__.json"
+  ],
+  "exts": [
+    ".pyc",
+    ".pyo",
+    ".bak"
+  ],
+  "patterns": [
+    "cloned_*.html",
+    "AUDIT-*.md",
+    "TEST-*.md",
+    "*.json.md",
+    "*.yaml.md",
+    "*.yml.md",
+    "__skill_meta__.*",
+    ".tmp_backup_*",
+    "*_backup_*"
+  ]
+}

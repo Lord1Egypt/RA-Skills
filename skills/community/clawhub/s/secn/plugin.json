@@ -1,0 +1,24 @@
+{
+  "name": "secn",
+  "version": "1.0.0",
+  "description": "A pure HTTP/REST API plugin for OpenClaw to manage stock portfolios and query global market data.",
+  "author": "StockEarning",
+  "publisher": "StockEarning",
+  "homepage": "https://www.mystockearning.cn",
+  "keywords": ["finance", "stocks", "portfolio", "trading", "openclaw", "claude-code"],
+  "repository": "https://github.com/hareluya/stock-earning-cn-skills",
+  "license": "MIT-0",
+  "releases": "https://github.com/hareluya/stock-earning-cn-skills/releases",
+  "commands": {
+    "secn": "./stock-master/SKILL.md",
+    "market-data": "./market-data/SKILL.md",
+    "portfolio-assistant": "./portfolio-assistant/SKILL.md",
+    "trade-execution": "./trade-execution/SKILL.md"
+  },
+  "environment": {
+    "STOCK_API_KEY": {
+      "description": "Your StockEarning.cn API Key",
+      "required": true
+    }
+  }
+}

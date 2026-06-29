@@ -1,0 +1,10 @@
+{
+  "default_years": 5,
+  "max_papers": 50,
+  "use_llm_for_writing": false,
+  "llm_model": "deepseek-chat",
+  "llm_api_base": "https://api.deepseek.com/v1",
+  "llm_api_key": "",
+  "output_format": "markdown",
+  "human_review_papers": false
+}

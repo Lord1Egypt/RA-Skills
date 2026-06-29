@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openclaw/skills/image-works/input.schema.json",
+  "title": "Image Workshop Input",
+  "description": "Input parameters for image-works skill",
+  "type": "object",
+  "required": ["input"],
+  "properties": {
+    "input": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "File paths, directories, or glob patterns"
+    },
+    "op": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type"],
+        "properties": {
+          "type": { "type": "string", "enum": ["compress", "resize", "convert", "watermark", "exif", "crop"] },
+          "quality": { "type": "integer", "minimum": 1, "maximum": 100 },
+          "target_size_kb": { "type": "integer" },
+          "width": { "type": "integer" },
+          "height": { "type": "integer" },
+          "fit": { "type": "string", "enum": ["inside", "cover", "fill", "outside"] },
+          "format": { "type": "string", "enum": ["jpeg", "png", "webp", "avif", "tiff"] },
+          "text": { "type": "string" },
+          "image": { "type": "string" },
+          "position": { "type": "string", "enum": ["top-left", "top-right", "bottom-left", "bottom-right", "center"] },
+          "opacity": { "type": "number", "minimum": 0, "maximum": 1 },
+          "action": { "type": "string", "enum": ["remove", "remove-gps-only", "view"] },
+          "aspect_ratio": { "type": "string" }
+        }
+      }
+    },
+    "preset": {
+      "type": "string",
+      "enum": ["wechat-moments", "wechat-cover", "xiaohongshu", "taobao-main", "douyin-cover", "weibo", "bilibili-cover", "avatar"]
+    },
+    "output": {
+      "type": "object",
+      "properties": {
+        "dir": { "type": "string", "default": "./processed/" },
+        "suffix": { "type": "string", "default": "" },
+        "overwrite": { "type": "boolean", "default": false },
+        "keep_structure": { "type": "boolean", "default": true }
+      }
+    },
+    "recursive": { "type": "boolean", "default": false },
+    "max_files": { "type": "integer", "default": 1000 }
+  }
+}

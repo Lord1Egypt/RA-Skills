@@ -1,0 +1,7 @@
+interface:
+  display_name: "Software Data Admapix Raw Developer Helper"
+  short_description: "Helps with Agent users show strong demand for AdMapix-style w..."
+  default_prompt: "Use $software-data-admapix-raw-developer-helper to help me Agent users show strong demand for AdMapix-style workflows on Clawhub. They need practical help fixing bugs, hardening s."
+
+policy:
+  allow_implicit_invocation: true

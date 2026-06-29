@@ -1,0 +1,231 @@
+[
+  {
+    "query": "帮我 review 下这份需求文档，看看有没有遗漏的点",
+    "expected_command": "/qa-prd",
+    "should_trigger": true,
+    "reason": "明确的需求评审请求"
+  },
+  {
+    "query": "这个 PRD 我看完了，帮我分析下有什么问题",
+    "expected_command": "/qa-prd",
+    "should_trigger": true,
+    "reason": "PRD 分析 = 需求评审"
+  },
+  {
+    "query": "新来了个需求，你帮我从测试角度看看完整不完整",
+    "expected_command": "/qa-prd",
+    "should_trigger": true,
+    "reason": "从测试角度评审需求"
+  },
+  {
+    "query": "帮我设计一下登录功能的测试用例，用户名密码都有的那种",
+    "expected_command": "/qa-case",
+    "should_trigger": true,
+    "reason": "明确的测试用例设计请求"
+  },
+  {
+    "query": "这个订单改价功能，你帮我出份用例，要覆盖边界值和异常场景",
+    "expected_command": "/qa-case",
+    "should_trigger": true,
+    "reason": "功能测试用例设计，指定了覆盖范围"
+  },
+  {
+    "query": "我刚写了个智能客服 Agent，帮我测测它安不安全",
+    "expected_command": "/qa-agent",
+    "should_trigger": true,
+    "reason": "Agent 安全测试 = 提示词注入/工具权限维度"
+  },
+  {
+    "query": "这个 AI 助手老是胡说八道，帮我出份测幻觉的用例",
+    "expected_command": "/qa-agent",
+    "should_trigger": true,
+    "reason": "AI 幻觉 = Agent 测试的专门维度"
+  },
+  {
+    "query": "这个 Bug 偶尔出现，你帮我分析下可能是什么原因",
+    "expected_command": "/qa-bug",
+    "should_trigger": true,
+    "reason": "缺陷根因分析请求"
+  },
+  {
+    "query": "ok 测到个问题，登录点了没反应，你帮我看下",
+    "expected_command": "/qa-bug",
+    "should_trigger": true,
+    "reason": "口语化的缺陷报告和分析请求"
+  },
+  {
+    "query": "帮我把这周的工作写成日报",
+    "expected_command": "/qa-report",
+    "should_trigger": true,
+    "reason": "报告生成请求"
+  },
+  {
+    "query": "v2.5 测完了，帮我出份阶段报告给老大看",
+    "expected_command": "/qa-report",
+    "should_trigger": true,
+    "reason": "阶段报告，面向管理者"
+  },
+  {
+    "query": "看看我们团队这周的测试进度",
+    "expected_command": "/qa-team",
+    "should_trigger": true,
+    "reason": "团队进度查看"
+  },
+  {
+    "query": "这个版本周五要发，帮我检查下能不能发",
+    "expected_command": "/qa-team",
+    "should_trigger": true,
+    "reason": "准出检查（准入准出子能力）"
+  },
+  {
+    "query": "线上出了个事故，帮我们复盘一下漏测原因",
+    "expected_command": "/qa-team",
+    "should_trigger": true,
+    "reason": "漏测复盘（团队管理子能力）"
+  },
+  {
+    "query": "刚来的新人，帮我做个培训计划",
+    "expected_command": "/qa-team",
+    "should_trigger": true,
+    "reason": "新人培训计划（团队管理子能力）"
+  },
+  {
+    "query": "这个版本质量怎么样，能打几分",
+    "expected_command": "/qa-team",
+    "should_trigger": true,
+    "reason": "版本质量评估（团队管理子能力）"
+  },
+  {
+    "query": "帮我解释一下什么是微服务架构",
+    "expected_command": null,
+    "should_trigger": false,
+    "reason": "通用技术问题，与测试无关"
+  },
+  {
+    "query": "React 和 Vue 有什么区别",
+    "expected_command": null,
+    "should_trigger": false,
+    "reason": "前端框架对比，非测试工作"
+  },
+  {
+    "query": "帮我写一个 Python 脚本处理 Excel 数据",
+    "expected_command": null,
+    "should_trigger": false,
+    "reason": "编程任务，不在技能范围内"
+  },
+  {
+    "query": "数据库连接失败了，帮我看看什么原因",
+    "expected_command": null,
+    "should_trigger": false,
+    "reason": "运维/开发问题，不是测试工作"
+  },
+  {
+    "query": "Can you explain the CAP theorem",
+    "expected_command": null,
+    "should_trigger": false,
+    "reason": "分布式系统理论，非测试"
+  },
+  {
+    "query": "帮我把这段 JSON 转成 CSV",
+    "expected_command": null,
+    "should_trigger": false,
+    "reason": "纯数据格式转换"
+  },
+  {
+    "query": "这个功能测完了 但是有个情况不知道怎么描述",
+    "expected_command": "/qa-bug",
+    "should_trigger": true,
+    "reason": "虽然模糊但明显是在报缺陷，应触发 /qa-bug"
+  },
+  {
+    "query": "帮我看下这个需求",
+    "expected_command": "/qa-prd",
+    "should_trigger": true,
+    "reason": "简短但明确的评审意图"
+  },
+  {
+    "query": "写个报告",
+    "expected_command": "/qa-report",
+    "should_trigger": true,
+    "reason": "简短但明确的报告意图（在对话上下文中有测试数据时）"
+  },
+  {
+    "query": "什么叫敏捷开发",
+    "expected_command": null,
+    "should_trigger": false,
+    "reason": "通用开发方法论概念"
+  }
+,
+  {
+    "query": "支付模块线上出了个 Bug，帮我们复盘下为什么测试的时候没发现",
+    "expected_command": "/qa-team",
+    "should_trigger": true,
+    "reason": "漏测复盘，属于团队管理子能力"
+  },
+  {
+    "query": "刚入职了个新人，帮我做个测试团队的培训计划",
+    "expected_command": "/qa-team",
+    "should_trigger": true,
+    "reason": "新人培训计划，属于团队管理子能力"
+  },
+  {
+    "query": "这个 AI 客服有时候会自己编答案，帮我出份测幻觉的用例",
+    "expected_command": "/qa-agent",
+    "should_trigger": true,
+    "reason": "AI 幻觉测试，Agent 专项的专门维度"
+  },
+  {
+    "query": "昨天线上漏了个严重的 Bug，帮我想想怎么防以后再出现",
+    "expected_command": "/qa-team",
+    "should_trigger": true,
+    "reason": "漏测复盘和预防措施，另一种口语化表述"
+  },
+  {
+    "query": "帮我看看这个迭代的质量行不行，能不能按期发布",
+    "expected_command": "/qa-team",
+    "should_trigger": true,
+    "reason": "版本质量评估 + 准出判断，两个子能力的混合请求"
+  },
+  {
+    "query": "我们团队最近加班有点多，帮我分析下效率数据",
+    "expected_command": "/qa-team",
+    "should_trigger": true,
+    "reason": "团队效能统计，虽然未明确说'效能'但意图是团队效率分析"
+  },
+  {
+    "query": "这个接口返回的数据对不上文档，是不是 Bug",
+    "expected_command": "/qa-bug",
+    "should_trigger": true,
+    "reason": "开发/测试人员在问这是不是缺陷，应触发 Bug 分析"
+  },
+  {
+    "query": "能不能发版你说了算，帮我做个评估",
+    "expected_command": "/qa-team",
+    "should_trigger": true,
+    "reason": "口语化的版本发布评估请求"
+  },
+  {
+    "query": "我想知道这个功能用户用起来体验怎么样",
+    "expected_command": null,
+    "should_trigger": false,
+    "reason": "更像是用户研究/产品问题，不是测试工作"
+  },
+  {
+    "query": "帮我搭一套 CI/CD 流水线",
+    "expected_command": null,
+    "should_trigger": false,
+    "reason": "DevOps 工程任务，不在技能范围内"
+  },
+  {
+    "query": "这个需求有个地方我不确定是不是我理解错了",
+    "expected_command": "/qa-prd",
+    "should_trigger": true,
+    "reason": "对需求理解有疑问，本质上是在做需求评审"
+  },
+  {
+    "query": "帮我整理一下这个迭代的缺陷数据，看看哪个模块问题最多",
+    "expected_command": "/qa-report",
+    "should_trigger": true,
+    "reason": "缺陷数据统计 -> 报告生成（偏向统计展示而非根因分析）"
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "slug": "arabic-voice-dictation-skill",
+  "name": "Arabic Voice Dictation Skill",
+  "version": "0.1.0",
+  "tags": [
+    "arabic",
+    "voice",
+    "dictation",
+    "transcription",
+    "rtl",
+    "localization",
+    "openclaw",
+    "template"
+  ],
+  "category": "Arabic Productivity",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-06-15",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

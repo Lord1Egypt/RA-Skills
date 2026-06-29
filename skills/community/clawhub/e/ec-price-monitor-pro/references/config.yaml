@@ -1,0 +1,4 @@
+# EC Price Monitor Lite - 配置
+items:
+  - keyword: "AirPods Pro 2"
+    max_price: 1500

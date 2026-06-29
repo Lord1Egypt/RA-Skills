@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rtc-work"
+version = "0.1.1"
+description = "Demand-side client for the RustChain RIP-302 agent job market: discover, claim, and deliver jobs."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Elyan Labs", email = "scott@elyanlabs.ai" }]
+requires-python = ">=3.8"
+keywords = ["rustchain", "rip-302", "agent", "job-market", "rtc", "escrow"]
+
+[project.urls]
+Homepage = "https://rustchain.org"
+Repository = "https://github.com/Scottcjn/rtc-work"
+
+[project.scripts]
+rtc-work = "rtc_work.__main__:main"
+
+[tool.setuptools]
+packages = ["rtc_work"]

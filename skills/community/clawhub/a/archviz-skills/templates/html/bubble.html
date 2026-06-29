@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Bubble Chart</title></head>
+<body style="margin:0;background:#f5f0eb;font-family:system-ui">
+<!-- Bubble Chart — archviz-skills -->
+<!-- Use for: 3-variable correlation (x, y, size), portfolio analysis -->
+<canvas id="c" width="700" height="500"></canvas>
+<script>
+const bubbles = [
+  {x:20,y:80,s:30,label:"A"},{x:35,y:65,s:45,label:"B"},
+  {x:50,y:50,s:60,label:"C"},{x:65,y:70,s:25,label:"D"},
+  {x:80,y:30,s:50,label:"E"},{x:45,y:40,s:35,label:"F"},
+  {x:70,y:55,s:40,label:"G"}
+];
+const ctx=document.getElementById("c").getContext("2d");
+const l=80,r=660,t=40,b=460;
+// Axes
+ctx.beginPath();ctx.moveTo(l,t);ctx.lineTo(l,b);ctx.lineTo(r,b);
+ctx.strokeStyle="#a8a29e";ctx.lineWidth=1;ctx.stroke();
+ctx.fillStyle="#44403c";ctx.font="12px system-ui";
+ctx.fillText("X Axis",r/2,b+30);ctx.save();ctx.translate(20,t+200);ctx.rotate(-Math.PI/2);
+ctx.fillText("Y Axis",0,0);ctx.restore();
+// Bubbles
+bubbles.forEach(d=>{
+  const px=l+(d.x/100)*(r-l),py=b-(d.y/100)*(b-t);
+  ctx.beginPath();ctx.arc(px,py,d.s/2,0,Math.PI*2);
+  ctx.fillStyle="rgba(0,47,167,0.2)";ctx.fill();
+  ctx.strokeStyle="#002FA7";ctx.lineWidth=1.5;ctx.stroke();
+  ctx.fillStyle="#1B365D";ctx.font="bold 12px system-ui";ctx.textAlign="center";
+  ctx.fillText(d.label,px,py+4);
+});
+</script>
+</body></html>

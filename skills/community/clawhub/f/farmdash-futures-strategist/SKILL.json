@@ -1,7 +1,7 @@
 {
   "name": "FarmDash Futures Strategist",
-  "version": "2.3.1",
-  "description": "Adaptive Hyperliquid perps execution engine for OpenClaw. Researches funding, trend, liquidity, regime, and account context; returns strategy objects with pre-trade simulation, confidence, and no-trade handling; and executes zero-custody EIP-712 orders with FarmDash-side intent expiry hardening.",
+  "version": "3.0.1",
+  "description": "Adaptive Hyperliquid perps execution engine for OpenClaw agents. Provides research, pre-trade simulation, predictive funding shifts, and zero-custody EIP-712 order routing with forensic telemetry. Scout (5/day), Pioneer (unlimited), and Syndicate (unlimited) execution supported.",
   "tags": [
     "defi",
     "ai-agent",
@@ -24,14 +24,25 @@
     "zero-custody",
     "eip-712",
     "trail-heat",
-    "farmdash"
+    "farmdash",
+    "forensics",
+    "shadow-mode",
+    "oracle-latency",
+    "monetization",
+    "syndicate-tier",
+    "hft",
+    "delta-neutral",
+    "hedging",
+    "blockchain-forensics",
+    "automated-trading",
+    "l2"
   ],
   "author": "FarmDash Pioneers (@Parmasanandgarlic)",
   "homepage": "https://www.farmdash.one/agents",
   "tools": [
     {
       "name": "scan_funding_rates",
-      "description": "Scan cross-venue funding opportunities.\n\n2.",
+      "description": "Scan cross-venue funding opportunities. (v3.0: Includes Predictive Funding Shift indicators).",
       "inputSchema": {
         "type": "object",
         "properties": {}
@@ -41,7 +52,7 @@
     },
     {
       "name": "scan_market_conditions",
-      "description": "Read EMA, RSI, MACD, ADX, ATR, Bollinger Bands, volume ratio, and Z-score for one perp asset.\n\n3.",
+      "description": "Read EMA, RSI, MACD, ADX, ATR, Bollinger Bands, volume ratio, Z-score, and Hyperliquid oracle latency for one perp asset.",
       "inputSchema": {
         "type": "object",
         "properties": {}
@@ -51,7 +62,7 @@
     },
     {
       "name": "get_futures_account",
-      "description": "Inspect equity, open positions, available margin, drawdown state, and guardrail pressure.\n\n4.",
+      "description": "Inspect equity, open positions, available margin, drawdown state, and guardrail pressure.",
       "inputSchema": {
         "type": "object",
         "properties": {}
@@ -61,7 +72,7 @@
     },
     {
       "name": "analyze_futures_strategy",
-      "description": "Primary research tool. Returns the strategy recommendation, confidence score, market regime, strategy object, adaptive risk profile, pre-trade simulation, portfolio context, and an explicit",
+      "description": "Primary research tool. Returns the strategy recommendation, confidence score, market regime, strategy object, adaptive risk profile, pre-trade simulation, portfolio context, and an explicit `no_trade` reason when no setup is valid.",
       "inputSchema": {
         "type": "object",
         "properties": {}
@@ -71,7 +82,7 @@
     },
     {
       "name": "calculate_position_size",
-      "description": "Inspect sizing math separately when the user wants to validate risk and margin.\n\n6.",
+      "description": "Inspect sizing math separately when the user wants to validate risk and margin.",
       "inputSchema": {
         "type": "object",
         "properties": {}
@@ -81,7 +92,7 @@
     },
     {
       "name": "execute_perp_order",
-      "description": "Execute only after research and explicit user confirmation.\n\n7.",
+      "description": "Execute only after research and explicit user confirmation. Generates 11-field Forensic receipt on settlement.",
       "inputSchema": {
         "type": "object",
         "properties": {}
@@ -91,17 +102,17 @@
     },
     {
       "name": "cancel_perp_order",
-      "description": "Cancel stale or superseded open orders.\n\n8.",
+      "description": "Cancel stale or superseded open orders.",
       "inputSchema": {
         "type": "object",
         "properties": {}
       },
       "outputHints": [],
-      "category": "read"
+      "category": "execution"
     },
     {
       "name": "get_agent_performance",
-      "description": "Use as the feedback loop for strategy review, drawdown response, and campaign-level confidence adjustments.\n\nTreat older names in legacy docs as aliases only, not separate tools.\nThere is no standalone",
+      "description": "Use as the feedback loop for strategy review, drawdown response, shadow-mode drift checks, and campaign-level confidence adjustments. Backed by `https://www.farmdash.one/api/v1/agent/performance`.",
       "inputSchema": {
         "type": "object",
         "properties": {}

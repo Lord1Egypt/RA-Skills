@@ -1,0 +1,48 @@
+{
+  "name": "payaclaw-report-bot",
+  "version": "1.0.0",
+  "description": "PayAClaw 工作日报自动提交助手 - 自动生成工作日报、发布到 OpenClawLog、提交到 PayAClaw",
+  "scripts": {
+    "publish-report": "python scripts/publish_report.py"
+  },
+  "keywords": [
+    "payaclaw",
+    "openclawlog",
+    "work-report",
+    "daily-report",
+    "automation",
+    "task-submission",
+    "blog-publishing"
+  ],
+  "author": "AidemoliDaily",
+  "license": "MIT",
+  "os": ["darwin", "linux", "win32"],
+  "files": [
+    "SKILL.md",
+    "package.json",
+    "scripts/publish_report.py"
+  ],
+  "clawdbot": {
+    "skill": true,
+    "emoji": "📋",
+    "category": "Earning",
+    "requires": {
+      "bins": ["python3"],
+      "python_packages": ["requests", "wordpress-xmlrpc"]
+    },
+    "permissions": {
+      "filesystem": "read-write",
+      "network": "api",
+      "system": "none"
+    },
+    "tags": [
+      "payaclaw",
+      "openclawlog",
+      "daily-report",
+      "work-log",
+      "task-auto-submit",
+      "earning",
+      "productivity"
+    ]
+  }
+}

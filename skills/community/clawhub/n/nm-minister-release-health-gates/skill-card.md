@@ -1,5 +1,5 @@
 ## Description: <br>
-Nm Minister Release Health Gates helps agents standardize production release approvals with GitHub-aware readiness, quality, documentation, operations, and waiver gates. <br>
+Standardizes release approvals with GitHub-aware checklists and deployment gates before production releases. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,29 +11,32 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Use before production releases to generate release gate checklists, QA handoff summaries, and rollout scorecards that make blockers, approvals, rollback ownership, documentation, and observability readiness explicit. <br>
+Release managers, developers, QA, and SRE teams use this skill before production releases to assemble GitHub-aware release gate checklists, summarize quality signals, document waivers, and capture rollout scorecards. <br>
 
 ### Deployment Geography for Use: <br>
-Not geography-specific; suitable wherever ClawHub skills and GitHub-based release workflows are permitted. <br>
+Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Broad triggers such as release and GitHub could activate the skill in adjacent workflows where a formal production gate is not needed. <br>
-Mitigation: Confirm the release context before using its output, and keep final approval for publishing, deployment, or repository-changing actions under user control. <br>
+Risk: Generated PR comments, tracker updates, or sign-off summaries could be treated as final release approval without enough review. <br>
+Mitigation: Have release owners review the generated gate snippet, tracker updates, waiver records, and sign-off evidence before deployment. <br>
+Risk: Broad release, GitHub, readiness, quality, and governance triggers can load the skill during general release conversations. <br>
+Mitigation: Confirm the skill is being used for release-readiness checklist work before applying its guidance. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-minister-release-health-gates) <br>
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/minister) <br>
+- [Project homepage from ClawHub metadata](https://github.com/athola/claude-night-market/tree/master/plugins/minister) <br>
+- [Deployment Readiness Gate](modules/deployment-readiness.md) <br>
+- [Quality Signals Gate](modules/quality-signals.md) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [markdown, guidance, configuration] <br>
-**Output Format:** [Markdown release gate snippets, QA handshake summaries, checklist sections, and rollout scorecards.] <br>
-**Output Parameters:** [Release name, deployment PR or issue links, GitHub check status, blocker list, documentation status, observability links, support notes, rollback owner, and approval or waiver state.] <br>
-**Other Properties Related to Output:** [Outputs are intended for review in pull requests, issues, trackers, and release retrospectives before deployment decisions are finalized.] <br>
+**Output Format:** [Markdown checklists, PR or issue comment snippets, summaries, and scorecards] <br>
+**Output Parameters:** [1D] <br>
+**Other Properties Related to Output:** [Produces release gate snippets, QA handshake summaries, and rollout scorecards for human review.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 <br>
+1.9.13 (source: ClawHub release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

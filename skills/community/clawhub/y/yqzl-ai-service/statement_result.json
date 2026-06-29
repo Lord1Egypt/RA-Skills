@@ -1,0 +1,457 @@
+{
+  "code": 1000,
+  "msg": "success",
+  "data": [
+    {
+      "page_index": 1,
+      "page_data": {
+        "global_fields": {
+          "accountName": "深圳市聚鑫汽车维修有限公司",
+          "transAccount": "443899991010008457321",
+          "curName": "人民币",
+          "bankName": "交通银行",
+          "totalCreditAmount": 142116.0,
+          "totalDebitAmount": 268088.0
+        },
+        "detail_fields_list": [
+          {
+            "tradeDate": "2023-05-01",
+            "amountDebited": 0.0,
+            "amountCredited": 4266.0,
+            "balance": 282412.54,
+            "counterpartyAccount": "815085019910002",
+            "counterpartyName": "太平财产保险有限公司",
+            "abstract": "粤B252D3太平赔款-30320000007+33050141326779",
+            "transNo": "EFC0002022409105"
+          },
+          {
+            "tradeDate": "2023-05-03",
+            "amountDebited": 0.0,
+            "amountCredited": 3150.0,
+            "balance": 285562.54,
+            "counterpartyAccount": "11014282404102",
+            "counterpartyName": "中国平安财产保险股份有限公司",
+            "abstract": "白建平 （粤B729PY）的赔款",
+            "transNo": "EFC0002013698586"
+          },
+          {
+            "tradeDate": "2023-05-04",
+            "amountDebited": 0.0,
+            "amountCredited": 6200.0,
+            "balance": 291762.54,
+            "counterpartyAccount": "955104369999999",
+            "counterpartyName": "中国人寿财产保险股份有限公司",
+            "abstract": "渝BPA312",
+            "transNo": "EFC0002028312433"
+          },
+          {
+            "tradeDate": "2023-05-05",
+            "amountDebited": 0.0,
+            "amountCredited": 2000.0,
+            "balance": 293762.54,
+            "counterpartyAccount": "955104369999999",
+            "counterpartyName": "中国人寿财产保险股份有限公司",
+            "abstract": "粤B5M77W和深圳市聚鑫汽车维修有限公司",
+            "transNo": "EFC0002015496363"
+          },
+          {
+            "tradeDate": "2023-05-05",
+            "amountDebited": 0.0,
+            "amountCredited": 2000.0,
+            "balance": 295762.54,
+            "counterpartyAccount": "955104369999999",
+            "counterpartyName": "中国人寿财产保险股份有限公司",
+            "abstract": "粤L377RK交强险部分",
+            "transNo": "EFC0002017526882"
+          },
+          {
+            "tradeDate": "2023-05-08",
+            "amountDebited": 0.0,
+            "amountCredited": 3000.0,
+            "balance": 298762.54,
+            "counterpartyAccount": "955104369999999",
+            "counterpartyName": "中国人寿财产保险股份有限公司",
+            "abstract": "粤B32VJ3",
+            "transNo": "EFC0002017092546"
+          },
+          {
+            "tradeDate": "2023-05-08",
+            "amountDebited": 0.0,
+            "amountCredited": 2000.0,
+            "balance": 300762.54,
+            "counterpartyAccount": "815085019910002",
+            "counterpartyName": "太平财产保险有限公司",
+            "abstract": "粤BW13Z0-30330000089+33050841409308",
+            "transNo": "EFC0002026460206"
+          },
+          {
+            "tradeDate": "2023-05-08",
+            "amountDebited": 0.0,
+            "amountCredited": 43000.0,
+            "balance": 343762.54,
+            "counterpartyAccount": "815085019910002",
+            "counterpartyName": "太平财产保险有限公司",
+            "abstract": "粤BW13Z0-30330000090+33050841409309",
+            "transNo": "EFC0002026460491"
+          },
+          {
+            "tradeDate": "2023-05-08",
+            "amountDebited": 0.0,
+            "amountCredited": 1000.0,
+            "balance": 344762.54,
+            "counterpartyAccount": "955104369999999",
+            "counterpartyName": "中国人寿财产保险股份有限公司",
+            "abstract": "粤BV603X",
+            "transNo": "EFC0002040995807"
+          },
+          {
+            "tradeDate": "2023-05-09",
+            "amountDebited": 840.0,
+            "amountCredited": 0.0,
+            "balance": 343922.54,
+            "counterpartyAccount": "000283566672",
+            "counterpartyName": "深圳市冠诚汽车售后服务有限公司",
+            "abstract": "维修费",
+            "transNo": "EFC0002028741653"
+          },
+          {
+            "tradeDate": "2023-05-10",
+            "amountDebited": 0.0,
+            "amountCredited": 2710.0,
+            "balance": 346632.54,
+            "counterpartyAccount": "955104369999999",
+            "counterpartyName": "中国人寿财产保险股份有限公司",
+            "abstract": "粤B0ND22和深圳市聚鑫汽车维修有限公司",
+            "transNo": "EFC0002043453668"
+          },
+          {
+            "tradeDate": "2023-05-11",
+            "amountDebited": 40000.0,
+            "amountCredited": 0.0,
+            "balance": 306632.54,
+            "counterpartyAccount": "6214180400002332075",
+            "counterpartyName": "林洁英",
+            "abstract": "备用金",
+            "transNo": "EFC0002024207859"
+          },
+          {
+            "tradeDate": "2023-05-11",
+            "amountDebited": 0.0,
+            "amountCredited": 1370.0,
+            "balance": 308002.54,
+            "counterpartyAccount": "815085019910002",
+            "counterpartyName": "太平财产保险有限公司",
+            "abstract": "粤B00DL6-30350000852+33051141493057",
+            "transNo": "EFC0002042383597"
+          },
+          {
+            "tradeDate": "2023-05-13",
+            "amountDebited": 0.0,
+            "amountCredited": 100.0,
+            "balance": 308102.54,
+            "counterpartyAccount": "815085019910002",
+            "counterpartyName": "太平财产保险有限公司",
+            "abstract": "粤BFG9126-30320001905+33051341535675",
+            "transNo": "EFC0002023889899"
+          },
+          {
+            "tradeDate": "2023-05-15",
+            "amountDebited": 1709.92,
+            "amountCredited": 0.0,
+            "balance": 306392.62,
+            "counterpartyAccount": "2560",
+            "counterpartyName": "国家金库深圳市宝安支库",
+            "abstract": "个人所得税1709.92",
+            "transNo": "EFC0002028712038"
+          },
+          {
+            "tradeDate": "2023-05-15",
+            "amountDebited": 0.0,
+            "amountCredited": 10000.0,
+            "balance": 316392.62,
+            "counterpartyAccount": "955104369999999",
+            "counterpartyName": "中国人寿财产保险股份有限公司",
+            "abstract": "粤B672FE和深圳市聚鑫汽车维修有限公司",
+            "transNo": "EFC0002038876038"
+          },
+          {
+            "tradeDate": "2023-05-15",
+            "amountDebited": 0.0,
+            "amountCredited": 8010.0,
+            "balance": 324402.62,
+            "counterpartyAccount": "955104369999999",
+            "counterpartyName": "中国人寿财产保险股份有限公司",
+            "abstract": "粤B68GH3",
+            "transNo": "EFC0002041496357"
+          },
+          {
+            "tradeDate": "2023-05-16",
+            "amountDebited": 0.0,
+            "amountCredited": 15120.0,
+            "balance": 339522.62,
+            "counterpartyAccount": "955104369999999",
+            "counterpartyName": "中国人寿财产保险股份有限公司",
+            "abstract": "粤BA98U2",
+            "transNo": "EFC0002023137523"
+          },
+          {
+            "tradeDate": "2023-05-16",
+            "amountDebited": 0.0,
+            "amountCredited": 11900.0,
+            "balance": 351422.62,
+            "counterpartyAccount": "815085019910002",
+            "counterpartyName": "太平财产保险有限公司",
+            "abstract": "粤BFG9126-30320002269+33051641581268",
+            "transNo": "EFC0002027288268"
+          }
+        ]
+      }
+    },
+    {
+      "page_index": 2,
+      "page_data": {
+        "global_fields": {},
+        "detail_fields_list": [
+          {
+            "tradeDate": "2023-05-16",
+            "amountDebited": 2458.0,
+            "amountCredited": 0.0,
+            "balance": 348964.62,
+            "counterpartyAccount": "6230580000130554772",
+            "counterpartyName": "姜峰",
+            "abstract": "工资",
+            "transNo": "EFC0002032432066"
+          },
+          {
+            "tradeDate": "2023-05-16",
+            "amountDebited": 6791.0,
+            "amountCredited": 0.0,
+            "balance": 342173.62,
+            "counterpartyAccount": "6230580000046828609",
+            "counterpartyName": "张权辉",
+            "abstract": "工资，奖金注入",
+            "transNo": "EFC0002032460591"
+          },
+          {
+            "tradeDate": "2023-05-16",
+            "amountDebited": 39800.0,
+            "amountCredited": 0.0,
+            "balance": 302373.62,
+            "counterpartyAccount": "6214837887283277",
+            "counterpartyName": "林洁英",
+            "abstract": "工资",
+            "transNo": "EFC0002032487772"
+          },
+          {
+            "tradeDate": "2023-05-16",
+            "amountDebited": 39800.0,
+            "amountCredited": 0.0,
+            "balance": 262573.62,
+            "counterpartyAccount": "6230582000043624496",
+            "counterpartyName": "林剑峰",
+            "abstract": "工资",
+            "transNo": "EFC0002032525120"
+          },
+          {
+            "tradeDate": "2023-05-16",
+            "amountDebited": 6191.0,
+            "amountCredited": 0.0,
+            "balance": 256382.62,
+            "counterpartyAccount": "6214837887283277",
+            "counterpartyName": "林洁英",
+            "abstract": "代发工资",
+            "transNo": "EFC0002032546724"
+          },
+          {
+            "tradeDate": "2023-05-16",
+            "amountDebited": 2360.0,
+            "amountCredited": 0.0,
+            "balance": 254022.62,
+            "counterpartyAccount": "6214837887283277",
+            "counterpartyName": "林洁英",
+            "abstract": "代发工资",
+            "transNo": "EFC0002035352281"
+          },
+          {
+            "tradeDate": "2023-05-17",
+            "amountDebited": 0.0,
+            "amountCredited": 1550.0,
+            "balance": 255572.62,
+            "counterpartyAccount": "955104369999999",
+            "counterpartyName": "中国人寿财产保险股份有限公司",
+            "abstract": "粤B720Y5",
+            "transNo": "EFC0002018288877"
+          },
+          {
+            "tradeDate": "2023-05-17",
+            "amountDebited": 0.0,
+            "amountCredited": 2000.0,
+            "balance": 257572.62,
+            "counterpartyAccount": "955104369999999",
+            "counterpartyName": "中国人寿财产保险股份有限公司",
+            "abstract": "粤B1Y1X5和深圳市聚鑫汽车维修有限公司",
+            "transNo": "EFC0002028526905"
+          },
+          {
+            "tradeDate": "2023-05-17",
+            "amountDebited": 2335.0,
+            "amountCredited": 0.0,
+            "balance": 255237.62,
+            "counterpartyAccount": "0282100701027",
+            "counterpartyName": "深圳市宝安区宝城固骅汽车配件商行",
+            "abstract": "货款",
+            "transNo": "EFC0002030056200"
+          },
+          {
+            "tradeDate": "2023-05-17",
+            "amountDebited": 1820.0,
+            "amountCredited": 0.0,
+            "balance": 253417.62,
+            "counterpartyAccount": "0292100348936",
+            "counterpartyName": "深圳市宝安区东生汽车配件店",
+            "abstract": "货款",
+            "transNo": "EFC0002030195903"
+          },
+          {
+            "tradeDate": "2023-05-17",
+            "amountDebited": 0.0,
+            "amountCredited": 1400.0,
+            "balance": 254817.62,
+            "counterpartyAccount": "955104369999999",
+            "counterpartyName": "中国人寿财产保险股份有限公司",
+            "abstract": "粤L377RK商业险部分",
+            "transNo": "EFC0002030340391"
+          },
+          {
+            "tradeDate": "2023-05-17",
+            "amountDebited": 2395.0,
+            "amountCredited": 0.0,
+            "balance": 252422.62,
+            "counterpartyAccount": "000012946272",
+            "counterpartyName": "深圳市宝安区鸿源汽配行",
+            "abstract": "配件款",
+            "transNo": "EFC0002030481045"
+          },
+          {
+            "tradeDate": "2023-05-17",
+            "amountDebited": 4855.0,
+            "amountCredited": 0.0,
+            "balance": 247567.62,
+            "counterpartyAccount": "44250100016100001735",
+            "counterpartyName": "深圳市金弘汽车配件有限公司",
+            "abstract": "货款",
+            "transNo": "EFC0002030727208"
+          },
+          {
+            "tradeDate": "2023-05-17",
+            "amountDebited": 6334.0,
+            "amountCredited": 0.0,
+            "balance": 241233.62,
+            "counterpartyAccount": "4000025009200981693",
+            "counterpartyName": "深圳市宝安区新安宏鹏达汽配店",
+            "abstract": "货款",
+            "transNo": "EFC0002031191812"
+          },
+          {
+            "tradeDate": "2023-05-23",
+            "amountDebited": 16286.0,
+            "amountCredited": 0.0,
+            "balance": 224947.62,
+            "counterpartyAccount": "44232901040012436",
+            "counterpartyName": "惠州市如鑫商贸有限公司",
+            "abstract": "油漆款",
+            "transNo": "EFC0002035081888"
+          },
+          {
+            "tradeDate": "2023-05-25",
+            "amountDebited": 2563.08,
+            "amountCredited": 0.0,
+            "balance": 222384.54,
+            "counterpartyAccount": "2560",
+            "counterpartyName": "国家金库深圳市宝安支库",
+            "abstract": "企业职工基本养老保险费2076.8|基本医疗保险费25.92|生育保险费47.2|失业保险费94.4|基本医疗保险费2",
+            "transNo": "EFC0002022173617"
+          },
+          {
+            "tradeDate": "2023-05-27",
+            "amountDebited": 0.0,
+            "amountCredited": 200.0,
+            "balance": 222584.54,
+            "counterpartyAccount": "955104369999999",
+            "counterpartyName": "中国人寿财产保险股份有限公司",
+            "abstract": "粤B0M8C8",
+            "transNo": "EFC0002022749636"
+          },
+          {
+            "tradeDate": "2023-05-29",
+            "amountDebited": 0.0,
+            "amountCredited": 17900.0,
+            "balance": 240484.54,
+            "counterpartyAccount": "955104369999999",
+            "counterpartyName": "中国人寿财产保险股份有限公司",
+            "abstract": "粤B0M8C8",
+            "transNo": "EFC0002016335348"
+          },
+          {
+            "tradeDate": "2023-05-29",
+            "amountDebited": 0.0,
+            "amountCredited": 1520.0,
+            "balance": 242004.54,
+            "counterpartyAccount": "955104369999999",
+            "counterpartyName": "中国人寿财产保险股份有限公司",
+            "abstract": "粤BBG7703和黄洪铃",
+            "transNo": "EFC0002018500597"
+          },
+          {
+            "tradeDate": "2023-05-29",
+            "amountDebited": 40000.0,
+            "amountCredited": 0.0,
+            "balance": 202004.54,
+            "counterpartyAccount": "6214837887283277",
+            "counterpartyName": "林洁英",
+            "abstract": "借款",
+            "transNo": "EFC0002022655794"
+          },
+          {
+            "tradeDate": "2023-05-31",
+            "amountDebited": 38050.0,
+            "amountCredited": 0.0,
+            "balance": 163954.54,
+            "counterpartyAccount": "44250100010600001580",
+            "counterpartyName": "深圳市冠德汽车服务有限公司",
+            "abstract": "转账",
+            "transNo": "EFC0002039952122"
+          }
+        ]
+      }
+    },
+    {
+      "page_index": 3,
+      "page_data": {
+        "global_fields": {},
+        "detail_fields_list": [
+          {
+            "tradeDate": "2023-05-31",
+            "amountDebited": 0.0,
+            "amountCredited": 1720.0,
+            "balance": 165674.54,
+            "counterpartyAccount": "815085019910002",
+            "counterpartyName": "太平财产保险有限公司",
+            "abstract": "粤B5Z5C7 太平赔款-30320000676+33053141891412",
+            "transNo": "EFC0002046506703"
+          },
+          {
+            "tradeDate": "2023-05-31",
+            "amountDebited": 13500.0,
+            "amountCredited": 0.0,
+            "balance": 152174.54,
+            "counterpartyAccount": "337050100100406696",
+            "counterpartyName": "深圳市车多多汽车服务中心有限公司",
+            "abstract": "维修费",
+            "transNo": "EFC0002046785627"
+          }
+        ]
+      }
+    }
+  ]
+}

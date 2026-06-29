@@ -1,0 +1,36 @@
+{
+  "name": "Dianping Restaurant Guide",
+  "slug": "dianping-restaurant-guide",
+  "description": "Extract real restaurant insights from Dianping reviews: filter noise, detect fake reviews, build personalized dining guides.",
+  "tags": ["dianping", "restaurant", "food", "dining", "review-analysis", "china", "recommendation"],
+  "license": "MIT-0",
+  "version": "1.0.0",
+  "scripts": {
+    "main": "scripts/dianping-guide.py",
+    "description": "Python CLI for review analysis, fake detection, ranking, and ordering guides"
+  },
+  "schemas": {
+    "input": "schemas/input.schema.json",
+    "output": "schemas/output.schema.json"
+  },
+  "references": {
+    "signals": "references/signals.json"
+  },
+  "workflowSteps": [
+    { "step": 1, "name": "Define Dining Context", "input": "Location, cuisine, budget, occasion", "output": "Structured dining profile" },
+    { "step": 2, "name": "Candidate Discovery", "input": "Dining profile", "output": "Candidate restaurant list (10-30)" },
+    { "step": 3, "name": "Review Harvesting", "input": "Candidate list", "output": "Raw review corpus per restaurant" },
+    { "step": 4, "name": "Fake Review Detection", "input": "Review corpus", "output": "Per-review authenticity tags + restaurant authenticity index" },
+    { "step": 5, "name": "Sentiment Extraction", "input": "Genuine reviews only", "output": "Structured sentiment across taste/env/service/value" },
+    { "step": 6, "name": "Personalized Ranking", "input": "Sentiment + user profile", "output": "Ranked top 5-10 with scores" },
+    { "step": 7, "name": "Ordering Guide Generation", "input": "Top pick + dish sentiment", "output": "Ready-to-use ordering card" },
+    { "step": 8, "name": "Exploration Route (optional)", "input": "Multiple restaurants", "output": "Geographically optimized route" }
+  ],
+  "firstSuccessPath": {
+    "steps": [
+      "Run: dianping-guide.py discover --cuisine 川菜 --budget-max 100",
+      "Run: dianping-guide.py analyze 老王川菜",
+      "Run: dianping-guide.py order 老王川菜 --party-size 2"
+    ]
+  }
+}

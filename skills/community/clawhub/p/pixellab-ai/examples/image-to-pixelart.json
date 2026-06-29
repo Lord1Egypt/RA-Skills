@@ -1,0 +1,16 @@
+{
+  "image": {
+    "type": "base64",
+    "format": "png",
+    "base64": "REPLACE_WITH_BASE64_SOURCE_IMAGE"
+  },
+  "image_size": {
+    "width": 256,
+    "height": 256
+  },
+  "output_size": {
+    "width": 64,
+    "height": 64
+  },
+  "seed": 0
+}

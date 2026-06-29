@@ -1,0 +1,6 @@
+{
+  "name": "doc-formatter",
+  "description": "Official Document Formatter Skill — Automated generation of standardized Chinese official documents (通知/请示/报告/纪要) following GB/T 9704 national standard formatting",
+  "version": "1.0.0",
+  "skills": ["doc-formatter"]
+}

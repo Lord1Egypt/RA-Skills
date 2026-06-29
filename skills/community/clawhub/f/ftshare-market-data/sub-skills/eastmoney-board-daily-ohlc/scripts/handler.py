@@ -21,7 +21,7 @@ def safe_urlopen(req_or_url):
         sys.exit(1)
     return SAFE_URLOPENER.open(req_or_url)
 
-ENDPOINT = "/data/api/v1/market/data/eastmoney-board-daily-ohlc"
+ENDPOINT = "/gateway/api/v1/market/data/eastmoney-board-daily-ohlc"
 
 
 def fetch_page(board_code: str, page: int, page_size: int, start_date: str = None, end_date: str = None) -> dict:

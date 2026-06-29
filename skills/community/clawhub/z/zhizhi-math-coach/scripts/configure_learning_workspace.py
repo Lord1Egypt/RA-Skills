@@ -31,6 +31,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--base-url", help="GitHub Pages base URL. Defaults to https://<owner>.github.io/<repo>.")
     parser.add_argument("--enable-git-sync", action="store_true", help="Mark Git sync as enabled.")
     parser.add_argument("--auto-sync", action="store_true", help="Enable automatic pull, commit, and push.")
+    parser.add_argument("--defer-push-after-grading", action="store_true", help="For grading tasks, commit locally but skip push until a later sync.")
     parser.add_argument("--sync-full-learning-data", action="store_true", help="Allow the configured commit scope to include learning records.")
     parser.add_argument("--public-repository-accepted", action="store_true", help="Parent accepts the visibility of committed files in a public repository.")
     parser.add_argument("--enable-pages", action="store_true", help="Mark GitHub Pages publishing as enabled.")
@@ -82,6 +83,7 @@ def main() -> int:
                 "auto_pull_before_task": args.auto_sync,
                 "auto_commit_after_task": args.auto_sync,
                 "auto_push_after_task": args.auto_sync,
+                "defer_push_after_grading": args.defer_push_after_grading,
                 "sync_full_learning_data": args.sync_full_learning_data or args.auto_sync,
                 "public_repository_accepted": args.public_repository_accepted,
             }
@@ -121,6 +123,7 @@ def main() -> int:
     print(f"git_sync.enabled: {config.get('git_sync', {}).get('enabled')}")
     print(f"git_sync.auto_pull_before_task: {config.get('git_sync', {}).get('auto_pull_before_task')}")
     print(f"git_sync.auto_push_after_task: {config.get('git_sync', {}).get('auto_push_after_task')}")
+    print(f"git_sync.defer_push_after_grading: {config.get('git_sync', {}).get('defer_push_after_grading')}")
     print(f"pages.enabled: {config.get('pages', {}).get('enabled')}")
     print(f"pages.auto_publish_worksheets: {config.get('pages', {}).get('auto_publish_worksheets')}")
     print(f"pages.base_url: {config.get('pages', {}).get('base_url')}")

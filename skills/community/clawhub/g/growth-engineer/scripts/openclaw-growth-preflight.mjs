@@ -724,7 +724,47 @@ async function fetchWithTimeout(url, options, timeoutMs) {
         clearTimeout(timer);
     }
 }
+function decodeJwtPayload(token) {
+    const parts = String(token || '').split('.');
+    if (parts.length < 2)
+        return null;
+    try {
+        const normalized = parts[1].replace(/-/g, '+').replace(/_/g, '/');
+        const padded = normalized.padEnd(normalized.length + ((4 - (normalized.length % 4)) % 4), '=');
+        return JSON.parse(Buffer.from(padded, 'base64').toString('utf8'));
+    }
+    catch {
+        return null;
+    }
+}
+function validateOpenClawAnalyticsToken(token) {
+    const trimmed = String(token || '').trim();
+    if (!trimmed)
+        return { ok: true, detail: '' };
+    const payload = decodeJwtPayload(trimmed);
+    if (!payload)
+        return { ok: true, detail: '' };
+    const scopes = Array.isArray(payload.scopes) ? payload.scopes.map((scope) => String(scope)) : [];
+    const hasReadonlyOnly = scopes.length === 1 && scopes[0] === 'read:queries';
+    if (!hasReadonlyOnly) {
+        return {
+            ok: false,
+            detail: 'ANALYTICSCLI_ACCESS_TOKEN is not a readonly CLI token. OpenClaw needs a non-expiring Dashboard -> API Keys readonly token with only read:queries scope; do not use dashboard session/admin tokens.',
+        };
+    }
+    if (typeof payload.exp === 'number') {
+        return {
+            ok: false,
+            detail: 'ANALYTICSCLI_ACCESS_TOKEN is an expiring legacy token. Create a new non-expiring readonly CLI token in Dashboard -> API Keys and update the OpenClaw secrets file.',
+        };
+    }
+    return { ok: true, detail: '' };
+}
 async function testAnalyticsConnection(analyticsToken, analyticsTokenEnv, timeoutMs) {
+    const tokenValidation = validateOpenClawAnalyticsToken(analyticsToken);
+    if (!tokenValidation.ok) {
+        return tokenValidation;
+    }
     const hasCli = await commandExists('analyticscli');
     if (!hasCli) {
         return {

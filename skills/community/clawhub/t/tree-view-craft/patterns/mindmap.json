@@ -1,0 +1,10 @@
+{
+  "name": "mindmap",
+  "label": "思维导图",
+  "description": "放射状布局，适合展示知识结构和文档大纲",
+  "layout": "radial",
+  "features": ["radial_layout", "zoom", "pan", "node_colors_by_type"],
+  "icon_style": "minimal",
+  "sort_order": "default",
+  "max_depth_display": 6
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "description": "如果所有字段均为空，Skill 将自动追问用户以收集必要信息。",
+  "additionalProperties": false,
+  "properties": {
+    "targetMarket": {
+      "type": "string",
+      "enum": ["US-DE", "US-WY", "HK", "SG", "GB", "DE", "JP", "AU", "EE"],
+      "description": "目标市场代码"
+    },
+    "monthlyRevenue": {
+      "type": "number",
+      "minimum": 0,
+      "description": "月销售额（美元）"
+    },
+    "salesChannels": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["Amazon", "Shopify", "eBay", "独立站", "Other"]
+      },
+      "description": "销售渠道"
+    },
+    "productCategory": {
+      "type": "string",
+      "enum": ["母婴", "电子产品", "美妆", "食品", "玩具", "服装", "家居", "AI工具", "baby", "electronics", "beauty", "food", "toys", "clothing", "home", "ai_tools", "其他"],
+      "description": "产品类别"
+    },
+    "hasBrand": {
+      "type": "boolean",
+      "description": "是否拥有自有品牌"
+    },
+    "existingCompliances": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "已有的合规资产或实体"
+    }
+  },
+  "required": []
+}

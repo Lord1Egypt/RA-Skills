@@ -1,0 +1,64 @@
+{
+  "baseUrl": "https://api.justserpapi.com",
+  "description": "Call GET /api/v1/google/scholar/cite/search for Google SERP Scholar Cite Search through Just Serp API with query.",
+  "displayName": "Google SERP Scholar Cite Search",
+  "endpointPath": "scholar/cite/search",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Google scholar Citations data, including export links, for bibliography automation and citation workflows.",
+      "method": "GET",
+      "operationId": "ScholarCiteSearch",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "The unique ID of a Google Scholar search result to retrieve citation formats for. Found in the 'id' field of previous Scholar Search responses.",
+          "enumValues": [],
+          "location": "query",
+          "name": "query",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the language for the results using its two-letter code (e.g., 'en' for English, 'fr' for French). See <a href=\"/reference/google-language\">Google Language</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "language",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/v1/google/scholar/cite/search",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        },
+        {
+          "description": "Authentication failed: API Key is invalid or missing",
+          "statusCode": "401"
+        },
+        {
+          "description": "Access denied: Insufficient credits or quota exceeded",
+          "statusCode": "403"
+        },
+        {
+          "description": "Internal server error or upstream service exception",
+          "statusCode": "500"
+        }
+      ],
+      "summary": "Citations",
+      "tags": [
+        "Google Scholar"
+      ]
+    }
+  ],
+  "platformKey": "google",
+  "primaryTag": "Google SERP",
+  "skillName": "justserpapi_google_scholar_cite_search",
+  "skillType": "interface",
+  "slug": "justserpapi-google-scholar-cite-search",
+  "sourceTitle": "API Shop Documentation"
+}

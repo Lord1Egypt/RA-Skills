@@ -1,0 +1,131 @@
+{
+  "id": "apple-mail-setup",
+  "name": "Apple Mail Channel Setup",
+  "description": "Install, configure, and use the Apple Mail channel plugin for OpenClaw and Hermes",
+  "version": "1.0.1",
+  "author": {
+    "name": "Md. Jehadur Rahman (Emran)",
+    "url": "https://jehadurre.me",
+    "github": "JehadurRE"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JehadurRE/openclaw-apple-mail-skill.git"
+  },
+  "homepage": "https://openclaw-apple-mail.jehadurre.me",
+  "license": "MIT",
+  "keywords": [
+    "apple-mail",
+    "email",
+    "channel",
+    "setup",
+    "configuration",
+    "macos",
+    "plugin",
+    "openclaw",
+    "hermes"
+  ],
+  "requirements": {
+    "platform": ["darwin"],
+    "openclaw": ">=2026.1.0",
+    "plugins": ["@jehadurre/openclaw-apple-mail"]
+  },
+  "category": "channels",
+  "tags": [
+    "setup",
+    "configuration",
+    "email",
+    "mail",
+    "channel"
+  ],
+  "documentation": "SKILL.md",
+  "quickStart": {
+    "install": "openclaw plugins install @jehadurre/openclaw-apple-mail",
+    "configure": "Add apple-mail config to openclaw.json",
+    "verify": "openclaw plugins list"
+  },
+  "examples": [
+    {
+      "name": "Basic Single Account",
+      "description": "Simple configuration for one email account",
+      "config": {
+        "channels": {
+          "apple-mail": {
+            "enabled": true,
+            "accounts": {
+              "personal": {
+                "email": "your-email@example.com",
+                "mailboxAccount": "iCloud",
+                "allowFrom": ["*"]
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Multi-Account Setup",
+      "description": "Configuration for work and personal accounts",
+      "config": {
+        "channels": {
+          "apple-mail": {
+            "enabled": true,
+            "accounts": {
+              "work": {
+                "email": "john@company.com",
+                "mailboxAccount": "Exchange",
+                "allowFrom": ["*"],
+                "pollIntervalMs": 15000,
+                "archiveOnReply": true
+              },
+              "personal": {
+                "email": "john@gmail.com",
+                "mailboxAccount": "Gmail",
+                "allowFrom": ["family@domain.com"],
+                "pollIntervalMs": 60000
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Customer Support",
+      "description": "Auto-archive configuration for support email",
+      "config": {
+        "channels": {
+          "apple-mail": {
+            "enabled": true,
+            "accounts": {
+              "support": {
+                "email": "support@company.com",
+                "mailboxAccount": "Exchange",
+                "allowFrom": ["*"],
+                "pollIntervalMs": 10000,
+                "archiveOnReply": true
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "troubleshooting": [
+    {
+      "issue": "Plugin not found",
+      "solution": "Run: openclaw plugins install @jehadurre/openclaw-apple-mail"
+    },
+    {
+      "issue": "AppleScript permissions denied",
+      "solution": "Enable automation permissions in System Preferences → Security & Privacy → Privacy → Automation"
+    },
+    {
+      "issue": "Emails not detected",
+      "solution": "Verify email and mailboxAccount match Apple Mail configuration exactly"
+    }
+  ],
+  "relatedSkills": [],
+  "relatedPlugins": [
+    "@jehadurre/openclaw-apple-mail"
+  ]
+}

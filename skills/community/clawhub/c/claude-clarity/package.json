@@ -1,0 +1,110 @@
+{
+  "name": "claude-clarity",
+  "version": "1.8.12",
+  "description": "心虫 / Clarity - AI 认知引擎 + 本地集成工具包: 三层记忆系统(TGB评估)+PAD情绪模型+Q-learning自愈，含安装脚本/CLI/MCP守护进程/引擎启动器。让LLM Agent过目不忘/自我审查/AI心理学/AI哲学引擎",
+  "homepage": "https://github.com/yun520-1/claude-clarity",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yun520-1/claude-clarity.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yun520-1/claude-clarity/issues"
+  },
+  "main": "src/core/clarity.js",
+  "bin": {
+    "clarity": "bin/cli.js"
+  },
+  "scripts": {
+    "start": "node bin/cli.js",
+    "check": "find src bin -name '*.js' -not -path '*/node_modules/*' -print0 | xargs -0 -n 1 node --check",
+    "test": "node tests/integration.test.js && node tests/v2_0_19.test.js && jest",
+    "test:jest": "jest",
+    "test:old": "node tests/integration.test.js && node tests/v2_0_19.test.js",
+    "demo": "node -e \"const {createClarity}=require('./src/core/clarity.js'); const fs=require('fs'); const hf=createClarity({rootPath:\".\"}); hf.start(); console.log('Version:',fs.readFileSync('./VERSION','utf8').trim()); hf.stop();\"",
+    "audit": "npm audit --audit-level=high"
+  },
+  "files": [
+    "CHANGELOG.md",
+    "SKILL.md",
+    "VERSION",
+    "test-prompts.json",
+    "bin/",
+    "examples/",
+    "assets/",
+    "scripts/",
+    "src/core/**/*.js",
+    "src/core/**/*.json",
+    "src/core/**/*.md",
+    "!src/core/search/models/*.onnx",
+    "!src/core/search/models/*.bin",
+    "src/data/",
+    "src/dream/",
+    "src/emotion/",
+    "src/internal/",
+    "src/learning/",
+    "src/planner/",
+    "src/proactive/",
+    "src/reasoning/",
+    "src/utils/",
+    "src/verifier/",
+    "src/psychology/",
+    "src/memory/",
+    "src/identity/",
+    "src/behavior-tracker.js",
+    "src/mcp-handlers.js",
+    "src/mcp-server.js",
+    "src/pattern-detector.js",
+    "references/"
+  ],
+  "keywords": [
+    "cognitive-engine",
+    "memory-system",
+    "llm-memory",
+    "ai-agents",
+    "mcp-tools",
+    "self-verification",
+    "psychology-ai",
+    "emotion-model",
+    "q-learning",
+    "agent-framework",
+    "nodejs-ai",
+    "claude-code",
+    "claude-code-skill",
+    "hermes-skill",
+    "openclaw-skill",
+    "ontology",
+    "psychology",
+    "emotion",
+    "dream-engine",
+    "counterfactual",
+    "topic-isolation",
+    "thought-chain",
+    "entropy",
+    "philosophy",
+    "decision-verification",
+    "lesson-learning",
+    "code-generation",
+    "ai-self-healing",
+    "pad-model",
+    "truth-goodness-beauty",
+    "cross-session-memory"
+  ],
+  "security": {
+    "warnings": [
+      "此技能包含高级 AI 认知能力。desktop-agent 和 video-generate 等子技能包含高风险功能，需要明确用户授权才能使用。",
+      "不会自动发送数据到外部服务。所有网络通信需要显式配置。",
+      "不会自动写入 API 密钥到环境变量文件。用户必须显式提供密钥。"
+    ]
+  },
+  "license": "MIT",
+  "overrides": {
+    "protobufjs": "7.5.9"
+  },
+  "dependencies": {
+    "@xenova/transformers": "^2.17.2"
+  },
+  "devDependencies": {
+    "globals": "^17.6.0",
+    "jest": "^30.4.2"
+  }
+}

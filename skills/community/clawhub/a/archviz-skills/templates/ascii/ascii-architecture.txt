@@ -1,0 +1,40 @@
+# ASCII Architecture Template (plain text, no box-drawing chars)
+
+# Three-Layer Architecture
+
+[[System Core]]
+  Local-first / Passive AI / Full Archive
+
+    |           |           |
+    v           v           v
+
+[Money]     [Knowledge]  [Sentiment]
+  |             |            |
+  Daily cost    MD-native    Milestone trigger
+  Date split    Metadata     Buy guide
+  Sell close    Zettlr sync  Sell farewell
+
+    |           |            |
+    v           v            v
+
+[[Complete .md Archive]]
+  Finance + Tech + Emotion
+
+# System Architecture
+
+         [Gateway]
+             |
+    +--------+--------+
+    |        |        |
+[Auth]   [Core API] [Storage]
+    |        |        |
+    +--------+--------+
+             |
+        [Database]
+
+# Legend:
+# [[x]] = sovereign / core
+# [x]   = regular component
+# -->   = primary connection
+# |     = downward flow
+# +--+  = junction

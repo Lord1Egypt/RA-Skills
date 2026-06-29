@@ -1,0 +1,23 @@
+﻿name: huawei-cloud-cce-observability-context-builder
+level: L2
+domain: observability
+description: Build CCE observability context from alarms, metrics, logs, and events.
+tools:
+  - huawei_list_aom_alarms
+  - huawei_analyze_aom_alarms
+  - huawei_get_aom_metrics
+  - huawei_list_aom_instances
+  - huawei_query_aom_logs
+  - huawei_get_recent_logs
+  - huawei_get_cce_events
+  - huawei_get_pod_logs
+  - huawei_get_cce_pod_metrics_topN
+  - huawei_get_cce_node_metrics_topN
+  - huawei_generate_monitor_dashboard
+references:
+  - references/workflow.md
+  - references/risk-rules.md
+  - references/output-schema.md
+guardrails:
+  max_auto_risk: R1
+

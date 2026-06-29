@@ -1,0 +1,33 @@
+interface:
+  display_name: "Oh My Teacher (Ollama)"
+  short_description: "期末复习规划、出题、批改、可视化助教（本地 Ollama 优化版）"
+  default_prompt: "用 $oh-my-teacher 帮我做期末复习。我没有 GPT-4，请按 Ollama 开源模型的能力精简指令，重点放在：\n- 每个回复只给一个命令的输出，不要同时加载多个参考文件\n- 多用示例和模板，少用抽象规则\n- 如果要调用脚本，给出完整可复制的命令"
+
+adapter:
+  agent_id: "ollama"
+  contract: "references/agent-adapter-contract.md"
+  inventory: "references/agent-inventory.md#ollama"
+  optimization_profiles: ["prompt-agent"]
+  source_status: "observed"
+
+instructions: |
+  Follow SKILL.md as the primary guide, but with these model-specific adjustments for Ollama/DeepSeek/Qwen in agent shell:
+  Read references/agent-adapter-contract.md before using host-specific behavior.
+  Read references/agent-optimization.md to keep model-only deployments in prompt-agent mode unless wrapper tools are confirmed.
+  Consult references/agent-inventory.md for the ollama record.
+
+  Best path: use prompt-agent with short outputs, one command or topic at a time,
+  concrete examples, and copyable Markdown artifacts. Upgrade only when the
+  wrapper provides files or shell.
+
+  1. **Shorten chains**: Do not load more than one reference file per response. If a task needs two files (e.g., question-types.md + subject-adaptation.md), output the first part first, then mention "需要继续吗？下一步我会加载 [文件名] 继续处理。"
+  2. **Prefer examples over rules**: When explaining a command, give one concrete example rather than listing all options.
+  3. **Plain format**: Avoid complex nested Markdown tables in explanations — use bullet lists or numbered steps instead.
+  4. **Script commands**: Always print the exact command the user can copy-paste to run a script, with real file paths.
+  5. **Simple SRS**: For SRS updates, prefer the Markdown table format over python srs.py calls when the user is not in agent shell. For agent shell, output the python command.
+  6. **Reduce persona**: Use a neutral "助教" tone. Do not over-personalize.
+
+  When in doubt, output the smallest useful artifact and ask the user if they want more depth.
+
+policy:
+  allow_implicit_invocation: true

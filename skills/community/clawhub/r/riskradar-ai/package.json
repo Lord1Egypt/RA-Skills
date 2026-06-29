@@ -1,0 +1,29 @@
+{
+  "name": "riskradar-ai-skill",
+  "version": "1.0.1",
+  "description": "AI Code Review and Code Risk Review quality gate for Git Diff, release readiness, regression testing, security testing, dependency impact, runtime risk, LLM testing, Agentic AI risk, and RAG security.",
+  "main": "SKILL.md",
+  "keywords": [
+    "code-risk-review",
+    "ai-code-review",
+    "git-diff-review",
+    "quality-gate",
+    "regression-testing",
+    "test-strategy",
+    "runtime-risk",
+    "dependency-impact",
+    "security-testing",
+    "performance-risk",
+    "agentic-ai-risk",
+    "rag-security",
+    "llm-testing",
+    "qa-automation",
+    "release-readiness",
+    "clawhub",
+    "openclaw",
+    "ai-testing",
+    "qa-automation"
+  ],
+  "author": "start-fish",
+  "license": "MIT"
+}

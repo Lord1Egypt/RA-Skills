@@ -11,31 +11,33 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineering reviewers use this skill to assess architecture changes before merging, including ADR compliance, coupling, invariant conflicts, principle checks, and follow-up actions. <br>
+Developers and engineering teams use this skill to review system design changes, refactors, new modules, dependency restructuring, ADR compliance, coupling, invariants, and architectural trade-offs before merging. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Broad architecture and design trigger wording may activate the skill during general design discussions. <br>
-Mitigation: Review the triggers before installing and invoke the skill for explicit architecture, ADR, coupling, or structural design reviews. <br>
-Risk: Architecture recommendations can be treated as final decisions without enough human review. <br>
-Mitigation: Require evidence-backed findings and keep invariant conflicts escalated to a human decision maker before accepting preserve, layer, or revise options. <br>
+Risk: Broad triggers such as architecture, design, ADR, coupling, patterns, and principles may activate the skill during general design discussions. <br>
+Mitigation: Disable the skill or narrow triggers when architecture review should run only on explicit review requests. <br>
+Risk: The skill can produce architectural recommendations that may be incomplete or unsuitable for a specific repository context. <br>
+Mitigation: Treat findings as review guidance and require human engineering review before relying on recommendations or changing design decisions. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-pensive-architecture-review) <br>
-- [OpenClaw homepage](https://github.com/athola/claude-night-market/tree/master/plugins/pensive) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-pensive-architecture-review) <br>
+- [Night Market pensive plugin](https://github.com/athola/claude-night-market/tree/master/plugins/pensive) <br>
+- [FPF Framework](https://github.com/ailev/FPF) <br>
+- [quint-code](https://github.com/m0n0x41d/quint-code) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Analysis, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with checklists, review findings, diagrams, recommendations, and inline shell commands] <br>
+**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
+**Output Format:** [Markdown with checklists, diagrams, tables, recommendations, and inline shell commands] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ADR audit results, before/after interaction maps, invariant conflict options, principle-check findings, and approve/block recommendations.] <br>
+**Other Properties Related to Output:** [May include ADR audit results, coupling analysis, invariant conflict options, principle checks, risk summaries, and follow-up actions.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata) <br>
+1.9.13 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

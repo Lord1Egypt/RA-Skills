@@ -1,0 +1,27 @@
+# 多角度展示 Prompt 模板 v1
+# 需配合 source_image（产品实拍）+ img2img，prompt_strength ≈ 0.58
+# 占位符 {product} = 产品名称
+
+## front_view（正视图）
+The same {product}, straight-on front view, eye-level camera, symmetrical composition, studio product photography, sharp focus on product details, e-commerce gallery shot
+
+## side_view（侧视图）
+The same {product}, pure side profile view, 90-degree lateral angle, clean studio lighting, product silhouette and thickness clearly visible
+
+## top_view（俯视图）
+The same {product}, overhead flat lay, top-down 90-degree bird's eye view, product centered on clean surface, even studio lighting
+
+## back_view（背视图）
+The same {product}, rear view showing back side, same studio setup and lighting as reference, product design consistency maintained
+
+## three_quarter_view（45° 三维视角）
+The same {product}, three-quarter angle view, 45-degree perspective showing depth and dimension, professional e-commerce product photography
+
+## other_angles（其他角度）
+The same {product}, alternative gallery angle, slightly rotated perspective (about 30 degrees), complementary product shot for listing carousel
+
+## detail_closeup（细节特写）
+The same {product}, macro close-up detail shot highlighting material texture, stitching, buttons or logo area, shallow depth of field, studio lighting
+
+## img2img 一致性后缀（自动追加）
+, maintain exact same product design, color, material, proportions and branding as reference image

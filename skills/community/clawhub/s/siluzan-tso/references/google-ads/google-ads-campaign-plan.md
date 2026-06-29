@@ -27,7 +27,7 @@
 - 可执行真相只有 **JSON**（`assets/campaign-create-template.json` 同构）；Markdown 只读投影。
 - **Agent Read 顺序（建系列前必做）**：① `assets/campaign-create-template.json`（复制/改写的结构真相源）→ ② `assets/campaign-create-template.md`（字段说明与踩坑）。**禁止**只读 `.md` 凭印象拼 JSON。
 - 改需求 **只改 JSON**，再 `campaign-validate`，再刷新 Markdown。
-- **PMax 系列创建**走独立流水线（勿用本文件 JSON 模板）：**先 Read `assets/pmax-create-template.json`** + `assets/pmax-create-template.md` + `ad pmax-validate` / `ad pmax-create`；**Lead Gen/B2B 方案默认含 `campaignExtensions.leadForm`**（方案 Markdown 须单列表单）；运营诊断见 `google-ads/rules/google-ads-pmax-guide.md`。
+- **PMax 系列创建**走独立流水线（勿用本文件 JSON 模板）：**先 Read `assets/pmax-create-template.json`** + `assets/pmax-create-template.md` + `ad pmax-validate` / `ad pmax-create`；**Lead Gen/B2B 方案默认含 `campaignExtensions.leadForm`**（方案 Markdown 须单列表单）；运营诊断见 `references/google-ads/rules/google-ads-pmax-guide.md`。
 - 搜索网络：仅 Google 搜索（`TargetSearchNetwork`/`TargetContentNetwork`/`TargetPartnerSearchNetwork` 均为 false）。
 
 ---
@@ -38,14 +38,14 @@
 |----|------|-----------|
 | 1 | `list-accounts` 锁定 `account` / `customerName` / 币种 | `references/accounts/currency.md` |
 | 2 | 可选 `rag query`；`keyword` / `keyword geo-list` 拓词 | `references/analytics/keyword-planner-workflows.md` |
-| 3 | 按分层规则写入 `KeywordsForBatchJob`（Exact/Phrase/Broad）；**否词单独写** `NegativeKeywordsForBatchJob`（勿与正向词混放） | `google-ads/rules/google-ads-keyword-taxonomy.md`（参考，非 CLI 强制） |
+| 3 | 按分层规则写入 `KeywordsForBatchJob`（Exact/Phrase/Broad）；**否词单独写** `NegativeKeywordsForBatchJob`（勿与正向词混放） | `references/google-ads/rules/google-ads-keyword-taxonomy.md`（参考，非 CLI 强制） |
 | 4 | 复制 `campaign-create-template.json` 并填 `campaign`（预算/出价/地域/否词≥20/RSA/附加信息） | **`assets/campaign-create-template.json`** + `assets/campaign-create-template.md` |
 | 5 | **`ad campaign-validate --config-file <json>`**（失败只改 JSON；超长见下文「超长人工确认」） | 下文「校验」 |
 | 6 | 输出：**JSON 代码块** → **Markdown**（`google-ads-launch-plan-template.md` 正文）→ 待确认 | — |
-| 7 | 用户确认后 **`ad campaign-create`** | `google-ads/google-ads.md`|
+| 7 | 用户确认后 **`ad campaign-create`** | `references/google-ads/google-ads.md`|
 | 8 | 每隔5s 获取创建结果| `ad batch get --id <taskId> --config-file ./campaign.json` |
 | 9 | 创建失败根据失败原因修改json重新走创建流程，部分成功/成功/部分失败：都调用来做最后一步调整 `ad batch diff --batch-id <taskId> --config-file ./campaign.json` | |
-| 10 | 输出所有失败的内容与原因，并询问用户是否需要修改后单独添加到系列中如果用户要求是则读取 `references\google-ads/google-ads.md` 来获取对应缺失部分的创建命令 |
+| 10 | 输出所有失败的内容与原因，并询问用户是否需要修改后单独添加到系列中如果用户要求是则读取 `references\references/google-ads/google-ads.md` 来获取对应缺失部分的创建命令 |
 
 
 
@@ -59,25 +59,25 @@
 
 | 文档                                                   | 用途                                                            |
 | ------------------------------------------------------ | --------------------------------------------------------------- |
-| `google-ads/rules/google-ads-keyword-taxonomy.md`      | 核心/长尾与匹配块**建议**（Agent 参考，CLI 不强制）             |
-| `google-ads/rules/google-ads-compliance.md`            | 词与文案合规                                                    |
-| `google-ads/rules/sensitive-industries.md`             | 敏感行业（若相关）                                              |
-| `google-ads/rules/google-ads-launch-plan-template.md`  | 用户可见 Markdown 结构与 RSA/否词表                             |
-| `google-ads/rules/google-ads-creative-optimization.md` | RSA 创意主题；`campaign-validate` 强制 **15** 标题 + **4** 描述 |
+| `references/google-ads/rules/google-ads-keyword-taxonomy.md`      | 核心/长尾与匹配块**建议**（Agent 参考，CLI 不强制）             |
+| `references/google-ads/rules/google-ads-compliance.md`            | 词与文案合规                                                    |
+| `references/google-ads/rules/sensitive-industries.md`             | 敏感行业（若相关）                                              |
+| `references/google-ads/rules/google-ads-launch-plan-template.md`  | 用户可见 Markdown 结构与 RSA/否词表                             |
+| `references/google-ads/rules/google-ads-creative-optimization.md` | RSA 创意主题；`campaign-validate` 强制 **15** 标题 + **4** 描述 |
 | **`assets/campaign-create-template.json`** + `assets/campaign-create-template.md` | JSON 结构（先 Read `.json`）+ 字段说明 |
 
 ### 按需（触及时再读）
 
 | 文档                                                                 | 何时                                                        |
 | -------------------------------------------------------------------- | ----------------------------------------------------------- |
-| `google-ads/rules/google-ads-keyword-strategy.md`                    | 分组/匹配/否定词策略争议                                    |
-| `google-ads/rules/google-ads-campaign-optimization.md`               | 出价策略、预算、学习期                                      |
-| `google-ads/rules/google-ads-landing-page-discovery-via-webfetch.md` | 仅首页、需推断 PDP/PLP                                      |
-| `google-ads/rules/google-ads-conversion-architecture.md`             | 转化/EC/归因说明                                            |
-| `google-ads/rules/google-ads-keyword-optimization.md`                | 上线后优化，非首建                                          |
-| `google-ads/rules/google-ads-account-audit.md`                       | 账户诊断，非首建                                            |
-| `google-ads/rules/google-ads-audience-strategy.md`                   | 受众/RLSA                                                   |
-| `google-ads/rules/google-ads-pmax-guide.md`                          | PMax 运营/诊断；**创建**见 `assets/pmax-create-template.md` |
+| `references/google-ads/rules/google-ads-keyword-strategy.md`                    | 分组/匹配/否定词策略争议                                    |
+| `references/google-ads/rules/google-ads-campaign-optimization.md`               | 出价策略、预算、学习期                                      |
+| `references/google-ads/rules/google-ads-landing-page-discovery-via-webfetch.md` | 仅首页、需推断 PDP/PLP                                      |
+| `references/google-ads/rules/google-ads-conversion-architecture.md`             | 转化/EC/归因说明                                            |
+| `references/google-ads/rules/google-ads-keyword-optimization.md`                | 上线后优化，非首建                                          |
+| `references/google-ads/rules/google-ads-account-audit.md`                       | 账户诊断，非首建                                            |
+| `references/google-ads/rules/google-ads-audience-strategy.md`                   | 受众/RLSA                                                   |
+| `references/google-ads/rules/google-ads-pmax-guide.md`                          | PMax 运营/诊断；**创建**见 `assets/pmax-create-template.md` |
 | `references/google-ads/pmax-api.md`                                  | PMax 网关路径与 Search API 边界                             |
 
 复述给用户：**3–5 条**与本次任务相关的合规/策略要点即可，无需罗列全部文件名。
@@ -112,5 +112,5 @@ validate 与 create **共用** `runCampaignCreateValidation`：词面规范化 +
 
 ## 已上线后的修改
 
-- **勿**用 `campaign-create` 覆盖已有系列；用 `ad campaign-edit` / `adgroup-*` / `keyword-*` / `ad-edit` 等（见 `google-ads/google-ads.md`）。
+- **勿**用 `campaign-create` 覆盖已有系列；用 `ad campaign-edit` / `adgroup-*` / `keyword-*` / `ad-edit` 等（见 `references/google-ads/google-ads.md`）。
 - 若属「推倒重建」：更新 JSON → validate → 新系列 `campaign-create` 或删系列后重提。

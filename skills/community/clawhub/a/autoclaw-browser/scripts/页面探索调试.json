@@ -1,0 +1,33 @@
+{
+  "name": "页面元素探索",
+  "description": "诊断工具：探索任意页面的按钮/链接/输入框，定位元素坐标。调试自动化脚本时使用。",
+  "version": "1.0",
+  "steps": [
+    {
+      "tool": "claw_get_page_structure",
+      "args": {
+        "includeLinks": true,
+        "includeButtons": true,
+        "includeInputs": true,
+        "maxItems": 20
+      },
+      "comment": "获取页面全貌"
+    },
+    {
+      "comment": "如需精确定位某类元素，用 claw_find_elements",
+      "examples": [
+        "claw_find_elements selector='button' limit=10",
+        "claw_find_elements selector='[class*=like],[aria-label*=赞]' limit=5",
+        "claw_find_elements selector='a[href]' limit=20"
+      ]
+    },
+    {
+      "comment": "确认元素位置用 claw_scroll_to_element（黄色高亮2秒）",
+      "example": "claw_scroll_to_element selector='#submit-btn'"
+    },
+    {
+      "comment": "确认坐标后用 claw_smart_click 点击",
+      "example": "claw_smart_click x=960 y=620"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "name": "相关方登记册",
+  "description": "记录项目所有相关方及其角色、影响力、参与方式和沟通需求。结构简单，适合表格填充。",
+  "version": "1.0",
+  "output_filename": "相关方登记册_{project_name}.md",
+  "sections": [
+    {
+      "key": "header",
+      "title": "相关方登记册",
+      "type": "fields",
+      "description": "文档头部信息",
+      "fields": [
+        {"key": "project_name", "label": "项目名称", "type": "text", "hint": ""},
+        {"key": "prepared_by", "label": "编制人", "type": "text", "hint": ""},
+        {"key": "date", "label": "编制日期", "type": "date", "hint": ""}
+      ]
+    },
+    {
+      "key": "register",
+      "title": "相关方列表",
+      "type": "table",
+      "description": "所有相关方的详细信息表格。",
+      "columns": [
+        "序号",
+        "相关方名称",
+        "角色",
+        "部门/组织",
+        "影响力（高/中/低）",
+        "关注度（高/中/低）",
+        "参与方式",
+        "沟通需求",
+        "备注"
+      ],
+      "rows": 0,
+      "hint": "至少识别以下角色：项目发起人、项目经理、团队成员、业务方、审批方、供应商。影响力与关注度可参考项目管理网格（Power-Interest Grid）分类。"
+    },
+    {
+      "key": "engagement",
+      "title": "相关方参与策略",
+      "type": "rich_text",
+      "description": "根据相关方的权力-利益网格制定差异化的参与和沟通策略。",
+      "reference_sources": ["register"],
+      "hint": "按象限分组描述：高权力高利益（重点管理）、高权力低利益（保持满意）、低权力高利益（随时告知）、低权力低利益（最小投入）"
+    },
+    {
+      "key": "communication",
+      "title": "沟通计划",
+      "type": "table",
+      "description": "与各相关方的沟通方式和频率安排。",
+      "columns": ["沟通对象", "沟通内容", "方式", "频率", "负责人"],
+      "rows": 5,
+      "hint": "应包括：周报（团队+管理层）、里程碑汇报（发起人）、专题会议（按需）、验收会议（业务方）"
+    }
+  ]
+}

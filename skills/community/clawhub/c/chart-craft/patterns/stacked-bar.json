@@ -1,0 +1,11 @@
+{
+  "name": "stacked-bar",
+  "label": "堆叠柱状图",
+  "description": "展示总量和分量的构成，适合多层级对比",
+  "chart_type": "stacked-bar",
+  "features": ["hover_tooltip", "data_labels", "legend_toggle", "percentage_mode"],
+  "mode": "absolute",
+  "animation": true,
+  "max_categories": 20,
+  "max_series": 10
+}

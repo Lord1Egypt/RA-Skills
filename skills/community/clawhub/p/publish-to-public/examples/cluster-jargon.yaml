@@ -1,0 +1,85 @@
+# Cluster/org/codename jargon patterns (Axioma Stellaris-specific).
+#
+# ⚠️  WARNING: These patterns are SENSITIVE. They can destroy innocent code
+# (e.g. a user with a file named merlin.py or a comment mentioning L9 Hub
+# in a legitimate monitoring context).
+#
+# Load this config ONLY when you know your project uses Axioma Stellaris
+# codenames and you want them stripped. Otherwise, the generic defaults
+# in axiom-rebrand are safer.
+#
+# Usage:
+#   axiom-rebrand --src <SRC> --dst <DST> \
+#     --config examples/cluster-jargon.yaml
+#   # OR
+#   axiom-rebrand --src <SRC> --dst <DST> --include-sensitive
+#
+# To preview without writing:
+#   axiom-rebrand --src <SRC> --dst <DST> \
+#     --config examples/cluster-jargon.yaml --dry-run
+
+jargon:
+  # Cluster codename (e.g. "Axioma Stellaris", "Axioma Hub")
+  - pattern: '\bAxioma\s*Stellaris\b'
+    replacement: ''
+
+  # Generic cluster/org codenames
+  - pattern: '\bcluster\s+\w+(?:\s+\w+)?\s+(?:Stellaris|Hub|Group|Team)\b'
+    replacement: ''
+
+  # Standalone "cluster" — used in legal docs (e.g. "agents du cluster")
+  # ⚠️ DANGER: "cluster" is a common English word (computing, biology, etc.)
+  # Only safe if your project doesn't use it as a normal word
+  - pattern: '\bcluster\b'
+    replacement: ''
+
+  # L9 Hub (Axioma's L9 layer) — only safe if your project doesn't use
+  # "L9" or "Hub" as a legitimate product name
+  - pattern: '\bL9\s+Hub\b'
+    replacement: ''
+
+  # "interne" / "interne_cluster" file naming convention
+  - pattern: 'interne[_-]cluster'
+    replacement: ''
+
+  # Agent emojis (Axioma Stellaris uses 🐺 Merlin and 🌬️ Souleymane)
+  # These CAN appear in test data (e.g. Unicode test cases) — use with care
+  - pattern: '🐺'
+    replacement: ''
+  - pattern: '🌬️'
+    replacement: ''
+
+  # Latin motto and "In Altum" signature
+  - pattern: '^[#]?\s*_In Altum[^\n]*$'
+    replacement: ''
+  - pattern: '\bIn\s+Altum\b'
+    replacement: ''
+
+  # Axioma-specific codename markers
+  - pattern: '\bpremier\s+jet\b'
+    replacement: 'first version'
+  - pattern: '\(premier\s+jet\)'
+    replacement: ''
+  - pattern: '\(PREMIER\s+JET\)'
+    replacement: ''
+
+  # Merlin / Souleymane standalone (sans L9 Hub suffix)
+  - pattern: '\bMerlin\b'
+    replacement: ''
+  - pattern: '\bSouleymane\b'
+    replacement: ''
+
+  # Morgana / Ezekiel / other agent names
+  - pattern: '\bMorgana\b'
+    replacement: ''
+  - pattern: '\bEzekiel\b'
+    replacement: ''
+  # L8/L9/L10 Hub Central / Deep Memory Hub (Axioma layer names)
+  - pattern: '\bL8\s+Hub\s+Central\b'
+    replacement: ''
+  - pattern: '\bL9\s+Deep\s+Memory\s+Hub\b'
+    replacement: ''
+  - pattern: '\bL10\b'
+    replacement: ''
+  - pattern: '\bL8\s+Central\b'
+    replacement: ''

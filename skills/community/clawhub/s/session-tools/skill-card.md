@@ -1,5 +1,5 @@
 ## Description: <br>
-Manage Claude Code sessions by finding IDs, searching history, importing, summarizing, analyzing, classifying, compressing, deleting, repairing, and renaming sessions. <br>
+Claude Session helps agents inspect, summarize, move, repair, archive, and delete Claude Code session files. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -7,36 +7,36 @@ This skill is ready for commercial/non-commercial use. <br>
 [drumrobot](https://clawhub.ai/user/drumrobot) <br>
 
 ### License/Terms of Use: <br>
-MIT-0 <br>
+MIT <br>
 
 
 ## Use Case: <br>
-Developers using Claude Code use this skill to inspect, organize, summarize, recover, compress, move, and delete local session history. It is intended for session maintenance and knowledge extraction workflows where operators can review the selected project and session before taking action. <br>
+Developers and engineers use this skill to manage Claude Code session history, including finding session IDs, listing and searching transcripts, summarizing or analyzing sessions, moving sessions between projects, repairing broken JSONL structure, and cleaning up dead or obsolete sessions. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can read and summarize Claude Code session history that may contain secrets, credentials, private prompts, or sensitive business context. <br>
-Mitigation: Review the exact project and session before importing, summarizing, analyzing, syncing, or forwarding session content, and avoid processing sessions that contain sensitive material. <br>
-Risk: Some workflows can rewrite, move, compress, or delete local session files. <br>
-Mitigation: Back up important sessions and use preview, dry-run, or check-only modes when available before running destructive or bulk cleanup actions. <br>
-Risk: The security evidence reports weak safety gates for operations over Claude session history. <br>
-Mitigation: Require operator confirmation for the target project/session and for destructive actions such as classify --execute, destroy, repair, compress, or cleanup. <br>
+Risk: The skill can read, move, rewrite, delete, and persist sensitive Claude session history. <br>
+Mitigation: Review target session IDs before use and avoid forwarding or storing transcripts that contain secrets, credentials, personal data, or proprietary work. <br>
+Risk: State-changing workflows such as repair, destroy, migrate, purge, archive, classify --execute, and archive with RAG can alter or remove session data. <br>
+Mitigation: Use dry-run or confirmation paths where available and back up important sessions before executing destructive or persistent operations. <br>
+Risk: Import, summarize, analyze --sync, classify --execute, and RAG-related archive workflows may copy transcript content into other tools or stores. <br>
+Mitigation: Limit these workflows to intended sessions and redact sensitive content before sharing or long-term persistence. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/drumrobot/session-tools) <br>
+- [Claude Session on ClawHub](https://clawhub.ai/drumrobot/claude-session) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration, text] <br>
-**Output Format:** [Markdown guidance with inline shell commands, MCP tool calls, tables, and summaries] <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown with inline shell commands, tables, and concise operational guidance] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read, summarize, rewrite, move, or delete Claude Code session JSONL files depending on the selected workflow.] <br>
+**Other Properties Related to Output:** [May invoke local scripts or MCP tools that inspect, move, rewrite, delete, or persist Claude session JSONL files.] <br>
 
 ## Skill Version(s): <br>
-0.1.0 (source: server release evidence) <br>
+0.3.1 (source: release metadata and changelog, released 2026-06-13) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

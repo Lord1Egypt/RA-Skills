@@ -190,10 +190,42 @@ def test_render_procedural_dataset():
     print("Generated files:", rendered_images)
     assert len(rendered_images) == 3
 
+def test_render_format_conversion():
+    repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    test_blend = os.path.join(repo_root, "assets", "test.blend")
+    output_dir = os.path.join(repo_root, "output")
+    output_path = os.path.join(output_dir, "test_render_conv.jpg")
+    
+    if os.path.exists(output_path):
+        os.remove(output_path)
+        
+    if not os.path.exists(test_blend):
+        print("ERROR: Could not find test.blend. Skipping format conversion test.")
+        return
+        
+    print("\n--- Testing Render Format Conversion (.png -> .jpg) ---")
+    res = render_procedural_scene_fast(
+        blend_file=test_blend,
+        output_path=output_path,
+        parameters={"AgentControl": 0.5}
+    )
+    print("Format Conversion Result:", json.dumps(res, indent=2))
+    
+    assert res["status"] == "success"
+    assert os.path.exists(output_path), "Converted file does not exist!"
+    assert output_path in res["output"] or res["output"] == output_path
+    
+    # Verify it can be opened as a JPEG by PIL
+    from PIL import Image
+    with Image.open(output_path) as img:
+        assert img.format == "JPEG"
+    print("Format Conversion verified successfully (saved as JPEG)!")
+
 if __name__ == "__main__":
     test_blender_skill()
     test_render_procedural_scene()
     test_generate_dataset()
     test_analyze_dataset()
     test_render_procedural_dataset()
+    test_render_format_conversion()
 

@@ -1,0 +1,6 @@
+{
+  "ollama_url": "http://localhost:11434/api/generate",
+  "model_name": "qwen2.5:7b",
+  "temperature": 0.75,
+  "timeout_seconds": 10
+}

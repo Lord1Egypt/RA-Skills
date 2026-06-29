@@ -10,12 +10,16 @@ When a user asks how to use the paid plugin, how to configure it for the first t
 Use one unified rule set:
 
 1. Never ask for configuration that is already present in environment variables.
-2. Local and cloud share the same recommended defaults and overall collection flow.
-3. Cloud only adds two extra required values: `id` and `token`.
-4. Local mode may only call `scripts/collect_and_export_loop.sh`.
-5. Cloud mode may only call `scripts/cloud_dispatch_loop.sh`.
-6. Deduplication fields are resolved by the connector/plugin, never by this skill.
-7. Personal bitable export must remain `exportMode=personal`; deduplication is what makes the new plugin choose its smart personal export internally.
+2. Do not ask the user to manually copy connector credentials during normal Agent-led use.
+3. Connector authorization is resolved by `scripts/ensure_connector_auth.sh` from explicit values, App state, connector state, or a generated website login confirmation link.
+4. Local and cloud are internal execution modes, not user-facing setup choices.
+5. Local mode may only call `scripts/collect_and_export_loop.sh`.
+6. Cloud mode may only call `scripts/cloud_dispatch_loop.sh`.
+7. Advanced filters, including time-based filters, must be passed through inside `payload.filters`.
+8. Do not invent one universal filter schema in this skill; different platforms and methods may require different filter keys or value formats.
+9. If the exact filter shape is unclear, check `GET /api/filters` first before guessing.
+10. Deduplication fields are resolved by the connector/plugin, never by this skill.
+11. Personal bitable export must remain `exportMode=personal`; deduplication is what makes the new plugin choose its smart personal export internally.
 
 ## Asking Rules
 
@@ -27,8 +31,6 @@ Ask only for user-facing defaults that are still missing after checking:
 - `defaultDetailSpeed`
 - `defaultDeduplicationEnabled`
 - `defaultDeduplicationStrategy`
-- `defaultCloudDeviceId` in cloud mode only
-- `defaultCloudToken` in cloud mode only
 
 Do not ask for:
 
@@ -36,17 +38,25 @@ Do not ask for:
 - `WEB_COLLECTION_CONNECTION_MODE`
 - `WEB_COLLECTION_BRIDGE_URL`
 - `WEB_COLLECTION_CLOUD_BASE_URL`
-- `WEB_COLLECTION_CLOUD_DEVICE_ID` when already present
-- `WEB_COLLECTION_CLOUD_TOKEN` when already present
+- `WEB_COLLECTION_CLOUD_DEVICE_ID`
+- `WEB_COLLECTION_CLOUD_TOKEN`
 - `WEB_COLLECTION_BRIDGE_CMD`
 
 ## Shared Flow
 
-1. Run `scripts/preflight_check.sh`
+1. Run the collection entry point, which calls `scripts/ensure_connector_auth.sh`
 2. Persist any user-provided defaults if this turn supplies them
-3. Ask only for missing user-facing values
+3. If authorization is required, give the generated website login confirmation link and ask the user to click it
 4. Build the payload
-5. Dispatch through the mode-specific script only
+5. If the user asked for time filtering or other advanced filtering, put it inside `filters` and preserve the platform/method-native shape
+6. Dispatch through the mode-specific script only
+
+## Filter Rules
+
+- Use `--filters-json '<json-object>'` when calling `scripts/run.sh`.
+- This becomes `payload.filters` in the final collect request.
+- Time filtering is not a fixed top-level skill argument. If supported, pass it through as part of `filters`, for example `startTime` / `endTime`.
+- Some methods may use other native shapes instead, such as `sortBy`, relative publish-time options, or other platform-specific keys. Preserve those keys unchanged.
 
 ## Deduplication Defaults
 

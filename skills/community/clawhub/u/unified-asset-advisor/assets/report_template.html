@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>资产配置建议报告 — {{REPORT_DATE}}</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d28;
+    --card-hover: #1f2235;
+    --border: #2a2d3a;
+    --text: #e1e4ed;
+    --text-secondary: #8b8fa3;
+    --up: #e74c3c;
+    --down: #27ae60;
+    --accent: #f0b90b;
+    --accent-blue: #4da6ff;
+    --tag-up-bg: rgba(231, 76, 60, 0.12);
+    --tag-down-bg: rgba(39, 174, 96, 0.12);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  h1 { font-size: 28px; margin-bottom: 8px; color: #fff; }
+  h2 { font-size: 20px; margin: 32px 0 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); color: var(--accent-blue); }
+  h3 { font-size: 16px; margin: 20px 0 10px; color: #fff; }
+  .subtitle { color: var(--text-secondary); font-size: 14px; margin-bottom: 24px; }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 12px; margin-left: 8px; }
+  .badge-akshare { background: rgba(77, 166, 255, 0.15); color: var(--accent-blue); }
+
+  /* Asset Cards */
+  .asset-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 24px 0; }
+  .asset-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.2s;
+  }
+  .asset-card:hover { background: var(--card-hover); transform: translateY(-2px); }
+  .asset-card .label { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; }
+  .asset-card .direction {
+    font-size: 22px; font-weight: 700; margin-bottom: 4px;
+  }
+  .asset-card .direction.up { color: var(--up); }
+  .asset-card .direction.down { color: var(--down); }
+  .asset-card .weight { font-size: 28px; font-weight: 800; margin-bottom: 8px; }
+  .asset-card .confidence { font-size: 12px; color: var(--text-secondary); }
+  .asset-card .logic { font-size: 13px; color: var(--text-secondary); margin-top: 8px; line-height: 1.5; }
+
+  .ppi-highlight { display: none; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th { background: var(--card); color: var(--text-secondary); padding: 10px 12px; text-align: left; font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--border); }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  .up { color: var(--up); font-weight: 600; }
+  .down { color: var(--down); font-weight: 600; }
+
+  /* Tags */
+  .tag-up { display: inline-block; background: var(--tag-up-bg); color: var(--up); padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; margin: 2px 4px 2px 0; }
+  .tag-down { display: inline-block; background: var(--tag-down-bg); color: var(--down); padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; margin: 2px 4px 2px 0; }
+
+  /* Chain diagram */
+  .chain { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin: 16px 0; }
+  .chain-row { display: flex; align-items: center; gap: 12px; margin: 8px 0; }
+  .chain-box {
+    background: rgba(77, 166, 255, 0.08); border: 1px solid rgba(77, 166, 255, 0.2);
+    border-radius: 8px; padding: 10px 16px; min-width: 180px;
+  }
+  .chain-box.current { background: rgba(240, 185, 11, 0.1); border-color: rgba(240, 185, 11, 0.3); }
+  .chain-arrow { color: var(--text-secondary); font-size: 18px; }
+
+  /* Strategy boxes */
+  .strategy-box {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 16px; margin: 12px 0;
+  }
+  .strategy-box .title { font-weight: 700; margin-bottom: 8px; }
+
+  /* Risk */
+  .risk-box {
+    background: rgba(231, 76, 60, 0.06); border: 1px solid rgba(231, 76, 60, 0.2);
+    border-radius: 10px; padding: 16px; margin: 16px 0;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .asset-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    body { padding: 16px; }
+    .asset-grid { grid-template-columns: 1fr; }
+  }
+
+  .footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 12px; text-align: center; }
+</style>
+</head>
+<body>
+
+<h1>资产配置建议报告</h1>
+<div class="subtitle">
+  报告日期：{{REPORT_DATE}} <span class="badge badge-akshare">数据源：AKShare（国家统计局）</span> 生成时间：{{GENERATED_TIME}}
+</div>
+
+<!-- Macro Summary -->
+<h2>一、宏观经济概况</h2>
+{{MACRO_SUMMARY}}
+<h3>中国宏观指标</h3>
+{{CHINA_MACRO_TABLE}}
+<h3>全球宏观指标</h3>
+{{GLOBAL_MACRO_TABLE}}
+
+<!-- Asset Cycle -->
+<h2>二、大类资产周期判断</h2>
+<div class="asset-grid">
+  {{ASSET_CARDS}}
+</div>
+{{ASSET_DETAIL}}
+
+<!-- Industries -->
+<h2>三、重点行业分析</h2>
+<h3>上升行业</h3>
+{{UP_INDUSTRIES}}
+<h3>下降行业</h3>
+{{DOWN_INDUSTRIES}}
+
+<!-- Industry Chains -->
+{{INDUSTRY_CHAINS}}
+
+<!-- Operation Advice -->
+<h2>四、品种操作建议</h2>
+{{BOND_ADVICE}}
+{{STOCK_ADVICE}}
+{{COMMODITY_ADVICE}}
+
+<!-- Futures & Options -->
+<h2>五、期货期权策略</h2>
+{{FUTURES_ADVICE}}
+{{OPTIONS_ADVICE}}
+
+<!-- Risk -->
+<h2>六、风险提示</h2>
+<div class="risk-box">
+  {{RISK_WARNINGS}}
+</div>
+
+<div class="footer">
+  本报告基于公开市场数据由 AI 自动生成，仅供研究参考，不构成投资建议。投资有风险，入市需谨慎。<br>
+  &copy; {{REPORT_DATE}} | 数据源：AKShare（底层对接国家统计局 data.stats.gov.cn）
+</div>
+
+</body>
+</html>

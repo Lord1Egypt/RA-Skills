@@ -1,0 +1,37 @@
+{
+  "date": "2026-06-21",
+  "profile": {
+    "display_name": "Alex",
+    "city": "Beijing",
+    "age_group": "middle-school",
+    "language": "zh-CN"
+  },
+  "weather": {
+    "condition": "多云",
+    "low_c": 21,
+    "high_c": 29,
+    "rain_probability": 20,
+    "outfit": "短袖加轻薄外套。",
+    "campus_tip": "带水杯，午后注意补水。",
+    "source_url": "https://example.com/weather"
+  },
+  "quote": {
+    "primary": "重要的不是预测未来，而是做好准备。",
+    "english": "The important thing is to be ready.",
+    "author": "Pericles（意译）"
+  },
+  "general_news": [
+    {"title": "示例新闻 1", "summary": "这是用来验证版式和字段处理的原创示例摘要，不代表实时新闻。", "publisher": "Example Publisher", "published_date": "2026-06-21", "url": "https://example.com/news/1", "category": "科学"},
+    {"title": "示例新闻 2", "summary": "这是用来验证版式和字段处理的原创示例摘要，不代表实时新闻。", "publisher": "Example Publisher", "published_date": "2026-06-21", "url": "https://example.com/news/2", "category": "科学"},
+    {"title": "示例新闻 3", "summary": "这是用来验证版式和字段处理的原创示例摘要，不代表实时新闻。", "publisher": "Example Publisher", "published_date": "2026-06-21", "url": "https://example.com/news/3", "category": "科学"},
+    {"title": "示例新闻 4", "summary": "这是用来验证版式和字段处理的原创示例摘要，不代表实时新闻。", "publisher": "Example Publisher", "published_date": "2026-06-21", "url": "https://example.com/news/4", "category": "科学"}
+  ],
+  "interest_news": [
+    {"title": "示例新闻 5", "summary": "这是用来验证版式和字段处理的原创示例摘要，不代表实时新闻。", "publisher": "Example Publisher", "published_date": "2026-06-21", "url": "https://example.com/news/5", "category": "科学"},
+    {"title": "示例新闻 6", "summary": "这是用来验证版式和字段处理的原创示例摘要，不代表实时新闻。", "publisher": "Example Publisher", "published_date": "2026-06-21", "url": "https://example.com/news/6", "category": "科学"},
+    {"title": "示例新闻 7", "summary": "这是用来验证版式和字段处理的原创示例摘要，不代表实时新闻。", "publisher": "Example Publisher", "published_date": "2026-06-21", "url": "https://example.com/news/7", "category": "科学"}
+  ],
+  "study_tip": "用两分钟写下今天最重要的问题，再开始第一轮专注学习。",
+  "action_anchor": "打开第一项任务所需的材料，并完成第一小题。",
+  "reminders": ["带校园卡", "提交阅读记录"]
+}

@@ -1,0 +1,186 @@
+{
+  "id": "dishu-douyin-documentary-v1",
+  "clientName": "地鼠AI剪辑",
+  "displayName": "抖音纪实口播专业剪辑",
+  "status": "active",
+  "version": {
+    "major": 1,
+    "minor": 0,
+    "patch": 0
+  },
+  "outputTargets": [
+    "openClawTool",
+    "dishuAiCutTimeline"
+  ],
+  "narrative": {
+    "summary": "真实纪实口播剪辑风格，强调前2秒划停、真实现场证据、商业信任、克制音乐和人工终审。适合抖音短视频、项目复盘、招商获客、真实业务记录。",
+    "openingHooks": [
+      "前2秒必须给出真实冲突、结果、反差、风险或可验证证据。",
+      "第一句话避免寒暄，直接进入成年人判断或现场问题。",
+      "如果有后台、现场、客户反馈或结果画面，优先放在开头。"
+    ],
+    "storyBeats": [
+      "现场问题",
+      "关键判断",
+      "解决动作",
+      "过程证据",
+      "结果或复盘",
+      "下一步行动"
+    ],
+    "bannedMoves": [
+      "花字乱飞",
+      "无意义高频转场",
+      "鸡血BGM",
+      "夸张音效",
+      "泛鸡汤包装",
+      "虚构现场",
+      "无根据收益承诺",
+      "未经确认的客户隐私画面"
+    ]
+  },
+  "pacingRules": [
+    {
+      "name": "0-2秒划停",
+      "description": "开头必须给出结果、冲突、风险、数字、客户反馈或现场证据。禁止大家好、我到了、天气很好、给大家更新一下。",
+      "minSeconds": 0,
+      "maxSeconds": 2
+    },
+    {
+      "name": "2-5秒期待建立",
+      "description": "交代真正难点和继续看的理由，让观众知道后面能看到证据、判断或结果。",
+      "minSeconds": 2,
+      "maxSeconds": 5
+    },
+    {
+      "name": "5-12秒证据补充",
+      "description": "尽早插入现场、后台、仓库、电脑屏幕、客户沟通或项目细节，证明内容不是空讲。",
+      "minSeconds": 5,
+      "maxSeconds": 12
+    },
+    {
+      "name": "主体信息推进",
+      "description": "每3-5秒至少有一次画面或信息推进；B-roll 必须服务当前口播句子，不为热闹乱插。",
+      "minSeconds": 12,
+      "maxSeconds": 55
+    },
+    {
+      "name": "结尾复盘",
+      "description": "结尾给真实复盘、下一步动作、项目结果或风险提醒，不做空泛口号。",
+      "minSeconds": 55,
+      "maxSeconds": 90
+    }
+  ],
+  "subtitle": {
+    "fontFamily": "serif-heavy",
+    "primaryColor": "#FFFFFF",
+    "strokeColor": "#000000",
+    "maxCharsPerLine": 18,
+    "emphasisStyle": "使用 douyinSafe 预设；白字黑描边，底部居中，关键词可单独成行或加粗，但不使用花字乱飞。"
+  },
+  "visual": {
+    "aspectRatio": "4:3",
+    "colorMood": "暗调纪实，克制增强清晰度，优先真实现场质感。",
+    "cameraLanguage": "人物口播为骨架，穿插项目现场、后台证据、客户沟通、团队动作、结果对比。",
+    "preferredShots": [
+      "人物正面口播",
+      "现场全景",
+      "项目关键细节",
+      "电脑屏幕或后台截图",
+      "客户沟通但需隐私确认",
+      "仓库/直播间/办公室工作画面",
+      "结果对比",
+      "团队执行动作"
+    ],
+    "avoidedShots": [
+      "与口播无关的空镜",
+      "过度摆拍",
+      "模糊到无法识别信息的素材",
+      "未经授权的客户脸、地址、电话、合同、车牌",
+      "容易被误解为收益承诺的后台画面"
+    ]
+  },
+  "audio": {
+    "voiceVolume": "口播优先。剪辑前必须全素材转写并审计 RMS、峰值、静音比例和建议人声音量；主口播/配音稿清楚稳定，任何时候都不能被 BGM 或现场噪声盖住。主口播原声必须保留并按 recommendedVolumeDb 校正，B-roll 默认静音。",
+    "musicVolume": "BGM 默认 volumeDb -18，只做低音量铺底。",
+    "musicMood": "克制、纪录片感、轻压力、低干扰，服务真实业务记录。",
+    "bannedEffects": [
+      "夸张转场音效",
+      "鸡血鼓点",
+      "误触发的人声特效",
+      "压过口播的强节奏音乐"
+    ]
+  },
+  "riskRules": [
+    {
+      "name": "客户隐私",
+      "description": "出现客户姓名、脸、电话、微信、地址、合同、车牌、聊天记录时必须标记人工确认，默认不得直接使用。",
+      "severity": 3
+    },
+    {
+      "name": "后台数据",
+      "description": "订单、销售额、账号后台、商业数据必须确认是否可公开；无法确认时只能模糊处理或不用。",
+      "severity": 3
+    },
+    {
+      "name": "收益承诺",
+      "description": "涉及赚钱、招商、转化、效果、保证类表达时必须有事实依据，不能剪成承诺口吻。",
+      "severity": 3
+    },
+    {
+      "name": "虚构现场",
+      "description": "不得用 AI 编造项目现场、客户反馈、数据截图或不存在的业务过程。",
+      "severity": 3
+    },
+    {
+      "name": "平台合规",
+      "description": "避免绝对化、夸大、诱导、低俗、敏感关系和不可验证广告表达。",
+      "severity": 2
+    }
+  ],
+  "knowledge": [
+    {
+      "title": "default-workflow",
+      "content": "真实口播/配音剪辑必须先执行 narration_audit / auditNarrationAssets：全素材转写、声音电平、气口、口播评分和风险先完成，再输出剪辑计划和排时间线。工具执行后必须 project_validate，并让用户人工终审。",
+      "tags": [
+        "workflow",
+        "mcp",
+        "review"
+      ]
+    },
+    {
+      "title": "timeline-defaults",
+      "content": "默认 1440x1080 4:3。口播类项目先按审计结果设置 recommendedVolumeDb；BGM 默认 volumeDb -18；字幕 preset douyinSafe。只有配音/BGM 型项目才 muteAllVideoSourceAudio true，真实现场原声项目要保留经过审计的主口播音轨。B-roll 放覆盖轨，只保留有信息、有证据、有情绪或能承接口播的精华段落，默认 muted true。",
+      "tags": [
+        "timeline",
+        "subtitle",
+        "audio"
+      ]
+    },
+    {
+      "title": "douyin-retention",
+      "content": "0-2秒给划停，2-5秒给继续看的理由，5-12秒给真实证据。主体每3-5秒推进一次画面或信息。",
+      "tags": [
+        "douyin",
+        "retention",
+        "pacing"
+      ]
+    },
+    {
+      "title": "style-positioning",
+      "content": "风格目标是真实、克制、有现场感、有商业信任，而不是通用爆款模板。",
+      "tags": [
+        "style",
+        "positioning"
+      ]
+    },
+    {
+      "title": "narration-first-editing",
+      "content": "剪辑顺序是：全素材转写 → 声音审计 → 气口/停顿 → 选主口播或写配音稿 → 只保留精华段落 → 按句子匹配画面 → 字幕跟随原生口播/确认配音稿 → 导出后验证音轨存在且不为空。禁止先凭画面拼接再补声音，禁止把剪辑思路写成字幕。",
+      "tags": [
+        "narration",
+        "audio",
+        "workflow"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SLA 监控仪表板 — SLA Monitor Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f2f5;padding:20px}
+.container{max-width:1400px;margin:0 auto}
+h1{font-size:26px;color:#0f0f23}.subtitle{color:#666;font-size:12px;margin-bottom:20px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:20px}
+.card{background:#fff;border-radius:10px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.card .lbl{font-size:11px;color:#888;letter-spacing:.05em}
+.card .val{font-size:24px;font-weight:700}.card .val.ok{color:#059669}.card .val.err{color:#dc2626}.card .val.warn{color:#d97706}
+.section{background:#fff;border-radius:12px;padding:20px;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.section h2{font-size:17px;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid #e8ecf1}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media(max-width:768px){.charts{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th,td{padding:8px 10px;border-bottom:1px solid #e8ecf1;text-align:left}
+th{background:#f8fafc;font-weight:600;color:#475569}
+.badge{display:inline-block;padding:2px 6px;border-radius:3px;font-size:10px;font-weight:600}
+.badge.ok{background:#ecfdf5;color:#059669}
+.badge.err{background:#fef2f2;color:#dc2626}
+.badge.warn{background:#fffbeb;color:#d97706}
+.badge.t1{background:#ede9fe;color:#7c3aed}
+.badge.t2{background:#dbeafe;color:#2563eb}
+.badge.t3{background:#f3f4f6;color:#6b7280}
+tr:hover td{background:#f8fafc}
+canvas{max-height:280px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>📡 数据管道 SLA 监控仪表板</h1>
+<p class="subtitle" id="meta">--</p>
+<div class="cards" id="summaryCards"></div>
+<div class="section">
+<h2>📊 管道 SLA 概览</h2>
+<div class="charts">
+<div><canvas id="successChart"></canvas></div>
+<div><canvas id="tierChart"></canvas></div>
+</div>
+</div>
+<div class="section">
+<h2>📋 管道 SLA 明细</h2>
+<div style="overflow-x:auto"><table id="pipelineTable"><thead><tr>
+<th>管道名称</th><th>SLA 级别</th><th>成功率</th><th>失败率</th><th>平均耗时</th><th>最后运行</th><th>状态</th><th>告警</th>
+</tr></thead><tbody></tbody></table></div>
+</div>
+<div class="section">
+<h2>🔔 活跃告警</h2>
+<div id="alertsArea"><p style="color:#888;font-size:13px">无活跃告警</p></div>
+</div>
+</div>
+<script>
+// SLA Monitor Dashboard Template
+const SLA_DATA = {
+  generated_at: new Date().toISOString(),
+  analysis_period_days: 30,
+  global: {total_pipelines:0,overall_success_rate:0,compiant_pipelines:0,violated_pipelines:0,total_alerts:0,total_runs:0},
+  pipelines: {},
+  config: {sla_tiers:{}}
+};
+
+function render() {
+  document.getElementById('meta').textContent = '分析周期: ' + SLA_DATA.analysis_period_days + ' 天 | 生成时间: ' + new Date(SLA_DATA.generated_at).toLocaleString();
+  const g = SLA_DATA.global;
+  const pList = Object.entries(SLA_DATA.pipelines);
+  
+  document.getElementById('summaryCards').innerHTML = `
+    <div class="card"><div class="lbl">管道总数</div><div class="val">${g.total_pipelines}</div></div>
+    <div class="card"><div class="lbl">总体成功率</div><div class="val ok">${g.overall_success_rate}%</div></div>
+    <div class="card"><div class="lbl">SLA 合规</div><div class="val ok">${g.compiant_pipelines}/${g.total_pipelines}</div></div>
+    <div class="card"><div class="lbl">SLA 违规</div><div class="val ${g.violated_pipelines>0?'err':'ok'}">${g.violated_pipelines}</div></div>
+    <div class="card"><div class="lbl">活跃告警</div><div class="val ${g.total_alerts>0?'warn':'ok'}">${g.total_alerts}</div></div>
+    <div class="card"><div class="lbl">总运行次数</div><div class="val">${(g.total_runs||0).toLocaleString()}</div></div>
+  `;
+  
+  // Success rate chart
+  new Chart(document.getElementById('successChart'),{
+    type:'bar',
+    data:{labels:pList.map(([n])=>n),datasets:[{label:'成功率',data:pList.map(([,p])=>p.success_rate),
+      backgroundColor:pList.map(([,p])=>p.success_rate>=99?'#059669':p.success_rate>=95?'#d97706':'#dc2626'),borderRadius:3}]},
+    options:{scales:{y:{min:80,max:100}},plugins:{legend:{display:false}}}
+  });
+  
+  // Tier chart
+  const tiers = {tier_1_critical:0,tier_2_important:0,tier_3_normal:0};
+  pList.forEach(([,p])=>{tiers[p.sla_level]=(tiers[p.sla_level]||0)+1});
+  new Chart(document.getElementById('tierChart'),{
+    type:'doughnut',
+    data:{labels:['T1 核心','T2 重要','T3 常规'],datasets:[{data:[tiers.tier_1_critical,tiers.tier_2_important,tiers.tier_3_normal],
+      backgroundColor:['#7c3aed','#2563eb','#6b7280'],borderWidth:0}]},
+    options:{plugins:{legend:{position:'bottom'}}}
+  });
+  
+  // Pipeline table
+  const ptb = document.querySelector('#pipelineTable tbody');
+  pList.forEach(([name,p])=>{
+    const tierLbl={tier_1_critical:'T1 核心',tier_2_important:'T2 重要',tier_3_normal:'T3 常规'}[p.sla_level]||p.sla_level;
+    const tierCls={tier_1_critical:'t1',tier_2_important:'t2',tier_3_normal:'t3'}[p.sla_level]||'t3';
+    const statusCls = p.sla_status==='COMPLIANT'?'ok':'err';
+    const statusIcon = p.sla_status==='COMPLIANT'?'COMPLIANT':'VIOLATED';
+    const alertHtml = p.alerts>0?`<span style="color:#dc2626;font-weight:600">${p.alerts.length||p.alerts}</span>`:'0';
+    ptb.innerHTML += `<tr>
+      <td><strong>${name}</strong></td>
+      <td><span class="badge ${tierCls}">${tierLbl}</span></td>
+      <td>${p.success_rate}%</td>
+      <td style="color:${p.failure_rate>5?'#dc2626':'#666'}">${p.failure_rate}%</td>
+      <td>${p.avg_duration_sec||'-'}s</td>
+      <td style="font-size:10px">${p.latest_run?new Date(p.latest_run).toLocaleString():'-'}</td>
+      <td><span class="badge ${statusCls}">${statusIcon}</span></td>
+      <td>${alertHtml}</td>
+    </tr>`;
+  });
+}
+
+render();
+</script>
+</body>
+</html>

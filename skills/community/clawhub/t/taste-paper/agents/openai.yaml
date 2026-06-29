@@ -1,0 +1,8 @@
+interface:
+  display_name: "taste.skill"
+  short_description: "Strict research-paper triage."
+  brand_color: "#D92D20"
+  default_prompt: "Use $taste to strictly evaluate this paper."
+
+policy:
+  allow_implicit_invocation: true

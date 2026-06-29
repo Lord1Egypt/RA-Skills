@@ -58,11 +58,10 @@
 - `--type <single|list>` - 回放类型
 - `--origin <record|playback|vod|material>` - 回放来源
 - `--video-id <videoId>` - 视频ID（当origin为playback或vod时需要）
-- `--global-setting-enabled <Y|N>` - 是否使用通用设置
-- `--section-enabled <Y|N>` - 章节开关
 - `--playback-multiplier-enabled <Y|N>` - 倍数播放开关
 - `--playback-progress-bar-enabled <Y|N>` - 进度条开关
 - `--chat-playback-enabled <Y|N>` - 聊天互动重现开关
+- `--product-playback-enabled <Y|N>` - 商品库开关
 - `-o, --output <format>` - 输出格式
 
 **示例：**
@@ -82,20 +81,25 @@
 
 ### record convert
 
-将录制文件转存到点播（同步模式）。
+将录制文件转存到点播。同步模式通过场次ID或文件URL转存；异步模式通过录制文件ID转存。
 
 ```bash
-<CLI> record convert -c <频道ID> --file-name <文件名> [选项]
+<CLI> record convert -c <频道ID> (--session-id <场次ID>|--file-url <文件URL>) --file-name <文件名> [选项]
+<CLI> record convert -c <频道ID> --file-ids <文件ID列表> --async [选项]
 ```
 
 **参数：**
 - `-c, --channel-id <channelId>` - 频道ID（必填）
-- `--file-name <fileName>` - 转存后的文件名（必填）
-- `--session-id <sessionId>` - 源场次ID
+- `--file-name <fileName>` - 转存后的点播视频名称（同步模式必填，异步模式可选）
+- `--session-id <sessionId>` - 源场次ID（同步模式，与 `--file-url` 二选一）
+- `--file-url <fileUrl>` - 录制文件地址（同步模式，与 `--session-id` 二选一）
+- `--file-ids <fileIds>` - 录制文件ID，逗号分隔（异步模式必填，可通过 `record file list` 获取）
+- `--user-id <userId>` - 账号userId（同步模式；默认使用当前账号userId）
 - `--to-play-list <Y|N>` - 是否存入回放列表
 - `--set-as-default <Y|N>` - 是否设为默认回放
 - `--callback-url <url>` - 回调URL
-- `--async` - 使用异步模式转存
+- `--async` - 使用异步模式转存（需 `--file-ids`）
+- `-f, --force` - 跳过确认提示
 - `-o, --output <format>` - 输出格式
 
 **示例：**
@@ -104,8 +108,8 @@
 # 同步转存录制文件
 <CLI> record convert -c 2588188 --file-name "直播回放20240320" --session-id abc123
 
-# 异步转存（适用于大文件）
-<CLI> record convert -c 2588188 --file-name "直播回放" --session-id abc123 --async
+# 异步转存（适用于一次转存多个录制文件）
+<CLI> record convert -c 2588188 --file-ids "fileId1,fileId2" --async
 
 # 转存并设为默认回放
 <CLI> record convert -c 2588188 --file-name "直播回放" --session-id abc123 --set-as-default Y
@@ -168,9 +172,11 @@
 # 查询场次列表获取sessionId
 <CLI> session list -c 2588188
 
-# 依次转存各场次的录制文件
-<CLI> record convert -c 2588188 --file-name "直播01" --session-id session1 --async
-<CLI> record convert -c 2588188 --file-name "直播02" --session-id session2 --async
+# 查询录制文件获取fileId
+<CLI> record file list -c 2588188 --session-ids session1
+
+# 异步批量转存录制文件
+<CLI> record convert -c 2588188 --file-ids "fileId1,fileId2" --async
 ```
 
 ## 相关API文档

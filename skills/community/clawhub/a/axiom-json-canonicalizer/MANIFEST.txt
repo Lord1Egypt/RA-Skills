@@ -1,0 +1,11 @@
+# Manifest — axiom-json-canonicalizer (public, clean)
+# Edition: Capafy voice (zero cluster jargon)
+# Generated: 2026-06-14T20:45:38Z
+
+a87f269a1b65afe17698a19df5bd65dea0c0a5526c4762847de0a96fe347ddb7  LICENSE  (769 bytes)
+186016c4b1037f44be6db1364f2d4fd1193a83aab04f65a4ac76c4c25a072f30  README.md  (5907 bytes)
+a87d1cbb9e8f5572652eacbf6da9f3800f64fc07a4760ed334e5a06670833214  SKILL.md  (5011 bytes)
+adae14d71c29587e3e5626a11dcb3cdf42505c1865747b52facee5b6658db842  axiom_json_canonicalizer.py  (13758 bytes)
+e63dbacd4765cb70c5c1baea181453c0163f8074a32e6a4165c59b9080bf2235  dogfood_l9_output.txt  (1682 bytes)
+d8857ae29172693c7a442365e6adf473146859b23d7c2dc8b451f7d638242bdc  manifest.json  (2843 bytes)
+8eb952bfc36efd576da34fc4fbc3080d581c2dd6f285b382524b8d0e55bf0ff6  test_axiom_json_canonicalizer.py  (21673 bytes)

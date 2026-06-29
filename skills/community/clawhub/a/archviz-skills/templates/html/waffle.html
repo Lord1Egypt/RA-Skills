@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Waffle Chart</title></head>
+<body style="margin:0;background:#f5f0eb;font-family:system-ui">
+<!-- Waffle Chart — archviz-skills -->
+<!-- Use for: part-to-whole (alternative to pie), progress tracking -->
+<canvas id="c" width="500" height="320"></canvas>
+<script>
+const segments = [
+  {label:"Product",value:45,color:"#002FA7"},
+  {label:"Service",value:30,color:"#94a3b8"},
+  {label:"Other",value:25,color:"#d6d3d1"}
+];
+const ctx=document.getElementById("c").getContext("2d");
+const cols=20,rows=5,cellSize=22,gap=3,startX=30,startY=40;
+const total=segments.reduce((s,d)=>s+d.value,0);
+let idx=0;
+segments.forEach(seg=>{
+  const count=Math.round(seg.value/total*cols*rows);
+  for(let i=0;i<count;i++){
+    const col=idx%cols,row=Math.floor(idx/cols);
+    ctx.fillStyle=seg.color;
+    ctx.fillRect(startX+col*(cellSize+gap),startY+row*(cellSize+gap),cellSize,cellSize);
+    idx++;
+  }
+});
+// Legend
+let ly=20;
+segments.forEach(s=>{
+  ctx.fillStyle=s.color;ctx.fillRect(startX,rows*(cellSize+gap)+startY+ly,16,16);
+  ctx.fillStyle="#44403c";ctx.font="13px system-ui";
+  ctx.fillText(s.label+" ("+s.value+"%)",startX+24,rows*(cellSize+gap)+startY+ly+13);
+  ly+=24;
+});
+</script>
+</body></html>

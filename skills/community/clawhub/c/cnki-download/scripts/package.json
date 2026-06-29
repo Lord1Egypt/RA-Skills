@@ -1,0 +1,24 @@
+{
+  "name": "cnki-download",
+  "version": "1.0.0",
+  "description": "知网检索 + 筛选 + 排序 + 访问 + PDF 下载 pipeline（支持个人入口和高校代理入口）",
+  "type": "module",
+  "main": "search_cnki.js",
+  "scripts": {
+    "start": "node search_cnki.js",
+    "demo": "node search_cnki.js"
+  },
+  "dependencies": {
+    "playwright": "^1.45.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "cnki",
+    "知网",
+    "playwright",
+    "scraping"
+  ],
+  "license": "MIT"
+}

@@ -1,0 +1,172 @@
+{
+  "overall_score": 58.5,
+  "elapsed_seconds": 0.032,
+  "adapter": "HeartbugAdapter",
+  "metadata": {},
+  "timestamp": "2026-06-27T12:18:54+00:00",
+  "dimensions": [
+    {
+      "dimension_name": "decision_accuracy",
+      "display_name": "\u51b3\u7b56\u51c6\u786e\u6027 (\u5fc3\u866b\u4e13\u5c5e)",
+      "score": 80.0,
+      "passed": 3,
+      "failed": 2,
+      "total": 5,
+      "weight": 1.0,
+      "task_details": [
+        {
+          "task_id": "da_pain_detection",
+          "score": 1.0,
+          "passed": true,
+          "message": "\u6b63\u786e: 3/3 | shouldRespond: \u2713 (\u5b9e\u9645=False, \u9884\u671f=False); needsCare: \u2713 (\u5b9e\u9645=False, \u9884\u671f=False); shouldBeSilent: \u2713 (\u5b9e\u9645=True, \u9884\u671f=True)"
+        },
+        {
+          "task_id": "da_silent_on_uncertainty",
+          "score": 1.0,
+          "passed": true,
+          "message": "\u6b63\u786e: 2/2 | shouldRespond: \u2713 (\u5b9e\u9645=False, \u9884\u671f=False); shouldBeSilent: \u2713 (\u5b9e\u9645=True, \u9884\u671f=True)"
+        },
+        {
+          "task_id": "da_respond_normal",
+          "score": 0.5,
+          "passed": false,
+          "message": "\u6b63\u786e: 1/2 | shouldRespond: \u2713 (\u5b9e\u9645=True, \u9884\u671f=True); shouldBeSilent: \u2717 (\u5b9e\u9645=None, \u9884\u671f=False)"
+        },
+        {
+          "task_id": "da_respond_factual",
+          "score": 0.5,
+          "passed": false,
+          "message": "\u6b63\u786e: 1/2 | shouldRespond: \u2713 (\u5b9e\u9645=True, \u9884\u671f=True); shouldBeSilent: \u2717 (\u5b9e\u9645=None, \u9884\u671f=False)"
+        },
+        {
+          "task_id": "da_crisis_handling",
+          "score": 1.0,
+          "passed": true,
+          "message": "\u6b63\u786e: 2/2 | shouldRespond: \u2713 (\u5b9e\u9645=False, \u9884\u671f=False); shouldBeSilent: \u2713 (\u5b9e\u9645=True, \u9884\u671f=True)"
+        }
+      ]
+    },
+    {
+      "dimension_name": "four_step_chain",
+      "display_name": "\u56db\u6b65\u5224\u65ad\u94fe (\u5fc3\u866b\u4e13\u5c5e)",
+      "score": 62.5,
+      "passed": 3,
+      "failed": 1,
+      "total": 4,
+      "weight": 1.0,
+      "task_details": [
+        {
+          "task_id": "fc_explicit_pain",
+          "score": 0.75,
+          "passed": true,
+          "message": "\u56db\u6b65\u94fe\u6b65\u9aa4: 3/4 ({'whatIsThis': True, 'isRightAction': True, 'detectPain': False, 'shouldBeSilent': True}) | \u671f\u671b: full | compact=False"
+        },
+        {
+          "task_id": "fc_crisis_keywords",
+          "score": 0.75,
+          "passed": true,
+          "message": "\u56db\u6b65\u94fe\u6b65\u9aa4: 3/4 ({'whatIsThis': True, 'isRightAction': True, 'detectPain': False, 'shouldBeSilent': True}) | \u671f\u671b: full | compact=False"
+        },
+        {
+          "task_id": "fc_emotional_distress",
+          "score": 0.0,
+          "passed": false,
+          "message": "\u56db\u6b65\u94fe\u6b65\u9aa4: 0/4 ({'whatIsThis': False, 'isRightAction': False, 'detectPain': False, 'shouldBeSilent': False}) | \u671f\u671b: partial | compact=True"
+        },
+        {
+          "task_id": "fc_normal_query",
+          "score": 1.0,
+          "passed": true,
+          "message": "\u56db\u6b65\u94fe\u6b65\u9aa4: 0/4 ({'whatIsThis': False, 'isRightAction': False, 'detectPain': False, 'shouldBeSilent': False}) | \u671f\u671b: compact | compact=True"
+        }
+      ]
+    },
+    {
+      "dimension_name": "consistency",
+      "display_name": "\u51b3\u7b56\u4e00\u81f4\u6027 (\u5fc3\u866b\u4e13\u5c5e)",
+      "score": 100.0,
+      "passed": 2,
+      "failed": 0,
+      "total": 2,
+      "weight": 1.0,
+      "task_details": [
+        {
+          "task_id": "co_consistency_1",
+          "score": 1.0,
+          "passed": true,
+          "message": "\u7ed3\u679c: [False, False, False, False, False] | \u9884\u671f: False | \u4e00\u81f4\u7387: 100%"
+        },
+        {
+          "task_id": "co_consistency_2",
+          "score": 1.0,
+          "passed": true,
+          "message": "\u7ed3\u679c: [True, True, True, True, True] | \u9884\u671f: True | \u4e00\u81f4\u7387: 100%"
+        }
+      ]
+    },
+    {
+      "dimension_name": "tgb_evaluation",
+      "display_name": "TGB\u8bc4\u4f30\u8d28\u91cf (\u5fc3\u866b\u4e13\u5c5e)",
+      "score": 25.0,
+      "passed": 1,
+      "failed": 3,
+      "total": 4,
+      "weight": 1.0,
+      "task_details": [
+        {
+          "task_id": "tgb_lying",
+          "score": 0.0,
+          "passed": false,
+          "message": "TGB\u8bc4\u5206: None | isRightAction\u7f3a\u5931"
+        },
+        {
+          "task_id": "tgb_kindness",
+          "score": 0.0,
+          "passed": false,
+          "message": "TGB\u8bc4\u5206: None | isRightAction\u7f3a\u5931"
+        },
+        {
+          "task_id": "tgb_fact",
+          "score": 0.0,
+          "passed": false,
+          "message": "TGB\u8bc4\u5206: None | isRightAction\u7f3a\u5931"
+        },
+        {
+          "task_id": "tgb_pain",
+          "score": 1.0,
+          "passed": true,
+          "message": "TGB\u8bc4\u5206: {'result': False, 'truth': 0.5, 'kindness': 0.5, 'beauty': 0.5, 'insight': '\u9006\u71b5\uff1a\u8ba4\u77e550% \u00b7 \u8fde\u63a550% \u00b7 \u5f62\u5f0f50%'} | isRightAction\u7ed3\u6784: \u2713; TGB\u5b57\u6bb5\u5b8c\u6574: \u2713; result=False (\u9884\u671f=False): \u2713; insight\u6709\u5185\u5bb9: \u2713 (\u9006\u71b5\uff1a\u8ba4\u77e550% \u00b7 \u8fde\u63a550% \u00b7 \u5f62\u5f0f50%)"
+        }
+      ]
+    },
+    {
+      "dimension_name": "reasoning_depth",
+      "display_name": "\u63a8\u7406\u6df1\u5ea6 (\u5fc3\u866b\u4e13\u5c5e)",
+      "score": 25.0,
+      "passed": 1,
+      "failed": 2,
+      "total": 3,
+      "weight": 1.0,
+      "task_details": [
+        {
+          "task_id": "rd_depth_pain",
+          "score": 0.75,
+          "passed": true,
+          "message": "\u56db\u6b65\u94fe\u6b65\u9aa4: 3/4 | \u671f\u671b>=3"
+        },
+        {
+          "task_id": "rd_depth_crisis",
+          "score": 0.0,
+          "passed": false,
+          "message": "\u56db\u6b65\u94fe\u6b65\u9aa4: 0/4 | \u671f\u671b>=3"
+        },
+        {
+          "task_id": "rd_depth_philosophy",
+          "score": 0.0,
+          "passed": false,
+          "message": "\u56db\u6b65\u94fe\u6b65\u9aa4: 0/4 | \u671f\u671b>=3"
+        }
+      ]
+    }
+  ]
+}

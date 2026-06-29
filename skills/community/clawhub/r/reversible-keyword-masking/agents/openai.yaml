@@ -1,0 +1,4 @@
+interface:
+  display_name: "可逆关键词脱敏"
+  short_description: "Mask keywords with encrypted local restore maps"
+  default_prompt: "Use $reversible-keyword-masking to mask sensitive keywords before AI editing, verify placeholders, then restore them locally."

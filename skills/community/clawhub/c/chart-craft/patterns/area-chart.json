@@ -1,0 +1,11 @@
+{
+  "name": "area-chart",
+  "label": "面积图",
+  "description": "累积趋势展示，强调数量变化幅度",
+  "chart_type": "area",
+  "features": ["hover_tooltip", "stacked", "opacity_control", "legend_toggle"],
+  "stacked": false,
+  "opacity": 0.3,
+  "animation": true,
+  "max_points": 100
+}

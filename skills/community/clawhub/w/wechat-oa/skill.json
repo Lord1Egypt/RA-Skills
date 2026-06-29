@@ -1,0 +1,14 @@
+{
+  "name": "wechat-oa",
+  "version": "1.5.1",
+  "description": "微信公众号运营技能 — 将文章发布到公众号草稿箱，支持封面图上传、自动获取 access_token、草稿管理。",
+  "author": "Woody",
+  "homepage": "https://github.com/andy8663/wechat-oa",
+  "license": "MIT",
+  "tags": ["wechat", "weixin", "公众号", "草稿箱", "自动化"],
+  "keywords": ["wechat official account", "微信公众号", "草稿发布", "access_token"],
+  "requirements": ["requests"],
+  "platform": "all",
+  "entry": "SKILL.md",
+  "readme": "README.md"
+}

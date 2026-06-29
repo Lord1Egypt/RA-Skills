@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 3,
+  "roundId": "R001",
+  "slice": {
+    "description": "",
+    "dominantBehavior": "",
+    "sourceFiles": [],
+    "acceptanceCriteria": [],
+    "maxCoreFiles": 5,
+    "maxInterfaceFiles": 3
+  },
+  "executionMode": "single-agent",
+  "phase": "developing",
+  "startedAt": "",
+  "completedAt": null,
+  "filesChanged": [],
+  "verifyBuildCmd": "",
+  "verifySliceCmd": "",
+  "verifyBuildPassed": null,
+  "verifySlicePassed": null,
+  "repoState": "unknown",
+  "loopStatus": "continue",
+  "nextSlice": "",
+  "blockerBucket": "none",
+  "restartSlice": "none",
+  "coordinatorRole": "coordinator",
+  "agentCount": 1,
+  "commitSha": null,
+  "stopReason": "none"
+}

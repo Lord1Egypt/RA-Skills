@@ -1,0 +1,172 @@
+{
+  "summary": "Collected primary and official sources for the first search pass: robots.txt/REP, HTTP safe methods and redirects, URL parsing/security, SSRF defenses, Markdown/raw HTML behavior, MarkItDown conversion caveats, and prompt-injection handling for untrusted web content.",
+  "next_angle": "Analyze the sources into a provider-neutral risk model and concrete web-to-Markdown capture workflow, then map that workflow to the requested example package files.",
+  "meaningful_progress": true,
+  "code_used": false,
+  "phase": "search",
+  "open_questions": [
+    "Should the public example include a small sanitized sample capture transcript, or keep the deliverable limited to the requested five Markdown files?",
+    "Which web-to-Markdown converter should be referenced, if any, while keeping the example provider-neutral?"
+  ],
+  "sources": [
+    {
+      "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+      "title": "RFC 9309: Robots Exclusion Protocol",
+      "note": "Primary standard for robots.txt behavior, matching rules, redirects, caching, and the warning that robots.txt is not access authorization."
+    },
+    {
+      "url": "https://datatracker.ietf.org/doc/html/rfc9110",
+      "title": "RFC 9110: HTTP Semantics",
+      "note": "Primary HTTP semantics source for safe methods, redirects, Location handling, and User-Agent guidance."
+    },
+    {
+      "url": "https://docs.python.org/3/library/urllib.parse.html",
+      "title": "Python urllib.parse documentation",
+      "note": "Official URL parsing documentation with security warnings about validation and urljoin with attacker-controlled input."
+    },
+    {
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+      "title": "OWASP Server-Side Request Forgery Prevention Cheat Sheet",
+      "note": "Official OWASP defensive guidance for URL-controlled fetches, allowlists, parser abuse, and network-layer containment."
+    },
+    {
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html",
+      "title": "OWASP LLM Prompt Injection Prevention Cheat Sheet",
+      "note": "Official OWASP guidance for treating external content as untrusted, action screening, least privilege, and quarantine/dual-model patterns."
+    },
+    {
+      "url": "https://spec.commonmark.org/0.31.2/",
+      "title": "CommonMark Spec 0.31.2",
+      "note": "Primary Markdown syntax source, useful for noting that Markdown may include HTML blocks and raw HTML inlines depending on rendering."
+    },
+    {
+      "url": "https://github.com/microsoft/markitdown",
+      "title": "Microsoft MarkItDown repository",
+      "note": "Official converter documentation that frames Markdown conversion for LLM/text analysis and warns that conversion performs I/O with current-process privileges."
+    }
+  ],
+  "findings": [
+    {
+      "kind": "fact",
+      "text": "robots.txt should be treated as a crawler politeness boundary, not as authorization or proof that captured content is safe to republish; RFC 9309 explicitly notes that robots.txt is not a substitute for real access controls.",
+      "source_urls": [
+        "https://datatracker.ietf.org/doc/html/rfc9309"
+      ]
+    },
+    {
+      "kind": "fact",
+      "text": "A safe capture workflow should prefer HTTP safe retrieval semantics such as GET/HEAD and avoid triggering unsafe actions; RFC 9110 defines safe methods as essentially read-only from the client's perspective.",
+      "source_urls": [
+        "https://datatracker.ietf.org/doc/html/rfc9110"
+      ]
+    },
+    {
+      "kind": "risk",
+      "text": "User-provided URLs are an SSRF and redirect risk. The example should require scheme/host validation, internal-address blocking, redirect revalidation, bounded redirects, timeouts, size limits, and network egress controls rather than trusting parser output alone.",
+      "source_urls": [
+        "https://docs.python.org/3/library/urllib.parse.html",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+        "https://datatracker.ietf.org/doc/html/rfc9110"
+      ]
+    },
+    {
+      "kind": "risk",
+      "text": "Fetched web pages and converted Markdown are untrusted model input. The agent workflow should quarantine raw captures, delimit or structure external content, prevent embedded page instructions from driving tools, and screen any proposed action against the original user intent.",
+      "source_urls": [
+        "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html"
+      ]
+    },
+    {
+      "kind": "risk",
+      "text": "Markdown is not automatically safe output: CommonMark includes raw HTML constructs, and converters may preserve links or HTML-like content. A public example should separate captured Markdown from rendered HTML, document sanitization assumptions, and retain source metadata.",
+      "source_urls": [
+        "https://spec.commonmark.org/0.31.2/",
+        "https://github.com/microsoft/markitdown"
+      ]
+    },
+    {
+      "kind": "plan",
+      "text": "The requested example package can be organized around five reusable artifacts: README for purpose and safety boundaries, prompt.md for the worker instruction contract, research-plan.md for stages and gates, sources.md for official references, and final-report.md for a concise evaluated workflow and artifact checklist.",
+      "source_urls": [
+        "https://datatracker.ietf.org/doc/html/rfc9309",
+        "https://datatracker.ietf.org/doc/html/rfc9110",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+        "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html"
+      ]
+    }
+  ],
+  "analysis_artifacts": [],
+  "packages_used": [],
+  "database_used": false,
+  "database_artifacts": [],
+  "database_summary": null,
+  "vision_used": false,
+  "vision_artifacts": [],
+  "vision_summary": null,
+  "adequacy": {
+    "status": "not_started",
+    "goal_alignment": "This first search iteration supports the goal by identifying primary sources and initial risk/workflow findings, but the research has not yet been analyzed or packaged into the requested public example files.",
+    "coverage_summary": "Covered core source families for robots/politeness, HTTP fetch semantics, URL safety/SSRF, prompt injection, and Markdown conversion. Not yet covered: synthesis into file-by-file package content, final artifact wording, and a constraint scan for public-safe examples.",
+    "covered_requirements": [
+      {
+        "requirement": "Prefer direct official docs and primary sources.",
+        "evidence": "Used IETF RFCs, Python official docs, OWASP official cheat sheets, CommonMark spec, and the converter's official repository."
+      },
+      {
+        "requirement": "Identify web-capture risks that matter.",
+        "evidence": "Findings cover robots.txt limits, safe HTTP methods, redirects, SSRF/URL parsing, prompt injection, and Markdown/raw HTML safety."
+      },
+      {
+        "requirement": "Shape toward a public repository example.",
+        "evidence": "Initial package plan maps evidence into README.md, prompt.md, research-plan.md, sources.md, and final-report.md."
+      }
+    ],
+    "coverage_gaps": [
+      {
+        "gap": "Need synthesis into a concrete provider-neutral workflow and artifact outline.",
+        "severity": "blocking"
+      },
+      {
+        "gap": "Need a final pass that ensures no private paths, chat identifiers, local tool names, personal memories, or tokens appear in candidate example files.",
+        "severity": "blocking"
+      }
+    ],
+    "evidence_risks": [
+      {
+        "risk": "MarkItDown is useful as converter context but vendor-specific; final public materials should avoid making it a required dependency unless the example explicitly scopes that choice.",
+        "severity": "minor"
+      }
+    ],
+    "contradictions": [],
+    "recommended_next_phase": "analyze",
+    "recommended_next_angle": "Turn the collected official sources into a concise risk matrix and workflow checklist that can drive the five requested Markdown files.",
+    "blocking_reasons": [
+      "The requested deliverable is a multi-file example package; this iteration only completed source discovery and initial findings."
+    ],
+    "validation_evidence": [
+      {
+        "check": "goal_alignment",
+        "result": "passed",
+        "reason": "Selected sources directly match the goal's risk and workflow topics."
+      },
+      {
+        "check": "explicit_constraints",
+        "result": "passed",
+        "reason": "No final example files were produced and no private identifiers were introduced into candidate public content."
+      },
+      {
+        "check": "requested_deliverable",
+        "result": "failed",
+        "reason": "The package has not yet been drafted; additional analyze/synthesize iterations are required."
+      },
+      {
+        "check": "source_diversity",
+        "result": "passed",
+        "reason": "Sources cover standards bodies, official language docs, OWASP security guidance, a Markdown spec, and official converter documentation."
+      }
+    ]
+  },
+  "notify_recommendation": "silent",
+  "should_complete": false,
+  "final_report_markdown": null
+}

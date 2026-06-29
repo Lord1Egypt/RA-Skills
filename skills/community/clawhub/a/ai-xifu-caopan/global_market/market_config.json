@@ -1,0 +1,2961 @@
+{
+  "_comment": "🌍 全球市场配置表 v4.0 — 全宇宙版！",
+  "_version": "4.0.0",
+  "_updated": "2026-06-02",
+  "_note": "所有国家按Yahoo Finance后缀标记，数据通道逐步开通",
+  "default": "A股",
+  "last_used": "A股",
+  "markets": {
+    "A股": {
+      "code": "cn",
+      "display_name": "🇨🇳 A股",
+      "timezone": "Asia/Shanghai",
+      "utc_offset": "+08:00",
+      "language": "zh-CN",
+      "currency": "CNY",
+      "exchange": "上海证券交易所 / 深圳证券交易所 / 北京证券交易所",
+      "market_cap_rank": 2,
+      "yahoo_suffix": [
+        ".SS",
+        ".SZ"
+      ],
+      "trading_hours": {
+        "morning": "09:30-11:30",
+        "afternoon": "13:00-15:00"
+      },
+      "data_provider": {
+        "primary": "guosen_api",
+        "backup": "tushare"
+      },
+      "indices": {
+        "shanghai": "上证指数",
+        "shenzhen": "深证成指",
+        "gem": "创业板指"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 PBOC — 超预期收紧/宽松": true,
+        "📊 中国CPI年率 — 通胀超预期": true,
+        "📉 中国GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/CNY — 大幅波动": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 进出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 主要市场同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🏛️ 北向资金 — 外资风向标": true
+      },
+      "risk_signals": {
+        "central_bank": "中国人民银行 (PBOC)",
+        "inflation_indicator": "中国CPI年率",
+        "growth_indicator": "中国GDP季率",
+        "currency_pair": "USD/CNY",
+        "main_index": "上证指数/深证成指",
+        "key_sectors": [
+          "金融/银行",
+          "消费/白酒",
+          "新能源",
+          "科技/半导体"
+        ],
+        "policy_events": [
+          "LPR利率(每月20日)",
+          "PMI(每月)",
+          "中央经济工作会议"
+        ]
+      }
+    },
+    "港股": {
+      "code": "hk",
+      "display_name": "🇭🇰 香港",
+      "timezone": "Asia/Hong_Kong",
+      "utc_offset": "+08:00",
+      "language": "zh-HK",
+      "currency": "HKD",
+      "exchange": "香港交易所 (HKEX)",
+      "market_cap_rank": 6,
+      "yahoo_suffix": ".HK",
+      "trading_hours": {
+        "morning": "09:30-12:00",
+        "afternoon": "13:00-16:00"
+      },
+      "data_provider": {
+        "primary": "guosen_api_hk",
+        "backup": "sina_finance"
+      },
+      "indices": {
+        "hsi": "恒生指数",
+        "hstech": "恒生科技"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 HKMA — 超预期收紧/宽松": true,
+        "📊 香港CPI年率 — 通胀超预期": true,
+        "📉 香港GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/HKD — 大幅波动": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 进出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 主要市场同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🏛️ 联系汇率 — 美元挂钩": true
+      },
+      "risk_signals": {
+        "central_bank": "HKMA (香港金管局)",
+        "inflation_indicator": "香港CPI年率",
+        "growth_indicator": "香港GDP季率",
+        "currency_pair": "USD/HKD",
+        "main_index": "恒生指数 (^HSI)",
+        "key_sectors": [
+          "金融/银行",
+          "地产",
+          "科技/互联网",
+          "消费"
+        ],
+        "policy_events": [
+          "美联储利率(挂钩联系汇率)",
+          "恒指季检",
+          "港股通数据"
+        ]
+      }
+    },
+    "台股": {
+      "code": "tw",
+      "display_name": "🇹🇼 台湾",
+      "timezone": "Asia/Taipei",
+      "utc_offset": "+08:00",
+      "language": "zh-TW",
+      "currency": "TWD",
+      "exchange": "台湾证券交易所 (TWSE)",
+      "market_cap_rank": 15,
+      "yahoo_suffix": ".TW",
+      "trading_hours": {
+        "regular": "09:00-13:30"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "taiex": "加权指数"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 央行 (台湾) — 超预期收紧/宽松": true,
+        "📊 台湾CPI年率 — 通胀超预期": true,
+        "📉 台湾GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/TWD — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🔬 台积电 — 芯片巨头": true
+      },
+      "risk_signals": {
+        "central_bank": "央行 (台湾)",
+        "inflation_indicator": "台湾CPI年率",
+        "growth_indicator": "台湾GDP季率",
+        "currency_pair": "USD/TWD",
+        "main_index": "加权指数 (^TWII)",
+        "key_sectors": [
+          "半导体",
+          "电子制造",
+          "金融",
+          "航运"
+        ],
+        "policy_events": [
+          "央行利率(季度)",
+          "台湾CPI(每月)",
+          "台积电法说(季度)"
+        ]
+      }
+    },
+    "美股": {
+      "code": "us",
+      "display_name": "🇺🇸 美国",
+      "timezone": "America/New_York",
+      "utc_offset": "-05:00",
+      "language": "en-US",
+      "currency": "USD",
+      "exchange": "NYSE / NASDAQ / AMEX",
+      "market_cap_rank": 1,
+      "yahoo_suffix": "",
+      "trading_hours": {
+        "regular": "09:30-16:00 ET"
+      },
+      "data_provider": {
+        "primary": "guosen_api_us",
+        "backup": "sina_finance"
+      },
+      "indices": {
+        "dow": "道琼斯 DJI",
+        "nasdaq": "纳斯达克 IXIC",
+        "sp500": "标普500 SPX"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 美联储 — 超预期收紧/宽松": true,
+        "📊 美国CPI年率 — 通胀超预期": true,
+        "📉 美国GDP季率 — 经济萎缩/衰退": true,
+        "💱 美元指数DXY — 大幅波动": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 进出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 主要市场同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🏛️ FOMC — 全球利率锚": true
+      },
+      "risk_signals": {
+        "central_bank": "美联储 (FOMC)",
+        "inflation_indicator": "美国CPI年率",
+        "growth_indicator": "美国GDP季率",
+        "currency_pair": "美元指数DXY",
+        "main_index": "标普500 (^SPX) / 纳斯达克",
+        "key_sectors": [
+          "科技/AI",
+          "金融",
+          "医疗/制药",
+          "消费"
+        ],
+        "policy_events": [
+          "FOMC利率决议(每6周)",
+          "非农(每月)",
+          "CPI(每月)",
+          "标普季报"
+        ]
+      }
+    },
+    "加拿大": {
+      "code": "ca",
+      "display_name": "🇨🇦 加拿大",
+      "timezone": "America/Toronto",
+      "utc_offset": "-05:00",
+      "language": "en-CA",
+      "currency": "CAD",
+      "exchange": "多伦多证券交易所 (TSX)",
+      "market_cap_rank": 10,
+      "yahoo_suffix": ".TO",
+      "trading_hours": {
+        "regular": "09:30-16:00 ET"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "tsx": "S&P/TSX Composite"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 BoC (加拿大央行) — 超预期收紧/宽松": true,
+        "📊 加拿大CPI年率 — 通胀超预期": true,
+        "📉 加拿大GDP月率 — 经济萎缩/衰退": true,
+        "💱 USD/CAD — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🛢️ 原油 — 油砂/管道": true
+      },
+      "risk_signals": {
+        "central_bank": "BoC (加拿大央行)",
+        "inflation_indicator": "加拿大CPI年率",
+        "growth_indicator": "加拿大GDP月率",
+        "currency_pair": "USD/CAD",
+        "main_index": "TSX (^GSPTSE)",
+        "key_sectors": [
+          "能源/石油",
+          "矿业/资源",
+          "银行/金融",
+          "科技/AI"
+        ],
+        "policy_events": [
+          "BoC利率(每6周)",
+          "加拿大CPI(每月)",
+          "就业数据(每月)"
+        ]
+      }
+    },
+    "墨西哥": {
+      "code": "mx",
+      "display_name": "🇲🇽 墨西哥",
+      "timezone": "America/Mexico_City",
+      "utc_offset": "-06:00",
+      "language": "es-MX",
+      "currency": "MXN",
+      "exchange": "墨西哥证券交易所 (BMV)",
+      "market_cap_rank": 22,
+      "yahoo_suffix": ".MX",
+      "trading_hours": {
+        "regular": "08:30-15:00 CST"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "ipc": "S&P/BMV IPC"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 Banxico (墨西哥央行) — 超预期收紧/宽松": true,
+        "📊 墨西哥CPI年率 — 通胀超预期": true,
+        "📉 墨西哥GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/MXN — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🚗 汽车 — 北美制造": true
+      },
+      "risk_signals": {
+        "central_bank": "Banxico (墨西哥央行)",
+        "inflation_indicator": "墨西哥CPI年率",
+        "growth_indicator": "墨西哥GDP季率",
+        "currency_pair": "USD/MXN",
+        "main_index": "BMV IPC (^MXX)",
+        "key_sectors": [
+          "汽车制造",
+          "工业",
+          "金融",
+          "零售"
+        ],
+        "policy_events": [
+          "Banxico利率(每月)",
+          "墨西哥CPI(每月)",
+          "GDP(季度)"
+        ]
+      }
+    },
+    "巴西": {
+      "code": "br",
+      "display_name": "🇧🇷 巴西",
+      "timezone": "America/Sao_Paulo",
+      "utc_offset": "-03:00",
+      "language": "pt-BR",
+      "currency": "BRL",
+      "exchange": "B3 (巴西证券交易所)",
+      "market_cap_rank": 13,
+      "yahoo_suffix": ".SA",
+      "trading_hours": {
+        "regular": "10:00-17:30 BRT"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "ibovespa": "Ibovespa"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 BCB (巴西央行) — 超预期收紧/宽松": true,
+        "📊 巴西CPI年率 — 通胀超预期": true,
+        "📉 巴西GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/BRL — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "⛏️ Vale — 铁矿石巨头": true
+      },
+      "risk_signals": {
+        "central_bank": "BCB (巴西央行)",
+        "inflation_indicator": "巴西CPI年率",
+        "growth_indicator": "巴西GDP季率",
+        "currency_pair": "USD/BRL",
+        "main_index": "Ibovespa (^BVSP)",
+        "key_sectors": [
+          "资源/矿业",
+          "石油/能源",
+          "农业/食品",
+          "金融"
+        ],
+        "policy_events": [
+          "BCB利率(每6周)",
+          "巴西CPI(每月)",
+          "GDP(季度)"
+        ]
+      }
+    },
+    "英国": {
+      "code": "uk",
+      "display_name": "🇬🇧 英国",
+      "timezone": "Europe/London",
+      "utc_offset": "+00:00",
+      "language": "en-GB",
+      "currency": "GBP",
+      "exchange": "伦敦证券交易所 (LSE)",
+      "market_cap_rank": 4,
+      "yahoo_suffix": ".L",
+      "trading_hours": {
+        "regular": "08:00-16:30 GMT"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "ftse100": "富时100 FTSE",
+        "ftse250": "富时250"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 BOE利率决议 — 鹰派超预期收紧": true,
+        "📊 英国CPI年率 — 通胀超预期": true,
+        "📉 英国GDP季率 — 经济萎缩": true,
+        "💷 GBP/USD汇率 — 英镑大幅波动 > 1%": true,
+        "🏭 英国制造业PMI — 跌破荣枯线50": true,
+        "👔 英国失业率 — 大幅上升": true,
+        "🏠 英国房价指数 — 连续下跌": true,
+        "🛒 英国零售销售月率 — 大幅下滑": true,
+        "📰 脱欧/英欧贸易谈判 — 重大负面": true,
+        "🌐 FTSE 100期货 — 隔夜暴跌 > 2%": true,
+        "💹 英国10年期国债收益率 — 飙升 > 50bp": true,
+        "⚡ 能源价格冲击 — 天然气/电价飙升": true,
+        "🏛️ 英国大选/政治动荡 — 不确定性升高": true,
+        "📊 英国消费者信心指数 — 大幅下滑": true,
+        "🔗 全球市场联动 — 美股/欧股同步下跌": true
+      },
+      "risk_signals": {
+        "central_bank": "BOE (英格兰银行)",
+        "inflation_indicator": "CPI年率",
+        "growth_indicator": "GDP季率",
+        "employment_indicator": "失业率/平均薪资",
+        "housing_indicator": "房价指数 (Halifax/Nationwide)",
+        "trade_indicator": "贸易逆差",
+        "bond_yield": "10年期英债收益率 (UK10Y)",
+        "currency_pair": "GBP/USD",
+        "main_index": "FTSE 100 (^FTSE)",
+        "volatility_index": "FTSE 100波动率",
+        "key_sectors": [
+          "金融",
+          "能源",
+          "矿业",
+          "消费品"
+        ],
+        "policy_events": [
+          "BOE利率决议(每月)",
+          "英国CPI(每月)",
+          "英国GDP(季度)"
+        ]
+      }
+    },
+    "德国": {
+      "code": "de",
+      "display_name": "🇩🇪 德国",
+      "timezone": "Europe/Berlin",
+      "utc_offset": "+01:00",
+      "language": "de-DE",
+      "currency": "EUR",
+      "exchange": "法兰克福证券交易所 (Xetra)",
+      "market_cap_rank": 8,
+      "yahoo_suffix": ".DE",
+      "trading_hours": {
+        "regular": "09:00-17:30 CET"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "dax": "DAX 40",
+        "mdax": "MDAX"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 ECB利率决议 — 加息/降息": true,
+        "📊 德国CPI年率 — 通胀超预期": true,
+        "📉 德国GDP季率 — 经济萎缩/技术性衰退": true,
+        "🏭 德国制造业PMI — 跌破荣枯线45": true,
+        "💶 EUR/USD汇率 — 欧元大幅波动 > 1%": true,
+        "📈 DAX 40期货 — 隔夜暴跌 > 2%": true,
+        "🏗️ 德国工业产出 — 环比大幅下滑": true,
+        "📦 德国出口数据 — 对华/对美出口下滑": true,
+        "⚡ 能源价格冲击 — 天然气/电价飙升(俄乌相关)": true,
+        "💹 德国10年期国债收益率(Bund) — 飙升": true,
+        "🚗 德国汽车工业 — 销量/出口显著下滑": true,
+        "🏠 德国房价 — 商业地产风险": true,
+        "📊 IFO商业景气指数 — 连续恶化": true,
+        "🔗 欧元区整体风险 — 南欧债务/意大利利差": true,
+        "🌐 全球贸易摩擦 — 关税/供应链中断": true
+      },
+      "risk_signals": {
+        "central_bank": "ECB (欧洲央行)",
+        "inflation_indicator": "德国CPI/HICP年率",
+        "growth_indicator": "GDP季率(德国/欧元区)",
+        "industrial_indicator": "工业产出环比",
+        "export_indicator": "出口月率",
+        "business_climate": "IFO商业景气指数",
+        "bond_yield": "德国10年国债收益率 (Bund)",
+        "currency_pair": "EUR/USD",
+        "main_index": "DAX 40 (^GDAXI)",
+        "key_sectors": [
+          "汽车/制造",
+          "化工/制药",
+          "工业机械",
+          "金融/保险"
+        ],
+        "policy_events": [
+          "ECB利率决议(每6周)",
+          "德国CPI(每月)",
+          "IFO景气指数(每月)",
+          "德国GDP(季度)"
+        ]
+      }
+    },
+    "法国": {
+      "code": "fr",
+      "display_name": "🇫🇷 法国",
+      "timezone": "Europe/Paris",
+      "utc_offset": "+01:00",
+      "language": "fr-FR",
+      "currency": "EUR",
+      "exchange": "泛欧交易所巴黎 (Euronext Paris)",
+      "market_cap_rank": 11,
+      "yahoo_suffix": ".PA",
+      "trading_hours": {
+        "regular": "09:00-17:30 CET"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "cac40": "CAC 40"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 ECB (欧洲央行) — 超预期收紧/宽松": true,
+        "📊 法国CPI/HICP年率 — 通胀超预期": true,
+        "📉 GDP季率(法国/欧元区) — 经济萎缩/衰退": true,
+        "💱 EUR/USD — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "👗 奢侈品 — LVMH/爱马仕": true
+      },
+      "risk_signals": {
+        "central_bank": "ECB (欧洲央行)",
+        "inflation_indicator": "法国CPI/HICP年率",
+        "growth_indicator": "GDP季率(法国/欧元区)",
+        "currency_pair": "EUR/USD",
+        "main_index": "CAC 40 (^FCHI)",
+        "key_sectors": [
+          "奢侈品",
+          "航空航天",
+          "核能/能源",
+          "金融"
+        ],
+        "policy_events": [
+          "ECB利率决议(每6周)",
+          "法国CPI(每月)",
+          "法国PMI(每月)"
+        ]
+      }
+    },
+    "瑞士": {
+      "code": "ch",
+      "display_name": "🇨🇭 瑞士",
+      "timezone": "Europe/Zurich",
+      "utc_offset": "+01:00",
+      "language": "de-CH",
+      "currency": "CHF",
+      "exchange": "瑞士证券交易所 (SIX)",
+      "market_cap_rank": 14,
+      "yahoo_suffix": ".SW",
+      "trading_hours": {
+        "regular": "09:00-17:30 CET"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "smi": "SMI Swiss Market Index"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 SNB (瑞士央行) — 超预期收紧/宽松": true,
+        "📊 瑞士CPI年率 — 通胀超预期": true,
+        "📉 瑞士GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/CHF — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "💊 制药 — 诺华/罗氏": true
+      },
+      "risk_signals": {
+        "central_bank": "SNB (瑞士央行)",
+        "inflation_indicator": "瑞士CPI年率",
+        "growth_indicator": "瑞士GDP季率",
+        "currency_pair": "USD/CHF",
+        "main_index": "SMI (^SSMI)",
+        "key_sectors": [
+          "制药/医疗",
+          "金融/保险",
+          "精密机械",
+          "食品"
+        ],
+        "policy_events": [
+          "SNB利率决议(季度)",
+          "瑞士CPI(每月)",
+          "SNB外储(每月)"
+        ]
+      }
+    },
+    "荷兰": {
+      "code": "nl",
+      "display_name": "🇳🇱 荷兰",
+      "timezone": "Europe/Amsterdam",
+      "utc_offset": "+01:00",
+      "language": "nl-NL",
+      "currency": "EUR",
+      "exchange": "泛欧交易所阿姆斯特丹 (Euronext Amsterdam)",
+      "market_cap_rank": 18,
+      "yahoo_suffix": ".AS",
+      "trading_hours": {
+        "regular": "09:00-17:30 CET"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "aex": "AEX Index"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 ECB (欧洲央行) — 超预期收紧/宽松": true,
+        "📊 荷兰CPI年率 — 通胀超预期": true,
+        "📉 荷兰GDP季率 — 经济萎缩/衰退": true,
+        "💱 EUR/USD — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🔬 ASML — 光刻机": true
+      },
+      "risk_signals": {
+        "central_bank": "ECB (欧洲央行)",
+        "inflation_indicator": "荷兰CPI年率",
+        "growth_indicator": "荷兰GDP季率",
+        "currency_pair": "EUR/USD",
+        "main_index": "AEX (^AEX)",
+        "key_sectors": [
+          "半导体设备",
+          "化工",
+          "食品/消费品",
+          "金融"
+        ],
+        "policy_events": [
+          "ECB利率决议",
+          "荷兰CPI(每月)",
+          "半导体出口管制"
+        ]
+      }
+    },
+    "瑞典": {
+      "code": "se",
+      "display_name": "🇸🇪 瑞典",
+      "timezone": "Europe/Stockholm",
+      "utc_offset": "+01:00",
+      "language": "sv-SE",
+      "currency": "SEK",
+      "exchange": "纳斯达克斯德哥尔摩 (Nasdaq OMX Stockholm)",
+      "market_cap_rank": 21,
+      "yahoo_suffix": ".ST",
+      "trading_hours": {
+        "regular": "09:00-17:30 CET"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "omx30": "OMX Stockholm 30"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 Riksbank (瑞典央行) — 超预期收紧/宽松": true,
+        "📊 瑞典CPI年率 — 通胀超预期": true,
+        "📉 瑞典GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/SEK — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🏭 工业 — 沃尔沃/山特维克": true
+      },
+      "risk_signals": {
+        "central_bank": "Riksbank (瑞典央行)",
+        "inflation_indicator": "瑞典CPI年率",
+        "growth_indicator": "瑞典GDP季率",
+        "currency_pair": "USD/SEK",
+        "main_index": "OMX 30 (^OMX)",
+        "key_sectors": [
+          "汽车/工业",
+          "电信",
+          "零售/家具",
+          "金融"
+        ],
+        "policy_events": [
+          "Riksbank利率(每月)",
+          "瑞典CPI(每月)",
+          "瑞典GDP(季度)"
+        ]
+      }
+    },
+    "丹麦": {
+      "code": "dk",
+      "display_name": "🇩🇰 丹麦",
+      "timezone": "Europe/Copenhagen",
+      "utc_offset": "+01:00",
+      "language": "da-DK",
+      "currency": "DKK",
+      "exchange": "纳斯达克哥本哈根 (Nasdaq OMX Copenhagen)",
+      "market_cap_rank": 27,
+      "yahoo_suffix": ".CO",
+      "trading_hours": {
+        "regular": "09:00-17:00 CET"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "omxc20": "OMX Copenhagen 20"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 丹麦央行 — 超预期收紧/宽松": true,
+        "📊 丹麦CPI年率 — 通胀超预期": true,
+        "📉 丹麦GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/DKK — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "💊 诺和诺德 — 减肥药": true
+      },
+      "risk_signals": {
+        "central_bank": "丹麦央行",
+        "inflation_indicator": "丹麦CPI年率",
+        "growth_indicator": "丹麦GDP季率",
+        "currency_pair": "USD/DKK",
+        "main_index": "OMX C20 (^OMXC20)",
+        "key_sectors": [
+          "制药/生物",
+          "航运/物流",
+          "食品",
+          "风电"
+        ],
+        "policy_events": [
+          "丹麦央行利率",
+          "丹麦CPI(每月)",
+          "丹麦GDP(季度)"
+        ]
+      }
+    },
+    "挪威": {
+      "code": "no",
+      "display_name": "🇳🇴 挪威",
+      "timezone": "Europe/Oslo",
+      "utc_offset": "+01:00",
+      "language": "nb-NO",
+      "currency": "NOK",
+      "exchange": "奥斯陆证券交易所 (Oslo Børs)",
+      "market_cap_rank": 30,
+      "yahoo_suffix": ".OL",
+      "trading_hours": {
+        "regular": "09:00-17:30 CET"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "obx": "Oslo Børs OBX"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 Norges Bank (挪威央行) — 超预期收紧/宽松": true,
+        "📊 挪威CPI年率 — 通胀超预期": true,
+        "📉 挪威GDP季率(大陆) — 经济萎缩/衰退": true,
+        "💱 USD/NOK — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🛢️ 原油 — 挪威主权基金": true
+      },
+      "risk_signals": {
+        "central_bank": "Norges Bank (挪威央行)",
+        "inflation_indicator": "挪威CPI年率",
+        "growth_indicator": "挪威GDP季率(大陆)",
+        "currency_pair": "USD/NOK",
+        "main_index": "Oslo OBX (^OBX)",
+        "key_sectors": [
+          "石油/天然气",
+          "航运",
+          "水产",
+          "金融"
+        ],
+        "policy_events": [
+          "挪威央行利率(每月)",
+          "挪威CPI(每月)",
+          "挪威GDP(季度)"
+        ]
+      }
+    },
+    "芬兰": {
+      "code": "fi",
+      "display_name": "🇫🇮 芬兰",
+      "timezone": "Europe/Helsinki",
+      "utc_offset": "+02:00",
+      "language": "fi-FI",
+      "currency": "EUR",
+      "exchange": "纳斯达克赫尔辛基 (Nasdaq OMX Helsinki)",
+      "market_cap_rank": 33,
+      "yahoo_suffix": ".HE",
+      "trading_hours": {
+        "regular": "10:00-18:30 EET"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "omxh25": "OMX Helsinki 25"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 ECB (欧洲央行) — 超预期收紧/宽松": true,
+        "📊 芬兰CPI年率 — 通胀超预期": true,
+        "📉 芬兰GDP季率 — 经济萎缩/衰退": true,
+        "💱 EUR/USD — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "📱 诺基亚 — 电信设备": true
+      },
+      "risk_signals": {
+        "central_bank": "ECB (欧洲央行)",
+        "inflation_indicator": "芬兰CPI年率",
+        "growth_indicator": "芬兰GDP季率",
+        "currency_pair": "EUR/USD",
+        "main_index": "OMX H25 (^OMXH25)",
+        "key_sectors": [
+          "电信设备",
+          "造纸/林业",
+          "金融",
+          "科技"
+        ],
+        "policy_events": [
+          "ECB利率决议",
+          "芬兰CPI(每月)",
+          "芬兰GDP(季度)"
+        ]
+      }
+    },
+    "意大利": {
+      "code": "it",
+      "display_name": "🇮🇹 意大利",
+      "timezone": "Europe/Rome",
+      "utc_offset": "+01:00",
+      "language": "it-IT",
+      "currency": "EUR",
+      "exchange": "意大利证券交易所 (Borsa Italiana)",
+      "market_cap_rank": 17,
+      "yahoo_suffix": ".MI",
+      "trading_hours": {
+        "regular": "09:00-17:30 CET"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "ftse_mib": "FTSE MIB"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 ECB (欧洲央行) — 超预期收紧/宽松": true,
+        "📊 意大利CPI年率 — 通胀超预期": true,
+        "📉 意大利GDP季率 — 经济萎缩/衰退": true,
+        "💱 EUR/USD — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "👠 奢侈品 — Prada/Ferrari": true
+      },
+      "risk_signals": {
+        "central_bank": "ECB (欧洲央行)",
+        "inflation_indicator": "意大利CPI年率",
+        "growth_indicator": "意大利GDP季率",
+        "currency_pair": "EUR/USD",
+        "main_index": "FTSE MIB (^FTSEMIB)",
+        "key_sectors": [
+          "奢侈品/时尚",
+          "汽车",
+          "银行/保险",
+          "食品"
+        ],
+        "policy_events": [
+          "ECB利率决议",
+          "意大利CPI(每月)",
+          "BTP利差"
+        ]
+      }
+    },
+    "西班牙": {
+      "code": "es",
+      "display_name": "🇪🇸 西班牙",
+      "timezone": "Europe/Madrid",
+      "utc_offset": "+01:00",
+      "language": "es-ES",
+      "currency": "EUR",
+      "exchange": "西班牙证券交易所 (BME)",
+      "market_cap_rank": 19,
+      "yahoo_suffix": ".MC",
+      "trading_hours": {
+        "regular": "09:00-17:30 CET"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "ibex35": "IBEX 35"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 ECB (欧洲央行) — 超预期收紧/宽松": true,
+        "📊 西班牙CPI年率 — 通胀超预期": true,
+        "📉 西班牙GDP季率 — 经济萎缩/衰退": true,
+        "💱 EUR/USD — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "✈️ 旅游业 — 欧洲最大": true
+      },
+      "risk_signals": {
+        "central_bank": "ECB (欧洲央行)",
+        "inflation_indicator": "西班牙CPI年率",
+        "growth_indicator": "西班牙GDP季率",
+        "currency_pair": "EUR/USD",
+        "main_index": "IBEX 35 (^IBEX)",
+        "key_sectors": [
+          "银行/金融",
+          "旅游",
+          "基建/能源",
+          "电信"
+        ],
+        "policy_events": [
+          "ECB利率决议",
+          "西班牙CPI(每月)",
+          "入境旅游(每月)"
+        ]
+      }
+    },
+    "比利时": {
+      "code": "be",
+      "display_name": "🇧🇪 比利时",
+      "timezone": "Europe/Brussels",
+      "utc_offset": "+01:00",
+      "language": "nl-BE",
+      "currency": "EUR",
+      "exchange": "泛欧交易所布鲁塞尔 (Euronext Brussels)",
+      "market_cap_rank": 34,
+      "yahoo_suffix": ".BR",
+      "trading_hours": {
+        "regular": "09:00-17:30 CET"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "bel20": "BEL 20"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 ECB (欧洲央行) — 超预期收紧/宽松": true,
+        "📊 比利时CPI年率 — 通胀超预期": true,
+        "📉 比利时GDP季率 — 经济萎缩/衰退": true,
+        "💱 EUR/USD — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🍺 AB InBev — 啤酒巨头": true
+      },
+      "risk_signals": {
+        "central_bank": "ECB (欧洲央行)",
+        "inflation_indicator": "比利时CPI年率",
+        "growth_indicator": "比利时GDP季率",
+        "currency_pair": "EUR/USD",
+        "main_index": "BEL 20 (^BFX)",
+        "key_sectors": [
+          "制药",
+          "食品/啤酒",
+          "金融",
+          "物流"
+        ],
+        "policy_events": [
+          "ECB利率决议",
+          "比利时CPI(每月)",
+          "比利时GDP(季度)"
+        ]
+      }
+    },
+    "奥地利": {
+      "code": "at",
+      "display_name": "🇦🇹 奥地利",
+      "timezone": "Europe/Vienna",
+      "utc_offset": "+01:00",
+      "language": "de-AT",
+      "currency": "EUR",
+      "exchange": "维也纳证券交易所 (Wiener Börse)",
+      "market_cap_rank": 37,
+      "yahoo_suffix": ".VI",
+      "trading_hours": {
+        "regular": "09:00-17:30 CET"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "atx": "ATX Austrian Traded Index"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 ECB (欧洲央行) — 超预期收紧/宽松": true,
+        "📊 奥地利CPI年率 — 通胀超预期": true,
+        "📉 奥地利GDP季率 — 经济萎缩/衰退": true,
+        "💱 EUR/USD — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🏦 Raiffeisen — 东欧敞口": true
+      },
+      "risk_signals": {
+        "central_bank": "ECB (欧洲央行)",
+        "inflation_indicator": "奥地利CPI年率",
+        "growth_indicator": "奥地利GDP季率",
+        "currency_pair": "EUR/USD",
+        "main_index": "ATX (^ATX)",
+        "key_sectors": [
+          "银行/金融",
+          "工业机械",
+          "石油/天然气",
+          "钢铁"
+        ],
+        "policy_events": [
+          "ECB利率决议",
+          "奥地利CPI(每月)",
+          "奥地利GDP(季度)"
+        ]
+      }
+    },
+    "波兰": {
+      "code": "pl",
+      "display_name": "🇵🇱 波兰",
+      "timezone": "Europe/Warsaw",
+      "utc_offset": "+01:00",
+      "language": "pl-PL",
+      "currency": "PLN",
+      "exchange": "华沙证券交易所 (WSE)",
+      "market_cap_rank": 25,
+      "yahoo_suffix": ".WA",
+      "trading_hours": {
+        "regular": "09:00-17:00 CET"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "wig20": "WIG 20"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 NBP (波兰央行) — 超预期收紧/宽松": true,
+        "📊 波兰CPI年率 — 通胀超预期": true,
+        "📉 波兰GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/PLN — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "💻 IT外包 — 欧洲硅谷": true
+      },
+      "risk_signals": {
+        "central_bank": "NBP (波兰央行)",
+        "inflation_indicator": "波兰CPI年率",
+        "growth_indicator": "波兰GDP季率",
+        "currency_pair": "USD/PLN",
+        "main_index": "WIG 20 (^WIG20)",
+        "key_sectors": [
+          "银行/金融",
+          "食品",
+          "零售",
+          "IT外包"
+        ],
+        "policy_events": [
+          "NBP利率决议(每月)",
+          "波兰CPI(每月)",
+          "波兰GDP(季度)"
+        ]
+      }
+    },
+    "希腊": {
+      "code": "gr",
+      "display_name": "🇬🇷 希腊",
+      "timezone": "Europe/Athens",
+      "utc_offset": "+02:00",
+      "language": "el-GR",
+      "currency": "EUR",
+      "exchange": "雅典证券交易所 (ATHEX)",
+      "market_cap_rank": 45,
+      "yahoo_suffix": ".AT",
+      "trading_hours": {
+        "regular": "10:00-17:20 EET"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "athex": "Athens General Composite"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 ECB (欧洲央行) — 超预期收紧/宽松": true,
+        "📊 希腊CPI年率 — 通胀超预期": true,
+        "📉 希腊GDP季率 — 经济萎缩/衰退": true,
+        "💱 EUR/USD — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "✈️ 旅游 — 希腊经济支柱": true
+      },
+      "risk_signals": {
+        "central_bank": "ECB (欧洲央行)",
+        "inflation_indicator": "希腊CPI年率",
+        "growth_indicator": "希腊GDP季率",
+        "currency_pair": "EUR/USD",
+        "main_index": "雅典综合 (^ATH)",
+        "key_sectors": [
+          "旅游",
+          "航运",
+          "银行",
+          "食品"
+        ],
+        "policy_events": [
+          "ECB利率决议",
+          "希腊CPI(每月)",
+          "希腊GDP(季度)"
+        ]
+      }
+    },
+    "葡萄牙": {
+      "code": "pt",
+      "display_name": "🇵🇹 葡萄牙",
+      "timezone": "Europe/Lisbon",
+      "utc_offset": "+00:00",
+      "language": "pt-PT",
+      "currency": "EUR",
+      "exchange": "泛欧交易所里斯本 (Euronext Lisbon)",
+      "market_cap_rank": 38,
+      "yahoo_suffix": ".LS",
+      "trading_hours": {
+        "regular": "08:00-16:30 WET"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "ps120": "PSI 20"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 ECB (欧洲央行) — 超预期收紧/宽松": true,
+        "📊 葡萄牙CPI年率 — 通胀超预期": true,
+        "📉 葡萄牙GDP季率 — 经济萎缩/衰退": true,
+        "💱 EUR/USD — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "✈️ 旅游 — 阿尔加维": true
+      },
+      "risk_signals": {
+        "central_bank": "ECB (欧洲央行)",
+        "inflation_indicator": "葡萄牙CPI年率",
+        "growth_indicator": "葡萄牙GDP季率",
+        "currency_pair": "EUR/USD",
+        "main_index": "PSI 20 (^PSI20)",
+        "key_sectors": [
+          "银行/保险",
+          "能源/电力",
+          "纸浆/造纸",
+          "旅游"
+        ],
+        "policy_events": [
+          "ECB利率决议",
+          "葡萄牙CPI(每月)",
+          "葡萄牙GDP(季度)"
+        ]
+      }
+    },
+    "爱尔兰": {
+      "code": "ie",
+      "display_name": "🇮🇪 爱尔兰",
+      "timezone": "Europe/Dublin",
+      "utc_offset": "+00:00",
+      "language": "en-IE",
+      "currency": "EUR",
+      "exchange": "爱尔兰证券交易所 (Euronext Dublin)",
+      "market_cap_rank": 40,
+      "yahoo_suffix": ".IR",
+      "trading_hours": {
+        "regular": "08:00-16:30 GMT"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "iseq": "ISEQ Overall Index"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 ECB (欧洲央行) — 超预期收紧/宽松": true,
+        "📊 爱尔兰CPI年率 — 通胀超预期": true,
+        "📉 爱尔兰GDP季率 — 经济萎缩/衰退": true,
+        "💱 EUR/USD — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "💊 制药 — 全球总部聚集": true
+      },
+      "risk_signals": {
+        "central_bank": "ECB (欧洲央行)",
+        "inflation_indicator": "爱尔兰CPI年率",
+        "growth_indicator": "爱尔兰GDP季率",
+        "currency_pair": "EUR/USD",
+        "main_index": "ISEQ (^ISEQ)",
+        "key_sectors": [
+          "科技/制药",
+          "金融/保险",
+          "食品/农业",
+          "航空租赁"
+        ],
+        "policy_events": [
+          "ECB利率决议",
+          "爱尔兰CPI(每月)",
+          "GDP(季度)"
+        ]
+      }
+    },
+    "匈牙利": {
+      "code": "hu",
+      "display_name": "🇭🇺 匈牙利",
+      "timezone": "Europe/Budapest",
+      "utc_offset": "+01:00",
+      "language": "hu-HU",
+      "currency": "HUF",
+      "exchange": "布达佩斯证券交易所 (BSE)",
+      "market_cap_rank": 48,
+      "yahoo_suffix": ".BD",
+      "trading_hours": {
+        "regular": "09:00-17:00 CET"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "bux": "BUX Index"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 MNB (匈牙利央行) — 超预期收紧/宽松": true,
+        "📊 匈牙利CPI年率 — 通胀超预期": true,
+        "📉 匈牙利GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/HUF — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🚗 汽车 — 奥迪/奔驰工厂": true
+      },
+      "risk_signals": {
+        "central_bank": "MNB (匈牙利央行)",
+        "inflation_indicator": "匈牙利CPI年率",
+        "growth_indicator": "匈牙利GDP季率",
+        "currency_pair": "USD/HUF",
+        "main_index": "BUX (^BUX)",
+        "key_sectors": [
+          "汽车制造",
+          "制药",
+          "食品",
+          "金融"
+        ],
+        "policy_events": [
+          "MNB利率决议(每月)",
+          "匈牙利CPI(每月)",
+          "GDP(季度)"
+        ]
+      }
+    },
+    "捷克": {
+      "code": "cz",
+      "display_name": "🇨🇿 捷克",
+      "timezone": "Europe/Prague",
+      "utc_offset": "+01:00",
+      "language": "cs-CZ",
+      "currency": "CZK",
+      "exchange": "布拉格证券交易所 (PSE)",
+      "market_cap_rank": 47,
+      "yahoo_suffix": ".PR",
+      "trading_hours": {
+        "regular": "09:00-16:00 CET"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "px": "PX Index"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 CNB (捷克央行) — 超预期收紧/宽松": true,
+        "📊 捷克CPI年率 — 通胀超预期": true,
+        "📉 捷克GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/CZK — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🚗 汽车 — 斯柯达/大众": true
+      },
+      "risk_signals": {
+        "central_bank": "CNB (捷克央行)",
+        "inflation_indicator": "捷克CPI年率",
+        "growth_indicator": "捷克GDP季率",
+        "currency_pair": "USD/CZK",
+        "main_index": "PX指数 (^PX)",
+        "key_sectors": [
+          "汽车制造",
+          "工业机械",
+          "金融",
+          "能源"
+        ],
+        "policy_events": [
+          "CNB利率决议(每月)",
+          "捷克CPI(每月)",
+          "GDP(季度)"
+        ]
+      }
+    },
+    "俄罗斯": {
+      "code": "ru",
+      "display_name": "🇷🇺 俄罗斯",
+      "timezone": "Europe/Moscow",
+      "utc_offset": "+03:00",
+      "language": "ru-RU",
+      "currency": "RUB",
+      "exchange": "莫斯科证券交易所 (MOEX)",
+      "market_cap_rank": 20,
+      "yahoo_suffix": ".ME",
+      "trading_hours": {
+        "regular": "10:00-18:45 MSK"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "imoex": "IMOEX",
+        "rts": "RTS Index"
+      },
+      "active": true,
+      "_note": "⚠️ 受国际制裁影响，数据可能不完整",
+      "signal_adapters": {
+        "🏦 CBR (俄罗斯央行) — 超预期收紧/宽松": true,
+        "📊 俄罗斯CPI年率 — 通胀超预期": true,
+        "📉 俄罗斯GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/RUB — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🛢️ 原油/天然气 — 国家命脉": true
+      },
+      "risk_signals": {
+        "central_bank": "CBR (俄罗斯央行)",
+        "inflation_indicator": "俄罗斯CPI年率",
+        "growth_indicator": "俄罗斯GDP季率",
+        "currency_pair": "USD/RUB",
+        "main_index": "MOEX (^IMOEX)",
+        "key_sectors": [
+          "石油/天然气",
+          "矿业",
+          "金融",
+          "军工"
+        ],
+        "policy_events": [
+          "CBR利率决议(每月)",
+          "俄罗斯CPI",
+          "俄罗斯GDP"
+        ]
+      }
+    },
+    "土耳其": {
+      "code": "tr",
+      "display_name": "🇹🇷 土耳其",
+      "timezone": "Europe/Istanbul",
+      "utc_offset": "+03:00",
+      "language": "tr-TR",
+      "currency": "TRY",
+      "exchange": "伊斯坦布尔证券交易所 (BIST)",
+      "market_cap_rank": 23,
+      "yahoo_suffix": ".IS",
+      "trading_hours": {
+        "regular": "10:00-18:00 TRT"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "bist100": "BIST 100"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 TCMB (土耳其央行) — 超预期收紧/宽松": true,
+        "📊 土耳其CPI年率 — 通胀超预期": true,
+        "📉 土耳其GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/TRY — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🔥 超高通胀 — 存款利率": true
+      },
+      "risk_signals": {
+        "central_bank": "TCMB (土耳其央行)",
+        "inflation_indicator": "土耳其CPI年率",
+        "growth_indicator": "土耳其GDP季率",
+        "currency_pair": "USD/TRY",
+        "main_index": "BIST 100 (^XU100)",
+        "key_sectors": [
+          "银行/金融",
+          "建筑",
+          "纺织",
+          "食品"
+        ],
+        "policy_events": [
+          "TCMB利率决议(每月)",
+          "土耳其CPI(每月>50%)",
+          "GDP(季度)"
+        ]
+      }
+    },
+    "日本": {
+      "code": "jp",
+      "display_name": "🇯🇵 日本",
+      "timezone": "Asia/Tokyo",
+      "utc_offset": "+09:00",
+      "language": "ja-JP",
+      "currency": "JPY",
+      "exchange": "东京证券交易所 (TSE)",
+      "market_cap_rank": 3,
+      "yahoo_suffix": ".T",
+      "trading_hours": {
+        "morning": "09:00-11:30",
+        "afternoon": "12:30-15:00"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "nikkei225": "日经225",
+        "topix": "TOPIX"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 BOJ政策利率 — 加息/结束YCC": true,
+        "💴 USD/JPY汇率 — 日元大幅波动 > 1.5%": true,
+        "📊 日本CPI年率 — 通胀持续超2%": true,
+        "📉 日本GDP季率 — 经济萎缩": true,
+        "📈 日经225期货 — 隔夜暴跌 > 3%": true,
+        "🏭 日本制造业PMI — 跌破荣枯线": true,
+        "💹 日本10年期国债收益率 — 突破YCC上限": true,
+        "📦 日本出口数据 — 大幅下滑": true,
+        "👔 日本薪资增长 — 春斗谈判结果": true,
+        "🔁 套利交易平仓 — 日元急速升值": true,
+        "🏛️ 日本大选/内阁变动 — 政策不确定性": true,
+        "⚡ 能源进口成本 — 原油/液化天然气涨价": true,
+        "📊 日银短观(Tankan) — 大型制造业景气恶化": true,
+        "🌐 全球风险偏好 — 美股/全球股市同步下跌": true,
+        "🏠 日本房价/地产 — 都市地价变动": true
+      },
+      "risk_signals": {
+        "central_bank": "BOJ (日本银行)",
+        "inflation_indicator": "CPI年率(全国/核心)",
+        "growth_indicator": "GDP季率",
+        "employment_indicator": "失业率/有效求人倍率",
+        "yield_control": "10年国债YCC上限 (0.5%→1.0%)",
+        "currency_pair": "USD/JPY",
+        "main_index": "日经225 (^N225) / TOPIX",
+        "tankan": "日银短观大型制造业DI",
+        "key_sectors": [
+          "汽车",
+          "电子/半导体",
+          "金融",
+          "精密机械"
+        ],
+        "policy_events": [
+          "BOJ利率决议",
+          "日本CPI",
+          "日银短观(季度)",
+          "春斗薪资谈判(3月)"
+        ]
+      }
+    },
+    "印度": {
+      "code": "in",
+      "display_name": "🇮🇳 印度",
+      "timezone": "Asia/Kolkata",
+      "utc_offset": "+05:30",
+      "language": "en-IN",
+      "currency": "INR",
+      "exchange": "印度国家证券交易所 (NSE) / 孟买证券交易所 (BSE)",
+      "market_cap_rank": 5,
+      "yahoo_suffix": [
+        ".NS",
+        ".BO"
+      ],
+      "trading_hours": {
+        "regular": "09:15-15:30 IST"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "nifty50": "Nifty 50",
+        "sensex": "BSE Sensex"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 RBI (印度储备银行) — 超预期收紧/宽松": true,
+        "📊 印度CPI年率 — 通胀超预期": true,
+        "📉 印度GDP年率 — 经济萎缩/衰退": true,
+        "💱 USD/INR — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "💻 IT服务出口 — 全球科技支出": true
+      },
+      "risk_signals": {
+        "central_bank": "RBI (印度储备银行)",
+        "inflation_indicator": "印度CPI年率",
+        "growth_indicator": "印度GDP年率",
+        "currency_pair": "USD/INR",
+        "main_index": "Nifty 50 (^NSEI)",
+        "key_sectors": [
+          "IT服务",
+          "金融/银行",
+          "制药",
+          "消费品"
+        ],
+        "policy_events": [
+          "RBI利率决议(每2月)",
+          "印度CPI(每月)",
+          "印度预算(年度)"
+        ]
+      }
+    },
+    "韩国": {
+      "code": "kr",
+      "display_name": "🇰🇷 韩国",
+      "timezone": "Asia/Seoul",
+      "utc_offset": "+09:00",
+      "language": "ko-KR",
+      "currency": "KRW",
+      "exchange": "韩国交易所 (KRX)",
+      "market_cap_rank": 12,
+      "yahoo_suffix": ".KS",
+      "trading_hours": {
+        "regular": "09:00-15:30 KST"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "kospi": "KOSPI",
+        "kosdaq": "KOSDAQ"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 BOK (韩国银行) — 超预期收紧/宽松": true,
+        "📊 韩国CPI年率 — 通胀超预期": true,
+        "📉 韩国GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/KRW — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🖥️ 半导体周期 — 存储器价格波动": true
+      },
+      "risk_signals": {
+        "central_bank": "BOK (韩国银行)",
+        "inflation_indicator": "韩国CPI年率",
+        "growth_indicator": "韩国GDP季率",
+        "currency_pair": "USD/KRW",
+        "main_index": "KOSPI (^KS11)",
+        "key_sectors": [
+          "电子/半导体",
+          "汽车/造船",
+          "金融",
+          "化工"
+        ],
+        "policy_events": [
+          "BOK利率决议(每月)",
+          "韩国CPI(每月)",
+          "韩国出口(每月)"
+        ]
+      }
+    },
+    "澳大利亚": {
+      "code": "au",
+      "display_name": "🇦🇺 澳大利亚",
+      "timezone": "Australia/Sydney",
+      "utc_offset": "+10:00",
+      "language": "en-AU",
+      "currency": "AUD",
+      "exchange": "澳大利亚证券交易所 (ASX)",
+      "market_cap_rank": 9,
+      "yahoo_suffix": ".AX",
+      "trading_hours": {
+        "regular": "10:00-16:00 AEST"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "asx200": "S&P/ASX 200"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 RBA (澳洲联储) — 超预期收紧/宽松": true,
+        "📊 澳洲CPI年率 — 通胀超预期": true,
+        "📉 澳洲GDP季率 — 经济萎缩/衰退": true,
+        "💱 AUD/USD — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "⛏️ 铁矿石 — 最大出口": true
+      },
+      "risk_signals": {
+        "central_bank": "RBA (澳洲联储)",
+        "inflation_indicator": "澳洲CPI年率",
+        "growth_indicator": "澳洲GDP季率",
+        "currency_pair": "AUD/USD",
+        "main_index": "ASX 200 (^AXJO)",
+        "key_sectors": [
+          "矿业/资源",
+          "金融/银行",
+          "医疗",
+          "地产"
+        ],
+        "policy_events": [
+          "RBA利率决议(每月)",
+          "澳洲CPI(季度)",
+          "铁矿石价格"
+        ]
+      }
+    },
+    "新加坡": {
+      "code": "sg",
+      "display_name": "🇸🇬 新加坡",
+      "timezone": "Asia/Singapore",
+      "utc_offset": "+08:00",
+      "language": "en-SG",
+      "currency": "SGD",
+      "exchange": "新加坡交易所 (SGX)",
+      "market_cap_rank": 18,
+      "yahoo_suffix": ".SI",
+      "trading_hours": {
+        "regular": "09:00-17:00 SGT"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "straits_times": "海峡时报指数 STI"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 MAS (新加坡金管局) — 超预期收紧/宽松": true,
+        "📊 新加坡CPI年率 — 通胀超预期": true,
+        "📉 新加坡GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/SGD — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🚢 全球航运 — 波罗的海指数": true
+      },
+      "risk_signals": {
+        "central_bank": "MAS (新加坡金管局)",
+        "inflation_indicator": "新加坡CPI年率",
+        "growth_indicator": "新加坡GDP季率",
+        "currency_pair": "USD/SGD",
+        "main_index": "海峡时报指数 (^STI)",
+        "key_sectors": [
+          "金融/银行",
+          "航运/物流",
+          "电子/制造",
+          "地产"
+        ],
+        "policy_events": [
+          "MAS货币政策(半年)",
+          "新加坡GDP(季度)",
+          "非石油出口(每月)"
+        ]
+      }
+    },
+    "马来西亚": {
+      "code": "my",
+      "display_name": "🇲🇾 马来西亚",
+      "timezone": "Asia/Kuala_Lumpur",
+      "utc_offset": "+08:00",
+      "language": "ms-MY",
+      "currency": "MYR",
+      "exchange": "马来西亚交易所 (Bursa Malaysia)",
+      "market_cap_rank": 24,
+      "yahoo_suffix": ".KL",
+      "trading_hours": {
+        "regular": "09:00-17:00 MYT"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "klci": "富时大马综指 FBM KLCI"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 BNM (马来西亚央行) — 超预期收紧/宽松": true,
+        "📊 马来西亚CPI年率 — 通胀超预期": true,
+        "📉 马来西亚GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/MYR — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🛢️ 原油/天然气 — 国家收入": true
+      },
+      "risk_signals": {
+        "central_bank": "BNM (马来西亚央行)",
+        "inflation_indicator": "马来西亚CPI年率",
+        "growth_indicator": "马来西亚GDP季率",
+        "currency_pair": "USD/MYR",
+        "main_index": "富时大马综指 (^KLSE)",
+        "key_sectors": [
+          "油气/能源",
+          "棕榈油",
+          "电子制造",
+          "金融"
+        ],
+        "policy_events": [
+          "BNM利率决议(每月)",
+          "马来西亚CPI(每月)",
+          "贸易数据(每月)"
+        ]
+      }
+    },
+    "印度尼西亚": {
+      "code": "id",
+      "display_name": "🇮🇩 印尼",
+      "timezone": "Asia/Jakarta",
+      "utc_offset": "+07:00",
+      "language": "id-ID",
+      "currency": "IDR",
+      "exchange": "印度尼西亚证券交易所 (IDX)",
+      "market_cap_rank": 16,
+      "yahoo_suffix": ".JK",
+      "trading_hours": {
+        "regular": "09:00-16:00 WIB"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "idx": "IDX Composite"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 BI (印尼央行) — 超预期收紧/宽松": true,
+        "📊 印尼CPI年率 — 通胀超预期": true,
+        "📉 印尼GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/IDR — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🛢️ 煤炭/大宗商品": true
+      },
+      "risk_signals": {
+        "central_bank": "BI (印尼央行)",
+        "inflation_indicator": "印尼CPI年率",
+        "growth_indicator": "印尼GDP季率",
+        "currency_pair": "USD/IDR",
+        "main_index": "雅加达综合 (^JKSE)",
+        "key_sectors": [
+          "资源/矿业",
+          "金融",
+          "消费品",
+          "基建"
+        ],
+        "policy_events": [
+          "BI利率决议(每月)",
+          "印尼CPI(每月)",
+          "印尼GDP(季度)"
+        ]
+      }
+    },
+    "泰国": {
+      "code": "th",
+      "display_name": "🇹🇭 泰国",
+      "timezone": "Asia/Bangkok",
+      "utc_offset": "+07:00",
+      "language": "th-TH",
+      "currency": "THB",
+      "exchange": "泰国证券交易所 (SET)",
+      "market_cap_rank": 26,
+      "yahoo_suffix": ".BK",
+      "trading_hours": {
+        "regular": "10:00-16:30 ICT"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "set": "SET Index"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 BOT (泰国银行) — 超预期收紧/宽松": true,
+        "📊 泰国CPI年率 — 通胀超预期": true,
+        "📉 泰国GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/THB — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "✈️ 旅游业 — 入境游客": true
+      },
+      "risk_signals": {
+        "central_bank": "BOT (泰国银行)",
+        "inflation_indicator": "泰国CPI年率",
+        "growth_indicator": "泰国GDP季率",
+        "currency_pair": "USD/THB",
+        "main_index": "泰国SET指数 (^SET.BK)",
+        "key_sectors": [
+          "旅游/酒店",
+          "汽车制造",
+          "农业/食品",
+          "金融"
+        ],
+        "policy_events": [
+          "BOT利率决议(每月)",
+          "泰国CPI(每月)",
+          "入境旅游(每月)"
+        ]
+      }
+    },
+    "菲律宾": {
+      "code": "ph",
+      "display_name": "🇵🇭 菲律宾",
+      "timezone": "Asia/Manila",
+      "utc_offset": "+08:00",
+      "language": "en-PH",
+      "currency": "PHP",
+      "exchange": "菲律宾证券交易所 (PSE)",
+      "market_cap_rank": 35,
+      "yahoo_suffix": ".PS",
+      "trading_hours": {
+        "regular": "09:30-15:30 PHT"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "psei": "PSEi Index"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 BSP (菲律宾央行) — 超预期收紧/宽松": true,
+        "📊 菲律宾CPI年率 — 通胀超预期": true,
+        "📉 菲律宾GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/PHP — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "💵 海外劳工汇款 — 消费支撑": true
+      },
+      "risk_signals": {
+        "central_bank": "BSP (菲律宾央行)",
+        "inflation_indicator": "菲律宾CPI年率",
+        "growth_indicator": "菲律宾GDP季率",
+        "currency_pair": "USD/PHP",
+        "main_index": "菲律宾PSEi (^PSEI)",
+        "key_sectors": [
+          "海外劳工汇款",
+          "BPO外包",
+          "地产",
+          "金融"
+        ],
+        "policy_events": [
+          "BSP利率决议(每月)",
+          "菲律宾CPI(每月)",
+          "海外劳工汇款(每月)"
+        ]
+      }
+    },
+    "越南": {
+      "code": "vn",
+      "display_name": "🇻🇳 越南",
+      "timezone": "Asia/Ho_Chi_Minh",
+      "utc_offset": "+07:00",
+      "language": "vi-VN",
+      "currency": "VND",
+      "exchange": "胡志明证券交易所 (HOSE) / 河内证券交易所 (HNX)",
+      "market_cap_rank": 29,
+      "yahoo_suffix": ".VN",
+      "trading_hours": {
+        "regular": "09:00-15:00 ICT"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "vni": "VN-Index"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 SBV (越南国家银行) — 超预期收紧/宽松": true,
+        "📊 越南CPI年率 — 通胀超预期": true,
+        "📉 越南GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/VND — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🏭 制造业 — 全球供应链转移": true
+      },
+      "risk_signals": {
+        "central_bank": "SBV (越南国家银行)",
+        "inflation_indicator": "越南CPI年率",
+        "growth_indicator": "越南GDP季率",
+        "currency_pair": "USD/VND",
+        "main_index": "越南VN指数 (^VNINDEX)",
+        "key_sectors": [
+          "电子制造",
+          "纺织/鞋类",
+          "地产",
+          "金融"
+        ],
+        "policy_events": [
+          "SBV政策利率",
+          "越南CPI(每月)",
+          "越南出口(每月)"
+        ]
+      }
+    },
+    "新西兰": {
+      "code": "nz",
+      "display_name": "🇳🇿 新西兰",
+      "timezone": "Pacific/Auckland",
+      "utc_offset": "+12:00",
+      "language": "en-NZ",
+      "currency": "NZD",
+      "exchange": "新西兰交易所 (NZX)",
+      "market_cap_rank": 32,
+      "yahoo_suffix": ".NZ",
+      "trading_hours": {
+        "regular": "10:00-16:45 NZST"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "nzx50": "NZX 50"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 RBNZ (新西兰联储) — 超预期收紧/宽松": true,
+        "📊 新西兰CPI年率 — 通胀超预期": true,
+        "📉 新西兰GDP季率 — 经济萎缩/衰退": true,
+        "💱 NZD/USD — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🥛 乳制品价格 — 恒天然": true
+      },
+      "risk_signals": {
+        "central_bank": "RBNZ (新西兰联储)",
+        "inflation_indicator": "新西兰CPI年率",
+        "growth_indicator": "新西兰GDP季率",
+        "currency_pair": "NZD/USD",
+        "main_index": "新西兰NZX 50 (^NZ50)",
+        "key_sectors": [
+          "农业/乳业",
+          "旅游",
+          "林业",
+          "金融"
+        ],
+        "policy_events": [
+          "RBNZ利率决议(每6周)",
+          "新西兰CPI(季度)",
+          "乳制品拍卖(每月)"
+        ]
+      }
+    },
+    "沙特阿拉伯": {
+      "code": "sa",
+      "display_name": "🇸🇦 沙特",
+      "timezone": "Asia/Riyadh",
+      "utc_offset": "+03:00",
+      "language": "ar-SA",
+      "currency": "SAR",
+      "exchange": "沙特证券交易所 (Tadawul)",
+      "market_cap_rank": 16,
+      "yahoo_suffix": ".SR",
+      "trading_hours": {
+        "regular": "10:00-15:00 AST"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "tadawul": "Tadawul All Share (TASI)"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 SAMA (沙特央行) — 超预期收紧/宽松": true,
+        "📊 沙特CPI年率 — 通胀超预期": true,
+        "📉 沙特GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/SAR — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🛢️ 原油 — OPEC+": true
+      },
+      "risk_signals": {
+        "central_bank": "SAMA (沙特央行)",
+        "inflation_indicator": "沙特CPI年率",
+        "growth_indicator": "沙特GDP季率",
+        "currency_pair": "USD/SAR",
+        "main_index": "Tadawul (^TASI)",
+        "key_sectors": [
+          "石油/石化",
+          "银行/金融",
+          "地产",
+          "电信"
+        ],
+        "policy_events": [
+          "SAMA利率(挂钩美联储)",
+          "沙特CPI",
+          "OPEC+会议"
+        ]
+      }
+    },
+    "阿联酋": {
+      "code": "ae",
+      "display_name": "🇦🇪 阿联酋",
+      "timezone": "Asia/Dubai",
+      "utc_offset": "+04:00",
+      "language": "ar-AE",
+      "currency": "AED",
+      "exchange": "迪拜金融市场 (DFM) / 阿布扎比证券交易所 (ADX)",
+      "market_cap_rank": 24,
+      "yahoo_suffix": ".DU",
+      "trading_hours": {
+        "regular": "10:00-14:00 GST"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "dfm": "DFM General Index"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 CBUAE (阿联酋央行) — 超预期收紧/宽松": true,
+        "📊 阿联酋CPI年率 — 通胀超预期": true,
+        "📉 阿联酋GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/AED — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🛢️ 原油 — 阿布扎比": true
+      },
+      "risk_signals": {
+        "central_bank": "CBUAE (阿联酋央行)",
+        "inflation_indicator": "阿联酋CPI年率",
+        "growth_indicator": "阿联酋GDP季率",
+        "currency_pair": "USD/AED",
+        "main_index": "DFM/ADX指数",
+        "key_sectors": [
+          "石油/天然气",
+          "地产",
+          "金融/银行",
+          "旅游/航空"
+        ],
+        "policy_events": [
+          "CBUAE利率(挂钩美联储)",
+          "阿联酋CPI(每月)",
+          "迪拜房地产"
+        ]
+      }
+    },
+    "以色列": {
+      "code": "il",
+      "display_name": "🇮🇱 以色列",
+      "timezone": "Asia/Jerusalem",
+      "utc_offset": "+02:00",
+      "language": "he-IL",
+      "currency": "ILS",
+      "exchange": "特拉维夫证券交易所 (TASE)",
+      "market_cap_rank": 28,
+      "yahoo_suffix": ".TA",
+      "trading_hours": {
+        "regular": "09:30-17:30 IST"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "ta125": "TA-125 Index"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 BOI (以色列央行) — 超预期收紧/宽松": true,
+        "📊 以色列CPI年率 — 通胀超预期": true,
+        "📉 以色列GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/ILS — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🔐 网络安全 — 全球领先": true
+      },
+      "risk_signals": {
+        "central_bank": "BOI (以色列央行)",
+        "inflation_indicator": "以色列CPI年率",
+        "growth_indicator": "以色列GDP季率",
+        "currency_pair": "USD/ILS",
+        "main_index": "TA-125 (^TA125)",
+        "key_sectors": [
+          "科技/网安",
+          "制药",
+          "金融",
+          "钻石"
+        ],
+        "policy_events": [
+          "BOI利率(每月)",
+          "以色列CPI(每月)",
+          "GDP(季度)"
+        ]
+      }
+    },
+    "南非": {
+      "code": "za",
+      "display_name": "🇿🇦 南非",
+      "timezone": "Africa/Johannesburg",
+      "utc_offset": "+02:00",
+      "language": "en-ZA",
+      "currency": "ZAR",
+      "exchange": "约翰内斯堡证券交易所 (JSE)",
+      "market_cap_rank": 18,
+      "yahoo_suffix": ".JO",
+      "trading_hours": {
+        "regular": "09:00-17:00 SAST"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "jse_top40": "FTSE/JSE Top 40"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 SARB (南非储备银行) — 超预期收紧/宽松": true,
+        "📊 南非CPI年率 — 通胀超预期": true,
+        "📉 南非GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/ZAR — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "⛏️ 黄金/铂金 — 矿业": true
+      },
+      "risk_signals": {
+        "central_bank": "SARB (南非储备银行)",
+        "inflation_indicator": "南非CPI年率",
+        "growth_indicator": "南非GDP季率",
+        "currency_pair": "USD/ZAR",
+        "main_index": "南非综指 (^J203)",
+        "key_sectors": [
+          "矿业/黄金",
+          "金融/银行",
+          "零售",
+          "电信"
+        ],
+        "policy_events": [
+          "SARB利率(每月)",
+          "南非CPI(每月)",
+          "GDP(季度)"
+        ]
+      }
+    },
+    "埃及": {
+      "code": "eg",
+      "display_name": "🇪🇬 埃及",
+      "timezone": "Africa/Cairo",
+      "utc_offset": "+02:00",
+      "language": "ar-EG",
+      "currency": "EGP",
+      "exchange": "埃及交易所 (EGX)",
+      "market_cap_rank": 33,
+      "yahoo_suffix": ".CA",
+      "trading_hours": {
+        "regular": "09:30-14:30 EET"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "egx30": "EGX 30"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 CBE (埃及央行) — 超预期收紧/宽松": true,
+        "📊 埃及CPI年率 — 通胀超预期": true,
+        "📉 埃及GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/EGP — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🔥 LNG — 天然气出口": true
+      },
+      "risk_signals": {
+        "central_bank": "CBE (埃及央行)",
+        "inflation_indicator": "埃及CPI年率",
+        "growth_indicator": "埃及GDP季率",
+        "currency_pair": "USD/EGP",
+        "main_index": "EGX 30 (^EGX30)",
+        "key_sectors": [
+          "能源/天然气",
+          "银行/金融",
+          "建筑/地产",
+          "食品"
+        ],
+        "policy_events": [
+          "CBE利率决议(每月)",
+          "埃及CPI(每月)",
+          "IMF贷款谈判"
+        ]
+      }
+    },
+    "卡塔尔": {
+      "code": "qa",
+      "display_name": "🇶🇦 卡塔尔",
+      "timezone": "Asia/Qatar",
+      "utc_offset": "+03:00",
+      "language": "ar-QA",
+      "currency": "QAR",
+      "exchange": "卡塔尔证券交易所 (QSE)",
+      "market_cap_rank": 30,
+      "yahoo_suffix": ".QA",
+      "trading_hours": {
+        "regular": "09:30-13:30 AST"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "qse": "QSE Index"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 QCB (卡塔尔央行) — 超预期收紧/宽松": true,
+        "📊 卡塔尔CPI年率 — 通胀超预期": true,
+        "📉 卡塔尔GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/QAR — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🔥 LNG — 全球最大出口国": true
+      },
+      "risk_signals": {
+        "central_bank": "QCB (卡塔尔央行)",
+        "inflation_indicator": "卡塔尔CPI年率",
+        "growth_indicator": "卡塔尔GDP季率",
+        "currency_pair": "USD/QAR",
+        "main_index": "QSE (^QSI)",
+        "key_sectors": [
+          "LNG/天然气",
+          "银行/金融",
+          "地产",
+          "电信"
+        ],
+        "policy_events": [
+          "QCB利率(挂钩美联储)",
+          "卡塔尔CPI(每月)",
+          "LNG价格"
+        ]
+      }
+    },
+    "科威特": {
+      "code": "kw",
+      "display_name": "🇰🇼 科威特",
+      "timezone": "Asia/Kuwait",
+      "utc_offset": "+03:00",
+      "language": "ar-KW",
+      "currency": "KWD",
+      "exchange": "科威特证券交易所 (Boursa Kuwait)",
+      "market_cap_rank": 32,
+      "yahoo_suffix": ".KU",
+      "trading_hours": {
+        "regular": "09:30-13:30 AST"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "premier": "Kuwait Premier Market"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 CBK (科威特央行) — 超预期收紧/宽松": true,
+        "📊 科威特CPI年率 — 通胀超预期": true,
+        "📉 科威特GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/KWD — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🛢️ 原油 — 占出口90%+": true
+      },
+      "risk_signals": {
+        "central_bank": "CBK (科威特央行)",
+        "inflation_indicator": "科威特CPI年率",
+        "growth_indicator": "科威特GDP季率",
+        "currency_pair": "USD/KWD",
+        "main_index": "Premier (^KWSE)",
+        "key_sectors": [
+          "石油/石化",
+          "银行/金融",
+          "投资",
+          "电信"
+        ],
+        "policy_events": [
+          "CBK利率",
+          "科威特CPI(每月)",
+          "OPEC+配额"
+        ]
+      }
+    },
+    "尼日利亚": {
+      "code": "ng",
+      "display_name": "🇳🇬 尼日利亚",
+      "timezone": "Africa/Lagos",
+      "utc_offset": "+01:00",
+      "language": "en-NG",
+      "currency": "NGN",
+      "exchange": "尼日利亚交易所集团 (NGX)",
+      "market_cap_rank": 31,
+      "yahoo_suffix": ".NG",
+      "trading_hours": {
+        "regular": "10:00-14:20 WAT"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "ngx30": "NGX 30 Index"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 CBN (尼日利亚央行) — 超预期收紧/宽松": true,
+        "📊 尼日利亚CPI年率 — 通胀超预期": true,
+        "📉 尼日利亚GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/NGN — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🛢️ 原油 — 非洲最大产油": true
+      },
+      "risk_signals": {
+        "central_bank": "CBN (尼日利亚央行)",
+        "inflation_indicator": "尼日利亚CPI年率",
+        "growth_indicator": "尼日利亚GDP季率",
+        "currency_pair": "USD/NGN",
+        "main_index": "NGX 30 (^NGX30)",
+        "key_sectors": [
+          "石油/天然气",
+          "银行",
+          "电信",
+          "农业"
+        ],
+        "policy_events": [
+          "CBN利率(每月)",
+          "尼日利亚CPI(每月)",
+          "GDP(季度)"
+        ]
+      }
+    },
+    "肯尼亚": {
+      "code": "ke",
+      "display_name": "🇰🇪 肯尼亚",
+      "timezone": "Africa/Nairobi",
+      "utc_offset": "+03:00",
+      "language": "en-KE",
+      "currency": "KES",
+      "exchange": "内罗毕证券交易所 (NSE)",
+      "market_cap_rank": 45,
+      "yahoo_suffix": ".NR",
+      "trading_hours": {
+        "regular": "09:00-15:00 EAT"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "nse20": "NSE 20 Share Index"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 CBK (肯尼亚央行) — 超预期收紧/宽松": true,
+        "📊 肯尼亚CPI年率 — 通胀超预期": true,
+        "📉 肯尼亚GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/KES — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🍵 茶叶/咖啡 — 出口": true
+      },
+      "risk_signals": {
+        "central_bank": "CBK (肯尼亚央行)",
+        "inflation_indicator": "肯尼亚CPI年率",
+        "growth_indicator": "肯尼亚GDP季率",
+        "currency_pair": "USD/KES",
+        "main_index": "NSE 20 (^NSE20)",
+        "key_sectors": [
+          "农业/茶",
+          "银行/金融",
+          "电信",
+          "旅游"
+        ],
+        "policy_events": [
+          "CBK利率(每月)",
+          "肯尼亚CPI(每月)",
+          "先令稳定性"
+        ]
+      }
+    },
+    "阿根廷": {
+      "code": "ar",
+      "display_name": "🇦🇷 阿根廷",
+      "timezone": "America/Buenos_Aires",
+      "utc_offset": "-03:00",
+      "language": "es-AR",
+      "currency": "ARS",
+      "exchange": "布宜诺斯艾利斯证券交易所 (BYMA)",
+      "market_cap_rank": 27,
+      "yahoo_suffix": ".BA",
+      "trading_hours": {
+        "regular": "11:00-17:00 ART"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "merval": "S&P Merval Index"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 BCRA (阿根廷央行) — 超预期收紧/宽松": true,
+        "📊 阿根廷CPI年率 — 通胀超预期": true,
+        "📉 阿根廷GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/ARS — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🌾 大豆 — 最大出口": true
+      },
+      "risk_signals": {
+        "central_bank": "BCRA (阿根廷央行)",
+        "inflation_indicator": "阿根廷CPI年率",
+        "growth_indicator": "阿根廷GDP季率",
+        "currency_pair": "USD/ARS",
+        "main_index": "Merval (^MERV)",
+        "key_sectors": [
+          "农业/大豆",
+          "能源/页岩气",
+          "矿业",
+          "银行"
+        ],
+        "policy_events": [
+          "BCRA利率(超高)",
+          "阿根廷CPI(月>3%)",
+          "IMF谈判"
+        ]
+      }
+    },
+    "智利": {
+      "code": "cl",
+      "display_name": "🇨🇱 智利",
+      "timezone": "America/Santiago",
+      "utc_offset": "-04:00",
+      "language": "es-CL",
+      "currency": "CLP",
+      "exchange": "圣地亚哥证券交易所 (BCS)",
+      "market_cap_rank": 35,
+      "yahoo_suffix": ".SN",
+      "trading_hours": {
+        "regular": "09:30-16:00 CLT"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "ipsa": "IPSA Index"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 BCCh (智利央行) — 超预期收紧/宽松": true,
+        "📊 智利CPI年率 — 通胀超预期": true,
+        "📉 智利GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/CLP — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🟤 铜 — 全球最大产铜国": true
+      },
+      "risk_signals": {
+        "central_bank": "BCCh (智利央行)",
+        "inflation_indicator": "智利CPI年率",
+        "growth_indicator": "智利GDP季率",
+        "currency_pair": "USD/CLP",
+        "main_index": "IPSA (^IPSA)",
+        "key_sectors": [
+          "矿业/铜",
+          "林业/纸浆",
+          "金融",
+          "零售"
+        ],
+        "policy_events": [
+          "BCCh利率(每月)",
+          "智利CPI(每月)",
+          "铜价"
+        ]
+      }
+    },
+    "秘鲁": {
+      "code": "pe",
+      "display_name": "🇵🇪 秘鲁",
+      "timezone": "America/Lima",
+      "utc_offset": "-05:00",
+      "language": "es-PE",
+      "currency": "PEN",
+      "exchange": "利马证券交易所 (BVL)",
+      "market_cap_rank": 44,
+      "yahoo_suffix": ".LM",
+      "trading_hours": {
+        "regular": "09:30-16:00 PET"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "bvl": "S&P/BVL Peru General"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 BCRP (秘鲁央行) — 超预期收紧/宽松": true,
+        "📊 秘鲁CPI年率 — 通胀超预期": true,
+        "📉 秘鲁GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/PEN — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🥇 黄金 — 拉美最大产金": true
+      },
+      "risk_signals": {
+        "central_bank": "BCRP (秘鲁央行)",
+        "inflation_indicator": "秘鲁CPI年率",
+        "growth_indicator": "秘鲁GDP季率",
+        "currency_pair": "USD/PEN",
+        "main_index": "BVL (^BVL)",
+        "key_sectors": [
+          "矿业/金银",
+          "渔业",
+          "农业",
+          "金融"
+        ],
+        "policy_events": [
+          "BCRP利率",
+          "秘鲁CPI(每月)",
+          "GDP(季度)"
+        ]
+      }
+    },
+    "哥伦比亚": {
+      "code": "co",
+      "display_name": "🇨🇴 哥伦比亚",
+      "timezone": "America/Bogota",
+      "utc_offset": "-05:00",
+      "language": "es-CO",
+      "currency": "COP",
+      "exchange": "哥伦比亚证券交易所 (BVC)",
+      "market_cap_rank": 40,
+      "yahoo_suffix": ".CN",
+      "trading_hours": {
+        "regular": "09:30-16:00 COT"
+      },
+      "data_provider": {
+        "primary": "yahoo_finance"
+      },
+      "indices": {
+        "colcap": "COLCAP Index"
+      },
+      "active": true,
+      "signal_adapters": {
+        "🏦 BanRep (哥伦比亚) — 超预期收紧/宽松": true,
+        "📊 哥伦比亚CPI年率 — 通胀超预期": true,
+        "📉 哥伦比亚GDP季率 — 经济萎缩/衰退": true,
+        "💱 USD/COP — 大幅波动 > 1%": true,
+        "🏭 制造业PMI — 跌破荣枯线": true,
+        "📈 股指期货 — 隔夜暴跌 > 2%": true,
+        "💹 国债收益率 — 飙升 > 30bp": true,
+        "📦 出口数据 — 显著下滑": true,
+        "👔 失业率 — 大幅上升": true,
+        "🏠 房价指数 — 显著下跌": true,
+        "🛒 零售销售 — 大幅下滑": true,
+        "🏛️ 大选/政治动荡 — 不确定性": true,
+        "🌐 全球联动 — 同步下跌": true,
+        "⚡ 大宗商品 — 价格冲击": true,
+        "🛢️ 原油 — 主要出口": true
+      },
+      "risk_signals": {
+        "central_bank": "BanRep (哥伦比亚)",
+        "inflation_indicator": "哥伦比亚CPI年率",
+        "growth_indicator": "哥伦比亚GDP季率",
+        "currency_pair": "USD/COP",
+        "main_index": "COLCAP (^COLCAP)",
+        "key_sectors": [
+          "石油/能源",
+          "咖啡/农业",
+          "金融",
+          "矿业"
+        ],
+        "policy_events": [
+          "BanRep利率(每月)",
+          "哥伦比亚CPI(每月)",
+          "GDP(季度)"
+        ]
+      }
+    }
+  }
+}

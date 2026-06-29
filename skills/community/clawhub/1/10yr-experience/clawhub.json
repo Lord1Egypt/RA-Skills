@@ -1,0 +1,15 @@
+{
+  "name": "10yr-experience",
+  "version": "1.0.0",
+  "description": "无痛get十年工作经验——新媒体运营、HR、行政专员、市场营销、产品经理五类岗位十年工作经验全记录，配合大模型补充行业知识，面向求职者提供简历编写和面试准备帮助",
+  "author": "FutureZYX",
+  "tags": ["求职", "简历", "面试", "职业规划", "新媒体运营", "HR", "行政", "市场营销", "产品经理"],
+  "category": "career",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "clawhub.json",
+    "references/career-data.md",
+    "references/interview-guide.md"
+  ]
+}

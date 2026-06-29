@@ -11,29 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and technical teams use this skill to convert selected Claude Code session logs into animated GIF terminal replays for pull requests, tutorials, workflow demos, and visual evidence. <br>
+Developers and engineers use this skill to turn prior Claude Code sessions into animated GIF terminal replays for demos, pull requests, tutorials, or shared workflow evidence. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can list and read local Claude Code session logs, which may include secrets, customer data, internal URLs, tokens, tool output, or private discussion. <br>
-Mitigation: Install only if comfortable granting that access, review generated GIFs before sharing, and prefer narrow options such as --turns and --show user,assistant. <br>
+Risk: The skill reads prior Claude session logs under ~/.claude/projects/, which may contain sensitive prompts, tool outputs, or project details. <br>
+Mitigation: Choose the session deliberately and review the parsed content before rendering or sharing the replay. <br>
+Risk: Generated GIFs can expose private or irrelevant session details when full sessions, tool output, or thinking content are included. <br>
+Mitigation: Limit the replay to necessary turns, exclude tools or thinking unless needed, and manually redact sensitive content before distribution. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/athola/nm-scribe-session-replay) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-scribe-session-replay) <br>
 - [Clawdis homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scribe) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, code, shell commands, configuration, files, guidance] <br>
-**Output Format:** [Markdown/text responses with command examples, generated VHS tape files, and animated GIF outputs through the scry dependency] <br>
+**Output Type(s):** [Files, Shell commands, Configuration, Guidance] <br>
+**Output Format:** [Markdown guidance with file paths, command examples, and generated replay artifacts] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May read local Claude Code JSONL session logs and should use narrow filters such as --turns and --show to limit exposed content.] <br>
+**Other Properties Related to Output:** [Generates a temporary VHS tape and delegates GIF rendering to the configured scry:vhs-recording dependency.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release evidence) <br>
+1.9.13 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

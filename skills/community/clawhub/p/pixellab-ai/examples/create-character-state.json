@@ -1,0 +1,7 @@
+{
+  "character_id": "REPLACE_WITH_CHARACTER_ID",
+  "edit_description": "same character in a forward walk starting pose, same palette and outfit, stable face, transparent background",
+  "no_background": true,
+  "use_color_palette_from_reference": true,
+  "seed": 0
+}

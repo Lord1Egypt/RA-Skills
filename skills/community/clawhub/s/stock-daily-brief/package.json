@@ -1,0 +1,9 @@
+{
+  "name": "stock-briefing",
+  "version": "1.0.0",
+  "description": "股票每日简报生成器",
+  "author": "ruifeng-agent",
+  "license": "MIT",
+  "keywords": ["stock", "market", "trading", "briefing", "finance"],
+  "main": "SKILL.md"
+}

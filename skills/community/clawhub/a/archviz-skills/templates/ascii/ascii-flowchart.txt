@@ -1,0 +1,33 @@
+# ASCII Flowchart Template (plain text, no box-drawing chars)
+# Max 80 columns, monospace assumed
+
+# Simple Process Flow
+
+[Input] --> [Process] --> [Output]
+
+# Decision Flow
+
+[Start] --> {Decision}
+              /        \
+         [Path A]    [Path B]
+              \        /
+           [Merge] --> [End]
+
+# Layered System
+
+=== Presentation ===
+  [View] --> [Route]
+
+--- Business Logic ---
+  [Service] --> [Model]
+
+=== Data Layer ===
+  [Store]    [API]
+
+# Legend:
+# -->  = primary flow
+# ---> = secondary flow
+# ==>  = emphasized
+# [x]  = node
+# {x}  = decision
+# [[x]] = important node

@@ -1,0 +1,209 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://openclaw.dev/skills/rental-dispute-advisor/output.schema.json",
+  "title": "Rental Dispute Output",
+  "description": "Schema for analysis, calculation, document, and escalation outputs from Rental Dispute Advisor",
+  "type": "object",
+  "oneOf": [
+    { "$ref": "#/definitions/CollectionReport" },
+    { "$ref": "#/definitions/AnalysisReport" },
+    { "$ref": "#/definitions/CalculationReport" },
+    { "$ref": "#/definitions/LegalDocument" },
+    { "$ref": "#/definitions/EvidenceChecklist" },
+    { "$ref": "#/definitions/NegotiationScript" },
+    { "$ref": "#/definitions/EscalationPlan" }
+  ],
+  "definitions": {
+    "CollectionReport": {
+      "type": "object",
+      "required": ["case_id", "dispute_type", "completeness_score", "generated_at"],
+      "properties": {
+        "case_id": { "type": "string", "description": "Unique case identifier" },
+        "dispute_type": { "type": "string", "enum": ["deposit_withheld", "rent_increase", "illegal_fees", "maintenance_failure", "eviction", "contract_trap", "roommate_dispute", "other"] },
+        "completeness_score": { "type": "integer", "minimum": 0, "maximum": 10 },
+        "completeness_rating": { "type": "string", "description": "Human-readable rating" },
+        "evidence_count": { "type": "integer", "minimum": 0 },
+        "timeline_count": { "type": "integer", "minimum": 0 },
+        "suggestions": { "type": "array", "items": { "type": "string" } },
+        "generated_at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "AnalysisReport": {
+      "type": "object",
+      "required": ["case_id", "dispute_type", "applicable_laws", "responsibility_assessment", "recommended_strategy", "generated_at"],
+      "properties": {
+        "case_id": { "type": "string" },
+        "dispute_type": { "type": "string" },
+        "applicable_laws": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "law": { "type": "string", "description": "Name of the law or regulation" },
+              "articles": { "type": "array", "items": { "type": "string" }, "description": "Relevant articles or sections" },
+              "application": { "type": "string", "description": "How this law applies to the case" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "responsibility_assessment": {
+          "type": "object",
+          "properties": {
+            "tenant_rights": { "type": "array", "items": { "type": "string" } },
+            "tenant_obligations": { "type": "array", "items": { "type": "string" } },
+            "landlord_obligations": { "type": "array", "items": { "type": "string" } },
+            "landlord_liabilities": { "type": "array", "items": { "type": "string" } },
+            "agency_compliance": { "type": "array", "items": { "type": "string" } },
+            "overall_assessment": { "type": "string", "enum": ["TENANT_FAVORABLE", "NEUTRAL", "LANDLORD_FAVORABLE", "INSUFFICIENT_DATA"] },
+            "confidence_level": { "type": "string", "enum": ["high", "medium", "low"] }
+          },
+          "additionalProperties": false
+        },
+        "recommended_strategy": { "type": "array", "items": { "type": "string" } },
+        "disclaimer": { "type": "string" },
+        "generated_at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "CalculationReport": {
+      "type": "object",
+      "required": ["case_id", "items", "total_estimate", "generated_at"],
+      "properties": {
+        "case_id": { "type": "string" },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "item": { "type": "string", "description": "Description of the compensation item" },
+              "amount": { "type": "number", "minimum": 0, "description": "Amount in RMB" },
+              "basis": { "type": "string", "description": "Legal or contractual basis" },
+              "status": { "type": "string", "enum": ["certain", "estimated", "disputed"], "description": "Certainty of this item" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "total_estimate": {
+          "type": "object",
+          "properties": {
+            "best_case": { "type": "number" },
+            "expected": { "type": "number" },
+            "conservative": { "type": "number" }
+          },
+          "additionalProperties": false
+        },
+        "penalty_max": { "type": "number", "description": "Maximum breach penalty" },
+        "penalty_min": { "type": "number", "description": "Minimum breach penalty" },
+        "court_filing_fee_estimate": { "type": "number" },
+        "notes": { "type": "array", "items": { "type": "string" } },
+        "disclaimer": { "type": "string" },
+        "generated_at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "LegalDocument": {
+      "type": "object",
+      "required": ["document_type", "recipient", "sender", "issue_date", "content"],
+      "properties": {
+        "document_type": { "type": "string", "enum": ["demand_letter", "complaint_filing", "civil_complaint"] },
+        "recipient": { "type": "string" },
+        "sender": { "type": "string" },
+        "issue_date": { "type": "string", "format": "date" },
+        "case_id": { "type": "string" },
+        "amount_claimed": { "type": "number" },
+        "legal_basis": { "type": "array", "items": { "type": "string" } },
+        "content": { "type": "string", "description": "Full document text in Markdown" }
+      },
+      "additionalProperties": false
+    },
+    "EvidenceChecklist": {
+      "type": "object",
+      "required": ["case_id", "dispute_type", "items", "generated_at"],
+      "properties": {
+        "case_id": { "type": "string" },
+        "dispute_type": { "type": "string" },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "priority": { "type": "integer", "minimum": 1, "maximum": 3 },
+              "type": { "type": "string" },
+              "description": { "type": "string" },
+              "collected": { "type": "boolean", "default": false },
+              "notes": { "type": "string" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "instructions": { "type": "array", "items": { "type": "string" } },
+        "generated_at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "NegotiationScript": {
+      "type": "object",
+      "required": ["style", "strategy", "rounds", "generated_at"],
+      "properties": {
+        "style": { "type": "string", "enum": ["soft", "firm"] },
+        "strategy": { "type": "string", "description": "Overall negotiation strategy description" },
+        "rounds": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "round": { "type": "integer", "minimum": 1 },
+              "name": { "type": "string" },
+              "key_point": { "type": "string" },
+              "script": { "type": "string", "description": "Suggested dialogue" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "generated_at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "EscalationPlan": {
+      "type": "object",
+      "required": ["case_id", "start_date", "levels", "timeline", "generated_at"],
+      "properties": {
+        "case_id": { "type": "string" },
+        "start_date": { "type": "string", "format": "date" },
+        "levels": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "level": { "type": "integer", "minimum": 1, "maximum": 5 },
+              "method": { "type": "string" },
+              "time_estimate": { "type": "string" },
+              "cost_estimate": { "type": "string" },
+              "success_rate": { "type": "string" },
+              "actions": { "type": "array", "items": { "type": "string" } },
+              "required_documents": { "type": "array", "items": { "type": "string" } },
+              "deadline": { "type": "string", "format": "date" }
+            },
+            "additionalProperties": false
+          }
+        },
+        "timeline": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "date": { "type": "string", "format": "date" },
+              "milestone": { "type": "string" },
+              "status": { "type": "string", "enum": ["pending", "in_progress", "completed", "skipped"] }
+            },
+            "additionalProperties": false
+          }
+        },
+        "disclaimer": { "type": "string" },
+        "generated_at": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

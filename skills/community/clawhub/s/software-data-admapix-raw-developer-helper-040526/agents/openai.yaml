@@ -1,0 +1,7 @@
+interface:
+  display_name: "AdMapix Raw Data Developer Helper"
+  short_description: "Design and harden AdMapix-style raw data workflows for creative, app, ranking, revenue, and analytics datas..."
+  default_prompt: "Use $software-data-admapix-raw-developer-helper to design a raw data layer for ad creative exports."
+
+policy:
+  allow_implicit_invocation: true

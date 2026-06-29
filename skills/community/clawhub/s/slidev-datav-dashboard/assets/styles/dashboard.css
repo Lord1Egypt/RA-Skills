@@ -1,0 +1,105 @@
+/* ============================================================================
+   大屏 dashboard styles — palette tokens + panel/typography/scrollbar utilities.
+   Imported globally from setup/main.ts. Switch palette by adding `theme-purple` or
+   `theme-green` to <html> (e.g. in headmatter `htmlAttrs: { class: 'theme-purple' }`).
+   Note: DataV draws to canvas/SVG and CANNOT read these CSS vars — pass literal hex
+   colors to component props. Keep a JS `palette` object mirroring these (see slides.md).
+   ============================================================================ */
+
+/* Optional sci-fi numeric face (needs network at build; falls back gracefully). */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@500;600;700&display=swap');
+
+/* ---- A) Tech Blue (default) ---- */
+:root {
+  --dv-bg:        #07142b;
+  --dv-bg-2:      #0b1a2c;
+  --dv-panel:     rgba(12, 30, 60, 0.42);
+  --dv-text:      #c9e0ff;
+  --dv-text-dim:  #7fa6cc;
+  --dv-primary:   #00baff;
+  --dv-secondary: #3de7c9;
+  --dv-accent:    #f7b500;
+  --dv-success:   #2ed47a;
+  --dv-warning:   #ffb02e;
+  --dv-danger:    #ff5b5b;
+  --dv-line:      #16314e;
+  --dv-font-sans: 'Rajdhani', 'Noto Sans SC', ui-sans-serif, 'Source Han Sans SC', 'Microsoft YaHei', system-ui, sans-serif;
+  --dv-font-num:  'Orbitron', 'Rajdhani', 'DIN', ui-monospace, monospace;
+}
+
+/* ---- B) Deep Space Purple ---- */
+:root.theme-purple {
+  --dv-bg: #0a0a1f; --dv-bg-2: #12122e; --dv-panel: rgba(40, 28, 80, 0.4);
+  --dv-text: #e6e1ff; --dv-text-dim: #9d93c7;
+  --dv-primary: #8b6cff; --dv-secondary: #21d4fd; --dv-accent: #ff6ac6;
+  --dv-line: #241a44;
+}
+
+/* ---- C) Command Green ---- */
+:root.theme-green {
+  --dv-bg: #04130c; --dv-bg-2: #07241a; --dv-panel: rgba(8, 40, 28, 0.42);
+  --dv-text: #c7ffe6; --dv-text-dim: #6fbf9b;
+  --dv-primary: #2effa0; --dv-secondary: #3df0e7; --dv-accent: #c8ff00;
+  --dv-line: #0d3a2a;
+}
+
+/* ---- Typography utilities ---- */
+.dv-num {
+  font-family: var(--dv-font-num);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+}
+.dv-text-dim { color: var(--dv-text-dim); }
+.dv-accent   { color: var(--dv-accent); }
+
+/* ---- Header bar (top title strip) ---- */
+.dv-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  height: 100%;
+}
+.dv-header__title {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  background: linear-gradient(90deg, var(--dv-text), var(--dv-primary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 18px color-mix(in srgb, var(--dv-primary) 30%, transparent);
+}
+.dv-header__meta { font-size: 15px; color: var(--dv-text-dim); }
+.dv-header__meta b { color: var(--dv-secondary); font-weight: 600; }
+
+/* ---- Panel inner title (used by DashPanel) ---- */
+.dv-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--dv-text);
+}
+.dv-panel-title::before {
+  content: '';
+  width: 4px;
+  height: 15px;
+  border-radius: 2px;
+  background: linear-gradient(var(--dv-primary), var(--dv-secondary));
+  box-shadow: 0 0 8px var(--dv-primary);
+}
+
+/* ---- KPI card ---- */
+.dv-kpi { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+.dv-kpi__label { font-size: 14px; color: var(--dv-text-dim); letter-spacing: 0.08em; }
+
+/* ---- Thin glowing scrollbar for any overflow areas ---- */
+*::-webkit-scrollbar { width: 6px; height: 6px; }
+*::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--dv-primary) 55%, transparent);
+  border-radius: 3px;
+}
+*::-webkit-scrollbar-track { background: transparent; }

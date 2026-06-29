@@ -1,0 +1,12 @@
+{
+  "开发": {"color": "blue", "productive": true, "billable_default": true},
+  "会议": {"color": "yellow", "productive": true, "billable_default": true},
+  "文档": {"color": "green", "productive": true, "billable_default": true},
+  "设计": {"color": "purple", "productive": true, "billable_default": true},
+  "管理": {"color": "orange", "productive": true, "billable_default": false},
+  "学习": {"color": "indigo", "productive": true, "billable_default": false},
+  "通勤": {"color": "gray", "productive": false, "billable_default": false},
+  "休息": {"color": "teal", "productive": false, "billable_default": false},
+  "运动": {"color": "lime", "productive": false, "billable_default": false},
+  "其他": {"color": "gray", "productive": false, "billable_default": false}
+}

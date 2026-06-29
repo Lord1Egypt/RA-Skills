@@ -1,0 +1,164 @@
+# MyKnowledge Skill 配置
+
+skill:
+  name: myknowledge
+  version: "1.4.89"
+  description: "通用知识库管理 Skill"
+
+# 安装源配置（首次运行时自动检测，写入 ~/.myknowledge/config/install-source）
+# 可能的值: skillhub_web | skillhub_cli | clawhub | github_zip | github_clone | manual | unknown
+install_source: "unknown"
+
+# 用户数据目录（与 Skill 文件分离，更新时保留）
+user_data:
+  # 用户配置和状态存储位置
+  base_dir: "~/.myknowledge"
+  config_dir: "~/.myknowledge/config"
+  
+  # 各配置文件路径
+  state_file: "~/.myknowledge/config/skill-state.yaml"
+  version_file: "~/.myknowledge/config/version"
+  install_source_file: "~/.myknowledge/config/install-source"
+  
+  # 全局知识库位置
+  global_kb: "~/.myknowledge/global"
+
+# 版本兼容性
+version_compatibility:
+  # 当前 Skill 版本（与 skill.version 保持一致）
+  current: "1.4.89"
+
+  # 配置格式版本
+  config_format: "1.0"
+
+  # 兼容的配置版本（可自动迁移）
+  compatible_configs:
+    - "1.0"
+
+# 平台检测配置
+platform_detection:
+  enabled: true
+  paths:
+    openclaw: "~/.openclaw"
+    codebuddy: "~/.codebuddy"
+    workbuddy: "~/.workbuddy"
+    claude: "~/.claude"
+
+# 功能特性
+features:
+  # 智能任务追踪（自动检测复杂任务）
+  smart_tracking:
+    enabled: true
+    description: "自动检测任务复杂度并创建知识库"
+    min_keyword_count: 3  # 触发所需最小关键词数（默认 3，可调 2-5）
+    
+  # 需求管理
+  requirement_management:
+    enabled: true
+    id_format: "REQ-{date}-{seq}"
+    
+  # 状态管理
+  status_management:
+    enabled: true
+    states:
+      - Created
+      - In Progress
+      - Review
+      - Done
+      - Cancelled
+
+# 存储位置
+storage:
+  # 全局知识库（按项目名分子目录）
+  global:
+    path: "~/.myknowledge/global/{project-name}"
+    description: "无工作空间时，按项目名创建子目录存储知识"
+    
+  # 项目知识库
+  project:
+    path: "{project-path}/.myknowledge"
+    description: "有工作空间时，在当前目录创建 .myknowledge/"
+
+  # 项目目录（按需读取，记录所有知识库位置）
+  projects_catalog: "~/.myknowledge/config/projects.yaml"
+
+# 目录结构模板（每个知识库的目录结构）
+directory_structure:
+  - README.md           # 知识库入口（kb-readme-template.md）
+  - requirements/
+    - README.md         # 需求索引（requirements-index-template.md）
+  - public/
+    - README.md         # 公开文件清单（public-readme-template.md）
+  - archive/
+    - README.md         # 归档索引（archive-readme-template.md）
+  - PROJECT-STATUS.md   # 项目状态快照（project-status-template.md）
+
+# 首次引导配置
+onboarding:
+  # 是否已完成（由系统自动管理）
+  completed: false
+  
+  # 引导文件位置
+  prompt_file: "one-time/onboarding/main.md"
+  
+  # 是否显示平台选择
+  show_platform_selection: true
+  
+  # OpenClaw 用户是否显示 Hook 引导
+  show_hook_guide_for_openclaw: true
+  
+  # 是否询问存储位置偏好
+  ask_storage_preference: false
+  
+  # 是否提供新手实操示例
+  offer_tutorial: true
+  
+  # 是否检测安装源
+  detect_install_source: true
+
+# 复杂任务检测规则
+complex_task_detection:
+  keywords:
+    - "分析"
+    - "统计"
+    - "挖掘"
+    - "开发"
+    - "设计"
+    - "调研"
+    - "整理"
+    - "清洗"
+    - "项目"
+    - "系统"
+  
+  # 提高阈值，减少误触发
+  min_keyword_count: 3
+  
+  # 否定模式：包含这些词时降低触发概率
+  exclude_patterns:
+    - "简单"
+    - "粗略"
+    - "快速"
+    - "大概"
+    - "随便"
+    - "帮我看看"
+  
+  indicators:
+    - "多步骤"
+    - "长期"
+    - "跟踪"
+    - "记录"
+    - "文档"
+  
+  # 首次自动创建时询问用户偏好
+  require_confirmation: true
+
+# 模板配置
+templates:
+  project_status: "core/templates/project-status-template.md"
+  requirement_readme: "core/templates/requirement-readme-template.md"
+  design_doc: "core/templates/design-doc-template.md"
+
+# 更新检查配置（策略定义在 prompts/main.md 中，此处仅开关）
+update_check:
+  enabled: true
+  interval_days: 7

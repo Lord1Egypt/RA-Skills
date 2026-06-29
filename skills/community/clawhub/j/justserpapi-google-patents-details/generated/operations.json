@@ -1,0 +1,73 @@
+{
+  "baseUrl": "https://api.justserpapi.com",
+  "description": "Call GET /api/v1/google/patents/details for Google SERP Patents Details through Just Serp API with patent_id.",
+  "displayName": "Google SERP Patents Details",
+  "endpointPath": "patents/details",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Google patent Details data, including abstracts, claims, and legal status, for patent review and IP due diligence.",
+      "method": "GET",
+      "operationId": "patentDetails",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "The unique Google Patent ID (e.g., 'US1234567B1').",
+          "enumValues": [],
+          "location": "query",
+          "name": "patent_id",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the language for the results using its two-letter code (e.g., 'en' for English, 'fr' for French). See <a href=\"/reference/google-language\">Google Language</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "language",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set to true to return the raw HTML of the Google search results page alongside the structured data.",
+          "enumValues": [],
+          "location": "query",
+          "name": "html",
+          "required": false,
+          "schemaType": "boolean"
+        }
+      ],
+      "path": "/api/v1/google/patents/details",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        },
+        {
+          "description": "Authentication failed: API Key is invalid or missing",
+          "statusCode": "401"
+        },
+        {
+          "description": "Access denied: Insufficient credits or quota exceeded",
+          "statusCode": "403"
+        },
+        {
+          "description": "Internal server error or upstream service exception",
+          "statusCode": "500"
+        }
+      ],
+      "summary": "Details",
+      "tags": [
+        "Google Patent"
+      ]
+    }
+  ],
+  "platformKey": "google",
+  "primaryTag": "Google SERP",
+  "skillName": "justserpapi_google_patents_details",
+  "skillType": "interface",
+  "slug": "justserpapi-google-patents-details",
+  "sourceTitle": "API Shop Documentation"
+}

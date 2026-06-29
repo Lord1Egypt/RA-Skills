@@ -1,0 +1,431 @@
+#!/usr/bin/env python3
+"""Plot rainfall (inverted) vs runoff/outfall hydrograph with publication formatting.
+
+Requirements from Zhonghao:
+- SI units
+- Inverted rainfall axis
+- Hydrograph shape preserved (assumes output time step is sufficiently fine, e.g., 5-min)
+- Ticks inward
+- Font: Arial 12
+- No title
+
+Inputs:
+- INP path (to read TIMESERIES for rainfall)
+- OUT path (to read node total inflow from SWMM output)
+
+Output:
+- PNG (and optionally PDF later)
+
+Agent-flow invariant (issue #125):
+    The ``--rain-ts`` / ``--node`` / ``--node-attr`` defaults below are
+    self-documenting placeholders (``<rainfall-series-name>`` /
+    ``<outfall-or-junction>``) that are only reachable from a *manual
+    CLI invocation*. The agent-driven path always passes explicit
+    values resolved against the run's actual INP/OUT:
+
+        agent goal
+          -> planner._extract_plot_choice (agentic_swmm/agent/planner.py)
+             which reads inspect_plot_options output and picks real names
+          -> tool_registry._plot_run_args (agentic_swmm/agent/tool_registry.py)
+             which forwards the explicit values to the MCP server
+          -> mcp/swmm-plot/server.js
+             whose Zod defaults are also placeholders and are likewise
+             never reached on an agent call.
+
+    If a manual CLI invocation hits one of these placeholder defaults,
+    the script errors informatively (``rainfall series
+    '<rainfall-series-name>' not found in INP``) instead of failing
+    with a Tecnopolo-shaped error that misleads users on a different
+    watershed. ``Total_inflow`` is a SWMM-universal attribute name (not
+    watershed-specific) so its default remains literal.
+
+    Regression test: ``tests/test_plot_run_args_overrides_defaults.py``.
+"""
+
+from __future__ import annotations
+
+import argparse
+import sys
+from datetime import datetime, timedelta
+from pathlib import Path
+
+
+def _warn_if_cold_start() -> None:
+    """Emit a one-line stderr hint if matplotlib's font cache is missing.
+
+    The MCP server preheats matplotlib + swmmtoolbox at boot (see
+    issue #109) so the user normally never sees this. If the preheat
+    failed (no Python, no deps) or hasn't finished yet, this warning
+    tells the user why the first plot call is taking a while instead
+    of leaving them staring at a silent ``you>`` prompt.
+    """
+    try:
+        import matplotlib  # cheap; just reads metadata
+        cachedir = Path(matplotlib.get_cachedir())
+    except Exception:
+        return
+    # matplotlib names the cache ``fontlist-vNNN.json``; if any file
+    # matching that glob exists we treat the cache as warm.
+    if not any(cachedir.glob('fontlist-v*.json')):
+        sys.stderr.write(
+            '[swmm-plot] First plot warms up matplotlib + swmmtoolbox '
+            '(~60-90s). Subsequent plots are fast.\n'
+        )
+        sys.stderr.flush()
+
+
+_warn_if_cold_start()
+
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+import numpy as np
+
+from swmmtoolbox import extract
+
+
+def parse_timeseries_file(path: Path) -> tuple[list[datetime], list[float]]:
+    times: list[datetime] = []
+    vals: list[float] = []
+    for raw in path.read_text(errors='ignore').splitlines():
+        s = raw.strip()
+        if not s or s.startswith(';'):
+            continue
+        parts = s.split()
+        if len(parts) < 3:
+            continue
+        dt = datetime.strptime(parts[0] + ' ' + parts[1], '%m/%d/%Y %H:%M')
+        times.append(dt)
+        vals.append(float(parts[2]))
+    if not times:
+        raise SystemExit(f'No timeseries values found in {path}')
+    return times, vals
+
+
+def _find_raingages_file(inp_path: Path, gage_id: str) -> Path | None:
+    """Return the .dat path referenced by ``[RAINGAGES] FILE`` for ``gage_id``.
+
+    SWMManywhere emits INPs whose rainfall input lives in an external
+    .dat file referenced from ``[RAINGAGES]`` instead of an inline
+    ``[TIMESERIES]`` block, e.g.::
+
+        [RAINGAGES]
+        rg1   INTENSITY  0:05   1.0   FILE   "storm.dat"
+
+    Returns ``None`` (not raise) so the caller can produce a context-rich
+    error pointing at both INP and the missing series.
+    """
+    in_raingages = False
+    for raw in inp_path.read_text(errors='ignore').splitlines():
+        s = raw.strip()
+        if s.upper() == '[RAINGAGES]':
+            in_raingages = True
+            continue
+        if in_raingages:
+            if s.startswith('[') and s.endswith(']'):
+                break
+            if not s or s.startswith(';'):
+                continue
+            parts = s.split()
+            upper_parts = [p.upper() for p in parts]
+            if parts[0].strip('"') != gage_id:
+                continue
+            if 'FILE' in upper_parts:
+                idx = upper_parts.index('FILE')
+                if idx + 1 < len(parts):
+                    return inp_path.parent / parts[idx + 1].strip('"')
+    return None
+
+
+def parse_raingages_file(path: Path, gage_id: str | None = None) -> tuple[list[datetime], list[float]]:
+    """Parse the SWMM5 ``[RAINGAGES] FILE`` format::
+
+        <gage_id> <YYYY> <MM> <DD> <HH> <mm> <value>
+
+    Lines whose first token does not match ``gage_id`` (when supplied)
+    are skipped — SWMM5 allows a single .dat to hold multiple gages.
+    """
+    times: list[datetime] = []
+    vals: list[float] = []
+    for raw in path.read_text(errors='ignore').splitlines():
+        s = raw.strip()
+        if not s or s.startswith(';'):
+            continue
+        parts = s.split()
+        if len(parts) < 7:
+            continue
+        if gage_id is not None and parts[0] != gage_id:
+            continue
+        try:
+            dt = datetime(
+                int(parts[1]), int(parts[2]), int(parts[3]),
+                int(parts[4]), int(parts[5]),
+            )
+            v = float(parts[6])
+        except (ValueError, IndexError):
+            continue
+        times.append(dt)
+        vals.append(v)
+    if not times:
+        raise SystemExit(
+            f'No RAINGAGES FILE rows found in {path}'
+            + (f' for gage {gage_id!r}' if gage_id else '')
+        )
+    return times, vals
+
+
+def parse_timeseries_from_inp(inp_path: Path, ts_name: str) -> tuple[list[datetime], list[float]]:
+    """Return (times, values) from [TIMESERIES]. Values are whatever units the INP encodes.
+
+    Fallback (strict additive): if no ``[TIMESERIES]`` row matches
+    ``ts_name``, look for a ``[RAINGAGES] <ts_name> ... FILE <storm.dat>``
+    entry and parse that .dat. This supports SWMManywhere-generated INPs
+    which omit ``[TIMESERIES]`` entirely.
+    """
+    times: list[datetime] = []
+    vals: list[float] = []
+    reading = False
+    for line in inp_path.read_text(errors='ignore').splitlines():
+        s = line.strip()
+        if s.upper() == '[TIMESERIES]':
+            reading = True
+            continue
+        if reading:
+            if s.startswith('[') and s.endswith(']'):
+                break
+            if (not s) or s.startswith(';;'):
+                continue
+            parts = s.split()
+            if parts[0] != ts_name:
+                continue
+            if len(parts) >= 3 and parts[1].upper() == 'FILE':
+                return parse_timeseries_file(inp_path.parent / parts[2].strip('"'))
+            dt = datetime.strptime(parts[1] + ' ' + parts[2], '%m/%d/%Y %H:%M')
+            times.append(dt)
+            vals.append(float(parts[3]))
+    if not times:
+        # Strict additive fallback: try RAINGAGES FILE (SWMManywhere case).
+        raingages_path = _find_raingages_file(inp_path, ts_name)
+        if raingages_path is not None:
+            if not raingages_path.exists():
+                raise SystemExit(
+                    f'RAINGAGES FILE referenced by gage {ts_name!r} not found: '
+                    f'{raingages_path} (referenced from {inp_path})'
+                )
+            return parse_raingages_file(raingages_path, gage_id=ts_name)
+        raise SystemExit(f'No TIMESERIES values found for {ts_name} in {inp_path}')
+    return times, vals
+
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument('--inp', required=True, type=Path)
+    ap.add_argument('--out', dest='out_file', required=True, type=Path)
+    # Issue #125: ``--rain-ts`` / ``--node`` defaults are SELF-DOCUMENTING
+    # PLACEHOLDERS, not portability rot. They are unreachable in the
+    # agent-driven path (planner always overrides via
+    # ``agentic_swmm/agent/tool_registry.py::_plot_run_args``). A manual
+    # CLI invocation that hits them errors with a clear message that
+    # names the placeholder string instead of misleading the user with
+    # ``TS_RAIN``/``O1``. ``--node-attr`` keeps its literal default
+    # because ``Total_inflow`` is a SWMM-universal attribute name.
+    ap.add_argument('--rain-ts', default='<rainfall-series-name>',
+                    help='Name of the SWMM [TIMESERIES] block holding rainfall. The agent flow passes the resolved value; manual CLI users must supply this.')
+    ap.add_argument('--rain-kind', choices=['intensity_mm_per_hr', 'depth_mm_per_dt', 'cumulative_depth_mm'], default='depth_mm_per_dt',
+                    help='How to interpret TIMESERIES values for plotting. Use depth_mm_per_dt for (mm/Δt) hyetograph (inverted).')
+    ap.add_argument('--dt-min', type=float, default=5.0, help='Used only when rain-kind=depth_mm_per_dt or to convert intensity to depth.')
+    # ``--node`` and ``--link`` are alternate entity selectors. The
+    # argparse group below enforces mutual exclusion: a single render
+    # plots either a node-level series or a link-level (Flow_rate)
+    # series. ``--node`` keeps its placeholder default so existing
+    # callers / tests that omit the flag still get the same fail-fast
+    # message that pre-dates --link.
+    entity_group = ap.add_mutually_exclusive_group()
+    entity_group.add_argument('--node', default='<outfall-or-junction>',
+                              help='SWMM node id (outfall or junction) whose attribute is plotted. The agent flow passes the resolved value; manual CLI users must supply this.')
+    entity_group.add_argument('--link', default=None,
+                              help='SWMM link/conduit id; when set, the lower panel plots Flow_rate for the link instead of a node attribute. Mutually exclusive with --node.')
+    ap.add_argument('--node-attr', default='Total_inflow')
+    ap.add_argument('--out-png', required=True, type=Path)
+    ap.add_argument('--dpi', type=int, default=300)
+    ap.add_argument('--focus-day', type=str, default=None,
+                    help='If set (YYYY-MM-DD), base day for x-axis formatting.')
+    ap.add_argument('--window-start', type=str, default=None,
+                    help='Optional HH:MM. If provided with --focus-day, x-axis will be limited to this time window within the day.')
+    ap.add_argument('--window-end', type=str, default=None,
+                    help='Optional HH:MM. If provided with --focus-day, x-axis will be limited to this time window within the day.')
+    ap.add_argument('--pad-hours', type=float, default=2.0,
+                    help='When focus-day is not set, auto-window uses nonzero rainfall extent ± pad-hours.')
+    ap.add_argument('--rain-ymax-factor', type=float, default=3.0,
+                    help='Multiplier applied to the plotted rainfall maximum so inverted bars stay in the upper part of the panel.')
+    ap.add_argument('--flow-ymax-factor', type=float, default=2.5,
+                    help='Multiplier applied to the plotted flow maximum so the hydrograph does not visually collide with rainfall bars.')
+    args = ap.parse_args()
+
+    # Issue #125: catch manual CLI users who relied on the old
+    # ``TS_RAIN``/``O1`` defaults. The placeholder strings cannot resolve
+    # against any real INP, so we fail fast with a message that names
+    # the missing flag instead of letting ``parse_timeseries_from_inp``
+    # surface a confusing "No TIMESERIES values found for
+    # '<rainfall-series-name>'" error deeper in the stack.
+    if args.rain_ts == '<rainfall-series-name>':
+        raise SystemExit(
+            "--rain-ts is a placeholder ('<rainfall-series-name>'); pass an "
+            "actual TIMESERIES name from your INP, e.g. --rain-ts MyRainSeries. "
+            "(The agent-driven path resolves this automatically via "
+            "inspect_plot_options; this error only appears in manual CLI use.)"
+        )
+    # The ``--node`` placeholder check only fires when ``--link`` was
+    # not supplied. ``--link`` is the alternate selector and provides
+    # its own (non-placeholder) id, so the user must not be told to
+    # pass --node in that case.
+    if not args.link and args.node == '<outfall-or-junction>':
+        raise SystemExit(
+            "--node is a placeholder ('<outfall-or-junction>'); pass an "
+            "actual SWMM node id, e.g. --node OUT_0, or use --link for "
+            "a conduit-level hydrograph. "
+            "(The agent-driven path resolves this automatically via "
+            "inspect_plot_options; this error only appears in manual CLI use.)"
+        )
+
+    # Bug #236: windowStart/windowEnd are only honoured together with
+    # focusDay (they are HH:MM offsets within that day). Supplying them
+    # without focusDay was previously a silent no-op. Raise a clear error
+    # so the user knows exactly what is missing.
+    if (args.window_start or args.window_end) and not args.focus_day:
+        raise SystemExit(
+            "--window-start/--window-end require --focus-day (YYYY-MM-DD) "
+            "and use HH:MM format. They cannot be used without --focus-day."
+        )
+
+    # Matplotlib styling: Arial 12, ticks inward
+    plt.rcParams.update({
+        'font.family': 'Arial',
+        'font.size': 12,
+        'axes.titlesize': 12,
+        'axes.labelsize': 12,
+        'xtick.labelsize': 12,
+        'ytick.labelsize': 12,
+        'legend.fontsize': 12,
+        'xtick.direction': 'in',
+        'ytick.direction': 'in',
+    })
+
+    rain_t, rain_v = parse_timeseries_from_inp(args.inp, args.rain_ts)
+    rain_v = np.asarray(rain_v, dtype=float)
+
+    # For hyetograph we usually show intensity (mm/hr) inverted.
+    if args.rain_kind == 'intensity_mm_per_hr':
+        rain_plot = rain_v
+        rain_ylabel = 'Rainfall intensity (mm/h)'
+    elif args.rain_kind == 'cumulative_depth_mm':
+        rain_plot = np.diff(rain_v, prepend=rain_v[0])
+        rain_plot = np.where(rain_plot < 0, 0.0, rain_plot)
+        rain_ylabel = f'Rainfall depth (mm/{int(args.dt_min)} min)'
+    else:
+        # values are assumed intensity mm/hr by our generator; convert to mm per dt for bar area readability
+        rain_plot = rain_v * (args.dt_min / 60.0)
+        rain_ylabel = f'Rainfall depth (mm/{int(args.dt_min)} min)'
+
+    # Flow series (SI): CMS = m^3/s.
+    # Node-level path reads ``node,<id>,<attr>`` (Total_inflow by
+    # default); link-level path reads ``link,<id>,Flow_rate`` so the
+    # lower panel renders a conduit hydrograph. Both share the same
+    # paired-axis layout (rain top, flow bottom).
+    if args.link:
+        key = f'link,{args.link},Flow_rate'
+        flow_label = 'Flow'
+        flow_ylabel = 'Flow (m³/s)'
+    else:
+        key = f'node,{args.node},{args.node_attr}'
+        flow_label = 'Flow'
+        flow_ylabel = 'Flow (m³/s)'
+    flow_df = extract(str(args.out_file), key)
+    flow_t = flow_df.index.to_pydatetime()
+    flow_v = flow_df.iloc[:, 0].to_numpy(dtype=float)
+
+    # Figure
+    fig, ax_rain = plt.subplots(figsize=(9, 3.8), dpi=args.dpi)
+
+    # Rain bars
+    bar_width_days = (args.dt_min / 60.0) / 24.0
+    ax_rain.bar(
+        rain_t,
+        rain_plot,
+        width=bar_width_days,
+        color='#4C78A8',
+        alpha=0.45,
+        edgecolor='none',
+        label='Rain',
+        zorder=1,
+    )
+    ax_rain.set_ylabel(rain_ylabel)
+    ax_rain.set_xlabel('Time')
+
+    # invert rain axis (hyetograph convention)
+    ax_rain.invert_yaxis()
+
+    # Flow line (draw above rain)
+    ax_flow = ax_rain.twinx()
+    ax_flow.plot(flow_t, flow_v, color='#F58518', linewidth=1.8, label=flow_label, zorder=3)
+    ax_flow.set_ylabel(flow_ylabel)
+
+    rain_max = float(np.nanmax(rain_plot)) if rain_plot.size else 0.0
+    if rain_max > 0:
+        ax_rain.set_ylim(rain_max * max(args.rain_ymax_factor, 1.0), 0.0)
+    flow_max = float(np.nanmax(flow_v)) if flow_v.size else 0.0
+    if flow_max > 0:
+        ax_flow.set_ylim(0.0, flow_max * max(args.flow_ymax_factor, 1.0))
+
+    # Focus x-axis: one day or auto-window
+    import matplotlib.dates as mdates
+    if args.focus_day:
+        d0 = datetime.strptime(args.focus_day, '%Y-%m-%d')
+        if args.window_start and args.window_end:
+            ws = datetime.strptime(args.window_start, '%H:%M').time()
+            we = datetime.strptime(args.window_end, '%H:%M').time()
+            t0 = d0.replace(hour=ws.hour, minute=ws.minute)
+            t1 = d0.replace(hour=we.hour, minute=we.minute)
+            ax_rain.set_xlim(t0, t1)
+            ax_rain.xaxis.set_major_locator(mdates.HourLocator(interval=1))
+            ax_rain.xaxis.set_major_formatter(mdates.DateFormatter('%H:%M'))
+        else:
+            ax_rain.set_xlim(d0, d0 + timedelta(hours=24))
+            ax_rain.xaxis.set_major_locator(mdates.HourLocator(interval=3))
+            ax_rain.xaxis.set_major_formatter(mdates.DateFormatter('%H:%M'))
+    else:
+        nz = np.where(np.asarray(rain_plot) > 0)[0]
+        if nz.size:
+            tmin = rain_t[int(nz.min())]
+            tmax = rain_t[int(nz.max())]
+            pad = timedelta(hours=float(args.pad_hours))
+            ax_rain.set_xlim(tmin - pad, tmax + pad)
+        # Auto-pick a readable tick density regardless of duration. The
+        # legacy ``HourLocator(interval=2)`` here exploded into hundreds
+        # of overlapping labels on multi-week / multi-month runs (#112
+        # black-blur). ``ConciseDateFormatter`` picks the smallest
+        # readable format (``HH:MM`` for sub-day, ``MM-DD`` for sub-year,
+        # ``YYYY`` otherwise) and stores the calendar context in the
+        # offset string above the axis.
+        locator = mdates.AutoDateLocator(maxticks=12)
+        ax_rain.xaxis.set_major_locator(locator)
+        ax_rain.xaxis.set_major_formatter(mdates.ConciseDateFormatter(locator))
+
+    # Ticks inward on both axes
+    ax_rain.tick_params(direction='in', which='both', top=True, right=False)
+    ax_flow.tick_params(direction='in', which='both', top=True, right=True)
+
+    # No title (per spec)
+
+    # Legend: combine
+    h1, l1 = ax_rain.get_legend_handles_labels()
+    h2, l2 = ax_flow.get_legend_handles_labels()
+    ax_flow.legend(h1 + h2, l1 + l2, loc='upper left', framealpha=0.9)
+
+    fig.tight_layout()
+    args.out_png.parent.mkdir(parents=True, exist_ok=True)
+    fig.savefig(args.out_png, dpi=args.dpi)
+
+
+if __name__ == '__main__':
+    main()

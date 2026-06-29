@@ -1,0 +1,215 @@
+{
+  "schemaVersion": 1,
+  "lastReviewed": "2026-06-19",
+  "reviewCadenceDays": 30,
+  "sources": [
+    {
+      "id": "anthropic-claude-bedrock-guide",
+      "provider": "Anthropic",
+      "surface": "Claude in Amazon Bedrock",
+      "officialUrl": "https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock",
+      "sourceType": "official_docs",
+      "useFor": ["Claude Bedrock integration guidance", "cross-provider caveats from Anthropic"],
+      "accessNotes": "If blocked by region or bot protection, keep URL and verify via browser or official mirror before changing support conclusions.",
+      "verificationRules": [
+        "Do not use this alone to prove AWS Bedrock feature availability.",
+        "Pair with AWS Bedrock model docs or model card for hosted support claims."
+      ]
+    },
+    {
+      "id": "anthropic-claude-vertex-guide",
+      "provider": "Anthropic",
+      "surface": "Claude on Vertex AI",
+      "officialUrl": "https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai",
+      "sourceType": "official_docs",
+      "useFor": ["Claude Vertex AI integration guidance", "cross-provider caveats from Anthropic"],
+      "accessNotes": "If blocked by region or bot protection, keep URL and verify via browser or official mirror before changing support conclusions.",
+      "verificationRules": [
+        "Do not use this alone to prove Vertex AI feature availability.",
+        "Pair with Google Vertex AI Claude partner docs for hosted support claims."
+      ]
+    },
+    {
+      "id": "aws-bedrock-anthropic-models",
+      "provider": "AWS",
+      "surface": "Amazon Bedrock Anthropic Claude models",
+      "officialUrl": "https://docs.aws.amazon.com/bedrock/latest/userguide/models-supported.html",
+      "sourceType": "official_docs",
+      "useFor": ["Bedrock model availability", "provider-hosted Claude support matrix"],
+      "accessNotes": "AWS docs may split details across supported models, model parameters, and model provider pages.",
+      "verificationRules": [
+        "Use AWS docs as authoritative for Bedrock regions, APIs, quotas, model IDs, and hosted feature availability.",
+        "Check linked Anthropic model pages or cards when capability details are not on the supported-models page."
+      ]
+    },
+    {
+      "id": "aws-bedrock-anthropic-model-parameters",
+      "provider": "AWS",
+      "surface": "Amazon Bedrock Anthropic Claude inference parameters",
+      "officialUrl": "https://docs.aws.amazon.com/bedrock/latest/userguide/model-parameters-anthropic-claude-messages.html",
+      "sourceType": "official_docs",
+      "useFor": ["Bedrock Claude API shape", "messages parameters", "feature-specific request support"],
+      "accessNotes": "Validate against current model-specific notes before answering about newly released features.",
+      "verificationRules": [
+        "Use for Bedrock request and response behavior, not for OpenAI/Azure/Gemini claims.",
+        "If a parameter is absent here, mark support unknown unless another AWS official page confirms it."
+      ]
+    },
+    {
+      "id": "aws-bedrock-model-cards",
+      "provider": "AWS",
+      "surface": "Amazon Bedrock model provider pages and model cards",
+      "officialUrl": "https://aws.amazon.com/bedrock/anthropic/",
+      "sourceType": "official_product_page",
+      "useFor": ["AWS-hosted Anthropic model card entry points", "marketing-to-doc cross-check"],
+      "accessNotes": "Product pages are useful entry points but must be backed by AWS documentation for exact support details.",
+      "verificationRules": [
+        "Do not rely on marketing pages alone for API capability conclusions.",
+        "Follow links to AWS documentation or console model cards when available."
+      ]
+    },
+    {
+      "id": "google-vertex-ai-claude-partner-models",
+      "provider": "Google Cloud",
+      "surface": "Vertex AI Claude partner models",
+      "officialUrl": "https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/use-claude",
+      "sourceType": "official_docs",
+      "useFor": ["Vertex AI Claude availability", "Vertex API usage", "Google-hosted Claude support"],
+      "accessNotes": "Google Cloud docs are authoritative for Vertex regions, endpoints, IAM, quotas, and hosted partner-model behavior.",
+      "verificationRules": [
+        "Use for Vertex AI Claude support claims rather than Anthropic first-party API docs.",
+        "Check linked partner model pages for model-specific limitations."
+      ]
+    },
+    {
+      "id": "google-vertex-ai-partner-models-overview",
+      "provider": "Google Cloud",
+      "surface": "Vertex AI partner models overview",
+      "officialUrl": "https://cloud.google.com/vertex-ai/generative-ai/docs/partner-models/overview",
+      "sourceType": "official_docs",
+      "useFor": ["partner model scope", "Vertex AI provider-specific behavior"],
+      "accessNotes": "Use as context; exact Claude claims should still cite Claude-specific Vertex pages.",
+      "verificationRules": [
+        "Use overview only for general partner model concepts.",
+        "For features, find the model-family page or mark unknown."
+      ]
+    },
+    {
+      "id": "azure-openai-models",
+      "provider": "Microsoft Azure",
+      "surface": "Azure OpenAI model docs",
+      "officialUrl": "https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/models",
+      "sourceType": "official_docs",
+      "useFor": ["Azure OpenAI model availability", "model versions", "deployment names"],
+      "accessNotes": "Azure docs are authoritative for Azure-hosted GPT/OpenAI model availability and versioning.",
+      "verificationRules": [
+        "Do not infer Azure availability from OpenAI first-party launch notes.",
+        "Check region and deployment constraints before saying supported."
+      ]
+    },
+    {
+      "id": "azure-ai-foundry-model-catalog",
+      "provider": "Microsoft Azure",
+      "surface": "Azure AI Foundry model catalog",
+      "officialUrl": "https://learn.microsoft.com/en-us/azure/ai-foundry/how-to/model-catalog-overview",
+      "sourceType": "official_docs",
+      "useFor": ["Foundry model catalog", "non-Azure-OpenAI model hosting distinctions"],
+      "accessNotes": "Foundry model catalog and Azure OpenAI are related but not identical surfaces; confirm which service the user means.",
+      "verificationRules": [
+        "Separate Foundry catalog availability from Azure OpenAI API support.",
+        "Use service-specific docs for endpoints, auth, and feature claims."
+      ]
+    },
+    {
+      "id": "azure-openai-reference",
+      "provider": "Microsoft Azure",
+      "surface": "Azure OpenAI API reference",
+      "officialUrl": "https://learn.microsoft.com/en-us/azure/ai-services/openai/reference",
+      "sourceType": "official_docs",
+      "useFor": ["Azure OpenAI REST API", "API versions", "request parameters"],
+      "accessNotes": "Azure API versions gate features; always cite the API version when relevant.",
+      "verificationRules": [
+        "Check API version before claiming support for parameters or endpoints.",
+        "Do not treat OpenAI API reference as interchangeable with Azure OpenAI reference."
+      ]
+    },
+    {
+      "id": "openai-models",
+      "provider": "OpenAI",
+      "surface": "OpenAI first-party model docs",
+      "officialUrl": "https://platform.openai.com/docs/models",
+      "sourceType": "official_docs",
+      "useFor": ["OpenAI first-party model capabilities", "model lifecycle"],
+      "accessNotes": "Use only for OpenAI first-party API unless cross-provider docs explicitly confirm parity.",
+      "verificationRules": [
+        "Do not use to prove Azure OpenAI support.",
+        "Pair with OpenAI API docs for endpoint-specific behavior."
+      ]
+    },
+    {
+      "id": "openai-api-reference",
+      "provider": "OpenAI",
+      "surface": "OpenAI API reference",
+      "officialUrl": "https://platform.openai.com/docs/api-reference",
+      "sourceType": "official_docs",
+      "useFor": ["OpenAI endpoint behavior", "request parameters", "tool and response support"],
+      "accessNotes": "OpenAI docs may require browser access for dynamic content; preserve URL if fetch fails.",
+      "verificationRules": [
+        "Use for first-party OpenAI API answers only unless comparing differences.",
+        "If Azure has a matching-looking parameter, still verify in Azure docs."
+      ]
+    },
+    {
+      "id": "google-vertex-ai-gemini-models",
+      "provider": "Google Cloud",
+      "surface": "Vertex AI Gemini models",
+      "officialUrl": "https://cloud.google.com/vertex-ai/generative-ai/docs/learn/models",
+      "sourceType": "official_docs",
+      "useFor": ["Vertex AI Gemini model availability", "Google Cloud hosted Gemini capabilities"],
+      "accessNotes": "Use Google Cloud docs as authoritative for Vertex AI endpoint, region, IAM, and enterprise feature behavior.",
+      "verificationRules": [
+        "Do not infer Vertex AI support from Gemini API docs without Google Cloud confirmation.",
+        "Check region, model version, and API surface before answering."
+      ]
+    },
+    {
+      "id": "google-vertex-ai-gemini-api-reference",
+      "provider": "Google Cloud",
+      "surface": "Vertex AI Gemini API reference",
+      "officialUrl": "https://cloud.google.com/vertex-ai/generative-ai/docs/reference",
+      "sourceType": "official_docs",
+      "useFor": ["Vertex AI request behavior", "SDK/API references", "hosted Gemini parameters"],
+      "accessNotes": "API reference is the preferred source for endpoint and parameter support.",
+      "verificationRules": [
+        "Use for Vertex AI only; Gemini Developer API has separate docs.",
+        "If a feature appears in Gemini API but not Vertex reference, mark Vertex support unknown or provider-specific."
+      ]
+    },
+    {
+      "id": "gemini-api-docs",
+      "provider": "Google AI",
+      "surface": "Gemini API official docs",
+      "officialUrl": "https://ai.google.dev/gemini-api/docs",
+      "sourceType": "official_docs",
+      "useFor": ["Gemini Developer API", "first-party Gemini API features"],
+      "accessNotes": "Use for Gemini API direct usage, not Vertex AI enterprise-hosted claims unless Google docs explicitly state parity.",
+      "verificationRules": [
+        "Do not use to prove Vertex AI support.",
+        "Pair with Gemini API reference for endpoint-specific details."
+      ]
+    },
+    {
+      "id": "gemini-api-models",
+      "provider": "Google AI",
+      "surface": "Gemini API model docs",
+      "officialUrl": "https://ai.google.dev/gemini-api/docs/models",
+      "sourceType": "official_docs",
+      "useFor": ["Gemini API model capabilities", "model version details"],
+      "accessNotes": "Model names and feature support change quickly; perform live check for current production answers.",
+      "verificationRules": [
+        "Use for Gemini API only unless Vertex docs explicitly confirm the same model and feature.",
+        "For availability or billing in Google Cloud, use Vertex AI docs instead."
+      ]
+    }
+  ]
+}

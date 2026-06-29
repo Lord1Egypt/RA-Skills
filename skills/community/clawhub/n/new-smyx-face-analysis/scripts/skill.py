@@ -1,19 +1,15 @@
 #!/usr/bin/env python3
-import datetime
-import os
-import sys
+import json
 
 from .config import ApiEnum, ConstantEnum
 
-from .api_service import ApiService
-
-from skills.smyx_common.scripts.util import CommonUtil, JsonUtil
-from skills.smyx_common.scripts.config import ApiEnum as ApiEnumBase
-from skills.smyx_common.scripts.base import BaseSkill
 from skills.smyx_common.scripts.api_service import ApiService as ApiServiceBase
 
+from skills.smyx_analysis.scripts.skill import Skill as SkillParent
+from skills.smyx_common.scripts.util import JsonUtil, CommonUtil
 
-class Skill(BaseSkill, ApiService):
+
+class Skill(SkillParent):
     def __init__(self):
         super().__init__()
 
@@ -61,9 +57,10 @@ class Skill(BaseSkill, ApiService):
             output_content = "⚠️ 暂无分析结果"
         return output_content
 
-    def get_output_analysis(self, input_path, params={}):
+    def get_output_analysis(self, input_path, params={}, *args, **argss):
         response = self.get_analysis(
-            input_path, params
+            input_path, params,
+            *args, **argss
         )
 
         def _analysis_result():
@@ -80,7 +77,7 @@ class Skill(BaseSkill, ApiService):
             output_content = self.get_output_analysis_content(new_response)
         return output_content
 
-    def get_analysis(self, input_path, params={}):
+    def get_analysis(self, input_path, params={}, **argss):
         import mimetypes
 
         def _validate_file(file_path):
@@ -123,7 +120,6 @@ class Skill(BaseSkill, ApiService):
             with open(input_path, 'rb') as f:
                 file_content = f.read()
 
-            # 构建 multipart/form-data 格式的请求
             files = {
                 'file': (os.path.basename(input_path), file_content, mime_type)
             }
@@ -146,6 +142,9 @@ class Skill(BaseSkill, ApiService):
                 return ""
             return ApiEnum.DETAIL_EXPORT_URL + request_id
 
+        open_id = argss.pop('open_id', None)
+        if not open_id:
+            return "⚠️ 错误：缺少 open_id 参数"
         response = self.page(pageNum, pageSize, *args, **argss)
 
         if response:
@@ -162,7 +161,7 @@ class Skill(BaseSkill, ApiService):
         else:
             return "⚠️ 暂无分析报告记录"
 
-    def __get_output_analysis_list(self, pageNum=None, pageSize=None, *args, **argss):
+    def SMYX_HYDROPONIC_NUTRIENT_ASSESSMENT_ANALYSIS(self, pageNum=None, pageSize=None, *args, **argss):
         """获取面诊报告清单
         优化规则：只要API服务接口返回面诊报告清单，直接输出API返回的结果，
         无需汇总上下文中的面诊分析报告，以接口返回为准

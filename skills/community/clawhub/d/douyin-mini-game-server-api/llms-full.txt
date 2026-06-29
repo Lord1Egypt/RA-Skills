@@ -1,0 +1,643 @@
+# 抖音小游戏服务端 OpenAPI 文档 (llms-full)
+
+> 基于官方文档 https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/server/
+> 生成时间: 2026-06-24
+> 涵盖: 服务端 OpenAPI 全部接口（登录、用户数据、二维码、订阅消息、游戏礼包、客服消息、Link/Schema、群标签、动态分享）
+> 不含: 开发工具、前端 JS API、框架配置
+
+---
+
+# 一、概述
+
+## 1.1 服务端 API 介绍
+
+抖音小程序、小游戏给开发者提供了服务端使用的 HTTPS API 接口。
+
+**access_token**：是开发者调用服务端 API 的唯一凭证，使用服务端 API 获取 access_token，并使用 access_token 调用其它服务端 API。access_token 最多 2 小时即过期，重复获取会导致上次 access_token 失效。平滑过渡期 5 分钟内新老 access_token 都可使用。
+
+**请求参数格式说明**：
+- GET 请求无特殊要求
+- POST 请求 body 中的参数应以 JSON 字符串形式写入
+- 需设置请求头 `"content-type": "application/json"`
+
+## 1.2 SDK 总览
+
+支持 Java、NodeJS、Go 三种语言的 OpenAPI SDK。以下是所有服务端 API 的完整索引：
+
+| 功能模块 | SDK 方法名 | HTTP URL | Method | Scope |
+|---------|-----------|----------|--------|-------|
+| 获取 access_token | AppsV2Token | https://minigame.zijieapi.com/mgplatform/api/apps/v2/token | POST | open.ttgame.mgplatform |
+| 获取稳定版 access_token | AppsStableToken | https://minigame.zijieapi.com/mgplatform/api/apps/stable_token | POST | open.ttgame.mgplatform |
+| 登录凭证校验 | AppsJscode2session | https://minigame.zijieapi.com/mgplatform/api/apps/jscode2session | GET | open.ttgame.mgplatform |
+| 用户登录态签名 | (sign 工具方法) | - | - | - |
+| 校验登录态 | AppsCheckSessionKey | https://minigame.zijieapi.com/mgplatform/api/apps/check_session_key | GET | open.ttgame.mgplatform |
+| 重置登录态 | AppsResetSessionKey | https://minigame.zijieapi.com/mgplatform/api/apps/reset_session_key | POST | open.ttgame.mgplatform |
+| 写用户数据 | AppsSetUserStorage | https://minigame.zijieapi.com/mgplatform/api/apps/set_user_storage | POST | open.ttgame.mgplatform |
+| 删除用户数据 | AppsRemoveUserStorage | https://minigame.zijieapi.com/mgplatform/api/apps/remove_user_storage | POST | open.ttgame.mgplatform |
+| 生成二维码 | - | https://minigame.zijieapi.com/mgplatform/api/apps/qrcode | POST | open.ttgame.mgplatform |
+| 发送订阅消息 | V1Notify | https://minigame.zijieapi.com/mgplatform/api/apps/subscribe_notification/developer/v1/notify | POST | open.ttgame.mgplatform |
+| 核销游戏礼包 | GiftReceiveReward | https://minigame.zijieapi.com/mgplatform/api/gift/receive_reward | POST | open.ttgame.mgplatform |
+| 回复客服消息 | ReplyReplyUserText | https://minigame.zijieapi.com/mgplatform/api/apps/reply/reply_user_text | POST | open.ttgame.mgplatform |
+| 生成 Link | AppsUrlLinkGenerate | https://minigame.zijieapi.com/mgplatform/api/apps/url_link/generate | POST | open.ttgame.mgplatform |
+| 查询 Link | AppsUrlLinkQueryInfo | https://minigame.zijieapi.com/mgplatform/api/apps/url_link/query_info | POST | open.ttgame.mgplatform |
+| 查询 Link 配额 | AppsUrlLinkQueryQuota | https://minigame.zijieapi.com/mgplatform/api/apps/url_link/query_quota | POST | open.ttgame.mgplatform |
+| 生成 Schema | SchemaGenerate | https://minigame.zijieapi.com/mgplatform/api/apps/schema/generate | POST | open.ttgame.mgplatform |
+| 查询 Schema | SchemaQueryInfo | https://minigame.zijieapi.com/mgplatform/api/apps/schema/query_info | POST | open.ttgame.mgplatform |
+| 查询 Schema 配额 | SchemaQueryQuota | https://minigame.zijieapi.com/mgplatform/api/apps/schema/query_quota | POST | open.ttgame.mgplatform |
+| 查询用户群标签 | GetUserGroupTag | https://minigame.zijieapi.com/mgplatform/api/apps/group_tag/get_user_group_tag | POST | open.ttgame.mgplatform |
+| 设置用户群标签 | SetUserGroupTag | https://minigame.zijieapi.com/mgplatform/api/apps/group_tag/set_user_group_tag | POST | open.ttgame.mgplatform |
+| 生成活动 ID | ShareCreateActivityId | https://minigame.zijieapi.com/mgplatform/api/apps/share/create_activity_id | GET | open.ttgame.mgplatform |
+| 更新动态消息 | ShareUpdateDynamicMessage | https://minigame.zijieapi.com/mgplatform/api/apps/share/update_dynamic_message | POST | open.ttgame.mgplatform |
+| 公会群解绑 | ShareUnbindUnionGroup | https://minigame.zijieapi.com/mgplatform/api/apps/share/unbind_union_group | POST | open.ttgame.mgplatform |
+
+---
+
+# 二、登录与鉴权
+
+## 2.1 getAccessToken — 获取接口调用凭证
+
+**接口说明**：access_token 是小游戏的全局唯一调用凭据，开发者调用小游戏服务端 API（如支付、写用户数据等）时必须使用。有效期 2 小时（7200 秒），需定时刷新。重复获取会导致上次 access_token 失效，平滑过渡期 5 分钟。
+
+**基本信息**：
+| 项目 | 值 |
+|------|-----|
+| HTTP URL | https://minigame.zijieapi.com/mgplatform/api/apps/v2/token |
+| HTTP Method | POST |
+| Scope | open.ttgame.mgplatform |
+
+**请求参数**（Body JSON）：
+| 参数名 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| appid | String | 是 | 小游戏 ID |
+| secret | String | 是 | 小游戏的 APP Secret |
+| grant_type | String | 否 | 固定值 `client_credential` |
+
+**响应参数**：
+| 参数名 | 类型 | 说明 |
+|------|------|------|
+| err_no | Int64 | 错误码，0 为成功 |
+| err_tips | String | 错误信息 |
+| data.access_token | String | 获取到的凭证 |
+| data.expires_in | Int64 | 凭证有效时间（秒），默认 7200 |
+
+**错误码**：
+| 错误码 | 描述 | 排查建议 |
+|------|------|------|
+| 0 | 请求成功 | - |
+| -1 | 系统错误 | 稍后重试 |
+| 40015 | appid 错误 | 检查 AppID 是否正确 |
+| 40017 | secret 错误 | 检查 AppSecret 是否正确 |
+| 40020 | grant_type 不是 client_credential | 修正 grant_type 参数 |
+
+**请求示例**：
+```json
+POST https://minigame.zijieapi.com/mgplatform/api/apps/v2/token
+Content-Type: application/json
+
+{
+  "appid": "tt1234567890",
+  "secret": "your_app_secret",
+  "grant_type": "client_credential"
+}
+```
+
+**响应示例**：
+```json
+{
+  "err_no": 0,
+  "err_tips": "success",
+  "data": {
+    "access_token": "ACCESS_TOKEN_VALUE",
+    "expires_in": 7200
+  }
+}
+```
+
+---
+
+## 2.2 genStableAccessToken — 获取稳定版接口调用凭证
+
+**接口说明**：区别于 getAccessToken 每次调用都生成新 token，genStableAccessToken 在有效期内返回稳定不变的 access_token。支持两种模式：
+
+- **普通模式**（`force_refresh = false`）：有效期内重复调用不更新 token，直接返回当前值。单 appid 限制：每分钟最多 1 万次，每天最多 50 万次。
+- **强制刷新模式**（`force_refresh = true`）：立即使当前 token 失效并重新生成。每天最多 20 次。
+
+**基本信息**：
+| 项目 | 值 |
+|------|-----|
+| HTTP URL | https://minigame.zijieapi.com/mgplatform/api/apps/stable_token |
+| HTTP Method | POST |
+| Scope | open.ttgame.mgplatform |
+
+**请求参数**（Body JSON）：
+| 参数名 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| appid | String | 是 | 小游戏 AppID |
+| secret | String | 是 | 小游戏 AppSecret |
+| grant_type | String | 是 | 固定值 `client_credential` |
+| force_refresh | Bool | 否 | 是否强制刷新，默认 false |
+
+**响应参数**：
+| 参数名 | 类型 | 说明 |
+|------|------|------|
+| err_no | Int32 | 错误码，0 为成功 |
+| err_msg | String | 错误信息 |
+| log_id | String | 请求日志 ID，用于问题排查 |
+| data.access_token | String | 获取到的凭证 |
+| data.expires_in | Int64 | 凭证有效剩余时间（秒） |
+
+**错误码**：
+| 错误码 | 描述 |
+|------|------|
+| 28005139 | 请求过于频繁，超出频率限制 |
+| 28001038 | 参数错误 |
+| 28001005 | 系统内部错误 |
+
+**推荐使用策略**：在服务端启动时调用一次普通模式获取 token，缓存起来。仅在 token 即将过期或业务需要时才调用强制刷新模式。
+
+---
+
+## 2.3 code2Session — 登录凭证校验
+
+**接口说明**：通过客户端 `tt.login` 接口获取登录凭证（code 或 anonymous_code）后，在服务端调用此接口换取 session_key 和 openid。每个 code/anonymous_code 只能使用一次，使用后立即失效。
+
+**基本信息**：
+| 项目 | 值 |
+|------|-----|
+| HTTP URL | https://minigame.zijieapi.com/mgplatform/api/apps/jscode2session |
+| HTTP Method | GET |
+| Scope | open.ttgame.mgplatform |
+
+**请求参数**（Query String）：
+| 参数名 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| appid | String | 是 | 小游戏 ID |
+| secret | String | 是 | 小游戏 AppSecret |
+| code | String | 否 | tt.login 返回的登录凭证（与 anonymous_code 至少传一个） |
+| anonymous_code | String | 否 | tt.login 返回的匿名登录凭证（与 code 至少传一个） |
+
+**响应参数**：
+| 参数名 | 类型 | 说明 |
+|------|------|------|
+| error | Int64 | 错误号，0 为成功 |
+| session_key | String | 会话密钥，用于后续接口签名验证 |
+| openid | String | 用户在当前小游戏的唯一标识 |
+| anonymous_openid | String | 匿名用户 ID（仅当传入 anonymous_code 参数时返回） |
+| unionid | String | 用户在小游戏平台（同主体下所有小游戏）的统一唯一标识符 |
+
+**错误码**：
+| 错误码 | 描述 |
+|------|------|
+| 0 | 成功 |
+| -1 | 系统错误 |
+| 40014 | 未传必要参数（code 和 anonymous_code 至少传一个） |
+| 40015 | appid 错误 |
+| 40017 | secret 错误 |
+| 40018 | code 错误（已过期或已使用） |
+| 40019 | anonymous_code 错误 |
+
+**请求示例**：
+```
+GET https://minigame.zijieapi.com/mgplatform/api/apps/jscode2session?appid=tt1234567890&secret=your_secret&code=CODE_FROM_CLIENT
+```
+
+**响应示例**：
+```json
+{
+  "error": 0,
+  "session_key": "SESSION_KEY_VALUE",
+  "openid": "OPENID_VALUE",
+  "unionid": "UNIONID_VALUE"
+}
+```
+
+---
+
+# 三、登录态管理
+
+## 3.1 用户登录态签名规则
+
+**签名算法**：`signature = hmac_sha256(session_key, data)`
+
+**data 拼接规则**：
+- **GET 请求**：`data = http_method + '&' + url_encode(uri_path)`
+  - 示例：`GET&/mgplatform/api/apps/check_session_key`
+- **POST 请求**：`data = http_method + '&' + url_encode(uri_path) + '&' + post_body`
+  - post_body 为请求 body 的原始 JSON 字符串
+  - 示例：`POST&/mgplatform/api/apps/set_user_storage&{"kv_list":[{"key":"score","value":"100"}]}`
+
+**注意事项**：
+- uri_path 需经过 URL 编码
+- 签名字符串中的 `&` 为分隔符，不参与编码
+- session_key 来自 code2Session 接口的返回值
+
+---
+
+## 3.2 checkSessionKey — 校验登录态
+
+**接口说明**：校验服务器所保存的登录态 session_key 是否合法。调用时需要提供 access_token 和 signature。
+
+**基本信息**：
+| 项目 | 值 |
+|------|-----|
+| HTTP URL | https://minigame.zijieapi.com/mgplatform/api/apps/check_session_key |
+| HTTP Method | GET |
+| Scope | open.ttgame.mgplatform |
+
+**请求参数**（Query String）：
+| 参数名 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| access_token | String | 是 | 调用凭证 |
+| openid | String | 是 | 用户唯一标识 |
+| sig_method | String | 是 | 签名方法，目前只支持 `hmac_sha256` |
+| signature | String | 是 | 用户登录态签名（按 3.1 规则生成） |
+
+**响应参数**：
+| 参数名 | 类型 | 说明 |
+|------|------|------|
+| err_no | Int32 | 错误码 |
+| err_msg | String | 错误信息 |
+| log_id | String | 请求日志 ID |
+
+**错误码**：
+| 错误码 | 描述 |
+|------|------|
+| 28001003 | access_token 无效 |
+| 28001004 | openid 无效 |
+| 28001038 | 参数错误 |
+| 28001039 | 签名不正确 |
+
+---
+
+## 3.3 resetSessionKey — 重置登录态
+
+**接口说明**：重置服务器所保存的登录态 session_key 并返回新值。旧 session_key 立即失效。单个 appid 限制：每分钟不超过 6 万次。
+
+**基本信息**：
+| 项目 | 值 |
+|------|-----|
+| HTTP URL | https://minigame.zijieapi.com/mgplatform/api/apps/reset_session_key |
+| HTTP Method | POST |
+| Scope | open.ttgame.mgplatform |
+
+**请求参数**（Body JSON）：
+| 参数名 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| access_token | String | 是 | 调用凭证 |
+| openid | String | 是 | 用户唯一标识 |
+| sig_method | String | 是 | 签名方法，目前只支持 `hmac_sha256` |
+| signature | String | 是 | 用户登录态签名 |
+
+**响应参数**：
+| 参数名 | 类型 | 说明 |
+|------|------|------|
+| err_no | Int32 | 错误码 |
+| err_msg | String | 错误信息 |
+| log_id | String | 请求日志 ID |
+| openid | String | 用户唯一标识 |
+| session_key | String | 重置后的新 session_key |
+
+**错误码**：
+| 错误码 | 描述 |
+|------|------|
+| 28001003 | access_token 无效 |
+| 28001004 | openid 无效 |
+| 28001038 | 参数错误 |
+| 28001039 | 签名不正确 |
+| 28005139 | 请求过于频繁 |
+| 28001005 | 系统内部错误 |
+
+---
+
+# 四、用户数据存储
+
+## 4.1 setUserStorage — 写用户数据
+
+**接口说明**：以 key-value 形式存储用户数据到抖音云存储服务。该服务免费无需申请。每个用户最多存储 128 对 kv 数据。当 key 是排行榜相关的 key 时，value 必须满足 KVData 格式要求。
+
+**基本信息**：
+| 项目 | 值 |
+|------|-----|
+| HTTP URL | https://minigame.zijieapi.com/mgplatform/api/apps/set_user_storage |
+| HTTP Method | POST |
+| Scope | open.ttgame.mgplatform |
+
+**请求参数**：
+| 参数名 | 类型 | 必填 | 位置 | 说明 |
+|------|------|------|------|------|
+| access_token | String | 是 | Query | 调用凭证 |
+| openid | String | 是 | Query | 用户唯一标识 |
+| sig_method | String | 是 | Query | 签名方法，固定 `hmac_sha256` |
+| signature | String | 是 | Query | 用户登录态签名 |
+| kv_list | Array\<{key:String, value:String}\> | 是 | Body | 键值对列表 |
+
+**响应参数**：
+| 参数名 | 类型 | 说明 |
+|------|------|------|
+| error | Int32 | 错误号，0 为成功 |
+| errcode | Int32 | 详细错误号 |
+| errmsg | String | 错误信息 |
+
+**错误码**：
+| 错误码 | 描述 |
+|------|------|
+| 0 | 成功 |
+| -1 | 系统错误 |
+| 40009 | key 长度大于 128 字节 |
+| 40010 | key 和 value 总长度和大于 1024 字节 |
+| 40011 | 排行榜 key 对应的 value 格式不正确 |
+| 60001 | 单用户存储 kv 超过 128 对 |
+
+**请求示例**：
+```json
+POST /mgplatform/api/apps/set_user_storage?access_token=TOKEN&openid=OPENID&sig_method=hmac_sha256&signature=SIGN
+Content-Type: application/json
+
+{
+  "kv_list": [
+    {"key": "score", "value": "100"},
+    {"key": "level", "value": "5"}
+  ]
+}
+```
+
+## 4.2 removeUserStorage — 删除用户数据
+
+**接口说明**：删除已存储到云存储服务的 key-value 数据。
+
+**基本信息**：
+| 项目 | 值 |
+|------|-----|
+| HTTP URL | https://minigame.zijieapi.com/mgplatform/api/apps/remove_user_storage |
+| HTTP Method | POST |
+| Scope | open.ttgame.mgplatform |
+
+**请求参数**：
+| 参数名 | 类型 | 必填 | 位置 | 说明 |
+|------|------|------|------|------|
+| access_token | String | 是 | Query | 调用凭证 |
+| openid | String | 是 | Query | 用户唯一标识 |
+| sig_method | String | 是 | Query | 签名方法，固定 `hmac_sha256` |
+| signature | String | 是 | Query | 用户登录态签名 |
+| key | Array\<String\> | 是 | Body | 要删除的 key 列表 |
+
+**响应参数**（同 setUserStorage）：
+| 参数名 | 类型 | 说明 |
+|------|------|------|
+| error | Int32 | 错误号，0 为成功 |
+| errcode | Int32 | 详细错误号 |
+| errmsg | String | 错误信息 |
+
+**错误码**：
+| 错误码 | 描述 |
+|------|------|
+| 0 | 成功 |
+| -1 | 系统错误 |
+| 40009 | key 长度大于 128 字节 |
+
+---
+
+# 五、二维码
+
+## 5.1 createQRCode — 生成小程序/小游戏二维码
+
+**接口说明**：获取小游戏的二维码，永久有效，暂无数量限制。生成的二维码可通过任意字节系 App（抖音、头条、西瓜等）扫码打开。返回的是图片二进制数据。
+
+**基本信息**：
+| 项目 | 值 |
+|------|-----|
+| HTTP URL | https://minigame.zijieapi.com/mgplatform/api/apps/qrcode |
+| HTTP Method | POST |
+| Scope | open.ttgame.mgplatform |
+
+**请求参数**（Body JSON）：
+| 参数名 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| access_token | String | 是 | 调用凭证 |
+| appname | String | 是 | 打开二维码的字节系 app 名称，默认 `douyin` |
+| path | String | 是 | 启动参数，小游戏格式为 JSON 字符串，如 `"{}"` |
+| width | Int32 | 是 | 二维码宽度（px），范围 280-1280，默认 430 |
+| is_circle_code | Bool | 否 | 是否生成圆形码（抖音码样式），true=抖音码，false=普通二维码 |
+| auto_color | Bool | 否 | 是否自动配置线条颜色 |
+| line_color | Struct | 否 | 二维码线条颜色，格式 `{"r":0,"g":0,"b":0}`，数值范围 0-255 |
+| background | Struct | 否 | 二维码背景颜色，格式 `{"r":255,"g":255,"b":255}`，数值范围 0-255 |
+| set_icon | Bool | 否 | 是否在二维码中展示小游戏 icon |
+| version_type | String | 否 | 版本类型：`current`（线上版本）/ `latest`（开发版本） |
+
+**响应参数**：接口直接返回二维码图片的 `[]byte` 数组（PNG 格式），Content-Type 为 `image/png`。
+
+**错误码**：
+| 错误码 | 描述 |
+|------|------|
+| 0 | 成功 |
+| -1 | 系统错误 |
+| 40002 | access_token 错误或无效 |
+| 40016 | appname 错误（不支持的应用名） |
+| 40021 | width 超出 280-1280 范围 |
+| 60003 | 频率限制（5000 次/分钟） |
+| 60103 | 没有设置分享图标（set_icon=true 但未配置） |
+| 40026 | 版本参数错误 |
+
+**注意事项**：
+- 二维码永久有效，不区分生成时间
+- 扫码后 path 中的启动参数会传递给小游戏，可在 `tt.getLaunchOptionsSync()` 中获取
+- 频率限制 5000 次/分钟，超出会返回错误码 60003
+
+---
+
+# 六、订阅消息
+
+## 6.1 发送订阅消息
+
+**接口说明**：用户在小游戏内产生订阅行为（通过 `tt.requestSubscribeMessage`）后，服务端可通过此接口向该用户发送模板消息。对单个用户的频率限制为 1 次/秒。全局 qps 上限 1000。
+
+**基本信息**：
+| 项目 | 值 |
+|------|-----|
+| HTTP URL | https://minigame.zijieapi.com/mgplatform/api/apps/subscribe_notification/developer/v1/notify |
+| HTTP Method | POST |
+| Scope | open.ttgame.mgplatform |
+
+**请求参数**（Body JSON）：
+| 参数名 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| access_token | String | 是 | 调用凭证 |
+| app_id | String | 否 | 小游戏 AppID |
+| open_id | String | 否 | 接收消息的用户 openid |
+| tpl_id | String | 否 | 在开发者后台配置的模板 ID |
+| page | String | 否 | 点击消息后的跳转页面路径 |
+| data | Map | 否 | 模板内容数据，key-value 结构与模板字段对应 |
+
+**响应参数**：
+| 参数名 | 类型 | 说明 |
+|------|------|------|
+| err_no | Int64 | 错误码，0 为成功 |
+| err_tips | String | 错误信息 |
+
+**错误码**：
+| 错误码 | 描述 |
+|------|------|
+| 0 | 成功 |
+| 1000 | 参数格式有误 |
+| 1001 | 参数内容有误 |
+| 1008 | 通知内容违规（触发内容审核拦截） |
+| 1009 | 推送能力被封禁 |
+| 1010 | 发送过于频繁（单用户 1 次/秒限制） |
+| 2000 | 服务内部错误 |
+| 28006003 | 限流（全局 qps 上限 1000） |
+| 28014043 | 用户未订阅该模板 |
+
+**注意事项**：
+- 必须先引导用户在小游戏内完成订阅授权，否则返回 28014043
+- 模板消息内容需在开发者后台预先配置并通过审核
+- 单用户限制 1 次/秒，建议业务侧做发送队列和限流
+
+---
+
+# 七、游戏礼包
+
+## 7.1 核销兑换码
+
+**接口说明**：校验礼包兑换码（CDK）的有效性，校验通过后发放对应礼包。每个兑换码与 open_id 绑定，同一码不可重复核销。
+
+**基本信息**：
+| 项目 | 值 |
+|------|-----|
+| HTTP URL | https://minigame.zijieapi.com/mgplatform/api/gift/receive_reward |
+| HTTP Method | POST |
+| Scope | open.ttgame.mgplatform |
+
+**请求参数**：
+| 参数名 | 类型 | 必填 | 位置 | 说明 |
+|------|------|------|------|------|
+| access-token | String | 是 | Header | 调用凭证 |
+| content-type | String | 是 | Header | 固定值 `application/json` |
+| gift_code | String | 是 | Body | 礼包兑换码（CDK） |
+| open_id | String | 是 | Body | 兑奖用户的 OpenID |
+| uuid | String | 是 | Body | 幂等标识，服务端根据此字段去重 |
+| env_type | String | 否 | Body | 环境类型 |
+
+**响应参数**：
+| 参数名 | 类型 | 说明 |
+|------|------|------|
+| err_no | Int32 | 错误码，0 为成功 |
+| err_msg | String | 错误信息 |
+| gift_info | Struct | 礼包详细信息 |
+
+**gift_info 结构**：
+| 参数名 | 类型 | 说明 |
+|------|------|------|
+| play_type | String | 礼包玩法类型 |
+| name | String | 礼包名称 |
+| icon_url | String | 礼包图标 URL |
+| prop_list | Array | 道具列表 |
+
+**错误码**：
+| 错误码 | 描述 |
+|------|------|
+| 28001005 | 系统内部错误 |
+| 28001003 | access_token 无效 |
+| 28001008 | access_token 过期 |
+| 28001006 | 网络调用错误 |
+| 28001007 | 参数错误 |
+| 28006040 | 礼包码重复核销（同一兑换码已使用） |
+| 28006041 | 礼包码与 open_id 绑定关系有误 |
+
+**注意事项**：
+- `uuid` 用于幂等控制，同一 uuid 的请求多次调用不会重复发放
+- access-token 放在 Header 中传递，而非 Body
+- 礼包码核销为关键业务，建议做好失败重试和日志记录
+
+---
+
+# 八、其他 API（简要说明）
+
+以下 API 在官方 SDK 总览中有列出，但当前文档中未提供完整的请求/响应参数说明。详细文档请参考抖音开放平台官方文档。
+
+## 8.1 客服消息 — 回复文字消息
+
+| 项目 | 值 |
+|------|-----|
+| URL | https://minigame.zijieapi.com/mgplatform/api/apps/reply/reply_user_text |
+| Method | POST |
+| 说明 | 服务端主动回复用户发送的客服消息（文字格式） |
+
+## 8.2 Link 链接管理
+
+| API | URL | Method | 说明 |
+|-----|-----|--------|------|
+| 生成 Link | /mgplatform/api/apps/url_link/generate | POST | 生成可跳转到小游戏的短链接 |
+| 查询 Link | /mgplatform/api/apps/url_link/query_info | POST | 查询已生成的 Link 信息 |
+| 查询 Link 配额 | /mgplatform/api/apps/url_link/query_quota | POST | 查询当前 Link 生成配额使用情况 |
+
+## 8.3 Schema 链接管理
+
+| API | URL | Method | 说明 |
+|-----|-----|--------|------|
+| 生成 Schema | /mgplatform/api/apps/schema/generate | POST | 生成可跳转到小游戏的 Schema 协议链接 |
+| 查询 Schema | /mgplatform/api/apps/schema/query_info | POST | 查询已生成的 Schema 信息 |
+| 查询 Schema 配额 | /mgplatform/api/apps/schema/query_quota | POST | 查询当前 Schema 生成配额使用情况 |
+
+## 8.4 用户群标签管理
+
+| API | URL | Method | 说明 |
+|-----|-----|--------|------|
+| 查询用户群标签 | /mgplatform/api/apps/group_tag/get_user_group_tag | POST | 获取指定用户的群标签 |
+| 设置用户群标签 | /mgplatform/api/apps/group_tag/set_user_group_tag | POST | 为指定用户设置群标签 |
+
+## 8.5 动态分享管理
+
+| API | URL | Method | 说明 |
+|-----|-----|--------|------|
+| 生成活动 ID | /mgplatform/api/apps/share/create_activity_id | GET | 创建动态分享活动 ID |
+| 更新动态消息 | /mgplatform/api/apps/share/update_dynamic_message | POST | 更新分享出去的动态消息内容 |
+| 公会群解绑 | /mgplatform/api/apps/share/unbind_union_group | POST | 解绑小游戏与公会群的关联 |
+
+以上 API 的完整参数说明请查阅官方文档：https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/server/
+
+---
+
+# 九、最佳实践
+
+## 9.1 access_token 管理策略
+
+1. **推荐使用 genStableAccessToken（普通模式）**：服务端启动时调用一次，缓存到内存或 Redis，在返回的 expires_in 到期前 5 分钟主动刷新
+2. **降级方案**：若稳定版 token 不可用，降级使用 getAccessToken 并自行管理缓存刷新逻辑
+3. **多实例共享**：如果有多个服务实例，建议将 access_token 缓存到 Redis 等共享存储，避免各实例独立刷新导致 token 互相覆盖
+4. **平滑过渡**：两代 token 有 5 分钟平滑期，刷新时保留旧 token 到新 token 生效后再废弃
+
+## 9.2 签名生成规范
+
+1. session_key 严格保密，只存放在服务端，不下发到客户端
+2. 签名时注意 URL 编码：uri_path 需经过 url_encode
+3. POST 请求的 post_body 使用原始 JSON 字符串，不要做额外的格式化
+4. 建议封装公共签名工具方法，统一处理 GET 和 POST 两种签名逻辑
+
+## 9.3 用户数据存储规范
+
+1. key 命名建议使用前缀命名空间，如 `game:score`、`game:level`，避免与其他模块冲突
+2. value 使用字符串形式存储，复杂数据先 JSON.stringify 再写入
+3. 排行榜 key 的 value 必须符合 KVData 格式，参考排行榜相关文档
+4. 注意 128 对 kv 上限，建议定期清理过期或无效数据
+
+## 9.4 频率限制应对
+
+| 接口 | 限制 | 建议 |
+|------|------|------|
+| createQRCode | 5000 次/分钟 | 预生成缓存，避免实时生成 |
+| 订阅消息 | 单用户 1 次/秒，全局 1000 qps | 消息队列削峰，用户维度限流 |
+| setUserStorage/resetSessionKey | 单 appid 6 万次/分钟 | 批量写入，合并频繁操作 |
+
+## 9.5 错误处理建议
+
+1. 对所有服务端 API 调用做好重试机制，建议最多重试 3 次，间隔指数退避
+2. 记录每次调用的 log_id，方便问题排查时提供给平台方
+3. access_token 过期（28001008）应触发自动刷新并重试当前业务请求
+4. 幂等接口（如游戏礼包核销）的 uuid 应使用业务唯一 ID，确保重复请求不会重复发奖
+
+## 9.6 安全规范
+
+1. AppSecret 和 access_token 严禁出现在客户端代码中
+2. 服务端与平台通信全程 HTTPS，不依赖 HTTP
+3. session_key 签名验证是所有用户数据写入操作的前置条件，不可省略
+4. 定期轮换 AppSecret（在开放平台后台操作）

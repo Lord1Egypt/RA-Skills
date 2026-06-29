@@ -1,0 +1,11 @@
+{
+  "lower_description": "water",
+  "upper_description": "sand",
+  "transition_description": "wet sand and foam",
+  "tile_size": {
+    "width": 16,
+    "height": 16
+  },
+  "transition_size": 0.5,
+  "seed": 0
+}

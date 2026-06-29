@@ -1,0 +1,22 @@
+{
+    "name": "wechat-search-skill",
+    "version": "1.0.0",
+    "description": "微信搜一搜数据获取工具。支持公众号、视频、图片等入口的数据获取，适用于短视频营销、竞品分析和热点监控，助力爆款内容策划与流量追踪。",
+    "keywords": [
+        "wechat",
+        "search",
+        "video",
+        "channel",
+        "content-analysis",
+        "competitor-analysis"
+    ],
+    "author": "um-why",
+    "license": "MIT",
+    "type": "commonjs",
+    "engines": {
+        "node": ">=16.14.0"
+    },
+    "scripts": {
+        "video": "node scripts/wechat/video-cli.js"
+    }
+}

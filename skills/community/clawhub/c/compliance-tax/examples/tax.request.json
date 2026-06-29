@@ -1,0 +1,11 @@
+{
+  "countries": ["DE", "US"],
+  "monthlyRevenue": 3000,
+  "salesChannels": ["Amazon", "Shopify"],
+  "yearToDateRevenue": {
+    "DE": 25000,
+    "US": 11000
+  },
+  "hasBrand": true,
+  "existingCompliances": []
+}

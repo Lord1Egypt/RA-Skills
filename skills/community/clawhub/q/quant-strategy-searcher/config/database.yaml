@@ -1,0 +1,6 @@
+host: 47.121.180.199
+port: 3306
+user: 'display'
+password: ${DB_PASSWORD}
+database: 'db_strategy'
+charset: utf8mb4

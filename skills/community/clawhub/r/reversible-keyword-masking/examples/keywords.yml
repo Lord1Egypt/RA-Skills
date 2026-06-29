@@ -1,0 +1,18 @@
+# Example keyword configuration for examples/sample.md (all values fictional).
+# Manual keywords are masked everywhere they appear; patterns mask matched spans only.
+keywords:
+  organizations:
+    - 深圳市绿碳能源有限公司
+    - 华西分局
+  projects:
+    - 独库公路零碳示范项目
+  people:
+    - 李胜
+patterns:
+  phone: "\\b1[3-9]\\d{9}\\b"
+  email: "[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+
+# The same document can also be masked with the built-in preset instead of (or in addition to)
+# this file:
+#   python scripts/rkm.py protect examples/sample.md --preset cn-sensitive \
+#     --keywords examples/keywords.yml --out sample.masked.md --map sample.map.json

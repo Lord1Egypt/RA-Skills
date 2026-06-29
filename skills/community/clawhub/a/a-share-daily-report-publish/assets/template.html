@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A股市场复盘报告 · 2026-06-16 盘中快报</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0b0e11; color: #e1e8ed; font-family: 'PingFang SC','Microsoft YaHei',sans-serif; line-height: 1.6; padding: 0; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, #1a1e24 0%, #0d1117 100%); border: 1px solid #2d333b; border-radius: 12px; padding: 32px; margin-bottom: 24px; text-align: center; }
+  .header h1 { font-size: 28px; color: #f85149; margin-bottom: 8px; }
+  .header .date { color: #8b949e; font-size: 15px; margin-bottom: 12px; }
+  .header .tags { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+  .header .tag { background: #161b22; border: 1px solid #2d333b; border-radius: 20px; padding: 4px 14px; font-size: 12px; color: #8b949e; }
+
+  /* Cards */
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+  .card { background: #161b22; border: 1px solid #2d333b; border-radius: 10px; padding: 12px 16px; text-align: center; }
+  .card .label { font-size: 12px; color: #8b949e; margin-bottom: 4px; }
+  .card .value { font-size: 22px; font-weight: 700; }
+  .card .sub { font-size: 11px; color: #8b949e; margin-top: 2px; }
+  .up { color: #f85149; }
+  .down { color: #3fb950; }
+
+  /* Section */
+  .section { background: #161b22; border: 1px solid #2d333b; border-radius: 10px; padding: 18px; margin-bottom: 16px; }
+  .section-title { font-size: 17px; font-weight: 700; color: #e1e8ed; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid #21262d; display: flex; align-items: center; gap: 8px; }
+  .section-title .icon { font-size: 20px; }
+
+  /* 2-col */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .col { }
+  .col h4 { font-size: 14px; color: #8b949e; margin-bottom: 10px; }
+
+  /* Table */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: #21262d; color: #8b949e; padding: 8px 10px; text-align: left; font-weight: 500; }
+  td { padding: 8px 10px; border-bottom: 1px solid #21262d; }
+  tr:hover { background: #1c2128; }
+  .positive { color: #f85149; }
+  .negative { color: #3fb950; }
+
+  /* Badge */
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; margin-right: 4px; }
+  .badge-hot { background: #f8514920; color: #f85149; border: 1px solid #f8514933; }
+  .badge-cold { background: #3fb95020; color: #3fb950; border: 1px solid #3fb95033; }
+  .badge-warn { background: #d2992220; color: #d29922; border: 1px solid #d2992233; }
+  .badge-seal { background: #3fb95020; color: #3fb950; border: 1px solid #3fb95033; }
+  .badge-broken { background: #f8514920; color: #f85149; border: 1px solid #f8514933; }
+  .attribution { color: #d29922; font-size: 10px; }
+  .seal-time { color: #8b949e; font-size: 10px; }
+  .seal-strength { color: #58a6ff; font-size: 10px; }
+
+  /* Stock grid */
+  .stock-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+  .stock-item { background: #21262d; border-radius: 8px; padding: 12px; border-left: 3px solid #f85149; }
+  .stock-item .name { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+  .stock-item .info { font-size: 12px; color: #8b949e; }
+  .stock-item .change { font-weight: 700; font-size: 15px; }
+
+  /* Strategy columns */
+  .strategy-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .strategy-col { background: #21262d; border-radius: 8px; padding: 16px; }
+  .strategy-col h4 { font-size: 14px; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px solid #2d333b; }
+  .strategy-col ul { list-style: none; padding: 0; }
+  .strategy-col li { font-size: 13px; padding: 4px 0; padding-left: 14px; position: relative; }
+  .strategy-col li::before { content: '·'; position: absolute; left: 0; color: #8b949e; }
+
+  /* Sentiment bar */
+  .sentiment-bar { display: flex; height: 24px; border-radius: 12px; overflow: hidden; margin: 10px 0; }
+  .sentiment-bar .bull { background: #f85149; }
+  .sentiment-bar .bear { background: #3fb950; }
+  .sentiment-bar .neutral { background: #6e7681; }
+
+  /* Footer */
+  .footer { text-align: center; padding: 20px; color: #6e7681; font-size: 12px; border-top: 1px solid #21262d; margin-top: 20px; }
+  .disclaimer { background: #161b22; border: 1px solid #2d333b; border-radius: 8px; padding: 12px; margin-bottom: 16px; font-size: 12px; color: #8b949e; }
+
+  /* 晋级率表格 */
+  .jinji-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0; }
+  .jinji-table th { background: #21262d; padding: 8px; text-align: center; }
+  .jinji-table td { padding: 8px; text-align: center; border-bottom: 1px solid #21262d; }
+  .jinji-rate { font-size: 16px; font-weight: 700; }
+  .jinji-high { color: #3fb950; }
+  .jinji-low { color: #f85149; }
+  .jinji-zero { color: #d29922; font-weight: 700; }
+
+  /* 情绪指标 */
+  .sentiment-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .sentiment-item { background: #21262d; border-radius: 8px; padding: 12px; }
+  .sentiment-item .s-label { font-size: 12px; color: #8b949e; }
+  .sentiment-item .s-value { font-size: 22px; font-weight: 700; margin-top: 4px; }
+
+  /* 资金风向 */
+  .money-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #21262d; font-size: 13px; }
+  .money-row .stock-name { font-weight: 600; }
+  .money-plus { color: #3fb950; }
+  .money-minus { color: #f85149; }
+
+  @media (max-width: 768px) {
+    .cards { grid-template-columns: repeat(2, 1fr); }
+    .two-col { grid-template-columns: 1fr; }
+    .strategy-cols { grid-template-columns: 1fr; }
+    .sentiment-grid { grid-template-columns: 1fr; }
+  }
+
+  /* 炸板高亮 */
+  .zhaban-high { background: #f8514915; border-left: 3px solid #f85149; }
+  .zhaban-low { background: #3fb95015; border-left: 3px solid #3fb950; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <h1>📊 A股市场复盘报告</h1>
+    <div class="date">📅 2026年06月16日（周二）· 盘中快报 · 数据截至10:01 · 来源：通达信 / 东方财富 / 腾讯自选股 / 同花顺问财</div>
+    <div class="tags">
+      <span class="tag">盘中快报</span>
+      <span class="tag">A股市场</span>
+      <span class="tag">短线情绪</span>
+      <span class="tag">数据实时</span>
+      <span class="tag" style="border-color:#d29922;color:#d29922;">⚡ 震荡分化 创+0.87% 科50-0.91%</span>
+    </div>
+  </div>
+
+  <!-- 4 Cards -->
+  <div class="cards">
+    <div class="card">
+      <div class="label">上证指数</div>
+      <div class="value down">4086.20</div>
+      <div class="sub down">-0.25% ▼</div>
+    </div>
+    <div class="card">
+      <div class="label">深证成指</div>
+      <div class="value up">15586.20</div>
+      <div class="sub up">+0.35% ▲</div>
+    </div>
+    <div class="card">
+      <div class="label">创业板指</div>
+      <div class="value up">4068.81</div>
+      <div class="sub up">+0.87% ▲</div>
+    </div>
+    <div class="card">
+      <div class="label">科创50</div>
+      <div class="value down">1732.48</div>
+      <div class="sub down">-0.91% ▼</div>
+    </div>
+  </div>
+
+  <!-- 涨跌家数概览 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📊</span> 涨跌家数概览</div>
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px;text-align:center;">
+      <div>
+        <div style="font-size:28px;font-weight:700;color:#f85149;">1469</div>
+        <div style="font-size:12px;color:#8b949e;">上涨家数</div>
+        <div style="font-size:10px;color:#6e7681;">沪643+深826</div>
+      </div>
+      <div>
+        <div style="font-size:28px;font-weight:700;color:#3fb950;">3712</div>
+        <div style="font-size:12px;color:#8b949e;">下跌家数</div>
+        <div style="font-size:10px;color:#6e7681;">沪1658+深2054</div>
+      </div>
+      <div>
+        <div style="font-size:28px;font-weight:700;color:#8b949e;">91</div>
+        <div style="font-size:12px;color:#8b949e;">平盘家数</div>
+        <div style="font-size:10px;color:#6e7681;">沪49+深42</div>
+      </div>
+      <div>
+        <div style="font-size:28px;font-weight:700;color:#f0883e;">0.40</div>
+        <div style="font-size:12px;color:#8b949e;">涨跌比</div>
+        <div style="font-size:10px;color:#6e7681;">1469/3712</div>
+      </div>
+      <div>
+        <div style="font-size:28px;font-weight:700;color:#d29922;">1.05万亿</div>
+        <div style="font-size:12px;color:#8b949e;">沪深总成交</div>
+        <div style="font-size:10px;color:#f85149;">▲盘中·10:01</div>
+      </div>
+      <div>
+        <div style="font-size:28px;font-weight:700;color:#3fb950;">27.9%</div>
+        <div style="font-size:12px;color:#8b949e;">上涨占比</div>
+        <div style="font-size:10px;color:#6e7681;">1469/(1469+3712+91)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 板块主力资金流向 -->
+
+  <!-- 👑 短线人气龙头 Top10 · 东方财富人气榜 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">👑</span> 短线人气龙头 Top10 <span style="font-size:12px;color:#58a6ff;background:#58a6ff15;padding:2px 8px;border-radius:4px;">东方财富人气榜</span></div>
+    <div style="overflow-x:auto;">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;">
+        <thead>
+          <tr style="border-bottom:2px solid #30363d;color:#8b949e;">
+            <th style="padding:8px 8px;text-align:center;">排名</th>
+            <th style="padding:8px 8px;text-align:left;">代码</th>
+            <th style="padding:8px 8px;text-align:left;">名称</th>
+            <th style="padding:8px 8px;text-align:right;">最新价</th>
+            <th style="padding:8px 8px;text-align:right;">涨跌幅</th>
+            <th style="padding:8px 8px;text-align:right;">换手率</th>
+            <th style="padding:8px 8px;text-align:right;">量比</th>
+            <th style="padding:8px 8px;text-align:right;">总市值</th>
+            <th style="padding:8px 8px;text-align:left;">题材标签</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid #21262d;">
+            <td style="padding:8px 8px;text-align:center;color:#d29922;font-weight:700;">1</td>
+            <td style="padding:8px 8px;color:#58a6ff;">300014</td>
+            <td style="padding:8px 8px;color:#f0f6fc;font-weight:600;">亿纬锂能</td>
+            <td style="padding:8px 8px;text-align:right;color:#f0f6fc;">66.81</td>
+            <td style="padding:8px 8px;text-align:right;color:#f85149;font-weight:600;">+13.68%</td>
+            <td style="padding:8px 8px;text-align:right;color:#d29922;font-weight:600;">4.86%</td>
+            <td style="padding:8px 8px;text-align:right;color:#d29922;font-weight:600;">7.79</td>
+            <td style="padding:8px 8px;text-align:right;color:#f0f6fc;">1452亿</td>
+            <td style="padding:8px 8px;color:#8b949e;"><span style="color:#f85149;font-size:11px;">锂电池</span> · 储能</td>
+          </tr>
+          <tr style="border-bottom:1px solid #21262d;">
+            <td style="padding:8px 8px;text-align:center;color:#d29922;font-weight:700;">2</td>
+            <td style="padding:8px 8px;color:#58a6ff;">000636</td>
+            <td style="padding:8px 8px;color:#f0f6fc;font-weight:600;">风华高科</td>
+            <td style="padding:8px 8px;text-align:right;color:#f0f6fc;">71.43</td>
+            <td style="padding:8px 8px;text-align:right;color:#f85149;font-weight:600;">+9.84%</td>
+            <td style="padding:8px 8px;text-align:right;color:#f85149;font-weight:600;">9.44%</td>
+            <td style="padding:8px 8px;text-align:right;color:#8b949e;">2.49</td>
+            <td style="padding:8px 8px;text-align:right;color:#f0f6fc;">827亿</td>
+            <td style="padding:8px 8px;color:#8b949e;"><span style="color:#f85149;font-size:11px;">MLCC</span> · 被动元件</td>
+          </tr>
+          <tr style="border-bottom:1px solid #21262d;">
+            <td style="padding:8px 8px;text-align:center;color:#d29922;font-weight:700;">3</td>
+            <td style="padding:8px 8px;color:#58a6ff;">600110</td>
+            <td style="padding:8px 8px;color:#f0f6fc;font-weight:600;">诺德股份</td>
+            <td style="padding:8px 8px;text-align:right;color:#f0f6fc;">15.65</td>
+            <td style="padding:8px 8px;text-align:right;color:#f85149;font-weight:600;">+9.98%</td>
+            <td style="padding:8px 8px;text-align:right;color:#8b949e;">0.52%</td>
+            <td style="padding:8px 8px;text-align:right;color:#8b949e;">0.21</td>
+            <td style="padding:8px 8px;text-align:right;color:#f0f6fc;">272亿</td>
+            <td style="padding:8px 8px;color:#8b949e;"><span style="color:#f85149;font-size:11px;">PCB</span> · 锂电池</td>
+          </tr>
+          <tr style="border-bottom:1px solid #21262d;">
+            <td style="padding:8px 8px;text-align:center;color:#d29922;font-weight:700;">4</td>
+            <td style="padding:8px 8px;color:#58a6ff;">301217</td>
+            <td style="padding:8px 8px;color:#f0f6fc;font-weight:600;">铜冠铜箔</td>
+            <td style="padding:8px 8px;text-align:right;color:#f0f6fc;">174.50</td>
+            <td style="padding:8px 8px;text-align:right;color:#f85149;font-weight:600;">+2.55%</td>
+            <td style="padding:8px 8px;text-align:right;color:#f85149;font-weight:600;">3.71%</td>
+            <td style="padding:8px 8px;text-align:right;color:#d29922;font-weight:600;">3.25</td>
+            <td style="padding:8px 8px;text-align:right;color:#f0f6fc;">1447亿</td>
+            <td style="padding:8px 8px;color:#8b949e;"><span style="color:#f85149;font-size:11px;">PCB</span> · 铜箔</td>
+          </tr>
+          <tr style="border-bottom:1px solid #21262d;">
+            <td style="padding:8px 8px;text-align:center;color:#f85149;font-weight:700;">5</td>
+            <td style="padding:8px 8px;color:#58a6ff;">600183</td>
+            <td style="padding:8px 8px;color:#f0f6fc;font-weight:600;">生益科技</td>
+            <td style="padding:8px 8px;text-align:right;color:#f0f6fc;">180.01</td>
+            <td style="padding:8px 8px;text-align:right;color:#f85149;font-weight:600;">+8.17%</td>
+            <td style="padding:8px 8px;text-align:right;color:#8b949e;">2.17%</td>
+            <td style="padding:8px 8px;text-align:right;color:#d29922;font-weight:600;">2.60</td>
+            <td style="padding:8px 8px;text-align:right;color:#f0f6fc;">4373亿</td>
+            <td style="padding:8px 8px;color:#8b949e;"><span style="color:#f85149;font-size:11px;">PCB</span> · 覆铜板</td>
+          </tr>
+          <tr style="border-bottom:1px solid #21262d;">
+            <td style="padding:8px 8px;text-align:center;color:#8b949e;font-weight:600;">6</td>
+            <td style="padding:8px 8px;color:#58a6ff;">002585</td>
+            <td style="padding:8px 8px;color:#f0f6fc;font-weight:600;">双星新材</td>
+            <td style="padding:8px 8px;text-align:right;color:#f0f6fc;">14.01</td>
+            <td style="padding:8px 8px;text-align:right;color:#f85149;font-weight:600;">+9.97%</td>
+            <td style="padding:8px 8px;text-align:right;color:#f85149;font-weight:600;">6.52%</td>
+            <td style="padding:8px 8px;text-align:right;color:#8b949e;">1.32</td>
+            <td style="padding:8px 8px;text-align:right;color:#f0f6fc;">160亿</td>
+            <td style="padding:8px 8px;color:#8b949e;"><span style="color:#f85149;font-size:11px;">MLCC</span> · 锂电池</td>
+          </tr>
+          <tr style="border-bottom:1px solid #21262d;">
+            <td style="padding:8px 8px;text-align:center;color:#8b949e;font-weight:600;">7</td>
+            <td style="padding:8px 8px;color:#58a6ff;">002428</td>
+            <td style="padding:8px 8px;color:#f0f6fc;font-weight:600;">云南锗业</td>
+            <td style="padding:8px 8px;text-align:right;color:#f0f6fc;">108.09</td>
+            <td style="padding:8px 8px;text-align:right;color:#f85149;font-weight:600;">+6.50%</td>
+            <td style="padding:8px 8px;text-align:right;color:#f85149;font-weight:600;">10.35%</td>
+            <td style="padding:8px 8px;text-align:right;color:#d29922;font-weight:600;">2.80</td>
+            <td style="padding:8px 8px;text-align:right;color:#f0f6fc;">706亿</td>
+            <td style="padding:8px 8px;color:#8b949e;"><span style="color:#f85149;font-size:11px;">稀有金属</span> · 半导体</td>
+          </tr>
+          <tr style="border-bottom:1px solid #21262d;">
+            <td style="padding:8px 8px;text-align:center;color:#8b949e;font-weight:600;">8</td>
+            <td style="padding:8px 8px;color:#58a6ff;">601958</td>
+            <td style="padding:8px 8px;color:#f0f6fc;font-weight:600;">金钼股份</td>
+            <td style="padding:8px 8px;text-align:right;color:#f0f6fc;">29.25</td>
+            <td style="padding:8px 8px;text-align:right;color:#f85149;font-weight:600;">+4.20%</td>
+            <td style="padding:8px 8px;text-align:right;color:#f85149;font-weight:600;">5.40%</td>
+            <td style="padding:8px 8px;text-align:right;color:#f85149;font-weight:600;">8.86</td>
+            <td style="padding:8px 8px;text-align:right;color:#f0f6fc;">944亿</td>
+            <td style="padding:8px 8px;color:#8b949e;"><span style="color:#f85149;font-size:11px;">钼</span> · 稀有金属</td>
+          </tr>
+          <tr style="border-bottom:1px solid #21262d;">
+            <td style="padding:8px 8px;text-align:center;color:#8b949e;font-weight:600;">9</td>
+            <td style="padding:8px 8px;color:#58a6ff;">600460</td>
+            <td style="padding:8px 8px;color:#f0f6fc;font-weight:600;">士兰微</td>
+            <td style="padding:8px 8px;text-align:right;color:#f0f6fc;">38.91</td>
+            <td style="padding:8px 8px;text-align:right;color:#f85149;font-weight:600;">+10.01%</td>
+            <td style="padding:8px 8px;text-align:right;color:#f85149;font-weight:600;">5.87%</td>
+            <td style="padding:8px 8px;text-align:right;color:#d29922;font-weight:600;">5.10</td>
+            <td style="padding:8px 8px;text-align:right;color:#f0f6fc;">648亿</td>
+            <td style="padding:8px 8px;color:#8b949e;"><span style="color:#f85149;font-size:11px;">半导体</span> · 华为概念</td>
+          </tr>
+          <tr style="border-bottom:1px solid #21262d;">
+            <td style="padding:8px 8px;text-align:center;color:#8b949e;font-weight:600;">10</td>
+            <td style="padding:8px 8px;color:#58a6ff;">600549</td>
+            <td style="padding:8px 8px;color:#f0f6fc;font-weight:600;">厦门钨业</td>
+            <td style="padding:8px 8px;text-align:right;color:#f0f6fc;">78.41</td>
+            <td style="padding:8px 8px;text-align:right;color:#f85149;font-weight:600;">+10.00%</td>
+            <td style="padding:8px 8px;text-align:right;color:#f85149;font-weight:600;">3.60%</td>
+            <td style="padding:8px 8px;text-align:right;color:#8b949e;">1.95</td>
+            <td style="padding:8px 8px;text-align:right;color:#f0f6fc;">1245亿</td>
+            <td style="padding:8px 8px;color:#8b949e;"><span style="color:#f85149;font-size:11px;">MLCC</span> · 锂电池</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:10px;font-size:12px;color:#8b949e;text-align:right;">数据来源：东方财富个股人气榜 emappdata.eastmoney.com/stockrank · 题材标签从涨停原因及概念板块匹配 · 数据截至10:30</div>
+  </div>
+
+  <!-- 涨停封板率 核心指标卡（双行9卡） -->
+  <div style="margin-bottom:16px;">
+    <div class="cards" style="grid-template-columns: repeat(4, 1fr); margin-bottom: 8px;">
+      <div class="card" style="border-color: #d2992244;">
+        <div class="label">🎯 触及涨停</div>
+        <div class="value" style="color: #d29922;">69</div>
+        <div class="sub">封板53+炸板16</div>
+      </div>
+      <div class="card" style="border-color: #3fb95044;">
+        <div class="label">✅ 封板</div>
+        <div class="value up">53</div>
+        <div class="sub">非ST 44 + ST 9 + 退市 0</div>
+      </div>
+      <div class="card" style="border-color: #58a6ff44;">
+        <div class="label">📊 涨停封板率</div>
+        <div class="value" style="color: #58a6ff;">77%</div>
+        <div class="sub">53/69 · 封板率中等偏强</div>
+      </div>
+      <div class="card" style="border-color: #f8514944;">
+        <div class="label">💥 炸板</div>
+        <div class="value" style="color: #d29922;">16</div>
+        <div class="sub">只 · 炸板率23% 正常</div>
+      </div>
+    </div>
+    <div class="cards" style="grid-template-columns: repeat(5, 1fr); margin-bottom: 0;">
+      <div class="card" style="border-color: #f8514944;">
+        <div class="label">🔴 非ST涨停</div>
+        <div class="value" style="color: #f85149;">44</div>
+        <div class="sub">主板10%/创科创20%</div>
+      </div>
+      <div class="card" style="border-color: #d2992244;">
+        <div class="label">🟡 ST涨停</div>
+        <div class="value" style="color: #d29922;">9</div>
+        <div class="sub">ST 6只 + *ST 3只</div>
+      </div>
+      <div class="card" style="border-color: #8b949e44;">
+        <div class="label">⚫ 退市整理涨停</div>
+        <div class="value" style="color: #8b949e;">0</div>
+        <div class="sub">—</div>
+      </div>
+      <div class="card" style="border-color: #bc8cff44;">
+        <div class="label">创业板 / 科创</div>
+        <div class="value" style="color: #bc8cff;">2 / 0</div>
+        <div class="sub">只 · 20cm涨停</div>
+      </div>
+      <div class="card" style="border-color: #f0883e44;">
+        <div class="label">🏆 连板总数</div>
+        <div class="value" style="color: #f0883e;">27</div>
+        <div class="sub">只 · 空间板4板</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 跌停专题 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">⛔</span> 跌停专题</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;text-align:center;">
+      <div>
+        <div style="font-size:26px;font-weight:700;color:#3fb950;">10</div>
+        <div style="font-size:12px;color:#8b949e;">跌停家数</div>
+      </div>
+      <div>
+        <div style="font-size:26px;font-weight:700;color:#f85149;">6</div>
+        <div style="font-size:12px;color:#8b949e;">ST跌停</div>
+      </div>
+      <div>
+        <div style="font-size:26px;font-weight:700;color:#d29922;">4</div>
+        <div style="font-size:12px;color:#8b949e;">非ST跌停</div>
+      </div>
+      <div>
+        <div style="font-size:14px;font-weight:600;color:#3fb950;margin-top:4px;">极低 · 市场无恐慌</div>
+        <div style="font-size:11px;color:#8b949e;">非ST仅4只 风险可控</div>
+      </div>
+    </div>
+    <div style="margin-top:14px;font-size:12px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div>
+          <h4 style="color:#d29922;margin-bottom:6px;font-size:13px;">⚠ 非ST跌停（重点监控）</h4>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-cold">跌停</span> <b>盛达资源</b> 000603 <span style="color:#3fb950;">-10.00%</span> · 贵金属 · 首日跌停 · 换手板</div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-cold">跌停</span> <b>京能置业</b> 600791 <span style="color:#3fb950;">-9.97%</span> · 房地产开发 · 一字跌停 · 3连跌停</div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-cold">跌停</span> <b>金麒麟</b> 603586 <span style="color:#3fb950;">-10.00%</span> · 汽车零部件 · 一字跌停 · 首日</div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-cold">跌停</span> <b>国晟科技</b> 603778 <span style="color:#3fb950;">-9.99%</span> · 锂电池概念 · 开板6次 · 首日</div>
+        </div>
+        <div>
+          <h4 style="color:#8b949e;margin-bottom:6px;font-size:13px;">ST跌停（6只·常规风险）</h4>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;color:#8b949e;">*ST威领 002667 -4.98% · <b style="color:#f85149;">7连跌停</b> · 一字板</div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;color:#8b949e;">*ST美芝 002856 -4.98% · 3连跌停 · *ST联翔 603272 -5.01% · 3连跌停</div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;color:#8b949e;">*ST高科 600730 -4.98% · 2连跌停 · *ST春兴 002547 -5.11% · 首日</div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;color:#8b949e;">*ST华鹏 603021 -4.95% · 首日跌停</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 短线情绪全景 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">⚡</span> 短线情绪全景</div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:12px;text-align:center;margin-bottom:16px;">
+      <div style="background:#21262d;border-radius:8px;padding:14px;">
+        <div style="font-size:12px;color:#8b949e;">连板总数</div>
+        <div style="font-size:24px;font-weight:700;color:#e1e8ed;margin-top:4px;">27</div>
+        <div style="font-size:11px;color:#f85149;">2板22+3板3+4板2</div>
+      </div>
+      <div style="background:#21262d;border-radius:8px;padding:14px;">
+        <div style="font-size:12px;color:#8b949e;">空间板</div>
+        <div style="font-size:24px;font-weight:700;color:#f85149;margin-top:4px;">4板</div>
+        <div style="font-size:11px;color:#8b949e;">盛龙股份 / *ST亿晶</div>
+      </div>
+      <div style="background:#21262d;border-radius:8px;padding:14px;">
+        <div style="font-size:12px;color:#8b949e;">封板率</div>
+        <div style="font-size:24px;font-weight:700;color:#3fb950;margin-top:4px;">77%</div>
+        <div style="font-size:11px;color:#3fb950;">中等偏强 市场活跃</div>
+      </div>
+      <div style="background:#21262d;border-radius:8px;padding:14px;">
+        <div style="font-size:12px;color:#8b949e;">昨板表现</div>
+        <div style="font-size:24px;font-weight:700;color:#8b949e;margin-top:4px;">—</div>
+        <div style="font-size:11px;color:#8b949e;">盘中暂无数据</div>
+      </div>
+      <div style="background:#21262d;border-radius:8px;padding:14px;">
+        <div style="font-size:12px;color:#8b949e;">创/科创</div>
+        <div style="font-size:24px;font-weight:700;color:#e1e8ed;margin-top:4px;">2/0</div>
+        <div style="font-size:11px;color:#8b949e;">创业板2只/科创0只</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 情绪监测 & 极端值 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🚨</span> 情绪监测 & 极端值</div>
+    <div class="sentiment-grid">
+      <div class="sentiment-item">
+        <div class="s-label">炸板率</div>
+        <div class="s-value" style="color:#3fb950;">23%</div>
+        <div style="font-size:12px;color:#3fb950;margin-top:4px;">正常偏低 打板安全边际高</div>
+      </div>
+      <div class="sentiment-item">
+        <div class="s-label">跌停家数</div>
+        <div class="s-value" style="color:#3fb950;">10</div>
+        <div style="font-size:12px;color:#d29922;margin-top:4px;">非ST仅4只 恐慌度极低</div>
+      </div>
+      <div class="sentiment-item">
+        <div class="s-label">连板晋级率</div>
+        <div class="s-value" style="color:#58a6ff;">分化明显</div>
+        <div style="font-size:12px;color:#d29922;margin-top:4px;">2进3 14% 偏低 / 3进4 67% 强</div>
+      </div>
+      <div class="sentiment-item">
+        <div class="s-label">空间高度</div>
+        <div class="s-value" style="color:#f0883e;">4板</div>
+        <div style="font-size:12px;color:#f85149;margin-top:4px;">盛龙股份(稀有金属) / *ST亿晶</div>
+      </div>
+      <div class="sentiment-item">
+        <div class="s-label">封板数 / 炸板数</div>
+        <div class="s-value" style="color:#e1e8ed;">53 / 16</div>
+        <div style="font-size:12px;color:#3fb950;margin-top:4px;">封板充足 连板接力活跃</div>
+      </div>
+      <div class="sentiment-item">
+        <div class="s-label">情绪周期判断</div>
+        <div class="s-value" style="color:#f0883e;font-size:17px;">主升期 → 高位博弈</div>
+        <div style="font-size:12px;color:#d29922;margin-top:4px;">⚠ 空间板4板，盛龙股份4板换手，5板能否突破是关键</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 连板天梯（接口直查） -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🏆</span> 连板天梯（通达信 tdx_screener 接口直查）</div>
+    <table class="jinji-table">
+      <thead>
+        <tr>
+          <th>连板级别</th>
+          <th>数量</th>
+          <th>代表个股</th>
+          <th>板型</th>
+          <th>题材</th>
+          <th>信号解读</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:600;">首板</td>
+          <td>26只</td>
+          <td>盛和资源/盛路通信/中科三环/有研新材/中化国际等</td>
+          <td>换手板为主</td>
+          <td>稀有金属/军工/锂电池</td>
+          <td style="color:#d29922;">首板基数不错 新方向涌现</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">2连板</td>
+          <td>22只</td>
+          <td>诺德股份(一字)/厦门钨业/旭光电子(一字)/华正新材/光华科技(一字)/中核科技(一字)/士兰微</td>
+          <td>一字5只+换手14只</td>
+          <td>PCB/有色/核聚变/半导体</td>
+          <td style="color:#3fb950;">接力极其活跃 基数庞大</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">3连板</td>
+          <td>3只</td>
+          <td>安德利(一字)/ST百利/ST如意</td>
+          <td>一字1只+换手2只</td>
+          <td>饮料乳品/ST</td>
+          <td style="color:#f0883e;">非ST仅1只 接力断层严重</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">4连板</td>
+          <td>2只</td>
+          <td>盛龙股份(换手)/*ST亿晶(一字)</td>
+          <td>换手1只+一字1只</td>
+          <td>稀有金属/ST光伏</td>
+          <td style="color:#f85149;">空间板4板 含1只ST</td>
+        </tr>
+        <tr>
+          <td style="font-weight:600;">5连板</td>
+          <td>0只</td>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td style="color:#f85149;">空间高度受限 5板未突破</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:12px;padding:10px;background:#f8514910;border-radius:8px;font-size:13px;color:#f85149;">
+      ⚠ <strong>核心观察：</strong>涨停总数53只=1连板26+2连板22+3连板3+4连板2=53 ✓ 验证通过。空间板4板——盛龙股份(稀有金属·次新股4板换手)、*ST亿晶(光伏ST 4板一字)。2连板22只数量庞大表明昨日首板接力极其活跃，但3连板仅3只（非ST仅安德利1只）说明中位接力断层严重。明日（6/17周三）重点关注：① 盛龙股份能否突破5板打开空间；② 英伟达PCB产业链2进3批量晋级。
+    </div>
+  </div>
+
+  <!-- 板块涨跌榜 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🔥</span> 板块涨跌榜 Top5</div>
+    <div class="two-col">
+      <div class="col">
+        <h4 style="color:#f85149;">🔴 涨幅榜 Top5</h4>
+        <table>
+          <tr><th>板块</th><th>涨幅</th><th>主力净流入</th></tr>
+          <tr><td>钨</td><td class="positive">+6.95%</td><td class="positive">+5.01亿</td></tr>
+          <tr><td>钼</td><td class="positive">+6.66%</td><td class="negative">-2.20亿</td></tr>
+          <tr><td>稀土</td><td class="positive">+6.14%</td><td class="positive">+19.91亿 🔥</td></tr>
+          <tr><td>玻纤制造</td><td class="positive">+5.63%</td><td class="positive">+1.50亿</td></tr>
+          <tr><td>通信线缆及配套</td><td class="positive">+4.93%</td><td class="positive">+11.09亿 🔥</td></tr>
+        </table>
+      </div>
+      <div class="col">
+        <h4 style="color:#3fb950;">🟢 跌幅榜 Top5</h4>
+        <table>
+          <tr><th>板块</th><th>跌幅</th><th>主力净流出</th></tr>
+          <tr><td>白银</td><td class="negative">-4.26%</td><td class="negative">-1.24亿</td></tr>
+          <tr><td>房地产综合服务</td><td class="negative">-3.92%</td><td class="positive">+0.05亿</td></tr>
+          <tr><td>焦炭Ⅱ</td><td class="negative">-3.37%</td><td class="negative">-0.52亿</td></tr>
+          <tr><td>图片媒体</td><td class="negative">-3.33%</td><td class="negative">-0.69亿</td></tr>
+          <tr><td>煤炭</td><td class="negative">-2.63%</td><td class="negative">-3.80亿</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主线板块深度分析 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🔶</span> 主线板块深度分析 · PCB/电子元件 + 稀有金属/有色 + 锂电池</div>
+    <div style="background:#21262d;border-radius:8px;padding:16px;margin-bottom:12px;">
+      <div style="display:flex;gap:20px;flex-wrap:wrap;font-size:13px;margin-bottom:12px;">
+        <span>主线1·PCB/电子元件：<b style="color:#f85149;">12只涨停</b></span>
+        <span>主线2·稀有金属/有色：<b style="color:#f85149;">10只涨停</b></span>
+        <span>主线3·锂电池概念：<b style="color:#f85149;">9只涨停</b></span>
+        <span>主线4·固态变压器/数据中心：<b style="color:#f85149;">7只涨停</b></span>
+        <span>最高板：<b style="color:#f85149;">4板</b></span>
+        <span>一字板：<b>9只</b></span>
+        <span>换手板：<b>35只</b></span>
+      </div>
+      <div style="font-size:13px;color:#8b949e;line-height:1.8;">
+        <b style="color:#e1e8ed;">核心逻辑：</b>今日主线延续昨日热度——① PCB/电子元件板块继续爆发，诺德股份(6天3板一字板)、华正新材(7天4板)、光华科技(6天3板一字)、超颖电子(首板分歧10次)领衔，全球最大PPE树脂产区停产+英伟达Vera Rubin机架PCB价值量大增持续催化。② 稀有金属/有色板块受SK海力士"以钼代钨"消息刺激，盛龙股份4板领涨，厦门钨业(2板)、盛和资源(首板)、中科三环(首板)助攻。③ 锂电池/储能线延续排产环比提升逻辑，中化国际/常铝股份/兰石重装同步涨停。<br>
+        <b style="color:#e1e8ed;">持续性判断：</b>PCB/电子元件主力资金深度介入，有较强持续性。稀有金属受LME期货+AI产业链需求双重支撑，偏中期方向。固态变压器/数据中心线中国西电(2板)+京泉华(首板)+可立克(首板)联动效应强。今天是典型"指数震荡+题材活跃"格局，后市重点跟踪PCB+稀有金属双主线。
+      </div>
+    </div>
+  </div>
+
+  <!-- 核心个股筛选 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">⭐</span> 核心个股筛选（5类）</div>
+    <div class="stock-grid">
+      <div class="stock-item">
+        <div class="name">盛龙股份 <span class="badge badge-hot">趋势加速</span></div>
+        <div class="change up">+10.0% · 4板换手</div>
+        <div class="info">稀有金属·钼矿龙头·4板空间板，4进5关键战</div>
+      </div>
+      <div class="stock-item">
+        <div class="name">诺德股份 <span class="badge badge-hot">趋势突破</span></div>
+        <div class="change up">+9.98% · 2板一字</div>
+        <div class="info">PCB铜箔+HVLP认证，封单12.2亿封成比1019</div>
+      </div>
+      <div class="stock-item">
+        <div class="name">旭光电子 <span class="badge badge-hot">趋势突破</span></div>
+        <div class="change up">+10.01% · 2板一字</div>
+        <div class="info">可控核聚变+人形机器人，封单6.4亿</div>
+      </div>
+      <div class="stock-item">
+        <div class="name">风华高科 <span class="badge badge-warn">炸板关注</span></div>
+        <div class="change up">+9.93% · 炸板4次</div>
+        <div class="info">MLCC涨价龙头，人气第5，尾盘回封则反包高</div>
+      </div>
+      <div class="stock-item" style="border-left-color:#f85149;">
+        <div class="name">迪生力 <span class="badge badge-warn">回避预警</span></div>
+        <div class="change" style="color:#3fb950;">-1.47% · 一字炸板翻绿</div>
+        <div class="info" style="color:#f85149;">昨日2连板一字炸板翻绿，典型出货信号，坚决规避</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 涨停板复盘·按题材分类（含涨停归因） -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🎯</span> 涨停板复盘 · 按题材分类（含涨停归因）</div>
+    <div style="background:#1c2128;border:1px solid #2d333b;border-radius:6px;padding:8px 12px;margin-bottom:14px;font-size:12px;color:#8b949e;">
+      📌 <b style="color:#d29922;">涨停归因</b>来源：通达信tdx_screener涨停专题 · 封板判断：涨停打开次数+现价对比<br>
+      📌 封板强度：一字板(开板0次) > T字板(1次) > 换手板(多次开板/尾盘封板) · 每只标注首次封板时间+封成比
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
+      <div>
+        <h4 style="color:#f85149;margin-bottom:8px;">🔷 PCB/电子元件（12只涨停）</h4>
+        <div style="font-size:12px;">
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>诺德股份</b> <span style="color:#d29922;font-size:10px;">PCB铜箔+HVLP认证</span> 6天3板 封单12.20亿 <span class="seal-time">09:25</span> <span class="seal-strength">封成比1019</span> <span style="color:#3fb950;font-size:10px;">一字</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>华正新材</b> <span style="color:#d29922;font-size:10px;">PCB覆铜板+AI算力</span> 7天4板 封单4.07亿 <span class="seal-time">09:31</span> <span class="seal-strength">封成比39.5</span> <span style="color:#f85149;font-size:10px;">开板2次</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>光华科技</b> <span style="color:#d29922;font-size:10px;">PCB化学品+固态电池</span> 6天3板 封单3.74亿 <span class="seal-time">09:25</span> <span class="seal-strength">封成比251.5</span> <span style="color:#3fb950;font-size:10px;">一字</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>宝鼎科技</b> <span style="color:#d29922;font-size:10px;">PCB铜箔+覆铜板</span> 2连板 封单0.45亿 <span class="seal-time">09:34</span> <span class="seal-strength">封成比17.5</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>超颖电子</b> <span style="color:#d29922;font-size:10px;">PCB+元器件+机器人</span> 首板 封单0.54亿 <span class="seal-time">09:47</span> <span class="seal-strength">封成比19.9</span> <span style="color:#f85149;font-size:10px;">开板10次</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>山东玻纤</b> <span style="color:#d29922;font-size:10px;">PCB上游玻纤</span> 首板 封单3.46亿 <span class="seal-time">09:47</span> <span class="seal-strength">封成比33.8</span></div>
+        </div>
+      </div>
+      <div>
+        <h4 style="color:#d29922;margin-bottom:8px;">🔶 稀有金属/有色（10只涨停）</h4>
+        <div style="font-size:12px;">
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>盛龙股份</b> <span style="color:#d29922;font-size:10px;">稀有金属·钼·次新股</span> 4板换手 封单2.58亿 <span class="seal-time">09:31</span> <span class="seal-strength">封成比36.8</span> <span style="color:#d29922;font-size:10px;">🔥空间板</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>厦门钨业</b> <span style="color:#d29922;font-size:10px;">钨·稀土·核聚变</span> 2连板 封单6.85亿 <span class="seal-time">09:38</span> <span class="seal-strength">封成比17.7</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>盛和资源</b> <span style="color:#d29922;font-size:10px;">稀有金属·国企改革</span> 首板 封单15.24亿 <span class="seal-time">09:48</span> <span class="seal-strength">封成比45.7</span> <span style="color:#f85149;font-size:10px;">🔥巨量封单</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>中科三环</b> <span style="color:#d29922;font-size:10px;">稀土永磁·机器人</span> 首板 封单6.76亿 <span class="seal-time">09:39</span> <span class="seal-strength">封成比52.3</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>有研新材</b> <span style="color:#d29922;font-size:10px;">半导体材料·光通信</span> 5天2板 封单7.81亿 <span class="seal-time">09:39</span> <span class="seal-strength">封成比26.0</span> <span style="color:#f85149;font-size:10px;">开板2次</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>江钨装备</b> <span style="color:#d29922;font-size:10px;">钨矿专用设备</span> 首板 封单1.58亿 <span class="seal-time">09:48</span> <span class="seal-strength">封成比24.8</span></div>
+        </div>
+      </div>
+      <div>
+        <h4 style="color:#3fb950;margin-bottom:8px;">🔋 锂电池/新能源（9只涨停）</h4>
+        <div style="font-size:12px;">
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>中化国际</b> <span style="color:#d29922;font-size:10px;">锂电池·储能·国企</span> 首板 封单6.49亿 <span class="seal-time">09:30</span> <span class="seal-strength">封成比93.6</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>常铝股份</b> <span style="color:#d29922;font-size:10px;">锂电池·中标·国企</span> 首板 封单4.12亿 <span class="seal-time">09:25</span> <span class="seal-strength">封成比2779</span> <span style="color:#3fb950;font-size:10px;">一字</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>兰石重装</b> <span style="color:#d29922;font-size:10px;">锂电池·储能·国企</span> 首板 封单2.53亿 <span class="seal-time">09:33</span> <span class="seal-strength">封成比193.2</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>杭电股份</b> <span style="color:#d29922;font-size:10px;">锂电池·光通信</span> 2连板 封单3.35亿 <span class="seal-time">09:38</span> <span class="seal-strength">封成比21.1</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>双星新材</b> <span style="color:#d29922;font-size:10px;">MLCC离型膜·复合铜箔</span> 9天5板 封单3.29亿 <span class="seal-time">09:30</span> <span class="seal-strength">封成比42.1</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>王子新材</b> <span style="color:#d29922;font-size:10px;">储能·低空经济</span> 首板 封单3.80亿 <span class="seal-time">09:30</span> <span class="seal-strength">封成比116.8</span></div>
+        </div>
+      </div>
+      <div>
+        <h4 style="color:#58a6ff;margin-bottom:8px;">⚡ 固态变压器/数据中心（7只涨停）</h4>
+        <div style="font-size:12px;">
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>中国西电</b> <span style="color:#d29922;font-size:10px;">固态变压器·特高压龙头</span> 2连板 封单5.97亿 <span class="seal-time">09:39</span> <span class="seal-strength">封成比17.9</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>京泉华</b> <span style="color:#d29922;font-size:10px;">固态变压器·数据中心</span> 首板 封单5.76亿 <span class="seal-time">09:46</span> <span class="seal-strength">封成比148.6</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>可立克</b> <span style="color:#d29922;font-size:10px;">固态变压器·机器人</span> 首板 封单4.51亿 <span class="seal-time">09:51</span> <span class="seal-strength">封成比202.1</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>海星股份</b> <span style="color:#d29922;font-size:10px;">数据中心·超级电容</span> 2连板 封单1.30亿 <span class="seal-time">09:42</span> <span class="seal-strength">封成比35.9</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>甘肃能源</b> <span style="color:#d29922;font-size:10px;">数据中心·国企·风电</span> 首板 封单4.75亿 <span class="seal-time">09:34</span> <span class="seal-strength">封成比134.0</span></div>
+        </div>
+      </div>
+      <div>
+        <h4 style="color:#bc8cff;margin-bottom:8px;">🚀 商业航天/军工/核聚变（8只涨停）</h4>
+        <div style="font-size:12px;">
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>旭光电子</b> <span style="color:#d29922;font-size:10px;">可控核聚变·人形机器人20cm</span> 2连板 封单6.40亿 <span class="seal-time">09:25</span> <span class="seal-strength">封成比614.9</span> <span style="color:#3fb950;font-size:10px;">一字</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>中核科技</b> <span style="color:#d29922;font-size:10px;">核聚变·国企·核级阀门</span> 2连板 封单3.42亿 <span class="seal-time">09:25</span> <span class="seal-strength">封成比485.9</span> <span style="color:#3fb950;font-size:10px;">一字</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>盛路通信</b> <span style="color:#d29922;font-size:10px;">商业航天·军工电子</span> 首板 封单8.02亿 <span class="seal-time">09:43</span> <span class="seal-strength">封成比111.2</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>德恩精工</b> <span style="color:#d29922;font-size:10px;">商业航天20cm+机器人</span> 首板 封单4.64亿 <span class="seal-time">09:37</span> <span class="seal-strength">封成比229.8</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>士兰微</b> <span style="color:#d29922;font-size:10px;">200亿投建12英寸芯片线</span> 2连板 封单3.39亿 <span class="seal-time">09:38</span> <span class="seal-strength">封成比12.0</span> <span style="color:#f85149;font-size:10px;">开板9次 ⚠分歧</span></div>
+        </div>
+      </div>
+      <div>
+        <h4 style="color:#f0883e;margin-bottom:8px;">🏭 其他重要题材（科技/消费/基建等）</h4>
+        <div style="font-size:12px;">
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>安德利</b> <span style="color:#d29922;font-size:10px;">浓缩果汁龙头</span> 3连板 封单1.83亿 <span class="seal-time">09:25</span> <span class="seal-strength">封成比112.0</span> <span style="color:#3fb950;font-size:10px;">一字</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>麦格米特</b> <span style="color:#d29922;font-size:10px;">数据中心电源·人形机器人</span> 2连板 封单3.33亿 <span class="seal-time">09:33</span> <span class="seal-strength">封成比9.8</span> <span style="color:#f85149;font-size:10px;">开板16次 ⚠⚠</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>淳中科技</b> <span style="color:#d29922;font-size:10px;">液冷·英伟达合作</span> 2连板 封单1.49亿 <span class="seal-time">09:37</span> <span class="seal-strength">封成比22.3</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>旗滨集团</b> <span style="color:#d29922;font-size:10px;">玻璃玻纤·光伏</span> 2连板 封单3.19亿 <span class="seal-time">09:38</span> <span class="seal-strength">封成比31.0</span></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-seal">封板✅</span> <b>中工国际</b> <span style="color:#d29922;font-size:10px;">一带一路·国企·东数西算</span> 9天4板 封单1.70亿 <span class="seal-time">09:37</span> <span class="seal-strength">封成比18.0</span> <span style="color:#f85149;font-size:10px;">开板3次</span></div>
+        </div>
+      </div>
+      <!-- 炸板股清单 -->
+      <div style="grid-column:1/-1;">
+        <h4 style="color:#f85149;margin-bottom:8px;">💥 今日炸板股（16只 · 炸板率23%）</h4>
+        <div style="font-size:12px;color:#8b949e;">
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-broken">炸板💥</span> <b style="color:#d29922;">生益科技</b> <span style="font-size:10px;">PCB覆铜板龙头</span> +6.97% · 开板2次 · <b style="color:#f85149;">高辨识度炸板 关注反包</b></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-broken">炸板💥</span> <b style="color:#d29922;">风华高科</b> <span style="font-size:10px;">MLCC涨价·村田上调</span> +9.93% · 开板4次 · <b style="color:#d29922;">人气第5 明日关注</b></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-broken">炸板💥</span> <b style="color:#d29922;">迪生力</b> <span style="font-size:10px;">锂电池·收购半导体</span> -1.47% · 开板1次 · <b style="color:#f85149;">一字炸板翻绿 规避</b></div>
+          <div style="padding:4px 0;border-bottom:1px solid #21262d;"><span class="badge badge-broken">炸板💥</span> <b style="color:#d29922;">罗曼股份/东材科技/和胜股份/瑞斯康达</b> <span style="font-size:10px;">分歧炸板</span> · 部分ST炸板(*ST大立/*ST准油/*ST宝馨/*ST国中/*ST艾艾) · 退市岩石</div>
+          <div style="font-size:11px;color:#8b949e;margin-top:4px;">※ 炸板率23%属正常偏低水平，打板安全边际良好，但需注意高换手炸板股的分化风险</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 炸板深度分析 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">💥</span> 炸板深度分析（炸板16只 · 炸板率23%）</div>
+    <div class="two-col">
+      <div class="col">
+        <h4 style="color:#f85149;">🚨 高换手炸板（明天规避）</h4>
+        <div style="font-size:12px;">
+          <div class="zhaban-high" style="padding:6px 10px;border-radius:6px;margin-bottom:6px;">
+            <b>迪生力</b> -1.47% · 一字炸板翻绿 · 昨日2连板<br>
+            <span style="color:#d29922;font-size:11px;">⚠ 一字板高开炸板翻绿，是典型出货信号，明日坚决回避</span>
+          </div>
+          <div class="zhaban-high" style="padding:6px 10px;border-radius:6px;margin-bottom:6px;">
+            <b>生益科技</b> +6.97% · 开板2次 · PCB龙头<br>
+            <span style="color:#d29922;font-size:11px;">⚠ 大市值+PCB板块龙头炸板，封单不足体现资金分歧</span>
+          </div>
+          <div class="zhaban-high" style="padding:6px 10px;border-radius:6px;margin-bottom:6px;">
+            <b>麦格米特</b> +9.94% · 开板16次（仍封板）<br>
+            <span style="color:#f85149;font-size:11px;">⚠⚠ 虽封板但开板16次为极端值，明天大概率分歧</span>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <h4 style="color:#3fb950;">✅ 低换手封板（反包策略关注）</h4>
+        <div style="font-size:12px;">
+          <div class="zhaban-low" style="padding:6px 10px;border-radius:6px;margin-bottom:6px;">
+            <b>诺德股份</b> +9.98% · 一字封板 · 封成比1019<br>
+            <span style="color:#3fb950;font-size:11px;">✅ PCB铜箔+HVLP认证，封单极厚，明日大概率继续连板</span>
+          </div>
+          <div class="zhaban-low" style="padding:6px 10px;border-radius:6px;margin-bottom:6px;">
+            <b>风华高科</b> +9.93% · 炸板4次 未封死<br>
+            <span style="color:#3fb950;font-size:11px;">✅ MLCC涨价龙头 人气第5，若尾盘回封明天反包概率高</span>
+          </div>
+          <div class="zhaban-low" style="padding:6px 10px;border-radius:6px;margin-bottom:6px;">
+            <b>今日炸板率23%</b><br>
+            <span style="color:#3fb950;font-size:11px;">✅ 炸板率正常偏低，市场偏强，打板安全边际高。策略上可适当提高打板仓位。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 短线策略 & 明日接力计划 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">💡</span> 短线策略 & 明日接力计划（2026-06-17周三预判）</div>
+    <div class="strategy-cols">
+      <div class="strategy-col">
+        <h4 style="color:#3fb950;">✅ 重点接力（明日关注）</h4>
+        <ul>
+          <li><b>盛龙股份</b>（4板换手·空间板）— 稀有金属+次新股，4进5关键战。若缩量一字封板则持有；若高开换手<5%可接力</li>
+          <li><b>诺德股份</b>（2板一字·6天3板）— PCB铜箔龙头，封成比1019极强，2进3关注一字板后分歧机会</li>
+          <li><b>旭光电子</b>（2板一字·4天3板）— 可控核聚变+人形机器人，2进3重点关注</li>
+          <li><b>厦门钨业</b>（2板换手）— 钨+稀土龙头，2进3接力</li>
+        </ul>
+      </div>
+      <div class="strategy-col">
+        <h4 style="color:#58a6ff;">🔍 分歧低吸（回调关注）</h4>
+        <ul>
+          <li><b>风华高科</b>（+9.93% 炸板）— MLCC涨价龙头，若尾盘回封则明天反包概率高，低吸布局</li>
+          <li><b>生益科技</b>（+6.97% 炸板）— PCB覆铜板龙头，若尾盘企稳可低吸</li>
+          <li><b>中际旭创</b>（-0.12% 成交85.5亿）— AI算力核心，大幅回调后可低吸</li>
+          <li><b>中天科技</b>（+4.42% 人气第2）— 光通信龙头，逢低布局</li>
+        </ul>
+      </div>
+      <div class="strategy-col">
+        <h4 style="color:#f85149;">🚫 坚决规避（明日回避）</h4>
+        <ul>
+          <li><b>迪生力</b>— 一字炸板翻绿，典型出货信号，坚决规避</li>
+          <li><b>白银板块</b>— 今日跌幅榜第一 -4.26%，资金持续流出</li>
+          <li><b>房地产板块</b>— 房地产综合服务 -3.92%，京能置业3连跌停</li>
+          <li><b>4进5失败的个股</b>— 若盛龙股份高开低走，立即止损</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 行情回顾 & 后市展望 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📝</span> 行情回顾 & 后市展望</div>
+    <div class="two-col">
+      <div class="col">
+        <h4 style="color:#f85149;">📈 今日行情回顾</h4>
+        <p style="font-size:13px;line-height:1.8;color:#8b949e;">
+          今日A股震荡分化，创业板指+0.87%领涨，深证成指+0.35%，上证指数-0.25%，科创50-0.91%拖后腿。两市盘中成交约1.05万亿（10:01数据）。涨跌家数1469涨 vs 3712跌，指数分化但个股跌多涨少。<br><br>
+          <b style="color:#e1e8ed;">亮点：</b>稀有金属/有色板块持续火热（钨+6.95%、钼+6.66%、稀土+6.14%三板块霸榜），盛龙股份4板空间板领涨。PCB/电子元件维持高热度，诺德股份一字封单超12亿。固态变压器/数据中心新方向崛起，中国西电2板+京泉华/可立克首板联动。MLCC涨价催化风华高科一度涨停。<br>
+          <b style="color:#e1e8ed;">风险：</b>炸板16只含迪生力一字炸板翻绿、生益科技炸板，见顶信号需警惕。中位接力断层——2连板22只但3连板仅3只（非ST仅1只）。白银板块暴跌-4.26%，煤炭持续走弱。
+        </p>
+      </div>
+      <div class="col">
+        <h4 style="color:#f85149;">🔮 后市展望</h4>
+        <p style="font-size:13px;line-height:1.8;color:#8b949e;">
+          <b style="color:#e1e8ed;">短期（明日）：</b>今日延续昨日热度但分化已现——炸板率从昨日27%降至23%，但迪生力一字炸板翻绿是风险信号。明日重点观察4进5——盛龙股份若突破5板则空间彻底打开；若再全灭则空间压制到4板。<br><br>
+          <b style="color:#e1e8ed;">中期：</b>PCB/电子元件+稀有金属双主线资金介入极深，稀土板块单日主力净流入近20亿。固态变压器/数据中心（中国西电海外SST订单）新方向有接力潜力。<br>
+          <b style="color:#e1e8ed;">操作建议：</b>① 主线持股不动（稀有金属/PCB）；② 打板仓位适度提高（炸板率23%偏低）；③ 注意高位炸板后的反包机（风华高科/生益科技）；④ 规避白银/煤炭/房地产弱势板块。
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 成交额排行 Top10 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">💰</span> 成交额排行 Top10</div>
+    <table>
+      <tr><th>排名</th><th>代码</th><th>名称</th><th>涨幅</th><th>最新价</th><th>成交额</th><th>换手率</th><th>主力净流入</th></tr>
+      <tr><td>1</td><td>600487</td><td><b>亨通光电</b></td><td class="positive">+8.04%</td><td>107.26</td><td style="color:#d29922;">100.7亿</td><td>3.98%</td><td class="positive">+8.46亿</td></tr>
+      <tr><td>2</td><td>300308</td><td><b>中际旭创</b></td><td class="negative">-0.12%</td><td>1243.50</td><td>85.5亿</td><td>0.62%</td><td class="positive">+2.10亿</td></tr>
+      <tr><td>3</td><td>002384</td><td><b>东山精密</b></td><td style="color:#8b949e;">0.00%</td><td>239.30</td><td>79.9亿</td><td>2.39%</td><td class="negative">-8.83亿</td></tr>
+      <tr><td>4</td><td>600183</td><td><b>生益科技</b></td><td class="positive">+7.69%</td><td>179.20</td><td>72.9亿</td><td>1.69%</td><td class="negative">-2.21亿</td></tr>
+      <tr><td>5</td><td>300502</td><td><b>新易盛</b></td><td class="positive">+1.21%</td><td>547.01</td><td>69.5亿</td><td>1.02%</td><td class="positive">+2.15亿</td></tr>
+      <tr><td>6</td><td>300394</td><td><b>天孚通信</b></td><td class="positive">+3.92%</td><td>317.00</td><td>67.5亿</td><td>1.97%</td><td class="positive">+3.03亿</td></tr>
+      <tr><td>7</td><td>603986</td><td><b>兆易创新</b></td><td class="positive">+2.29%</td><td>529.84</td><td>66.5亿</td><td>1.87%</td><td class="positive">+3.59亿</td></tr>
+      <tr><td>8</td><td>600584</td><td><b>长电科技</b></td><td class="positive">+2.42%</td><td>76.12</td><td>60.4亿</td><td>4.40%</td><td class="negative">-0.71亿</td></tr>
+      <tr><td>9</td><td>600522</td><td><b>中天科技</b></td><td class="positive">+5.08%</td><td>53.96</td><td>59.4亿</td><td>3.28%</td><td class="positive">+1.51亿</td></tr>
+      <tr><td>10</td><td>300136</td><td><b>信维通信</b></td><td class="positive">+5.83%</td><td>103.40</td><td>56.9亿</td><td>6.56%</td><td class="positive">+2.74亿</td></tr>
+    </table>
+  </div>
+
+  <!-- 跌幅榜 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📉</span> 今日跌幅榜 Top5（风险警示）</div>
+    <table>
+      <tr><th>代码</th><th>名称</th><th>跌幅</th><th>最新价</th><th>主力净流出</th><th>风险提示</th></tr>
+      <tr><td>000603</td><td><b>盛达资源</b></td><td class="negative">-10.00%</td><td>27.71</td><td class="negative">-2.86亿</td><td style="color:#f85149;font-size:12px;">⚠ 贵金属龙头跌停，首日跌停</td></tr>
+      <tr><td>600791</td><td><b>京能置业</b></td><td class="negative">-9.97%</td><td>9.84</td><td class="negative">-1.86亿</td><td style="color:#f85149;font-size:12px;">⚠ 3连跌停·一字板，房地产板块风险</td></tr>
+      <tr><td>603586</td><td><b>金麒麟</b></td><td class="negative">-10.00%</td><td>17.37</td><td class="negative">-0.83亿</td><td style="color:#f85149;font-size:12px;">⚠ 一字跌停·首日，汽车零部件</td></tr>
+      <tr><td>603778</td><td><b>国晟科技</b></td><td class="negative">-9.99%</td><td>16.04</td><td class="negative">—</td><td style="color:#d29922;font-size:12px;">⚠ 开板6次·锂电池概念，警惕</td></tr>
+      <tr><td>BK1616</td><td><b>白银（板块）</b></td><td class="negative">-4.26%</td><td>板块整体</td><td class="negative">-1.24亿</td><td style="color:#f85149;font-size:12px;">⚠ 板块跌幅第一，资金流出，规避</td></tr>
+    </table>
+  </div>
+
+  <!-- 资金风向 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">💹</span> 资金风向 · 主力净流入/流出 Top5</div>
+    <div class="two-col">
+      <div class="col">
+        <h4 style="color:#3fb950;">✅ 今日主力净流入 Top5</h4>
+        <div class="money-row"><span class="stock-name">亨通光电</span><span class="money-plus">+8.46亿</span></div>
+        <div class="money-row"><span class="stock-name">兆易创新</span><span class="money-plus">+3.59亿</span></div>
+        <div class="money-row"><span class="stock-name">天孚通信</span><span class="money-plus">+3.03亿</span></div>
+        <div class="money-row"><span class="stock-name">信维通信</span><span class="money-plus">+2.74亿</span></div>
+        <div class="money-row"><span class="stock-name">新易盛</span><span class="money-plus">+2.15亿</span></div>
+      </div>
+      <div class="col">
+        <h4 style="color:#f85149;">🚨 今日主力净流出 Top5</h4>
+        <div class="money-row"><span class="stock-name">东山精密</span><span class="money-minus">-8.83亿</span></div>
+        <div class="money-row"><span class="stock-name">盛达资源</span><span class="money-minus">-2.86亿</span></div>
+        <div class="money-row"><span class="stock-name">生益科技</span><span class="money-minus">-2.21亿</span></div>
+        <div class="money-row"><span class="stock-name">京能置业</span><span class="money-minus">-1.86亿</span></div>
+        <div class="money-row"><span class="stock-name">金麒麟</span><span class="money-minus">-0.83亿</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 重要个股跟踪表 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📌</span> 重要个股跟踪表（8只核心标的）</div>
+    <table>
+      <tr><th>代码</th><th>名称</th><th>今日涨幅</th><th>当前状态</th><th>封板/炸板</th><th>换手率</th><th>明天策略</th></tr>
+      <tr>
+        <td>001257</td><td><b>盛龙股份</b></td><td class="positive">+10.00%</td><td>4板换手·空间板</td><td><span class="badge badge-seal">封板✅</span></td><td>换手中</td><td style="color:#f0883e;">4进5关键战</td>
+      </tr>
+      <tr>
+        <td>600110</td><td><b>诺德股份</b></td><td class="positive">+9.98%</td><td>2板一字·6天3板</td><td><span class="badge badge-seal">封板✅</span></td><td>一字缩量</td><td style="color:#3fb950;">PCB龙头持有 2进3</td>
+      </tr>
+      <tr>
+        <td>600353</td><td><b>旭光电子</b></td><td class="positive">+10.01%</td><td>2板一字·4天3板</td><td><span class="badge badge-seal">封板✅</span></td><td>一字缩量</td><td style="color:#3fb950;">核聚变+机器人 2进3</td>
+      </tr>
+      <tr>
+        <td>600549</td><td><b>厦门钨业</b></td><td class="positive">+10.00%</td><td>2板换手</td><td><span class="badge badge-seal">封板✅</span></td><td>换手中</td><td style="color:#3fb950;">钨+稀土龙头 2进3</td>
+      </tr>
+      <tr>
+        <td>000636</td><td><b>风华高科</b></td><td class="positive">+9.93%</td><td>炸板4次 人气第5</td><td><span class="badge badge-broken">炸板💥</span></td><td>活跃</td><td style="color:#d29922;">MLCC涨价 关注反包</td>
+      </tr>
+      <tr>
+        <td>605198</td><td><b>安德利</b></td><td class="positive">+10.00%</td><td>3板一字</td><td><span class="badge badge-seal">封板✅</span></td><td>一字缩量</td><td style="color:#d29922;">非ST唯一3板 3进4关注</td>
+      </tr>
+      <tr>
+        <td>600392</td><td><b>盛和资源</b></td><td class="positive">+10.00%</td><td>首板 封单15.2亿</td><td><span class="badge badge-seal">封板✅</span></td><td>正常</td><td style="color:#3fb950;">巨量封单 1进2关注</td>
+      </tr>
+      <tr>
+        <td>603335</td><td><b>迪生力</b></td><td class="negative">-1.47%</td><td>一字炸板翻绿</td><td><span class="badge badge-broken">炸板💥</span></td><td>—</td><td style="color:#f85149;">坚决规避</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- 投资策略 & 心态管理 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🧠</span> 投资策略 & 心态管理</div>
+    <div class="strategy-cols">
+      <div class="strategy-col">
+        <h4 style="color:#58a6ff;">🎯 选股策略</h4>
+        <ul>
+          <li>主线优先：稀有金属 > PCB电子 > 固态变压器/数据中心</li>
+          <li>空间板关注：盛龙股份4进5决定天花板</li>
+          <li>2进3批量晋级：诺德/旭光/厦门钨业/华正新材</li>
+          <li>规避板块：白银/房地产/煤炭/一字炸板股</li>
+        </ul>
+      </div>
+      <div class="strategy-col">
+        <h4 style="color:#d29922;">🛡️ 风控策略</h4>
+        <ul>
+          <li>炸板率23%偏低 → 打板仓位适度提高至20%</li>
+          <li>止损严格执行：-5%无条件止损</li>
+          <li>盛龙股份4进5失败 → 立即止损出局</li>
+          <li>控制总仓位不超过7成</li>
+        </ul>
+      </div>
+      <div class="strategy-col">
+        <h4 style="color:#3fb950;">💪 心态管理</h4>
+        <ul>
+          <li>指数震荡但题材活跃 → 重个股轻指数</li>
+          <li>稀有金属+PCB双主线 → 集中仓位不分散</li>
+          <li>4进5是关键 → 过了5板空间彻底打开</li>
+          <li>迪生力炸板翻绿 → 炸板股分化是正常现象</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 特殊事件 & 监管关注 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">⚠️</span> 特殊事件 & 监管关注</div>
+    <div style="background:#f8514910;border:1px solid #f8514933;border-radius:8px;padding:14px;margin-bottom:12px;font-size:13px;">
+      <b style="color:#d29922;">⚡ SK海力士尝试"以钼代钨"</b> — 助力NAND性能提升，直接催化盛龙股份4板、厦门钨业2板等稀有金属涨停潮。<br>
+      <b style="color:#d29922;">⚡ 全球最大PPE树脂产区停产</b> — PCB材料持续涨价+英伟达Vera Rubin机架PCB价值量大增，诺德/华正新材/光华科技持续涨停。<br>
+      <b style="color:#58a6ff;">📡 中国西电获首个海外数据中心SST订单</b> — 千亿级新市场加速启动，京泉华/可立克/中国西电联动涨停。<br>
+      <b style="color:#f85149;">🚨 迪生力一字炸板翻绿</b> — 典型出货信号，短线资金需高度警惕类似一字板后的炸板风险。
+    </div>
+    <div style="background:#21262d;border-radius:8px;padding:14px;font-size:13px;">
+      <b style="color:#e1e8ed;">📅 本周重点事件日历：</b><br>
+      · 周三（06-17）：盛龙股份4进5关键日 + 诺德/旭光批量2进3<br>
+      · 周四（06-18）：美联储利率决议，关注外围影响<br>
+      · 全周：LME铜/钼/钨期货价格走势 + PPE树脂产区复产动态<br>
+      · 关注：MLCC涨价持续发酵（风华高科/双星新材）
+    </div>
+  </div>
+
+  <!-- 融资融券数据 -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📊</span> 融资融券数据</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center;">
+      <div style="background:#21262d;border-radius:8px;padding:16px;">
+        <div style="font-size:12px;color:#8b949e;">融资余额</div>
+        <div style="font-size:22px;font-weight:700;color:#e1e8ed;margin-top:6px;">1.63万亿</div>
+        <div style="font-size:12px;color:#f85149;margin-top:4px;">▲+~100亿 杠杆持续加仓</div>
+      </div>
+      <div style="background:#21262d;border-radius:8px;padding:16px;">
+        <div style="font-size:12px;color:#8b949e;">融券余额</div>
+        <div style="font-size:22px;font-weight:700;color:#e1e8ed;margin-top:6px;">0.21万亿</div>
+        <div style="font-size:12px;color:#8b949e;margin-top:4px;">相对稳定</div>
+      </div>
+      <div style="background:#21262d;border-radius:8px;padding:16px;">
+        <div style="font-size:12px;color:#8b949e;">两融合计</div>
+        <div style="font-size:22px;font-weight:700;color:#e1e8ed;margin-top:6px;">1.84万亿</div>
+        <div style="font-size:12px;color:#f85149;margin-top:4px;">▲+~95亿</div>
+      </div>
+      <div style="background:#21262d;border-radius:8px;padding:16px;">
+        <div style="font-size:12px;color:#8b949e;">杠杆占比</div>
+        <div style="font-size:22px;font-weight:700;color:#58a6ff;margin-top:6px;">~2.9%</div>
+        <div style="font-size:12px;color:#8b949e;margin-top:4px;">处于正常区间</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="disclaimer">
+      ⚠️ <b>免责声明：</b>本报告仅供参考，不构成投资建议。A股市场有风险，投资需谨慎。数据来源：通达信/东方财富/腾讯自选股/同花顺问财，数据截至2026-06-16 10:01盘中。
+    </div>
+    <div>📊 A股市场复盘报告 · 生成于 2026-06-16 10:01 · 由 WorkBuddy AI 自动生成</div>
+    <div style="margin-top:8px;font-size:11px;color:#6e7681;">
+      数据源：通达信tdx-connector（实时行情+涨停专题）· 东方财富（板块/涨跌停/成交额）· 腾讯自选股westockdata · 同花顺问财iwencai
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+% --- 颜色支持 ---
+\usepackage{xcolor} % 新增颜色支持
+
+% --- 作图支持 ---
+\usepackage{pgfplots,tikz,siunitx,fontspec,pgfplotstable }
+\usetikzlibrary{matrix, positioning} 
+\pgfplotsset{
+    myplot/.style={
+        width=0.8\textwidth,
+        tick label style={font=\small},
+        label style={font=\small},
+        legend style={font=\footnotesize},
+        every axis plot/.append style={line width=1pt}
+    }
+}
+
+% --- 字体系统 ---
+\usepackage{fontspec}
+\setmainfont{Times New Roman}
+\setCJKmainfont{SimSun}[
+  BoldFont = SimHei,
+  ItalicFont = KaiTi,
+  AutoFakeBold = 3,
+  AutoFakeSlant = 0.2
+]
+\ctexset{fontset=none}
+
+% --- 列表系统 ---
+\usepackage{enumitem,xparse,newunicodechar}
+
+% --- 分栏系统 ---
+\usepackage{multicol}
+
+% --- 版式设置 ---
+\usepackage{geometry}
+\usepackage{pdflscape}  % 实现物理页面旋转
+
+% --- 页眉页脚 ---
+\usepackage{fancyhdr,lastpage}
+
+% --- 表格系统 ---
+\usepackage{varwidth, tabularx,booktabs,multirow,float,subcaption,makecell,longtable,array}
+
+% --- 图形支持 ---
+\usepackage{graphicx}
+\usepackage{eso-pic}
+\usepackage{float}
+
+% --- 其他 ---
+\usepackage{pifont}
+\usepackage{ctex,amssymb}
+\usepackage{etoolbox}

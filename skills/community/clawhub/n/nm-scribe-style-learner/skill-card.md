@@ -11,36 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and developers use this skill to analyze writing samples, extract style metrics and representative exemplars, and create a reusable profile for consistent generation or editing. <br>
+Writers, editors, and developer agents use this skill to analyze exemplar text, extract measurable style features, select representative passages, and build a reusable profile for consistent future writing or editing. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Broad style, voice, tone, and exemplar triggers may activate the skill during general writing requests. <br>
-Mitigation: Confirm the user wants style learning before collecting exemplars or generating a profile. <br>
-Risk: Exemplar text may include sensitive or proprietary writing samples. <br>
-Mitigation: Use only exemplar text the user is comfortable having analyzed in the local agent workflow. <br>
-Risk: A weak or unrepresentative sample set can produce a profile that does not match the intended voice. <br>
-Mitigation: Collect at least 1000 words across representative samples, include multiple exemplars, and validate generated output against the profile. <br>
+Risk: Broad style-related triggers may activate the skill during general writing discussions. <br>
+Mitigation: Review when the skill is active and use it only when style learning or style application is intended. <br>
+Risk: Exemplar text can contain sensitive or proprietary writing samples. <br>
+Mitigation: Provide only exemplar content that is appropriate for analysis and reuse in a style profile. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/athola/nm-scribe-style-learner) <br>
+- [ClawHub Skill Page](https://clawhub.ai/athola/skills/nm-scribe-style-learner) <br>
 - [Scribe Plugin Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scribe) <br>
-- [Feature Extraction Module](modules/feature-extraction.md) <br>
-- [Exemplar Reference Module](modules/exemplar-reference.md) <br>
-- [Style Application Module](modules/style-application.md) <br>
+- [Feature Extraction Module](artifact/modules/feature-extraction.md) <br>
+- [Exemplar Reference Module](artifact/modules/exemplar-reference.md) <br>
+- [Style Application Module](artifact/modules/style-application.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with YAML-style profile content and inline shell command examples] <br>
+**Output Type(s):** [text, markdown, guidance, shell commands, configuration] <br>
+**Output Format:** [Markdown and YAML-style profile guidance with optional shell command snippets.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Style profiles combine quantitative metrics, selected exemplars, anti-patterns, and validation checks.] <br>
+**Other Properties Related to Output:** [Produces style metrics, exemplar selections, anti-patterns, validation checks, and reusable style-profile structure.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release evidence) <br>
+1.9.13 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

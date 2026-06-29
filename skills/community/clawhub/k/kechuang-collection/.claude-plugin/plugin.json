@@ -1,0 +1,6 @@
+{
+  "name": "kechuang-collection",
+  "description": "科创线索采集Skill — 7×24自动监控全网科创公开信息，基于公司KPI智能筛选有效线索",
+  "version": "1.0.0",
+  "skills": ["kechuang-collection"]
+}

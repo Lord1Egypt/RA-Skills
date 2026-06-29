@@ -1,0 +1,161 @@
+/* ============================================================
+   md2pdf — Default Theme
+   Apple 风格，适合中文技术文档
+   应用在 Playwright 渲染的 HTML 页面中
+   ============================================================ */
+
+/* ── 基础 ── */
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+    font-family: -apple-system, "PingFang SC", "Heiti SC", sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #1d1d1f;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+/* ── 标题 ── */
+h1 { font-size: 24px; font-weight: 700; margin-top: 32px; margin-bottom: 16px; }
+h2 { font-size: 19px; font-weight: 600; margin-top: 28px; margin-bottom: 12px;
+     padding-bottom: 6px; border-bottom: 1px solid #e5e5ea; }
+h3 { font-size: 16px; font-weight: 600; margin-top: 24px; margin-bottom: 8px; }
+h4 { font-size: 15px; font-weight: 600; margin-top: 20px; margin-bottom: 6px; }
+
+/* ── 段落 ── */
+p { margin: 8px 0; }
+
+/* ── 列表 ── */
+ul, ol { margin: 8px 0; padding-left: 24px; }
+li { margin: 6px 0; line-height: 1.7; }
+li p { margin: 2px 0; }
+
+/* ── 链接 ── */
+a { color: #007aff; }
+
+/* ── 表格 ── */
+table { border-collapse: collapse; width: 100%; margin: 12px 0; font-size: 13px; }
+th, td { border: 1px solid #d1d1d6; padding: 8px 12px; text-align: left; }
+th { background: #e8e8ed; color: #1d1d1f; font-weight: 600; }
+
+/* ── 代码 ── */
+code { background: #f5f5f7; padding: 2px 6px; border-radius: 4px; font-size: 13px; }
+pre { background: #f5f5f7; padding: 16px; border-radius: 8px; overflow-x: auto;
+      font-size: 12px; line-height: 1.5; margin: 12px 0; }
+code { font-family: "SF Mono", "Menlo", "Consolas", monospace; }
+
+/* ── 引用 ── */
+blockquote { border-left: 3px solid #007aff; margin: 12px 0; padding: 8px 16px;
+             background: #f5f5f7; border-radius: 0 8px 8px 0; }
+blockquote p { margin: 4px 0; }
+
+/* ── 分割线 ── */
+hr { border: none; border-top: 1px solid #e5e5ea; margin: 24px 0; }
+
+/* ── 强调 ── */
+strong { font-weight: 700; }
+
+/* ── 图片 ── */
+img { max-width: 100%; height: auto; }
+
+/* ════════════════════════════════════════════════════════════
+   封面页
+   ════════════════════════════════════════════════════════════ */
+.md2pdf-cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    padding: 60px 40px;
+    page-break-after: always;
+}
+.md2pdf-cover h1 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    border: none;
+    padding: 0;
+    color: #1d1d1f;
+}
+.md2pdf-cover .subtitle {
+    font-size: 18px;
+    color: #86868b;
+    margin-bottom: 40px;
+}
+.md2pdf-cover .meta {
+    font-size: 14px;
+    color: #86868b;
+    margin: 4px 0;
+}
+.md2pdf-cover .version {
+    font-size: 12px;
+    color: #aeaeb2;
+    margin-top: 24px;
+}
+.md2pdf-cover hr {
+    width: 60px;
+    margin: 32px auto;
+    border-top: 2px solid #007aff;
+}
+
+/* ════════════════════════════════════════════════════════════
+   目录页（pandoc --toc 自动生成）
+   ════════════════════════════════════════════════════════════ */
+nav#TOC {
+    padding: 20px 0;
+}
+nav#TOC h1,
+nav#TOC h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    border: none;
+    padding: 0;
+}
+nav#TOC ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+nav#TOC ul ul {
+    padding-left: 24px;
+}
+nav#TOC li {
+    margin: 4px 0;
+    line-height: 1.6;
+}
+nav#TOC a {
+    color: #007aff;
+    text-decoration: none;
+}
+nav#TOC a:hover {
+    text-decoration: underline;
+}
+
+/* ════════════════════════════════════════════════════════════
+   页码（Playwright 注入页脚）
+   ════════════════════════════════════════════════════════════ */
+@page {
+    margin-top: 20mm;
+    margin-bottom: 20mm;
+    margin-left: 20mm;
+    margin-right: 20mm;
+}
+
+/* ════════════════════════════════════════════════════════════
+   分页保护 — 防止内容被截断到两页
+   ════════════════════════════════════════════════════════════ */
+h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+}
+pre, blockquote, img, svg, .mermaid {
+    page-break-inside: avoid;
+}
+/* 表格允许跨页（避免宽表列宽异常），但优先不截断 */
+table {
+    page-break-inside: auto;
+}
+/* 封面独占一页（page-break 在 HTML 内联样式中设置） */

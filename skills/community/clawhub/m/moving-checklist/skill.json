@@ -1,0 +1,38 @@
+{
+  "name": "Moving Checklist",
+  "slug": "moving-checklist",
+  "description": "Generate a personalized moving timeline & checklist based on your home info, timeline, and moving distance.",
+  "tags": ["moving", "relocation", "checklist", "planning", "household", "china"],
+  "license": "MIT-0",
+  "version": "1.0.0",
+  "scripts": {
+    "main": "scripts/checklist.py",
+    "usage": "python scripts/checklist.py --profile '{\"current\":\"整租\",\"new_address\":\"上海浦东\",\"move_date\":\"2025-07-15\",\"distance\":\"同城\"}'",
+    "interactive": "python scripts/checklist.py --interactive"
+  },
+  "schemas": {
+    "input": "schemas/input.schema.json",
+    "output": "schemas/output.schema.json"
+  },
+  "references": {
+    "task_templates": "references/task_templates.json",
+    "budget_tiers": "references/budget_tiers.json"
+  },
+  "workflowSteps": [
+    { "step": 1, "name": "Gather Moving Context", "input": "Questionnaire responses", "output": "Structured moving profile" },
+    { "step": 2, "name": "Generate Countdown Timeline", "input": "Moving profile", "output": "D-30 to D+7 timeline" },
+    { "step": 3, "name": "Categorize Tasks", "input": "Profile + timeline", "output": "Tasks in Admin/Packing/Logistics/Cleaning" },
+    { "step": 4, "name": "Household Role Assignment", "input": "Household members", "output": "Responsibility matrix" },
+    { "step": 5, "name": "Budget Estimation", "input": "Moving profile", "output": "Cost breakdown" },
+    { "step": 6, "name": "Generate Printable Handbook", "input": "All outputs", "output": "Complete moving handbook" },
+    { "step": 7, "name": "Post-Move Follow-up", "input": "Move complete signal", "output": "Settling checklist" }
+  ],
+  "firstSuccessPath": {
+    "steps": [
+      "Say: 我下个月搬家，一室一厅，同城，帮我出个清单",
+      "Answer 3 quick questions (date? furniture owned? family size?)",
+      "Receive personalized countdown timeline + categorized checklist in <20 seconds"
+    ],
+    "cli": "python scripts/checklist.py --profile '{\"current\":\"整租\",\"new_address\":\"上海浦东\",\"move_date\":\"2025-07-15\",\"distance\":\"同城\",\"household_size\":\"solo\"}'"
+  }
+}

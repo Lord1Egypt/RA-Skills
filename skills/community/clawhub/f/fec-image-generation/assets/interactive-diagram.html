@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>frontend-craft Interactive Diagram</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --ink: #172033;
+      --muted: #61708a;
+      --line: #d9e0eb;
+      --accent: #3157d5;
+      --edge: #728096;
+      --shadow: 0 12px 32px rgba(20, 32, 54, 0.12);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+    header {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+    }
+    h1 { margin: 0; font-size: 16px; line-height: 1.2; }
+    .toolbar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    button {
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--ink);
+      border-radius: 6px;
+      padding: 7px 10px;
+      font: inherit;
+      cursor: pointer;
+    }
+    button:hover { border-color: var(--accent); color: var(--accent); }
+    main { position: relative; min-height: 0; overflow: hidden; }
+    #status {
+      position: absolute;
+      left: 16px;
+      bottom: 14px;
+      z-index: 2;
+      padding: 6px 9px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--muted);
+      font-size: 12px;
+    }
+    svg { display: block; width: 100%; height: 100%; min-height: calc(100vh - 58px); background: #fbfcff; }
+    .grid { stroke: #eef2f8; stroke-width: 1; }
+    .edge { stroke: var(--edge); stroke-width: 2; fill: none; }
+    .edge-label-bg { fill: #fff; stroke: var(--line); }
+    .edge-label { fill: var(--muted); font-size: 12px; }
+    .node text { pointer-events: none; font-size: 13px; fill: var(--ink); }
+    .node-shape { fill: #f8fbff; stroke: var(--accent); stroke-width: 2; filter: drop-shadow(0 3px 4px rgba(20, 32, 54, 0.08)); }
+    .node-terminal { stroke: #2f9e44; fill: #f1fbf3; }
+    .node-terminal-end { stroke: #d9480f; fill: #fff4ef; }
+    .node-decision { stroke: #d69e2e; fill: #fff8dc; }
+    .node-service { stroke: #805ad5; fill: #faf5ff; }
+    .node-database { stroke: #0c8599; fill: #edfaff; }
+    .node-success { stroke: #2f9e44; fill: #f1fbf3; }
+    .node-error { stroke: #e03131; fill: #fff5f5; }
+    .container-shape { fill: rgba(248, 251, 255, 0.72); stroke: #7a8aa0; stroke-width: 2; stroke-dasharray: 7 5; }
+    .selected .node-shape, .selected .container-shape { stroke-width: 3; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 id="title">Interactive Diagram</h1>
+    <div class="toolbar">
+      <button type="button" data-action="fit">Fit</button>
+      <button type="button" data-action="zoom-in">Zoom In</button>
+      <button type="button" data-action="zoom-out">Zoom Out</button>
+      <button type="button" data-action="export-svg">SVG</button>
+      <button type="button" data-action="export-png">PNG</button>
+      <button type="button" data-action="export-json">JSON</button>
+    </div>
+  </header>
+  <main>
+    <svg id="canvas" role="img" aria-labelledby="title">
+      <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L9,3 z" fill="#728096"></path>
+        </marker>
+        <pattern id="grid" width="24" height="24" patternUnits="userSpaceOnUse">
+          <path class="grid" d="M24 0H0V24"></path>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)"></rect>
+      <g id="viewport"></g>
+    </svg>
+    <div id="status">Connecting</div>
+  </main>
+  <script>
+    const svg = document.getElementById('canvas');
+    const viewport = document.getElementById('viewport');
+    const titleEl = document.getElementById('title');
+    const statusEl = document.getElementById('status');
+    const session = new URLSearchParams(location.search).get('s') || 'default';
+    const state = { title: 'Interactive Diagram', direction: 'TB', nodes: new Map(), edges: [], scale: 1, tx: 24, ty: 24, selected: null };
+    const ns = 'http://www.w3.org/2000/svg';
+
+    function setStatus(text) { statusEl.textContent = `${session}: ${text}`; }
+    function sizeFor(node) {
+      const text = String(node.label || node.id || '');
+      const width = Number(node.width) || Math.min(240, Math.max(node.type === 'decision' ? 132 : 150, text.length * 8 + 42));
+      const height = Number(node.height) || (node.type === 'decision' ? 88 : 62);
+      return { width, height };
+    }
+    function layout() {
+      const normalNodes = [...state.nodes.values()].filter(node => node.type !== 'container');
+      const incoming = new Map(normalNodes.map(node => [node.id, 0]));
+      const outgoing = new Map(normalNodes.map(node => [node.id, []]));
+      for (const edge of state.edges) {
+        if (!incoming.has(edge.to) || !outgoing.has(edge.from)) continue;
+        incoming.set(edge.to, incoming.get(edge.to) + 1);
+        outgoing.get(edge.from).push(edge.to);
+      }
+      const layer = new Map();
+      const queue = normalNodes.filter(node => incoming.get(node.id) === 0);
+      queue.forEach(node => layer.set(node.id, 0));
+      while (queue.length) {
+        const node = queue.shift();
+        for (const next of outgoing.get(node.id) || []) {
+          layer.set(next, Math.max(layer.get(next) || 0, (layer.get(node.id) || 0) + 1));
+          const nextNode = state.nodes.get(next);
+          if (nextNode) queue.push(nextNode);
+        }
+      }
+      normalNodes.forEach(node => {
+        if (!layer.has(node.id)) layer.set(node.id, 0);
+      });
+      const horizontal = state.direction === 'LR' || state.direction === 'RL';
+      const groups = new Map();
+      normalNodes.forEach(node => {
+        if (Number.isFinite(node.x) && Number.isFinite(node.y)) return;
+        const rank = layer.get(node.id) || 0;
+        const group = groups.get(rank) || [];
+        group.push(node);
+        groups.set(rank, group);
+      });
+      for (const [rank, nodes] of groups) {
+        nodes.forEach((node, index) => {
+          const main = 80 + rank * 190;
+          const cross = 80 + index * 120;
+          node.x = horizontal ? main : cross;
+          node.y = horizontal ? cross : main;
+        });
+      }
+      for (const node of [...state.nodes.values()].filter(item => item.type === 'container')) {
+        const children = Array.isArray(node.children) ? node.children.map(id => state.nodes.get(id)).filter(Boolean) : [];
+        if (!children.length) continue;
+        const left = Math.min(...children.map(child => child.x || 0));
+        const top = Math.min(...children.map(child => child.y || 0));
+        const right = Math.max(...children.map(child => (child.x || 0) + sizeFor(child).width));
+        const bottom = Math.max(...children.map(child => (child.y || 0) + sizeFor(child).height));
+        node.x = left - 36;
+        node.y = top - 54;
+        node.width = right - left + 72;
+        node.height = bottom - top + 90;
+      }
+    }
+    function render() {
+      layout();
+      viewport.innerHTML = '';
+      viewport.setAttribute('transform', `translate(${state.tx} ${state.ty}) scale(${state.scale})`);
+      renderEdges();
+      [...state.nodes.values()].filter(node => node.type === 'container').forEach(renderNode);
+      [...state.nodes.values()].filter(node => node.type !== 'container').forEach(renderNode);
+      titleEl.textContent = state.title;
+      setStatus(`${state.nodes.size} nodes, ${state.edges.length} edges`);
+    }
+    function pointFor(id, bottom) {
+      const node = state.nodes.get(id);
+      if (!node) return null;
+      const { width, height } = sizeFor(node);
+      return { x: (node.x || 0) + width / 2, y: (node.y || 0) + (bottom ? height : 0) };
+    }
+    function renderEdges() {
+      for (const edge of state.edges) {
+        const from = pointFor(edge.from, true);
+        const to = pointFor(edge.to, false);
+        if (!from || !to) continue;
+        const group = el('g', {});
+        const midY = (from.y + to.y) / 2;
+        group.append(el('path', { class: 'edge', markerEnd: 'url(#arrow)', d: `M${from.x},${from.y} C${from.x},${midY} ${to.x},${midY} ${to.x},${to.y}` }));
+        if (edge.label) {
+          const x = (from.x + to.x) / 2;
+          const y = midY - 8;
+          group.append(el('rect', { class: 'edge-label-bg', x: x - 42, y: y - 15, width: 84, height: 20, rx: 5 }));
+          const text = el('text', { class: 'edge-label', x, y, textAnchor: 'middle' });
+          text.textContent = edge.label;
+          group.append(text);
+        }
+        viewport.append(group);
+      }
+    }
+    function renderNode(node) {
+      const { width, height } = sizeFor(node);
+      const group = el('g', { class: `node ${state.selected === node.id ? 'selected' : ''}`, transform: `translate(${node.x || 0} ${node.y || 0})`, tabindex: '0' });
+      group.dataset.id = node.id;
+      if (node.type === 'container') {
+        group.append(el('rect', { class: 'container-shape', width, height, rx: 8 }));
+        const label = el('text', { x: 14, y: 24, fontWeight: '700' });
+        label.textContent = node.label || node.id;
+        group.append(label);
+      } else if (node.type === 'decision') {
+        group.append(el('polygon', { class: 'node-shape node-decision', points: `${width / 2},0 ${width},${height / 2} ${width / 2},${height} 0,${height / 2}` }));
+        group.append(centerText(node.label || node.id, width / 2, height / 2 + 5));
+      } else if (node.type === 'terminal' || node.type === 'terminal-end') {
+        group.append(el('ellipse', { class: `node-shape node-${node.type}`, cx: width / 2, cy: height / 2, rx: width / 2, ry: height / 2 }));
+        group.append(centerText(node.label || node.id, width / 2, height / 2 + 5));
+      } else {
+        group.append(el('rect', { class: `node-shape node-${node.type || 'process'}`, width, height, rx: 8 }));
+        group.append(centerText(node.label || node.id, width / 2, height / 2 + 5));
+      }
+      group.addEventListener('pointerdown', event => startDrag(event, node));
+      group.addEventListener('dblclick', () => editNode(node));
+      viewport.append(group);
+    }
+    function centerText(value, x, y) {
+      const text = el('text', { x, y, textAnchor: 'middle' });
+      text.textContent = value;
+      return text;
+    }
+    function el(name, attrs) {
+      const node = document.createElementNS(ns, name);
+      for (const [key, value] of Object.entries(attrs)) {
+        node.setAttribute(key === 'markerEnd' ? 'marker-end' : key === 'textAnchor' ? 'text-anchor' : key, value);
+      }
+      return node;
+    }
+    function startDrag(event, node) {
+      event.preventDefault();
+      state.selected = node.id;
+      const start = toGraphPoint(event);
+      const ox = node.x || 0;
+      const oy = node.y || 0;
+      const move = e => {
+        const next = toGraphPoint(e);
+        node.x = ox + next.x - start.x;
+        node.y = oy + next.y - start.y;
+        render();
+      };
+      const up = () => {
+        window.removeEventListener('pointermove', move);
+        window.removeEventListener('pointerup', up);
+      };
+      window.addEventListener('pointermove', move);
+      window.addEventListener('pointerup', up);
+      render();
+    }
+    function toGraphPoint(event) {
+      const rect = svg.getBoundingClientRect();
+      return { x: (event.clientX - rect.left - state.tx) / state.scale, y: (event.clientY - rect.top - state.ty) / state.scale };
+    }
+    function editNode(node) {
+      const next = prompt('Node label', node.label || node.id);
+      if (next !== null) {
+        node.label = next;
+        render();
+      }
+    }
+    function handleCommand(cmd) {
+      if (cmd.cmd === 'init') {
+        state.title = cmd.title || 'Interactive Diagram';
+        state.direction = cmd.direction || 'TB';
+        state.nodes.clear();
+        state.edges = [];
+      } else if (cmd.cmd === 'title') {
+        state.title = cmd.text || state.title;
+      } else if (cmd.cmd === 'node' || cmd.cmd === 'container') {
+        const id = cmd.id;
+        if (!id) return;
+        state.nodes.set(id, { ...state.nodes.get(id), ...cmd, id, type: cmd.cmd === 'container' ? 'container' : (cmd.type || 'process'), label: cmd.label || id });
+      } else if (cmd.cmd === 'edge') {
+        if (cmd.from && cmd.to) state.edges.push({ id: cmd.id || `${cmd.from}-${cmd.to}-${state.edges.length}`, ...cmd });
+      } else if (cmd.cmd === 'remove') {
+        state.nodes.delete(cmd.id);
+        state.edges = state.edges.filter(edge => edge.from !== cmd.id && edge.to !== cmd.id);
+      } else if (cmd.cmd === 'clear') {
+        state.nodes.clear();
+        state.edges = [];
+      } else if (cmd.cmd === 'layout') {
+        [...state.nodes.values()].forEach(node => { delete node.x; delete node.y; });
+      } else if (cmd.cmd === 'export') {
+        exportFile(cmd.format || 'json');
+      }
+      render();
+    }
+    async function restore() {
+      const response = await fetch(`/state?s=${encodeURIComponent(session)}`);
+      const commands = await response.json();
+      commands.forEach(handleCommand);
+    }
+    function connect() {
+      const events = new EventSource(`/events?s=${encodeURIComponent(session)}`);
+      events.onopen = () => setStatus('connected');
+      events.onerror = () => setStatus('reconnecting');
+      events.onmessage = event => handleCommand(JSON.parse(event.data));
+    }
+    function exportFile(format) {
+      if (format === 'svg') {
+        download('diagram.svg', new XMLSerializer().serializeToString(svg), 'image/svg+xml');
+      } else if (format === 'png') {
+        const image = new Image();
+        const data = new XMLSerializer().serializeToString(svg);
+        image.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = svg.clientWidth * 2;
+          canvas.height = svg.clientHeight * 2;
+          const ctx = canvas.getContext('2d');
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          ctx.scale(2, 2);
+          ctx.drawImage(image, 0, 0);
+          downloadUrl('diagram.png', canvas.toDataURL('image/png'));
+        };
+        image.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(data)}`;
+      } else {
+        const graph = { title: state.title, direction: state.direction, nodes: [...state.nodes.values()], edges: state.edges };
+        download('diagram.json', JSON.stringify(graph, null, 2), 'application/json');
+      }
+    }
+    function download(name, body, type) {
+      const url = URL.createObjectURL(new Blob([body], { type }));
+      downloadUrl(name, url);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+    function downloadUrl(name, url) {
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = name;
+      a.click();
+    }
+    document.querySelector('.toolbar').addEventListener('click', event => {
+      const action = event.target.dataset.action;
+      if (action === 'fit') { state.scale = 1; state.tx = 24; state.ty = 24; render(); }
+      if (action === 'zoom-in') { state.scale = Math.min(3, state.scale + 0.15); render(); }
+      if (action === 'zoom-out') { state.scale = Math.max(0.35, state.scale - 0.15); render(); }
+      if (action === 'export-svg') exportFile('svg');
+      if (action === 'export-png') exportFile('png');
+      if (action === 'export-json') exportFile('json');
+    });
+    window.addEventListener('keydown', event => {
+      if ((event.key === 'Delete' || event.key === 'Backspace') && state.selected) {
+        const id = state.selected;
+        state.nodes.delete(id);
+        state.edges = state.edges.filter(edge => edge.from !== id && edge.to !== id);
+        state.selected = null;
+        render();
+      }
+    });
+    restore().then(connect).catch(error => setStatus(error.message));
+  </script>
+</body>
+</html>

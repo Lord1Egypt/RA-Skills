@@ -3,7 +3,8 @@ metadata:
   author: es6kr
   version: "0.1.1"
 name: commit-tidy
-depends-on: [git-repo]
+depends-on:
+  - git-repo
 description: >-
   Analyze staged/committed changes and recommend split, squash, or commit-message strategy.
   Topics — interactive-amend (worktree-based amend+rebase loop),
@@ -109,10 +110,16 @@ When analyzing multiple commits, **recommend squashing as well as splitting**.
 - e2b6503a test(dt): OIDC route tests (login, callback, me)
 
 **After** (1 commit):
-- test(dt): add OIDC auth unit tests
+Subject: test(dt): add OIDC auth unit tests
+Body:
+  Consolidates OIDC unit tests from the prior per-loop splits — covers the
+  auth flow, proxy interaction, SSO behavior, and route handlers
+  (login / callback / me) in a single coherent test commit.
 
 **Reasoning**: Same type (test), same feature (OIDC auth), agent loop split
 ```
+
+The body in every recommended commit follows `message-discipline.md` "Default commit message structure" — body is recommended by default, free-form (not restricted to per-file enumeration), footer optional.
 
 ## Instructions
 
@@ -159,7 +166,7 @@ Look for natural split points:
 
 ### Step 4: Recommend split strategy
 
-Provide specific recommendations:
+Provide specific recommendations. **Every recommended commit includes a body by default** (see `message-discipline.md` "Default commit message structure"). The body is free-form — it does not have to enumerate per-file changes.
 
 ```
 ## Analysis Results
@@ -171,22 +178,64 @@ Provide specific recommendations:
 
 ### Recommendation: Split into N commits
 
-**Commit 1**: feat: add user profile API
-- src/api/user.ts
-- src/api/types.ts
-- tests/api/user.test.ts
+**Commit 1**:
+  Subject: feat: add user profile API
+  Body:
+    Adds POST /users/profile and GET /users/profile/:id endpoints backed by a
+    shared validation schema. Both endpoints reuse the existing auth middleware
+    and return consistent error shapes. Unit tests cover happy path plus
+    validation-error branches.
+  Footer (optional): Closes #<issue>
+  Files:
+    - src/api/user.ts
+    - src/api/types.ts
+    - tests/api/user.test.ts
 
-**Commit 2**: feat: add profile UI component
-- src/components/Profile.tsx
-- src/components/Profile.css
-- tests/components/Profile.test.tsx
+**Commit 2**:
+  Subject: feat: add profile UI component
+  Body:
+    Adds a Profile component that consumes the new API endpoints, including
+    loading and error states. CSS extracted into a sibling module to keep the
+    component file focused on behavior. Component tests stub the API client to
+    exercise the loading / success / error branches independently.
+  Files:
+    - src/components/Profile.tsx
+    - src/components/Profile.css
+    - tests/components/Profile.test.tsx
 
 ### Reasoning
 - API and UI can function independently
 - Each can be reviewed by different reviewers
 ```
 
+### Step 4.5: Local commit-type rule self-check (HARD STOP — before Step 5)
+
+**Before executing the recommended split, run the working-tree-specific commit-type override self-check.** Workspaces with `<repo>/.claude/rules/*.md` defining their own commit-type / version-bump mapping take precedence over the global tag-selection defaults applied in Step 4.
+
+```bash
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+find "$REPO_ROOT/.claude/rules/" -name '*.md' 2>/dev/null
+```
+
+If the find returns one or more files, grep them for commit-type semantics (recursive to match the `find` scope above):
+
+```bash
+grep -rliE 'commit type|conventional commit|version bump|feat|fix|topic' \
+  "$REPO_ROOT/.claude/rules/" --include='*.md' 2>/dev/null
+```
+
+Read each matched file. If a local mapping exists (e.g., "new topic = `feat:`, in-place edit of existing topic = `fix:`"), **re-classify each recommended subject under the local mapping before invoking Step 5**. Example reclassification:
+
+| Step 4 draft (global default) | Local rule | Step 5 subject |
+|------------------------------|-----------|----------------|
+| `feat(skill-X): add HARD STOP for Y` (no new topic file) | `branch-policy.md` "in-place edit = `fix:`" | `fix(skill-X): require Y` |
+| `feat(skill-X): add new-topic.md` (new topic file present) | same rule | `feat(skill-X): add new-topic topic` (unchanged) |
+
+See `message-discipline.md` → "Working-tree-specific commit-type override (HARD STOP)" for the full self-check.
+
 ### Step 5: Execute split (if requested)
+
+Use HEREDOC (`git commit -F -`) so the body and optional footer land in the commit message exactly as drafted. Per `message-discipline.md`, single `-m "<subject>"` invocations are reserved for the rare subject-only acceptable cases (typo / routine dep bump).
 
 ```bash
 # Unstage all
@@ -194,11 +243,25 @@ git reset HEAD
 
 # Stage first commit files
 git add src/api/ tests/api/
-git commit -m "feat: add user profile API"
+git commit -F - <<'EOF'
+feat: add user profile API
+
+Adds POST /users/profile and GET /users/profile/:id endpoints backed by a
+shared validation schema. Both endpoints reuse the existing auth middleware
+and return consistent error shapes. Unit tests cover happy path plus
+validation-error branches.
+EOF
 
 # Stage second commit files
 git add src/components/ tests/components/
-git commit -m "feat: add profile UI component"
+git commit -F - <<'EOF'
+feat: add profile UI component
+
+Adds a Profile component that consumes the new API endpoints, including
+loading and error states. CSS extracted into a sibling module to keep the
+component file focused on behavior. Component tests stub the API client to
+exercise the loading / success / error branches independently.
+EOF
 ```
 
 ## Quick Reference
@@ -228,5 +291,6 @@ Analysis results should include:
 1. List of changed files with categories
 2. Whether split is needed and why
 3. Specific commit splitting plan
-4. Suggested commit messages for each
-5. Execution commands (if requested)
+4. Suggested commit messages for each — **subject + body by default** (free-form body, footer optional). See `message-discipline.md` "Default commit message structure". Subject-only is reserved for typo / routine dep bump
+5. Per-commit body draft — free-form prose / bullets / sections, NOT restricted to per-file enumeration
+6. Execution commands (if requested) — use `git commit -F - <<'EOF'…EOF` HEREDOC form so the drafted body / footer lands in the commit message verbatim

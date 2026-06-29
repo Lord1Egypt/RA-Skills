@@ -1,5 +1,5 @@
 ## Description: <br>
-Provides China insurance actuarial pricing guidance, reserve calculation support, solvency capital analysis, and example Python formulas based on the fourth life table and C-ROSS framework. <br>
+Provides China insurance actuarial pricing, reserve, solvency-capital, and reporting guidance using the 4th Life Table (2025), C-ROSS Phase II, IFRS 17 / HKFRS 17 concepts, and Python example templates. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,32 +11,30 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users, actuarial teams, and product pricing teams use this skill to draft Chinese insurance pricing analyses, reserve calculations, solvency capital considerations, and example Python formulas for qualified human review. <br>
+External actuarial, product-pricing, and insurance product development teams use this skill as an educational reference for China-focused premium calculation, reserve estimation, solvency-capital analysis, and actuarial report drafting. Outputs require qualified actuarial review before use in pricing, reserving, compliance, or product filings. <br>
 
 ### Deployment Geography for Use: <br>
-China <br>
+Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Example actuarial pricing code and regulatory assumptions may be mistaken for production financial, insurance, or compliance advice. <br>
-Mitigation: Treat outputs as educational references and require qualified actuarial, financial, legal, and compliance review before real-world application. <br>
-Risk: Pricing assumptions and regulatory references may not match the latest official requirements or a specific insurer's approved methodology. <br>
-Mitigation: Verify assumptions against current official regulatory sources, approved actuarial bases, and internal governance before use. <br>
+Risk: Actuarial examples, regulatory summaries, or life-table assumptions may be incomplete or unsuitable for real pricing, reserve, or compliance decisions. <br>
+Mitigation: Use outputs as educational reference material only; require qualified actuarial review, testing, and verification against official regulatory and life-table sources before operational use. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/gechengling/insurance-actuarial-cn) <br>
-- [Fourth Life Table 2025 Usage](references/life_table_2025_usage.md) <br>
-- [Actuarial Pricing Formulas](references/actuarial_pricing_formulas.md) <br>
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/insurance-actuarial-cn) <br>
+- [Fourth Life Table (2025) usage guide](references/life_table_2025_usage.md) <br>
+- [Actuarial pricing formulas and code examples](references/actuarial_pricing_formulas.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with inline Python code examples] <br>
+**Output Type(s):** [Guidance, Markdown, Code, Analysis] <br>
+**Output Format:** [Markdown with formulas, tables, and Python example code blocks] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are advisory examples and require qualified actuarial, financial, and compliance review before real-world use.] <br>
+**Other Properties Related to Output:** [Educational actuarial reference output; examples and assumptions require human actuarial validation.] <br>
 
 ## Skill Version(s): <br>
-5.1.0 (source: release evidence and frontmatter) <br>
+5.1.1 (source: server release metadata and SKILL.md frontmatter) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

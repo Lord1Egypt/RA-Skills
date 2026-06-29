@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>跨境税务速查 · 美国销售税</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background: #F0F4F8; color: #1A202C; line-height: 1.6; }
+.container { max-width: 960px; margin: 0 auto; padding: 20px; }
+.header { text-align: center; padding: 32px 20px 24px; background: linear-gradient(135deg, #1E3A5F 0%, #2D6A9F 100%); color: white; border-radius: 16px; margin-bottom: 24px; }
+.header h1 { font-size: 26px; margin-bottom: 8px; }
+.header p { font-size: 14px; opacity: 0.85; }
+.oss-section { background: white; border-radius: 14px; padding: 28px; margin-bottom: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.oss-section h2 { font-size: 22px; margin-bottom: 12px; }
+.oss-section h3 { font-size: 17px; margin: 20px 0 12px; color: #1E3A5F; }
+.oss-intro { color: #64748B; margin-bottom: 16px; font-size: 14px; }
+.table-wrapper { overflow-x: auto; margin: 12px 0; }
+.oss-table, .compare-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.oss-table th, .compare-table th { background: #F1F5F9; padding: 10px 12px; text-align: left; font-weight: 600; color: #334155; white-space: nowrap; }
+.oss-table td, .compare-table td { padding: 10px 12px; border-bottom: 1px solid #E2E8F0; }
+.oss-table tr:hover td, .compare-table tr:hover td { background: #F8FAFC; }
+.deadline-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 16px 0; }
+.deadline-card { background: #F1F5F9; border-radius: 10px; padding: 16px; text-align: center; }
+.deadline-card div:first-child { font-weight: 700; color: #1E3A5F; font-size: 16px; }
+.deadline-card div:nth-child(2) { font-size: 12px; color: #64748B; }
+.deadline-date { color: #E53935; font-weight: 700; font-size: 14px; margin-top: 6px; }
+.timeline { position: relative; padding-left: 24px; margin: 12px 0; }
+.timeline::before { content: ""; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: #CBD5E1; }
+.timeline-item { display: flex; align-items: flex-start; margin-bottom: 14px; position: relative; }
+.timeline-dot { width: 10px; height: 10px; border-radius: 50%; background: #2D6A9F; flex-shrink: 0; margin-right: 14px; margin-top: 4px; z-index: 1; }
+.timeline-content { font-size: 13px; }
+.timeline-date { font-weight: 700; color: #2D6A9F; font-size: 12px; }
+.timeline-text { color: #334155; }
+.country-card { background: white; border-radius: 14px; padding: 24px; margin-bottom: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+.country-flag { font-size: 32px; }
+.country-name { font-size: 20px; font-weight: 700; color: #1E3A5F; }
+.country-code { font-size: 12px; color: #94A3B8; font-weight: 400; background: #F1F5F9; padding: 2px 6px; border-radius: 4px; }
+.country-tax-type { font-size: 12px; color: #64748B; }
+.card-badges { margin-left: auto; display: flex; gap: 6px; }
+.badge { padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700; }
+.badge-oss { background: #E8F0FE; color: #1E6FD6; }
+.badge-ioss { background: #FCE4EC; color: #C62828; }
+.rate-section { padding: 16px; border-radius: 10px; border: 2px solid; text-align: center; margin-bottom: 16px; }
+.rate-label { font-size: 12px; color: #64748B; text-transform: uppercase; }
+.rate-value { font-size: 42px; font-weight: 800; }
+.rate-reduced { font-size: 13px; color: #64748B; margin-top: 4px; }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.info-item { background: #F8FAFC; padding: 10px 12px; border-radius: 8px; }
+.info-label { font-size: 11px; color: #64748B; text-transform: uppercase; font-weight: 600; }
+.info-value { font-size: 13px; color: #334155; margin-top: 2px; }
+.notes { background: #FFF8E1; padding: 10px 14px; border-radius: 8px; border-left: 3px solid #FFC107; margin-bottom: 12px; font-size: 13px; color: #5D4037; }
+.special-rules { display: flex; flex-wrap: wrap; gap: 6px; }
+.rule-tag { padding: 6px 12px; border-radius: 6px; font-size: 12px; line-height: 1.4; }
+.alert-warn { background: #FFF3E0; border: 1px solid #FFB74D; color: #E65100; }
+.alert-info { background: #E3F2FD; border: 1px solid #90CAF9; color: #1565C0; }
+.compare-section { background: white; border-radius: 14px; padding: 28px; margin-bottom: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.compare-section h2 { font-size: 20px; margin-bottom: 16px; }
+.oss-reminder { background: #E8F0FE; padding: 14px 20px; border-radius: 10px; margin-bottom: 20px; font-size: 14px; }
+.oss-reminder a { color: #1E6FD6; font-weight: 600; }
+.no-result { background: white; border-radius: 14px; padding: 40px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.no-result h2 { margin-bottom: 12px; }
+.no-result ul { text-align: left; display: inline-block; margin: 12px auto; color: #64748B; font-size: 14px; }
+.no-result li { margin-bottom: 6px; }
+.tag-cloud { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 12px; }
+.tag { background: #F1F5F9; padding: 8px 16px; border-radius: 20px; font-size: 13px; cursor: pointer; border: 1px solid #E2E8F0; transition: all 0.2s; }
+.tag:hover { background: #E8F0FE; border-color: #90CAF9; }
+.footer { text-align: center; padding: 24px; color: #94A3B8; font-size: 12px; }
+.quick-lookup { background: white; border-radius: 14px; padding: 28px; margin-bottom: 24px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.rate-cell { font-size: 18px; }
+@media (max-width: 640px) {
+  .deadline-grid { grid-template-columns: repeat(2, 1fr); }
+  .info-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>🌍 跨境多国税务速查</h1>
+    <p>查询时间: 2026-06-21 16:03 · 数据来源: 各国税务局/欧盟委员会/2026年公开数据</p>
+  </div>
+  
+    <div class="country-card">
+      <div class="card-header">
+        <div class="country-flag">🇺🇸</div>
+        <div>
+          <div class="country-name">美国 <span class="country-code">US</span></div>
+          <div class="country-tax-type">销售税 (Sales Tax)</div>
+        </div>
+        <div class="card-badges"></div>
+      </div>
+      <div class="rate-section" style="background:#F5F5F5; border-color:#9E9E9E">
+        <div class="rate-label">标准税率</div>
+        <div class="rate-value" style="color:#9E9E9E">0-10%+（各州不同，平均6-8%）</div>
+        <div class="rate-reduced">减税率：无</div>
+      </div>
+      <div class="info-grid">
+        <div class="info-item">
+          <div class="info-label">💰 货币</div>
+          <div class="info-value">USD ($)</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">📋 注册门槛</div>
+          <div class="info-value">经济关联（Economic Nexus）：典型$100,000年销售额或200笔交易（各州不同）</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">📅 申报频率</div>
+          <div class="info-value">月度/季度/年（取决于各州销售额）</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">⏰ 截止日期</div>
+          <div class="info-value">各州不同，一般为次月20日</div>
+        </div>
+      </div>
+      <div class="notes">45个州+DC独立税制，平台代收减轻合规负担</div>
+      <div class="special-rules"><div class="rule-tag alert-warn">⚠ 无联邦销售税，45州+DC分别征收</div><div class="rule-tag alert-info">主要电商州税率：加州7.25%起，纽约4%起，德州6.25%起</div><div class="rule-tag alert-info">Marketplace Facilitator规则：Amazon/Walmart等平台代收代缴</div><div class="rule-tag alert-info">2026年起取消$800进口免税（de minimis废止）</div></div>
+    </div>
+  <div class="footer">
+    <p>⚠ 免责声明：本报告仅供参考，不构成税务/法律建议。税率和规则可能随时变化，请以各国官方税务局最新公告为准。</p>
+    <p style="margin-top: 8px;">Cross-Border Tax Quick Lookup v1.0 · Powered by WorkBuddy</p>
+  </div>
+</div>
+</body>
+</html>

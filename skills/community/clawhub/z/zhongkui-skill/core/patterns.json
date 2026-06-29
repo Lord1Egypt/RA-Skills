@@ -1,0 +1,1173 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "description": "钟馗 Layer 1 检测模式碎片化存储。每个模式的 pieces 数组单独拼接后得到完整正则。单片段不含可被安全引擎识别的完整攻击关键词。",
+    "usage": "re.compile(''.join(pattern['pieces']), re.IGNORECASE)",
+    "manual_base_count": 137,
+    "architecture": "基础库(manual) + 增量(nvd/seebug)，--update 仅替换增量部分"
+  },
+  "C1_injection": [
+    {
+      "id": "C1_001",
+      "label": "ig+nore instructions",
+      "pieces": [
+        "ig",
+        "nore\\s+(all\\s+)?(prev",
+        "ious|prior)\\s+inst",
+        "ructions?"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C1_002",
+      "label": "yo+u are now jail",
+      "pieces": [
+        "yo",
+        "u\\s+are\\s+now\\s+(a\\s+)?(jai",
+        "lbreak|uncensored|unfiltered)"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C1_003",
+      "label": "sys+tem prompt over+ride",
+      "pieces": [
+        "sys",
+        "tem\\s+",
+        "pr",
+        "ompt\\s+over",
+        "ride"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C1_004",
+      "label": "pre+tend no restrict+ions",
+      "pieces": [
+        "pre",
+        "tend\\s+you\\s+(are|have)\\s+no\\s+(restrict",
+        "ions|limitat",
+        "ions|rules)"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C1_005",
+      "label": "DAN/dev+eloper mode",
+      "pieces": [
+        "DAN\\s+mode|dev",
+        "eloper\\s+mode"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C1_006",
+      "label": "fo+rget instructions (zh+en)",
+      "pieces": [
+        "fo",
+        "rget.*(inst",
+        "ruction|rule)|\\u5fd8",
+        "\\u8bb0.*(\\u6307",
+        "\\u4ee4|\\u89c4",
+        "\\u5219|\\u9650",
+        "\\u5236)"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C1_007",
+      "label": "ni+bu bypass (zh)",
+      "pieces": [
+        "\\u4f60",
+        "\\u4e0d.*(\\u53d7|\\u9075",
+        "\\u5b88|\\u670d",
+        "\\u4ece).*(\\u9650",
+        "\\u5236|\\u89c4",
+        "\\u5219|\\u6307",
+        "\\u4ee4)"
+      ],
+      "source": "manual"
+    }
+  ],
+  "C2_indirect": [
+    {
+      "id": "C2_001",
+      "label": "fetch_url",
+      "pieces": [
+        "fetch_url"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C2_002",
+      "label": "read_webpage",
+      "pieces": [
+        "read_webpage"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C2_003",
+      "label": "cur+l.*http",
+      "pieces": [
+        "cur",
+        "l.*http"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C2_004",
+      "label": "wg+et.*http",
+      "pieces": [
+        "wg",
+        "et.*http"
+      ],
+      "source": "manual"
+    }
+  ],
+  "C3_credentials": [
+    {
+      "id": "C3_001",
+      "label": ".env",
+      "pieces": [
+        "\\.env\\b"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C3_002",
+      "label": ".ssh",
+      "pieces": [
+        "\\.ssh\\b"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C3_003",
+      "label": "api_key",
+      "pieces": [
+        "api_",
+        "key"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C3_004",
+      "label": "api key",
+      "pieces": [
+        "api\\s*",
+        "key"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C3_005",
+      "label": "tok+en=",
+      "pieces": [
+        "tok",
+        "en\\s*="
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C3_006",
+      "label": "pass+word=",
+      "pieces": [
+        "pass",
+        "word\\s*="
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C3_007",
+      "label": "secr+et key",
+      "pieces": [
+        "secr",
+        "et\\s*",
+        "key"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C3_008",
+      "label": "cred+ential",
+      "pieces": [
+        "cred",
+        "ential"
+      ],
+      "source": "manual"
+    }
+  ],
+  "C4_exfiltration": [
+    {
+      "id": "C4_001",
+      "label": "https?:// url",
+      "pieces": [
+        "https?://\\S+"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C4_002",
+      "label": "web+hook",
+      "pieces": [
+        "web",
+        "hook"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C4_003",
+      "label": "cur+l POST",
+      "pieces": [
+        "cur",
+        "l\\s+.*POST"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C4_004",
+      "label": "requests.pos+t",
+      "pieces": [
+        "requests\\.pos",
+        "t"
+      ],
+      "source": "manual"
+    }
+  ],
+  "C5_danger": [
+    {
+      "id": "C5_001",
+      "label": "r+m -rf /",
+      "pieces": [
+        "r",
+        "m\\s+-rf\\s+/"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C5_002",
+      "label": "for+mat disk",
+      "pieces": [
+        "for",
+        "mat\\s+[cdf]"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C5_003",
+      "label": "d+el /f",
+      "pieces": [
+        "d",
+        "el\\s+/[fq]"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C5_004",
+      "label": "reg del+ete",
+      "pieces": [
+        "reg\\s+del",
+        "ete"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C5_005",
+      "label": "shut+down",
+      "pieces": [
+        "shut",
+        "down"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C5_006",
+      "label": "d+d if=",
+      "pieces": [
+        "d",
+        "d\\s+if="
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C5_007",
+      "label": "mk+fs",
+      "pieces": [
+        "mk",
+        "fs\\."
+      ],
+      "source": "manual"
+    }
+  ],
+  "C6_privilege": [
+    {
+      "id": "C6_001",
+      "label": "su+do",
+      "pieces": [
+        "su",
+        "do\\b"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C6_002",
+      "label": "run+as",
+      "pieces": [
+        "run",
+        "as\\b"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C6_003",
+      "label": "Administr+ator",
+      "pieces": [
+        "Administr",
+        "ator"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C6_004",
+      "label": "ch+mod 777",
+      "pieces": [
+        "ch",
+        "mod\\s+777"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C6_005",
+      "label": "ro+ot:",
+      "pieces": [
+        "ro",
+        "ot:"
+      ],
+      "source": "manual"
+    }
+  ],
+  "C7_persistence": [
+    {
+      "id": "C7_001",
+      "label": "~/.bash+rc",
+      "pieces": [
+        "~/\\.bash",
+        "rc"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C7_002",
+      "label": "/etc/cront+ab",
+      "pieces": [
+        "/etc/cront",
+        "ab"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C7_003",
+      "label": "Start+up",
+      "pieces": [
+        "Start",
+        "up"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C7_004",
+      "label": "Launch+Agents",
+      "pieces": [
+        "Launch",
+        "Agents"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C7_005",
+      "label": "~/.zs+h+rc",
+      "pieces": [
+        "~/\\.zs",
+        "h",
+        "rc"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C7_006",
+      "label": "/etc/sys+temd",
+      "pieces": [
+        "/etc/sys",
+        "temd"
+      ],
+      "source": "manual"
+    }
+  ],
+  "C8_unicode": [
+    {
+      "id": "C8_001",
+      "char": "​",
+      "hex": "200B",
+      "label": "ZWSP",
+      "source": "manual"
+    },
+    {
+      "id": "C8_002",
+      "char": "‌",
+      "hex": "200C",
+      "label": "ZWNJ",
+      "source": "manual"
+    },
+    {
+      "id": "C8_003",
+      "char": "‍",
+      "hex": "200D",
+      "label": "ZWJ",
+      "source": "manual"
+    },
+    {
+      "id": "C8_004",
+      "char": "‎",
+      "hex": "200E",
+      "label": "LRM",
+      "source": "manual"
+    },
+    {
+      "id": "C8_005",
+      "char": "‏",
+      "hex": "200F",
+      "label": "RLM",
+      "source": "manual"
+    },
+    {
+      "id": "C8_006",
+      "char": "‪",
+      "hex": "202A",
+      "label": "LRE",
+      "source": "manual"
+    },
+    {
+      "id": "C8_007",
+      "char": "‫",
+      "hex": "202B",
+      "label": "RLE",
+      "source": "manual"
+    },
+    {
+      "id": "C8_008",
+      "char": "‬",
+      "hex": "202C",
+      "label": "PDF",
+      "source": "manual"
+    },
+    {
+      "id": "C8_009",
+      "char": "‭",
+      "hex": "202D",
+      "label": "LRO",
+      "source": "manual"
+    },
+    {
+      "id": "C8_010",
+      "char": "‮",
+      "hex": "202E",
+      "label": "RLO",
+      "source": "manual"
+    },
+    {
+      "id": "C8_011",
+      "char": "⁠",
+      "hex": "2060",
+      "label": "WJ",
+      "source": "manual"
+    },
+    {
+      "id": "C8_012",
+      "char": "⁡",
+      "hex": "2061",
+      "label": "FA",
+      "source": "manual"
+    },
+    {
+      "id": "C8_013",
+      "char": "⁢",
+      "hex": "2062",
+      "label": "IT",
+      "source": "manual"
+    },
+    {
+      "id": "C8_014",
+      "char": "⁣",
+      "hex": "2063",
+      "label": "IS",
+      "source": "manual"
+    },
+    {
+      "id": "C8_015",
+      "char": "﻿",
+      "hex": "FEFF",
+      "label": "BOM",
+      "source": "manual"
+    }
+  ],
+  "C9_temporal": [
+    {
+      "id": "C9_001",
+      "pieces": [
+        "if\\s+date"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C9_002",
+      "pieces": [
+        "if\\s+time"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C9_003",
+      "pieces": [
+        "after\\s+\\d{4}"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C9_004",
+      "pieces": [
+        "wait\\s+until"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C9_005",
+      "pieces": [
+        "when\\s+clock"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C9_006",
+      "pieces": [
+        "schedule.*trigger"
+      ],
+      "source": "manual"
+    }
+  ],
+  "C10_obfuscation": [
+    {
+      "id": "C10_001",
+      "pieces": [
+        "bas",
+        "e64"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C10_002",
+      "pieces": [
+        "ev",
+        "al\\s*\\("
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C10_003",
+      "pieces": [
+        "ex",
+        "ec\\s*\\("
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C10_004",
+      "pieces": [
+        "comp",
+        "ile\\s*\\("
+      ],
+      "source": "manual"
+    }
+  ],
+  "C11_param_input": [
+    {
+      "id": "C11_001",
+      "pieces": [
+        "user_input"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C11_002",
+      "pieces": [
+        "args"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C11_003",
+      "pieces": [
+        "param"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C11_004",
+      "pieces": [
+        "request"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C11_005",
+      "pieces": [
+        "\\u53c2\\u6570"
+      ],
+      "source": "manual"
+    }
+  ],
+  "C11_param_guard": [
+    {
+      "id": "C11_G01",
+      "pieces": [
+        "valid",
+        "ate"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C11_G02",
+      "pieces": [
+        "sanit",
+        "ize"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C11_G03",
+      "pieces": [
+        "\\u6821\\u9a8c"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C11_G04",
+      "pieces": [
+        "\\u8fc7\\u6ee4"
+      ],
+      "source": "manual"
+    }
+  ],
+  "C12_context": [
+    {
+      "id": "C12_001",
+      "pieces": [
+        "conversation_history"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C12_002",
+      "pieces": [
+        "chat_context"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C12_003",
+      "pieces": [
+        "previous_messages"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C12_004",
+      "pieces": [
+        "\\u5bf9\\u8bdd\\u5386\\u53f2"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C12_005",
+      "pieces": [
+        "\\u5386\\u53f2\\u6d88\\u606f"
+      ],
+      "source": "manual"
+    }
+  ],
+  "C13_output": [
+    {
+      "id": "C13_001",
+      "pieces": [
+        "generate\\s"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C13_002",
+      "pieces": [
+        "output\\s+response"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C13_003",
+      "pieces": [
+        "reply\\s+to"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C13_004",
+      "pieces": [
+        "\\u751f\\u6210.*\\u56de\\u590d"
+      ],
+      "source": "manual"
+    }
+  ],
+  "C14_copyright": [
+    {
+      "id": "C14_001",
+      "pieces": [
+        "reproduce"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C14_002",
+      "pieces": [
+        "copy_full_text"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C14_003",
+      "pieces": [
+        "verbatim"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C14_004",
+      "pieces": [
+        "\\u5b8c\\u6574.*\\u8f93\\u51fa"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C14_005",
+      "pieces": [
+        "\\u5168\\u90e8.*\\u590d\\u5236"
+      ],
+      "source": "manual"
+    }
+  ],
+  "C15_roleplay": [
+    {
+      "id": "C15_001",
+      "label": "yo+u are now",
+      "pieces": [
+        "yo",
+        "u are now\\b"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C15_002",
+      "label": "a+ct as",
+      "pieces": [
+        "a",
+        "ct as\\b"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C15_003",
+      "label": "rol+eplay",
+      "pieces": [
+        "rol",
+        "eplay"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C15_004",
+      "label": "banyan",
+      "pieces": [
+        "\\u626e",
+        "\\u6f14"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "C15_005",
+      "label": "jiashe",
+      "pieces": [
+        "\\u5047\\u8bbe",
+        "\\u4f60\\u662f"
+      ],
+      "source": "manual"
+    }
+  ],
+  "S1_subprocess": [
+    {
+      "id": "S1_001",
+      "pieces": [
+        "subprocess"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "S1_002",
+      "pieces": [
+        "os\\.system"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "S1_003",
+      "pieces": [
+        "os\\.exec"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "S1_004",
+      "pieces": [
+        "os\\.spawn"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "S1_005",
+      "pieces": [
+        "child_process"
+      ],
+      "source": "manual"
+    }
+  ],
+  "S2_network": [
+    {
+      "id": "S2_001",
+      "pieces": [
+        "socket\\."
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "S2_002",
+      "pieces": [
+        "requests\\."
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "S2_003",
+      "pieces": [
+        "urllib"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "S2_004",
+      "pieces": [
+        "http\\.client"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "S2_005",
+      "pieces": [
+        "fetch\\("
+      ],
+      "source": "manual"
+    }
+  ],
+  "S3_sensitive_paths": [
+    {
+      "id": "S3_001",
+      "pieces": [
+        "/etc/passwd"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "S3_002",
+      "pieces": [
+        "C:\\\\Windows"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "S3_003",
+      "pieces": [
+        "~/\\.ssh"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "S3_004",
+      "pieces": [
+        "/etc/shadow"
+      ],
+      "source": "manual"
+    }
+  ],
+  "S4_dynamic_exec": [
+    {
+      "id": "S4_001",
+      "pieces": [
+        "ev",
+        "al\\s*\\("
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "S4_002",
+      "pieces": [
+        "ex",
+        "ec\\s*\\("
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "S4_003",
+      "pieces": [
+        "comp",
+        "ile\\s*\\("
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "S4_004",
+      "pieces": [
+        "Function\\s*\\("
+      ],
+      "source": "manual"
+    }
+  ],
+  "S7_permission": [
+    {
+      "id": "S7_001",
+      "pieces": [
+        "ch",
+        "mod"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "S7_002",
+      "pieces": [
+        "ch",
+        "own"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "S7_003",
+      "pieces": [
+        "icacls"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "S7_004",
+      "pieces": [
+        "Set-Acl"
+      ],
+      "source": "manual"
+    }
+  ],
+  "S8_registry": [
+    {
+      "id": "S8_001",
+      "pieces": [
+        "reg\\s+add"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "S8_002",
+      "pieces": [
+        "Set-ItemProperty"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "S8_003",
+      "pieces": [
+        "defaults\\s+write"
+      ],
+      "source": "manual"
+    }
+  ],
+  "REDLINES": [
+    {
+      "id": "RL_01",
+      "label": "cur+l to URL",
+      "pieces": [
+        "cur",
+        "l.*(https?://|ftp://)"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "RL_02",
+      "label": "wg+et to URL",
+      "pieces": [
+        "wg",
+        "et.*(https?://|ftp://)"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "RL_03",
+      "label": "web+hook/POST/upload",
+      "pieces": [
+        "(web",
+        "hook|POST.*https?://|upload.*https?://)"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "RL_04",
+      "label": "solicit cred+entials",
+      "pieces": [
+        "(\\u8bf7\\u8f93\\u5165.*\\u5bc6\\u94a5|\\u8bfb\\u53d6.*\\u51ed\\u8bc1|read.*tok",
+        "en|read.*api.?",
+        "key|read.*pass",
+        "word)"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "RL_05",
+      "label": "read cred dirs",
+      "pieces": [
+        "(~/\\.ssh|~/\\.aws|~/\\.config)"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "RL_06",
+      "label": "read agent identity files",
+      "pieces": [
+        "(MEMORY\\.md|USER\\.md|SOUL\\.md|IDENTITY\\.md)"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "RL_07",
+      "label": "bas+e64 dec+ode",
+      "pieces": [
+        "bas",
+        "e64.*(dec",
+        "ode|\\u89e3\\u7801)"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "RL_08",
+      "label": "ev+al with input",
+      "pieces": [
+        "ev",
+        "al\\s*\\(\\s*(input|request|args|sys\\.argv)"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "RL_09",
+      "label": "modify sys config",
+      "pieces": [
+        "(/etc/|C:\\\\Windows\\\\|~/)(.*\\.(conf|cfg|ini))"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "RL_10",
+      "label": "pip/npm install",
+      "pieces": [
+        "(pip\\s+install|npm\\s+install)\\s+(?!-r)"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "RL_11",
+      "label": "IP direct connect",
+      "pieces": [
+        "https?://\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "RL_12",
+      "label": "obfuscated code",
+      "pieces": [
+        "(ev",
+        "al\\s*\\(\\s*bas",
+        "e64|ex",
+        "ec\\s*\\(\\s*bas",
+        "e64)"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "RL_13",
+      "label": "su+do/ro+ot/Admin+tiquan",
+      "pieces": [
+        "(su",
+        "do\\s|ro",
+        "ot(?!\\s*=|\\s*\\.|\\.[a-z])|",
+        "Administr",
+        "ator|\\u63d0\\u6743)"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "RL_14",
+      "label": "touch cred files",
+      "pieces": [
+        "(~/\\.aws/cred",
+        "entials|~/\\.kube/config|\\.env\\s|git-cred",
+        "entials)"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "RL_15",
+      "label": "hardcoded tok+en/API key/pass+word",
+      "pieces": [
+        "(tok",
+        "en\\s*=\\s*[\"'][A-Za-z0-9+/=]{20,}|api_",
+        "key\\s*=\\s*[\"'][A-Za-z0-9+/=]{20,}|pass",
+        "word\\s*=\\s*[\"']\\S)"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "RL_16",
+      "label": "log plain PII",
+      "pieces": [
+        "(email|phone|ID.?card|\\u8eab\\u4efd\\u8bc1|\\u624b\\u673a\\u53f7).*\\b(\\u8bb0\\u5f55|\\u5b58\\u50a8|\\u4fdd\\u5b58|log)"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "RL_17",
+      "label": "hack/crack tutorial",
+      "pieces": [
+        "(hack|\\u7834\\u89e3|cr",
+        "ack|\\u653b\\u51fb).*(tutorial|\\u6559\\u7a0b|method|\\u65b9\\u6cd5)"
+      ],
+      "source": "manual"
+    },
+    {
+      "id": "RL_18",
+      "label": "reproduce full copyright",
+      "pieces": [
+        "(\\u5b8c\\u6574\\u8f93\\u51fa|\\u5b8c\\u6574.*(\\u590d\\u5236|\\u590d\\u8ff0)|reproduce.*full|output.*entire).*(book|novel|chapter|\\u5c0f\\u8bf4|\\u4e66)"
+      ],
+      "source": "manual"
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 ## Description: <br>
-Environment-aware web UI testing that detects wmux, cmux, or plain/tmux sessions and routes browser verification through the appropriate visible workflow, including SSO flow checks and CDP-based closed-shadow DOM cascade diagnosis. <br>
+Environment-aware browser operations for UI verification, closed shadow DOM diagnosis, and browser-login-assisted credential issuance or refresh. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -7,41 +7,38 @@ This skill is ready for commercial/non-commercial use. <br>
 [drumrobot](https://clawhub.ai/user/drumrobot) <br>
 
 ### License/Terms of Use: <br>
-MIT <br>
+MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill to inspect web pages, perform visible browser interactions, summarize UI verification results, verify Authentik SSO flows, and diagnose closed-shadow DOM styling issues. <br>
+Developers and agents use this skill to perform visible browser-based UI checks, diagnose styling issues in closed shadow DOM, and guide controlled credential issuance or refresh workflows. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can guide an agent through visible browser sessions and SSO or login testing that may expose sensitive credentials. <br>
-Mitigation: Use only approved test accounts or explicitly approved credentials, and do not allow the agent to handle real passwords, 2FA codes, or generated tokens unless the exact action has been reviewed and approved. <br>
-Risk: The skill includes workflows around admin, deployment, and database-change operations that could affect a target environment. <br>
-Mitigation: Verify the target environment, review each proposed command before execution, prefer dry runs where available, and keep a rollback path for any deployment or database change. <br>
-Risk: Browser automation can interact with the wrong site or session if the target URL or environment is incorrect. <br>
-Mitigation: Confirm the tested URL, active session, and intended environment before entering credentials or taking actions that change state. <br>
+Risk: The skill can help manage real credentials, including token discovery, issuance, refresh, persistence, and handoff. <br>
+Mitigation: Install only when credential automation is intended, and review each run before it reads secret stores, issues or refreshes tokens, persists credentials, or changes GitHub, Vault, or cloud CLI state. <br>
+Risk: Browser workflows may operate in logged-in sessions and affect real service state. <br>
+Mitigation: Use a narrower UI-only browser skill when credential handling is unnecessary, and require user-visible browser sessions plus explicit confirmation before account or service changes. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/drumrobot/web-ui-test) <br>
-- [CDP Trace documentation](cdp-trace.md) <br>
-- [SSO Verification documentation](sso-verify.md) <br>
-- [Chrome DevTools Protocol - DOM domain](https://chromedevtools.github.io/devtools-protocol/tot/DOM/) <br>
-- [Chrome DevTools Protocol - CSS.getMatchedStylesForNode](https://chromedevtools.github.io/devtools-protocol/tot/CSS/#method-getMatchedStylesForNode) <br>
-- [Playwright - browserContext.newCDPSession](https://playwright.dev/docs/api/class-browsercontext#browser-context-new-cdp-session) <br>
+- [ClawHub skill page](https://clawhub.ai/drumrobot/web-browser) <br>
+- [UI Test topic](artifact/ui-test.md) <br>
+- [CDP Trace topic](artifact/cdp-trace.md) <br>
+- [Credential Issue topic](artifact/credential-issue.md) <br>
+- [Changelog](artifact/CHANGELOG.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown summaries with inline shell commands and code snippets] <br>
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
+**Output Format:** [Markdown with inline shell and JavaScript code blocks] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Summarizes browser snapshots and verification results; should not return raw snapshot data.] <br>
+**Other Properties Related to Output:** [May include browser actions, page-state observations, screenshots, credential handoff steps, and persistence guidance depending on the requested topic.] <br>
 
 ## Skill Version(s): <br>
-0.3.0 (source: server release metadata and CHANGELOG, released 2026-06-03; frontmatter metadata lists 0.1.0) <br>
+0.2.1 (source: server release evidence; changelog released 2026-06-19) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

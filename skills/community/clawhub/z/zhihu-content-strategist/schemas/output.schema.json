@@ -1,0 +1,123 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Zhihu Content Strategist Output",
+  "description": "Output schema for the Zhihu content strategy result.",
+  "type": "object",
+  "properties": {
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "domain": {
+      "type": "object",
+      "description": "Domain definition output (task=define).",
+      "properties": {
+        "domain": { "type": "string" },
+        "sub_topics": { "type": "array", "items": { "type": "string" } },
+        "question_volume": { "type": "string" },
+        "status": { "type": "string" }
+      }
+    },
+    "pattern_analysis": {
+      "type": "object",
+      "description": "Answer pattern analysis report (task=analyze).",
+      "properties": {
+        "domain": { "type": "string" },
+        "opening_hooks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string" },
+              "example": { "type": "string" }
+            }
+          }
+        },
+        "structure_patterns": { "type": "array", "items": { "type": "string" } },
+        "avg_length_chars": { "type": "integer" },
+        "golden_line_pattern": { "type": "string" },
+        "emotional_tone_distribution": { "type": "object" }
+      }
+    },
+    "gap_matrix": {
+      "type": "array",
+      "description": "Content gap detection results (task=gap).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "subtopic": { "type": "string" },
+          "questions": { "type": "integer" },
+          "avg_upvotes": { "type": "integer" },
+          "competition": { "type": "string", "enum": ["Low", "Medium", "High"] },
+          "gap_score": { "type": "integer", "minimum": 1, "maximum": 5 }
+        }
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "description": "Topic recommendations with angles (task=recommend).",
+      "items": {
+        "type": "object",
+        "required": ["topic_title", "opportunity_score", "competition", "suggested_angle"],
+        "properties": {
+          "topic_title": { "type": "string" },
+          "opportunity_score": { "type": "string" },
+          "competition": { "type": "string" },
+          "estimated_exposure": { "type": "string" },
+          "difficulty": { "type": "string" },
+          "suggested_angle": { "type": "string" }
+        }
+      }
+    },
+    "strategy": {
+      "type": "object",
+      "description": "Strategy brief for a specific topic (task=strategy).",
+      "properties": {
+        "topic": { "type": "string" },
+        "domain": { "type": "string" },
+        "strategy": {
+          "type": "object",
+          "properties": {
+            "hook_variants": { "type": "array", "items": { "type": "string" } },
+            "argument_structure": { "type": "array", "items": { "type": "string" } },
+            "evidence_plan": { "type": "array", "items": { "type": "string" } },
+            "golden_lines": { "type": "array", "items": { "type": "string" } },
+            "cta": { "type": "string" },
+            "visual_suggestions": { "type": "array", "items": { "type": "string" } },
+            "style_profile": { "type": "string" }
+          }
+        }
+      }
+    },
+    "draft": {
+      "type": "object",
+      "description": "Complete answer draft (task=draft).",
+      "properties": {
+        "topic": { "type": "string" },
+        "domain": { "type": "string" },
+        "draft": { "type": "string", "description": "Full answer draft in markdown." },
+        "char_count": { "type": "integer" },
+        "estimated_reading_time": { "type": "string" }
+      }
+    },
+    "publishing": {
+      "type": "object",
+      "description": "Publishing optimization recommendations (task=publish).",
+      "properties": {
+        "best_publish_time": { "type": "string" },
+        "tags": {
+          "type": "object",
+          "properties": {
+            "primary": { "type": "array", "items": { "type": "string" } },
+            "secondary": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "promotion_hooks": { "type": "array", "items": { "type": "string" } },
+        "comment_engagement_plan": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "description": "Any warnings or flags.",
+      "items": { "type": "string" }
+    }
+  }
+}

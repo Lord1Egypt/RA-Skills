@@ -1,0 +1,27 @@
+# 自定义敏感关键词清单 (Custom sensitive keyword list)
+#
+# 用法 / Usage:
+#   python scripts/rkm.py protect input.docx --custom-keywords references/custom-keywords.txt --out masked.docx --map map.json
+#   也可与 --preset / --keywords / --term 同时使用。
+#
+# 格式 / Format:
+#   - 每行一个关键字，或在同一行内用 、 或 ； 分隔多个关键字。
+#     One keyword per line, or several on one line separated by 、 or ；.
+#   - 以 # 开头的整行视为注释，会被忽略。
+#     A whole line whose first non-space character is # is a comment and is ignored.
+#   - 空行被忽略；重复的关键字只保留第一次出现。
+#     Blank lines are ignored; duplicates are dropped (first occurrence wins).
+#   - 每个关键字将被替换为稳定占位符 [[CUSTOM_0001]]、[[CUSTOM_0002]] ……
+#     Each keyword is masked with a stable placeholder [[CUSTOM_0001]], [[CUSTOM_0002]], ...
+#
+# 请删除下面的示例，替换为你自己的关键字（示例均为虚构）。
+# Replace the fictional examples below with your own keywords.
+
+启明星科技有限公司
+雅宝智慧园区项目
+
+# 同一行用 、或 ；分隔多个关键字：
+张三丰、李莫愁；周芷若
+
+内部代号-天启
+TQ-2026-0001

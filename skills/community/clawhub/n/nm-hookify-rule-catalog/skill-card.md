@@ -1,5 +1,5 @@
 ## Description: <br>
-Browse a Hookify rule catalog for common git, Python, security, workflow, and performance rules. <br>
+Browse hookify rule catalog. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,31 +11,29 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill to browse pre-built Hookify rules and choose standard rules to install or adapt in a project. <br>
+Developers and agents use this skill to browse and install pre-built Hookify rules for git safety, Python quality, security gates, workflow enforcement, and performance guardrails. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Installed Hookify rules may persistently change future agent behavior in a project. <br>
-Mitigation: Before installation, confirm the source rule file exists, preview the destination under .claude/, and review the rule behavior. <br>
-Risk: Project configuration writes can affect future development workflows. <br>
-Mitigation: Install only the rules needed for the project and keep installed rules visible for review before relying on them. <br>
+Risk: Persistent Hookify rule files can warn or block future agent actions in a project. <br>
+Mitigation: Review each .claude/hookify.*.local.md file before creating it, start with warn rules before block rules, and remove or disable rules that interfere with normal work. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-hookify-rule-catalog) <br>
-- [Metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/hookify) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-hookify-rule-catalog) <br>
+- [Hookify homepage](https://github.com/athola/claude-night-market/tree/master/plugins/hookify) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline shell commands and rule tables] <br>
+**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with inline shell commands and rule file examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only catalog; rule installation is user-directed and may write persistent project configuration files.] <br>
+**Other Properties Related to Output:** [Produces rule selection and installation guidance; installed rules may create or update .claude/hookify.*.local.md files.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata) <br>
+1.9.13 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

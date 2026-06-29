@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://clawhub.ai/skills/xiaohongshu-booster/input.schema.json",
+  "title": "Xiaohongshu Note Booster Input",
+  "description": "Input schema for generating Xiaohongshu notes. Provide a product, scene/service, or topic to generate 3 complete note drafts.",
+  "type": "object",
+  "required": ["topic"],
+  "properties": {
+    "topic": {
+      "type": "string",
+      "description": "The core subject — product name, scene/restaurant, location, or trending topic. Required. E.g., '玫瑰精华水', '上海静安寺日式烧肉店', '白色阔腿裤'.",
+      "minLength": 1,
+      "maxLength": 200,
+      "examples": ["玫瑰精华水", "上海静安寺日式烧肉", "白色阔腿裤"]
+    },
+    "selling_points": {
+      "type": "array",
+      "description": "Key selling points or highlights. Each string is a distinct benefit or feature.",
+      "items": {
+        "type": "string",
+        "maxLength": 100
+      },
+      "minItems": 1,
+      "maxItems": 10,
+      "examples": [
+        ["补水保湿", "提亮肤色", "敏感肌可用"],
+        ["和牛入口即化", "环境适合约会", "人均200"],
+        ["显瘦", "垂坠感好", "百搭"]
+      ]
+    },
+    "target_audience": {
+      "type": "string",
+      "description": "Describe the target audience. Influences tone, emoji density, and content framing.",
+      "maxLength": 200,
+      "examples": ["18-30岁女性", "通勤女性", "学生党", "新手妈妈"]
+    },
+    "style": {
+      "type": "string",
+      "description": "Writing style for the note. Determines tone and emotional appeal.",
+      "enum": ["亲切种草", "干货分享", "测评对比", "开箱体验", "Vlog文案", "教程攻略"],
+      "default": "亲切种草",
+      "examples": ["亲切种草", "干货分享", "测评对比"]
+    },
+    "category": {
+      "type": "string",
+      "description": "Content category for template selection and hashtag suggestions.",
+      "enum": ["beauty", "fashion", "food", "travel", "lifestyle", "digital", "fitness", "mom", "pet", "education", "other"],
+      "default": "other"
+    },
+    "mood": {
+      "type": "string",
+      "description": "Emotional tone. Affects emoji usage, punctuation, and sentence rhythm.",
+      "enum": ["excited", "calm", "urgent", "humorous", "trustworthy"],
+      "default": "excited"
+    },
+    "count": {
+      "type": "integer",
+      "description": "Number of note variants to generate (1-5).",
+      "minimum": 1,
+      "maximum": 5,
+      "default": 3
+    },
+    "include_disclaimer": {
+      "type": "boolean",
+      "description": "Whether to include a compliance disclaimer for sensitive categories (skincare, supplements, medical).",
+      "default": false
+    }
+  },
+  "additionalProperties": false,
+  "examples": [
+    {
+      "topic": "玫瑰精华水",
+      "selling_points": ["补水保湿", "提亮肤色", "敏感肌可用"],
+      "target_audience": "18-30岁女性",
+      "style": "亲切种草",
+      "category": "beauty",
+      "count": 3
+    },
+    {
+      "topic": "上海静安寺日式烧肉店",
+      "selling_points": ["和牛入口即化", "环境适合约会", "人均200"],
+      "style": "亲切种草",
+      "category": "food"
+    }
+  ]
+}

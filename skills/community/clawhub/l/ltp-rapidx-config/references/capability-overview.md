@@ -54,8 +54,8 @@ Automation sessions are local authorization sessions. They do not map to RapidX 
 | `rapidx portfolio overview` | `rapidx/portfolio/overview` | `GET /api/v1/trading/account` |
 | `rapidx portfolio assets` | `rapidx/portfolio/assets` | `GET /api/v1/trading/portfolio/assets` |
 | `rapidx portfolio statement` | `rapidx/portfolio/statement` | `GET /api/v1/trading/statement` |
-| `rapidx portfolio user-fee-rate` | `rapidx/portfolio/user-fee-rate` | `GET /api/v1/trading/userFeeRate` |
-| `rapidx portfolio position-bracket` | `rapidx/portfolio/position-bracket` | `GET /api/v1/trading/positionBracket` |
+| `rapidx portfolio user-fee-rate` | `rapidx/portfolio/user-fee-rate` | `GET /api/v1/broker/feeRate` |
+| `rapidx portfolio position-bracket` | `rapidx/portfolio/position-bracket` | `GET /api/v1/trading/broker/positionBracket` |
 | `rapidx portfolio set-position-mode` | `rapidx/portfolio/set-position-mode` | `POST /api/v1/trading/account` |
 
 ## Orders

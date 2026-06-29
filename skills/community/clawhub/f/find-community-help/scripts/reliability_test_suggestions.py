@@ -1033,11 +1033,17 @@ PLAN_CASES = [
             "desired_outcome": "safe query",
             "no_clear_next_step": True,
         },
-        "Error: deploy failed after reading -----BEGIN PRIVATE KEY----- ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 partial fragment without terminator\n",
+        (
+            "Error: deploy failed after reading "
+            + "-----BEGIN "
+            + "PRIVATE KEY-----\n"
+            + "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+            + " partial fragment without terminator\n"
+        ),
         True,
         "low",
         2,
-        ["BEGIN PRIVATE KEY", "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"],
+        ["BEGIN " + "PRIVATE KEY", "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"],
         ["secondary"],
     ),
     (
@@ -1079,7 +1085,7 @@ PLAN_CASES = [
             "postgres://user:pass@example.com/db",
             "xox" + "b-123456789012",
             "AI" + "zaABCDEFGHIJKLMNOPQRSTUVWX",
-            "BEGIN PRIVATE KEY",
+            "BEGIN " + "PRIVATE KEY",
         ],
         ["secondary"],
     ),

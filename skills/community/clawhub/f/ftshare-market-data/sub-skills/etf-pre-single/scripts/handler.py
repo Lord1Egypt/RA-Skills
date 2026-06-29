@@ -41,7 +41,7 @@ def main():
     if args.date is not None:
         params["date"] = args.date
 
-    path = "/data/api/v1/market/data/etf-pre-single?" + urllib.parse.urlencode(params)
+    path = "/gateway/api/v1/market/data/etf-pre-single?" + urllib.parse.urlencode(params)
     url = BASE_URL + path
 
     req = urllib.request.Request(url, method="GET")

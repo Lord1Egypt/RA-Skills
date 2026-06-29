@@ -1,0 +1,4 @@
+% --- 图形支持 ---
+\usepackage{graphicx}
+\usepackage{eso-pic}
+\usepackage{float}

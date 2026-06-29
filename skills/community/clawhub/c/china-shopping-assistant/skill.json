@@ -1,0 +1,7 @@
+{
+  "name": "china-shopping-assistant",
+  "version": "1.1.0",
+  "description": "China shopping flagship assistant. Input a product name or link; compare JD, Taobao, Tmall, PDD, Vipshop, SHEIN, and related shopping options by visible price, seller trust, review risk, promotion caveats, and after-sales fit. No login, checkout, order submission, or payment.",
+  "author": "harrylabsj",
+  "license": "MIT-0"
+}

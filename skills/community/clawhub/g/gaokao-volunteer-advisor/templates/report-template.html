@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高考志愿填报分析报告</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+    background: #f0f2f5; color: #1f2937; line-height: 1.7; font-size: 15px;
+  }
+  .report { max-width: 860px; margin: 0 auto; padding: 24px 16px 60px; }
+
+  /* Header */
+  .report-header {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    color: #fff; border-radius: 12px; padding: 32px 28px; margin-bottom: 24px;
+  }
+  .report-header h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; letter-spacing: 1px; }
+  .report-header .subtitle { font-size: 14px; opacity: 0.85; margin-bottom: 16px; }
+  .report-header .meta { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; opacity: 0.9; }
+  .report-header .meta span { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 6px; }
+
+  /* Disclaimer */
+  .disclaimer-banner {
+    background: #fef3c7; border: 1px solid #fbbf24; border-left: 4px solid #f59e0b;
+    border-radius: 8px; padding: 14px 18px; margin-bottom: 24px;
+    font-size: 13px; color: #92400e; line-height: 1.6;
+  }
+  .disclaimer-banner strong { color: #78350f; }
+
+  /* Cards */
+  .card {
+    background: #fff; border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .card-header {
+    padding: 16px 24px; font-size: 16px; font-weight: 600;
+    border-bottom: 1px solid #f3f4f6; display: flex; align-items: center; gap: 8px;
+  }
+  .card-body { padding: 20px 24px; }
+  .icon-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+  .dot-blue { background: #3b82f6; } .dot-purple { background: #8b5cf6; }
+  .dot-amber { background: #f59e0b; } .dot-green { background: #10b981; }
+  .dot-red { background: #ef4444; } .dot-slate { background: #64748b; }
+  .dot-cyan { background: #06b6d4; } .dot-pink { background: #ec4899; }
+
+  /* Conclusion */
+  .conclusion {
+    font-size: 17px; font-weight: 500; color: #1e40af;
+    background: #eff6ff; border-radius: 8px; padding: 18px 22px;
+    margin-bottom: 20px; border-left: 4px solid #3b82f6;
+  }
+
+  /* Info Grid */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+  .info-item { background: #f9fafb; border-radius: 8px; padding: 12px 16px; }
+  .info-item .label { font-size: 12px; color: #6b7280; margin-bottom: 4px; letter-spacing: 0.5px; }
+  .info-item .value { font-size: 15px; font-weight: 600; color: #111827; }
+
+  /* Strategy */
+  .strategy-tag { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-right: 8px; }
+  .tag-conservative { background: #dbeafe; color: #1e40af; }
+  .tag-balanced { background: #d1fae5; color: #065f46; }
+  .tag-aggressive { background: #fef3c7; color: #92400e; }
+  .strategy-text { margin-top: 12px; font-size: 14px; color: #374151; }
+
+  /* Tier Table */
+  .tier-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .tier-table th { text-align: left; padding: 10px 14px; background: #f9fafb; font-weight: 600; font-size: 13px; color: #6b7280; border-bottom: 2px solid #e5e7eb; }
+  .tier-table td { padding: 12px 14px; border-bottom: 1px solid #f3f4f6; vertical-align: top; }
+  .tier-table tr:last-child td { border-bottom: none; }
+  .tier-badge { display: inline-block; padding: 3px 12px; border-radius: 6px; font-size: 13px; font-weight: 700; letter-spacing: 1px; }
+  .badge-rush { background: #fef3c7; color: #b45309; }
+  .badge-stable { background: #dbeafe; color: #1d4ed8; }
+  .badge-safe { background: #d1fae5; color: #047857; }
+  .school-row { margin-bottom: 8px; }
+  .school-name { font-weight: 600; color: #111827; }
+  .school-detail { font-size: 13px; color: #6b7280; margin-top: 2px; }
+  .school-tag { display: inline-block; font-size: 11px; padding: 1px 8px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
+  .tag-985 { background: #fef3c7; color: #92400e; }
+  .tag-211 { background: #e0e7ff; color: #3730a3; }
+
+  /* School Health Check */
+  .health-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .health-school-name { font-size: 18px; font-weight: 700; color: #111827; }
+  .health-verdict {
+    background: #eff6ff; border-radius: 8px; padding: 14px 18px;
+    border-left: 4px solid #3b82f6; margin-bottom: 20px;
+    font-size: 14px; color: #1e3a5f;
+  }
+  .health-verdict strong { color: #1e40af; }
+
+  .dimension {
+    border: 1px solid #e5e7eb; border-radius: 8px;
+    margin-bottom: 12px; overflow: hidden;
+  }
+  .dimension-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 16px; background: #f9fafb;
+    font-weight: 600; font-size: 14px; cursor: default;
+  }
+  .dimension-num {
+    width: 24px; height: 24px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: #fff; flex-shrink: 0;
+  }
+  .dim-safe .dimension-num { background: #10b981; }
+  .dim-caution .dimension-num { background: #f59e0b; }
+  .dim-warning .dimension-num { background: #ef4444; }
+  .dim-info .dimension-num { background: #6b7280; }
+
+  .risk-badge {
+    margin-left: auto; font-size: 11px; padding: 2px 10px;
+    border-radius: 10px; font-weight: 600;
+  }
+  .dim-safe .risk-badge { background: #d1fae5; color: #065f46; }
+  .dim-caution .risk-badge { background: #fef3c7; color: #92400e; }
+  .dim-warning .risk-badge { background: #fef2f2; color: #991b1b; }
+  .dim-info .risk-badge { background: #f3f4f6; color: #374151; }
+
+  .dimension-body { padding: 14px 16px; font-size: 13px; color: #374151; line-height: 1.8; }
+  .dimension-body ul { padding-left: 18px; margin: 0; }
+
+  /* Risks */
+  .risk-box { background: #fef2f2; border: 1px solid #fecaca; border-left: 4px solid #ef4444; border-radius: 8px; padding: 14px 18px; margin-bottom: 10px; }
+  .risk-box .risk-title { font-weight: 600; color: #991b1b; font-size: 14px; margin-bottom: 4px; }
+  .risk-box .risk-desc { font-size: 13px; color: #7f1d1d; }
+
+  /* Majors */
+  .major-list { display: flex; flex-direction: column; gap: 12px; }
+  .major-item { background: #f9fafb; border-radius: 8px; padding: 14px 18px; border-left: 3px solid #3b82f6; }
+  .major-item .major-name { font-weight: 600; font-size: 15px; margin-bottom: 6px; }
+  .major-item .major-reason { font-size: 13px; color: #4b5563; }
+  .major-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .major-meta span { font-size: 12px; background: #e5e7eb; padding: 2px 10px; border-radius: 4px; color: #374151; }
+
+  /* Checklist */
+  .checklist { list-style: none; }
+  .checklist li { padding: 8px 0; border-bottom: 1px solid #f3f4f6; font-size: 14px; display: flex; align-items: flex-start; gap: 10px; }
+  .checklist li:last-child { border-bottom: none; }
+  .check-icon { width: 18px; height: 18px; border: 2px solid #d1d5db; border-radius: 4px; flex-shrink: 0; margin-top: 2px; }
+
+  /* Steps */
+  .step-list { counter-reset: step; list-style: none; }
+  .step-list li { counter-increment: step; padding: 10px 0 10px 36px; position: relative; border-bottom: 1px solid #f3f4f6; font-size: 14px; }
+  .step-list li:last-child { border-bottom: none; }
+  .step-list li::before {
+    content: counter(step); position: absolute; left: 0; top: 10px;
+    width: 24px; height: 24px; background: #3b82f6; color: #fff;
+    border-radius: 50%; font-size: 12px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .source-note { font-size: 13px; color: #6b7280; background: #f9fafb; padding: 12px 16px; border-radius: 8px; border-left: 3px solid #9ca3af; }
+
+  /* Footer */
+  .report-footer { text-align: center; font-size: 12px; color: #9ca3af; margin-top: 40px; padding-top: 20px; border-top: 1px solid #e5e7eb; }
+  .report-footer p { margin-bottom: 4px; }
+
+  @media print {
+    body { background: #fff; font-size: 13px; }
+    .report { padding: 0; max-width: 100%; }
+    .card { box-shadow: none; border: 1px solid #e5e7eb; break-inside: avoid; }
+    .report-header { border-radius: 0; }
+    .dimension { break-inside: avoid; }
+  }
+  @media (max-width: 640px) {
+    .report-header { padding: 24px 18px; }
+    .report-header h1 { font-size: 20px; }
+    .card-body { padding: 16px; }
+    .info-grid { grid-template-columns: 1fr 1fr; }
+    .tier-table { font-size: 13px; }
+    .tier-table th, .tier-table td { padding: 8px 10px; }
+  }
+</style>
+</head>
+<body>
+<div class="report">
+
+  <!-- 报告头部 -->
+  <div class="report-header">
+    <h1>高考志愿填报分析报告</h1>
+    <p class="subtitle">本报告基于考生提供的信息和公开数据生成，仅供参考，不构成录取承诺</p>
+    <div class="meta">
+      <span>生成日期：{{生成日期}}</span>
+      <span>省份：{{省份}}</span>
+      <span>批次：{{批次}}</span>
+    </div>
+  </div>
+
+  <!-- 免责提醒 -->
+  <div class="disclaimer-banner">
+    <strong>重要提醒：</strong>本报告是辅助分析工具，不是录取预测。所有招生计划、录取规则、专业要求、学费标准等必须以<strong>当年省考试院官方数据</strong>和<strong>院校招生章程</strong>为准。最终志愿请在官方平台自行填报。
+  </div>
+
+  <!-- 先说结论 -->
+  <div class="conclusion">
+    {{一句话结论}}
+  </div>
+
+  <!-- 你的关键信息 -->
+  <div class="card">
+    <div class="card-header"><span class="icon-dot dot-blue"></span> 你的关键信息</div>
+    <div class="card-body">
+      <div class="info-grid">
+        <div class="info-item"><div class="label">省份 / 年份</div><div class="value">{{省份}} / {{年份}}</div></div>
+        <div class="info-item"><div class="label">科类 / 选科</div><div class="value">{{科类}}</div></div>
+        <div class="info-item"><div class="label">分数</div><div class="value">{{分数}}</div></div>
+        <div class="info-item"><div class="label">位次</div><div class="value">{{位次}}</div></div>
+        <div class="info-item"><div class="label">批次</div><div class="value">{{批次}}</div></div>
+        <div class="info-item"><div class="label">风险偏好</div><div class="value">{{风险偏好}}</div></div>
+        <div class="info-item"><div class="label">城市偏好</div><div class="value">{{城市偏好}}</div></div>
+        <div class="info-item"><div class="label">专业偏好</div><div class="value">{{专业偏好}}</div></div>
+        <div class="info-item"><div class="label">限制条件</div><div class="value">{{限制条件}}</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 志愿策略 -->
+  <div class="card">
+    <div class="card-header"><span class="icon-dot dot-purple"></span> 志愿策略</div>
+    <div class="card-body">
+      <div>
+        <span class="strategy-tag tag-balanced">均衡型</span>
+      </div>
+      <p class="strategy-text">{{策略说明}}</p>
+    </div>
+  </div>
+
+  <!-- 冲稳保建议 -->
+  <div class="card">
+    <div class="card-header"><span class="icon-dot dot-amber"></span> 冲稳保建议</div>
+    <div class="card-body" style="padding:0;">
+      <table class="tier-table">
+        <thead>
+          <tr>
+            <th style="width:72px;">层级</th>
+            <th>院校 / 专业组</th>
+            <th style="width:100px;">往年位次</th>
+            <th>备注</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tier-badge badge-rush">冲</span></td>
+            <td>
+              <div class="school-row">
+                <span class="school-name">{{院校A}}</span>
+                <span class="school-tag tag-211">211</span>
+                <div class="school-detail">{{专业说明}}</div>
+              </div>
+              <div class="school-row">
+                <span class="school-name">{{院校B}}</span>
+                <div class="school-detail">{{专业说明}}</div>
+              </div>
+            </td>
+            <td>{{往年位次}}</td>
+            <td>{{备注}}</td>
+          </tr>
+          <tr>
+            <td><span class="tier-badge badge-stable">稳</span></td>
+            <td>
+              <div class="school-row">
+                <span class="school-name">{{院校C}}</span>
+                <span class="school-tag tag-985">985</span>
+                <div class="school-detail">{{专业说明}}</div>
+              </div>
+              <div class="school-row">
+                <span class="school-name">{{院校D}}</span>
+                <div class="school-detail">{{专业说明}}</div>
+              </div>
+            </td>
+            <td>{{往年位次}}</td>
+            <td>{{备注}}</td>
+          </tr>
+          <tr>
+            <td><span class="tier-badge badge-safe">保</span></td>
+            <td>
+              <div class="school-row">
+                <span class="school-name">{{院校E}}</span>
+                <div class="school-detail">{{专业说明}}</div>
+              </div>
+              <div class="school-row">
+                <span class="school-name">{{院校F}}</span>
+                <div class="school-detail">{{专业说明}}</div>
+              </div>
+            </td>
+            <td>{{往年位次}}</td>
+            <td>{{备注}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== 学校体检报告（阶段二输出，按需展示） ===== -->
+  <!--
+  <div class="card">
+    <div class="card-header"><span class="icon-dot dot-pink"></span> 学校体检报告</div>
+    <div class="card-body">
+
+      <div class="health-header">
+        <span class="health-school-name">{{学校名称}}</span>
+      </div>
+
+      <div class="health-verdict">
+        <strong>一页纸结论：</strong>{{结论摘要，如：省内骨干工科院校，计算机认可度高，升学氛围浓厚，但保研率偏低，需做好硬考研准备。}}
+      </div>
+
+      <div class="dimension dim-info">
+        <div class="dimension-header">
+          <span class="dimension-num">0</span> 报考技术
+          <span class="risk-badge">信息</span>
+        </div>
+        <div class="dimension-body">
+          <ul>
+            <li>{{选科要求、校区代码、招生陷阱等}}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dimension dim-warning">
+        <div class="dimension-header">
+          <span class="dimension-num">1</span> 底线安全
+          <span class="risk-badge">需关注</span>
+        </div>
+        <div class="dimension-body">
+          <ul>
+            <li>{{安全事件、心理干预、门禁管理等发现}}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dimension dim-safe">
+        <div class="dimension-header">
+          <span class="dimension-num">2</span> 血统通道
+          <span class="risk-badge">正常</span>
+        </div>
+        <div class="dimension-body">
+          <ul>
+            <li>{{原部委背景、行业认可度、对口招录等}}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dimension dim-safe">
+        <div class="dimension-header">
+          <span class="dimension-num">3</span> 生源画像
+          <span class="risk-badge">正常</span>
+        </div>
+        <div class="dimension-body">
+          <ul>
+            <li>{{本地化率、男女比例、消费水平等}}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dimension dim-caution">
+        <div class="dimension-header">
+          <span class="dimension-num">4</span> 校风治理
+          <span class="risk-badge">注意</span>
+        </div>
+        <div class="dimension-body">
+          <ul>
+            <li>{{管理风格、评奖透明度、保研暗规则等}}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dimension dim-caution">
+        <div class="dimension-header">
+          <span class="dimension-num">5</span> 学业出路
+          <span class="risk-badge">注意</span>
+        </div>
+        <div class="dimension-body">
+          <ul>
+            <li>{{保研率、升学率、给分松紧、考研去向等}}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dimension dim-safe">
+        <div class="dimension-header">
+          <span class="dimension-num">6</span> 城市生活
+          <span class="risk-badge">正常</span>
+        </div>
+        <div class="dimension-body">
+          <ul>
+            <li>{{宿舍、食堂、交通、医疗配套等}}</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="dimension dim-warning">
+        <div class="dimension-header">
+          <span class="dimension-num">7</span> 暗规则
+          <span class="risk-badge">需关注</span>
+        </div>
+        <div class="dimension-body">
+          <ul>
+            <li>{{综测加分操作空间、选课、给分老师等}}</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  -->
+
+  <!-- 专业方向建议 -->
+  <div class="card">
+    <div class="card-header"><span class="icon-dot dot-green"></span> 专业方向建议</div>
+    <div class="card-body">
+      <div class="major-list">
+        <div class="major-item">
+          <div class="major-name">{{专业名称A}}</div>
+          <p class="major-reason">{{推荐理由}}</p>
+          <div class="major-meta">
+            <span>就业前景：{{评价}}</span>
+            <span>深造空间：{{评价}}</span>
+            <span>学科匹配：{{评价}}</span>
+          </div>
+        </div>
+        <div class="major-item">
+          <div class="major-name">{{专业名称B}}</div>
+          <p class="major-reason">{{推荐理由}}</p>
+          <div class="major-meta">
+            <span>就业前景：{{评价}}</span>
+            <span>深造空间：{{评价}}</span>
+            <span>学科匹配：{{评价}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 重点风险 -->
+  <div class="card">
+    <div class="card-header"><span class="icon-dot dot-red"></span> 重点风险</div>
+    <div class="card-body">
+      <div class="risk-box">
+        <div class="risk-title">{{风险标题1}}</div>
+        <p class="risk-desc">{{风险描述}}</p>
+      </div>
+      <div class="risk-box">
+        <div class="risk-title">{{风险标题2}}</div>
+        <p class="risk-desc">{{风险描述}}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 官方核验清单 -->
+  <div class="card">
+    <div class="card-header"><span class="icon-dot dot-slate"></span> 官方核验清单</div>
+    <div class="card-body">
+      <ul class="checklist">
+        <li><span class="check-icon"></span> 查看省考试院当年招生计划，确认招生人数是否变化</li>
+        <li><span class="check-icon"></span> 查看目标院校招生章程，确认专业录取规则和单科要求</li>
+        <li><span class="check-icon"></span> 确认专业选科要求是否符合</li>
+        <li><span class="check-icon"></span> 确认学费、校区、培养模式</li>
+        <li><span class="check-icon"></span> 确认体检限制（色盲色弱、视力等）</li>
+        <li><span class="check-icon"></span> 确认是否中外合作/高收费标注</li>
+        <li><span class="check-icon"></span> 确认是否接受专业调剂</li>
+        <li><span class="check-icon"></span> 确认是否有转专业门槛</li>
+        <li><span class="check-icon"></span> 查询目标院校保研率和就业数据</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 下一步你该做什么 -->
+  <div class="card">
+    <div class="card-header"><span class="icon-dot dot-cyan"></span> 下一步你该做什么</div>
+    <div class="card-body">
+      <ol class="step-list">
+        <li>{{行动1}}</li>
+        <li>{{行动2}}</li>
+        <li>{{行动3}}</li>
+        <li>{{行动4}}</li>
+        <li>{{行动5}}</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- 数据来源说明（用户提供表格时取消注释） -->
+  <!--
+  <div class="card">
+    <div class="card-header"><span class="icon-dot dot-slate"></span> 数据来源说明</div>
+    <div class="card-body">
+      <div class="source-note">
+        本报告使用了用户上传的 {{文件名}} 中的数据。
+        筛选条件：{{筛选规则}}。
+        数据仅供参考，最终请以省考试院官方数据为准。
+      </div>
+    </div>
+  </div>
+  -->
+
+  <!-- 页脚 -->
+  <div class="report-footer">
+    <p>本报告由 AI 辅助生成，仅供志愿填报参考，不构成任何录取承诺</p>
+    <p>所有招生信息请以省考试院和院校官网为准 · 最终志愿请在官方平台自行填报</p>
+  </div>
+
+</div>
+</body>
+</html>

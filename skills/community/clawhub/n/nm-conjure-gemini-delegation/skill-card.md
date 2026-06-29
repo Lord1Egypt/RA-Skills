@@ -11,33 +11,32 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill to delegate large-context analysis, summarization, pattern extraction, and batch processing tasks to an authenticated Gemini CLI when delegation-core selects Gemini. <br>
+Developers and agents use this skill to route large-context analysis, summarization, batch processing, and pattern extraction tasks to Gemini CLI when delegation-core selects Gemini or Google's models are appropriate. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may guide the agent to include project content in prompts or generated artifacts handled by external tooling. <br>
-Mitigation: Use it only with project areas approved for that workflow, and avoid highly sensitive code or documentation unless the configured tooling is trusted. <br>
-Risk: Gemini model availability, quotas, and costs may vary by model, account, and region. <br>
-Mitigation: Check Gemini CLI authentication, selected model availability, quota status, and current pricing before large batch or high-context use. <br>
+Risk: Broad delegation triggers can activate the skill more often than intended and send selected files to Gemini. <br>
+Mitigation: Use explicit Gemini delegation requests, review included @path or recursive glob inputs before execution, and avoid broad terms such as cli or google for unrelated tasks. <br>
+Risk: Large recursive context patterns can include more source files or sensitive content than needed. <br>
+Mitigation: Prefer narrow file paths and selective globs, and review the selected files before sending them through Gemini CLI. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-conjure-gemini-delegation) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/athola) <br>
-- [Claude Night Market Conjure homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conjure) <br>
-- [Gemini-specific configuration](modules/gemini-specifics.md) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-conjure-gemini-delegation) <br>
+- [Claude Night Market conjure plugin](https://github.com/athola/claude-night-market/tree/master/plugins/conjure) <br>
+- [Gemini-specific configuration](artifact/modules/gemini-specifics.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline bash command examples] <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown with inline shell commands and Gemini CLI examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include Gemini CLI prompts, model flags, JSON output mode, and saved Markdown delegation outputs.] <br>
+**Other Properties Related to Output:** [May include Gemini CLI command construction, authentication guidance, model selection, JSON-output options, and saved delegation output paths.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata) <br>
+1.9.13 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

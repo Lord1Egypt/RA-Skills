@@ -1,0 +1,1206 @@
+<!doctype html>
+<html lang="zh-CN" style="color-scheme: dark !important;">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>高德 AI 路书</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #1a1a1a;
+      --panel: #2a2a2a;
+      --ink: #e0e0e0;
+      --muted: #999999;
+      --line: #3a3a3a;
+      --accent: #b0b0b0;
+      --accent-soft: #2a2a2a;
+      --route: #888888;
+      --warn: #aaaaaa;
+      --danger: #cc6666;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    /* ===== 移动端优先布局 ===== */
+    .app {
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      height: 40vh;
+      min-height: 40vh;
+    }
+
+    aside {
+      padding: 16px;
+      padding-top: 0;
+      background: var(--panel);
+    }
+
+    h1 {
+      margin: 0 0 4px;
+      font-size: 18px;
+      line-height: 1.3;
+    }
+
+    .sub {
+      margin: 0 0 12px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 6px;
+      margin: 12px 0;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    button {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--ink);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font: inherit;
+      font-size: 13px;
+      cursor: pointer;
+      white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button.active {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .sub-info {
+      margin: 0 0 10px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.5;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+    .sub-info .sub-left { display: flex; flex-direction: column; gap: 2px; }
+    .sub-info .sub-left span { white-space: nowrap; }
+    .sub-info .sub-right {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      line-height: 1;
+    }
+
+    .section-title {
+      margin: 16px 0 8px;
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .06em;
+    }
+
+    /* ===== Timeline Styles ===== */
+    .tl {
+      display: flex;
+      flex-direction: column;
+    }
+    .tl-stop {
+      display: flex;
+      gap: 10px;
+      padding-bottom: 4px;
+    }
+    .tl-stop.active .tl-dot {
+      background: #4a9eff;
+      box-shadow: 0 0 8px rgba(74,158,255,0.6);
+    }
+    .tl-stop.active .tl-name {
+      color: #fff;
+    }
+    .tl-gutter {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 16px;
+      flex-shrink: 0;
+    }
+    .tl-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #666;
+      flex-shrink: 0;
+      margin-top: 4px;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .tl-line {
+      width: 2px;
+      flex: 1;
+      min-height: 20px;
+      background: #555;
+    }
+    .tl-body {
+      flex: 1;
+      min-width: 0;
+      background: #222;
+      border: 1px solid #3a3a3a;
+      border-radius: 8px;
+      padding: 8px 10px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .tl-stop.active .tl-body {
+      border-color: #4a9eff;
+      background: #1a2540;
+    }
+    .tl-leg {
+      display: flex;
+      gap: 10px;
+    }
+    .tl-leg .tl-gutter {
+      justify-content: flex-start;
+      padding-top: 0;
+    }
+
+    .tl-leg .tl-line {
+      min-height: 30px;
+      background: #555;
+    }
+    .tl-leg-content {
+      flex: 1;
+      min-width: 0;
+      padding: 8px 10px 24px 0;
+    }
+    .tl-leg-mode {
+      font-size: 12px;
+      color: #aaa;
+      display: block;
+    }
+    .tl-leg-summary {
+      font-size: 11px;
+      color: #666;
+      line-height: 1.4;
+      margin-top: 1px;
+    }
+    .tl-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 6px;
+      cursor: pointer;
+      padding: 4px 0;
+      border-radius: 4px;
+      transition: background 0.15s;
+    }
+    .tl-header:hover {
+      background: rgba(255,255,255,0.04);
+    }
+    .tl-left {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+    .tl-time {
+      font-size: 12px;
+      font-weight: 700;
+      color: #999;
+      white-space: nowrap;
+    }
+    .tl-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .tl-poi-thumbs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      margin-top: 12px;
+    }
+    .tl-poi-thumbs::-webkit-scrollbar {
+      height: 3px;
+    }
+    .tl-poi-thumbs::-webkit-scrollbar-thumb {
+      background: #555;
+      border-radius: 2px;
+    }
+    .tl-poi-thumb {
+      width: 130px;
+      height: 88px;
+      border-radius: 6px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #333;
+      scroll-snap-align: start;
+    }
+    .tl-poi-meta {
+      font-size: 11px;
+      color: var(--muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-top: 2px;
+    }
+    .tl-poi-stars {
+      color: #ffd43b;
+      font-size: 11px;
+    }
+    .tl-poi-tag {
+      background: rgba(255,255,255,0.08);
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-size: 10px;
+      color: #aaa;
+    }
+    .tl-note {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.4;
+      margin: 2px 0 0;
+      padding-left: 0;
+    }
+
+
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      border: none;
+      background: transparent;
+      color: #888;
+      cursor: pointer;
+      padding: 4px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      transition: background 0.15s, color 0.15s;
+      flex-shrink: 0;
+    }
+    .nav-btn:hover {
+      background: rgba(255,255,255,0.08);
+      color: #ccc;
+    }
+    .nav-btn svg {
+      width: 10px;
+      height: 10px;
+      fill: currentColor;
+    }
+
+    .stop-time {
+      font-weight: 800;
+      color: #cccccc;
+      font-size: 12px;
+      padding-top: 2px;
+    }
+
+    .stop h3 {
+      margin: 0 0 3px;
+      font-size: 14px;
+    }
+
+    .stop p, .leg p, .assumptions li {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 12px;
+    }
+
+    .legs {
+      display: grid;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .leg {
+      padding: 10px;
+      border-left: 3px solid var(--route);
+      background: #222233;
+      border-radius: 8px;
+    }
+
+    .leg strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 13px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(13, 17, 23, .9);
+      backdrop-filter: blur(10px);
+    }
+
+    .topbar h2 {
+      margin: 0;
+      font-size: 15px;
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .topbar button {
+      font-size: 12px;
+      padding: 6px 10px;
+      flex-shrink: 0;
+    }
+
+    .map-shell {
+      position: relative;
+      flex: 1;
+      min-height: 300px;
+      overflow: hidden;
+    }
+
+    /* ===== 大屏桌面适配 ===== */
+    @media (min-width: 800px) {
+      .app {
+        flex-direction: row;
+        height: 100vh;
+        max-height: 100vh;
+        overflow: hidden;
+      }
+      main {
+        position: static;
+        flex: 1;
+        height: 100vh;
+        min-height: 0;
+      }
+      aside {
+        width: 400px;
+        height: 100vh;
+        min-height: 0;
+        padding: 24px;
+        border-right: 1px solid var(--line);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      h1 { font-size: 24px; }
+      .sub { font-size: 14px; }
+      .stop { grid-template-columns: 56px 1fr; padding: 12px; }
+      .stop h3 { font-size: 16px; }
+      .stop p, .leg p { font-size: 14px; }
+      .leg strong { font-size: 14px; }
+      .map-shell { min-height: 540px; }
+      .notice { max-width: 460px; font-size: 13px; }
+      .topbar { padding: 18px 22px; }
+      .topbar h2 { font-size: 18px; }
+      .metric { padding: 12px; }
+      .metric strong { font-size: 13px; }
+      .metric span { font-size: 15px; }
+    }
+
+    #map {
+      width: 100%;
+      height: 100%;
+      min-height: 300px;
+      background:
+        linear-gradient(90deg, rgba(88,166,255,.06) 1px, transparent 1px),
+        linear-gradient(rgba(88,166,255,.06) 1px, transparent 1px),
+        #0d1117;
+      background-size: 48px 48px;
+    }
+
+    .fallback-map {
+      position: absolute;
+      inset: 0;
+      padding: 28px;
+      display: grid;
+      place-items: center;
+    }
+
+    .canvas {
+      position: relative;
+      width: min(920px, 94%);
+      aspect-ratio: 16 / 10;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #161b22;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .4);
+      overflow: hidden;
+    }
+
+    .route-line {
+      position: absolute;
+      inset: 12%;
+      border: 4px solid transparent;
+      border-top-color: var(--route);
+      border-right-color: var(--route);
+      border-radius: 45%;
+      transform: rotate(-8deg);
+    }
+
+    .pin {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      display: grid;
+      gap: 6px;
+      justify-items: center;
+    }
+
+    .pin i {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid #1a1f26;
+      box-shadow: 0 5px 16px rgba(63, 185, 80, .35);
+    }
+
+    .pin span {
+      max-width: 120px;
+      padding: 3px 6px;
+      border-radius: 6px;
+      background: #21262d;
+      border: 1px solid var(--line);
+      font-size: 10px;
+      font-weight: 700;
+      text-align: center;
+      color: var(--ink);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, .3);
+    }
+
+    .notice {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      max-width: 280px;
+      padding: 6px 10px;
+      border-radius: 6px;
+      background: #1c1500;
+      border: 1px solid #3d2e00;
+      color: var(--warn);
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .assumptions {
+      margin: 8px 0 0;
+      padding-left: 16px;
+    }
+    .assumptions li { margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <main>
+      <div class="topbar">
+        <h2 id="dayTitle"></h2>
+        <button id="openAmap" type="button">打开高德地图搜索</button>
+      </div>
+      <div class="map-shell">
+        <div id="map"></div>
+        <div class="fallback-map" id="fallbackMap">
+          <div class="canvas" id="canvas">
+            <div class="route-line"></div>
+          </div>
+          <div class="notice" id="mapNotice">加载高德地图中...</div>
+        </div>
+      </div>
+    </main>
+    <aside>
+      <h1 id="title">高德 AI 路书</h1>
+      <p class="sub" id="subtitle"></p>
+      <div class="sub-info" id="subInfo"></div>
+      <div class="tabs" id="tabs"></div>
+      <div class="section-title">Timeline</div>
+      <div class="tl" id="timeline"></div>
+
+      <div class="section-title">Assumptions</div>
+      <ul class="assumptions" id="assumptions"></ul>
+    </aside>
+  </div>
+
+  <script>
+    const roadbook = __ROADBOOK_JSON__;
+    let activeDayIndex = 0;
+
+    const $ = (id) => document.getElementById(id);
+
+    function normalize(value, fallback = "待确认") {
+      if (value === null || value === undefined) return fallback;
+      if (typeof value === 'string') return value;
+      if (typeof value === 'object') {
+        return value.label || value.text || value.title || value.name || JSON.stringify(value);
+      }
+      return String(value);
+    }
+
+    function dayLabel(day, index) {
+      return day.date || `Day ${index + 1}`;
+    }
+
+    function renderTabs() {
+      $("tabs").innerHTML = "";
+      roadbook.days.forEach((day, index) => {
+        const button = document.createElement("button");
+        button.textContent = dayLabel(day, index);
+        button.className = index === activeDayIndex ? "active" : "";
+        button.addEventListener("click", () => {
+          activeDayIndex = index;
+          render();
+        });
+        $("tabs").appendChild(button);
+      });
+    }
+
+    function openAmapNav(stop, e) {
+      if (e) { e.stopPropagation(); }
+      if (!Number.isFinite(stop.lng) || !Number.isFinite(stop.lat)) return;
+      var url = 'https://uri.amap.com/navigation?to=' + stop.lng + ',' + stop.lat + ',' + encodeURIComponent(stop.name) + '&mode=car&coordinate=gaode';
+      // uri.amap.com auto-redirects to Amap app on mobile; falls back to web on desktop
+      window.open(url, '_blank');
+    }
+
+    function focusMapOnBounds(coordPairs) {
+      if (!amapInstance || typeof AMap === 'undefined') return;
+      if (coordPairs.length === 1) {
+        amapInstance.setCenter([coordPairs[0][0], coordPairs[0][1]]);
+        amapInstance.setZoom(16);
+        return;
+      }
+      var lngs = coordPairs.map(function(p) { return p[0]; });
+      var lats = coordPairs.map(function(p) { return p[1]; });
+      var minLng = Math.min.apply(null, lngs);
+      var maxLng = Math.max.apply(null, lngs);
+      var minLat = Math.min.apply(null, lats);
+      var maxLat = Math.max.apply(null, lats);
+      var lngPad = (maxLng - minLng) * 0.3 || 0.02;
+      var latPad = (maxLat - minLat) * 0.3 || 0.02;
+      var bounds = new AMap.Bounds(
+        new AMap.LngLat(minLng - lngPad, minLat - latPad),
+        new AMap.LngLat(maxLng + lngPad, maxLat + latPad)
+      );
+      amapInstance.setBounds(bounds);
+    }
+
+    function highlightSegment(idx) {
+      // Reset all
+      for (var i = 0; i < arcDefaultStyles.length; i++) {
+        var def = arcDefaultStyles[i];
+        // Always reset AMap.Polyline
+        if (routePolylines[i]) {
+          routePolylines[i].setOptions({ strokeWeight: def.lineWidth, strokeColor: def.color });
+        }
+        // Reset PulseLineLayer if exists
+        if (arcLayers[i]) {
+          arcLayers[i].setStyle({
+            altitude: 0,
+            lineWidth: function() { return def.lineWidth; },
+            headColor: '#ffffff',
+            trailColor: 'rgba(180,180,180,1)',
+            interval: 1.0,
+            duration: 8000
+          });
+        }
+      }
+      // Highlight target
+      if (idx >= 0 && idx < routePolylines.length) {
+        if (routePolylines[idx]) {
+          routePolylines[idx].setOptions({ strokeWeight: 5, strokeColor: '#4a9eff' });
+        }
+        if (arcLayers[idx]) {
+          try {
+            arcLayers[idx].setStyle({
+              altitude: 0,
+              lineWidth: function() { return 5; },
+              headColor: '#4a9eff',
+              trailColor: 'rgba(74,158,255,1)',
+              interval: 1.0,
+              duration: 2000
+            });
+          } catch(e) {}
+        }
+      }
+    }
+
+    function renderTimeline(day) {
+      $('timeline').innerHTML = '';
+      var consumedLegs = {};
+
+      day.stops.forEach(function(stop, idx) {
+        var hasLoc = Number.isFinite(stop.lng) && Number.isFinite(stop.lat);
+        var navSvg = '<svg viewBox="0 0 24 24"><path d="M5 3l3.057-3 11.943 12-11.943 12-3.057-3 9-9z"/></svg>';
+        var isLast = idx === day.stops.length - 1;
+
+        // === Stop node ===
+        var stopEl = document.createElement('div');
+        stopEl.className = 'tl-stop';
+
+        // Gutter (dot only, no full line yet)
+        var gutterHtml = '<div class="tl-gutter"><div class="tl-dot"></div><div class="tl-line"></div></div>';
+
+        // Build body content
+        var hasPoi = stop.poiPhotos && stop.poiPhotos.length > 0;
+        var poiThumbHtml = '';
+        var poiInfoHtml = '';
+
+        if (hasPoi) {
+          var starsHtml = stop.poiRating ? ' <span class="tl-poi-stars">' + '★'.repeat(Math.round(parseFloat(stop.poiRating))) + ' ' + stop.poiRating + '</span>' : '';
+          var tagHtml = stop.poiTag ? ' <span class="tl-poi-tag">' + stop.poiTag + '</span>' : '';
+          var thumbsHtml = '<div class="tl-poi-thumbs">';
+          for (var pi = 0; pi < stop.poiPhotos.length && pi < 5; pi++) {
+            thumbsHtml += '<img class="tl-poi-thumb" src="' + stop.poiPhotos[pi].url + '" alt="" loading="lazy" referrerpolicy="no-referrer"/>';
+          }
+          thumbsHtml += '</div>';
+          poiThumbHtml = thumbsHtml;
+          poiInfoHtml = '<div class="tl-left">'
+            + '<span class="tl-time">' + normalize(stop.time, '') + '</span>'
+            + '<span class="tl-name">' + stop.name + '</span>'
+          + '</div>'
+          + '<div class="tl-poi-meta">' + starsHtml + tagHtml + '</div>';
+        }
+
+        var bodyHtml = '<div class="tl-body">';
+
+        if (hasPoi) {
+          bodyHtml += '<div class="tl-header">'
+            + poiInfoHtml
+            + '</div>'
+            + poiThumbHtml
+            + '<div class="tl-note">' + normalize(stop.note, '') + '</div>';
+        } else {
+          var headerHtml = '<div class="tl-header">'
+            + '<div class="tl-left">'
+              + '<span class="tl-time">' + normalize(stop.time, '') + '</span>'
+              + '<span class="tl-name">' + stop.name + '</span>'
+            + '</div>'
+            + '</div>';
+          bodyHtml += headerHtml + '<div class="tl-note">' + normalize(stop.note, '') + '</div>';
+        }
+
+        bodyHtml += '</div>';
+        stopEl.innerHTML = gutterHtml + bodyHtml;
+
+        // Click stop -> focus map
+        if (hasLoc) {
+          stopEl.addEventListener('click', function(e) {
+            if (e.target.closest('.nav-btn')) return;
+            document.querySelectorAll('.tl-stop.active').forEach(function(el) { el.classList.remove('active'); });
+            stopEl.classList.add('active');
+            var prevStop = null;
+            var segIdx = -1;
+            for (var pi = idx - 1; pi >= 0; pi--) {
+              if (Number.isFinite(day.stops[pi].lng) && Number.isFinite(day.stops[pi].lat)) {
+                prevStop = day.stops[pi];
+                segIdx = pi;
+                break;
+              }
+            }
+            if (prevStop) {
+              focusMapOnBounds([[prevStop.lng, prevStop.lat], [stop.lng, stop.lat]]);
+              if (arcLayers.length > 0) highlightSegment(segIdx);
+            } else {
+              if (amapInstance && typeof AMap !== 'undefined') {
+                amapInstance.setCenter([stop.lng, stop.lat]);
+                amapInstance.setZoom(16);
+              }
+            }
+          });
+
+        }
+
+        $('timeline').appendChild(stopEl);
+
+        // === Leg between stops (on the connecting line) ===
+        if (!isLast) {
+          var next = day.stops[idx + 1];
+          var legEl = document.createElement('div');
+          legEl.className = 'tl-leg';
+
+          var leg = null;
+          var legIndex = -1;
+          for (var li = 0; li < (day.legs || []).length; li++) {
+            var l = day.legs[li];
+            if (!consumedLegs[li] && l.from === stop.name) {
+              leg = l;
+              legIndex = li;
+              break;
+            }
+          }
+          if (!leg) {
+            for (var sli = 0; sli < (day.legs || []).length; sli++) {
+              var sl = day.legs[sli];
+              if (!consumedLegs[sli] && sl.from === stop.name && sl.to === next.name) {
+                leg = sl;
+                legIndex = sli;
+                break;
+              }
+            }
+          }
+          if (!leg) {
+            for (var nli = 0; nli < (day.legs || []).length; nli++) {
+              if (!consumedLegs[nli]) {
+                leg = day.legs[nli];
+                legIndex = nli;
+                break;
+              }
+            }
+          }
+          if (legIndex >= 0) {
+            consumedLegs[legIndex] = true;
+          }
+
+          function modeEmoji(m) {
+            var map = { rail: '🚄', taxi: '🚕', walk: '🚶', drive: '🚗', bus: '🚌', bike: '🚲', flight: '✈️', public_transit: '🚇' };
+            return map[m] || '';
+          }
+          var modeStr = '';
+          if (leg) {
+            var parts = [];
+            var emoji = modeEmoji(leg.mode);
+            if (emoji) parts.push(emoji);
+            if (leg.mode) parts.push(leg.mode);
+            if (leg.durationText) parts.push(leg.durationText);
+            if (leg.distanceText) parts.push(leg.distanceText);
+            modeStr = parts.join(' · ');
+          }
+          var summaryStr = leg && leg.summary ? normalize(leg.summary) : '';
+
+          var toHasLoc = next && Number.isFinite(next.lng) && Number.isFinite(next.lat);
+          legEl.innerHTML = '<div class="tl-gutter"><div class="tl-line"></div></div>'
+            + '<div class="tl-leg-content">'
+            + '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px">'
+            + (modeStr ? '<span class="tl-leg-mode">' + modeStr + '</span>' : '<span></span>')
+            + (toHasLoc ? '<button class="nav-btn" title="高德导航"><span>导航</span>' + navSvg + '</button>' : '')
+            + '</div>'
+            + (summaryStr ? '<div class="tl-leg-summary">' + summaryStr + '</div>' : '')
+            + '</div>';
+
+          // Leg nav button -> navigate to destination stop
+          if (toHasLoc) {
+            var legNavBtn = legEl.querySelector('.nav-btn');
+            if (legNavBtn) {
+              legNavBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                openAmapNav(next, e);
+              });
+            }
+          }
+
+          $('timeline').appendChild(legEl);
+        }
+      });
+    }
+
+    function renderLegs(day) {}
+
+    function renderFallbackMap(day) {
+      const canvas = $("canvas");
+      canvas.querySelectorAll(".pin").forEach((node) => node.remove());
+      const stops = day.stops.filter((stop) => Number.isFinite(stop.lng) && Number.isFinite(stop.lat));
+      if (!stops.length) return;
+
+      const lngs = stops.map((stop) => stop.lng);
+      const lats = stops.map((stop) => stop.lat);
+      const minLng = Math.min(...lngs);
+      const maxLng = Math.max(...lngs);
+      const minLat = Math.min(...lats);
+      const maxLat = Math.max(...lats);
+      const lngSpan = maxLng - minLng || 1;
+      const latSpan = maxLat - minLat || 1;
+
+      stops.forEach((stop) => {
+        const x = 12 + ((stop.lng - minLng) / lngSpan) * 76;
+        const y = 84 - ((stop.lat - minLat) / latSpan) * 68;
+        const pin = document.createElement("div");
+        pin.className = "pin";
+        pin.style.left = `${x}%`;
+        pin.style.top = `${y}%`;
+        pin.innerHTML = `<i></i><span>${stop.name}</span>`;
+        canvas.appendChild(pin);
+      });
+    }
+
+    function renderAssumptions() {
+      $("assumptions").innerHTML = "";
+      (roadbook.assumptions || []).forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        $("assumptions").appendChild(li);
+      });
+    }
+
+    function render() {
+      const day = roadbook.days[activeDayIndex];
+      function fmtDateRange(dr) {
+        if (!dr) return '待确认';
+        if (typeof dr === 'string') return dr;
+        return (dr.start || '') + ' ~ ' + (dr.end || '') + ' (' + (dr.days || '') + '天)';
+      }
+      function fmtWeather(w) {
+        if (!w) return '待确认';
+        if (typeof w === 'string') return w;
+        var parts = [];
+        if (w.text) parts.push(w.text);
+        if (w.temperature) parts.push(w.temperature);
+        return parts.join(' ') || '待确认';
+      }
+      $("title").textContent = roadbook.title;
+      $("subtitle").textContent = normalize(roadbook.origin) + ' -> ' + normalize(roadbook.destination);
+
+      // Build one-line info: date · weather · pace
+      var dateStr = fmtDateRange(roadbook.dateRange);
+      var weatherStr = fmtWeather(day.weather);
+      var paceStr = normalize(day.pace);
+      var paceEmoji = { relaxed: '😌', balanced: '🚶', packed: '🏃‍♂️' };
+      var leftParts = [];
+      if (dateStr) leftParts.push('<span>📅 ' + dateStr + '</span>');
+      if (paceStr) leftParts.push('<span>' + (paceEmoji[day.pace] || '') + ' ' + paceStr + '</span>');
+      if (weatherStr) leftParts.push('<span>' + weatherStr + '</span>');
+      // Determine weather icon
+      var wt = (weatherStr || '').toLowerCase();
+      var weatherIcon = '☀️';
+      if (wt.indexOf('雨') >= 0) weatherIcon = '🌧';
+      else if (wt.indexOf('阴') >= 0) weatherIcon = '☁️';
+      else if (wt.indexOf('云') >= 0) weatherIcon = '⛅';
+      else if (wt.indexOf('晴') >= 0) weatherIcon = '☀️';
+      $('subInfo').innerHTML = '<div class="sub-left">' + leftParts.join('') + '</div>'
+        + '<div class="sub-right">' + weatherIcon + '</div>';
+      $("dayTitle").textContent = day.title;
+      renderTabs();
+      renderTimeline(day);
+      renderLegs(day);
+      renderAssumptions();
+      renderFallbackMap(day);
+    }
+
+    $("openAmap").addEventListener("click", () => {
+      const day = roadbook.days[activeDayIndex];
+      const firstStop = day.stops[0]?.name || roadbook.destination;
+      const url = `https://uri.amap.com/search?keyword=${encodeURIComponent(firstStop)}&city=${encodeURIComponent(roadbook.destination || "")}`;
+      window.open(url, "_blank", "noopener,noreferrer");
+    });
+
+    render();
+
+    // 高德 JS API 加载
+    function loadAMap() {
+      var key = roadbook.amapKey || window.AMAP_JS_API_KEY || '';
+      if (!key) return;
+      // 使用 _AMapSecurityConfig 方式配置安全码（而非 URL 参数）
+      var securityCode = roadbook.amapSecurityCode || '';
+      if (securityCode) {
+        window._AMapSecurityConfig = { securityJsCode: securityCode };
+      }
+      var mapScript = document.createElement('script');
+      mapScript.src = 'https://webapi.amap.com/maps?v=2.0&key=' + key + '&plugin=AMap.Scale,AMap.ToolBar';
+      mapScript.onload = function () {
+        var locaScript = document.createElement('script');
+        locaScript.src = 'https://webapi.amap.com/loca?v=2.0.0&key=' + key;
+        locaScript.onload = function () {
+          initRealMap();
+        };
+        locaScript.onerror = function () {
+          // Loca 加载失败，地图仍然可用（无飞线效果）
+          initRealMap();
+        };
+        document.head.appendChild(locaScript);
+      };
+      mapScript.onerror = function () {
+        $('mapNotice').textContent = '高德地图加载失败，使用示意地图';
+        renderFallbackMap(roadbook.days[activeDayIndex]);
+      };
+      document.head.appendChild(mapScript);
+    }
+
+    let amapInstance = null;
+    let amapMarkers = [];
+    let amapLocaContainer = null;
+    let arcLayers = [];  // per-segment PulseLineLayers (for rail)
+    let arcDefaultStyles = [];
+    let routePolylines = [];  // AMap.Polyline for real road routes
+
+    function buildArcData(day) {
+      var coords = [];
+      day.stops.forEach(function (s) {
+        if (Number.isFinite(s.lng) && Number.isFinite(s.lat)) {
+          coords.push([s.lng, s.lat]);
+        }
+      });
+      var features = [];
+      for (var i = 0; i < coords.length - 1; i++) {
+        features.push({
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'LineString',
+            coordinates: [coords[i], coords[i + 1]]
+          }
+        });
+      }
+      return { type: 'FeatureCollection', features: features };
+    }
+
+    function buildScatterData(day) {
+      var features = [];
+      day.stops.forEach(function (s) {
+        if (Number.isFinite(s.lng) && Number.isFinite(s.lat)) {
+          features.push({
+            type: 'Feature',
+            properties: { name: s.name },
+            geometry: { type: 'Point', coordinates: [s.lng, s.lat] }
+          });
+        }
+      });
+      return { type: 'FeatureCollection', features: features };
+    }
+
+    function initRealMap() {
+      const day = roadbook.days[activeDayIndex];
+      const stops = day.stops.filter(function (s) { return Number.isFinite(s.lng) && Number.isFinite(s.lat); });
+      if (!stops.length) return;
+
+      // Key 无效时降级到示意地图
+      if (typeof AMap === 'undefined') {
+        $('map').style.display = 'none';
+        $('fallbackMap').style.display = 'grid';
+        $('mapNotice').textContent = '⚠️ 高德地图 Key 配置异常，请检查 JS API Key 和 JS 安全码。当前显示示意地图。';
+        renderFallbackMap(day);
+        return;
+      }
+
+      $('map').style.display = 'block';
+      $('fallbackMap').style.display = 'none';
+
+      if (amapInstance) {
+        // Order: remove overlays first → stop Loca → destroy map
+        for (var ri = 0; ri < routePolylines.length; ri++) {
+          if (routePolylines[ri]) amapInstance.remove(routePolylines[ri]);
+        }
+        routePolylines = [];
+        if (amapLocaContainer) { try { amapLocaContainer.animate.stop(); } catch(e) {} }
+        amapLocaContainer = null;
+        arcLayers = [];
+        arcDefaultStyles = [];
+        amapMarkers = [];
+        amapInstance.destroy();
+        amapInstance = null;
+      }
+
+      var map = new AMap.Map('map', {
+        zoom: 15,
+        center: [stops[0].lng, stops[0].lat],
+        mapStyle: 'amap://styles/dark',
+        features: ['bg', 'road', 'building', 'point'],
+        rotateEnable: true,
+        pitchEnable: true,
+        pitch: 0,
+        rotation: 0,
+        viewMode: '3D',
+        zooms: [2, 20],
+        showIndoorMap: false
+      });
+
+      amapInstance = map;
+
+      // 呼吸点 + 线 + 标签
+      if (typeof Loca !== 'undefined') {
+        try {
+          var loca = new Loca.Container({ map: map });
+          amapLocaContainer = loca;
+
+          // 呼吸点（px 单位，缩放不变形）
+          var scatter = new Loca.ScatterLayer({ zIndex: 10, opacity: 1 });
+          var scatterSource = new Loca.GeoJSONSource({ data: buildScatterData(day) });
+          scatter.setSource(scatterSource);
+          scatter.setStyle({
+            unit: 'px',
+            size: function () { return [22, 22]; },
+            borderWidth: 0,
+            texture: 'https://a.amap.com/Loca/static/loca-v2/demos/images/breath_yellow.png',
+            duration: 2000,
+            animate: true
+          });
+          loca.add(scatter);
+
+          // 路线：优先按 legs 的真实 routePoints 绘制；无 routePoints 时才按相邻停靠点直线兜底。
+          var drawableLegs = [];
+          for (var li = 0; li < (day.legs || []).length; li++) {
+            var leg = day.legs[li];
+            if (leg.routePoints && leg.routePoints.length > 1) {
+              drawableLegs.push({ leg: leg, routePoints: leg.routePoints });
+            } else {
+              var fromPoint = null;
+              var toPoint = null;
+              for (var dsi = 0; dsi < stops.length; dsi++) {
+                if (stops[dsi].name === leg.from) fromPoint = stops[dsi];
+                if (stops[dsi].name === leg.to) toPoint = stops[dsi];
+              }
+              if (fromPoint && toPoint) {
+                drawableLegs.push({
+                  leg: leg,
+                  routePoints: [[fromPoint.lng, fromPoint.lat], [toPoint.lng, toPoint.lat]]
+                });
+              }
+            }
+          }
+          if (!drawableLegs.length) {
+            for (var si = 0; si < stops.length - 1; si++) {
+              if (!Number.isFinite(stops[si].lng) || !Number.isFinite(stops[si+1].lng)) continue;
+              drawableLegs.push({
+                leg: { routeStatus: 'failed' },
+                routePoints: [[stops[si].lng, stops[si].lat], [stops[si+1].lng, stops[si+1].lat]]
+              });
+            }
+          }
+
+          for (var dii = 0; dii < drawableLegs.length; dii++) {
+            var matchingLeg = drawableLegs[dii].leg;
+            var routePts = drawableLegs[dii].routePoints;
+            var pathArr;
+            var lineColor = '#666';
+            if (routePts && routePts.length > 1) {
+              pathArr = routePts.map(function(pt) { return [pt[0], pt[1]]; });
+              lineColor = '#8fb89b';
+            } else {
+              pathArr = [[stops[si].lng, stops[si].lat], [stops[si+1].lng, stops[si+1].lat]];
+              lineColor = '#777';
+            }
+
+            // ★ 基础线段：AMap.Polyline（不依赖 Loca）
+            var polyline = new AMap.Polyline({
+              path: pathArr,
+              strokeWeight: 3,
+              strokeColor: lineColor,
+              strokeStyle: 'solid',
+              lineJoin: 'round',
+              geodesic: true,
+              zIndex: 11
+            });
+            polyline.setMap(map);
+            routePolylines.push(polyline);
+            var defStyle = { lineWidth: 3, color: lineColor };
+            arcDefaultStyles.push(defStyle);
+
+            // ★ 飞线动画：PulseLineLayer（仅 Loca 加载成功时叠加，坐标与 Polyline 一致）
+            if (typeof Loca !== 'undefined' && loca) {
+              try {
+                var segFeat = {
+                  type: 'FeatureCollection',
+                  features: [{
+                    type: 'Feature',
+                    properties: {},
+                    geometry: {
+                      type: 'LineString',
+                      coordinates: pathArr
+                    }
+                  }]
+                };
+                var ll = new Loca.PulseLineLayer({ zIndex: 12, opacity: 1 });
+                var ls = new Loca.GeoJSONSource({ data: segFeat });
+                ll.setSource(ls);
+                ll.setStyle({
+                  altitude: 0,
+                  lineWidth: function() { return 3; },
+                  headColor: '#ffffff',
+                  trailColor: 'rgba(180,180,180,1)',
+                  interval: 1.0,
+                  duration: 8000
+                });
+                loca.add(ll);
+                arcLayers.push(ll);
+              } catch(e) {
+                arcLayers.push(null);
+              }
+            } else {
+              arcLayers.push(null);
+            }
+          }
+
+          loca.animate.start();
+        } catch (e) {
+          console.warn('Loca 可视化加载失败:', e);
+        }
+      }
+
+      // 自定义标签
+      stops.forEach(function (stop) {
+        var content = '<div style="' +
+          'background: rgba(42,42,42,0.85);' +
+          'backdrop-filter: blur(6px);' +
+          'border: 1px solid rgba(255,255,255,0.15);' +
+          'border-radius: 10px;' +
+          'padding: 6px 10px 6px 8px;' +
+          'display: flex; align-items: center; gap: 6px;' +
+          'white-space: nowrap;' +
+          'max-width: 200px;' +
+          'overflow: hidden;' +
+          'text-overflow: ellipsis;' +
+          'box-shadow: 0 4px 15px rgba(0,0,0,0.4);' +
+          'font-size: 12px; color: #e0e0e0;">' +
+          '<span style="' +
+            'display: inline-block; width: 8px; height: 8px;' +
+            'border-radius: 50%; background: #b0b0b0;' +
+            'box-shadow: 0 0 8px rgba(176,176,176,0.5);"></span>' +
+          '<span>' + stop.name + '</span>' +
+          '<span style="color: #888; font-size: 10px; margin-left: 2px;">' +
+            (stop.time || '') + '</span>' +
+        '</div>';
+
+        var marker = new AMap.Marker({
+          position: [stop.lng, stop.lat],
+          content: content,
+          offset: new AMap.Pixel(-10, -10)
+        });
+        marker.on('click', function () {
+          new AMap.InfoWindow({
+            content: '<div style="padding:10px;font-size:13px;color:#e0e0e0;background:#2a2a2a;border-radius:8px;max-width:260px;line-height:1.5"><strong style="font-size:14px">' + stop.name + '</strong><br>' + (stop.note || '') + '</div>',
+            offset: new AMap.Pixel(0, -30)
+          }).open(map, [stop.lng, stop.lat]);
+        });
+        map.add(marker);
+        amapMarkers.push(marker);
+      });
+
+      if (stops.length > 1) {
+        map.setFitView(null, false, [100, 100, 100, 100]);
+      }
+    }
+
+    // 切换日时刷新地图
+    var _origRenderTabs = renderTabs;
+    renderTabs = function () {
+      _origRenderTabs();
+      if (amapInstance) {
+        initRealMap();
+      }
+    };
+
+    loadAMap();
+  </script>
+</body>
+</html>

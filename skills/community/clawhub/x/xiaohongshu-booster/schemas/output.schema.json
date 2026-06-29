@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://clawhub.ai/skills/xiaohongshu-booster/output.schema.json",
+  "title": "Xiaohongshu Note Booster Output",
+  "description": "Output schema containing 3 complete Xiaohongshu note drafts, each with title, body, hashtags, cover-image suggestion, and optional publish time recommendation.",
+  "type": "object",
+  "required": ["notes", "metadata"],
+  "properties": {
+    "notes": {
+      "type": "array",
+      "description": "Array of note variants, ordered by style/differentiation.",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["title", "body", "hashtags", "cover_tip"],
+        "properties": {
+          "note_number": {
+            "type": "integer",
+            "description": "Variant number (1-indexed)."
+          },
+          "style_label": {
+            "type": "string",
+            "description": "Human-readable style descriptor for this variant.",
+            "examples": ["数字型·痛点直击", "情感型·共鸣种草", "对比型·效果冲击"]
+          },
+          "title": {
+            "type": "string",
+            "description": "Note title, recommended under 20 Chinese characters. Includes emoji.",
+            "maxLength": 60,
+            "examples": ["💧 这瓶玫瑰水救了我的熬夜脸！素颜也能发光"]
+          },
+          "body": {
+            "type": "string",
+            "description": "Note body text, 150-300 Chinese characters. Structured as: pain-point intro → product appears → usage experience → purchase reason → CTA.",
+            "minLength": 50,
+            "maxLength": 2000,
+            "examples": ["姐妹们！！熬夜后脸真的又黄又干😭\n最近挖到一瓶玫瑰精华水..."]
+          },
+          "hashtags": {
+            "type": "array",
+            "description": "Recommended hashtags (5-10). Without '#' prefix.",
+            "minItems": 5,
+            "maxItems": 10,
+            "items": {
+              "type": "string",
+              "examples": ["玫瑰精华水", "熬夜护肤", "敏感肌", "补水保湿", "冷门好物"]
+            }
+          },
+          "cover_tip": {
+            "type": "object",
+            "required": ["description", "composition"],
+            "properties": {
+              "description": {
+                "type": "string",
+                "description": "One-sentence cover image suggestion."
+              },
+              "composition": {
+                "type": "string",
+                "description": "Composition guidance: camera angle, lighting, props, text overlay."
+              },
+              "text_overlay": {
+                "type": "string",
+                "description": "Suggested text overlay for the cover image."
+              }
+            }
+          },
+          "publish_time": {
+            "type": "string",
+            "description": "Suggested publish time range.",
+            "examples": ["20:00-22:00", "12:00-13:00", "17:30-19:00"]
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "required": ["generated_at", "total_notes", "input_topic", "style"],
+      "properties": {
+        "generated_at": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Generation timestamp (ISO 8601)."
+        },
+        "total_notes": {
+          "type": "integer",
+          "description": "Number of notes generated."
+        },
+        "input_topic": {
+          "type": "string",
+          "description": "Original input topic."
+        },
+        "style": {
+          "type": "string",
+          "description": "The requested writing style."
+        },
+        "target_audience": {
+          "type": "string",
+          "description": "The target audience specified in the input."
+        },
+        "disclaimer": {
+          "type": "string",
+          "description": "Compliance disclaimer if applicable.",
+          "examples": ["⚠️ 本文内容仅供参考，不代表医疗建议。个体效果因人而异。"]
+        }
+      }
+    }
+  }
+}

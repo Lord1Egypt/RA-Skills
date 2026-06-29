@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/VKambulov/research-mode/schemas/worker-result.v1.schema.json",
+  "title": "Research Mode worker result v1",
+  "description": "Public contract slice for one bounded worker iteration result.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["phase", "summary", "meaningful_progress"],
+  "properties": {
+    "phase": {"type": "string"},
+    "summary": {"type": "string"},
+    "meaningful_progress": {"type": "boolean"},
+    "should_complete": {"type": "boolean"},
+    "next_angle": {"type": ["string", "null"]},
+    "sources": {"type": "array", "items": {"type": "object"}},
+    "findings": {"type": "array", "items": {"type": "object"}},
+    "open_questions": {"type": "array"},
+    "packages_used": {"type": "array"},
+    "analysis_artifacts": {"type": "array"},
+    "database_artifacts": {"type": "array"},
+    "vision_artifacts": {"type": "array"},
+    "preflight": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "decision": {
+          "type": "string",
+          "enum": ["go", "go_with_warnings", "needs_setup", "blocked"]
+        },
+        "warnings": {"type": "array", "items": {"type": "string"}},
+        "blockers": {"type": "array", "items": {"type": "string"}},
+        "notes": {"type": ["string", "null"]}
+      }
+    },
+    "adequacy": {"type": "object", "additionalProperties": true},
+    "finalization": {"type": "object", "additionalProperties": true}
+  }
+}

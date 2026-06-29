@@ -120,7 +120,7 @@ siluzan-tso website-diagnosis render --data ./diagnosis.json --collect ./snap-we
 
 ## 优化策略中的复用
 
-`tso_agent` 的 `getOptimizationStrategy` 在 `device_2` 等维度会调用**同一** `WebsiteDiagnosisReports/performance`（需 Google 账户 `final-urls`）。与单次网站诊断独立；见 `operations/optimize.md` 与 Google 账户优化策略话术。
+`tso_agent` 的 `getOptimizationStrategy` 在 `device_2` 等维度会调用**同一** `WebsiteDiagnosisReports/performance`（需 Google 账户 `final-urls`）。与单次网站诊断独立；见 `references/operations/optimize.md` 与 Google 账户优化策略话术。
 
 ---
 

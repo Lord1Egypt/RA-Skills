@@ -13,15 +13,19 @@ LLM API error tracking, classification, retry, and task recovery for OpenClaw.
 clawhub login
 
 # 1. 安装插件（必须带 --dangerously-force-unsafe-install）
-# 原因：插件会使用 child_process.exec 打开浏览器、启动本地 HTTP server (默认 18765)、
-# 注册 model_call_ended 等敏感 hook、读写 ~/.openclaw/plugins/resilience/ 下的日志和配置。
+# 原因：插件会使用 open 包打开浏览器、启动本地 HTTP server (默认 18765)、
+# 注册 model_call_ended / agent_end 等敏感 hook、读写 ~/.openclaw/plugins/resilience/ 下的日志和配置。
 # ClawHub 安全扫描因此标记为 "suspicious"（这是正常行为，不是恶意代码）。
 openclaw plugins install clawhub:@leiJack-lo/resilience --dangerously-force-unsafe-install
 
 # 2. 安装此 Skill（获得中文自然语言能力 + 工具描述）
 openclaw skills install resilience-monitor
 
-# 3. 必须重启 Gateway，让插件的 hooks 和工具真正注册生效
+# 3. OpenClaw 2026.6.10+：允许 agent_end 会话恢复 hook 读取会话结束事件
+# 不设置时，API 错误统计仍可用，但“会话失败统计 + 下一轮恢复指令”不会启用。
+openclaw config set plugins.entries.resilience.hooks.allowConversationAccess true
+
+# 4. 必须重启 Gateway，让插件的 hooks 和工具真正注册生效
 openclaw gateway restart
 ```
 
@@ -33,7 +37,7 @@ openclaw gateway restart
 
 **验证方法**：重启后问 agent "resilience 插件安装好了吗？" 或直接试一个工具调用。如果提示工具不存在，就说明插件没加载成功。
 
-配置（面板端口、是否自动启动 Dashboard 等）放在 `~/.openclaw/openclaw.json` 的 `plugins.entries.resilience.config` 下（见下方 dashboard 工具说明）。
+配置（面板端口、是否自动启动 Dashboard 等）放在 `~/.openclaw/openclaw.json` 的 `plugins.entries.resilience.config` 下；OpenClaw 2026.6.10+ 的会话恢复授权放在 `plugins.entries.resilience.hooks.allowConversationAccess` 下（见下方 dashboard 工具说明）。
 
 ## Overview
 
@@ -46,6 +50,7 @@ Use it to:
 - Configure retry strategies
 - Generate error reports
 - Track task recovery status
+- Configure automatic session recovery prompts in Chinese or English
 
 ## Tools
 
@@ -79,6 +84,9 @@ The dashboard starts automatically when OpenClaw Gateway starts (unless `dashboa
 ```json
 "resilience": {
   "enabled": true,
+  "hooks": {
+    "allowConversationAccess": true
+  },
   "config": {
     "dashboardPort": 18765,
     "dashboardEnabled": true,
@@ -136,6 +144,28 @@ Generate detailed error reports.
 - "查看任务恢复状态" → `resilience_report({ reportType: "recovery" })`
 - "生成完整状态报告" → `resilience_report({ reportType: "full" })`
 
+### resilience_recovery
+
+View or update automatic session recovery settings. Use this when the user wants to change the "continue the task" wording after a session failure, switch Chinese/English recovery language, or disable/enable automatic recovery.
+
+**Parameters:**
+- `action`: `"show"` (default) | `"update"` | `"reset"`
+- `enabled`: `true` / `false`
+- `language`: `"zh"` | `"en"`
+- `prompt`: custom prompt overriding localized defaults
+- `promptZh`: custom Chinese prompt
+- `promptEn`: custom English prompt
+- `ttlMs`: queued recovery context TTL
+- `cooldownMs`: minimum interval between recovery injections per session
+- `maxPerSession`: maximum automatic injections per session
+
+**Examples:**
+- "查看会话自动恢复设置" → `resilience_recovery({ action: "show" })`
+- "把继续任务话术改成中文" → `resilience_recovery({ action: "update", language: "zh" })`
+- "把继续任务话术改成英文" → `resilience_recovery({ action: "update", language: "en" })`
+- "修改继续任务话术为：任务完成了吗？如果没完成请继续完成任务" → `resilience_recovery({ action: "update", language: "zh", prompt: "任务完成了吗？如果没完成请继续完成任务。" })`
+- "关闭会话自动恢复" → `resilience_recovery({ action: "update", enabled: false })`
+
 ## Error Categories
 
 | Category | Description | Retryable |
@@ -147,6 +177,9 @@ Generate detailed error reports.
 | `network_error` | Connection errors | ✅ |
 | `model_unavailable` | Model not found or offline | ✅ |
 | `context_too_long` | Context length exceeded | ❌ |
+| `token_parse_error` | Tokenizer/token parsing failure | ❌ |
+| `invalid_model_output` | Malformed model output / response format failure | ❌ |
+| `session_runtime_error` | Non-API session runtime failure | ❌ |
 | `unknown` | Unclassified errors | ❌ |
 
 ## Retry Strategies
@@ -175,6 +208,7 @@ Per-instance data: `~/.openclaw/plugins/resilience/instances/<instance-id>/` (st
 ├── meta.json
 ├── stats.json
 ├── strategies.json
+├── recovery-settings.json
 ├── active-retries.json
 ├── logs/YYYY-MM-DD.jsonl
 └── tasks/

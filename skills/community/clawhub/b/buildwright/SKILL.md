@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires git and gh for shipping. Optional tools for security scans include semgrep, gitleaks, and trufflehog. Works with Claude Code, OpenCode, Cursor, and Codex CLI.
 metadata:
   homepage: https://github.com/raunakkathuria/buildwright
-  version: "0.0.16"
+  version: "0.0.17"
   author: raunakkathuria
   tags:
     - development
@@ -58,14 +58,29 @@ Analyse a brownfield codebase and write `.buildwright/codebase/STACK.md`,
 
 ## Steering
 
-Buildwright recursively reads every `.md` file under `.buildwright/steering/`.
-It installs one default steering file:
+Buildwright recursively reads every `.md` file under `.buildwright/framework/`
+and `.buildwright/steering/` at session start.
+
+**Framework behavior** (`.buildwright/framework/`) is Buildwright-owned and
+fixed — identical in every install, refreshed on update, not customized:
+
+- `.buildwright/framework/autonomy.md` — the single autonomy behaviour (no mode
+  flag), auto-continue through ready work, and context-inferred failure handling.
+- `.buildwright/framework/capability.md` — prefer each host tool's native
+  capabilities (plan/file-write/task-tracking/sub-agents/parallelism/worktrees/
+  hooks) with documented fallbacks, for *execution mechanics* only — they never
+  replace Buildwright's steering or process.
+- `.buildwright/framework/findings.md` — convention for recording report-upstream
+  and before-production deferrals.
+
+**Steering** (`.buildwright/steering/`) is project-owned and customizable,
+preserved across updates. The shipped default:
 
 - `.buildwright/steering/philosophy.md` — KISS, YAGNI, DRY, boring technology,
   fail fast, Red -> Green -> Refactor, documentation discipline, and financial
   code rules.
 
-Project-specific steering is lazy-created:
+Further project-specific steering is lazy-created:
 
 - `tech.md` after command and stack discovery.
 - `product.md` only for greenfield work or explicit product context.

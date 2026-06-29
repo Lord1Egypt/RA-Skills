@@ -1,0 +1,291 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yeelight.com/schemas/skill-request.schema.json",
+  "title": "Yeelight SkillRequest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contractVersion",
+    "requestId",
+    "locale",
+    "utterance",
+    "intent"
+  ],
+  "properties": {
+    "contractVersion": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "requestId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "sessionId": {
+      "type": "string",
+      "maxLength": 256
+    },
+    "locale": {
+      "type": "string",
+      "enum": [
+        "zh-CN"
+      ]
+    },
+    "utterance": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "intent": {
+      "$ref": "#/$defs/intent"
+    },
+    "homeRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "useCurrent": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      }
+    },
+    "targets": {
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "$ref": "#/$defs/targetReference"
+      }
+    },
+    "parameters": {
+      "type": "object"
+    },
+    "conversationContext": {
+      "type": "object"
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "allowPartial": {
+          "type": "boolean"
+        },
+        "applyPersonalization": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "intent": {
+      "type": "string",
+      "enum": [
+        "home.summary",
+        "home.list",
+        "home.search",
+        "home.detail.get",
+        "home.stat.get",
+        "geo_area.children.list",
+        "geo_area.search",
+        "home.member.list",
+        "home.member.current.get",
+        "home.member.invite",
+        "home.member.accept_share",
+        "home.member.configure",
+        "home.member.remove",
+        "home.member.transfer",
+        "home.member.quit",
+        "home.sort.list",
+        "home.sort.configure",
+        "home.lock_all",
+        "home.unlock_all",
+        "home.create",
+        "home.update",
+        "home.delete",
+        "entity.list",
+        "entity.get",
+        "entity.capabilities",
+        "device.detail.get",
+        "device.attr.list",
+        "device.list",
+        "device.virtual_count.get",
+        "sensor.list",
+        "sensor.event.list",
+        "device.energy.summary",
+        "device.weather.get",
+        "meshgroup.detail.get",
+        "node.sorted_device.list",
+        "state.query",
+        "light.power.set",
+        "light.brightness.set",
+        "light.brightness.adjust",
+        "light.color_temperature.set",
+        "light.color_temperature.adjust",
+        "light.color.set",
+        "lighting.experience.apply",
+        "behavior.execute",
+        "scene.execute",
+        "scene.detail.get",
+        "scene.list",
+        "scene.scoped.list",
+        "scene.search",
+        "room.create",
+        "room.detail.get",
+        "room.list",
+        "room.search",
+        "room.rename",
+        "room.update",
+        "room.batch_create",
+        "room.batch_update",
+        "room.area.configure",
+        "room.delete",
+        "room.batch_delete",
+        "area.create",
+        "area.detail.get",
+        "area.update",
+        "area.delete",
+        "area.batch_delete",
+        "device.rename",
+        "device.move",
+        "device.move_room.batch",
+        "device.remove",
+        "device.unbind",
+        "entity.rename.batch",
+        "group.create",
+        "group.structure.list",
+        "group.list",
+        "group.search",
+        "group.detail.get",
+        "group.update",
+        "group.delete",
+        "group.batch_delete",
+        "scene.create",
+        "scene.update",
+        "scene.delete",
+        "scene.batch_delete",
+        "scene.test",
+        "automation.create",
+        "automation.supported.list",
+        "automation.supported.v2.list",
+        "automation.rule.list",
+        "automation.list",
+        "automation.list.page",
+        "automation.detail.get",
+        "schedule_job.list",
+        "message.list",
+        "gateway.detail.get",
+        "gateway.list",
+        "gateway.thread.get",
+        "gateway.stats.list",
+        "gateway.scene_relation.list",
+        "gateway.configure",
+        "gateway.delete",
+        "automation.update",
+        "automation.enable",
+        "automation.disable",
+        "automation.delete",
+        "automation.batch_delete",
+        "automation.explain",
+        "automation.capabilities",
+        "diagnose.device",
+        "diagnose.gateway",
+        "diagnose.scene",
+        "diagnose.automation",
+        "panel.get",
+        "panel.list",
+        "panel.button.type.get",
+        "panel.button.configure",
+        "panel.button_event.update",
+        "panel.button_event.batch_update",
+        "panel.button_event.reset",
+        "knob.get",
+        "knob.configure",
+        "knob.reset",
+        "screen.control.list",
+        "upgrade.file.list",
+        "upgrade.progress.get",
+        "upgrade.file.batch_list",
+        "progress.get",
+        "app_upgrade.latest.get",
+        "ota.version_file.batch_list",
+        "node.property_config.get",
+        "thing.schema.list",
+        "thing.schema.detail.list",
+        "thing.schema.get",
+        "thing.schema.event.list",
+        "thing.product.info.batch_get",
+        "thing.product.info.v3.batch_get",
+        "thing.product.list.v3",
+        "product.pedia.search",
+        "thing.product_domain.list",
+        "thing.product_faq.list",
+        "thing.product_faq.detail.get",
+        "thing.product_faq.type.list",
+        "thing.product_faq.item_type.list",
+        "thing.product_faq.locale.list",
+        "thing.product_faq.page.list",
+        "thing.product_faq.page_detail.list",
+        "thing.category.list",
+        "thing.component.list",
+        "thing.component.get",
+        "thing.property.list",
+        "ai_voice.product.list",
+        "lighting.design.plan",
+        "lighting.design.apply",
+        "memory.remember",
+        "memory.list",
+        "memory.forget",
+        "memory.pause",
+        "memory.resume",
+        "recommendation.list",
+        "recommendation.feedback",
+        "favorite.list",
+        "favorite.plan",
+        "favorite.add",
+        "favorite.update",
+        "favorite.delete",
+        "favorite.batch_add",
+        "favorite.batch_update",
+        "favorite.batch_delete",
+        "plan.commit",
+        "plan.cancel",
+        "execution.undo"
+      ]
+    },
+    "targetReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "entityType": {
+          "type": "string",
+          "enum": [
+            "home",
+            "area",
+            "room",
+            "gateway",
+            "group",
+            "device",
+            "scene",
+            "automation"
+          ]
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "filters": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

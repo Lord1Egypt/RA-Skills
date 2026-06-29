@@ -1,6 +1,6 @@
 # 关键词规划师工作流
 
-> **拓词命令**读本文；**建户 JSON + validate + create** 读 `references/google-ads/google-ads-campaign-plan.md`。关键词数量规则：`google-ads/rules/google-ads-keyword-taxonomy.md`。
+> **拓词命令**读本文；**建户 JSON + validate + create** 读 `references/google-ads/google-ads-campaign-plan.md`。关键词数量规则：`references/google-ads/rules/google-ads-keyword-taxonomy.md`。
 >
 > **数据口径**：`siluzan-tso keyword` 默认走 `keywordidea/google`（共享 MCC，出价 **USD**）；传 **`-a <mediaCustomerId>`** 时走 `keywordrecommendation/recommend/{id}/google`，出价币种为 `list-accounts` 的 **`currencyCode`**（如 CNY）。可选 `--url` 叠加 **网址拓词**（`websitereco`）。与 **`google-analysis` 投放表现**不是同一套数据。
 
@@ -59,7 +59,7 @@
 | 4   | 账户关键词表现 + 市场侧指标：`google-analysis` keywords → 抽词 → 分批 `keyword` | §3                              |
 | 5   | 搜索词 + 拓词：浪费流量 / 否词线索                                              | §4                              |
 | 6   | 高商业意图粗筛：CPC、竞争度、搜索量                                             | §5                              |
-| 7   | 否词或否词根落地：`ad keyword-negative-create` 等                               | §4 + `google-ads/google-ads.md` |
+| 7   | 否词或否词根落地：`ad keyword-negative-create` 等                               | §4 + `references/google-ads/google-ads.md` |
 | 8   | Campaign → AdGroup → JSON：`ad campaign-validate` → `ad campaign-create`        | §6                              |
 | 9   | 拓词结果导出：`keyword … --json-out`，供脚本消费                                | §7                              |
 
@@ -119,7 +119,7 @@ siluzan-tso keyword -k "pipe" --geo 2840,2826 --json-out ./snap-kw-merged
 ## 通用执行规范
 
 - **一律**对可复用中间结果使用 `--json-out <目录>`（或等价快照参数），再读 `cli-manifest*.json` / 各 section 的 `*.outline.txt` 了解字段；详见 **`references/core/tips.md`**。
-- **写账户**（新建系列/加词/加否词）：新建系列走 **`references/google-ads/google-ads-campaign-plan.md`**（含 `campaign-validate`）；其余写操作先与用户确认，写后用成对读命令复核（命令见 `google-ads/google-ads.md`）。
+- **写账户**（新建系列/加词/加否词）：新建系列走 **`references/google-ads/google-ads-campaign-plan.md`**（含 `campaign-validate`）；其余写操作先与用户确认，写后用成对读命令复核（命令见 `references/google-ads/google-ads.md`）。
 
 ---
 

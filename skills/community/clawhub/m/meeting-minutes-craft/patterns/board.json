@@ -1,0 +1,19 @@
+{
+  "name": "board",
+  "label": "董事会/高管会议型",
+  "description": "正式的高管会议纪要模板，侧重战略决策和治理",
+  "sections": [
+    {"id": "header", "title": "会议信息", "fields": ["会议名称", "日期", "地点", "出席人", "列席人"]},
+    {"id": "exec-summary", "title": "执行摘要", "type": "free", "highlight": true},
+    {"id": "previous-minutes", "title": "上次会议纪要确认", "type": "list"},
+    {"id": "reports", "title": "各项报告", "type": "table", "columns": ["报告人", "主题", "要点", "决议"]},
+    {"id": "key-decisions", "title": "重大决策", "type": "highlight", "number": true},
+    {"id": "financial", "title": "财务事项", "type": "table", "columns": ["项目", "预算", "实际", "说明"]},
+    {"id": "risks", "title": "风险评估", "type": "table", "columns": ["风险项", "等级", "应对措施"]},
+    {"id": "resolutions", "title": "正式决议", "type": "numbered"},
+    {"id": "actions", "title": "行动事项", "type": "table", "columns": ["事项", "负责人", "完成日期"]},
+    {"id": "next-meeting", "title": "下次会议", "type": "free"}
+  ],
+  "layout": "formal",
+  "formal_language": true
+}

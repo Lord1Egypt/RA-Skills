@@ -11,31 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and code reviewers use this skill to apply KISS, YAGNI, and SOLID guidance when designing, refactoring, or reviewing code for unnecessary complexity. <br>
+Developers and engineers use this skill during code review and refactoring to apply KISS, YAGNI, and SOLID principles, reduce unnecessary complexity, and improve maintainability. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Broad triggers may cause the skill to appear in general design or architecture conversations. <br>
-Mitigation: Invoke the skill explicitly or narrow trigger routing when users want code-quality guidance only in review and refactoring contexts. <br>
-Risk: General code-quality principles may be a poor fit for throwaway scripts, one-time migrations, or performance-critical code where readability tradeoffs are justified. <br>
-Mitigation: Apply the skill's stated non-use guidance before acting on its recommendations. <br>
+Risk: The skill may activate on broad design or architecture prompts and provide clean-code review guidance when not explicitly requested. <br>
+Mitigation: Disable the skill or narrow triggers when clean-code, SOLID, KISS, or YAGNI review should be opt-in. <br>
+Risk: General code-quality principles may be unsuitable for throwaway scripts, one-time migrations, or performance-critical code where readability tradeoffs are justified. <br>
+Mitigation: Review recommendations against the project context before applying them, especially for short-lived or performance-sensitive code. <br>
 
 
 ## Reference(s): <br>
-- [OpenClaw homepage for claude-night-market conserve](https://github.com/athola/claude-night-market/tree/master/plugins/conserve) <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-conserve-code-quality-principles) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-conserve-code-quality-principles) <br>
+- [OpenClaw homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [Guidance, Markdown, Code, Shell commands] <br>
-**Output Format:** [Markdown guidance with language-specific code examples and occasional shell command checks] <br>
+**Output Format:** [Markdown with code examples and inline shell commands] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Passive code-quality guidance; the artifact contains no executable code or hidden data access.] <br>
+**Other Properties Related to Output:** [Static clean-code guidance; no executable behavior, persistence, credential use, or data access.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata; artifact frontmatter reports 1.9.8) <br>
+1.9.13 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

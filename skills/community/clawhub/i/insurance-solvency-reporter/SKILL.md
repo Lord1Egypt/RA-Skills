@@ -2,7 +2,7 @@
 name: Insurance Solvency Report Generator
 description: AI-powered solvency report generator for China C-ROSS Phase II (Rules II, effective 2024-03-18) regulation. Generates quarterly and annual solvency reports, capital adequacy calculations, stress testing reports, and SARM/IRR risk rating documentation. Covers 2025-2026 latest regulatory updates including interest rate risk optimization and group insurance capital rules. Built for Chinese insurance company CFOs, actuaries, and compliance teams. Keywords: solvency, C-ROSS, solvency ratio, capital adequacy, regulatory reporting, insurance capital, NFRA, SARM, IRR, 偿付能力报告, 偿二代, 资本充足率, 季度报告, 年度报告, 压力测试, 风险评级, 精算报告, NFRA监管, 核心偿付能力.
 slug: insurance-solvency
-version: "4.1.0"
+version: "4.1.1"
 ---
 
 # Insurance Solvency Report Generator (C-ROSS) / 偿付能力报告生成器（偿二代二期工程）
@@ -33,6 +33,18 @@ version: "4.1.0"
 **中文触发词（优先）：** 偿付能力、偿付能力报告、C-ROSS、偿二代、核心资本、最低资本、综合资本充足率、偿付能力充足率、压力测试、风险资本、保险监管报告、RBC、C-ROSS Rules II、规则Ⅱ、保险资本管理
 
 ---
+
+
+### 保险监管最新动态 [2026-06-28更新]
+
+| 动态类型 | 内容摘要 | 发布时间 | 影响范围 |
+|---------|---------|---------|---------|
+| 监管发布 | 金融监管总局发布《关于银行业保险业人工智能安全开发应用的指导意见》，界定承保理赔、风险管理等为AI高风险应用场景 | 2026-06-18 | 保险AI应用合规与风险管控 |
+| 监管计划 | NFRA发布《2026年规章制定工作计划》：保险资金运用管理办法、偿付能力管理办法纳入修订，流动性风险、网络安全管理办法新制定 | 2026-06-23 | 保险监管全链条 |
+| 监管施行 | NFRA 2026年第2号令《银行保险机构许可证管理办法》6月1日起施行，取消保险许可证统一为金融许可证 | 2026-06-01 | 保险业务资质与合规管理 |
+
+> **数据截止**: 2026-06-28 | 来源：国家金融监督管理总局、行业公开信息
+> **声明**: 以上动态供参考，具体以官方最新发布为准
 
 ## Core Capabilities / 核心能力
 

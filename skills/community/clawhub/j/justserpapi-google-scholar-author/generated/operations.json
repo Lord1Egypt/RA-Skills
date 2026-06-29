@@ -1,0 +1,100 @@
+{
+  "baseUrl": "https://api.justserpapi.com",
+  "description": "Call GET /api/v1/google/scholar/author for Google SERP Scholar Author through Just Serp API with author_id.",
+  "displayName": "Google SERP Scholar Author",
+  "endpointPath": "scholar/author",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Google scholar Author data, including publications, citation metrics, and research interests, for researcher analysis and academic profiling.",
+      "method": "GET",
+      "operationId": "ScholarAuthor",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "The unique Google Scholar ID of the researcher/author (e.g., 'LSs6DR8AAAAJ').",
+          "enumValues": [],
+          "location": "query",
+          "name": "author_id",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The number of results to return per page.",
+          "enumValues": [],
+          "location": "query",
+          "name": "results",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the language for the results using its two-letter code (e.g., 'en' for English, 'fr' for French). See <a href=\"/reference/google-language\">Google Language</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "language",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Specific view operation for the author profile. Use 'list_colleagues' to see co-authors or 'view_citation' for article details.",
+          "enumValues": [],
+          "location": "query",
+          "name": "view_op",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Sorting criteria for the author's publications. Supported values: 'title', 'pubdate'.",
+          "enumValues": [],
+          "location": "query",
+          "name": "sort",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The citation ID to view details for (required when 'view_op' is 'view_citation').",
+          "enumValues": [],
+          "location": "query",
+          "name": "citation_id",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/v1/google/scholar/author",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        },
+        {
+          "description": "Authentication failed: API Key is invalid or missing",
+          "statusCode": "401"
+        },
+        {
+          "description": "Access denied: Insufficient credits or quota exceeded",
+          "statusCode": "403"
+        },
+        {
+          "description": "Internal server error or upstream service exception",
+          "statusCode": "500"
+        }
+      ],
+      "summary": "Author",
+      "tags": [
+        "Google Scholar"
+      ]
+    }
+  ],
+  "platformKey": "google",
+  "primaryTag": "Google SERP",
+  "skillName": "justserpapi_google_scholar_author",
+  "skillType": "interface",
+  "slug": "justserpapi-google-scholar-author",
+  "sourceTitle": "API Shop Documentation"
+}

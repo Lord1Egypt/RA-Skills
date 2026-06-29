@@ -11,38 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineering teams use this skill to inspect code changes, identify test gaps, generate or update pytest/BDD test scaffolding, and validate test quality before commits or CI runs. <br>
+Developers and engineering teams use this skill to maintain test coverage after code changes, generate TDD/BDD test scaffolding, improve existing tests, and validate test quality before commit or CI review. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can inspect code, create or update tests, and run validation commands, which may modify repository files or exercise untrusted project code. <br>
-Mitigation: Use a clean git worktree or sandbox, review generated changes before committing, and run commands only against intended target paths. <br>
-Risk: Mutation testing and broad scans can be slow or resource-intensive on large or sensitive repositories. <br>
-Mitigation: Prefer targeted paths, quick mutation settings, and staged validation before running broad analysis. <br>
-Risk: Generated test scaffolds or recommendations may not fully capture project-specific behavior or invariants. <br>
-Mitigation: Have developers complete and review generated tests, confirm failing tests fail for the intended reason, and preserve invariant tests unless a human approves a design change. <br>
+Risk: Generated tests or TDD-driven code changes may encode incorrect assumptions about the codebase. <br>
+Mitigation: Use explicit targets, review generated tests and any related code changes before committing, and run the relevant test suite to verify behavior. <br>
+Risk: Broad testing requests may activate the skill across large repositories and produce noisy or costly recommendations. <br>
+Mitigation: Start with a focused path or module for large repositories, then expand only after reviewing the first results. <br>
+Risk: Invariant-encoding tests can force architecture decisions when an invariant changes. <br>
+Mitigation: Treat changes to invariant tests as human review points and decide whether to preserve, layer around, or revise the invariant. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-sanctum-test-updates) <br>
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
-- [Publisher profile](https://clawhub.ai/user/athola) <br>
-- [modules/bdd-patterns.md](artifact/modules/bdd-patterns.md) <br>
-- [modules/test-discovery.md](artifact/modules/test-discovery.md) <br>
-- [modules/test-generation.md](artifact/modules/test-generation.md) <br>
-- [modules/quality-validation.md](artifact/modules/quality-validation.md) <br>
+- [ClawHub Skill Page](https://clawhub.ai/athola/skills/nm-sanctum-test-updates) <br>
+- [ClawHub Publisher Profile](https://clawhub.ai/user/athola) <br>
+- [OpenClaw Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code blocks, shell commands, test scaffolds, and validation recommendations.] <br>
+**Output Type(s):** [Guidance, Markdown, Code, Shell commands, Configuration instructions] <br>
+**Output Format:** [Markdown guidance with inline code and shell command examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose file changes and test commands; generated tests are intended for developer review and validation.] <br>
+**Other Properties Related to Output:** [May propose test scaffolding, pytest commands, coverage checks, and review checklists for user-selected targets.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata; artifact frontmatter says 1.9.8) <br>
+1.9.13 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -130,6 +130,7 @@ async function renderWithCoords(args, key) {
   const defaultRouteType = routeTypes[0] || 'driving';
 
   console.log(`\n🗺️  正在渲染行程地图（GPS 直连模式，无需地理编码）...`);
+  console.log(`⚠️  隐私提示：精确 GPS 坐标将通过网络发送给高德地图（Amap）API 以生成地图链接。`);
   console.log(`📍 GPS 坐标点: ${coords.length}`);
   if (routeTypes.length > 0) {
     console.log(`🛣️  路线类型: ${routeTypes.join(', ')}`);

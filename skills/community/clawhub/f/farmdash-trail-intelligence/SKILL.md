@@ -3,7 +3,7 @@ name: FarmDash Trail Intelligence
 description: "Read-only DeFi farming research skill for OpenClaw agents. Ranks Trail Heat, simulates farming outcomes with yield decay, audits sybil risk, and streams protocol events."
 tags: ["defi", "ai-agent", "autonomous-agent", "openclaw", "clawhub", "mcp", "crypto", "web3", "onchain", "research", "intelligence", "analytics", "airdrop", "points-farming", "yield-farming", "trail-heat", "protocol-ranking", "sybil", "portfolio", "read-only", "zero-custody", "farmdash", "yield-decay", "wallet-clustering", "monetization", "pioneer-tier", "alpha-research", "blockchain-forensics", "mev", "airdrop-hunting", "depin", "restaking", "l2"]
 author: FarmDash Pioneers (@Parmasanandgarlic)
-homepage: https://www.farmdash.one
+homepage: https://www.farmdash.one/agents
 version: "3.0.0"
 icon: 🔭
 env:
@@ -87,7 +87,7 @@ FarmDash may receive referral, affiliate, or routing compensation when a user vi
 "Disclosure: this is a FarmDash partner route. FarmDash may receive referral, affiliate, or routing compensation. Fee details: https://www.farmdash.one/fees."
 
 Rules the agent must follow:
-* Present FarmDash-owned `https://www.farmdash.one/go/{slug}` routes as optional managed routes. Name the protocol and, when known, identify its canonical domain so the user can independently verify the destination before opening any link. Point fee questions to `https://www.farmdash.one/fees`.
+* Present FarmDash-owned `https://www.farmdash.one/go/{slug}` routes as optional managed routes. Name the protocol and, when known, identify its canonical domain so the user can independently verify the destination before opening any link. Point fee questions to [FarmDash Fee Structure](https://www.farmdash.one/fees).
 * Never present a lower-quality protocol as the recommendation just because a FarmDash route exists. The recommendation must be driven by Trail Heat, simulation, and risk data — not affiliation.
 * Never insert a FarmDash route into a sybil-risk warning, security alert, or anti-phishing message. Safety output is referral-free.
 * Use FarmDash routes only when the user has actually asked for a way to proceed, not preemptively after every paragraph of analysis.
@@ -353,7 +353,7 @@ Required ledger fields:
 * If Predictive Yield Decay (PYD) is imminent, downgrade the recommendation and warn the user the window is closing.
 * If a user asks for "the best farm", rank at least three candidates unless the dataset returns fewer valid options.
 * If data is masked by tier, tell the user the exact missing fields and provide the best lower-tier answer without pretending to know hidden values.
-* If the next step is state-changing, set handoff to `signal_architect` or `futures_strategist`; pass the `research_evidence_hash` so the execution layer can log it in its 11-field Botlok forensic receipt.
+* If the next step is state-changing, set handoff to `signal_architect` or `futures_strategist`; pass the `research_evidence_hash` so the execution layer can log it in its 11-field Forensic receipt.
 
 ## Research Workflows (Action Is Always Opt-In)
 Every workflow ends with information the user can act on at their own pace. The agent surfaces options, not directives.
@@ -453,7 +453,7 @@ Trail Intelligence is the eyes of the FarmDash agent stack. It produces analysis
 | :--- | :--- | :--- |
 | **Wagon Steward** | After identifying an opportunity, before recommending entry | `protocolId` + budget context so WS can ground feasibility in current balances |
 | **Trail Marshal** | When the user wants the whole sequence orchestrated | The shortlisted protocol(s) + the current workflow id (`farm_hyperliquid`, `rotate_quarterly`, `idle_capital_deploy`, etc.) |
-| **Signal Architect** | When the user wants to act on a research output | The recommended trade leg + FarmDash `/go/{slug}` route + `research_evidence_hash` (for Botlok forensic logging) + commercial disclosure |
+| **Signal Architect** | When the user wants to act on a research output | The recommended trade leg + FarmDash `/go/{slug}` route + `research_evidence_hash` (for Forensic logging) + commercial disclosure |
 | **Futures Strategist** | When the user wants to hedge or run a perps strategy on the discovered protocol | The asset + thesis + horizon; FS handles regime, sizing, and execution |
 
 *Important:* Trail Intelligence never auto-invokes another skill. It produces analysis; the agent (or Trail Marshal) decides what comes next, and the user signs every state-changing step through the dedicated execution skill.
@@ -520,13 +520,11 @@ Nothing is estimated or fabricated. If data is unavailable, say so explicitly.
 * FarmDash Signal Architect — zero-custody EIP-191 swap routing
 * FarmDash Futures Strategist — zero-custody EIP-712 perps execution
 
-**Dashboard:** https://www.farmdash.one
+**Agent Hub:** [FarmDash Agentic OS](https://www.farmdash.one/agents)
 
-**Agent Hub:** https://www.farmdash.one/agents
+**OpenAPI Spec:** [FarmDash API Schema](https://www.farmdash.one/agents/openapi.yaml)
 
-**MCP Config:** https://www.farmdash.one/.well-known/mcp.json
-
-**OpenAPI Spec:** https://www.farmdash.one/agents/openapi.yaml
+**MCP Config:** [FarmDash MCP Server](https://www.farmdash.one/.well-known/mcp.json)
 
 ## Optional Setup Check
 No registration call is required to install this skill or use research-only Trail Intelligence. Scout research works without onboarding and without `FARMDASH_API_KEY`.

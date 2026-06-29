@@ -1,0 +1,175 @@
+# OpenClaw Workflow: 标书制作专家
+# 安装: 将此文件放入 OpenClaw workflows/ 目录
+# 使用方法: openclaw run workflow.yaml --input tender_file=/path/to/tender.pdf
+
+name: bid-document-maker
+display_name: 标书制作专家
+version: 1.0.0
+description: 将招标文件自动转化为专业应标书的完整工作流
+trigger: user_command
+
+# --- 工作流步骤定义 ---
+steps:
+
+  - id: parse
+    name: 解析招标文件
+    agent: tender-parser
+    description: 读取PDF/Word招标文件，提取结构化信息
+    input: "{user.tender_file}"
+    output: tender_info
+    config:
+      prompt_file: "../prompts/01-parse-tender.md"
+      schema_validate: "../schemas/tender-info.schema.json"
+    on_error:
+      - action: notify_user
+        message: "招标文件解析失败，请确认文件格式为PDF或Word"
+      - action: retry
+        max_retries: 2
+
+  - id: strategy
+    name: 策略分析
+    agent: strategy-analyst
+    description: 基于评分权重和自身优势制定投标策略
+    depends_on: [parse]
+    input: "{steps.parse.output}"
+    output: strategy_report
+    config:
+      prompt_file: "../prompts/02-strategy-and-outline.md"
+    on_error:
+      - action: notify_user
+        message: "策略分析失败，请检查评分标准是否完整"
+
+  - id: outline
+    name: 生成大纲
+    agent: strategy-analyst
+    description: 生成评分导向的完整应标书大纲
+    depends_on: [strategy]
+    input:
+      tender_info: "{steps.parse.output}"
+      strategy_report: "{steps.strategy.output}"
+    output: bid_outline
+    config:
+      prompt_file: "../prompts/02-strategy-and-outline.md"
+    user_interaction:
+      - action: present_outline
+        message: "大纲已生成，请确认是否进入写作阶段？"
+        options:
+          - label: "确认"
+            next: write_chapters
+          - label: "修改"
+            next: outline
+            retry: true
+
+  - id: write_chapters
+    name: 分章写作
+    description: 按大纲并行编写各章节内容
+    depends_on: [outline]
+    parallel:
+      - agent: technical_writer
+        id: write_technical
+        name: 技术方案写作
+        input: "{steps.outline.output}"
+        params:
+          chapter: technical_proposal
+          prompt_file: "../prompts/03-write-section.md"
+      - agent: implementation_writer
+        id: write_implementation
+        name: 实施方案写作
+        input: "{steps.outline.output}"
+        params:
+          chapter: implementation
+          prompt_file: "../prompts/03-write-section.md"
+      - agent: quality_writer
+        id: write_quality
+        name: 质量体系写作
+        input: "{steps.outline.output}"
+        params:
+          chapter: quality_assurance
+          prompt_file: "../prompts/03-write-section.md"
+      - agent: after_sales_writer
+        id: write_after_sales
+        name: 售后方案写作
+        input: "{steps.outline.output}"
+        params:
+          chapter: after_sales
+          prompt_file: "../prompts/03-write-section.md"
+      - agent: financial_writer
+        id: write_financial
+        name: 报价文件写作
+        input: "{steps.outline.output}"
+        params:
+          chapter: price_proposal
+          prompt_file: "../prompts/03-write-section.md"
+    output: chapters
+    on_error:
+      - action: partial_output
+        message: "部分章节写入失败，已完成的章节将进入质检"
+      - action: skip_failed
+        max_failures: 2
+
+  - id: quality_check
+    name: 质量检查
+    agent: quality-checker
+    description: 对标书进行全面质量检查并整合输出
+    depends_on: [write_chapters]
+    input:
+      chapters: "{steps.write_chapters.output}"
+      tender_info: "{steps.parse.output}"
+      bid_outline: "{steps.outline.output}"
+    output: quality_report
+    config:
+      prompt_file: "../prompts/04-quality-check.md"
+      bid_structure: "../templates/bid-structure.json"
+    on_error:
+      - action: notify_user
+        message: "质检过程遇到问题，将输出部分结果"
+
+  - id: pdca_improve
+    name: PDCA自动改进
+    agent: quality-checker
+    description: 执行3轮PDCA闭环改进（错误→警告→打磨），无需用户介入
+    depends_on: [quality_check]
+    input:
+      chapters: "{steps.write_chapters.output}"
+      quality_report: "{steps.quality_check.output}"
+      tender_info: "{steps.parse.output}"
+      bid_outline: "{steps.outline.output}"
+    output:
+      final_chapters: improved_chapters
+      pdca_report: improvement_report
+    config:
+      prompt_file: "../prompts/05-pdca-improvement.md"
+      pdca:
+        max_rounds: 3
+        round_1: { target: error, max_retries: 2, exit_condition: "errors == 0" }
+        round_2: { target: warning, max_retries: 1, exit_condition: "warnings <= 3" }
+        round_3: { target: suggestion, max_retries: 0, exit_condition: "force_complete" }
+    on_error:
+      - action: partial_output
+        message: "PDCA改进过程中遇到问题，将输出当前最佳版本"
+
+  - id: assemble
+    name: 文档整合输出
+    agent: docx-generator
+    description: 将PDCA改进后的章节整合为最终Word文档
+    depends_on: [pdca_improve]
+    input:
+      chapters: "{steps.pdca_improve.output.final_chapters}"
+      quality_report: "{steps.quality_check.output}"
+      pdca_report: "{steps.pdca_improve.output.pdca_report}"
+    output: final_document
+    config:
+      output_format: docx
+      template: "../templates/bid-structure.json"
+      format_rules: "../templates/format-rules.md"
+      include_pdca_report: true
+    on_error:
+      - action: fallback_to_markdown
+        message: "Word生成失败，将输出Markdown格式"
+
+# --- 全局配置 ---
+config:
+  max_retries: 3
+  timeout_per_step: 300
+  user_confirmation_required: true
+  output_dir: "./output"

@@ -1,0 +1,95 @@
+{
+  "name": "ui-hud-pack",
+  "description": "HUD, icons, menus, and buttons for a game UI pass.",
+  "defaults": {
+    "style": "readable game UI pixel art, crisp outline, compact NES/SNES-inspired controls, no antialiasing",
+    "palette": "dark navy, clear blue, warm cream, brick red, gold highlight",
+    "seed": 0
+  },
+  "references": [
+    "references/youtube-workflow-playbook.md",
+    "references/prompt-cheatsheet.md"
+  ],
+  "qa": [
+    "Inspect all UI at target scale for legibility.",
+    "Keep text out of generated art unless the user explicitly wants baked labels.",
+    "Prefer icon-only assets for runtime-localized UI."
+  ],
+  "assets": [
+    {
+      "id": "hud-strip",
+      "asset_type": "ui",
+      "endpoint": "/v2/generate-ui-v2",
+      "credit_risk": "low",
+      "prompt": "gameplay HUD strip for {{brief}}, hearts, coin counter, magic meter, compact top-left layout, transparent background, {{style}}, {{palette}}",
+      "payload": {
+        "description": "{{prompt}}",
+        "image_size": {
+          "width": 256,
+          "height": 64
+        },
+        "no_background": true,
+        "color_palette": "{{palette}}",
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "ui/hud-strip"
+    },
+    {
+      "id": "inventory-icons",
+      "asset_type": "ui",
+      "endpoint": "/v2/generate-ui-v2",
+      "seed_offset": 1,
+      "credit_risk": "low",
+      "prompt": "transparent 4x4 inventory icon sheet for {{brief}}: coin, key, map, potion, wand, boot, gem, leaf, heart, shield, medal, star, {{style}}, {{palette}}",
+      "payload": {
+        "description": "{{prompt}}",
+        "image_size": {
+          "width": 256,
+          "height": 256
+        },
+        "no_background": true,
+        "color_palette": "{{palette}}",
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "ui/inventory-icons"
+    },
+    {
+      "id": "menu-panel",
+      "asset_type": "ui",
+      "endpoint": "/v2/generate-ui-v2",
+      "seed_offset": 2,
+      "credit_risk": "low",
+      "prompt": "blank pause menu panel, carved corner trim, no text, transparent outer background, readable inner panel, {{style}}, {{palette}}",
+      "payload": {
+        "description": "{{prompt}}",
+        "image_size": {
+          "width": 256,
+          "height": 192
+        },
+        "no_background": true,
+        "color_palette": "{{palette}}",
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "ui/menu-panel"
+    },
+    {
+      "id": "button-states",
+      "asset_type": "ui",
+      "endpoint": "/v2/generate-ui-v2",
+      "seed_offset": 3,
+      "credit_risk": "low",
+      "prompt": "blank pixel UI button state sheet, normal hover pressed disabled, no text, compact game menu style, {{style}}, {{palette}}",
+      "payload": {
+        "description": "{{prompt}}",
+        "image_size": {
+          "width": 256,
+          "height": 64
+        },
+        "no_background": true,
+        "color_palette": "{{palette}}",
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "ui/button-states"
+    }
+  ]
+}

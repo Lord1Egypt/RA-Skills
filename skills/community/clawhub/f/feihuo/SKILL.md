@@ -1,7 +1,7 @@
 ---
 name: feihuo
 display_name: "飞伙"
-description: 使用 feihuo 命令行工具搜索航班、酒店、火车票、签证、旅行保险、欧铁通票、欧铁点对点车次或船票。适用于用户要查询机票、比较航班、搜索酒店、查询火车票、查询签证、查询旅行保险、查询欧铁通票、查询欧洲火车点对点、查询船票/轮船、查看各搜索命令参数、执行 feihuo flight-search、feihuo hotel-search、feihuo train-search、feihuo visa-search、feihuo insurance-search、feihuo eur-rail-pass-search、feihuo eur-rail-p2p-resolve-local、feihuo eur-rail-p2p-search、feihuo ship-resolve-local 或 feihuo ship-search 的场景。
+description: 使用内置飞伙 CLI 搜索航班、酒店、火车票、签证、旅行保险、欧铁通票、欧铁点对点车次或船票。适用于查询机票、酒店、火车票、签证、保险、欧铁与船票，或执行 flight-search、hotel-search、train-search、visa-search、insurance-search、eur-rail-pass-search、eur-rail-p2p-resolve-local、eur-rail-p2p-search、ship-resolve-local、ship-search 等子命令的场景。
 metadata:
   version: 0.0.1
   agent:
@@ -53,35 +53,27 @@ metadata:
 
 # 飞伙
 
-使用 `feihuo` 命令行工具搜索航班、酒店、火车票、签证、旅行保险、欧铁通票、欧铁点对点车次和船票。命令输出 JSON 到 `stdout`，错误信息输出到 `stderr`。
+所有命令均在**技能根目录**执行，统一入口：`node ./cli/index.js`。
+
+使用内置 CLI（`node ./cli/index.js`）搜索航班、酒店、火车票、签证、旅行保险、欧铁通票、欧铁点对点车次和船票。命令输出 JSON 到 `stdout`，错误信息输出到 `stderr`。
 
 ## 快速开始
 
-1. 安装 CLI：`npm install -g feihuo-cli`（**版本须 >= 2.0.0**；`2.0.0-beta1` 等 2.x 预发布版同样满足，**1.x 不可用**。安装后执行 `feihuo --version` 确认）
-2. 确保 `~/.openclaw/qclaw/user-info.json` 存在且包含有效的 `accessToken`
-3. 查看帮助：`feihuo --help`
-4. 搜索航班：`feihuo flight-search --dep "上海" --arr "东京" --dep-date 2026-03-20`
-5. 搜索酒店：`feihuo hotel-search --city-name "上海" --check-in-date 2026-03-20 --check-out-date 2026-03-25`
-6. 搜索火车票：`feihuo train-search --dep "上海" --arr "北京" --dep-date 2026-03-20`
-7. 搜索签证：`feihuo visa-search --country "日本" --visa-type tourist`
-8. 搜索旅行保险：`feihuo insurance-search --country "日本" --days 7`
-9. 搜索欧铁通票：`feihuo eur-rail-pass-search --country "法国"`
-10. 搜索欧铁点对点：先 `feihuo eur-rail-p2p-resolve-local --query "巴黎"` 取得 `code`，再 `feihuo eur-rail-p2p-search --dep ... --arr ... --dep-date 2026-06-01`
-11. 搜索船票：先 `feihuo ship-resolve-local --query "琶洲"` 取得 `code`，再 `feihuo ship-search --dep ... --arr ... --dep-date 2026-06-01`
+1. 查看帮助：`node ./cli/index.js --help`
+2. 搜索航班：`node ./cli/index.js flight-search --dep "上海" --arr "东京" --dep-date 2026-03-20`
+3. 搜索酒店：`node ./cli/index.js hotel-search --city-name "上海" --check-in-date 2026-03-20 --check-out-date 2026-03-25`
+4. 搜索火车票：`node ./cli/index.js train-search --dep "上海" --arr "北京" --dep-date 2026-03-20`
+5. 搜索签证：`node ./cli/index.js visa-search --country "日本" --visa-type tourist`
+6. 搜索旅行保险：`node ./cli/index.js insurance-search --country "日本" --days 7`
+7. 搜索欧铁通票：`node ./cli/index.js eur-rail-pass-search --country "法国"`
+8. 搜索欧铁点对点：先 `node ./cli/index.js eur-rail-p2p-resolve-local --query "巴黎"` 取得 `code`，再 `node ./cli/index.js eur-rail-p2p-search --dep ... --arr ... --dep-date 2026-06-01`
+9. 搜索船票：先 `node ./cli/index.js ship-resolve-local --query "琶洲"` 取得 `code`，再 `node ./cli/index.js ship-search --dep ... --arr ... --dep-date 2026-06-01`
 
 ## 认证
 
-CLI 从以下文件读取访问令牌：
+CLI 已内置在技能目录 `./cli/`，通过 FClaw 注入的 `FCLAW_OIDC_TOKEN_URL` 与 `FCLAW_OIDC_TOKEN_SECRET` 从本地 OIDC token 端点获取 access_token。请在 FClaw 中登录，并在技能根目录下执行命令（工作目录须包含 `cli/index.js`）。
 
-```text
-~/.openclaw/qclaw/user-info.json
-```
-
-JSON 中需包含 `accessToken` 字段。请求 API 时自动设置：
-
-```http
-Authorization: Bearer <accessToken>
-```
+请求 API 时自动设置 `Authorization: Bearer <accessToken>`。
 
 ## 命令能力
 
@@ -90,9 +82,9 @@ Authorization: Bearer <accessToken>
 搜索航班，支持单程和往返。
 
 ```bash
-feihuo flight-search --dep "上海" --arr "东京" --dep-date 2026-03-20
-feihuo flight-search --dep "上海" --arr "东京" --dep-date 2026-03-20 --back-date 2026-03-25 --berth-type Y
-feihuo flight-search --dep "广州" --arr "东京" --dep-date 2026-06-18 --back-date 2026-06-21 --min-price 2000 --max-price 4000
+node ./cli/index.js flight-search --dep "上海" --arr "东京" --dep-date 2026-03-20
+node ./cli/index.js flight-search --dep "上海" --arr "东京" --dep-date 2026-03-20 --back-date 2026-03-25 --berth-type Y
+node ./cli/index.js flight-search --dep "广州" --arr "东京" --dep-date 2026-06-18 --back-date 2026-06-21 --min-price 2000 --max-price 4000
 ```
 
 详细参数见 [references/flight-search.md](references/flight-search.md)。
@@ -102,8 +94,8 @@ feihuo flight-search --dep "广州" --arr "东京" --dep-date 2026-06-18 --back-
 搜索酒店，支持按城市、入住/离店日期、区域、星级和价格筛选。
 
 ```bash
-feihuo hotel-search --city-name "上海" --check-in-date 2026-03-20 --check-out-date 2026-03-25
-feihuo hotel-search --city-name "上海" --check-in-date 2026-03-20 --check-out-date 2026-03-25 --region-name "人民广场" --stars 3,4,5 --min-price 300 --max-price 1000
+node ./cli/index.js hotel-search --city-name "上海" --check-in-date 2026-03-20 --check-out-date 2026-03-25
+node ./cli/index.js hotel-search --city-name "上海" --check-in-date 2026-03-20 --check-out-date 2026-03-25 --region-name "人民广场" --stars 3,4,5 --min-price 300 --max-price 1000
 ```
 
 详细参数见 [references/hotel-search.md](references/hotel-search.md)。
@@ -113,9 +105,9 @@ feihuo hotel-search --city-name "上海" --check-in-date 2026-03-20 --check-out-
 搜索火车票，支持按火车类型、座位类型、排序方式、车次、出发小时和到达小时筛选。
 
 ```bash
-feihuo train-search --dep "上海" --arr "北京" --dep-date 2026-03-20
-feihuo train-search --dep "上海" --arr "北京" --dep-date 2026-03-20 --train-type high-speed --dep-hour-start 8 --dep-hour-end 12
-feihuo train-search --dep "上海" --arr "北京" --dep-date 2026-03-20 --seat-type second-class --sort-type price-low-to-high
+node ./cli/index.js train-search --dep "上海" --arr "北京" --dep-date 2026-03-20
+node ./cli/index.js train-search --dep "上海" --arr "北京" --dep-date 2026-03-20 --train-type high-speed --dep-hour-start 8 --dep-hour-end 12
+node ./cli/index.js train-search --dep "上海" --arr "北京" --dep-date 2026-03-20 --seat-type second-class --sort-type price-low-to-high
 ```
 
 详细参数见 [references/train-search.md](references/train-search.md)。
@@ -125,8 +117,8 @@ feihuo train-search --dep "上海" --arr "北京" --dep-date 2026-03-20 --seat-t
 搜索签证，支持按目的地国家和签证类型筛选。
 
 ```bash
-feihuo visa-search --country "日本"
-feihuo visa-search --country "日本" --visa-type tourist
+node ./cli/index.js visa-search --country "日本"
+node ./cli/index.js visa-search --country "日本" --visa-type tourist
 ```
 
 详细参数见 [references/visa-search.md](references/visa-search.md)。
@@ -136,8 +128,8 @@ feihuo visa-search --country "日本" --visa-type tourist
 按目的地国家和保障天数搜索旅行保险。
 
 ```bash
-feihuo insurance-search --country "日本" --days 7
-feihuo insurance-search --country "泰国" --days 15
+node ./cli/index.js insurance-search --country "日本" --days 7
+node ./cli/index.js insurance-search --country "泰国" --days 15
 ```
 
 详细参数见 [references/insurance-search.md](references/insurance-search.md)。
@@ -147,8 +139,8 @@ feihuo insurance-search --country "泰国" --days 15
 搜索欧铁通票；不传 `--country` 时返回欧洲通票列表。
 
 ```bash
-feihuo eur-rail-pass-search
-feihuo eur-rail-pass-search --country "法国"
+node ./cli/index.js eur-rail-pass-search
+node ./cli/index.js eur-rail-pass-search --country "法国"
 ```
 
 详细参数见 [references/eur-rail-pass-search.md](references/eur-rail-pass-search.md)。
@@ -158,8 +150,8 @@ feihuo eur-rail-pass-search --country "法国"
 解析欧铁城市或车站（模糊匹配），**搜索 P2P 前必须先执行**，从返回的 `items[].code` 取得 `--dep` / `--arr`。
 
 ```bash
-feihuo eur-rail-p2p-resolve-local --query "巴黎"
-feihuo eur-rail-p2p-resolve-local --query "Paris" --type station
+node ./cli/index.js eur-rail-p2p-resolve-local --query "巴黎"
+node ./cli/index.js eur-rail-p2p-resolve-local --query "Paris" --type station
 ```
 
 详细参数见 [references/eur-rail-p2p-resolve-local.md](references/eur-rail-p2p-resolve-local.md)。
@@ -169,8 +161,8 @@ feihuo eur-rail-p2p-resolve-local --query "Paris" --type station
 搜索欧铁点对点车次；`--dep` 与 `--arr` 当前**须为**上一步 `resolve-local` 的 `items[].code`，不可直接用中文城市名。
 
 ```bash
-feihuo eur-rail-p2p-search --dep "FR:paris" --arr "GB:london" --dep-date 2026-06-01
-feihuo eur-rail-p2p-search --dep "FR:paris" --arr "GB:london" --dep-date 2026-06-01 --back-date 2026-06-05
+node ./cli/index.js eur-rail-p2p-search --dep "FR:paris" --arr "GB:london" --dep-date 2026-06-01
+node ./cli/index.js eur-rail-p2p-search --dep "FR:paris" --arr "GB:london" --dep-date 2026-06-01 --back-date 2026-06-05
 ```
 
 若 `resolve-local` 返回多条候选，**必须让用户选定**后再搜索。
@@ -182,8 +174,8 @@ feihuo eur-rail-p2p-search --dep "FR:paris" --arr "GB:london" --dep-date 2026-06
 解析船票港口（模糊匹配），**搜索船票前必须先执行**，从返回的 `items[].code` 取得 `--dep` / `--arr`。
 
 ```bash
-feihuo ship-resolve-local --query "琶洲"
-feihuo ship-resolve-local --query "香港"
+node ./cli/index.js ship-resolve-local --query "琶洲"
+node ./cli/index.js ship-resolve-local --query "香港"
 ```
 
 详细参数见 [references/ship-resolve-local.md](references/ship-resolve-local.md)。
@@ -193,8 +185,8 @@ feihuo ship-resolve-local --query "香港"
 搜索船票；`--dep` 与 `--arr` 当前**须为**上一步 `resolve-local` 的 `items[].code`，不可直接用中文港口名。
 
 ```bash
-feihuo ship-search --dep "PZ" --arr "HKA" --dep-date 2026-06-01
-feihuo ship-search --dep "PZ" --arr "HKA" --dep-date 2026-06-01 --back-date 2026-06-05
+node ./cli/index.js ship-search --dep "PZ" --arr "HKA" --dep-date 2026-06-01
+node ./cli/index.js ship-search --dep "PZ" --arr "HKA" --dep-date 2026-06-01 --back-date 2026-06-05
 ```
 
 若 `resolve-local` 返回多条候选，**必须让用户选定**后再搜索。
@@ -242,7 +234,7 @@ feihuo ship-search --dep "PZ" --arr "HKA" --dep-date 2026-06-01 --back-date 2026
 假设今天为 `2026-06-12`，则下周四为 `2026-06-18`，返程为 `2026-06-21`：
 
 ```bash
-feihuo flight-search --dep "广州" --arr "东京" --dep-date 2026-06-18 --back-date 2026-06-21 --min-price 2000 --max-price 4000
+node ./cli/index.js flight-search --dep "广州" --arr "东京" --dep-date 2026-06-18 --back-date 2026-06-21 --min-price 2000 --max-price 4000
 ```
 
 **错误做法**：省略 `--min-price` / `--max-price`，拿到结果后再按价格过滤。

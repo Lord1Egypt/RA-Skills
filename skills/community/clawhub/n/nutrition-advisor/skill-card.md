@@ -1,5 +1,5 @@
 ## Description: <br>
-Megan is a nutrition advisor that estimates calories, TDEE/BMR, macronutrient targets, meal plans, hydration needs, fasting options, cycle-aware nutrition guidance, and food logs. <br>
+Megan calculates food calories and provides nutrition-oriented meal guidance. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,30 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users use this skill to estimate nutrition targets, plan meals, track food and hydration, and receive lifestyle nutrition suggestions. The guidance is informational and is not a substitute for a qualified clinician or registered nutrition professional. <br>
+External users can use this skill to estimate calories, calculate TDEE/BMR, plan macros, log meals and hydration, and get nutrition guidance for cycle-aware planning, fasting, blood glucose, digestive health, sleep, stress, and anti-inflammatory diet topics. Users should treat the output as general nutrition guidance, not medical diagnosis or individualized clinical care. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may store sensitive body metrics, menstrual or reproductive-health details, allergies, food logs, and hydration data locally. <br>
-Mitigation: Use it only on a trusted device, review what is stored under ~/nutrition-data, and delete that folder when the records are no longer needed. <br>
-Risk: Nutrition, fasting, supplement, PCOS, pregnancy, and other medical-adjacent guidance may be inappropriate for some users. <br>
-Mitigation: Treat the guidance as informational, avoid using it as a substitute for professional care, and consult a qualified clinician for medical conditions or pregnancy-related decisions. <br>
-Risk: Calorie, macro, food, and restaurant estimates can be incomplete or inaccurate. <br>
-Mitigation: Review estimates before relying on them and avoid unsafe restriction; the skill's own guidance includes minimum daily calorie floors and recommends professional consultation for special cases. <br>
+Risk: The skill stores personal nutrition and body data locally under ~/nutrition-data. <br>
+Mitigation: Install only if local storage of this data is acceptable, and review or delete the local JSON files when they are no longer needed. <br>
+Risk: Diet, supplement, fasting, pregnancy, PCOS, cycle-related, and blood-glucose guidance could be mistaken for medical care. <br>
+Mitigation: Treat outputs as general guidance and consult qualified health professionals for medical conditions, pregnancy, eating disorder history, or other high-risk circumstances. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/yamyeed/nutrition-advisor) <br>
-- [Publisher profile](https://clawhub.ai/user/yamyeed) <br>
+- [ClawHub skill page](https://clawhub.ai/yamyeed/skills/nutrition-advisor) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [text, markdown, guidance, configuration] <br>
-**Output Format:** [Markdown responses with nutrition estimates, tables, plans, and tracking summaries.] <br>
+**Output Format:** [Markdown or plain text guidance] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose local JSON records under ~/nutrition-data for profiles, daily logs, and hydration.] <br>
+**Other Properties Related to Output:** [May guide local JSON profile, meal log, hydration, and habit data under ~/nutrition-data.] <br>
 
 ## Skill Version(s): <br>
-4.0.0 (source: SKILL.md frontmatter and server release metadata) <br>
+4.2.1 (source: release evidence; artifact frontmatter says 4.2.0) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

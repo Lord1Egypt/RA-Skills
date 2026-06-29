@@ -1,0 +1,4 @@
+% --- 分栏系统 ---
+\newenvironment{mycolumns}[1][3]
+  {\begin{multicols}{#1}\raggedcolumns\small}
+  {\end{multicols}}

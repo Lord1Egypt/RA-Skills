@@ -1,0 +1,89 @@
+{
+  "id": "fec-drawio-studio",
+  "name": "Editable technical diagram workflow",
+  "category": "design-ui",
+  "tags": [
+    "drawio",
+    "diagrams.net",
+    "diagram",
+    "architecture-diagram",
+    "uml",
+    "erd",
+    "autolayout",
+    "shape-search"
+  ],
+  "summary": "Editable draw.io / diagrams.net workflow for technical diagrams, official shape lookup, brand symbols, Graphviz layout, code structure maps, validation, and export fallback.",
+  "version": "2.8.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "design-ui",
+    "drawio",
+    "diagrams.net",
+    "diagram",
+    "architecture-diagram",
+    "uml",
+    "erd",
+    "autolayout",
+    "shape-search",
+    "editable-diagram",
+    "sequence-diagram",
+    "flowchart",
+    "code-structure-map"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when creating editable technical diagrams with draw.io / diagrams.net sources, including architecture diagrams, ERD, UML, sequence diagrams, flowcharts, ML model diagrams, official shape lookup, brand symbols, Graphviz auto-layout, codebase structure maps, .drawio validation, or draw.io CLI export fallback. Do not use for ordinary raster image generation, freehand sketches, interactive canvas/Three.js scenes, or decorative SVG animation. Chinese triggers include draw.io, diagrams.net, editable architecture diagrams, .drawio, ER diagrams, UML, sequence diagrams, auto layout, shape retrieval, code structure diagrams.",
+  "source": "skills/fec-drawio-studio",
+  "references": [
+    "data/THIRD_PARTY_NOTICES.md",
+    "data/brand-icons.json",
+    "data/shape-index.json",
+    "references/data-residency.md",
+    "references/diagram-patterns.md",
+    "references/flowchart-quality.md",
+    "references/xml-and-mermaid.md",
+    "scripts/brand-symbols.mjs",
+    "scripts/diagram-url.mjs",
+    "scripts/layout-graph.mjs",
+    "scripts/scan-go-packages.mjs",
+    "scripts/scan-js-modules.mjs",
+    "scripts/scan-python-classes.mjs",
+    "scripts/scan-python-modules.mjs",
+    "scripts/scan-rust-modules.mjs",
+    "scripts/scan-ts-modules.mjs",
+    "scripts/shape-query.mjs",
+    "scripts/studio-core.mjs"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-image-generation",
+      "fec-canvas-threejs",
+      "fec-svg-animation",
+      "fec-ui-design",
+      "fec-source-driven-development"
+    ],
+    "boundaryWorkflows": [
+      "Use image generation for raster-first posters, visual concepts, product images, and PNG QA beyond editable technical diagrams.",
+      "Use image generation's HTML technical diagram route when the priority is a browser-ready themed single-file workflow, sequence, data-flow, or lifecycle diagram.",
+      "Use Canvas/Three.js when the diagram becomes an interactive runtime visualization, simulation, game scene, shader, or 3D renderer.",
+      "Use SVG animation for motion-specific vector micro-interactions; use drawio studio for static or editable technical SVG exports."
+    ],
+    "capabilityTags": [
+      "drawio",
+      "editable-diagram",
+      "autolayout",
+      "shape-search",
+      "code-structure-map"
+    ]
+  }
+}

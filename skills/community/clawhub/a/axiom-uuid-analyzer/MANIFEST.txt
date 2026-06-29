@@ -1,0 +1,9 @@
+# Manifest — axiom-uuid-analyzer (public, clean)
+# Edition: Capafy voice (zero cluster jargon)
+# Generated: 2026-06-14T20:45:39Z
+
+14d7852767f91e0daa3bc270784b272adf8be2b02d03b6e95fb5ea8135197f57  LICENSE  (45 bytes)
+347094808a6fb43da46f34d728fbb3ae70d554e9b5e0a56c424a49e17ccb2d27  README.md  (1450 bytes)
+8e3c29877c8100ce60c7e8c9b57f117e7c18fc399e452359a11af8d5a43f1259  SKILL.md  (554 bytes)
+932735c9f97f6c381cdf3ce61d44ebbdf9270a5656849e98991dbc8e10989a75  axiom_uuid_analyzer.py  (9510 bytes)
+363e754a518bd666f204a3531eb46e23acb2e5f83e7371a58b21667f1942187e  test_axiom_uuid_analyzer.py  (3174 bytes)

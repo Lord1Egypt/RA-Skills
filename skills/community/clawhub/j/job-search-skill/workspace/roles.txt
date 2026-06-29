@@ -1,0 +1,16 @@
+# One job title per line. Blank lines and lines starting with # are ignored.
+# Update this file whenever your job search focus changes.
+
+Software Engineer
+Senior Software Engineer
+Technical Lead
+Lead Software Engineer
+Technical Project Manager
+Engineering Manager
+.NET Developer
+Senior .NET Developer
+C# Developer
+Azure Developer
+Fintech Developer
+Application Support Engineer
+Senior Application Support Engineer

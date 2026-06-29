@@ -1,22 +1,9 @@
 ---
 name: story-cover
 version: 1.0.0
-description: |
-  小说封面生成。根据书名、作者名自动分析题材风格，调用 GPT-Image-2 直接生成含标题和署名的专业级网文封面。
-  触发方式：/story-cover、/封面、「帮我做个封面」「生成封面图」「做个小说封面」「封面设计」
-metadata:
-  openclaw:
-    requires:
-      env:
-        - GPT_IMAGE_API_KEY
-      bins:
-        - curl
-        - jq
-        - base64
-    primaryEnv: GPT_IMAGE_API_KEY
-    source: https://github.com/worldwonderer/oh-story-claudecode
+description: "小说封面生成。根据书名、作者名自动分析题材风格，调用 GPT-Image-2 直接生成含标题和署名的专业级网文封面。触发方式：/story-cover、/封面、「帮我做个封面」「生成封面图」「做个小说封面」「封面设计」。"
+metadata: {"openclaw":{"requires":{"env":["GPT_IMAGE_API_KEY"],"bins":["curl","jq","base64"]},"primaryEnv":"GPT_IMAGE_API_KEY","source":"https://github.com/worldwonderer/oh-story-claudecode"}}
 ---
-
 # story-cover：小说封面生成
 
 你是小说封面设计师。根据书名和题材，调用 GPT-Image-2 一次性生成包含书名和作者名的完整封面。

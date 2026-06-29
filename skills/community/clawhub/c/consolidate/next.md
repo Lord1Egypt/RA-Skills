@@ -141,11 +141,6 @@ If actionable items (Critical + Minor + Refactor) total 2 or more, do not create
 ]
 ```
 
-**Reinforced self-check** (immediately before option drafting — additional items):
-
-5. If actionable items total 2 or more, are all **3 branching options** included? (Critical only deferred / Minor only deferred / All deferred — matching the branching table above)
-6. Is "All deferred" always included as one of the recommended options regardless of the number of actionable items?
-
 **Don't / Do table**:
 
 | # | Don't | Do |
@@ -161,6 +156,19 @@ If actionable items (Critical + Minor + Refactor) total 2 or more, do not create
 2. Has the tracking medium been determined per environment (whether `.ralph/` exists)?
 3. Does the option description include all of (a) AI Review Summary URL (b) tracking location (c) form?
 4. Is the post-merge tracking-medium registration bundled as a separate executable task?
+5. If actionable items total 2 or more, are all **3 branching options** included? (Critical only deferred / Minor only deferred / All deferred — matching the branching table above)
+6. Is "All deferred" always included as one of the recommended options regardless of the number of actionable items?
+7. **Reject findings axis check (HARD STOP)**: are there 1+ findings auto-classified as Reject in Step 4? → If yes, **Reject findings must appear as a user-override option** in this Step 8 ask. See "Reject finding option mandate" below
+8. **Risky-command self-check inside option description (HARD STOP)**: scan each option description for the following keywords. If any is present, **the keyword alone is NOT user authorization** — strip it or split into a separate AskUserQuestion explicitly asking for execution:
+   - `rebase`, `git rebase`, `git pull --rebase`
+   - `reset --hard`, `git reset`, `git branch -f`, `git update-ref`
+   - `push --force`, `push -f`, `--force-with-lease`
+   - `worktree remove`, `branch -D` (uppercase D)
+   - `gh pr close`, `gh issue close`
+   - any command listed in `~/.agents/rules/git.md` ask-required-commands section
+
+   Rationale: option selection = "bundle execution intent" only. Each risky command inside the bundle needs separate explicit authorization — `git.md` "option-description keyword is not explicit instruction" rule. See `failed-attempts.md` "option description rebase auto-execution".
+9. **PR scope analysis source (HARD STOP)**: if the option references "PR diff scope", "PR files", "what PR modified", verify against `gh pr view --json files` (canonical). Forbidden sources for PR scope: `git diff a..b --name-only` (two-dot = bidirectional, includes files main added but PR did not absorb). Cross-check with `git log <base>..HEAD -- <file>` per finding. Mismatch between `gh pr view --json files` (PR-touched) and `git diff a..b` (bidirectional) = signal that the finding may misattribute main's change to PR — see `failed-attempts.md` "two-dot diff PR scope misinterpretation".
 
 ### Cross-PR Epic bundling auto-suggest (offer when deferred findings accumulate across PRs)
 
@@ -172,9 +180,8 @@ After registering this PR's deferred items in the tracking checklist, check whet
 
 - This is an **offer**, not an auto-run — Epic issue creation needs explicit user approval (`git.md` no-autonomous-issue-create). The caller selects whichever epic-bundling workflow is registered in the environment (vendor-agnostic — `gh issue create` with sub-issue links is the minimal path).
 - Do not add this option when only the current PR has deferred items — single-PR deferral is already covered by the section above.
-5. **Reject findings axis check (HARD STOP — 2026-05-24)**: are there 1+ findings auto-classified as Reject in Step 4? → If yes, **Reject findings must appear as a user-override option** in this Step 8 ask. See "Reject finding option mandate" below
 
-### Reject finding option mandate (HARD STOP — added 2026-05-24)
+### Reject finding option mandate (HARD STOP)
 
 **A Reject decision must also be user-overridable.** Even if Step 4 auto-classified a finding as Reject via the `superpowers:receiving-code-review` "Push back when wrong" procedure, the Step 8 next-action ask must **expose that Reject decision to the user**. If Reject disappears from the options, the user cannot choose "apply it anyway" / "keep it Rejected" → Resume scope shrinks.
 
@@ -258,3 +265,4 @@ The next skill performs the AskUserQuestion call + result handling. The consolid
 ## Workflow termination
 
 Handle user decisions based on the next/wip invocation result. The consolidate skill terminates here.
+

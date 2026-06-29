@@ -1,0 +1,35 @@
+{
+  "protocol": "research_kb_agent_task",
+  "protocolVersion": "1.0",
+  "taskId": "query_sample_001",
+  "taskType": "kb_query",
+  "requestedAt": "2026-06-25T12:00:00+08:00",
+  "requester": {
+    "userId": 1,
+    "email": "user@example.com",
+    "displayName": "Sample User",
+    "role": "member",
+    "giteaUsername": "sample"
+  },
+  "kbTargets": [
+    {
+      "kbType": "team",
+      "repoOwner": "AIFusionBot",
+      "repoName": "aifhku-lab-team-kb",
+      "repoFullName": "AIFusionBot/aifhku-lab-team-kb",
+      "branch": "main"
+    }
+  ],
+  "payload": {
+    "conversationId": "conv_001",
+    "messageId": "msg_001",
+    "question": "What does the knowledge base say about LLM memory?",
+    "answerLanguage": "zh-CN",
+    "citationRequired": true,
+    "maxCitations": 8
+  },
+  "responseRequirement": {
+    "format": "json_only",
+    "schema": "research_kb_agent_result_v1"
+  }
+}

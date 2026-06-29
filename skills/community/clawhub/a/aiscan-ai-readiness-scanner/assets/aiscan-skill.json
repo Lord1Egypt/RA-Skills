@@ -1,0 +1,108 @@
+{
+  "name": "AIScan — AI Readiness Scanner",
+  "version": "1.0.0",
+  "description": "Scan any website for AI agent readiness. Returns a 0–100 score, letter grade, and a list of failing checks with plain-English fix instructions covering robots.txt, sitemaps, llms.txt, MCP server cards, Agent Skills, OAuth discovery, Markdown content negotiation, and agentic commerce signals. Use it to audit a site before making changes, then re-scan to confirm improvements.",
+  "homepage": "https://aiscan.site",
+  "trigger_phrases": [
+    "scan this website for AI",
+    "check if this site is agent-ready",
+    "review this website for AI readiness",
+    "run aiscan on",
+    "is this site ready for AI agents"
+  ],
+  "instructions": [
+    "Step 1 — Call POST https://aiscan.site/api/public/scan with JSON body {\"url\": \"<site-url>\"}. The simpler GET form https://aiscan.site/api/public/scan?url=<site-url> works too.",
+    "Step 2 — Parse the JSON response. Read `overallScore` (0–100), `level` (0–5) and `levelName` for the headline. Read `platform.platform` to know the stack (wordpress, shopify, lovable, nextjs, etc).",
+    "Step 3 — Iterate `checks[]`. Focus on entries where `status` is `fail` or `partial`. Each has a `name`, `dimension`, human `remediation` text, and an optional `fixGuide` array of concrete steps (with `title`, `body`, `code`, `lang`).",
+    "Step 4 — Apply each fix to the user's codebase. Match the platform: for Next.js/TanStack edit `public/robots.txt`, `public/llms.txt`, sitemap routes, `.well-known/*` files. For WordPress recommend a plugin or `functions.php` snippet. Keep changes minimal and idiomatic to the stack.",
+    "Step 5 — After applying fixes, call the scan endpoint again on the same URL and report the new score so the user can see the delta. Do not re-scan more than 5 times per minute (rate limit).",
+    "Important — Never invent check ids or fixes. Use only the `remediation` and `fixGuide` returned by the API. If a check has `status: \"na\"` skip it — it doesn't apply to this site type."
+  ],
+  "api": {
+    "base_url": "https://aiscan.site",
+    "endpoints": [
+      {
+        "method": "POST",
+        "path": "/api/public/scan",
+        "description": "Run a full agent-readiness scan.",
+        "request": {
+          "content_type": "application/json",
+          "body": { "url": "string (required, http/https URL of the site to scan)" }
+        },
+        "response": {
+          "content_type": "application/json",
+          "schema": {
+            "url": "string",
+            "scannedAt": "ISO timestamp",
+            "durationMs": "number",
+            "platform": {
+              "platform": "wordpress|shopify|lovable|replit|bolt|v0|framer|wix|webflow|nextjs|ghost|squarespace|hubspot|unknown",
+              "confidence": "number 0-100",
+              "evidence": "string[]",
+              "isEcommerce": "boolean",
+              "isApp": "boolean"
+            },
+            "overallScore": "number 0-100",
+            "level": "0|1|2|3|4|5",
+            "levelName": "string",
+            "checks": [
+              {
+                "id": "string",
+                "name": "string",
+                "dimension": "discoverability|content|bot_access|capabilities|commerce",
+                "status": "pass|partial|fail|na|info",
+                "weight": "number",
+                "earned": "number",
+                "evidence": "string (optional)",
+                "remediation": "string (plain-English fix, optional)",
+                "fixGuide": "[{ title, body, code, lang }] (optional, ordered steps)"
+              }
+            ],
+            "dimensions": "Record<dimension, { earned, weight, score, applicable }>",
+            "mode": "auto|strict",
+            "rubricVersion": "string"
+          }
+        },
+        "rate_limit": "5 requests per minute per IP"
+      },
+      {
+        "method": "GET",
+        "path": "/api/public/scan?url=<url>",
+        "description": "Same as POST, convenient for browser/agent shorthand.",
+        "rate_limit": "5 requests per minute per IP"
+      }
+    ]
+  },
+  "mcp": {
+    "endpoint": "https://aiscan.site/api/mcp",
+    "transport": "streamable-http",
+    "tools": ["scan_website", "get_fixes", "get_grade"]
+  },
+  "examples": [
+    {
+      "title": "Scan a site",
+      "request": {
+        "method": "POST",
+        "url": "https://aiscan.site/api/public/scan",
+        "headers": { "Content-Type": "application/json" },
+        "body": { "url": "https://example.com" }
+      },
+      "response_excerpt": {
+        "url": "https://example.com/",
+        "overallScore": 42,
+        "level": 2,
+        "levelName": "Basic",
+        "platform": { "platform": "unknown", "confidence": 0 },
+        "checks": [
+          {
+            "id": "llms_txt",
+            "name": "llms.txt present",
+            "dimension": "discoverability",
+            "status": "fail",
+            "remediation": "Add a /llms.txt file at the site root summarising key pages for LLMs."
+          }
+        ]
+      }
+    }
+  ]
+}

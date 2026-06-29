@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>3D 打印耗材统计表</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: #f5f6f8;
+    color: #222;
+    margin: 0;
+    padding: 24px;
+  }
+  h1 { font-size: 22px; margin: 0 0 6px 0; }
+  .subtitle { color: #888; font-size: 13px; margin-bottom: 18px; }
+  .summary { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
+  .pill {
+    background: #fff;
+    border: 1px solid #e3e6ec;
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 13px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.03);
+  }
+  .pill b { color: #d35400; font-size: 15px; margin-left: 4px; }
+  .pill.using b { color: #27ae60; }
+  .pill.stock b { color: #2980b9; }
+  .pill.consumed b { color: #95a5a6; }
+  .toolbar { display: flex; gap: 8px; margin-bottom: 14px; flex-wrap: wrap; }
+  .btn {
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid #d6dbe1;
+    background: #fff;
+    font-size: 12px;
+    cursor: pointer;
+    color: #444;
+  }
+  .btn:hover { background: #ecf0f3; }
+  .btn-primary {
+    background: #27ae60;
+    color: #fff;
+    border-color: #27ae60;
+  }
+  .btn-primary:hover { background: #1e8449; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,.06);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  th, td {
+    padding: 10px 12px;
+    text-align: left;
+    border-bottom: 1px solid #eef0f3;
+    font-size: 14px;
+    vertical-align: middle;
+  }
+  th {
+    background: #2c3e50;
+    color: #fff;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: .5px;
+  }
+  tr:hover td { background: #fafbfd; }
+  td.qty { text-align: center; font-weight: 600; color: #d35400; width: 60px; }
+  .swatch {
+    display: inline-block;
+    width: 16px; height: 16px;
+    border-radius: 3px;
+    border: 1px solid rgba(0,0,0,.15);
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+  .group {
+    background: #ecf0f3 !important;
+    font-weight: 700;
+    color: #2c3e50;
+  }
+  .group td {
+    padding: 8px 12px;
+    font-size: 13px;
+    border-bottom: 2px solid #d6dbe1;
+  }
+  .material-pla { border-left: 4px solid #27ae60; }
+  .material-petg { border-left: 4px solid #2980b9; }
+  .material-asa { border-left: 4px solid #c0392b; }
+  .material-tpu { border-left: 4px solid #f39c12; }
+  .material-pa { border-left: 4px solid #8e44ad; }
+  .material-pc { border-left: 4px solid #16a085; }
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    margin-right: 6px;
+  }
+  .tag-pla { background: #27ae60; }
+  .tag-petg { background: #2980b9; }
+  .tag-asa { background: #c0392b; }
+  .tag-tpu { background: #f39c12; }
+  .tag-pa { background: #8e44ad; }
+  .tag-pc { background: #16a085; }
+  .badge-set {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    background: #f3e5f5;
+    color: #6a1b9a;
+    border: 1px solid #ce93d8;
+    margin-left: 4px;
+  }
+  .badge-gift {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    background: #fff3e0;
+    color: #e65100;
+    border: 1px solid #ffb74d;
+    margin-left: 4px;
+  }
+  .note { font-size: 12px; color: #888; font-style: italic; }
+  .legend {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 14px;
+    font-size: 12px;
+    color: #555;
+    flex-wrap: wrap;
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .total-row { background: #fff8e7 !important; font-weight: 700; }
+  .total-row td { color: #b9770e; font-size: 15px; }
+  .color-total {
+    background: #f8f9fa !important;
+    font-weight: 600;
+    color: #555;
+  }
+  .color-total td { font-size: 12px; padding: 6px 12px; color: #777; }
+
+  td.use-cell {
+    width: 280px;
+    text-align: center;
+    padding: 6px 8px;
+  }
+  .stepper-pair {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .stepper {
+    display: inline-flex;
+    align-items: center;
+    background: #f1f3f5;
+    border-radius: 6px;
+    padding: 2px;
+    border: 1px solid #dee2e6;
+  }
+  .stepper.using { background: #eafaf1; border-color: #a9dfbf; }
+  .stepper.consumed { background: #f4f6f7; border-color: #d5dbdb; }
+  .stepper button {
+    width: 22px;
+    height: 22px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #555;
+    font-size: 14px;
+    line-height: 1;
+    font-weight: 600;
+    border-radius: 4px;
+    padding: 0;
+  }
+  .stepper button:hover { background: #fff; color: #27ae60; }
+  .stepper button:disabled { color: #ccc; cursor: not-allowed; background: transparent; }
+  .stepper-label {
+    font-size: 10px;
+    color: #888;
+    padding: 0 4px;
+  }
+  .stepper.using .stepper-label { color: #27ae60; font-weight: 600; }
+  .stepper.consumed .stepper-label { color: #95a5a6; font-weight: 600; }
+  .stepper-display {
+    min-width: 36px;
+    padding: 0 4px;
+    font-size: 12px;
+    color: #333;
+    font-weight: 600;
+    user-select: none;
+  }
+
+  tr[data-status="all-using"] td:not(.use-cell):not(.qty) { background: #eafaf1; }
+  tr[data-status="partial-using"] td:not(.use-cell):not(.qty) { background: #fef9e7; }
+  tr[data-status="all-consumed"] td:not(.use-cell):not(.qty) {
+    background: #f4f6f7;
+    color: #95a5a6;
+    text-decoration: line-through;
+  }
+  tr[data-status="all-consumed"] .swatch { opacity: .35; }
+  tr[data-status="partial-consumed"] td:not(.use-cell):not(.qty) { background: #fafbfc; }
+  tr.color-total td { background: #f8f9fa; }
+</style>
+</head>
+<body>
+
+<h1>🎨 3D 打印耗材统计表</h1>
+<div class="subtitle">每行支持「在用 / 已用」双步进器；状态自动保存到浏览器 localStorage，可导出/导入 JSON</div>
+
+<div class="summary">
+  <div class="pill">PLA 现有 <b id="total-pla">0</b> 卷</div>
+  <div class="pill">PETG 现有 <b id="total-petg">0</b> 卷</div>
+  <div class="pill">ASA 现有 <b id="total-asa">0</b> 卷</div>
+  <div class="pill">现有合计 <b id="total-all">0</b> 卷</div>
+  <div class="pill using">🟢 在用 <b id="total-using">0</b></div>
+  <div class="pill stock">🔵 库存 <b id="total-stock">0</b></div>
+  <div class="pill consumed">⚪ 已用光 <b id="total-consumed">0</b></div>
+</div>
+
+<div class="toolbar">
+  <button class="btn" onclick="setAll('reset')">全部置为库存</button>
+  <button class="btn" onclick="setAll('using')">全部标为在用</button>
+  <button class="btn btn-primary" onclick="exportState()">📥 导出状态</button>
+  <button class="btn" onclick="document.getElementById('import-file').click()">📤 导入状态</button>
+  <input type="file" id="import-file" style="display:none" accept=".json" onchange="importState(event)">
+  <button class="btn" onclick="resetState()">🗑 清除选择记忆</button>
+</div>
+
+<div class="legend">
+  <span><span class="tag tag-pla">PLA</span> 玉米基</span>
+  <span><span class="tag tag-petg">PETG</span> 韧性高</span>
+  <span><span class="tag tag-asa">ASA</span> 耐 UV</span>
+  <span><span class="tag tag-tpu">TPU</span> 软质</span>
+  <span><span class="badge-set">套装</span> 来自囤货套装</span>
+  <span><span class="badge-gift">赠品</span> 订单赠送 / 售后赔付</span>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width:90px;">材料</th>
+      <th style="width:200px;">品牌 / 系列</th>
+      <th>颜色</th>
+      <th style="width:140px;">编号 / 来源</th>
+      <th class="qty">现有</th>
+      <th class="use-cell">在用 / 已用</th>
+    </tr>
+  </thead>
+  <tbody id="tbody">
+
+    <!-- ============================================================
+         数据区开始 —— Claude 根据用户截图填这一段
+         规则：
+         1. 每个材料一个 <tr class="group"> 标题行
+         2. 每卷耗材一个 <tr data-id="..."> 行（data-id 唯一即可，kebab-case）
+         3. 同色多卷（散装+套装+赠品）拆成多行
+         4. 同色行尾插一个 <tr class="color-total"> 显示该色合计（数字 JS 自动算）
+         5. 每个材料块结尾插 <tr class="total-row"> 小计（数字 JS 自动算）
+         6. data-id 前缀决定它统计到哪个材料 pill：
+              pla- → PLA pill；petg- → PETG pill；asa- → ASA pill
+         ============================================================ -->
+
+    <!-- ============= PLA 示例 ============= -->
+    <tr class="group"><td colspan="6">🟢 PLA — Polylactic Acid（玉米淀粉基，最常用）</td></tr>
+
+    <tr class="material-pla" data-id="pla-black-bulk"><td><span class="tag tag-pla">PLA</span></td><td>示例品牌 PLA Basic</td><td><span class="swatch" style="background:#212121"></span>黑色</td><td>散装</td><td class="qty">1</td><td class="use-cell"></td></tr>
+    <tr class="material-pla" data-id="pla-black-set"><td><span class="tag tag-pla">PLA</span></td><td>示例品牌 PLA Basic</td><td><span class="swatch" style="background:#212121"></span>黑色</td><td>6 件套<span class="badge-set">套装</span></td><td class="qty">2</td><td class="use-cell"></td></tr>
+    <tr class="color-total"><td colspan="4" style="text-align:right;">▸ PLA 黑色 合计</td><td class="qty" style="color:#777;">3</td><td></td></tr>
+
+    <tr class="material-pla" data-id="pla-white-bulk"><td><span class="tag tag-pla">PLA</span></td><td>示例品牌 PLA Basic</td><td><span class="swatch" style="background:#fafafa"></span>白色</td><td>散装</td><td class="qty">1</td><td class="use-cell"></td></tr>
+
+    <tr class="material-pla" data-id="pla-silk-gold"><td><span class="tag tag-pla">PLA</span></td><td>示例品牌 PLA Silk+ 光面</td><td><span class="swatch" style="background:#d4af37"></span>丝绸金</td><td>—</td><td class="qty">2</td><td class="use-cell"></td></tr>
+
+    <tr class="material-pla" data-id="pla-gradient-macaron"><td><span class="tag tag-pla">PLA</span></td><td>示例品牌 PLA Silk 多色</td><td><span class="swatch" style="background:linear-gradient(45deg,#f5b7b1,#aed6f1,#f9e79f)"></span>渐变-马卡龙</td><td>—</td><td class="qty">1</td><td class="use-cell"></td></tr>
+
+    <tr class="total-row"><td colspan="4" style="text-align:right;">PLA 小计</td><td class="qty">7</td><td></td></tr>
+
+    <!-- ============= PETG 示例 ============= -->
+    <tr class="group"><td colspan="6">🔵 PETG — Polyethylene Terephthalate Glycol（韧性高、抗冲击）</td></tr>
+
+    <tr class="material-petg" data-id="petg-black-poly"><td><span class="tag tag-petg">PETG</span></td><td>示例品牌 高速 PETG</td><td><span class="swatch" style="background:#212121"></span>黑色</td><td>—</td><td class="qty">1</td><td class="use-cell"></td></tr>
+    <tr class="material-petg" data-id="petg-orange"><td><span class="tag tag-petg">PETG</span></td><td>示例品牌 高速 PETG</td><td><span class="swatch" style="background:#e67e22"></span>橙色</td><td>—</td><td class="qty">2</td><td class="use-cell"></td></tr>
+
+    <tr class="total-row"><td colspan="4" style="text-align:right;">PETG 小计</td><td class="qty">3</td><td></td></tr>
+
+    <!-- ============= ASA 示例 ============= -->
+    <tr class="group"><td colspan="6">🔴 ASA — Acrylonitrile Styrene Acrylate（耐 UV，户外件首选）</td></tr>
+
+    <tr class="material-asa" data-id="asa-white"><td><span class="tag tag-asa">ASA</span></td><td>示例品牌 ASA</td><td><span class="swatch" style="background:#fafafa"></span>白色</td><td>—</td><td class="qty">1</td><td class="use-cell"></td></tr>
+
+    <tr class="total-row"><td colspan="4" style="text-align:right;">ASA 小计</td><td class="qty">1</td><td></td></tr>
+
+    <!-- 数据区结束 —— Claude 填到此处即可 -->
+
+    <tr style="background:#fef5e7;" id="grand-total-row">
+      <td colspan="4" style="text-align:right; font-weight:700; font-size:15px; color:#a04000;">合计（现有）</td>
+      <td class="qty" style="font-size:18px; color:#a04000;">11</td>
+      <td></td>
+    </tr>
+
+  </tbody>
+</table>
+
+<p class="note" style="margin-top:18px;">
+  📌 每行有两个步进器：<b style="color:#27ae60;">绿色 = 在用</b>，<b style="color:#7f8c8d;">灰色 = 已用光</b>。在用 + 已用光 ≤ 总卷数，剩下的就是库存。<br>
+  📌 「现有」列 = 总卷数 − 已用光。点击「已用 +」会让现有列自动减少。<br>
+  📌 状态自动保存到浏览器；建议点 <b>📥 导出状态</b> 留个 JSON 备份，换浏览器/搬文件时可 <b>📤 导入</b> 恢复。<br>
+  📌 整行底色：浅绿=全在用 / 浅黄=部分在用 / 浅灰+删除线=全部用光 / 白底=全在库存。
+</p>
+
+<script>
+const STORAGE_KEY = 'filament-stock-v4';
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+  catch(e) { return {}; }
+}
+
+function saveState(s) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(s));
+}
+
+const state = loadState();
+
+function getRow(id) {
+  if (!state[id]) state[id] = { using: 0, consumed: 0 };
+  return state[id];
+}
+
+document.querySelectorAll('tr[data-id]').forEach(tr => {
+  if (!tr.dataset.total) {
+    tr.dataset.total = tr.querySelector('.qty').textContent.trim();
+  }
+});
+
+function getTotal(tr) {
+  return parseInt(tr.dataset.total, 10);
+}
+
+function renderRow(tr) {
+  const id = tr.dataset.id;
+  if (!id) return;
+  const total = getTotal(tr);
+  const r = getRow(id);
+  r.using = Math.max(0, Math.min(r.using, total));
+  r.consumed = Math.max(0, Math.min(r.consumed, total));
+  if (r.using + r.consumed > total) {
+    r.using = total - r.consumed;
+    if (r.using < 0) { r.using = 0; r.consumed = total; }
+  }
+  state[id] = r;
+
+  const current = total - r.consumed;
+  tr.querySelector('.qty').textContent = current;
+
+  let status = 'stock';
+  if (r.consumed === total) status = 'all-consumed';
+  else if (r.using === total) status = 'all-using';
+  else if (r.using > 0) status = 'partial-using';
+  else if (r.consumed > 0) status = 'partial-consumed';
+  tr.dataset.status = status;
+
+  const canInc = (r.using + r.consumed) < total;
+
+  const cell = tr.querySelector('.use-cell');
+  cell.innerHTML = `
+    <div class="stepper-pair">
+      <div class="stepper using">
+        <span class="stepper-label">在用</span>
+        <button onclick="changeField('${id}','using',-1)" ${r.using === 0 ? 'disabled' : ''}>−</button>
+        <span class="stepper-display">${r.using}/${total}</span>
+        <button onclick="changeField('${id}','using',1)" ${!canInc ? 'disabled' : ''}>+</button>
+      </div>
+      <div class="stepper consumed">
+        <span class="stepper-label">已用</span>
+        <button onclick="changeField('${id}','consumed',-1)" ${r.consumed === 0 ? 'disabled' : ''}>−</button>
+        <span class="stepper-display">${r.consumed}/${total}</span>
+        <button onclick="changeField('${id}','consumed',1)" ${!canInc ? 'disabled' : ''}>+</button>
+      </div>
+    </div>
+  `;
+}
+
+function recomputeAggregates() {
+  let colorAcc = 0, materialAcc = 0, grandAcc = 0;
+  document.querySelectorAll('#tbody tr').forEach(tr => {
+    if (tr.classList.contains('group')) {
+      colorAcc = 0;
+      materialAcc = 0;
+    } else if (tr.dataset.id) {
+      const total = getTotal(tr);
+      const r = getRow(tr.dataset.id);
+      const current = total - r.consumed;
+      colorAcc += current;
+      materialAcc += current;
+      grandAcc += current;
+    } else if (tr.classList.contains('color-total')) {
+      tr.querySelector('.qty').textContent = colorAcc;
+      colorAcc = 0;
+    } else if (tr.classList.contains('total-row')) {
+      tr.querySelector('.qty').textContent = materialAcc;
+      colorAcc = 0;
+      materialAcc = 0;
+    }
+  });
+  const gt = document.getElementById('grand-total-row');
+  if (gt) gt.querySelector('.qty').textContent = grandAcc;
+}
+
+function changeField(id, field, delta) {
+  const tr = document.querySelector(`tr[data-id="${id}"]`);
+  if (!tr) return;
+  const total = getTotal(tr);
+  const r = getRow(id);
+  const next = Math.max(0, Math.min(total, r[field] + delta));
+  const other = field === 'using' ? r.consumed : r.using;
+  if (next + other > total) return;
+  r[field] = next;
+  state[id] = r;
+  saveState(state);
+  renderRow(tr);
+  recomputeAggregates();
+  updateTotals();
+}
+
+function setAll(mode) {
+  document.querySelectorAll('tr[data-id]').forEach(tr => {
+    const id = tr.dataset.id;
+    const total = getTotal(tr);
+    if (mode === 'reset') state[id] = { using: 0, consumed: 0 };
+    else if (mode === 'using') state[id] = { using: total, consumed: 0 };
+    renderRow(tr);
+  });
+  saveState(state);
+  recomputeAggregates();
+  updateTotals();
+}
+
+function resetState() {
+  if (!confirm('清除所有「在用 / 已用」选择记忆？')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  Object.keys(state).forEach(k => delete state[k]);
+  document.querySelectorAll('tr[data-id]').forEach(renderRow);
+  recomputeAggregates();
+  updateTotals();
+}
+
+function exportState() {
+  const blob = new Blob([JSON.stringify(state, null, 2)], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const ts = new Date().toISOString().slice(0,16).replace(/[:T]/g, '-');
+  a.href = url;
+  a.download = `filament-state-${ts}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importState(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const imported = JSON.parse(e.target.result);
+      Object.keys(state).forEach(k => delete state[k]);
+      Object.keys(imported).forEach(k => {
+        const v = imported[k];
+        if (typeof v === 'number') state[k] = { using: v, consumed: 0 };
+        else state[k] = { using: v.using || 0, consumed: v.consumed || 0 };
+      });
+      saveState(state);
+      document.querySelectorAll('tr[data-id]').forEach(renderRow);
+      recomputeAggregates();
+      updateTotals();
+      alert('✅ 状态已导入');
+    } catch(err) {
+      alert('❌ 导入失败：' + err.message);
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+function updateTotals() {
+  let totals = { pla: 0, petg: 0, asa: 0, all: 0, using: 0, consumed: 0 };
+  document.querySelectorAll('tr[data-id]').forEach(tr => {
+    const id = tr.dataset.id;
+    const total = getTotal(tr);
+    const r = getRow(id);
+    const current = total - r.consumed;
+    totals.all += current;
+    if (id.startsWith('pla')) totals.pla += current;
+    else if (id.startsWith('petg')) totals.petg += current;
+    else if (id.startsWith('asa')) totals.asa += current;
+    totals.using += r.using;
+    totals.consumed += r.consumed;
+  });
+  document.getElementById('total-pla').textContent = totals.pla;
+  document.getElementById('total-petg').textContent = totals.petg;
+  document.getElementById('total-asa').textContent = totals.asa;
+  document.getElementById('total-all').textContent = totals.all;
+  document.getElementById('total-using').textContent = totals.using;
+  document.getElementById('total-consumed').textContent = totals.consumed;
+  document.getElementById('total-stock').textContent = totals.all - totals.using;
+}
+
+document.querySelectorAll('tr[data-id]').forEach(renderRow);
+recomputeAggregates();
+updateTotals();
+</script>
+
+</body>
+</html>

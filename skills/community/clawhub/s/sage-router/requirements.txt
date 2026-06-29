@@ -1,0 +1,2 @@
+# No external pip dependencies — Sage Router uses only Python stdlib.
+# This file exists for completeness and future dependency extension.

@@ -10,5 +10,5 @@ for the question of "philosophically first being". With each new version, the AI
 
 
 
-The old knowledge graph (old graph) is also still available. It is intended to provide a way to test the quality of the graph expansion with and without self-improvement mode.
+
 

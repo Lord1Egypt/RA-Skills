@@ -32,7 +32,7 @@ def main():
     )
     args = parser.parse_args()
 
-    path = "/data/api/v1/market/data/etf-component?" + urllib.parse.urlencode({"symbol": args.symbol})
+    path = "/gateway/api/v1/market/data/etf-component?" + urllib.parse.urlencode({"symbol": args.symbol})
     url = BASE_URL + path
 
     req = urllib.request.Request(url, method="GET")

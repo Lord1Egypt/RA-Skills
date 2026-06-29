@@ -1,0 +1,10 @@
+{
+  "name": "compact",
+  "label": "紧凑周视图",
+  "description": "单周/双周紧凑视图，适合短期冲刺",
+  "layout": "horizontal",
+  "features": ["day_columns", "compact_bars", "progress_indicator", "inline_edit"],
+  "time_unit": "day",
+  "max_weeks": 4,
+  "show_hours": false
+}

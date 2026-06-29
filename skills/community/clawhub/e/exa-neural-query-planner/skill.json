@@ -1,0 +1,37 @@
+{
+  "slug": "exa-neural-query-planner",
+  "name": "exa-neural-query-planner",
+  "displayName": "Exa Neural Query Planner",
+  "version": "1.0.0",
+  "description": "Plan Exa neural web searches before calling any Exa wrapper — craft queries, pick categories, set domain/date filters, define fallbacks, and decide when Exa beats keyword search.",
+  "triggerKeywords": [
+    "exa search plan",
+    "exa neural query",
+    "plan exa search",
+    "exa domain filter",
+    "exa category research",
+    "exa vs tavily",
+    "exa search strategy",
+    "neural web search query",
+    "exa query planner",
+    "optimize exa search"
+  ],
+  "tags": [
+    "exa",
+    "web-search",
+    "documentation",
+    "research",
+    "query-planning"
+  ],
+  "license": "MIT",
+  "language": "en",
+  "promptOnly": true,
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "execution": "noExec",
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "safety": "Query planning only. Does not call Exa API or handle API keys. Recommends search strategy and parameters for executor skills."
+}

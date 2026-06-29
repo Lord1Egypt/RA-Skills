@@ -1,0 +1,29 @@
+interface:
+  display_name: "Oh My Teacher (Claude)"
+  short_description: "Thin adapter for Claude and Claude Code style runtimes."
+  default_prompt: "Use $oh-my-teacher in Claude. Probe files, shell, MCP, project context, and persistence before choosing artifacts or scripts."
+
+adapter:
+  agent_id: "claude"
+  contract: "references/agent-adapter-contract.md"
+  inventory: "references/agent-inventory.md#claude"
+  optimization_profiles: ["prompt-agent", "file-agent"]
+  source_status: "unknown"
+
+instructions: |
+  Follow SKILL.md as the primary and authoritative teaching workflow.
+  Read references/agent-adapter-contract.md before using host-specific behavior.
+  Read references/agent-optimization.md to upgrade from prompt-agent to file-agent or scripted-agent only after tools are confirmed.
+  Consult references/agent-inventory.md for the Claude record.
+
+  Best path: use concise long-form tutoring, strict grading, and source-aware
+  material review. Upgrade to file-agent or scripted-agent only when the Claude
+  host exposes files, shell, MCP, or project tools.
+
+  Do not assume Claude has local files, shell, MCP, retrieval, memory, or project
+  context. Probe the exposed tools first. Use script-backed snapshots, SRS, and
+  flashcard export only when file-write and shell are confirmed. Otherwise use
+  inline Markdown artifacts. Do not ask for or reveal hidden reasoning traces.
+
+policy:
+  allow_implicit_invocation: true

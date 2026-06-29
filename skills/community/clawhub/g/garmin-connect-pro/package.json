@@ -1,0 +1,92 @@
+{
+  "name": "Garmin Connect Pro",
+  "version": "1.3.0",
+  "slug": "garmin-connect-pro",
+  "description": "Want to be fit like @steipete? Well, now you can track every step of your journey—literally. This skill pulls your complete Garmin Connect data into OpenClaw: activities, sleep, heart rate, stress, body battery, training readiness, VO2 max, and those race predictions you keep ignoring. Works with Fenix, Forerunner, Index scales, and anything else Garmin throws at you. Includes natural language queries, ASCII charts, week-over-week comparisons, and FIT/GPX downloads.",
+  "author": "drpeterkalmar",
+  "license": "MIT",
+  "keywords": [
+    "garmin",
+    "fenix",
+    "forerunner",
+    "fitness",
+    "health",
+    "activities",
+    "sleep",
+    "heart-rate",
+    "body-battery",
+    "training",
+    "vo2max",
+    "natural-language"
+  ],
+  "openclaw": {
+    "skillVersion": "1.3.0",
+    "minOpenClawVersion": "0.1.0",
+    "requires": {
+      "bins": ["python3"],
+      "pips": ["garminconnect>=0.2.38"]
+    },
+    "config": {
+      "environment": {
+        "GARMIN_EMAIL": {
+          "description": "Garmin Connect email (alternative to credentials file)",
+          "required": false,
+          "secret": true
+        },
+        "GARMIN_PASSWORD": {
+          "description": "Garmin Connect password (alternative to credentials file)",
+          "required": false,
+          "secret": true
+        }
+      },
+      "files": [
+        {
+          "path": "~/.config/garmin-connect/credentials.json",
+          "description": "Garmin Connect login credentials (email + password). Used if env vars not set.",
+          "required": false,
+          "permissions": "600",
+          "containsSecrets": true
+        },
+        {
+          "path": "~/.config/garmin-connect/tokens/",
+          "description": "OAuth tokens (auto-generated after login)",
+          "required": false,
+          "containsSecrets": true
+        }
+      ]
+    },
+    "security": [
+      "Credentials can be provided via GARMIN_EMAIL/GARMIN_PASSWORD environment variables OR credentials file",
+      "If using credentials file: stored in plaintext at ~/.config/garmin-connect/credentials.json with 600 permissions",
+      "OAuth tokens cached at ~/.config/garmin-connect/tokens/",
+      "Third-party library 'garminconnect' handles all Garmin API communication - audit at https://github.com/cyberjunkie/garminconnect",
+      "No direct external transmission except via garminconnect library to Garmin servers",
+      "Cron jobs with stored credentials increase exposure - consider using environment variables or secure credential storage"
+    ],
+    "commands": {
+      "ask": "Natural language query (e.g., 'how did I sleep?')",
+      "summary": "Full daily summary (default)",
+      "activities": "Recent activities",
+      "activity": "Specific activity details with HR zones",
+      "stats": "Daily stats (steps, HR, calories)",
+      "sleep": "Sleep analysis (deep, light, REM)",
+      "hr": "Heart rate data",
+      "hrv": "HRV data",
+      "stress": "Stress levels",
+      "body-battery": "Body battery",
+      "body": "Body composition (weight, muscle, fat)",
+      "vo2max": "VO2 max and cardio fitness",
+      "training": "Training readiness",
+      "race": "Race predictions (5K to marathon)",
+      "week": "Weekly overview",
+      "compare": "Week-over-week comparison",
+      "trends": "7-day trends with ASCII charts",
+      "chart": "ASCII chart for any metric",
+      "download": "Download FIT/GPX files",
+      "devices": "Connected devices",
+      "workouts": "Saved workouts",
+      "badges": "Earned badges",
+      "export": "Full JSON export"
+    }
+  }
+}

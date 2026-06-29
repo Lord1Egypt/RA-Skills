@@ -1,5 +1,5 @@
 ## Description: <br>
-Audit or inventory installed agent-skill packages for cleanup using usage, overlap, burden, risk, and optional ablation/community evidence. <br>
+Audits installed agent-skill packages using usage, overlap, burden, risk, and optional ablation or community evidence to recommend cleanup actions. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,36 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and agent-workspace maintainers use this skill to audit installed agent skills for retention, overlap, usage, quality burden, static risk hints, and optional ablation or community evidence before making manual cleanup decisions. <br>
+Developers and agent administrators use this skill to inventory installed agent skills, evaluate usage and overlap, review risk signals, and produce conservative cleanup recommendations before removing or merging skills. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill reads installed skill folders and user-provided usage or history files, which may contain sensitive local paths, project names, or conversation content. <br>
-Mitigation: Provide only the folders and evidence files needed for the audit, and avoid sensitive transcript exports unless they are necessary. <br>
-Risk: The skill can label skills with delete, merge-delete, or quarantine-review recommendations. <br>
-Mitigation: Treat those labels as manual review advice; do not remove, merge, or isolate skills automatically based on the report. <br>
-Risk: Generated reports may contain derived details from local skill inventories and provided evidence files. <br>
-Mitigation: Review report contents before sharing them outside the workspace. <br>
+Risk: Usage and history inputs can contain sensitive conversation content, local paths, project names, or customer data. <br>
+Mitigation: Provide the narrowest skills root and avoid passing history files unless the user is comfortable with the tool reading those exports. <br>
+Risk: Cleanup recommendations could cause loss of useful skills if treated as automatic actions. <br>
+Mitigation: Review report recommendations manually before deleting, merging, or quarantining any skill. <br>
 
 
 ## Reference(s): <br>
 - [ClawHub skill page](https://clawhub.ai/gongyu0918-debug/skills/skill-usefulness-audit) <br>
-- [ClawHub metadata homepage](https://github.com/gongyu0918-debug/skill-usefulness-audit) <br>
+- [Project homepage](https://github.com/gongyu0918-debug/skill-usefulness-audit) <br>
 - [Ablation Protocol](references/ablation-protocol.md) <br>
-- [Report Narration Prompt](references/report-narration-prompt.md) <br>
 - [Scoring Rubric](references/scoring-rubric.md) <br>
+- [Report Narration Prompt](references/report-narration-prompt.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports, optional JSON reports, optional JSON ablation plans, and command guidance.] <br>
+**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
+**Output Format:** [Markdown report with optional JSON audit data and ablation plan files] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include decision summaries, score tables, recommended actions, missing evidence, quality burden, and risk review when relevant.] <br>
+**Other Properties Related to Output:** [Recommendations are manual-review guidance; the skill does not automatically delete, merge, or quarantine installed skills.] <br>
 
 ## Skill Version(s): <br>
-0.3.4 (source: frontmatter and server release evidence) <br>
+0.3.7 (source: frontmatter and server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

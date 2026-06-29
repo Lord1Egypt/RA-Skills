@@ -8,6 +8,13 @@ import test from 'node:test';
 const skillRoot = resolve(import.meta.dirname, '..');
 const exporter = join(skillRoot, 'scripts', 'export-analytics-summary.mjs');
 
+function unsignedJwt(payload) {
+  const encode = (value) =>
+    Buffer.from(JSON.stringify(value), 'utf8')
+      .toString('base64url');
+  return `${encode({ alg: 'none', typ: 'JWT' })}.${encode(payload)}.signature`;
+}
+
 test('export-analytics-summary passes the wizard token to analyticscli commands', () => {
   const tempDir = mkdtempSync(join(tmpdir(), 'openclaw-analytics-export-'));
   const fakeBin = join(tempDir, 'bin');
@@ -76,6 +83,40 @@ echo "{}"
     assert.equal(payload.meta.projectsScanned, 2);
     assert.equal(payload.meta.projects[0].queryWarnings.length, 2);
     assert(payload.signals.length > 0);
+  } finally {
+    rmSync(tempDir, { recursive: true, force: true });
+  }
+});
+
+test('export-analytics-summary rejects expiring AnalyticsCLI tokens before querying', () => {
+  const tempDir = mkdtempSync(join(tmpdir(), 'openclaw-analytics-expiring-token-'));
+  const fakeBin = join(tempDir, 'bin');
+  const fakeAnalyticsCli = join(fakeBin, 'analyticscli');
+  mkdirSync(fakeBin, { recursive: true });
+  writeFileSync(
+    fakeAnalyticsCli,
+    '#!/usr/bin/env bash\necho "analyticscli should not run for expiring tokens" >&2\nexit 9\n',
+    { mode: 0o755 },
+  );
+
+  try {
+    const result = spawnSync('node', [exporter], {
+      cwd: skillRoot,
+      env: {
+        ...process.env,
+        PATH: `${fakeBin}:${process.env.PATH || ''}`,
+        ANALYTICSCLI_ACCESS_TOKEN: unsignedJwt({
+          scopes: ['read:queries'],
+          exp: Math.floor(Date.now() / 1000) + 3600,
+        }),
+        OPENCLAW_GROWTH_SECRETS_FILE: join(tempDir, 'missing.env'),
+      },
+      encoding: 'utf8',
+    });
+
+    assert.equal(result.status, 1);
+    assert.match(result.stderr, /expiring legacy token/);
+    assert.doesNotMatch(result.stderr, /analyticscli should not run/);
   } finally {
     rmSync(tempDir, { recursive: true, force: true });
   }

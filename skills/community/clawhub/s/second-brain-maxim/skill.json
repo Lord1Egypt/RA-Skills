@@ -1,0 +1,19 @@
+{
+  "name": "second-brain-aphorism",
+  "version": "0.1.1",
+  "description": "Generate grounded Chinese reflections, aphorisms, quote-card lines, article endings, daily thoughts, and short 感悟 from a user's second brain, GBrain, llm-wiki anchors, notes, and long-term questions.",
+  "keywords": [
+    "second-brain",
+    "gbrain",
+    "llm-wiki",
+    "aphorism",
+    "reflection",
+    "writing",
+    "knowledge-management",
+    "maxim",
+    "quote-card",
+    "daily-thought"
+  ],
+  "author": "skill-author",
+  "license": "MIT"
+}

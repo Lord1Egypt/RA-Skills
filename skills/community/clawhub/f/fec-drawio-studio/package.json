@@ -1,0 +1,47 @@
+{
+  "name": "@bovinphang/fec-drawio-studio",
+  "version": "2.8.0",
+  "description": "Use when creating editable technical diagrams with draw.io / diagrams.net sources, including architecture diagrams, ERD, UML, sequence diagrams, flowcharts, ML model diagrams, official shape lookup, brand symbols, Graphviz auto-layout, codebase structure maps, .drawio validation, or draw.io CLI export fallback. Do not use for ordinary raster image generation, freehand sketches, interactive canvas/Three.js scenes, or decorative SVG animation. Chinese triggers include draw.io, diagrams.net, editable architecture diagrams, .drawio, ER diagrams, UML, sequence diagrams, auto layout, shape retrieval, code structure diagrams.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-drawio-studio"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "design-ui",
+    "drawio",
+    "diagrams.net",
+    "diagram",
+    "architecture-diagram",
+    "uml",
+    "erd",
+    "autolayout",
+    "shape-search",
+    "editable-diagram",
+    "sequence-diagram",
+    "flowchart",
+    "code-structure-map"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

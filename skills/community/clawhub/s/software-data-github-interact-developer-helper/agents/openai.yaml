@@ -1,0 +1,7 @@
+interface:
+  display_name: "GitHub Interact Developer Helper"
+  short_description: "Turns GitHub issues, PRs, checks, and repo context into safe action plans."
+  default_prompt: "Use $software-data-github-interact-developer-helper to inspect my GitHub context and plan the next repository action."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,9 @@
+# Manifest — axiom-iban-validator (public, clean)
+# Edition: Capafy voice (zero cluster jargon)
+# Generated: 2026-06-14T20:45:38Z
+
+14d7852767f91e0daa3bc270784b272adf8be2b02d03b6e95fb5ea8135197f57  LICENSE  (45 bytes)
+3a9afe1187cb88d5869cedcc479794351ec3dcd302033478fd126e0a4bb57397  README.md  (975 bytes)
+7daffd8b8992cb312272309e3e16dcce615cbcdbb2f02ed6a3b9dfaa0bf9633a  SKILL.md  (501 bytes)
+23fa01fbd17e0c169dff46572c4029611f157dc4ed04cfb1aedca360bdbd3f23  axiom_iban_validator.py  (5012 bytes)
+c381cbf1735411e24ce9547934661132c502bbc573fa0cfb3e310bbd3b063d42  test_axiom_iban_validator.py  (2720 bytes)

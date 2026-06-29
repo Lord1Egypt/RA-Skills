@@ -1,0 +1,8 @@
+{
+  "description": "cute wizard with staff",
+  "image_size": {
+    "width": 64,
+    "height": 64
+  },
+  "no_background": true
+}

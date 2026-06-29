@@ -1,0 +1,7 @@
+interface:
+  display_name: "Product Validation Planner"
+  short_description: "Helps with Help for a Product."
+  default_prompt: "Use $product-validation-planner to help me Help for a Product."
+
+policy:
+  allow_implicit_invocation: true

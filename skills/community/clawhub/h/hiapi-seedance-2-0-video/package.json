@@ -1,0 +1,29 @@
+{
+  "name": "hiapi-seedance-2-0-video-skill",
+  "version": "0.1.4",
+  "description": "HiAPI Seedance 2.0 video generation skill for AI Agents",
+  "type": "module",
+  "private": true,
+  "homepage": "https://github.com/HiAPIAI/hiapi-seedance-2-0-video-skill#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HiAPIAI/hiapi-seedance-2-0-video-skill.git"
+  },
+  "bin": {
+    "hiapi-seedance-2-0-video-skill": "./scripts/install.mjs"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs"
+  },
+  "keywords": [
+    "hiapi",
+    "seedance",
+    "video-generation",
+    "ai-agent",
+    "skill"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}

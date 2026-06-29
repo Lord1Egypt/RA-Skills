@@ -1,5 +1,5 @@
 ## Description: <br>
-Migrate RDMA verbs code to URMA API. <br>
+Migrates RDMA Verbs (libibverbs) code to the URMA API with API mapping, data structure conversion, and URMA-specific optimization guidance. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,32 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill to migrate RDMA Verbs or libibverbs applications to the URMA API while preserving source files and producing converted code in a separate output directory. <br>
+Developers and engineers use this skill to migrate RDMA, InfiniBand, RoCE, or libibverbs projects to URMA while preserving original files and producing converted code under urma_output/. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Generated URMA networking and token-exchange code may be unsafe if used directly in production. <br>
-Mitigation: Require authenticated encrypted control channels, validate peer identity, avoid fixed or plaintext tokens, and review remote memory metadata handling before production use. <br>
-Risk: The skill can activate broadly around RDMA, InfiniBand, RoCE, verbs, or URMA migration language. <br>
-Mitigation: Install it only when explicit verbs-to-URMA migration assistance is needed and review generated migration plans before execution. <br>
+Risk: Broad activation can apply the migration workflow to RDMA or verbs-related requests where code conversion was not intended. <br>
+Mitigation: Install and invoke the skill only for intentional verbs/libibverbs-to-URMA migration work. <br>
+Risk: Generated networking and remote-memory code can introduce unsafe peer exchange, fixed or plaintext tokens, or unvalidated peer identity. <br>
+Mitigation: Require authenticated encrypted peer exchange, avoid fixed or plaintext tokens, validate peer identity, and review generated code before production use. <br>
+Risk: Automated migration can leave semantic issues that compilation does not catch, including resource leaks, incomplete cleanup, or verbs residue. <br>
+Mitigation: Review all output under urma_output/, verify lifecycle and cleanup paths, scan for verbs residue, and build and test before running the converted project. <br>
 
 
 ## Reference(s): <br>
+- [ClawHub skill page](https://clawhub.ai/derricjs/skills/verbs-to-urma-converter) <br>
+- [URMA/UMDK source repository](https://atomgit.com/openeuler/umdk) <br>
 - [URMA API Mapping Reference](references/mapping.md) <br>
 - [URMA Code Patterns and Best Practices](references/patterns.md) <br>
 - [Common Pitfalls and Solutions](references/pitfalls.md) <br>
 - [URMA Complete Working Example](references/urma_sample.md) <br>
-- [OpenEuler UMDK Source Repository](https://atomgit.com/openeuler/umdk) <br>
-- [ClawHub Skill Page](https://clawhub.ai/derricjs/verbs-to-urma-converter) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with code snippets, shell commands, migration checklists, and converted project files when applied by an agent] <br>
+**Output Format:** [Markdown guidance with code edits, shell commands, verification summaries, and generated project files] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Converted code is expected under urma_output/ with original files left unchanged.] <br>
+**Other Properties Related to Output:** [Produces converted files under urma_output/ while preserving the original source tree.] <br>
 
 ## Skill Version(s): <br>
 1.0.0 (source: server release metadata) <br>

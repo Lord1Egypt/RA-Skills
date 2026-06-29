@@ -1,0 +1,4 @@
+interface:
+  display_name: "ai.fun.tv 文生图"
+  short_description: "调用 Fun-GP-image2 生成图片"
+  default_prompt: "使用 $ai-fun-tv-image 根据我的提示词生成一张活动宣传图。"

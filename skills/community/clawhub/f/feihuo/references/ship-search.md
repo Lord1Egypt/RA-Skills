@@ -10,29 +10,23 @@
 
 ```bash
 # 1. 解析出发港
-feihuo ship-resolve-local --query "琶洲"
+node ./cli/index.js ship-resolve-local --query "琶洲"
 
 # 2. 解析到达港
-feihuo ship-resolve-local --query "香港"
+node ./cli/index.js ship-resolve-local --query "香港"
 
 # 3. 使用上一步返回的 code 搜索
-feihuo ship-search --dep "<出发 code>" --arr "<到达 code>" --dep-date 2026-06-01
+node ./cli/index.js ship-search --dep "<出发 code>" --arr "<到达 code>" --dep-date 2026-06-01
 ```
 
 ## 使用前提
 
-CLI 从 `~/.openclaw/qclaw/user-info.json` 读取 `accessToken`，请求 API 时使用：
-
-```http
-Authorization: Bearer <accessToken>
-```
-
-请确保该文件存在且 `accessToken` 有效。
+CLI 已内置在技能目录 `./cli/`，通过 FClaw 注入的 `FCLAW_OIDC_TOKEN_URL` 与 `FCLAW_OIDC_TOKEN_SECRET` 从本地 OIDC token 端点获取 access_token。请在 FClaw 中登录，并在技能根目录下执行命令（工作目录须包含 `cli/index.js`）。
 
 ## 命令格式
 
 ```bash
-feihuo ship-search --dep <出发 code> --arr <到达 code> --dep-date <出发日期> [--back-date <返程日期>]
+node ./cli/index.js ship-search --dep <出发 code> --arr <到达 code> --dep-date <出发日期> [--back-date <返程日期>]
 ```
 
 ## 参数
@@ -59,19 +53,19 @@ feihuo ship-search --dep <出发 code> --arr <到达 code> --dep-date <出发日
 单程：
 
 ```bash
-feihuo ship-search --dep "PZ" --arr "HKA" --dep-date 2026-06-01
+node ./cli/index.js ship-search --dep "PZ" --arr "HKA" --dep-date 2026-06-01
 ```
 
 往返：
 
 ```bash
-feihuo ship-search --dep "PZ" --arr "HKA" --dep-date 2026-06-01 --back-date 2026-06-05
+node ./cli/index.js ship-search --dep "PZ" --arr "HKA" --dep-date 2026-06-01 --back-date 2026-06-05
 ```
 
 查看帮助：
 
 ```bash
-feihuo ship-search --help
+node ./cli/index.js ship-search --help
 ```
 
 ## 输出

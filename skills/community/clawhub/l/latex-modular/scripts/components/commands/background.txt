@@ -1,0 +1,10 @@
+% --- 背景命令 ---
+\usepackage{eso-pic}
+
+\newcommand{\coverbackground}[1]{
+  \AddToShipoutPicture*{
+    \AtPageLowerLeft{
+      \includegraphics[width=\paperwidth,height=\paperheight]{#1}
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "name": "wyze-sensors-skill-deps",
+  "private": true,
+  "description": "Runtime dependency for the Wyze sensors OpenClaw skill",
+  "dependencies": {
+    "wyze-node": "^2.12.2"
+  }
+}

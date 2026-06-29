@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "roundId": "R001",
+  "profileId": "ts-node",
+  "reviewDue": false,
+  "roundScore": null,
+  "precisionAdvice": "none",
+  "precisionFlags": [],
+  "metricsUpdatedAt": null,
+  "hooksExecuted": [
+    {
+      "name": "commit",
+      "status": "skipped"
+    }
+  ]
+}

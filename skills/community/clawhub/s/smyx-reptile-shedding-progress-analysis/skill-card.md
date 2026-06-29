@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes full-body reptile images or video to classify shedding phase, identify stuck-shed risk signals, and produce care recommendations for keepers. <br>
+Analyzes reptile enclosure images or videos to classify shedding phase, detect visual signs such as dull skin, blue-phase eyes, attached shed, and surface conditions, and return care-oriented monitoring guidance. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,36 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and developers use this skill to assess reptile shedding progress from enclosure camera media, review structured risk signals, and generate keeper-facing care guidance and history reports. <br>
+External users, reptile keepers, vivarium operators, and developers use this skill to analyze enclosure media for reptile shedding progress, stuck-shed warning signs, and practical care recommendations. It is intended as a visual monitoring aid, not a veterinary diagnosis system. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may send reptile images, videos, remote media URLs, and a username, phone number, or open-id to configured LifeEmergence services. <br>
-Mitigation: Install only when external media processing is acceptable, use a dedicated identifier where possible, and avoid using the skill in workspaces containing sensitive media or credentials. <br>
-Risk: Cloud report history and local token caching may extend exposure of account identity and analysis records beyond the immediate reptile image analysis task. <br>
-Mitigation: Use the minimum account identifier needed for the workflow and review workspace storage and cloud-history expectations before deployment. <br>
-Risk: Visual care guidance could be mistaken for veterinary diagnosis or treatment advice. <br>
-Mitigation: Treat outputs as visual shedding-stage assessments only, preserve the documented disclaimers, and contact a reptile veterinarian for persistent Level 4 stuck-shed warnings or high-risk eye, toe, or tail-tip involvement. <br>
+Risk: The skill sends reptile images, videos, or media URLs to the publisher's cloud service for analysis and history retrieval. <br>
+Mitigation: Use non-sensitive enclosure media, avoid media that reveals private locations or people, and install only when cloud processing by the publisher is acceptable. <br>
+Risk: The skill silently creates or reuses an account-linked identity and stores service tokens in a local SQLite database. <br>
+Mitigation: Run it in a workspace where local credential storage is acceptable, and review or remove local data and credentials when uninstalling or rotating access. <br>
+Risk: The output can influence animal care decisions but is based on visual analysis rather than veterinary examination. <br>
+Mitigation: Treat results as monitoring guidance; for severe or persistent stuck-shed warnings, consult a qualified reptile veterinarian. <br>
 
 
 ## Reference(s): <br>
-- [API Interface Documentation](references/api_doc.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/18072937735/smyx-reptile-shedding-progress-analysis) <br>
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-reptile-shedding-progress-analysis) <br>
+- [Publisher profile](https://clawhub.ai/user/18072937735) <br>
+- [Skill API documentation](references/api_doc.md) <br>
+- [Shared analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and JSON report text, with optional saved output files] <br>
+**Output Type(s):** [text, markdown, JSON, guidance] <br>
+**Output Format:** [Markdown text with structured JSON analysis fields and report links] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include shedding phase, high-risk retained-shed zones, recommended care actions, disclaimers, and history/report links when available.] <br>
+**Other Properties Related to Output:** [Can save analysis output to a user-specified local file path.] <br>
 
 ## Skill Version(s): <br>
-1.0.1 (source: server release metadata; artifact frontmatter says 1.0.2) <br>
+1.0.2 (source: server release metadata; artifact frontmatter states 1.0.3) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

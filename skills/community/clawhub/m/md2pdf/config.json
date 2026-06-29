@@ -1,0 +1,14 @@
+{
+  "header": {
+    "enabled": false,
+    "text": ""
+  },
+  "watermark": {
+    "enabled": false,
+    "text": ""
+  },
+  "encrypt": {
+    "enabled": false,
+    "password": ""
+  }
+}

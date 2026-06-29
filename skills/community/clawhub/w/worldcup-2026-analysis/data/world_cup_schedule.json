@@ -1,0 +1,29 @@
+{
+  "tournament": "FIFA World Cup 2026",
+  "format": {
+    "teams": 48,
+    "groups": 12,
+    "group_labels": ["A","B","C","D","E","F","G","H","I","J","K","L"],
+    "teams_per_group": 4,
+    "advance_rule": "每组前2名 + 8个最佳第3名 → 32强淘汰赛",
+    "knockout_rounds": ["32强","16强","8强","4强","决赛"],
+    "hosts": ["美国","加拿大","墨西哥"],
+    "dates": "2026-06-11 ~ 2026-07-19"
+  },
+  "_populated": false,
+  "_note": "groups 为空骨架。真实分组属事实型数据, 不在此文件预填。由 agent 网页搜索官方分组后, 经 calibrate.py --groups groups.json 写入 (必须注明 source)。在未填充前, 引擎的 simulate_group 需由用户显式传入 4 支队名。",
+  "groups": {
+    "A": {"teams": []},
+    "B": {"teams": []},
+    "C": {"teams": []},
+    "D": {"teams": []},
+    "E": {"teams": []},
+    "F": {"teams": []},
+    "G": {"teams": []},
+    "H": {"teams": []},
+    "I": {"teams": []},
+    "J": {"teams": []},
+    "K": {"teams": []},
+    "L": {"teams": []}
+  }
+}

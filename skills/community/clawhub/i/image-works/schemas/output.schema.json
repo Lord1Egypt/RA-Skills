@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openclaw/skills/image-works/output.schema.json",
+  "title": "Image Workshop Output",
+  "description": "Processing report from image-works skill",
+  "type": "object",
+  "properties": {
+    "total_files": { "type": "integer" },
+    "success_count": { "type": "integer" },
+    "error_count": { "type": "integer" },
+    "original_size_bytes": { "type": "integer" },
+    "processed_size_bytes": { "type": "integer" },
+    "savings_percent": { "type": "number" },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "input": { "type": "string" },
+          "output": { "type": "string" },
+          "original_size": { "type": "integer" },
+          "processed_size": { "type": "integer" },
+          "operations": { "type": "array", "items": { "type": "string" } },
+          "status": { "type": "string", "enum": ["success", "error"] },
+          "error": { "type": "string" }
+        }
+      }
+    },
+    "output_dir": { "type": "string" }
+  }
+}

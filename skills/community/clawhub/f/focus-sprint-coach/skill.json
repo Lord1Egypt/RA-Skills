@@ -1,0 +1,19 @@
+{
+  "name": "Focus Sprint Coach",
+  "slug": "focus-sprint-coach",
+  "description": "Turn 'I should work' into 'I'm in the zone': a cognitive sprint coach that helps you start, sustain, and optimize deep focus through activation rituals, distraction shields, and post-sprint reflection.",
+  "tags": ["focus", "productivity", "pomodoro", "deep-work", "procrastination", "concentration", "adhd-friendly", "behavior-change", "time-management"],
+  "license": "MIT-0",
+  "version": "1.0.0",
+  "workflowSteps": [
+    "Focus Assessment & Profiling",
+    "Sprint Parameter Configuration",
+    "Pre-Sprint Activation Ritual",
+    "Distraction Defense System",
+    "In-Sprint Attention Anchors",
+    "Post-Sprint Recovery Ritual",
+    "Daily Reflection & Pattern Recognition",
+    "Advanced Toolbox & Special Scenarios"
+  ],
+  "firstSuccessPath": "Describe your focus struggle → Answer 3 quick questions → Get personalized sprint configuration → Follow 3-min activation ritual → Start first sprint with mid-sprint checkpoints → 2-min post-sprint reflection → Build sustainable focus habit"
+}

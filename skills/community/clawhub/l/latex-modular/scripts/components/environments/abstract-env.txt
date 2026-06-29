@@ -1,0 +1,11 @@
+% --- 摘要样式 ---
+\newcommand{\abstractfont}{\small\dwcn\raggedright}
+\renewenvironment{abstract}{%
+  \par\noindent
+  \abstractfont
+  \textbf{摘\hspace{1em}要：}%
+  \ignorespaces
+}{%
+  \par
+}
+\newcommand{\keywordfont}{\small\dwcn}

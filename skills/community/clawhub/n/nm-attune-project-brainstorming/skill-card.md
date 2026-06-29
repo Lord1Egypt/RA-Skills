@@ -11,33 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers, product owners, and project teams use this skill to turn unclear project ideas into a structured project brief with problem framing, constraints, approach comparison, and decision rationale. It is intended for early planning before detailed specification. <br>
+Developers, engineers, and project stakeholders use this skill to clarify unclear project ideas, compare implementation approaches, document decision rationale, and produce a project brief before specification work begins. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may pass project context to downstream skills or subagents and continue into later workflow phases without fresh confirmation. <br>
-Mitigation: Avoid sensitive strategy or stakeholder details unless that sharing is acceptable; use standalone or skip options, or explicitly stop after brainstorming when continuation is not desired. <br>
-Risk: The workflow writes local planning documents and stores brainstorming state. <br>
-Mitigation: Review generated files before sharing or committing them, and remove sensitive details from the project brief or session state. <br>
-Risk: Generated planning guidance can contain vague requirements, missing acceptance criteria, or other gaps. <br>
-Mitigation: Use the included review loop or a manual review before implementation, and surface unresolved issues to a human reviewer. <br>
+Risk: The workflow can automatically pass brainstorming context into related skills or subagents and edit planning files without a clear approval checkpoint. <br>
+Mitigation: Use --standalone or explicitly tell the agent to stop after brainstorming when you do not want continuation into war-room, specification, or planning-file edits. <br>
+Risk: Generated planning documents can carry forward unclear assumptions or incomplete requirements into later phases. <br>
+Mitigation: Review the project brief, constraints, selected approach, and acceptance criteria before using the output for implementation planning. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-attune-project-brainstorming) <br>
-- [Attune plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/attune) <br>
+- [ClawHub skill listing](https://clawhub.ai/athola/skills/nm-attune-project-brainstorming) <br>
+- [OpenClaw homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/attune) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown project brief with structured planning sections, optional shell commands, and local session state JSON.] <br>
+**Output Format:** [Markdown project brief with structured sections, comparison tables, command snippets, and optional JSON session state.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces docs/project-brief.md, may store brainstorming state, and may continue into review or specification steps unless the user selects a standalone or skip option.] <br>
+**Other Properties Related to Output:** [Can write docs/project-brief.md and .attune/brainstorm-session.json, then continue into related planning or review phases unless the user requests standalone execution.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata; artifact frontmatter lists 1.9.8) <br>
+1.9.13 (source: server release metadata; artifact frontmatter reports 1.9.8) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

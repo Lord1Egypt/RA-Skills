@@ -181,18 +181,23 @@ For chore/docs/config changes, only build + type check items.
 | **Automatic** | (none — excluded from Test Plan) | pre-commit hook / GitHub Actions / lint run automatically | At push time | Workflow itself (no Test Plan entry needed) |
 | **General test** | `[general]` | Run local code / CLI / Make / scripts and check the result | Before merge | `[x]` required (merge.md HARD STOP) |
 | **UI test** | `[UI]` | Browser scenario (Playwright / wmux browser / direct clicks) | Before merge | `[x]` required (merge.md HARD STOP) |
-| **Post-merge test** | `[post-merge]` | Verification after deploy / CD trigger (production-environment behavior, integrated deploy result) | After merge | Does NOT block merge; must be registered in a tracking medium (issue / fix_plan) |
+| **PR-CI e2e / integration suite** | `[e2e]` | Automated end-to-end / integration test suite that runs on **PR CI** (Playwright e2e job, integration CI job). Tagged for behavioral-coverage visibility even though CI-run — unlike lint/typecheck this documents a meaningful scenario | Before merge | `[x]` required — the CI check is the guard (check-test-plan.js enforces) |
+| **Deploy-branch e2e / deployment verification** | `[deploy]` | Automated suite that runs only on the **deploy branch** (master/deploy-only e2e job) OR manual post-deploy verification of integrated behavior | After merge | Does NOT block merge; must be registered in a tracking medium (issue / fix_plan) |
+| **Post-merge test** | `[post-merge]` | Manual verification after deploy / CD trigger (production-environment behavior, integrated deploy result) | After merge | Does NOT block merge; must be registered in a tracking medium (issue / fix_plan) |
+
+**`[e2e]` vs Automatic exclusion**: rule #1 excludes mechanical CI checks (lint, typecheck, fmt) because they carry no behavioral information. An e2e/integration suite is the exception — it verifies a real scenario, so tag it `[e2e]` for visibility even though CI runs it. Distinguish from `[deploy]` (deploy-gated e2e, exempt from merge-gate), `[post-merge]` (manual post-deploy check), and `[UI]` (single-screen manual browser scenario).
 
 #### Don't / Do
 
 | # | Don't | Do |
 |---|-------|-----|
 | 1 | Put a pre-commit/CI/lint item as `[ ]` in the Test Plan (e.g. "lint passes", "type check passes", "terraform fmt passes") | Exclude — the workflow guarantees it. No need to report it in the PR body either |
-| 2 | List everything as a flat single list | Use category prefixes (`[general]` / `[UI]` / `[post-merge]`) so authors, reviewers, and the merge guard can see verification method / timing clearly |
-| 3 | Force `[x]` verification of `[post-merge]` items before merge | `[post-merge]` does not block merge. Register a tracking record (issue or `fix_plan.md [BLOCKED]`) and proceed to merge |
-| 4 | Mark an item `[post-merge]` without registering a tracking medium (post-merge verification gets lost) | `[post-merge]` items require `gh issue create` or `fix_plan` registration. Inline the tracking link in the item description |
-| 5 | Omit the category prefix and only write notes | Prefix is required — both the merge.md guard automation and human triage classify by prefix matching |
-| 6 | Wrap the category in backtick + bracket in the PR body (`` `[post-merge]` ``) — backtick renders an inline-code chip stacked on the brackets = redundant double-highlight | **PR-body output format = `**[category]**`** (bold + bracket, a single highlight): `**[general]**` / `**[UI]**` / `**[post-merge]**`. (Inline-code `[category]` references in *this doc's* prose/tables are fine — the rule applies only to the **PR body** the reader sees.) |
+| 2 | List everything as a flat single list | Use category prefixes (`[general]` / `[UI]` / `[e2e]` / `[deploy]` / `[post-merge]`) so authors, reviewers, and the merge guard can see verification method / timing clearly |
+| 3 | Edit an existing PR body (sanitize, review-apply, any `gh pr edit --body`) and leave a pre-existing uncategorized Test Plan untouched | The category invariant applies to **every** body write — create AND edit. After any body mutation, re-run the self-check below; add prefixes to any flat item |
+| 4 | Force `[x]` verification of `[post-merge]` items before merge | `[post-merge]` does not block merge. Register a tracking record (issue or `fix_plan.md [BLOCKED]`) and proceed to merge |
+| 5 | Mark an item `[post-merge]` without registering a tracking medium (post-merge verification gets lost) | `[post-merge]` items require `gh issue create` or `fix_plan` registration. Inline the tracking link in the item description |
+| 6 | Omit the category prefix and only write notes | Prefix is required — both the merge.md guard automation and human triage classify by prefix matching |
+| 7 | Wrap the category in backtick + bracket in the PR body (`` `[post-merge]` ``) — backtick renders an inline-code chip stacked on the brackets = redundant double-highlight | **PR-body output format = `**[category]**`** (bold + bracket, a single highlight): `**[general]**` / `**[UI]**` / `**[post-merge]**`. (Inline-code `[category]` references in *this doc's* prose/tables are fine — the rule applies only to the **PR body** the reader sees.) |
 
 #### Test Plan example
 
@@ -203,16 +208,20 @@ For chore/docs/config changes, only build + type check items.
 - [ ] **[general]** `make plan ENV=integration` → environment switch confirmed
 - [ ] **[UI]** Entry to service-A → `service-A-source-auto-redirect` flow exposed (Playwright)
 - [ ] **[UI]** After service-B logout, entry to service-A re-exposes the service-B login screen (Playwright, regression guard for case C-1)
+- [ ] **[deploy]** Integration e2e suite passes on the deploy branch (deploy-master e2e job — verified post-merge on master push)
 - [ ] **[post-merge]** After integration deploy, app logout → verify post-logout redirect (tracking: [#39-followup](url))
 - [ ] **[post-merge]** Self-hosted runner picks up at least one workflow run (tracking: workflow_dispatch or next PR's CI)
 ```
 
-#### Self-check (right before writing the Test Plan, every time)
+#### Self-check (every time the Test Plan is created OR the PR body is edited)
 
-1. Is the item run automatically by pre-commit / CI / lint? → Yes → exclude from Test Plan
-2. Can the item be verified in this session before merge? → `[general]` or `[UI]`
-3. Is the item a deploy / production-environment behavior verifiable only after merge? → `[post-merge]` + tracking-medium registration required
-4. Does every `[ ]` have a category prefix? → Re-review any item missing one
+Runs at PR creation **and** after any body mutation (sanitize, review-apply, `gh pr edit --body`). Editing a body must not leave a pre-existing flat Test Plan uncategorized.
+
+1. Is the item a mechanical CI check (lint / typecheck / fmt)? → Yes → exclude from Test Plan
+2. Is the item an automated e2e / integration suite scenario? → If it runs on **PR CI** → `[e2e]` (required-checked, CI is the guard). If it runs only on the **deploy branch** → `[deploy]` (exempt + tracking-medium required)
+3. Can the item be verified manually in this session before merge? → `[general]` or `[UI]`
+4. Is the item a manual deploy / production-environment behavior verifiable only after merge? → `[post-merge]` + tracking-medium registration required
+5. Does every `[ ]` have a category prefix? → Re-review any item missing one (applies to edited bodies too — legacy flat items get prefixed now)
 
 ### Step 5: Sanitize Internal Paths
 
@@ -220,6 +229,14 @@ Before posting, strip all internal paths per SKILL.md Core Rules:
 - Internal workflow-generated doc paths (e.g., `.ralph/docs/`, `.omc/plans/`) → remove or inline the content
 - Session IDs → remove
 - Other internal working directories (`~/.claude/`, `~/.ralph/`, `~/.omc/`, etc.) → remove
+
+**Forcing verification (HARD STOP — runs for PRIVATE repos too)**: prose stripping is not enough — run the `sanitize` internal-artifact-path scan before `gh pr create`/`gh pr edit`. This scan is **visibility-agnostic** (a dead `.ralph/` link is noise in a PRIVATE PR just as much as a PUBLIC one):
+
+```bash
+echo "$BODY" | grep -nE '(^|[^A-Za-z0-9_.-])(\.\./)*\.(ralph|omc)/|~/\.(claude|ralph|omc)/|\.claude/(skills|plugins|hooks|projects)/' && echo "BLOCKED: internal artifact path"
+```
+
+Must produce zero output. An `## Artifacts` (or equivalent localized) section listing `.ralph/docs/generated/*.md` is the most common offender — remove the section entirely and fold any needed substance into body prose. See [sanitize.md](./sanitize.md) "Internal artifact path scan".
 
 ### Step 6: Suggest Milestone
 
@@ -627,4 +644,62 @@ PR creation is stateless. There is no automation that detects review arrival. So
 - Even if option description mentions "PR creation", the user may intend "existing PR must be processed first" — the option itself was composed wrong
 - 1+ in-flight PR = signal that user is focused on processing that PR. Adding a new axis disrupts the work flow
 
-Violation case history: see `~/.claude/skills/cleanup/data/failed-attempts.md` "PR creation explicit authorization" entries (2026-05-16 + 2026-06-05 recurrences).
+Violation case history: see `~/.claude/skills/cleanup/data/failed-attempts.md` "PR creation explicit authorization" entries (recurrences).
+
+---
+
+## Commit → PR mapping (required when the user asks "which PR")
+
+When the user asks "find which PR implemented/changed this", **do not just report the commit SHA or author — locate and report the PR number**.
+
+### Procedure
+
+1. `git log --oneline --follow -- <file>` to find related commits
+2. For each commit, `gh pr list --search <SHA> --state merged` to map the PR
+3. **Tracing code lost in merge conflict**: When code was added and then disappeared, the commits returned by `git log --oneline --follow` may not reveal the root cause. Merge conflict resolution sometimes drops code, so:
+   ```bash
+   # Find merge commits that touched the file (combined diff)
+   git log --oneline --merges --diff-filter=M -- <file>
+   # Inspect the actual code change in the merge commit
+   git show <merge-commit> -- <file>
+   ```
+4. **The final report must include the PR number** — commit SHA, branch name, and author are supplementary information.
+
+---
+
+## PR diff analysis — compare PR-only changes (HARD STOP)
+
+When analyzing the substantive change of a PR, **do not rely on `git diff <base>..<branch>` alone**. If the base changes after the PR is written, later changes appear as a reverse diff, making it look like the PR touched files it did not.
+
+### Correct comparison methods (priority order)
+
+1. **`gh pr diff <N> -R <repo>`** — accurate PR diff based on GitHub merge-base (highest priority)
+2. **`git show <PR_HEAD_SHA>`** — for single-commit PRs
+3. **`git log <base>..<branch>` + per-commit `git show`** — for multi-commit PRs
+4. **`git diff $(git merge-base origin/<base> <branch>)..<branch>`** — merge-base-based
+
+### Forbidden pattern
+
+```bash
+# ❌ If the base changed after PR creation, reverse diffs are included
+git diff origin/master..origin/feature-branch
+
+# ✅ Shows only the PR's own commits
+gh pr diff <N> -R <repo>
+git show <PR_HEAD_SHA>  # single commit
+```
+
+### Example — wrong-comparison consequence
+
+A PR's actual change may be small (e.g., 2 files), but comparing via `git diff <base>..<branch>` can show many more files because of reverse diffs introduced by intervening merges on the base branch. The PR's branch sits at an older base, so files that were changed-then-reverted on the base appear as if the PR changed them.
+
+→ Risk: mis-diagnose the PR as having changed unrelated code paths. The user would receive a wrong analysis.
+
+See `~/.claude/skills/cleanup/data/failed-attempts.md` HOT entry "PR diff base-change reverse diff" for a concrete case.
+
+### When to apply
+
+- Identifying a PR's substantive change (before consolidate / merge decision)
+- Writing PR review
+- PR dependency analysis (conflict risk with other PRs)
+- PR rebase decision

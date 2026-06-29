@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>偷师 AI 大佬 EP01 · 演示版 — 只管一个人的 CEO</title>
+<meta name="description" content="只管一个人的 CEO（演示版，可翻页/自动播放）。Anthropic 的 Dario 只有 1 个直接下属，黄仁勋有 60 个——一屏一镜讲清「精力杠杆」：把执行委托出去，把注意力收回到只有你能做的判断上。偷师 AI 大佬 EP01。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="只管一个人的 CEO · 演示版（偷师 AI 大佬 EP01）">
+<meta property="og:description" content="Dario 把执行交给妹妹，你可以把执行交给 AI。一屏一镜、带动画的演示版。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23faf9f5'/%3E%3Ctext x='16' y='24' font-size='20' text-anchor='middle'%3E🧭%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;800;900&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Anthropic Sans';src:url('{{SKILL_DIR}}/assets/fonts/anthropicSans.woff2') format('woff2');font-weight:300 800;font-style:normal;font-display:swap;font-feature-settings:'dlig' 0}
+  @font-face{font-family:'Anthropic Mono';src:url('{{SKILL_DIR}}/assets/fonts/anthropicMono.woff2') format('woff2');font-weight:300 800;font-style:normal;font-display:swap}
+  :root{
+    /* V2 米白编辑风（亮色，沿用偷师栏目视觉）：黏土主色 + 石板蓝对比 + 赭石类比 */
+    --bg:#faf9f5;--surface:#ffffff;--surface2:#f4f2eb;--surfaceHi:#efece3;
+    --line:rgba(20,20,19,.10);--line2:rgba(20,20,19,.17);--line3:rgba(20,20,19,.30);
+    --text:#1a1a18;--read:#56544e;--text2:#6b685f;--text3:#8a877e;--text4:#a8a49a;
+    --hot:#c15f3c;--hot2:#a84f30;--hl0:#9a4a2c;   /* 黏土 = 主角/主数字（亮底压深一档）*/
+    --cool:#5c6b7a;--cool2:#48555f;               /* 石板蓝 = 数据点缀/对照 */
+    --ochre:#a07a3c;--ochre2:#8a6a32;             /* 赭石 = 类比/参数 */
+    --warn:#c0392b;
+    --font:'Anthropic Sans','Noto Sans SC','PingFang SC',system-ui,sans-serif;
+    --serif:'Noto Serif SC',Georgia,serif;
+    --mono:'Anthropic Mono','PingFang SC',ui-monospace,monospace;
+    --brand:'Noto Sans SC','Anthropic Sans',system-ui,sans-serif;
+    --shadow:0 1px 2px rgba(20,20,19,.04),0 8px 24px rgba(20,20,19,.06);
+    --shadow2:0 1px 2px rgba(20,20,19,.05),0 16px 38px rgba(20,20,19,.08);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;overflow:hidden}
+  html{background:var(--bg);color:var(--text);font-family:var(--font)}
+  body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    background:
+      radial-gradient(1100px 700px at 80% -8%,rgba(193,95,60,.08),transparent 60%),
+      radial-gradient(900px 800px at -8% 24%,rgba(92,107,122,.06),transparent 55%),
+      var(--bg);}
+
+  /* ── 固定底纹（亮版：网格用极淡深色、颗粒 multiply）── */
+  .grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.02;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px}
+  .mesh{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.6;
+    background-image:linear-gradient(rgba(20,20,19,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(20,20,19,.022) 1px,transparent 1px);
+    background-size:64px 64px;mask:radial-gradient(circle at 50% 40%,#000,transparent 88%)}
+  .frame{position:fixed;inset:18px;z-index:6;pointer-events:none}
+  .frame i{position:absolute;width:22px;height:22px;border:1.5px solid var(--line3)}
+  .frame i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0}
+  .frame i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0}
+  .frame i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0}
+  .frame i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0}
+  .orb{position:fixed;width:560px;height:560px;border-radius:50%;filter:blur(130px);pointer-events:none;z-index:0;background:radial-gradient(circle,rgba(193,95,60,.10),transparent 70%);top:-220px;right:-200px}
+
+  /* ── 顶栏 + 进度 ── */
+  .prog{position:fixed;top:0;left:0;height:2px;width:0;z-index:8;background:linear-gradient(90deg,var(--hot),var(--ochre));transition:width .45s ease}
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:7;display:flex;justify-content:space-between;align-items:center;
+    font-family:var(--mono);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);
+    padding:1.5rem clamp(1.5rem,5vw,3.2rem) 1.1rem}
+  .topbar .l{display:flex;align-items:center;gap:.6rem;color:var(--text2)}
+  .topbar .live{width:7px;height:7px;border-radius:50%;background:var(--hot);box-shadow:0 0 0 0 rgba(193,95,60,.5);animation:pulse 2.6s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(193,95,60,.4)}70%{box-shadow:0 0 0 7px rgba(193,95,60,0)}100%{box-shadow:0 0 0 0 rgba(193,95,60,0)}}
+  .topbar .r{display:flex;gap:1rem;align-items:center}
+  .topbar .r .ep{color:var(--hot)}
+  .topbar .sep{color:var(--text4)}
+  .topbar .ctr{color:var(--text2)}.topbar .ctr b{color:var(--hot);font-weight:700}
+
+  /* ── 舞台 + 幻灯 ── */
+  .deck{position:fixed;inset:0;z-index:2;overflow:hidden}
+  .slide{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    padding:5.5rem clamp(1.5rem,6vw,5rem) 5.5rem;opacity:0;visibility:hidden;pointer-events:none;
+    transition:opacity .55s ease}
+  .slide.active{opacity:1;visibility:visible;pointer-events:auto;z-index:3}
+  .slide.leaving{opacity:0;z-index:2;transition:opacity .35s ease}
+  .stage{width:100%;max-width:1000px;transform-origin:center center;will-change:transform}
+  .slide.cover .stage{max-width:1080px}
+
+  .gnum{position:absolute;top:7%;right:4%;z-index:0;font-family:var(--mono);font-weight:800;
+    font-size:clamp(8rem,26vw,22rem);line-height:.8;color:var(--text);opacity:.05;letter-spacing:-.05em;pointer-events:none}
+
+  /* ── 通用排版 ── */
+  .kicker{font-family:var(--mono);font-size:clamp(.66rem,1.4vw,.78rem);font-weight:500;letter-spacing:.32em;color:var(--cool2);text-transform:uppercase;display:flex;align-items:center;gap:.9rem;margin-bottom:1.8rem}
+  .kicker span{width:3rem;height:1px;background:linear-gradient(90deg,var(--cool),transparent)}
+  .sec-label{font-family:var(--mono);font-size:clamp(.66rem,1.4vw,.74rem);font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:var(--cool2);margin-bottom:1rem;display:flex;align-items:center;gap:.7rem}
+  .sec-label::before{content:'';width:1.6rem;height:1px;background:var(--cool)}
+  h1.big{font-size:clamp(2.6rem,8vw,6rem);font-weight:900;letter-spacing:-.025em;line-height:1.02;margin-bottom:1.6rem}
+  h1.big .hl{background:linear-gradient(96deg,var(--hot),var(--hot2) 70%);-webkit-background-clip:text;background-clip:text;color:transparent}
+  h1.big .hl2{color:var(--cool2)}
+  h2{font-size:clamp(1.7rem,4.4vw,2.9rem);font-weight:800;letter-spacing:-.02em;line-height:1.18;margin-bottom:1.1rem}
+  h2 .u{color:var(--hot)} h2 .u2{color:var(--cool2)}
+  p.lead{color:var(--read);font-size:clamp(1.02rem,2.1vw,1.2rem);max-width:48rem;line-height:1.85;margin-bottom:1.5rem}
+  p.lead b{color:var(--text);font-weight:700}
+  .hero-tag{font-size:clamp(1.05rem,2.3vw,1.35rem);color:var(--read);max-width:44rem;line-height:1.85;margin-bottom:1rem}
+  .hero-tag b{color:var(--text);font-weight:700}
+  h1.big,h2,p.lead,.hero-tag{text-wrap:balance}
+
+  /* readout */
+  .readout{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line2);border-radius:16px;overflow:hidden;background:var(--surface);box-shadow:var(--shadow)}
+  .gauge{padding:1.5rem 1.5rem;border-right:1px solid var(--line);position:relative;min-width:0}
+  .gauge:last-child{border-right:0}
+  .gauge .gl{font-family:var(--mono);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text3);margin-bottom:.7rem;display:flex;align-items:center;gap:.45rem}
+  .gauge .gl::before{content:'';width:5px;height:5px;border-radius:1px;background:var(--hot)}
+  .gauge:nth-child(2) .gl::before,.gauge:nth-child(4) .gl::before{background:var(--cool)}
+  .gauge .gv{font-family:var(--mono);font-size:clamp(1.5rem,3vw,1.9rem);font-weight:700;color:var(--hot);line-height:1;white-space:nowrap;letter-spacing:-.01em}
+  .gauge:nth-child(2) .gv,.gauge:nth-child(4) .gv{color:var(--cool2)}
+  .gauge .gu{font-size:.78rem;color:var(--text3);margin-top:.55rem;line-height:1.5}
+
+  /* card / note */
+  .card{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:1.9rem 2.2rem;margin-bottom:1.1rem;box-shadow:var(--shadow2)}
+  .card h3{font-size:1.16rem;font-weight:700;margin-bottom:.7rem}
+  .card p,.card li{font-size:clamp(.95rem,1.9vw,1.04rem);color:var(--read);line-height:1.85}
+  .card p+p{margin-top:.7rem}
+  .card li{margin-bottom:.5rem}
+  .card strong{color:var(--text);font-weight:700}
+  .card ul{padding-left:1.25rem;margin-top:.4rem}
+
+  /* pull */
+  .pull{position:relative;margin:1.4rem 0 .5rem;padding-top:1.5rem}
+  .pull::before{content:'';position:absolute;top:0;left:0;width:46px;height:2px;background:var(--hot)}
+  .pull p{font-family:var(--serif);font-size:clamp(1.4rem,3.2vw,2rem);line-height:1.5;color:var(--text);font-weight:600;letter-spacing:.005em;max-width:44rem}
+  .pull p em{font-style:normal;color:var(--hot);font-weight:700}
+  .pull .by{margin-top:1rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cool2)}
+
+  /* callout */
+  .callout{padding:1.3rem 1.8rem;border-radius:14px;margin:1.1rem 0;border:1px solid var(--line2);background:var(--surface)}
+  .callout.purple{background:rgba(193,95,60,.07);border-color:rgba(193,95,60,.26)}
+  .callout.cyan{background:rgba(92,107,122,.07);border-color:rgba(92,107,122,.24)}
+  .callout.amber{background:rgba(160,122,60,.08);border-color:rgba(160,122,60,.26)}
+  .callout.red{background:rgba(192,57,43,.07);border-color:rgba(192,57,43,.24)}
+  .callout p{font-size:clamp(.98rem,2vw,1.12rem);color:var(--read);line-height:1.8}
+  .callout.purple strong{color:var(--hot)}
+  .callout.cyan strong{color:var(--cool2)}
+  .callout.amber strong{color:var(--ochre2)}
+  .callout.red strong{color:var(--warn)}
+  .callout.big p{font-size:clamp(1.15rem,2.6vw,1.5rem);line-height:1.6}
+  .callout .ct{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3);margin-bottom:.7rem}
+
+  /* ── 条形对比（span of control）── */
+  .bars{display:flex;flex-direction:column;gap:1.6rem;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:2.2rem 2.4rem;box-shadow:var(--shadow2)}
+  .bar-row{display:grid;grid-template-columns:210px 1fr 74px;gap:1.3rem;align-items:center}
+  .bar-who{display:flex;flex-direction:column;gap:.2rem}
+  .bar-who .nm{font-size:1.2rem;font-weight:700;color:var(--text)}
+  .bar-who .co{font-family:var(--mono);font-size:.74rem;color:var(--text3);letter-spacing:.04em}
+  .bar-track{height:42px;background:var(--surface2);border-radius:11px;overflow:hidden;position:relative;border:1px solid var(--line)}
+  .bar-fill{height:100%;border-radius:10px}
+  .bar-fill.dot{width:42px;background:var(--hot)}
+  .bar-fill.mid{width:18%;background:var(--cool)}
+  .bar-fill.big{width:100%;background:linear-gradient(90deg,var(--ochre),#8a6a32)}
+  .bar-num{font-family:var(--mono);font-size:2rem;font-weight:700;text-align:right}
+  .bar-num.a{color:var(--hot)} .bar-num.b{color:var(--cool2)} .bar-num.c{color:var(--ochre2)}
+
+  /* ── 组织结构 ── */
+  .org{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:2.4rem 2.4rem 2rem;box-shadow:var(--shadow2)}
+  .org-top{display:flex;justify-content:center;margin-bottom:.4rem}
+  .node{background:var(--surface2);border:1px solid var(--line2);border-radius:14px;padding:1.1rem 1.6rem;text-align:center}
+  .node .role{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3)}
+  .node .name{font-size:1.25rem;font-weight:800;margin-top:.3rem}
+  .node.ceo{background:var(--hot);border-color:var(--hot)}
+  .node.ceo .role{color:rgba(255,255,255,.78)} .node.ceo .name{color:#fff}
+  .node.pres{background:var(--surface);border-color:var(--cool)}
+  .org-split{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;margin-top:2rem;position:relative}
+  .org-split::before{content:'';position:absolute;top:-1.7rem;left:25%;right:25%;height:1px;background:var(--line2)}
+  .org-split .arm{position:relative;display:flex;flex-direction:column;align-items:center;gap:.9rem}
+  .org-split .arm::before{content:'';position:absolute;top:-1.7rem;width:1px;height:1.7rem;background:var(--line2)}
+  .arm-label{font-family:var(--mono);font-size:.78rem;color:var(--text3);text-align:center;line-height:1.6}
+  .arm-label b{color:var(--hot);font-weight:600}
+  .team{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-top:.3rem}
+  .chip{font-family:var(--mono);font-size:.78rem;color:var(--text2);background:var(--surface2);border:1px solid var(--line);border-radius:999px;padding:.4rem .9rem}
+  .lone{background:var(--surface);border:1px solid var(--hot);border-radius:12px;padding:.9rem 1.4rem;text-align:center}
+  .lone .name{font-size:1.06rem;font-weight:700;color:var(--hot)}
+  .lone .role{font-family:var(--mono);font-size:.72rem;color:var(--text3);margin-top:.2rem}
+
+  /* ── 聚焦四件事 ── */
+  .focus{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+  .fcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.6rem 1.7rem;box-shadow:var(--shadow)}
+  .fcard .ic{width:2.6rem;height:2.6rem;border-radius:11px;background:rgba(193,95,60,.09);display:flex;align-items:center;justify-content:center;color:var(--hot);font-size:1.4rem}
+  .fcard h3{font-size:1.18rem;font-weight:800;margin-top:.9rem}
+  .fcard p{font-size:.96rem;color:var(--read);margin-top:.5rem;line-height:1.7}
+
+  /* ── takeaway ── */
+  .take{display:flex;gap:1.1rem;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.3rem 1.6rem;margin-bottom:.9rem;box-shadow:var(--shadow)}
+  .take .b{width:2rem;height:2rem;min-width:2rem;border-radius:50%;background:var(--ochre);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.9rem;margin-top:.15rem}
+  .take div{font-size:clamp(.98rem,2vw,1.08rem);color:var(--read);line-height:1.8}
+  .take b{color:var(--text);font-weight:700}
+
+  /* fig caption */
+  .fig-cap{text-align:center;font-family:var(--mono);font-size:.74rem;color:var(--text3);margin-top:1rem;letter-spacing:.03em;line-height:1.6}
+  .fig-cap b{color:var(--ochre2);font-weight:500}
+
+  /* end card */
+  .endcard{text-align:center}
+  .endcard .fmark{font-family:var(--mono);font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text4);margin-bottom:1.4rem}
+  .endcard .brand{font-family:var(--brand);font-size:clamp(1.4rem,4vw,2rem);font-weight:800;color:var(--text);margin-bottom:.4rem}
+  .endcard .handle{font-family:var(--mono);font-size:.85rem;color:var(--text3)}
+  .endcard .sl{font-size:.98rem;color:var(--read);margin-top:1rem}
+  .endcard .next{margin-top:1.6rem;display:inline-flex;align-items:center;gap:.7rem;font-family:var(--mono);font-size:.8rem;letter-spacing:.06em;color:var(--text3);border:1px solid var(--line2);border-radius:9999px;padding:.7rem 1.4rem}
+  .endcard .next b{color:var(--hot);font-weight:600}
+
+  /* ── 底部控制条 ── */
+  .navbar{position:fixed;left:0;right:0;bottom:0;z-index:7;display:flex;align-items:center;justify-content:space-between;
+    gap:1rem;padding:.9rem clamp(1.5rem,5vw,3.2rem) 1.3rem;font-family:var(--mono)}
+  .navbar .hint{font-size:.66rem;letter-spacing:.12em;color:var(--text4);text-transform:uppercase;white-space:nowrap}
+  .dots{display:flex;gap:7px;align-items:center;flex-wrap:wrap;justify-content:center;flex:1;max-width:60%}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--line3);border:0;padding:0;cursor:pointer;transition:all .25s}
+  .dot.on{background:var(--hot);transform:scale(1.25)}
+  .dot:hover{background:var(--hot2)}
+  .ctrls{display:flex;gap:.5rem;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;color:var(--text2);
+    background:var(--surface);border:1px solid var(--line2);border-radius:9999px;padding:.5rem .9rem;cursor:pointer;transition:all .2s;text-transform:uppercase;box-shadow:var(--shadow)}
+  .btn:hover{border-color:var(--hot);color:var(--hot);transform:translateY(-1px)}
+  .btn svg{width:13px;height:13px;display:block}
+  .btn.arrow{padding:.5rem .7rem}
+
+  /* ── 动画原语 ── */
+  .an{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1)}
+  .slide.go .an{opacity:1;transform:none;transition-delay:calc(var(--i,0)*90ms)}
+  .an.scale{transform:translateY(24px) scale(.96)}
+  .slide.go .an.scale{transform:none}
+  .bar{transform:scaleX(0);transform-box:fill-box;transform-origin:left center;transition:transform .9s cubic-bezier(.22,.61,.36,1)}
+  .slide.go .bar{transform:scaleX(1);transition-delay:calc(.25s + var(--i,0)*120ms)}
+  .tok{opacity:0;transition:opacity .5s ease}
+  .slide.go .tok{opacity:1;transition-delay:calc(.2s + var(--i,0)*70ms)}
+  .grow{transform:scale(.4);transform-box:fill-box;transform-origin:center;opacity:0;transition:transform .55s cubic-bezier(.34,1.56,.64,1),opacity .4s}
+  .slide.go .grow{transform:none;opacity:1;transition-delay:calc(.15s + var(--i,0)*90ms)}
+  .draw{transition:stroke-dashoffset 1s ease}
+
+  @media (prefers-reduced-motion: reduce){
+    .an,.an.scale,.bar,.tok,.grow,.slide{transition:none!important}
+    .an,.tok{opacity:1;transform:none}
+    .bar{transform:scaleX(1)} .grow{transform:none;opacity:1}
+  }
+
+  @media(max-width:820px){
+    .slide{padding:5rem 1.25rem 5.5rem}
+    .readout{grid-template-columns:repeat(2,1fr)}
+    .gauge:nth-child(2){border-right:0}
+    .gauge:nth-child(1),.gauge:nth-child(2){border-bottom:1px solid var(--line)}
+    .focus{grid-template-columns:1fr}
+    .bar-row{grid-template-columns:120px 1fr 52px;gap:.8rem}
+    .bar-num{font-size:1.4rem}
+    .org-split{grid-template-columns:1fr;gap:3rem}
+    .navbar .hint{display:none}.dots{max-width:50%}
+  }
+</style>
+</head>
+<body>
+<div class="prog" id="prog"></div>
+<div class="grain"></div>
+<div class="mesh"></div>
+<div class="orb"></div>
+<div class="frame"><i></i><i></i><i></i><i></i></div>
+
+<div class="topbar">
+  <div class="l"><span class="live"></span>偷师 AI 大佬 / STEAL THE PLAYBOOK</div>
+  <div class="r"><span>管理 · DARIO</span><span class="sep">│</span><span class="ep">EP 01</span><span class="sep">│</span><span class="ctr"><b id="cur">01</b> / <span id="tot">10</span></span></div>
+</div>
+
+<main class="deck" id="deck">
+
+  <!-- 01 封面 -->
+  <section class="slide cover">
+    <div class="stage">
+      <div class="kicker an" style="--i:0"><span></span>一个大佬 · 一个反常做法 · 一个你明天能用的方法</div>
+      <h1 class="big an" style="--i:1">只管<span class="hl">一个人</span>的 CEO</h1>
+      <p class="hero-tag an" style="--i:2">
+        当整个科技圈都在把更多人塞进一个老板麾下，Anthropic 的 CEO <b>Dario Amodei</b> 反着来——他的直接下属只有 <b>一个</b>。
+        这不是管理八卦，是每个职场人都该算的题：<b>你的精力，到底该花在几个人、几件事上？</b>
+      </p>
+      <div class="an" style="--i:3;font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;color:var(--text3);margin-top:.6rem">▸ 方向键 / 空格 / 点击翻页　·　右下角可“自动播放”</div>
+    </div>
+  </section>
+
+  <!-- 02 速览 -->
+  <section class="slide" data-g="·">
+    <div class="stage">
+      <div class="sec-label an" style="--i:0">本期速览 · OVERVIEW</div>
+      <h2 class="an" style="--i:1">一道关于<span class="u">注意力</span>的题</h2>
+      <div class="readout" style="margin-top:1.4rem">
+        <div class="gauge an" style="--i:2"><div class="gl">他的直接下属</div><div class="gv"><span data-count="1" data-suffix=" 个">0 个</span></div><div class="gu">仅一位幕僚长</div></div>
+        <div class="gauge an" style="--i:3"><div class="gl">黄仁勋有</div><div class="gv"><span data-count="60" data-suffix=" 个">0 个</span></div><div class="gu">管理幅度差 60 倍</div></div>
+        <div class="gauge an" style="--i:4"><div class="gl">内核方法</div><div class="gv">精力杠杆</div><div class="gu">把执行委托出去</div></div>
+        <div class="gauge an" style="--i:5"><div class="gl">你能怎么用</div><div class="gv">交给 AI</div><div class="gu">把判断留给自己</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 §1 一个数字 -->
+  <section class="slide" data-g="01">
+    <div class="stage">
+      <div class="sec-label an" style="--i:0">一个数字</div>
+      <h2 class="an" style="--i:1">1 vs 6 vs 60：<span class="u">管理幅度差两个数量级</span></h2>
+      <p class="lead an" style="--i:2">据彭博社报道，Anthropic CEO <b>Dario Amodei</b> 只有一个人直接向他汇报——他的幕僚长 Avital Balwit。放到同行里一对比就清楚了。</p>
+      <div class="bars an scale" style="--i:3">
+        <div class="bar-row"><div class="bar-who"><span class="nm">Dario Amodei</span><span class="co">ANTHROPIC</span></div><div class="bar-track"><div class="bar-fill dot bar" style="--i:0"></div></div><div class="bar-num a">1</div></div>
+        <div class="bar-row"><div class="bar-who"><span class="nm">Sam Altman</span><span class="co">OPENAI</span></div><div class="bar-track"><div class="bar-fill mid bar" style="--i:1"></div></div><div class="bar-num b">~6</div></div>
+        <div class="bar-row"><div class="bar-who"><span class="nm">黄仁勋 Jensen Huang</span><span class="co">NVIDIA</span></div><div class="bar-track"><div class="bar-fill big bar" style="--i:2"></div></div><div class="bar-num c">60</div></div>
+      </div>
+      <div class="fig-cap an" style="--i:4">直接下属人数对比 · <b>同样是 AI 巨头掌门，管理幅度相差 60 倍</b></div>
+    </div>
+  </section>
+
+  <!-- 04 §2 谁在管 -->
+  <section class="slide" data-g="02">
+    <div class="stage">
+      <div class="sec-label an" style="--i:0">那公司谁在管？</div>
+      <h2 class="an" style="--i:1">秘密在另一条线：<span class="u">他妹妹</span></h2>
+      <p class="lead an" style="--i:2">另一位联合创始人、总裁 <b>Daniela Amodei</b>——Dario 的亲妹妹——接管了日常运营。<b>除幕僚长之外的所有高管，都向她汇报。</b>于是公司形成了干净的“双轨”结构。</p>
+      <div class="org an scale" style="--i:3">
+        <div class="org-top tok" style="--i:0"><div class="node ceo"><div class="role">CEO · 联合创始人</div><div class="name">Dario Amodei</div></div></div>
+        <div class="org-split">
+          <div class="arm tok" style="--i:1">
+            <div class="arm-label">唯一直接下属<br><b>过滤信息 · 协调日程</b></div>
+            <div class="lone"><div class="name">Avital Balwit</div><div class="role">CHIEF OF STAFF · 幕僚长</div></div>
+          </div>
+          <div class="arm tok" style="--i:2">
+            <div class="arm-label">日常运营全部<br>高管向 <b>她</b> 汇报</div>
+            <div class="node pres"><div class="role">President · 联合创始人</div><div class="name">Daniela Amodei</div></div>
+            <div class="team"><span class="chip">研究</span><span class="chip">产品</span><span class="chip">安全</span><span class="chip">商业化</span><span class="chip">运营</span><span class="chip">…</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 §3 为什么 -->
+  <section class="slide" data-g="03">
+    <div class="stage">
+      <div class="sec-label an" style="--i:0">为什么这么干</div>
+      <h2 class="an" style="--i:1">把执行整个卸掉，换来<span class="u">“自由”</span></h2>
+      <p class="lead an" style="--i:2">Dario 形容这种安排“<b>令人难以置信地自由</b>”。卸掉执行的重量后，他把最稀缺的时间，集中投到四件别人替不了的事上。</p>
+      <div class="focus">
+        <div class="fcard an" style="--i:3"><div class="ic">◎</div><h3>战略方向</h3><p>公司往哪走、押注什么——这是 CEO 真正的工作，最不该被会议切碎。</p></div>
+        <div class="fcard an" style="--i:4"><div class="ic">❤</div><h3>公司文化</h3><p>几千人的 AI 公司，价值观和底线由谁定调，决定它会成为什么样的组织。</p></div>
+        <div class="fcard an" style="--i:5"><div class="ic">⚗</div><h3>研究方向</h3><p>技术出身的创始人，把判断力留在最该判断的地方：模型与研究路线。</p></div>
+        <div class="fcard an" style="--i:6"><div class="ic">✎</div><h3>书写未来</h3><p>花大量精力写关于文明与 AI 未来的长文——为整个行业定义议题。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 §3 note -->
+  <section class="slide" data-g="03">
+    <div class="stage">
+      <div class="sec-label an" style="--i:0">管理学里的一句老话</div>
+      <h2 class="an" style="--i:1">“管理幅度”越宽，<span class="u">注意力越薄</span></h2>
+      <div class="callout amber big an scale" style="--i:2">
+        <div class="ct">SPAN OF CONTROL</div>
+        <p>一个人的“管理幅度”越宽，他在每个下属身上能投入的注意力就越薄。Dario 把这个数字压到极限的 1，用代价（放弃对执行的直接掌控）换取一样东西——<strong>不被切碎的、可以用来深度思考的整块时间。</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 §4 跟你的关系 -->
+  <section class="slide" data-g="04">
+    <div class="stage">
+      <div class="sec-label an" style="--i:0">这跟你有什么关系</div>
+      <h2 class="an" style="--i:1">你愿意为“省心”，放弃多少<span class="u2">“掌控”</span>？</h2>
+      <p class="lead an" style="--i:2">过去“什么都管”是美德；在 AI 时代，这件事的性价比正在崩塌——因为你<b>真的有了一个可以委托的对象</b>。像 Dario 把运营交给 Daniela，把执行交给 AI。</p>
+      <div class="take an" style="--i:3"><div class="b">1</div><div><b>把你的“Daniela”找出来。</b>列一列每天的活，哪些是纯执行、不需要你拍板的——整理、汇总、排版、初稿、查资料。这些就是该委托出去的部分。</div></div>
+      <div class="take an" style="--i:4"><div class="b">2</div><div><b>把精力收回到“只有你能做的判断”上。</b>该不该做、方向对不对、品味好不好——这些 AI 替不了，也正是越来越值钱的部分。</div></div>
+      <div class="take an" style="--i:5"><div class="b">3</div><div><b>“管得少”不是偷懒，是聚焦。</b>问自己：我最值钱的产出，配得上我现在花在它上面的时间吗？</div></div>
+    </div>
+  </section>
+
+  <!-- 08 §4 金句 -->
+  <section class="slide" data-g="04">
+    <div class="stage">
+      <div class="sec-label an" style="--i:0">本期核心论点</div>
+      <div class="pull an" style="--i:1">
+        <p>不聊 AI 会不会取代你，只聊先用 AI 的人，怎么把活干得<em>更轻</em>。</p>
+        <div class="by">Dario 把执行交给妹妹，你可以把执行交给 AI</div>
+      </div>
+      <div class="callout cyan an" style="--i:2"><p>🧭 一个即将 IPO 的 CEO 把直接下属砍到 1，真正有意思的不是它有多反常，而是它逼着每个人重新算账：<strong>注意力是这个时代最稀缺的资源，而大多数人都把它浪费在了本可以委托出去的事情上。</strong></p></div>
+    </div>
+  </section>
+
+  <!-- 09 一句话偷走 -->
+  <section class="slide" data-g="·">
+    <div class="stage">
+      <div class="sec-label an" style="--i:0">这期能偷走的一句话</div>
+      <h2 class="an" style="--i:1">把<span class="u">执行</span>委托出去，<br>把<span class="u2">判断</span>收回到自己手里。</h2>
+      <p class="lead an" style="--i:2">Dario 的选择不是“管得少”，是把注意力押在<b>最高杠杆的产出</b>上。你手里的那个“Daniela”，现在叫 AI。</p>
+    </div>
+  </section>
+
+  <!-- 10 END -->
+  <section class="slide" data-g="·">
+    <div class="stage endcard">
+      <div class="fmark an" style="--i:0">— 偷师 AI 大佬 · EP 01 —</div>
+      <p class="brand an" style="--i:1">会勇禾口王的AI笔记</p>
+      <p class="handle an" style="--i:2">偷师 AI 大佬 · STEAL THE PLAYBOOK · EP01 · @huiyonghkw</p>
+      <p class="sl an" style="--i:3">一个大佬 + 一个反常做法 + 一个你明天能用的方法</p>
+      <div class="next an" style="--i:4">下一期 · <b>EP02 Karpathy：把代码交给 AI 的教父</b></div>
+      <div class="an" style="--i:5;margin-top:1.1rem;display:inline-flex;align-items:center;gap:.55rem;font-family:var(--font);font-size:.9rem;color:var(--read);border:1px solid rgba(193,95,60,.4);background:rgba(193,95,60,.07);border-radius:9999px;padding:.7rem 1.35rem">🎁 微信搜 <b style="color:var(--hot);font-weight:700">会勇禾口王的AI笔记</b>，回复 <b style="color:var(--hot);font-weight:700">工厂</b> 领 AI 内容流水线手册</div>
+    </div>
+  </section>
+
+</main>
+
+<nav class="navbar">
+  <div class="hint">← → / 空格 / 点击翻页　·　F 全屏</div>
+  <div class="dots" id="dots"></div>
+  <div class="ctrls">
+    <button class="btn arrow" id="prev" aria-label="上一页"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <button class="btn" id="play"><svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg><span id="playTxt">自动播放</span></button>
+    <button class="btn arrow" id="next" aria-label="下一页"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+  </div>
+</nav>
+
+<script>
+(function(){
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var deck = document.getElementById('deck');
+  var slides = [].slice.call(deck.querySelectorAll('.slide'));
+  var N = slides.length, idx = 0;
+  var prog = document.getElementById('prog');
+  var curEl = document.getElementById('cur'), totEl = document.getElementById('tot');
+  var dotsWrap = document.getElementById('dots');
+  totEl.textContent = N;
+
+  slides.forEach(function(s){
+    var g = s.getAttribute('data-g');
+    if(g && g!=='·' && !s.classList.contains('cover')){
+      var d = document.createElement('div'); d.className='gnum'; d.textContent=g; s.appendChild(d);
+    }
+  });
+
+  slides.forEach(function(s,i){
+    var b=document.createElement('button'); b.className='dot'; b.setAttribute('aria-label','第'+(i+1)+'页');
+    b.addEventListener('click',function(e){e.stopPropagation();stopAuto();go(i);});
+    dotsWrap.appendChild(b);
+  });
+  var dots = [].slice.call(dotsWrap.children);
+
+  function countUp(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    var suf = el.getAttribute('data-suffix')||'', pre = el.getAttribute('data-prefix')||'';
+    var dur = 900, t0 = null;
+    function step(ts){
+      if(t0===null) t0=ts;
+      var p = Math.min(1,(ts-t0)/dur);
+      var e = 1-Math.pow(1-p,3);
+      el.textContent = pre + Math.round(target*e) + suf;
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function fit(slide){
+    var stage = slide.querySelector('.stage'); if(!stage) return;
+    stage.style.transform='none';
+    var avail = slide.clientHeight - 168;
+    var h = stage.offsetHeight;
+    var k = h>avail ? Math.max(0.52, avail/h) : 1;
+    stage.style.transform = 'scale('+k+')';
+  }
+
+  function reveal(slide){
+    slide.classList.remove('go');
+    slide.querySelectorAll('.draw').forEach(function(p){
+      var len = (p.getTotalLength?p.getTotalLength():40);
+      p.style.transition='none'; p.style.strokeDasharray=len; p.style.strokeDashoffset=reduced?0:len;
+    });
+    slide.querySelectorAll('[data-count]').forEach(function(el){
+      el.textContent=(el.getAttribute('data-prefix')||'')+'0'+(el.getAttribute('data-suffix')||'');
+    });
+    void slide.offsetWidth;
+    requestAnimationFrame(function(){
+      slide.classList.add('go');
+      fit(slide);
+      slide.querySelectorAll('.draw').forEach(function(p,i){
+        p.style.transition='stroke-dashoffset 1s ease'; p.style.transitionDelay=(0.35+i*0.14)+'s'; p.style.strokeDashoffset=0;
+      });
+      if(reduced){
+        slide.querySelectorAll('[data-count]').forEach(function(el){
+          el.textContent=(el.getAttribute('data-prefix')||'')+el.getAttribute('data-count')+(el.getAttribute('data-suffix')||'');
+        });
+      } else {
+        slide.querySelectorAll('[data-count]').forEach(function(el){ setTimeout(function(){countUp(el);}, 200+(parseInt(el.closest('.an').style.getPropertyValue('--i'))||0)*90); });
+      }
+    });
+  }
+
+  function go(n){
+    n = Math.max(0, Math.min(N-1, n));
+    if(n===idx && slides[idx].classList.contains('active')){ return; }
+    var prevSlide = slides[idx];
+    idx = n;
+    slides.forEach(function(s,i){
+      if(i===idx){ s.classList.add('active'); s.classList.remove('leaving'); }
+      else if(s===prevSlide){ s.classList.add('leaving'); s.classList.remove('active'); }
+      else { s.classList.remove('active','leaving'); }
+    });
+    reveal(slides[idx]);
+    dots.forEach(function(d,i){ d.classList.toggle('on', i===idx); });
+    curEl.textContent = ('0'+(idx+1)).slice(-2);
+    prog.style.width = (idx/(N-1)*100)+'%';
+    if(history.replaceState) history.replaceState(null,'','#'+(idx+1));
+  }
+
+  function next(){ if(idx<N-1) go(idx+1); else stopAuto(); }
+  function prev(){ go(idx-1); }
+
+  var auto=null, AUTO_MS=7000;
+  var playBtn=document.getElementById('play'), playTxt=document.getElementById('playTxt'), playIcon=document.getElementById('playIcon');
+  function startAuto(){
+    stopAuto();
+    playTxt.textContent='暂停'; playIcon.innerHTML='<rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/>';
+    auto=setInterval(function(){ if(idx<N-1) next(); else stopAuto(); }, AUTO_MS);
+  }
+  function stopAuto(){
+    if(auto){ clearInterval(auto); auto=null; }
+    playTxt.textContent='自动播放'; playIcon.innerHTML='<path d="M8 5v14l11-7z"/>';
+  }
+  playBtn.addEventListener('click',function(e){ e.stopPropagation(); auto?stopAuto():startAuto(); });
+
+  document.getElementById('next').addEventListener('click',function(e){e.stopPropagation();stopAuto();next();});
+  document.getElementById('prev').addEventListener('click',function(e){e.stopPropagation();stopAuto();prev();});
+
+  deck.addEventListener('click',function(e){
+    if(e.target.closest('a,button,.navbar,.topbar')) return;
+    stopAuto(); next();
+  });
+
+  document.addEventListener('keydown',function(e){
+    var k=e.key;
+    if(k==='ArrowRight'||k==='ArrowDown'||k===' '||k==='PageDown'||k==='Enter'){ e.preventDefault(); stopAuto(); next(); }
+    else if(k==='ArrowLeft'||k==='ArrowUp'||k==='PageUp'){ e.preventDefault(); stopAuto(); prev(); }
+    else if(k==='Home'){ e.preventDefault(); stopAuto(); go(0); }
+    else if(k==='End'){ e.preventDefault(); stopAuto(); go(N-1); }
+    else if(k==='f'||k==='F'){ toggleFs(); }
+  });
+
+  var tx=0, ty=0;
+  deck.addEventListener('touchstart',function(e){ tx=e.touches[0].clientX; ty=e.touches[0].clientY; },{passive:true});
+  deck.addEventListener('touchend',function(e){
+    var dx=e.changedTouches[0].clientX-tx, dy=e.changedTouches[0].clientY-ty;
+    if(Math.abs(dx)>50 && Math.abs(dx)>Math.abs(dy)){ stopAuto(); dx<0?next():prev(); }
+  },{passive:true});
+
+  function toggleFs(){
+    if(!document.fullscreenElement){ (document.documentElement.requestFullscreen||function(){})(); }
+    else { (document.exitFullscreen||function(){})(); }
+  }
+
+  window.addEventListener('resize',function(){ fit(slides[idx]); });
+  window.addEventListener('hashchange',function(){ var n=parseInt(location.hash.replace('#',''),10); if(n){ stopAuto(); go(n-1); } });
+  var start=parseInt((location.hash||'').replace('#',''),10);
+  go(start? start-1 : 0);
+})();
+</script>
+</body>
+</html>

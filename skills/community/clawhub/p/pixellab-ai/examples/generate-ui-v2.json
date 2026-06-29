@@ -1,0 +1,10 @@
+{
+  "description": "medieval stone button, readable pixel-art border",
+  "image_size": {
+    "width": 128,
+    "height": 64
+  },
+  "no_background": true,
+  "color_palette": "brown stone, brass trim, dark inner shadow",
+  "seed": 0
+}

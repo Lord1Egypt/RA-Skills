@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "productCategory": {
+      "type": "string",
+      "enum": ["母婴", "电子产品", "美妆", "食品", "玩具", "服装", "家居", "AI工具", "baby", "electronics", "beauty", "food", "toys", "clothing", "home", "ai_tools", "其他"]
+    },
+    "destinationCountry": {
+      "type": "string",
+      "enum": ["US", "GB", "DE", "EE", "SG", "JP", "AU", "HK"]
+    },
+    "hasBrand": {
+      "type": "boolean"
+    },
+    "existingCompliances": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "productValue": {
+      "type": "number",
+      "minimum": 0
+    }
+  },
+  "required": ["productCategory", "destinationCountry"]
+}

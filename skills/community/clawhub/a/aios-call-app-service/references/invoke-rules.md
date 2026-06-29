@@ -5,6 +5,7 @@
 ```bash
 aios-apps-invoke-cli servercommand <applicationName> <commandName> <method> [jsonBody] -p <provider> -s <SessionId>
 aios-apps-invoke-cli binding <applicationName> <commandName> <method> <jsonBody> -p <provider> -s <SessionId>
+aios-apps-invoke-cli service-status
 aios-apps-invoke-cli status
 ```
 
@@ -15,6 +16,9 @@ aios-apps-invoke-cli status
 - `-p/-s` 分别来自 `provider`、当前 `SessionId` （上下文中的 `topic_id` ）
 - 当前 CLI 只支持 `provider=hzg`
 - 如果 ontology、用户或上下文指向其他 provider，直接停止并说明当前运行链路不支持
+- `servercommand` 和 `binding` 是 CLI client 命令，会通过本地 app invoke socket service 执行真实业务系统调用
+- 不要手动启动 `serve` 或 `serve-mqtt`，也不要绕过 CLI 直接拼业务系统 HTTP 请求
+- `service-status` 用于检查 socket service 配置；`status` 会读取完整配置视图，可能要求兼容 MQTT 环境变量存在
 - 缺任意运行时参数都不要猜，直接停止并说明缺口
 - `applicationName` 取自当前使用的 ontology 所在应用目录名；如果存在多个候选应用目录，直接停止并说明冲突
 - 业务命令用 `servercommand`

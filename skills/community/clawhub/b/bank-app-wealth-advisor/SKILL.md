@@ -2,7 +2,7 @@
 name: "Bank APP Wealth Advisor Assistant"
 slug: bank-app-wealth-advisor
 description: "AI-powered wealth advisory assistant for bank mobile applications — provides product recommendations, investment consultation, and compliance-compliant customer interaction. Built for digital banking teams."
-version: 3.0.1
+version: 3.0.2
 allowed-tools: []
 capabilities:
   - educational-reference
@@ -67,6 +67,18 @@ capabilities:
 - 具体基金/理财产品购买执行（应通过银行APP官方渠道）
 
 ---
+
+
+### 银行监管最新动态 [2026-06-28更新]
+
+| 动态类型 | 内容摘要 | 发布时间 | 影响范围 |
+|---------|---------|---------|---------|
+| 监管发布 | 金融监管总局发布《关于银行业保险业人工智能安全开发应用的指导意见》，明确资金交易、资产评估、信贷审批等为AI高风险应用场景 | 2026-06-18 | 银行AI应用合规与信贷风控 |
+| 监管计划 | NFRA《2026年规章制定工作计划》新制定《银行业保险业网络安全管理办法》，银行网络安全与数据安全从指导意见升级为刚性规章 | 2026-06-23 | 银行网络安全与数据合规 |
+| 监管施行 | NFRA 2026年第2号令《银行保险机构许可证管理办法》6月1日起施行，银行许可证管理纳入内控自评估 | 2026-06-01 | 银行合规审查与许可证管理 |
+
+> **数据截止**: 2026-06-28 | 来源：国家金融监督管理总局、行业公开信息
+> **声明**: 以上动态供参考，具体以官方最新发布为准
 
 ## Core Capabilities / 核心能力
 

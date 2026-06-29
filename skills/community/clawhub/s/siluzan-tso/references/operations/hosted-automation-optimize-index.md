@@ -5,11 +5,11 @@
 
 | 文档                                                                                                             | 场景                                   |
 | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| [`operations/hosted-automation-optimize-weak-downbid.md`](operations/hosted-automation-optimize-weak-downbid.md) | 表现差：组/创意 **降价或暂停**         |
-| [`operations/hosted-automation-optimize-scale.md`](operations/hosted-automation-optimize-scale.md)               | 高转化：**提预算 / 上调目标 CPA** 扩量 |
-| [`operations/hosted-automation-optimize-ab-winner.md`](operations/hosted-automation-optimize-ab-winner.md)       | 同组多创意：**A/B 决胜负、停输家**     |
+| [`references/operations/hosted-automation-optimize-weak-downbid.md`](references/operations/hosted-automation-optimize-weak-downbid.md) | 表现差：组/创意 **降价或暂停**         |
+| [`references/operations/hosted-automation-optimize-scale.md`](references/operations/hosted-automation-optimize-scale.md)               | 高转化：**提预算 / 上调目标 CPA** 扩量 |
+| [`references/operations/hosted-automation-optimize-ab-winner.md`](references/operations/hosted-automation-optimize-ab-winner.md)       | 同组多创意：**A/B 决胜负、停输家**     |
 
-**必读交叉引用**：`SKILL.md`（金额与 `*Display` 硬规范）、`references/google-ads/google-ads.md`（`ad campaign-edit` / `ad adgroup-edit` / `ad-status`）、`references/analytics/account-analytics.md`（日期与 **`google-analysis --json-out`**）、`references/core/tips.md`（通用 **`--json-out`** 落盘 + 读文件技巧）、[`operations/hosted-automation-self-control.md`](operations/hosted-automation-self-control.md)（统计日与时区约定）。
+**必读交叉引用**：`SKILL.md`（金额与 `*Display` 硬规范）、`references/google-ads/google-ads.md`（`ad campaign-edit` / `ad adgroup-edit` / `ad-status`）、`references/analytics/account-analytics.md`（日期与 **`google-analysis --json-out`**）、`references/core/tips.md`（通用 **`--json-out`** 落盘 + 读文件技巧）、[`references/operations/hosted-automation-self-control.md`](references/operations/hosted-automation-self-control.md)（统计日与时区约定）。
 
 ---
 
@@ -17,7 +17,7 @@
 
 ### 1. 统计区间
 
-`--start` / `--end` 为 **`YYYY-MM-DD`**，与宿主业务日一致；约定见 **`operations/hosted-automation-self-control.md`**「统计日与今日」。
+`--start` / `--end` 为 **`YYYY-MM-DD`**，与宿主业务日一致；约定见 **`references/operations/hosted-automation-self-control.md`**「统计日与今日」。
 
 ### 2. `ad list` / `ad groups` 与「按日多行」
 

@@ -102,7 +102,7 @@ PENDING_TTL = 600  # 10 minutes; matches the MC dispatch window
 # 0.3.7 — local pulse marker; doctor.py reads this for offline-detection.
 PULSE_FILE = Path.home() / '.space-duck' / 'listener-pulse.json'
 PULSE_INTERVAL = 90      # platform self-pulse every 90s
-SKILL_VERSION = '0.3.11'
+SKILL_VERSION = '0.4.15'
 # 0.3.9 — Auto-approved-action memory. When the owner taps "Approve &
 # remember" on action_kind X, X is added here with expires_at = now+24h.
 # Future X dispatches auto-execute (with audit) until the entry expires.
@@ -1210,7 +1210,14 @@ def main(argv=None):
     # MC flips offline immediately instead of waiting the 240s stale
     # window. SIGTERM/SIGINT both honored. Installed AFTER srv is bound
     # so the handler closure can call srv.shutdown() safely.
-    def _on_signal(signum, _frame):
+    # ThreadingHTTPServer.shutdown() blocks until serve_forever() observes the
+    # stop flag — so it MUST run on a different thread than serve_forever().
+    # Calling it directly inside the signal handler (which interrupts the main
+    # thread sitting in serve_forever) deadlocks: shutdown() waits for a loop
+    # that can't resume until the handler returns. That hang is what made the
+    # listener ignore SIGTERM and get SIGKILLed (Wayne, 0.4.x). Off-thread
+    # shutdown lets serve_forever wake, see the flag, and return cleanly.
+    def _do_shutdown(signum):
         print(f'\n[STOP] signal {signum} — sending shutdown pulse',
               file=sys.stderr)
         _send_shutdown_pulse(beak_key, sd_id, DEFAULT_API_BASE)
@@ -1218,7 +1225,10 @@ def main(argv=None):
             srv.shutdown()
         except Exception:
             pass
-        sys.exit(0)
+
+    def _on_signal(signum, _frame):
+        threading.Thread(target=_do_shutdown, args=(signum,),
+                         daemon=True).start()
     try:
         signal.signal(signal.SIGTERM, _on_signal)
         signal.signal(signal.SIGINT, _on_signal)

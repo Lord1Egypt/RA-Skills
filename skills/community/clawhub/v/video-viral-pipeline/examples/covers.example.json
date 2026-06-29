@@ -1,0 +1,7 @@
+{
+  "style": "cyber",
+  "output_dir": "~/Downloads/某视频切片/封面",
+  "covers": [
+    {"name":"01_钩子名","eyebrow":"信息差眉标(如 作者亲口/90%人不知道)","title":"主标题两行","highlight":"高亮关键词","subtitle":"底部利益副标","terminal":"终端里大致显示的命令/内容","icon":"柔和风用的小图标(可选)"}
+  ]
+}

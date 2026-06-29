@@ -1,0 +1,7 @@
+interface:
+  display_name: "Add Chinese Guides to Paper Sections"
+  short_description: "Create a Chinese guided-reading edition for an academic paper with section guides, concepts, figures, claims, and review questions."
+  default_prompt: "Use $add-chinese-guides-to-paper-sections to create a Chinese guided-reading edition for this paper. Produce paper-guide.zh.md with a reading path, section-by-section guide, key concepts, figures/tables notes, claims and evidence, limitations, and review questions."
+
+policy:
+  allow_implicit_invocation: true

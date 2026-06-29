@@ -1,0 +1,10 @@
+{
+  "name": "coverage-map",
+  "label": "保障责任图谱",
+  "description": "中心辐射图展示所有保障项目及赔付条件",
+  "layout": "radial",
+  "features": ["center_node", "coverage_branches", "condition_nodes", "amount_tags", "hover_detail"],
+  "node_types": ["product", "coverage", "condition", "exclusion", "benefit"],
+  "colors": {"coverage": "#22c55e", "condition": "#f59e0b", "benefit": "#3b82f6"},
+  "show_amounts": true
+}

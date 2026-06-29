@@ -61,6 +61,41 @@ The canonical machine-readable schema is in `references/resume-schema.json`. Kee
 - `personal.photo` is optional and hidden by default in all built-in themes. Provide a file path (relative to the HTML output location), an http(s) URL, or a data: base64 URI. Enable rendering in a custom theme via CSS (`.resume-photo { display: block; ... }`). Only include a photo when the target market expects one — many regions penalize photo resumes.
 - Imported PDFs may initially produce rough entries or raw text. Normalize these into canonical fields before final export.
 
+## Rich Text (Emphasis)
+
+Body fields accept a small, safe Markdown subset for emphasis. Apply it when you (the agent) author content, and the user can also apply it visually via the editable HTML toolbar.
+
+Supported syntax:
+
+| Syntax | Effect |
+|---|---|
+| `**text**` | bold |
+| `*text*` | italic |
+| `_text_` | underline |
+| `==text\|#rrggbb==` or `==text\|namedcolor==` | colored run |
+
+Examples:
+
+- `"Achieved **30%** growth with *custom* analytics."` → bold "30%", italic "custom".
+- `"Shipped ==critical|#c0392b== fix ahead of schedule."` → "critical" in red.
+
+**Fields that support rich text:**
+
+- `summary`
+- `experience[].description`, `experience[].responsibilities[]`, `experience[].achievements[]`
+- `education[].honors[]` (each honor item)
+- `projects[].description`, `projects[].achievements[]`
+
+**Fields that render plain** (kept plain to preserve tight layouts and a professional look):
+
+- `personal.*` (name, contact fields)
+- `experience[].company`, `position`, `period`, `location`
+- `education[].institution`, `degree`, `period`, `location`, `gpa`
+- `projects[].name`, `role`, `period`, `technologies`
+- `skills.*` (all categories and items)
+
+**Safety:** the renderer escapes HTML special characters first and then applies a strict whitelist of `<strong>` / `<em>` / `<u>` / `<span style="color:...">`. Color specs must match `#rrggbb` (3–8 hex digits) or a fixed set of CSS named colors; anything else is left as literal text. Use emphasis sparingly — a resume should still read as a professional document, not a highlight reel.
+
 ## Work File Convention
 
 By default, save resume JSON to `resume.json` in the current working directory. If the user specifies a different location, use that instead. When importing from PDF, extract to the same location with a `.json` extension replacing `.pdf`.

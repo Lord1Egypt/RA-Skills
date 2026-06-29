@@ -1,0 +1,5 @@
+{
+  "webapi_url": "http://api.topeasychina.com:15099/api",
+  "webapi_timeout": 30,
+  "doc_dir": "./doc"
+}

@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "BidDocument",
+  "description": "应标书文档结构定义",
+  "type": "object",
+
+  "properties": {
+    "metadata": {
+      "type": "object",
+      "description": "文档元信息",
+      "properties": {
+        "title":              { "type": "string" },
+        "projectName":        { "type": "string" },
+        "projectNumber":      { "type": "string" },
+        "bidderName":         { "type": "string" },
+        "preparedDate":       { "type": "string", "format": "date" },
+        "totalWords":         { "type": "integer" },
+        "version":            { "type": "string" }
+      },
+      "required": ["title", "projectName", "bidderName"]
+    },
+
+    "chapters": {
+      "type": "array",
+      "description": "各章节内容",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id":                 { "type": "string", "description": "章节标识符" },
+          "title":              { "type": "string", "description": "章节标题" },
+          "level":              { "type": "integer", "description": "标题层级（1=章, 2=节, 3=条）" },
+          "content":            { "type": "string", "description": "Markdown格式内容" },
+          "wordCount":          { "type": "integer" },
+          "scoringDimension":   { "type": "string", "description": "对应评分维度" },
+          "scoringScore":       { "type": "number", "description": "对应分值" },
+          "status":             { "type": "string", "enum": ["draft", "reviewed", "approved"] },
+
+          "tables": {
+            "type": "array",
+            "description": "章节中包含的表格",
+            "items": {
+              "type": "object",
+              "properties": {
+                "caption":    { "type": "string", "description": "表题" },
+                "headers":    { "type": "array", "items": { "type": "string" } },
+                "rows":       { "type": "array", "items": {
+                  "type": "array", "items": { "type": "string" }
+                } }
+              }
+            }
+          }
+        },
+        "required": ["id", "title", "content"]
+      }
+    },
+
+    "qualityReport": {
+      "type": "object",
+      "description": "质检报告",
+      "properties": {
+        "coverageRate":           { "type": "number", "minimum": 0, "maximum": 100, "description": "评分项覆盖率(%)" },
+        "techResponseRate":       { "type": "number", "minimum": 0, "maximum": 100, "description": "技术要求响应率(%)" },
+        "formatCompliance":       { "type": "boolean" },
+        "legalCompliance":        { "type": "boolean" },
+
+        "issues": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "severity": { "type": "string", "enum": ["error", "warning", "suggestion"] },
+              "description": { "type": "string" },
+              "location":  { "type": "string", "description": "问题所在章节" },
+              "suggestion": { "type": "string" }
+            },
+            "required": ["severity", "description"]
+          }
+        }
+      }
+    },
+
+    "attachments": {
+      "type": "array",
+      "description": "附件列表",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name":     { "type": "string" },
+          "type":     { "type": "string", "enum": ["image", "document", "certificate"] }
+        }
+      }
+    }
+  },
+
+  "required": ["metadata", "chapters"]
+}

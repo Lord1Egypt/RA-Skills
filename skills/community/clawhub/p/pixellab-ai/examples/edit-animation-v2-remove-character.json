@@ -1,0 +1,33 @@
+{
+  "description": "remove the character body and skin pixels, leave only the outfit layer, preserve the exact clothing motion, frame alignment, transparent background, and empty pixels where the body was removed",
+  "frames": [
+    {
+      "image": {
+        "type": "base64",
+        "format": "png",
+        "base64": "REPLACE_WITH_BASE64_DRESSED_FRAME_00"
+      },
+      "size": {
+        "width": 64,
+        "height": 64
+      }
+    },
+    {
+      "image": {
+        "type": "base64",
+        "format": "png",
+        "base64": "REPLACE_WITH_BASE64_DRESSED_FRAME_01"
+      },
+      "size": {
+        "width": 64,
+        "height": 64
+      }
+    }
+  ],
+  "image_size": {
+    "width": 64,
+    "height": 64
+  },
+  "no_background": true,
+  "seed": 0
+}

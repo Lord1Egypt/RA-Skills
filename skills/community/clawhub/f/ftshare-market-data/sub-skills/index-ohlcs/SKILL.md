@@ -1,106 +1,76 @@
 ---
 name: index-ohlcs
-description: 单只指数 OHLC K 线（market.ft.tech）。用户问某只指数的 K 线、日线/周线/月线/年线、开高低收、MA5/MA10/MA20 时使用。
+description: 单只指数 OHLC K 线（market.ft.tech）。用户问某只指数的 K 线、日线/周线/月线、开高低收、前/后复权时使用。
 ---
 
-# 指数 K 线 - 查询单只指数 OHLC K 线
+# 指数 K 线 - 查询单只指数 OHLC K 线（daec，日期区间）
 
 ## 1. 接口描述
 
 | 项目 | 说明 |
 |------|------|
 | 接口名称 | 查询单只指数 OHLC K 线 |
-| 外部接口 | `GET /app/api/v2/indices/:index/ohlcs` |
+| 外部接口 | `GET /gateway/api/v1/market/data/daec/history/ohlcs` |
 | 请求方式 | GET |
-| 适用场景 | 获取 A 股指定指数在指定周期、时间范围内的 K 线（开高低收、成交量、成交额等），支持日/周/月/年线，支持截止时间与条数限制；响应中附带 MA5/MA10/MA20 |
+| 适用场景 | 获取 A 股指定指数在指定日期区间、周期的 K 线（开高低收、成交量、成交额），支持日/周/月线与前/后复权 |
+
+> 已从 v2（`/app/api/v2/indices/:index/ohlcs`）迁移至 daec 统一标的接口（`daec/history/ohlcs?symbol=`）。**对外参数契约有变**：由 v2 的 `--span/--limit/--until_ts_ms` 改为 `--since/--until`（YYYYMMDD 日期区间）+ `--interval` + `--adjust`。注意：daec **不支持年线（YEAR1）**，响应**不再含 MA5/MA10/MA20 与 prev_close**。
 
 ## 2. 请求参数
 
-说明：`index` 为路径参数（必填），`span` 为必填项，`limit` 和 `until_ts_ms` 为可选项。
+说明：`index` 为路径参数（必填），`since` 必填，`until`/`interval`/`adjust` 可选。
 
 | 参数名 | 类型 | 是否必填 | 描述 | 取值示例 | 备注 |
 |--------|------|----------|------|----------|------|
 | index | string | 是 | 指数标的键（路径参数，带市场后缀） | 000001.XSHG、399001.XSHE、920036.BJ | 沪 .XSHG、深 .XSHE、北交所 .BJ |
-| span | string | 是 | K 线周期 | DAY1 | 可选值：DAY1（日线）、WEEK1（周线）、MONTH1（月线）、YEAR1（年线） |
-| limit | int | 否 | 返回 K 线根数上限 | 50 | 不传则不限制条数，返回时间范围内全部 K 线；建议传 limit 控制条数 |
-| until_ts_ms | long | 否 | 截止时间戳（毫秒），返回该时间点及之前的 K 线 | 1735689600000 | 不传则截止到「当前」 |
+| since | string | 是 | 起始日期 YYYYMMDD | 20240101 | - |
+| until | string | 否 | 结束日期 YYYYMMDD | 20240131 | 不传则默认今天 |
+| interval | string | 否 | K 线周期 | Day | Day（日线，默认）、Week（周线）、Month（月线）；无年线 |
+| adjust | string | 否 | 复权类型 | Forward | Forward（前复权）、Backward（后复权）；不传为不复权 |
 
 ## 3. 响应说明
 
-返回指定指数的 K 线数组、昨收及 MA 指标，与代码 `GetIndexOhlcsReply` 一致。
+返回指定指数的 K 线列表，包装为 `{"ohlcs": [...]}`（daec 返回裸数组，脚本统一包装）：
 
 ```json
 {
-    "has_last_empty": false,
-    "prev_close": 3245.67,
     "ohlcs": [
-        { "o": 3240.12, "h": 3255.88, "l": 3238.50, "c": 3252.30, "v": 280000000, "t": 350000000000.0, "otm": 1735689600000, "ctm": 1735776000000 }
-    ],
-    "ma5":  [ { "p": 3248.50, "ctm": 1735776000000 } ],
-    "ma10": [ { "p": null, "ctm": 1735776000000 } ],
-    "ma20": [ { "p": null, "ctm": 1735776000000 } ]
+        { "open": "4067.1578", "high": "4093.0405", "low": "4045.6898", "close": "4057.74", "volume": 67602580600, "turnover": "1319801913950.9", "open_ts_ms": "2024-06-03T09:30:00", "close_ts_ms": "2024-06-03T15:00:00" }
+    ]
 }
 ```
 
-### 根字段
-
-| 字段名 | 类型 | 是否可为空 | 说明 |
-|--------|------|------------|------|
-| has_last_empty | boolean | 否 | 最后一根 K 线是否为「空」（未收盘） |
-| prev_close | float | 是 | 昨收（用于涨跌幅等计算），保留 4 位小数；无昨收时为 null |
-| ohlcs | array | 否 | K 线列表，按时间正序；单条结构见下表 |
-| ma5 | array | 否 | 5 周期均线点，与 ohlcs 对齐 |
-| ma10 | array | 否 | 10 周期均线点 |
-| ma20 | array | 否 | 20 周期均线点 |
-
-### Ohlc 单条结构（ohlcs 元素，对应 `OhlcShortKey`）
+### Ohlc 单条结构（ohlcs 元素）
 
 | 字段名 | 类型 | 是否可为空 | 说明 | 单位 |
 |--------|------|------------|------|------|
-| o | float | 否 | 开盘 | 点 |
-| h | float | 否 | 最高 | 点 |
-| l | float | 否 | 最低 | 点 |
-| c | float | 否 | 收盘 | 点 |
-| v | long | 否 | 成交量 | — |
-| t | float | 否 | 成交额 | 元 |
-| otm | long | 否 | 该根 K 线周期开始时间（毫秒时间戳） | ms |
-| ctm | long | 否 | 该根 K 线周期结束时间（毫秒时间戳） | ms |
+| open | string | 否 | 开盘 | 点 |
+| high | string | 否 | 最高 | 点 |
+| low | string | 否 | 最低 | 点 |
+| close | string | 否 | 收盘 | 点 |
+| volume | long | 否 | 成交量 | - |
+| turnover | string | 否 | 成交额 | 元 |
+| open_ts_ms | string | 否 | 该根 K 线开始时间（北京时间 ISO） | - |
+| close_ts_ms | string | 否 | 该根 K 线结束时间（北京时间 ISO） | - |
 
-### Ma 单条结构（ma5 / ma10 / ma20 元素，对应 `Ma`）
-
-| 字段名 | 类型 | 是否可为空 | 说明 | 单位 |
-|--------|------|------------|------|------|
-| p | float | 是 | 均线值，保留 4 位小数；不足周期时为 null | 点 |
-| ctm | long | 否 | 对应 K 线的结束时间（毫秒时间戳） | ms |
+> 注：daec 接口不再返回 `prev_close`、`MA5/MA10/MA20`、`has_last_empty`；价格字段为字符串类型（避免浮点精度丢失）。
 
 ## 4. 用法
 
-通过主目录 `run.py` 调用（必填 `--index`、`--span`）：
+通过主目录 `run.py` 调用（必填 `--index`、`--since`）：
 
 ```bash
-python <RUN_PY> index-ohlcs --index 000001.XSHG --span DAY1 --limit 50
-python <RUN_PY> index-ohlcs --index 399001.XSHE --span WEEK1 --limit 100
-python <RUN_PY> index-ohlcs --index 000001.XSHG --span DAY1 --limit 20 --until_ts_ms 1735689600000
+python <RUN_PY> index-ohlcs --index 000001.XSHG --since 20240101 --until 20240131
+python <RUN_PY> index-ohlcs --index 399001.XSHE --since 20240101 --until 20260628 --interval Week
+python <RUN_PY> index-ohlcs --index 000001.XSHG --since 20230101 --interval Month --adjust Forward
 ```
 
-或在子 skill 目录下执行：`python scripts/handler.py --index 000001.XSHG --span DAY1 --limit 50`。脚本输出 JSON，请求头已内置 `X-Client-Name: ft-claw`。
+或在子 skill 目录下执行：`python scripts/handler.py --index 000001.XSHG --since 20240101 --until 20240131`。脚本输出 JSON，请求头已内置 `X-Client-Name: ft-claw`。
 
-## 5. 请求示例
+## 5. 注意事项
 
-```
-GET https://market.ft.tech/app/api/v2/indices/000001.XSHG/ohlcs?span=DAY1&limit=50
-```
-
-### 完整请求示例（curl）
-
-```bash
-curl -X GET 'https://market.ft.tech/app/api/v2/indices/000001.XSHG/ohlcs?span=DAY1&limit=50' \
-  -H 'X-Client-Name: ft-claw' \
-  -H 'Content-Type: application/json'
-```
-
-## 6. 注意事项
-
-- `span` 取值仅支持：DAY1、WEEK1、MONTH1、YEAR1
-- 建议传 `--limit` 控制条数，避免单次返回过多
-- 点位保留 4 位小数；时间戳为毫秒；数据更新时间以接口/行情源为准
+- `index`、`since` 为必填；`since`/`until` 需为 YYYYMMDD（8 位数字）
+- `interval` 仅支持 Day/Week/Month（daec 无年线）；不传默认 Day
+- `adjust` 可选 Forward/Backward，不传为不复权（v2 不支持选复权，daec 为增强）
+- 执行方式：脚本将每条 `open_ts_ms`/`close_ts_ms`（毫秒）转为北京时间 ISO 字符串（YYYY-MM-DDTHH:mm:ss）
+- **已知问题**：daec 大区间响应（如多年日线，~100KB+）服务端偶发传输中断（IncompleteRead），脚本内置 5 次指数退避重试；如仍失败会非零退出。建议按需缩小日期区间

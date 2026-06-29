@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sage Router hosted service terms for account, billing, API key, quota, analytics, and routing control-plane access." />
+  <link rel="canonical" href="https://sagerouter.dev/terms" />
+  <meta property="og:title" content="Sage Router Terms" />
+  <meta property="og:description" content="Hosted Sage Router terms for local-first model routing, BYOK provider access, API keys, quotas, and billing." />
+  <meta property="og:url" content="https://sagerouter.dev/terms" />
+  <meta property="og:type" content="website" />
+  <title>Sage Router Terms</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07100d;--panel:rgba(13,29,24,.84);--border:rgba(166,255,207,.16);--muted:#a9c5b8;--text:#edfdf5;--brand:#8df0b2;--amber:#f7d57a}*{box-sizing:border-box}body{margin:0;min-width:320px;background:linear-gradient(180deg,#07100d 0%,#0b1518 48%,#07100d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}.wrap{max-width:980px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}a{color:inherit;text-decoration:none}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;color:var(--muted)}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;color:var(--text)}.brandMark{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(141,240,178,.42);border-radius:8px;color:#062016;background:linear-gradient(135deg,var(--brand),var(--amber))}.navLinks,footer{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;font-weight:750}.navLinks a:hover,footer a:hover{color:var(--text)}main{padding:48px 0 64px}.eyebrow{color:var(--brand);text-transform:uppercase;letter-spacing:.16em;font-weight:900;font-size:12px;margin:0 0 16px}h1{font-size:clamp(42px,7vw,76px);line-height:.96;margin:0 0 20px}h2{font-size:clamp(24px,3vw,34px);line-height:1.08;margin:34px 0 10px}p,li{color:var(--muted)}.panel{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:26px;margin-top:24px}.note{border-color:rgba(141,240,178,.32);background:linear-gradient(180deg,rgba(26,67,50,.9),rgba(12,28,22,.86))}ul{padding-left:20px;display:grid;gap:8px}code{color:#d9f8e6}footer{padding:34px 0 54px;color:var(--muted);border-top:1px solid rgba(166,255,207,.1)}footer span{margin-right:auto}@media(max-width:760px){.nav{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+      <div class="navLinks">
+        <a href="/pricing">Pricing</a>
+        <a href="/status">Status</a>
+        <a href="/support">Support</a>
+        <a href="https://app.sagerouter.dev/account.html">Account</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/acceptable-use">Acceptable Use</a>
+      </div>
+    </nav>
+
+    <main>
+      <p class="eyebrow">Hosted service terms</p>
+      <h1>Sage Router Terms</h1>
+      <p>Effective June 19, 2026. These terms cover the hosted Sage Router web app, public API edge, account management, billing, generated API keys, quotas, analytics, and related hosted routing control-plane services.</p>
+
+      <section class="panel note">
+        <h2>Service Boundary</h2>
+        <p>Sage Router sells routing infrastructure, account management, API key management, usage quotas, analytics, reliability tooling, support, and optional private deployment help. Sage Router does not grant unauthorized access to third-party model providers, does not promise to bypass provider terms, and does not pool customer provider accounts as a default service.</p>
+      </section>
+
+      <section class="panel">
+        <h2>Accounts and API Keys</h2>
+        <ul>
+          <li>You are responsible for activity under your Sage Router account and generated <code>sk_sage_*</code> API keys.</li>
+          <li>Keep API keys confidential. Revoke keys immediately if they are exposed or no longer needed.</li>
+          <li>We may suspend or disable accounts, keys, or routes that create abuse risk, security risk, payment risk, infrastructure harm, or legal risk.</li>
+        </ul>
+
+        <h2>Provider Access</h2>
+        <p>You are responsible for ensuring that any model provider, local model, subscription, API key, cloud account, or proxy endpoint you connect to Sage Router is authorized for your use. Provider terms, license terms, rate limits, content rules, and billing obligations remain between you and the provider unless a separate written agreement says otherwise.</p>
+
+        <h2>Billing and Plans</h2>
+        <p>Hosted plans may include monthly request quotas, request-per-minute limits, billing portal access, analytics, and support. Stripe checkout and billing portal flows are the primary self-service billing paths. Crypto or manual settlement may be available by agreement and may require manual activation.</p>
+
+        <h2>Reliability</h2>
+        <p>Sage Router is built for health-aware fallback and CDN-style routing across available installations, but no hosted service is guaranteed to be uninterrupted. Public status and route health are provided for operational visibility, not as a guarantee of model provider availability.</p>
+
+        <h2>Acceptable Use</h2>
+        <p>Your use must follow the <a href="/acceptable-use">Acceptable Use Policy</a>. Do not use Sage Router to attack, overload, scrape, evade provider controls, violate third-party terms, or route unlawful content or traffic.</p>
+
+        <h2>Privacy</h2>
+        <p>The <a href="/privacy">Privacy Policy</a> describes hosted account data, billing data, generated-key metadata, usage counters, and privacy-safe route telemetry. Sage Router is designed not to store prompts, message bodies, provider credentials, OAuth tokens, API keys, or raw provider responses in launch analytics.</p>
+
+        <h2>Changes</h2>
+        <p>We may update hosted terms, plans, limits, security controls, or service behavior as the product matures. Material changes should be reflected on this page or in customer-facing release notes.</p>
+      </section>
+    </main>
+
+    <footer>
+      <span>&copy; Sage Router</span>
+      <a href="/privacy">Privacy</a>
+      <a href="/acceptable-use">Acceptable Use</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/status">Status</a>
+      <a href="/support">Support</a>
+      <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "size-chart",
+  "label": "文件大小可视化",
+  "description": "展示文件大小分布和统计信息",
+  "layout": "hybrid",
+  "features": ["size_bar", "file_count", "total_size", "type_distribution_chart", "top_largest"],
+  "icon_style": "css-only",
+  "sort_order": "size-desc",
+  "show_hidden": false,
+  "size_unit": "auto"
+}

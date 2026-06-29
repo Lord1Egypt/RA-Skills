@@ -1,3 +1,13 @@
+---
+name: pitch-deck
+mode: deck
+scenario: marketing
+surface: slides
+recommended: 20
+tags: ["pitch", "vc", "fundraise", "marketing", "seed"]
+example_id: sample-pitch-deck
+example_format: markdown
+---
 # pitch-deck
 
 Classic 10-slide YC/VC seed pitch: cover, problem, solution, product, market, business model, traction, team, ask, thanks.

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sync DeBox Docs"
+  short_description: "Sync, visually inspect, and summarize current DeBox docs."
+  default_prompt: "Use $sync-debox-docs to synchronize, optionally inspect images, and comprehensively summarize the current DeBox public documentation."

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Error Message Improver"
+  short_description: "Helps with Better Error Messages."
+  default_prompt: "Use $error-message-improver to help me Better Error Messages."
+
+policy:
+  allow_implicit_invocation: true

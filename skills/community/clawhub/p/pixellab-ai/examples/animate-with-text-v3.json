@@ -1,0 +1,12 @@
+{
+  "first_frame": {
+    "type": "base64",
+    "format": "png",
+    "base64": "REPLACE_WITH_BASE64_FIRST_FRAME"
+  },
+  "action": "walk loop, stable face, consistent outfit, no camera movement",
+  "frame_count": 8,
+  "no_background": true,
+  "enhance_prompt": true,
+  "seed": 0
+}

@@ -1,0 +1,113 @@
+#!/usr/bin/env node
+/*
+ * cam — view and control Wyze cameras (snapshot, thumbnail, siren, lights,
+ * motion/notification toggles, power).
+ * Wraps wyze-node, reusing the cached login token (shared with the wyze skill).
+ * Config via env: WYZE_NODE_DIR, WYZE_ENV, WYZE_TOKEN_DIR (see SKILL.md).
+ */
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
+const home = os.homedir();
+const exists = p => { try { fs.accessSync(p); return true; } catch { return false; } };
+function die(m) { console.error('error: ' + m); process.exit(1); }
+
+const NODE_DIR = process.env.WYZE_NODE_DIR || path.join(home, 'code', 'wyze-node');
+const ENV = process.env.WYZE_ENV || path.join(home, '.openclaw', 'secrets', 'wyze.env');
+const TOKEN_DIR = process.env.WYZE_TOKEN_DIR || (exists(NODE_DIR) ? NODE_DIR : path.join(home, '.openclaw', 'wyze'));
+const SKILL_DIR = path.join(__dirname, '..');
+
+if (exists(ENV)) {
+  for (const line of fs.readFileSync(ENV, 'utf8').split('\n')) {
+    const m = line.match(/^\s*([A-Z_]+)\s*=\s*(.*)\s*$/);
+    if (m && !process.env[m[1]]) process.env[m[1]] = m[2];
+  }
+}
+try { fs.mkdirSync(TOKEN_DIR, { recursive: true }); process.chdir(TOKEN_DIR); }
+catch { die('cannot use token dir ' + TOKEN_DIR); }
+
+let Wyze;
+for (const cand of ['wyze-node', path.join(SKILL_DIR, 'node_modules', 'wyze-node'), path.join(NODE_DIR, 'src', 'index.js')]) {
+  try { Wyze = require(cand); break; } catch {}
+}
+if (!Wyze) die('wyze-node not found — run: npm install --prefix "' + path.join(SKILL_DIR, 'scripts') + '" wyze-node');
+
+let _w;
+function client() { return _w || (_w = new Wyze({ username: process.env.WYZE_EMAIL, keyId: process.env.WYZE_KEY_ID, apiKey: process.env.WYZE_API_KEY })); }
+const isCam = d => d.product_type === 'Camera';
+const online = d => d.conn_state === 1 || d.connection_state === 1;
+
+async function cameras() { return (await client().getDeviceList()).filter(isCam); }
+function pick(list, query) {
+  if (!query) die('which camera? (name) — try: list');
+  const s = query.toLowerCase().trim();
+  const hits = list.filter(d => (d.nickname || '').toLowerCase().includes(s));
+  if (!hits.length) die('no camera matching "' + query + '". Try: list');
+  return hits;
+}
+async function one(query) { const c = pick(await cameras(), query); if (c.length > 1) die('"' + query + '" matches ' + c.length + ' cameras: ' + c.map(d => (d.nickname || '').trim()).join(', ') + '. Be more specific.'); return c[0]; }
+
+const ON = new Set(['on', 'true', '1', 'enable']);
+const OFF = new Set(['off', 'false', '0', 'disable']);
+function onoff(v, what) { const s = String(v || '').toLowerCase(); if (ON.has(s)) return true; if (OFF.has(s)) return false; die('say "on" or "off" for ' + what); }
+
+(async () => {
+  const [cmd, ...rest] = process.argv.slice(2);
+  const w = client();
+
+  if (!cmd || cmd === 'list') {
+    const cams = await cameras();
+    cams.sort((a, b) => (a.nickname || '').localeCompare(b.nickname || ''));
+    cams.forEach(d => console.log(`${online(d) ? 'online ' : 'offline'}  ${(d.nickname || '').trim()}`));
+    if (!cams.length) console.log('(no cameras on this account)');
+    return;
+  }
+
+  if (cmd === 'thumbnail' || cmd === 'thumb') {
+    const cam = await one(rest[0]);
+    const url = await w.getCameraThumbnail(cam);
+    if (!url) die('no thumbnail available for "' + (cam.nickname || '').trim() + '" (model may not support it, or none cached yet). Try: snapshot');
+    console.log(url);
+    return;
+  }
+
+  if (cmd === 'snapshot' || cmd === 'snap') {
+    const cam = await one(rest[0]);
+    const safe = (cam.nickname || 'camera').trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    const out = rest[1] || path.join(os.tmpdir(), `wyze-${safe || 'camera'}.jpg`);
+    if (typeof w.saveCameraSnapshot !== 'function') die('this wyze-node build has no snapshot support');
+    try {
+      const p = await w.saveCameraSnapshot(cam, out);
+      console.log(p);
+      // wyze-node now tears down WebRTC cleanly (awaits pc.close, skips TURN by
+      // default) so the loop drains on its own. We still exit(0) for an instant
+      // return and to cover relay:'auto', where werift keeps a TURN keepalive.
+      process.exit(0);
+    } catch (e) {
+      const msg = (e && e.message) || String(e);
+      if (/werift|cannot find module|MODULE_NOT_FOUND/i.test(msg))
+        die('live snapshot needs WebRTC deps. Install them:\n  npm install --prefix "' + path.join(SKILL_DIR, 'scripts') + '" werift ws ffmpeg-static\n(or use `thumbnail` for the cached image URL)');
+      die('snapshot failed: ' + msg);
+    }
+    return;
+  }
+
+  // control verbs: <verb> <name> [on|off]
+  const cam = await one(rest[0]);
+  const name = (cam.nickname || '').trim();
+  const arg = rest[1];
+  const map = {
+    on: () => w.cameraTurnOn(cam), off: () => w.cameraTurnOff(cam),
+    siren: () => onoff(arg, 'siren') ? w.cameraSirenOn(cam) : w.cameraSirenOff(cam),
+    floodlight: () => onoff(arg, 'floodlight') ? w.cameraFloodLightOn(cam) : w.cameraFloodLightOff(cam),
+    light: () => onoff(arg, 'light') ? w.cameraFloodLightOn(cam) : w.cameraFloodLightOff(cam),
+    spotlight: () => onoff(arg, 'spotlight') ? w.cameraSpotLightOn(cam) : w.cameraSpotLightOff(cam),
+    motion: () => onoff(arg, 'motion') ? w.cameraMotionOn(cam) : w.cameraMotionOff(cam),
+    notifications: () => onoff(arg, 'notifications') ? w.cameraNotificationsOn(cam) : w.cameraNotificationsOff(cam),
+    recording: () => onoff(arg, 'recording') ? w.cameraMotionRecordingOn(cam) : w.cameraMotionRecordingOff(cam),
+  };
+  if (!map[cmd]) die('unknown command "' + cmd + '". Commands: list, snapshot, thumbnail, on, off, siren, floodlight, spotlight, motion, notifications, recording');
+  await map[cmd]();
+  const tail = (cmd === 'on' || cmd === 'off') ? '' : ' ' + (onoff(arg) ? 'on' : 'off');
+  console.log(`${cmd}${tail}: ${name}`);
+})().catch(e => die((e && e.message) || String(e)));

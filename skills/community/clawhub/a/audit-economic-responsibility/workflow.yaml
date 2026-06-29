@@ -1,0 +1,166 @@
+# 经济责任审计工作流模板
+
+name: 经济责任审计
+type_id: economic_responsibility
+description: 对领导干部任期经济责任履行情况的审计，涵盖任中/离任/自然资源资产
+version: "1.0"
+
+context_prompt: |
+  被审计单位：{unit_name}
+  被审计人员：{person_name}
+  审计期间：{period}
+  审计类型：{audit_subtype}
+
+steps:
+  - id: know_unit
+    name: 了解情况
+    action: knowledge_query
+    description: 梳理被审计单位基本情况、职能职责、组织架构
+    prompt: |
+      请梳理被审计单位"{unit_name}"的基本情况：
+      1. 单位性质、级别、编制
+      2. 主要职能职责和内设机构
+      3. 近三年预算安排和资金规模
+      4. 重大经济事项和历史遗留问题
+      5. 内控制度建设情况
+    checkpoint: false
+    output_key: unit_profile
+
+  - id: make_plan
+    name: 制定审计方案
+    action: generate
+    description: 根据经责审计要求，制定审计方案和资料清单
+    prompt: |
+      基于"{unit_name}"的基本情况，制定经责审计实施方案：
+      1. 审计目标和范围
+      2. 审计重点和风险评估
+      3. 资料需求清单
+      4. 人员分工和时间安排
+    skills: [audit-jingze]
+    depends_on: [know_unit]
+    checkpoint: true
+    output_key: audit_plan
+
+  - id: financial_analysis
+    name: 财务分析
+    action: data_analysis
+    description: 财务收支总体分析、三公经费分析
+    prompt: |
+      对"{unit_name}"的财务数据进行全面分析：
+      1. 收入来源和结构分析
+      2. 支出规模和趋势分析
+      3. 三公经费变动分析（同比、环比）
+      4. 大额支出和异常支出识别
+      5. 往来款项清理情况
+    skills: [data-analyst-cn, financial-fraud-detection]
+    depends_on: [make_plan]
+    checkpoint: false
+    output_key: financial_findings
+
+  - id: major_decisions
+    name: 重大决策核查
+    action: data_analysis
+    description: 重大经济决策事项的合规性和效益性核查
+    prompt: |
+      核查"{unit_name}"的重大经济决策事项：
+      1. 三重一大制度执行情况
+      2. 重大投资决策的程序合规性
+      3. 大额采购的招标程序
+      4. 重大资产处置的合规性
+      5. 决策执行效果和效益评估
+    skills: [audit-jingze, procurement-audit-models]
+    depends_on: [financial_analysis]
+    checkpoint: false
+    output_key: decision_findings
+
+  - id: internal_control
+    name: 内控测试
+    action: invoke_skill
+    description: 关键业务流程内控测试
+    prompt: |
+      对"{unit_name}"的关键业务进行内控测试：
+      1. 预算编制和执行的审批流程
+      2. 采购与付款循环的内控
+      3. 资产管理的控制措施
+      4. 合同管理的控制节点
+      5. 信息系统的一般控制和应用控制
+    skills: [first-principles-audit, digital-audit-methodology]
+    depends_on: [make_plan]
+    checkpoint: false
+    output_key: ic_findings
+
+  - id: aggregate_findings
+    name: 疑点汇总定责
+    action: aggregate
+    description: 汇总所有分析结果，形成疑点清单和核查重点
+    prompt: |
+      汇总"{unit_name}"经责审计的所有发现：
+      1. 按问题性质分类（违规/管理不规范/效益低下）
+      2. 逐项对应责任主体和责任类型（直接责任/主管责任/领导责任）
+      3. 评估问题严重程度和影响范围
+      4. 形成问题清单和审计证据索引
+    skills: [audit-jingze]
+    depends_on: [financial_analysis, major_decisions, internal_control]
+    checkpoint: true
+    output_key: finding_summary
+
+  - id: evidence_collection
+    name: 取证定性
+    action: invoke_skill
+    description: 对疑点进行取证和问题定性
+    prompt: |
+      对以下疑点逐项取证定性：
+      1. 每个问题的法规依据
+      2. 事实证据确认
+      3. 责任界定确认
+      4. 问题定性（违规/管理不规范）
+    skills: [audit-jingze]
+    depends_on: [aggregate_findings]
+    checkpoint: false
+    output_key: evidence_bundle
+
+  - id: draft_working_papers
+    name: 编制审计底稿
+    action: generate
+    description: 编制审计工作底稿
+    prompt: |
+      编制标准审计工作底稿：
+      1. 审计程序执行记录
+      2. 审计证据汇总
+      3. 审计发现和结论
+      4. 复核记录
+    depends_on: [evidence_collection]
+    checkpoint: false
+    output_key: working_papers
+
+  - id: draft_report
+    name: 形成审计报告
+    action: invoke_skill
+    description: 生成经责审计报告初稿
+    prompt: |
+      生成"{unit_name}"经责审计报告初稿：
+      1. 审计基本情况
+      2. 审计评价（成绩+问题）
+      3. 审计发现的主要问题
+      4. 责任认定
+      5. 审计建议
+    skills: [gov-audit-report-writer, gov-doc-formatting]
+    depends_on: [draft_working_papers]
+    checkpoint: true
+    output_key: report_draft
+
+  - id: review_report
+    name: 报告复核
+    action: invoke_skill
+    description: 审计报告AI复核
+    prompt: |
+      对经责审计报告进行质量复核：
+      1. 法规引用准确性
+      2. 问题定性的恰当性
+      3. 责任认定的充分性
+      4. 逻希一致性和完整性
+      5. 格式规范性
+    skills: [audit-report-review]
+    depends_on: [draft_report]
+    checkpoint: true
+    output_key: review_notes

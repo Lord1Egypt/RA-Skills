@@ -1,0 +1,391 @@
+{
+  "schema_version": 1,
+  "contract_version": "1.9.2",
+  "skill_id": "skill2team",
+  "skill2team_version": "1.9.2",
+  "team_kind": "meta",
+  "team_id": "s2t-meta",
+  "name_prefix": "s2t-meta",
+  "entry_agent_id": "s2t-meta-entry",
+  "default_top_level_agent_count_policy": {
+    "target_range": "5-6",
+    "scope": "Generated target teams and nontrivial meta-team work plans. The fixed S2T meta-team itself has six internal service agents.",
+    "below_range_requires": "Clear low-risk consolidation rationale showing no independent boundary is lost.",
+    "above_range_requires": "Strong evidence of hard isolation, multiple independent gates, multiple regulated domains, conflicting context boundaries, or separate credential/workspace requirements.",
+    "above_eight_rule": "Discouraged unless the user explicitly needs hard isolation; include a consolidation plan."
+  },
+  "reuse_policy": {
+    "same_version_rule": "If a registered s2t-meta manifest has the same skill2team_version, meta_team_contract_version, meta_team_signature, entry_agent_id, and all registered files exist, reuse it.",
+    "missing_rule": "If no usable s2t-meta Codex activation exists and meta-team-first is requested, generate the fixed 1.9.2 meta-team package for Codex preflight, register it, and separately verify active-session invocation. If registered activation cannot be confirmed because the current thread did not hot-load newly written agent config, either use real current-session subagents for fixed S2T work orders and record real_session_subagents, or block with a reason.",
+    "mismatch_rule": "If an s2t-meta registration exists but the version or signature differs, do not delete it unless the user explicitly requests force regeneration; otherwise block registered meta-team execution and explain the version/signature mismatch. Do not use fallback role-play in Codex meta-team-first.",
+    "force_rule": "On explicit force regeneration, unregister only the files listed in the s2t-meta registry manifest or files with matching Skill2Team ownership markers, then register the fixed meta-team package and require either registered smoke-test evidence or real current-session subagent evidence before claiming meta-team-first execution."
+  },
+  "agents": [
+    {
+      "agent_id": "entry",
+      "registered_agent_id": "s2t-meta-entry",
+      "internal_role": "S2T Lead",
+      "display_name": "S2T Lead",
+      "main_function": "Intake, route selection, delivery selection, execution-path selection, state tracking, and synthesis ownership.",
+      "mission": "User-facing entry agent for Skill2Team. Own intake, route selection, delivery selection, execution-path selection, state lookup, work-order creation, and final synthesis ownership.",
+      "owned_skills": [
+        "entrypoint",
+        "routing",
+        "state-tracking",
+        "handoff",
+        "synthesis"
+      ],
+      "tools_policy": {
+        "allow": [
+          "read",
+          "write"
+        ],
+        "deny": []
+      },
+      "profile_mode": true,
+      "profile_id": "s2t-meta-entry.profile",
+      "agent_node_id": "s2t_meta_entry",
+      "responsibilities": [
+        "Intake, route selection, delivery selection, execution-path selection, state tracking, and synthesis ownership."
+      ]
+    },
+    {
+      "agent_id": "source-mapper",
+      "registered_agent_id": "s2t-meta-source-mapper",
+      "internal_role": "Source Mapper",
+      "display_name": "Source Mapper",
+      "main_function": "Source asset inventory, original workflow extraction, local-resource classification, and migration anchors.",
+      "mission": "Inventory source skills, prompts, tools, scripts, templates, registry manifests, local resources, workflows, and SOPs; extract current workflow stages, stage-internal deliverables, human intervention points, artifacts, failure modes, and migration anchors.",
+      "owned_skills": [
+        "inventory",
+        "workflow-extraction",
+        "local-resource-allocation",
+        "source-audit"
+      ],
+      "tools_policy": {
+        "allow": [
+          "read",
+          "write"
+        ],
+        "deny": [
+          "destructive-write"
+        ]
+      },
+      "profile_mode": true,
+      "profile_id": "s2t-meta-source-mapper.profile",
+      "agent_node_id": "s2t_meta_source_mapper",
+      "responsibilities": [
+        "Source asset inventory, original workflow extraction, local-resource classification, and migration anchors."
+      ]
+    },
+    {
+      "agent_id": "architecture-designer",
+      "registered_agent_id": "s2t-meta-architecture-designer",
+      "internal_role": "Architecture Designer",
+      "display_name": "Architecture Designer",
+      "main_function": "Agent Architecture Map, role boundaries, team topology, skill allocation, and agent-count rationale.",
+      "mission": "Design the Agent Architecture Map separately from workflow orchestration: role topology, accountability, authority, context boundaries, owned/shared/restricted skills, and the rationale for the chosen top-level agent count.",
+      "owned_skills": [
+        "team-design",
+        "agent-architecture",
+        "agent-independence",
+        "skill-allocation",
+        "role-boundaries"
+      ],
+      "tools_policy": {
+        "allow": [
+          "read",
+          "write"
+        ],
+        "deny": []
+      },
+      "profile_mode": true,
+      "profile_id": "s2t-meta-architecture-designer.profile",
+      "agent_node_id": "s2t_meta_architecture_designer",
+      "responsibilities": [
+        "Agent Architecture Map, role boundaries, team topology, skill allocation, and agent-count rationale."
+      ]
+    },
+    {
+      "agent_id": "workflow-orchestrator",
+      "registered_agent_id": "s2t-meta-workflow-orchestrator",
+      "internal_role": "Workflow Orchestrator",
+      "display_name": "Workflow Orchestrator",
+      "main_function": "Workflow Orchestration Map, workflow preservation gate, control-flow rules, handoff contracts, checkpoints, reruns, and resume policy.",
+      "mission": "Design the Workflow Orchestration Map separately from agent architecture: runtime stages, concrete nodes/edges, stage-internal deliverables, human intervention choices, gates, fan-out/fan-in, terminal boundaries, artifact lineage, and dependency-aware rerun/resume rules.",
+      "owned_skills": [
+        "workflow-orchestration",
+        "workflow-preservation",
+        "control-flow-mapping",
+        "handoff-contracts",
+        "rerun-policy",
+        "resume-policy"
+      ],
+      "tools_policy": {
+        "allow": [
+          "read",
+          "write"
+        ],
+        "deny": []
+      },
+      "profile_mode": true,
+      "profile_id": "s2t-meta-workflow-orchestrator.profile",
+      "agent_node_id": "s2t_meta_workflow_orchestrator",
+      "responsibilities": [
+        "Workflow Orchestration Map, control-flow rules, handoff contracts, checkpoints, reruns, and resume policy."
+      ]
+    },
+    {
+      "agent_id": "runtime-adapter",
+      "registered_agent_id": "s2t-meta-runtime-adapter",
+      "internal_role": "Runtime Adapter",
+      "display_name": "Runtime Adapter",
+      "main_function": "Codex package artifacts, package manifests, runtime instruction materialization, conformance contracts, design-output archive, design-continuation templates, Codex-only package-end templates, and package-readiness guidance.",
+      "mission": "Generate Codex agent artifacts, registry/readiness manifests, usage guides, invocation contracts, prompt-rewrite rules, design-result archives, design-continuation templates, and Codex-only package-end register/start/use templates.",
+      "owned_skills": [
+        "runtime-adaptation",
+        "package-generation",
+        "prompt-rewrite",
+        "design-continuation-guidance"
+      ],
+      "tools_policy": {
+        "allow": [
+          "read",
+          "write"
+        ],
+        "deny": []
+      },
+      "profile_mode": true,
+      "profile_id": "s2t-meta-runtime-adapter.profile",
+      "agent_node_id": "s2t_meta_runtime_adapter",
+      "responsibilities": [
+        "Codex package artifacts, package manifests, runtime instruction materialization, conformance contracts, design-output archive, design-continuation templates, Codex-only package-end templates, and package-readiness guidance."
+      ]
+    },
+    {
+      "agent_id": "evaluation-reviewer",
+      "registered_agent_id": "s2t-meta-evaluation-reviewer",
+      "internal_role": "Quality Reviewer",
+      "display_name": "Quality Reviewer",
+      "main_function": "Independent design/package conformance audit, runtime-instruction materialization review, workflow preservation checks, risk checks, count justification checks, and acceptance-gate review.",
+      "mission": "Independently audit target-team and generated meta-team design/package quality, source-derived runtime constraint preservation, runtime instruction materialization, human intervention retention choices, local-resource allocation, risks, role boundaries, architecture/workflow separation, and agent-count justification before package handoff.",
+      "owned_skills": [
+        "count-justification-review",
+        "design-package-conformance",
+        "meta-team-audit",
+        "package-review",
+        "quality-review",
+        "risk-review",
+        "runtime-instruction-audit"
+      ],
+      "tools_policy": {
+        "allow": [
+          "read"
+        ],
+        "deny": [
+          "primary-production",
+          "write",
+          "edit",
+          "apply_patch",
+          "exec"
+        ]
+      },
+      "profile_mode": true,
+      "profile_id": "s2t-meta-evaluation-reviewer.profile",
+      "agent_node_id": "s2t_meta_evaluation_reviewer",
+      "responsibilities": [
+        "Independently audit design/package conformance and runtime instruction materialization before package handoff.",
+        "Block release with reexecution_required=true when source-derived runtime constraints, startup settings, human waits, gates, checkpoints, local resources, or stage-internal deliverables are missing downstream.",
+        "Route blocked work back to the producing meta role; do not repair producer artifacts and approve the reviewer's own changes."
+      ]
+    }
+  ],
+  "model_invocation_policy": {
+    "default_model_runner": "OpenAI Codex",
+    "direct_model_api_calls_default": false,
+    "applies_to": [
+      "skill2team direct run",
+      "s2t-meta service agents",
+      "generated target-team agents"
+    ],
+    "startup_reminder_required": true,
+    "api_runner_exception_label": "API-run role simulation, not Codex custom-agent execution",
+    "meta_team_first_codex_rule": "Codex meta-team-first must use real registered s2t-meta agents when the active session can invoke them. If newly installed custom agents are not hot-loaded in the current thread, real current-session subagents may execute the fixed S2T work orders with current_run_fanout_status=real_session_subagents. Fallback role-play is forbidden; if no real activation/fan-out/handoff can be verified, stop with meta-team-first blocked and a concrete reason."
+  },
+  "delivery_policy": {
+    "allowed_delivery_modes": [
+      "design",
+      "package"
+    ],
+    "final_delivery": "package",
+    "design_continuation_actions_are_prompt_templates_only": [
+      "codex package/register guidance using OpenAI Codex model service",
+      "api-service runner construction",
+      "api-runner role simulation",
+      "hermes profile conversion",
+      "openclaw profile conversion",
+      "other explicitly selected multi-agent frameworks"
+    ],
+    "post_package_actions_are_codex_only_prompt_templates": [
+      "codex registration/use guidance using OpenAI Codex model service",
+      "registered entry-agent use after smoke tests",
+      "current-session target-team fan-out when registered target-agent types are unavailable"
+    ],
+    "quality_gates_are_internal": [
+      "design_quality_gate",
+      "package_release_gate"
+    ],
+    "meta_team_first_blocking_rule": "Execution path meta-team-first with target runtime codex is not a delivery shortcut or fallback mode. It requires fixed s2t-meta package generation/reuse and either registered custom-agent activation evidence or real current-session subagent work-order evidence before design/package work continues."
+  },
+  "architecture_default": {
+    "framework": "framework-neutral agent architecture relationship graph",
+    "runtime_dependency": "none for Skill2Team package metadata; map to a specific multi-agent runner only in an explicit follow-up",
+    "node_binding": "one durable accountability boundary maps to one agent profile/node; workflow steps do not automatically become agents",
+    "edge_types": [
+      "route",
+      "handoff",
+      "review_gate",
+      "user_input_node",
+      "fan_out",
+      "fan_in",
+      "human_wait",
+      "checkpoint",
+      "terminal"
+    ],
+    "default_architecture": "framework-neutral agent architecture relationship graph",
+    "node_term": "agent_node_id",
+    "edge_terms": [
+      "route",
+      "delegation",
+      "handoff",
+      "review_gate",
+      "guardrail",
+      "state_or_artifact_flow",
+      "user_input_node",
+      "human_wait",
+      "checkpoint",
+      "terminal"
+    ]
+  },
+  "agent_profile_policy": {
+    "profile_mode_default": true,
+    "profile_fields": [
+      "agent_id",
+      "display_name",
+      "mission",
+      "responsibilities",
+      "non_responsibilities",
+      "tools_policy",
+      "handoff_contract",
+      "gates_owned",
+      "agent_node_id"
+    ],
+    "applies_to": [
+      "fixed S2T meta-team agents",
+      "generated target-team agents",
+      "Hermes follow-up profiles",
+      "optional framework-neutral API-service builds"
+    ],
+    "required_profile_fields": [
+      "agent_node_id"
+    ]
+  },
+  "quality_gate_policy": {
+    "validate_delivery_exposed": false,
+    "design_quality_gate": [
+      "agent count rationale",
+      "architecture/workflow separation",
+      "role overlap check",
+      "entry-agent and independent-review boundaries",
+      "workflow nodes/edges/stage mappings are present",
+      "stage-internal deliverables are preserved or explicitly rewritten",
+      "required user input nodes are inventoried and preserved by default",
+      "human intervention retention choices are recorded",
+      "startup settings required before first migrated stage are collected or blocked",
+      "source-derived runtime constraints are inventoried and assigned materialization targets",
+      "design/package conformance preflight passes or names reexecute_from"
+    ],
+    "package_release_gate": [
+      "artifact completeness",
+      "no task-specific hard-coding",
+      "Codex/OpenAI model policy",
+      "design-output archive and Codex-only package-end prompt coverage",
+      "profile artifacts",
+      "entry-agent startup welcome page is present",
+      "design-package-conformance.contract.json passes or blocks with reexecution_required=true",
+      "runtime-instruction-conformance.json proves constraint ids are in generated agent instructions",
+      "meta-team-audit.contract.json records independent audit status",
+      "blocked conformance routes back to the earliest responsible phase instead of downstream patching",
+      "design-output.zip is present and includes the design result",
+      "package-end prompts are Codex-only",
+      "direct-skill and meta-team-first target packages use the same artifact contract"
+    ]
+  },
+  "package_style": {
+    "skill_creator_layout": true,
+    "profile_based_agents": true,
+    "on_demand_context": true,
+    "default_architecture": "framework-neutral agent architecture relationship graph"
+  },
+  "runtime_status_policy": {
+    "direct_skill_status": "direct-skill-not-requested",
+    "successful_meta_team_first_status": "real_subagents",
+    "successful_session_fanout_status": "real_session_subagents",
+    "blocked_meta_team_first_status": "blocked_no_real_codex_meta_team",
+    "blocked_mode": "blocked",
+    "forbidden_in_codex_meta_team_first": [
+      "sequential fallback",
+      "single-agent fallback",
+      "pretend meta-team pass",
+      "unverified fan-out continuation"
+    ],
+    "blocker_report_required_fields": [
+      "status",
+      "reason",
+      "recovery"
+    ]
+  },
+  "runtime_policy": {
+    "target_team_codex_execution_rule": "Generated target-team execution in Codex should use real registered entry/specialist handoffs when generated target-agent types are available. If same-thread hot-load prevents registered handoff, real current-session target subagents may run only with target_run_fanout_status=real_session_target_subagents and registered smoke status pending. If neither real path is available, stop with target-team execution blocked; sequential or single-agent simulation is forbidden under the Codex target-team label.",
+    "successful_target_session_fanout_status": "real_session_target_subagents"
+  },
+  "disallowed_execution_labels": [
+    "target-team sequential simulation under Codex",
+    "single-agent target-team fallback under Codex"
+  ],
+  "independent_meta_team_audit_policy": {
+    "required": true,
+    "auditor_registered_agent_id": "s2t-meta-evaluation-reviewer",
+    "current_session_subagent_allowed_when_registered_agents_not_hot_loaded": true,
+    "producer_self_approval_forbidden": true,
+    "required_artifacts": [
+      "meta-team-audit.contract.json",
+      "docs/meta-team-audit-contract.md",
+      "design-package-conformance.contract.json",
+      "runtime-instruction-conformance.json"
+    ],
+    "audit_subjects": [
+      "generated fixed Skill2Team meta-team package",
+      "target-team design/package conformance",
+      "runtime instruction materialization of source-derived constraints",
+      "human intervention retention choices",
+      "local-resource allocation and package integrity"
+    ],
+    "reexecution_rule": "If independent audit blocks, rerun the earliest responsible source-mapper, workflow-orchestrator, architecture-designer, or runtime-adapter phase before package handoff."
+  },
+  "execution_path_equivalence_policy": {
+    "applies_to": [
+      "direct-skill",
+      "meta-team-first"
+    ],
+    "same_target_team_artifact_contract_required": true,
+    "same_design_output_archive_required": true,
+    "same_codex_package_end_prompts_required": true,
+    "allowed_differences": [
+      "execution_path",
+      "current_run_fanout_status",
+      "registered_meta_team_smoke_status",
+      "meta-team activation evidence"
+    ]
+  }
+}

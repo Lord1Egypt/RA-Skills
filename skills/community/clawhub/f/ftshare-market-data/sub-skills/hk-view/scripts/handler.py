@@ -33,7 +33,7 @@ def main():
     )
     args = parser.parse_args()
 
-    path = "/data/api/v1/market/data/hk/hk-view"
+    path = "/gateway/api/v1/market/data/hk/hk-view"
     url = BASE_URL + path + "?" + urllib.parse.urlencode({"hk_code": args.hk_code})
 
     req = urllib.request.Request(url, method="GET")

@@ -24,6 +24,8 @@ description: >-
 
 ## AI Patterns -- Kill on Sight
 
+Models reproduce sentence *structures* more reliably than they reproduce vocabulary. A word-swap list catches the surface; the named structural tells below catch the shape underneath, where most AI tone actually lives. Weight detection toward structure.
+
 **Vocabulary**: delve, crucial, pivotal, foster, leverage, tapestry, testament, underscore, vibrant, landscape (abstract), shape (abstract, as in "previous shape" / "the shape of the problem"), interplay, multifaceted, enhance, enduring, garner, showcase, Additionally, seamless, robust, cutting-edge, groundbreaking, nestled, renowned
 
 **Structural tells**:
@@ -96,6 +98,10 @@ Before delivering prose, run two checks:
 - Vague declarative ("The implications are significant")? Name the specific implication.
 - Meta-joiner ("The rest of this section...")? Delete. Let the text move.
 
+**Restraint -- over-editing is a failure mode, equal in weight to under-editing.** A flagged item is a candidate, not a verdict.
+- If a sentence already reads naturally, leave it. Touching prose that was fine introduces new tells and strips voice.
+- Match the smell, not the string. A word on the vocabulary list that reads naturally in its actual context stays -- flag the tone, not the token. Banning a word everywhere it appears is mechanical editing, the same defect the skill exists to remove.
+
 **Five-dimension scoring** (rate 1-10 each):
 
 | Dimension | Question |
@@ -127,6 +133,7 @@ Tag vocabulary (extend the earlier prose rules with these named IDs):
 | `[AI-LEX]` | Vocabulary tells (delve, crucial, pivotal, leverage, tapestry, robust...) |
 | `[VAGUE-ATTR]` / `[WEASEL]` | "Experts argue", "studies show" without specific source |
 | `[META-COMMENTARY]` | Structural self-reference ("In this section, we'll...", "Let me walk you through...") |
+| `[METADISCOURSE]` | Interpretive labeling — stepping outside the scene or argument to name its meaning ("that's the lesson", "that part mattered", "this is the point") when the concrete details already carry it. Distinct from `[META-COMMENTARY]` (announces structure) and `[VAGUE-DECLARATIVE]` (announces importance). Keep a direct thesis that adds new information. |
 | `[EM-DASH]` | Any em or en dash -- restructure, don't preserve |
 | `[INLINE-BOLD]` / `[INLINE-LIST]` / `[TITLE-CASE]` | Mechanical formatting tells |
 | `[VAGUE-DECLARATIVE]` | "The implications are significant" without naming the implication |
@@ -151,6 +158,7 @@ Tag vocabulary (extend the earlier prose rules with these named IDs):
 | `[EM-DASH]` | Remove entirely. Restructure the sentence: split, comma, colon, or rewrite. Never preserve the dash. |
 | `[FALSE-AGENCY]` | Name the human actor; put them at the front of the sentence. |
 | `[META-COMMENTARY]` | Delete. Let the text move without announcing itself. |
+| `[METADISCOURSE]` | Delete the frame; let the scene, quote, or factual claim it pointed at stand on its own. If no concrete claim remains, cut the sentence. |
 | `[INLINE-BOLD]` `[INLINE-LIST]` `[TITLE-CASE]` | Strip excess formatting; sentence case for headings. |
 
 For documents with references or citations, also tag: `[OAICITE]` (malformed AI citation artifacts), `[LINK-ROT]` (dead or placeholder URLs), `[ISBN-DOI-FAIL]` (invalid identifiers), `[REF-BUG]` (misformatted references, wrong numbering, dangling footnotes). See [references/audit-workflow.md](./references/audit-workflow.md) for the full procedure.

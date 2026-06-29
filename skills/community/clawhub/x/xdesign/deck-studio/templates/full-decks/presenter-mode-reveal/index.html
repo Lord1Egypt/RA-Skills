@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-themes="tokyo-night,dracula,catppuccin-mocha,nord,corporate-clean">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>演讲者模式示例 · Presenter Mode Deck</title>
+<link rel="stylesheet" href="../../../assets/fonts.css">
+<link rel="stylesheet" href="../../../assets/base.css">
+<link rel="stylesheet" id="theme-link" href="../../../assets/themes/tokyo-night.css">
+<link rel="stylesheet" href="../../../assets/animations/animations.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="tpl-presenter-mode-reveal">
+<div class="deck">
+  <!-- ============ 1. COVER ============ -->
+  <section class="slide is-active" data-title="Cover">
+    <p class="kicker">presenter-mode / demo</p>
+    <h1 class="h1 anim-fade-up" data-anim="fade-up">如何做一场
+<span style="background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent">有逐字稿</span>的技术分享</h1>
+    <p class="lede mt-m">按 <span class="mono">S</span> 进入演讲者视图 · <span class="mono">T</span> 切换主题 · <span class="mono">← →</span> 翻页</p>
+    <div class="speaker">
+      <div class="av"></div>
+      <div><b>@lewis</b><span>sharing talk · 30 min</span></div>
+    </div>
+    <div class="deck-footer">
+      <span class="mono">#presenter #逐字稿 #tech-talk</span>
+      <span class="slide-number" data-current="1" data-total="6"></span>
+    </div>
+    <aside class="notes">
+      <p>大家好，欢迎来到今天的技术分享。我是 lewis，今天想跟大家聊一个很多人忽略但其实非常影响演讲效果的话题——<strong>如何让一场技术分享既有深度，又讲得不卡壳</strong>。</p>
+      <p>在正式开始之前，先跟大家介绍一下这份 deck 本身：这是一个支持<em>演讲者模式</em>的 HTML 幻灯片模板。现在你们看到的是观众视图，但我自己的屏幕上看到的是完全不一样的东西——当前页、下一页、完整逐字稿、计时器，全在一块屏幕上。</p>
+      <p>今天大概 30 分钟，分 5 个部分。有问题随时打断。Let's go.</p>
+    </aside>
+  </section>
+  <!-- ============ 2. AGENDA ============ -->
+  <section class="slide" data-title="Agenda">
+    <p class="kicker">agenda</p>
+    <h2 class="h2">今天要讲的 5 件事</h2>
+    <div class="stack mt-l">
+      <div class="agenda-row"><span class="num">01</span><span class="t">为什么 PPT 本身做得好还不够</span><span class="d">~5min</span></div>
+      <div class="agenda-row"><span class="num">02</span><span class="t">演讲者模式到底该有哪些信息</span><span class="d">~6min</span></div>
+      <div class="agenda-row"><span class="num">03</span><span class="t">逐字稿怎么写才不像念稿</span><span class="d">~8min</span></div>
+      <div class="agenda-row"><span class="num">04</span><span class="t">Live demo</span><span class="d">~8min</span></div>
+      <div class="agenda-row"><span class="num">05</span><span class="t">Takeaways + Q&amp;A</span><span class="d">~3min</span></div>
+    </div>
+    <aside class="notes">
+      <p>先过一下今天的议程。第一部分我想先说服你们"PPT 做得漂亮≠讲得好"。第二部分聊演讲者视图。第三部分是今天的核心——逐字稿。第四部分现场 demo。最后收尾 + 答疑。</p>
+    </aside>
+  </section>
+  <!-- ============ 3. PROBLEM ============ -->
+  <section class="slide" data-title="Problem">
+    <p class="kicker">// part 01 · problem</p>
+    <h2 class="h2">做 PPT 和讲 PPT，
+是<span class="accent">两件事</span>。</h2>
+    <div class="grid g3 mt-l">
+      <div class="card card-accent">
+        <h4>✅ PPT 做得好</h4>
+        <p class="dim">主题统一、排版干净、图表清晰、动效克制。</p>
+      </div>
+      <div class="card card-accent">
+        <h4>❌ 讲得好</h4>
+        <p class="dim">逻辑连贯、语速稳定、不"嗯啊"、能接住问题。</p>
+      </div>
+      <div class="card card-accent">
+        <h4>💡 差别在哪</h4>
+        <p class="dim">前者是纸上功夫，后者需要你"看一眼幻灯片就知道下句话说什么"。</p>
+      </div>
+    </div>
+    <aside class="notes">
+      <p>我先抛一个可能有争议的观点——做 PPT 和讲 PPT 是两件完全不同的事。前者是静态作品，后者是临场能力。今天接下来 25 分钟，我就是围绕这个核心问题展开的。</p>
+    </aside>
+  </section>
+  <!-- ============ 4. SOLUTION ============ -->
+  <section class="slide" data-title="Presenter View">
+    <p class="kicker">// part 02 · presenter view</p>
+    <h2 class="h2">演讲者视图应该有<span class="accent">四块信息</span></h2>
+    <div class="grid g2 mt-l">
+      <div>
+        <div class="feature-row"><span class="num blue">①</span><div><b>当前页大图</b></div></div>
+        <div class="feature-row"><span class="num green">②</span><div><b>下一页预览</b></div></div>
+      </div>
+      <div>
+        <div class="feature-row"><span class="num orange">③</span><div><b>逐字稿区域</b></div></div>
+        <div class="feature-row"><span class="num purple">④</span><div><b>计时器 + 页码</b></div></div>
+      </div>
+    </div>
+    <aside class="notes">
+      <p>演讲者模式应该给你四块信息。第一，当前页大图；第二，下一页预览；第三，逐字稿区域——大字号，高对比度；第四，计时器和页码。这四块缺一不可。</p>
+    </aside>
+  </section>
+  <!-- ============ 5. SCRIPT ============ -->
+  <section class="slide" data-title="Script">
+    <p class="kicker">// part 03 · script</p>
+    <h2 class="h2">逐字稿的<span class="accent">3 条铁律</span></h2>
+    <div class="stack mt-l">
+      <div class="rule-row">
+        <span class="num red">01</span>
+        <div><b>不是讲稿，是<span class="accent">"提示信号"</span></b></div>
+      </div>
+      <div class="rule-row">
+        <span class="num red">02</span>
+        <div><b>每页 <span class="accent">150–300 字</span></b></div>
+      </div>
+      <div class="rule-row">
+        <span class="num red">03</span>
+        <div><b>用<span class="accent">口语</span>写</b></div>
+      </div>
+    </div>
+    <aside class="notes">
+      <p>第一条，逐字稿不是讲稿，是提示信号。第二条，每页控制在 150 到 300 字。第三条，用口语写。这三条配合起来，你会发现讲 PPT 变成了一件很舒服的事。</p>
+    </aside>
+  </section>
+  <!-- ============ 6. DEMO + CLOSING ============ -->
+  <section class="slide" data-title="Demo & Close">
+    <p class="kicker">// part 04-05 · demo + close</p>
+    <h2 class="h2">现在<span class="accent">你也能做到</span></h2>
+    <div class="code-block mt-m">
+<span class="comment"># 使用 presenter-mode-reveal 模板</span>
+<span class="cmd">cp -r</span> templates/full-decks/presenter-mode-reveal examples/my-talk
+<span class="cmd">open</span> examples/my-talk/index.html
+<span class="comment"># 键盘操作</span>
+<span class="flag">S</span>  <span class="comment">→ 进入演讲者视图</span>
+<span class="flag">T</span>  <span class="comment">→ 切换主题</span>
+<span class="flag">← →</span> <span class="comment">→ 翻页</span>
+    </div>
+    <div class="deck-footer">
+      <span class="mono">#thanks · Q&amp;A</span>
+      <span class="slide-number" data-current="6" data-total="6"></span>
+    </div>
+    <aside class="notes">
+      <p>最关键的一步——每一页底部的 &lt;aside class="notes"&gt; 里，老老实实写 150 到 300 字的逐字稿。这是整个方法论的交付物。AI 可以帮你写初稿，但你一定要自己过一遍。</p>
+    </aside>
+  </section>
+</div>
+<div style="position:fixed;bottom:12px;left:12px;font-size:11px;color:#484f5866;z-index:100;pointer-events:none">
+  S 演讲者视图 · T 切换主题 · ← → 翻页 · F 全屏 · O 总览
+</div>
+<script src="../../../assets/runtime.js"></script>
+</body>
+</html>

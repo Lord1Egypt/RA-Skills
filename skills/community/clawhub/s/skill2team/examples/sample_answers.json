@@ -1,0 +1,14 @@
+{
+  "current_system": ["mixed_assets", "existing_agents"],
+  "consequence": "important_decisions",
+  "data_importance": "critical",
+  "sources": ["official", "conflicting"],
+  "unknowns": "often_missing",
+  "revisions": "many",
+  "review": "acceptance_with_blocking_power",
+  "expertise": "two_three",
+  "architecture_concerns": ["routing", "shared_state", "review_authority", "skill_ownership"],
+  "workflow_concerns": ["branch", "loop", "gate", "checkpoint", "resume"],
+  "agent_count_preference": "auto",
+  "target_runtime": "codex"
+}

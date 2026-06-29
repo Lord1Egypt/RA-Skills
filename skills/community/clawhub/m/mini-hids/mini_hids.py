@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 轻量级主机入侵检测与日志分析系统（Mini-HIDS）
-版本：v1.1
+版本：v1.5
 功能：实时监控系统日志，检测暴力破解和 Webshell，自动封禁恶意 IP
 定位：后台守护进程，负责 7x24 小时底层监控与自动防御
 """
@@ -16,37 +16,20 @@ from collections import deque
 from hids_common import (
     FirewallManager,
     delete_blacklist_entry,
+    execute_ban,
+    execute_unban,
+    extract_client_ip,
     init_db,
     list_blacklist_rows,
     load_config,
     purge_expired_blacklist_entries,
-    upsert_blacklist_entry,
+    scan_web_roots,
     validate_ip,
 )
 
 
 CONFIG = load_config()
-FIREWALL = FirewallManager()
-
-WEBSHELL_PATTERNS = [
-    r"eval\(base64_decode\(",
-    r"proc_open\(",
-    r"shell_exec\(",
-    r"system\(",
-    r"passthru\(",
-    r"exec\(",
-    r"popen\(",
-    r"assert\(",
-    r"create_function\(",
-    r"array_map\(.*eval\(",
-    r"\$\_GET\[.*\]\(.*\)",
-    r"\$\_POST\[.*\]\(.*\)",
-    r"\$\_REQUEST\[.*\]\(.*\)",
-    r"file_put_contents\(.*\$\_",
-    r"fwrite\(.*\$\_",
-    r"\$\_FILES\[.*\]\['tmp_name'\]",
-]
-COMPILED_WEBSHELL_PATTERNS = [re.compile(pattern, re.IGNORECASE) for pattern in WEBSHELL_PATTERNS]
+FIREWALL = FirewallManager(CONFIG.get("FIREWALL_BACKEND"))
 
 WEB_ATTACK_PATTERNS = [
     r"' OR\s+",
@@ -58,7 +41,6 @@ WEB_ATTACK_PATTERNS = [
 COMPILED_WEB_ATTACK_PATTERNS = [re.compile(pattern, re.IGNORECASE) for pattern in WEB_ATTACK_PATTERNS]
 
 SSH_FAILURE_PATTERN = re.compile(r"Failed password for .* from (\S+)")
-IP_EXTRACT_PATTERN = re.compile(r"(\S+) - - \[")
 
 state_lock = threading.RLock()
 ban_times = {}
@@ -122,22 +104,10 @@ def ban_ip(ip, reason):
         if ip in blacklist:
             return False
 
-    expiry_time = int(time.time() + CONFIG["BAN_TIME"])
-
     try:
-        FIREWALL.ban_ip(ip, CONFIG["BAN_TIME"])
+        expiry_time = execute_ban(ip, reason, CONFIG["BAN_TIME"], FIREWALL, CONFIG["BLACKLIST_DB"])
     except Exception as exc:
         log_alert(f"[错误] 执行封禁失败 {ip}: {exc}")
-        return False
-
-    try:
-        upsert_blacklist_entry(CONFIG["BLACKLIST_DB"], ip, expiry_time, reason)
-    except Exception as exc:
-        try:
-            FIREWALL.unban_ip(ip)
-        except Exception:
-            pass
-        log_alert(f"[错误] 持久化封禁失败 {ip}: {exc}")
         return False
 
     with state_lock:
@@ -161,12 +131,11 @@ def unban_ip(ip, reason="封禁到期自动解封"):
         return False
 
     try:
-        FIREWALL.unban_ip(ip)
+        execute_unban(ip, FIREWALL, CONFIG["BLACKLIST_DB"])
     except Exception as exc:
         log_alert(f"[错误] 执行解封失败 {ip}: {exc}")
         return False
 
-    delete_blacklist_entry(CONFIG["BLACKLIST_DB"], ip)
     with state_lock:
         blacklist.discard(ip)
         ban_times.pop(ip, None)
@@ -263,11 +232,10 @@ def detect_web_attack(line):
         if not pattern.search(line):
             continue
 
-        ip_match = IP_EXTRACT_PATTERN.search(line)
-        if not ip_match:
+        ip = extract_client_ip(line)
+        if not ip:
             return
 
-        ip = ip_match.group(1)
         if is_trusted_ip(ip) or not validate_ip(ip):
             return
 
@@ -279,46 +247,41 @@ def detect_web_attack(line):
 
 def scan_webshell():
     scan_start_time = time.time()
-    scanned_files = 0
-    modified_files = 0
-
-    for web_root in CONFIG["WEB_ROOT"]:
-        if not os.path.exists(web_root):
-            continue
-
-        for root, _dirs, files in os.walk(web_root):
-            for file_name in files:
-                if not file_name.endswith((".php", ".py", ".sh", ".jsp", ".asp", ".aspx")):
-                    continue
-
-                file_path = os.path.join(root, file_name)
-                try:
-                    file_mtime = os.path.getmtime(file_path)
-                    previous_mtime = file_modification_times.get(file_path)
-                    scanned_files += 1
-
-                    if previous_mtime is not None and file_mtime <= previous_mtime:
-                        continue
-
-                    modified_files += 1
-                    with open(file_path, "r", encoding="utf-8", errors="ignore") as source_file:
-                        content = source_file.read()
-
-                    for pattern in COMPILED_WEBSHELL_PATTERNS:
-                        if pattern.search(content):
-                            log_alert(f"[Webshell] 检测到可疑文件: {file_path}")
-                            break
-
-                    file_modification_times[file_path] = file_mtime
-                except Exception:
-                    continue
+    scan_result = scan_web_roots(CONFIG["WEB_ROOT"], file_modification_times)
+    for suspicious_file in scan_result["suspicious_files"]:
+        log_alert(f"[Webshell] 检测到可疑文件: {suspicious_file['file']}")
 
     scan_duration = time.time() - scan_start_time
     log_alert(
         "[Webshell扫描] 完成扫描，共扫描 {} 个文件，其中 {} 个为新增或修改文件，耗时 {:.2f} 秒".format(
-            scanned_files, modified_files, scan_duration
+            scan_result["scanned_files"], scan_result["modified_files"], scan_duration
         )
     )
+
+
+def create_pid_file():
+    os.makedirs(os.path.dirname(CONFIG["PID_FILE"]) or ".", exist_ok=True)
+
+    while True:
+        try:
+            pid_fd = os.open(CONFIG["PID_FILE"], os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+            break
+        except FileExistsError:
+            try:
+                with open(CONFIG["PID_FILE"], "r", encoding="utf-8") as pid_file:
+                    pid = int(pid_file.read().strip())
+                os.kill(pid, 0)
+                print("Mini-HIDS 已经在运行中")
+                return False
+            except Exception:
+                try:
+                    os.remove(CONFIG["PID_FILE"])
+                except FileNotFoundError:
+                    pass
+
+    with os.fdopen(pid_fd, "w", encoding="utf-8") as pid_file:
+        pid_file.write(str(os.getpid()))
+    return True
 
 
 def main():
@@ -326,18 +289,8 @@ def main():
         print("Mini-HIDS 仅支持 Linux 系统")
         return
 
-    if os.path.exists(CONFIG["PID_FILE"]):
-        try:
-            with open(CONFIG["PID_FILE"], "r", encoding="utf-8") as pid_file:
-                pid = int(pid_file.read().strip())
-            os.kill(pid, 0)
-            print("Mini-HIDS 已经在运行中")
-            return
-        except Exception:
-            pass
-
-    with open(CONFIG["PID_FILE"], "w", encoding="utf-8") as pid_file:
-        pid_file.write(str(os.getpid()))
+    if not create_pid_file():
+        return
 
     try:
         setup_environment()

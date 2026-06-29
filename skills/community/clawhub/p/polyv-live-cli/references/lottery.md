@@ -16,8 +16,8 @@
 # 创建观看时长抽奖（观看10秒后可参与）
 <CLI> lottery create -c <频道ID> --name "时长抽奖" --type duration --amount 2 --prize-name "红包" --duration 10 --force
 
-# 创建评论抽奖（发表评论后5秒内可参与）
-<CLI> lottery create -c <频道ID> --name "评论抽奖" --type comment --amount 3 --prize-name "积分" --duration 5 --force
+# 创建评论抽奖（发送指定评论后可参与）
+<CLI> lottery create -c <频道ID> --name "评论抽奖" --type comment --amount 3 --prize-name "积分" --duration 60 --comment "参与抽奖" --force
 
 # 创建答题抽奖（回答问题后可参与）
 <CLI> lottery create -c <频道ID> --name "答题抽奖" --type question --amount 1 --prize-name "大奖" --duration 30 --force
@@ -127,6 +127,7 @@
 | `--prize-name` | 奖品名称（必填） | - |
 | `--duration` | 抽奖时长（秒） | 数字 |
 | `--invite-num` | 邀请人数（仅invite类型） | 数字 |
+| `--comment` | 评论内容（仅comment类型必填） | 字符串 |
 | `--receive-info` | 中奖者信息收集配置 | JSON字符串 |
 | `-f, --force` | 跳过确认提示 | - |
 | `-o, --output` | 输出格式 | table（默认）/ json |
@@ -210,7 +211,7 @@
 | `none` | 无条件抽奖（默认） | - |
 | `invite` | 邀请好友参与 | `--invite-num`（邀请人数） |
 | `duration` | 观看时长抽奖 | `--duration`（观看秒数） |
-| `comment` | 发表评论抽奖 | `--duration`（评论后秒数） |
+| `comment` | 发送指定评论参与抽奖 | `--duration`（活动秒数）、`--comment`（评论内容） |
 | `question` | 回答问题抽奖 | `--duration`（答题秒数） |
 
 ## 输出格式

@@ -1,0 +1,13 @@
+{
+  "name": "evomap-auto-publish-v3",
+  "version": "3.0.0",
+  "description": "EvoMap 自动发布工具 v3.0 - 符合官方 GEP-A2A v1.0.0 协议",
+  "main": "publish-asset-v2.js",
+  "type": "commonjs",
+  "scripts": {
+    "publish": "node publish-asset-v2.js",
+    "publish-hq": "node publish-llm-optimizer.js"
+  },
+  "author": "bo170814",
+  "license": "MIT"
+}

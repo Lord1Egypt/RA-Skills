@@ -1,0 +1,12 @@
+{
+  "name": "legal-redline",
+  "label": "法律红线标注",
+  "description": "法律文档专用，逐词对比加批注标注",
+  "layout": "inline",
+  "diff_level": "word",
+  "show_line_numbers": true,
+  "features": ["strikethrough", "underline", "marginalia", "legal_refs", "change_bars"],
+  "color_scheme": "diff-legal",
+  "party_labels": ["甲方版", "乙方版"],
+  "show_attribution": true
+}

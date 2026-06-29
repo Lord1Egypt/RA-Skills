@@ -1,0 +1,4 @@
+interface:
+  display_name: "Self Learning Coach Deep v0.1.2"
+  short_description: "自选快速/标准/深度模式，结合资料、业务场景和来源引用生成课程。"
+  default_prompt: "Use $self-learning-coach-deep：我想学习一个业务/主题，请先给我模式选择卡片，再按我选择的模式生成第1课。"

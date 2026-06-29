@@ -1,0 +1,122 @@
+{
+  "name": "结项报告书",
+  "description": "项目结束时提交的总结性文档，记录项目实际成果、交付情况、经验教训和资产归档。",
+  "version": "1.0",
+  "output_filename": "结项报告书_{project_name}.md",
+  "sections": [
+    {
+      "key": "project_info",
+      "title": "项目基本信息",
+      "type": "fields",
+      "description": "项目名称、编号、起止时间、项目经理等基础信息",
+      "fields": [
+        {"key": "project_name", "label": "项目名称", "type": "text", "hint": ""},
+        {"key": "project_id", "label": "项目编号", "type": "text", "hint": "与立项申请书保持一致"},
+        {"key": "manager", "label": "项目经理", "type": "text", "hint": ""},
+        {"key": "department", "label": "所属部门", "type": "text", "hint": ""},
+        {"key": "start_date", "label": "实际开始日期", "type": "date", "hint": ""},
+        {"key": "end_date", "label": "实际结束日期", "type": "date", "hint": ""}
+      ]
+    },
+    {
+      "key": "overview",
+      "title": "项目概况",
+      "type": "rich_text",
+      "description": "简要描述项目背景、目标和整体执行情况，作为报告的综述部分。",
+      "reference_sources": ["project_info", "wbs_scope"],
+      "hint": "300-500字概况，涵盖：项目背景回顾、总体目标、实际执行时间跨度、验收结论"
+    },
+    {
+      "key": "deliverables",
+      "title": "交付物清单",
+      "type": "rich_text",
+      "description": "项目实际交付的成果清单，与立项时的范围进行对比。引用WBS工作包列表。",
+      "reference_sources": ["wbs_work_packages"],
+      "hint": "列出每个WBS工作包的交付状态（已完成/部分完成/未完成），标注差异原因",
+      "wbs_ref": true
+    },
+    {
+      "key": "schedule_vs_actual",
+      "title": "进度对比分析",
+      "type": "rich_text",
+      "description": "实际工期与计划工期的对比分析，引用CPM估算结果的P50/P90与实际完成日期。",
+      "reference_sources": ["cpm_result", "estimation_report"],
+      "hint": "应包括：计划总工期 vs 实际总工期、各阶段偏差分析、关键路径变化、延期原因说明。参考格式：计划P50={x}天，实际={y}天，偏差={y-x}天"
+    },
+    {
+      "key": "budget_vs_actual",
+      "title": "成本对比分析",
+      "type": "rich_text",
+      "description": "实际成本与预算的对比分析，成本偏差原因和调整措施。",
+      "reference_sources": ["budget_estimate"],
+      "hint": "应包括：预算总额 vs 实际支出、各项成本偏差、超支/节约原因、预算调整记录"
+    },
+    {
+      "key": "evm_analysis",
+      "title": "挣值分析（可选）",
+      "type": "fields",
+      "description": "基于PV/EV/AC的挣值管理分析，评估进度和成本绩效。默认不启用，需通过 add_section 手动添加。",
+      "fields": [
+        {"key": "bac", "label": "总预算（BAC）", "type": "text", "hint": "由挣值分析引擎自动计算"},
+        {"key": "pv", "label": "计划成本（PV）", "type": "text", "hint": "由挣值分析引擎自动计算"},
+        {"key": "ev", "label": "挣值（EV）", "type": "text", "hint": "由挣值分析引擎自动计算"},
+        {"key": "ac", "label": "实际成本（AC）", "type": "text", "hint": "由挣值分析引擎自动计算"},
+        {"key": "sv", "label": "进度偏差（SV）", "type": "text", "hint": "由挣值分析引擎自动计算"},
+        {"key": "spi", "label": "进度绩效指数（SPI）", "type": "text", "hint": "由挣值分析引擎自动计算"},
+        {"key": "cv", "label": "成本偏差（CV）", "type": "text", "hint": "由挣值分析引擎自动计算"},
+        {"key": "cpi", "label": "成本绩效指数（CPI）", "type": "text", "hint": "由挣值分析引擎自动计算"},
+        {"key": "eac", "label": "完工估算（EAC）", "type": "text", "hint": "由挣值分析引擎自动生成"},
+        {"key": "vac", "label": "预算偏差（VAC）", "type": "text", "hint": ">0节约，由挣值分析引擎自动生成"}
+      ],
+      "reference_sources": ["estimation_result"],
+      "hint": "此章节默认不启用。如需使用，通过模板定制 add_section 添加到模板中。填完各阶段 PV/AC/进度数据后，LLM 会调用 evm_engine 自动计算各项指标。"
+    },
+    {
+      "key": "quality",
+      "title": "质量评估",
+      "type": "rich_text",
+      "description": "项目交付成果的质量评估，验收测试结果、质量标准达成情况。",
+      "reference_sources": [],
+      "hint": "应包括：验收测试结果（通过率/缺陷数）、与立项时质量目标的对比、遗留问题清单及处理方案"
+    },
+    {
+      "key": "lessons_learned",
+      "title": "经验教训",
+      "type": "rich_text",
+      "description": "项目执行过程中的经验总结、成功做法、失败教训和改进建议。",
+      "reference_sources": ["risk_register"],
+      "hint": "从以下维度总结：管理方面、技术方面、团队协作、沟通方面。每个维度写1-3条具体经验"
+    },
+    {
+      "key": "asset_handover",
+      "title": "资产归档与移交",
+      "type": "rich_text",
+      "description": "项目产出的文档、代码、配置等资产的归档和移交情况。",
+      "reference_sources": [],
+      "hint": "列出归档清单（文档/代码/数据/配置/账户等）、存放位置、移交确认情况"
+    },
+    {
+      "key": "suggestion",
+      "title": "后续建议",
+      "type": "rich_text",
+      "description": "对项目交付后运营、后续优化方向的建议。",
+      "reference_sources": [],
+      "hint": "应包括：运维交接安排、优化迭代方向建议、可复用的经验或组件"
+    },
+    {
+      "key": "approval",
+      "title": "审批意见",
+      "type": "table",
+      "description": "结项审批记录表。",
+      "columns": ["审批人", "角色", "审批意见", "签字日期"],
+      "rows": 3,
+      "hint": "至少保留3行（项目经理/部门负责人/验收方）"
+    }
+  ],
+  "appendix": [
+    {"key": "deliverable_list", "title": "附件一：交付物验收清单"},
+    {"key": "test_report", "title": "附件二：验收测试报告"},
+    {"key": "budget_detail", "title": "附件三：成本明细表"},
+    {"key": "evm_report", "title": "附件四：挣值分析报告（可选）"}
+  ]
+}

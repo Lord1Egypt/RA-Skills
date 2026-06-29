@@ -1,0 +1,7 @@
+interface:
+  display_name: "Error Message Improver"
+  short_description: "Rewrite vague application, API, CLI, and support errors into diagnostic messages that explain what failed,..."
+  default_prompt: "Use $error-message-improver to rewrite this API error so customers know what to fix."
+
+policy:
+  allow_implicit_invocation: true

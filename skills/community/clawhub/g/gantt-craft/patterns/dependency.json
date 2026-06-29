@@ -1,0 +1,10 @@
+{
+  "name": "dependency",
+  "label": "依赖关系图",
+  "description": "用箭头展示任务前后依赖及关键路径",
+  "layout": "horizontal",
+  "features": ["dependency_arrows", "critical_path", "lag_time", "fs_ff_ss_sf", "timeline"],
+  "time_unit": "auto",
+  "show_critical_path": true,
+  "dependency_style": "arrows"
+}

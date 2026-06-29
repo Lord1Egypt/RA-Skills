@@ -47,6 +47,7 @@ VMware NSX DFW microsegmentation and security — 21 MCP tools for distributed f
 
 ```bash
 uv tool install vmware-nsx-security
+vmware-nsx-security init      # guided setup: writes config + .env (chmod 600, password grep-safe), then verifies
 vmware-nsx-security doctor
 ```
 

@@ -62,6 +62,17 @@ Current packaging boundary:
 
 ## Change Log
 
+- 2026-06-26 11:38 +0800: bumped `VERSION` to `0.1.66` and updated
+  `scripts/lingzao_client.py`, `SKILL.md`, `skill-card.md`, and Skill CLI
+  tests; reason was making `get-article-detail --output /tmp/article.md` save
+  the complete WeChat official-account article body as a local Markdown file
+  while default chat output shows only the file path and short summary. This
+  lets agents read the saved file for full-article analysis without pasting the
+  entire article body into the conversation. Review follow-up added preflight
+  validation so unwritable output paths fail before the paid article request is
+  sent. Verification passed with Python compile, focused Skill CLI tests,
+  `git diff --check`, and `npm run skill:package`; follow-up is a public Skill
+  CDN/R2 and ClawHub release after PR merge.
 - 2026-06-25 20:18 +0800: bumped `VERSION` to `0.1.65` and added
   `playbooks/self-account-peer-horizontal-diagnosis.md`; reason was A Tian's
   same-stage account comparison workflow where a user sends their own profile,

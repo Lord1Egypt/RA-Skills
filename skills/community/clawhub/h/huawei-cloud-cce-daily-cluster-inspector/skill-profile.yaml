@@ -1,0 +1,26 @@
+﻿name: huawei-cloud-cce-daily-cluster-inspector
+level: L4
+domain: continuous-operations
+description: Run daily CCE health inspection and summarize cluster risks.
+tools:
+  - huawei_cce_quick_check
+  - huawei_cce_auto_inspection
+  - huawei_cce_deep_diagnosis
+  - huawei_cce_cluster_inspection
+  - huawei_cce_cluster_inspection_parallel
+  - huawei_cce_cluster_inspection_subagent
+  - huawei_aggregate_inspection_results
+  - huawei_export_inspection_report
+  - huawei_pod_status_inspection
+  - huawei_node_status_inspection
+  - huawei_node_resource_inspection
+  - huawei_event_inspection
+  - huawei_aom_alarm_inspection
+  - huawei_elb_monitoring_inspection
+references:
+  - references/workflow.md
+  - references/risk-rules.md
+  - references/output-schema.md
+guardrails:
+  max_auto_risk: R1
+

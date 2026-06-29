@@ -1,0 +1,37 @@
+{
+  "slug": "inbound-call-triage-brief",
+  "name": "inbound-call-triage-brief",
+  "displayName": "Inbound Call Triage Brief",
+  "version": "1.0.0",
+  "description": "Triage inbound calls to an AI agent line — classify caller intent, screening questions, escalate-vs-handle rules, message-taking script, and spam signals before the agent picks up.",
+  "triggerKeywords": [
+    "inbound call triage",
+    "screen incoming call",
+    "ai receptionist script",
+    "inbound call routing",
+    "caller intent classification",
+    "escalate to human phone",
+    "inbound call handling",
+    "answer incoming agent call",
+    "call screening rubric",
+    "incoming call playbook"
+  ],
+  "tags": [
+    "inbound-call",
+    "incoming-call",
+    "customer-service",
+    "receptionist",
+    "agent-phone-call"
+  ],
+  "license": "MIT",
+  "language": "en",
+  "promptOnly": true,
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "execution": "noExec",
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "safety": "Inbound call triage planning only. Does not answer calls or collect credentials. Emergency situations must route to human/emergency services."
+}

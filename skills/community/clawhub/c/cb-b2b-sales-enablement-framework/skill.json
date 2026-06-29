@@ -1,0 +1,28 @@
+{
+  "name": "International B2B Sales Enablement Framework",
+  "slug": "cb-b2b-sales-enablement-framework",
+  "version": "1.0.1",
+  "description": "Build localized B2B sales playbooks, objection-handling scripts, and account-based outreach sequences for any overseas market. Go from 'we should sell there' to a complete sales enablement kit with market-specific talk tracks and ROI calculators.",
+  "author": "Pearl-led OpenClaw team",
+  "tags": [
+    "cross-border",
+    "overseas",
+    "global-expansion",
+    "b2b-sales"
+  ],
+  "trigger_keywords": [
+    "international B2B sales",
+    "overseas sales enablement",
+    "foreign enterprise buyer",
+    "global sales deck",
+    "cross-border B2B playbook"
+  ],
+  "language": "en",
+  "type": "descriptive",
+  "category": "cross-border-expansion",
+  "requires_api": false,
+  "requires_code_execution": false,
+  "outputs": "structured descriptive framework",
+  "readiness": "stable",
+  "safety": "Sales enablement advice must be adapted to local commercial law, procurement rules, and truthful-claims requirements."
+}

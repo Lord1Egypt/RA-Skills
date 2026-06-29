@@ -1,0 +1,12 @@
+{
+  "name": "ry-drink",
+  "version": "1.1.7",
+  "description": "瑞玥餐饮 API Skill。预约、点餐、减餐；用户侧只展示菜名。",
+  "author": "ruoyi",
+  "tags": ["dining", "appointment", "restaurant", "ry-drink"],
+  "config": {
+    "apiBase": "http://192.168.0.66:8080/user-biz",
+    "defaultSaasId": "sf8b00e05",
+    "defaultTenantId": "5"
+  }
+}

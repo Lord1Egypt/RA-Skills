@@ -1,0 +1,49 @@
+{
+  "name": "4×2多列内容卡片",
+  "desc": "4行2列网格：头部跨列 → 左文右图 → 纯文本 → 脚注",
+  "card_style": {
+    "max_width": "600px",
+    "width": "100%",
+    "bg": "#ffffff",
+    "border_radius": "24px",
+    "shadow": "0 10px 20px -8px rgba(0,0,0,0.08)",
+    "padding": "20px",
+    "border": "1px solid #e8eef5"
+  },
+  "grid": {
+    "rows": 4,
+    "cols": 2,
+    "gap": "12px"
+  },
+  "cells": [
+    {
+      "id": "header",
+      "row": 0, "col": 0, "colspan": 2,
+      "module": "composite:header-entity",
+      "style": {"padding": "0 0 8px 0"}
+    },
+    {
+      "id": "left-content",
+      "row": 1, "col": 0,
+      "module": "composite:text-block",
+      "style": {"background": "#f8fafd", "padding": "16px", "border-radius": "12px", "border": "1px solid #e8eef5"}
+    },
+    {
+      "id": "right-content",
+      "row": 1, "col": 1,
+      "style": {"background": "#f0f4ff", "padding": "16px", "border-radius": "12px", "display": "flex", "align-items": "center", "justify-content": "center"},
+      "html": "<div style='text-align:center;color:#4a627a;' data-field='right-content'><img class='editable-img' data-field='right-image' src='data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27200%27 height=%27150%27%3E%3Crect fill=%27%23dce5f0%27 width=%27200%27 height=%27150%27 rx=%2712%27/%3E%3Ctext x=%27100%27 y=%2775%27 text-anchor=%27middle%27 fill=%27%236c86a3%27 font-size=%2716%27%3E点击/拖入图片%3C/text%3E%3C/svg%3E' alt='占位图' style='max-width:100%;border-radius:12px;'><div style='margin-top:8px;font-size:0.8rem;color:#6c86a3;'>右侧内容区</div></div>"
+    },
+    {
+      "id": "full-width",
+      "row": 2, "col": 0, "colspan": 2,
+      "style": {"background": "#fefce8", "padding": "14px 18px", "border-radius": "12px", "border-left": "4px solid #f1c40f"},
+      "html": "<div data-field='note' class='edit-text' style='font-size:0.85rem;color:#7a6a00;'>💡 提示信息区，可填写注意事项或额外说明</div>"
+    },
+    {
+      "id": "footer",
+      "row": 3, "col": 0, "colspan": 2,
+      "module": "composite:footer-caption"
+    }
+  ]
+}

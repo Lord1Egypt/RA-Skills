@@ -57,7 +57,7 @@ def main():
         print(json.dumps({"error": "filename 不得包含路径分隔符"}, ensure_ascii=False), file=sys.stderr)
         sys.exit(1)
 
-    path = f"/data/api/v1/market/data/etf-pcf/etf-pcfs/{args.filename}"
+    path = f"/gateway/api/v1/market/data/etf-pcf/etf-pcfs/{args.filename}"
     url = BASE_URL + path
     req = urllib.request.Request(url, method="GET")
 

@@ -1,0 +1,50 @@
+{
+  "taxHealthScore": 45,
+  "taxHealthStatus": "🔴 高危风险",
+  "countryDetails": [
+    {
+      "country": "DE",
+      "taxType": "VAT",
+      "standardRate": "19%",
+      "registrationThreshold": "€22,000",
+      "isTriggered": true,
+      "filingFrequency": "monthly",
+      "nextDeadline": "次月10日",
+      "action": "REGISTER_VAT"
+    },
+    {
+      "country": "US",
+      "taxType": "Sales Tax",
+      "standardRate": "需根据目的国税务规则具体确认 (各州不同)",
+      "registrationThreshold": "$100K/200笔",
+      "isTriggered": false,
+      "filingFrequency": "monthly/quarterly",
+      "nextDeadline": "各州不同",
+      "action": "CHECK_NEXUS"
+    }
+  ],
+  "recommendations": [
+    "德国已触发 VAT 注册门槛，建议立即注册 VAT 或使用 EU OSS 一站式申报",
+    "美国尚未触发门槛，但如有 FBA 仓库可能提前触发州注册 Nexus"
+  ],
+  "nextActions": [
+    {
+      "priority": "high",
+      "actionType": "REGISTER_VAT",
+      "description": "立即向德国税务局申请独立 VAT 号",
+      "status": "pending"
+    },
+    {
+      "priority": "medium",
+      "actionType": "SCHEDULE_TAX_FILING",
+      "description": "配置德国 VAT 每月 10 日的申报日历提醒",
+      "status": "pending"
+    },
+    {
+      "priority": "low",
+      "actionType": "CHECK_NEXUS",
+      "description": "监控美国各州 Economic Nexus 与 Physical Nexus",
+      "status": "pending"
+    }
+  ]
+}

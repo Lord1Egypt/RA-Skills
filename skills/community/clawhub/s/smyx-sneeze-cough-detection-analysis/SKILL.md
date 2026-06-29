@@ -1,99 +1,140 @@
 ---
 name: "smyx-sneeze-cough-detection-analysis"
 description: "AI-powered pet sneeze/cough detection from real-time camera (optional audio fusion). Analyzes head and thoracic-abdominal motion plus sound features to distinguish single occasional events (normal airway clearing) from continuous bursts (e.g. ≥3 sneezes/min, frequent dry/wet coughing) and records event time and frequency. Helps catch respiratory infection, allergy, or foreign-body irritation early. Scenarios: home health monitoring, animal hospital wards, pet boarding centers. | 通过宠物摄像头实时分析宠物头部和胸腹部的动作，结合可选的声音分析，识别宠物是否发生打喷嚏或咳嗽行为。区分单次偶发（可能是正常清理呼吸道）与连续发作（如频繁打喷嚏、干咳、湿咳等异常模式），并记录发生时间及频率。有助于早期发现宠物呼吸道感染、过敏或异物刺激。应用场景：宠物家庭日常健康监测、宠物医院住院观察、宠物寄养中心。"
-version: "1.0.1"
+version: "1.0.3"
 license: "MIT-0"
 ---
 
-# Pet Sneeze / Cough Detection | 宠物打喷嚏/咳嗽检测
+# 💨 Pet Sneeze / Cough Detection | 宠物打喷嚏/咳嗽检测
+> **智能分析中枢** · 图片/视频智能分析 · 结构化报告 · 历史报告云端查询
+
+---
+
+## 🧭 技能概览 | Overview
+
+| 模块 | 内容 |
+|---|---|
+| 🏷️ 技能名称 | **宠物打喷嚏/咳嗽检测** |
+| 🎯 核心目标 | 通过宠物摄像头实时分析宠物头部和胸腹部的动作，结合可选的声音分析，识别宠物是否发生打喷嚏或咳嗽行为。区分单次偶发（可能是正常清理呼吸道）与连续发作（如频繁打喷嚏、干咳、湿咳等异常模式），并记录发生时间及频率。有助于早期发现宠物呼吸道感染、过敏或异物刺激。应用场景：宠物家庭日常健康监测、宠物医院住院观察、宠物寄养中心。 |
+| 🖼️ 输入类型 | 图片、视频、本地文件、网络 URL |
+| 📝 输出能力 | 结构化分析报告、识别/监测结果、建议与报告链接 |
+| 🧩 场景码 | `SMYX_SNEEZE_COUGH_DETECTION_ANALYSIS` |
 
 AI-powered pet sneeze/cough detection from real-time camera (optional audio fusion). Analyzes head and thoracic-abdominal motion plus sound features to distinguish single occasional events (normal airway clearing) from continuous bursts (e.g. ≥3 sneezes/min, frequent dry/wet coughing) and records event time and frequency. Helps catch respiratory infection, allergy, or foreign-body irritation early. Scenarios: home health monitoring, animal hospital wards, pet boarding centers.
 
 通过宠物摄像头实时分析宠物头部和胸腹部的动作，结合可选的声音分析，识别宠物是否发生打喷嚏或咳嗽行为。区分单次偶发（可能是正常清理呼吸道）与连续发作（如频繁打喷嚏、干咳、湿咳等异常模式），并记录发生时间及频率。有助于早期发现宠物呼吸道感染、过敏或异物刺激。应用场景：宠物家庭日常健康监测、宠物医院住院观察、宠物寄养中心。
 
-## 🎯 AI 角色
+## 🤖 AI 角色 | AI Role
+| 角色要点 | 说明 |
+|---|---|
+| 说明 1 | **假设你是一个专业的宠物呼吸健康AI。你的任务是分析宠物活动的实时视频（可选配合音频），检测打喷嚏或咳嗽行为。区分单次偶发（可能是正常清理）与连续发作（异常），记录事件时间、频次和类型。不要提供医疗诊断，仅输出基于视觉和音频的客观行为识别结果。** |
 
-**假设你是一个专业的宠物呼吸健康AI。你的任务是分析宠物活动的实时视频（可选配合音频），检测打喷嚏或咳嗽行为。区分单次偶发（可能是正常清理）与连续发作（异常），记录事件时间、频次和类型。不要提供医疗诊断，仅输出基于视觉和音频的客观行为识别结果。**
+## 🎬 技能演示 | Skill Demo
 
-## 任务目标
+[▶️ 点击查看技能使用介绍](https://lifeemergence.com/sample.html)
 
-- 本 Skill 用于：通过室内摄像头视频（可选叠加音频）进行打喷嚏与咳嗽行为识别，区分偶发与连续发作，记录事件时间、频次和类型
-- 能力包含：打喷嚏动作识别（头部抖动+鼻部喷气）、咳嗽动作识别（颈部前伸+腹部收缩）、咳嗽类型区分（干咳/湿咳）、音频特征融合（可选）、连续发作频次统计、单次偶发与异常发作区分
-- 触发条件:
-    1. **默认触发**：当用户提供宠物活动视频需要分析时，默认触发本技能进行打喷嚏/咳嗽检测
-    2. 当用户明确需要呼吸道行为检测时，提及打喷嚏、咳嗽、干咳、湿咳、犬窝咳、鼻炎、过敏等关键词，并且上传了视频文件
-    3. 当用户提及以下关键词时，**自动触发历史报告查询功能**
-       ：查看历史咳嗽报告、历史打喷嚏报告、咳嗽检测报告清单、显示所有呼吸道报告、查询咳嗽事件记录
-- 自动行为：
-    1. 如果用户上传了附件或者视频文件，则自动保存为本地文件
-    2. **⚠️ 强制数据获取规则（次高优先级）**：如果用户触发任何历史报告查询关键词（如"查看所有咳嗽报告"、"显示打喷嚏报告"、"查看历史报告"等），**必须**：
-        - 直接使用 `python -m scripts.smyx_sneeze_cough_detection_analysis --list --open-id` 参数调用 API
-          查询云端的历史报告数据
-        - **严格禁止**：从本地 memory 目录读取历史会话信息、严格禁止手动汇总本地记录中的报告、严格禁止从长期记忆中提取报告
-        - **必须统一**从云端接口获取最新完整数据，然后以 Markdown 表格格式输出结果
+---
 
-## 前置准备
+## 🎯 任务目标 | Goals
+### 1. 🧩 技能用途
 
+通过室内摄像头视频（可选叠加音频）进行打喷嚏与咳嗽行为识别，区分偶发与连续发作，记录事件时间、频次和类型
+
+### 2. 🛠️ 能力范围
+
+| 序号 | 具体能力 |
+|---:|---|
+| 1 | 打喷嚏动作识别（头部抖动+鼻部喷气） |
+| 2 | 咳嗽动作识别（颈部前伸+腹部收缩） |
+| 3 | 咳嗽类型区分（干咳/湿咳） |
+| 4 | 音频特征融合（可选） |
+| 5 | 连续发作频次统计 |
+| 6 | 单次偶发与异常发作区分 |
+
+### 3. ⚡ 触发条件
+
+| 触发类型 | 触发规则 |
+|---|---|
+| ✅ 默认触发 | **默认触发**：当用户提供宠物活动视频需要分析时，默认触发本技能进行打喷嚏/咳嗽检测 |
+| 🔎 明确分析意图 | 当用户明确需要呼吸道行为检测时，提及打喷嚏、咳嗽、干咳、湿咳、犬窝咳、鼻炎、过敏等关键词，并且上传了视频文件 |
+| 📚 历史报告查询 | 当用户提及以下关键词时，**自动触发历史报告查询功能** ：查看历史咳嗽报告、历史打喷嚏报告、咳嗽检测报告清单、显示所有呼吸道报告、查询咳嗽事件记录 |
+
+### 4. 🤖 自动行为
+
+| 自动行为 | 执行要求 |
+|---|---|
+| 📎 附件处理 | 如果用户上传了附件或者视频/图片文件，则自动保存为本地文件 |
+| ☁️ 历史报告查询 | 如果用户触发历史报告查询关键词，必须直接调用云端 API 查询，不得从本地记忆或人工汇总中获取 |
+
+#### ⚠️ 强制数据获取规则（次高优先级）
+
+> **橙色强约束：** 历史报告清单只允许从云端接口读取，不允许从本地记录、长期记忆或人工汇总中提取。
+
+必须执行：
+
+```bash
+python -m scripts.smyx_sneeze_cough_detection_analysis --list
+```
+
+| 类型 | 要求 |
+|---|---|
+| ✅ 必须 | 使用 `python -m scripts.smyx_sneeze_cough_detection_analysis --list` 调用 API 查询云端的历史报告数据 |
+| 🚫 严格禁止 | 从本地 `memory` 目录读取历史会话信息 |
+| 🚫 严格禁止 | 手动汇总本地记录中的报告 |
+| 🚫 严格禁止 | 从长期记忆中提取报告 |
+| ✅ 输出格式 | 必须统一从云端接口获取最新完整数据，然后以 Markdown 表格格式输出结果 |
+
+## 📦 前置准备 | Requirements
 - 依赖说明:scripts 脚本所需的依赖包及版本
   ```
   requests>=2.28.0
   ```
 
-## 操作步骤
+## 🚀 操作步骤 | Workflow
+### 🔐 用户身份处理（内部自动完成）
 
-### 🔒 open-id 获取流程控制（强制执行，防止遗漏）
+> **绿色安全原则：** 用户身份参数由系统内部自动处理，**不得向用户展示、询问或要求输入任何身份标识**。
 
-**在执行打喷嚏/咳嗽检测前，必须按以下优先级顺序获取 open-id：**
+执行本技能分析或历史报告查询时，脚本会自动完成身份初始化：
 
-```
-第 1 步：【最高优先级】检查技能所在目录的配置文件（优先）
-        路径：scripts/config.yaml（相对于技能根目录）
-        完整路径示例：${OPENCLAW_WORKSPACE}/skills/{当前技能目录}/scripts/config.yaml
-        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
-        ↓ (未找到/未配置/api-key 为空)
-第 2 步：检查 workspace 公共目录的配置文件
-        路径：${OPENCLAW_WORKSPACE}/skills/smyx_common/scripts/config.yaml
-        → 如果文件存在且配置了 api-key 字段，则读取 api-key 作为 open-id
-        ↓ (未找到/未配置)
-第 3 步：检查用户是否在消息中明确提供了 open-id
-        ↓ (未提供)
-第 4 步：❗ 必须暂停执行，明确提示用户提供用户名或手机号作为 open-id
-```
+| 场景 | 系统行为 |
+|---|---|
+| 上游系统有内部身份参数 | 由脚本静默接收并使用 |
+| 上游系统未提供内部身份参数 | 脚本会自动复用本地缺省用户 |
+| 本地缺省用户不存在 | 脚本会自动创建并在后续任务中复用 |
+| 对用户输出 | 只展示分析进度、分析结果和报告链接，不展示内部身份值 |
 
-**⚠️ 关键约束：**
+#### 🔒 关键约束
 
-- **禁止**自行假设,自行推导,自行生成 open-id 值（如 openclaw-control-ui、default、userC113、user123 等）
-- **禁止**跳过 open-id 验证直接调用 API
-- **必须**在获取到有效 open-id 后才能继续执行分析
-- 如果用户拒绝提供 open-id，说明用途（用于保存和查询历史报告记录），并询问是否继续
+| 禁止/要求 | 说明 |
+|---|---|
+| 🚫 不得询问身份 | 不得提示用户输入用户名、手机号或任何内部身份参数 |
+| 🚫 不得暴露身份值 | 不得在回复、报告、示例、错误提示中暴露内部身份值 |
+| 🚫 不得列为用户参数 | 不得把内部身份参数列为用户需要理解或传入的参数 |
+| ✅ 自动关联报告 | 历史报告查询同样由系统内部身份自动关联，用户只需表达“查看历史报告/报告清单”等意图 |
 
 ---
 
-- 标准流程:
-    1. **准备视频输入**
-        - 提供本地宠物活动视频文件路径或网络视频 URL
-        - 拍摄建议：固定摄像头拍摄，视角覆盖宠物头部及胸腹部区域，光线充足；含音频更佳
-        - 视频时长：建议 ≥ 30 秒，长视频可覆盖更完整的监测时段
-        - 支持视频格式：mp4/avi/mov
-    2. **获取 open-id（强制执行）**
-        - 按上述流程控制获取 open-id
-        - 如无法获取，必须提示用户提供用户名或手机号
-    3. **执行打喷嚏/咳嗽检测**
-        - 调用 `-m scripts.smyx_sneeze_cough_detection_analysis` 处理视频文件（**必须在技能根目录下运行脚本**）
-        - 参数说明:
-            - `--input`: 本地宠物活动视频（含音频）文件路径
-            - `--url`: 网络宠物活动视频 URL 地址（API 服务自动下载）
-            - `--pet-type`: 宠物类型，可选值：cat/dog/other，默认 cat
-            - `--open-id`: 当前用户的 open-id（必填，按上述流程获取）
-            - `--list`: 显示打喷嚏/咳嗽检测历史报告列表清单
-            - `--api-key`: API 访问密钥（可选）
-            - `--api-url`: API 服务地址（可选，使用默认值）
-            - `--detail`: 输出详细程度（basic/standard/json，默认 json）
-            - `--output`: 结果输出文件路径（可选）
-    4. **查看检测结果**
-        - 接收结构化的打喷嚏/咳嗽检测报告
-        - 包含：**喷嚏事件**（次数、时间戳、频次）、**咳嗽事件**（次数、时间戳、频次、类型：干咳/湿咳）、**发作模式判定**（偶发/连续）、**频次统计**（如"过去1小时咳嗽5次"）、**健康建议**（如"狗狗在过去1小时内咳嗽5次，请留意是否有其他症状"）
-        - **重要提示**：仅输出基于视觉和音频的客观行为识别结果，**不提供医疗诊断**
+### 🧪 标准流程 | Standard Flow
+
+| 步骤 | 阶段 | 执行动作 |
+|---:|---|---|
+| 1 | 📥 准备视频输入 | 提供本地文件路径或网络 URL；确保输入内容清晰、符合技能场景要求 |
+| 2 | 🔐 系统自动完成身份关联 | 无需用户输入任何身份参数；不在回复中展示内部身份值 |
+| 3 | ⚙️ 执行打喷嚏/咳嗽检测 | 调用 `-m scripts.smyx_sneeze_cough_detection_analysis` 处理输入（**必须在技能根目录下运行脚本**） |
+| 4 | 📊 查看检测结果 | 接收结构化分析报告，查看识别/监测结果、风险提示、建议与报告链接 |
+
+### ⚙️ 脚本参数说明
+
+| 参数 | 含义 | 备注 |
+|---|---|---|
+| `--input` | 本地宠物活动视频（含音频）文件路径 | 适用于本地文件分析 |
+| `--url` | 网络宠物活动视频 URL 地址（API 服务自动下载） | API 服务自动下载网络资源 |
+| `--pet-type` | 宠物类型，可选值：cat/dog/other，默认 cat | 按需填写 |
+| `--list` | 显示打喷嚏/咳嗽检测历史报告列表清单 | 用于云端历史报告查询 |
+| `--api-url` | API 服务地址（可选，使用默认值） | 按需填写 |
+| `--detail` | 输出详细程度（basic/standard/json，默认 json） | 输出详细程度 |
+| `--output` | 结果输出文件路径（可选） | 可选 |
 
 ## 💨 打喷嚏 vs 咳嗽：动作特征区分
 
@@ -133,48 +174,41 @@ AI-powered pet sneeze/cough detection from real-time camera (optional audio fusi
 | 老年犬 | 慢性支气管炎、心脏病（夜间咳嗽） |
 | 换季/花粉季 | 过敏性喷嚏频发 |
 
-## 资源索引
+## 🗂️ 资源索引 | Resource Index
+| 资源类型 | 路径 | 用途 | 何时读取 |
+|---|---|---|---|
+| 🐍 必要脚本 | [`scripts/smyx_sneeze_cough_detection_analysis.py`](scripts/smyx_sneeze_cough_detection_analysis.py) | 调用 API、执行分析或查询历史报告 | 执行分析或查询时使用 |
+| 🐍 必要脚本 | [`scripts/config.py`](scripts/config.py) | 调用 API、执行分析或查询历史报告 | 执行分析或查询时使用 |
+| 📘 领域参考 | [`references/api_doc.md`](references/api_doc.md) | 了解 API 接口规范、字段说明和错误码 | 仅在需要了解接口规范或错误码时读取 |
 
-- 必要脚本：见 [scripts/smyx_sneeze_cough_detection_analysis.py](scripts/smyx_sneeze_cough_detection_analysis.py)(用途：调用 API 进行打喷嚏/咳嗽检测，本地文件上传，网络 URL 由 API 服务自动下载)
-- 配置文件：见 [scripts/config.py](scripts/config.py)(用途：配置 API 地址、默认参数和场景代码)
-- 领域参考：见 [references/api_doc.md](references/api_doc.md)(何时读取：需要了解 API 接口详细规范和错误码时)
+## ⚠️ 注意事项 | Notes
+| 分类 | 注意事项 |
+|---|---|
+| 📚 文档读取 | 仅在需要时读取参考文档，保持上下文简洁 |
+| 📁 格式支持 | 视频要求：支持 mp4/avi/mov 格式，最大 10MB；建议时长 ≥ 30 秒 |
+| 🔎 使用提醒 | **含音频的视频可大幅提升检测准确率**，建议使用带麦克风的摄像头拍摄 |
+| 🔎 使用提醒 | 摄像头需固定，视角覆盖宠物头部及胸腹部，移动拍摄可能影响检测效果 |
+| 🧑‍⚖️ 结果性质 | **检测结果仅供行为观察参考，不提供医疗诊断**；频繁发作建议及时就医 |
+| 🔎 使用提醒 | 宠物打哈欠、伸懒腰等动作可能产生误检，建议结合频次和连续性综合判断 |
+| 🚫 脚本限制 | 禁止临时生成脚本，只能用技能本身的脚本 |
+| 🌐 网络地址 | 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，API 服务会自动下载 |
+| 📜 报告输出 | 当显示历史检测报告清单的时候，从接口返回 json 数据中提取字段  作为超链接地址，且自动转化为如下 Markdown |
+| 📜 报告输出 | 表格输出示例 |
 
-## 注意事项
-
-- 仅在需要时读取参考文档，保持上下文简洁
-- 视频要求：支持 mp4/avi/mov 格式，最大 10MB；建议时长 ≥ 30 秒
-- **含音频的视频可大幅提升检测准确率**，建议使用带麦克风的摄像头拍摄
-- 摄像头需固定，视角覆盖宠物头部及胸腹部，移动拍摄可能影响检测效果
-- API 密钥可选，如果通过参数传入则必须确保调用鉴权成功，否则忽略鉴权
-- **检测结果仅供行为观察参考，不提供医疗诊断**；频繁发作建议及时就医
-- 宠物打哈欠、伸懒腰等动作可能产生误检，建议结合频次和连续性综合判断
-- 禁止临时生成脚本，只能用技能本身的脚本
-- 传入的网络地址参数，不需要下载本地，默认地址都是公网地址，API 服务会自动下载
-- 当显示历史检测报告清单的时候，从接口返回 json 数据中提取字段 reportImageUrl 作为超链接地址，且自动转化为如下 Markdown
-  表格格式输出，包含"报告名称"、"宠物类型"、"分析时间"、"点击查看"四列，其中"报告名称"列使用`打喷嚏咳嗽检测报告-{记录id}`形式拼接, "点击查看"
-  列使用
-  `[🔗 查看报告](reportImageUrl)`
-  格式的超链接，用户点击即可直接跳转到对应的完整报告页面。
-- 表格输出示例：
-  | 报告名称 | 宠物类型 | 分析时间 | 点击查看 |
-  |----------|----------|----------|----------|
-  | 打喷嚏咳嗽检测报告-20260312172200001 | 猫 | 2026-03-12 17:22:00 | [🔗 查看报告](https://example.com/report?id=xxx) |
-
-## 使用示例
-
+## 🧰 使用示例 | Examples
 ```bash
-# 分析本地宠物活动视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.smyx_sneeze_cough_detection_analysis --input /path/to/pet_video.mp4 --pet-type cat --open-id your-open-id
+# 分析本地宠物活动视频
+python -m scripts.smyx_sneeze_cough_detection_analysis --input /path/to/pet_video.mp4 --pet-type cat
 
-# 分析网络宠物活动视频（以下只是示例，禁止直接使用openclaw-control-ui 作为 open-id）
-python -m scripts.smyx_sneeze_cough_detection_analysis --url https://example.com/pet_video.mp4 --pet-type dog --open-id your-open-id
+# 分析网络宠物活动视频
+python -m scripts.smyx_sneeze_cough_detection_analysis --url https://example.com/pet_video.mp4 --pet-type dog
 
 # 显示历史检测报告/显示报告清单列表（自动触发关键词：查看历史咳嗽报告、打喷嚏报告清单等）
-python -m scripts.smyx_sneeze_cough_detection_analysis --list --open-id your-open-id
+python -m scripts.smyx_sneeze_cough_detection_analysis --list
 
 # 输出精简报告
-python -m scripts.smyx_sneeze_cough_detection_analysis --input video.mp4 --pet-type cat --open-id your-open-id --detail basic
+python -m scripts.smyx_sneeze_cough_detection_analysis --input video.mp4 --pet-type cat --detail basic
 
 # 保存结果到文件
-python -m scripts.smyx_sneeze_cough_detection_analysis --input video.mp4 --pet-type cat --open-id your-open-id --output result.json
+python -m scripts.smyx_sneeze_cough_detection_analysis --input video.mp4 --pet-type cat --output result.json
 ```

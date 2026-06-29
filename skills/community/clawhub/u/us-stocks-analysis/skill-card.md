@@ -1,5 +1,5 @@
 ## Description: <br>
-US stocks analysis with AI-synthesized insights that combines price, sentiment, insider trades, congressional STOCK Act disclosures, institutional flows, analyst ratings, and AI signals into read-only, agent-ready briefings. <br>
+US Stocks Analysis helps agents synthesize U.S. equities data, including price, sentiment, insider trades, congressional disclosures, institutional flows, analyst ratings, and AI signals, into read-only briefings. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,36 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and developers use this skill to retrieve and synthesize US equities market context from SentiSense APIs, including ticker briefings, smart-money screens, divergence checks, pre-earnings sentiment, and sector rotation summaries. The output should be treated as educational market analysis, not personalized investment advice. <br>
+External users and agents use this skill to request concise educational analysis of U.S. stocks, sector sentiment, earnings setup, insider activity, congressional disclosures, institutional holdings, analyst actions, and AI-derived market signals. It is intended for informational synthesis, not trading execution or personalized investment advice. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill sends ticker and market-analysis queries to SentiSense using a SentiSense API key. <br>
-Mitigation: Configure the API key only in trusted agent environments, rotate it if exposed, and monitor request volume against the chosen SentiSense plan. <br>
-Risk: Market briefings could be mistaken for personalized investment advice. <br>
-Mitigation: Present outputs as educational context and avoid buy, sell, or hold recommendations. <br>
-Risk: Quota, rate, or preview-tier limits may truncate or limit returned market data. <br>
-Mitigation: State when data is preview-limited or when lookback windows are widened, and synthesize only from returned data. <br>
+Risk: Users may treat synthesized stock signals as personalized investment advice. <br>
+Mitigation: Present outputs as educational context and analysis only, and avoid buy, sell, or personalized recommendation language. <br>
+Risk: API responses can be preview-gated, rate-limited, delayed, or incomplete. <br>
+Mitigation: State relevant data limits in the briefing, follow documented fallback windows, and avoid implying the analysis is exhaustive. <br>
+Risk: The skill requires a SentiSense API key. <br>
+Mitigation: Use the SENTISENSE_API_KEY environment variable and avoid exposing credentials in prompts, logs, shell history, or user-facing output. <br>
 
 
 ## Reference(s): <br>
 - [ClawHub Skill Page](https://clawhub.ai/thesentitrader/skills/us-stocks-analysis) <br>
 - [SentiSense Website](https://sentisense.ai) <br>
-- [SentiSense API Reference](https://sentisense.ai/skill.md) <br>
-- [SentiSense App API Base](https://app.sentisense.ai) <br>
-- [SentiSense Pricing](https://app.sentisense.ai/pricing?coupon=AGENTS26) <br>
+- [SentiSense Full API Reference](https://sentisense.ai/skill.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, API calls, guidance] <br>
-**Output Format:** [Concise Markdown or plain-text market-analysis briefings with endpoint call guidance] <br>
+**Output Type(s):** [Text, Markdown, API calls, Guidance] <br>
+**Output Format:** [Concise plain text or Markdown briefings with endpoint-specific API call guidance] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Read-only SentiSense API usage; requires SENTISENSE_API_KEY and may be subject to quota, rate, and preview-tier limits.] <br>
+**Other Properties Related to Output:** [Requires SENTISENSE_API_KEY; uses read-only SentiSense API endpoints; outputs should remain educational and non-advisory.] <br>
 
 ## Skill Version(s): <br>
-1.0.10 (source: server release evidence) <br>
+1.0.11 (source: ClawHub release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

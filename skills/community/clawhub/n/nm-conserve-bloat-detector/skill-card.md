@@ -1,5 +1,5 @@
 ## Description: <br>
-Detects codebase bloat via dead code, duplication, complexity, and documentation bloat scans. <br>
+Detects codebase bloat via dead code, duplication, complexity, and doc bloat scans. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,34 +11,33 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and maintainers use this skill to audit codebases for dead code, duplication, complexity, documentation bloat, dependency bloat, stale files, and growth patterns before cleanup, refactoring, or release work. <br>
+Developers and engineering teams use this skill to scan repositories for cleanup candidates, including dead code, duplicate logic, stale documentation, dependency bloat, and rapid codebase growth. It supports quick heuristic scans, targeted analysis with optional tools, and deeper audit reporting before refactoring or release cleanup. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Deep scans may inspect broad portions of a repository and may query package registries for dependency checks. <br>
-Mitigation: Run targeted or dry-run scans first, review proposed commands, and avoid scanning sensitive paths that are not needed for the audit. <br>
-Risk: Cleanup recommendations may include deleting, archiving, or modifying files. <br>
-Mitigation: Apply remediation only after reviewing diffs on a branch or with equivalent version-control safeguards. <br>
-Risk: Static and heuristic bloat findings can produce false positives. <br>
-Mitigation: Treat findings as candidates, confirm usage and test coverage, and prefer high-confidence removals for automated cleanup. <br>
+Risk: Cleanup recommendations can incorrectly identify live code, documentation, or configuration as removable. <br>
+Mitigation: Treat DELETE and ARCHIVE outputs as review candidates, confirm references and tests manually, and require approval before removal. <br>
+Risk: Bulk cleanup can remove useful repository history or working implementation details if acted on without safeguards. <br>
+Mitigation: Use dry-run previews and create a backup branch before applying broad code or documentation changes. <br>
+Risk: Heuristic and static-analysis findings may include false positives, especially for entry points, generated files, stable libraries, and configuration. <br>
+Mitigation: Use the skill's confidence levels, exclusions, and tool corroboration before accepting a cleanup recommendation. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-conserve-bloat-detector) <br>
-- [Publisher profile](https://clawhub.ai/user/athola) <br>
-- [Skill homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-conserve-bloat-detector) <br>
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown analysis with command snippets and remediation recommendations] <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with inline shell commands and optional report snippets] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Findings are confidence-ranked and may include dry-run cleanup guidance.] <br>
+**Other Properties Related to Output:** [May include confidence levels, prioritized cleanup candidates, dry-run commands, and remediation categories such as DELETE, REFACTOR, CONSOLIDATE, ARCHIVE, or INLINE.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: release evidence) <br>
+1.9.13 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

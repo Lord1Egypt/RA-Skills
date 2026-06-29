@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>skill-sub Settings</title>
+<style>
+  :root {
+    --bg: #0f1923;
+    --card: #162032;
+    --border: #2a3a50;
+    --accent: #4ecdc4;
+    --accent-hover: #3dbdb5;
+    --danger: #ff6b6b;
+    --text: #e0e8f0;
+    --text-dim: #7a8da0;
+    --input-bg: #0d1520;
+    --radius: 10px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 16px;
+  }
+  .container {
+    max-width: 560px;
+    width: 100%;
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--accent);
+  }
+  .subtitle {
+    color: var(--text-dim);
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+  .field-group {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .field-group h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .field-group h2 .icon { font-size: 20px; }
+  .field {
+    margin-bottom: 18px;
+  }
+  .field:last-child { margin-bottom: 0; }
+  .field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .field .desc {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  .radio-group {
+    display: flex;
+    gap: 12px;
+  }
+  .radio-option {
+    flex: 1;
+    position: relative;
+  }
+  .radio-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .radio-option .label-box {
+    display: block;
+    padding: 12px 16px;
+    background: var(--input-bg);
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .radio-option input[type="radio"]:checked + .label-box {
+    border-color: var(--accent);
+    background: rgba(78, 205, 196, 0.08);
+    color: var(--accent);
+  }
+  .radio-option .label-box:hover {
+    border-color: var(--accent);
+  }
+  .radio-option .label-box .sub {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--text-dim);
+    margin-top: 4px;
+  }
+  .number-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .number-input button {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    background: var(--input-bg);
+    color: var(--text);
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .number-input button:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .number-input input {
+    width: 60px;
+    height: 36px;
+    text-align: center;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    background: var(--input-bg);
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .number-input input:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .btn-save {
+    flex: 1;
+    padding: 14px 24px;
+    border: none;
+    border-radius: var(--radius);
+    background: var(--accent);
+    color: #0f1923;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-save:hover { background: var(--accent-hover); transform: translateY(-1px); }
+  .btn-save:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+  .btn-done {
+    padding: 14px 24px;
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    background: transparent;
+    color: var(--accent);
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .btn-done:hover { background: rgba(78,205,196,0.1); }
+  .btn-done.hidden { display: none; }
+  .toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0;
+    transition: all 0.3s;
+    z-index: 999;
+  }
+  .toast.success { background: #2ecc71; color: #fff; }
+  .toast.error { background: var(--danger); color: #fff; }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>skill-sub</h1>
+  <p class="subtitle">v1.2.0 &mdash; Chain Executor Settings</p>
+
+  <!-- Memory Reference -->
+  <div class="field-group">
+    <h2><span class="icon">&#128218;</span> Memory &amp; Context</h2>
+    <div class="field">
+      <label>Reference Memory / Cache Files</label>
+      <div class="radio-group">
+        <div class="radio-option">
+          <input type="radio" name="use_memory" id="mem_yes" value="true">
+          <label class="label-box" for="mem_yes">
+            Yes
+            <span class="sub">Read user context files for personalized step descriptions</span>
+          </label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" name="use_memory" id="mem_no" value="false">
+          <label class="label-box" for="mem_no">
+            No
+            <span class="sub">Use skill docs only, ignore user-specific context</span>
+          </label>
+        </div>
+      </div>
+      <p class="desc">When enabled, the executor reads MEMORY.md and daily logs to add user-specific context to chain step descriptions.</p>
+    </div>
+  </div>
+
+  <!-- Naming Mode -->
+  <div class="field-group">
+    <h2><span class="icon">&#128221;</span> Chain Naming</h2>
+    <div class="field">
+      <label>Naming Mode</label>
+      <div class="radio-group">
+        <div class="radio-option">
+          <input type="radio" name="naming" id="name_auto" value="auto">
+          <label class="label-box" for="name_auto">
+            Auto
+            <span class="sub">AI generates chain name based on intent and purpose</span>
+          </label>
+        </div>
+        <div class="radio-option">
+          <input type="radio" name="naming" id="name_manual" value="manual">
+          <label class="label-box" for="name_manual">
+            Manual
+            <span class="sub">Always ask user to confirm or provide a name</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Retry Count -->
+  <div class="field-group">
+    <h2><span class="icon">&#128260;</span> Retry Policy</h2>
+    <div class="field">
+      <label>Default Max Retries</label>
+      <div class="number-input">
+        <button type="button" onclick="adjustRetry(-1)">&minus;</button>
+        <input type="number" id="retry_count" min="1" max="10" value="3">
+        <button type="button" onclick="adjustRetry(1)">+</button>
+      </div>
+      <p class="desc">Default retry count for all steps. Can be overridden per-step with retry_policy. Range: 1-10.</p>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="btn-save" id="btn_save" onclick="saveConfig()">Save Config</button>
+    <button class="btn-done hidden" id="btn_done" onclick="finish()">Done</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // Load current config on page load
+  fetch('/config')
+    .then(r => r.json())
+    .then(cfg => {
+      // Memory reference
+      if (cfg.use_memory_reference === true) {
+        document.getElementById('mem_yes').checked = true;
+      } else {
+        document.getElementById('mem_no').checked = true;
+      }
+      // Naming mode
+      if (cfg.naming_mode === 'auto') {
+        document.getElementById('name_auto').checked = true;
+      } else {
+        document.getElementById('name_manual').checked = true;
+      }
+      // Retry count
+      if (cfg.default_max_retries) {
+        document.getElementById('retry_count').value = cfg.default_max_retries;
+      }
+    })
+    .catch(e => console.error('Failed to load config:', e));
+
+  function adjustRetry(delta) {
+    const input = document.getElementById('retry_count');
+    let val = parseInt(input.value) || 3;
+    val = Math.min(10, Math.max(1, val + delta));
+    input.value = val;
+  }
+
+  function showToast(msg, type) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'toast ' + type + ' show';
+    setTimeout(() => { t.className = 'toast'; }, 2500);
+  }
+
+  function getConfig() {
+    return {
+      use_memory_reference: document.getElementById('mem_yes').checked,
+      naming_mode: document.getElementById('name_auto').checked ? 'auto' : 'manual',
+      default_max_retries: parseInt(document.getElementById('retry_count').value) || 3
+    };
+  }
+
+  function saveConfig() {
+    const btn = document.getElementById('btn_save');
+    btn.disabled = true;
+    btn.textContent = 'Saving...';
+
+    fetch('/save', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(getConfig())
+    })
+    .then(r => r.json())
+    .then(data => {
+      if (data.success) {
+        showToast('Config saved!', 'success');
+        btn.textContent = 'Saved';
+        // Poll for _saved flag
+        pollSaved();
+      } else {
+        showToast('Save failed', 'error');
+        btn.disabled = false;
+        btn.textContent = 'Save Config';
+      }
+    })
+    .catch(e => {
+      showToast('Network error', 'error');
+      btn.disabled = false;
+      btn.textContent = 'Save Config';
+    });
+  }
+
+  function pollSaved() {
+    let attempts = 0;
+    const interval = setInterval(() => {
+      attempts++;
+      fetch('/config')
+        .then(r => r.json())
+        .then(cfg => {
+          if (cfg._saved || attempts > 30) {
+            clearInterval(interval);
+            document.getElementById('btn_done').classList.remove('hidden');
+          }
+        })
+        .catch(() => {});
+    }, 500);
+  }
+
+  function finish() {
+    window.location.href = '/done';
+  }
+</script>
+</body>
+</html>

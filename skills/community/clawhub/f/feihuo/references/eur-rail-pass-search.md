@@ -4,18 +4,12 @@
 
 ## 使用前提
 
-CLI 从 `~/.openclaw/qclaw/user-info.json` 读取 `accessToken`，请求 API 时使用：
-
-```http
-Authorization: Bearer <accessToken>
-```
-
-请确保该文件存在且 `accessToken` 有效。
+CLI 已内置在技能目录 `./cli/`，通过 FClaw 注入的 `FCLAW_OIDC_TOKEN_URL` 与 `FCLAW_OIDC_TOKEN_SECRET` 从本地 OIDC token 端点获取 access_token。请在 FClaw 中登录，并在技能根目录下执行命令（工作目录须包含 `cli/index.js`）。
 
 ## 命令格式
 
 ```bash
-feihuo eur-rail-pass-search [--country <欧洲国家>]
+node ./cli/index.js eur-rail-pass-search [--country <欧洲国家>]
 ```
 
 ## 参数
@@ -38,23 +32,23 @@ feihuo eur-rail-pass-search [--country <欧洲国家>]
 搜索欧洲通票（不限定国家）：
 
 ```bash
-feihuo eur-rail-pass-search
+node ./cli/index.js eur-rail-pass-search
 ```
 
 搜索指定国家的通票：
 
 ```bash
-feihuo eur-rail-pass-search --country "法国"
+node ./cli/index.js eur-rail-pass-search --country "法国"
 ```
 
 ```bash
-feihuo eur-rail-pass-search --country "瑞士"
+node ./cli/index.js eur-rail-pass-search --country "瑞士"
 ```
 
 查看帮助：
 
 ```bash
-feihuo eur-rail-pass-search --help
+node ./cli/index.js eur-rail-pass-search --help
 ```
 
 ## 输出

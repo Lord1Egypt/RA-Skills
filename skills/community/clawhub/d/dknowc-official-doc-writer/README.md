@@ -46,7 +46,7 @@ https://open.dknowc.cn/dependable/search/
 
 ## 版本说明
 
-当前 Clawhub Public 版基于 `3.0.19`。
+当前 Clawhub Public 版基于 `3.0.20`。
 
 ## 常用测试
 

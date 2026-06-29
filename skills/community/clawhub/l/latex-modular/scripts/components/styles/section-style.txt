@@ -1,0 +1,54 @@
+% --- 章节样式 ---
+\usepackage{needspace}
+
+\ctexset{
+    section={  % 一级标题
+        format = \zihao{-4}\raggedright\yijitimu,
+        numbering = true,
+        number = \chinese{section},
+        name = {},
+        aftername = {、},
+        afterindent = true % 顶格不缩进
+    },
+    subsection={  % 二级标题
+        format = {\zihao{-4}\raggedright\erjitimu},
+        numbering = true,
+        number = \chinese{subsection},
+        name = {（},
+        aftername = {）},
+        afterindent = true
+    },
+    subsubsection={  % 三级标题
+        format = {\zihao{-4}\raggedright\sanjitimu},
+        numbering = true,
+        number = \arabic{subsubsection},
+        name = {},
+        aftername = {、},
+        indent = 2em, % 固定缩进2字符
+        afterindent = true
+    },
+    paragraph={  % 四级标题
+        format = \normalfont\dwcn,
+        numbering = true,
+        number = \arabic{paragraph},
+        name = {（},
+        aftername = {）},
+        indent = 2em, % 固定缩进2字符
+        afterindent = true,
+        runin = false, 
+    },
+    subparagraph={  % 五级标题
+        format = \normalfont\dwcn,
+        numbering = true,
+        number = \alph{subparagraph},
+        name = {},
+        aftername = {、},
+        indent = 2em, % 固定缩进2字符
+        afterindent = true,
+        runin = false, 
+    },    
+}
+
+% 设置正文缩进（匹配标题缩进）
+\setlength{\parindent}{2em}
+\setcounter{secnumdepth}{5}  % 允许编号到五级标题

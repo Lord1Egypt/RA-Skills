@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>幼教百宝箱 - 功能演示</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif; background: #fef9f4; color: #333; line-height: 1.6; }
+.header { background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #a1c4fd 100%); padding: 30px 20px; text-align: center; color: #fff; }
+.header h1 { font-size: 2em; margin-bottom: 5px; text-shadow: 1px 1px 3px rgba(0,0,0,0.2); }
+.header .subtitle { font-size: 1.1em; opacity: 0.95; }
+.header .badge { display: inline-block; background: rgba(255,255,255,0.3); padding: 4px 12px; border-radius: 20px; margin-top: 8px; font-size: 0.85em; }
+.container { max-width: 900px; margin: 0 auto; padding: 20px; }
+.card { background: #fff; border-radius: 16px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); transition: transform 0.2s; }
+.card:hover { transform: translateY(-2px); }
+.card h2 { font-size: 1.4em; color: #ff6b81; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid #ffdfe4; }
+.card h3 { font-size: 1.1em; color: #555; margin: 12px 0 8px; }
+.section-title { display: flex; align-items: center; gap: 8px; margin-bottom: 15px; }
+.section-title .icon { font-size: 1.5em; }
+.info-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
+.info-tag { background: #fff0f3; color: #ff6b81; padding: 4px 12px; border-radius: 12px; font-size: 0.85em; }
+.content-block { background: #fdf6f9; border-radius: 12px; padding: 18px; margin: 12px 0; }
+.content-block p { margin: 6px 0; }
+.content-block ul, .content-block ol { padding-left: 20px; }
+.content-block li { margin: 4px 0; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+@media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+.progress-bar { height: 8px; background: #f0f0f0; border-radius: 4px; margin: 8px 0; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, #ff9a9e, #fecfef); }
+.quote { border-left: 4px solid #ff9a9e; padding: 10px 15px; margin: 10px 0; background: #fff0f3; border-radius: 0 8px 8px 0; font-style: italic; }
+.footer { text-align: center; padding: 30px 20px; color: #999; font-size: 0.85em; }
+.footer a { color: #ff6b81; text-decoration: none; }
+/* 模块导航 */
+.module-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+.module-btn { padding: 8px 16px; border-radius: 20px; border: 2px solid #ffdfe4; background: #fff; color: #ff6b81; cursor: pointer; font-size: 0.9em; transition: all 0.2s; }
+.module-btn:hover, .module-btn.active { background: #ff6b81; color: #fff; border-color: #ff6b81; }
+.daily-tip { background: linear-gradient(135deg, #a1c4fd, #c2e9fb); padding: 20px; border-radius: 16px; margin-bottom: 20px; color: #fff; }
+.daily-tip h3 { margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🌸 幼教百宝箱</h1>
+    <div class="subtitle">AI 幼师全流程助手 — 功能演示</div>
+    <div class="badge">内置模板 | 生成时间：2026年06月20日 17:46</div>
+</div>
+
+<div class="container">
+    <!-- 今日提醒 -->
+    <div class="daily-tip">
+        <h3>💡 今日幼教小贴士</h3>
+        <p>观察是最好的教育。今天试着记录下3个幼儿的"哇时刻"，你会惊喜地发现每个孩子都在以自己的方式成长。</p>
+    </div>
+
+    <!-- 模块导航 -->
+    <div class="module-nav">
+        <button class="module-btn active" onclick="scrollToTop()">📝 功能演示</button>
+        <button class="module-btn" onclick="alert('请使用 --mode lesson_plan 生成教案')">📖 教案</button>
+        <button class="module-btn" onclick="alert('请使用 --mode observation 生成观察记录')">🔍 观察</button>
+        <button class="module-btn" onclick="alert('请使用 --mode communication 生成家园沟通')">💬 沟通</button>
+        <button class="module-btn" onclick="alert('请使用 --mode activity 生成活动')">🎮 活动</button>
+        <button class="module-btn" onclick="alert('请使用 --mode plan 生成计划')">📅 计划</button>
+        <button class="module-btn" onclick="alert('请使用 --mode environment 生成环创')">🎨 环创</button>
+        <button class="module-btn" onclick="alert('请使用 --mode story 生成故事')">📚 故事</button>
+    </div>
+
+    <!-- 内容区域 -->
+    <div class="card"><h2>📌 教案生成示例</h2><h3>领域</h3><div class="content-block"><p>语言</p></div><h3>年龄段</h3><div class="content-block"><p>中班(4-5岁)</p></div><h3>活动名称</h3><div class="content-block"><p>春天的色彩（倾听与表达活动）</p></div><h3>活动目标</h3><div class="content-block"><ul><li>了解春天的色彩的基本特征</li>
+<li>能用语言/动作表达对春天的色彩的理解</li>
+<li>体验春天的色彩活动的乐趣，培养积极情感</li></ul></div><h3>活动准备</h3><div class="content-block"><ul><li>物质准备：春天的色彩相关的教具、图片、实物</li>
+<li>经验准备：幼儿已有的相关生活经验</li></ul></div><h3>活动过程</h3><div class="card"><h2>📌 导入环节（3-5分钟）</h2><div class="content-block"><p>通过情境/游戏/儿歌导入，激发幼儿对春天的色彩的兴趣。</p></div></div><div class="card"><h2>📌 基本环节（15-20分钟）</h2><div class="content-block"><ul><li>1. 感知体验：引导幼儿通过看、听、触摸等多种感官感受春天的色彩</li>
+<li>2. 操作探索：提供材料让幼儿自主操作/探索春天的色彩</li>
+<li>3. 交流分享：鼓励幼儿表达自己的发现和感受</li></ul></div></div><div class="card"><h2>📌 结束环节（3-5分钟）</h2><div class="content-block"><p>总结活动要点，对幼儿表现给予积极评价。</p></div></div><div class="card"><h2>📌 延伸活动</h2><div class="content-block"><p>在区域活动中投放春天的色彩相关材料，如美工区、阅读区。</p></div></div><h3>指导要点</h3><div class="content-block"><ul><li>关注中班幼儿的活泼好动，动作更加协调; 思维具体形象，开始有逻辑萌芽; 社交需求增强，喜欢结伴游戏特点</li>
+<li>采用游戏化的教学方式</li>
+<li>注重个体差异，提供分层支持</li>
+<li>鼓励幼儿主动探索和表达</li></ul></div><h3>家园共育</h3><div class="content-block"><p>请家长在家中和孩子一起观察春天的色彩，分享相关经验。</p></div></div><div class="card"><h2>📌 观察记录示例</h2><h3>观察时间</h3><div class="content-block"><p>2026年06月20日</p></div><h3>观察对象</h3><div class="content-block"><p>小明在积木区</p></div><h3>年龄段</h3><div class="content-block"><p>小班</p></div><h3>观察背景</h3><div class="content-block"><p>在小明在积木区主动分享的活动中，注意到幼儿的特殊行为表现。</p></div><h3>观察实录</h3><div class="content-block"><p>在今天的自由活动中，小明在积木区主动分享玩具给同伴。该幼儿表现出明显的参与兴趣，主动探索周围环境。在与同伴互动时，能使用简单的语言表达自己的想法。整个过程持续了约15分钟。</p></div><h3>行为分析</h3><div class="card"><h2>📌 发展领域</h2><div class="content-block"><p>社会性发展 / 语言发展</p></div></div><div class="card"><h2>📌 年龄特点对照</h2><div class="content-block"><p>小班(3-4岁)幼儿的典型表现：情绪作用大，易受外界影响。</p></div></div><div class="card"><h2>📌 进步点</h2><div class="content-block"><p>表现出自主性和探索欲，是良好的发展信号。</p></div></div><div class="card"><h2>📌 待关注点</h2><div class="content-block"><p>可进一步观察在群体活动中的表现。</p></div></div><h3>教育策略</h3><div class="content-block"><ul><li>创设更多支持性环境，提供丰富的操作材料</li>
+<li>在集体活动中给予积极关注和适当引导</li>
+<li>通过游戏化方式帮助幼儿提升相关能力</li></ul></div><h3>家园共育建议</h3><div class="content-block"><p>建议家长在家中提供类似的活动机会，鼓励幼儿大胆尝试。</p></div></div><div class="card"><h2>📌 家长通知示例</h2><div class="content-block"><p>【家园通知】<br>尊敬的家长：<br>您好！<br>关于"春游活动通知"，特此通知如下：<br>一、请您配合以下事项：<br>1. 帮助孩子做好相关准备<br>2. 关注班级群后续通知<br>二、时间安排：请留意后续具体时间<br>三、如有疑问请及时与老师沟通。<br>感谢您的支持与配合！<br>XX幼儿园 XX班<br>2026年06月20日</p></div></div><div class="card"><h2>📌 期末评语示例</h2><div class="content-block"><p>【幼儿期末评语】<br>亲爱的朵朵小朋友：<br>这个学期你表现得真棒！老师看到你在各方面都有了很大的进步。<br>在集体活动中，你能积极举手发言，大胆表达自己的想法。<br>在和同伴相处时，你学会了分享和轮流，交到了好多好朋友。<br>在生活自理方面，你能够自己穿脱衣服、整理书包，越来越能干了。<br>新的学期，老师期待你继续保持好奇心，探索更多有趣的事情。<br>加油！你是最棒的！<br>爱你的 XX老师<br>2026年06月</p></div></div><div class="card"><h2>📌 活动设计示例</h2><h3>活动名称</h3><div class="content-block"><p>端午节主题游戏</p></div><h3>适用年龄</h3><div class="content-block"><p>大班(5-6岁)</p></div><h3>活动类型</h3><div class="content-block"><p>主题活动 / 游戏活动</p></div><h3>活动目标</h3><div class="content-block"><ul><li>认知目标：了解端午节主题游戏的基本元素</li>
+<li>能力目标：在参与中发展大班幼儿的动作/语言/社交能力</li>
+<li>情感目标：体验集体活动的快乐</li></ul></div><h3>活动准备</h3><div class="content-block"><ul><li>场地布置：设置活动区域</li>
+<li>材料准备：端午节主题游戏相关道具、背景音乐、奖励贴纸</li></ul></div><h3>活动流程</h3><div class="card"><h2>📌 热身环节（5分钟）</h2><div class="content-block"><p>音乐律动导入，激发幼儿参与端午节主题游戏的兴趣</p></div></div><div class="card"><h2>📌 主题环节（15-20分钟）</h2><div class="content-block"><ul><li>环节一：端午节主题游戏主题讲解/展示（5分钟）</li>
+<li>环节二：幼儿参与端午节主题游戏（10分钟）</li>
+<li>环节三：成果展示与分享（5分钟）</li></ul></div></div><div class="card"><h2>📌 放松环节（5分钟）</h2><div class="content-block"><p>轻柔音乐，放松身体，回顾活动要点</p></div></div><h3>注意事项</h3><div class="content-block"><ul><li>确保活动区域安全</li>
+<li>关注大班幼儿注意力时长</li>
+<li>为能力较弱幼儿提供支持</li></ul></div><h3>延伸建议</h3><div class="content-block"><ul><li>在区域角投放相关材料</li>
+<li>鼓励幼儿在家与家长一起完成类似活动</li></ul></div></div><div class="card"><h2>📌 周计划示例</h2><h3>计划类型</h3><div class="content-block"><p>周计划</p></div><h3>主题</h3><div class="content-block"><p>春天来了</p></div><h3>每日安排</h3><div class="card"><h2>📌 周一</h2><h3>上午</h3><div class="content-block"><p>主题活动导入</p></div><h3>下午</h3><div class="content-block"><p>区域活动</p></div></div><div class="card"><h2>📌 周二</h2><h3>上午</h3><div class="content-block"><p>五大领域集体教学</p></div><h3>下午</h3><div class="content-block"><p>户外活动</p></div></div><div class="card"><h2>📌 周三</h2><h3>上午</h3><div class="content-block"><p>游戏活动</p></div><h3>下午</h3><div class="content-block"><p>艺术活动</p></div></div><div class="card"><h2>📌 周四</h2><h3>上午</h3><div class="content-block"><p>科学探究活动</p></div><h3>下午</h3><div class="content-block"><p>阅读活动</p></div></div><div class="card"><h2>📌 周五</h2><h3>上午</h3><div class="content-block"><p>一周回顾总结</p></div><h3>下午</h3><div class="content-block"><p>自由游戏</p></div></div></div><div class="card"><h2>📌 环创方案示例</h2><h3>方案名称</h3><div class="content-block"><p>海底世界主题环境创设方案</p></div><h3>设计理念</h3><div class="content-block"><p>以'海底世界'为主题，营造温馨、安全、富有教育意义的班级环境，支持和促进幼儿的主动学习与发展。</p></div><h3>区域规划</h3><div class="card"><h2>📌 主题墙</h2><h3>位置</h3><div class="content-block"><p>教室主墙面</p></div><h3>内容</h3><div class="content-block"><p>展示海底世界相关图片、幼儿作品、知识板</p></div><h3>材料</h3><div class="content-block"><p>彩色卡纸、图片打印、幼儿手工作品</p></div><h3>高度</h3><div class="content-block"><p>120-150cm（幼儿视线范围）</p></div></div><div class="card"><h2>📌 美工区</h2><h3>功能</h3><div class="content-block"><p>绘画、手工、泥工</p></div><h3>材料</h3><div class="content-block"><p>画纸、水彩笔、彩泥、海底世界相关素材</p></div></div><div class="card"><h2>📌 阅读区</h2><h3>功能</h3><div class="content-block"><p>阅读、讲述</p></div><h3>材料</h3><div class="content-block"><p>海底世界相关绘本、故事书、布偶</p></div></div><div class="card"><h2>📌 建构区</h2><h3>功能</h3><div class="content-block"><p>搭建、构造</p></div><h3>材料</h3><div class="content-block"><p>积木、乐高、辅助材料（海底世界主题）</p></div></div><div class="card"><h2>📌 角色区</h2><h3>功能</h3><div class="content-block"><p>角色扮演、社会交往</p></div><h3>材料</h3><div class="content-block"><p>与海底世界主题相关的角色服装、道具</p></div></div><h3>配色方案</h3><div class="card"><h2>📌 主色调</h2><div class="content-block"><p>温馨暖色系（浅粉、淡绿、天蓝）</p></div></div><div class="card"><h2>📌 点缀色</h2><div class="content-block"><p>明亮黄色跳色</p></div></div><div class="card"><h2>📌 原则</h2><div class="content-block"><p>柔和、不刺眼、有助于幼儿情绪稳定</p></div></div><h3>安全要求</h3><div class="content-block"><ul><li>所有装饰物固定牢固，防止掉落</li>
+<li>材料无毒无害，符合幼儿安全标准</li>
+<li>尖锐边角做软包处理</li>
+<li>电源插座安装保护盖</li></ul></div></div><div class="card"><h2>📌 教学反思示例</h2><h3>活动名称</h3><div class="content-block"><p>科学活动：浮与沉</p></div><h3>反思时间</h3><div class="content-block"><p>2026年06月20日</p></div><h3>亮点与成功之处</h3><div class="content-block"><ul><li>幼儿参与积极性高，大部分幼儿能专注投入活动</li>
+<li>活动设计贴近幼儿生活经验，易于理解和接受</li>
+<li>游戏化方式有效激发了幼儿的学习兴趣</li></ul></div><h3>不足与改进</h3><div class="content-block"><ul><li>部分环节时间分配可以更合理，导入环节可适当缩短</li>
+<li>针对能力较弱幼儿的支持策略需要更加具体</li>
+<li>材料投放可以更加丰富多样，满足不同幼儿需求</li></ul></div><h3>幼儿表现分析</h3><div class="card"><h2>📌 积极参与型</h2><div class="content-block"><p>约60%幼儿积极举手发言，乐于参与操作</p></div></div><div class="card"><h2>📌 观望型</h2><div class="content-block"><p>约25%幼儿需要教师引导后才参与</p></div></div><div class="card"><h2>📌 退缩型</h2><div class="content-block"><p>约15%幼儿需要一对一支持</p></div></div><h3>改进措施</h3><div class="content-block"><ul><li>缩短集体讲解时间，增加幼儿操作时间</li>
+<li>分层设计操作材料，满足不同能力水平幼儿</li>
+<li>增加小组合作环节，促进同伴互助学习</li>
+<li>活动后及时记录幼儿表现，为后续教学提供依据</li></ul></div><h3>下一步计划</h3><div class="content-block"><p>基于本次反思，下次活动将重点关注个体差异，提供更精准的教学支持。</p></div></div><div class="card"><h2>📌 故事创作示例</h2><h3>故事名称</h3><div class="content-block"><p>勇敢的小白兔</p></div><h3>适用年龄</h3><div class="content-block"><p>小班(3-4岁)</p></div><h3>教育价值</h3><div class="content-block"><p>通过勇敢的小白兔的故事，培养幼儿勇敢、善良、乐于助人的品质，发展语言理解和表达能力。</p></div><h3>故事正文</h3><div class="content-block"><p>从前，有一只可爱的小动物，它叫勇敢的小白兔。
+有一天，阳光明媚，勇敢的小白兔决定去森林里探险。
+走着走着，它来到了一个神秘的地方。这里的花儿五颜六色，鸟儿唱着动听的歌。
+勇敢的小白兔好奇地东看看西瞧瞧，发现前面有一条小河挡住了去路。
+"怎么办呢？"它想了想，看到旁边有一些大石头，于是小心翼翼地踩着石头过了河。
+对岸的景色更加美丽！勇敢的小白兔高兴极了。
+天快黑了，勇敢的小白兔原路返回，把今天的奇遇告诉了妈妈。
+妈妈微笑着摸摸它的头说："你真是一个勇敢的好孩子！"
+勇敢的小白兔开心地笑了，带着甜甜的笑容进入了梦乡。</p></div><h3>互动提问</h3><div class="content-block"><ul><li>故事的主人公是谁呀？（勇敢的小白兔）</li>
+<li>勇敢的小白兔遇到了什么困难？（小河挡住了去路）</li>
+<li>勇敢的小白兔是怎么过河的？（踩着石头过的）</li>
+<li>你觉得它是一只怎样的小动物？</li></ul></div><h3>延伸活动</h3><div class="content-block"><ul><li>请幼儿画一画故事中的场景</li>
+<li>让幼儿讲述自己勇敢的探险经历</li>
+<li>角色扮演：分角色表演故事</li></ul></div></div>
+</div>
+
+<div class="footer">
+    <p>🌸 幼教百宝箱 | AI 赋能幼师，让教育更美好</p>
+    <p>基于《3-6岁儿童学习与发展指南》 | Powered by WorkBuddy</p>
+</div>
+
+<script>
+function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+// Module buttons highlight
+document.querySelectorAll('.module-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.module-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+</script>
+
+</body>
+</html>

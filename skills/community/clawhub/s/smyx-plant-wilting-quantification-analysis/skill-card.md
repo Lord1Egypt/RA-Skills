@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes full-plant images or videos to quantify wilting severity, estimate droop and turgidity indicators, distinguish likely underwatering from overwatering when moisture context is available, and return intervention direction without specific watering amounts. <br>
+Quantifies plant wilting severity from full-plant images or videos, using visual indicators such as leaf droop, stem straightness, and leaf turgidity with optional soil-moisture context to distinguish likely underwatering from overwatering. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users, plant-care operators, greenhouse teams, and smart-pot workflows use this skill to analyze plant media, quantify wilting severity, and decide whether the likely intervention direction is watering, drainage, ventilation, or observation. <br>
+External users, growers, and smart-gardening developers use this skill to analyze plant media, estimate wilting severity, review likely water-stress causes, and retrieve prior cloud-generated reports. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Plant photos or videos and an open-id, username, or phone-number-like identifier may be sent to the Life Emergence backend. <br>
-Mitigation: Use only non-sensitive plant media, avoid people, private interiors, and location-revealing details, and run the skill only when that data sharing is acceptable. <br>
-Risk: The skill may create or log into a backend account and persist returned tokens locally for later requests. <br>
-Mitigation: Install only if the publisher and backend are trusted; use a dedicated identifier where possible and review local configuration or token storage after use. <br>
-Risk: Wilting-cause analysis can be uncertain without soil-moisture context and may confuse underwatering with overwatering. <br>
-Mitigation: Treat the result as advisory, confirm soil moisture and visible plant conditions before acting, and avoid relying on the skill for exact watering amounts. <br>
+Risk: Plant images, videos, submitted URLs, and report history are sent to Life Emergence cloud APIs for analysis and history lookup. <br>
+Mitigation: Use only media appropriate for cloud processing, confirm user consent for uploads, and avoid sensitive or private plant-location media unless the deployment has approved the service. <br>
+Risk: The skill automatically creates or reuses a persistent local identity and stores related session material locally. <br>
+Mitigation: Review and clear the local smyx-common-claw.db and smyx-api-key.txt data before handling sensitive workflows or switching users. <br>
+Risk: Water-stress cause classification can be uncertain when soil-moisture data or clear side-view imagery is unavailable. <br>
+Mitigation: Treat watering or drainage guidance as advisory, and confirm soil condition and plant context before taking irreversible plant-care action. <br>
 
 
 ## Reference(s): <br>
-- [Plant Wilting Quantification API Documentation](artifact/references/api_doc.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/18072937735/smyx-plant-wilting-quantification-analysis) <br>
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-plant-wilting-quantification-analysis) <br>
+- [Skill usage demo](https://lifeemergence.com/sample.html) <br>
+- [Plant wilting API documentation](references/api_doc.md) <br>
+- [SMYX analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Structured text, JSON responses, and Markdown tables for historical report lists] <br>
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
+**Output Format:** [Markdown and JSON-formatted structured analysis reports, including report links when returned by the service.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can save results to a local output file and may include links to backend-hosted report exports.] <br>
+**Other Properties Related to Output:** [Supports local media paths or submitted URLs and can write report output to a user-specified file.] <br>
 
 ## Skill Version(s): <br>
-1.0.4 (source: server release metadata; source frontmatter reports 1.0.1) <br>
+1.0.5 (source: server release metadata; artifact frontmatter lists 1.0.2) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

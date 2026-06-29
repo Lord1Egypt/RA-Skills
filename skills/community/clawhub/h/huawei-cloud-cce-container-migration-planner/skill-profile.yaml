@@ -1,0 +1,30 @@
+﻿name: huawei-cloud-cce-container-migration-planner
+level: L1
+domain: solution-delivery
+description: Plan CCE container migration by inventorying workloads, networking, storage, and risks.
+tools:
+  - huawei_list_cce_clusters
+  - huawei_list_cce_nodes
+  - huawei_list_cce_nodepools
+  - huawei_list_cce_addons
+  - huawei_get_cce_deployments
+  - huawei_get_cce_services
+  - huawei_get_cce_ingresses
+  - huawei_get_cce_pvcs
+  - huawei_get_cce_pvs
+  - huawei_list_cce_configmaps
+  - huawei_list_cce_secrets
+  - huawei_list_vpc
+  - huawei_list_vpc_subnets
+  - huawei_list_security_groups
+  - huawei_list_elb
+  - huawei_list_eip
+  - huawei_list_evs
+  - huawei_list_sfs
+  - huawei_list_sfs_turbo
+references:
+  - references/workflow.md
+  - references/risk-rules.md
+  - references/output-schema.md
+guardrails:
+  max_auto_risk: R1

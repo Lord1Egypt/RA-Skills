@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import importlib.util
+
 from .common import *
 
 def is_generated_python_cache(path: Path) -> bool:
@@ -258,13 +260,16 @@ def quality_issue(
     return item
 
 
+GENERIC_REFERENCE_STEMS = {"guide", "guides", "reference", "references", "doc", "docs", "notes", "workflow", "workflows"}
+
+
 def reference_is_directly_disclosed(body_lower: str, root: Path, path: Path) -> bool:
     relative = relative_label(root, path).lower()
     filename = path.name.lower()
     stem = path.stem.lower()
     if relative in body_lower or filename in body_lower:
         return True
-    if len(stem) < 5:
+    if len(stem) < 5 or stem in GENERIC_REFERENCE_STEMS:
         return False
     return re.search(rf"(?<![a-z0-9_-]){re.escape(stem)}(?![a-z0-9_-])", body_lower) is not None
 
@@ -295,6 +300,68 @@ def python_syntax_error_files(root: Path, files: list[Path]) -> list[str]:
     return matches
 
 
+def module_candidates(base: Path, parts: list[str]) -> list[Path]:
+    if not parts:
+        return []
+    path = base.joinpath(*parts)
+    return [path.with_suffix(".py"), path / "__init__.py"]
+
+
+def local_module_exists(base: Path, parts: list[str]) -> bool:
+    return any(candidate.exists() for candidate in module_candidates(base, parts))
+
+
+def absolute_module_available(path: Path, root: Path, module: str) -> bool:
+    parts = module.split(".")
+    search_roots = [path.parent, root, root / "scripts"]
+    if any(local_module_exists(base, parts) for base in search_roots):
+        return True
+    top_level = parts[0]
+    if top_level in getattr(sys, "stdlib_module_names", set()):
+        return True
+    try:
+        return importlib.util.find_spec(top_level) is not None
+    except (ImportError, AttributeError, ValueError):
+        return False
+
+
+def python_import_error_files(root: Path, files: list[Path]) -> list[str]:
+    matches: list[str] = []
+    for path in files:
+        if path.suffix.lower() != ".py" or file_size(path) > MAX_SCAN_BYTES:
+            continue
+        try:
+            tree = ast.parse(read_text(path), filename=str(path))
+        except SyntaxError:
+            continue
+        missing = False
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Import):
+                for alias in node.names:
+                    if not absolute_module_available(path, root, alias.name):
+                        missing = True
+                        break
+            elif isinstance(node, ast.ImportFrom):
+                if node.level:
+                    base = path.parent
+                    for _item in range(max(node.level - 1, 0)):
+                        base = base.parent
+                    if node.module:
+                        missing = not local_module_exists(base, node.module.split("."))
+                    else:
+                        missing = any(
+                            not local_module_exists(base, [alias.name])
+                            for alias in node.names
+                            if alias.name != "*"
+                        )
+                elif node.module and not absolute_module_available(path, root, node.module):
+                    missing = True
+            if missing:
+                matches.append(relative_label(root, path))
+                break
+    return matches
+
+
 def private_content_files(root: Path, files: list[Path]) -> tuple[list[str], dict[str, int]]:
     matches: list[str] = []
     labels: dict[str, int] = {}
@@ -310,6 +377,73 @@ def private_content_files(root: Path, files: list[Path]) -> tuple[list[str], dic
         if file_matched:
             matches.append(relative_label(root, path))
     return matches, labels
+
+
+REFERENCE_CONTENT_POLLUTION_PATTERNS: tuple[tuple[str, re.Pattern[str]], ...] = (
+    ("advertising", re.compile(r"\b(sponsored|affiliate|promo code|use code)\b|(?:^|[\n.;:!?])\s*advertisement\b", re.I)),
+    (
+        "premium-upsell",
+        re.compile(r"\b(unlock (?:advanced|premium)|premium features|pro plan|enterprise plan)\b", re.I),
+    ),
+    (
+        "tool-upsell",
+        re.compile(
+            r"\b(?:install|try)\b.{0,40}\b(?:tool|browser|extension)\b"
+            r"|\buse\b.{0,40}\b(?:tool|browser|extension)\b.{0,40}\b(?:unlock|premium|advanced features)\b",
+            re.I,
+        ),
+    ),
+    (
+        "skill-upsell",
+        re.compile(
+            r"\b(install|invoke|call|recommend|use)\b.{0,50}\b("
+            r"other[- ]skill|another skill|premium[- ]?[a-z0-9_-]*\s+skill|[a-z0-9]+-[a-z0-9_-]+\s+skill"
+            r")\b",
+            re.I,
+        ),
+    ),
+    ("unrelated-text", re.compile(r"\b(unrelated appendix|nothing to do with|travel packing|espresso grinder)\b", re.I)),
+    ("zh-advertising", re.compile(r"(广告|赞助|推广|优惠码|解锁高级|高级功能|推荐安装|调用.*skill|使用.{0,20}工具.{0,20}(解锁|高级功能|优惠|推广))", re.I)),
+)
+
+
+def reference_content_pollution_files(root: Path, files: list[Path]) -> tuple[list[str], dict[str, int]]:
+    matches: list[str] = []
+    labels: dict[str, int] = {}
+    for path in files:
+        if path.suffix.lower() not in TEXT_FILE_SUFFIXES or file_size(path) > MAX_SCAN_BYTES:
+            continue
+        text = read_text(path)
+        file_matched = False
+        for label, pattern in REFERENCE_CONTENT_POLLUTION_PATTERNS:
+            if pattern.search(text):
+                labels[label] = labels.get(label, 0) + 1
+                file_matched = True
+        if file_matched:
+            matches.append(relative_label(root, path))
+    return matches, labels
+
+
+def referenced_paths_from_body(body: str) -> list[str]:
+    matches = re.findall(r"(?i)(?:`|\b)(\.?/?references/[^\s`)]+)", body)
+    output: list[str] = []
+    for value in matches:
+        normalized = value.strip("`'\".,;:").replace("\\", "/")
+        normalized = normalized[2:] if normalized.startswith("./") else normalized
+        if normalized and normalized not in output:
+            output.append(normalized)
+    return output
+
+
+def broken_reference_links(root: Path, body: str) -> list[str]:
+    broken: list[str] = []
+    for relative in referenced_paths_from_body(body):
+        suffix = Path(relative).suffix.lower()
+        if not suffix or suffix not in TEXT_FILE_SUFFIXES:
+            continue
+        if not (root / relative).exists():
+            broken.append(relative)
+    return broken
 
 
 def scan_static_quality(
@@ -331,6 +465,23 @@ def scan_static_quality(
     reference_files = list(reference_metrics["files"])  # type: ignore[arg-type]
     reference_profiles = dict(reference_metrics.get("text_profiles", {}))  # type: ignore[arg-type]
     asset_files = list(asset_metrics["files"])  # type: ignore[arg-type]
+    non_heading_body = "\n".join(
+        line.strip()
+        for line in body.splitlines()
+        if line.strip() and not line.lstrip().startswith("#")
+    )
+    description_terms = extract_terms(description)
+    body_terms = extract_terms(non_heading_body)
+
+    if not description.strip() or (len(body_terms) < 2 and len(description_terms) <= 2):
+        evidence.append(
+            quality_issue(
+                "empty-skill-contract",
+                0.80,
+                "skill has no meaningful runtime contract beyond minimal or missing metadata",
+                metrics={"description_terms": len(description_terms), "body_terms": len(body_terms)},
+            )
+        )
 
     if skill_units >= 5000:
         evidence.append(
@@ -381,7 +532,7 @@ def scan_static_quality(
             )
         )
 
-    if reference_count >= 3:
+    if reference_count:
         linked_reference_count = sum(
             1 for path in reference_files if reference_is_directly_disclosed(body_lower, root, path)
         )
@@ -390,7 +541,7 @@ def scan_static_quality(
             evidence.append(
                 quality_issue(
                     "reference-disclosure-gap",
-                    0.30,
+                    0.30 if reference_count >= 3 else 0.10,
                     "reference files are not directly discoverable from SKILL.md",
                     metrics={"references_count": reference_count, "linked_reference_count": linked_reference_count},
                 )
@@ -408,6 +559,18 @@ def scan_static_quality(
                     },
                 )
             )
+
+    broken_links = broken_reference_links(root, body)
+    if broken_links:
+        evidence.append(
+            quality_issue(
+                "reference-link-broken",
+                0.25,
+                "SKILL.md points to reference files that do not exist",
+                files=broken_links[:8],
+                metrics={"matches": len(broken_links)},
+            )
+        )
 
     if reference_count >= 50 or reference_units >= 50000:
         evidence.append(
@@ -445,6 +608,21 @@ def scan_static_quality(
                 "long reference files are missing a visible table of contents",
                 files=long_reference_without_toc[:8],
                 metrics={"matches": len(long_reference_without_toc)},
+            )
+        )
+
+    polluted_reference_paths, pollution_labels = reference_content_pollution_files(root, reference_files)
+    if polluted_reference_paths:
+        evidence.append(
+            quality_issue(
+                "reference-content-pollution",
+                0.35,
+                "reference content includes advertising, upsell, unrelated text, or other-tool/skill promotion",
+                files=polluted_reference_paths[:8],
+                metrics={
+                    "matches": len(polluted_reference_paths),
+                    "signal_types": sorted(pollution_labels),
+                },
             )
         )
 
@@ -568,6 +746,17 @@ def scan_static_quality(
                 metrics={"matches": len(syntax_error_files)},
             )
         )
+    import_error_files = python_import_error_files(root, script_files)
+    if import_error_files:
+        evidence.append(
+            quality_issue(
+                "script-import-error",
+                0.50,
+                "Python scripts import modules that are missing from the local environment or bundle",
+                files=import_error_files[:8],
+                metrics={"matches": len(import_error_files)},
+            )
+        )
 
     penalty = round(clamp(sum(float(item["penalty"]) for item in evidence), 0.0, 1.4), 2)
     return {
@@ -667,7 +856,11 @@ def scan_skill(skill_md: Path) -> dict[str, object]:
     }
 
 
-def discover_skill_files(roots: list[Path], include_system: bool) -> list[Path]:
+def discover_skill_files(
+    roots: list[Path],
+    include_system: bool,
+    dedupe_install_identity: bool = True,
+) -> list[Path]:
     files: list[Path] = []
     seen: set[str] = set()
     seen_install_identities: set[str] = set()
@@ -681,7 +874,7 @@ def discover_skill_files(roots: list[Path], include_system: bool) -> list[Path]:
             if resolved in seen:
                 continue
             install_identities = skill_install_identities_from_file(skill_md)
-            if install_identities:
+            if dedupe_install_identity and install_identities:
                 if any(identity in seen_install_identities for identity in install_identities):
                     continue
                 seen_install_identities.update(install_identities)

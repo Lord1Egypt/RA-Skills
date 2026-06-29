@@ -1,0 +1,24 @@
+{
+  "name": "second-brain-aphorism",
+  "slug": "second-brain-maxim",
+  "version": "0.1.1",
+  "summary": "Second-brain grounded aphorism and reflection generator for Chinese 感悟, 箴言, 金句, daily thoughts, and article endings.",
+  "description": "Generate concise, personally grounded Chinese reflections and aphorisms by recalling GBrain, llm-wiki cognitive anchors, notes, and long-term questions before writing.",
+  "keywords": [
+    "second-brain",
+    "gbrain",
+    "llm-wiki",
+    "aphorism",
+    "reflection",
+    "writing",
+    "knowledge-management",
+    "maxim",
+    "quote-card",
+    "daily-thought"
+  ],
+  "compatibility": {
+    "openclaw": true,
+    "hermes": true,
+    "format": "AgentSkills SKILL.md"
+  }
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Yeelight Smart Home"
+  short_description: "控制、诊断和规划 Yeelight 智能家居"
+  default_prompt: "Use $yeelight-smart-home to safely query, control, diagnose, or plan a Yeelight smart home through the locally installed yeelight-home runtime."
+
+policy:
+  allow_implicit_invocation: true

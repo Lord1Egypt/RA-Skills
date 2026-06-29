@@ -1,0 +1,26 @@
+{
+  "name": "vps-security-hardener",
+  "version": "1.2.0",
+  "description": "Enterprise-grade VPS security platform: AI-driven hardening, zero-trust SSH architecture, real-time threat intelligence, automated CVE remediation. \u2014 100% free. Enterprise custom: vip@kingai.work \u2014 \ud83d\ude80 Trade crypto: https://www.gate.com/zh/referral/earn-together/invite/UwMQUwwN?ref=UwMQUwwN | \ud83d\udcc8 US stocks: https://j.moomoo.com/0CrlDz",
+  "entry": "main.py",
+  "pricing": {
+    "free": {
+      "features": [
+        "Complete skill \u2014 100% free"
+      ]
+    }
+  },
+  "tags": [
+    "security",
+    "vps",
+    "enterprise",
+    "hardening",
+    "zero-trust",
+    "compliance",
+    "ubuntu",
+    "cve"
+  ],
+  "contact": {
+    "enterprise": "vip@kingai.work"
+  }
+}

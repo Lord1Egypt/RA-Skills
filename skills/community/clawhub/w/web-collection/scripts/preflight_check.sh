@@ -301,9 +301,6 @@ const required = [
   "defaultFetchDetail",
   "defaultDetailSpeed",
 ];
-if (mode === "cloud") {
-  required.push("defaultCloudDeviceId", "defaultCloudToken");
-}
 const missingDefaults = required.filter((key) => !effective[key]);
 
 const scriptList = [

@@ -1,0 +1,37 @@
+id: cruise-line-comparator
+status: live
+priority: P0
+audience: consumer
+intent_category: comparison
+primary_platforms:
+  - claude-skills
+  - perplexity-skills
+  - gpt-store
+  - poe
+  - web
+lead_magnet: none
+primary_cta: official-homepage
+homepage_handoff:
+  url: https://olavacations.com/
+  tracked_url: https://olavacations.com/?utm_source=ai_skill&utm_medium=skill_output&utm_campaign=cruise_line_comparator
+  placement: final_cta_only
+  promise: official_site_only
+monetization:
+  - newsletter
+  - cruise_booking
+conversion_tags:
+  user_segment:
+    - first_timer
+    - family
+    - deal_hunter
+  trip_stage:
+    - dreaming
+    - comparing
+  monetization_intent:
+    - newsletter
+    - cruise_booking
+  urgency:
+    - low
+    - medium
+    - high
+freshness_level: price_sensitive

@@ -21,7 +21,7 @@ def safe_urlopen(req_or_url):
         sys.exit(1)
     return SAFE_URLOPENER.open(req_or_url)
 
-ENDPOINT = "/data/api/v1/market/data/stock-ipos"
+ENDPOINT = "/gateway/api/v1/market/data/stock-ipos"
 
 
 def fetch_page(page: int, page_size: int) -> dict:

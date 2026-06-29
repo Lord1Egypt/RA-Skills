@@ -1,0 +1,188 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1700" height="980" viewBox="0 0 1700 980">
+  <defs>
+    <style>
+      .title { font: 700 32px Arial, sans-serif; fill:#111; }
+      .subtitle { font: 700 22px Arial, sans-serif; fill:#111; }
+      .body { font: 18px Arial, sans-serif; fill:#222; }
+      .small { font: 16px Arial, sans-serif; fill:#333; }
+      .symbol { font: 700 24px Arial, sans-serif; }
+      .formula { font: 700 27px "Times New Roman", serif; fill:#111; }
+      .guide { stroke:#777; stroke-width:1.5; stroke-dasharray:7 6; }
+      .wall { fill:#777; }
+      .counter { fill:#b9b9b9; }
+      .basin { fill:#fafafa; stroke:#222; stroke-width:4; }
+      .spout { fill:none; stroke:#444; stroke-width:28; stroke-linecap:round; stroke-linejoin:round; }
+      .water { fill:none; stroke:#2d86e8; stroke-width:12; stroke-linecap:round; }
+      .drain { fill:#222; stroke:#111; stroke-width:2; }
+      .panel { fill:#fff; stroke:#a8a8a8; stroke-width:2; rx:18; }
+      .formula-panel { fill:#f7fbff; stroke:#7baee1; stroke-width:2; rx:16; }
+    </style>
+
+    <marker id="a-blue" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#1f5fae"/>
+    </marker>
+    <marker id="as-blue" markerWidth="10" markerHeight="10" refX="1" refY="3" orient="auto">
+      <path d="M7,0 L7,6 L0,3 z" fill="#1f5fae"/>
+    </marker>
+
+    <marker id="a-green" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#17863b"/>
+    </marker>
+    <marker id="as-green" markerWidth="10" markerHeight="10" refX="1" refY="3" orient="auto">
+      <path d="M7,0 L7,6 L0,3 z" fill="#17863b"/>
+    </marker>
+
+    <marker id="a-red" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#c62828"/>
+    </marker>
+    <marker id="as-red" markerWidth="10" markerHeight="10" refX="1" refY="3" orient="auto">
+      <path d="M7,0 L7,6 L0,3 z" fill="#c62828"/>
+    </marker>
+
+    <marker id="a-purple" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#6a3dbb"/>
+    </marker>
+    <marker id="as-purple" markerWidth="10" markerHeight="10" refX="1" refY="3" orient="auto">
+      <path d="M7,0 L7,6 L0,3 z" fill="#6a3dbb"/>
+    </marker>
+
+    <marker id="a-orange" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#d97706"/>
+    </marker>
+    <marker id="as-orange" markerWidth="10" markerHeight="10" refX="1" refY="3" orient="auto">
+      <path d="M7,0 L7,6 L0,3 z" fill="#d97706"/>
+    </marker>
+  </defs>
+
+  <rect width="1700" height="980" fill="white"/>
+  <text x="50" y="48" class="title">Wall-mounted faucet and basin geometry</text>
+  <text x="50" y="82" class="small">All horizontal distances use the finished wall as the common origin.</text>
+
+  <!-- LEFT DIAGRAM -->
+  <text x="50" y="125" class="subtitle">SIDE VIEW (cross-section)</text>
+
+  <!-- Key x-coordinates:
+       wall=110, rear basin wall=360, outlet=590, drain=710, front basin wall=980
+       outlet y=285, rim y=500, drain target y=755
+  -->
+
+  <!-- wall / counter -->
+  <rect x="95" y="150" width="32" height="650" class="wall"/>
+  <rect x="110" y="755" width="930" height="34" class="counter"/>
+
+  <!-- faucet -->
+  <path d="M127 285 L465 285 Q555 285 590 350" class="spout"/>
+  <circle cx="590" cy="350" r="8" fill="#333"/>
+
+  <!-- basin -->
+  <path d="M360 500 L980 500
+           C970 615 930 710 835 755
+           L535 755
+           C430 715 375 620 360 500 Z" class="basin"/>
+  <ellipse cx="710" cy="755" rx="32" ry="13" class="drain"/>
+
+  <!-- water stream -->
+  <path d="M590 350 L710 755" class="water"/>
+
+  <!-- extension guides -->
+  <line x1="110" y1="145" x2="110" y2="815" class="guide"/>
+  <line x1="360" y1="145" x2="360" y2="815" class="guide"/>
+  <line x1="590" y1="145" x2="590" y2="815" class="guide"/>
+  <line x1="710" y1="145" x2="710" y2="815" class="guide"/>
+  <line x1="980" y1="145" x2="980" y2="815" class="guide"/>
+  <line x1="330" y1="500" x2="1090" y2="500" class="guide"/>
+  <line x1="680" y1="755" x2="1090" y2="755" class="guide"/>
+  <line x1="590" y1="350" x2="1090" y2="350" class="guide"/>
+
+  <!-- L dimension -->
+  <line x1="110" y1="170" x2="590" y2="170" stroke="#c62828" stroke-width="3"
+        marker-start="url(#as-red)" marker-end="url(#a-red)"/>
+  <text x="337" y="158" class="symbol" fill="#c62828">L</text>
+  <text x="255" y="196" class="small" fill="#c62828">wall to faucet outlet</text>
+
+  <!-- K dimension -->
+  <line x1="110" y1="235" x2="360" y2="235" stroke="#1f5fae" stroke-width="3"
+        marker-start="url(#as-blue)" marker-end="url(#a-blue)"/>
+  <text x="225" y="223" class="symbol" fill="#1f5fae">K</text>
+  <text x="142" y="260" class="small" fill="#1f5fae">wall to rear inner basin wall</text>
+
+  <!-- WS dimension -->
+  <line x1="360" y1="300" x2="710" y2="300" stroke="#17863b" stroke-width="3"
+        marker-start="url(#as-green)" marker-end="url(#a-green)"/>
+  <text x="515" y="288" class="symbol" fill="#17863b">WS</text>
+  <text x="420" y="325" class="small" fill="#17863b">rear inner basin wall to drain center</text>
+
+  <!-- theta -->
+  <line x1="590" y1="350" x2="590" y2="455" class="guide"/>
+  <path d="M590 410 A60 60 0 0 1 607 408" stroke="#1f5fae" stroke-width="4" fill="none"/>
+  <text x="614" y="422" class="symbol" fill="#1f5fae">θ</text>
+  <text x="645" y="415" class="small" fill="#1f5fae">measured from vertical</text>
+
+  <!-- delta x -->
+  <line x1="590" y1="458" x2="710" y2="458" stroke="#1f5fae" stroke-width="3"
+        marker-start="url(#as-blue)" marker-end="url(#a-blue)"/>
+  <text x="550" y="448" class="body" font-weight="700" fill="#1f5fae">Δx = K + WS - L</text>
+
+  <!-- W -->
+  <line x1="360" y1="835" x2="980" y2="835" stroke="#6a3dbb" stroke-width="3"
+        marker-start="url(#as-purple)" marker-end="url(#a-purple)"/>
+  <text x="660" y="823" class="symbol" fill="#6a3dbb">W</text>
+  <text x="510" y="862" class="small" fill="#6a3dbb">rear inner basin wall to front inner basin wall</text>
+
+  <!-- H1/H2 -->
+  <line x1="1065" y1="350" x2="1065" y2="500" stroke="#d97706" stroke-width="3"
+        marker-start="url(#as-orange)" marker-end="url(#a-orange)"/>
+  <text x="1080" y="433" class="symbol" fill="#d97706">H1</text>
+
+  <line x1="1065" y1="500" x2="1065" y2="755" stroke="#9a5a00" stroke-width="3"
+        marker-start="url(#as-orange)" marker-end="url(#a-orange)"/>
+  <text x="1080" y="635" class="symbol" fill="#9a5a00">H2</text>
+
+  <text x="920" y="340" class="small">outlet level</text>
+  <text x="920" y="490" class="small">basin rim level</text>
+  <text x="920" y="745" class="small">drain target level</text>
+
+  <!-- Coordinate identity strip -->
+  <rect x="50" y="890" width="1040" height="62" class="formula-panel"/>
+  <text x="75" y="930" class="body">
+    x(rear wall) = K    |    x(outlet) = L    |    x(drain) = K + WS    |    x(front wall) = K + W
+  </text>
+
+  <!-- RIGHT PANEL -->
+  <rect x="1150" y="95" width="500" height="365" class="panel"/>
+  <text x="1180" y="135" class="subtitle">Parameter definitions</text>
+
+  <text x="1180" y="180" class="symbol" fill="#1f5fae">K</text>
+  <text x="1230" y="180" class="body">wall to rear inner basin wall</text>
+
+  <text x="1180" y="225" class="symbol" fill="#17863b">WS</text>
+  <text x="1230" y="225" class="body">rear inner basin wall to drain center</text>
+
+  <text x="1180" y="270" class="symbol" fill="#c62828">L</text>
+  <text x="1230" y="270" class="body">wall to faucet outlet</text>
+
+  <text x="1180" y="315" class="symbol" fill="#6a3dbb">W</text>
+  <text x="1230" y="315" class="body">basin dimension in wall-to-front direction</text>
+
+  <text x="1180" y="360" class="symbol" fill="#d97706">H1</text>
+  <text x="1230" y="360" class="body">outlet height above basin rim</text>
+
+  <text x="1180" y="405" class="symbol" fill="#9a5a00">H2</text>
+  <text x="1230" y="405" class="body">basin rim to drain target depth</text>
+
+  <text x="1180" y="445" class="symbol" fill="#1f5fae">θ</text>
+  <text x="1230" y="445" class="body">stream angle from vertical</text>
+
+  <rect x="1150" y="490" width="500" height="155" class="formula-panel"/>
+  <text x="1180" y="530" class="subtitle">Core relationship</text>
+  <text x="1195" y="585" class="formula">tan θ = (K + WS - L) / (H1 + H2)</text>
+  <text x="1180" y="620" class="small">because Δx = K + WS - L and Δy = H1 + H2</text>
+
+  <rect x="1150" y="675" width="500" height="277" class="panel"/>
+  <text x="1180" y="715" class="subtitle">Rearranged formulas</text>
+  <text x="1180" y="760" class="body">H1 = (K + WS - L) / tan θ - H2</text>
+  <text x="1180" y="800" class="body">L = K + WS - (H1 + H2) tan θ</text>
+  <text x="1180" y="840" class="body">WS = L - K + (H1 + H2) tan θ</text>
+  <text x="1180" y="880" class="body">θ = arctan[(K + WS - L)/(H1 + H2)]</text>
+  <text x="1180" y="925" class="body">Centered drain only: WS = W / 2</text>
+</svg>

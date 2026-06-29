@@ -1,8 +1,48 @@
 # Google Ads 账户诊断报告
 
 > 账户诊断报告纲要：配合 `google-analysis` CLI 拉数后填充。  
+> **HTML 终稿**：Agent 聚合 JSON → `siluzan-tso google-ads-diagnosis render` 注入 **`GoogleAdsDiagnosisReport.html`**（与 MarkAI `useAnalysisAction/adsDiagnosis` 同源模板，保证样式一致）。  
 > 占位符：`{reportDate}` `{companyName}` `{period}` 等。  
 > 与 `google-account-diagnosis-report.md`（章节与 CLI 对照）配合使用；**撰写与验收以本节「硬约束」为准**。
+
+---
+
+## CLI 工作流（collect → Agent → render）
+
+```bash
+# 1) CLI：仅拉数 + 事实聚合（不含 analysis/suggestions）
+siluzan-tso google-ads-diagnosis collect \
+  -a <mediaCustomerId> --start <YYYY-MM-DD> --end <YYYY-MM-DD> \
+  --json-out ./snap-p1
+
+# 产出：./snap-p1/google-ads-diagnosis-collect.json
+#   - reportData：与 MarkAI sectionData 同结构的**事实字段**（叙事字段留空）
+#   - agentBrief：供 Agent 读盘的事实摘要（非面向用户的建议文案）
+
+# 2) Agent：读 collect + 本节「硬约束」，撰写全部 narrative，写入：
+#    ./snap-p1/google-ads-diagnosis.json
+
+# 3) CLI：注入 HTML 终稿
+siluzan-tso google-ads-diagnosis render \
+  --data ./snap-p1/google-ads-diagnosis.json \
+  --out ./snap-p1/google-ads-diagnosis-report.html
+```
+
+| 子命令   | 说明                                                                 |
+| -------- | -------------------------------------------------------------------- |
+| `collect` | 拉 google-analysis + 可选 Lighthouse；输出 `google-ads-diagnosis-collect.json` |
+| `render`  | 读取 Agent 产出的 `google-ads-diagnosis.json`，注入 `GoogleAdsDiagnosisReport.html` |
+
+- **禁止**在 `collect` 阶段生成或写入 `analysis` / `suggestions` / `diagnosisOverview` / `summary` 等建议性文案。
+- **禁止**跳过 Agent 直接 `render` collect 产物（`render` 会校验全部叙事 / 建议字段；调试可加 `--lenient`）。
+- JSON 顶层结构须与 MarkAI `sectionData.js` / `fetchData` 输出一致（见下文各 `section-*` 数据对象）。
+- `render` 默认校验（缺任一项则失败，除非 `--lenient`）：
+  - 各模块 `*.analysis` 与 `*.suggestions`（含 `metrics`、`campaigns`、`geographic`、`keywords`、`conversionCost`、`fullGeographic`、`fullDevice`、`fullAudience`、`fullCustomAudience`、`fullKeywords`、`fullSearchTerms`、`broadKeywordsCount`、`biddingStrategy`、`adCreativeOptimization`、`newFeatures`、`landingPageAnalysis`——模块存在于 JSON 时均须非空）
+  - `diagnosisOverview.advantages` / `disadvantages`、`summary.keyIssues` / `optimizationRoadmap`
+  - `accountInfo.businessModel` / `industry`
+  - `budgetCompetitiveness[].strategy`、`newFeatures.items[].optimizerRecommendation`
+  - `adCreativeOptimization.items[].suggestion`（有创意行时每条须非空）
+- **禁止**跳过 `render` 直接在对话里贴 HTML/Markdown 当终稿。
 
 ---
 
@@ -327,9 +367,10 @@
 
 | 广告 | Headlines | Descriptions | 优化建议 |
 | ---- | --------- | ------------ | -------- |
-|      |           |              |          |
+| `items[].adTitle` | `headlinesCount` / `headlinesStatus` | `descriptionsCount` / `descriptionsStatus` | **`items[].suggestion`**（逐条，HTML 表格「优化建议」列） |
 
-- **分析** / **优化建议**：`adCreativeOptimization.analysis`、`suggestions`
+- **模块级**分析 / 建议：`adCreativeOptimization.analysis`、`adCreativeOptimization.suggestions`（区块下方段落）
+- **逐条创意建议**：每条 `items[]` 须填 `suggestion`（非 `suggestions`）；render 会校验
 
 ---
 
@@ -359,7 +400,25 @@
 | ------ | -------- | -------- | -------- |
 |        |          |          |          |
 
-**数据**：`summary.optimizationRoadmap`
+**数据**：`summary.optimizationRoadmap` — **对象数组**（与 HTML 表格四列对齐；禁止只写字符串）
+
+```json
+{
+  "priority": "P0（立即）",
+  "focusArea": "恢复投放与账户结构",
+  "actionItems": ["恢复核心 Search 系列", "补全 RSA 与附加信息"],
+  "expectedOutcome": "恢复有效曝光，rank lost IS 开始下降"
+}
+```
+
+| 字段 | 说明 |
+| ---- | ---- |
+| `priority` | P0/P1/P2… 或「P0（立即）」等可读标签 |
+| `focusArea` | 优化重点（表格「优化重点」列） |
+| `actionItems` | 字符串数组，关键行动列表 |
+| `expectedOutcome` | 预期效果 |
+
+> 若 Agent 暂写 `"第 1 周：…"` 字符串，render 会尽力拆成 focusArea + actionItems，但**仍须补全 `expectedOutcome` 对象格式**以获得完整表格。
 
 ---
 

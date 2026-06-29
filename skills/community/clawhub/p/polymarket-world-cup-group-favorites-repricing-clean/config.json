@@ -1,0 +1,21 @@
+{
+  "scan_limit": 600,
+  "import_source": "polymarket",
+  "tournament_start_utc": "2026-06-11T00:00:00Z",
+  "knockout_start_utc": "2026-06-27T00:00:00Z",
+  "manage_exits": true,
+  "min_yes_price": 0.05,
+  "max_yes_price": 0.35,
+  "base_group_boost": 0.04,
+  "tier1_boost": 0.08,
+  "tier2_boost": 0.06,
+  "min_edge": 0.03,
+  "max_spread": 0.05,
+  "max_slippage_pct": 0.08,
+  "max_position_usd": 8.0,
+  "daily_budget_usd": 30.0,
+  "max_trades_per_run": 3,
+  "cooldown_hours": 24,
+  "favorite_tier1": "Brazil,France,England,Argentina,Spain",
+  "favorite_tier2": "Portugal,Germany,Netherlands"
+}

@@ -1,0 +1,64 @@
+{
+  "type": "kontour_travel_journal",
+  "schema_version": "1.0",
+  "required": ["title", "destination", "date_range", "ordered_locations"],
+  "fields": {
+    "title": "string",
+    "destination": "string",
+    "date_range": {
+      "start": "YYYY-MM-DD|null",
+      "end": "YYYY-MM-DD|null"
+    },
+    "template": "scroll-story|photo-wall|planner-journal",
+    "map_style": "object|null",
+    "ordered_locations": [
+      {
+        "id": "string",
+        "order": "number",
+        "name": "string",
+        "day": "number|null",
+        "coordinates": {
+          "lat": "number|null",
+          "lng": "number|null"
+        },
+        "source": "itinerary|manual|photo_manifest|imported_route|unknown",
+        "confidence": "high|medium|low",
+        "notes": ["string"],
+        "photos": ["photo_id"],
+        "summary": "string|null",
+        "caption": "string|null",
+        "warnings": ["string"]
+      }
+    ],
+    "photos": [
+      {
+        "id": "string",
+        "path": "string",
+        "taken_at": "string|null",
+        "coordinates": {
+          "lat": "number|null",
+          "lng": "number|null"
+        },
+        "assigned_location_id": "string|null",
+        "assignment_method": "provided|manifest|manual|unassigned",
+        "confidence": "high|medium|low",
+        "caption": "string|null"
+      }
+    ],
+    "chapters": [
+      {
+        "id": "string",
+        "title": "string",
+        "location_ids": ["location_id"],
+        "narrative": "string|null",
+        "photo_ids": ["photo_id"],
+        "warnings": ["string"]
+      }
+    ],
+    "warnings": ["string"]
+  },
+  "notes": [
+    "This is a compact field contract for agents and scripts, not a full JSON Schema validator.",
+    "The Kontour skill does not render maps, extract EXIF, call image AI, publish to Notion, or automate Obsidian vaults in this release."
+  ]
+}

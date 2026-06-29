@@ -1,0 +1,164 @@
+{
+  "summary": "Expanded the candidate matrix with five official-source rows focused on RAG/LLM evaluation platforms: Langfuse, Opik, TruLens, MLflow GenAI evaluation, and Giskard. Captured concrete evidence for trace scoring, RAG-specific metrics, datasets/experiments, CI hooks, human feedback, production monitoring, and RAG test suites.",
+  "next_angle": "Cover the remaining official-source candidates from the work order: Evidently, Weave, LlamaIndex evaluators, Haystack evaluation, and OpenAI Evals; then convert all rows into a compact workbook schema with scoring weights.",
+  "meaningful_progress": true,
+  "code_used": false,
+  "phase": "search",
+  "open_questions": [
+    "Should framework-native evaluators such as LlamaIndex and Haystack be primary matrix rows, or listed as framework-fit caveats unless the target stack already uses them?",
+    "Should OpenAI Evals be treated as a primary candidate for application/system evals or as a caveat row better suited to OpenAI/model-centric benchmarking?",
+    "Which deployment and governance attributes need verification before scoring commercial or managed options: OSS license, self-hosting, SaaS availability, RBAC, data retention, or enterprise controls?"
+  ],
+  "sources": [
+    {
+      "url": "https://langfuse.com/guides/cookbook/evaluation_of_rag_with_ragas",
+      "title": "Evaluation of RAG pipelines with Ragas - Langfuse",
+      "note": "Official Langfuse cookbook showing trace/span scoring and Ragas-based RAG evaluation over production traces."
+    },
+    {
+      "url": "https://github.com/comet-ml/opik",
+      "title": "comet-ml/opik GitHub repository",
+      "note": "Official Opik repository describing observability, automated evaluation, datasets, experiments, RAG metrics, PyTest CI integration, cloud, and self-hosting."
+    },
+    {
+      "url": "https://www.trulens.org/getting_started/core_concepts/rag_triad/",
+      "title": "The RAG Triad - TruLens",
+      "note": "Official TruLens concept page defining context relevance, groundedness, and answer relevance for RAG evaluation."
+    },
+    {
+      "url": "https://mlflow.org/docs/latest/genai/eval-monitor/",
+      "title": "Evaluating LLMs and Agents with MLflow",
+      "note": "Official MLflow GenAI evaluation documentation covering datasets, human feedback, LLM-as-judge scorers, systematic evaluation, and production monitoring."
+    },
+    {
+      "url": "https://docs.giskard.ai/oss/checks/use-cases/rag-evaluation",
+      "title": "RAG Evaluation - Giskard Documentation",
+      "note": "Official Giskard open-source RAG evaluation example covering retrieval quality, groundedness, answer quality, out-of-scope questions, and multi-turn RAG tests."
+    }
+  ],
+  "findings": [
+    {
+      "kind": "fact",
+      "text": "Langfuse is a strong primary-row candidate for teams that want observability-first RAG evaluation: its official cookbook shows scores attached to traces/spans, segmentation and analytics over scores, and Ragas evaluation over production traces without requiring ground-truth answers.",
+      "source_urls": [
+        "https://langfuse.com/guides/cookbook/evaluation_of_rag_with_ragas"
+      ]
+    },
+    {
+      "kind": "fact",
+      "text": "Opik is a strong primary-row candidate for a production engineering matrix because the official repository documents tracing, datasets and experiments, LLM-as-judge metrics for hallucination/moderation/RAG assessment, PyTest CI integration, production dashboards, online evaluation rules, cloud use, and self-hosting.",
+      "source_urls": [
+        "https://github.com/comet-ml/opik"
+      ]
+    },
+    {
+      "kind": "fact",
+      "text": "TruLens should be scored highly for RAG-specific evaluation concepts: its RAG Triad explicitly separates context relevance, groundedness, and answer relevance, which maps directly to retrieval, grounding, and final-answer quality dimensions in the workbook.",
+      "source_urls": [
+        "https://www.trulens.org/getting_started/core_concepts/rag_triad/"
+      ]
+    },
+    {
+      "kind": "fact",
+      "text": "MLflow GenAI evaluation is a primary-row candidate for teams already standardizing on MLflow or needing broader AI engineering lifecycle support: official docs list evaluation datasets, human feedback, LLM-as-a-judge scorers, systematic evaluation, tracing, and production monitoring.",
+      "source_urls": [
+        "https://mlflow.org/docs/latest/genai/eval-monitor/"
+      ]
+    },
+    {
+      "kind": "fact",
+      "text": "Giskard is a primary-row candidate for test-suite-driven RAG validation: official docs show a comprehensive RAG test suite spanning retrieval quality, groundedness, answer quality, out-of-scope questions, and multi-turn conversational RAG.",
+      "source_urls": [
+        "https://docs.giskard.ai/oss/checks/use-cases/rag-evaluation"
+      ]
+    },
+    {
+      "kind": "synthesis",
+      "text": "A fair public-source scoring model should separate capability from packaging: proposed dimensions are RAG-specific metric coverage, repeatable regression/CI workflow, trace/observability integration, human review and feedback workflow, deployment/governance fit, integration maturity, and evidence maturity.",
+      "source_urls": [
+        "https://langfuse.com/guides/cookbook/evaluation_of_rag_with_ragas",
+        "https://github.com/comet-ml/opik",
+        "https://www.trulens.org/getting_started/core_concepts/rag_triad/",
+        "https://mlflow.org/docs/latest/genai/eval-monitor/",
+        "https://docs.giskard.ai/oss/checks/use-cases/rag-evaluation"
+      ]
+    },
+    {
+      "kind": "gap",
+      "text": "The candidate list is not yet complete for the requested workbook: Evidently, Weave, LlamaIndex, Haystack, and OpenAI Evals still need official-source evidence and classification before analysis/synthesis.",
+      "source_urls": []
+    }
+  ],
+  "analysis_artifacts": [],
+  "packages_used": [],
+  "database_used": false,
+  "database_artifacts": [],
+  "database_summary": null,
+  "vision_used": false,
+  "vision_artifacts": [],
+  "vision_summary": null,
+  "adequacy": {
+    "status": "not_started",
+    "goal_alignment": "This search iteration advances the goal by adding five publicly verifiable candidate rows and provisional scoring dimensions, but the research set is not yet complete enough for finalization.",
+    "coverage_summary": "Covered Langfuse, Opik, TruLens, MLflow GenAI evaluation, and Giskard from official or project-owned sources. Not yet covered in this iteration: Evidently, Weave, LlamaIndex, Haystack, and OpenAI Evals.",
+    "covered_requirements": [
+      {
+        "requirement": "Use current public sources and prefer official documentation, GitHub repositories, release docs, and vendor docs over blog summaries.",
+        "evidence": "All five sources are official docs, project-owned docs, or official GitHub repositories."
+      },
+      {
+        "requirement": "Compare open-source and commercially relevant tools through publicly verifiable evidence links.",
+        "evidence": "Added evidence-linked findings for OSS/commercially relevant candidates: Langfuse, Opik, TruLens, MLflow, and Giskard."
+      },
+      {
+        "requirement": "Shape research toward a decision matrix for production RAG evaluation.",
+        "evidence": "Captured production-relevant dimensions: RAG metrics, CI/regression, observability, human feedback, governance/deployment, integrations, and evidence maturity."
+      }
+    ],
+    "coverage_gaps": [
+      {
+        "gap": "Remaining candidate tools from the work order still need official evidence and primary-row versus caveat classification.",
+        "severity": "blocking"
+      },
+      {
+        "gap": "No workbook schema or scoring weights have been built yet.",
+        "severity": "blocking"
+      }
+    ],
+    "evidence_risks": [
+      {
+        "risk": "Deployment/licensing/governance claims for some candidates may require separate verification from licensing, pricing, or deployment docs before scoring.",
+        "severity": "minor"
+      }
+    ],
+    "contradictions": [],
+    "recommended_next_phase": "search",
+    "recommended_next_angle": "Gather official evidence for Evidently, Weave, LlamaIndex, Haystack, and OpenAI Evals, then classify framework-specific and model-benchmark tools as primary rows or caveats.",
+    "blocking_reasons": [],
+    "validation_evidence": [
+      {
+        "check": "goal_alignment",
+        "result": "passed",
+        "reason": "The findings directly support the tooling matrix, but they are not a full candidate set yet."
+      },
+      {
+        "check": "explicit_constraints",
+        "result": "passed",
+        "reason": "No private paths, personal data, contact data, tokens, or local-only tool names are included in the user-facing findings."
+      },
+      {
+        "check": "source_diversity",
+        "result": "passed",
+        "reason": "Sources cover five distinct vendors/projects and are official or project-owned."
+      },
+      {
+        "check": "next_phase_decision",
+        "result": "passed",
+        "reason": "Search should continue because several named candidates remain uncovered."
+      }
+    ]
+  },
+  "notify_recommendation": "silent",
+  "should_complete": false,
+  "final_report_markdown": null
+}

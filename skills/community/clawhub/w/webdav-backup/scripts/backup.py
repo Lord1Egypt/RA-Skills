@@ -115,6 +115,7 @@ WEBDAV_PASS = os.environ.get('WEBDAV_PASSWORD',
 LOCAL_BACKUP_DIR = os.environ.get('OPENCLAW_LOCAL_BACKUP_DIR', openclaw_env.get('OPENCLAW_LOCAL_BACKUP_DIR', DEFAULT_LOCAL_BACKUP_DIR))
 RETENTION_DAYS = 60
 MIN_KEEP_COUNT = 20
+LOCAL_KEEP_COUNT = 7
 BACKUP_FILENAME_RE = re.compile(r'^(?P<prefix>.+)-(?P<timestamp>\d{8}-\d{6})\.tar\.gz$')
 
 
@@ -421,6 +422,24 @@ def delete_remote_backup(opener, filename):
     with opener.open(req):
         return
 
+def cleanup_local_backups(local_dir, prefix='openclaw-backup'):
+    """清理本地旧备份：只保留最近 LOCAL_KEEP_COUNT 个"""
+    local_path = Path(local_dir).expanduser()
+    if not local_path.exists():
+        return
+
+    files = sorted(local_path.glob(f'{prefix}-*.tar.gz'), key=os.path.getmtime, reverse=True)
+    if len(files) <= LOCAL_KEEP_COUNT:
+        return
+
+    print(f"🧹 正在清理本地旧备份（保留最近 {LOCAL_KEEP_COUNT} 个）...")
+    to_delete = files[LOCAL_KEEP_COUNT:]
+    for f in to_delete:
+        f.unlink()
+        print(f"🗑️  已删除: {f.name}")
+    print(f"✅ 本地清理完成：删除 {len(to_delete)} 个，保留 {len(files) - len(to_delete)} 个")
+
+
 def cleanup_old_backups(current_backup_name):
     """清理旧备份：保留3个月内或者最近20个备份"""
     current = parse_backup_filename(current_backup_name)
@@ -577,6 +596,7 @@ def main():
 
     if args.local_only:
         print(f"✅ 本地备份完成: {backup_file}")
+        cleanup_local_backups(args.local_dir, prefix=args.name)
         return
 
     if not check_webdav_config():
@@ -586,6 +606,7 @@ def main():
     remote_name = backup_file.name
     if upload_to_webdav(backup_file, remote_name):
         cleanup_old_backups(remote_name)
+        cleanup_local_backups(args.local_dir, prefix=args.name)
         if args.remote_only:
             backup_file.unlink()
         print(f"✅ 备份完成: {remote_name}")

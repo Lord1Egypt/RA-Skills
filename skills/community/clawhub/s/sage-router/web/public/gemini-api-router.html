@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Gemini API router for Google AI and Vertex AI routes: one Sage Router endpoint, Gemini CLI setup, function-tool routing, 429 failover, multimodal routing, and BYOK custody." />
+  <link rel="canonical" href="https://sagerouter.dev/gemini-api-router" />
+  <meta property="og:title" content="Gemini API router | Sage Router" />
+  <meta property="og:description" content="Route Gemini, Google AI, Vertex AI, OpenAI-compatible clients, Ollama, Anthropic-compatible routes, and private endpoints through Sage Router with capability-aware failover." />
+  <meta property="og:url" content="https://sagerouter.dev/gemini-api-router" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Gemini API router | Sage Router</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07100d;--panel:rgba(13,29,24,.84);--soft:rgba(255,255,255,.045);--border:rgba(166,255,207,.16);--muted:#a9c5b8;--text:#edfdf5;--brand:#8df0b2;--amber:#f7d57a;--blue:#8ab4ff}*{box-sizing:border-box}body{margin:0;min-width:320px;background:linear-gradient(180deg,#07100d 0%,#0b1518 54%,#07100d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}a{color:inherit}.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;color:var(--muted)}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;color:var(--text);text-decoration:none}.brandMark{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(141,240,178,.42);border-radius:8px;color:#062016;background:linear-gradient(135deg,var(--brand),var(--amber))}.navLinks{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;font-weight:750}.navLinks a{text-decoration:none}.navLinks a:hover,footer a:hover{color:var(--text)}header{padding:72px 0 38px}.eyebrow{color:var(--brand);font-weight:900;letter-spacing:.16em;text-transform:uppercase;font-size:12px;margin:0 0 16px}h1{font-size:clamp(44px,7vw,82px);line-height:.94;margin:0 0 22px;max-width:980px}h2{font-size:clamp(28px,4vw,44px);line-height:1.05;margin:0 0 16px}h3{font-size:21px;margin:0 0 8px}.lead{font-size:clamp(20px,2.2vw,26px);line-height:1.36;color:#d2eadf;max-width:900px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.button{min-height:46px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:0 20px;font-weight:900;text-decoration:none}.primary{background:var(--brand);color:#06160d}.secondary{border:1px solid var(--border);background:rgba(255,255,255,.05);color:var(--text)}main{padding:24px 0 68px}.stack{display:grid;gap:22px}.panel{border:1px solid var(--border);border-radius:8px;background:var(--panel);padding:28px}.panel.soft{background:var(--soft)}.panel p,.panel li,.muted{color:var(--muted)}.panel p{margin:0 0 14px}.panel p:last-child{margin-bottom:0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.two{display:grid;grid-template-columns:minmax(0,.95fr) minmax(330px,.65fr);gap:18px;align-items:start}.list{display:grid;gap:10px;margin:0;padding-left:22px}.codebox{white-space:pre-wrap;overflow:auto;border:1px solid var(--border);border-radius:8px;background:rgba(0,0,0,.28);color:#d9e6ff;padding:18px;font-size:.92rem}.copyRow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px}.copyButton{border:0;border-radius:999px;background:var(--brand);color:#04150d;cursor:pointer;font-weight:900;min-height:42px;padding:0 18px}.copyStatus{color:var(--muted);font-size:14px;min-height:22px}code{color:#d9e6ff}.callout{border-color:rgba(247,213,122,.32);background:rgba(247,213,122,.07)}.callout strong{color:var(--amber)}footer{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:.9rem;padding:34px 0 54px;border-top:1px solid rgba(166,255,207,.1)}footer span{margin-right:auto}@media(max-width:900px){.grid,.two{grid-template-columns:1fr}.nav{align-items:flex-start;flex-direction:column}.button{width:100%}}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Sage Router Gemini API router",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Linux, macOS, Windows, Docker",
+    "url": "https://sagerouter.dev/gemini-api-router",
+    "description": "Gemini API router for Google AI and Vertex AI routes with hosted generated keys, Gemini-compatible model discovery, function-tool routing, 429 failover, and multimodal model selection."
+  }
+  </script>
+</head>
+<body>
+  <nav class="nav wrap" aria-label="Main navigation">
+    <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+    <div class="navLinks">
+      <a href="/quickstart">Quickstart</a>
+      <a href="/models">Models</a>
+      <a href="/openai-api-router">OpenAI API</a>
+      <a href="/anthropic-api-router">Anthropic API</a>
+      <a href="/pricing">Pricing</a>
+      <a href="https://app.sagerouter.dev/account.html">Account</a>
+    </div>
+  </nav>
+
+  <header class="wrap">
+    <p class="eyebrow">Google Gemini routing</p>
+    <h1>Gemini API router for Google AI and Vertex AI routes</h1>
+    <p class="lead">Use Sage Router as the policy layer around Gemini-compatible traffic. Route Google AI Studio keys, Vertex AI projects, OpenAI-compatible clients, local Ollama, Anthropic-compatible routes, and private endpoints without hard-coding one provider path into every agent.</p>
+    <div class="actions">
+      <a class="button primary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key" data-gemini-event="content_article_key_activation_clicked" data-gemini-button="create-api-key">Create API key</a>
+      <a class="button secondary" href="/quickstart" data-gemini-event="content_article_quickstart_clicked" data-gemini-button="quickstart">Read quickstart</a>
+      <a class="button secondary" href="/models" data-gemini-event="content_article_compare_clicked" data-gemini-button="models">Browse models</a>
+      <a class="button secondary" href="/integrations" data-gemini-event="content_article_codex_clicked" data-gemini-button="integrations">Integrations</a>
+    </div>
+  </header>
+
+  <main class="wrap stack">
+    <section class="grid">
+      <article class="panel">
+        <h2>Gemini-compatible routes</h2>
+        <p>Serve Google AI and Vertex AI models through Sage Router's OpenAI-compatible surface, or expose Gemini-style discovery and generateContent compatibility where clients expect it.</p>
+      </article>
+      <article class="panel">
+        <h2>Function-tool routing</h2>
+        <p>OpenAI-style function tools are translated into Gemini function declarations, tool results stay in the conversation, and Gemini function calls return as structured OpenAI-compatible <code>tool_calls</code>.</p>
+      </article>
+      <article class="panel">
+        <h2>429 failover</h2>
+        <p>When a Gemini key, Vertex route, or fallback provider rate-limits, Sage Router can choose another eligible authorized route instead of making each agent own failover logic.</p>
+      </article>
+    </section>
+
+    <section class="two">
+      <article class="panel">
+        <h2>60-second Gemini router setup</h2>
+        <pre id="gemini-router-start-code" class="codebox">export OPENAI_BASE_URL=https://api.sagerouter.dev/v1
+export OPENAI_API_KEY=sk_sage_your_generated_key
+
+curl "$OPENAI_BASE_URL/chat/completions" \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "sage-router/agentic",
+    "messages": [{"role": "user", "content": "Route this through Gemini if it is the best healthy fit"}],
+    "tools": [{
+      "type": "function",
+      "function": {
+        "name": "lookup",
+        "parameters": {"type": "object", "properties": {"query": {"type": "string"}}}
+      }
+    }]
+  }'</pre>
+        <div class="copyRow">
+          <button id="gemini-router-copy-start" class="copyButton" type="button">Copy 60-second Gemini setup</button>
+          <span id="gemini-router-copy-status" class="copyStatus" role="status" aria-live="polite"></span>
+        </div>
+      </article>
+      <aside class="panel soft">
+        <h2>Where it fits</h2>
+        <ul class="list">
+          <li>Teams with authorized Google AI Studio API keys or Vertex AI project access.</li>
+          <li>Gemini CLI and Gemini-compatible client paths that still need fallback, quotas, and route telemetry.</li>
+          <li>Agents that use function tools and need Gemini to return structured tool calls instead of visible tool-call text.</li>
+          <li>Local-first deployments where Google credentials stay on a trusted router host.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="grid">
+      <article class="panel soft">
+        <h3>Multimodal routing</h3>
+        <p>Image, audio, video, and document inputs route only to capable models, and served modalities are recorded per model for better future decisions.</p>
+      </article>
+      <article class="panel soft">
+        <h3>Multiple credentials</h3>
+        <p>Credential pools can load balance and fail over across authorized Google keys or project-backed routes when one path is unhealthy.</p>
+      </article>
+      <article class="panel soft">
+        <h3>Provider boundary</h3>
+        <p>Sage Router does not grant unauthorized Gemini or Google Cloud access. Customers bring authorized provider access or use hosted keys for Sage Router account control.</p>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>Why route Gemini traffic?</h2>
+      <p>Gemini is strong for multimodal and agent workloads, but production agents still need policy, fallback, key rotation, route observability, tool-call normalization, local model escape hatches, and hosted activation. Sage Router keeps Gemini in the matrix without making it the only route.</p>
+    </section>
+
+    <section class="panel callout">
+      <h2><strong>Next steps</strong></h2>
+      <p><a href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key" data-gemini-event="content_article_key_activation_clicked" data-gemini-button="next-create-api-key">Create an API key</a>, <a href="/quickstart" data-gemini-event="content_article_quickstart_clicked" data-gemini-button="next-quickstart">copy the hosted quickstart</a>, <a href="/models" data-gemini-event="content_article_compare_clicked" data-gemini-button="next-models">browse Gemini-capable routes</a>, or <a href="/managed-access?intent=gemini" data-gemini-event="content_article_key_activation_clicked" data-gemini-button="managed-review">request managed Gemini review</a>.</p>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <span>Sage Router</span>
+    <a href="/quickstart">Quickstart</a>
+    <a href="/models">Models</a>
+    <a href="/openai-api-router">OpenAI API</a>
+    <a href="/anthropic-api-router">Anthropic API</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/security">Security</a>
+  </footer>
+  <script>
+    function trackGeminiRouterEvent(event, data = {}) {
+      const params = new URLSearchParams(window.location.search);
+      let referrerHost = null;
+      try {
+        const referrer = document.referrer ? new URL(document.referrer) : null;
+        referrerHost = referrer && referrer.host !== window.location.host ? referrer.host : null;
+      } catch {}
+      const payload = JSON.stringify({
+        event,
+        plan: data.plan || null,
+        sourcePage: window.location.href,
+        target: data.target || null,
+        metadata: {
+          source: 'article',
+          button: data.button || null,
+          state: 'gemini-api-router',
+          utmSource: params.get('utm_source') || params.get('utmSource') || null,
+          utmMedium: params.get('utm_medium') || params.get('utmMedium') || null,
+          utmCampaign: params.get('utm_campaign') || params.get('utmCampaign') || null,
+          referrerHost,
+          landingPath: window.location.pathname,
+          snippet: data.snippet || null
+        }
+      });
+      try {
+        if (navigator.sendBeacon) {
+          const blob = new Blob([payload], { type: 'application/json' });
+          if (navigator.sendBeacon('/api/funnel-event', blob)) return;
+        }
+      } catch {}
+      fetch('/api/funnel-event', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: payload,
+        keepalive: true,
+        credentials: 'omit'
+      }).catch(() => {});
+    }
+
+    function geminiRouterStartText() {
+      return `${document.getElementById('gemini-router-start-code')?.textContent.trim() || ''}
+
+# Create a hosted generated key:
+# https://app.sagerouter.dev/account.html?plan=pro&start=create_key`;
+    }
+
+    async function writeClipboardText(text) {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      textarea.remove();
+    }
+
+    async function copyGeminiRouterStart() {
+      const status = document.getElementById('gemini-router-copy-status');
+      try {
+        await writeClipboardText(geminiRouterStartText());
+        trackGeminiRouterEvent('quickstart_snippet_copied', {
+          button: 'copy_gemini_router_start',
+          snippet: 'gemini-router-start'
+        });
+        if (status) status.textContent = 'Copied Gemini router setup.';
+      } catch {
+        if (status) status.textContent = 'Copy failed. Select the command block manually.';
+      }
+    }
+
+    trackGeminiRouterEvent('content_article_viewed', { button: 'page-view' });
+    document.getElementById('gemini-router-copy-start')?.addEventListener('click', copyGeminiRouterStart);
+    document.querySelectorAll('[data-gemini-event]').forEach((link) => {
+      link.addEventListener('click', () => {
+        const href = link.getAttribute('href') || '';
+        const planMatch = href.match(/plan=(lite|pro|max)\b/);
+        trackGeminiRouterEvent(link.dataset.geminiEvent, {
+          plan: planMatch ? planMatch[1] : null,
+          target: href,
+          button: link.dataset.geminiButton || link.textContent.trim().slice(0, 60)
+        });
+      });
+    });
+  </script>
+  <script src="/article-activation-dock.js" defer></script>
+</body>
+</html>

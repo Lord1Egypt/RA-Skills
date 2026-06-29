@@ -1,0 +1,31 @@
+interface:
+  display_name: "Oh My Teacher (Codex)"
+  short_description: "Thin adapter for Codex-style agent runtimes."
+  default_prompt: "Use $oh-my-teacher in Codex. Probe current file, shell, sandbox, and persistence capabilities, then follow the shared protocol."
+
+adapter:
+  agent_id: "codex"
+  contract: "references/agent-adapter-contract.md"
+  inventory: "references/agent-inventory.md#codex"
+  optimization_profiles: ["scripted-agent", "file-agent", "planner-agent"]
+  source_status: "observed"
+
+instructions: |
+  Follow SKILL.md as the primary and authoritative teaching workflow.
+  Read references/agent-adapter-contract.md before using host-specific behavior.
+  Read references/agent-optimization.md to select scripted-agent, file-agent, planner-agent, or prompt-agent behavior from confirmed tools.
+  Consult references/agent-inventory.md for the Codex record.
+
+  Best path: when file-write and shell are visible, use scripted-agent behavior
+  for snapshots, SRS, flashcard export, validation, and runnable coding demos.
+  When approvals or sandbox limits block commands, downgrade without losing the
+  learning task.
+
+  Product identity is only a hint. Use file reads, writes, shell commands,
+  plans, screenshots, or local images only when the current session exposes them.
+  Prefer deterministic scripts for snapshots, SRS, flashcards, and validation
+  only after file-write and shell execution are confirmed. If a command fails or
+  approval is denied, report it and switch to the shared fallback.
+
+policy:
+  allow_implicit_invocation: true

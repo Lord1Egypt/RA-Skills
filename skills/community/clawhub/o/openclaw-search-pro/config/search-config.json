@@ -1,0 +1,37 @@
+{
+  "engines": {
+    "free": {
+      "enabled": true,
+      "description": "免费搜索引擎，无需 API Key，安装即用（推荐）"
+    },
+    "baidu": {
+      "enabled": false,
+      "apiKey": "",
+      "secretKey": "",
+      "description": "百度 API（可选配置，更稳定）"
+    },
+    "bing": {
+      "enabled": false,
+      "apiKey": "",
+      "description": "Bing API（可选配置）"
+    },
+    "google": {
+      "enabled": false,
+      "apiKey": "",
+      "searchEngineId": "",
+      "description": "Google API（可选配置）"
+    },
+    "tavily": {
+      "enabled": false,
+      "apiKey": "",
+      "description": "Tavily API（可选配置）"
+    }
+  },
+  "maxResults": 10,
+  "deduplication": true,
+  "sortBy": "relevance",
+  "fallback": {
+    "enabled": true,
+    "order": ["free", "baidu", "bing"]
+  }
+}

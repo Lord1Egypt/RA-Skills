@@ -1,5 +1,5 @@
 ## Description: <br>
-保利威直播 helps agents use the published polyv-live-cli npm package to query and manage Polyv live-streaming channels, stream state, products, coupons, playback, documents, sessions, chat, interactive tools, viewers, access controls, platform settings, player configuration, AI features, monitoring, scene setup, and statistics. <br>
+Helps authorized PolyV operators use the published polyv-live-cli npm package to query and manage PolyV live-streaming channels, playback, products, viewers, interactions, access controls, platform settings, and statistics. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,40 +11,36 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External Polyv administrators and developers use this skill to route natural-language live-stream operations to the current polyv-live-cli command surface. It supports operational tasks such as checking channels, configuring streams and playback, managing viewer access, exporting reports, and administering live interaction features. <br>
+Developers, support engineers, and live operations teams use this skill to choose and validate PolyV CLI commands for administering live-streaming channels, viewer access, interactive features, commerce, playback, and reporting. It is intended for authorized PolyV account operators who can verify account context before making changes. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill gives an agent broad access to production live-stream administration, including channel, playback, interaction, access-control, and platform settings. <br>
-Mitigation: Install only for authorized Polyv administrators, use test accounts first, and confirm the active account before any write or production-impacting command. <br>
-Risk: Commands using --force, --global, --clear, callback changes, or platform-wide setting updates can have high-impact or account-wide effects. <br>
-Mitigation: Require human review of the exact target and impact before using these options or changing callback and platform-wide settings. <br>
-Risk: Exports and query results can include sensitive viewer, donor, whitelist, check-in, and statistics data. <br>
-Mitigation: Treat exported files and command output as sensitive data and limit access, storage, and sharing to authorized users. <br>
-Risk: Credential exposure can occur if AppSecret or account credentials are placed directly on command lines or in shared materials. <br>
-Mitigation: Prefer stored account configuration or protected environment variables and avoid echoing or documenting secrets. <br>
+Risk: Mutating commands can change live PolyV channels, viewer-facing features, account settings, or production state. <br>
+Mitigation: Require explicit authorization for write, delete, start, stop, push, import, merge, transcode, and similar operations; verify the active account and resource IDs before execution. <br>
+Risk: CLI output can include sensitive operational data such as viewer records, donation records, chat logs, check-in results, passwords, stream credentials, or AppSecret values. <br>
+Mitigation: Treat exported data and credentials as sensitive, avoid echoing AppSecret values, and share stream credentials only with trusted streaming endpoints when explicitly requested. <br>
+Risk: Reference examples or cached command shapes may differ from the currently published npm CLI. <br>
+Mitigation: Validate command syntax with the relevant polyv-live-cli --help output before use and prefer JSON output for downstream processing. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/polyv/skills/polyv-live-cli) <br>
-- [Polyv Website](https://www.polyv.net/) <br>
-- [Polyv Live API Documentation](https://help.polyv.net/#/live/api/) <br>
-- [Skill Instructions](SKILL.md) <br>
-- [Task Routing Reference](references/task-routing.md) <br>
-- [Command Index](references/command-index.md) <br>
-- [Authentication Reference](references/authentication.md) <br>
+- [PolyV official website](https://www.polyv.net/) <br>
+- [PolyV live API documentation](https://help.polyv.net/#/live/api/) <br>
+- [Task routing reference](references/task-routing.md) <br>
+- [Command index](references/command-index.md) <br>
+- [Authentication reference](references/authentication.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance, JSON] <br>
-**Output Format:** [Markdown with inline shell commands and optional JSON CLI output] <br>
+**Output Type(s):** [Text, Markdown, Shell commands, Configuration, Guidance] <br>
+**Output Format:** [Markdown with inline bash commands and JSON-oriented command output guidance] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill directs agents to verify the npm-published CLI help before business commands and to prefer JSON output for extraction, comparison, reports, and scripts.] <br>
+**Other Properties Related to Output:** [Commands rely on the current npm latest polyv-live-cli help output and may require configured PolyV credentials.] <br>
 
 ## Skill Version(s): <br>
-1.0.8 (source: evidence.release.version; release notes reference polyv-live-cli@1.2.31) <br>
+1.0.9 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

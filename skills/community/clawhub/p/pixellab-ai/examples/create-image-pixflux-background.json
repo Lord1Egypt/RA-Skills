@@ -1,0 +1,9 @@
+{
+  "description": "top-down forest clearing background, mossy stones, small path, readable gameplay space, pixel art",
+  "image_size": {
+    "width": 256,
+    "height": 256
+  },
+  "no_background": false,
+  "seed": 0
+}

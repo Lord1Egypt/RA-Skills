@@ -1,0 +1,23 @@
+{
+  "description": "32x32 top-down potion bottle icon, teal glass, cork stopper, bright readable silhouette, transparent background",
+  "image_size": {
+    "width": 64,
+    "height": 64
+  },
+  "reference_images": [
+    {
+      "image": {
+        "type": "base64",
+        "format": "png",
+        "base64": "REPLACE_WITH_BASE64_REFERENCE_IMAGE"
+      },
+      "size": {
+        "width": 64,
+        "height": 64
+      },
+      "usage_description": "match palette and outline weight only"
+    }
+  ],
+  "no_background": true,
+  "seed": 0
+}

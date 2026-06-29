@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Bullet Graph</title></head>
+<body style="margin:0;background:#f5f0eb;font-family:system-ui">
+<!-- Bullet Graph — archviz-skills (Few recommended) -->
+<!-- Use for: KPI vs target, performance tracking, single metric comparison -->
+<canvas id="c" width="600" height="200"></canvas>
+<script>
+const metrics = [
+  {label:"Revenue",actual:82,target:90,ranges:[60,80,100]},
+  {label:"Users",actual:65,target:70,ranges:[40,60,100]},
+  {label:"NPS",actual:88,target:85,ranges:[50,75,100]}
+];
+const ctx=document.getElementById("c").getContext("2d");
+const l=120,r=560,barH=30,gap=15;
+const colors=["#e8e4e0","#d6d3d1","#a8a29e"];
+metrics.forEach((m,i)=>{
+  const y=20+i*(barH+gap);
+  // Range bands
+  m.ranges.forEach((rv,ri)=>{
+    const x1=l+(ri===0?0:m.ranges[ri-1])/100*(r-l);
+    const x2=l+rv/100*(r-l);
+    ctx.fillStyle=colors[ri];ctx.fillRect(x1,y,x2-x1,barH);
+  });
+  // Actual bar
+  const aw=l+m.actual/100*(r-l);
+  ctx.fillStyle="#002FA7";ctx.fillRect(l,y,aw-l,barH);
+  // Target marker
+  const tx=l+m.target/100*(r-l);
+  ctx.beginPath();ctx.moveTo(tx,y-4);ctx.lineTo(tx,y+barH+4);
+  ctx.strokeStyle="#1B365D";ctx.lineWidth=3;ctx.stroke();
+  // Label
+  ctx.fillStyle="#44403c";ctx.font="13px system-ui";ctx.textAlign="right";
+  ctx.fillText(m.label,l-10,y+barH/2+5);
+  ctx.fillStyle="#1B365D";ctx.font="bold 12px system-ui";ctx.textAlign="left";
+  ctx.fillText(m.actual+"%",l+m.actual/100*(r-l)+8,y+barH/2+5);
+});
+</script>
+</body></html>

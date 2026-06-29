@@ -1,0 +1,199 @@
+{
+  "baseUrl": "https://api.justserpapi.com",
+  "description": "Call GET /api/v1/google/patents/search for Google SERP Patents Search through Just Serp API with query.",
+  "displayName": "Google SERP Patents Search",
+  "endpointPath": "patents/search",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Google patent Search data, including filters, for patent discovery and portfolio monitoring.",
+      "method": "GET",
+      "operationId": "patentSearch",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "The search query for patents (e.g., 'autonomous vehicles', 'blockchain security').",
+          "enumValues": [],
+          "location": "query",
+          "name": "query",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The results page number. Use 0 for the first page, 1 for the second, and so on.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": null,
+          "description": "The number of results to return per page (range: 1-100).",
+          "enumValues": [],
+          "location": "query",
+          "name": "num",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": null,
+          "description": "Sorting order for patent results. Supported values: 'new' (Newest), 'old' (Oldest).",
+          "enumValues": [],
+          "location": "query",
+          "name": "sort",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "If set to true, results will be grouped by classification.",
+          "enumValues": [],
+          "location": "query",
+          "name": "clustered",
+          "required": false,
+          "schemaType": "boolean"
+        },
+        {
+          "defaultValue": null,
+          "description": "Deduplication method. Supported values: 'language' (by Publication).",
+          "enumValues": [],
+          "location": "query",
+          "name": "dups",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Whether to include Google Patents results.",
+          "enumValues": [],
+          "location": "query",
+          "name": "patents",
+          "required": false,
+          "schemaType": "boolean"
+        },
+        {
+          "defaultValue": null,
+          "description": "Whether to include Google Scholar results.",
+          "enumValues": [],
+          "location": "query",
+          "name": "scholar",
+          "required": false,
+          "schemaType": "boolean"
+        },
+        {
+          "defaultValue": null,
+          "description": "Latest date to include. Format: 'type:YYYYMMDD' (e.g., 'publication:20230101').",
+          "enumValues": [],
+          "location": "query",
+          "name": "before",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Earliest date to include. Format: 'type:YYYYMMDD' (e.g., 'filing:20200101').",
+          "enumValues": [],
+          "location": "query",
+          "name": "after",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Filter by patent inventor(s). Multiple values can be comma-separated.",
+          "enumValues": [],
+          "location": "query",
+          "name": "inventor",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Filter by patent assignee(s). Multiple values can be comma-separated.",
+          "enumValues": [],
+          "location": "query",
+          "name": "assignee",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the target country code (e.g., 'us', 'uk') to localize results. See <a href=\"/reference/google-countries\">Google Countries</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "country",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the language for the results using its two-letter code (e.g., 'en' for English, 'fr' for French). See <a href=\"/reference/google-language\">Google Language</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "language",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Filter by patent status. Supported values: 'GRANT', 'APPLICATION'.",
+          "enumValues": [],
+          "location": "query",
+          "name": "status",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Filter by patent type. Supported values: 'PATENT', 'DESIGN'.",
+          "enumValues": [],
+          "location": "query",
+          "name": "type",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Filter by litigation status. Supported values: 'YES', 'NO'.",
+          "enumValues": [],
+          "location": "query",
+          "name": "litigation",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/v1/google/patents/search",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        },
+        {
+          "description": "Authentication failed: API Key is invalid or missing",
+          "statusCode": "401"
+        },
+        {
+          "description": "Access denied: Insufficient credits or quota exceeded",
+          "statusCode": "403"
+        },
+        {
+          "description": "Internal server error or upstream service exception",
+          "statusCode": "500"
+        }
+      ],
+      "summary": "Search",
+      "tags": [
+        "Google Patent"
+      ]
+    }
+  ],
+  "platformKey": "google",
+  "primaryTag": "Google SERP",
+  "skillName": "justserpapi_google_patents_search",
+  "skillType": "interface",
+  "slug": "justserpapi-google-patents-search",
+  "sourceTitle": "API Shop Documentation"
+}

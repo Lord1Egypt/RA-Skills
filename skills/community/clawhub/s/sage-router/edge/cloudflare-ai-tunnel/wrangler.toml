@@ -1,0 +1,13 @@
+name = "sage-ai-tunnel"
+main = "worker.js"
+compatibility_date = "2026-04-28"
+
+[durable_objects]
+bindings = [{ name = "SAGE_TUNNEL", class_name = "SageTunnel" }]
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["SageTunnel"]
+
+[vars]
+SAGE_TUNNEL_REQUEST_TIMEOUT_MS = "180000"

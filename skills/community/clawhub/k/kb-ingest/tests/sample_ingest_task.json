@@ -1,0 +1,47 @@
+{
+  "protocol": "research_kb_agent_task",
+  "protocolVersion": "1.0",
+  "taskId": "ingest_sample_001",
+  "taskType": "kb_ingest",
+  "requestedAt": "2026-06-25T12:00:00+08:00",
+  "requester": {
+    "userId": 1,
+    "email": "user@example.com",
+    "displayName": "Sample User",
+    "role": "admin",
+    "giteaUsername": "sample"
+  },
+  "kbTargets": [
+    {
+      "kbType": "team",
+      "repoOwner": "AIFusionBot",
+      "repoName": "aifhku-lab-team-kb",
+      "repoFullName": "AIFusionBot/aifhku-lab-team-kb",
+      "branch": "main",
+      "projectId": "general"
+    }
+  ],
+  "payload": {
+    "ingestionId": "ingestion_sample_001",
+    "sourceId": "source_001",
+    "sourceName": "Sample Source",
+    "sourceLocalRoot": "D:/Research",
+    "uploadRoot": "/tmp/research-kb/sample",
+    "sourceType": "local_folder",
+    "ingestMode": "incremental",
+    "files": [],
+    "options": {
+      "archiveSourceFile": true,
+      "writeMarkdown": true,
+      "updateCatalog": true,
+      "updateIndex": true,
+      "allowCreateConcepts": true,
+      "allowCreateResources": true,
+      "allowCreateReviews": false
+    }
+  },
+  "responseRequirement": {
+    "format": "json_only",
+    "schema": "research_kb_agent_result_v1"
+  }
+}

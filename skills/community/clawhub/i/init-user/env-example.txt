@@ -1,0 +1,13 @@
+# paper-kb / init_user 环境配置
+# 复制本文件为 .env 并填入真实值
+
+# Gitea 服务器地址（注意确认是哪台服务器！末尾不要带斜杠）
+GITEA_URL=http://43.156.243.152:3000
+
+# 机器人账号的 Access Token
+# 要求：该账号必须是 Gitea 站点管理员（管理后台→用户管理→勾选"是管理员"）
+# Token 权限范围：repo 读写、admin 写、user 读
+GITEA_ADMIN_TOKEN=在这里填入token
+
+# 机器人账号的用户名（users.json 存放在该账号的 system-config 仓库下）
+GITEA_BOT_USERNAME=AIFusionBot

@@ -1,0 +1,35 @@
+{
+  "_comment": "System paths permanently excluded from scanning and cleaning. User cannot override.",
+  "protected_paths": [
+    "/System",
+    "/System/Library",
+    "/bin",
+    "/sbin",
+    "/usr/bin",
+    "/usr/sbin",
+    "/usr/lib",
+    "/etc",
+    "/dev",
+    "/proc",
+    "/core",
+    "/var/db",
+    "/private",
+    "/usr/share"
+  ],
+  "protected_patterns": [
+    "/System/*",
+    "/bin/*",
+    "/sbin/*",
+    "/etc/*"
+  ],
+  "safety_rules": {
+    "system_directories": "PROTECTED",
+    "application_bundles": "CAUTION",
+    "user_cache": "CLEANABLE",
+    "downloads": "SAFE",
+    "trash": "SAFE",
+    "temp_files": "SAFE",
+    "duplicate_files_in_safe_locations": "SAFE",
+    "duplicate_files_in_user_documents": "CLEANABLE"
+  }
+}

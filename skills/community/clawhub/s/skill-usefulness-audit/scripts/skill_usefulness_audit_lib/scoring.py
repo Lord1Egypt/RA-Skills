@@ -304,6 +304,8 @@ def health_cap_from_quality(evidence: list[dict[str, object]]) -> float | None:
     labels = {str(item.get("label", "")) for item in evidence}
     if "script-syntax-error" in labels:
         return 4.0
+    if "empty-skill-contract" in labels or "script-import-error" in labels:
+        return 5.5
     for item in evidence:
         if item.get("label") != "script-failure-burden":
             continue

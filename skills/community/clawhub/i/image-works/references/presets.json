@@ -1,0 +1,26 @@
+{
+  "wechat-moments": {
+    "name": "微信朋友圈9宫格",
+    "operations": [{"type": "resize","width": 1080,"height": 1080,"fit": "cover"},{"type": "compress","quality": 80}]
+  },
+  "wechat-cover": {
+    "name": "公众号封面",
+    "operations": [{"type": "resize","width": 900,"height": 383,"fit": "cover"},{"type": "compress","quality": 85}]
+  },
+  "xiaohongshu": {
+    "name": "小红书笔记图",
+    "operations": [{"type": "crop","aspect_ratio": "3:4"},{"type": "resize","width": 1080,"height": 1440,"fit": "cover"},{"type": "compress","quality": 85}]
+  },
+  "taobao-main": {
+    "name": "淘宝主图",
+    "operations": [{"type": "resize","width": 800,"height": 800,"fit": "cover"},{"type": "compress","quality": 80,"target_size_kb": 500}]
+  },
+  "douyin-cover": {
+    "name": "抖音封面",
+    "operations": [{"type": "resize","width": 1920,"height": 1080,"fit": "cover"},{"type": "compress","quality": 85}]
+  },
+  "avatar": {
+    "name": "通用头像",
+    "operations": [{"type": "resize","width": 400,"height": 400,"fit": "cover"},{"type": "compress","quality": 85,"target_size_kb": 200}]
+  }
+}

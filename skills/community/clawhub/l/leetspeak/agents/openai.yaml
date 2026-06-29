@@ -1,0 +1,4 @@
+interface:
+  display_name: "Leetspeak Decoder"
+  short_description: "Decode leetspeak and obfuscated text"
+  default_prompt: "Use $leetspeak to decode this obfuscated text and explain likely meanings safely."

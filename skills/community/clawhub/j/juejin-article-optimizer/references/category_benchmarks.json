@@ -1,0 +1,79 @@
+{
+  "description": "Juejin category benchmark data for article optimization.",
+  "version": "1.0.0",
+  "categories": [
+    {
+      "id": "frontend",
+      "label": "Frontend / 前端",
+      "avg_article_length_chars": 4500,
+      "optimal_length_range": "3000-8000",
+      "avg_code_ratio": 0.38,
+      "top_title_patterns": [
+        "XX个X的技巧",
+        "从零到一实现XX",
+        "深入理解XX"
+      ],
+      "best_publish_time": "Wednesday 10:00 AM"
+    },
+    {
+      "id": "backend",
+      "label": "Backend / 后端",
+      "avg_article_length_chars": 5200,
+      "optimal_length_range": "3500-9000",
+      "avg_code_ratio": 0.42,
+      "top_title_patterns": [
+        "XX最佳实践",
+        "XX踩坑实录",
+        "一文搞懂XX"
+      ],
+      "best_publish_time": "Thursday 14:00 PM"
+    },
+    {
+      "id": "ai",
+      "label": "AI / 人工智能",
+      "avg_article_length_chars": 4800,
+      "optimal_length_range": "3000-7500",
+      "avg_code_ratio": 0.35,
+      "top_title_patterns": [
+        "手把手教你XX",
+        "XX实战指南",
+        "从原理到实践"
+      ],
+      "best_publish_time": "Wednesday 10:00 AM"
+    },
+    {
+      "id": "mobile",
+      "label": "Mobile / 移动开发",
+      "avg_article_length_chars": 4000,
+      "optimal_length_range": "2500-7000",
+      "avg_code_ratio": 0.40,
+      "top_title_patterns": [
+        "XX从入门到精通",
+        "XX的那些坑",
+        "XX性能优化"
+      ],
+      "best_publish_time": "Tuesday 10:00 AM"
+    },
+    {
+      "id": "devops",
+      "label": "DevOps / 运维",
+      "avg_article_length_chars": 5500,
+      "optimal_length_range": "4000-10000",
+      "avg_code_ratio": 0.45,
+      "top_title_patterns": [
+        "XX架构演进",
+        "XX容器化实践",
+        "监控XX从零搭建"
+      ],
+      "best_publish_time": "Friday 10:00 AM"
+    }
+  ],
+  "general_benchmarks": {
+    "min_recommended_chars": 1000,
+    "max_recommended_chars": 15000,
+    "ideal_title_length": "15-25 chars",
+    "ideal_paragraph_length_sentences": 3,
+    "recommended_image_count_per_1000chars": 0.5,
+    "engagement_rate_top_articles": ">500 likes"
+  }
+}

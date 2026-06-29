@@ -1,0 +1,34 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Syntax check (zero deps)
+        run: python -m py_compile check.py
+
+      - name: Good fixture should pass (exit 0)
+        run: python3 check.py tests/fixtures/good
+
+      - name: Bad fixture should fail (exit 1)
+        run: |
+          if python3 check.py tests/fixtures/bad; then
+            echo "::error::expected a FAIL gate but check passed"
+            exit 1
+          else
+            echo "correctly gated (exit 1)"
+          fi
+
+      - name: JSON output is valid
+        run: python3 check.py tests/fixtures/good --json | python3 -c "import json,sys; json.load(sys.stdin)"

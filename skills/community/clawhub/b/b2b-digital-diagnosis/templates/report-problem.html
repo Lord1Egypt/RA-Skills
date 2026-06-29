@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>B2B企业数字化诊断报告 - {{COMPANY_NAME}}</title>
+<link rel="stylesheet" href="report-style.css">
+<style>
+  .tag-problem { background: #fce4ec; color: #b71c1c; display:inline-block;padding:3px 10px;border-radius:3px;font-weight:700; }
+  .highlight-box { background: #fce4ec; border:1px solid #ef9a9a; padding:14px 18px; border-radius:4px; margin:12px 0; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="brand">雄韬XTOCN</div>
+  <div class="subtitle">B2B企业数字化诊断报告</div>
+  <div class="divider"></div>
+  <div class="company-name">{{COMPANY_NAME}}</div>
+  <div class="meta">{{DATE}}</div>
+  <div class="focus-type">问题型专注</div>
+</div>
+
+<div class="page-break"></div>
+<div class="page-title">一、诊断结论</div>
+
+<div class="result-box">
+  <div class="type-label">🔧 问题型专注</div>
+  <div class="score-detail">
+    3道题得分：能力 {{ABILITY_SCORE}}分 | 行业 {{INDUSTRY_SCORE}}分 | 问题 {{PROBLEM_SCORE}}分<br>
+    选择路径：{{ANSWER_PATH}}<br>
+    {{#TIEBREAKER}}决胜题：{{TIEBREAKER_ANSWER}} → {{TIEBREAKER_RESULT}}{{/TIEBREAKER}}
+  </div>
+</div>
+
+<div class="section">
+  <h2>原点能力定义</h2>
+  <div class="origin-ability">
+    {{ORIGIN_ABILITY}}
+  </div>
+  <p>你不是在做某个行业，你是在<strong>解决一类让客户睡不着觉的问题</strong>。客户可能来自完全不同的行业，但他们面对的是同一类问题——能耗高、排放多、良率低。只要这个问题还在，你的市场就在。</p>
+</div>
+
+<div class="section">
+  <h2>你的护城河在哪</h2>
+  <p>问题型企业的护城河不是行业壁垒，而是<strong>"解决问题"的深度和广度</strong>：</p>
+  <ul>
+    <li><strong>方案护城河：</strong>同样的问题，你是不是有比别人更完整、更落地的解决方案？从诊断→方案→实施→运维的全链条能力就是壁垒。</li>
+    <li><strong>数据护城河：</strong>你积累了多少个项目的"问题→方案→效果"数据？这些数据构成的方案库，后来者无法速成。</li>
+    <li><strong>认知护城河：</strong>当客户遇到这个问题时，第一个想到的是不是你？"找他们，他们就是干这个的"——这就是认知护城河。</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>转轴方向</h2>
+  <p>问题型企业的扩张，不是进入新行业"重新了解客户"，而是<strong>扩张"问题的出现范围"</strong>——从电镀厂的废水到化工厂的废水，行业变了但问题没变，你的能力天然适配。</p>
+</div>
+
+<div class="warning-box">
+  <strong>资源陷阱警示：</strong>问题型企业最怕"问题偏离"——客户说"既然你能做废水处理，能不能也帮我做固废？"看起来是一类，但底层工艺完全不同。判断标准不是"都是环保"，而是"能不能复用你已有的核心工艺路线"。
+</div>
+
+<div class="page-break"></div>
+<div class="page-title">二、战略定位分析</div>
+
+<div class="section">
+  <h2>问题型企业特征</h2>
+  <table>
+    <tr><th>维度</th><th>你的情况</th></tr>
+    <tr><td>核心竞争力</td><td>解决"{{CORE_PROBLEM}}"问题的完整方案能力</td></tr>
+    <tr><td>可服务行业</td><td>{{APPLICABLE_INDUSTRIES}}</td></tr>
+    <tr><td>客户决策关键</td><td>有没有类似问题的成功案例？数据能不能证明效果？</td></tr>
+    <tr><td>定价权来源</td><td>问题的痛苦程度 + 方案效果的可见性 = 定价权</td></tr>
+    <tr><td>最大风险</td><td>问题被政策/技术解决，或出现更低成本的替代方案</td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>同类型企业参照</h2>
+  <p>你的模式与<strong>依斯倍环保</strong>相似——它们面对的不是行业，而是"工业废水怎么做到零排放"这个问题。从电镀厂到化工厂到制药厂，行业完全不同，但问题底层逻辑一致：高浓度、高盐分、高毒性废水怎么处理到能回用。它的官网不是产品目录，是"问题×行业"的方案矩阵。</p>
+  {{#COMPARISON_CASE}}
+  <p>另可参考：{{COMPARISON_CASE}}</p>
+  {{/COMPARISON_CASE}}
+</div>
+
+<div class="section">
+  <h2>数字化核心原则</h2>
+  <div class="highlight-box">
+    <strong>一句话：</strong>问题型企业的数字化，本质是<strong>让痛苦被看见，让解决方案被相信</strong>。你的官网不是自我介绍，是"问题解决案例库"。你的短视频不是广告，是"痛苦→解决→结果"的完整故事。
+  </div>
+</div>
+
+<div class="page-break"></div>
+<div class="page-title">三、数字化组合建议</div>
+
+<div class="section">
+  <h2>推荐工具组合</h2>
+  <table>
+    <tr><th>渠道</th><th>定位</th><th>核心内容</th><th>优先级</th></tr>
+    <tr><td>🖥️ 官网</td><td>方案信任锚点</td><td>问题×行业方案矩阵、工艺路线图、前后对比数据、ROI计算器</td><td>⭐⭐⭐⭐⭐ 必做</td></tr>
+    <tr><td>🎬 短视频</td><td>问题可视化</td><td>痛点场景还原、"之前vs之后"对比、客户现场采访</td><td>⭐⭐⭐⭐⭐ 必做</td></tr>
+    <tr><td>📱 小程序</td><td>效果展示窗</td><td>处理效果实时数据、在线监测、方案初筛工具</td><td>⭐⭐⭐ 按需</td></tr>
+    <tr><td>📰 公众号/视频号</td><td>问题科普</td><td>行业痛点解读、工艺科普动画、政策趋势</td><td>⭐⭐⭐⭐ 配套</td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>官网栏目架构</h2>
+  <div class="arch-tree">
+首页 — "你遇到的{{CORE_PROBLEM}}问题，我们解决过"
+├── 方案库（按问题 × 行业交叉索引）
+│   ├── {{PROBLEM_TYPE_1}}
+│   ├── {{PROBLEM_TYPE_2}}
+│   └── {{PROBLEM_TYPE_3}}
+├── 核心技术 & 工艺
+│   ├── 工艺路线图
+│   ├── 核心设备 & 专利
+│   └── 研发能力
+├── 项目全景（每个案例=问题→方案→数据→证言）
+│   ├── {{INDUSTRY_1}}案例
+│   ├── {{INDUSTRY_2}}案例
+│   └── {{INDUSTRY_3}}案例
+├── 技术文档 & 白皮书
+│   ├── 工艺技术白皮书
+│   ├── 效果数据报告
+│   └── ROI 测算工具
+└── 免费诊断
+    ├── 工艺评估申请
+    └── 能效/排放在线测算
+  </div>
+</div>
+
+<div class="section">
+  <h2>各渠道内容策略</h2>
+  <table>
+    <tr><th>渠道</th><th>内容类型</th><th>更新频率</th></tr>
+    <tr><td>官网·方案库</td><td>新行业案例、工艺优化对比数据</td><td>每月1-2项更新</td></tr>
+    <tr><td>抖音</td><td>15-40秒痛点场景还原、"之前vs之后"对比</td><td>每周2-3条</td></tr>
+    <tr><td>视频号</td><td>客户现场采访、工艺动画拆解</td><td>每周1条</td></tr>
+    <tr><td>公众号</td><td>行业痛点解读、政策趋势、新技术科普</td><td>每周1篇</td></tr>
+    <tr><td>B站（可选）</td><td>8-15分钟工艺原理深入拆解</td><td>每月1-2条</td></tr>
+  </table>
+</div>
+
+<div class="page-break"></div>
+<div class="page-title">四、短视频选题清单</div>
+
+<div class="section">
+  <h2>选题分布</h2>
+  <table>
+    <tr><th>类型</th><th>占比</th><th>目的</th></tr>
+    <tr><td><span class="tag tag-pain">痛点还原</span></td><td>35%</td><td>让客户觉得"说的就是我"——这是问题型最核心的获客方式</td></tr>
+    <tr><td><span class="tag tag-case">效果对比</span></td><td>30%</td><td>用实际数据证明你能解决问题——"从XX降到XX，省了XX万"</td></tr>
+    <tr><td><span class="tag tag-experiment">工艺拆解</span></td><td>20%</td><td>展示技术实力的深度——"为什么我们的方案能解决"</td></tr>
+    <tr><td><span class="tag tag-ip">客户采访/IP</span></td><td>15%</td><td>真实的声音比任何广告都有效</td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>具体选题（8个）</h2>
+  <ol class="topic-list">
+    {{TOPIC_LIST}}
+  </ol>
+</div>
+
+<div class="section">
+  <h2>平台分发建议</h2>
+  <table>
+    <tr><th>内容类型</th><th>首发平台</th><th>同步平台</th></tr>
+    <tr><td>痛点场景还原（15-30秒）</td><td>抖音</td><td>视频号、小红书</td></tr>
+    <tr><td>效果对比快剪（30-60秒）</td><td>抖音</td><td>视频号</td></tr>
+    <tr><td>工艺动画拆解（2-3分钟）</td><td>B站 + 视频号</td><td>公众号</td></tr>
+    <tr><td>客户采访（1-2分钟）</td><td>视频号</td><td>抖音、公众号</td></tr>
+    <tr><td>政策解读/趋势分析</td><td>视频号</td><td>公众号</td></tr>
+  </table>
+</div>
+
+<div class="page-break"></div>
+<div class="page-title">五、下一步行动清单</div>
+
+<div class="section">
+  <h2>按优先级执行</h2>
+  <ol class="action-list">
+    {{ACTION_LIST}}
+  </ol>
+</div>
+
+<div class="section">
+  <h2>效果衡量维度</h2>
+  <table>
+    <tr><th>维度</th><th>指标</th><th>目标（6个月）</th></tr>
+    <tr><td>官网</td><td>方案库页面访问 + 免费诊断申请量</td><td>月均诊断申请10+，留资率5%+</td></tr>
+    <tr><td>短视频</td><td>播放量 + 留资转化</td><td>单条平均8000+播放，月均10条有效线索</td></tr>
+    <tr><td>内容</td><td>白皮书下载 + ROI工具使用</td><td>月均下载50+，工具使用100+</td></tr>
+    <tr><td>品牌</td><td>"行业名+问题关键词"搜索结果</td><td>核心问题词搜索进入首页</td></tr>
+  </table>
+</div>
+
+<div class="footer-brand">
+  雄韬XTOCN | www.xtocn.com | 本报告由AI辅助生成，仅供参考
+</div>
+
+</body>
+</html>

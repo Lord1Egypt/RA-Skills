@@ -1,0 +1,6 @@
+interface:
+  display_name: "Edit Skill"
+  short_description: "Review and tighten existing agent skills while preserving behavior, trigger intent, safety boundaries, and host-compatible frontmatter."
+  default_prompt: "When the user asks to edit, tighten, dedupe, clean up, or remove slop from an existing skill, classify review-only vs edit-in-repo, preserve the skill's real job and safety boundaries, cut vague or stale rules, and verify referenced paths or commands before reporting changes."
+policy:
+  allow_implicit_invocation: true

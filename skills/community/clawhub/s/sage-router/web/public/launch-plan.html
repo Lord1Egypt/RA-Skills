@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sage Router launch plan for reaching $10k MRR with hosted routing, generated API keys, account billing, quotas, analytics, and local-first provider custody." />
+  <link rel="canonical" href="https://sagerouter.dev/launch-plan" />
+  <meta property="og:title" content="Sage Router Launch Plan" />
+  <meta property="og:description" content="The hosted Sage Router path to $10k MRR: Lite, Pro, and Max plans, activation metrics, acquisition channels, and a guarded managed-access beta boundary." />
+  <meta property="og:url" content="https://sagerouter.dev/launch-plan" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Sage Router Launch Plan</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07100d;--panel:rgba(13,29,24,.84);--panel2:rgba(255,255,255,.04);--border:rgba(166,255,207,.16);--muted:#a9c5b8;--text:#edfdf5;--brand:#8df0b2;--blue:#8ab4ff;--amber:#f7d57a;--red:#ff8d8d;--shadow:0 24px 80px rgba(0,0,0,.36)}*{box-sizing:border-box}body{margin:0;min-width:320px;background:linear-gradient(180deg,#07100d 0%,#0b1518 48%,#07100d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;color:var(--muted)}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;color:var(--text)}.brandMark{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(141,240,178,.42);border-radius:8px;color:#062016;background:linear-gradient(135deg,var(--brand),var(--amber))}.navLinks{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;font-weight:750}.navLinks a:hover{color:var(--text)}.hero{padding:74px 0 50px}.eyebrow{color:var(--brand);text-transform:uppercase;letter-spacing:.16em;font-weight:900;font-size:12px;margin:0 0 16px}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(44px,8vw,84px);line-height:.94;margin-bottom:24px;max-width:980px}h2{font-size:clamp(30px,4vw,50px);line-height:1;margin-bottom:18px}h3{font-size:21px;margin-bottom:10px}.lead{font-size:clamp(20px,2.2vw,27px);line-height:1.35;color:#d2eadf;max-width:920px}.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}.button{min-height:48px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:0 22px;font-weight:900}.primary{background:linear-gradient(135deg,var(--brand),#50d891);color:#04150d}.secondary{border:1px solid var(--border);background:rgba(255,255,255,.04)}.section{padding:54px 0}.grid2{display:grid;grid-template-columns:.92fr 1.08fr;gap:24px}.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.panel,.metric,.tableWrap{background:var(--panel);border:1px solid var(--border);border-radius:8px;box-shadow:0 18px 60px rgba(0,0,0,.18)}.panel,.metric{padding:26px}.metric{display:grid;gap:8px}.number{font-size:clamp(34px,5vw,58px);font-weight:950;line-height:1;letter-spacing:-.02em;color:var(--brand)}.muted,.panel li,td{color:var(--muted)}ul{padding-left:18px;margin:0;display:grid;gap:8px}.pill{display:inline-flex;width:max-content;border:1px solid rgba(138,180,255,.3);border-radius:999px;padding:6px 10px;color:var(--blue);font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:760px}th,td{text-align:left;border-bottom:1px solid rgba(166,255,207,.12);padding:16px 18px;vertical-align:top}th{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--text);background:rgba(255,255,255,.035)}td:first-child{color:var(--text);font-weight:850}.callout{border-color:rgba(141,240,178,.32);background:linear-gradient(180deg,rgba(26,67,50,.9),rgba(12,28,22,.86))}.guard{border-color:rgba(247,213,122,.34);background:linear-gradient(180deg,rgba(61,50,17,.72),rgba(13,29,24,.84))}.note{font-size:14px;color:var(--muted);max-width:940px}code{color:#d9f8e6}footer{display:flex;gap:18px;flex-wrap:wrap;padding:34px 0 54px;color:var(--muted);border-top:1px solid rgba(166,255,207,.1)}footer span{margin-right:auto}@media(max-width:920px){.grid2,.grid3{grid-template-columns:1fr}.nav{align-items:flex-start;flex-direction:column}.button{width:100%}}@media(max-width:560px){.hero{padding-top:42px}.navLinks{gap:14px}.number{font-size:38px}}
+  </style>
+  <style>
+    .emailStart{display:flex;flex-wrap:wrap;gap:12px;align-items:center;max-width:760px;margin:22px 0 12px;padding:16px;border:1px solid rgba(141,240,178,.24);border-radius:8px;background:rgba(255,255,255,.045)}.emailStart label{flex:1 1 100%;font-weight:900}.emailStart input{flex:1 1 280px;min-height:48px;border:1px solid var(--border);border-radius:999px;background:rgba(5,15,11,.74);color:var(--text);padding:0 18px;font:inherit}.emailStart input::placeholder{color:#789184}.emailStart .button{border:0;cursor:pointer}.emailStart .button:disabled{opacity:.72;cursor:wait}.emailStartStatus{flex:1 1 100%;margin:0;color:var(--muted);font-size:14px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+      <div class="navLinks">
+        <a href="/">Home</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/launch-plan">Launch Plan</a>
+        <a href="/quickstart">Quickstart</a>
+        <a href="/compare/model-gateways">Compare</a>
+        <a href="/models">Models</a>
+        <a href="/managed-access">Managed Access</a>
+        <a href="/status">Status</a>
+        <a href="https://app.sagerouter.dev/account.html">Account</a>
+        <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">SaaS launch plan</p>
+        <h1>The Sage Router path to $10k MRR.</h1>
+        <p class="lead">Sage Router is launching as a hosted routing control plane: generated API keys, quotas, fallback reliability, account analytics, and support for agent teams that want one OpenAI-compatible endpoint without handing over provider credentials.</p>
+        <div class="actions">
+          <a class="button primary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key">Start API key setup</a>
+          <a class="button secondary" href="/pricing">Compare plans</a>
+          <a class="button secondary" href="/model-routing-calculator">Estimate route value</a>
+          <a class="button secondary" href="/reliability-proof">Reliability proof</a>
+          <a class="button secondary" href="/community-launch-kit">Community launch kit</a>
+          <a class="button secondary" href="/founder-sales-kit">Founder sales kit</a>
+          <a class="button secondary" href="/managed-access">Request managed-access beta</a>
+          <a class="button secondary" href="/status">View reliability</a>
+        </div>
+        <form class="emailStart" id="launch-plan-email-form" data-email-activation-form data-oauth-activation="github" data-event-prefix="launch_plan" data-sent-event="launch_plan_magic_link_sent" data-source="launch-plan" data-status-id="launch-plan-email-status">
+          <label for="launch-plan-email">Email me the API key setup link for the launch plan</label>
+          <input id="launch-plan-email" type="email" name="email" autocomplete="email" placeholder="you@company.com" required />
+          <button class="button primary" type="submit">Email API key setup link</button>
+          <p class="emailStartStatus" id="launch-plan-email-status" role="status">No provider key or credit card required until your generated sk_sage key exists.</p>
+        </form>
+        <p class="note">The public offer sells routing infrastructure, account management, API-key management, quotas, analytics, and reliability. Managed provider access is a separate guarded beta path, not a public pooled-provider entitlement.</p>
+      </section>
+
+      <section class="section grid3" aria-label="Launch targets">
+        <article class="metric">
+          <span class="pill">MRR target</span>
+          <div class="number">$10k</div>
+          <p class="muted">The first public SaaS milestone for hosted routing, billing, activation, and support.</p>
+        </article>
+        <article class="metric">
+          <span class="pill">Recommended mix</span>
+          <div class="number">100/200/50</div>
+          <p class="muted">100 Lite, 200 Pro, and 50 Max customers produces $10,200 MRR.</p>
+        </article>
+        <article class="metric">
+          <span class="pill">Activation path</span>
+          <div class="number">5 steps</div>
+          <p class="muted">Signup, paid routing, generated key, public-edge verification, and first routed request.</p>
+        </article>
+      </section>
+
+      <section class="section grid2">
+        <div class="panel callout">
+          <p class="eyebrow">Plan ladder</p>
+          <h2>Simple pricing, measurable conversion.</h2>
+          <p class="muted">The plan mix is intentionally modest enough to sell founder-led while still proving self-service demand. Pro is the center of gravity; Max is the sales-led path for teams and high-volume automation.</p>
+        </div>
+        <div class="tableWrap">
+          <table>
+            <thead>
+              <tr><th>Plan</th><th>Price</th><th>Included usage</th><th>Launch role</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Lite</td><td>$6/month</td><td>10,000 requests/month, 60 rpm</td><td>Low-friction entry for individual agent experiments.</td></tr>
+              <tr><td>Pro</td><td>$30/month</td><td>50,000 requests/month, 180 rpm</td><td>Main conversion path for daily agent development.</td></tr>
+              <tr><td>Max</td><td>$72/month</td><td>200,000 requests/month, 600 rpm</td><td>Founder-led sales path for teams, automations, and private deployment support.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">Conversion funnel</p>
+          <h2>Every launch page should move users to a routed request.</h2>
+        </div>
+        <div class="panel">
+          <ul>
+            <li>Homepage, pricing, calculator, launch plan, and Gateway migration pages capture privacy-safe page-view and CTA intent.</li>
+            <li>Account onboarding tracks signup, plan selection, generated key creation, public-edge key verification, and the first browser-side <code>sage-router/frontier</code> request.</li>
+            <li>The private launch funnel ranks source/channel acquisition actions, activation bottlenecks, managed-access demand, and per-plan revenue actions without returning emails, prompts, keys, OAuth tokens, or raw responses.</li>
+            <li>Before traffic exists, the same funnel seeds launch actions for Gateway migration proof, GitHub builder traffic, pricing checkout proof, calculator qualification, and founder-led launch-plan outreach.</li>
+            <li>Support, troubleshooting, billing, and status pages are part of conversion because 401, 402, 429, and 503 errors must lead to a safe next step.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section grid2">
+        <div class="panel guard">
+          <p class="eyebrow">Managed access boundary</p>
+          <h2>Capture demand before reselling model access.</h2>
+          <p class="muted">The product can compete with provider-wrapper marketplaces without making an unsafe resale claim. Public plans remain BYOK/customer-authorized by default. Managed provider access requires provider resale terms, terms acknowledgment, provider-family allowlist, positive unit economics, a margin policy, durable quotas, durable operator audit events, and acceptable-use controls.</p>
+          <div class="actions">
+            <a class="button primary" href="/managed-access">Join managed-access beta list</a>
+            <a class="button secondary" href="/provider-resale-terms">Review resale boundary</a>
+            <a class="button secondary" href="/margin-policy">Review margin policy</a>
+          </div>
+        </div>
+        <div class="panel">
+          <p class="eyebrow">Acquisition motions</p>
+          <h2>Compete where router buyers already compare.</h2>
+          <ul>
+            <li>Gateway migration content for hosted-router shoppers.</li>
+            <li>GitHub and docs traffic converted into quickstart, pricing, and generated-key setup.</li>
+            <li>Discord/community activation help for first-request debugging.</li>
+            <li>Calculator-driven Pro/Max qualification for workflows with cost leaks, fallback needs, and human-review points.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">Operator evidence</p>
+          <h2>Track the real business, not vanity traffic.</h2>
+        </div>
+        <div class="panel">
+          <ul>
+            <li><code>/analytics/funnel</code> reports estimated current MRR, target attainment, plan gaps, acquisition actions, zero-traffic launch seeds, and target-aware bottlenecks.</li>
+            <li><code>/edge/health</code> reports public reliability evidence, auth mode, rate-limit posture, quota posture, generated-key revocation posture, and retry failover.</li>
+            <li><code>/admin/customers</code> gives bounded operator review with secret-free audit events and without raw generated keys, key hashes, provider credentials, prompts, or raw provider responses.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>&copy; Sage Router</span>
+      <a href="/">Home</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/launch-plan">Launch Plan</a>
+      <a href="/quickstart">Quickstart</a>
+      <a href="https://app.sagerouter.dev/account.html">Account</a>
+      <a href="/managed-access">Managed Access</a>
+      <a href="/status">Status</a>
+      <a href="/support">Support</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/acceptable-use">Acceptable Use</a>
+    </footer>
+  </div>
+  <script>
+    function trackLaunchPlanEvent(event, data = {}) {
+      const params = new URLSearchParams(window.location.search);
+      let referrerHost = null;
+      try {
+        const referrer = document.referrer ? new URL(document.referrer) : null;
+        referrerHost = referrer && referrer.host !== window.location.host ? referrer.host : null;
+      } catch {}
+      const payload = JSON.stringify({
+        event,
+        plan: data.plan || null,
+        sourcePage: window.location.href,
+        target: data.target || null,
+        metadata: {
+          source: 'launch-plan',
+          button: data.button || null,
+          state: data.state || null,
+          utmSource: params.get('utm_source') || params.get('utmSource') || null,
+          utmMedium: params.get('utm_medium') || params.get('utmMedium') || null,
+          utmCampaign: params.get('utm_campaign') || params.get('utmCampaign') || null,
+          referrerHost,
+          landingPath: window.location.pathname
+        }
+      });
+      try {
+        if (navigator.sendBeacon) {
+          const blob = new Blob([payload], { type: 'application/json' });
+          if (navigator.sendBeacon('/api/funnel-event', blob)) return;
+        }
+      } catch {}
+      fetch('/api/funnel-event', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: payload,
+        keepalive: true,
+        credentials: 'omit'
+      }).catch(() => {});
+    }
+
+    trackLaunchPlanEvent('launch_plan_viewed', { state: 'page-view' });
+
+    document.querySelectorAll('a[href]').forEach((link) => {
+      const href = link.getAttribute('href') || '';
+      const planMatch = href.match(/\/account\.html\?plan=(lite|pro|max)\b/);
+      if (planMatch) {
+        const eventName = href.includes('start=create_key') ? 'launch_plan_key_activation_clicked' : 'launch_plan_checkout_clicked';
+        link.addEventListener('click', () => trackLaunchPlanEvent(eventName, {
+          plan: planMatch[1],
+          target: href,
+          button: link.textContent.trim().slice(0, 60)
+        }));
+      } else if (href === '/managed-access') {
+        link.addEventListener('click', () => trackLaunchPlanEvent('launch_plan_managed_access_clicked', {
+          plan: 'max',
+          target: href,
+          button: link.textContent.trim().slice(0, 60),
+          state: 'managed-access-demand'
+        }));
+      } else if (href === '/pricing' || href === '/model-routing-calculator' || href === '/status') {
+        link.addEventListener('click', () => trackLaunchPlanEvent('launch_plan_conversion_clicked', {
+          target: href,
+          button: link.textContent.trim().slice(0, 60)
+        }));
+      }
+    });
+  </script>
+  <script src="/marketing-email-activation.js"></script>
+</body>
+</html>

@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI 新员工入职引导系统 — OnboardAI</title>
+<style>
+:root {
+  --primary: #4F46E5;
+  --primary-light: #818CF8;
+  --primary-bg: #EEF2FF;
+  --success: #10B981;
+  --success-bg: #ECFDF5;
+  --warning: #F59E0B;
+  --warning-bg: #FFFBEB;
+  --danger: #EF4444;
+  --danger-bg: #FEF2F2;
+  --gray-50: #F9FAFB;
+  --gray-100: #F3F4F6;
+  --gray-200: #E5E7EB;
+  --gray-300: #D1D5DB;
+  --gray-400: #9CA3AF;
+  --gray-500: #6B7280;
+  --gray-600: #4B5563;
+  --gray-700: #374151;
+  --gray-800: #1F2937;
+  --gray-900: #111827;
+  --radius: 12px;
+  --shadow: 0 1px 3px rgba(0,0,0,.08),0 4px 12px rgba(0,0,0,.04);
+  --shadow-lg: 0 4px 24px rgba(0,0,0,.08);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC","Microsoft YaHei",sans-serif; background: var(--gray-50); color: var(--gray-800); min-height:100vh; }
+
+/* Header */
+.header { background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); color:#fff; padding:20px 32px; display:flex; align-items:center; justify-content:space-between; }
+.header-left { display:flex; align-items:center; gap:12px; }
+.header-logo { width:40px; height:40px; background:rgba(255,255,255,.2); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:22px; }
+.header h1 { font-size:20px; font-weight:700; }
+.header-sub { font-size:12px; opacity:.8; }
+.header-actions { display:flex; gap:8px; }
+.btn { padding:8px 16px; border-radius:8px; border:none; cursor:pointer; font-size:13px; font-weight:600; transition:all .15s; }
+.btn-primary { background:#fff; color:var(--primary); }
+.btn-primary:hover { background:#F0EDFF; }
+.btn-outline { background:rgba(255,255,255,.15); color:#fff; }
+.btn-outline:hover { background:rgba(255,255,255,.25); }
+.btn-sm { padding:6px 12px; font-size:12px; }
+.btn-success { background:var(--success); color:#fff; }
+.btn-success:hover { background:#059669; }
+.btn-ghost { background:transparent; color:var(--gray-500); }
+.btn-ghost:hover { background:var(--gray-100); }
+
+/* Stats Bar */
+.stats-bar { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; padding:20px 32px; }
+.stat-card { background:#fff; border-radius:var(--radius); padding:18px 20px; box-shadow:var(--shadow); display:flex; align-items:center; gap:14px; }
+.stat-icon { width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:20px; }
+.stat-icon.blue { background:var(--primary-bg); }
+.stat-icon.green { background:var(--success-bg); }
+.stat-icon.yellow { background:var(--warning-bg); }
+.stat-icon.red { background:var(--danger-bg); }
+.stat-info h3 { font-size:24px; font-weight:700; }
+.stat-info p { font-size:12px; color:var(--gray-500); }
+
+/* Tab Nav */
+.tab-nav { display:flex; gap:2px; padding:0 32px; border-bottom:2px solid var(--gray-200); margin-bottom:0; }
+.tab-btn { padding:12px 20px; border:none; background:none; cursor:pointer; font-size:13px; font-weight:600; color:var(--gray-500); border-bottom:2px solid transparent; margin-bottom:-2px; transition:all .15s; position:relative; }
+.tab-btn:hover { color:var(--gray-700); }
+.tab-btn.active { color:var(--primary); border-bottom-color:var(--primary); }
+.tab-badge { display:inline-flex; align-items:center; justify-content:center; min-width:18px; height:18px; border-radius:9px; font-size:10px; font-weight:700; padding:0 5px; margin-left:6px; }
+.tab-badge.warn { background:var(--warning-bg); color:#D97706; }
+.tab-badge.info { background:var(--primary-bg); color:var(--primary); }
+
+/* Content */
+.content { padding:24px 32px; max-width:1400px; margin:0 auto; }
+.panel { background:#fff; border-radius:var(--radius); box-shadow:var(--shadow); display:none; }
+.panel.active { display:block; }
+
+/* Section */
+.section { padding:24px; }
+.section + .section { border-top:1px solid var(--gray-100); }
+.section-title { font-size:16px; font-weight:700; margin-bottom:16px; display:flex; align-items:center; gap:8px; }
+.section-title .icon { font-size:18px; }
+.section-desc { font-size:13px; color:var(--gray-500); margin-bottom:16px; }
+
+/* Checklist */
+.checklist { display:grid; gap:8px; }
+.checklist-item { display:flex; align-items:center; gap:10px; padding:10px 14px; border-radius:8px; cursor:pointer; transition:all .15s; background:var(--gray-50); }
+.checklist-item:hover { background:var(--gray-100); }
+.checklist-item.done { background:var(--success-bg); }
+.checklist-item.done .check-text { text-decoration:line-through; color:var(--gray-400); }
+.checkbox { width:22px; height:22px; border-radius:6px; border:2px solid var(--gray-300); display:flex; align-items:center; justify-content:center; flex-shrink:0; transition:all .15s; }
+.checkbox.checked { background:var(--success); border-color:var(--success); color:#fff; font-size:12px; }
+.check-text { font-size:13px; flex:1; }
+.check-tag { font-size:11px; padding:2px 8px; border-radius:4px; font-weight:600; }
+.check-tag.urgent { background:var(--danger-bg); color:var(--danger); }
+.check-tag.normal { background:var(--primary-bg); color:var(--primary); }
+.check-tag.low { background:var(--gray-100); color:var(--gray-500); }
+.check-owner { font-size:11px; color:var(--gray-400); }
+
+/* Progress */
+.progress-wrap { display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+.progress-bar { flex:1; height:8px; background:var(--gray-200); border-radius:4px; overflow:hidden; }
+.progress-fill { height:100%; background:var(--success); border-radius:4px; transition:width .4s; }
+.progress-text { font-size:13px; font-weight:600; color:var(--gray-600); white-space:nowrap; }
+
+/* Day Guide Timeline */
+.timeline { position:relative; padding-left:30px; }
+.timeline::before { content:''; position:absolute; left:11px; top:4px; bottom:4px; width:2px; background:var(--gray-200); }
+.timeline-item { position:relative; margin-bottom:20px; }
+.timeline-dot { position:absolute; left:-30px; top:2px; width:24px; height:24px; border-radius:50%; border:2px solid var(--primary); background:#fff; display:flex; align-items:center; justify-content:center; font-size:11px; color:var(--primary); z-index:1; }
+.timeline-item.done .timeline-dot { background:var(--success); border-color:var(--success); color:#fff; }
+.timeline-item.active .timeline-dot { background:var(--primary); color:#fff; animation:pulse 1.5s infinite; }
+@keyframes pulse { 0%,100% { box-shadow:0 0 0 0 rgba(79,70,229,.4); } 50% { box-shadow:0 0 0 8px rgba(79,70,229,0); } }
+.timeline-time { font-size:11px; color:var(--gray-400); margin-bottom:2px; }
+.timeline-title { font-size:14px; font-weight:600; margin-bottom:2px; }
+.timeline-desc { font-size:12px; color:var(--gray-500); }
+.timeline-actions { margin-top:6px; display:flex; gap:6px; }
+
+/* Kanban */
+.kanban { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.kanban-col { background:var(--gray-50); border-radius:var(--radius); padding:14px; }
+.kanban-col-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.kanban-col-title { font-size:14px; font-weight:700; }
+.kanban-count { font-size:12px; color:var(--gray-400); }
+.kanban-card { background:#fff; border-radius:8px; padding:12px; margin-bottom:8px; box-shadow:0 1px 2px rgba(0,0,0,.04); cursor:grab; transition:all .15s; border-left:3px solid var(--gray-300); }
+.kanban-card:hover { box-shadow:var(--shadow); }
+.kanban-card.priority-high { border-left-color:var(--danger); }
+.kanban-card.priority-med { border-left-color:var(--warning); }
+.kanban-card.priority-low { border-left-color:var(--success); }
+.card-title { font-size:13px; font-weight:600; margin-bottom:4px; }
+.card-desc { font-size:11px; color:var(--gray-500); margin-bottom:6px; }
+.card-meta { display:flex; gap:8px; align-items:center; font-size:11px; color:var(--gray-400); }
+.card-avatar { width:20px; height:20px; border-radius:50%; background:var(--primary-bg); color:var(--primary); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; }
+
+/* Roadmap */
+.roadmap { position:relative; }
+.roadmap-phase { margin-bottom:24px; border-left:3px solid var(--gray-200); padding-left:20px; position:relative; }
+.roadmap-phase::before { content:''; position:absolute; left:-8px; top:0; width:13px; height:13px; border-radius:50%; background:var(--gray-200); }
+.roadmap-phase.active::before { background:var(--primary); box-shadow:0 0 0 4px var(--primary-bg); }
+.roadmap-phase.done::before { background:var(--success); }
+.roadmap-phase-header { display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+.phase-badge { font-size:12px; font-weight:700; padding:3px 10px; border-radius:6px; }
+.phase-badge.d30 { background:#E0E7FF; color:#4338CA; }
+.phase-badge.d60 { background:#FEF3C7; color:#B45309; }
+.phase-badge.d90 { background:#D1FAE5; color:#047857; }
+.phase-title { font-size:15px; font-weight:700; }
+.phase-milestones { display:grid; gap:6px; }
+.milestone { display:flex; align-items:center; gap:8px; padding:8px 12px; background:var(--gray-50); border-radius:6px; font-size:12px; }
+.milestone-icon { font-size:14px; }
+.milestone.done { background:var(--success-bg); }
+.milestone.done .milestone-text { color:var(--gray-400); text-decoration:line-through; }
+
+/* AI Chat */
+.chat-container { display:flex; flex-direction:column; height:500px; }
+.chat-messages { flex:1; overflow-y:auto; padding:16px; display:flex; flex-direction:column; gap:12px; }
+.chat-msg { display:flex; gap:10px; max-width:80%; }
+.chat-msg.user { align-self:flex-end; flex-direction:row-reverse; }
+.chat-msg.assistant { align-self:flex-start; }
+.chat-avatar { width:32px; height:32px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:14px; }
+.chat-msg.user .chat-avatar { background:var(--primary); color:#fff; }
+.chat-msg.assistant .chat-avatar { background:var(--gray-200); }
+.chat-bubble { padding:10px 14px; border-radius:12px; font-size:13px; line-height:1.5; }
+.chat-msg.user .chat-bubble { background:var(--primary); color:#fff; border-bottom-right-radius:4px; }
+.chat-msg.assistant .chat-bubble { background:#fff; border:1px solid var(--gray-200); border-bottom-left-radius:4px; }
+.chat-suggestions { display:flex; flex-wrap:wrap; gap:6px; padding:0 16px 12px; }
+.chat-suggestion { padding:6px 12px; background:var(--gray-100); border-radius:16px; font-size:12px; cursor:pointer; border:none; transition:all .15s; }
+.chat-suggestion:hover { background:var(--primary-bg); color:var(--primary); }
+.chat-input-wrap { display:flex; gap:8px; padding:12px 16px; border-top:1px solid var(--gray-100); }
+.chat-input { flex:1; padding:10px 14px; border:1px solid var(--gray-200); border-radius:20px; font-size:13px; outline:none; }
+.chat-input:focus { border-color:var(--primary); }
+.chat-send { width:36px; height:36px; border-radius:50%; border:none; background:var(--primary); color:#fff; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; }
+
+/* Satisfaction */
+.satisfaction-overview { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.nps-card { background:linear-gradient(135deg, #4F46E5, #7C3AED); color:#fff; border-radius:var(--radius); padding:24px; text-align:center; }
+.nps-score { font-size:56px; font-weight:800; line-height:1; }
+.nps-label { font-size:13px; opacity:.8; margin-top:4px; }
+.nps-breakdown { display:flex; justify-content:center; gap:20px; margin-top:12px; }
+.nps-group { text-align:center; }
+.nps-group-num { font-size:18px; font-weight:700; }
+.nps-group-label { font-size:11px; opacity:.7; }
+.survey-list { display:grid; gap:8px; }
+.survey-item { display:flex; align-items:center; justify-content:space-between; padding:12px 14px; background:var(--gray-50); border-radius:8px; }
+.survey-info h4 { font-size:13px; font-weight:600; }
+.survey-info p { font-size:11px; color:var(--gray-400); }
+.survey-score { font-size:20px; font-weight:700; }
+.survey-score.high { color:var(--success); }
+.survey-score.mid { color:var(--warning); }
+.survey-score.low { color:var(--danger); }
+.heatmap { display:grid; grid-template-columns:repeat(auto-fill, minmax(120px,1fr)); gap:8px; }
+.heatmap-item { background:var(--gray-50); border-radius:8px; padding:12px; text-align:center; }
+.heatmap-label { font-size:11px; color:var(--gray-500); margin-bottom:4px; }
+.heatmap-bar { height:6px; border-radius:3px; margin-top:6px; }
+.heatmap-bar.high { background:var(--success); }
+.heatmap-bar.mid { background:var(--warning); }
+.heatmap-bar.low { background:var(--danger); }
+
+/* Modal */
+.modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,.4); z-index:100; align-items:center; justify-content:center; }
+.modal-overlay.show { display:flex; }
+.modal { background:#fff; border-radius:var(--radius); padding:24px; width:500px; max-width:90vw; box-shadow:var(--shadow-lg); }
+.modal h3 { font-size:16px; margin-bottom:16px; }
+.modal-actions { display:flex; gap:8px; justify-content:flex-end; margin-top:16px; }
+.form-group { margin-bottom:12px; }
+.form-group label { display:block; font-size:12px; font-weight:600; color:var(--gray-600); margin-bottom:4px; }
+.form-group input,.form-group select,.form-group textarea { width:100%; padding:8px 12px; border:1px solid var(--gray-200); border-radius:6px; font-size:13px; outline:none; }
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus { border-color:var(--primary); }
+
+/* Notification Toast */
+.toast { position:fixed; top:20px; right:20px; background:#fff; padding:12px 20px; border-radius:8px; box-shadow:var(--shadow-lg); font-size:13px; z-index:200; transform:translateX(120%); transition:transform .3s; display:flex; align-items:center; gap:8px; }
+.toast.show { transform:translateX(0); }
+.toast.success { border-left:3px solid var(--success); }
+.toast.warn { border-left:3px solid var(--warning); }
+
+/* Responsive */
+@media (max-width:768px) {
+  .stats-bar { grid-template-columns:repeat(2,1fr); }
+  .kanban { grid-template-columns:1fr; }
+  .satisfaction-overview { grid-template-columns:1fr; }
+  .header { padding:16px; }
+  .content { padding:16px; }
+}
+
+/* Print */
+@media print {
+  .tab-nav,.header-actions,.chat-input-wrap,.chat-suggestions { display:none; }
+  .panel { display:block!important; break-inside:avoid; }
+  .content { padding:0; }
+}
+
+/* Empty State */
+.empty { text-align:center; padding:40px; color:var(--gray-400); }
+.empty-icon { font-size:48px; margin-bottom:12px; }
+.empty-text { font-size:14px; }
+
+/* Tag group */
+.tag-group { display:flex; gap:4px; flex-wrap:wrap; }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-left">
+    <div class="header-logo">🚀</div>
+    <div>
+      <h1>OnboardAI <span style="font-weight:400;font-size:14px;opacity:.7;">新员工入职引导系统</span></h1>
+      <div class="header-sub">当前批次：2026年6月 · 本月入职 15 人</div>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button class="btn btn-outline" onclick="exportReport()">📊 导出报告</button>
+    <button class="btn btn-primary" onclick="showAddEmployee()">+ 新增员工</button>
+  </div>
+</div>
+
+<!-- Stats Bar -->
+<div class="stats-bar">
+  <div class="stat-card">
+    <div class="stat-icon blue">👥</div>
+    <div class="stat-info"><h3 id="stat-total">15</h3><p>本月入职</p></div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon green">✅</div>
+    <div class="stat-info"><h3 id="stat-ready">12</h3><p>准备就绪</p></div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon yellow">⏳</div>
+    <div class="stat-info"><h3 id="stat-pending">2</h3><p>待处理</p></div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-icon red">🔔</div>
+    <div class="stat-info"><h3 id="stat-alert">1</h3><p>需关注</p></div>
+  </div>
+</div>
+
+<!-- Tab Navigation -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('checklist')">📋 入职前准备 <span class="tab-badge warn" id="badge-checklist">3</span></button>
+  <button class="tab-btn" onclick="switchTab('day1')">🎯 首日引导</button>
+  <button class="tab-btn" onclick="switchTab('kanban')">📌 首周看板</button>
+  <button class="tab-btn" onclick="switchTab('roadmap')">🗺️ 成长路线</button>
+  <button class="tab-btn" onclick="switchTab('chat')">🤖 AI 问答</button>
+  <button class="tab-btn" onclick="switchTab('satisfaction')">📊 满意度追踪</button>
+</div>
+
+<!-- Content Area -->
+<div class="content">
+
+  <!-- 1) 入职前准备清单 -->
+  <div class="panel active" id="panel-checklist">
+    <div class="section">
+      <div class="section-title"><span class="icon">📋</span> 入职前自动化准备清单</div>
+      <div class="section-desc">系统自动追踪每项任务状态，HR一键查看全局进度。按入职日期倒排，自动提醒即将到期的待办。</div>
+      <div class="progress-wrap">
+        <div class="progress-bar"><div class="progress-fill" id="checklist-progress" style="width:78%"></div></div>
+        <span class="progress-text" id="checklist-pct">28/36 已完成</span>
+      </div>
+      <div class="checklist" id="checklist-container"></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="icon">⚙️</span> 自动化规则</div>
+      <div class="section-desc">设置自动化规则，系统自动创建账号、发送欢迎邮件、分配设备，减少人工遗漏。</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="padding:14px;background:var(--gray-50);border-radius:8px;display:flex;align-items:center;justify-content:space-between;">
+          <div><strong style="font-size:13px;">📧 自动发送欢迎邮件</strong><p style="font-size:11px;color:var(--gray-400);">入职前3天自动发送</p></div>
+          <span style="font-size:11px;padding:3px 10px;border-radius:12px;background:var(--success-bg);color:var(--success);font-weight:600;">已启用</span>
+        </div>
+        <div style="padding:14px;background:var(--gray-50);border-radius:8px;display:flex;align-items:center;justify-content:space-between;">
+          <div><strong style="font-size:13px;">🔐 自动开通账号</strong><p style="font-size:11px;color:var(--gray-400);">邮箱/企业微信/Jira/Confluence</p></div>
+          <span style="font-size:11px;padding:3px 10px;border-radius:12px;background:var(--success-bg);color:var(--success);font-weight:600;">已启用</span>
+        </div>
+        <div style="padding:14px;background:var(--gray-50);border-radius:8px;display:flex;align-items:center;justify-content:space-between;">
+          <div><strong style="font-size:13px;">💻 自动分配设备</strong><p style="font-size:11px;color:var(--gray-400);">根据岗位自动匹配设备清单</p></div>
+          <span style="font-size:11px;padding:3px 10px;border-radius:12px;background:var(--success-bg);color:var(--success);font-weight:600;">已启用</span>
+        </div>
+        <div style="padding:14px;background:var(--gray-50);border-radius:8px;display:flex;align-items:center;justify-content:space-between;">
+          <div><strong style="font-size:13px;">🤝 自动分配Buddy</strong><p style="font-size:11px;color:var(--gray-400);">按部门/岗位智能匹配导师</p></div>
+          <span style="font-size:11px;padding:3px 10px;border-radius:12px;background:var(--warning-bg);color:var(--warning);font-weight:600;">待配置</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2) 首日智能引导 -->
+  <div class="panel" id="panel-day1">
+    <div class="section">
+      <div class="section-title"><span class="icon">🎯</span> Day 1 智能引导流程</div>
+      <div class="section-desc">新人到岗当天，系统自动推送分步引导。每完成一步自动打卡，HR实时掌握进度。</div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="icon">⏰</span> 上午 · 到岗与融入</div>
+      <div class="timeline" id="timeline-am"></div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="icon">🌤️</span> 下午 · 工具与环境</div>
+      <div class="timeline" id="timeline-pm"></div>
+    </div>
+  </div>
+
+  <!-- 3) 首周任务看板 -->
+  <div class="panel" id="panel-kanban">
+    <div class="section">
+      <div class="section-title"><span class="icon">📌</span> Week 1 任务看板</div>
+      <div class="section-desc">拖拽任务卡片切换状态。系统自动追踪完成情况，未按时完成自动升级提醒。</div>
+      <div class="kanban" id="kanban-board"></div>
+    </div>
+  </div>
+
+  <!-- 4) 30-60-90 成长路线图 -->
+  <div class="panel" id="panel-roadmap">
+    <div class="section">
+      <div class="section-title"><span class="icon">🗺️</span> 30-60-90 天成长路线图</div>
+      <div class="section-desc">每个阶段有明确目标、关键里程碑和考核标准。系统自动追踪完成度，定期生成成长报告。</div>
+      <div class="roadmap" id="roadmap-container"></div>
+    </div>
+  </div>
+
+  <!-- 5) AI 智能问答助手 -->
+  <div class="panel" id="panel-chat">
+    <div class="chat-container">
+      <div class="chat-messages" id="chat-messages"></div>
+      <div class="chat-suggestions" id="chat-suggestions"></div>
+      <div class="chat-input-wrap">
+        <input type="text" class="chat-input" id="chat-input" placeholder="输入你的问题，AI助手随时解答..." onkeydown="if(event.key==='Enter')sendMessage()">
+        <button class="chat-send" onclick="sendMessage()">➤</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6) 满意度追踪 -->
+  <div class="panel" id="panel-satisfaction">
+    <div class="section">
+      <div class="section-title"><span class="icon">📊</span> 入职体验满意度追踪</div>
+      <div class="section-desc">多节点自动推送满意度问卷，AI分析情感趋势，及时预警低分反馈。</div>
+      <div class="satisfaction-overview">
+        <div class="nps-card">
+          <div class="nps-score">72</div>
+          <div class="nps-label">NPS 净推荐值 · 近90天</div>
+          <div class="nps-breakdown">
+            <div class="nps-group"><div class="nps-group-num" style="color:#10B981;">65%</div><div class="nps-group-label">推荐者</div></div>
+            <div class="nps-group"><div class="nps-group-num" style="color:#F59E0B;">22%</div><div class="nps-group-label">被动者</div></div>
+            <div class="nps-group"><div class="nps-group-num" style="color:#FCA5A5;">13%</div><div class="nps-group-label">贬损者</div></div>
+          </div>
+        </div>
+        <div>
+          <div class="section-title" style="margin-top:0;">📈 各维度满意度热力图</div>
+          <div class="heatmap" id="heatmap-container"></div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section-title"><span class="icon">📝</span> 近期反馈</div>
+      <div class="survey-list" id="survey-list"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Add Employee Modal -->
+<div class="modal-overlay" id="modal-add">
+  <div class="modal">
+    <h3>➕ 新增入职员工</h3>
+    <div class="form-group"><label>姓名</label><input type="text" id="add-name" placeholder="请输入员工姓名"></div>
+    <div class="form-group"><label>部门</label><select id="add-dept"><option>技术部</option><option>产品部</option><option>运营部</option><option>市场部</option><option>设计部</option><option>人力资源部</option></select></div>
+    <div class="form-group"><label>岗位</label><input type="text" id="add-role" placeholder="如：前端开发工程师"></div>
+    <div class="form-group"><label>入职日期</label><input type="date" id="add-date"></div>
+    <div class="form-group"><label>Buddy（导师）</label><input type="text" id="add-buddy" placeholder="可选填"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('modal-add')">取消</button>
+      <button class="btn btn-primary" onclick="addEmployee()">确认添加</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ===== DATA STORE =====
+const DEFAULT_DATA = {
+  employees: [
+    { id:1, name:'张伟', dept:'技术部', role:'后端开发工程师', date:'2026-06-22', buddy:'李明', status:'pending' },
+    { id:2, name:'王芳', dept:'产品部', role:'产品经理', date:'2026-06-24', buddy:'陈静', status:'ready' },
+    { id:3, name:'刘洋', dept:'运营部', role:'内容运营', date:'2026-06-26', buddy:'', status:'pending' },
+    { id:4, name:'陈明', dept:'技术部', role:'前端开发工程师', date:'2026-06-15', buddy:'赵磊', status:'onboarded' },
+    { id:5, name:'李雪', dept:'设计部', role:'UI设计师', date:'2026-06-10', buddy:'周杰', status:'onboarded' }
+  ],
+  checklist: [
+    { id:'c1', text:'Offer 确认回执已收到', category:'offer', owner:'HR', priority:'urgent', done:true },
+    { id:'c2', text:'背景调查已完成', category:'offer', owner:'HR', priority:'urgent', done:true },
+    { id:'c3', text:'薪资卡/社保信息已收集', category:'offer', owner:'HR', priority:'urgent', done:true },
+    { id:'c4', text:'企业邮箱已开通', category:'account', owner:'IT', priority:'urgent', done:true },
+    { id:'c5', text:'企业微信/飞书已邀请', category:'account', owner:'IT', priority:'urgent', done:true },
+    { id:'c6', text:'VPN 账号已创建', category:'account', owner:'IT', priority:'normal', done:true },
+    { id:'c7', text:'Jira/Confluence 权限已配置', category:'account', owner:'IT', priority:'normal', done:true },
+    { id:'c8', text:'代码仓库权限已开通', category:'account', owner:'IT', priority:'normal', done:false },
+    { id:'c9', text:'笔记本电脑已准备并预装系统', category:'device', owner:'IT', priority:'urgent', done:true },
+    { id:'c10', text:'显示器/键盘鼠标已到位', category:'device', owner:'IT', priority:'normal', done:true },
+    { id:'c11', text:'门禁卡已制作', category:'device', owner:'行政', priority:'urgent', done:true },
+    { id:'c12', text:'工位已分配并粘贴姓名牌', category:'device', owner:'行政', priority:'urgent', done:true },
+    { id:'c13', text:'欢迎邮件已发送（含首日安排）', category:'welcome', owner:'HR', priority:'urgent', done:true },
+    { id:'c14', text:'Buddy/导师已分配并确认', category:'welcome', owner:'HR', priority:'normal', done:false },
+    { id:'c15', text:'新员工欢迎包已准备（手册/文具/周边）', category:'welcome', owner:'行政', priority:'normal', done:true },
+    { id:'c16', text:'部门欢迎午餐已预定', category:'welcome', owner:'HR', priority:'low', done:false },
+    { id:'c17', text:'首日日程表已推送至新员工', category:'welcome', owner:'HR', priority:'normal', done:true },
+    { id:'c18', text:'入职培训材料已更新', category:'training', owner:'HR', priority:'normal', done:true }
+  ],
+  day1Schedule: {
+    am: [
+      { time:'09:00', title:'到岗签到 · 找到工位', desc:'前台接待 → 领取门禁卡 → 引导至工位。温馨提示：工位已准备好设备，登录信息贴在显示器上。', done:false, active:true },
+      { time:'09:30', title:'团队见面会', desc:'Buddy 带领认识团队每位成员，了解各自职责。建议准备简短自我介绍（1分钟内）。', done:false },
+      { time:'10:00', title:'设备与账号检查', desc:'确认电脑、VPN、邮箱、企业微信等正常使用。IT支持热线：8888。', done:false },
+      { time:'10:30', title:'公司文化与制度介绍', desc:'HR 讲解公司文化、考勤制度、薪酬福利、晋升体系等基础信息。', done:false },
+      { time:'11:30', title:'办公环境 Tour', desc:'Buddy 带领参观：茶水间、打印机、会议室预约方式、消防通道、健身房等。', done:false },
+      { time:'12:00', title:'欢迎午餐', desc:'部门团队一起午餐，轻松聊天，帮助新人融入。餐费由部门承担。', done:false }
+    ],
+    pm: [
+      { time:'14:00', title:'开发环境搭建', desc:'按 Onboarding Guide 配置开发环境。包括 IDE、代码仓库克隆、依赖安装、本地启动验证。', done:false },
+      { time:'15:30', title:'产品/业务概览', desc:'了解产品架构、核心业务流程、当前迭代重点。阅读产品 PRD 和技术方案文档。', done:false },
+      { time:'16:30', title:'第一个小任务', desc:'分配一个简单的入门任务（如修个小bug / 写个简单feature），体验完整开发流程。', done:false },
+      { time:'17:30', title:'Day 1 回顾 · Buddy 1:1', desc:'与 Buddy 进行15分钟简短交流：今天感受如何？有什么困惑？明天计划？', done:false },
+      { time:'18:00', title:'首日结束', desc:'恭喜完成第一天！系统将自动推送 Day 2 日程。如有任何问题随时联系 Buddy。', done:false }
+    ]
+  },
+  week1Tasks: {
+    todo: [
+      { id:'w1', title:'完成公司培训课程', desc:'安全培训+合规培训+文化培训', priority:'high', assignee:'新员工' },
+      { id:'w2', title:'阅读团队Wiki', desc:'了解团队规范、代码风格、发布流程', priority:'med', assignee:'新员工' },
+      { id:'w3', title:'配置开发环境', desc:'IDE/插件/代码仓库/本地调试环境', priority:'high', assignee:'新员工+Buddy' }
+    ],
+    doing: [
+      { id:'w4', title:'了解产品架构', desc:'阅读架构文档，与Tech Lead交流', priority:'high', assignee:'新员工' },
+      { id:'w5', title:'学习代码规范', desc:'熟悉 ESLint/Prettier 配置和代码审查流程', priority:'med', assignee:'新员工' }
+    ],
+    done: [
+      { id:'w6', title:'完成 HR 入职手续', desc:'合同签署、社保登记、薪资卡确认', priority:'high', assignee:'新员工+HR' },
+      { id:'w7', title:'团队自我介绍', desc:'在团队周会上做自我介绍', priority:'med', assignee:'新员工' }
+    ]
+  },
+  roadmap: [
+    { phase:'30天', badge:'d30', status:'active', title:'融入与基础', goals:[
+      { text:'熟悉团队协作方式和工具链', done:true },
+      { text:'完成所有入职培训课程', done:true },
+      { text:'独立完成 3+ 个小需求', done:false },
+      { text:'参与 1 次代码审查', done:false },
+      { text:'了解产品核心业务逻辑', done:false },
+      { text:'建立个人发展计划 (IDP)', done:false }
+    ]},
+    { phase:'60天', badge:'d60', status:'pending', title:'独立与贡献', goals:[
+      { text:'独立负责一个小模块开发', done:false },
+      { text:'参与 2 次技术方案评审', done:false },
+      { text:'输出 1 篇技术分享/文档', done:false },
+      { text:'承担 On-Call 值班', done:false },
+      { text:'与跨部门协作完成 1 个项目', done:false }
+    ]},
+    { phase:'90天', badge:'d90', status:'pending', title:'成长与突破', goals:[
+      { text:'独立 Owner 一个功能模块', done:false },
+      { text:'代码贡献量进入团队前 50%', done:false },
+      { text:'完成首次绩效评估', done:false },
+      { text:'参与面试或校招宣讲', done:false },
+      { text:'输出入职体验改进建议', done:false }
+    ]}
+  ],
+  satisfaction: {
+    surveys: [
+      { name:'张伟', date:'2026-06-08', score:4.5, comment:'入职流程很顺畅，Buddy 很给力！' },
+      { name:'赵敏', date:'2026-06-05', score:3.8, comment:'设备准备有点慢，等了两天才拿到电脑。' },
+      { name:'孙强', date:'2026-06-01', score:4.2, comment:'整体不错，建议增加更多技术文档。' },
+      { name:'周慧', date:'2026-05-28', score:4.8, comment:'非常棒的入职体验！首日引导很清晰。' }
+    ],
+    dimensions: [
+      { label:'入职准备', score:85 },
+      { label:'首日体验', score:78 },
+      { label:'Buddy支持', score:82 },
+      { label:'培训质量', score:75 },
+      { label:'工具环境', score:70 },
+      { label:'团队融入', score:88 }
+    ]
+  }
+};
+
+let data = JSON.parse(localStorage.getItem('onboardai_data')) || JSON.parse(JSON.stringify(DEFAULT_DATA));
+function save() { localStorage.setItem('onboardai_data', JSON.stringify(data)); updateStats(); }
+
+// ===== STATS =====
+function updateStats() {
+  const total = data.employees.filter(e => e.date >= '2026-06-01' && e.date <= '2026-06-30').length;
+  const ready = data.employees.filter(e => e.status === 'ready').length;
+  const pending = data.employees.filter(e => e.status === 'pending').length;
+  const alert = data.employees.filter(e => e.status === 'pending' && e.date <= new Date().toISOString().slice(0,10) && !e.buddy).length;
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-ready').textContent = ready;
+  document.getElementById('stat-pending').textContent = pending;
+  document.getElementById('stat-alert').textContent = alert;
+  document.getElementById('badge-checklist').textContent = data.checklist.filter(c=>!c.done).length;
+}
+
+// ===== TOAST =====
+function toast(msg, type='success') {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast show ' + type;
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ===== MODAL =====
+function showAddEmployee() {
+  document.getElementById('add-date').value = '';
+  document.getElementById('add-name').value = '';
+  document.getElementById('add-role').value = '';
+  document.getElementById('add-buddy').value = '';
+  document.getElementById('modal-add').classList.add('show');
+}
+function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+function addEmployee() {
+  const name = document.getElementById('add-name').value.trim();
+  const dept = document.getElementById('add-dept').value;
+  const role = document.getElementById('add-role').value.trim();
+  const date = document.getElementById('add-date').value;
+  const buddy = document.getElementById('add-buddy').value.trim();
+  if (!name || !role || !date) { toast('请填写完整信息', 'warn'); return; }
+  data.employees.push({ id:Date.now(), name, dept, role, date, buddy, status:'pending' });
+  save();
+  closeModal('modal-add');
+  toast(`已添加 ${name}，入职日期 ${date}`);
+}
+
+// ===== TAB SWITCH =====
+function switchTab(tab) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelector(`.tab-btn[onclick*="${tab}"]`).classList.add('active');
+  document.getElementById('panel-' + tab).classList.add('active');
+  if (tab === 'checklist') renderChecklist();
+  if (tab === 'day1') renderDay1();
+  if (tab === 'kanban') renderKanban();
+  if (tab === 'roadmap') renderRoadmap();
+  if (tab === 'chat' && !window._chatInited) { initChat(); window._chatInited = true; }
+  if (tab === 'satisfaction') renderSatisfaction();
+}
+
+// ===== 1) CHECKLIST =====
+function renderChecklist() {
+  const container = document.getElementById('checklist-container');
+  container.innerHTML = data.checklist.map(c => `
+    <div class="checklist-item ${c.done?'done':''}" onclick="toggleCheck('${c.id}')">
+      <div class="checkbox ${c.done?'checked':''}">${c.done?'✓':''}</div>
+      <span class="check-text">${c.text}</span>
+      <span class="check-tag ${c.priority}">${c.priority==='urgent'?'紧急':c.priority==='normal'?'普通':'低优先'}</span>
+      <span class="check-owner">${c.owner}</span>
+    </div>
+  `).join('');
+  updateChecklistProgress();
+}
+function toggleCheck(id) {
+  const item = data.checklist.find(c => c.id === id);
+  if (item) { item.done = !item.done; save(); renderChecklist(); }
+}
+function updateChecklistProgress() {
+  const done = data.checklist.filter(c => c.done).length;
+  const total = data.checklist.length;
+  const pct = Math.round(done/total*100);
+  document.getElementById('checklist-progress').style.width = pct + '%';
+  document.getElementById('checklist-pct').textContent = `${done}/${total} 已完成`;
+  document.getElementById('badge-checklist').textContent = total - done;
+}
+
+// ===== 2) DAY 1 =====
+function renderDay1() {
+  document.getElementById('timeline-am').innerHTML = data.day1Schedule.am.map((item, i) => `
+    <div class="timeline-item ${item.done?'done':''} ${item.active?'active':''}">
+      <div class="timeline-dot">${item.done?'✓':i+1}</div>
+      <div class="timeline-time">${item.time}</div>
+      <div class="timeline-title">${item.title}</div>
+      <div class="timeline-desc">${item.desc}</div>
+      <div class="timeline-actions">
+        ${!item.done ? `<button class="btn btn-sm btn-success" onclick="completeTimeline('am',${i})">✓ 完成</button>` : ''}
+        ${item.active && !item.done ? `<span style="font-size:11px;color:var(--primary);font-weight:600;">● 进行中</span>` : ''}
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('timeline-pm').innerHTML = data.day1Schedule.pm.map((item, i) => `
+    <div class="timeline-item ${item.done?'done':''} ${item.active?'active':''}">
+      <div class="timeline-dot">${item.done?'✓':i+1}</div>
+      <div class="timeline-time">${item.time}</div>
+      <div class="timeline-title">${item.title}</div>
+      <div class="timeline-desc">${item.desc}</div>
+      <div class="timeline-actions">
+        ${!item.done ? `<button class="btn btn-sm btn-success" onclick="completeTimeline('pm',${i})">✓ 完成</button>` : ''}
+      </div>
+    </div>
+  `).join('');
+}
+function completeTimeline(period, index) {
+  const arr = data.day1Schedule[period];
+  arr[index].done = true;
+  arr[index].active = false;
+  if (index + 1 < arr.length) arr[index + 1].active = true;
+  save(); renderDay1();
+}
+
+// ===== 3) KANBAN =====
+function renderKanban() {
+  const board = document.getElementById('kanban-board');
+  const cols = [
+    { key:'todo', title:'📋 待开始', color:'#6B7280' },
+    { key:'doing', title:'🔄 进行中', color:'#F59E0B' },
+    { key:'done', title:'✅ 已完成', color:'#10B981' }
+  ];
+  board.innerHTML = cols.map(col => `
+    <div class="kanban-col" ondragover="event.preventDefault()" ondrop="moveTask(event,'${col.key}')">
+      <div class="kanban-col-header">
+        <div class="kanban-col-title">${col.title}</div>
+        <div class="kanban-count">${data.week1Tasks[col.key].length} 项</div>
+      </div>
+      ${data.week1Tasks[col.key].map(t => `
+        <div class="kanban-card priority-${t.priority}" draggable="true" ondragstart="event.dataTransfer.setData('text/plain','${t.id}')">
+          <div class="card-title">${t.title}</div>
+          <div class="card-desc">${t.desc}</div>
+          <div class="card-meta">
+            <div class="card-avatar">${t.assignee[0]}</div>
+            <span>${t.assignee}</span>
+            <span style="margin-left:auto;padding:1px 6px;border-radius:3px;font-size:10px;background:${t.priority==='high'?'#FEF2F2':'#FFFBEB'};color:${t.priority==='high'?'#EF4444':'#F59E0B'}">${t.priority==='high'?'高优':t.priority==='med'?'中优':'低优'}</span>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
+}
+function moveTask(event, targetCol) {
+  const taskId = event.dataTransfer.getData('text/plain');
+  let task = null;
+  for (const col of ['todo','doing','done']) {
+    const idx = data.week1Tasks[col].findIndex(t => t.id === taskId);
+    if (idx !== -1) { task = data.week1Tasks[col].splice(idx, 1)[0]; break; }
+  }
+  if (task) { data.week1Tasks[targetCol].push(task); save(); renderKanban(); }
+}
+
+// ===== 4) ROADMAP =====
+function renderRoadmap() {
+  document.getElementById('roadmap-container').innerHTML = data.roadmap.map(p => `
+    <div class="roadmap-phase ${p.status}">
+      <div class="roadmap-phase-header">
+        <span class="phase-badge ${p.badge}">${p.phase}</span>
+        <span class="phase-title">${p.title}</span>
+        <span style="font-size:11px;color:var(--gray-400);margin-left:auto;">${p.status==='done'?'✅':'📊'} ${p.goals.filter(g=>g.done).length}/${p.goals.length}</span>
+      </div>
+      <div class="phase-milestones">
+        ${p.goals.map(g => `
+          <div class="milestone ${g.done?'done':''}" onclick="toggleMilestone('${p.phase}','${g.text}')" style="cursor:pointer">
+            <span class="milestone-icon">${g.done?'✅':'⬜'}</span>
+            <span class="milestone-text">${g.text}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+}
+function toggleMilestone(phase, text) {
+  const p = data.roadmap.find(r => r.phase === phase);
+  const g = p.goals.find(g => g.text === text);
+  g.done = !g.done;
+  if (p.goals.every(g => g.done)) p.status = 'done';
+  else if (p.goals.some(g => g.done)) p.status = 'active';
+  else p.status = 'pending';
+  save(); renderRoadmap();
+}
+
+// ===== 5) AI CHAT =====
+const KB = {
+  '工位': '你的工位在 **A栋3楼 301-15**，靠近茶水间。入职当天前台同事会带你到工位，桌上已贴好你的姓名牌。如果找不到可以直接企业微信联系前台 @前台小姐姐。',
+  '电脑': '公司标配笔记本电脑是 **MacBook Pro 16" M4 Pro**，IT部门会提前安装好系统并预装必要软件。入职当天到 IT服务台（A栋2楼）凭工号领取。如有特殊配置需求请提前联系 IT。',
+  '账号': '入职前系统会自动开通以下账号：\n1. 企业邮箱（name@company.com）\n2. 企业微信\n3. VPN（远程办公必备）\n4. Jira / Confluence\n5. GitHub Enterprise\n\n所有账号的初始密码会在入职当天通过企业微信推送。',
+  '食堂': '公司食堂在 **B栋地下一层**，供应早中晚三餐。\n- 早餐：7:30-9:00\n- 午餐：11:30-13:30\n- 晚餐：17:30-19:00\n\n支持企业微信扫码支付，每月有 800 元餐补自动到账。',
+  '导师': '你的 Buddy/导师会在你入职前一周分配好。Buddy 会：\n1. 入职当天到前台接你\n2. 带你认识团队成员\n3. 帮你配置开发环境\n4. 分配第一个小任务\n5. 每周至少一次 1:1 交流\n\n如果入职3天后还没见到 Buddy，请联系 HR。',
+  '培训': '入职第一周有集中培训：\n- Day 1 下午：公司文化与制度\n- Day 2 上午：安全与合规培训\n- Day 3 上午：产品业务培训\n- Day 4 下午：技术架构概览\n\n所有培训材料可在 Confluence \'New Hire Onboarding\' 空间找到。',
+  '请假': '请假流程：\n1. 企业微信 → 工作台 → 请假申请\n2. 选择请假类型和日期\n3. 直属 Leader 审批\n\n年假：入职即享有 10 天/年\n病假：每月 1 天无需证明\n如有紧急情况可直接电话联系 Leader。',
+  'wifi': '公司 WiFi：\n- SSID：Company-Office\n- 密码：Welcome2026!\n- 访客 WiFi：Company-Guest（无需密码，限速）\n\n连接后打开浏览器会自动跳转到认证页面，用工号和邮箱密码登录。',
+  '停车': '公司提供免费地下停车场（B1/B2层）。\n- 开车上班需提前在行政系统登记车牌号\n- 入口在园区西门，识别车牌自动抬杆\n- 车位充足，无需抢位\n- 也提供电动车充电桩（B1层E区）',
+};
+
+function initChat() {
+  document.getElementById('chat-messages').innerHTML = `
+    <div class="chat-msg assistant">
+      <div class="chat-avatar">🤖</div>
+      <div class="chat-bubble">
+        👋 你好！我是 <strong>OnboardAI 入职助手</strong>。<br>
+        关于公司制度、工位、设备、账号、培训、食堂、请假等任何问题，随时问我！<br>
+        你也可以在下方快速提问 👇
+      </div>
+    </div>
+  `;
+  const suggestions = ['我的工位在哪里？', '怎么领电脑？', '食堂在哪里？', 'WiFi密码是什么？', '怎么请假？', '有入职培训吗？'];
+  document.getElementById('chat-suggestions').innerHTML = suggestions.map(s => 
+    `<button class="chat-suggestion" onclick="quickAsk('${s}')">${s}</button>`
+  ).join('');
+}
+
+function quickAsk(q) {
+  document.getElementById('chat-input').value = q;
+  sendMessage();
+}
+
+function sendMessage() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+  
+  const msgs = document.getElementById('chat-messages');
+  msgs.innerHTML += `
+    <div class="chat-msg user">
+      <div class="chat-avatar">👤</div>
+      <div class="chat-bubble">${text}</div>
+    </div>
+  `;
+  input.value = '';
+  
+  // Find answer
+  let answer = null;
+  for (const [key, val] of Object.entries(KB)) {
+    if (text.includes(key)) { answer = val; break; }
+  }
+  if (!answer) answer = '抱歉，我暂时无法回答这个问题。你可以尝试问关于 **工位、设备、账号、食堂、培训、请假、WiFi、停车** 等相关问题。\n\n如果问题紧急，建议直接企业微信联系 HR 或你的 Buddy。';
+  
+  setTimeout(() => {
+    msgs.innerHTML += `
+      <div class="chat-msg assistant">
+        <div class="chat-avatar">🤖</div>
+        <div class="chat-bubble" style="white-space:pre-line">${answer}</div>
+      </div>
+    `;
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 600 + Math.random() * 800);
+  
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+// ===== 6) SATISFACTION =====
+function renderSatisfaction() {
+  document.getElementById('survey-list').innerHTML = data.satisfaction.surveys.map(s => `
+    <div class="survey-item">
+      <div class="survey-info">
+        <h4>${s.name} · ${s.date}</h4>
+        <p>${s.comment}</p>
+      </div>
+      <div class="survey-score ${s.score>=4.5?'high':s.score>=3.5?'mid':'low'}">${s.score} ★</div>
+    </div>
+  `).join('');
+  
+  document.getElementById('heatmap-container').innerHTML = data.satisfaction.dimensions.map(d => `
+    <div class="heatmap-item">
+      <div class="heatmap-label">${d.label}</div>
+      <strong style="font-size:18px;">${d.score}</strong>
+      <div class="heatmap-bar ${d.score>=80?'high':d.score>=60?'mid':'low'}" style="width:${d.score}%"></div>
+    </div>
+  `).join('');
+}
+
+// ===== EXPORT =====
+function exportReport() {
+  const report = {
+    generatedAt: new Date().toISOString(),
+    stats: {
+      totalEmployees: data.employees.length,
+      checkListProgress: Math.round(data.checklist.filter(c=>c.done).length/data.checklist.length*100),
+      npsScore: 72
+    },
+    checklist: data.checklist,
+    employees: data.employees,
+    satisfaction: data.satisfaction
+  };
+  const blob = new Blob([JSON.stringify(report, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `onboardai-report-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('报告已导出');
+}
+
+// ===== INIT =====
+function init() {
+  document.getElementById('add-date').value = new Date().toISOString().slice(0,10);
+  renderChecklist();
+  updateStats();
+}
+init();
+</script>
+</body>
+</html>

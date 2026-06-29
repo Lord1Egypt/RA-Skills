@@ -1,0 +1,22 @@
+{
+  "A09022": {
+    "name": "統一台灣動力基金-A類型",
+    "category": "股票-台灣",
+    "currency": "TWD",
+    "moneydj": "acps23",
+    "benchmark": "^TWII"
+  },
+  "A09071": {
+    "name": "統一台灣動力基金-TISA類型",
+    "category": "股票-台灣",
+    "currency": "TWD",
+    "benchmark": "^TWII"
+  },
+  "A36004": {
+    "name": "安聯台灣科技基金",
+    "category": "股票-台灣科技",
+    "currency": "TWD",
+    "moneydj": "acdd04",
+    "benchmark": "^TWII"
+  }
+}

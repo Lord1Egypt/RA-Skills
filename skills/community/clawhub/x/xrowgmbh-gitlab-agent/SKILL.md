@@ -2,9 +2,7 @@
 name: gitlab-agent
 description: An agent for interacting with GitLab. Supports gitlab.com and self-hosted instances. Requires no GitLab DUO.
 metadata: { "openclaw": { "requires": { "bins": ["glab"] }, "primaryEnv": "GITLAB_TOKEN" } }
-
 ---
-
 # GitLab Agent Skill
 
 Repeat and fullfill your `GitLab Agent` tasks.
@@ -71,6 +69,7 @@ Before posting an issue, work item, or merge request status comment, compare the
 * Add the time spend to the time tracking.
 * Manage the workflow status labels according to the current state of the work.
 * If you see an additional commit by a team member, do not simply revert. Analyse the changes and think about if you need to do something in addition.
+* After merge or close, update the items and labels to reflect the final state `workflow::done`.
 
 ## How to handle reviewing
 
@@ -98,23 +97,23 @@ If the labels are missing, make a merge request to add them via the [label](http
 
 ### Size Labels
 
-| GitLab label | Common name | Meaning |
-| --- | --- | --- |
-| `size::small` | Small | Needs only minor changes and is trivial. Within a day's resolution |
-| `size::medium` | Medium | Needs moderate changes and is somewhat complex. Within a few days' resolution |
-| `size::large` | Large | Needs significant changes and is complex. Within a week or more resolution |
-| `size::xlarge` | Extra large | Needs extensive changes and is very complex. Within a month or more resolution |
+| GitLab label    | Common name | Meaning                                                                        |
+| --------------- | ----------- | ------------------------------------------------------------------------------ |
+| `size::small`   | Small       | Needs only minor changes and is trivial. Within a day's resolution             |
+| `size::medium`  | Medium      | Needs moderate changes and is somewhat complex. Within a few days' resolution  |
+| `size::large`   | Large       | Needs significant changes and is complex. Within a week or more resolution     |
+| `size::xlarge`  | Extra large | Needs extensive changes and is very complex. Within a month or more resolution |
 
 * Add ensure that labels `size` is added before `workflow::in-progress`.
 
 ### Type Status Labels
 
-| GitLab label | Common name | Meaning |
-| --- | --- | --- |
-| `type::support` | Support Request | Someone need help, but no change. Maybe it resolves in new work item after investigation. |
-| `type::fix` | Fix | Something that needs to be fixed and exists |
-| `type::feature` | Feature | Something new |
-| `type::hotfix` | Hotfix | Urgent fix for a critical issue that merges directly in main. |
+| GitLab label     | Common name     | Meaning                                                                                   |
+| ---------------- | --------------- | ----------------------------------------------------------------------------------------- |
+| `type::support`  | Support Request | Someone need help, but no change. Maybe it resolves in new work item after investigation. |
+| `type::fix`      | Fix             | Something that needs to be fixed and exists                                               |
+| `type::feature`  | Feature         | Something new                                                                             |
+| `type::hotfix`   | Hotfix          | Urgent fix for a critical issue that merges directly in main.                             |
 
 * Do not add the label `type`, if nothing of the above matches.
 * Add ensure that labels `type` is added before `workflow::in-progress`.
@@ -123,35 +122,40 @@ If the labels are missing, make a merge request to add them via the [label](http
 
 Use the labels in your merge requests to set the current status of the work. Only use one workflow status label at a time.
 
-| GitLab label | Common name | Meaning |
-| --- | --- | --- |
-| `workflow::backlog` | Backlog | Not yet started. Initial state. |
-| `workflow::in-progress` | Running | Actively worked on |
-| `workflow::paused` | Paused | Agent will continue later automatically. Temporarily paused for one hour to one day. |
-| `workflow::need-human` | Need Human | Requires human intervention to fullfill current task, also explain why. Its status is not blocked or paused. |
-| `workflow::blocked` | Blocked | Currently blocked by a dependency or issue |
-| `workflow::review` | Review | When something is done and reviewer was assigned |
-| `workflow::done` | Done | Completed and no further action is required |
-| `workflow::stale` | Stale | No activity for at least 30 days and may need attention |
+| GitLab label            | Common name | Meaning                                                                                                      |
+| ----------------------- | ----------- | ------------------------------------------------------------------------------------------------------------ |
+| `workflow::backlog`     | Backlog     | Not yet started. Initial state.                                                                              |
+| `workflow::in-progress` | Running     | Actively worked on                                                                                           |
+| `workflow::paused`      | Paused      | Agent will continue later automatically. Temporarily paused for one hour to one day.                         |
+| `workflow::need-human`  | Need Human  | Requires human intervention to fullfill current task, also explain why. Its status is not blocked or paused. |
+| `workflow::blocked`     | Blocked     | Currently blocked by a dependency or issue                                                                   |
+| `workflow::review`      | Review      | When something is done and reviewer was assigned                                                             |
+| `workflow::done`        | Done        | Completed , final state, everything done and closed                                                          |
+| `workflow::stale`       | Stale       | No activity for at least 30 days and may need attention                                                      |
 
 #### Agent workflow by label
 
 ```mermaid
-    graph TD
-        create[New Work Item / MR] --> workflow::backlog
-        workflow::backlog --> workflow::in-progress
-        workflow::in-progress --> workflow::review
-        workflow::review --> workflow::done
-        workflow::in-progress --> workflow::paused
-        workflow::in-progress --> workflow::blocked
-        workflow::in-progress --> workflow::need-human
-        workflow::need-human --> workflow::in-progress
-        workflow::need-human --> workflow::stale
-        workflow::blocked --> workflow::in-progress
-        workflow::paused --> workflow::in-progress
-        workflow::review --> workflow::stale
-        workflow::stale --> workflow::in-progress
-        workflow::done  --> close[Close Work Item / MR]
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD
+    create((New Work Item / MR)) --> workflow::backlog
+    workflow::backlog --> workflow::in-progress
+    workflow::in-progress --> workflow::review
+    workflow::review --> workflow::done
+    workflow::in-progress --> workflow::paused
+    workflow::in-progress --> workflow::blocked
+    workflow::in-progress --> workflow::need-human
+    workflow::need-human --> workflow::in-progress
+    workflow::need-human --> workflow::stale
+    workflow::blocked --> workflow::in-progress
+    workflow::paused --> workflow::in-progress
+    workflow::review --> workflow::stale
+    workflow::stale --> workflow::in-progress
+    workflow::done  --> close((Close Work Item / MR))
 ```
 
 ## Coding Guidelines
@@ -450,3 +454,40 @@ glab release create v1.0.0 --notes "Release notes here"
 ## Bugs and features for this skill
 
 Send features and bugfixes for this skill as merge requests to the skills [project](https://gitlab.com/xrow-public/skills).
+
+## Bootstrap
+
+Before enabling it:
+
+* Confirm the `gitlab-agent` skill exists.
+* Only enable the recurring job after the manual run succeeds.
+
+* [ ] Confirm GitLab auth works.
+* [ ] Add this cron, if it existed and was enabled then leave it enabled.
+
+```json
+{
+  "name": "GitLab Agent",
+  "enabled": false,
+  "deleteAfterRun": false,
+  "schedule": {
+    "kind": "every",
+    "everyMs": 900000
+  },
+  "sessionTarget": "isolated",
+  "wakeMode": "now",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "Read skill gitlab-agent and run.",
+    "thinking": "high",
+    "timeoutSeconds": 3600,
+    "model": "openai/gpt-5.5"
+  },
+  "delivery": {
+    "mode": "none",
+    "bestEffort": false
+  }
+}
+```
+
+* [ ] Confirm GitLab auth works.

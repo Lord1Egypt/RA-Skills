@@ -1,0 +1,85 @@
+{
+  "manifest_version": 1,
+  "skill_id": "ora-sns-pro",
+  "name": "Ora社媒主页搜索专家",
+  "version": "3.0.1",
+  "release_date": "2026-06-11",
+  "min_openclaw_version": "1.0.0",
+  "installation": {
+    "type": "url",
+    "source": "",
+    "checksum": "",
+    "file_size": 0
+  },
+  "changelog": [
+    {
+      "version": "3.0.1",
+      "changes": [
+        "【安全修复】修复 OraAgent.key 文件读取路径遍历风险：使用 path.resolve + 路径 containment 校验替代直接拼接",
+        "【安全修复】添加 API URL 白名单校验机制：仅允许向已注册的两个端点发起 POST 请求，防止 SSRF / 任意 URL 调用",
+        "【安全增强】Handler 构造函数新增 URL 白名单预检（防御纵深），恶意配置在初始化阶段即被拦截",
+        "【安全增强】导出 isAllowedUrl / ALLOWED_URLS 工具方法，供外部调用方复用安全校验"
+      ]
+    },
+    {
+      "version": "3.0.0",
+      "changes": [
+        "【重大变更】移除独立鉴权接口 (getQueryToken)，鉴权改为每次查询时直接携带 AuthToken",
+        "【重大变更】关键词搜索接口 (socialMediaQuery) 参数变更：keyword + socialMediaType 替换旧的 companyName + domain",
+        "【新增】域名/企业反查接口 (socialMediaDomainQuery)：根据企业名称或域名反查社媒账号，最多返回 5 条",
+        "【变更】额度机制：免费用户共 20 次，两个接口共用同一额度，每次调用扣减 1 次（不再有独立的鉴权扣减）",
+        "【变更】userData 统一在每次查询响应中返回（payingUser / usedCount / availableUses），替代旧的独立鉴权响应",
+        "【变更】移除 X-Query-Token 机制，不再需要预获取 queryToken",
+        "【变更】错误处理：新增三种 code=500 错误类型（免费额度用完 / 付费当日超额 / 鉴权失败）",
+        "【简化】移除多轮批量预检机制，改为逐条查询 + 额度耗尽自动停止",
+        "【新增】支持关键词搜索模式：按产品/行业关键词搜索社媒账号"
+      ]
+    },
+    {
+      "version": "2.1.0",
+      "changes": [
+        "【重要】新增批量查询超额处理机制 — 查询量超限时不再直接拒绝，改为展示确认提示",
+        "新增预检查流程（步骤0）：查询前先计算总查询量 vs 单轮限额，判断是否需要多轮",
+        "新增超额确认提示：免费用户展示轮数 + 免费额度消耗预估，付费用户仅展示轮数",
+        "新增多轮执行流程：每轮独立授权 + 批量查询，支持用户二次确认后逐轮执行",
+        "新增额度不足预警：免费用户剩余额度不足时提前警告",
+        "新增 SocialMediaAPI.resetForNewRound() / calculateRounds() / getBatchInfo() 方法",
+        "新增 SocialMediaHandler.preCheckOverflow() / executeSingleRound() / executeMultiRound() 方法",
+        "优化条件与限制文档：明确单轮限额 vs 多轮机制的区别"
+      ]
+    },
+    {
+      "version": "2.0.0",
+      "changes": [
+        "【重大变更】查询方式从「关键词搜索」改为「企业名称/域名反查」",
+        "查询接口参数变更：companyName + domain + socialMediaType，替换原来的 keyword + countrytag + pageNum + pageSize",
+        "移除分页功能：每次相同条件固定返回，不再支持翻页参数",
+        "触发条件更新：从「社媒关键词搜索」改为「指定企业/域名的社媒账号查询」",
+        "返回结构变更：data 从嵌套分页对象改为直接数组",
+        "优化参数提取逻辑：支持自动识别域名和企业名称"
+      ]
+    },
+    {
+      "version": "1.1.0",
+      "changes": [
+        "新增会话级授权校验（GET接口），每个会话仅调用1次，扣减1次免费额度",
+        "新增 X-Query-Token 请求头，查询接口（POST）必须携带授权凭证",
+        "新增会话调用次数限制（max_calls_per_session，默认30次），防止智能体无限循环",
+        "新增免费额度展示：每次查询结果末尾显示「可免费使用X次，当前已使用X次」",
+        "新增付费升级链接展示：额度用完时自动引导用户访问支付页面"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "changes": [
+        "初始版本发布",
+        "支持Facebook企业/联系人搜索",
+        "支持LinkedIn企业/联系人搜索",
+        "支持Twitter/X企业/联系人搜索",
+        "支持Instagram企业/联系人搜索",
+        "支持按国家/地区过滤",
+        "支持分页查询"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "name": "compact",
+  "label": "紧凑列表",
+  "description": "纯文本风格紧凑列表，节省屏幕空间",
+  "layout": "compact",
+  "features": ["indent_lines", "minimal", "copyable", "search"],
+  "icon_style": "none",
+  "sort_order": "default",
+  "max_depth_display": 10
+}

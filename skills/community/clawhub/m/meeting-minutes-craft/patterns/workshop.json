@@ -1,0 +1,16 @@
+{
+  "name": "workshop",
+  "label": "研讨工作坊型",
+  "description": "适合头脑风暴、需求研讨、设计评审等开放型会议",
+  "sections": [
+    {"id": "header", "title": "工作坊信息", "fields": ["主题", "日期", "主持人", "参与人"]},
+    {"id": "objective", "title": "研讨目标", "type": "list"},
+    {"id": "brainstorm", "title": "头脑风暴要点", "type": "list", "grouped": true},
+    {"id": "discussion", "title": "深入讨论", "type": "list-para"},
+    {"id": "consensus", "title": "达成共识", "type": "list"},
+    {"id": "divergence", "title": "待定/分歧点", "type": "list-em"},
+    {"id": "actions", "title": "后续行动", "type": "table", "columns": ["事项", "责任人", "截止日期"]}
+  ],
+  "layout": "vertical",
+  "group_enabled": true
+}

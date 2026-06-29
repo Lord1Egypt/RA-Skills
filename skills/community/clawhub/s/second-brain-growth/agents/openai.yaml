@@ -1,0 +1,4 @@
+interface:
+  display_name: "Second Brain Growth"
+  short_description: "Measure second-brain growth across agent runtimes"
+  default_prompt: "Use $second-brain-growth to evaluate my second brain knowledge growth this week across Codex, Hermes, and OpenClaw."

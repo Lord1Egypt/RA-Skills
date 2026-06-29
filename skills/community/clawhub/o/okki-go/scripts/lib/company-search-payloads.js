@@ -4,6 +4,34 @@ const KEYWORD_FIELDS = ['companyTypeKeywords', 'productKeywords', 'industryKeywo
 const MAX_KEYWORDS_PER_FIELD = 5;
 const MAX_COMPANY_TYPE_KEYWORDS_PER_REQUEST = 1;
 const MAX_COMPANY_SEARCH_SIZE = 50;
+const CJK_COMPANY_ROLE_TERMS = [
+  '系统集成商',
+  '集成商',
+  '工程商',
+  '工程公司',
+  '承包商',
+  '供应商',
+  '服务商',
+  '经销商',
+  '分销商',
+  '进口商',
+  '代理商',
+  '批发商',
+  '零售商'
+];
+const ENGLISH_COMPANY_ROLE_TERMS = [
+  'system integrator',
+  'integrator',
+  'engineering company',
+  'contractor',
+  'supplier',
+  'service provider',
+  'distributor',
+  'importer',
+  'agent',
+  'wholesaler',
+  'retailer'
+];
 const SUPPORTED_COMPANY_SEARCH_FIELDS = new Set([
   'companyTypeKeywords',
   'productKeywords',
@@ -45,6 +73,7 @@ function normalizeCompanySearchPayload(input, options = {}) {
   normalizeCrossFieldOperator(normalized);
   normalizePagination(normalized, options);
   ensureSearchable(normalized);
+  validateCompanyTypeKeywords(normalized);
 
   return { payload: normalized, dropped, warnings: guardrailWarnings(normalized) };
 }
@@ -121,6 +150,41 @@ function ensureSearchable(payload) {
   if (!hasKeywords) {
     throw new Error('Payload must include at least one of productKeywords, industryKeywords, or companyTypeKeywords.');
   }
+}
+
+function validateCompanyTypeKeywords(payload) {
+  const values = Array.isArray(payload.companyTypeKeywords) ? payload.companyTypeKeywords : [];
+  const invalid = values.filter(isCompoundCompanyTypeKeyword);
+  if (invalid.length === 0) return;
+
+  throw new Error([
+    `Invalid compound \`companyTypeKeywords\` term: ${invalid.join(', ')}.`,
+    '`companyTypeKeywords` must contain pure buyer/company role terms such as 系统集成商, 工程商, or 进口商.',
+    'Move product, industry, application, or project-scenario words into `productKeywords` or `industryKeywords`.',
+    'Target-side first still applies: use target-buyer profile keywords, not copied seller product, SKU, model, or service-list terms.'
+  ].join(' '));
+}
+
+function isCompoundCompanyTypeKeyword(value) {
+  const term = String(value || '').trim();
+  if (!term) return false;
+  if (isCompoundCjkCompanyTypeKeyword(term)) return true;
+  return isCompoundEnglishCompanyTypeKeyword(term);
+}
+
+function isCompoundCjkCompanyTypeKeyword(term) {
+  if (CJK_COMPANY_ROLE_TERMS.includes(term)) return false;
+  return CJK_COMPANY_ROLE_TERMS.some((role) => {
+    return term.endsWith(role) && term.slice(0, -role.length).trim().length > 0;
+  });
+}
+
+function isCompoundEnglishCompanyTypeKeyword(term) {
+  const normalized = term.toLowerCase().replace(/[-_/]+/g, ' ').replace(/\s+/g, ' ').trim();
+  if (ENGLISH_COMPANY_ROLE_TERMS.includes(normalized)) return false;
+  return ENGLISH_COMPANY_ROLE_TERMS.some((role) => {
+    return normalized.endsWith(` ${role}`);
+  });
 }
 
 function guardrailWarnings(payload) {
@@ -203,5 +267,6 @@ module.exports = {
   MAX_KEYWORDS_PER_FIELD,
   normalizeCompanySearchPayload,
   SUPPORTED_COMPANY_SEARCH_FIELDS,
+  isCompoundCompanyTypeKeyword,
   splitCompanySearchPayload
 };

@@ -479,6 +479,7 @@ pass `--sort most_liked`.
 
 ```bash
 ~/.lingzao/bin/lingzao get-article-detail --url "https://mp.weixin.qq.com/s/..."
+~/.lingzao/bin/lingzao get-article-detail --url "https://mp.weixin.qq.com/s/..." --output /tmp/article.md
 ~/.lingzao/bin/lingzao get-article-stats --url "https://mp.weixin.qq.com/s/..."
 ~/.lingzao/bin/lingzao get-related-articles --url "https://mp.weixin.qq.com/s/..."
 ```
@@ -489,6 +490,12 @@ from that article to related public articles. The first version is URL-only and
 costs 20 credits per call. An empty related-articles list is a valid response.
 Do not use these commands for account article history, account listing, or
 multi-page fanout unless Lingzao adds a separate capability.
+
+For full article analysis, prefer `get-article-detail --output /tmp/article.md`.
+The command saves the complete article text as a local Markdown file and prints
+only the file path plus a short summary in chat. Read the saved Markdown file
+for detailed analysis instead of asking the CLI to paste the full article body
+into the conversation.
 
 ### Extract Short-Video Copy
 

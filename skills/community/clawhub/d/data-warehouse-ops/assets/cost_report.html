@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据仓库成本优化报告 — Cost Optimization Report</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f5f7fa;color:#1a1a2e;padding:24px}
+.container{max-width:1200px;margin:0 auto}
+h1{font-size:28px;margin-bottom:4px;color:#0f0f23}
+.subtitle{color:#666;margin-bottom:24px;font-size:13px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:28px}
+.card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.card .label{font-size:11px;color:#888;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.card .value{font-size:26px;font-weight:700;color:#0f0f23}.card .unit{font-size:13px;font-weight:400;color:#888}
+.section{background:#fff;border-radius:12px;padding:24px;margin-bottom:24px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.section h2{font-size:18px;margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid #e8ecf1}
+.finding{border-left:4px solid #ddd;padding:12px 16px;margin-bottom:10px;background:#fafbfc;border-radius:0 8px 8px 0}
+.finding.CRITICAL{border-color:#e74c3c;background:#fef2f2}
+.finding.HIGH{border-color:#f39c12;background:#fffbeb}
+.finding.MEDIUM{border-color:#3498db;background:#eff6ff}
+.finding.LOW{border-color:#95a5a6}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:600;margin-right:8px}
+.badge.CRITICAL{background:#fef2f2;color:#e74c3c}
+.badge.HIGH{background:#fffbeb;color:#d97706}
+.badge.MEDIUM{background:#eff6ff;color:#2563eb}
+.badge.LOW{background:#f3f4f6;color:#6b7280}
+table{width:100%;border-collapse:collapse}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #e8ecf1;font-size:13px}
+th{background:#f8fafc;font-weight:600;color:#475569}
+tr:hover td{background:#f8fafc}
+.chart-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:16px}
+@media(max-width:768px){.chart-row{grid-template-columns:1fr}}
+canvas{max-height:300px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>📊 数据仓库成本优化报告</h1>
+<p class="subtitle" id="meta">--</p>
+<div class="cards" id="summaryCards"></div>
+<div class="section">
+<h2>📈 问题严重度分布</h2>
+<div class="chart-row">
+<div><canvas id="severityChart"></canvas></div>
+<div id="severitySummary" style="font-size:14px;color:#666"></div>
+</div>
+</div>
+<div class="section">
+<h2>🔍 优化建议清单</h2>
+<div style="overflow-x:auto"><table id="findingsTable"><thead><tr>
+<th>规则</th><th>严重度</th><th>数据量</th><th>修复建议</th><th>预估节省</th>
+</tr></thead><tbody></tbody></table></div>
+</div>
+<div class="section">
+<h2>🔥 Top 高成本查询</h2>
+<div style="overflow-x:auto"><table id="topQueriesTable"><thead><tr>
+<th>#</th><th>查询</th><th>扫描量</th><th>耗时</th><th>用户</th>
+</tr></thead><tbody></tbody></table></div>
+</div>
+<div class="section">
+<h2>🗄️ 高消耗表排名</h2>
+<div style="overflow-x:auto"><table id="topTablesTable"><thead><tr>
+<th>表名</th><th>扫描量</th><th>查询次数</th>
+</tr></thead><tbody></tbody></table></div>
+</div>
+</div>
+<script>
+// Cost Optimization Report Template
+const COST_DATA = {
+  generated_at: new Date().toISOString(),
+  platform: 'bigquery',
+  summary: {total_queries:0,total_bytes_formatted:'0 B',avg_bytes_per_query:'0 B'},
+  cost_breakdown: {critical:0,high:0,medium:0,low:0},
+  findings: [],
+  top_cost_queries: [],
+  top_tables: []
+};
+
+function formatBytes(b){if(!b||b===0)return'0 B';let u=['B','KB','MB','GB','TB','PB'],i=0;while(b>=1024&&i<u.length-1){b/=1024;i++}return b.toFixed(2)+' '+u[i]}
+
+function render() {
+  document.getElementById('meta').textContent = '目标平台: ' + COST_DATA.platform + ' | 生成时间: ' + new Date(COST_DATA.generated_at).toLocaleString();
+  
+  const s = COST_DATA.summary;
+  document.getElementById('summaryCards').innerHTML = `
+    <div class="card"><div class="label">总查询数</div><div class="value">${(s.total_queries||0).toLocaleString()}<span class="unit"> 次</span></div></div>
+    <div class="card"><div class="label">总扫描量</div><div class="value">${s.total_bytes_formatted||'0 B'}</div></div>
+    <div class="card"><div class="label">平均每次查询</div><div class="value">${s.avg_bytes_per_query||'0 B'}</div></div>
+    <div class="card"><div class="label">优化建议</div><div class="value">${(COST_DATA.findings||[]).length}<span class="unit"> 项</span></div></div>
+  `;
+  
+  const cb = COST_DATA.cost_breakdown;
+  new Chart(document.getElementById('severityChart'),{
+    type:'doughnut',
+    data:{labels:['CRITICAL','HIGH','MEDIUM','LOW'],datasets:[{data:[cb.critical,cb.high,cb.medium,cb.low],backgroundColor:['#e74c3c','#f39c12','#3498db','#95a5a6'],borderWidth:0}]},
+    options:{plugins:{legend:{position:'bottom'}}}
+  });
+  
+  document.getElementById('severitySummary').innerHTML = `
+    <p>🔴 CRITICAL: <strong>${cb.critical}</strong> 项 — 需立即处理</p>
+    <p>🟠 HIGH: <strong>${cb.high}</strong> 项 — 本周内处理</p>
+    <p>🔵 MEDIUM: <strong>${cb.medium}</strong> 项 — 本月内优化</p>
+    <p>⚪ LOW: <strong>${cb.low}</strong> 项 — 可延后</p>
+  `;
+  
+  // Findings table
+  const ftb = document.querySelector('#findingsTable tbody');
+  (COST_DATA.findings||[]).slice(0,20).forEach(f => {
+    ftb.innerHTML += `<tr>
+      <td><strong>${f.rule_id}</strong> ${f.rule_name}</td>
+      <td><span class="badge ${f.severity}">${f.severity}</span></td>
+      <td>${formatBytes(f.bytes_processed)}</td>
+      <td style="font-size:12px">${f.fix}</td>
+      <td>${f.savings_estimate||'N/A'}</td>
+    </tr>`;
+  });
+  
+  // Top queries
+  const qtb = document.querySelector('#topQueriesTable tbody');
+  (COST_DATA.top_cost_queries||[]).forEach((q,i) => {
+    const text = (q.query||'').substring(0,120).replace(/</g,'&lt;');
+    qtb.innerHTML += `<tr><td>${i+1}</td><td style="font-size:11px;max-width:350px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${text}</td><td>${q.bytes_formatted||formatBytes(q.bytes_processed)}</td><td>${q.duration_sec||'-'}s</td><td>${q.user||'-'}</td></tr>`;
+  });
+  
+  // Top tables
+  const ttb = document.querySelector('#topTablesTable tbody');
+  (COST_DATA.top_tables||[]).forEach(t => {
+    ttb.innerHTML += `<tr><td>${t.table}</td><td>${t.bytes}</td><td>${t.queries}</td></tr>`;
+  });
+}
+
+render();
+</script>
+</body>
+</html>

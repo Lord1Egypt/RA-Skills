@@ -1,0 +1,7 @@
+interface:
+  display_name: "Budget Cash Flow Cleanup Helper"
+  short_description: "Helps with Households, freelancers, and small businesses need..."
+  default_prompt: "Use $budget-cash-flow-cleanup-helper to help me Households, freelancers, and small businesses need practical help importing bank or card exports, categorizing transacti."
+
+policy:
+  allow_implicit_invocation: true

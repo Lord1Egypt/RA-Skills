@@ -3,7 +3,7 @@
 > 技能主名：`find-community-help`
 > 展示名：`Find Community Help`
 > 历史名称：`agent-travel`
-> 版本：`0.3.5`
+> 版本：`0.3.6`
 > English: [README.md](README.md)
 
 `find-community-help` 用于 agent 已经卡住、没有新线索、开始循环，或者用户明确要求“找社区经验 / 看看别人有没有遇到 / 查成熟方案 / 寻求帮助”的场景。

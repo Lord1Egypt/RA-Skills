@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --primary: {{THEME_COLOR}};
+  --primary-light: {{THEME_COLOR}}15;
+  --bg: #f5f6fa;
+  --card-bg: #ffffff;
+  --text: #2c3e50;
+  --text-secondary: #7f8c8d;
+  --border: #e8ecf1;
+  --up-color: #e74c3c;
+  --down-color: #27ae60;
+  --tag-bg: #edf2f7;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+  --radius: 12px;
+  --transition: 0.2s ease;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, var(--primary), color-mix(in srgb, var(--primary) 70%, #000));
+  color: white;
+  padding: 32px 24px;
+  text-align: center;
+}
+.header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+.header .subtitle { font-size: 14px; opacity: 0.85; }
+.header .meta { font-size: 12px; opacity: 0.65; margin-top: 8px; }
+
+/* Container */
+.container { max-width: 1200px; margin: 0 auto; padding: 24px 16px; }
+
+/* Summary Cards */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.summary-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: transform var(--transition);
+}
+.summary-card:hover { transform: translateY(-2px); }
+.summary-card .label { font-size: 13px; color: var(--text-secondary); margin-bottom: 6px; }
+.summary-card .value { font-size: 28px; font-weight: 700; color: var(--primary); }
+.summary-card .change { font-size: 13px; margin-top: 4px; }
+.summary-card .change.up { color: var(--up-color); }
+.summary-card .change.down { color: var(--down-color); }
+
+/* Sections */
+.section {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+}
+.section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Data Table */
+.table-container { overflow-x: auto; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+thead th {
+  background: var(--primary-light);
+  color: var(--primary);
+  padding: 12px 14px;
+  text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  position: sticky;
+  top: 0;
+}
+thead th:hover { background: color-mix(in srgb, var(--primary) 25%, transparent); }
+tbody td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+}
+tbody tr { transition: background var(--transition); }
+tbody tr:hover { background: var(--primary-light); }
+.price-up { color: var(--up-color); font-weight: 600; }
+.price-down { color: var(--down-color); font-weight: 600; }
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--tag-bg);
+  font-size: 12px;
+  margin: 2px;
+}
+.tag.hot { background: #fdeaea; color: #c0392b; }
+.tag.good { background: #e8f8f5; color: #16a085; }
+.tag.info { background: #eaf2f8; color: #2980b9; }
+.bargain-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: white;
+}
+.bargain-S { background: #e74c3c; }
+.bargain-A { background: #e87400; }
+.bargain-B { background: #8e7cc3; }
+.bargain-C { background: #95a5a6; }
+
+/* Charts */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 20px;
+}
+.chart-container {
+  position: relative;
+  height: 350px;
+}
+.chart-container canvas { width: 100% !important; height: 100% !important; }
+
+/* Analysis */
+.analysis-content { font-size: 15px; line-height: 1.8; }
+.analysis-content h3 {
+  font-size: 16px;
+  margin: 16px 0 8px;
+  color: var(--primary);
+}
+.analysis-content ul { padding-left: 20px; margin: 8px 0; }
+.analysis-content li { margin-bottom: 4px; }
+
+/* Highlight Box */
+.highlight-box {
+  background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+  border-left: 4px solid #e87400;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin: 16px 0;
+}
+.highlight-box .hl-title { font-weight: 700; color: #e87400; margin-bottom: 4px; }
+.highlight-box .hl-desc { font-size: 14px; color: #795548; }
+
+/* Suggestions */
+.suggestion-list { display: flex; flex-direction: column; gap: 12px; }
+.suggestion-item {
+  display: flex;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--primary-light);
+  border-radius: 8px;
+  border-left: 3px solid var(--primary);
+}
+.suggestion-item .s-num {
+  width: 28px; height: 28px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.suggestion-item .s-text { font-size: 14px; }
+.suggestion-item .s-text strong { color: var(--primary); }
+
+/* Disclaimer */
+.disclaimer {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 12px;
+  padding: 20px;
+  margin-top: 20px;
+  line-height: 1.8;
+}
+.disclaimer strong { color: #e74c3c; }
+
+/* Filters */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.filter-input, .filter-select {
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color var(--transition);
+}
+.filter-input:focus, .filter-select:focus { border-color: var(--primary); }
+.filter-input { width: 200px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header { padding: 24px 16px; }
+  .header h1 { font-size: 22px; }
+  .container { padding: 16px 12px; }
+  .summary-cards { grid-template-columns: repeat(2, 1fr); }
+  .charts-grid { grid-template-columns: 1fr; }
+  .chart-container { height: 280px; }
+  table { font-size: 12px; }
+  thead th, tbody td { padding: 8px 10px; }
+}
+
+/* Print */
+@media print {
+  body { background: white; }
+  .section { box-shadow: none; break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>{{TITLE}}</h1>
+  <p class="subtitle">{{SUBTITLE}}</p>
+  <p class="meta">数据来源: {{SOURCES}} | 生成时间: {{TIMESTAMP}} | 数据仅供参考</p>
+</div>
+
+<div class="container">
+  <!-- 概览卡片 -->
+  <div class="summary-cards">{{SUMMARY_CARDS}}</div>
+
+  <!-- 数据表格 -->
+  <div class="section">
+    <div class="section-title">&#x1F3E0; 房源列表</div>
+    <div class="filters">
+      <input class="filter-input" placeholder="搜索关键词..." id="searchInput" oninput="filterTable()">
+      <select class="filter-select" id="layoutFilter" onchange="filterTable()">
+        <option value="">全部户型</option>
+      </select>
+      <select class="filter-select" id="priceSort" onchange="sortTable()">
+        <option value="">默认排序</option>
+        <option value="price-asc">总价 低→高</option>
+        <option value="price-desc">总价 高→低</option>
+        <option value="unit-asc">单价 低→高</option>
+        <option value="unit-desc">单价 高→低</option>
+        <option value="area-desc">面积 大→小</option>
+        <option value="area-asc">面积 小→大</option>
+      </select>
+    </div>
+    <div class="table-container">
+      <table id="dataTable">
+        {{DATA_TABLE}}
+      </table>
+      <div id="noData" style="display:none; text-align:center; padding:40px; color:var(--text-secondary);">
+        没有找到匹配的房源
+      </div>
+    </div>
+  </div>
+
+  <!-- 图表区域 -->
+  <div class="section">
+    <div class="section-title">&#x1F4CA; 数据可视化</div>
+    <div class="charts-grid">{{CHARTS_HTML}}</div>
+  </div>
+
+  <!-- 分析区域 -->
+  {{ANALYSIS_SECTION}}
+
+  <!-- 笋盘亮点 -->
+  {{BARGAIN_HIGHLIGHT}}
+
+  <!-- 行动建议 -->
+  <div class="section">
+    <div class="section-title">&#x1F4DD; 行动建议</div>
+    <div class="suggestion-list">{{SUGGESTIONS}}</div>
+  </div>
+
+  <!-- 免责声明 -->
+  <div class="disclaimer">{{DISCLAIMER}}</div>
+</div>
+
+<script>
+{{CHARTS_JS}}
+
+/* Table filtering & sorting */
+function filterTable() {
+  const search = (document.getElementById('searchInput').value || '').toLowerCase();
+  const layout = document.getElementById('layoutFilter').value;
+  const rows = document.querySelectorAll('#dataTable tbody tr');
+  let visible = 0;
+  rows.forEach(row => {
+    const text = row.textContent.toLowerCase();
+    const rowLayout = row.dataset.layout || '';
+    const match = (!search || text.includes(search)) && (!layout || rowLayout.includes(layout));
+    row.style.display = match ? '' : 'none';
+    if (match) visible++;
+  });
+  document.getElementById('noData').style.display = visible === 0 ? '' : 'none';
+}
+
+function sortTable() {
+  const sortBy = document.getElementById('priceSort').value;
+  if (!sortBy) return;
+  const tbody = document.querySelector('#dataTable tbody');
+  const rows = Array.from(tbody.querySelectorAll('tr'));
+  rows.sort((a, b) => {
+    let va, vb;
+    if (sortBy === 'price-asc' || sortBy === 'price-desc') {
+      va = parseFloat(a.dataset.price) || 0;
+      vb = parseFloat(b.dataset.price) || 0;
+    } else if (sortBy === 'unit-asc' || sortBy === 'unit-desc') {
+      va = parseFloat(a.dataset.unitPrice) || 0;
+      vb = parseFloat(b.dataset.unitPrice) || 0;
+    } else if (sortBy === 'area-desc' || sortBy === 'area-asc') {
+      va = parseFloat(a.dataset.area) || 0;
+      vb = parseFloat(b.dataset.area) || 0;
+    }
+    const ascending = sortBy.includes('asc');
+    return ascending ? va - vb : vb - va;
+  });
+  rows.forEach(row => tbody.appendChild(row));
+}
+
+/* Populate layout filter options */
+(function() {
+  const layouts = new Set();
+  document.querySelectorAll('#dataTable tbody tr').forEach(row => {
+    const l = row.dataset.layout;
+    if (l) layouts.add(l);
+  });
+  const sel = document.getElementById('layoutFilter');
+  Array.from(layouts).sort().forEach(l => {
+    const opt = document.createElement('option');
+    opt.value = l; opt.textContent = l;
+    sel.appendChild(opt);
+  });
+})();
+</script>
+</body>
+</html>

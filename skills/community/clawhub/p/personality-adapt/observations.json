@@ -1,0 +1,92 @@
+[
+  {
+    "key": "interests:interested in AI agent tech",
+    "category": "interests",
+    "observation": "interested in AI agent tech",
+    "evidence": "\u2705 **intelligent-budget-tracker** skill installed!",
+    "source": "2026-06-12-2201.md",
+    "date": "2026-06-12",
+    "speaker": "assistant"
+  },
+  {
+    "key": "prioritization:sequential prioritization",
+    "category": "prioritization",
+    "observation": "sequential prioritization",
+    "evidence": "Yes, Let me start with my eternal debts (ksh)",
+    "source": "2026-06-12-2201.md",
+    "date": "2026-06-12",
+    "speaker": "user"
+  },
+  {
+    "key": "values:values privacy/local-first",
+    "category": "values",
+    "observation": "values privacy/local-first",
+    "evidence": "Want me to clone the budget_bot repo as well for local development? \u2694\ufe0f",
+    "source": "2026-06-13-1757.md",
+    "date": "2026-06-13",
+    "speaker": "assistant"
+  },
+  {
+    "key": "interests:interested in JS ecosystem",
+    "category": "interests",
+    "observation": "interested in JS ecosystem",
+    "evidence": "Good, I've now read the entire repo \u2014 the README, package.json, both TypeScript scripts, the SKILL.m",
+    "source": "2026-06-13-1836.md",
+    "date": "2026-06-13",
+    "speaker": "assistant"
+  },
+  {
+    "key": "emotional_state:positive/enthusiastic",
+    "category": "emotional_state",
+    "observation": "positive/enthusiastic",
+    "evidence": "Your work for now is high level - you are an architect not a builder. So generally you help me come ",
+    "source": "2026-06-13-1836.md",
+    "date": "2026-06-13",
+    "speaker": "user"
+  },
+  {
+    "key": "interests:interested in APIs/integrations",
+    "category": "interests",
+    "observation": "interested in APIs/integrations",
+    "evidence": "Which of these excite you? I can go deeper on any of them \u2014 user flows, technical architecture, API ",
+    "source": "2026-06-13-1836.md",
+    "date": "2026-06-13",
+    "speaker": "assistant"
+  },
+  {
+    "key": "interests:interested in automation",
+    "category": "interests",
+    "observation": "interested in automation",
+    "evidence": "Runs the export script \u2192 generates a PDF at `~/daily-devotion-exports/week-2026-06-13.pdf`",
+    "source": "2026-06-13-1836.md",
+    "date": "2026-06-13",
+    "speaker": "user"
+  },
+  {
+    "key": "values:values simplicity",
+    "category": "values",
+    "observation": "values simplicity",
+    "evidence": "| Streak logic | Walk backwards from today, gap > 1 day = reset | Simple, predictable, handles edge ",
+    "source": "2026-06-13-1836.md",
+    "date": "2026-06-13",
+    "speaker": "user"
+  },
+  {
+    "key": "decision_making:action-oriented",
+    "category": "decision_making",
+    "observation": "action-oriented",
+    "evidence": "Let's start with streaks, how will you be able to identify them - Example - I use telegram, how will",
+    "source": "2026-06-13-1836.md",
+    "date": "2026-06-13",
+    "speaker": "user"
+  },
+  {
+    "key": "emotional_state:curiosity",
+    "category": "emotional_state",
+    "observation": "curiosity",
+    "evidence": "Does this framing work for you? Or do you want to explore a different philosophical approach to what",
+    "source": "2026-06-13-1836.md",
+    "date": "2026-06-13",
+    "speaker": "assistant"
+  }
+]

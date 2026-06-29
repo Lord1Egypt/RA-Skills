@@ -18,6 +18,52 @@
 
 问答卡用于在直播过程中发起答题互动。
 
+### qa add-edit - 新建或编辑问答卡
+
+新建或编辑频道答题卡。后端接口语义是：省略 `--question-id` 新建答题卡；传入 `--question-id` 编辑已有答题卡。
+
+```bash
+<CLI> qa add-edit -c <频道ID> --name <标题> --type R --item-type 0 \
+  --option <选项A> --option <选项B> --answer A [选项]
+```
+
+#### 必需选项
+
+| 选项 | 说明 |
+|------|------|
+| `-c, --channel-id <id>` | 频道 ID |
+| `--type <type>` | 题型：R（单选）、C（多选）、S（评分）、V（投票） |
+| `--answer <answer>` | 正确答案 |
+| `--name <name>` | 问答卡标题 |
+| `--item-type <number>` | 类型：0 答题卡，1 问答 |
+
+#### 可选选项
+
+| 选项 | 说明 |
+|------|------|
+| `--question-id <id>` | 问答卡 ID；省略表示新建，传入表示编辑 |
+| `--option <value...>` | 选项值，可重复提供 |
+| `--tip <value...>` | 答案说明，可重复提供 |
+| `-f, --force` | 跳过写入确认 |
+| `-o, --output <格式>` | 输出格式：table（默认）或 json |
+
+#### 示例
+
+```bash
+# 新建单选答题卡
+<CLI> qa add-edit -c <频道ID> \
+  --name "新品首发到手价是多少？" --type R --item-type 0 \
+  --option "299元" --option "399元" --answer A \
+  --tip "正确答案是299元" -f -o json
+
+# 编辑已有答题卡
+<CLI> qa add-edit -c <频道ID> --question-id gv0uf9s5v7 \
+  --name "新品首发到手价是多少？" --type R --item-type 0 \
+  --option "299元" --option "399元" --answer A -f -o json
+```
+
+> 注意：从 `polyv-live-cli@latest` 1.2.33 起，省略 `--question-id` 可新建答题卡；传入 `--question-id` 表示编辑已有答题卡。
+
 ### qa send - 发送问答卡
 
 向指定频道发送一个问答卡（答题卡）。
@@ -220,10 +266,61 @@
 
 ### questionnaire list - 查询问卷列表
 
-分页查询频道的问卷列表。
+查询频道的问卷列表。
 
 ```bash
 <CLI> questionnaire list -c <频道ID> [选项]
+```
+
+#### 必需选项
+
+| 选项 | 说明 |
+|------|------|
+| `-c, --channel-id <id>` | 频道 ID |
+
+#### 可选选项
+
+| 选项 | 说明 |
+|------|------|
+| `--page <数字>` | 页码（默认 1） |
+| `--size <数字>` | 每页数量（默认 20） |
+| `--start-time <时间戳>` | 开始时间戳 |
+| `--end-time <时间戳>` | 结束时间戳 |
+| `-o, --output <格式>` | 输出格式：table（默认）或 json |
+
+#### 示例
+
+```bash
+# 查询问卷列表
+<CLI> questionnaire list -c <频道ID>
+
+# 分页查询
+<CLI> questionnaire list -c <频道ID> --page 1 --size 20
+
+# 按时间戳范围筛选
+<CLI> questionnaire list -c <频道ID> --start-time 1704067200000 --end-time 1706745599000
+
+# JSON 格式输出
+<CLI> questionnaire list -c <频道ID> -o json
+```
+
+#### 表格输出字段
+
+| 字段 | 说明 |
+|------|------|
+| Questionnaire ID | 问卷 ID |
+| Title | 问卷标题 |
+| Last Modified | 最后修改时间 |
+| Users | 答题人数 |
+
+---
+
+### questionnaire result-list - 分页查询问卷结果
+
+分页查询频道的问卷答题结果。
+
+```bash
+<CLI> questionnaire result-list -c <频道ID> [选项]
 ```
 
 #### 必需选项
@@ -248,30 +345,21 @@
 #### 示例
 
 ```bash
-# 查询问卷列表
-<CLI> questionnaire list -c <频道ID>
+# 查询问卷结果
+<CLI> questionnaire result-list -c <频道ID>
 
 # 分页查询
-<CLI> questionnaire list -c <频道ID> --page 1 --size 20
+<CLI> questionnaire result-list -c <频道ID> --page 1 --size 20
 
 # 按场次筛选
-<CLI> questionnaire list -c <频道ID> --session-id fwly13xczv
+<CLI> questionnaire result-list -c <频道ID> --session-id fwly13xczv
 
 # 按日期范围筛选
-<CLI> questionnaire list -c <频道ID> --start-date 2024-01-01 --end-date 2024-01-31
+<CLI> questionnaire result-list -c <频道ID> --start-date 2024-01-01 --end-date 2024-01-31
 
 # JSON 格式输出
-<CLI> questionnaire list -c <频道ID> -o json
+<CLI> questionnaire result-list -c <频道ID> -o json
 ```
-
-#### 表格输出字段
-
-| 字段 | 说明 |
-|------|------|
-| Questionnaire ID | 问卷 ID |
-| Title | 问卷标题 |
-| Last Modified | 最后修改时间 |
-| Users | 答题人数 |
 
 ---
 
@@ -353,11 +441,11 @@
 ### 3. 查看直播场次问卷统计
 
 ```bash
-# 按场次查询问卷
-<CLI> questionnaire list -c <频道ID> --session-id <场次ID>
+# 按场次查询问卷结果
+<CLI> questionnaire result-list -c <频道ID> --session-id <场次ID>
 
 # 导出为 JSON 便于分析
-<CLI> questionnaire list -c <频道ID> --session-id <场次ID> -o json > survey_results.json
+<CLI> questionnaire result-list -c <频道ID> --session-id <场次ID> -o json > survey_results.json
 ```
 
 ---
@@ -367,7 +455,7 @@
 | 错误信息 | 原因 | 解决方案 |
 |---------|------|---------|
 | `channelId is required` | 未指定频道 ID | 使用 `-c` 参数指定频道 |
-| `questionId is required` | 未指定问答卡 ID | 使用 `--question-id` 参数 |
+| `questionId is required` | 发送、停止、删除、发布结果或编辑已有问答卡时未指定问答卡 ID；新建问答卡应省略该参数 | 对已有问答卡操作时使用 `--question-id` 参数 |
 | `questionnaireId is required` | 未指定问卷 ID | 使用 `--questionnaire-id` 参数 |
 | `title is required` | 未指定问卷标题 | 使用 `--title` 参数 |
 | `questions is required` | 未提供题目数组 | 使用 `--questions` 参数 |

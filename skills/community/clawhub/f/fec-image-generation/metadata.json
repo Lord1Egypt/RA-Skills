@@ -1,0 +1,93 @@
+{
+  "id": "fec-image-generation",
+  "name": "Image generation and chart workflow",
+  "category": "design-ui",
+  "tags": [
+    "image-generation",
+    "image-editing",
+    "diagram-generation",
+    "html-diagram",
+    "png-qa",
+    "visual-assets",
+    "infographic",
+    "mockup",
+    "autofix"
+  ],
+  "summary": "Image and diagram generation workflow for deterministic diagrams, themed HTML/SVG technical diagrams, raster visual assets, image edits, and bounded PNG QA repair loops.",
+  "version": "2.8.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "design-ui",
+    "image-generation",
+    "image-editing",
+    "diagram-generation",
+    "html-diagram",
+    "png-qa",
+    "visual-assets",
+    "infographic",
+    "mockup",
+    "autofix",
+    "er-diagram",
+    "uml",
+    "sequence-diagram",
+    "architecture-diagram",
+    "workflow-diagram",
+    "data-flow",
+    "lifecycle-diagram",
+    "state-machine",
+    "poster",
+    "storyboard",
+    "brand-board"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when generating or editing diagrams, charts, visual assets, posters, UI mockups, product images, infographics, academic figures, comics, avatars, storyboards, brand boards, or image-edit workflows, especially when exported PNGs need visual QA and bounded self-repair. Prefer deterministic Mermaid/SVG/HTML/canvas sources for text-heavy diagrams; use HTML technical diagrams for browser-ready system blueprints, architecture, deployment topology, agent runtime, memory flow, before-after architecture, workflow, sequence, data-flow, lifecycle, runbook, PII/data-lineage, and state-machine diagrams. Do not use for ordinary UI polish without generated imagery.",
+  "source": "skills/fec-image-generation",
+  "references": [
+    "assets/interactive-diagram.html",
+    "references/artifact-routing.md",
+    "references/diagram-workflows.md",
+    "references/html-technical-diagrams.md",
+    "references/png-qa-autofix.md",
+    "scripts/export-diagram.mjs",
+    "scripts/interactive-diagram-server.mjs",
+    "scripts/tech-diagram-render.mjs"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-ui-design",
+      "fec-implement-from-design",
+      "fec-canvas-threejs",
+      "fec-svg-animation",
+      "fec-responsive-layout",
+      "fec-accessibility-check",
+      "fec-web-video-presentation"
+    ],
+    "boundaryWorkflows": [
+      "Use UI design for product-specific visual direction, brand tone, hierarchy, and visual QA of generated assets.",
+      "Use implementation-from-design when a Figma, Sketch, MasterGo, Pixso, screenshot, or other external design source is authoritative.",
+      "Use the HTML technical diagram route for browser-ready themed workflow, sequence, data-flow, lifecycle, runbook, PII/data-lineage, and state-machine diagrams.",
+      "Use draw.io studio instead when the priority is editable .drawio source, official shape lookup, or manual diagrams.net editing.",
+      "Use Canvas/Three.js or SVG animation workflows when the generated visual becomes an interactive renderer, shader, or motion asset rather than a static image."
+    ],
+    "capabilityTags": [
+      "image-generation",
+      "image-editing",
+      "diagram-generation",
+      "html-diagram",
+      "png-qa",
+      "visual-assets",
+      "autofix"
+    ]
+  }
+}

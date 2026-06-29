@@ -1,0 +1,21 @@
+{
+  "name": "wuyun-lingming",
+  "displayName": "五运灵名",
+  "version": "8.0.0",
+  "description": "基于中医五运六气与八字命理、三才五格、紫微斗数、易经八卦五维合参，为新生儿提供专业起名方案；内置20+凶名慎用字自动规避，五行补泄、音韵寓意搭配",
+  "author": "dadedawei",
+  "license": "MIT-0",
+  "pricing": {
+    "model": "subscription",
+    "price": 1900,
+    "interval": "monthly"
+  },
+  "tags": [
+    "traditional-chinese-medicine",
+    "bazi",
+    "naming",
+    "five-elements",
+    "wuyun-liuqi"
+  ],
+  "repository": ""
+}

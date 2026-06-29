@@ -118,7 +118,7 @@ def main():
     if args.limit is not None:
         params["limit"] = args.limit
 
-    path = "/data/api/v1/market/data/hk/hk-candlesticks"
+    path = "/gateway/api/v1/market/data/hk/hk-candlesticks"
     url = BASE_URL + path + "?" + urllib.parse.urlencode(params)
 
     req = urllib.request.Request(url, method="GET")

@@ -1,0 +1,559 @@
+{
+  "version": 2,
+  "id": "example-rag-eval-tooling-xlsx-20260616",
+  "title": "Example: RAG evaluation tooling matrix",
+  "goal": "Research current RAG and LLM application evaluation tooling and produce a public-safe decision matrix that helps an engineering team choose an evaluation stack for a production RAG project. Compare open-source and commercially relevant tools only through publicly verifiable sources, with practical trade-offs, integration notes, and evidence links.",
+  "status": "awaiting_review",
+  "phase": "finalize",
+  "created_at": "2026-06-16T11:56:39Z",
+  "updated_at": "2026-06-16T13:56:41Z",
+  "owner": {
+    "channel": null,
+    "chat_id": null,
+    "thread_id": null,
+    "topic_id": null,
+    "disabled_reason": "owner_disabled:explicit"
+  },
+  "job": {
+    "job_id": null,
+    "mode": null,
+    "tick_every_min": "5m",
+    "enabled": null,
+    "suspended_reason": null,
+    "suspended_at": null,
+    "schedule_template": {
+      "mode": "recurring",
+      "tick_every_min": "5m",
+      "name": "research-example-rag-eval-xlsx-20260616",
+      "thinking": "xhigh",
+      "agent": null,
+      "model": null,
+      "light_context": false,
+      "timeout_seconds": 600
+    },
+    "last_removed_job_id": "<uuid>",
+    "last_removed_payload": {
+      "redacted": true,
+      "reason": "Cron worker prompt omitted from the public example trace."
+    }
+  },
+  "budget": {
+    "depth": "L",
+    "max_iterations": 10,
+    "max_runtime_min": 240,
+    "max_sources": 30
+  },
+  "progress": {
+    "iteration_count": 9,
+    "meaningful_iterations": 9,
+    "last_attempt_at": "2026-06-16T13:53:25Z",
+    "last_iteration_at": "2026-06-16T13:56:04Z",
+    "last_meaningful_progress_at": "2026-06-16T13:56:04Z"
+  },
+  "analysis": {
+    "last_iteration_code_used": true,
+    "code_used_recently": true,
+    "last_code_run_at": "2026-06-16T13:56:04Z",
+    "last_packages_used": [
+      "python-stdlib"
+    ],
+    "last_analysis_artifacts": [
+      {
+        "path": "workspace/analysis/finalize_iteration_009.py",
+        "kind": "script",
+        "note": "Final recipient-style package inspection and result writer."
+      },
+      {
+        "path": "workspace/analysis/finalization-review-iteration-009.json",
+        "kind": "artifact",
+        "note": "Structured finalization review with file, safety, and workbook compatibility checks."
+      },
+      {
+        "path": "workspace/analysis/package-verification-iteration-008.json",
+        "kind": "artifact",
+        "note": "Independent prior package verification used as supporting evidence."
+      }
+    ],
+    "analysis_artifacts_count": 3,
+    "last_iteration_database_used": false,
+    "database_used_recently": false,
+    "last_database_run_at": null,
+    "last_database_artifacts": [],
+    "last_database_summary": null,
+    "last_iteration_vision_used": false,
+    "vision_used_recently": false,
+    "last_vision_run_at": null,
+    "last_vision_artifacts": [],
+    "last_vision_summary": null
+  },
+  "lock": {
+    "status": "free",
+    "run_id": null,
+    "lease_token": null,
+    "started_at": null,
+    "iteration_index": null,
+    "stale_timeout_min": 30,
+    "recovered_count": 1,
+    "last_recovered_from_run": "<run-id>"
+  },
+  "working_memory": {
+    "summary": "Finalized the review-ready RAG evaluation tooling matrix package as a single candidate artifact; recipient inspection found the expected files, public-safe markdown, and a valid Excel workbook with the requested sheets, tables, and formulas.",
+    "next_angle": "Complete this research run; only human review or copying into the public repository remains.",
+    "open_questions": [
+      "Evidently managed SaaS availability remains an intentional procurement caveat because official evidence is conflicting.",
+      "Some vendor governance controls are supported by public vendor pages rather than deep implementation docs."
+    ],
+    "constraints": [
+      "No private workspace paths, chat-system identifiers, personal memories, tokens, or local-only tool names in final example files.",
+      "The final XLSX should be useful but compact; do not scrape or include personal/contact data."
+    ],
+    "deliverable": "A review-ready example package suitable for copying into the public repo under examples/rag-eval-tooling-matrix/: README.md, final-report.md, sources.md, and a non-trivial XLSX workbook. The workbook should include sheets such as Summary, Tool Matrix, Scoring, Evidence/Sources, Exclusions or Caveats, and Methodology. It must be Excel-compatible and validated before finalization.",
+    "contract": null,
+    "user_instructions": [
+      "Write all user-facing example materials in English for the public repository.",
+      "Use current public sources and prefer official documentation, GitHub repositories, release docs, and vendor docs over blog summaries.",
+      "For the XLSX workbook, avoid overlapping worksheet autoFilter and Excel Table ranges; validate workbook compatibility before marking finalization passed."
+    ]
+  },
+  "corpus": {
+    "mode": "web",
+    "entries": [],
+    "updated_at": "2026-06-16T11:56:39Z"
+  },
+  "control": {
+    "pause_requested": false,
+    "stop_requested": false
+  },
+  "delivery": {
+    "update_policy": "milestone",
+    "milestone_every_iterations": 2,
+    "last_update_at": null,
+    "sent_updates": 0,
+    "primary_file": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix/README.md",
+    "attachments": [
+      "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix/final-report.md",
+      "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix/validation-report.md",
+      "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix/sources.md",
+      "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix/rag-eval-tooling-matrix.xlsx",
+      "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix/README.md"
+    ],
+    "summary_text": null,
+    "channel_strategy": null,
+    "review_ready": true,
+    "ready": false,
+    "package_path": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix",
+    "notification_blocked": "notification_blocked:missing_owner"
+  },
+  "delivery_intents": [
+    {
+      "id": "<delivery-intent-id>",
+      "status": "blocked",
+      "run_id": "<run-id>",
+      "transition": "finish:awaiting_review",
+      "created_at": "2026-06-16T13:56:05Z",
+      "updated_at": "2026-06-16T13:56:05Z",
+      "notification_target": {
+        "channel": null,
+        "chat_id": null,
+        "thread_id": null,
+        "topic_id": null
+      },
+      "update_text": "Исследование «Example: RAG evaluation tooling matrix» готово к ревью.\nИтог: Finalized the review-ready RAG evaluation tooling matrix package as a single candidate artifact; recipient inspection found the expected files, public-safe markdown, and a valid Excel workbook with the requested sheets, tables, and formulas.\nКлючевое:\n- The package is best exposed as one final package candidate rather than separate raw files.\n- The workbook contains the requested sheets and 60 formula cells, with no worksheet-level autoFilter/table overlap detected.\n- Evidently managed SaaS availability is carried as a visible caveat for procurement use.",
+      "primary_file": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix/README.md",
+      "attachments": [
+        "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix/final-report.md",
+        "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix/validation-report.md",
+        "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix/sources.md",
+        "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix/rag-eval-tooling-matrix.xlsx",
+        "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix/README.md"
+      ],
+      "blocked_reason": "notification_blocked:missing_owner",
+      "error": null
+    }
+  ],
+  "queue": {
+    "status": "free",
+    "waiting_since": null,
+    "position": null,
+    "blocked_by_task_id": null,
+    "blocked_by_run_id": null,
+    "active_task_id": null,
+    "active_run_id": null,
+    "last_acquired_at": "2026-06-16T13:53:25Z",
+    "last_released_at": "2026-06-16T13:56:04Z"
+  },
+  "saturation": {
+    "consecutive_low_yield": 0,
+    "low_yield_threshold": 2,
+    "last_iteration_new_sources": 0,
+    "last_iteration_new_findings": 3,
+    "last_iteration_duplicate_sources": 0,
+    "last_iteration_duplicate_findings": 0,
+    "last_low_yield_at": null,
+    "topic_saturated": false
+  },
+  "adequacy": {
+    "status": "passed",
+    "max_attempts": 2,
+    "attempt_count": 2,
+    "last_checked_at": "2026-06-16T13:48:39Z",
+    "last_checked_by": "<run-id>",
+    "goal_alignment": "The generated package answers the goal: it provides a public-safe decision matrix for production RAG evaluation tooling, with practical trade-offs, integration notes, evidence links, and an Excel workbook.",
+    "coverage_summary": "Covered the requested public markdown files, XLSX workbook shape, public-source evidence index, scoring/methodology/caveat surfaces, and workbook compatibility constraint. No additional web search is needed before finalization.",
+    "covered_requirements": [
+      {
+        "requirement": "Public repository example package with README.md, final-report.md, sources.md, validation-report.md, and a non-trivial XLSX workbook.",
+        "evidence": "Verification found exactly those five files in workspace/outputs/rag-eval-tooling-matrix."
+      },
+      {
+        "requirement": "Workbook includes Summary, Tool Matrix, Scoring, Evidence/Sources, Exclusions or Caveats, and Methodology.",
+        "evidence": "XLSX inspection found sheets named Summary, Tool Matrix, Scoring, Evidence Sources, Exclusions Caveats, and Methodology."
+      },
+      {
+        "requirement": "Workbook is non-trivial and Excel-compatible.",
+        "evidence": "The workbook is a valid XLSX zip archive with seven Excel table definitions and 60 formula cells."
+      },
+      {
+        "requirement": "Avoid overlapping worksheet autoFilter and Excel Table ranges.",
+        "evidence": "The verifier found no worksheet-level autoFilter ranges and no table/filter overlap issues."
+      },
+      {
+        "requirement": "No private workspace paths, messaging identifiers, personal memories, tokens, or local-only tool names in final example files.",
+        "evidence": "A markdown and workbook XML public-safety scan found no matches for the configured private/internal markers."
+      },
+      {
+        "requirement": "Use current public sources and prefer official docs, GitHub repositories, release docs, and vendor docs.",
+        "evidence": "The package includes 30 public evidence entries in sources.md, primarily official documentation, vendor docs, and GitHub repositories."
+      },
+      {
+        "requirement": "Represent unresolved Evidently managed SaaS availability honestly.",
+        "evidence": "final-report.md and sources.md explicitly mark the Evidently SaaS status as conflicting official documentation / vendor confirmation required."
+      }
+    ],
+    "coverage_gaps": [],
+    "evidence_risks": [
+      {
+        "risk": "Some vendor governance controls are supported by public vendor pages rather than deep implementation docs.",
+        "severity": "minor"
+      },
+      {
+        "risk": "Evidently managed SaaS availability has conflicting official documentation and still requires vendor confirmation for procurement use.",
+        "severity": "minor"
+      }
+    ],
+    "contradictions": [
+      {
+        "contradiction": "Evidently official documentation contains conflicting SaaS availability statements; the package records this as an explicit caveat rather than resolving it.",
+        "severity": "minor"
+      }
+    ],
+    "recommended_next_phase": "finalize",
+    "recommended_next_angle": "Package workspace/outputs/rag-eval-tooling-matrix as the single reviewable candidate artifact and record finalization trace.",
+    "blocking_reasons": [],
+    "validation_evidence": [
+      {
+        "check": "goal_alignment",
+        "result": "passed",
+        "reason": "The package is a decision matrix for current RAG and LLM application evaluation tooling and includes public evidence and practical trade-offs."
+      },
+      {
+        "check": "explicit_constraints",
+        "result": "passed",
+        "reason": "No configured private/internal markers were found in markdown or workbook XML, and no contact/personal data was included."
+      },
+      {
+        "check": "requested_deliverable",
+        "result": "passed",
+        "reason": "All requested package files exist and the workbook includes the requested sheets."
+      },
+      {
+        "check": "workbook_compatibility",
+        "result": "passed",
+        "reason": "The workbook is a valid XLSX package with Excel tables, formulas, expected sheets, and no worksheet autoFilter/table overlap."
+      },
+      {
+        "check": "source_diversity",
+        "result": "passed",
+        "reason": "The source index contains 30 public evidence entries from official docs, vendor docs, and GitHub repositories."
+      },
+      {
+        "check": "next_phase_decision",
+        "result": "passed",
+        "reason": "Remaining work is finalization packaging, not more research or synthesis."
+      }
+    ],
+    "operator_next_action": null
+  },
+  "errors": {
+    "failure_count": 1,
+    "consecutive_failures": 0,
+    "failure_threshold": 3,
+    "last_error": null
+  },
+  "artifacts": {
+    "task_dir": "<research-root>/example-rag-eval-tooling-xlsx-20260616",
+    "state_path": "<research-root>/example-rag-eval-tooling-xlsx-20260616/state.json",
+    "sources_path": "<research-root>/example-rag-eval-tooling-xlsx-20260616/sources.jsonl",
+    "findings_path": "<research-root>/example-rag-eval-tooling-xlsx-20260616/findings.jsonl",
+    "iterations_dir": "<research-root>/example-rag-eval-tooling-xlsx-20260616/iterations",
+    "input_dir": "<research-root>/example-rag-eval-tooling-xlsx-20260616/input",
+    "corpus_dir": "<research-root>/example-rag-eval-tooling-xlsx-20260616/input/corpus",
+    "corpus_manifest_path": "<research-root>/example-rag-eval-tooling-xlsx-20260616/input/corpus-manifest.json",
+    "workspace_dir": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace",
+    "workspace_analysis_dir": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/analysis",
+    "workspace_tools_dir": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/tools",
+    "workspace_data_dir": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/data",
+    "workspace_outputs_dir": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs",
+    "workspace_tmp_dir": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/tmp",
+    "workspace_screenshots_dir": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/screenshots",
+    "workspace_vision_dir": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/vision",
+    "sqlite_db_path": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/data/analysis.sqlite",
+    "sqlite_schema_path": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/analysis/schema.sql",
+    "sqlite_queries_dir": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/analysis/queries",
+    "sqlite_imports_dir": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/analysis/imports",
+    "runtime_dir": "<research-root>/example-rag-eval-tooling-xlsx-20260616/.runtime",
+    "venv_dir": "<research-root>/example-rag-eval-tooling-xlsx-20260616/.runtime/venv",
+    "runtime_meta_path": "<research-root>/example-rag-eval-tooling-xlsx-20260616/.runtime/runtime.json",
+    "task_playbook_path": "<research-root>/example-rag-eval-tooling-xlsx-20260616/task-playbook.md",
+    "runs_path": "<research-root>/example-rag-eval-tooling-xlsx-20260616/runs.tsv",
+    "final_report_path": null,
+    "last_recovery_note_path": null,
+    "abandoned_run_id": "<run-id>",
+    "abandoned_at": "2026-06-16T13:39:43Z"
+  },
+  "history": {
+    "last_transition": "clear-bound-job",
+    "last_reason": "awaiting_review:passed-validation",
+    "last_terminal_reason": null,
+    "audit_trail": [
+      {
+        "at": "2026-06-16T13:39:43Z",
+        "event": "run_abandoned",
+        "run_id": "<run-id>",
+        "iteration": 7,
+        "reason": "no_result_file"
+      }
+    ],
+    "last_job_binding": {
+      "job_id": "<uuid>",
+      "mode": "recurring",
+      "tick_every_min": "5m",
+      "enabled": false,
+      "suspended_reason": "awaiting_review",
+      "suspended_at": "2026-06-16T13:56:04Z",
+      "schedule_template": {
+        "mode": "recurring",
+        "tick_every_min": "5m",
+        "name": "research-example-rag-eval-xlsx-20260616",
+        "thinking": "xhigh",
+        "agent": null,
+        "model": null,
+        "light_context": false,
+        "timeout_seconds": 600
+      }
+    }
+  },
+  "review": {
+    "status": "pending",
+    "revision_count": 0,
+    "last_feedback": null,
+    "last_feedback_at": null,
+    "history": [],
+    "last_reviewed_at": null,
+    "approved_artifact_path": null,
+    "review_gated": true
+  },
+  "finalization": {
+    "status": "passed",
+    "max_attempts": 3,
+    "attempt_count": 1,
+    "inferred_user_need": "A public repository example package that demonstrates a useful RAG evaluation tooling decision matrix, including a non-trivial Excel workbook and traceable public evidence.",
+    "intended_recipient": "Engineering team reviewing a production RAG evaluation stack example for a public repository.",
+    "primary_deliverable_kind": "package",
+    "internal_artifacts": [
+      {
+        "path": "workspace/analysis/package-generation-summary.json",
+        "kind": "generation_summary",
+        "note": "Confirms generated workbook/report row counts and validation messages."
+      },
+      {
+        "path": "workspace/analysis/package-verification-iteration-008.json",
+        "kind": "verification",
+        "note": "Prior independent verification of package structure and XLSX internals."
+      },
+      {
+        "path": "workspace/analysis/finalization-review-iteration-009.json",
+        "kind": "finalization_review",
+        "note": "Final recipient-style inspection performed in this iteration."
+      }
+    ],
+    "candidate_artifacts": [
+      {
+        "path": "workspace/outputs/rag-eval-tooling-matrix",
+        "kind": "final_package",
+        "note": "Single review-ready package candidate for examples/rag-eval-tooling-matrix/."
+      }
+    ],
+    "blocking_defects": [],
+    "nonblocking_defects": [],
+    "revisions": [
+      {
+        "revision": "No content changes were needed in finalization; package passed recipient inspection.",
+        "evidence": "workspace/analysis/finalization-review-iteration-009.json"
+      }
+    ],
+    "validation_evidence": [
+      {
+        "check": "candidate_package",
+        "result": "passed",
+        "reason": "Required README, final report, sources index, workbook, and validation report are present."
+      },
+      {
+        "check": "public_safety_scan",
+        "result": "passed",
+        "reason": "Markdown files contain no private workspace paths, messaging identifiers, or obvious token markers."
+      },
+      {
+        "check": "workbook_public_safety_scan",
+        "result": "passed",
+        "reason": "Workbook shared strings contain no private workspace paths, messaging identifiers, or obvious token markers."
+      },
+      {
+        "check": "workbook_structure",
+        "result": "passed",
+        "reason": "Workbook has Summary, Tool Matrix, Scoring, Evidence Sources, Exclusions Caveats, and Methodology sheets."
+      },
+      {
+        "check": "excel_compatibility",
+        "result": "passed",
+        "reason": "Workbook is a valid XLSX archive, has Excel tables and formulas, and no worksheet-level autoFilter/table overlap."
+      }
+    ],
+    "last_validation_findings": [
+      {
+        "check": "finalization_trace",
+        "passed": true,
+        "reasons": [],
+        "status": "passed",
+        "primary_deliverable_kind": "package",
+        "candidate_artifacts_count": 1,
+        "validation_evidence_count": 5,
+        "blocking_defects_count": 0
+      },
+      {
+        "check": "candidate_artifact_inspection",
+        "passed": true,
+        "reasons": [],
+        "artifacts": [
+          {
+            "path": "workspace/outputs/rag-eval-tooling-matrix",
+            "kind": "final_package",
+            "exists": true,
+            "inside_task": true,
+            "is_file": false,
+            "is_directory": true,
+            "package_path": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix",
+            "entrypoint_path": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix/README.md",
+            "attachments": [
+              "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix/final-report.md",
+              "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix/validation-report.md",
+              "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix/sources.md",
+              "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix/rag-eval-tooling-matrix.xlsx",
+              "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix/README.md"
+            ],
+            "file_count": 5,
+            "format": "package",
+            "reasons": []
+          }
+        ],
+        "mode": "candidate_artifacts"
+      },
+      {
+        "check": "package_deliverable_quality",
+        "passed": true,
+        "reasons": []
+      },
+      {
+        "check": "draft_artifacts",
+        "passed": true,
+        "reasons": []
+      },
+      {
+        "check": "human_readiness",
+        "passed": true,
+        "reasons": []
+      },
+      {
+        "check": "naming_hygiene",
+        "passed": true,
+        "reasons": []
+      },
+      {
+        "check": "delivery_manifest",
+        "passed": true,
+        "reasons": []
+      },
+      {
+        "check": "deliverable_contract",
+        "passed": true,
+        "reasons": [],
+        "skipped": true
+      }
+    ],
+    "last_validated_at": "2026-06-16T13:56:04Z"
+  },
+  "transactions": {
+    "finish": {
+      "status": "committed",
+      "run_id": "<run-id>",
+      "iteration": 9,
+      "committed_at": "2026-06-16T13:56:04Z",
+      "outcome": "awaiting_review",
+      "normalized_reason": "awaiting_review:passed-validation"
+    }
+  },
+  "completion": {
+    "last_validation": {
+      "passed": true,
+      "reasons": [],
+      "triggered_by": "worker",
+      "phase": "finalize",
+      "report_bytes": 393,
+      "deliverable_present": true,
+      "deliverable_validation": {
+        "checks": [
+          {
+            "kind": "overview",
+            "passed": true,
+            "heading_count": 1,
+            "bullet_count": 0
+          }
+        ],
+        "reasons": [],
+        "report_metrics": {
+          "bullet_count": 0,
+          "pre_metadata_bullet_count": 0,
+          "heading_count": 1,
+          "comparison_signal_count": 0
+        }
+      },
+      "total_sources": 30,
+      "total_findings": 51,
+      "validated_at": "2026-06-16T13:56:04Z",
+      "candidate_status": "complete"
+    }
+  },
+  "revision_diff": {
+    "revision_from": 0,
+    "revision_to": 0,
+    "changes": [
+      "review_status:None->pending"
+    ],
+    "final_report_updated": false
+  },
+  "revision_snapshot": {
+    "final_report_path": null,
+    "package_path": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix",
+    "revision_count": 0
+  }
+}

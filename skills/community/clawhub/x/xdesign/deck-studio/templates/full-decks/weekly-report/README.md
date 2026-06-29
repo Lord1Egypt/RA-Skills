@@ -1,3 +1,13 @@
+---
+name: weekly-report · 周报
+mode: deck
+scenario: general
+surface: slides
+recommended: 40
+tags: ["report", "weekly", "team", "corporate", "standup"]
+example_id: sample-weekly-report
+example_format: markdown
+---
 # weekly-report · 周报
 
 7-slide team weekly report: cover (week range), KPI grid, shipped items, a metric trend chart, blockers, next-week plan, thanks.

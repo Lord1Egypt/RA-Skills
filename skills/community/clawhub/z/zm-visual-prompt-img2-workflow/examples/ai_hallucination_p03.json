@@ -1,0 +1,32 @@
+{
+  "page_id": "P03",
+  "title": "它会把“名人名言”编得很像",
+  "scene": "阿奇拿着“名人金句”卡片问 AI，小爱用放大镜/搜索图标检查，AI 以普通电脑聊天屏幕呈现。",
+  "dialogues": [
+    {"speaker": "阿奇", "text": "这句话真是他说的吗？"},
+    {"speaker": "小爱", "text": "搜不到出处，就别当真。"}
+  ],
+  "screen_text": [
+    "名人金句",
+    "需要人工验证"
+  ],
+  "reminder": "金句、引用，都要查出处。",
+  "characters": {
+    "阿奇": "哈士奇普通用户",
+    "小爱": "白猫提醒者",
+    "AI": "屏幕/聊天框"
+  },
+  "forbidden": [
+    "辛儿",
+    "OpenClaw",
+    "龙虾",
+    "Logo",
+    "二维码",
+    "P2"
+  ],
+  "style_ref_text": "warm beige paper-texture, clean funny editorial comic, minimal Chinese text, large readable typography",
+  "reference_images": [
+    "content-factory/tasks/openclaw_usage_comic_20260528/visual/_comic_line_assets/references/cat_triview_v3.png",
+    "content-factory/tasks/openclaw_usage_comic_20260528/visual/_comic_line_assets/references/husky_triview_v3.png"
+  ]
+}

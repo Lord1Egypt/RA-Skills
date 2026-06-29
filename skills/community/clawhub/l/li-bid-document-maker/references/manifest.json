@@ -1,0 +1,100 @@
+{
+  "skill": {
+    "name": "bid-document-maker",
+    "display_name": "标书制作专家",
+    "version": "1.0.0",
+    "min_agent_version": {
+      "generic": "0.0.1",
+      "claude": "0.0.1",
+      "hermes": "0.0.1",
+      "openclaw": "0.0.1"
+    },
+    "description": "将招标文件（PDF/Word）自动转化为结构完整、评分导向的专业应标书",
+    "author": "bid-document-maker",
+    "license": "MIT"
+  },
+
+  "entry": {
+    "primary": "SKILL.md",
+    "manifest": "manifest.json",
+    "workflow": "workflows/pipeline.yaml",
+    "system_prompt": "prompts/system-prompt.md"
+  },
+
+  "capabilities": {
+    "required": [
+      "file_reading",
+      "long_context",
+      "markdown_output"
+    ],
+    "recommended": [
+      "pdf_parsing",
+      "docx_parsing",
+      "docx_generation",
+      "tool_use",
+      "knowledge_retrieval"
+    ]
+  },
+
+  "platforms": {
+    "generic": {
+      "entry": "agents/generic/instructions.md",
+      "type": "prompt-only"
+    },
+    "claude": {
+      "entry": "agents/claude/instructions.md",
+      "type": "tool-use",
+      "features": ["artifacts", "file-reading", "long-context"]
+    },
+    "hermes": {
+      "entry": "agents/hermes/instructions.md",
+      "functions": "agents/hermes/functions.json",
+      "type": "function-calling",
+      "features": ["function-calling", "state-management"]
+    },
+    "openclaw": {
+      "entry": "agents/openclaw/instructions.md",
+      "workflow": "agents/openclaw/workflow.yaml",
+      "registration": "agents/openclaw/skill-registration.yaml",
+      "type": "workflow-engine",
+      "features": ["multi-agent", "plugin-system", "workflow-engine"]
+    }
+  },
+
+  "pipeline": {
+    "stages": [
+      { "id": "parse-tender",        "name": "解析招标文件",   "order": 1, "prompt": "prompts/01-parse-tender.md" },
+      { "id": "strategy-analysis",   "name": "策略分析",      "order": 2, "prompt": "prompts/02-strategy-and-outline.md" },
+      { "id": "outline-generation",  "name": "大纲生成",      "order": 3, "prompt": "prompts/02-strategy-and-outline.md" },
+      { "id": "chapter-writing",     "name": "分章写作",      "order": 4, "prompt": "prompts/03-write-section.md" },
+      { "id": "quality-check",       "name": "质检整合",      "order": 5, "prompt": "prompts/04-quality-check.md" },
+      { "id": "pdca-improvement",    "name": "PDCA自动改进", "order": 6, "prompt": "prompts/05-pdca-improvement.md" }
+    ]
+  },
+
+  "knowledge_bases": {
+    "config": "knowledge-base/config.yaml",
+    "examples": "knowledge-base/examples/"
+  },
+
+  "templates": {
+    "bid_structure": "templates/bid-structure.json",
+    "chapter_templates": "templates/chapter-templates.md",
+    "format_rules": "templates/format-rules.md"
+  },
+
+  "schemas": {
+    "tender_info": "schemas/tender-info.schema.json",
+    "bid_document": "schemas/bid-document.schema.json"
+  },
+
+  "dependencies": {
+    "python": {
+      "required": ["python-docx", "PyPDF2", "markdown"],
+      "optional": ["pdfminer.six", "pandoc", "python-pptx"]
+    },
+    "node": {
+      "optional": ["mammoth", "pdf-parse", "docx"]
+    }
+  }
+}

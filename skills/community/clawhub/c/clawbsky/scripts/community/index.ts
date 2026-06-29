@@ -6,10 +6,15 @@
 import { BskyAgent } from '@atproto/api';
 import Database from 'better-sqlite3';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const db = new Database(path.join(__dirname, '../../data/community.db'));
+const dbDir = path.join(__dirname, '../../data');
+if (!fs.existsSync(dbDir)) {
+  fs.mkdirSync(dbDir, { recursive: true });
+}
+const db = new Database(path.join(dbDir, 'community.db'));
 
 // Initialize community management tables
 db.exec(`
@@ -222,34 +227,65 @@ export function getInactiveFollowers(days: number = 30): any[] {
 /**
  * Identify inactive followers (based on their last post)
  */
-export async function findInactiveFollowers(agent: BskyAgent): Promise<string[]> {
-  // Get followers
-  const followers = await agent.getFollowers({ actor: agent.did });
-  
-  const inactive = [];
-  
-  for (const follower of followers.data.followers) {
-    try {
-      // Get their recent posts
-      const posts = await agent.getAuthorFeed({ actor: follower.did, limit: 1 });
-      
-      if (posts.data.feed.length === 0) {
-        inactive.push(follower.did);
-      } else {
-        const lastPost = posts.data.feed[0].post;
-        const lastPostDate = new Date(lastPost.indexedAt);
-        const daysSince = (Date.now() - lastPostDate.getTime()) / (1000 * 60 * 60 * 24);
-        
-        if (daysSince > 90) {
-          inactive.push(follower.did);
-        }
+export async function findInactiveFollowers(
+  agent: BskyAgent, 
+  days: number = 90, 
+  maxInactiveCount: number = 500
+): Promise<string[]> {
+  const inactive: string[] = [];
+  let cursor: string | undefined;
+  let scanned = 0;
+  const maxScan = 3000; // Cap to avoid hitting excessive rate limits or timeouts
+
+  do {
+    const followers = await agent.getFollowers({ 
+      actor: agent.did, 
+      limit: 100, 
+      cursor 
+    });
+    
+    const batch = followers.data.followers;
+    if (!batch || batch.length === 0) break;
+    
+    for (const follower of batch) {
+      scanned++;
+      if (scanned % 50 === 0) {
+        console.log(`  Scanned ${scanned} followers, found ${inactive.length} inactive so far...`);
       }
-    } catch (error) {
-      // If we can't get posts, consider them inactive
-      inactive.push(follower.did);
+      
+      try {
+        // Get their recent posts
+        const posts = await agent.getAuthorFeed({ actor: follower.did, limit: 1 });
+        
+        if (posts.data.feed.length === 0) {
+          inactive.push(follower.did);
+        } else {
+          const lastPost = posts.data.feed[0].post;
+          const lastPostDate = new Date(lastPost.indexedAt);
+          const daysSince = (Date.now() - lastPostDate.getTime()) / (1000 * 60 * 60 * 24);
+          
+          if (daysSince > days) {
+            inactive.push(follower.did);
+          }
+        }
+      } catch (error) {
+        // If we can't get posts, consider them inactive
+        inactive.push(follower.did);
+      }
+      
+      if (inactive.length >= maxInactiveCount) {
+        break;
+      }
     }
-  }
+    
+    if (inactive.length >= maxInactiveCount || scanned >= maxScan) {
+      break;
+    }
+    
+    cursor = followers.data.cursor;
+  } while (cursor);
   
+  console.log(`\n✨ Scan complete. Scanned ${scanned} followers total, identified ${inactive.length} inactive ones.`);
   return inactive;
 }
 
@@ -258,9 +294,11 @@ export async function findInactiveFollowers(agent: BskyAgent): Promise<string[]>
  */
 export async function cleanupInactiveFollowers(
   agent: BskyAgent, 
-  dryRun: boolean = true
+  dryRun: boolean = true,
+  days: number = 90,
+  maxInactiveCount: number = 500
 ): Promise<{ toUnfollow: number; details: any[] }> {
-  const inactive = await findInactiveFollowers(agent);
+  const inactive = await findInactiveFollowers(agent, days, maxInactiveCount);
   
   if (dryRun) {
     return { toUnfollow: inactive.length, details: [] };

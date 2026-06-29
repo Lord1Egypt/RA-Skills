@@ -1,0 +1,1052 @@
+{
+  "metadata": {
+    "total_templates": 26,
+    "standard": "ISO 9001:2015",
+    "industry_focus": "Technical Service",
+    "last_updated": "2026-06-11",
+    "language": "bilingual (Chinese/English)",
+    "note": "All templates use [■ Placeholder] for company-specific content. No sensitive information included."
+  },
+  "templates": [
+    {
+      "id": "TEMPLATE_4.1",
+      "clause": "4.1",
+      "title_zh": "组织环境分析报告",
+      "title_en": "Organization and Context Analysis Report",
+      "purpose_zh": "理解组织及其环境",
+      "purpose_en": "Understanding the organization and its context",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_4.2",
+      "clause": "4.2",
+      "title_zh": "相关方需求和期望管理程序",
+      "title_en": "Interested Parties Requirements and Expectations Management Procedure",
+      "purpose_zh": "理解相关方的需求和期望",
+      "purpose_en": "Understanding the needs and expectations of interested parties",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_4.3",
+      "clause": "4.3",
+      "title_zh": "质量管理体系范围定义",
+      "title_en": "Quality Management System Scope Definition",
+      "purpose_zh": "确定质量管理体系的范围",
+      "purpose_en": "Determining the scope of the quality management system",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_4.4",
+      "clause": "4.4",
+      "title_zh": "过程清单和相互作用图",
+      "title_en": "Process List and Interaction Diagram",
+      "purpose_zh": "质量管理体系及其过程",
+      "purpose_en": "Quality management system and its processes",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_5.1",
+      "clause": "5.1",
+      "title_zh": "管理承诺声明",
+      "title_en": "Management Commitment Statement",
+      "purpose_zh": "领导作用和承诺",
+      "purpose_en": "Leadership and commitment",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_5.2",
+      "clause": "5.2",
+      "title_zh": "质量方针",
+      "title_en": "Quality Policy",
+      "purpose_zh": "方针",
+      "purpose_en": "Policy",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_5.3",
+      "clause": "5.3",
+      "title_zh": "组织结构图和职责分配表",
+      "title_en": "Organization Chart and Responsibility Assignment Matrix",
+      "purpose_zh": "组织的角色、职责和权限",
+      "purpose_en": "Organizational roles, responsibilities and authorities",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_6.1",
+      "clause": "6.1",
+      "title_zh": "风险和机遇识别与评价程序",
+      "title_en": "Risk and Opportunity Identification and Evaluation Procedure",
+      "purpose_zh": "应对风险和机遇的措施",
+      "purpose_en": "Actions to address risks and opportunities",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_6.2",
+      "clause": "6.2",
+      "title_zh": "质量目标管理程序",
+      "title_en": "Quality Objectives Management Procedure",
+      "purpose_zh": "质量目标及其实现的策划",
+      "purpose_en": "Quality objectives and planning to achieve them",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_6.3",
+      "clause": "6.3",
+      "title_zh": "变更管理程序",
+      "title_en": "Change Management Procedure",
+      "purpose_zh": "变更的策划",
+      "purpose_en": "Planning of changes",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_7.1.1",
+      "clause": "7.1.1",
+      "title_zh": "资源提供和管理程序",
+      "title_en": "Resource Provision and Management Procedure",
+      "purpose_zh": "资源 - 总则",
+      "purpose_en": "Resources - General",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_7.1.2",
+      "clause": "7.1.2",
+      "title_zh": "人员管理程序",
+      "title_en": "Personnel Management Procedure",
+      "purpose_zh": "人员",
+      "purpose_en": "People",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_7.1.3",
+      "clause": "7.1.3",
+      "title_zh": "基础设施控制程序",
+      "title_en": "Infrastructure Control Procedure",
+      "purpose_zh": "基础设施",
+      "purpose_en": "Infrastructure",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_7.1.4",
+      "clause": "7.1.4",
+      "title_zh": "过程运行环境控制程序",
+      "title_en": "Process Environment Control Procedure",
+      "purpose_zh": "过程运行环境",
+      "purpose_en": "Process environment",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_7.1.5",
+      "clause": "7.1.5",
+      "title_zh": "监视和测量设备控制程序",
+      "title_en": "Monitoring and Measuring Equipment Control Procedure",
+      "purpose_zh": "监视和测量资源",
+      "purpose_en": "Monitoring and measuring resources",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_7.1.6",
+      "clause": "7.1.6",
+      "title_zh": "知识管理程序",
+      "title_en": "Knowledge Management Procedure",
+      "purpose_zh": "组织的知识",
+      "purpose_en": "Organizational knowledge",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_7.2",
+      "clause": "7.2",
+      "title_zh": "人力资源控制程序",
+      "title_en": "Human Resources Control Procedure",
+      "purpose_zh": "能力",
+      "purpose_en": "Competence",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_7.3",
+      "clause": "7.3",
+      "title_zh": "意识管理程序",
+      "title_en": "Awareness Management Procedure",
+      "purpose_zh": "意识",
+      "purpose_en": "Awareness",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_7.4",
+      "clause": "7.4",
+      "title_zh": "沟通管理程序",
+      "title_en": "Communication Management Procedure",
+      "purpose_zh": "沟通",
+      "purpose_en": "Communication",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_7.5",
+      "clause": "7.5",
+      "title_zh": "文件控制程序",
+      "title_en": "Document Control Procedure",
+      "purpose_zh": "成文信息",
+      "purpose_en": "Documented information",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_8.1",
+      "clause": "8.1",
+      "title_zh": "运营的策划和控制程序",
+      "title_en": "Operational Planning and Control Procedure",
+      "purpose_zh": "运行的策划和控制",
+      "purpose_en": "Operational planning and control",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_8.2",
+      "clause": "8.2",
+      "title_zh": "市场和客户需求管理程序",
+      "title_en": "Market and Customer Requirements Management Procedure",
+      "purpose_zh": "产品和服务的要求",
+      "purpose_en": "Requirements for products and services",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_8.3",
+      "clause": "8.3",
+      "title_zh": "设计和开发控制程序",
+      "title_en": "Design and Development Control Procedure",
+      "purpose_zh": "产品和服务的设计和开发",
+      "purpose_en": "Design and development of products and services",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_8.4",
+      "clause": "8.4",
+      "title_zh": "采购控制程序",
+      "title_en": "Purchasing Control Procedure",
+      "purpose_zh": "外部提供的过程、产品和服务的控制",
+      "purpose_en": "Control of externally provided processes, products and services",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_8.5",
+      "clause": "8.5",
+      "title_zh": "服务提供控制程序",
+      "title_en": "Service Provision Control Procedure",
+      "purpose_zh": "生产和服务提供",
+      "purpose_en": "Production and service provision",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    },
+    {
+      "id": "TEMPLATE_8.6",
+      "clause": "8.6",
+      "title_zh": "产品和服务放行程序",
+      "title_en": "Release of Products and Services Procedure",
+      "purpose_zh": "产品和服务的放行",
+      "purpose_en": "Release of products and services",
+      "sections": [
+        {
+          "heading_zh": "1. 目的",
+          "heading_en": "1. Purpose",
+          "content_zh": "[■ 描述目的]",
+          "content_en": "[■ Describe purpose]"
+        },
+        {
+          "heading_zh": "2. 范围",
+          "heading_en": "2. Scope",
+          "content_zh": "[■ 描述范围]",
+          "content_en": "[■ Describe scope]"
+        },
+        {
+          "heading_zh": "3. 职责",
+          "heading_en": "3. Responsibilities",
+          "content_zh": "[■ 列出职责]",
+          "content_en": "[■ List responsibilities]"
+        },
+        {
+          "heading_zh": "4. 工作程序",
+          "heading_en": "4. Procedure",
+          "content_zh": "[■ 描述程序]",
+          "content_en": "[■ Describe procedure]"
+        },
+        {
+          "heading_zh": "5. 相关文件",
+          "heading_en": "5. Related Documents",
+          "content_zh": "[■ 列出相关文件]",
+          "content_en": "[■ List related documents]"
+        }
+      ]
+    }
+  ]
+}

@@ -11,31 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and teams use this skill to add session-aware JSONL usage logs, audit trails, cost tracking, and analytics patterns to agent workflows. <br>
+Developers and operators use this skill to add structured JSONL usage logs, session grouping, audit trails, token and cost summaries, and debugging queries to agent or plugin workflows. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Local usage logs and metadata may contain sensitive prompts, customer data, secrets, or regulated personal data if callers include them. <br>
-Mitigation: Avoid recording sensitive metadata, review what is written under ~/.claude/leyline/usage, and delete or rotate logs when retention matters. <br>
+Risk: Local usage logs may retain sensitive metadata, token counts, cost details, error messages, or session history. <br>
+Mitigation: Before using the skill on sensitive projects, confirm log storage location, retained fields, redaction behavior, retention policy, and deletion or disablement process. <br>
 
 
 ## Reference(s): <br>
-- [Leyline homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
-- [Skill page](https://clawhub.ai/athola/nm-leyline-usage-logging) <br>
+- [ClawHub Skill Page](https://clawhub.ai/athola/skills/nm-leyline-usage-logging) <br>
+- [Leyline Source Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
 - [Session Patterns](modules/session-patterns.md) <br>
 - [Log Formats](modules/log-formats.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, code, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline JSON, Python, YAML, and shell examples] <br>
+**Output Type(s):** [Guidance, Code, Shell commands, Configuration] <br>
+**Output Format:** [Markdown with JSON, Python, YAML, and bash code blocks] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local logging patterns and examples; it does not execute code by itself.] <br>
+**Other Properties Related to Output:** [Includes JSONL schemas, session management patterns, query commands, and integration snippets.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release evidence) <br>
+1.9.13 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Linked List Practice Helper"
+  short_description: "Helps with Add frequently asked Linked List problems from top..."
+  default_prompt: "Use $linked-list-practice-helper to help me Add frequently asked Linked List problems from top MNCs (Amazon, Google, Microsoft)."
+
+policy:
+  allow_implicit_invocation: true

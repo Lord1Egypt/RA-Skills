@@ -88,7 +88,7 @@ python3 scripts/format_document.py \
   official-docs/input/official_doc_content.txt
 ```
 
-调用前必须先把正文写入本 Skill 工作目录下的 `official-docs/input/` 临时 `.txt` 或 `.md` 文件，再把文件路径传给脚本。默认保存到 `config/format.json` 的 `output.dir`，且输出只能位于 `official-docs/output/`；如用户明确要求保存文件名，再传入 `--output 文件名.docx`。多行正文不得直接放进 `--text` 参数，避免命令行传参破坏换行，导致整篇 Word 被识别成一个段落、标题和正文样式全部错乱。`--text` 只用于一句话以内的极短测试文本。
+调用前必须先把正文写入本 Skill 工作目录下的 `official-docs/input/` 临时 `.txt` 或 `.md` 文件，再把文件路径传给脚本。默认保存到 `config/format.json` 的 `output.dir`，且输出只能位于 `official-docs/output/`；脚本会优先从正文标题生成正式文件名，如 `北京市机动车管理相关政策调研报告.docx`，同名文件已存在时自动追加 `_v1`、`_v2`。如用户明确要求保存文件名，再传入 `--output 文件名.docx`。多行正文不得直接放进 `--text` 参数，避免命令行传参破坏换行，导致整篇 Word 被识别成一个段落、标题和正文样式全部错乱。`--text` 只用于一句话以内的极短测试文本。
 
 ### 红头文件命令
 
@@ -151,6 +151,11 @@ python3 scripts/template_generator.py 通知 \
 - 初始版本：公文标题.docx
 - 第一次修改：公文标题_v1.docx
 - 第二次修改：公文标题_v2.docx
+
+默认文件名规则：
+- 正文含 `# 标题` 或首行疑似公文标题时，默认使用该标题作为 `.docx` 文件名。
+- 文件名会自动去除 `/ \ : * ? " < > |` 等非法字符并截断过长标题。
+- 只有无法识别标题时，才退回 `公文_YYYYMMDD_HHMMSS.docx`。
 
 ### 密级和紧急程度处理
 

@@ -1,0 +1,51 @@
+{
+  "skill_id": "skill2team",
+  "version": "1.9.2",
+  "team_id": "s2t-meta",
+  "profile_mode": true,
+  "architecture": "framework-neutral agent architecture relationship graph",
+  "agents": [
+    {
+      "registered_agent_id": "s2t-meta-entry",
+      "display_name": "S2T Lead",
+      "profile_id": "s2t-meta-entry.profile",
+      "agent_node_id": "s2t_meta_entry",
+      "main_function": "Intake, route selection, delivery selection, execution-path selection, state tracking, and synthesis ownership."
+    },
+    {
+      "registered_agent_id": "s2t-meta-source-mapper",
+      "display_name": "Source Mapper",
+      "profile_id": "s2t-meta-source-mapper.profile",
+      "agent_node_id": "s2t_meta_source_mapper",
+      "main_function": "Source asset inventory, original workflow extraction, startup setting inventory, source-derived runtime constraint extraction, stage-internal deliverable inventory, human intervention inventory, local-resource classification, and migration anchors."
+    },
+    {
+      "registered_agent_id": "s2t-meta-architecture-designer",
+      "display_name": "Architecture Designer",
+      "profile_id": "s2t-meta-architecture-designer.profile",
+      "agent_node_id": "s2t_meta_architecture_designer",
+      "main_function": "Agent Architecture Map, role boundaries, team topology, skill allocation, and agent-count rationale."
+    },
+    {
+      "registered_agent_id": "s2t-meta-workflow-orchestrator",
+      "display_name": "Workflow Orchestrator",
+      "profile_id": "s2t-meta-workflow-orchestrator.profile",
+      "agent_node_id": "s2t_meta_workflow_orchestrator",
+      "main_function": "Workflow Orchestration Map, workflow preservation gate, control-flow rules, handoff contracts, checkpoints, reruns, and resume policy."
+    },
+    {
+      "registered_agent_id": "s2t-meta-runtime-adapter",
+      "display_name": "Runtime Adapter",
+      "profile_id": "s2t-meta-runtime-adapter.profile",
+      "agent_node_id": "s2t_meta_runtime_adapter",
+      "main_function": "Codex package artifacts, package manifests, runtime instruction materialization, conformance contracts, design-output archive, design-continuation templates, Codex-only package-end templates, and package-readiness guidance."
+    },
+    {
+      "registered_agent_id": "s2t-meta-evaluation-reviewer",
+      "display_name": "Quality Reviewer",
+      "profile_id": "s2t-meta-evaluation-reviewer.profile",
+      "agent_node_id": "s2t_meta_evaluation_reviewer",
+      "main_function": "Independent design/package conformance audit, runtime-instruction materialization review, generated meta-team package audit, workflow preservation checks, risk checks, count justification checks, and acceptance-gate review."
+    }
+  ]
+}

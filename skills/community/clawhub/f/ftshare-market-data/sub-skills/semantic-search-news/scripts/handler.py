@@ -87,7 +87,7 @@ def main():
         print(f"时间格式错误：{e}", file=sys.stderr)
         sys.exit(1)
 
-    url = BASE_URL + "/data/api/v1/market/data/semantic-search-news?" + urllib.parse.urlencode(params)
+    url = BASE_URL + "/gateway/api/v1/market/data/semantic-search-news?" + urllib.parse.urlencode(params)
     req = urllib.request.Request(url, method="GET")
 
     try:

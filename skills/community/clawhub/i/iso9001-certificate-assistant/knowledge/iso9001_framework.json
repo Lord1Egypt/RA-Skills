@@ -1,0 +1,284 @@
+{
+    "standard": "ISO 9001:2015",
+    "title": "Quality Management Systems - Requirements",
+    "title_zh": "质量管理体系 - 要求",
+    "clauses": {
+        "4": {
+            "title": "Context of the Organization",
+            "title_zh": "组织环境",
+            "subclauses": {
+                "4.1": {
+                    "title": "Understanding the organization and its context",
+                    "title_zh": "理解组织及其环境",
+                    "required_documents": ["组织环境分析报告"]
+                },
+                "4.2": {
+                    "title": "Understanding the needs and expectations of interested parties",
+                    "title_zh": "理解相关方的需求和期望",
+                    "required_documents": ["相关方需求和期望清单"]
+                },
+                "4.3": {
+                    "title": "Determining the scope of the quality management system",
+                    "title_zh": "确定质量管理体系的范围",
+                    "required_documents": ["质量手册"]
+                },
+                "4.4": {
+                    "title": "Quality management system and its processes",
+                    "title_zh": "质量管理体系及其过程",
+                    "required_documents": ["过程清单", "过程相互作用图"]
+                }
+            }
+        },
+        "5": {
+            "title": "Leadership",
+            "title_zh": "领导作用",
+            "subclauses": {
+                "5.1": {
+                    "title": "Leadership and commitment",
+                    "title_zh": "领导作用和承诺",
+                    "required_documents": ["管理承诺声明"]
+                },
+                "5.2": {
+                    "title": "Policy",
+                    "title_zh": "方针",
+                    "required_documents": ["质量方针"]
+                },
+                "5.3": {
+                    "title": "Organizational roles, responsibilities and authorities",
+                    "title_zh": "组织的角色、职责和权限",
+                    "required_documents": ["组织结构图", "职责分配表"]
+                }
+            }
+        },
+        "6": {
+            "title": "Planning",
+            "title_zh": "策划",
+            "subclauses": {
+                "6.1": {
+                    "title": "Actions to address risks and opportunities",
+                    "title_zh": "应对风险和机遇的措施",
+                    "required_documents": ["风险和机遇识别与评价程序"]
+                },
+                "6.2": {
+                    "title": "Quality objectives and planning to achieve them",
+                    "title_zh": "质量目标及其实现的策划",
+                    "required_documents": ["质量目标管理程序"]
+                },
+                "6.3": {
+                    "title": "Planning of changes",
+                    "title_zh": "变更的策划",
+                    "required_documents": ["变更管理程序"]
+                }
+            }
+        },
+        "7": {
+            "title": "Support",
+            "title_zh": "支持",
+            "subclauses": {
+                "7.1": {
+                    "title": "Resources",
+                    "title_zh": "资源",
+                    "subclauses": {
+                        "7.1.1": {
+                            "title": "General",
+                            "title_zh": "总则",
+                            "required_documents": ["资源提供和管理程序"]
+                        },
+                        "7.1.2": {
+                            "title": "People",
+                            "title_zh": "人员",
+                            "required_documents": ["人力资源控制程序"]
+                        },
+                        "7.1.3": {
+                            "title": "Infrastructure",
+                            "title_zh": "基础设施",
+                            "required_documents": ["基础设施控制程序"]
+                        },
+                        "7.1.4": {
+                            "title": "Process environment",
+                            "title_zh": "过程运行环境",
+                            "required_documents": ["过程运行环境控制程序"]
+                        },
+                        "7.1.5": {
+                            "title": "Monitoring and measuring resources",
+                            "title_zh": "监视和测量资源",
+                            "required_documents": ["监视和测量设备控制程序"]
+                        },
+                        "7.1.6": {
+                            "title": "Organizational knowledge",
+                            "title_zh": "组织的知识",
+                            "required_documents": ["知识管理程序"]
+                        }
+                    }
+                },
+                "7.2": {
+                    "title": "Competence",
+                    "title_zh": "能力",
+                    "required_documents": ["人力资源控制程序", "培训管理程序"]
+                },
+                "7.3": {
+                    "title": "Awareness",
+                    "title_zh": "意识",
+                    "required_documents": ["意识管理程序"]
+                },
+                "7.4": {
+                    "title": "Communication",
+                    "title_zh": "沟通",
+                    "required_documents": ["沟通管理程序"]
+                },
+                "7.5": {
+                    "title": "Documented information",
+                    "title_zh": "成文信息",
+                    "required_documents": ["文件控制程序", "记录控制程序"]
+                }
+            }
+        },
+        "8": {
+            "title": "Operation",
+            "title_zh": "运行",
+            "subclauses": {
+                "8.1": {
+                    "title": "Operational planning and control",
+                    "title_zh": "运行的策划和控制",
+                    "required_documents": ["运营策划和控制程序"]
+                },
+                "8.2": {
+                    "title": "Requirements for products and services",
+                    "title_zh": "产品和服务的要求",
+                    "required_documents": ["市场和客户需求管理程序"]
+                },
+                "8.3": {
+                    "title": "Design and development of products and services",
+                    "title_zh": "产品和服务的设计和开发",
+                    "required_documents": ["设计和开发控制程序"]
+                },
+                "8.4": {
+                    "title": "Control of externally provided processes, products and services",
+                    "title_zh": "外部提供的过程、产品和服务的控制",
+                    "required_documents": ["采购控制程序", "供应商管理程序"]
+                },
+                "8.5": {
+                    "title": "Production and service provision",
+                    "title_zh": "生产和服务提供",
+                    "required_documents": ["服务提供控制程序", "服务提供规范"]
+                },
+                "8.6": {
+                    "title": "Release of products and services",
+                    "title_zh": "产品和服务的放行",
+                    "required_documents": ["产品和服务放行程序"]
+                },
+                "8.7": {
+                    "title": "Control of nonconforming outputs",
+                    "title_zh": "不合格输出的控制",
+                    "required_documents": ["不合格和纠正措施控制程序"]
+                }
+            }
+        },
+        "9": {
+            "title": "Performance Evaluation",
+            "title_zh": "绩效评价",
+            "subclauses": {
+                "9.1": {
+                    "title": "Monitoring, measurement, analysis and evaluation",
+                    "title_zh": "监视、测量、分析和评价",
+                    "subclauses": {
+                        "9.1.1": {
+                            "title": "General",
+                            "title_zh": "总则",
+                            "required_documents": ["监视和测量控制程序"]
+                        },
+                        "9.1.2": {
+                            "title": "Customer satisfaction",
+                            "title_zh": "客户满意",
+                            "required_documents": ["客户满意度测量程序"]
+                        },
+                        "9.1.3": {
+                            "title": "Analysis and evaluation",
+                            "title_zh": "分析和评价",
+                            "required_documents": ["数据分析程序"]
+                        }
+                    }
+                },
+                "9.2": {
+                    "title": "Internal audit",
+                    "title_zh": "内部审核",
+                    "required_documents": ["内部审核程序"]
+                },
+                "9.3": {
+                    "title": "Management review",
+                    "title_zh": "管理评审",
+                    "required_documents": ["管理评审程序"]
+                }
+            }
+        },
+        "10": {
+            "title": "Improvement",
+            "title_zh": "改进",
+            "subclauses": {
+                "10.1": {
+                    "title": "General",
+                    "title_zh": "总则",
+                    "required_documents": ["改进管理程序"]
+                },
+                "10.2": {
+                    "title": "Nonconformity and corrective action",
+                    "title_zh": "不合格和纠正措施",
+                    "required_documents": ["不合格和纠正措施控制程序"]
+                },
+                "10.3": {
+                    "title": "Continual improvement",
+                    "title_zh": "持续改进",
+                    "required_documents": ["持续改进程序"]
+                }
+            }
+        }
+    },
+    "principles": {
+        "principle_1": {
+            "en": "Customer focus",
+            "zh": "以顾客为关注焦点"
+        },
+        "principle_2": {
+            "en": "Leadership",
+            "zh": "领导作用"
+        },
+        "principle_3": {
+            "en": "Engagement of people",
+            "zh": "全员参与"
+        },
+        "principle_4": {
+            "en": "Process approach",
+            "zh": "过程方法"
+        },
+        "principle_5": {
+            "en": "Improvement",
+            "zh": "改进"
+        },
+        "principle_6": {
+            "en": "Evidence-based decision making",
+            "zh": "循证决策"
+        },
+        "principle_7": {
+            "en": "Relationship management",
+            "zh": "关系管理"
+        }
+    },
+    "pdca_cycle": {
+        "plan": {
+            "en": "Plan - Establish objectives and processes necessary to deliver results",
+            "zh": "策划 - 建立必要的目标和过程以交付结果"
+        },
+        "do": {
+            "en": "Do - Implement the processes",
+            "zh": "实施 - 实施过程"
+        },
+        "check": {
+            "en": "Check - Monitor and measure processes and products against policies, objectives and requirements",
+            "zh": "检查 - 根据方针、目标和要求监视和测量过程和产品"
+        },
+        "act": {
+            "en": "Act - Take actions to continually improve",
+            "zh": "处置 - 采取行动持续改进"
+        }
+    }
+}

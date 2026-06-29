@@ -1,0 +1,7128 @@
+{
+  "version": "0.1.0",
+  "generatedAt": "1970-01-01T00:00:00.000Z",
+  "status": "candidate",
+  "releaseSafe": true,
+  "provenance": [
+    {
+      "sourceId": "SRC-IOT-BASIC",
+      "sourceRef": "SRC-IOT-BASIC",
+      "sourceType": "iot-basic",
+      "status": "candidate"
+    },
+    {
+      "sourceId": "SRC-THING-DEFINES",
+      "sourceRef": "SRC-THING-DEFINES",
+      "sourceType": "thing-model",
+      "status": "candidate"
+    },
+    {
+      "sourceId": "SRC-OLD-NEEDS-PROMPT",
+      "sourceRef": "SRC-OLD-NEEDS-PROMPT",
+      "sourceType": "legacy-prompt",
+      "status": "candidate"
+    },
+    {
+      "sourceId": "SRC-OLD-DEVICE-PARSE-PROMPT",
+      "sourceRef": "SRC-OLD-DEVICE-PARSE-PROMPT",
+      "sourceType": "legacy-prompt",
+      "status": "candidate"
+    },
+    {
+      "sourceId": "SRC-OLD-LIGHTING-PROMPT",
+      "sourceRef": "SRC-OLD-LIGHTING-PROMPT",
+      "sourceType": "legacy-prompt",
+      "status": "candidate"
+    },
+    {
+      "sourceId": "SRC-LEGACY-PLAN-001",
+      "sourceRef": "SRC-LEGACY-PLAN-001",
+      "sourceType": "plan",
+      "status": "candidate"
+    }
+  ],
+  "sourcePolicy": {
+    "rawDocsPackaged": false,
+    "sourceRefsAreOpaqueIds": true,
+    "runtimeCapabilityCheckRequired": true
+  },
+  "counts": {
+    "products": 63,
+    "components": 57,
+    "properties": 191,
+    "events": 17,
+    "protocols": 6,
+    "categories": 11,
+    "lexicalAliases": 10,
+    "automationEvents": 25,
+    "sceneRecipes": 13,
+    "moodRecipes": 12,
+    "negativePreferencePolicies": 3
+  },
+  "thingModel": {
+    "products": [
+      {
+        "name": "属性定义 - 设备本地情景",
+        "connectType": "",
+        "platform": "",
+        "module": "",
+        "componentTableCount": 0,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:属性定义 - 设备本地情景",
+          "sha256": "fe567740ee078d828a17467499c6f5a13c9c348d7fa447392c277a01c5a903b4"
+        }
+      },
+      {
+        "name": "DALI网关\\-Pro版",
+        "connectType": "DALI  KNX",
+        "platform": "Yeelight Pro平台",
+        "module": "DALI  KNX",
+        "componentTableCount": 4,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - DALI网关",
+          "sha256": "5848f6f450e2aeae09d5ae3b79ab0dff06da93b49bb91d75eeb80c6eff4dc9f1"
+        }
+      },
+      {
+        "name": "D系列四寸屏（水机版）",
+        "connectType": "matter over open thread协议",
+        "platform": "Yeelight Pro平台",
+        "module": "ESP32H2",
+        "componentTableCount": 7,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - D系列四寸屏(氟机版) ",
+          "sha256": "4e149079551ffcb8fc2c6db769c14c0d0586418c4f2beb34263563de2eb8e7b8"
+        }
+      },
+      {
+        "name": "D系列四寸屏（水机版）",
+        "connectType": "matter over open thread协议",
+        "platform": "Yeelight Pro平台",
+        "module": "ESP32H2",
+        "componentTableCount": 7,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - D系列四寸屏(水机版) ",
+          "sha256": "38f2689cc75cdce7e2e36ef989caf60941be88452413b88aaa08b874bb5e11ae"
+        }
+      },
+      {
+        "name": "D系列四寸屏（继电器版）",
+        "connectType": "matter over open thread协议",
+        "platform": "Yeelight Pro平台",
+        "module": "ESP32H2",
+        "componentTableCount": 7,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - D系列四寸屏(继电器版)",
+          "sha256": "dc37ca43bb4f6abe57adef3e2c5b65d923b51e2ec6340241f087b293a2963e03"
+        }
+      },
+      {
+        "name": "D系列屏显开关青春版",
+        "connectType": "BLE mesh",
+        "platform": "Yeelight Pro平台",
+        "module": "EFR32BG21",
+        "componentTableCount": 8,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - D系列屏显开关青春版",
+          "sha256": "7fcd2ed6bdc3d9da50c0c7ffaa341aa764b18681c924f7b91fa8c4aeccc056d9"
+        }
+      },
+      {
+        "name": "D系列情景开关\\-国际版",
+        "connectType": "Matter Over Thread协议",
+        "platform": "Yeelight Pro平台",
+        "module": "ESP32H2",
+        "componentTableCount": 5,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - D系列情景开关-国际版",
+          "sha256": "49a1d98441c18bdc50daf473050692d9f33d35e3ed2af00448b50ba618701859"
+        }
+      },
+      {
+        "name": "E系列六键智能开关\\(氛围灯\\)",
+        "connectType": "Mesh协议",
+        "platform": "Yeelight Pro平台",
+        "module": "蓝牙Mesh",
+        "componentTableCount": 8,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - E系列六键智能开关(氛围灯)",
+          "sha256": "25ebd4faa11f359a16b4a48b831ee514d3f7c9f028de0574ac2075d53f05e6df"
+        }
+      },
+      {
+        "name": "E系列智能开关\\(氛围灯\\)",
+        "connectType": "Mesh协议",
+        "platform": "Yeelight Pro平台",
+        "module": "蓝牙Mesh",
+        "componentTableCount": 33,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - E系列智能开关(氛围灯)",
+          "sha256": "f977b4c0e1f9b1b5cb672120a32acc46e77cd62ad111032ef98fce3ce9e57274"
+        }
+      },
+      {
+        "name": "E系列轨道插座",
+        "connectType": "BLE mesh",
+        "platform": "Yeelight Pro平台",
+        "module": "EFR32BG21",
+        "componentTableCount": 12,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - E系列轨道插座",
+          "sha256": "6b29a4e70252f43587ec48100fbfb9fd6334cfe232b84a2d210e8c9d440f9c13"
+        }
+      },
+      {
+        "name": "G6 Pro青空灯",
+        "connectType": "Mesh协议",
+        "platform": "Yeelight Pro平台",
+        "module": "蓝牙Mesh",
+        "componentTableCount": 7,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - G6 Pro青空灯",
+          "sha256": "80ca681c01981b61be1641e055eb33aa392728772cb98e5957f3274baef806c2"
+        }
+      },
+      {
+        "name": "IPC摄像头",
+        "connectType": "IPC协议",
+        "platform": "Yeelight Pro平台",
+        "module": "",
+        "componentTableCount": 4,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - IPC摄像头",
+          "sha256": "acd7235179a0e3afb68d229c0945c196c058edfc3cd641cef4016b1867f32aae"
+        }
+      },
+      {
+        "name": "YLP\\-Lemon5\\-球泡\\-RGBCW\\-Thread\\-E27\\-欧洲版",
+        "connectType": "Matter Over Thread协议",
+        "platform": "Yeelight Pro平台",
+        "module": "ESP32H2",
+        "componentTableCount": 5,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - Lemon5彩光球泡",
+          "sha256": "0a1eb9333b40ac26ad4656650a9d1949a45d699ba135a80aac71fdebb769daff"
+        }
+      },
+      {
+        "name": "量子控制器",
+        "connectType": "mesh协议",
+        "platform": "Yeelight Pro平台",
+        "module": "",
+        "componentTableCount": 5,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - MESH量子控制器",
+          "sha256": "975be8c616ce88a4ea7c11c08089a938a0d8fd049c6e27f49fdc291f22143430"
+        }
+      },
+      {
+        "name": "Matter S1吸顶灯320\\(色温\\)",
+        "connectType": "Thread协议",
+        "platform": "Yeelight Pro平台",
+        "module": "",
+        "componentTableCount": 5,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - Matter S1吸顶灯320(色温)",
+          "sha256": "6862a2f9ed772c3224ae9e2841e255e40bfe8a757448173dbb0b6016998be7b0"
+        }
+      },
+      {
+        "name": "Matter S1吸顶灯 450\\(主灯色温\\+背光灯RGB\\)",
+        "connectType": "Thread协议",
+        "platform": "Yeelight Pro平台",
+        "module": "",
+        "componentTableCount": 8,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - Matter S1吸顶灯450(主灯色温+背光灯RGB)",
+          "sha256": "dab567dcbd9af4ec7dd3ada2dd4be7031827cdb4812aeeaf08f3afb333ce0e1e"
+        }
+      },
+      {
+        "name": "Matter 台灯\\(色温\\)",
+        "connectType": "Thread协议",
+        "platform": "Yeelight Pro平台",
+        "module": "",
+        "componentTableCount": 5,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - Matter台灯(色温)",
+          "sha256": "d6ba4303e19bc9898004ba98834bcc98b517686584074d5edb8e7eb35c31d672"
+        }
+      },
+      {
+        "name": "三色调光电源",
+        "connectType": "Mesh协议",
+        "platform": "Yeelight Pro平台",
+        "module": "realtek8762e",
+        "componentTableCount": 4,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - Pro三色调光电源",
+          "sha256": "b4bbbc8ed7cb6f8921eea6ec86cbb74d00ea1dc69c85dea7cc468d87fbebe7ba"
+        }
+      },
+      {
+        "name": "S系列八键智能开关",
+        "connectType": "Mesh协议",
+        "platform": "Yeelight Pro平台",
+        "module": "蓝牙Mesh",
+        "componentTableCount": 8,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - S系列八键智能开关",
+          "sha256": "00620e6666ceabda0b161d9094f03a8660b5a26212be73f4f8a15c1197247846"
+        }
+      },
+      {
+        "name": "s系列窗帘",
+        "connectType": "matter over open thread协议",
+        "platform": "Yeelight Pro平台",
+        "module": "ESP32H2",
+        "componentTableCount": 20,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - S系列窗帘",
+          "sha256": "88161a53a73c520193467c9cbf40ec125b2c41c55d8487246f2560c523a105f4"
+        }
+      },
+      {
+        "name": "Yeelight Smart Bath Heater D1",
+        "connectType": "Matter Over Thread协议",
+        "platform": "Yeelight Pro平台",
+        "module": "ESP32H2",
+        "componentTableCount": 6,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - Thread浴霸D1",
+          "sha256": "888ffd3761411ab5d4ca01cfee315a5f851f05d3313d71d8420245dec2e3752b"
+        }
+      },
+      {
+        "name": "knx 人在传感器",
+        "connectType": "Knx协议",
+        "platform": "Yeelight Pro平台",
+        "module": "knx",
+        "componentTableCount": 4,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - knx 人在传感器",
+          "sha256": "60158774f7b58a66a09be56669bff05afd458b30603dcb2ff53b93bac04a8c3d"
+        }
+      },
+      {
+        "name": "knx 光照度传感器",
+        "connectType": "Knx协议",
+        "platform": "Yeelight Pro平台",
+        "module": "knx",
+        "componentTableCount": 4,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - knx 光照度传感器",
+          "sha256": "369439b12ba30a3d31bc5f66ce19c850debbec630d252c9b93bc6413b831682d"
+        }
+      },
+      {
+        "name": "knx RGB",
+        "connectType": "Knx协议",
+        "platform": "Yeelight Pro平台",
+        "module": "knx",
+        "componentTableCount": 4,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - knx 彩光灯",
+          "sha256": "a7d59fab43804246cb78014bf8399becb037ea7129882414d88251c09c538e47"
+        }
+      },
+      {
+        "name": "knx 温度传感器",
+        "connectType": "Knx协议",
+        "platform": "Yeelight Pro平台",
+        "module": "knx",
+        "componentTableCount": 4,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - knx 温度传感器",
+          "sha256": "60a2a63a2303c4a22037f6bd94f5b3ac08b306e4a9ead4e3d76e60f49dd64fe0"
+        }
+      },
+      {
+        "name": "knx 湿度传感器",
+        "connectType": "Knx协议",
+        "platform": "Yeelight Pro平台",
+        "module": "knx",
+        "componentTableCount": 4,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - knx 湿度传感器",
+          "sha256": "cf6746d32570aad453abb9e2bf3098877402f4dd48d5f9d5ef19b6d7ed21b004"
+        }
+      },
+      {
+        "name": "knx 面板",
+        "connectType": "Knx协议",
+        "platform": "Yeelight Pro平台",
+        "module": "knx",
+        "componentTableCount": 4,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - knx 面板",
+          "sha256": "60798ff8c26aad0b8c99a7ef8b3c20011eb130acbcca49571169abb47f574357"
+        }
+      },
+      {
+        "name": "knx亮度灯",
+        "connectType": "Knx协议",
+        "platform": "Yeelight Pro平台",
+        "module": "knx",
+        "componentTableCount": 4,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - knx亮度灯",
+          "sha256": "02b49adb64a8cffc4d5383af8e0e2e2e365e21168383e499a4e0816542ca3822"
+        }
+      },
+      {
+        "name": "knx单路继电器",
+        "connectType": "Knx协议",
+        "platform": "Yeelight Pro平台",
+        "module": "knx",
+        "componentTableCount": 5,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - knx单路继电器",
+          "sha256": "5680c865a0034a84c7144d45c346f0f6b5049dacf5b7835eb1caac467220e4d1"
+        }
+      },
+      {
+        "name": "knx开关灯",
+        "connectType": "Knx协议",
+        "platform": "Yeelight Pro平台",
+        "module": "knx",
+        "componentTableCount": 4,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - knx开关灯",
+          "sha256": "fe98c678971c0ff5b0d28adb7a03be849bb41de0912bf88e412c3aeadd3d739b"
+        }
+      },
+      {
+        "name": "knx色温灯",
+        "connectType": "Knx协议",
+        "platform": "Yeelight Pro平台",
+        "module": "knx",
+        "componentTableCount": 4,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - knx色温灯",
+          "sha256": "07015be28d37c52a46e2f3b1441e9a8711af0f100f39a6386c4c338a26b72b13"
+        }
+      },
+      {
+        "name": "mesh色温灯\\(串口版本\\)",
+        "connectType": "mesh协议",
+        "platform": "Pro",
+        "module": "",
+        "componentTableCount": 8,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - mesh色温灯(串口版本)",
+          "sha256": "b98fe32cd2fd1abcf5756ca17492062b23751215fb2121be943e3cc697681833"
+        }
+      },
+      {
+        "name": "mesh色温灯\\-亮度灯",
+        "connectType": "mesh协议",
+        "platform": "Pro",
+        "module": "",
+        "componentTableCount": 8,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - mesh色温灯-亮度灯",
+          "sha256": "3f40d1d0ff7c4383a6303d2479badacfb53efa4ec0156b8a4309b55d18078905"
+        }
+      },
+      {
+        "name": "thread 彩光灯带",
+        "connectType": "Thread协议",
+        "platform": "Yeelight Pro平台",
+        "module": "",
+        "componentTableCount": 3,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - thread彩光灯",
+          "sha256": "f4720b59a13e1aee328a003852aa8e71045d88f39599637979a72018842cd6ec"
+        }
+      },
+      {
+        "name": "thread 接触传感器",
+        "connectType": "Thread协议",
+        "platform": "Yeelight Pro平台",
+        "module": "",
+        "componentTableCount": 3,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - thread门磁",
+          "sha256": "bc6af4dcceb76f6546a11aec9861a900083751012e5dcd2d75ae850fec6ea362"
+        }
+      },
+      {
+        "name": "温湿度传感器",
+        "connectType": "MATTER",
+        "platform": "Yeelight Pro平台",
+        "module": "",
+        "componentTableCount": 4,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - 人在传感器（matter）",
+          "sha256": "5535806ae8f5dc17abb020332f973acfae044103633d3042e9a2c56337ea6101"
+        }
+      },
+      {
+        "name": "光照度人在传感器",
+        "connectType": "mesh协议",
+        "platform": "Yeelight Pro平台",
+        "module": "蓝牙mesh",
+        "componentTableCount": 0,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - 人在传感器（吸顶）",
+          "sha256": "1883bfa91684d5ea15d35fd70b11029bf8aeb101799a3d9ab9b168f4b104bfe9"
+        }
+      },
+      {
+        "name": "华歌功放（5\\.1pro）",
+        "connectType": "Mesh协议",
+        "platform": "Yeelight Pro平台",
+        "module": "以太网",
+        "componentTableCount": 4,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - 华歌功放",
+          "sha256": "b16b6b5194d2415bc3683ee5c35b521e9b6e4266dc1ee9da963eaa2560e504bf"
+        }
+      },
+      {
+        "name": "华歌CIC\\-MINI\\-7\\.2\\-Pro",
+        "connectType": "tcp",
+        "platform": "Yeelight Pro平台",
+        "module": "以太网",
+        "componentTableCount": 4,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - 华歌音响7.2Pro",
+          "sha256": "e1ebf7e44c07411e408b5289ed3541f854274d34e925f2f29bcdd278be7c23e6"
+        }
+      },
+      {
+        "name": "双路控制器\\(带功率计\\)",
+        "connectType": "Mesh协议",
+        "platform": "Yeelight Pro平台",
+        "module": "蓝牙Mesh",
+        "componentTableCount": 7,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - 双路控制器",
+          "sha256": "80402b3196514554b9830d0bd6f5c788a940c726e76ab3c4e99fd0dba9326936"
+        }
+      },
+      {
+        "name": "Yeelight Bedside Lamp D1",
+        "connectType": "Matter Over Thread协议",
+        "platform": "Yeelight Pro平台",
+        "module": "ESP32H2",
+        "componentTableCount": 5,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - 床头灯D1",
+          "sha256": "a3506f3a8d38ed34135a394c3150f1e7f40ffc95464f60041f9e09fd870241d0"
+        }
+      },
+      {
+        "name": "温湿度传感器",
+        "connectType": "MATTER",
+        "platform": "Yeelight Pro平台",
+        "module": "",
+        "componentTableCount": 5,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - 接触传感器（matter）",
+          "sha256": "f422ef6b44542af4dc7fe1e412aa8e8cb47530857a0524e29de0bd14db3225a6"
+        }
+      },
+      {
+        "name": "极致吊灯",
+        "connectType": "Mesh协议",
+        "platform": "Yeelight Pro平台",
+        "module": "蓝牙Mesh",
+        "componentTableCount": 11,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - 极致吊灯",
+          "sha256": "5f30654f82cace8e08abc89ecadb72afce1cdc7f31de782cdcec203b32930f8a"
+        }
+      },
+      {
+        "name": "海外版智能网关E1",
+        "connectType": "matter 、thread、BLE mesh",
+        "platform": "Yeelight Pro平台",
+        "module": "thread ，ble mesh",
+        "componentTableCount": 6,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - 海外版智能网关E1",
+          "sha256": "1f8c512c5b70980c6d1e57005970db85f1951a1ff87d923c2c9916d2fd9cbbab"
+        }
+      },
+      {
+        "name": "温湿度传感器",
+        "connectType": "MATTER",
+        "platform": "Yeelight Pro平台",
+        "module": "",
+        "componentTableCount": 4,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - 温湿度传感器（matter）",
+          "sha256": "afab885b7aaf39a80b73374440fd6fa112754b4ee493fa4c92955c9eae47c541"
+        }
+      },
+      {
+        "name": "Yeelight Smart LED Strip Lights D1【Thread版】",
+        "connectType": "Matter Over Thread协议",
+        "platform": "Yeelight Pro平台",
+        "module": "ESP32H2",
+        "componentTableCount": 6,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - 滴胶灯带",
+          "sha256": "9f2660c9e86a58abc5b9ee4722c5eb5d94278ee6745b53a90f287fcb7b68112e"
+        }
+      },
+      {
+        "name": "E系列智能弱电箱",
+        "connectType": "以太网",
+        "platform": "Yeelight Pro平台",
+        "module": "EFR32BG21",
+        "componentTableCount": 14,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - 网关 - E系列智能弱电箱",
+          "sha256": "dc08b01adcf957d25a22e374dad85817c2c56607286959a27443bfa69620781d"
+        }
+      },
+      {
+        "name": "自回弹虚拟双路开关",
+        "connectType": "mesh协议",
+        "platform": "Yeelight Pro平台",
+        "module": "NA",
+        "componentTableCount": 0,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - 自回弹虚拟双路开关",
+          "sha256": "082c20dfa86f028790eac9febf5cb8c5bae5af2e67498c3e7543262e1c38b7c4"
+        }
+      },
+      {
+        "name": "隐奢智能开关",
+        "connectType": "Mesh协议",
+        "platform": "Yeelight Pro平台",
+        "module": "蓝牙Mesh",
+        "componentTableCount": 24,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - 隐奢智能开关",
+          "sha256": "e419c0b904281fe3620119f18fa74e33f51ee12661344d821b780b9fe819240f"
+        }
+      },
+      {
+        "name": "Yeelight 风扇灯D1",
+        "connectType": "Matter Over Thread",
+        "platform": "Yeelight Pro平台",
+        "module": "ESP32H2\\-MINI\\-1",
+        "componentTableCount": 12,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 - 风扇灯D1",
+          "sha256": "8fc63ecdf22c026501740f7f524de83f9f45bae6fc0a7eb4c7ce594206ef735c"
+        }
+      },
+      {
+        "name": "M1智能开关",
+        "connectType": "Matter Over Thread协议",
+        "platform": "Yeelight Pro平台",
+        "module": "ESP32H2",
+        "componentTableCount": 24,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义 -M1智能开关",
+          "sha256": "6d68a2434fb1324a056e92c6bcbb721ca548064f87d1f4b9922548850f17455c"
+        }
+      },
+      {
+        "name": "光照度人在传感器",
+        "connectType": "mesh协议",
+        "platform": "Yeelight Pro平台",
+        "module": "蓝牙mesh",
+        "componentTableCount": 2,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义- 人在传感器(单鉴)",
+          "sha256": "a3efdab9c872e535016be1224a37f41c0081db39d3a1e2a0f6beb883c5a6c980"
+        }
+      },
+      {
+        "name": "光照度人在传感器",
+        "connectType": "mesh协议",
+        "platform": "Yeelight Pro平台",
+        "module": "蓝牙mesh",
+        "componentTableCount": 2,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义- 人在传感器(字节版本)",
+          "sha256": "e357f4e8770e0828af627fb6ffa3143452f8c2825818c434de223845ec693302"
+        }
+      },
+      {
+        "name": "Yeelight Pro E1 系列吸顶灯",
+        "connectType": "Thread协议",
+        "platform": "Yeelight Pro平台",
+        "module": "ESP32H2",
+        "componentTableCount": 8,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:物模型定义-Thread E1吸顶灯",
+          "sha256": "bf076525b90b213e8b73497da267257a5cd61132a7c18c1069b4127e26da610b"
+        }
+      },
+      {
+        "name": "组件定义 - 全局 - matter屏幕97",
+        "connectType": "",
+        "platform": "",
+        "module": "",
+        "componentTableCount": 0,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:组件定义 - 全局 - matter屏幕97",
+          "sha256": "acf53017237c9aa683114af0b01beec1057e93749f6a396434c46d4a56a126cd"
+        }
+      },
+      {
+        "name": "组件定义 - 全局 - matter组件95",
+        "connectType": "",
+        "platform": "",
+        "module": "",
+        "componentTableCount": 0,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:组件定义 - 全局 - matter组件95",
+          "sha256": "28336f9fba13292dfb0ee23ed9d8f6b655eca3bfae4b2c05c6517c649b51362d"
+        }
+      },
+      {
+        "name": "组件定义 - 全局 - 安全98",
+        "connectType": "",
+        "platform": "",
+        "module": "",
+        "componentTableCount": 0,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:组件定义 - 全局 - 安全98",
+          "sha256": "3f624e752bf7ed0f451627943cbfee24d0d38a1d5125640f819c82a38f4ed51c"
+        }
+      },
+      {
+        "name": "组件定义 - 全局 - 弱电箱106",
+        "connectType": "",
+        "platform": "",
+        "module": "",
+        "componentTableCount": 1,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:组件定义 - 全局 - 弱电箱106",
+          "sha256": "2b8e7887a7c181120fd6df636f9584d6f2fd084d76a16edff88024375b5955ac"
+        }
+      },
+      {
+        "name": "组件定义 - 全局 - 情景配置103",
+        "connectType": "",
+        "platform": "",
+        "module": "",
+        "componentTableCount": 0,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:组件定义 - 全局 - 情景配置103",
+          "sha256": "f04b385fa5663534d460f7bb3a4f71c621d49220521a41a19cde32c5917e8240"
+        }
+      },
+      {
+        "name": "组件定义 - 全局 - 拾音105",
+        "connectType": "",
+        "platform": "",
+        "module": "",
+        "componentTableCount": 0,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:组件定义 - 全局 - 拾音105",
+          "sha256": "6bead9cd61085ed948885ce93d4c477e267b203b09741cf36b6432375cd1938f"
+        }
+      },
+      {
+        "name": "组件定义 - 全局 - 灯带104",
+        "connectType": "",
+        "platform": "",
+        "module": "",
+        "componentTableCount": 0,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:组件定义 - 全局 - 灯带104",
+          "sha256": "b8cb941dd2822bdc66832ccd59d29219af22e264e7bcc4c9a82f2d220d89d3f4"
+        }
+      },
+      {
+        "name": "组件定义 - 普通 - 纯情景按键96",
+        "connectType": "",
+        "platform": "",
+        "module": "",
+        "componentTableCount": 3,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:组件定义 - 普通 - 纯情景按键96",
+          "sha256": "742006b71248ec0ef1d93511be35714db55d7fd21c1d02ebee47d9bad3367fb8"
+        }
+      },
+      {
+        "name": "组件定义 - 普通 - 风扇102",
+        "connectType": "",
+        "platform": "",
+        "module": "",
+        "componentTableCount": 0,
+        "provenance": {
+          "sourceId": "SRC-THING-DEFINES",
+          "sourceRef": "SRC-THING-DEFINES:组件定义 - 普通 - 风扇102",
+          "sha256": "ec54a9ec8aad9f28ead70f3d5ee0070a6b0f6468af649b4ab8fe68b30631362a"
+        }
+      }
+    ],
+    "components": [
+      {
+        "id": "1",
+        "name": "网关",
+        "alias": "gateway",
+        "category": "gateway",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "fm,lf,pl,li,lc,sonos_mgr,plugins,hk,mfl,io_type",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 2
+        }
+      },
+      {
+        "id": "2",
+        "name": "开关灯",
+        "alias": "switch light",
+        "category": "light",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "min_level,max_level,level_limit_rdy,p,slisaon,bp,dd,slisaon_rdy,3rdPartySyncBitmask,name,icon,io_type",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 3
+        }
+      },
+      {
+        "id": "3",
+        "name": "亮度灯",
+        "alias": "brightness light",
+        "category": "light",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "min_level,max_level,level_limit_rdy,p,l,slisaon,bp,dd,slisaon_rdy,3rdPartySyncBitmask,name,icon,io_type",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 4
+        }
+      },
+      {
+        "id": "4",
+        "name": "色温灯",
+        "alias": "color temperature light",
+        "category": "light",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "min_level,max_level,level_limit_rdy,p,l,slisaon,bp,dd,slisaon_rdy,3rdPartySyncBitmask,name,icon,io_type,ct",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 5
+        }
+      },
+      {
+        "id": "5",
+        "name": "彩光灯",
+        "alias": "color light",
+        "category": "light",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "p,l,slisaon,bp,dd,slisaon_rdy,3rdPartySyncBitmask,name,icon,io_type,ct,c,m",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 6
+        }
+      },
+      {
+        "id": "7",
+        "name": "人感传感器",
+        "alias": "human detection sensor",
+        "category": "human_sensor",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "mv,3rdPartySyncBitmask,name,icon,io_type",
+        "events": "有人移动,无人移动",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 7
+        }
+      },
+      {
+        "id": "9",
+        "name": "人在传感器",
+        "alias": "human occupancy sensor",
+        "category": "human_sensor",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "mv,3rdPartySyncBitmask,name,icon,io_type",
+        "events": "有人移动,无人移动",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 8
+        }
+      },
+      {
+        "id": "10",
+        "name": "光照传感器2",
+        "alias": "human illuminance sensor",
+        "category": "light_sensor",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "mv,blp,li,sens_range,lumi_setting,delay_time,name,icon,io_type,3rdPartySyncBitmask",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 9
+        }
+      },
+      {
+        "id": "11",
+        "name": "跑道屏",
+        "alias": "runway panel",
+        "category": "scene_panel",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "blp,nightMode,weather_hidden,time_hidden,temp_hidden,keys_visible,name,icon,io_type",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 10
+        }
+      },
+      {
+        "id": "12",
+        "name": "窗帘",
+        "alias": "curtain",
+        "category": "curtain",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "cp,tp,rd,pe,pi,dt,open_type,rs,name,icon,3rdPartySyncBitmask,io_type,run_speed,run_speed_rdy,li",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 11
+        }
+      },
+      {
+        "id": "16",
+        "name": "无线开关通道",
+        "alias": "wireless switch channel",
+        "category": "relay_switch",
+        "type": "0-普通组件",
+        "mockComponents": "开关灯,情景按键,无线开关通道",
+        "properties": "l,sbp,slisaon,slisaon_rdy,mock,name,icon,3rdPartySyncBitmask,io_type,run_speed,run_speed_rdy,li",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 12
+        }
+      },
+      {
+        "id": "17",
+        "name": "旋钮开关",
+        "alias": "knob switch",
+        "category": "knob_switch",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "name,icon,io_type,3rdPartySyncBitmask",
+        "events": "旋转",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 13
+        }
+      },
+      {
+        "id": "18",
+        "name": "情景按键",
+        "alias": "scene control button",
+        "category": "scene_panel",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "name,icon,io_type,3rdPartySyncBitmask,p,m,mock",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 14
+        }
+      },
+      {
+        "id": "19",
+        "name": "空调",
+        "alias": "air conditioner",
+        "category": "temp_control",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "acp,acm,actt,acf,acct,acd,acdfltr,acrc,3rdPartySyncBitmask,name,icon,online",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 15
+        }
+      },
+      {
+        "id": "20",
+        "name": "开关",
+        "alias": "switch control",
+        "category": "relay_switch",
+        "type": "0-普通组件",
+        "mockComponents": "开关灯,开关",
+        "properties": "p,slisaon,bp,slisaon_rdy,3rdPartySyncBitmask,name,icon,mock,io_type,jen,jdef,jtm",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 16
+        }
+      },
+      {
+        "id": "21",
+        "name": "接触式传感器",
+        "alias": "contact sensor",
+        "category": "contact_sensor",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "alm,dc,3rdPartySyncBitmask,name,icon,io_type",
+        "events": "分离,接触,告警,告警恢复正常",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 17
+        }
+      },
+      {
+        "id": "23",
+        "name": "人体红外传感器",
+        "alias": "human body infrared sensor",
+        "category": "human_sensor",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "mv,ebl,li,3rdPartySyncBitmask,luminance,name,icon,io_type",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 18
+        }
+      },
+      {
+        "id": "24",
+        "name": "环境光传感器",
+        "alias": "ambient light sensor",
+        "category": "light_sensor",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "ebl,li,3rdPartySyncBitmask,luminance,name,icon,io_type",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 19
+        }
+      },
+      {
+        "id": "27",
+        "name": "音乐组件",
+        "alias": "music control",
+        "category": "other",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "mppm,mpmp,mpml,mpmr,name,icon",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 20
+        }
+      },
+      {
+        "id": "29",
+        "name": "声音组件",
+        "alias": "audio control",
+        "category": "other",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "vol,ntStart,ntEnd",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 21
+        }
+      },
+      {
+        "id": "36",
+        "name": "可升降组件",
+        "alias": "lift control",
+        "category": "other",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "height,name,icon,io_type",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 22
+        }
+      },
+      {
+        "id": "39",
+        "name": "梦幻帘",
+        "alias": "zebra blinds",
+        "category": "curtain",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "cp,tp,li,rd,open_type,tra,cra,trs,rs,rrd,rg,3rdPartySyncBitmask,name,icon,io_type,run_speed",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 23
+        }
+      },
+      {
+        "id": "42",
+        "name": "新风",
+        "alias": "fresh air",
+        "category": "temp_control",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "3rdPartySyncBitmask,vmcp,vmcf,name,icon,online,io_type",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 24
+        }
+      },
+      {
+        "id": "43",
+        "name": "地暖",
+        "alias": "floor heating",
+        "category": "temp_control",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "rfhp,rfhct,rfhtt,name,icon,online,3rdPartySyncBitmask,io_type",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 25
+        }
+      },
+      {
+        "id": "44",
+        "name": "基础组件",
+        "alias": "basic",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "dev_alarm,fv,name,icon,online,fblck,fbnum,3rdPartySyncBitmask,support_fblck, Connectivity Protocols type,run power,life",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 26
+        }
+      },
+      {
+        "id": "45",
+        "name": "mesh组件",
+        "alias": "mesh",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "hb_interval,ttl,retrans,tx_power,relay,support relay,mac,deviceKey",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 27
+        }
+      },
+      {
+        "id": "46",
+        "name": "wifi组件",
+        "alias": "wifi",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "ip,ssid,psk,mac,localToken,eip",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 28
+        }
+      },
+      {
+        "id": "47",
+        "name": "以太网组件",
+        "alias": "ethernet",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "ip,mac,eip",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 29
+        }
+      },
+      {
+        "id": "48",
+        "name": "电池组件",
+        "alias": "battery",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "bl,bc,bcg",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 30
+        }
+      },
+      {
+        "id": "49",
+        "name": "背光指示灯组件",
+        "alias": "backlight indicator",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "blp,nightMode",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 31
+        }
+      },
+      {
+        "id": "50",
+        "name": "遥控器管理组件",
+        "alias": "remote control management",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "rmt",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 32
+        }
+      },
+      {
+        "id": "51",
+        "name": "米家组件",
+        "alias": "miHome",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "mimac,miln,miid,mibk,micd,midk",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 33
+        }
+      },
+      {
+        "id": "52",
+        "name": "美的组件",
+        "alias": "midea",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "mei_login,meiln,mei_info,meibk,mei_did,mei_all_nodes_sync_state,mei_all_scenes_sync_state",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 34
+        }
+      },
+      {
+        "id": "53",
+        "name": "海尔组件",
+        "alias": "haier",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "hrbk,hrdm,hrpt,hr_login,hrln,hr_all_nodes_sync_state,hr_all_scenes_sync_state",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 35
+        }
+      },
+      {
+        "id": "54",
+        "name": "双路继电器组件",
+        "alias": "dual channel relay",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "slisaon,mp",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 36
+        }
+      },
+      {
+        "id": "55",
+        "name": "HVAC网关",
+        "alias": "HVAC gateway",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "ch_num,3rdPartySyncBitmask,name,icon",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 37
+        }
+      },
+      {
+        "id": "56",
+        "name": "wifi屏组件",
+        "alias": "wifi screen",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "lc,extend,ntOn,ntStart,ntEnd,ntDelay,nightMode,ntScreenMode,name,icon",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 38
+        }
+      },
+      {
+        "id": "57",
+        "name": "mesh屏组件",
+        "alias": "mesh screen",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "ntOn,ntStart,ntEnd,ntDelay,name,icon,ntScreenMode,mp_keys,mp_buttons,mp_devices,mp_nightMode,mp_scenes",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 39
+        }
+      },
+      {
+        "id": "58",
+        "name": "组合旋钮组件",
+        "alias": "combined rotary control",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "3rdPartySyncBitmask,name,icon",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 40
+        }
+      },
+      {
+        "id": "59",
+        "name": "角度色温灯",
+        "alias": "angle color temperature light",
+        "category": "light",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "p,l,ct,angle,slisaon,bp,dd,slisaon_rdy,3rdPartySyncBitmask,name,icon,io_type",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 41
+        }
+      },
+      {
+        "id": "60",
+        "name": "未定义子设备",
+        "alias": "undefined",
+        "category": "other",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 42
+        }
+      },
+      {
+        "id": "61",
+        "name": "旋钮屏组件",
+        "alias": "knob screen",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "ntOn,ntStart,ntEnd,ntDelay,ntScreenMode,mp_keys,mp_buttons,mp_devices,mp_nightMode,mp_scenes,name,icon",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 43
+        }
+      },
+      {
+        "id": "62",
+        "name": "全景屏组件",
+        "alias": "panorama screen",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "extend",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 44
+        }
+      },
+      {
+        "id": "63",
+        "name": "温控器组件",
+        "alias": "temp control",
+        "category": "temp_control",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "p,bhm,do,ve,fa,he,t,tgt,3rdPartySyncBitmask,name,icon,io_type,sa,ss,rst,dntm",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 45
+        }
+      },
+      {
+        "id": "64",
+        "name": "单火组件",
+        "alias": "single fire",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 46
+        }
+      },
+      {
+        "id": "65",
+        "name": "dali灯组件",
+        "alias": "dali light",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "ddt,dpt,power_on_level,system_failure_level,fade_rate,dim_curve",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 47
+        }
+      },
+      {
+        "id": "66",
+        "name": "dali能量组件",
+        "alias": "dali energy",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "ap,ae,ot,sys_s,esv,esvf,temp,ocp,lsot,lsv,lsc,pf",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 48
+        }
+      },
+      {
+        "id": "67",
+        "name": "dali情景按键",
+        "alias": "dali scene control button",
+        "category": "scene_panel",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "name,icon,io_type,3rdPartySyncBitmask,ep,st,rt",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 49
+        }
+      },
+      {
+        "id": "68",
+        "name": "dali人感传感器",
+        "alias": "dali human detection sensor",
+        "category": "human_sensor",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "mv,name,icon,io_type,3rdPartySyncBitmask,ep,dead_time,report_timers,hold_timers",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 50
+        }
+      },
+      {
+        "id": "69",
+        "name": "dali光感传感器",
+        "alias": "dali illuminance sensor",
+        "category": "light_sensor",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "name,icon,3rdPartySyncBitmask,io_type,dead_time,report_timers,hys,hys_min,luminance,ep",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 51
+        }
+      },
+      {
+        "id": "70",
+        "name": "dali组件",
+        "alias": "dali",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "dver,dali_is_cnt,dali_hds_cnt,dali_scb_cnt,gtin,dev_alarm",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 52
+        }
+      },
+      {
+        "id": "71",
+        "name": "dali旋钮开关组件",
+        "alias": "dali knob switch",
+        "category": "knob_switch",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "3rdPartySyncBitmask,name,icon,io_type,ep,rt,dead_time",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 53
+        }
+      },
+      {
+        "id": "72",
+        "name": "无色温彩光灯组件",
+        "alias": "color light without temperature",
+        "category": "light",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "p,l,c,bp,dd,slisaon,slisaon_rdy,name,icon,3rdPartySyncBitmask,io_type",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 54
+        }
+      },
+      {
+        "id": "73",
+        "name": "亮度雷达传感器(可屏蔽区段)",
+        "alias": "zonalShieldIlluminanceRadarSensor",
+        "category": "light_sensor",
+        "type": "0-普通组件",
+        "mockComponents": "",
+        "properties": "mv,li,3rdPartySyncBitmask,luminance,sens_range,lumi_setting,delay_time,name,icon,io_type,sens_shield",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 55
+        }
+      },
+      {
+        "id": "74",
+        "name": "虚拟开关组件（全局）",
+        "alias": "VirtualSwitch",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "srb",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 56
+        }
+      },
+      {
+        "id": "75",
+        "name": "智慧屏组件",
+        "alias": "",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 57
+        }
+      },
+      {
+        "id": "76",
+        "name": "电量组件",
+        "alias": "power meter",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": "",
+        "properties": "curp,iec",
+        "events": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceRef": "SRC-IOT-BASIC-COMPONENTS",
+          "sourceLine": 58
+        }
+      }
+    ],
+    "properties": [
+      {
+        "id": "1",
+        "name": "p",
+        "shortName": "p",
+        "fullName": "power",
+        "dataType": "bool",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "开关,开关灯,亮度灯,色温灯,彩光灯,角度色温灯,温控器组件,无色温彩光灯组件,情景按键",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 2
+        }
+      },
+      {
+        "id": "2",
+        "name": "l",
+        "shortName": "l",
+        "fullName": "brightness",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "亮度灯,色温灯,彩光灯,角度色温灯,无色温彩光灯组件,无线开关通道",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 3
+        }
+      },
+      {
+        "id": "3",
+        "name": "ct",
+        "shortName": "ct",
+        "fullName": "color temperature",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "色温灯,彩光灯,角度色温灯",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 4
+        }
+      },
+      {
+        "id": "4",
+        "name": "c",
+        "shortName": "c",
+        "fullName": "color",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "彩光灯,无色温彩光灯组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 5
+        }
+      },
+      {
+        "id": "5",
+        "name": "m",
+        "shortName": "m",
+        "fullName": "mode",
+        "dataType": "enum",
+        "access": "读",
+        "category": "应用类",
+        "components": "彩光灯,情景按键",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 6
+        }
+      },
+      {
+        "id": "6",
+        "name": "bhm",
+        "shortName": "bhm",
+        "fullName": "bath heat mode",
+        "dataType": "enum",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "温控器组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 7
+        }
+      },
+      {
+        "id": "8",
+        "name": "alm",
+        "shortName": "alm",
+        "fullName": "alarm",
+        "dataType": "bool",
+        "access": "读",
+        "category": "应用类",
+        "components": "接触式传感器",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 8
+        }
+      },
+      {
+        "id": "9",
+        "name": "dc",
+        "shortName": "dc",
+        "fullName": "door closed",
+        "dataType": "bool",
+        "access": "读",
+        "category": "应用类",
+        "components": "接触式传感器",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 9
+        }
+      },
+      {
+        "id": "11",
+        "name": "mv",
+        "shortName": "mv",
+        "fullName": "motion",
+        "dataType": "bool",
+        "access": "读",
+        "category": "应用类",
+        "components": "人在传感器,人感传感器,光照传感器2,人体红外传感器,dali人感传感器,亮度雷达传感器(可屏蔽区段)",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 10
+        }
+      },
+      {
+        "id": "12",
+        "name": "cp",
+        "shortName": "cp",
+        "fullName": "current position",
+        "dataType": "int",
+        "access": "读",
+        "category": "应用类",
+        "components": "窗帘,梦幻帘",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 11
+        }
+      },
+      {
+        "id": "13",
+        "name": "tp",
+        "shortName": "tp",
+        "fullName": "target position",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "窗帘,梦幻帘",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 12
+        }
+      },
+      {
+        "id": "14",
+        "name": "bl",
+        "shortName": "bl",
+        "fullName": "battery level",
+        "dataType": "int",
+        "access": "读",
+        "category": "应用类",
+        "components": "电池组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 13
+        }
+      },
+      {
+        "id": "15",
+        "name": "bc",
+        "shortName": "bc",
+        "fullName": "battery chargeable",
+        "dataType": "bool",
+        "access": "读",
+        "category": "应用类",
+        "components": "电池组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 14
+        }
+      },
+      {
+        "id": "16",
+        "name": "bcg",
+        "shortName": "bcg",
+        "fullName": "battery charging",
+        "dataType": "bool",
+        "access": "读",
+        "category": "应用类",
+        "components": "电池组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 15
+        }
+      },
+      {
+        "id": "17",
+        "name": "do",
+        "shortName": "do",
+        "fullName": "delay off",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "温控器组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 16
+        }
+      },
+      {
+        "id": "18",
+        "name": "acp",
+        "shortName": "acp",
+        "fullName": "ac power",
+        "dataType": "bool",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "空调",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 17
+        }
+      },
+      {
+        "id": "19",
+        "name": "acm",
+        "shortName": "acm",
+        "fullName": "ac mode",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "空调",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 18
+        }
+      },
+      {
+        "id": "20",
+        "name": "actt",
+        "shortName": "actt",
+        "fullName": "ac target temperature",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "空调",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 19
+        }
+      },
+      {
+        "id": "21",
+        "name": "acf",
+        "shortName": "acf",
+        "fullName": "ac fan",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "空调",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 20
+        }
+      },
+      {
+        "id": "22",
+        "name": "sp",
+        "shortName": "sp",
+        "fullName": "switch power",
+        "dataType": "bool",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "无线开关通道",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 21
+        }
+      },
+      {
+        "id": "23",
+        "name": "blp",
+        "shortName": "blp",
+        "fullName": "backlight power",
+        "dataType": "bool",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "背光指示灯组件,光照传感器2,跑道屏",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 22
+        }
+      },
+      {
+        "id": "25",
+        "name": "acct",
+        "shortName": "acct",
+        "fullName": "ac current temperature",
+        "dataType": "int",
+        "access": "读",
+        "category": "应用类",
+        "components": "空调",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 23
+        }
+      },
+      {
+        "id": "26",
+        "name": "aco",
+        "shortName": "aco",
+        "fullName": "ac online",
+        "dataType": "bool",
+        "access": "读",
+        "category": "应用类",
+        "components": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 24
+        }
+      },
+      {
+        "id": "27",
+        "name": "acd",
+        "shortName": "acd",
+        "fullName": "ac delay",
+        "dataType": "int",
+        "access": "读",
+        "category": "应用类",
+        "components": "空调",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 25
+        }
+      },
+      {
+        "id": "29",
+        "name": "angle",
+        "shortName": "angle",
+        "fullName": "angle",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "角度色温灯",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 26
+        }
+      },
+      {
+        "id": "30",
+        "name": "ebl",
+        "shortName": "ebl",
+        "fullName": "environmental brightness level",
+        "dataType": "int",
+        "access": "读",
+        "category": "应用类",
+        "components": "环境光传感器,人体红外传感器",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 27
+        }
+      },
+      {
+        "id": "31",
+        "name": "acdfltr",
+        "shortName": "acdfltr",
+        "fullName": "ac deflector",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "空调",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 28
+        }
+      },
+      {
+        "id": "32",
+        "name": "acrc",
+        "shortName": "acrc",
+        "fullName": "ac remote controller",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "空调",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 29
+        }
+      },
+      {
+        "id": "33",
+        "name": "ve",
+        "shortName": "ve",
+        "fullName": "ventilation",
+        "dataType": "enum",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "温控器组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 30
+        }
+      },
+      {
+        "id": "34",
+        "name": "fa",
+        "shortName": "fa",
+        "fullName": "fan",
+        "dataType": "enum",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "温控器组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 31
+        }
+      },
+      {
+        "id": "35",
+        "name": "he",
+        "shortName": "he",
+        "fullName": "heat",
+        "dataType": "enum",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "温控器组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 32
+        }
+      },
+      {
+        "id": "36",
+        "name": "t",
+        "shortName": "t",
+        "fullName": "current temperature",
+        "dataType": "int",
+        "access": "读",
+        "category": "应用类",
+        "components": "温控器组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 33
+        }
+      },
+      {
+        "id": "37",
+        "name": "tgt",
+        "shortName": "tgt",
+        "fullName": "target temperature",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "温控器组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 34
+        }
+      },
+      {
+        "id": "38",
+        "name": "mppm",
+        "shortName": "mppm",
+        "fullName": "music player play mode",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "音乐组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 35
+        }
+      },
+      {
+        "id": "39",
+        "name": "mpmp",
+        "shortName": "mpmp",
+        "fullName": "music player play pause",
+        "dataType": "bool",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "音乐组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 36
+        }
+      },
+      {
+        "id": "40",
+        "name": "mpml",
+        "shortName": "mpml",
+        "fullName": "music player music list",
+        "dataType": "bool",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "音乐组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 37
+        }
+      },
+      {
+        "id": "41",
+        "name": "mpmr",
+        "shortName": "mpmr",
+        "fullName": "music player music rhythm",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "音乐组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 38
+        }
+      },
+      {
+        "id": "45",
+        "name": "vol",
+        "shortName": "vol",
+        "fullName": "volume",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "声音组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 39
+        }
+      },
+      {
+        "id": "47",
+        "name": "lc",
+        "shortName": "lc",
+        "fullName": "lan control",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "网关,wifi屏组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 40
+        }
+      },
+      {
+        "id": "48",
+        "name": "li",
+        "shortName": "li",
+        "fullName": "indicator switch",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "环境光传感器,光照传感器2,网关,人体红外传感器,亮度雷达传感器(可屏蔽区段),窗帘,无线开关通道,梦幻帘",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 41
+        }
+      },
+      {
+        "id": "49",
+        "name": "ip",
+        "shortName": "ip",
+        "fullName": "ip",
+        "dataType": "string",
+        "access": "读",
+        "category": "配置类",
+        "components": "wifi组件,以太网组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 42
+        }
+      },
+      {
+        "id": "50",
+        "name": "pl",
+        "shortName": "pl",
+        "fullName": "physical link",
+        "dataType": "int",
+        "access": "读",
+        "category": "配置类",
+        "components": "网关",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 43
+        }
+      },
+      {
+        "id": "51",
+        "name": "lf",
+        "shortName": "lf",
+        "fullName": "up time",
+        "dataType": "int",
+        "access": "读",
+        "category": "配置类",
+        "components": "网关",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 44
+        }
+      },
+      {
+        "id": "52",
+        "name": "fm",
+        "shortName": "fm",
+        "fullName": "memory free",
+        "dataType": "int",
+        "access": "读",
+        "category": "配置类",
+        "components": "网关",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 45
+        }
+      },
+      {
+        "id": "53",
+        "name": "ssid",
+        "shortName": "ssid",
+        "fullName": "ssid",
+        "dataType": "string",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "wifi组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 46
+        }
+      },
+      {
+        "id": "54",
+        "name": "slisaon",
+        "shortName": "slisaon",
+        "fullName": "slisaon",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "无线开关通道,开关,开关灯,亮度灯,色温灯,彩光灯,角度色温灯,双路继电器组件,mesh屏组件,旋钮屏组件,无色温彩光灯组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 47
+        }
+      },
+      {
+        "id": "55",
+        "name": "bp",
+        "shortName": "bp",
+        "fullName": "power on boot",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "开关,开关灯,亮度灯,色温灯,彩光灯,角度色温灯,无色温彩光灯组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 48
+        }
+      },
+      {
+        "id": "56",
+        "name": "relay",
+        "shortName": "rl",
+        "fullName": "relay",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "mesh组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 49
+        }
+      },
+      {
+        "id": "58",
+        "name": "dt",
+        "shortName": "dt",
+        "fullName": "",
+        "dataType": "",
+        "access": "",
+        "category": "配置类",
+        "components": "窗帘",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 50
+        }
+      },
+      {
+        "id": "59",
+        "name": "pi",
+        "shortName": "pi",
+        "fullName": "",
+        "dataType": "",
+        "access": "",
+        "category": "配置类",
+        "components": "窗帘",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 51
+        }
+      },
+      {
+        "id": "60",
+        "name": "pe",
+        "shortName": "pe",
+        "fullName": "",
+        "dataType": "",
+        "access": "",
+        "category": "配置类",
+        "components": "窗帘",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 52
+        }
+      },
+      {
+        "id": "61",
+        "name": "fv",
+        "shortName": "fv",
+        "fullName": "firmware version",
+        "dataType": "int",
+        "access": "读",
+        "category": "配置类",
+        "components": "基础组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 53
+        }
+      },
+      {
+        "id": "62",
+        "name": "extend",
+        "shortName": "extend",
+        "fullName": "extend",
+        "dataType": "jsonObj",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "wifi屏组件,全景屏组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 54
+        }
+      },
+      {
+        "id": "63",
+        "name": "rd",
+        "shortName": "rd",
+        "fullName": "reverse direction",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "窗帘,梦幻帘",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 55
+        }
+      },
+      {
+        "id": "64",
+        "name": "dd",
+        "shortName": "dd",
+        "fullName": "default duration",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "开关灯,亮度灯,色温灯,彩光灯,角度色温灯,无色温彩光灯组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 56
+        }
+      },
+      {
+        "id": "65",
+        "name": "showGroupDevices",
+        "shortName": "showGroupDevices",
+        "fullName": "showGroupDevices",
+        "dataType": "boolean",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 57
+        }
+      },
+      {
+        "id": "66",
+        "name": "eip",
+        "shortName": "eip",
+        "fullName": "external IP",
+        "dataType": "string",
+        "access": "读",
+        "category": "配置类",
+        "components": "wifi组件,以太网组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 58
+        }
+      },
+      {
+        "id": "67",
+        "name": "fblck",
+        "shortName": "fblck",
+        "fullName": "reset lock",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "基础组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 59
+        }
+      },
+      {
+        "id": "68",
+        "name": "fbnum",
+        "shortName": "fbnum",
+        "fullName": "reset lock num",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "基础组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 60
+        }
+      },
+      {
+        "id": "69",
+        "name": "ntOn",
+        "shortName": "ntOn",
+        "fullName": "night mode on",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "wifi屏组件,旋钮屏组件,mesh屏组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 61
+        }
+      },
+      {
+        "id": "70",
+        "name": "ntStart",
+        "shortName": "ntStart",
+        "fullName": "night mode start",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "wifi屏组件,旋钮屏组件,mesh屏组件,声音组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 62
+        }
+      },
+      {
+        "id": "71",
+        "name": "ntEnd",
+        "shortName": "ntEnd",
+        "fullName": "night mode end",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "wifi屏组件,旋钮屏组件,mesh屏组件,声音组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 63
+        }
+      },
+      {
+        "id": "72",
+        "name": "ntDelay",
+        "shortName": "ntDelay",
+        "fullName": "night mode delay",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "wifi屏组件,旋钮屏组件,mesh屏组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 64
+        }
+      },
+      {
+        "id": "73",
+        "name": "hrbk",
+        "shortName": "hrbk",
+        "fullName": "haier bind key",
+        "dataType": "string",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "海尔组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 65
+        }
+      },
+      {
+        "id": "74",
+        "name": "hrdm",
+        "shortName": "hrdm",
+        "fullName": "haier domain",
+        "dataType": "string",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "海尔组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 66
+        }
+      },
+      {
+        "id": "75",
+        "name": "hrpt",
+        "shortName": "hrpt",
+        "fullName": "haier port",
+        "dataType": "string",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "海尔组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 67
+        }
+      },
+      {
+        "id": "79",
+        "name": "ch_num",
+        "shortName": "ch_num",
+        "fullName": "channel num",
+        "dataType": "int",
+        "access": "读",
+        "category": "配置类",
+        "components": "HVAC网关",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 68
+        }
+      },
+      {
+        "id": "82",
+        "name": "nightMode",
+        "shortName": "nightMode",
+        "fullName": "night mode",
+        "dataType": "jsonObj",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "wifi屏组件,背光指示灯组件,跑道屏",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 69
+        }
+      },
+      {
+        "id": "84",
+        "name": "slisaon_rdy",
+        "shortName": "slisaon_rdy",
+        "fullName": "slisaon ready",
+        "dataType": "int",
+        "access": "读",
+        "category": "配置类",
+        "components": "无线开关通道,开关,开关灯,亮度灯,色温灯,彩光灯,角度色温灯,无色温彩光灯组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 70
+        }
+      },
+      {
+        "id": "85",
+        "name": "psk",
+        "shortName": "psk",
+        "fullName": "psk",
+        "dataType": "string",
+        "access": "写",
+        "category": "配置类",
+        "components": "wifi组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 71
+        }
+      },
+      {
+        "id": "86",
+        "name": "hb_interval",
+        "shortName": "hb_interval",
+        "fullName": "heart beat interval",
+        "dataType": "int",
+        "access": "读",
+        "category": "配置类",
+        "components": "mesh组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 72
+        }
+      },
+      {
+        "id": "87",
+        "name": "ttl",
+        "shortName": "ttl",
+        "fullName": "time to live",
+        "dataType": "int",
+        "access": "读",
+        "category": "配置类",
+        "components": "mesh组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 73
+        }
+      },
+      {
+        "id": "88",
+        "name": "retrans",
+        "shortName": "retrans",
+        "fullName": "retrans num",
+        "dataType": "int",
+        "access": "读",
+        "category": "配置类",
+        "components": "mesh组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 74
+        }
+      },
+      {
+        "id": "89",
+        "name": "tx_power",
+        "shortName": "tx_power",
+        "fullName": "transmit power",
+        "dataType": "int",
+        "access": "读",
+        "category": "配置类",
+        "components": "mesh组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 75
+        }
+      },
+      {
+        "id": "90",
+        "name": "jen",
+        "shortName": "jen",
+        "fullName": "jog enable",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "开关",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 76
+        }
+      },
+      {
+        "id": "91",
+        "name": "jdef",
+        "shortName": "jdef",
+        "fullName": "jog default",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "开关",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 77
+        }
+      },
+      {
+        "id": "92",
+        "name": "jtm",
+        "shortName": "jtm",
+        "fullName": "jog time",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "开关",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 78
+        }
+      },
+      {
+        "id": "93",
+        "name": "open_type",
+        "shortName": "open_type",
+        "fullName": "open type",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "窗帘,梦幻帘",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 79
+        }
+      },
+      {
+        "id": "95",
+        "name": "miln",
+        "shortName": "miln",
+        "fullName": "mi linked",
+        "dataType": "int",
+        "access": "读",
+        "category": "配置类",
+        "components": "米家组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 80
+        }
+      },
+      {
+        "id": "96",
+        "name": "miid",
+        "shortName": "miid",
+        "fullName": "mi did",
+        "dataType": "string",
+        "access": "写",
+        "category": "配置类",
+        "components": "米家组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 81
+        }
+      },
+      {
+        "id": "97",
+        "name": "mibk",
+        "shortName": "mibk",
+        "fullName": "mi bind key",
+        "dataType": "string",
+        "access": "写",
+        "category": "配置类",
+        "components": "米家组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 82
+        }
+      },
+      {
+        "id": "98",
+        "name": "micd",
+        "shortName": "micd",
+        "fullName": "mi country domain",
+        "dataType": "string",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "米家组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 83
+        }
+      },
+      {
+        "id": "99",
+        "name": "midk",
+        "shortName": "midk",
+        "fullName": "mi device key",
+        "dataType": "string",
+        "access": "写",
+        "category": "配置类",
+        "components": "米家组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 84
+        }
+      },
+      {
+        "id": "103",
+        "name": "ntScreenMode",
+        "shortName": "ntScreenMode",
+        "fullName": "night screen mode",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "wifi屏组件,旋钮屏组件,mesh屏组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 85
+        }
+      },
+      {
+        "id": "104",
+        "name": "mp",
+        "shortName": "mp",
+        "fullName": "mutex power",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "双路继电器组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 86
+        }
+      },
+      {
+        "id": "108",
+        "name": "mp_keys",
+        "shortName": "mp_keys",
+        "fullName": "multi-panel keys",
+        "dataType": "jsonObj",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "旋钮屏组件,mesh屏组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 87
+        }
+      },
+      {
+        "id": "109",
+        "name": "mp_buttons",
+        "shortName": "mp_buttons",
+        "fullName": "multi-panel buttons",
+        "dataType": "jsonObj",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "旋钮屏组件,mesh屏组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 88
+        }
+      },
+      {
+        "id": "110",
+        "name": "mp_devices",
+        "shortName": "mp_devices",
+        "fullName": "multi-panel devices",
+        "dataType": "jsonObj",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "旋钮屏组件,mesh屏组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 89
+        }
+      },
+      {
+        "id": "111",
+        "name": "mp_nightMode",
+        "shortName": "mp_nightmode",
+        "fullName": "multi-panel night mode",
+        "dataType": "jsonObj",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "旋钮屏组件,mesh屏组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 90
+        }
+      },
+      {
+        "id": "112",
+        "name": "component_num_config",
+        "shortName": "c_n_c",
+        "fullName": "component num config",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "基础组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 91
+        }
+      },
+      {
+        "id": "174",
+        "name": "mei_login",
+        "shortName": "mei_login",
+        "fullName": "mei login",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "美的组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 92
+        }
+      },
+      {
+        "id": "178",
+        "name": "meiln",
+        "shortName": "meiln",
+        "fullName": "mei linked",
+        "dataType": "int",
+        "access": "读",
+        "category": "配置类",
+        "components": "美的组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 93
+        }
+      },
+      {
+        "id": "179",
+        "name": "mei_info",
+        "shortName": "mei_info",
+        "fullName": "mei info",
+        "dataType": "string",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "美的组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 94
+        }
+      },
+      {
+        "id": "180",
+        "name": "meibk",
+        "shortName": "meibk",
+        "fullName": "mei bind key",
+        "dataType": "string",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "美的组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 95
+        }
+      },
+      {
+        "id": "181",
+        "name": "mei_did",
+        "shortName": "mei_did",
+        "fullName": "mei did",
+        "dataType": "int64",
+        "access": "读",
+        "category": "配置类",
+        "components": "美的组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 96
+        }
+      },
+      {
+        "id": "182",
+        "name": "mei_all_nodes_sync_state",
+        "shortName": "mei_all_nodes_sync_state",
+        "fullName": "mei all nodes sync state",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "美的组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 97
+        }
+      },
+      {
+        "id": "183",
+        "name": "plugins",
+        "shortName": "plugins",
+        "fullName": "plugins",
+        "dataType": "jsonArray",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "网关",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 98
+        }
+      },
+      {
+        "id": "185",
+        "name": "height",
+        "shortName": "height",
+        "fullName": "height",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "可升降组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 99
+        }
+      },
+      {
+        "id": "190",
+        "name": "tra",
+        "shortName": "tra",
+        "fullName": "target rotary angle",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "梦幻帘",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 100
+        }
+      },
+      {
+        "id": "191",
+        "name": "cra",
+        "shortName": "cra",
+        "fullName": "current rotary angle",
+        "dataType": "int",
+        "access": "读",
+        "category": "应用类",
+        "components": "梦幻帘",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 101
+        }
+      },
+      {
+        "id": "192",
+        "name": "rrd",
+        "shortName": "rrd",
+        "fullName": "tilt reverse direction",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "梦幻帘",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 102
+        }
+      },
+      {
+        "id": "193",
+        "name": "rg",
+        "shortName": "rg",
+        "fullName": "tilt rotation gears",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "梦幻帘",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 103
+        }
+      },
+      {
+        "id": "194",
+        "name": "mei_all_scenes_sync_state",
+        "shortName": "mei_all_scenes_sync_state",
+        "fullName": "mei all scenes sync state",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "美的组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 104
+        }
+      },
+      {
+        "id": "227",
+        "name": "3rdPartySyncBitmask",
+        "shortName": "3rdPartySyncBitmask",
+        "fullName": "third party sync bitmask",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "基础组件,无线开关通道,开关,开关灯,亮度灯,色温灯,彩光灯,角度色温灯,接触式传感器,人在传感器,人感传感器,环境光传感器,窗帘,光照传感器2,空调,新风,地暖,情景按键,梦幻帘,旋钮开关,温控器组件,人体红外传感器,dali情景按键,dali人感传感器,dali光感传感器,dali旋钮开关组件,无色温彩光灯组件,亮度雷达传感器(可屏蔽区段),HVAC网关,组合旋钮组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 105
+        }
+      },
+      {
+        "id": "231",
+        "name": "rmt",
+        "shortName": "rmt",
+        "fullName": "remote management",
+        "dataType": "string",
+        "access": "读",
+        "category": "配置类",
+        "components": "遥控器管理组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 106
+        }
+      },
+      {
+        "id": "232",
+        "name": "weather_hidden",
+        "shortName": "weather_hidden",
+        "fullName": "weather hidden",
+        "dataType": "bool",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "跑道屏",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 107
+        }
+      },
+      {
+        "id": "233",
+        "name": "time_hidden",
+        "shortName": "time_hidden",
+        "fullName": "time hidden",
+        "dataType": "bool",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "跑道屏",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 108
+        }
+      },
+      {
+        "id": "234",
+        "name": "temp_hidden",
+        "shortName": "temp_hidden",
+        "fullName": "temperature hidden",
+        "dataType": "bool",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "跑道屏",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 109
+        }
+      },
+      {
+        "id": "235",
+        "name": "keys_visible",
+        "shortName": "keys_visible",
+        "fullName": "keys visible",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "跑道屏",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 110
+        }
+      },
+      {
+        "id": "236",
+        "name": "luminance",
+        "shortName": "luminance",
+        "fullName": "luminance",
+        "dataType": "int",
+        "access": "读",
+        "category": "应用类",
+        "components": "环境光传感器,光照传感器2,人体红外传感器,亮度雷达传感器(可屏蔽区段),dali光感传感器",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 111
+        }
+      },
+      {
+        "id": "237",
+        "name": "sonos_mgr",
+        "shortName": "sonos_mgr",
+        "fullName": "sonos manager",
+        "dataType": "bool",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "网关",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 112
+        }
+      },
+      {
+        "id": "238",
+        "name": "mp_scenes",
+        "shortName": "mp_scenes",
+        "fullName": "multi-panel scenes",
+        "dataType": "jsonArray",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "旋钮屏组件,mesh屏组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 113
+        }
+      },
+      {
+        "id": "239",
+        "name": "sens_range",
+        "shortName": "sens_range",
+        "fullName": "sense range",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "光照传感器2,亮度雷达传感器(可屏蔽区段)",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 114
+        }
+      },
+      {
+        "id": "240",
+        "name": "lumi_setting",
+        "shortName": "lumi_setting",
+        "fullName": "luminance setting",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "光照传感器2,亮度雷达传感器(可屏蔽区段)",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 115
+        }
+      },
+      {
+        "id": "251",
+        "name": "hr_login",
+        "shortName": "hr_login",
+        "fullName": "haier login",
+        "dataType": "int",
+        "access": "读",
+        "category": "配置类",
+        "components": "海尔组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 116
+        }
+      },
+      {
+        "id": "252",
+        "name": "hrln",
+        "shortName": "hrln",
+        "fullName": "haier linked",
+        "dataType": "int",
+        "access": "读",
+        "category": "配置类",
+        "components": "海尔组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 117
+        }
+      },
+      {
+        "id": "253",
+        "name": "hr_all_nodes_sync_state",
+        "shortName": "hr_all_nodes_sync_state",
+        "fullName": "haier all nodes sync state",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "海尔组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 118
+        }
+      },
+      {
+        "id": "255",
+        "name": "hr_all_scenes_sync_state",
+        "shortName": "hr_all_scenes_sync_state",
+        "fullName": "haier all scenes sync state",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "海尔组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 119
+        }
+      },
+      {
+        "id": "256",
+        "name": "delay_time",
+        "shortName": "delay_time",
+        "fullName": "delay time",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "光照传感器2,亮度雷达传感器(可屏蔽区段)",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 120
+        }
+      },
+      {
+        "id": "257",
+        "name": "sdt",
+        "shortName": "sdt",
+        "fullName": "device type after relay switch",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "无线开关通道",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 121
+        }
+      },
+      {
+        "id": "261",
+        "name": "vmcp",
+        "shortName": "vmcp",
+        "fullName": "vmc power",
+        "dataType": "bool",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "新风",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 122
+        }
+      },
+      {
+        "id": "262",
+        "name": "vmcf",
+        "shortName": "vmcf",
+        "fullName": "vmc fan",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "新风",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 123
+        }
+      },
+      {
+        "id": "263",
+        "name": "rfhp",
+        "shortName": "rfhp",
+        "fullName": "rfh power",
+        "dataType": "bool",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "地暖",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 124
+        }
+      },
+      {
+        "id": "264",
+        "name": "rfhct",
+        "shortName": "rfhct",
+        "fullName": "rfh current temperature",
+        "dataType": "int",
+        "access": "读",
+        "category": "应用类",
+        "components": "地暖",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 125
+        }
+      },
+      {
+        "id": "265",
+        "name": "rfhtt",
+        "shortName": "rfhtt",
+        "fullName": "rfh target temperature",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "地暖",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 126
+        }
+      },
+      {
+        "id": "268",
+        "name": "hk",
+        "shortName": "hk",
+        "fullName": "hk",
+        "dataType": "string",
+        "access": "读",
+        "category": "配置类",
+        "components": "网关",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 127
+        }
+      },
+      {
+        "id": "269",
+        "name": "mfl",
+        "shortName": "mfl",
+        "fullName": "mfl",
+        "dataType": "enum",
+        "access": "读",
+        "category": "配置类",
+        "components": "网关",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 128
+        }
+      },
+      {
+        "id": "270",
+        "name": "name",
+        "shortName": "name",
+        "fullName": "name",
+        "dataType": "string",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "基础组件,无线开关通道,开关,HVAC网关,wifi屏组件,组合旋钮组件,旋钮屏组件,开关灯,亮度灯,色温灯,彩光灯,角度色温灯,接触式传感器,人在传感器,人感传感器,环境光传感器,窗帘,光照传感器2,空调,新风,地暖,情景按键,音乐组件,声音组件,可升降组件,梦幻帘,跑道屏,旋钮开关,温控器组件,人体红外传感器,dali情景按键,dali人感传感器,dali光感传感器,dali旋钮开关组件,无色温彩光灯组件,亮度雷达传感器(可屏蔽区段),mesh屏组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 129
+        }
+      },
+      {
+        "id": "271",
+        "name": "icon",
+        "shortName": "icon",
+        "fullName": "icon",
+        "dataType": "string",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "基础组件,无线开关通道,开关,HVAC网关,wifi屏组件,组合旋钮组件,旋钮屏组件,开关灯,亮度灯,色温灯,彩光灯,角度色温灯,接触式传感器,人在传感器,人感传感器,环境光传感器,窗帘,光照传感器2,空调,新风,地暖,情景按键,音乐组件,声音组件,可升降组件,梦幻帘,跑道屏,旋钮开关,温控器组件,人体红外传感器,dali情景按键,dali人感传感器,dali光感传感器,dali旋钮开关组件,无色温彩光灯组件,亮度雷达传感器(可屏蔽区段),mesh屏组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 130
+        }
+      },
+      {
+        "id": "272",
+        "name": "online",
+        "shortName": "o",
+        "fullName": "online",
+        "dataType": "bool",
+        "access": "读",
+        "category": "应用类",
+        "components": "基础组件,空调,新风,地暖",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 131
+        }
+      },
+      {
+        "id": "273",
+        "name": "support_fblck",
+        "shortName": "support_fblck",
+        "fullName": "support reset lock",
+        "dataType": "bool",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "基础组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 132
+        }
+      },
+      {
+        "id": "274",
+        "name": "Connectivity Protocols type",
+        "shortName": "cpt",
+        "fullName": "connectivity protocols type",
+        "dataType": "int",
+        "access": "读",
+        "category": "配置类",
+        "components": "基础组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 133
+        }
+      },
+      {
+        "id": "275",
+        "name": "support relay",
+        "shortName": "support_rl",
+        "fullName": "support relay",
+        "dataType": "bool",
+        "access": "读",
+        "category": "配置类",
+        "components": "mesh组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 134
+        }
+      },
+      {
+        "id": "276",
+        "name": "mac",
+        "shortName": "mac",
+        "fullName": "mac",
+        "dataType": "string",
+        "access": "读",
+        "category": "配置类",
+        "components": "mesh组件,wifi组件,以太网组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 135
+        }
+      },
+      {
+        "id": "277",
+        "name": "deviceKey",
+        "shortName": "deviceKey",
+        "fullName": "device key",
+        "dataType": "string",
+        "access": "读",
+        "category": "配置类",
+        "components": "mesh组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 136
+        }
+      },
+      {
+        "id": "278",
+        "name": "localToken",
+        "shortName": "ltk",
+        "fullName": "local token",
+        "dataType": "string",
+        "access": "读",
+        "category": "配置类",
+        "components": "wifi组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 137
+        }
+      },
+      {
+        "id": "279",
+        "name": "rs",
+        "shortName": "rs",
+        "fullName": "route set",
+        "dataType": "int",
+        "access": "读",
+        "category": "应用类",
+        "components": "窗帘,梦幻帘",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 138
+        }
+      },
+      {
+        "id": "280",
+        "name": "sbp",
+        "shortName": "sbp",
+        "fullName": "switch power on boot",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "无线开关通道",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 139
+        }
+      },
+      {
+        "id": "281",
+        "name": "mock",
+        "shortName": "mock",
+        "fullName": "mock",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "无线开关通道,开关,情景按键",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 140
+        }
+      },
+      {
+        "id": "282",
+        "name": "trs",
+        "shortName": "trs",
+        "fullName": "tilt route set",
+        "dataType": "int",
+        "access": "读",
+        "category": "应用类",
+        "components": "梦幻帘",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 141
+        }
+      },
+      {
+        "id": "283",
+        "name": "io_type",
+        "shortName": "io",
+        "fullName": "io type",
+        "dataType": "int",
+        "access": "读",
+        "category": "配置类",
+        "components": "开关灯,亮度灯,色温灯,彩光灯,角度色温灯,接触式传感器,人在传感器,人感传感器,环境光传感器,窗帘,光照传感器2,空调,新风,地暖,情景按键,音乐组件,声音组件,可升降组件,梦幻帘,网关,跑道屏,旋钮开关,温控器组件,人体红外传感器,dali情景按键,dali人感传感器,dali光感传感器,dali旋钮开关组件,无色温彩光灯组件,亮度雷达传感器(可屏蔽区段),无线开关通道,开关",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 142
+        }
+      },
+      {
+        "id": "284",
+        "name": "sa",
+        "shortName": "sa",
+        "fullName": "swing angle",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "温控器组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 143
+        }
+      },
+      {
+        "id": "285",
+        "name": "ss",
+        "shortName": "ss",
+        "fullName": "swing start",
+        "dataType": "enum",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "温控器组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 144
+        }
+      },
+      {
+        "id": "286",
+        "name": "rst",
+        "shortName": "rst",
+        "fullName": "room size type",
+        "dataType": "enum",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "温控器组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 145
+        }
+      },
+      {
+        "id": "287",
+        "name": "dntm",
+        "shortName": "dntm",
+        "fullName": "device night mode",
+        "dataType": "jsonObj",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "温控器组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 146
+        }
+      },
+      {
+        "id": "288",
+        "name": "run power",
+        "shortName": "run_power",
+        "fullName": "run power",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "基础组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 147
+        }
+      },
+      {
+        "id": "289",
+        "name": "life",
+        "shortName": "life",
+        "fullName": "life",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "基础组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 148
+        }
+      },
+      {
+        "id": "290",
+        "name": "min_level",
+        "shortName": "min_level",
+        "fullName": "min_level",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "dali灯组件,亮度灯,色温灯,开关灯",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 149
+        }
+      },
+      {
+        "id": "291",
+        "name": "max_level",
+        "shortName": "max_level",
+        "fullName": "max_level",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "dali灯组件,亮度灯,色温灯,开关灯",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 150
+        }
+      },
+      {
+        "id": "292",
+        "name": "power_on_level",
+        "shortName": "power_on_level",
+        "fullName": "power_on_level",
+        "dataType": "string",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "dali灯组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 151
+        }
+      },
+      {
+        "id": "293",
+        "name": "system_failure_level",
+        "shortName": "system_failure_level",
+        "fullName": "system_failure_level",
+        "dataType": "string",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "dali灯组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 152
+        }
+      },
+      {
+        "id": "294",
+        "name": "fade_rate",
+        "shortName": "fade_rate",
+        "fullName": "fade_rate",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "dali灯组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 153
+        }
+      },
+      {
+        "id": "295",
+        "name": "dim_curve",
+        "shortName": "dim_curve",
+        "fullName": "dim_curve",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "dali灯组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 154
+        }
+      },
+      {
+        "id": "296",
+        "name": "dev_alarm",
+        "shortName": "dev_alarm",
+        "fullName": "dev_alarm",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "基础组件,dali组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 155
+        }
+      },
+      {
+        "id": "297",
+        "name": "gtin",
+        "shortName": "gtin",
+        "fullName": "gtin",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "dali组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 156
+        }
+      },
+      {
+        "id": "298",
+        "name": "ddt",
+        "shortName": "ddt",
+        "fullName": "ddt",
+        "dataType": "string",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "dali灯组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 157
+        }
+      },
+      {
+        "id": "299",
+        "name": "ap",
+        "shortName": "ap",
+        "fullName": "active_power",
+        "dataType": "int64",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "dali能量组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 158
+        }
+      },
+      {
+        "id": "300",
+        "name": "ae",
+        "shortName": "ae",
+        "fullName": "active_energy",
+        "dataType": "int64",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "dali能量组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 159
+        }
+      },
+      {
+        "id": "301",
+        "name": "ot",
+        "shortName": "ot",
+        "fullName": "operating_time",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "dali能量组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 160
+        }
+      },
+      {
+        "id": "302",
+        "name": "sys_s",
+        "shortName": "sys_s",
+        "fullName": "system_starts",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "dali能量组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 161
+        }
+      },
+      {
+        "id": "303",
+        "name": "esv",
+        "shortName": "esv",
+        "fullName": "external_supply_voltage",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "dali能量组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 162
+        }
+      },
+      {
+        "id": "304",
+        "name": "esvf",
+        "shortName": "esvf",
+        "fullName": "external_supply_voltage_frequency",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "dali能量组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 163
+        }
+      },
+      {
+        "id": "305",
+        "name": "temp",
+        "shortName": "temp",
+        "fullName": "temperature",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "dali能量组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 164
+        }
+      },
+      {
+        "id": "306",
+        "name": "ocp",
+        "shortName": "ocp",
+        "fullName": "output_current_percent",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "dali能量组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 165
+        }
+      },
+      {
+        "id": "307",
+        "name": "lsot",
+        "shortName": "lsot",
+        "fullName": "light_source_on_time",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "dali能量组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 166
+        }
+      },
+      {
+        "id": "308",
+        "name": "lsv",
+        "shortName": "lsv",
+        "fullName": "light_source_voltage",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "dali能量组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 167
+        }
+      },
+      {
+        "id": "309",
+        "name": "lsc",
+        "shortName": "lsc",
+        "fullName": "light_source_current",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "dali能量组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 168
+        }
+      },
+      {
+        "id": "310",
+        "name": "dver",
+        "shortName": "dver",
+        "fullName": "dver",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "dali组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 169
+        }
+      },
+      {
+        "id": "311",
+        "name": "dpt",
+        "shortName": "dpt",
+        "fullName": "dpt",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "dali灯组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 170
+        }
+      },
+      {
+        "id": "312",
+        "name": "ep",
+        "shortName": "ep",
+        "fullName": "event priority",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "dali情景按键,dali人感传感器,dali旋钮开关组件,dali光感传感器",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 171
+        }
+      },
+      {
+        "id": "313",
+        "name": "st",
+        "shortName": "st",
+        "fullName": "short timers",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "dali情景按键",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 172
+        }
+      },
+      {
+        "id": "314",
+        "name": "rt",
+        "shortName": "rt",
+        "fullName": "repeat timers",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "dali情景按键,dali旋钮开关组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 173
+        }
+      },
+      {
+        "id": "315",
+        "name": "dead_time",
+        "shortName": "dead_time",
+        "fullName": "dead_time",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "dali人感传感器,dali光感传感器,dali旋钮开关组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 174
+        }
+      },
+      {
+        "id": "316",
+        "name": "report_timers",
+        "shortName": "report_timers",
+        "fullName": "report timers",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "dali人感传感器,dali光感传感器",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 175
+        }
+      },
+      {
+        "id": "317",
+        "name": "hold_timers",
+        "shortName": "hold_timers",
+        "fullName": "hold_timers",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "dali人感传感器",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 176
+        }
+      },
+      {
+        "id": "318",
+        "name": "hys",
+        "shortName": "hys",
+        "fullName": "hysteresis",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "dali光感传感器",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 177
+        }
+      },
+      {
+        "id": "319",
+        "name": "hys_min",
+        "shortName": "hys_min",
+        "fullName": "hysteresis_min",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "dali光感传感器",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 178
+        }
+      },
+      {
+        "id": "320",
+        "name": "level_limit_rdy",
+        "shortName": "level_limit_rdy",
+        "fullName": "level_limit_rdy",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "亮度灯,色温灯,开关灯",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 179
+        }
+      },
+      {
+        "id": "321",
+        "name": "dali_is_cnt",
+        "shortName": "dali_is_cnt",
+        "fullName": "dali_is_cnt",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "dali组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 180
+        }
+      },
+      {
+        "id": "322",
+        "name": "dali_hds_cnt",
+        "shortName": "dali_hds_cnt",
+        "fullName": "dali_hds_cnt",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "dali组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 181
+        }
+      },
+      {
+        "id": "323",
+        "name": "dali_scb_cnt",
+        "shortName": "dali_scb_cnt",
+        "fullName": "dali_scb_cnt",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "dali组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 182
+        }
+      },
+      {
+        "id": "324",
+        "name": "pf",
+        "shortName": "pf",
+        "fullName": "",
+        "dataType": "int64",
+        "access": "读, 写",
+        "category": "应用类",
+        "components": "dali能量组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 183
+        }
+      },
+      {
+        "id": "325",
+        "name": "run_speed",
+        "shortName": "run_speed",
+        "fullName": "",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "窗帘,无线开关通道,梦幻帘",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 184
+        }
+      },
+      {
+        "id": "326",
+        "name": "mimac",
+        "shortName": "mimac",
+        "fullName": "mimac",
+        "dataType": "string",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "米家组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 185
+        }
+      },
+      {
+        "id": "327",
+        "name": "ct_rdy",
+        "shortName": "ct_rdy",
+        "fullName": "ct_rdy",
+        "dataType": "string",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 186
+        }
+      },
+      {
+        "id": "328",
+        "name": "run_speed_rdy",
+        "shortName": "run_speed_rdy",
+        "fullName": "run_speed_rdy",
+        "dataType": "int",
+        "access": "读",
+        "category": "配置类",
+        "components": "窗帘,无线开关通道",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 187
+        }
+      },
+      {
+        "id": "329",
+        "name": "sens_shield",
+        "shortName": "sens_shield",
+        "fullName": "",
+        "dataType": "int64",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "亮度雷达传感器(可屏蔽区段)",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 188
+        }
+      },
+      {
+        "id": "330",
+        "name": "support_fbnum",
+        "shortName": "support_fbnum",
+        "fullName": "support reset lock num",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 189
+        }
+      },
+      {
+        "id": "331",
+        "name": "srb",
+        "shortName": "srb",
+        "fullName": "Switch rebound",
+        "dataType": "int",
+        "access": "读, 写",
+        "category": "配置类",
+        "components": "虚拟开关组件（全局）",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 190
+        }
+      },
+      {
+        "id": "332",
+        "name": "curp",
+        "shortName": "curp",
+        "fullName": "Current power",
+        "dataType": "int",
+        "access": "读",
+        "category": "应用类",
+        "components": "电量组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 191
+        }
+      },
+      {
+        "id": "333",
+        "name": "iec",
+        "shortName": "iec",
+        "fullName": "Interval electricity consumption",
+        "dataType": "int64",
+        "access": "读",
+        "category": "应用类",
+        "components": "电量组件",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceRef": "SRC-IOT-BASIC-PROPERTIES",
+          "sourceLine": 192
+        }
+      }
+    ],
+    "events": [
+      {
+        "id": "23",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-EVENTS",
+          "sourceRef": "SRC-IOT-BASIC-EVENTS",
+          "sourceLine": 2
+        }
+      },
+      {
+        "id": "22",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-EVENTS",
+          "sourceRef": "SRC-IOT-BASIC-EVENTS",
+          "sourceLine": 3
+        }
+      },
+      {
+        "id": "21",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-EVENTS",
+          "sourceRef": "SRC-IOT-BASIC-EVENTS",
+          "sourceLine": 4
+        }
+      },
+      {
+        "id": "15",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-EVENTS",
+          "sourceRef": "SRC-IOT-BASIC-EVENTS",
+          "sourceLine": 5
+        }
+      },
+      {
+        "id": "14",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-EVENTS",
+          "sourceRef": "SRC-IOT-BASIC-EVENTS",
+          "sourceLine": 6
+        }
+      },
+      {
+        "id": "13",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-EVENTS",
+          "sourceRef": "SRC-IOT-BASIC-EVENTS",
+          "sourceLine": 7
+        }
+      },
+      {
+        "id": "12",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-EVENTS",
+          "sourceRef": "SRC-IOT-BASIC-EVENTS",
+          "sourceLine": 8
+        }
+      },
+      {
+        "id": "10",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-EVENTS",
+          "sourceRef": "SRC-IOT-BASIC-EVENTS",
+          "sourceLine": 9
+        }
+      },
+      {
+        "id": "9",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-EVENTS",
+          "sourceRef": "SRC-IOT-BASIC-EVENTS",
+          "sourceLine": 10
+        }
+      },
+      {
+        "id": "8",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-EVENTS",
+          "sourceRef": "SRC-IOT-BASIC-EVENTS",
+          "sourceLine": 11
+        }
+      },
+      {
+        "id": "7",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-EVENTS",
+          "sourceRef": "SRC-IOT-BASIC-EVENTS",
+          "sourceLine": 12
+        }
+      },
+      {
+        "id": "6",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-EVENTS",
+          "sourceRef": "SRC-IOT-BASIC-EVENTS",
+          "sourceLine": 13
+        }
+      },
+      {
+        "id": "5",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-EVENTS",
+          "sourceRef": "SRC-IOT-BASIC-EVENTS",
+          "sourceLine": 14
+        }
+      },
+      {
+        "id": "4",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-EVENTS",
+          "sourceRef": "SRC-IOT-BASIC-EVENTS",
+          "sourceLine": 15
+        }
+      },
+      {
+        "id": "3",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-EVENTS",
+          "sourceRef": "SRC-IOT-BASIC-EVENTS",
+          "sourceLine": 16
+        }
+      },
+      {
+        "id": "1",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-EVENTS",
+          "sourceRef": "SRC-IOT-BASIC-EVENTS",
+          "sourceLine": 17
+        }
+      },
+      {
+        "id": "2",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-EVENTS",
+          "sourceRef": "SRC-IOT-BASIC-EVENTS",
+          "sourceLine": 18
+        }
+      }
+    ],
+    "protocols": [
+      {
+        "id": "-1",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROTOCOLS",
+          "sourceRef": "SRC-IOT-BASIC-PROTOCOLS",
+          "sourceLine": 2
+        }
+      },
+      {
+        "id": "0",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROTOCOLS",
+          "sourceRef": "SRC-IOT-BASIC-PROTOCOLS",
+          "sourceLine": 3
+        }
+      },
+      {
+        "id": "1",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROTOCOLS",
+          "sourceRef": "SRC-IOT-BASIC-PROTOCOLS",
+          "sourceLine": 4
+        }
+      },
+      {
+        "id": "2",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROTOCOLS",
+          "sourceRef": "SRC-IOT-BASIC-PROTOCOLS",
+          "sourceLine": 5
+        }
+      },
+      {
+        "id": "3",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROTOCOLS",
+          "sourceRef": "SRC-IOT-BASIC-PROTOCOLS",
+          "sourceLine": 6
+        }
+      },
+      {
+        "id": "4",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-PROTOCOLS",
+          "sourceRef": "SRC-IOT-BASIC-PROTOCOLS",
+          "sourceLine": 7
+        }
+      }
+    ],
+    "categories": [
+      {
+        "id": "1",
+        "name": "light",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceRef": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceLine": 2
+        }
+      },
+      {
+        "id": "2",
+        "name": "contact_sensor",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceRef": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceLine": 3
+        }
+      },
+      {
+        "id": "3",
+        "name": "human_sensor",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceRef": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceLine": 4
+        }
+      },
+      {
+        "id": "4",
+        "name": "light_sensor",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceRef": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceLine": 5
+        }
+      },
+      {
+        "id": "5",
+        "name": "curtain",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceRef": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceLine": 6
+        }
+      },
+      {
+        "id": "6",
+        "name": "temp_control",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceRef": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceLine": 7
+        }
+      },
+      {
+        "id": "7",
+        "name": "relay_switch",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceRef": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceLine": 8
+        }
+      },
+      {
+        "id": "8",
+        "name": "scene_panel",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceRef": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceLine": 9
+        }
+      },
+      {
+        "id": "9",
+        "name": "other",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceRef": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceLine": 10
+        }
+      },
+      {
+        "id": "10",
+        "name": "gateway",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceRef": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceLine": 11
+        }
+      },
+      {
+        "id": "11",
+        "name": "knob_switch",
+        "provenance": {
+          "sourceId": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceRef": "SRC-IOT-BASIC-CATEGORIES",
+          "sourceLine": 12
+        }
+      }
+    ]
+  },
+  "domainRules": {
+    "modelRules": [
+      "house 是数据隔离边界，不跨 house 合并查询、控制或记忆。",
+      "控制层级按 house、area、room、gateway、group、device、component 理解，实际解析交给 Runtime。",
+      "品类代表可组控的大类；设备组只能使用组内共同品类能力的子集。",
+      "组件是能力集合；单控属性采用 componentIndex-propName 语义，不能凭名称猜属性。",
+      "每个产品至少有基础组件，普通组件表达灯、传感器、窗帘、温控、面板等可复用能力。",
+      "配置类属性只能在 Runtime 明确支持的持久变更流程中处理。"
+    ],
+    "safetyRules": {
+      "doNotInventCapabilities": true,
+      "requireRuntimeCapabilityCheck": true,
+      "rawSourceDocumentsPackaged": false,
+      "persistentChangesNeedPendingPlan": true,
+      "implicitHabitCreatesPersistentConfig": false
+    },
+    "controlHierarchy": [
+      "house",
+      "area",
+      "room",
+      "gateway",
+      "group",
+      "device",
+      "component"
+    ],
+    "categories": [
+      {
+        "id": "1",
+        "code": "light",
+        "displayName": "灯类",
+        "components": [
+          "开关灯",
+          "亮度灯",
+          "色温灯",
+          "彩光灯",
+          "角度色温灯",
+          "无色温彩光灯组件"
+        ]
+      },
+      {
+        "id": "2",
+        "code": "contact_sensor",
+        "displayName": "接触式传感器类",
+        "components": [
+          "接触式传感器"
+        ]
+      },
+      {
+        "id": "3",
+        "code": "human_sensor",
+        "displayName": "人体感应传感器类",
+        "components": [
+          "人感传感器",
+          "人在传感器",
+          "人体红外传感器",
+          "dali人感传感器"
+        ]
+      },
+      {
+        "id": "4",
+        "code": "light_sensor",
+        "displayName": "环境光传感器类",
+        "components": [
+          "光照传感器2",
+          "环境光传感器",
+          "dali光感传感器",
+          "亮度雷达传感器(可屏蔽区段)"
+        ]
+      },
+      {
+        "id": "5",
+        "code": "curtain",
+        "displayName": "窗帘类",
+        "components": [
+          "窗帘",
+          "梦幻帘"
+        ]
+      },
+      {
+        "id": "6",
+        "code": "temp_control",
+        "displayName": "温控类",
+        "components": [
+          "空调",
+          "新风",
+          "地暖",
+          "温控器组件"
+        ]
+      },
+      {
+        "id": "7",
+        "code": "relay_switch",
+        "displayName": "继电器开关类",
+        "components": [
+          "无线开关通道",
+          "开关"
+        ]
+      },
+      {
+        "id": "8",
+        "code": "scene_panel",
+        "displayName": "情景面板类",
+        "components": [
+          "跑道屏",
+          "情景按键",
+          "dali情景按键"
+        ]
+      },
+      {
+        "id": "9",
+        "code": "other",
+        "displayName": "其他类",
+        "components": [
+          "音乐组件",
+          "声音组件",
+          "可升降组件",
+          "未定义子设备"
+        ]
+      },
+      {
+        "id": "10",
+        "code": "gateway",
+        "displayName": "网关类",
+        "components": [
+          "网关"
+        ]
+      },
+      {
+        "id": "11",
+        "code": "knob_switch",
+        "displayName": "旋钮开关类",
+        "components": [
+          "旋钮开关",
+          "dali旋钮开关组件"
+        ]
+      }
+    ],
+    "componentCapabilities": [
+      {
+        "componentId": "1",
+        "componentName": "网关",
+        "alias": "gateway",
+        "category": "gateway",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "lc",
+          "li",
+          "pl",
+          "lf",
+          "fm",
+          "plugins",
+          "sonos_mgr",
+          "hk",
+          "mfl",
+          "io"
+        ],
+        "controlProperties": [
+          "lc",
+          "li",
+          "plugins",
+          "sonos_mgr"
+        ],
+        "readOnlyProperties": [
+          "pl",
+          "lf",
+          "fm",
+          "hk",
+          "mfl",
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "2",
+        "componentName": "开关灯",
+        "alias": "switch light",
+        "category": "light",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "p",
+          "slisaon",
+          "bp",
+          "dd",
+          "slisaon_rdy",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "io",
+          "min_level",
+          "max_level",
+          "level_limit_rdy"
+        ],
+        "controlProperties": [
+          "p",
+          "slisaon",
+          "bp",
+          "dd",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "min_level",
+          "max_level",
+          "level_limit_rdy"
+        ],
+        "readOnlyProperties": [
+          "slisaon_rdy",
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "3",
+        "componentName": "亮度灯",
+        "alias": "brightness light",
+        "category": "light",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "p",
+          "l",
+          "slisaon",
+          "bp",
+          "dd",
+          "slisaon_rdy",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "io",
+          "min_level",
+          "max_level",
+          "level_limit_rdy"
+        ],
+        "controlProperties": [
+          "p",
+          "l",
+          "slisaon",
+          "bp",
+          "dd",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "min_level",
+          "max_level",
+          "level_limit_rdy"
+        ],
+        "readOnlyProperties": [
+          "slisaon_rdy",
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "4",
+        "componentName": "色温灯",
+        "alias": "color temperature light",
+        "category": "light",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "p",
+          "l",
+          "ct",
+          "slisaon",
+          "bp",
+          "dd",
+          "slisaon_rdy",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "io",
+          "min_level",
+          "max_level",
+          "level_limit_rdy"
+        ],
+        "controlProperties": [
+          "p",
+          "l",
+          "ct",
+          "slisaon",
+          "bp",
+          "dd",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "min_level",
+          "max_level",
+          "level_limit_rdy"
+        ],
+        "readOnlyProperties": [
+          "slisaon_rdy",
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "5",
+        "componentName": "彩光灯",
+        "alias": "color light",
+        "category": "light",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "p",
+          "l",
+          "ct",
+          "c",
+          "m",
+          "slisaon",
+          "bp",
+          "dd",
+          "slisaon_rdy",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "io"
+        ],
+        "controlProperties": [
+          "p",
+          "l",
+          "ct",
+          "c",
+          "slisaon",
+          "bp",
+          "dd",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [
+          "m",
+          "slisaon_rdy",
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "7",
+        "componentName": "人感传感器",
+        "alias": "human detection sensor",
+        "category": "human_sensor",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "mv",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "io"
+        ],
+        "controlProperties": [
+          "3rdPartySyncBitmask",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [
+          "mv",
+          "io"
+        ],
+        "events": [
+          "有人移动",
+          "无人移动"
+        ]
+      },
+      {
+        "componentId": "9",
+        "componentName": "人在传感器",
+        "alias": "human occupancy sensor",
+        "category": "human_sensor",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "mv",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "io"
+        ],
+        "controlProperties": [
+          "3rdPartySyncBitmask",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [
+          "mv",
+          "io"
+        ],
+        "events": [
+          "有人移动",
+          "无人移动"
+        ]
+      },
+      {
+        "componentId": "10",
+        "componentName": "光照传感器2",
+        "alias": "human illuminance sensor",
+        "category": "light_sensor",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "mv",
+          "blp",
+          "li",
+          "3rdPartySyncBitmask",
+          "luminance",
+          "sens_range",
+          "lumi_setting",
+          "delay_time",
+          "name",
+          "icon",
+          "io"
+        ],
+        "controlProperties": [
+          "blp",
+          "li",
+          "3rdPartySyncBitmask",
+          "sens_range",
+          "lumi_setting",
+          "delay_time",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [
+          "mv",
+          "luminance",
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "11",
+        "componentName": "跑道屏",
+        "alias": "runway panel",
+        "category": "scene_panel",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "blp",
+          "nightMode",
+          "weather_hidden",
+          "time_hidden",
+          "temp_hidden",
+          "keys_visible",
+          "name",
+          "icon",
+          "io"
+        ],
+        "controlProperties": [
+          "blp",
+          "nightMode",
+          "weather_hidden",
+          "time_hidden",
+          "temp_hidden",
+          "keys_visible",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "12",
+        "componentName": "窗帘",
+        "alias": "curtain",
+        "category": "curtain",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "cp",
+          "tp",
+          "li",
+          "dt",
+          "pi",
+          "pe",
+          "rd",
+          "open_type",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "rs",
+          "io",
+          "run_speed",
+          "run_speed_rdy"
+        ],
+        "controlProperties": [
+          "tp",
+          "li",
+          "rd",
+          "open_type",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "run_speed"
+        ],
+        "readOnlyProperties": [
+          "cp",
+          "rs",
+          "io",
+          "run_speed_rdy"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "16",
+        "componentName": "无线开关通道",
+        "alias": "wireless switch channel",
+        "category": "relay_switch",
+        "type": "0-普通组件",
+        "mockComponents": [
+          "开关灯",
+          "情景按键",
+          "无线开关通道"
+        ],
+        "properties": [
+          "l",
+          "sp",
+          "li",
+          "slisaon",
+          "slisaon_rdy",
+          "3rdPartySyncBitmask",
+          "sdt",
+          "name",
+          "icon",
+          "sbp",
+          "mock",
+          "io",
+          "run_speed",
+          "run_speed_rdy"
+        ],
+        "controlProperties": [
+          "l",
+          "sp",
+          "li",
+          "slisaon",
+          "3rdPartySyncBitmask",
+          "sdt",
+          "name",
+          "icon",
+          "sbp",
+          "mock",
+          "run_speed"
+        ],
+        "readOnlyProperties": [
+          "slisaon_rdy",
+          "io",
+          "run_speed_rdy"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "17",
+        "componentName": "旋钮开关",
+        "alias": "knob switch",
+        "category": "knob_switch",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "io"
+        ],
+        "controlProperties": [
+          "3rdPartySyncBitmask",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [
+          "io"
+        ],
+        "events": [
+          "旋转"
+        ]
+      },
+      {
+        "componentId": "18",
+        "componentName": "情景按键",
+        "alias": "scene control button",
+        "category": "scene_panel",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "p",
+          "m",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "mock",
+          "io"
+        ],
+        "controlProperties": [
+          "p",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "mock"
+        ],
+        "readOnlyProperties": [
+          "m",
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "19",
+        "componentName": "空调",
+        "alias": "air conditioner",
+        "category": "temp_control",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "acp",
+          "acm",
+          "actt",
+          "acf",
+          "acct",
+          "acd",
+          "acdfltr",
+          "acrc",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "o",
+          "io"
+        ],
+        "controlProperties": [
+          "acp",
+          "acm",
+          "actt",
+          "acf",
+          "acdfltr",
+          "acrc",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [
+          "acct",
+          "acd",
+          "o",
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "20",
+        "componentName": "开关",
+        "alias": "switch control",
+        "category": "relay_switch",
+        "type": "0-普通组件",
+        "mockComponents": [
+          "开关灯",
+          "开关"
+        ],
+        "properties": [
+          "p",
+          "slisaon",
+          "bp",
+          "slisaon_rdy",
+          "jen",
+          "jdef",
+          "jtm",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "mock",
+          "io"
+        ],
+        "controlProperties": [
+          "p",
+          "slisaon",
+          "bp",
+          "jen",
+          "jdef",
+          "jtm",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "mock"
+        ],
+        "readOnlyProperties": [
+          "slisaon_rdy",
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "21",
+        "componentName": "接触式传感器",
+        "alias": "contact sensor",
+        "category": "contact_sensor",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "alm",
+          "dc",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "io"
+        ],
+        "controlProperties": [
+          "3rdPartySyncBitmask",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [
+          "alm",
+          "dc",
+          "io"
+        ],
+        "events": [
+          "分离",
+          "接触",
+          "告警",
+          "告警恢复正常"
+        ]
+      },
+      {
+        "componentId": "23",
+        "componentName": "人体红外传感器",
+        "alias": "human body infrared sensor",
+        "category": "human_sensor",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "mv",
+          "ebl",
+          "li",
+          "3rdPartySyncBitmask",
+          "luminance",
+          "name",
+          "icon",
+          "io"
+        ],
+        "controlProperties": [
+          "li",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [
+          "mv",
+          "ebl",
+          "luminance",
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "24",
+        "componentName": "环境光传感器",
+        "alias": "ambient light sensor",
+        "category": "light_sensor",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "ebl",
+          "li",
+          "3rdPartySyncBitmask",
+          "luminance",
+          "name",
+          "icon",
+          "io"
+        ],
+        "controlProperties": [
+          "li",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [
+          "ebl",
+          "luminance",
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "27",
+        "componentName": "音乐组件",
+        "alias": "music control",
+        "category": "other",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "mppm",
+          "mpmp",
+          "mpml",
+          "mpmr",
+          "name",
+          "icon",
+          "io"
+        ],
+        "controlProperties": [
+          "mppm",
+          "mpmp",
+          "mpml",
+          "mpmr",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "29",
+        "componentName": "声音组件",
+        "alias": "audio control",
+        "category": "other",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "vol",
+          "ntStart",
+          "ntEnd",
+          "name",
+          "icon",
+          "io"
+        ],
+        "controlProperties": [
+          "vol",
+          "ntStart",
+          "ntEnd",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "36",
+        "componentName": "可升降组件",
+        "alias": "lift control",
+        "category": "other",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "height",
+          "name",
+          "icon",
+          "io"
+        ],
+        "controlProperties": [
+          "height",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "39",
+        "componentName": "梦幻帘",
+        "alias": "zebra blinds",
+        "category": "curtain",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "cp",
+          "tp",
+          "li",
+          "rd",
+          "open_type",
+          "tra",
+          "cra",
+          "rrd",
+          "rg",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "rs",
+          "trs",
+          "io",
+          "run_speed"
+        ],
+        "controlProperties": [
+          "tp",
+          "li",
+          "rd",
+          "open_type",
+          "tra",
+          "rrd",
+          "rg",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "run_speed"
+        ],
+        "readOnlyProperties": [
+          "cp",
+          "cra",
+          "rs",
+          "trs",
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "42",
+        "componentName": "新风",
+        "alias": "fresh air",
+        "category": "temp_control",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "3rdPartySyncBitmask",
+          "vmcp",
+          "vmcf",
+          "name",
+          "icon",
+          "o",
+          "io"
+        ],
+        "controlProperties": [
+          "3rdPartySyncBitmask",
+          "vmcp",
+          "vmcf",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [
+          "o",
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "43",
+        "componentName": "地暖",
+        "alias": "floor heating",
+        "category": "temp_control",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "3rdPartySyncBitmask",
+          "rfhp",
+          "rfhct",
+          "rfhtt",
+          "name",
+          "icon",
+          "o",
+          "io"
+        ],
+        "controlProperties": [
+          "3rdPartySyncBitmask",
+          "rfhp",
+          "rfhtt",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [
+          "rfhct",
+          "o",
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "44",
+        "componentName": "基础组件",
+        "alias": "basic",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "fv",
+          "fblck",
+          "fbnum",
+          "c_n_c",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "o",
+          "support_fblck",
+          "cpt",
+          "run_power",
+          "life",
+          "dev_alarm"
+        ],
+        "controlProperties": [
+          "fblck",
+          "fbnum",
+          "c_n_c",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "support_fblck",
+          "run_power",
+          "life",
+          "dev_alarm"
+        ],
+        "readOnlyProperties": [
+          "fv",
+          "o",
+          "cpt"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "45",
+        "componentName": "mesh组件",
+        "alias": "mesh",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "rl",
+          "hb_interval",
+          "ttl",
+          "retrans",
+          "tx_power",
+          "support_rl",
+          "mac",
+          "deviceKey"
+        ],
+        "controlProperties": [
+          "rl"
+        ],
+        "readOnlyProperties": [
+          "hb_interval",
+          "ttl",
+          "retrans",
+          "tx_power",
+          "support_rl",
+          "mac",
+          "deviceKey"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "46",
+        "componentName": "wifi组件",
+        "alias": "wifi",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "ip",
+          "ssid",
+          "eip",
+          "psk",
+          "mac",
+          "ltk"
+        ],
+        "controlProperties": [
+          "ssid",
+          "psk"
+        ],
+        "readOnlyProperties": [
+          "ip",
+          "eip",
+          "mac",
+          "ltk"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "47",
+        "componentName": "以太网组件",
+        "alias": "ethernet",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "ip",
+          "eip",
+          "mac"
+        ],
+        "controlProperties": [],
+        "readOnlyProperties": [
+          "ip",
+          "eip",
+          "mac"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "48",
+        "componentName": "电池组件",
+        "alias": "battery",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "bl",
+          "bc",
+          "bcg"
+        ],
+        "controlProperties": [],
+        "readOnlyProperties": [
+          "bl",
+          "bc",
+          "bcg"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "49",
+        "componentName": "背光指示灯组件",
+        "alias": "backlight indicator",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "blp",
+          "nightMode"
+        ],
+        "controlProperties": [
+          "blp",
+          "nightMode"
+        ],
+        "readOnlyProperties": [],
+        "events": []
+      },
+      {
+        "componentId": "50",
+        "componentName": "遥控器管理组件",
+        "alias": "remote control management",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "rmt"
+        ],
+        "controlProperties": [],
+        "readOnlyProperties": [
+          "rmt"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "51",
+        "componentName": "米家组件",
+        "alias": "miHome",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "miln",
+          "miid",
+          "mibk",
+          "micd",
+          "midk",
+          "mimac"
+        ],
+        "controlProperties": [
+          "miid",
+          "mibk",
+          "micd",
+          "midk",
+          "mimac"
+        ],
+        "readOnlyProperties": [
+          "miln"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "52",
+        "componentName": "美的组件",
+        "alias": "midea",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "mei_login",
+          "meiln",
+          "mei_info",
+          "meibk",
+          "mei_did",
+          "mei_all_nodes_sync_state",
+          "mei_all_scenes_sync_state"
+        ],
+        "controlProperties": [
+          "mei_login",
+          "mei_info",
+          "meibk",
+          "mei_all_nodes_sync_state",
+          "mei_all_scenes_sync_state"
+        ],
+        "readOnlyProperties": [
+          "meiln",
+          "mei_did"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "53",
+        "componentName": "海尔组件",
+        "alias": "haier",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "hrbk",
+          "hrdm",
+          "hrpt",
+          "hr_login",
+          "hrln",
+          "hr_all_nodes_sync_state",
+          "hr_all_scenes_sync_state"
+        ],
+        "controlProperties": [
+          "hrbk",
+          "hrdm",
+          "hrpt",
+          "hr_all_nodes_sync_state",
+          "hr_all_scenes_sync_state"
+        ],
+        "readOnlyProperties": [
+          "hr_login",
+          "hrln"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "54",
+        "componentName": "双路继电器组件",
+        "alias": "dual channel relay",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "slisaon",
+          "mp"
+        ],
+        "controlProperties": [
+          "slisaon",
+          "mp"
+        ],
+        "readOnlyProperties": [],
+        "events": []
+      },
+      {
+        "componentId": "55",
+        "componentName": "HVAC网关",
+        "alias": "HVAC gateway",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "ch_num",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon"
+        ],
+        "controlProperties": [
+          "3rdPartySyncBitmask",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [
+          "ch_num"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "56",
+        "componentName": "wifi屏组件",
+        "alias": "wifi screen",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "lc",
+          "extend",
+          "ntOn",
+          "ntStart",
+          "ntEnd",
+          "ntDelay",
+          "nightMode",
+          "ntScreenMode",
+          "name",
+          "icon"
+        ],
+        "controlProperties": [
+          "lc",
+          "extend",
+          "ntOn",
+          "ntStart",
+          "ntEnd",
+          "ntDelay",
+          "nightMode",
+          "ntScreenMode",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [],
+        "events": []
+      },
+      {
+        "componentId": "57",
+        "componentName": "mesh屏组件",
+        "alias": "mesh screen",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "slisaon",
+          "ntOn",
+          "ntStart",
+          "ntEnd",
+          "ntDelay",
+          "ntScreenMode",
+          "mp_keys",
+          "mp_buttons",
+          "mp_devices",
+          "mp_nightmode",
+          "mp_scenes",
+          "name",
+          "icon"
+        ],
+        "controlProperties": [
+          "slisaon",
+          "ntOn",
+          "ntStart",
+          "ntEnd",
+          "ntDelay",
+          "ntScreenMode",
+          "mp_keys",
+          "mp_buttons",
+          "mp_devices",
+          "mp_nightmode",
+          "mp_scenes",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [],
+        "events": []
+      },
+      {
+        "componentId": "58",
+        "componentName": "组合旋钮组件",
+        "alias": "combined rotary control",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "3rdPartySyncBitmask",
+          "name",
+          "icon"
+        ],
+        "controlProperties": [
+          "3rdPartySyncBitmask",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [],
+        "events": []
+      },
+      {
+        "componentId": "59",
+        "componentName": "角度色温灯",
+        "alias": "angle color temperature light",
+        "category": "light",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "p",
+          "l",
+          "ct",
+          "angle",
+          "slisaon",
+          "bp",
+          "dd",
+          "slisaon_rdy",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "io"
+        ],
+        "controlProperties": [
+          "p",
+          "l",
+          "ct",
+          "angle",
+          "slisaon",
+          "bp",
+          "dd",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [
+          "slisaon_rdy",
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "60",
+        "componentName": "未定义子设备",
+        "alias": "undefined",
+        "category": "other",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [],
+        "controlProperties": [],
+        "readOnlyProperties": [],
+        "events": []
+      },
+      {
+        "componentId": "61",
+        "componentName": "旋钮屏组件",
+        "alias": "knob screen",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "slisaon",
+          "ntOn",
+          "ntStart",
+          "ntEnd",
+          "ntDelay",
+          "ntScreenMode",
+          "mp_keys",
+          "mp_buttons",
+          "mp_devices",
+          "mp_nightmode",
+          "mp_scenes",
+          "name",
+          "icon"
+        ],
+        "controlProperties": [
+          "slisaon",
+          "ntOn",
+          "ntStart",
+          "ntEnd",
+          "ntDelay",
+          "ntScreenMode",
+          "mp_keys",
+          "mp_buttons",
+          "mp_devices",
+          "mp_nightmode",
+          "mp_scenes",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [],
+        "events": []
+      },
+      {
+        "componentId": "62",
+        "componentName": "全景屏组件",
+        "alias": "panorama screen",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "extend"
+        ],
+        "controlProperties": [
+          "extend"
+        ],
+        "readOnlyProperties": [],
+        "events": []
+      },
+      {
+        "componentId": "63",
+        "componentName": "温控器组件",
+        "alias": "temp control",
+        "category": "temp_control",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "p",
+          "bhm",
+          "do",
+          "ve",
+          "fa",
+          "he",
+          "t",
+          "tgt",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "io",
+          "sa",
+          "ss",
+          "rst",
+          "dntm"
+        ],
+        "controlProperties": [
+          "p",
+          "bhm",
+          "do",
+          "ve",
+          "fa",
+          "he",
+          "tgt",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "sa",
+          "ss",
+          "rst",
+          "dntm"
+        ],
+        "readOnlyProperties": [
+          "t",
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "64",
+        "componentName": "单火组件",
+        "alias": "single fire",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [],
+        "controlProperties": [],
+        "readOnlyProperties": [],
+        "events": []
+      },
+      {
+        "componentId": "65",
+        "componentName": "dali灯组件",
+        "alias": "dali light",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "min_level",
+          "max_level",
+          "power_on_level",
+          "system_failure_level",
+          "fade_rate",
+          "dim_curve",
+          "ddt",
+          "dpt"
+        ],
+        "controlProperties": [
+          "min_level",
+          "max_level",
+          "power_on_level",
+          "system_failure_level",
+          "fade_rate",
+          "dim_curve",
+          "ddt",
+          "dpt"
+        ],
+        "readOnlyProperties": [],
+        "events": []
+      },
+      {
+        "componentId": "66",
+        "componentName": "dali能量组件",
+        "alias": "dali energy",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "ap",
+          "ae",
+          "ot",
+          "sys_s",
+          "esv",
+          "esvf",
+          "temp",
+          "ocp",
+          "lsot",
+          "lsv",
+          "lsc",
+          "pf"
+        ],
+        "controlProperties": [
+          "ap",
+          "ae",
+          "ot",
+          "sys_s",
+          "esv",
+          "esvf",
+          "temp",
+          "ocp",
+          "lsot",
+          "lsv",
+          "lsc",
+          "pf"
+        ],
+        "readOnlyProperties": [],
+        "events": []
+      },
+      {
+        "componentId": "67",
+        "componentName": "dali情景按键",
+        "alias": "dali scene control button",
+        "category": "scene_panel",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "io",
+          "ep",
+          "st",
+          "rt"
+        ],
+        "controlProperties": [
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "ep",
+          "st",
+          "rt"
+        ],
+        "readOnlyProperties": [
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "68",
+        "componentName": "dali人感传感器",
+        "alias": "dali human detection sensor",
+        "category": "human_sensor",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "mv",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "io",
+          "ep",
+          "dead_time",
+          "report_timers",
+          "hold_timers"
+        ],
+        "controlProperties": [
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "ep",
+          "dead_time",
+          "report_timers",
+          "hold_timers"
+        ],
+        "readOnlyProperties": [
+          "mv",
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "69",
+        "componentName": "dali光感传感器",
+        "alias": "dali illuminance sensor",
+        "category": "light_sensor",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "3rdPartySyncBitmask",
+          "luminance",
+          "name",
+          "icon",
+          "io",
+          "ep",
+          "dead_time",
+          "report_timers",
+          "hys",
+          "hys_min"
+        ],
+        "controlProperties": [
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "ep",
+          "dead_time",
+          "report_timers",
+          "hys",
+          "hys_min"
+        ],
+        "readOnlyProperties": [
+          "luminance",
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "70",
+        "componentName": "dali组件",
+        "alias": "dali",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "dev_alarm",
+          "gtin",
+          "dver",
+          "dali_is_cnt",
+          "dali_hds_cnt",
+          "dali_scb_cnt"
+        ],
+        "controlProperties": [
+          "dev_alarm",
+          "gtin",
+          "dver",
+          "dali_is_cnt",
+          "dali_hds_cnt",
+          "dali_scb_cnt"
+        ],
+        "readOnlyProperties": [],
+        "events": []
+      },
+      {
+        "componentId": "71",
+        "componentName": "dali旋钮开关组件",
+        "alias": "dali knob switch",
+        "category": "knob_switch",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "io",
+          "ep",
+          "rt",
+          "dead_time"
+        ],
+        "controlProperties": [
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "ep",
+          "rt",
+          "dead_time"
+        ],
+        "readOnlyProperties": [
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "72",
+        "componentName": "无色温彩光灯组件",
+        "alias": "color light without temperature",
+        "category": "light",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "p",
+          "l",
+          "c",
+          "slisaon",
+          "bp",
+          "dd",
+          "slisaon_rdy",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon",
+          "io"
+        ],
+        "controlProperties": [
+          "p",
+          "l",
+          "c",
+          "slisaon",
+          "bp",
+          "dd",
+          "3rdPartySyncBitmask",
+          "name",
+          "icon"
+        ],
+        "readOnlyProperties": [
+          "slisaon_rdy",
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "73",
+        "componentName": "亮度雷达传感器(可屏蔽区段)",
+        "alias": "zonalShieldIlluminanceRadarSensor",
+        "category": "light_sensor",
+        "type": "0-普通组件",
+        "mockComponents": [],
+        "properties": [
+          "mv",
+          "li",
+          "3rdPartySyncBitmask",
+          "luminance",
+          "sens_range",
+          "lumi_setting",
+          "delay_time",
+          "name",
+          "icon",
+          "io",
+          "sens_shield"
+        ],
+        "controlProperties": [
+          "li",
+          "3rdPartySyncBitmask",
+          "sens_range",
+          "lumi_setting",
+          "delay_time",
+          "name",
+          "icon",
+          "sens_shield"
+        ],
+        "readOnlyProperties": [
+          "mv",
+          "luminance",
+          "io"
+        ],
+        "events": []
+      },
+      {
+        "componentId": "74",
+        "componentName": "虚拟开关组件（全局）",
+        "alias": "VirtualSwitch",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "srb"
+        ],
+        "controlProperties": [
+          "srb"
+        ],
+        "readOnlyProperties": [],
+        "events": []
+      },
+      {
+        "componentId": "75",
+        "componentName": "智慧屏组件",
+        "alias": "",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [],
+        "controlProperties": [],
+        "readOnlyProperties": [],
+        "events": []
+      },
+      {
+        "componentId": "76",
+        "componentName": "电量组件",
+        "alias": "power meter",
+        "category": "",
+        "type": "1-全局组件",
+        "mockComponents": [],
+        "properties": [
+          "curp",
+          "iec"
+        ],
+        "controlProperties": [],
+        "readOnlyProperties": [
+          "curp",
+          "iec"
+        ],
+        "events": []
+      }
+    ]
+  },
+  "language": {
+    "lexicalAliases": [
+      {
+        "from": "感应器",
+        "to": "传感器",
+        "kind": "synonym"
+      },
+      {
+        "from": "厘米",
+        "to": "cm",
+        "kind": "unit"
+      },
+      {
+        "from": "八瓦",
+        "to": "8w",
+        "kind": "number_unit"
+      },
+      {
+        "from": "七十五",
+        "to": "75",
+        "kind": "number"
+      },
+      {
+        "from": "艾斯系列",
+        "to": "S系列",
+        "kind": "phonetic"
+      },
+      {
+        "from": "120射灯",
+        "to": "E20射灯",
+        "kind": "folk_name"
+      },
+      {
+        "from": "一来",
+        "to": "易来",
+        "kind": "phonetic"
+      },
+      {
+        "from": "干节点",
+        "to": "干接点",
+        "kind": "synonym"
+      },
+      {
+        "from": "开合帘",
+        "to": "窗帘",
+        "kind": "folk_name"
+      },
+      {
+        "from": "小夜灯",
+        "to": "夜灯",
+        "kind": "folk_name"
+      }
+    ],
+    "deviceLexicon": {
+      "productSeries": [
+        "S系列",
+        "S20",
+        "S21",
+        "E系列",
+        "E20",
+        "E+系列",
+        "E14",
+        "E27",
+        "M20",
+        "C系列",
+        "D系列",
+        "P系列",
+        "P20",
+        "P21"
+      ],
+      "protocols": [
+        "Mesh",
+        "Mesh版",
+        "蓝牙",
+        "Matter",
+        "Thread",
+        "KNX",
+        "DALI",
+        "VRF"
+      ],
+      "deviceFamilies": [
+        "青空灯",
+        "筒灯",
+        "射灯",
+        "筒射灯",
+        "吊线灯",
+        "灯带",
+        "格栅灯",
+        "线条灯",
+        "泛光灯",
+        "斗胆灯",
+        "球泡",
+        "灯泡",
+        "智能开关",
+        "情景开关",
+        "旋钮开关",
+        "墙壁开关",
+        "全面屏",
+        "全景屏",
+        "旋钮屏",
+        "跑道屏",
+        "窗帘",
+        "梦幻帘",
+        "开合帘",
+        "卷帘",
+        "电机",
+        "温控器",
+        "风管机",
+        "驱动",
+        "电源",
+        "模组",
+        "模块",
+        "网关",
+        "传感器",
+        "人在传感器",
+        "人体红外传感器",
+        "门窗传感器"
+      ],
+      "featureWords": {
+        "colors": [
+          "白色",
+          "黑色",
+          "深空灰",
+          "晶墨灰",
+          "丝墨青",
+          "汉玉白",
+          "亮银",
+          "亮金"
+        ],
+        "shapes": [
+          "方形",
+          "圆形",
+          "无边框",
+          "窄边框",
+          "磁吸",
+          "轨道",
+          "明装",
+          "嵌入式",
+          "折叠",
+          "贴装",
+          "墙面",
+          "吊顶"
+        ],
+        "sizes": [
+          "3寸",
+          "30cm",
+          "60cm",
+          "35开孔",
+          "55开孔",
+          "75开孔",
+          "80开孔"
+        ],
+        "heads": [
+          "单头",
+          "双头",
+          "3头",
+          "5头",
+          "6头",
+          "10头",
+          "12头"
+        ],
+        "beamAngles": [
+          "15°",
+          "24°",
+          "36°",
+          "60°"
+        ],
+        "power": [
+          "8w",
+          "12w",
+          "15w",
+          "36w",
+          "恒压",
+          "高压",
+          "低压",
+          "DC",
+          "零火"
+        ]
+      },
+      "productSeriesPositioning": [
+        {
+          "series": "D系列",
+          "routingMeaning": "产品系列词，用于保留用户自然描述",
+          "hints": [
+            "防眩",
+            "基础智能"
+          ]
+        },
+        {
+          "series": "E系列",
+          "routingMeaning": "产品系列词，用于区分同类灯具候选",
+          "hints": [
+            "调光",
+            "深防眩"
+          ]
+        },
+        {
+          "series": "S系列",
+          "routingMeaning": "产品系列词，用于区分同类灯具候选",
+          "hints": [
+            "高显指",
+            "高性能"
+          ]
+        },
+        {
+          "series": "P系列",
+          "routingMeaning": "产品系列词，用于设计或选型语境",
+          "hints": [
+            "高端",
+            "创新"
+          ]
+        }
+      ]
+    }
+  },
+  "automation": {
+    "canonicalEvents": [
+      "有人移动",
+      "无人移动",
+      "2分钟无人移动",
+      "5分钟无人移动",
+      "10分钟无人移动",
+      "20分钟无人移动",
+      "30分钟无人移动",
+      "有人移动且环境亮度低于指定值",
+      "门卡已插入",
+      "门卡已取出",
+      "门窗已打开",
+      "门窗已关闭",
+      "门窗打开后超1分钟未关闭",
+      "照度上升至",
+      "照度下降至",
+      "光照度上升至",
+      "光照度下降至",
+      "有人移动且照度上升至",
+      "有人移动且照度下降至",
+      "无人移动且照度上升至",
+      "无人移动且照度下降至",
+      "有人靠近",
+      "有人远离",
+      "持续一段时间有人",
+      "持续一段时间无人"
+    ],
+    "unsupportedConditionDeviceTypes": [
+      "温控器",
+      "全景屏",
+      "窗帘",
+      "开合帘",
+      "卷帘",
+      "梦幻帘",
+      "电机",
+      "电源",
+      "驱动",
+      "模块",
+      "模组"
+    ]
+  },
+  "lightingExperience": {
+    "sceneRecipes": [
+      {
+        "name": "回家模式",
+        "brightness": "80-100",
+        "colorTemperature": 4500,
+        "behavior": "全屋灯光由近及远逐步点亮"
+      },
+      {
+        "name": "离家模式",
+        "behavior": "全屋灯光从门口由远及近逐步关闭"
+      },
+      {
+        "name": "清洁模式",
+        "brightness": 100,
+        "colorTemperature": 5700
+      },
+      {
+        "name": "日常模式",
+        "brightnessMax": 80,
+        "colorTemperature": "3500-4000"
+      },
+      {
+        "name": "会客模式",
+        "brightnessMax": 100,
+        "colorTemperature": 4500
+      },
+      {
+        "name": "品茗模式",
+        "brightnessMax": 80,
+        "colorTemperature": "3000-4000"
+      },
+      {
+        "name": "聚会模式",
+        "brightness": "80-100",
+        "colorTemperature": 4000,
+        "stripBrightnessMax": 30
+      },
+      {
+        "name": "观影模式",
+        "mainLight": "off_or_low",
+        "backgroundBrightnessMax": 20,
+        "colorTemperature": "2700-3500"
+      },
+      {
+        "name": "阅读模式",
+        "brightness": 80,
+        "colorTemperature": "4000-5500",
+        "stripColorTemperature": 2700,
+        "stripBrightness": 30
+      },
+      {
+        "name": "浪漫模式",
+        "brightness": "50-80",
+        "colorTemperature": 3000,
+        "stripBrightness": 20
+      },
+      {
+        "name": "睡眠模式",
+        "brightness": "5-10",
+        "colorTemperature": 2700,
+        "delayedOffSeconds": 300
+      },
+      {
+        "name": "夜灯模式",
+        "brightness": "5-10",
+        "colorTemperature": 2700
+      },
+      {
+        "name": "早安模式",
+        "brightnessRamp": "5-10_to_70",
+        "colorTemperatureRamp": "2700_to_3500-4000",
+        "durationMinutes": "1-10"
+      }
+    ],
+    "moodRecipes": [
+      {
+        "expression": "放松",
+        "brightness": "low_to_mid",
+        "colorTemperature": "warm",
+        "transition": "slow"
+      },
+      {
+        "expression": "睡前",
+        "brightness": "very_low",
+        "colorTemperature": "warm",
+        "avoid": [
+          "color_dynamic_effect"
+        ]
+      },
+      {
+        "expression": "专注",
+        "brightness": "mid_to_high",
+        "colorTemperature": "neutral_or_cool"
+      },
+      {
+        "expression": "阅读",
+        "brightness": "mid",
+        "colorTemperature": "not_too_cool",
+        "priority": "local_task_light"
+      },
+      {
+        "expression": "观影",
+        "brightness": "low",
+        "mainLight": "off_or_low",
+        "backgroundLight": "low_ambient"
+      },
+      {
+        "expression": "聚餐",
+        "brightness": "mid",
+        "colorTemperature": "warm",
+        "priority": "dining_table"
+      },
+      {
+        "expression": "起床",
+        "brightness": "gradual_up",
+        "colorTemperature": "natural_light"
+      },
+      {
+        "expression": "夜间起身",
+        "brightness": "very_low",
+        "colorTemperature": "warm",
+        "duration": "short"
+      },
+      {
+        "expression": "派对",
+        "color": "enabled_if_supported",
+        "effect": "dynamic_if_supported",
+        "requiresPreference": "color_allowed"
+      },
+      {
+        "expression": "有点累",
+        "mapsTo": "放松"
+      },
+      {
+        "expression": "太刺眼",
+        "brightness": "lower",
+        "colorTemperature": "warmer"
+      },
+      {
+        "expression": "想有氛围一点",
+        "mapsTo": "浪漫模式"
+      }
+    ],
+    "negativePreferencePolicies": [
+      {
+        "signal": "不喜欢彩色灯效",
+        "effect": "lower_color_effect_recommendation_weight",
+        "scope": "profile_house_room"
+      },
+      {
+        "signal": "太亮了",
+        "effect": "create_implicit_brightness_lower_candidate",
+        "scope": "profile_house_room_time"
+      },
+      {
+        "signal": "有点冷",
+        "effect": "create_implicit_warmer_color_temperature_candidate",
+        "scope": "profile_house_room_scene"
+      }
+    ]
+  },
+  "runtimePolicy": {
+    "directExecution": false,
+    "requiresCapabilityCheck": true,
+    "implicitMemoryCreatesPersistentConfig": false,
+    "oldPromptAutoAddDeviceRule": "blocked"
+  }
+}

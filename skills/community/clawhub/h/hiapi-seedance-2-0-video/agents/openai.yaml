@@ -1,0 +1,8 @@
+interface:
+  display_name: "HiAPI Seedance 2.0"
+  short_description: "Generate Seedance 2.0 videos through HiAPI"
+  brand_color: "#10A37F"
+  default_prompt: "Use $hiapi-seedance-2-0-video to generate a 5-second cinematic video through HiAPI."
+
+policy:
+  allow_implicit_invocation: true

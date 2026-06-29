@@ -1,0 +1,249 @@
+{
+  "_description": "各省高考志愿填报规则 (2026版)",
+  "_updated": "2026-06-11",
+  "_note": "规则基于2025年确认+2026年已公布变化，填报前请核实各省考试院最新公告",
+
+  "hubei": {
+    "name": "湖北",
+    "model": "院校专业组",
+    "gaokao_type": "新高考",
+    "batches": {
+      "undergrad": {
+        "name": "本科批",
+        "max_volunteers": 45,
+        "majors_per_group": 6,
+        "parallel": true,
+        "allow_adjustment": true,
+        "adjustment_scope": "组内调剂",
+        "subject_groups": ["物理+化学", "物理+不限", "物理+生物", "历史+不限", "历史+政治"],
+        "strategy_hint": "45个志愿按冲稳保 8:20:17 分配，注意物理+化学覆盖最多专业组"
+      },
+      "early_a": {
+        "name": "提前批A类",
+        "max_volunteers": 1,
+        "parallel": false,
+        "types": ["军事类", "公安政法类", "消防救援", "综合评价", "高水平运动队"]
+      },
+      "early_b": {
+        "name": "提前批B类",
+        "max_volunteers": 20,
+        "parallel": true,
+        "majors_per_group": 6,
+        "types": ["飞行技术", "航海", "公费师范生", "省属公费生", "定向培养军士生"],
+        "note": "考生只能选择一种类型填报"
+      }
+    },
+    "subject_mapping": {
+      "物理类": "首选物理",
+      "历史类": "首选历史"
+    }
+  },
+
+  "guangdong": {
+    "name": "广东",
+    "model": "院校专业组",
+    "gaokao_type": "新高考",
+    "batches": {
+      "undergrad": {
+        "name": "本科批",
+        "max_volunteers": 45,
+        "majors_per_group": 6,
+        "parallel": true,
+        "allow_adjustment": true,
+        "adjustment_scope": "组内调剂"
+      }
+    },
+    "subject_mapping": {
+      "物理类": "首选物理",
+      "历史类": "首选历史"
+    }
+  },
+
+  "shandong": {
+    "name": "山东",
+    "model": "专业+院校",
+    "gaokao_type": "新高考",
+    "batches": {
+      "undergrad": {
+        "name": "常规批",
+        "max_volunteers": 96,
+        "majors_per_group": 1,
+        "parallel": true,
+        "allow_adjustment": false,
+        "adjustment_scope": "无调剂",
+        "strategy_hint": "96个志愿按冲稳保 10:43:43 分配，无调剂风险但需确保有保底"
+      }
+    }
+  },
+
+  "zhejiang": {
+    "name": "浙江",
+    "model": "专业+院校",
+    "gaokao_type": "新高考",
+    "batches": {
+      "undergrad": {
+        "name": "普通类平行录取",
+        "max_volunteers": 80,
+        "majors_per_group": 1,
+        "parallel": true,
+        "allow_adjustment": false,
+        "adjustment_scope": "无调剂"
+      }
+    }
+  },
+
+  "sichuan": {
+    "name": "四川",
+    "model": "院校+专业",
+    "gaokao_type": "传统高考",
+    "batches": {
+      "undergrad_first": {
+        "name": "本科第一批",
+        "max_volunteers": 9,
+        "majors_per_group": 6,
+        "parallel": true,
+        "allow_adjustment": true,
+        "adjustment_scope": "校内调剂"
+      },
+      "undergrad_second": {
+        "name": "本科第二批",
+        "max_volunteers": 9,
+        "majors_per_group": 6,
+        "parallel": true,
+        "allow_adjustment": true
+      }
+    },
+    "subject_mapping": {
+      "理科": "理工类",
+      "文科": "文史类"
+    }
+  },
+
+  "henan": {
+    "name": "河南",
+    "model": "院校+专业",
+    "gaokao_type": "传统高考",
+    "batches": {
+      "undergrad_first": {
+        "name": "本科一批",
+        "max_volunteers": 12,
+        "majors_per_group": 5,
+        "parallel": true,
+        "allow_adjustment": true
+      }
+    },
+    "subject_mapping": {
+      "理科": "理工类",
+      "文科": "文史类"
+    }
+  },
+
+  "beijing": {
+    "name": "北京",
+    "model": "院校专业组",
+    "gaokao_type": "新高考",
+    "batches": {
+      "undergrad": {
+        "name": "本科普通批",
+        "max_volunteers": 30,
+        "majors_per_group": 6,
+        "parallel": true,
+        "allow_adjustment": true,
+        "adjustment_scope": "组内调剂"
+      }
+    }
+  },
+
+  "shanghai": {
+    "name": "上海",
+    "model": "院校专业组",
+    "gaokao_type": "新高考",
+    "batches": {
+      "undergrad": {
+        "name": "本科普通批",
+        "max_volunteers": 24,
+        "majors_per_group": 4,
+        "parallel": true,
+        "allow_adjustment": true,
+        "adjustment_scope": "组内调剂"
+      }
+    }
+  },
+
+  "jiangsu": {
+    "name": "江苏",
+    "model": "院校专业组",
+    "gaokao_type": "新高考",
+    "batches": {
+      "undergrad": {
+        "name": "本科批",
+        "max_volunteers": 40,
+        "majors_per_group": 6,
+        "parallel": true,
+        "allow_adjustment": true,
+        "adjustment_scope": "组内调剂"
+      }
+    }
+  },
+
+  "hebei": {
+    "name": "河北",
+    "model": "专业+院校",
+    "gaokao_type": "新高考",
+    "batches": {
+      "undergrad": {
+        "name": "本科批",
+        "max_volunteers": 96,
+        "majors_per_group": 1,
+        "parallel": true,
+        "allow_adjustment": false
+      }
+    }
+  },
+
+  "liaoning": {
+    "name": "辽宁",
+    "model": "专业+院校",
+    "gaokao_type": "新高考",
+    "batches": {
+      "undergrad": {
+        "name": "本科批",
+        "max_volunteers": 112,
+        "majors_per_group": 1,
+        "parallel": true,
+        "allow_adjustment": false
+      }
+    }
+  },
+
+  "hunan": {
+    "name": "湖南",
+    "model": "院校专业组",
+    "gaokao_type": "新高考",
+    "batches": {
+      "undergrad": {
+        "name": "本科批",
+        "max_volunteers": 45,
+        "majors_per_group": 6,
+        "parallel": true,
+        "allow_adjustment": true,
+        "adjustment_scope": "组内调剂"
+      }
+    }
+  },
+
+  "chongqing": {
+    "name": "重庆",
+    "model": "专业+院校",
+    "gaokao_type": "新高考",
+    "batches": {
+      "undergrad": {
+        "name": "本科批",
+        "max_volunteers": 96,
+        "majors_per_group": 1,
+        "parallel": true,
+        "allow_adjustment": false
+      }
+    }
+  }
+}

@@ -46,7 +46,7 @@ def main():
     args = parser.parse_args()
 
     params = {"date": args.date, "page": args.page, "page_size": args.page_size}
-    url = BASE_URL + "/data/api/v1/market/data/etf-pcf/etf-pcfs?" + urllib.parse.urlencode(params)
+    url = BASE_URL + "/gateway/api/v1/market/data/etf-pcf/etf-pcfs?" + urllib.parse.urlencode(params)
     req = urllib.request.Request(url, method="GET")
 
     try:

@@ -1,0 +1,31 @@
+{
+  "start_image": {
+    "image": {
+      "type": "base64",
+      "format": "png",
+      "base64": "REPLACE_WITH_BASE64_START_KEYFRAME"
+    },
+    "size": {
+      "width": 64,
+      "height": 64
+    }
+  },
+  "end_image": {
+    "image": {
+      "type": "base64",
+      "format": "png",
+      "base64": "REPLACE_WITH_BASE64_END_KEYFRAME"
+    },
+    "size": {
+      "width": 64,
+      "height": 64
+    }
+  },
+  "action": "smooth in-between frames for the same character motion, preserve silhouette, palette, transparent background, and frame alignment",
+  "image_size": {
+    "width": 64,
+    "height": 64
+  },
+  "no_background": true,
+  "seed": 0
+}

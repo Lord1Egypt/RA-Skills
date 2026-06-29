@@ -11,31 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and agent maintainers use this skill when handling GitHub, web, URL, or other untrusted content so they can reduce prompt-injection and unsafe code-execution risks before passing that content to another skill or hook. <br>
+Developers and agent builders use this skill to handle untrusted web, GitHub, and user-provided content safely before including it in skills, hooks, or agent workflows. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The artifact references automated sanitization, but the release does not include the hook that would perform that enforcement. <br>
-Mitigation: Install the separate Claude Code plugin or another equivalent hook if automatic sanitization is required; otherwise apply the checklist manually. <br>
-Risk: External content from web pages, GitHub, URLs, or public authors can contain prompt-injection or code-execution patterns. <br>
-Mitigation: Treat that content as untrusted, limit size, strip instruction-like and execution-like patterns, remove hidden text, and wrap the content in explicit boundary markers before use. <br>
+Risk: Users may assume the referenced sanitization hook is installed automatically. <br>
+Mitigation: Install and verify the source plugin separately before relying on automated sanitization; otherwise follow the checklist manually. <br>
+Risk: Untrusted external content may contain prompt injection or hidden instructions. <br>
+Mitigation: Treat external content as data, truncate it, strip instruction-like patterns, and wrap it in explicit boundary markers before reuse. <br>
 
 
 ## Reference(s): <br>
-- [Leyline plugin source](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-leyline-content-sanitization) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-content-sanitization) <br>
+- [Metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown guidance with checklists and safety constraints] <br>
+**Output Type(s):** [guidance, markdown, configuration] <br>
+**Output Format:** [Markdown guidance with checklists and safety rules] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only artifact; no executable files are included.] <br>
+**Other Properties Related to Output:** [No executable files are included in the scanned artifact.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: ClawHub release metadata; artifact frontmatter lists 1.9.8) <br>
+1.9.13 (source: ClawHub release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,5 +1,5 @@
 ## Description: <br>
-Bank Credit Due Diligence helps bank credit officers, loan analysts, and risk managers structure borrower analysis, financial review, industry risk assessment, ESG review, and due diligence report drafting. <br>
+AI assistant for bank credit due diligence covering borrower analysis, financial review, industry risk, ESG factors, and investigation report drafting. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,30 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Bank credit and risk teams use this skill to organize corporate credit due diligence, review borrower financial and operating risks, and draft investigation report sections. It is advisory only and requires qualified human review before lending decisions or formal submissions. <br>
+Bank credit officers, loan analysts, and risk managers use this skill as an internal analytical framework for borrower due diligence, financial health review, industry and ESG risk assessment, and report drafting. It supports analysis and templates but does not make final credit approval or rejection decisions. <br>
 
 ### Deployment Geography for Use: <br>
-Global, with China-focused regulatory examples and Basel III references <br>
+Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Users may treat generated credit analysis or facility recommendations as final lending decisions. <br>
-Mitigation: Require qualified bank officers to review all analysis, ratings, assumptions, and recommendations against internal policy and regulatory requirements before use. <br>
-Risk: Prompts for borrower analysis may involve confidential borrower data, financial records, or personal information. <br>
-Mitigation: Do not paste confidential borrower data or PII unless the organization permits that use and appropriate data protection controls are in place. <br>
-Risk: Regulatory references, financial assumptions, or industry thresholds may be outdated or incomplete for a specific transaction. <br>
-Mitigation: Verify regulatory references, financial inputs, rating conclusions, and facility terms against current official sources and internal credit policy. <br>
+Risk: Credit due diligence is a high-stakes banking workflow, and generated ratings, facility amounts, pricing guidance, collateral suggestions, or report text could be mistaken for final lending decisions. <br>
+Mitigation: Use the skill only as an advisory aid for trained credit staff, and require formal policy review plus authorized approval before relying on outputs for lending action. <br>
+Risk: Borrower analysis may involve customer PII, confidential financial data, or other sensitive banking information. <br>
+Mitigation: Do not enter real customer PII or confidential borrower data unless the institution permits it and appropriate data protection controls are in place. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/bank-credit-due-diligence) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/gechengling) <br>
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/bank-credit-due-diligence) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown and structured prose with tables, checklists, templates, and advisory recommendations] <br>
+**Output Format:** [Conversational guidance and Markdown-style report templates] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs are reference material for human review and should not be treated as automated credit approval or rejection.] <br>
+**Other Properties Related to Output:** [No executable code, shell commands, persistent storage, network calls, or credential collection are included in the artifact.] <br>
 
 ## Skill Version(s): <br>
-4.1.0 (source: server release evidence and SKILL.md frontmatter) <br>
+4.1.1 (source: SKILL.md frontmatter and server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

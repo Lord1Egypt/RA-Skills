@@ -39,6 +39,7 @@ VMware vSphere storage management — 11 MCP tools for datastores, iSCSI, and vS
 
 ```bash
 uv tool install vmware-storage
+vmware-storage init      # guided setup: writes config + .env (chmod 600, password grep-safe), then verifies
 vmware-storage doctor
 ```
 

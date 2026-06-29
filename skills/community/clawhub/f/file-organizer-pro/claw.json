@@ -1,0 +1,10 @@
+{
+  "name": "smart-file-organizer",
+  "version": "1.0.0",
+  "description": "Smart file organizer: auto-classify files by type, date and naming patterns",
+  "author": "mizhimin",
+  "license": "MIT-0",
+  "tags": ["file", "organizer", "productivity", "automation", "cleanup"],
+  "requires_python": ">=3.10",
+  "entry": "scripts/main.py"
+}

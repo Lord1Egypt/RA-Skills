@@ -33,6 +33,19 @@ FTShare-market-data 统一调度入口。
     python run.py index-weight-summary --page 1 --page-size 20
     python run.py index-weight-list --index-code 000300 --page 1 --page-size 20
     python run.py index-weight-download --url-hash <url_hash> --output ./index-weights.xlsx
+    python run.py eastmoney-stock-valuation --symbol 000001 --page 1 --page_size 10
+    python run.py eastmoney-stock-valuation --symbol 000001 --start_date 2026-06-01 --end_date 2026-06-09
+    python run.py eastmoney-stock-valuation --start_date 2026-06-01 --end_date 2026-06-09 --all
+    python run.py eastmoney-market-valuation --market_code 000300 --page 1 --page_size 10
+    python run.py eastmoney-market-valuation --market_code 000001 --start_date 2026-06-01 --end_date 2026-06-09
+    python run.py eastmoney-market-valuation --start_date 2026-06-01 --end_date 2026-06-09 --all
+    python run.py eastmoney-us-stock-list
+    python run.py eastmoney-us-stock-daily-ohlc --stock_code AAPL --page 1 --page_size 50
+    python run.py eastmoney-us-stock-daily-ohlc --stock_code AAPL --start_date 2026-01-01 --end_date 2026-06-10
+    python run.py eastmoney-us-stock-daily-ohlc --stock_code AAPL --start_date 2026-01-01 --end_date 2026-06-10 --all
+    python run.py eastmoney-us-stock-latest-ohlc --stock_code AAPL --page 1 --page_size 20
+    python run.py eastmoney-us-stock-latest-ohlc --page 1 --page_size 50
+    python run.py eastmoney-us-stock-latest-ohlc --all
 """
 import os
 import runpy

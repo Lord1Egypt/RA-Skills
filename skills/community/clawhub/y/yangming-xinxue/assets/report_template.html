@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<style>
+:root {
+  --ink: #2c2c2c;
+  --vermillion: #c41e3a;
+  --vermillion-light: #e8a0b0;
+  --paper: #f5f0e8;
+  --paper-dark: #e8e0d0;
+  --paper-light: #faf7f0;
+  --gold: #b8860b;
+  --jade: #5b8c5a;
+  --shadow: rgba(44, 44, 44, 0.08);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "SimSun", Georgia, serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.8;
+  min-height: 100vh;
+}
+.container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+/* Header */
+.header {
+  text-align: center;
+  padding: 60px 20px 40px;
+  position: relative;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: 20px; left: 50%;
+  transform: translateX(-50%);
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--vermillion), var(--vermillion-light));
+  opacity: 0.15;
+}
+.header-icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  display: block;
+}
+.header h1 {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+.header .subtitle {
+  font-size: 15px;
+  color: #888;
+  letter-spacing: 1px;
+}
+
+/* Cards */
+.card {
+  background: var(--paper-light);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px var(--shadow);
+  border-left: 4px solid var(--vermillion);
+  transition: all 0.3s ease;
+}
+.card:hover {
+  box-shadow: 0 4px 20px var(--shadow);
+}
+.card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--vermillion);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Diagnosis Card */
+.diagnosis {
+  background: linear-gradient(135deg, #faf7f0, #fdf5f0);
+  border-left-color: var(--vermillion);
+  border-left-width: 6px;
+}
+.diagnosis .card-title { font-size: 22px; }
+
+/* Quote Card */
+.quote-card {
+  background: linear-gradient(135deg, #faf7f0, #f5f2e8);
+  border-left-color: var(--gold);
+  text-align: center;
+  padding: 32px 24px;
+}
+.quote-card .quote-text {
+  font-size: 20px;
+  font-style: italic;
+  color: var(--ink);
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+.quote-card .quote-source {
+  font-size: 14px;
+  color: #999;
+}
+
+/* Steps */
+.steps { list-style: none; padding: 0; }
+.steps li {
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid var(--paper-dark);
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.steps li:hover { border-color: var(--vermillion-light); background: #fffbfb; }
+.step-num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--vermillion);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.step-content { flex: 1; }
+.step-title { font-weight: 700; margin-bottom: 4px; }
+.step-desc { font-size: 14px; color: #666; line-height: 1.6; }
+.step-checkbox {
+  width: 22px; height: 22px;
+  border: 2px solid var(--paper-dark);
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.step-checkbox.checked {
+  background: var(--jade);
+  border-color: var(--jade);
+  color: #fff;
+  font-size: 14px;
+}
+
+/* Classic Text */
+.classic-section {
+  background: linear-gradient(135deg, #fdfcf8, #faf7f0);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid var(--paper-dark);
+}
+.classic-original {
+  font-size: 16px;
+  color: var(--ink);
+  padding: 16px;
+  border-left: 3px solid var(--gold);
+  background: rgba(184, 134, 11, 0.05);
+  margin-bottom: 12px;
+  line-height: 2;
+}
+.classic-translation {
+  font-size: 15px;
+  color: #555;
+  padding: 12px 16px;
+  background: #fff;
+  border-radius: 8px;
+  display: none;
+}
+.classic-translation.show { display: block; }
+.toggle-btn {
+  background: none; border: 1px solid var(--paper-dark);
+  padding: 6px 16px; border-radius: 20px;
+  cursor: pointer; color: var(--vermillion);
+  font-size: 13px; transition: all 0.2s;
+  font-family: inherit;
+}
+.toggle-btn:hover { background: var(--vermillion); color: #fff; border-color: var(--vermillion); }
+
+/* Quote Cards Grid */
+.quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
+  margin-top: 12px;
+}
+.quote-mini {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 1px solid var(--paper-dark);
+  position: relative;
+  overflow: hidden;
+}
+.quote-mini:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--shadow);
+  border-color: var(--vermillion-light);
+}
+.quote-mini .front { font-size: 15px; line-height: 1.7; }
+.quote-mini .back {
+  position: absolute; inset: 0;
+  background: var(--vermillion);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px; font-size: 14px; line-height: 1.7;
+  opacity: 0; transition: opacity 0.3s;
+}
+.quote-mini:hover .back { opacity: 1; }
+.quote-mini:hover .front { visibility: hidden; }
+
+/* Book List */
+.book-list { list-style: none; padding: 0; }
+.book-item {
+  display: flex; gap: 16px; padding: 16px;
+  border-bottom: 1px solid var(--paper-dark);
+  align-items: flex-start;
+}
+.book-item:last-child { border-bottom: none; }
+.book-num {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--vermillion);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; flex-shrink: 0;
+}
+.book-info h4 { font-size: 16px; margin-bottom: 4px; }
+.book-info p { font-size: 13px; color: #888; }
+
+/* Action List */
+.action-list {
+  display: flex; flex-direction: column; gap: 12px;
+}
+.action-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 18px; background: #fff;
+  border-radius: 8px; border: 1px solid var(--paper-dark);
+  transition: all 0.2s;
+}
+.action-item:hover { border-color: var(--jade); }
+.action-check {
+  width: 24px; height: 24px; border: 2px solid var(--paper-dark);
+  border-radius: 50%; flex-shrink: 0; cursor: pointer;
+  transition: all 0.2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.action-check.checked {
+  background: var(--jade); border-color: var(--jade);
+  color: #fff; font-size: 14px;
+}
+.action-text { flex: 1; font-size: 15px; }
+
+/* Theory Cards */
+.theory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+.theory-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  border: 1px solid var(--paper-dark);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.theory-card:hover { border-color: var(--vermillion); }
+.theory-card h3 { font-size: 17px; color: var(--vermillion); margin-bottom: 8px; }
+.theory-card .summary { font-size: 13px; color: #888; line-height: 1.6; display: block; }
+.theory-card .detail { display: none; margin-top: 12px; font-size: 14px; color: var(--ink); line-height: 1.8; }
+.theory-card.expanded .detail { display: block; }
+.theory-card.expanded { border-color: var(--vermillion); box-shadow: 0 2px 12px var(--shadow); }
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: #ccc;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container { padding: 12px; }
+  .header { padding: 40px 12px 30px; }
+  .header h1 { font-size: 22px; }
+  .quotes-grid { grid-template-columns: 1fr; }
+  .theory-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  {{CONTENT}}
+  <div class="footer">
+    此心光明 · 亦复何言
+  </div>
+</div>
+
+<script>
+// Toggle theory cards
+document.querySelectorAll('.theory-card').forEach(card => {
+  card.addEventListener('click', function() { this.classList.toggle('expanded'); });
+});
+// Toggle classic translation
+document.querySelectorAll('.toggle-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const target = this.nextElementSibling;
+    target.classList.toggle('show');
+    this.textContent = target.classList.contains('show') ? '收起白话' : '查看白话翻译';
+  });
+});
+// Checkbox toggles
+document.querySelectorAll('.step-checkbox, .action-check').forEach(el => {
+  el.addEventListener('click', function(e) {
+    e.stopPropagation();
+    this.classList.toggle('checked');
+    if (this.classList.contains('checked')) {
+      this.textContent = '✓';
+    } else {
+      this.textContent = '';
+    }
+  });
+});
+</script>
+</body>
+</html>

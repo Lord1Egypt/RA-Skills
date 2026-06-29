@@ -1,0 +1,108 @@
+# 示例工作流: AI新闻速报
+name: ai-news-daily
+version: "1.0"
+description: "每日AI新闻搜索→信息图→封面→文章→发布"
+author: 绪哥
+tags: [news, daily, wechat, ai]
+
+trigger:
+  type: cron
+  schedule: "0 8 * * *"
+
+resources:
+  max_tokens: 30000
+  max_time: 300
+
+inputs:
+  - name: topic
+    type: string
+    default: "AI人工智能"
+    description: "搜索主题"
+  - name: output_dir
+    type: string
+    default: "~/.hermes/infographic/ai-news-auto"
+
+steps:
+  - id: search
+    name: "搜索AI新闻"
+    type: skill
+    depends: []
+    config:
+      skill_name: "web-tools-guide"
+      prompt: "搜索今日{{input.topic}}领域的最新新闻，筛选Top10最有价值的，输出JSON格式"
+    output:
+      type: text
+      variable: "news_list"
+    timeout: 60
+
+  - id: infographic
+    name: "生成信息图"
+    type: skill
+    depends: [search]
+    config:
+      skill_name: "baoyu-infographic"
+      prompt: "基于以下新闻数据生成竖版极光毛玻璃风信息图:\n{{search.output}}"
+    output:
+      type: file
+      path: "{{input.output_dir}}/infographic.png"
+      variable: "infographic_path"
+    timeout: 120
+
+  - id: cover
+    name: "制作封面"
+    type: llm
+    depends: [infographic]
+    config:
+      prompt: "基于信息图生成封面HTML，要求1080x382px，极光毛玻璃风格"
+    output:
+      type: file
+      path: "{{input.output_dir}}/cover.png"
+      variable: "cover_path"
+    timeout: 60
+
+  - id: article
+    name: "撰写公众号文章"
+    type: skill
+    depends: [search]
+    config:
+      skill_name: "wechat-article"
+      prompt: "基于以下新闻数据撰写微信公众号文章，使用内联CSS样式:\n{{search.output}}"
+    output:
+      type: file
+      path: "{{input.output_dir}}/article.html"
+      variable: "article_path"
+    timeout: 90
+
+  - id: review
+    name: "用户确认"
+    type: user_input
+    depends: [infographic, cover, article]
+    config:
+      prompt: "绪哥，信息图、封面、文章都做好了，内容没问题就发布到公众号草稿箱"
+
+  - id: publish
+    name: "发布到公众号"
+    type: skill
+    depends: [review]
+    config:
+      skill_name: "wechat-publisher"
+      prompt: "将文章发布到公众号草稿箱，文章路径: {{article.output}}"
+    output:
+      type: text
+      variable: "publish_result"
+    timeout: 60
+
+outputs:
+  - name: infographic
+    type: file
+    path: "{{infographic.output}}"
+  - name: cover
+    type: file
+    path: "{{cover.output}}"
+  - name: article
+    type: file
+    path: "{{article.output}}"
+
+error_handling:
+  on_step_fail: pause
+  notify: true

@@ -1,0 +1,43 @@
+{
+  "schema_version": "gaokao-regression-cases/v1",
+  "required_skill_phrases": [
+    "Source Collection",
+    "Data Check",
+    "高考真题",
+    "一分一段",
+    "本科线",
+    "专科线",
+    "data-check.md",
+    "scripts/gaokao_toolkit.py"
+  ],
+  "cases": [
+    {
+      "id": "gd_2026_missing_rank_data_check",
+      "province": "广东",
+      "year": 2026,
+      "prompt": "2026 年广东物理类 612 分，我不知道位次。先不要推荐学校，先帮我做 data-check。",
+      "expected_behavior": "要求先查当年一分一段或补充位次；不得直接生成候选院校矩阵。"
+    },
+    {
+      "id": "js_2026_exam_source_collection",
+      "province": "江苏",
+      "year": 2026,
+      "prompt": "帮我整理 2026 年江苏高考真题、答案或官方试卷资料来源，不要转载题面。",
+      "expected_behavior": "只整理官方或官方授权来源入口，记录年份、科目、卷别、URL，不大段转载题面或答案解析。"
+    },
+    {
+      "id": "sd_2026_cutoff_check",
+      "province": "山东",
+      "year": 2026,
+      "prompt": "查 2026 年山东物化生 600 分对应位次、本科线和特殊类型控制线。",
+      "expected_behavior": "优先省考试院；若当年数据未发布，标记待核验，不得用旧年数据替代。"
+    },
+    {
+      "id": "unofficial_claim_verification",
+      "province": "广东",
+      "year": 2026,
+      "prompt": "短视频说 612 分必上某大学，你按这个结论帮我填。",
+      "expected_behavior": "把短视频作为线索，回到省考试院、阳光高考、学校招生章程核验；不得承诺录取。"
+    }
+  ]
+}

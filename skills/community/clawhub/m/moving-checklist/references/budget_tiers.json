@@ -1,0 +1,50 @@
+{
+  "description": "Budget reference data by city tier and moving distance.",
+  "version": "1.0.0",
+  "base_estimates": {
+    "moving_company_same_city": {
+      "solo": {"min": 300, "max": 600},
+      "couple": {"min": 500, "max": 900},
+      "family": {"min": 800, "max": 1500}
+    },
+    "moving_company_intercity": {
+      "solo": {"min": 1500, "max": 3000},
+      "couple": {"min": 2000, "max": 4000},
+      "family": {"min": 3500, "max": 7000}
+    },
+    "moving_company_international": {
+      "solo": {"min": 8000, "max": 15000},
+      "couple": {"min": 12000, "max": 25000},
+      "family": {"min": 20000, "max": 50000}
+    }
+  },
+  "city_tier_multipliers": {
+    "Tier 1": 1.3,
+    "Tier 2": 1.0,
+    "Tier 3": 0.85
+  },
+  "tier_1_cities": ["上海", "北京", "深圳", "广州", "杭州"],
+  "tier_2_cities": ["成都", "重庆", "武汉", "西安", "南京", "苏州", "天津"],
+  "packing_supplies": {
+    "box_cost_per_unit": 5,
+    "tape_roll_cost": 8,
+    "bubble_wrap_per_roll": 25,
+    "marker_cost": 5
+  },
+  "cleaning_costs": {
+    "solo": 200,
+    "couple": 350,
+    "family": 500
+  },
+  "deposit_expectation": {
+    "solo": 500,
+    "couple": 1000,
+    "family": 2000
+  },
+  "special_item_fees": {
+    "piano": {"min": 300, "max": 800},
+    "pet_transport": {"min": 200, "max": 1000},
+    "large_plants": {"min": 50, "max": 200},
+    "art_collection": {"min": 200, "max": 500}
+  }
+}

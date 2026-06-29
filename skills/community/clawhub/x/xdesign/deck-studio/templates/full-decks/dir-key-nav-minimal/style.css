@@ -1,0 +1,23 @@
+/* dir-key-nav-minimal — 方向键极简 · 8 种背景切换 */
+.tpl-dir-key-nav-minimal{
+  --dk-font:'Inter','Noto Sans SC','PingFang SC',-apple-system,sans-serif;
+  --dk-mono:'JetBrains Mono',monospace;
+  font-family:var(--dk-font);
+}
+.tpl-dir-key-nav-minimal .slide{padding:80px 104px;overflow:hidden;position:absolute;inset:0}
+.tpl-dir-key-nav-minimal .t-indigo{background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);color:#fff}
+.tpl-dir-key-nav-minimal .t-cream{background:#F5F0E8;color:#1a1a1a}
+.tpl-dir-key-nav-minimal .t-crimson{background:linear-gradient(135deg,#7f1d1d 0%,#991b1b 100%);color:#fff}
+.tpl-dir-key-nav-minimal .t-emerald{background:linear-gradient(135deg,#052e16 0%,#064e3b 100%);color:#ecfdf5}
+.tpl-dir-key-nav-minimal .t-slate{background:linear-gradient(135deg,#0f1923 0%,#1a2942 100%);color:#e6edf3}
+.tpl-dir-key-nav-minimal .t-violet{background:linear-gradient(135deg,#1e0a2e 0%,#2e1065 100%);color:#f5f3ff}
+.tpl-dir-key-nav-minimal .t-white{background:#ffffff;color:#111216}
+.tpl-dir-key-nav-minimal .t-charcoal{background:linear-gradient(135deg,#111827 0%,#1f2937 100%);color:#f3f4f6}
+.tpl-dir-key-nav-minimal .dk-snum{position:absolute;top:30px;right:48px;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;font-family:var(--dk-mono)}
+.tpl-dir-key-nav-minimal .dk-eyebrow{font-size:12px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;opacity:.55;margin-bottom:22px}
+.tpl-dir-key-nav-minimal .dk-h0{font-size:160px;font-weight:900;line-height:.9;letter-spacing:-5px;margin:0 0 20px}
+.tpl-dir-key-nav-minimal .dk-h1{font-size:100px;font-weight:900;line-height:.98;letter-spacing:-3px;margin:0 0 18px}
+.tpl-dir-key-nav-minimal .dk-lede{font-size:26px;line-height:1.45;opacity:.72;max-width:900px;font-weight:300}
+.tpl-dir-key-nav-minimal .dk-line{display:block;width:90px;height:4px;background:currentColor;margin:30px 0;opacity:.85}
+.tpl-dir-key-nav-minimal .dk-keyhint{position:absolute;bottom:34px;left:104px;font-family:var(--dk-mono);font-size:12px;letter-spacing:2px;text-transform:uppercase;opacity:.45}
+.tpl-dir-key-nav-minimal .dk-page{position:absolute;bottom:34px;right:48px;font-family:var(--dk-mono);font-size:12px;letter-spacing:2px;opacity:.45}

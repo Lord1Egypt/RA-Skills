@@ -89,7 +89,10 @@ def create_payment_with_cloud_order(
     private_key_string: str | None = None,
 ):
     """
-    创建支付宝 H5/网页支付链接。
+    创建支付宝「当面付」二维码（无需跳转H5，直接扫码支付）。
+
+    使用 alipay.trade.precreate 接口，直接返回二维码链接 qr_code（格式：https://qr.alipay.com/xxx），
+    用户扫码即可完成支付，无需跳转H5页面。
 
     Args:
         cloud_order_no: 云端订单号，必须来自 create_order/orderNo。
@@ -99,6 +102,97 @@ def create_payment_with_cloud_order(
         package_name: 套餐名称。
         uses: 可用次数。
         private_key_string: create_order 返回的 privateKey，仅内存传递，禁止保存。
+    """
+    import requests
+
+    private_key = _require_runtime_private_key(private_key_string)
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    out_trade_no = cloud_order_no
+
+    # 使用当面付接口 alipay.trade.precreate
+    # 注意：biz_content 不需要 nonce_str，这是支付宝官方要求
+    biz_content = json.dumps(
+        {
+            "subject": subject,
+            "out_trade_no": out_trade_no,
+            "total_amount": str(amount),
+        },
+        separators=(",", ":"),
+        ensure_ascii=False,
+    )
+
+    params = {
+        "app_id": ALIPAY_CONFIG["app_id"],
+        "method": "alipay.trade.precreate",
+        "charset": ALIPAY_CONFIG["charset"],
+        "sign_type": ALIPAY_CONFIG["sign_type"],
+        "timestamp": timestamp,
+        "version": "1.0",
+        "biz_content": biz_content,
+        "notify_url": ALIPAY_CONFIG["notify_url"],
+    }
+
+    # 支付宝签名规则：参数按ASCII排序后，用 key=value& 拼接，最后签名
+    sorted_params = sorted(params.items())
+    sign_string = "&".join([f"{k}={v}" for k, v in sorted_params])
+    params["sign"] = sign_data(sign_string, private_key)
+
+    # 调用支付宝当面付接口获取二维码链接
+    try:
+        # 注意：POST 请求时 charset 必须放在 query string 中，不能只在 body 里
+        # 这是支付宝的特殊要求！
+        url_with_charset = f"{ALIPAY_CONFIG['gateway_url']}?charset={ALIPAY_CONFIG['charset']}"
+        response = requests.post(url_with_charset, data=params, timeout=10)
+        result = response.json()
+        response_key = "alipay_trade_precreate_response"
+        
+        if response_key in result and result[response_key].get("code") == "10000":
+            qr_code = result[response_key].get("qr_code")
+            print(f"✅ 支付宝当面付成功！原生支付码：{qr_code}")
+            # 当面付成功时：同时生成 H5 链接作为备用方式
+            h5_result = _create_h5_payment(
+                cloud_order_no, phone, amount, subject, package_name, uses, private_key_string
+            )
+            return {
+                "success": True,
+                "qr_code": qr_code,          # 原生支付码：用于二维码
+                "pay_url": h5_result["pay_url"],  # H5链接：用于备用方式
+                "out_trade_no": out_trade_no,
+                "amount": amount,
+                "subject": subject,
+                "phone": phone,
+                "package_name": package_name,
+                "uses": uses,
+                "timestamp": timestamp,
+                "method": "precreate",  # 标记为当面付模式
+            }
+        else:
+            # 当面付失败时，降级回 H5 模式
+            print(f"⚠️ 当面付接口调用失败，降级为 H5 模式：{result}")
+            return _create_h5_payment(
+                cloud_order_no, phone, amount, subject, package_name, uses, private_key_string
+            )
+    except Exception as e:
+        # 异常时降级回 H5 模式
+        print(f"⚠️ 当面付调用异常，降级为 H5 模式：{str(e)}")
+        import traceback
+        traceback.print_exc()
+        return _create_h5_payment(
+            cloud_order_no, phone, amount, subject, package_name, uses, private_key_string
+        )
+
+
+def _create_h5_payment(
+    cloud_order_no: str,
+    phone: str,
+    amount: float,
+    subject: str,
+    package_name: str,
+    uses: int,
+    private_key_string: str | None = None,
+):
+    """
+    创建支付宝 H5/网页支付链接（降级方案）。
     """
     import random
     import string
@@ -147,6 +241,7 @@ def create_payment_with_cloud_order(
         "package_name": package_name,
         "uses": uses,
         "timestamp": timestamp,
+        "method": "page_pay",  # 标记为 H5 模式
     }
 
 

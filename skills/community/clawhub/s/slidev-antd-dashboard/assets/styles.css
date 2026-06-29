@@ -1,0 +1,31 @@
+/*
+  OPTIONAL helper styles. Copy to <your-slidev-project>/styles/index.css
+  (Slidev auto-imports everything in styles/). You usually don't need this —
+  AntdThemeProvider.vue handles theming. Use these only to fine-tune fit.
+*/
+
+/* Let a full-bleed dashboard use the entire slide canvas. Pair with `layout: full`. */
+.slidev-layout.slidev-layout--full {
+  padding: 0;
+}
+
+/* Dense dashboards: tighten the default card body padding a touch. */
+.antd-dashboard .ant-card-body {
+  padding: 16px;
+}
+
+/* Keep antd tables from overflowing the slide; scroll inside instead. */
+.antd-dashboard .ant-table-wrapper {
+  overflow: auto;
+}
+
+/* Statistic numbers read better slightly larger on a projected slide. */
+.antd-dashboard .ant-statistic-content {
+  font-size: 28px;
+}
+
+/* If a dashboard slide is busy, this kills the default slide title margins. */
+.antd-dashboard h1,
+.antd-dashboard h2 {
+  margin: 0;
+}

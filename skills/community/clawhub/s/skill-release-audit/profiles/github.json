@@ -1,0 +1,16 @@
+{
+  "name": "github",
+  "description": "Open-source distribution on GitHub. README and LICENSE expected; frontmatter rules relaxed; no bundle/text constraints.",
+  "frontmatter": {
+    "required": ["name", "description"],
+    "version_severity": "INFO"
+  },
+  "files": {
+    "require_readme": true,
+    "require_license": true
+  },
+  "slug_regex": "^[a-z0-9][a-z0-9._-]*$",
+  "slug_max_len": null,
+  "bundle_limit_mb": null,
+  "declaration_vs_code": "INFO"
+}

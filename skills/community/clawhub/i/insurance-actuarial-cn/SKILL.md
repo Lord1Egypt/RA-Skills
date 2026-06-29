@@ -2,7 +2,7 @@
 name: China Insurance Actuarial Pricing Expert
 description: AI-powered China insurance actuarial pricing skill �� uses the 4th Life Table (2025, effective 2026-01-01) and C-ROSS Phase II (Rules II 2024) framework. Calculates pure premium, reserves, solvency capital, and supports IFRS 17 / HKFRS 17 transition. Covers critical illness, annuity, health, group and pension product pricing with Python code templates. Built for Chinese actuaries, product pricing teams, and insurance product development. Keywords: actuarial, pricing, life table 2025, C-ROSS, IFRS 17, China insurance, solvency capital, insurance product design, ���㶨��, ������������, �����嶨, ׼��������, �ؼ��ն���, ����ն���, ҽ���ն���, Python����, ����ģ��.
 slug: insurance-actuarial
-version: "5.1.0"
+version: "5.1.1"
 
 capabilities:
   - educational-reference
@@ -47,6 +47,18 @@ capabilities:
 **���Ĵ����ʣ����ȣ���** ���㡢���㶨�ۡ������嶨���������������ʱ��������ʱ����ؼ������ʡ����鷢���ʡ�׼������㡢���������ʱ������ղ�Ʒ���ۡ�CASS���й�����ʦЭ�ᡢ���������������ؼ������ӡ���Ʒ���
 
 ---
+
+
+### 保险监管最新动态 [2026-06-28更新]
+
+| 动态类型 | 内容摘要 | 发布时间 | 影响范围 |
+|---------|---------|---------|---------|
+| 监管发布 | 金融监管总局发布《关于银行业保险业人工智能安全开发应用的指导意见》，界定承保理赔、风险管理等为AI高风险应用场景 | 2026-06-18 | 保险AI应用合规与风险管控 |
+| 监管计划 | NFRA发布《2026年规章制定工作计划》：保险资金运用管理办法、偿付能力管理办法纳入修订，流动性风险、网络安全管理办法新制定 | 2026-06-23 | 保险监管全链条 |
+| 监管施行 | NFRA 2026年第2号令《银行保险机构许可证管理办法》6月1日起施行，取消保险许可证统一为金融许可证 | 2026-06-01 | 保险业务资质与合规管理 |
+
+> **数据截止**: 2026-06-28 | 来源：国家金融监督管理总局、行业公开信息
+> **声明**: 以上动态供参考，具体以官方最新发布为准
 
 ## Core Capabilities / ��������|
 

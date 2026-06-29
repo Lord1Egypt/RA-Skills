@@ -11,33 +11,33 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and technical writers use this skill to validate VHS tape files, run terminal recording workflows, and produce GIF outputs for documentation and CLI tutorials. <br>
+Developers and technical writers use this skill to create terminal demo recordings for documentation, tutorials, and CLI workflow demonstrations. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: VHS tape files can execute local shell commands during recording. <br>
-Mitigation: Read each tape like a shell script before running VHS, and verify output paths before recording. <br>
-Risk: Published recordings can expose sensitive terminal content. <br>
-Mitigation: Avoid `--publish` unless the recording is sanitized and safe to share publicly. <br>
+Risk: Tape files execute terminal commands and may perform unintended actions if they are untrusted or not reviewed. <br>
+Mitigation: Review tape files before running them and execute only trusted recordings. <br>
+Risk: Published recordings can expose secrets, private paths, credentials, or proprietary workflow details. <br>
+Mitigation: Prefer local GIF output by default and use the publish option only after reviewing the recording content. <br>
 
 
 ## Reference(s): <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-scry-vhs-recording) <br>
+- [OpenClaw homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scry) <br>
 - [VHS Execution Guide](modules/execution.md) <br>
 - [VHS Tape Syntax Reference](modules/tape-syntax.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/athola/nm-scry-vhs-recording) <br>
-- [Clawdis Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scry) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with inline shell commands and VHS tape snippets] <br>
+**Output Format:** [Markdown with inline bash and tape code blocks] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs recording workflow guidance for local VHS execution; generated recordings may create GIF, MP4, WebM, or screenshot files depending on the tape.] <br>
+**Other Properties Related to Output:** [Guides local VHS tape validation and recording, with GIF output verification and optional public publishing guidance.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: ClawHub release evidence) <br>
+1.9.13 (source: ClawHub release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

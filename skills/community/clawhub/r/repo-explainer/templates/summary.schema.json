@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "repo-explainer summary",
+  "type": "object",
+  "required": ["project_name", "one_liner", "tech_stack", "key_modules", "architecture_mermaid", "sequence_mermaid"],
+  "properties": {
+    "project_name": {"type": "string"},
+    "one_liner": {"type": "string", "maxLength": 60},
+    "who_for": {"type": "string"},
+    "problem_solved": {"type": "string"},
+    "core_value": {"type": "string"},
+    "tech_stack": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["layer", "items"],
+        "properties": {
+          "layer": {"type": "string"},
+          "items": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "key_modules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "path", "responsibility", "evidence"],
+        "properties": {
+          "name": {"type": "string"},
+          "path": {"type": "string"},
+          "responsibility": {"type": "string"},
+          "evidence": {"type": "string", "pattern": ".+:[0-9]+"}
+        }
+      }
+    },
+    "key_models": {
+      "type": "array",
+      "description": "核心数据/领域模型(struct/class/schema/proto),独立于代码模块",
+      "items": {
+        "type": "object",
+        "required": ["name", "path", "purpose"],
+        "properties": {
+          "name": {"type": "string"},
+          "path": {"type": "string"},
+          "purpose": {"type": "string"},
+          "key_fields": {"type": "string"},
+          "evidence": {"type": "string", "pattern": ".+:[0-9]+"}
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "description": "项目缺点 / 限制 / 待优化点",
+      "items": {
+        "type": "object",
+        "required": ["title", "detail"],
+        "properties": {
+          "title": {"type": "string"},
+          "detail": {"type": "string"},
+          "category": {"type": "string", "enum": ["performance", "security", "scalability", "usability", "compatibility", "documentation", "test_coverage", "architecture", "other"]},
+          "severity": {"type": "string", "enum": ["low", "medium", "high"]},
+          "evidence": {"type": "string"}
+        }
+      }
+    },
+    "main_flow": {"type": "array"},
+    "api_surface": {
+      "type": "array",
+      "description": "对外暴露的接口(CLI 命令、HTTP/WS 路由、MCP/SDK 入口)。每项必须自描述,缺一项就不渲染整节。",
+      "items": {
+        "type": "object",
+        "required": ["type", "signature", "purpose"],
+        "properties": {
+          "type": {"type": "string", "enum": ["CLI", "HTTP", "WebSocket", "WS", "MCP", "SDK", "gRPC", "Webhook"]},
+          "signature": {"type": "string", "description": "命令/路由/函数原型,如 `hermes setup --portal` 或 `POST /api/curator/run`"},
+          "purpose": {"type": "string", "description": "一句话说明用途"},
+          "evidence": {"type": "string", "pattern": ".+:[0-9]+"}
+        }
+      }
+    },
+    "dependencies": {"type": "array"},
+    "highlights": {"type": "array", "items": {"type": "string"}},
+    "architecture_mermaid": {"type": "string"},
+    "sequence_mermaid": {"type": "string"},
+    "glossary": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["term", "plain"],
+        "properties": {
+          "term": {"type": "string"},
+          "plain": {"type": "string"}
+        }
+      }
+    }
+  }
+}

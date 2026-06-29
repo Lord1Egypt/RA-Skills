@@ -23,7 +23,7 @@ def safe_urlopen(req_or_url):
 
 
 def main():
-    url = BASE_URL + "/data/api/v1/market/data/cb/cb-lists"
+    url = BASE_URL + "/gateway/api/v1/market/data/cb/cb-lists"
     req = urllib.request.Request(url, method="GET")
 
     try:

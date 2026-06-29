@@ -1,0 +1,35 @@
+{
+  "status": {
+    "idle": "Awaiting input",
+    "valid": "Config valid",
+    "error": "Config error",
+    "rendering": "Rendering...",
+    "done": "Chart rendered"
+  },
+  "error": {
+    "parse": "Parse error",
+    "parseDetail": "Parse error: ",
+    "empty": "Empty config",
+    "func": "Function parse error",
+    "funcDetail": "Function parse error: ",
+    "render": "Render error: ",
+    "renderFail": "Generation failed",
+    "noChart": "Error: Generate a chart first",
+    "export": "Export error: ",
+    "parseError": "Parse error: ",
+    "position": "Pos: line ",
+    "line": ", col ",
+    "col": ", near ",
+    "context": "Ctx: ",
+    "detail": "Details: "
+  },
+  "action": {
+    "formatted": "JSON formatted",
+    "formatError": "JSON format error: ",
+    "exported": "Exported as ",
+    "exportedConfig": "Config exported as JSON",
+    "funcOk": "Function OK, result: ",
+    "funcErr": "Function error: ",
+    "funcParseFail": "Function parse failed: "
+  }
+}

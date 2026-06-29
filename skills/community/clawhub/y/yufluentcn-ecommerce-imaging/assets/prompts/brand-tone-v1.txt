@@ -1,0 +1,22 @@
+# 品牌调性 Prompt 模板 v1
+# 两种用法：
+#   1. 作为 scene 整帧风格：--scene luxury_minimal
+#   2. 作为叠加修饰：--scene white_bg --brand-style eco_natural
+
+## luxury_minimal（极简奢华）
+A {product} in ultra-minimal luxury brand style, generous negative space, muted neutral palette, soft diffused studio light, matte surfaces, understated elegance, high-end editorial product photography
+
+## youthful_pop（年轻活力）
+A {product} in youthful vibrant brand style, bold saturated colors, playful geometric props, energetic dynamic composition, Gen-Z social commerce aesthetic, bright even lighting, fun and approachable
+
+## eco_natural（环保自然）
+A {product} in eco-friendly natural brand style, organic linen and wood props, earth-tone palette, soft daylight, sustainable lifestyle aesthetic, calm authentic atmosphere, green commerce photography
+
+## pro_tech（专业科技）
+A {product} in professional tech brand style, precision lighting, dark graphite gradient background, clean lines, subtle reflection on surface, innovative and reliable aesthetic, premium gadget photography
+
+## 叠加修饰（非独立 scene 时自动追加）
+luxury_minimal → luxury minimal aesthetic, muted tones, editorial negative space
+youthful_pop   → vibrant youthful energy, bold colors, playful social-commerce vibe
+eco_natural    → eco natural aesthetic, earth tones, sustainable organic mood
+pro_tech       → professional tech aesthetic, precision lighting, innovative reliable mood

@@ -530,7 +530,12 @@ def all_checks_passed(summary: dict[str, object]) -> bool:
     return (
         summary["smoke_passed"] == summary["total_cases"]
         and summary["query_plan_passed"] == summary["query_plan_cases"]
+        and summary["eval_passed"] == summary["total_cases"]
+        and summary["thread_focus_passed"] == summary["total_cases"]
+        and summary["resolution_passed"] == summary["total_cases"]
         and summary["forbidden_guard_passed"] == summary["total_cases"]
+        and summary["hallucination_guard_passed"] == summary["total_cases"]
+        and summary["ablation_positive"] == summary["total_cases"]
     )
 
 

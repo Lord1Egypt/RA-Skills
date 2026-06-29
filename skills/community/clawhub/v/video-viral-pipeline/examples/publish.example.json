@@ -1,0 +1,22 @@
+{
+  "video_dir": "~/Downloads/某视频切片",
+  "account_file": "",
+  "items": [
+    {
+      "file": "01_钩子名.mp4",
+      "title": "完整一句话描述/标题（含悬念或反差，可较长）",
+      "short_title": "短标题6到16字",
+      "tags": ["话题1", "话题2", "话题3", "话题4"],
+      "thumbnail": "",
+      "desc": ""
+    },
+    {
+      "file": "02_钩子名.mp4",
+      "title": "把自己当跑步机开到24倍速，世界第一的 YouTuber 狂奔了十年没停过",
+      "short_title": "他狂奔了十年没停",
+      "tags": ["MrBeast", "自律", "成长", "自媒体"],
+      "thumbnail": "",
+      "desc": ""
+    }
+  ]
+}

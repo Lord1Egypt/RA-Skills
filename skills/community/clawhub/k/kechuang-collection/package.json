@@ -1,0 +1,31 @@
+{
+  "name": "kechuang-collection",
+  "version": "1.0.1",
+  "description": "科创线索采集Skill — 7×24自动监控全网科创公开信息，基于公司KPI智能筛选有效线索，替代人工筛取的低效工作",
+  "keywords": [
+    "claude-code",
+    "claude-code-skill",
+    "kechuang",
+    "科创",
+    "KPI",
+    "线索采集",
+    "政策监控"
+  ],
+  "homepage": "https://github.com/cryptocxf/kechuang-collection#readme",
+  "bugs": {
+    "url": "https://github.com/cryptocxf/kechuang-collection/issues"
+  },
+  "license": "MIT",
+  "author": "cryptocxf",
+  "files": [
+    "SKILL.md",
+    ".claude-plugin/plugin.json",
+    "references/*.md"
+  ],
+  "claude-code": {
+    "skill": true,
+    "name": "kechuang-collection",
+    "title": "科创线索采集",
+    "icon": "🔬"
+  }
+}

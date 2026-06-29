@@ -1,7 +1,7 @@
 ---
 name: memory-sync
 description: Use when preserving, searching, reviewing, or exporting user-owned agent memory across OpenClaw, Codex, Claude, OpenCode, Hermes, Qoder, Obsidian, and Git. Inputs are local memory/chat stores and handoff summaries; outputs are Obsidian sources, memory indexes, context/profile packs, skill inventories, and optional Git sync. Prefer after native agent memory/candidate extraction. Do not use for code debugging, unrelated backups, cloud memory, or temporary notes without durable value.
-version: 1.0.2
+version: 1.0.3
 metadata:
   openclaw:
     requires:
@@ -19,6 +19,21 @@ metadata:
       - name: MEMORY_SYNC_REVIEW_MODE
         required: false
         description: Optional review mode. Use agent for current-agent review or rules for deterministic fallback.
+      - name: MEMORY_SYNC_DEVICE_ID
+        required: false
+        description: Optional stable machine id for multi-device partitions. Defaults to a sanitized hostname.
+      - name: MEMORY_SYNC_CONTRIBUTE_ENABLED
+        required: false
+        description: Optional toggle for staging this device's source and personal-knowledge partitions.
+      - name: MEMORY_SYNC_PUBLISH_ENABLED
+        required: false
+        description: Optional toggle for staging global Dashboard, Context, and Memories outputs.
+      - name: MEMORY_SYNC_TRACK_MACHINE_STATE
+        required: false
+        description: Optional toggle for staging .memory-sync machine JSON state. Keep false for normal multi-device use.
+      - name: MEMORY_SYNC_CLEANUP_MODE
+        required: false
+        description: Optional cleanup mode. Defaults to trash, moving cleaned Obsidian copies to .memory-sync/trash; use delete only intentionally.
       - name: OPENCLAW_IMPORT_DISTILLED
         required: false
         description: Optional toggle for importing OpenClaw recall and dreaming candidates.
@@ -37,6 +52,9 @@ metadata:
       - name: QODER_HOME
         required: false
         description: Optional Qoder home used for local archive discovery.
+      - name: OPENCODE_DB_PATH
+        required: false
+        description: Optional explicit OpenCode SQLite database path used for read-only conversation discovery.
       - name: MEMORY_SYNC_PROJECT_ROOTS
         required: false
         description: Optional path-list of project roots to scan for agent rule/profile files.
@@ -78,7 +96,7 @@ metadata:
         description: Optional toggle for running git sync during autopilot.
       - name: GIT_PUSH_ENABLED
         required: false
-        description: Optional toggle for pushing during git sync.
+        description: Optional toggle for pushing during git sync. Defaults to false.
       - name: GIT_REMOTE
         required: false
         description: Optional git remote name, default origin.
@@ -92,32 +110,67 @@ metadata:
         required: false
         description: Windows system path used for local agent discovery when present.
 ---
-
 # Memory Sync
 
 Use this skill as an OpenClaw companion and multi-agent handoff layer, not a replacement for OpenClaw's own recall/promotion system. OpenClaw remains the raw memory and slow distillation engine. This skill is the fast Obsidian/Git retention and context portability layer: copy first, index quickly, ingest agent handoff summaries, strengthen by use, forget safely, import OpenClaw's distilled candidates, keep each agent's local store separate, then publish shared profile/context/permanent knowledge for portability.
 
+## Privacy and Safety
+
+- This skill reads selected local agent memory, conversation, rule, and skill files and persists reviewed copies or summaries in the configured Obsidian vault.
+- Treat the vault and any Git repository containing it as sensitive. Review archived sources and review packs before sharing, committing, or enabling remote push.
+- Do not store API keys, passwords, private keys, regulated data, or confidential customer material as durable memory.
+- `git sync` may create a local commit. Remote push is disabled by default and must remain opt-in through `GIT_PUSH_ENABLED=true`.
+- Cleanup is recoverable by default through `.memory-sync/trash`; permanent deletion requires the explicit `MEMORY_SYNC_CLEANUP_MODE=delete` setting.
+
 ## Core Model
 
 - Treat `OPENCLAW_WORKSPACE` as read-only.
-- Copy `memory/YYYY-MM-DD.md` into `Sources/openclaw/daily/` before indexing.
-- Search only `.memory-sync/index/memory_index.json`.
+- In multi-device setups, treat every machine as a contributor with its own `MEMORY_SYNC_DEVICE_ID`; write source evidence only under that device partition.
+- Copy `memory/YYYY-MM-DD.md` into `Sources/openclaw/daily/<device_id>/` before indexing.
+- Search the local rebuilt `.memory-sync/index/memory_index.json`; do not treat machine JSON as the cross-device source of truth.
 - Generate `Dashboard/Memory Index.md` as the human-readable Obsidian entry.
 - Generate `Dashboard/Memory Dashboard.md` and `Memories/` cards so Obsidian is a readable memory console, not only a file sink.
 - Import OpenClaw distilled signals from `.dreams/short-term-recall.json`, `.dreams/phase-signals.json`, `memory/dreaming/rem/`, `memory/dreaming/deep/`, and promoted `MEMORY.md` entries.
-- Preserve non-daily agent knowledge such as `MEMORY.md`, `USER.md`, `AGENTS.md`, and tool/config notes into `Personal/Agent Knowledge/<agent>/`.
+- Preserve non-daily agent knowledge such as `MEMORY.md`, `USER.md`, `AGENTS.md`, and tool/config notes into `Personal/Agent Knowledge/<agent>/<device_id>/` with portable `source_uri` and `local_path_hint`, not raw absolute paths in shared frontmatter.
 - Detect high-value process memories such as success patterns, corrections, failure lessons, and user rules; these enter as S2 `process_memory` records.
-- Ingest explicit handoff summaries from Codex, Claude, OpenClaw, OpenCode, hermes-agent, and Qoder into their own `Sources/<agent>/handoffs/` lane before indexing.
-- Archive Codex Desktop/CLI, Claude Code, OpenClaw session-corpus, Hermes, and OpenCode conversation history into `Sources/<agent>/conversations/YYYY-MM-DD/` by event timestamp where available, not file directory date.
+- Ingest explicit handoff summaries from Codex, Claude, OpenClaw, OpenCode, hermes-agent, and Qoder into `Sources/<agent>/handoffs/<device_id>/` before indexing.
+- Archive Codex Desktop/CLI, Claude Code, OpenClaw session-corpus, Hermes, and OpenCode conversation history into `Sources/<agent>/conversations/<device_id>/YYYY-MM-DD/` by event timestamp where available, not file directory date.
 - Build `.memory-sync/index/user_profile.json` and `Dashboard/User Profile.md` from USER.md, the memory index, and local agent configuration.
 - Export portable adapter context under `Context/` for Codex, Claude, OpenClaw, OpenCode, hermes-agent, and Qoder.
 - Export installed skill inventory under `.memory-sync/shared/agent_skills.json`, `.memory-sync/agents/<agent>/skills.json`, and `Personal/Agent Knowledge/Agent Skills.md`.
 - Treat `_context/` as a legacy compatibility output only; it is disabled by default unless `LEGACY_CONTEXT_ENABLED=true`.
 - Keep readable agent source archives under `Sources/<agent>/`; keep per-agent machine stores under `.memory-sync/agents/<agent>/` with `summaries/`, `index.json`, skills inventory, and conversation day indexes.
 - Keep portable shared distilled assets under `.memory-sync/shared/`, including shared memory, profile, context JSON, and adapter Markdown.
-- Reject direct legacy/session sources such as `.dreams/session-corpus` and `main/sessions/*.jsonl`; when OpenClaw surfaces high-value session evidence, first curate a stable Obsidian evidence block under `Sources/openclaw/evidence/YYYY-MM-DD.md`, then index that Obsidian block.
-- Remove only Obsidian daily copies, and only when no indexed memory references them.
-- Commit/push only through explicit `git sync` or `GIT_SYNC_ENABLED=true` autopilot.
+- Reject direct legacy/session sources such as `.dreams/session-corpus` and `main/sessions/*.jsonl`; when OpenClaw surfaces high-value session evidence, first curate a stable Obsidian evidence block under `Sources/openclaw/evidence/<device_id>/YYYY-MM-DD.md`, then index that Obsidian block.
+- Remove only Obsidian source copies, and only on a publishing/integration machine when no indexed memory references them. Default cleanup moves files to `.memory-sync/trash`; use `MEMORY_SYNC_CLEANUP_MODE=delete` only when permanent deletion is intentional.
+- Commit/push only through explicit `git sync`, or through rules-mode/headless autopilot after sync/status completes. Agent-review autopilot stops at `review prepare` so the agent can apply decisions before publishing. Contributor machines stage only their own device partitions; publisher machines also stage global Dashboard, Context, and Memories outputs.
+
+## Multi-Device Model
+
+Use the model **many contributors, one publisher**.
+
+- A contributor machine uploads only its own evidence under `Sources/<agent>/<lane>/<device_id>/` and `Personal/Agent Knowledge/<agent>/<device_id>/`.
+- A publisher/integration machine reads all contributor evidence, reviews candidates, applies S1-S4 decisions, rebuilds the local index, writes memory cards, refreshes Dashboard/User Profile/Context, and publishes those human-readable global surfaces.
+- `.memory-sync/index/*.json`, `.memory-sync/agents/*.json`, `.memory-sync/review/`, `.memory-sync/cache/`, and `.memory-sync/path-map.json` are machine-local by default. Do not rely on Git merge for these JSON files.
+- New shared files must not introduce raw machine paths such as `C:\Users\...` or `/home/...` into portable frontmatter. Use `source_uri` and `${OPENCLAW_WORKSPACE}`-style path hints.
+
+Recommended publisher environment:
+
+```bash
+MEMORY_SYNC_DEVICE_ID=win-main
+MEMORY_SYNC_CONTRIBUTE_ENABLED=true
+MEMORY_SYNC_PUBLISH_ENABLED=true
+MEMORY_SYNC_TRACK_MACHINE_STATE=false
+```
+
+Recommended contributor-only environment:
+
+```bash
+MEMORY_SYNC_DEVICE_ID=linux-workstation
+MEMORY_SYNC_CONTRIBUTE_ENABLED=true
+MEMORY_SYNC_PUBLISH_ENABLED=false
+MEMORY_SYNC_TRACK_MACHINE_STATE=false
+```
 
 ## Workflow
 
@@ -127,7 +180,7 @@ Run commands from the skill folder:
 python scripts/main.py sync
 python scripts/main.py review prepare
 python scripts/main.py review apply decisions.json
-python scripts/main.py ingest codex --project /path/to/project --note "current project handoff"
+python scripts/main.py ingest codex --project D:/memory-sync-skill --note "current project handoff"
 python scripts/main.py ingest codex --stdin
 python scripts/main.py ingest claude --file session.md
 python scripts/main.py ingest opencode "decision: ..."
@@ -176,6 +229,42 @@ When the user asks to run memory sync in agent mode:
 The script handles deterministic work: copying OpenClaw daily files into Obsidian, splitting source material, filtering obvious junk, preserving source anchors, curating high-value OpenClaw session evidence into stable Obsidian evidence blocks, validating decisions, writing JSON/Markdown surfaces, and keeping OpenClaw source files read-only.
 
 The current agent handles judgment work: candidate selection, summary, keywords, S1-S4 rating, process-memory classification, and duplicate/merge suggestions. Treat `rule_suggestion` as a hint only. The agent decision is the source of truth in review mode.
+
+## Scheduling Guidance
+
+Prefer OpenClaw cron or another agent-aware scheduler for memory-sync. The scheduled job must start an agent turn that reads this skill and performs the full review/apply flow.
+
+Do not configure Windows Task Scheduler, systemd timers, or plain cron to run the complete memory sync directly, because they cannot perform candidate judgment, summary writing, duplicate decisions, or S1-S4 rating. They may only be used as outer wake-up mechanisms for OpenClaw/Gateway, not as a replacement for the agent review step.
+
+Contributor-only agent cron prompt:
+
+```text
+Run memory-sync as a contributor for this machine.
+1. Set MEMORY_SYNC_DEVICE_ID to this machine's stable id.
+2. Set MEMORY_SYNC_CONTRIBUTE_ENABLED=true and MEMORY_SYNC_PUBLISH_ENABLED=false.
+3. Archive this machine's OpenClaw daily files, conversations, handoffs, and personal agent knowledge into its own device partition.
+4. Do not publish Dashboard, Context, Memories, or machine JSON.
+5. Run git sync only for this machine's contribution paths and report the result.
+```
+
+Publisher agent cron prompt:
+
+```text
+Run memory-sync as the publisher/integration machine.
+1. Set MEMORY_SYNC_DEVICE_ID to this machine's stable id.
+2. Set MEMORY_SYNC_CONTRIBUTE_ENABLED=true and MEMORY_SYNC_PUBLISH_ENABLED=true.
+3. Run review prepare, read the review pack, decide keep/discard/merge/stage for every candidate, and run review apply.
+4. Rebuild Dashboard, User Profile, Context, and Memories from all contributor evidence.
+5. Run git sync and report conflicts instead of resolving with --ours.
+```
+
+Remove or replace old scheduled commands such as:
+
+```bash
+python scripts/main.py autopilot --apply
+```
+
+`autopilot --apply` is obsolete and invalid. In agent review mode, a run is incomplete until decisions have been applied.
 
 ### Conversation Archive Sources
 
@@ -382,7 +471,7 @@ openclaw_rem_hits
 openclaw_concept_tags
 ```
 
-Only import a distilled candidate directly when its evidence resolves to an existing `memory/YYYY-MM-DD.md` source that can be copied into Obsidian. Session-corpus evidence is never indexed as a raw source; high-value lines are expanded with nearby context, copied into `Sources/openclaw/evidence/YYYY-MM-DD.md` with an `Original evidence` link, then reviewed like any other Obsidian-backed candidate. Do not store curated session evidence under `Sources/openclaw/daily/`, because that directory is rebuilt from daily copies.
+Only import a distilled candidate directly when its evidence resolves to an existing `memory/YYYY-MM-DD.md` source that can be copied into Obsidian. Session-corpus evidence is never indexed as a raw source; high-value lines are expanded with nearby context, copied into `Sources/openclaw/evidence/<device_id>/YYYY-MM-DD.md` with an `Original evidence` link, then reviewed like any other Obsidian-backed candidate. Do not store curated session evidence under `Sources/openclaw/daily/`, because that directory is rebuilt from daily copies.
 
 Search is keyword-based but query-aware: Chinese natural-language queries are expanded into useful n-grams and extracted keyword hints, so a query such as `小红书攻略提分` can still match memories tagged with `小红书` and `攻略`. Search results include summary, source, original evidence pointer, and an evidence preview.
 
@@ -404,7 +493,7 @@ python scripts/main.py ingest hermes-agent "decision: keep OpenClaw source read-
 
 Supported agents are `codex`, `claude`, `openclaw`, `opencode`, `hermes-agent`, and `qoder`.
 
-Ingest writes the submitted summary or captured project state to `Sources/<agent>/handoffs/YYYY-MM-DD.md` under `Summary` and `Original Context` sections. The index and portable context keep a compact summary plus `source_file`/`source_anchor` back to that original record. It creates an S1/S2 `agent_ingest` candidate when the content passes filters, merges duplicates into `.memory-sync/index/memory_index.json`, then refreshes profile and `.memory-sync/shared` context outputs.
+Ingest writes the submitted summary or captured project state to `Sources/<agent>/handoffs/<device_id>/YYYY-MM-DD.md` under `Summary` and `Original Context` sections. The index and portable context keep a compact summary plus `source_file`/`source_anchor` back to that original record. It creates an S1/S2 `agent_ingest` candidate when the content passes filters, merges duplicates into the local `.memory-sync/index/memory_index.json`, then refreshes profile and `.memory-sync/shared` context outputs.
 
 For local chat history, prefer conversation archive over `ingest <agent> --project`:
 
@@ -416,7 +505,7 @@ python scripts/main.py conversations scan hermes-agent --date 2026-05-20
 python scripts/main.py conversations scan all --all
 ```
 
-Codex Desktop may keep a long thread in the rollout file for the day the session was created, not the day a later message was sent. The scanner therefore scans all `CODEX_HOME/sessions/**/rollout-*.jsonl` files and groups records by each event's internal timestamp. Claude Code scans `CLAUDE_HOME/projects/**/*.jsonl`. OpenClaw scans `OPENCLAW_WORKSPACE/memory/.dreams/session-corpus/YYYY-MM-DD.txt`. Hermes scans `HERMES_HOME/state.db` (`sessions` + `messages` tables); on Windows the default is `%LOCALAPPDATA%/hermes` when that directory exists. OpenCode and Qoder currently run path probes and should use explicit handoff until their local chat schemas are verified. The archive skips turn context, base instructions, developer/system prompts, and renders user/assistant messages plus compact tool-call details to `Sources/<agent>/conversations/YYYY-MM-DD/<session-id>.md`.
+Codex Desktop may keep a long thread in the rollout file for the day the session was created, not the day a later message was sent. The scanner therefore scans all `CODEX_HOME/sessions/**/rollout-*.jsonl` files and groups records by each event's internal timestamp. Claude Code scans `CLAUDE_HOME/projects/**/*.jsonl`. OpenClaw scans `OPENCLAW_WORKSPACE/memory/.dreams/session-corpus/YYYY-MM-DD.txt`. Hermes scans `HERMES_HOME/state.db` (`sessions` + `messages` tables); on Windows the default is `%LOCALAPPDATA%/hermes` when that directory exists. OpenCode and Qoder currently run path probes and should use explicit handoff until their local chat schemas are verified. The archive skips turn context, base instructions, developer/system prompts, and renders user/assistant messages plus compact tool-call details to `Sources/<agent>/conversations/<device_id>/YYYY-MM-DD/<session-id>.md`.
 
 Conversation archive is an evidence layer, not a memory by itself. The next `review prepare` includes high-value archived conversation segments in the review pack, and only reviewed decisions can promote them into the index.
 
@@ -439,16 +528,16 @@ python scripts/main.py handoff openclaw
 Portable context source:
 
 ```text
-Sources/<agent>/handoffs/        raw agent-submitted handoffs and project captures
-Sources/<agent>/conversations/ readable local conversation archive
-.memory-sync/index/memory_index.json
-.memory-sync/index/user_profile.json
-.memory-sync/shared/shared_memory_index.json
-.memory-sync/shared/agent_context.json
+Sources/<agent>/handoffs/<device_id>/        raw agent-submitted handoffs and project captures
+Sources/<agent>/conversations/<device_id>/   readable local conversation archive
+.memory-sync/index/memory_index.json         local rebuilt index
+.memory-sync/index/user_profile.json         local rebuilt profile data
+.memory-sync/shared/shared_memory_index.json local shared snapshot
+.memory-sync/shared/agent_context.json       local adapter context data
 Context/<agent>.md
 ```
 
-`.memory-sync/shared` is the portable context layer. `_context` is retained only for old integrations and is not generated unless `LEGACY_CONTEXT_ENABLED=true`.
+`Sources/`, `Personal/Agent Knowledge/<agent>/<device_id>/`, `Memories/`, `Dashboard/`, and `Context/` are the human-facing layers. `.memory-sync/shared` is local machine state by default. `_context` is retained only for old integrations and is not generated unless `LEGACY_CONTEXT_ENABLED=true`.
 
 ## Retention
 
@@ -466,15 +555,15 @@ High-value process memories start at S2. This includes successful procedures, us
 Every sync refreshes personal knowledge outputs:
 
 ```text
-Personal/Agent Knowledge/openclaw/MEMORY.md
-Personal/Agent Knowledge/openclaw/USER.md
-Personal/Agent Knowledge/openclaw/AGENTS.md
-Personal/Agent Knowledge/openclaw/TOOLS.md
-Personal/Agent Knowledge/codex/AGENTS.md
-Personal/Agent Knowledge/codex/config.toml
-Personal/Agent Knowledge/claude/CLAUDE.md
-Personal/Agent Knowledge/opencode/AGENTS.md
-Personal/Agent Knowledge/hermes-agent/AGENTS.md
+Personal/Agent Knowledge/openclaw/<device_id>/MEMORY.md
+Personal/Agent Knowledge/openclaw/<device_id>/USER.md
+Personal/Agent Knowledge/openclaw/<device_id>/AGENTS.md
+Personal/Agent Knowledge/openclaw/<device_id>/TOOLS.md
+Personal/Agent Knowledge/codex/<device_id>/AGENTS.md
+Personal/Agent Knowledge/codex/<device_id>/config.toml
+Personal/Agent Knowledge/claude/<device_id>/CLAUDE.md
+Personal/Agent Knowledge/opencode/<device_id>/AGENTS.md
+Personal/Agent Knowledge/hermes-agent/<device_id>/AGENTS.md
 Personal/Agent Knowledge/Agent Skills.md
 Personal/Agent Knowledge/<agent>/Agent Skills.md
 ```
@@ -538,7 +627,7 @@ OpenClaw example:
 执行命令：
 
 ```bash
-python <path-to-memory-sync>/scripts/main.py search "关键词"
+python <path-to-memory-sync>\scripts\main.py search "关键词"
 ```
 
 流程：
@@ -591,6 +680,12 @@ MEMORY_SYNC_REVIEW_MODE=rules  # deterministic fallback
 
 - `MEMORY_SYNC_PROJECT_ROOTS`: optional path-list of project roots to scan for project-level `AGENTS.md`, `CLAUDE.md`, and `.claude/CLAUDE.md`.
 - `MEMORY_SYNC_AGENT_KNOWLEDGE_FILES`: optional path-list of extra rule/profile files to copy into `Personal/Agent Knowledge/custom/` and use as profile evidence.
+- `MEMORY_SYNC_DEVICE_ID`: stable machine id used in `Sources/<agent>/<lane>/<device_id>/` and `Personal/Agent Knowledge/<agent>/<device_id>/`. Defaults to a sanitized hostname.
+- `MEMORY_SYNC_CONTRIBUTE_ENABLED`: when true, `git sync` stages only this device's source and personal-knowledge partitions.
+- `MEMORY_SYNC_PUBLISH_ENABLED`: when true, this machine also stages global human-readable outputs such as `Dashboard/`, `Memories/`, and `Context/`.
+- `MEMORY_SYNC_TRACK_MACHINE_STATE`: when true, `git sync` may stage `.memory-sync/` JSON state. Keep false for normal multi-device use.
+- `MEMORY_SYNC_CLEANUP_MODE`: defaults to `trash`, moving cleaned Obsidian copies to `.memory-sync/trash`; set `delete` only when permanent cleanup is intended.
+- `GIT_PUSH_ENABLED`: defaults to `false`; set `true` only on machines allowed to push memory commits to the remote.
 - `filters.json`: minimum segment length, source blacklist, text blacklist, and OpenClaw import thresholds.
 - `keywords.json`: generic words, broad context words, domain phrases, blocked keyword patterns, and `strong_keyword_allowlist`.
 - `triggers.json`: words that activate memory checks.
@@ -600,7 +695,7 @@ Keyword extraction should favor project names, code terms, and configured domain
 Use `diagnose` before changing rules:
 
 ```bash
-python scripts/main.py diagnose "remember Feishu chat_id WebSocket AutoTestPlatform"
+python scripts/main.py diagnose "remember project deployment timeout"
 ```
 
 ## User Profile And Agent Context
@@ -637,8 +732,11 @@ Each adapter context includes a memory retrieval contract that points to that ag
 Agent-local outputs:
 
 ```text
-Sources/openclaw/daily/
-Sources/openclaw/summaries/
+Sources/openclaw/daily/<device_id>/
+Sources/openclaw/evidence/<device_id>/
+Sources/<agent>/handoffs/<device_id>/
+Sources/<agent>/conversations/<device_id>/
+Sources/<agent>/conversation-summaries/<device_id>/
 .memory-sync/agents/openclaw/index.json
 .memory-sync/agents/codex/index.json
 .memory-sync/agents/claude/index.json
@@ -707,7 +805,7 @@ Preferred English note style:
 > File note: this Memory Sync page links the index, memory pages, source archives, and personal knowledge pages for Obsidian navigation.
 ```
 
-Maintain `Dashboard/Memory Directory.md` as the Obsidian navigation directory. Keep these sections: Core Entries, Memory Pages, Cross-Agent Context, and Personal Knowledge. Keep the style consistent: use forward wikilinks for every navigation item and link to meaningful entry files, not placeholder README files or arbitrary first files. Memory Pages should link to `Dashboard/Memory Index.md` and `Dashboard/Memory Dashboard.md`. Cross-Agent Context should link to `Context/agent_brief.md` only, not `Context/README.md` or agent-specific files. Do not include Source Archives in `Dashboard/Memory Directory.md`; source files remain traceable through memory indexes and source links. Do not expose hidden machine-state folders as human navigation entries. Clean up only Memory Sync generated README placeholders whose content contains the Memory Directory parent link and the generated directory-entry wording; do not delete user-authored README files. Do not generate personal usage manuals as fixed skill outputs; personal notes can live in `Personal/` but are outside the skill's generated surfaces. The directory is a navigation surface, not the source of truth; the machine source of truth remains `.memory-sync/index/memory_index.json`.
+Maintain `Dashboard/Memory Directory.md` as the Obsidian navigation directory. Keep these sections: Core Entries, Memory Pages, Cross-Agent Context, and Personal Knowledge. Keep the style consistent: use forward wikilinks for every navigation item and link to meaningful entry files, not placeholder README files or arbitrary first files. Memory Pages should link to `[[Dashboard/Memory Index.md|记忆摘要索引]]` and `[[Dashboard/Memory Dashboard.md|记忆仪表盘]]`. Cross-Agent Context should link to `[[Context/agent_brief.md|跨 Agent 总览]]` only, not `Context/README.md` or agent-specific files. Do not include Source Archives in `Dashboard/Memory Directory.md`; source files remain traceable through memory indexes and source links. Do not expose hidden machine-state folders as human navigation entries. Clean up only Memory Sync generated README placeholders whose content contains the Memory Directory parent link and the generated directory-entry wording; do not delete user-authored README files. Do not generate personal usage manuals as fixed skill outputs; personal notes can live in `Personal/` but are outside the skill's generated surfaces. The directory is a navigation surface, not the source of truth; the machine source of truth remains `.memory-sync/index/memory_index.json`.
 
 ## Git Version Management
 
@@ -717,8 +815,15 @@ Use:
 python scripts/main.py git sync
 ```
 
-The command stages `.memory-sync/index/memory_index.json`, `Dashboard/Memory Index.md`, `Sources/`, `Memories/`, `Context/`, and `.memory-sync/shared/`, then commits and pushes from the Obsidian vault repository.
+`git sync` stages different paths based on the current machine role:
+
+- Contributor mode (`MEMORY_SYNC_CONTRIBUTE_ENABLED=true`) stages only current-device source partitions such as `Sources/<agent>/<lane>/<device_id>/` and `Personal/Agent Knowledge/<agent>/<device_id>/`.
+- Publisher mode (`MEMORY_SYNC_PUBLISH_ENABLED=true`) also stages global human-facing outputs: `Dashboard/`, `Memories/`, `Context/`, and generated Skill inventory pages.
+- Machine state under `.memory-sync/` is not staged unless `MEMORY_SYNC_TRACK_MACHINE_STATE=true`.
+- Push is disabled by default. `git sync` can create a local commit, but it will not push unless `GIT_PUSH_ENABLED=true`.
+
+Do not use `git merge --ours` or any silent overwrite strategy for memory conflicts. Stop, report the conflict, and let the user decide.
 
 ## Conversation Archive
 
-Conversation scan also writes a readable transcript under `Sources/<agent>/conversation-summaries/YYYY-MM-DD/<session-id>.md`. The full archive remains under `Sources/<agent>/conversations/` as evidence, while memory pages link to the readable transcript for Obsidian review.
+Conversation scan also writes a readable transcript under `Sources/<agent>/conversation-summaries/<device_id>/YYYY-MM-DD/<session-id>.md`. The full archive remains under `Sources/<agent>/conversations/<device_id>/` as evidence, while memory pages link to the readable transcript for Obsidian review.

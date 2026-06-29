@@ -47,7 +47,11 @@ def run_audit(args: argparse.Namespace) -> int:
     roots = [Path(item).expanduser().resolve() for item in (args.skills_root or [])]
     if not roots:
         roots = [root.resolve() for root in default_roots()]
-    skill_files = discover_skill_files(roots, args.include_system)
+    skill_files = discover_skill_files(
+        roots,
+        args.include_system,
+        dedupe_install_identity=not bool(getattr(args, "show_duplicate_installs", False)),
+    )
     if not skill_files:
         print("No skills found.", file=sys.stderr)
         print("Searched roots:", file=sys.stderr)
@@ -632,6 +636,11 @@ def build_parser() -> argparse.ArgumentParser:
         help="Maximum replay cases per candidate skill.",
     )
     audit_parser.add_argument("--include-system", action="store_true", help="Include system skills during discovery.")
+    audit_parser.add_argument(
+        "--show-duplicate-installs",
+        action="store_true",
+        help="Report duplicate install identities separately instead of deduplicating them.",
+    )
     audit_parser.set_defaults(func=run_audit)
 
     return parser

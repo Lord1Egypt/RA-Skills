@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 520" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0c29"/>
+      <stop offset="100%" style="stop-color:#302b63"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="520" fill="url(#bg)"/>
+  
+  <!-- Title -->
+  <text x="400" y="40" text-anchor="middle" fill="#ffd700" font-size="24" font-weight="bold">🏗️ 技术架构 · AI CityWalk 剧本杀</text>
+  
+  <!-- User Layer -->
+  <rect x="250" y="65" width="300" height="50" rx="10" fill="#e94560" opacity="0.9"/>
+  <text x="400" y="95" text-anchor="middle" fill="white" font-size="16" font-weight="bold">👤 用户（AI 对话）</text>
+  
+  <!-- Arrow -->
+  <line x1="400" y1="115" x2="400" y2="140" stroke="#e94560" stroke-width="2" marker-end="url(#arrow)"/>
+  <polygon points="400,140 395,130 405,130" fill="#e94560"/>
+  
+  <!-- AI Layer -->
+  <rect x="150" y="145" width="500" height="55" rx="10" fill="#1e2a4a" stroke="#a78bfa" stroke-width="1.5"/>
+  <text x="400" y="170" text-anchor="middle" fill="#a78bfa" font-size="16" font-weight="bold">🤖 AI 大模型（SKILL.md 指令驱动）</text>
+  <text x="400" y="190" text-anchor="middle" fill="#8892b0" font-size="11">偏好收集 → POI搜索 → 路线规划 → 剧本生成 → 地图输出</text>
+  
+  <!-- Arrows down -->
+  <polygon points="200,205 195,215 205,215" fill="#06b6d4"/>
+  <polygon points="400,205 395,215 405,215" fill="#10b981"/>
+  <polygon points="600,205 595,215 605,215" fill="#f59e0b"/>
+  
+  <!-- Script Layer -->
+  <rect x="60" y="220" width="680" height="70" rx="10" fill="#1e2a4a" stroke="#06b6d4" stroke-width="1"/>
+  <text x="400" y="245" text-anchor="middle" fill="#06b6d4" font-size="14" font-weight="bold">📜 工具脚本层（Node.js）</text>
+  
+  <rect x="80" y="255" width="150" height="28" rx="6" fill="#0d1b3e" stroke="#06b6d4" stroke-width="1"/>
+  <text x="155" y="274" text-anchor="middle" fill="#06b6d4" font-size="10">search-locations.js</text>
+  
+  <rect x="245" y="255" width="130" height="28" rx="6" fill="#0d1b3e" stroke="#10b981" stroke-width="1"/>
+  <text x="310" y="274" text-anchor="middle" fill="#10b981" font-size="10">plan-route.js</text>
+  
+  <rect x="390" y="255" width="140" height="28" rx="6" fill="#0d1b3e" stroke="#f59e0b" stroke-width="1"/>
+  <text x="460" y="274" text-anchor="middle" fill="#f59e0b" font-size="10">generate-map.js</text>
+  
+  <rect x="545" y="255" width="140" height="28" rx="6" fill="#0d1b3e" stroke="#a78bfa" stroke-width="1"/>
+  <text x="615" y="274" text-anchor="middle" fill="#a78bfa" font-size="10">check-weather.js</text>
+  
+  <!-- Core module -->
+  <rect x="200" y="300" width="400" height="45" rx="8" fill="#1e2a4a" stroke="#ffd700" stroke-width="1"/>
+  <text x="400" y="320" text-anchor="middle" fill="#ffd700" font-size="13" font-weight="bold">⚙️ index.js 核心模块</text>
+  <text x="400" y="338" text-anchor="middle" fill="#8892b0" font-size="10">searchPOI · planRoute · generateMapLink · getWeather · geocode</text>
+  
+  <!-- Arrows to API -->
+  <polygon points="150,355 145,365 155,365" fill="#06b6d4"/>
+  <polygon points="320,355 315,365 325,365" fill="#10b981"/>
+  <polygon points="480,355 475,365 485,365" fill="#f59e0b"/>
+  <polygon points="650,355 645,365 655,365" fill="#a78bfa"/>
+  
+  <!-- API Layer -->
+  <rect x="60" y="370" width="680" height="55" rx="10" fill="#1e2a4a" stroke="#ffd700" stroke-width="1.5"/>
+  <text x="400" y="393" text-anchor="middle" fill="#ffd700" font-size="14" font-weight="bold">🌐 高德开放平台 Web Service API</text>
+  
+  <rect x="80" y="400" width="150" height="18" rx="4" fill="#0d1b3e"/>
+  <text x="155" y="414" text-anchor="middle" fill="#06b6d4" font-size="9">/place/text (POI搜索)</text>
+  
+  <rect x="245" y="400" width="150" height="18" rx="4" fill="#0d1b3e"/>
+  <text x="320" y="414" text-anchor="middle" fill="#10b981" font-size="9">/direction/walking (路径规划)</text>
+  
+  <rect x="410" y="400" width="160" height="18" rx="4" fill="#0d1b3e"/>
+  <text x="490" y="414" text-anchor="middle" fill="#f59e0b" font-size="9">travel_plan.html (地图可视化)</text>
+  
+  <rect x="585" y="400" width="150" height="18" rx="4" fill="#0d1b3e"/>
+  <text x="660" y="414" text-anchor="middle" fill="#a78bfa" font-size="9">/weather/weatherInfo (天气)</text>
+  
+  <!-- Output Layer -->
+  <rect x="200" y="440" width="400" height="50" rx="10" fill="#e94560" opacity="0.15" stroke="#e94560" stroke-width="1.5"/>
+  <text x="400" y="465" text-anchor="middle" fill="#e94560" font-size="14" font-weight="bold">📤 输出：剧本文档 + 地图链接 + 行程攻略</text>
+  <text x="400" y="483" text-anchor="middle" fill="#8892b0" font-size="10">demo_output.txt · demo_beijing_history.txt · demo_chengdu_food.txt · ...</text>
+  
+  <!-- Config -->
+  <rect x="620" y="145" width="140" height="40" rx="6" fill="#0d1b3e" stroke="#5a6684" stroke-width="1"/>
+  <text x="690" y="163" text-anchor="middle" fill="#8892b0" font-size="10">🔑 config.json</text>
+  <text x="690" y="178" text-anchor="middle" fill="#5a6684" font-size="9">API Key 管理</text>
+</svg>

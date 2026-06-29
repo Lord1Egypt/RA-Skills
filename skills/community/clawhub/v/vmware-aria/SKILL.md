@@ -49,6 +49,7 @@ VMware Aria Operations (vRealize Operations) AI-assisted monitoring — 27 MCP t
 
 ```bash
 uv tool install vmware-aria
+vmware-aria init      # guided setup: writes config + .env (chmod 600, password grep-safe), then verifies
 vmware-aria doctor
 ```
 

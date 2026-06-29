@@ -1,0 +1,61 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Moving Checklist Input",
+  "description": "Input schema for the moving checklist workflow.",
+  "type": "object",
+  "properties": {
+    "current": {
+      "type": "string",
+      "enum": ["整租", "合租", "自有"],
+      "description": "Current residence type."
+    },
+    "new_address": {
+      "type": "string",
+      "description": "New address (city + district level).",
+      "examples": ["上海浦东", "杭州滨江"]
+    },
+    "move_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Target move date (YYYY-MM-DD).",
+      "examples": ["2025-07-15"]
+    },
+    "distance": {
+      "type": "string",
+      "enum": ["同城", "跨城", "跨国"],
+      "description": "Moving distance category.",
+      "default": "同城"
+    },
+    "household_size": {
+      "type": "string",
+      "enum": ["solo", "couple", "family"],
+      "description": "Household size.",
+      "default": "solo"
+    },
+    "household_members": {
+      "type": "array",
+      "description": "Household member names (pseudonyms OK).",
+      "items": { "type": "string" },
+      "examples": [["小王", "小李"]]
+    },
+    "furniture": {
+      "type": "string",
+      "enum": ["房东提供", "部分自有", "全部自有"],
+      "description": "Furniture ownership status.",
+      "default": "部分自有"
+    },
+    "special_items": {
+      "type": "array",
+      "description": "Special items requiring extra handling.",
+      "items": { "type": "string" },
+      "examples": [["钢琴", "猫"]]
+    },
+    "city_tier": {
+      "type": "string",
+      "enum": ["Tier 1", "Tier 2", "Tier 3"],
+      "description": "City tier for budget multiplier (auto-detected from address)."
+    }
+  },
+  "required": ["move_date"],
+  "additionalProperties": false
+}

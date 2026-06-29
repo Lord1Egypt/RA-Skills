@@ -1,0 +1,7 @@
+interface:
+  display_name: "Mobile Responsive Layout Fixer"
+  short_description: "Helps with Mobile Responsive Fixes."
+  default_prompt: "Use $mobile-responsive-layout-fixer to help me Mobile Responsive Fixes."
+
+policy:
+  allow_implicit_invocation: true

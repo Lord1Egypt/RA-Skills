@@ -2,7 +2,7 @@
  * Check PR body for incomplete Test Plan checkboxes.
  * Rules:
  * - [general] / [일반] or [UI] checkboxes must be checked ([x]).
- * - [post-merge] / [머지 후] checkboxes are allowed to be incomplete ([ ]).
+ * - [post-merge] / [머지 후] / [deploy] checkboxes are allowed to be incomplete ([ ]).
  * - Checkboxes without prefix are treated as [general] and must be checked.
  * - Auto-generated checkboxes (e.g. CI, lint) are not part of manually checked plans but if they exist, they must be checked unless post-merge.
  */
@@ -38,12 +38,14 @@ function checkBody(body) {
     if (checkboxMatch) {
       const content = checkboxMatch[1].trim();
 
-      // Post-merge items are explicitly allowed to remain unchecked.
+      // Post-merge and deploy items are explicitly allowed to remain unchecked.
       // Accept both the English prefix ([post-merge]) and the legacy Korean
-      // prefix ([머지 후]), with or without surrounding backticks.
+      // prefix ([머지 후]), with or without surrounding backticks. [deploy]
+      // is treated like [post-merge] per merge.md prefix table.
       const isPostMerge =
         content.includes('[post-merge]') || content.includes('`[post-merge]`') ||
-        content.includes('[머지 후]') || content.includes('`[머지 후]`');
+        content.includes('[머지 후]') || content.includes('`[머지 후]`') ||
+        content.includes('[deploy]') || content.includes('`[deploy]`');
 
       if (!isPostMerge && inTestPlan) {
         incomplete.push({
@@ -61,7 +63,7 @@ function runMain(body) {
   const incompleteItems = checkBody(body);
 
   if (incompleteItems.length > 0) {
-    console.error('❌ Incomplete Test Plan checkboxes found (excluding [post-merge] / [머지 후] items):');
+    console.error('❌ Incomplete Test Plan checkboxes found (excluding [post-merge] / [머지 후] / [deploy] items):');
     incompleteItems.forEach(item => {
       console.error(`  Line ${item.lineNum}: ${item.content}`);
     });

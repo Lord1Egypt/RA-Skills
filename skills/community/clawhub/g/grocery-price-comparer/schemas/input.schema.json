@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Grocery Price Comparer Input",
+  "description": "Input schema for the grocery price comparison workflow.",
+  "type": "object",
+  "required": ["shopping_list"],
+  "properties": {
+    "shopping_list": {
+      "type": "string",
+      "description": "Free-text shopping list (e.g. '猪肉500g, 西红柿3个, 鸡蛋一盒, 牛奶1L').",
+      "examples": ["猪肉500g, 西红柿3个, 鸡蛋一盒, 牛奶1L"]
+    },
+    "platforms": {
+      "type": "array",
+      "description": "Platforms to compare.",
+      "items": { "type": "string", "enum": ["hema", "dingdong", "meituan", "pupu"] },
+      "minItems": 1,
+      "maxItems": 4,
+      "uniqueItems": true,
+      "default": ["hema", "dingdong", "meituan", "pupu"]
+    },
+    "options": {
+      "type": "object",
+      "description": "Optional parameters.",
+      "properties": {
+        "strategy": { "type": "string", "enum": ["cheapest", "quality", "split"], "default": "cheapest" },
+        "budget": { "type": "number", "exclusiveMinimum": 0, "description": "Budget in CNY." },
+        "city": { "type": "string", "description": "User city for availability." },
+        "alert_items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "target_price", "platform"],
+            "properties": {
+              "name": { "type": "string" },
+              "target_price": { "type": "number", "exclusiveMinimum": 0 },
+              "platform": { "type": "string" }
+            }
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

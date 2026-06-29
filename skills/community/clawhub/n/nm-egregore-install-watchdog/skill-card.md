@@ -11,31 +11,30 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill after initializing an egregore project or setting up a new machine when they want OS-native background relaunching for egregore sessions. <br>
+Developers and engineers use this skill after initializing or setting up an egregore project when they want a user-level watchdog to relaunch egregore sessions automatically. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The watchdog runs in the background and can automatically relaunch egregore sessions every 5 minutes. <br>
-Mitigation: Install it only when automatic relaunching is desired, inspect the scheduler logs after installation, and use the uninstall skill to return to manual control. <br>
-Risk: The installation commands invoke egregore plugin scripts through launchd or systemd. <br>
-Mitigation: Confirm the referenced plugin scripts come from a trusted source before installation. <br>
+Risk: The skill installs a persistent user-level watchdog that relaunches egregore in the background. <br>
+Mitigation: Use it only when autonomous relaunching is intended, confirm the launchd or systemd user service path, and keep the documented uninstall command available. <br>
+Risk: Installer scripts modify user scheduler configuration. <br>
+Mitigation: Inspect the referenced installer script before execution and verify the installed scheduler entry and log location after installation. <br>
 
 
 ## Reference(s): <br>
 - [Egregore plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/egregore) <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-egregore-install-watchdog) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Markdown, Shell commands, Configuration guidance] <br>
-**Output Format:** [Markdown with inline bash commands and installation checks] <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown with inline shell commands and verification guidance] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Guides installation of a background watchdog using launchd on macOS or systemd on Linux.] <br>
+**Other Properties Related to Output:** [Includes OS-specific launchd or systemd installation, verification, logging, troubleshooting, and uninstall guidance.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release evidence) <br>
+1.9.13 (source: server release metadata; artifact frontmatter says 1.9.8) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

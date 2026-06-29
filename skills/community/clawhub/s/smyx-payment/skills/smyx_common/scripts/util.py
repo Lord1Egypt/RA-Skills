@@ -269,7 +269,8 @@ class OpenIdUtil(BaseUtil):
 
     @classmethod
     def is_default_open_id(cls, value):
-        return isinstance(value, str) and value.startswith(cls.DEFAULT_PREFIX) and len(value) == cls.DEFAULT_USERNAME_LENGTH
+        return isinstance(value, str) and value.startswith(cls.DEFAULT_PREFIX) and len(
+            value) == cls.DEFAULT_USERNAME_LENGTH
 
     @classmethod
     def generate_default_open_id(cls):
@@ -469,12 +470,6 @@ class RequestUtil(BaseUtil):
                                 current_user_info["token"] = new_current_user.get("token")
                                 current_user_info["openToken"] = new_current_user.get(
                                     "openToken")
-                                if OpenIdUtil.is_default_open_id(current__user_name):
-                                    # 未显式传入 open-id 时，必须固定使用本地分配的缺省用户名。
-                                    # 即使服务端注册接口返回了不同的 username，也只把 token/openToken 写回
-                                    # 本地缺省用户，避免后续查询/分析出现 User_xxxxxx 不一致。
-                                    current_user_info["username"] = current__user_name
-                                    current_user_info["realname"] = current__user_name
                                 user_model = User.load(current_user_info)
 
                                 user = user_dao.save(
@@ -526,8 +521,6 @@ class RequestUtil(BaseUtil):
             response_text0 = response.text
             response_text = response_text0 if ConstantEnum.is_debug() else response
             status_code = response.status_code
-            if current__user_name == "13800000000":
-                status_code = 402
             if status_code == 401 and cls.authorization_retry_count < cls.AUTHORIZATION_RETRY_COUNT_MAX:
                 ApiEnum.TOKEN = ApiEnum.OPEN_TOKEN = None
                 if found_user:

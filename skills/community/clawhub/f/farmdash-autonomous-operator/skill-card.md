@@ -1,5 +1,5 @@
 ## Description: <br>
-Session state and control-loop skill for OpenClaw DeFi agents. Manages persistent sessions, FarmingContext, event stream snapshots, heartbeats, delegation checks, and bounded autopilot coordination without holding private keys or bypassing user confirmations. <br>
+Session state and control-loop skill for OpenClaw. Manages sessions, FarmingContext, autopilot OODA control loops, circuit breakers, and Forensic receipts in zero-custody. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,35 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External developers and OpenClaw agents use this skill to coordinate FarmDash DeFi sessions, maintain shared context, check delegation state, and run bounded autopilot planning while keeping state-changing execution in separate user-confirmed skills. <br>
+Developers and external DeFi agent operators use this skill to coordinate persistent FarmDash sessions, shared context, bounded autopilot control loops, policy checks, approvals, and forensic receipts. It is intended for zero-custody session and state coordination, not direct private-key custody or direct on-chain execution. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: DeFi coordination can lead to financial loss if an agent acts on stale context, weak limits, or misunderstood intent. <br>
-Mitigation: Use bounded budgets and allowlists, refresh event and context state before proposing action, and require explicit user confirmation or local wallet signing before any companion skill executes trades or other on-chain actions. <br>
-Risk: Session tokens and the optional FARMDASH_API_KEY are sensitive credentials. <br>
-Mitigation: Keep credentials private in the agent runtime and avoid displaying session tokens in normal user-facing prose. <br>
-Risk: Autonomous operation can compound mistakes across repeated cycles. <br>
-Mitigation: Log decisions, honor halted risk status, re-run sense phases when freshness is stale, and keep autopilot cycles constrained by explicit risk settings. <br>
+Risk: DeFi autopilot coordination can create financial risk if budgets, allowlists, or execution approvals are too broad. <br>
+Mitigation: Keep budgets and allowlists tight, require explicit wallet approval for transactions, and halt workflows when risk limits or circuit breakers are reached. <br>
+Risk: FARMDASH_API_KEY and sessionToken values are sensitive credentials. <br>
+Mitigation: Store credentials only in the agent runtime or secret manager, avoid displaying session tokens in user-facing prose, and rotate credentials if exposed. <br>
+Risk: The skill coordinates intent routing and approval records but does not itself provide private-key custody or direct on-chain execution. <br>
+Mitigation: Use separate signing or execution skills for state-changing actions and verify that policy, simulation, and approval gates pass before execution. <br>
 
 
 ## Reference(s): <br>
+- [ClawHub Skill Page](https://clawhub.ai/parmasanandgarlic/skills/farmdash-autonomous-operator) <br>
 - [FarmDash Agents](https://www.farmdash.one/agents) <br>
-- [FarmDash Homepage](https://www.farmdash.one) <br>
-- [FarmDash Autonomous Operator Skill Source](https://www.farmdash.one/openclaw-skills/farmdash-autonomous-operator/SKILL.md) <br>
-- [ClawHub Skill Page](https://clawhub.ai/parmasanandgarlic/farmdash-autonomous-operator) <br>
+- [FarmDash Autonomous Operator Skill Manual](https://www.farmdash.one/openclaw-skills/farmdash-autonomous-operator/SKILL.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Configuration, Guidance, API Calls] <br>
-**Output Format:** [Markdown and JSON-like structured guidance for session state, context patches, event snapshots, delegation checks, and autopilot coordination.] <br>
+**Output Type(s):** [text, markdown, configuration, guidance] <br>
+**Output Format:** [Markdown and structured session or intent guidance for agent workflows] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include session tokens, FarmingContext state, event stream snapshots, activity traces, delegation status, autopilot configuration, and resolved DeFi intent parameters.] <br>
+**Other Properties Related to Output:** [May reference session tokens, API keys, approval payloads, receipt IDs, and risk-state data that should be handled as sensitive operational context.] <br>
 
 ## Skill Version(s): <br>
-1.0.6 (source: release evidence; artifact frontmatter lists 1.0.1) <br>
+1.0.9 (source: ClawHub release metadata; artifact frontmatter reports 2.0.0) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

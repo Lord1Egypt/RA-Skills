@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Placement Rules Catalog",
+  "description": "Category x placement -> ratio-based placement rules. Top-level keys are garment categories (hoodie, tee, hat, mug, ...) plus the special '_defaults' key used as a fallback when a category-specific rule isn't defined.",
+  "type": "object",
+  "patternProperties": {
+    "^[a-z][a-z0-9_]*$": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z][a-z0-9_]*$": {
+          "type": "object",
+          "required": ["width_ratio", "x_center_ratio", "y_top_ratio"],
+          "properties": {
+            "width_ratio": {
+              "type": "number",
+              "minimum": 0.01,
+              "maximum": 1.5,
+              "description": "Decoration width as a fraction of the detected garment bbox width."
+            },
+            "x_center_ratio": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "description": "Decoration center X position as a fraction of the garment bbox width (0 = left edge, 1 = right edge)."
+            },
+            "y_top_ratio": {
+              "type": "number",
+              "minimum": 0.0,
+              "maximum": 1.0,
+              "description": "Decoration top Y position as a fraction of the garment bbox height (0 = top edge, 1 = bottom edge)."
+            },
+            "rotation_deg": {
+              "type": "number",
+              "minimum": -180,
+              "maximum": 180,
+              "default": 0,
+              "description": "Default rotation applied to the decoration, in degrees. Positive is clockwise."
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

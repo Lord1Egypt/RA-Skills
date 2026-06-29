@@ -1,0 +1,27 @@
+{
+  "slug": "sv-analytics-review",
+  "name": "Short Video Performance Analytics & Review",
+  "description": "Provides a structured framework for reviewing short video performance data — metrics interpretation, insight extraction, and iterative improvement planning.",
+  "type": "descriptive",
+  "requires_api": false,
+  "readiness": "stable",
+  "tags": [
+    "video",
+    "analytics",
+    "review",
+    "performance",
+    "optimization",
+    "descriptive"
+  ],
+  "trigger_keywords": [
+    "video analytics",
+    "performance review",
+    "content review",
+    "video metrics",
+    "analytics framework",
+    "improve video"
+  ],
+  "max_files": 4,
+  "language": "en",
+  "safety": "document-only informational guidance"
+}

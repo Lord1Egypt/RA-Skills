@@ -1,0 +1,4 @@
+interface:
+  display_name: "Family OS"
+  short_description: "Run a private household operating system"
+  default_prompt: "Use $family-os to initialize my household workspace and keep family plans, projects, decisions, and memories updated."

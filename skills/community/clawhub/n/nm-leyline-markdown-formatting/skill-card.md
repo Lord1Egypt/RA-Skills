@@ -11,33 +11,32 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and documentation authors use this skill to write, review, and revise committed Markdown with consistent 80-character wrapping, heading spacing, list spacing, and link formatting. <br>
+Developers, documentation authors, and agents use this skill when writing or editing committed Markdown to apply consistent wrapping, heading spacing, list spacing, and link formatting for reviewable diffs. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Broad documentation or formatting triggers may lead to large Markdown edits. <br>
-Mitigation: Review the skill's suggestions before applying large repo-wide documentation changes. <br>
-Risk: Incorrect reflow can make documentation harder to review or alter protected Markdown structures. <br>
-Mitigation: Keep code blocks, tables, frontmatter, HTML blocks, link definitions, and image lines exempt from wrapping as described by the artifact. <br>
+Risk: Broad activation wording may cause the skill to be considered during general Markdown or documentation edits. <br>
+Mitigation: Review activation terms before installation and confirm proposed edits before applying them in important repositories. <br>
+Risk: Markdown reflow can change content that should remain exact, such as code blocks, tables, frontmatter, HTML blocks, link definitions, and image references. <br>
+Mitigation: Preserve the documented exempt content types and review diffs for formatting-only changes before commit. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-leyline-markdown-formatting) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-markdown-formatting) <br>
 - [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
-- [Hybrid Line Wrapping Rules](modules/wrapping-rules.md) <br>
 - [Google Markdown style guide](https://google.github.io/styleguide/docguide/style.html) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown guidance and edited Markdown prose] <br>
+**Output Type(s):** [Markdown, Guidance] <br>
+**Output Format:** [Markdown prose and edit guidance] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Focuses on prose formatting; code blocks, tables, headings, frontmatter, HTML blocks, link definitions, and image lines are exempt from wrapping.] <br>
+**Other Properties Related to Output:** [Applies hybrid 80-character wrapping and structural Markdown formatting rules while preserving exempt content such as code blocks, tables, frontmatter, and link definitions.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata) <br>
+1.9.13 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

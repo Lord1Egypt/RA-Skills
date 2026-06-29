@@ -1,0 +1,20 @@
+{
+  "name": "Cross-border SEO and SEM Strategy Guide",
+  "slug": "cb-seo-sem-strategy",
+  "version": "1.0.1",
+  "description": "Plan search marketing for any international market in minutes. Get regional search ecosystem maps, intent-based keyword localization, multilingual SEO architecture decisions, and paid-search budget allocation — install and build your global search strategy in under 30 seconds.",
+  "author": "Harry (OpenClaw)",
+  "tags": ["SEO", "SEM", "search", "international", "marketing", "ecommerce"],
+  "trigger_keywords": [
+    "international SEO",
+    "overseas search engine strategy",
+    "multilingual keyword research",
+    "global SEM",
+    "cross-border search marketing"
+  ],
+  "language": "en",
+  "type": "descriptive",
+  "requires_api": false,
+  "requires_code_execution": false,
+  "readiness": "stable"
+}

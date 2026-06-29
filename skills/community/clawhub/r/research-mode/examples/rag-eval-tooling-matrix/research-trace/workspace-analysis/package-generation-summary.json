@@ -1,0 +1,18 @@
+{
+  "package_dir": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix",
+  "workbook": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix/rag-eval-tooling-matrix.xlsx",
+  "validation_report": "<research-root>/example-rag-eval-tooling-xlsx-20260616/workspace/outputs/rag-eval-tooling-matrix/validation-report.md",
+  "validation_passed": true,
+  "tool_rows": 15,
+  "source_rows": 30,
+  "validation_messages": [
+    "All expected worksheets are present.",
+    "Summary: 1 Excel table(s), no worksheet-level autoFilter overlap detected.",
+    "Tool Matrix: 1 Excel table(s), no worksheet-level autoFilter overlap detected.",
+    "Scoring: 2 Excel table(s), no worksheet-level autoFilter overlap detected.",
+    "Evidence Sources: 1 Excel table(s), no worksheet-level autoFilter overlap detected.",
+    "Exclusions Caveats: 1 Excel table(s), no worksheet-level autoFilter overlap detected.",
+    "Methodology: 1 Excel table(s), no worksheet-level autoFilter overlap detected.",
+    "Tool Matrix contains 60 formula cells."
+  ]
+}

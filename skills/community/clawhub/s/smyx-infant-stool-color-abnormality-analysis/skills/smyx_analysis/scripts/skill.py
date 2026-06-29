@@ -131,8 +131,8 @@ class Skill(BaseSkill, ApiService):
             }
 
         open_id = argss.pop('open_id', None)
-        if not open_id:
-            return "⚠️ 错误：缺少 open_id 参数"
+        # if not open_id:  ## ARK_CLAW ##
+        #     return "⚠️ 错误：缺少 open_id 参数"
         response = self.analysis(
             params=params,
             files=files
@@ -152,8 +152,8 @@ class Skill(BaseSkill, ApiService):
             return ApiEnum.DETAIL_EXPORT_URL + request_id
 
         open_id = argss.pop('open_id', None)
-        if not open_id:
-            return "⚠️ 错误：缺少 open_id 参数"
+        # if not open_id:  ## ARK_CLAW ##
+        #     return "⚠️ 错误：缺少 open_id 参数"
 
         response = self.page(pageNum, pageSize, *args, **argss)
 

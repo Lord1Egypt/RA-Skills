@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>灵感应用推荐报告</title>
+<style>
+:root {
+  --bg: #f8f9fc;
+  --card-bg: #ffffff;
+  --text: #1a1a2e;
+  --text-secondary: #5a5a7a;
+  --text-muted: #8e8ea0;
+  --border: #e8ecf1;
+  --accent: #4f46e5;
+  --accent-light: #eef2ff;
+  --red: #ef4444;
+  --orange: #f59e0b;
+  --green: #10b981;
+  --blue: #3b82f6;
+  --purple: #8b5cf6;
+  --pink: #ec4899;
+  --cyan: #06b6d4;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+  --shadow: 0 2px 8px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+  --transition: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #a855f7 100%);
+  color: #fff;
+  padding: 48px 32px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 50%);
+  animation: headerPulse 8s ease-in-out infinite;
+}
+@keyframes headerPulse {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(5%, 2%); }
+}
+.header-content { position: relative; z-index: 1; }
+.header h1 { font-size: 32px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+.header .subtitle { font-size: 15px; opacity: 0.85; font-weight: 400; }
+.header .meta-row {
+  display: flex; justify-content: center; gap: 24px; margin-top: 20px;
+  flex-wrap: wrap;
+}
+.header .meta-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px; opacity: 0.9;
+  background: rgba(255,255,255,0.15);
+  padding: 6px 14px; border-radius: 20px;
+  backdrop-filter: blur(4px);
+}
+
+/* Stats Bar */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  padding: 0 32px;
+  margin-top: -24px;
+  position: relative;
+  z-index: 10;
+}
+.stat-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.stat-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.stat-card .stat-value { font-size: 32px; font-weight: 800; color: var(--accent); line-height: 1; }
+.stat-card .stat-label { font-size: 13px; color: var(--text-muted); margin-top: 6px; }
+.stat-icon { font-size: 24px; margin-bottom: 4px; }
+
+/* Container */
+.container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+
+/* Section */
+.section { margin-bottom: 40px; }
+.section-title {
+  font-size: 22px; font-weight: 700; margin-bottom: 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-title .icon { font-size: 24px; }
+
+/* Filters */
+.filters {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 24px;
+}
+.filter-btn {
+  padding: 8px 18px; border: 1.5px solid var(--border);
+  border-radius: 20px; background: var(--card-bg);
+  font-size: 13px; color: var(--text-secondary);
+  cursor: pointer; transition: all var(--transition);
+  font-family: inherit;
+}
+.filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+.filter-btn.active {
+  background: var(--accent); color: #fff; border-color: var(--accent);
+}
+
+/* Product Grid */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 20px;
+}
+
+/* Product Card */
+.product-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition), box-shadow var(--transition);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+.product-card .card-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 12px;
+}
+.product-card .card-rank {
+  font-size: 12px; font-weight: 700; color: var(--accent);
+  background: var(--accent-light); padding: 3px 10px;
+  border-radius: 12px;
+}
+.product-card .card-source {
+  display: flex; align-items: center; gap: 4px;
+  font-size: 12px; color: var(--text-muted);
+}
+.product-card h3 {
+  font-size: 18px; font-weight: 700; margin-bottom: 6px;
+  display: flex; align-items: center; gap: 8px;
+}
+.product-card h3 .innovation-badge { font-size: 16px; }
+.product-card .tagline {
+  font-size: 14px; color: var(--text-secondary); margin-bottom: 12px;
+  line-height: 1.5;
+}
+.product-card .tags {
+  display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;
+}
+.tag {
+  padding: 3px 10px; border-radius: 12px; font-size: 11px;
+  font-weight: 600; white-space: nowrap;
+}
+.tag-category { background: #eef2ff; color: #4f46e5; }
+.tag-difficulty-easy { background: #ecfdf5; color: #059669; }
+.tag-difficulty-mid { background: #fffbeb; color: #d97706; }
+.tag-difficulty-hard { background: #fef2f2; color: #dc2626; }
+.tag-platform { background: #f0fdf4; color: #16a34a; }
+.tag-monetization { background: #fdf4ff; color: #a21caf; }
+
+.product-card .highlights { margin-bottom: 14px; }
+.product-card .highlights li {
+  font-size: 13px; color: var(--text-secondary);
+  margin-bottom: 4px; padding-left: 16px; position: relative;
+  list-style: none;
+}
+.product-card .highlights li::before {
+  content: '▸'; position: absolute; left: 0; color: var(--accent);
+  font-size: 11px;
+}
+
+/* Inspiration Box */
+.inspiration-box {
+  background: linear-gradient(135deg, #fefce8, #fef9c3);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  border-left: 3px solid var(--orange);
+  margin-top: 12px;
+}
+.inspiration-box .inspiration-title {
+  font-size: 12px; font-weight: 700; color: #92400e; margin-bottom: 8px;
+  display: flex; align-items: center; gap: 4px;
+}
+.inspiration-box .inspiration-item {
+  font-size: 12px; color: #78350f; margin-bottom: 4px;
+  padding-left: 12px; position: relative;
+}
+.inspiration-box .inspiration-item::before {
+  content: '💡'; position: absolute; left: -3px; font-size: 10px;
+}
+
+/* Metrics row */
+.metrics-row {
+  display: flex; gap: 16px; margin-bottom: 14px;
+  font-size: 12px; color: var(--text-muted);
+}
+.metrics-row .metric { display: flex; align-items: center; gap: 3px; }
+
+/* Trend Cards */
+.trend-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+.trend-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid transparent;
+  transition: all var(--transition);
+}
+.trend-card:hover { border-color: var(--accent); }
+.trend-card .trend-header {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 10px;
+}
+.trend-card .trend-icon { font-size: 28px; }
+.trend-card h4 { font-size: 16px; font-weight: 700; }
+.trend-card .trend-momentum {
+  font-size: 11px; padding: 2px 8px; border-radius: 10px;
+  font-weight: 600;
+}
+.momentum-up { background: #ecfdf5; color: #059669; }
+.momentum-hot { background: #fef2f2; color: #dc2626; }
+.momentum-stable { background: #f0f9ff; color: #0284c7; }
+.trend-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+/* Top Picks */
+.top-picks { margin-top: 8px; }
+.pick-item {
+  display: flex; align-items: flex-start; gap: 16px;
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin-bottom: 12px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  transition: all var(--transition);
+}
+.pick-item:hover { border-color: var(--accent); }
+.pick-item .pick-rank {
+  font-size: 24px; font-weight: 900; color: var(--accent);
+  min-width: 40px; text-align: center;
+}
+.pick-item .pick-content { flex: 1; }
+.pick-item h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.pick-item .pick-reason { font-size: 13px; color: var(--text-secondary); }
+.pick-item .pick-action {
+  font-size: 12px; color: var(--accent); font-weight: 600;
+  background: var(--accent-light); padding: 2px 10px; border-radius: 10px;
+  white-space: nowrap;
+  margin-top: 6px;
+  display: inline-block;
+}
+
+/* Chart container */
+.chart-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+@media (max-width: 768px) { .chart-row { grid-template-columns: 1fr; } }
+.chart-box {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+.chart-box h4 { font-size: 14px; font-weight: 600; margin-bottom: 16px; color: var(--text); }
+.chart-box canvas { max-height: 280px; }
+
+/* Empty state */
+.empty-state {
+  text-align: center; padding: 60px 20px; color: var(--text-muted);
+}
+.empty-state .empty-icon { font-size: 48px; margin-bottom: 12px; }
+
+/* Footer */
+.footer {
+  text-align: center; padding: 32px 24px;
+  color: var(--text-muted); font-size: 12px;
+  border-top: 1px solid var(--border);
+  margin-top: 24px;
+}
+.footer a { color: var(--accent); text-decoration: none; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header { padding: 32px 20px 28px; }
+  .header h1 { font-size: 24px; }
+  .stats-bar { padding: 0 16px; margin-top: -20px; }
+  .product-grid { grid-template-columns: 1fr; }
+  .container { padding: 24px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-content">
+    <h1>💡 灵感应用推荐报告</h1>
+    <p class="subtitle">从互联网精选最新热门应用与产品创意，激发你的下一个项目灵感</p>
+    <div class="meta-row" id="metaRow"></div>
+  </div>
+</div>
+
+<div class="stats-bar" id="statsBar"></div>
+
+<div class="container">
+
+  <!-- Trends Section -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📊</span> 宏观趋势一览</div>
+    <div class="trend-cards" id="trendCards"></div>
+  </div>
+
+  <!-- Charts -->
+  <div class="section">
+    <div class="section-title"><span class="icon">📈</span> 数据洞察</div>
+    <div class="chart-row">
+      <div class="chart-box">
+        <h4>领域分布</h4>
+        <canvas id="categoryChart"></canvas>
+      </div>
+      <div class="chart-box">
+        <h4>创新等级分布</h4>
+        <canvas id="innovationChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products Section -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🚀</span> 热门产品推荐</div>
+    <div class="filters" id="filterBar">
+      <button class="filter-btn active" data-filter="all">全部</button>
+    </div>
+    <div class="product-grid" id="productGrid"></div>
+    <div class="empty-state" id="emptyState" style="display:none">
+      <div class="empty-icon">🔍</div>
+      <p>该分类下暂无产品，试试其他筛选条件</p>
+    </div>
+  </div>
+
+  <!-- Top Picks -->
+  <div class="section">
+    <div class="section-title"><span class="icon">🎯</span> 灵感行动清单 — 最值得关注的方向</div>
+    <div class="top-picks" id="topPicks"></div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>灵感应用推荐助手 · 数据来源：Product Hunt / GitHub / Hacker News / 36Kr / 少数派 等</p>
+  <p>报告生成时间：<span id="genTime"></span> · 仅供参考，不构成投资建议</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+// ========== DATA INJECTION ==========
+// REPORT_DATA_PLACEHOLDER
+
+// ========== RENDER ==========
+function renderMeta() {
+  const m = reportData.meta;
+  document.getElementById('metaRow').innerHTML = `
+    <div class="meta-item">📅 ${new Date(m.generatedAt).toLocaleDateString('zh-CN')}</div>
+    <div class="meta-item">🔗 ${m.sourcesCount} 个数据源</div>
+    <div class="meta-item">🎯 ${m.focusAreas ? m.focusAreas.join(' / ') : '全领域'}</div>
+  `;
+  document.getElementById('genTime').textContent = new Date(m.generatedAt).toLocaleString('zh-CN');
+}
+
+function renderStats() {
+  const m = reportData.meta;
+  const cats = [...new Set(reportData.products.map(p => p.category))];
+  const levels = reportData.products.filter(p => p.innovationLevel === '🔥').length;
+  document.getElementById('statsBar').innerHTML = `
+    <div class="stat-card">
+      <div class="stat-icon">📦</div>
+      <div class="stat-value">${m.totalProducts}</div>
+      <div class="stat-label">精选产品</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">📂</div>
+      <div class="stat-value">${cats.length}</div>
+      <div class="stat-label">覆盖领域</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🔥</div>
+      <div class="stat-value">${levels}</div>
+      <div class="stat-label">颠覆式创新</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon">🌐</div>
+      <div class="stat-value">${m.sourcesCount}</div>
+      <div class="stat-label">数据来源</div>
+    </div>
+  `;
+}
+
+function renderTrends() {
+  const html = reportData.trends.map(t => `
+    <div class="trend-card">
+      <div class="trend-header">
+        <span class="trend-icon">${t.icon || '📈'}</span>
+        <h4>${t.name}</h4>
+        <span class="trend-momentum momentum-${t.momentum === '上升' ? 'up' : t.momentum === '热门' ? 'hot' : 'stable'}">${t.momentum}</span>
+      </div>
+      <p>${t.description}</p>
+    </div>
+  `).join('');
+  document.getElementById('trendCards').innerHTML = html;
+}
+
+const difficultyClass = { '低': 'tag-difficulty-easy', '中': 'tag-difficulty-mid', '高': 'tag-difficulty-hard' };
+
+function renderProducts(filter = 'all') {
+  const filtered = filter === 'all'
+    ? reportData.products
+    : reportData.products.filter(p => p.category === filter);
+
+  const grid = document.getElementById('productGrid');
+  const empty = document.getElementById('emptyState');
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  grid.innerHTML = filtered.map((p, i) => `
+    <div class="product-card">
+      <div class="card-header">
+        <span class="card-rank">#${i + 1}</span>
+        <span class="card-source">${p.sourceIcon || '🔗'} ${p.source}</span>
+      </div>
+      <h3>
+        ${p.innovationLevel ? '<span class="innovation-badge">' + p.innovationLevel + '</span>' : ''}
+        ${p.name}
+      </h3>
+      <p class="tagline">${p.tagline}</p>
+      <div class="tags">
+        <span class="tag tag-category">${p.category}</span>
+        ${p.difficulty ? `<span class="tag ${difficultyClass[p.difficulty] || 'tag-difficulty-mid'}">难度:${p.difficulty}</span>` : ''}
+        ${p.monetization ? `<span class="tag tag-monetization">💰 ${p.monetization}</span>` : ''}
+        ${p.timeToMVP ? `<span class="tag tag-platform">⏱ ${p.timeToMVP}</span>` : ''}
+      </div>
+      ${p.metrics ? `
+      <div class="metrics-row">
+        ${p.metrics.upvotes ? `<span class="metric">👍 ${p.metrics.upvotes}</span>` : ''}
+        ${p.metrics.stars ? `<span class="metric">⭐ ${p.metrics.stars}</span>` : ''}
+        ${p.metrics.comments ? `<span class="metric">💬 ${p.metrics.comments}</span>` : ''}
+      </div>` : ''}
+      ${p.highlights && p.highlights.length ? `
+      <ul class="highlights">
+        ${p.highlights.map(h => `<li>${h}</li>`).join('')}
+      </ul>` : ''}
+      ${p.inspirations && p.inspirations.length ? `
+      <div class="inspiration-box">
+        <div class="inspiration-title">💡 灵感启示</div>
+        ${p.inspirations.map(ins => `
+          <div class="inspiration-item"><strong>${ins.insight || ''}</strong>${ins.replicable ? ' — ' + ins.replicable : ''}</div>
+        `).join('')}
+      </div>` : ''}
+    </div>
+  `).join('');
+}
+
+function renderFilters() {
+  const cats = ['all', ...new Set(reportData.products.map(p => p.category))];
+  const bar = document.getElementById('filterBar');
+  bar.innerHTML = cats.map(c => `
+    <button class="filter-btn ${c === 'all' ? 'active' : ''}" data-filter="${c}">
+      ${c === 'all' ? '全部' : c}
+    </button>
+  `).join('');
+
+  bar.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      bar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderProducts(btn.dataset.filter);
+    });
+  });
+}
+
+function renderTopPicks() {
+  const picks = reportData.topPicks.map(id => reportData.products.find(p => p.id === id)).filter(Boolean);
+  const html = picks.map((p, i) => `
+    <div class="pick-item">
+      <div class="pick-rank">${i + 1}</div>
+      <div class="pick-content">
+        <h4>${p.name} <span style="font-weight:400;color:var(--text-muted);font-size:13px">— ${p.tagline}</span></h4>
+        <div class="pick-reason">${(p.inspirations && p.inspirations[0]) ? p.inspirations[0].insight : '值得深入研究的方向'}</div>
+        <span class="pick-action">🎯 ${p.difficulty ? '难度' + p.difficulty + ' · ' : ''}${p.timeToMVP || '可快速验证'}</span>
+      </div>
+    </div>
+  `).join('');
+  document.getElementById('topPicks').innerHTML = html;
+}
+
+function renderCharts() {
+  // Category distribution
+  const catCount = {};
+  reportData.products.forEach(p => { catCount[p.category] = (catCount[p.category] || 0) + 1; });
+  const catLabels = Object.keys(catCount);
+  const catData = Object.values(catCount);
+  const colors = ['#4f46e5','#7c3aed','#a855f7','#3b82f6','#06b6d4','#10b981','#f59e0b','#ef4444','#ec4899','#8b5cf6'];
+
+  new Chart(document.getElementById('categoryChart'), {
+    type: 'doughnut',
+    data: {
+      labels: catLabels,
+      datasets: [{ data: catData, backgroundColor: colors.slice(0, catLabels.length), borderWidth: 0 }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { position: 'bottom', labels: { padding: 16, usePointStyle: true, font: { size: 12 } } } }
+    }
+  });
+
+  // Innovation level
+  const levelCount = {};
+  reportData.products.forEach(p => {
+    const l = p.innovationLevel || '📈';
+    levelCount[l] = (levelCount[l] || 0) + 1;
+  });
+  const levelLabels = Object.keys(levelCount);
+  const levelColors = { '🔥': '#ef4444', '💡': '#f59e0b', '📈': '#3b82f6', '🔄': '#8b5cf6' };
+
+  new Chart(document.getElementById('innovationChart'), {
+    type: 'bar',
+    data: {
+      labels: levelLabels,
+      datasets: [{
+        data: Object.values(levelCount),
+        backgroundColor: levelLabels.map(l => levelColors[l] || '#9ca3af'),
+        borderRadius: 6,
+        borderWidth: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, ticks: { stepSize: 1, font: { size: 11 } }, grid: { color: '#f3f4f6' } }, x: { ticks: { font: { size: 11 } }, grid: { display: false } } }
+    }
+  });
+}
+
+// Init
+renderMeta();
+renderStats();
+renderTrends();
+renderFilters();
+renderProducts('all');
+renderTopPicks();
+renderCharts();
+</script>
+</body>
+</html>

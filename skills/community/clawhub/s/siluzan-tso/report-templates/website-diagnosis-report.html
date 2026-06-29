@@ -239,26 +239,6 @@
         color: var(--accent);
       }
 
-      .btn-export {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 10px 20px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border: none;
-        border-radius: 6px;
-        color: #ffffff;
-        font-size: 14px;
-        font-weight: 500;
-        cursor: pointer;
-        box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
-      }
-
-      .btn-export:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-      }
-
       .header-info {
         display: flex;
         align-items: center;
@@ -1078,7 +1058,6 @@
           box-shadow: none;
         }
 
-        .btn-export,
         .btn-theme {
           display: none;
         }
@@ -1901,10 +1880,6 @@
               <h1 class="main-title">网站诊断报告</h1>
               <div class="export-btn-wrapper header-actions">
                 <button id="btn-theme-toggle" class="btn-theme" type="button">🌙 夜晚</button>
-                <button class="btn-export" type="button" onclick="window.print()">
-                  <svg viewBox="0 0 1024 1024" width="16" height="16"><path d="M832 512c-17.6 0-32 14.4-32 32v256c0 17.6-14.4 32-32 32H256c-17.6 0-32-14.4-32-32V544c0-17.6-14.4-32-32-32s-32 14.4-32 32v256c0 52.8 43.2 96 96 96h512c52.8 0 96-43.2 96-96V544c0-17.6-14.4-32-32-32z" fill="currentColor"/><path d="M505.6 646.4c6.4 6.4 14.4 9.6 22.4 9.6s16-3.2 22.4-9.6l192-192c12.8-12.8 12.8-32 0-44.8s-32-12.8-44.8 0L544 563.2V160c0-17.6-14.4-32-32-32s-32 14.4-32 32v403.2L326.4 409.6c-12.8-12.8-32-12.8-44.8 0s-12.8 32 0 44.8l224 192z" fill="currentColor"/></svg>
-                  导出PDF
-                </button>
               </div>
             </div>
             <div class="header-info">

@@ -1,0 +1,22 @@
+{
+  "targetUrl": "https://business.oceanengine.com/site/account-manage/ecp/bidding/universe/account",
+  "storageStatePath": "storage_state.json",
+  "outputDir": "reports",
+  "tableSelector": "table",
+  "rowSelector": "table tbody tr",
+  "headersSelector": "table thead th",
+  "reportFilenamePrefix": "oceanengine",
+  "generateReports": false,
+  "allowLocalStorageState": false,
+  "feishu": {
+    "enabled": false,
+    "writeMode": "mallDaily",
+    "spreadsheetToken": "YOUR_SPREADSHEET_TOKEN",
+    "sourceSheetId": "YOUR_SOURCE_SHEET_ID",
+    "summarySheetId": "YOUR_SUMMARY_SHEET_ID",
+    "reportSheetId": "YOUR_REPORT_SHEET_ID",
+    "summarySpendRange": "N146:O146",
+    "reportDateCell": "D15:D15",
+    "reportDateFormula": "TODAY()"
+  }
+}

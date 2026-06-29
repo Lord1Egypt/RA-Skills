@@ -9,9 +9,9 @@ Options:
   --all     Show all todo snapshots (not just the last one)
 
 Output format:
-  [completed] 작업 내용
-  [in_progress] 진행 중 작업
-  [pending] 미완료 작업
+  [completed] task content
+  [in_progress] in-progress task
+  [pending] pending task
 """
 
 import json
@@ -61,7 +61,7 @@ def extract_todos(project_name: str, session_id: str, show_all: bool = False):
             print(f"\n--- Snapshot {i}/{len(snapshots)} ---")
             print_todos(snapshot)
     else:
-        # 마지막 스냅샷 (최신 상태)
+        # Last snapshot (most recent state)
         print_todos(snapshots[-1])
 
 

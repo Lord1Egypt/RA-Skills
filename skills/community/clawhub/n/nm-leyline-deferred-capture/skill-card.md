@@ -11,31 +11,29 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and agent maintainers use this skill to build or validate deferred-capture wrappers, source labels, and issue templates for plugin workflows. <br>
+Developers and engineers use this skill to build or validate deferred-capture wrappers, source labels, issue templates, and compliance checks for leyline-style plugin workflows. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Issue bodies or artifact paths produced by wrappers based on this contract may contain private paths or sensitive context. <br>
-Mitigation: Review issue content before filing and use dry-run mode when testing wrappers. <br>
-Risk: Wrappers that implement the contract can target the wrong repository or create duplicate deferred issues. <br>
-Mitigation: Confirm the target repository and duplicate-detection behavior before using an implementation outside dry-run mode. <br>
+Risk: Deferred-capture issue titles, context, branch or session metadata, labels, and artifact paths may expose sensitive information to repository collaborators or the public. <br>
+Mitigation: Redact secrets, private customer data, internal paths, and sensitive debugging details before allowing issue creation. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-leyline-deferred-capture) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-deferred-capture) <br>
 - [Leyline plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown with inline command examples and JSON examples] <br>
+**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration, JSON] <br>
+**Output Format:** [Markdown guidance with CLI examples and JSON result shapes] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only skill; no bundled executable behavior.] <br>
+**Other Properties Related to Output:** [Describes GitHub issue fields, labels, duplicate detection, and dry-run compliance output.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata) <br>
+1.9.13 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

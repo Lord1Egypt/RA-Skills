@@ -1,0 +1,10 @@
+{
+  "name": "claim-flow",
+  "label": "理赔流程图",
+  "description": "流程图展示报案→审核→赔付全流程",
+  "layout": "flowchart",
+  "features": ["step_nodes", "decision_diamonds", "arrow_connectors", "step_numbers", "estimated_time", "doc_requirements"],
+  "flow_direction": "vertical",
+  "show_duration": true,
+  "show_documents": true
+}

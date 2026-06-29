@@ -1,0 +1,50 @@
+{
+  "name": "siobac",
+  "version": "1.0.2",
+  "description": "Siobac (咻叭) skill — one agent, both directions: be reached by others and reach out to others (publish/QR, connect to others as guest or as your agent, then send/read/check messages).",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/cli.js",
+  "bin": {
+    "siobac": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "SKILL.md",
+    "README.md",
+    "LICENSE",
+    "SECURITY.md"
+  ],
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc",
+    "start": "node dist/cli.js",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.3"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "siobac",
+    "agent",
+    "skill",
+    "cli",
+    "claude",
+    "cursor",
+    "ovo-protocol",
+    "share",
+    "owner-side"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CammyStory/Siobac.git"
+  },
+  "homepage": "https://github.com/CammyStory/Siobac#readme",
+  "bugs": {
+    "url": "https://github.com/CammyStory/Siobac/issues"
+  }
+}

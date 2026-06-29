@@ -2,14 +2,13 @@
 # find-session-id.sh - Find current session ID by searching for a unique marker
 #
 # Usage:
-#   find-session-id.sh <marker> [project_dir]
+#   find-session-id.sh                  # Generate a unique marker and print it
+#   find-session-id.sh <marker>         # Search for marker in session files
+#   find-session-id.sh <marker> <dir>   # Search with explicit project directory
 #
-# Arguments:
-#   marker       - Unique string to search for in session files
-#   project_dir  - (Optional) Override project directory. If omitted, derived from CWD.
-#
-# The marker must already exist in the session JSONL file (e.g., printed by Claude
-# in the conversation, which gets recorded in the JSONL).
+# When called without arguments, generates and prints a unique marker.
+# The caller should echo this marker (so it gets recorded in JSONL),
+# then call this script again with the marker to find the session ID.
 
 set -euo pipefail
 
@@ -27,8 +26,10 @@ cwd_to_project_name() {
 
 MARKER="${1:-}"
 if [[ -z "$MARKER" ]]; then
-    echo "Usage: $0 <marker> [project_dir]" >&2
-    exit 1
+    # No marker provided — generate one and output it.
+    # The caller must run the script again with this marker after it appears in JSONL.
+    echo "SESSION_MARKER_$(date +%s)_$$"
+    exit 0
 fi
 
 # Determine project directory
@@ -39,8 +40,24 @@ else
     PROJECT_DIR="$CLAUDE_PROJECTS_DIR/$PROJECT_NAME"
 fi
 
+if [[ ! -d "$PROJECT_DIR" ]] && [[ -z "${2:-}" ]]; then
+    # Fallback: walk up parent directories until a matching project is found
+    SEARCH_DIR="$(pwd)"
+    while [[ "$SEARCH_DIR" != "/" ]]; do
+        SEARCH_DIR=$(dirname "$SEARCH_DIR")
+        CANDIDATE="$CLAUDE_PROJECTS_DIR/$(cwd_to_project_name "$SEARCH_DIR")"
+        if [[ -d "$CANDIDATE" ]]; then
+            PROJECT_DIR="$CANDIDATE"
+            break
+        fi
+    done
+fi
+
 if [[ ! -d "$PROJECT_DIR" ]]; then
     echo "ERROR: Project directory not found: $PROJECT_DIR" >&2
+    if [[ -z "${2:-}" ]]; then
+        echo "Searched from CWD upward to /" >&2
+    fi
     exit 1
 fi
 

@@ -1,0 +1,112 @@
+# 任务定义模板
+# 每个任务是一系列操作步骤的编排
+# OpenClaw 可以直接引用任务名称来触发完整流程
+
+tasks:
+  # ===== 服务器巡检 =====
+  daily_server_inspection:
+    name: 每日服务器巡检
+    description: 检查所有服务器的 CPU / 内存 / 磁盘 / 数据库状态，生成中文报告
+    steps:
+      - action: check_server_status
+        target: all
+      - action: check_database_status
+        target: all
+      - action: read_recent_logs
+        params:
+          lines: 100
+          level: error
+      - action: generate_report
+        params:
+          type: daily_inspection
+          output: reports/daily_inspection_{date}.md
+
+  # ===== Windows SQL Server 完整安装 =====
+  install_windows_sqlserver:
+    name: Windows Server + SQL Server 完整安装
+    description: 在 Windows Server 上完整安装 SQL Server，包括环境检查、安装、防火墙配置、监控部署
+    requires_confirmation: true
+    steps:
+      - action: check_server_status
+        description: 检查服务器当前状态
+      - action: check_disk
+        params:
+          min_free_gb: 50
+          description: 确认磁盘空间（SQL Server 至少需要 50GB）
+      - action: install_database
+        params:
+          database: sqlserver
+          version: "2022"
+          edition: developer    # developer/standard/enterprise
+      - action: configure_firewall
+        params:
+          open_ports: [1433]
+          source: internal_only
+      - action: install_monitoring_agent
+        params:
+          agent: windows_exporter
+      - action: generate_report
+        params:
+          type: installation_report
+
+  # ===== Ubuntu PostgreSQL 完整安装 =====
+  install_ubuntu_postgresql:
+    name: Ubuntu + PostgreSQL 完整安装
+    description: 在 Ubuntu 服务器上安装 PostgreSQL，配置防火墙，部署 Node Exporter
+    requires_confirmation: true
+    steps:
+      - action: check_server_status
+      - action: install_database
+        params:
+          database: postgresql
+          version: "15"
+      - action: configure_firewall
+        params:
+          open_ports: [5432]
+          source: internal_only
+      - action: install_monitoring_agent
+        params:
+          agent: node_exporter
+      - action: generate_report
+        params:
+          type: installation_report
+
+  # ===== 数据库建表流程 =====
+  create_business_schema:
+    name: 业务数据库表结构创建
+    description: 根据统一 Schema 在目标数据库创建业务表结构
+    requires_confirmation: true
+    steps:
+      - action: check_database_status
+        description: 确认数据库运行正常
+      - action: create_database
+        params:
+          name: "{{ database_name }}"
+      - action: create_user
+        params:
+          username: "{{ app_username }}"
+          password: "{{ app_password }}"
+          database: "{{ database_name }}"
+      - action: apply_schema
+        params:
+          schema_file: "{{ schema_file }}"
+          database: "{{ database_name }}"
+      - action: generate_report
+        params:
+          type: schema_report
+
+  # ===== 数据库备份 =====
+  database_backup:
+    name: 数据库备份
+    description: 对指定数据库执行完整备份
+    requires_confirmation: true
+    steps:
+      - action: check_database_status
+      - action: backup_database
+        params:
+          database: "{{ database_name }}"
+          dest: "{{ backup_path }}"
+          compress: true
+      - action: generate_report
+        params:
+          type: backup_report

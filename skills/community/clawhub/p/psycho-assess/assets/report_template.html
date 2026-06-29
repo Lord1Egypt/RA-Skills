@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心理测评报告</title>
+<style>
+  :root {
+    --green: #22C55E; --yellow: #EAB308; --orange: #F97316;
+    --red: #EF4444; --deep-red: #DC2626; --blue: #3B82F6;
+    --purple: #8B5CF6; --bg: #F8FAFC; --card: #FFFFFF;
+    --text: #1E293B; --text-secondary: #64748B; --border: #E2E8F0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg); color: var(--text); line-height: 1.6; padding: 20px;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+  .header {
+    text-align: center; padding: 40px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px; color: white; margin-bottom: 24px;
+  }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header .subtitle { opacity: 0.85; font-size: 14px; }
+  .header .date { opacity: 0.7; font-size: 12px; margin-top: 8px; }
+
+  .card {
+    background: var(--card); border-radius: 12px; padding: 24px; margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08); border: 1px solid var(--border);
+  }
+  .card h2 { font-size: 18px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+
+  .score-row {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 16px; flex-wrap: wrap;
+  }
+  .score-badge {
+    width: 80px; height: 80px; border-radius: 50%; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; color: white; font-weight: 700; flex-shrink: 0;
+  }
+  .score-badge .num { font-size: 28px; line-height: 1; }
+  .score-badge .unit { font-size: 11px; opacity: 0.85; }
+
+  .progress-bar {
+    flex: 1; min-width: 200px; height: 12px; background: #E2E8F0; border-radius: 6px;
+    overflow: hidden;
+  }
+  .progress-fill { height: 100%; border-radius: 6px; transition: width 0.8s ease; }
+
+  .threshold-labels {
+    display: flex; justify-content: space-between; font-size: 11px; color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  .interpretation-box {
+    background: #F8FAFC; border-left: 4px solid var(--blue); padding: 16px; border-radius: 0 8px 8px 0;
+    font-size: 14px; line-height: 1.7;
+  }
+  .interpretation-box.warning { border-left-color: var(--red); background: #FEF2F2; }
+  .interpretation-box.caution { border-left-color: var(--orange); background: #FFF7ED; }
+  .interpretation-box.info { border-left-color: var(--green); background: #F0FDF4; }
+
+  .q9-warning {
+    background: #FEF2F2; border: 2px solid var(--red); border-radius: 8px; padding: 12px 16px;
+    margin-top: 12px; display: flex; align-items: center; gap: 10px; font-size: 14px; color: #991B1B;
+  }
+  .q9-warning .icon { font-size: 20px; }
+
+  /* Big Five 雷达图区域 */
+  .radar-container { display: flex; justify-content: center; padding: 10px 0; }
+  .dimension-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-top: 16px; }
+  .dim-card {
+    padding: 14px; border-radius: 10px; text-align: center; border: 2px solid var(--border);
+  }
+  .dim-card .dim-name { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+  .dim-card .dim-score { font-size: 28px; font-weight: 800; }
+  .dim-card .dim-desc { font-size: 11px; color: var(--text-secondary); margin-top: 4px; }
+
+  /* Summary */
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+  .summary-item { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 10px; border: 1px solid var(--border); }
+  .summary-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+  .summary-item .label { font-weight: 600; font-size: 14px; }
+  .summary-item .value { font-size: 24px; font-weight: 800; }
+
+  /* Alerts */
+  .alert { padding: 12px 16px; border-radius: 8px; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 10px; font-size: 14px; }
+  .alert.high { background: #FEF2F2; color: #991B1B; border: 1px solid #FECACA; }
+  .alert.medium { background: #FFF7ED; color: #9A3412; border: 1px solid #FED7AA; }
+  .alert.low { background: #FEFCE8; color: #713F12; border: 1px solid #FDE68A; }
+
+  .rec-list { list-style: none; }
+  .rec-list li { padding: 8px 0; border-bottom: 1px solid #F1F5F9; font-size: 14px; display: flex; align-items: flex-start; gap: 8px; }
+  .rec-list li:last-child { border-bottom: none; }
+  .rec-list .num { background: var(--purple); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+
+  .hotlines { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 8px; }
+  .hotline { background: #F1F5F9; border-radius: 8px; padding: 12px; text-align: center; }
+  .hotline .name { font-size: 13px; color: var(--text-secondary); }
+  .hotline .number { font-size: 18px; font-weight: 800; color: var(--red); }
+
+  .disclaimer { font-size: 12px; color: var(--text-secondary); text-align: center; padding: 16px; line-height: 1.8; }
+
+  @media (max-width: 640px) {
+    .score-row { flex-direction: column; align-items: flex-start; }
+    .score-badge { width: 64px; height: 64px; }
+    .score-badge .num { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <!-- Header -->
+  <div class="header">
+    <h1>🧠 心理测评报告</h1>
+    <div class="subtitle">标准心理测评评估 | 基于国际通用量表</div>
+    <div class="date">{{DATE}}</div>
+  </div>
+
+  <!-- Summary Card -->
+  <div class="card">
+    <h2>📊 测评概览</h2>
+    <div class="summary-grid">{{SUMMARY_GRID}}</div>
+  </div>
+
+  <!-- Scale Results -->
+  {{SCALE_RESULTS}}
+
+  <!-- Big Five Radar -->
+  {{BFI_RADAR}}
+
+  <!-- BFI Dimension Cards -->
+  {{BFI_DIMENSIONS}}
+
+  <!-- Warnings -->
+  {{WARNINGS}}
+
+  <!-- Recommendations -->
+  <div class="card">
+    <h2>💡 综合建议</h2>
+    <ul class="rec-list">{{RECOMMENDATIONS}}</ul>
+  </div>
+
+  <!-- Hotlines -->
+  <div class="card">
+    <h2>📞 心理援助热线</h2>
+    <div class="hotlines">{{HOTLINES}}</div>
+  </div>
+
+  <!-- Disclaimer -->
+  <div class="disclaimer">
+    ⚠️ 本测评仅为自我了解工具，不构成医学诊断。<br>
+    测评结果基于标准化心理量表计算，仅供参考。如有严重情绪困扰或自伤念头，请立即寻求专业医疗帮助。<br>
+    量表来源：PHQ-9 (Kroenke et al., 2001) | GAD-7 (Spitzer et al., 2006) | PSS-10 (Cohen et al., 1983) | RSES (Rosenberg, 1965) | BFI-10 (Rammstedt & John, 2007)
+  </div>
+</div>
+</body>
+</html>

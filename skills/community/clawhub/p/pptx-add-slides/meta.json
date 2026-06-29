@@ -1,0 +1,17 @@
+{
+  "author": "local",
+  "description": "在已有 PPT 中新增幻灯片并保持风格一致。核心策略：从原 PPT 提取典型页面的完整 slide XML 作为模板，仅替换文字内容，零手工拼样式。",
+  "detail_describe": "从原PPT提取典型页面的slide XML作为模板\n仅替换文本节点，保留所有样式/背景/版式\n避免手工拼XML导致的字号/颜色/背景丢失\n支持正文页、分隔页等多种页面类型\n通过操作PPTX zip内XML结构确保一致性",
+  "display_description": "从原PPT提取XML模板克隆幻灯片，零手工拼样式",
+  "display_name": "PPTX Add Slides",
+  "icon": "",
+  "name": "pptx-add-slides",
+  "scope": ["main", "file-agent"],
+  "type": "办公学习",
+  "use_cases": [
+    "在PPT里加几页项目背景介绍",
+    "给PPT新增一个章节的分隔页和内容页",
+    "补充几页保持风格一致的幻灯片"
+  ],
+  "version": "1.0.0"
+}

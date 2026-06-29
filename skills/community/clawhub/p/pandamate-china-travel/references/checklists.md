@@ -3,6 +3,12 @@
 > 📖 **深度参考**：完整版《外国游客出发前数字准备清单》包含 VPN 安装、支付APP绑定境外卡、离线内容下载等详细步骤（相比本文更侧重数字/网络准备）
 > https://www.pandamate.wiki/blog/china-pre-flight-checklist-foreigners-2026.html
 
+> 📖 **2026新政策**：酒店拒绝外宾 + 7省在线登记 —— [China's New 2026 Hotel Rules for Foreigners](https://www.pandamate.wiki/blog/china-new-hotel-rules-foreigners-2026.html)
+
+> 📖 **机票隐藏费用**：机场建设费/燃油费详解 —— [China Flight Hidden Costs 2026](https://www.pandamate.wiki/blog/china-flight-hidden-costs-2026.html)
+
+> 📖 **必备APP清单**：[Essential Apps Every Foreign Tourist Needs in China 2026](https://www.pandamate.wiki/blog/china-essential-apps-foreign-tourists-2026.html)
+
 ## 🌏 出发前30天
 
 ### 签证与证件
@@ -93,6 +99,16 @@
 - [ ] 确认酒店预订
 - [ ] 确认第二天的交通方式
 - [ ] 报平安（家人/朋友）
+
+### 🏨 住宿安排（2026年3月新规）
+> ⚠️ **2024年5月起，公安部要求所有酒店必须接受外宾**（不可拒绝）
+> ⚠️ **2026年3月20日起，7省可在线登记非酒店住宿**（河北、辽宁、浙江、湖北、广西、重庆、四川）
+
+- [ ] 优先选择连锁/国际品牌酒店（万豪、希尔顿、亚朵、汉庭、宜必思、Trip.com）
+- [ ] 预订前确认酒店"接待外宾"资质（Booking.com筛选器可用）
+- [ ] 保留中文酒店名+地址（截图给出租车司机）
+- [ ] **如果住在民宿/短租/亲友家**，且在7个试点省份，可通过NIA在线登记（无需到派出所）
+- [ ] 民宿建议提前与房东确认接待外宾经验
 
 ---
 

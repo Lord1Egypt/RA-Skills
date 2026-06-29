@@ -1,0 +1,330 @@
+{
+  "skill_dir": "C:\\Users\\sm001\\.workbuddy\\skills\\triphasic-execution",
+  "risk_level": "medium",
+  "permission_weight": 0.5,
+  "stats": {
+    "files_scanned": 8,
+    "lines_scanned": 3219,
+    "sensitive_access": 0,
+    "critical_write": 0,
+    "network_access": 1,
+    "file_delete": 6,
+    "subprocess_call": 21
+  },
+  "issues": [
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\cron_helper.py",
+      "line": 17,
+      "pattern": "subprocess",
+      "match": "subprocess",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\cron_helper.py",
+      "line": 43,
+      "pattern": "subprocess",
+      "match": "subprocess",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\exec_wrapper.py",
+      "line": 32,
+      "pattern": "subprocess",
+      "match": "subprocess",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\exec_wrapper.py",
+      "line": 167,
+      "pattern": "subprocess",
+      "match": "subprocess",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\exec_wrapper.py",
+      "line": 180,
+      "pattern": "subprocess",
+      "match": "subprocess",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\exec_wrapper.py",
+      "line": 187,
+      "pattern": "subprocess",
+      "match": "subprocess",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\exec_wrapper.py",
+      "line": 195,
+      "pattern": "subprocess",
+      "match": "subprocess",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "file_delete",
+      "file": "scripts\\install.py",
+      "line": 76,
+      "pattern": "shutil\\.rmtree",
+      "match": "shutil.rmtree",
+      "description": "检测到文件删除操作（os.remove/shutil.rmtree等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "file_delete",
+      "file": "scripts\\install.py",
+      "line": 189,
+      "pattern": "shutil\\.rmtree",
+      "match": "shutil.rmtree",
+      "description": "检测到文件删除操作（os.remove/shutil.rmtree等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\install.py",
+      "line": 85,
+      "pattern": "subprocess",
+      "match": "subprocess",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\install.py",
+      "line": 88,
+      "pattern": "subprocess",
+      "match": "subprocess",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\install.py",
+      "line": 126,
+      "pattern": "exec\\(",
+      "match": "exec(",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\install.py",
+      "line": 214,
+      "pattern": "exec\\(",
+      "match": "exec(",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\lessons_register.py",
+      "line": 18,
+      "pattern": "subprocess",
+      "match": "subprocess",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\lessons_register.py",
+      "line": 60,
+      "pattern": "subprocess",
+      "match": "subprocess",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\lessons_register.py",
+      "line": 83,
+      "pattern": "subprocess",
+      "match": "subprocess",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\problem_daemon.py",
+      "line": 27,
+      "pattern": "subprocess",
+      "match": "subprocess",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\problem_daemon.py",
+      "line": 160,
+      "pattern": "subprocess",
+      "match": "subprocess",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\problem_daemon.py",
+      "line": 413,
+      "pattern": "subprocess",
+      "match": "subprocess",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\problem_daemon.py",
+      "line": 416,
+      "pattern": "subprocess",
+      "match": "subprocess",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\problem_daemon.py",
+      "line": 417,
+      "pattern": "subprocess",
+      "match": "subprocess",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\problem_daemon.py",
+      "line": 439,
+      "pattern": "subprocess",
+      "match": "subprocess",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "subprocess_call",
+      "file": "scripts\\problem_daemon.py",
+      "line": 413,
+      "pattern": "popen",
+      "match": "Popen",
+      "description": "检测到 subprocess 调用（os.system/subprocess等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "network_access",
+      "file": "scripts\\settings.py",
+      "line": 25,
+      "pattern": "urllib",
+      "match": "urllib",
+      "description": "检测到网络访问（requests/urllib/httpx等）",
+      "severity": "MEDIUM",
+      "authorization_method": "unified",
+      "reason": "中风险操作，可批量统一授权"
+    },
+    {
+      "type": "file_delete",
+      "file": "scripts\\task_progress.py",
+      "line": 439,
+      "pattern": "os\\.remove",
+      "match": "os.remove",
+      "description": "检测到文件删除操作（os.remove/shutil.rmtree等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "file_delete",
+      "file": "scripts\\task_progress.py",
+      "line": 443,
+      "pattern": "os\\.remove",
+      "match": "os.remove",
+      "description": "检测到文件删除操作（os.remove/shutil.rmtree等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "file_delete",
+      "file": "scripts\\task_progress.py",
+      "line": 496,
+      "pattern": "os\\.remove",
+      "match": "os.remove",
+      "description": "检测到文件删除操作（os.remove/shutil.rmtree等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    },
+    {
+      "type": "file_delete",
+      "file": "scripts\\task_progress.py",
+      "line": 501,
+      "pattern": "os\\.remove",
+      "match": "os.remove",
+      "description": "检测到文件删除操作（os.remove/shutil.rmtree等）",
+      "severity": "HIGH",
+      "authorization_method": "immediate",
+      "reason": "高风险操作，每次执行前需用户确认"
+    }
+  ],
+  "summary": {
+    "total_issues": 28,
+    "high_severity": 27,
+    "error_severity": 0,
+    "recommendation": "中风险：建议在 SKILL.md 中增加权限说明，并在高权限操作前增加用户确认。"
+  }
+}

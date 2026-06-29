@@ -1,0 +1,6 @@
+﻿interface:
+  display_name: "Agent Loop Engineering"
+  short_description: "Control AI coding loops with persistent state, role boundaries, health checks, automation, and stop gates."
+  default_prompt: "Use $agent-loop-engineering to run this coding task through a bounded loop with persistent Docs/ state, WORK_ORDER scope, verification gates, health checks, and safe stop rules."
+policy:
+  allow_implicit_invocation: true

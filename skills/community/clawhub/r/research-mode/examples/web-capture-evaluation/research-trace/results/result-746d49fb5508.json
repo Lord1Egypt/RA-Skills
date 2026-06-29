@@ -1,0 +1,181 @@
+{
+  "summary": "Verified the generated five-file web-capture example package against the goal, constraints, source coverage, and publication-safety requirements. The package is adequate for finalization.",
+  "next_angle": "Finalize the review-ready package by packaging or copying the candidate directory into the requested public repository example path.",
+  "meaningful_progress": true,
+  "code_used": true,
+  "phase": "verify",
+  "open_questions": [],
+  "sources": [
+    {
+      "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+      "title": "RFC 9309: Robots Exclusion Protocol",
+      "note": "Primary source supporting robots.txt as crawler coordination and not content authorization."
+    },
+    {
+      "url": "https://datatracker.ietf.org/doc/html/rfc9110",
+      "title": "RFC 9110: HTTP Semantics",
+      "note": "Primary source supporting safe HTTP methods, redirect handling, and user-agent behavior."
+    },
+    {
+      "url": "https://docs.python.org/3/library/urllib.parse.html",
+      "title": "Python urllib.parse documentation",
+      "note": "Official source supporting defensive URL validation rather than trusting parser success alone."
+    },
+    {
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+      "title": "OWASP Server-Side Request Forgery Prevention Cheat Sheet",
+      "note": "Primary defensive reference for URL-controlled fetch risks, allowlists, parser issues, and network controls."
+    },
+    {
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html",
+      "title": "OWASP LLM Prompt Injection Prevention Cheat Sheet",
+      "note": "Primary defensive reference for treating external content as untrusted model input."
+    },
+    {
+      "url": "https://spec.commonmark.org/0.31.2/",
+      "title": "CommonMark Spec 0.31.2",
+      "note": "Primary source supporting the Markdown safety boundary, including raw HTML constructs."
+    },
+    {
+      "url": "https://github.com/microsoft/markitdown",
+      "title": "Microsoft MarkItDown repository",
+      "note": "Illustrative converter reference only; the generated package remains converter-neutral."
+    }
+  ],
+  "findings": [
+    {
+      "kind": "fact",
+      "text": "The candidate directory contains exactly the requested public example files: README.md, prompt.md, research-plan.md, sources.md, and final-report.md.",
+      "source_urls": []
+    },
+    {
+      "kind": "fact",
+      "text": "Automated verification found no private workspace paths, personal names, messaging identifiers, local-only tool names, Cyrillic text, or secret literals in the generated package.",
+      "source_urls": []
+    },
+    {
+      "kind": "fact",
+      "text": "Automated verification confirmed the package covers the required risk areas, workflow stages, artifact checklist, provider-neutrality, and all seven recorded source references.",
+      "source_urls": []
+    },
+    {
+      "kind": "synthesis",
+      "text": "The accumulated research evidence is sufficient to move from verification to finalization; no additional web search or analysis is needed before packaging the candidate.",
+      "source_urls": [
+        "https://datatracker.ietf.org/doc/html/rfc9309",
+        "https://datatracker.ietf.org/doc/html/rfc9110",
+        "https://docs.python.org/3/library/urllib.parse.html",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+        "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html",
+        "https://spec.commonmark.org/0.31.2/",
+        "https://github.com/microsoft/markitdown"
+      ]
+    }
+  ],
+  "analysis_artifacts": [
+    {
+      "path": "<research-root>/example-web-capture-evaluation-20260616/workspace/analysis/verify_package.py",
+      "kind": "script",
+      "note": "Formal verification helper used to check required files, privacy/public-safety markers, coverage terms, and source coverage."
+    },
+    {
+      "path": "<research-root>/example-web-capture-evaluation-20260616/workspace/analysis/verify-package-report.json",
+      "kind": "artifact",
+      "note": "Machine-readable verification report showing all checks passed."
+    },
+    {
+      "path": "<research-root>/example-web-capture-evaluation-20260616/workspace/analysis/package-scan.json",
+      "kind": "artifact",
+      "note": "Earlier privacy/provider-neutrality scan that reported five Markdown files and zero issues."
+    }
+  ],
+  "packages_used": [],
+  "database_used": false,
+  "database_artifacts": [],
+  "database_summary": null,
+  "vision_used": false,
+  "vision_artifacts": [],
+  "vision_summary": null,
+  "adequacy": {
+    "status": "passed",
+    "goal_alignment": "The accumulated research and generated package answer the goal: they define the risks that matter for safe web-to-Markdown capture, specify a bounded agent workflow, and list the artifacts that make the example reviewable for public repository evaluators.",
+    "coverage_summary": "Covered the requested five-file package, public-safety constraints, English-language user-facing materials, primary/official source preference, provider-neutrality, prompt-injection handling, URL/network safety, robots/politeness, Markdown conversion boundaries, and reviewer artifacts.",
+    "covered_requirements": [
+      {
+        "requirement": "Requested five-file package",
+        "evidence": "Verification found README.md, prompt.md, research-plan.md, sources.md, and final-report.md in the candidate package directory."
+      },
+      {
+        "requirement": "Public-safe content without private workspace paths, chat identifiers, personal context, tokens, or local-only tool names",
+        "evidence": "verify-package-report.json and package-scan.json both report zero privacy/public-safety issues after scanning the package files."
+      },
+      {
+        "requirement": "English public repository materials",
+        "evidence": "The generated files are in English and the verification script found no Cyrillic text."
+      },
+      {
+        "requirement": "Prefer direct official docs and primary sources",
+        "evidence": "sources.md includes RFC 9309, RFC 9110, Python urllib.parse docs, OWASP SSRF, OWASP LLM prompt injection, CommonMark, and an illustrative MarkItDown repository reference."
+      },
+      {
+        "requirement": "Provider-neutral workflow",
+        "evidence": "README.md and final-report.md explicitly describe the example as provider-neutral and converter-neutral; MarkItDown is framed only as illustrative."
+      },
+      {
+        "requirement": "Explain risks, workflow, and useful artifacts",
+        "evidence": "final-report.md contains risk and workflow checklists; research-plan.md contains stage gates; README.md and final-report.md list expected reviewer artifacts."
+      }
+    ],
+    "coverage_gaps": [],
+    "evidence_risks": [
+      {
+        "risk": "The package intentionally omits a live capture transcript to avoid redistribution and unsanitized-capture concerns; this is documented as a limitation rather than a blocker for the requested five-file example.",
+        "severity": "minor"
+      }
+    ],
+    "contradictions": [],
+    "recommended_next_phase": "finalize",
+    "recommended_next_angle": "Run the finalization phase to package the candidate directory as the human-reviewable deliverable.",
+    "blocking_reasons": [],
+    "validation_evidence": [
+      {
+        "check": "goal_alignment",
+        "result": "passed",
+        "reason": "The package directly addresses risks, workflow, and review artifacts for safe web-to-Markdown capture."
+      },
+      {
+        "check": "explicit_constraints",
+        "result": "passed",
+        "reason": "Automated scans found no private paths, personal context, chat identifiers, local-only tool names, or secrets."
+      },
+      {
+        "check": "requested_deliverable",
+        "result": "passed",
+        "reason": "All five requested Markdown files exist in the candidate package directory."
+      },
+      {
+        "check": "source_diversity",
+        "result": "passed",
+        "reason": "The package cites primary standards, official language docs, OWASP security guidance, CommonMark, and a converter reference."
+      },
+      {
+        "check": "evidence_gaps",
+        "result": "passed",
+        "reason": "No blocking evidence gaps remain; the omitted live transcript is intentional and documented."
+      },
+      {
+        "check": "contradictions",
+        "result": "passed",
+        "reason": "No contradictory findings were identified across the accumulated sources or generated package."
+      },
+      {
+        "check": "next_phase_decision",
+        "result": "passed",
+        "reason": "The appropriate next phase is finalization, not more search, analysis, or synthesis."
+      }
+    ]
+  },
+  "notify_recommendation": "silent",
+  "should_complete": false,
+  "final_report_markdown": null
+}

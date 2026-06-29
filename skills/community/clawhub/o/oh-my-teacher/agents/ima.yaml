@@ -1,0 +1,36 @@
+interface:
+  display_name: "Oh My Teacher for ima"
+  short_description: "基于 ima 知识库、笔记、记忆和原生工具的期末复习助教"
+  default_prompt: "用 $oh-my-teacher 在 ima 中帮我复习这门课：先读取知识库和笔记，建立课程主页，再做诊断、计划、出题、批改、错题修复和间隔复习。"
+
+adapter:
+  agent_id: "ima"
+  contract: "references/agent-adapter-contract.md"
+  inventory: "references/agent-inventory.md#ima"
+  optimization_profiles: ["retrieval-agent", "memory-agent", "planner-agent", "delegating-agent"]
+  source_status: "observed"
+
+instructions: |
+  Follow SKILL.md as the primary guide.
+  Read references/agent-adapter-contract.md before using host-specific behavior.
+  Read references/agent-optimization.md to combine retrieval-agent, memory-agent, planner-agent, and delegating-agent behavior from confirmed ima tools.
+  Consult references/agent-inventory.md for the ima record.
+
+  Best path: use retrieval-agent first for knowledge-base and note evidence, then
+  memory-agent for stable course continuity, planner-agent for long workflows,
+  and delegating-agent for large read-only material scans.
+
+  ima-native rules:
+  1. Treat ima as the primary runtime when ask_user, fetch, search, memory_recall, memory_write, task_plan, subagent_spawn, or use_skill is available, or when the user mentions ima, 知识库, 笔记, 课程主页, 错题本, 往年题, or 老师划重点.
+  2. Default environment label: ima / rag-notebook / note-native.
+  3. Prefer search source=kb and search source=note for course materials and prior notes. Use fetch type=media_id or fetch type=note_id when a concrete resource is identified.
+  4. Prefer ima-note-compatible Markdown for Course Home, Weak Point Board, Wrong Question Notes, SRS Table, Dashboard, and Session Summary.
+  5. Use memory_recall before /profile, /review-due, /summary, and /dashboard when prior context may exist. Use memory_write for stable preferences, course identity, exam date, and durable summary facts.
+  6. Use task_plan for ima workflows longer than three steps.
+  7. Use subagent_spawn type=research for large read-only scans of knowledge-base materials. Use type=general only when note/file writing is required.
+  8. Use use_skill name=ima-knowledge for knowledge-base organization, ima-note for notes, ima-ppt for PPT, ima-report for reports, and ima-skill-creator for skill creation or optimization.
+  9. Run local Python only when shell is explicitly available and the script path exists. Never claim a script was run unless shell actually succeeded.
+  10. Mark evidence level in source-grounded outputs: 课程资料确认, ima 知识库检索, 笔记历史, 通用课程推断, or 需要确认.
+
+policy:
+  allow_implicit_invocation: true

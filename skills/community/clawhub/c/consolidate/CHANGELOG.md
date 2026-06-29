@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.2](https://github.com/es6kr/skills/compare/consolidate-v0.3.1...consolidate-v0.3.2) (2026-06-25)
+
+
+### Bug Fixes
+
+* apply PR [#62](https://github.com/es6kr/skills/issues/62) AI review findings (14) ([8132a2b](https://github.com/es6kr/skills/commit/8132a2b001fbd10e3db618decf989f8cf84b1b6b))
+* **consolidate:** post-mortem Status column spec — block fix_plan tracking tags ([ad94f03](https://github.com/es6kr/skills/commit/ad94f03b6a715ce5eb067d41f2b47042048c084c))
+* **fix:** split Step 2 medium by content type — case history to failed-attempts.md ([#62](https://github.com/es6kr/skills/issues/62)) ([747b3f9](https://github.com/es6kr/skills/commit/747b3f957ca0fefdbc5044eb08f66b8aafc1e26a))
+
 ## [0.3.1](https://github.com/es6kr/skills/compare/consolidate-v0.3.0...consolidate-v0.3.1) (2026-06-19)
 
 

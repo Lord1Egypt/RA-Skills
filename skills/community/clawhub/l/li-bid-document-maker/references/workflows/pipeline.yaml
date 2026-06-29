@@ -1,0 +1,316 @@
+# =============================================================================
+# 标书制作工作流定义 (Bid Document Maker Pipeline)
+# 版本: 1.0.0
+# 描述: 将招标文件转化为应标书的完整流水线，适用于所有AI Agent平台
+# =============================================================================
+
+pipeline:
+  name: bid-document-maker
+  version: 1.0.0
+  description: 从招标文件解析到应标书输出的全流程
+
+  # ---------- 全局配置 ----------
+  config:
+    max_chapter_length: 15000        # 单章最大字数
+    default_font: 宋体
+    default_font_size: 12pt          # 小四
+    heading1_font_size: 22pt         # 二号
+    heading2_font_size: 16pt         # 三号
+    heading3_font_size: 14pt         # 小三
+    line_spacing: 1.5
+    page_margins: "上下2.54cm，左右3.17cm"
+
+  # ---------- 阶段定义 ----------
+  stages:
+
+    # ============ 阶段1: 解析招标文件 ============
+    - id: parse-tender
+      name: 解析招标文件
+      description: 读取并结构化解析招标文件中的关键信息
+      order: 1
+
+      inputs:
+        - tender_file_path        # 用户提供的招标文件路径
+
+      outputs:
+        - parsed_tender_info      # 结构化招标信息 (JSON)
+        - tender_raw_text         # 招标文件原文（供后续引用）
+
+      prompt: ../prompts/01-parse-tender.md
+
+      extraction_fields:
+        # ----- 基本信息 -----
+        - project_name            # 项目名称
+        - project_number          # 项目编号
+        - purchaser               # 采购人/招标人
+        - budget                  # 采购预算
+        - bid_deadline            # 投标截止时间
+        - bid_open_time           # 开标时间
+        - bid_location            # 开标地点
+
+        # ----- 资质要求 -----
+        - qualification_requirements  # 资质要求列表
+          fields:
+            - requirement            # 要求描述
+            - is_hard_requirement    # 是否硬性门槛
+            - evidence_required      # 需提供的证明材料
+
+        # ----- 技术指标 -----
+        - technical_parameters     # 技术参数清单
+          fields:
+            - parameter_name       # 参数名称
+            - required_value       # 要求值
+            - response_type        # 响应类型 (文字/数值/选择)
+            - scoring              # 是否计分
+
+        # ----- 评分标准 -----
+        - scoring_criteria         # 评分标准
+          fields:
+            - dimension            # 评分维度
+            - max_score            # 满分
+            - scoring_rules        # 评分细则
+            - weight_percent       # 权重百分比
+
+        # ----- 交付要求 -----
+        - delivery_requirements:
+            - delivery_deadline     # 交付期限
+            - delivery_location     # 交付地点
+            - acceptance_criteria   # 验收标准
+
+        # ----- 文档格式要求 -----
+        - format_requirements:
+            - page_count_limit      # 页数限制
+            - copies_required       # 份数要求
+            - binding_requirements  # 装订要求
+            - signature_requirements # 签字盖章要求
+
+      post_processing:
+        - validate_all_fields_identified  # 验证关键字段是否识别完整
+        - flag_ambiguous_items            # 标记模糊/缺失信息
+        - suggest_clarification_questions  # 生成需要向用户确认的问题
+
+    # ============ 阶段2: 策略分析与定位 ============
+    - id: strategy-analysis
+      name: 策略分析与定位
+      description: 基于评分权重和自身优势制定投标策略
+      order: 2
+
+      depends_on:
+        - parse-tender
+
+      inputs:
+        - parsed_tender_info
+
+      outputs:
+        - strategy_report        # 策略分析报告
+
+      prompt: ../prompts/02-strategy-and-outline.md
+
+      analysis_dimensions:
+        - score_weight_analysis          # 评分权重分析
+          description: 识别高分值区域，确定重点投入章节
+        - competitive_advantage_analysis # 竞争优势分析
+          description: 分析自身优势与差异化亮点
+        - risk_assessment                # 风险评估
+          description: 识别资格风险、技术风险、价格风险
+        - resource_gap_analysis          # 资源差距分析
+          description: 识别需要补充的材料或技术
+
+      output_format: markdown_sections
+
+    # ============ 阶段3: 大纲生成 ============
+    - id: outline-generation
+      name: 生成评分导向大纲
+      description: 生成完整的应标书大纲，标注评分项和分值
+      order: 3
+
+      depends_on:
+        - strategy-analysis
+
+      inputs:
+        - parsed_tender_info
+        - strategy_report
+
+      outputs:
+        - bid_outline            # 应标书大纲 (Markdown层级结构)
+
+      prompt: ../prompts/02-strategy-and-outline.md
+
+      outline_rules:
+        - 每个章节标注对应评分项和分值
+        - 必须覆盖招标文件"技术要求"章节全部条目
+        - 每个章节标注预估字数，按分值比例分配
+        - 使用Markdown层级结构
+
+      verification:
+        - check_all_scoring_items_covered  # 检查所有评分项是否覆盖
+        - check_all_technical_requirements_covered  # 检查所有技术要求是否覆盖
+        - check_page_budget_alignment      # 检查篇幅分配是否与分值匹配
+
+      user_interaction:
+        - present_outline_for_confirmation  # 向用户展示大纲确认
+        - accept_outline_modifications      # 接收用户修改意见
+
+    # ============ 阶段4: 分章写作 ============
+    - id: chapter-writing
+      name: 分章写作
+      description: 按大纲逐章编写标书内容，支持并行执行
+      order: 4
+
+      depends_on:
+        - outline-generation
+
+      inputs:
+        - bid_outline
+        - parsed_tender_info
+        - tender_raw_text
+
+      outputs:
+        - written_chapters       # 已完成的各章节
+
+      prompt: ../prompts/03-write-section.md
+
+      writing_rules:
+        - 每章独立编写，保持风格一致
+        - 引用招标文件原文时标注引用来源
+        - 技术方案须有具体数据支撑
+        - 避免空泛表述（如"我们将提供优质服务"→"我们提供7×24小时响应，2小时内到达现场"）
+        - 每个论点配合证据（证书、案例、数据）
+
+      parallel_execution:
+        enabled: true
+        strategy: by_chapter
+        max_concurrent: 5
+
+      chapter_template: ../templates/chapter-templates.md
+
+    # ============ 阶段5: 质检与整合 ============
+    - id: quality-check-and-assembly
+      name: 质检整合与输出
+      description: 全面质量检查，整合所有章节为最终文档
+      order: 5
+
+      depends_on:
+        - chapter-writing
+
+      inputs:
+        - written_chapters
+        - bid_outline
+        - parsed_tender_info
+
+      outputs:
+        - final_bid_document     # 最终应标书文档
+
+      prompt: ../prompts/04-quality-check.md
+
+      quality_checks:
+        # ----- 覆盖度检查 -----
+        - id: coverage-check
+          name: 评分项覆盖检查
+          check: 确认每项评分维度都有对应章节
+          severity: error
+        - id: tech-requirements-check
+          name: 技术要求逐条响应检查
+          check: 招标文件每条技术要求都有对应响应
+          severity: error
+
+        # ----- 合规性检查 -----
+        - id: format-check
+          name: 格式合规检查
+          check: 字体、字号、边距、行距是否符合要求
+          severity: warning
+        - id: legal-check
+          name: 法律合规检查
+          check: 投标函、法人证明等法律文件格式是否正确
+          severity: error
+        - id: signature-check
+          name: 签字盖章位检查
+          check: 所有需签字盖章处是否已标注
+          severity: error
+
+        # ----- 内容质量检查 -----
+        - id: specificity-check
+          name: 具体性检查
+          check: 是否有空泛表述需替换
+          severity: warning
+        - id: consistency-check
+          name: 风格一致性检查
+          check: 各章节术语、风格是否统一
+          severity: warning
+        - id: scoring-alignment
+          name: 评分导向一致性
+          check: 各章节内容是否紧扣评分标准
+          severity: error
+
+      output_config:
+        format: docx
+        template: ../templates/bid-structure.json
+        include_toc: true
+        include_page_numbers: true
+
+      post_processing:
+        - generate_quality_report    # 生成质检报告
+        - flag_issues_for_review     # 标记待用户确认的问题
+        - suggest_improvements       # 给出优化建议
+
+    # ============ 阶段6: PDCA自动改进 ============
+    - id: pdca-improvement
+      name: PDCA自动改进
+      description: 执行最多3轮PDCA循环，逐级修复错误→警告→建议，确保质量后再交付用户
+      order: 6
+
+      depends_on:
+        - quality-check-and-assembly
+
+      inputs:
+        - written_chapters
+        - quality_report            # 阶段5的质检报告
+        - parsed_tender_info
+        - bid_outline
+
+      outputs:
+        - final_bid_document        # 经过PDCA改进的最终文档
+        - pdca_improvement_report   # PDCA改进报告
+
+      prompt: ../prompts/05-pdca-improvement.md
+
+      pdca_config:
+        max_rounds: 3
+        round_1_target: error       # 第1轮修复所有错误级问题
+        round_2_target: warning     # 第2轮修复所有警告级问题
+        round_3_target: suggestion  # 第3轮修复建议项+一致性打磨
+        force_output_on_round_3: true   # 第3轮完成后强制输出
+
+      round_1:
+        name: 修复错误级问题
+        target_severity: error
+        max_retries: 2
+        exit_condition: "errors == 0"
+
+      round_2:
+        name: 修复警告级问题
+        target_severity: warning
+        max_retries: 1
+        exit_condition: "warnings <= 3"
+
+      round_3:
+        name: 全文一致性打磨
+        target_severity: suggestion
+        max_retries: 0
+        exit_condition: "强制完成"
+
+      consistency_checks:
+        - 全文统一使用"我公司"（无"我方""我们"混用）
+        - 章节编号连续无跳跃
+        - 目录与正文标题完全一致
+        - 专业术语全文统一
+        - 表格格式统一（三线表）
+        - 图表编号连续（图X.X / 表X.X）
+
+      output:
+        format: final_document
+        include_report: true
+        report_fields:
+          - rounds_summary          # 每轮修复摘要
+          - unfixed_issues          # 未修复问题清单
+          - final_quality_status    # 最终质量状态

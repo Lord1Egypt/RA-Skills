@@ -1,0 +1,18 @@
+# PrintAssist — Printer Configuration
+#
+# Copy this file to config/printers.yaml and fill in your printer names.
+# Run "wmic printer get name" (Windows) to list available printers.
+#
+# setup.ps1 generates this file automatically on first run.
+
+default:
+  printer_name: "Your Default Printer Name"
+
+# Optional: per-hostname overrides (useful for multi-device setups).
+# The hostname is what `socket.gethostname()` returns in Python,
+# or $env:COMPUTERNAME in PowerShell.
+hosts:
+  YOUR-HOSTNAME:
+    printer_name: "Printer Name on This Device"
+  YOUR-OTHER-HOSTNAME:
+    printer_name: "Printer Name on Other Device"

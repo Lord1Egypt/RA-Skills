@@ -1,7 +1,7 @@
 ---
 name: webdav-backup
-version: 1.2.2
-description: WebDAV 备份工具 - 将 OpenClaw 工作目录备份到 WebDAV 服务器或本地目录（默认 `~/openclaw/output`）。当用户需要备份数据、同步文件到云端、做本地归档、或配置自动备份计划时使用此技能。
+version: 1.3.0
+description: WebDAV 备份工具 - 本地+云端双备份，自动保留最近7个本地备份和20个远端备份
 metadata:
   openclaw:
     requires:
@@ -10,7 +10,7 @@ metadata:
 
 # WebDAV / 本地 备份工具
 
-将 OpenClaw 工作目录与基础配置一起备份到 WebDAV 服务器，或直接备份到本地目录。
+将 OpenClaw 工作目录与基础配置一起备份到 WebDAV 服务器，或直接备份到本地目录。每次备份完成后自动清理过期备份。
 
 ## 支持的 WebDAV 服务
 
@@ -50,10 +50,9 @@ metadata:
 ### 方式二：环境变量
 
 ```bash
-# 仅在当前 shell 会话中临时设置
 export WEBDAV_URL="https://dav.jianguoyun.com/dav/"
 export WEBDAV_USERNAME="your-email@example.com"
-export WEBDAV_PASSWORD="your-password"
+export WEBDAV_PASSWORD="***"
 ```
 
 > **更安全的建议**：优先把配置写进 `~/.openclaw/openclaw.json`，并确保该文件权限受控；不建议把密码长期明文写入 `~/.bashrc` / `~/.zshrc`。
@@ -66,7 +65,6 @@ export WEBDAV_PASSWORD="your-password"
 
 ```bash
 # 只做本地备份（默认保存到 ~/openclaw/output）
-# 默认会备份：workspace + openclaw.json + cron + workspace/config
 python3 ~/.openclaw/workspace/skills/webdav-backup/scripts/backup.py --local-only
 
 # 备份默认清单到本地 + WebDAV
@@ -85,16 +83,18 @@ python3 ~/.openclaw/workspace/skills/webdav-backup/scripts/backup.py --local-onl
 python3 ~/.openclaw/workspace/skills/webdav-backup/scripts/backup.py --remote-only
 ```
 
-### 自动备份
+### 自动备份（推荐：OpenClaw 定时任务）
 
-使用 cron 设置定时备份：
+通过 OpenClaw cron 设置定时备份，**必须使用 `agentTurn` 隔离会话模式**（不要用 `systemEvent` + shell 文本，那会让备份指令只作为消息文本丢弃而不会实际执行）：
 
-```bash
-# 每天凌晨2点做本地备份
-cron add --schedule "0 2 * * *" --command "python3 ~/.openclaw/workspace/skills/webdav-backup/scripts/backup.py --local-only"
-
-# 每天凌晨3点做本地 + WebDAV 双备份
-cron add --schedule "0 3 * * *" --command "python3 ~/.openclaw/workspace/skills/webdav-backup/scripts/backup.py"
+```json
+{
+  "sessionTarget": "isolated",
+  "payload": {
+    "kind": "agentTurn",
+    "message": "执行定时备份策略：如果是周一（今天），运行完整备份（本地+WebDAV远端）：python3 .../scripts/backup.py；否则（周二~周日）运行仅本地备份：python3 .../scripts/backup.py --local-only。完成后报告结果。"
+  }
+}
 ```
 
 ### 查看备份列表
@@ -134,6 +134,17 @@ python3 ~/.openclaw/workspace/skills/webdav-backup/scripts/backup.py --restore l
 - **不确定备份包是否完整时**：先读取 manifest，再决定恢复范围；不要先覆盖再检查。
 
 原则很简单：**先解出来、先核对，再决定怎么落位。**
+
+## 自动备份清理策略（v1.3.0 新增）
+
+每次备份完成后自动执行：
+
+| 位置 | 保留数量 | 策略 |
+|------|---------|------|
+| 📁 本地（`~/openclaw/output`） | **最近 7 个** | 按文件修改时间排序，删超出的旧包 |
+| ☁️ WebDAV 远端 | **最近 20 个** 且 **保留 60 天内** | 取覆盖更多的条件，删除不符合的旧包 |
+
+清理在备份文件创建成功后自动执行，全程无需人工干预。
 
 ## 默认备份内容
 

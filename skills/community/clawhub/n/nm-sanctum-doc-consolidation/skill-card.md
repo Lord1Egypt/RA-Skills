@@ -11,32 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and documentation maintainers use this skill to identify valuable content in temporary Markdown reports, route it into permanent documentation, and clean up source artifacts after review. <br>
+Developers and engineers use this skill to identify valuable content in temporary reports or analysis files, plan where it should live, and merge it into permanent project documentation after review. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can rewrite documentation and delete source report files during consolidation. <br>
-Mitigation: Run it only in a version-controlled workspace with a clean git status, review the consolidation plan before execution, and keep source artifacts until the merged documentation is manually verified. <br>
-Risk: The generated routing or merge plan may place content in the wrong destination or preserve low-value material. <br>
-Mitigation: Review the proposed destinations, merge strategies, and skipped content before approving changes. <br>
+Risk: The skill can reorganize repository documentation and may modify or delete documents during normal use. <br>
+Mitigation: Require a dry run, inspect the exact destination files, keep originals in version control or an archive, and approve deletion separately from merge or update steps. <br>
+Risk: Recovery may be incomplete if source report files are deleted after consolidation. <br>
+Mitigation: Keep source files in version control or an archive until the consolidated documentation has been reviewed and accepted. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/athola/nm-sanctum-doc-consolidation) <br>
-- [ClawHub Publisher Profile](https://clawhub.ai/user/athola) <br>
-- [Source Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-sanctum-doc-consolidation) <br>
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, files, shell commands, guidance] <br>
-**Output Format:** [Markdown plans, Markdown documentation files, and concise execution summaries] <br>
+**Output Type(s):** [Text, Markdown, Files, Shell commands, Guidance] <br>
+**Output Format:** [Markdown plans and summaries with proposed or applied documentation file changes.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update documentation files and delete consolidated source artifacts after approval.] <br>
+**Other Properties Related to Output:** [May create or update documentation files and may delete source report files after approval.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata; artifact frontmatter says 1.9.8) <br>
+1.9.13 (source: ClawHub release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Netbox Sync Ops"
+  short_description: "Operate NetBox inventory syncs for Proxmox, UniFi, iDRAC, reaper safety, scheduling, and idempotent troubleshooting."

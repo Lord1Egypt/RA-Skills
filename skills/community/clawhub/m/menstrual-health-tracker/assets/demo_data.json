@@ -1,0 +1,130 @@
+{
+  "user_profile": {
+    "life_stage": "menstruating",
+    "age": 28,
+    "typical_cycle_length": 28,
+    "typical_period_length": 5,
+    "conditions": [],
+    "medications": [],
+    "created_at": "2025-11-01"
+  },
+  "cycles": [
+    {
+      "id": "a1b2c3",
+      "start_date": "2025-11-04",
+      "end_date": "2025-11-08",
+      "flow_level": "medium",
+      "symptoms": {
+        "cramps":    {"present": true,  "severity": 3},
+        "bloating":  {"present": true,  "severity": 2},
+        "fatigue":   {"present": true,  "severity": 2},
+        "headache":  {"present": false, "severity": 0},
+        "low_mood":  {"present": true,  "severity": 2}
+      },
+      "mood_score": 5,
+      "bbt": 36.4,
+      "notes": "腹部隐隐作痛，热水袋敷了好多了",
+      "events": [],
+      "exercise": "light"
+    },
+    {
+      "id": "d4e5f6",
+      "start_date": "2025-12-02",
+      "end_date": "2025-12-06",
+      "flow_level": "medium",
+      "symptoms": {
+        "cramps":       {"present": true,  "severity": 2},
+        "bloating":     {"present": true,  "severity": 3},
+        "irritability": {"present": true,  "severity": 3},
+        "fatigue":      {"present": true,  "severity": 3},
+        "headache":     {"present": true,  "severity": 2}
+      },
+      "mood_score": 4,
+      "bbt": 36.3,
+      "notes": "压力很大，易怒，情绪不太稳定",
+      "events": ["stress"],
+      "exercise": "none"
+    },
+    {
+      "id": "g7h8i9",
+      "start_date": "2025-12-31",
+      "end_date": "2026-01-04",
+      "flow_level": "light",
+      "symptoms": {
+        "cramps":    {"present": true,  "severity": 2},
+        "bloating":  {"present": false, "severity": 0},
+        "fatigue":   {"present": true,  "severity": 2},
+        "headache":  {"present": false, "severity": 0},
+        "low_mood":  {"present": false, "severity": 0}
+      },
+      "mood_score": 7,
+      "bbt": 36.5,
+      "notes": "跨年经期，喝了姜茶舒服很多",
+      "events": ["travel"],
+      "exercise": "light"
+    },
+    {
+      "id": "j0k1l2",
+      "start_date": "2026-01-29",
+      "end_date": "2026-02-02",
+      "flow_level": "medium",
+      "symptoms": {
+        "cramps":          {"present": true,  "severity": 2},
+        "breast_tenderness":{"present": true,  "severity": 3},
+        "irritability":    {"present": true,  "severity": 2},
+        "fatigue":         {"present": true,  "severity": 2},
+        "acne":            {"present": true,  "severity": 2}
+      },
+      "mood_score": 5,
+      "bbt": 36.4,
+      "notes": "乳房胀痛明显，下周要减咖啡因试试",
+      "events": [],
+      "exercise": "moderate"
+    },
+    {
+      "id": "m3n4o5",
+      "start_date": "2026-02-27",
+      "end_date": "2026-03-03",
+      "flow_level": "medium",
+      "symptoms": {
+        "cramps":    {"present": true,  "severity": 1},
+        "bloating":  {"present": true,  "severity": 2},
+        "fatigue":   {"present": true,  "severity": 1},
+        "low_mood":  {"present": false, "severity": 0},
+        "acne":      {"present": true,  "severity": 1}
+      },
+      "mood_score": 7,
+      "bbt": 36.5,
+      "notes": "这次比以往轻松，坚持瑜伽的效果？",
+      "events": [],
+      "exercise": "moderate"
+    },
+    {
+      "id": "p6q7r8",
+      "start_date": "2026-03-29",
+      "end_date": "2026-04-02",
+      "flow_level": "medium",
+      "symptoms": {
+        "cramps":       {"present": true,  "severity": 2},
+        "bloating":     {"present": true,  "severity": 2},
+        "irritability": {"present": false, "severity": 0},
+        "fatigue":      {"present": true,  "severity": 2},
+        "insomnia":     {"present": true,  "severity": 2}
+      },
+      "mood_score": 6,
+      "bbt": 36.4,
+      "notes": "有点失眠，睡前少玩手机可能有帮助",
+      "events": [],
+      "exercise": "moderate"
+    }
+  ],
+  "daily_logs": [],
+  "events": [
+    {
+      "date": "2025-12-10",
+      "type": "stress",
+      "description": "年终考核压力大",
+      "severity": 4
+    }
+  ]
+}

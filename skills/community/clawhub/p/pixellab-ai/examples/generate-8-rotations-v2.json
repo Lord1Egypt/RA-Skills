@@ -1,0 +1,20 @@
+{
+  "method": "rotate_character",
+  "image_size": {
+    "width": 64,
+    "height": 64
+  },
+  "reference_image": {
+    "image": {
+      "type": "base64",
+      "format": "png",
+      "base64": "REPLACE_WITH_BASE64_REFERENCE_IMAGE"
+    },
+    "width": 64,
+    "height": 64
+  },
+  "description": "same adventurer in all directions, consistent outfit, stable proportions, transparent background",
+  "view": "low top-down",
+  "no_background": true,
+  "seed": 0
+}

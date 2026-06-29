@@ -1,0 +1,60 @@
+# Data Governance 配置文件
+# 自动生成于首次运行，可手动修改
+
+hive:
+  host: localhost          # HiveServer2 地址
+  port: 10000              # 默认端口
+  username: hive           # 用户名（无认证时任意填写）
+  database: default        # 默认扫描的数据库（all = 全部）
+  auth: NONE               # NONE | KERBEROS | LDAP
+
+models:
+  level1:
+    type: openai_compatible   # 兼容 OpenAI API 格式的内部模型
+    base_url: http://localhost:8000/v1
+    model: qwen2.5-7b
+    api_key: dummy            # 内部模型无需真实 key
+    concurrency: 20           # 并发推断数，根据模型性能调整
+    temperature: 0.1          # 低温，输出稳定
+
+  level2:
+    type: openai_compatible
+    base_url: https://api.deepseek.com/v1
+    model: deepseek-chat
+    api_key: ${DEEPSEEK_API_KEY}   # 从环境变量读取
+    concurrency: 5
+    temperature: 0.1
+
+  embedding:
+    type: sentence_transformers
+    model: paraphrase-multilingual-MiniLM-L12-v2   # 本地运行，无需 API
+    # 或使用 API：
+    # type: openai_compatible
+    # base_url: http://localhost:8001/v1
+    # model: bge-m3
+
+thresholds:
+  auto_approve: 85        # >= 85% 自动写回 Hive COMMENT
+  level2_review: 70       # 70-84% 先 Self-Consistency，不过才升级 Level2
+  self_consistency_n: 5   # Self-Consistency 采样次数
+  self_consistency_min_agreement: 0.6   # 5次中至少3次一致才通过
+
+storage:
+  db_path: ./metadata_store.db   # SQLite 持久化路径
+
+dspy:
+  enabled: true
+  min_trainset_size: 100         # 最少训练样本数才启动优化
+  recompile_every_n_gold: 5000   # 每积累N条黄金样本重新编译
+  optimizer_trials: 50           # MIPROv2 候选 prompt 数量
+  optimized_model_path: ./optimized_annotator.json
+
+evolution:
+  rule_evolve_every_n_corrections: 200   # 积累N条修正案例触发规则提炼
+  domain_specialize_threshold: 100       # 每个域积累N条样本触发特化
+  cron_enabled: false                    # 是否开启每日自动进化（需手动改为 true）
+  cron_schedule: "0 2 * * *"            # 每天凌晨 2 点
+
+writeback:
+  hive_comment: true       # 写回 Hive COMMENT 字段
+  sqlite: true             # 持久化到本地 SQLite

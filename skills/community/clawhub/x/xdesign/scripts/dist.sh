@@ -33,6 +33,8 @@ rsync -a \
   --exclude='__pycache__' \
   --exclude='.DS_Store' \
   --exclude='*.pyc' \
+  --exclude='*.zip' \
+  --exclude='*.tar.gz' \
   "$SKILL_ROOT/" "$STAGING/$SKILL_NAME/"
 
 echo "[INFO] Invoking package_skill.py"

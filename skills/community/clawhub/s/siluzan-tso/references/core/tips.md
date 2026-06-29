@@ -287,7 +287,7 @@ console.log('可用字段：', first && Object.keys(first));
 ## 通用分页与查询建议
 
 - 绝大多数列表类命令默认每页 20 条记录，数据量较大时须显式指定 `--page-size`。
-- **`list-accounts` 列全部 / 数个数**：优先 **`--page-size 999` 一次拉取** + `--json-out` + 脚本读盘（见 `accounts/accounts.md` § Agent 意图速查）；**不要**先试默认 20 再翻页。
+- **`list-accounts` 列全部 / 数个数**：优先 **`--page-size 999` 一次拉取** + `--json-out` + 脚本读盘（见 `references/accounts/accounts.md` § Agent 意图速查）；**不要**先试默认 20 再翻页。
 - 其他列表命令（报告列表、发票列表等）在单页拉不满时，再用 `--page-size`（如 `100`）与 `--page` 组合翻页；读盘确认 `total > itemCount` 后再补下一页。
 
 ---

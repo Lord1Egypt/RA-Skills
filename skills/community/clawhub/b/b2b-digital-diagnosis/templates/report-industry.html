@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>B2B企业数字化诊断报告 - {{COMPANY_NAME}}</title>
+<link rel="stylesheet" href="report-style.css">
+<style>
+  .tag-industry { background: #e8f5e9; color: #1b5e20; display:inline-block;padding:3px 10px;border-radius:3px;font-weight:700; }
+  .highlight-box { background: #e8f5e9; border:1px solid #a5d6a7; padding:14px 18px; border-radius:4px; margin:12px 0; }
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="brand">雄韬XTOCN</div>
+  <div class="subtitle">B2B企业数字化诊断报告</div>
+  <div class="divider"></div>
+  <div class="company-name">{{COMPANY_NAME}}</div>
+  <div class="meta">{{DATE}}</div>
+  <div class="focus-type">行业型专注</div>
+</div>
+
+<div class="page-break"></div>
+<div class="page-title">一、诊断结论</div>
+
+<div class="result-box">
+  <div class="type-label">🏥 行业型专注</div>
+  <div class="score-detail">
+    3道题得分：能力 {{ABILITY_SCORE}}分 | 行业 {{INDUSTRY_SCORE}}分 | 问题 {{PROBLEM_SCORE}}分<br>
+    选择路径：{{ANSWER_PATH}}<br>
+    {{#TIEBREAKER}}决胜题：{{TIEBREAKER_ANSWER}} → {{TIEBREAKER_RESULT}}{{/TIEBREAKER}}
+  </div>
+</div>
+
+<div class="section">
+  <h2>原点能力定义</h2>
+  <div class="origin-ability">
+    {{ORIGIN_ABILITY}}
+  </div>
+  <p>你不是在做设备/产品，你是在<strong>成为一个行业的基础设施</strong>。客户要做这个行业的生意，就绕不过你——就像高速公路上的收费站，开上去了就得经过。</p>
+</div>
+
+<div class="section">
+  <h2>你的护城河在哪</h2>
+  <p>行业型企业的护城河不是某个技术参数，而是<strong>对行业运行规则的深度掌控</strong>：</p>
+  <ul>
+    <li><strong>合规护城河：</strong>你是否比客户更懂他们要面对的标准和审计？客户依赖你的程度，就是你的护城河深度。</li>
+    <li><strong>关系护城河：</strong>你在行业生态中的位置——上游供应商、下游客户、监管机构、行业协会——这些关系网络就是壁垒。</li>
+    <li><strong>知识护城河：</strong>行业know-how的积累——法规变化、工艺演进、最佳实践——这些东西不在教科书里。</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>转轴方向</h2>
+  <p>行业型企业的扩张不是跨行业，而是<strong>沿着行业价值链上下游延伸</strong>——从设备到耗材，从产品到服务，从制造到咨询。客户还是那群客户，但你卖的东西越来越多。</p>
+</div>
+
+<div class="warning-box">
+  <strong>资源陷阱警示：</strong>行业型企业最大的诱惑是"隔壁行业看着也很像"——制药包装的设备看起来跟食品包装差不多，但合规逻辑完全不同。跨行业不是不可以，但必须当作一次"重新创业"来做。
+</div>
+
+<div class="page-break"></div>
+<div class="page-title">二、战略定位分析</div>
+
+<div class="section">
+  <h2>行业型企业特征</h2>
+  <table>
+    <tr><th>维度</th><th>你的情况</th></tr>
+    <tr><td>核心竞争力</td><td>对{{INDUSTRY_NAME}}行业运行规则的深度掌控</td></tr>
+    <tr><td>进入门槛</td><td>{{ENTRY_BARRIER}}</td></tr>
+    <tr><td>客户决策关键</td><td>供应商是否理解行业合规要求和业务场景</td></tr>
+    <tr><td>定价权来源</td><td>合规风险 > 采购成本，客户不敢在关键环节省钱</td></tr>
+    <tr><td>最大风险</td><td>行业政策变化、技术路线切换、大客户流失</td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>同类型企业参照</h2>
+  <p>你的模式与<strong>德国乌尔曼</strong>相似——它们有能力进入食品、日化、电子包装领域，但选择了只做制药。因为制药行业的核心竞争力不是包装设计，而是对GMP标准、FDA审计、药品安全逻辑的理解。技术层面食品包装设备也能做，但合规know-how别人追不上。</p>
+  {{#COMPARISON_CASE}}
+  <p>另可参考：{{COMPARISON_CASE}}</p>
+  {{/COMPARISON_CASE}}
+</div>
+
+<div class="section">
+  <h2>数字化核心原则</h2>
+  <div class="highlight-box">
+    <strong>一句话：</strong>行业型企业的数字化，本质是<strong>让隐性的行业知识变得可见</strong>。你的官网不是产品目录，是"行业合规中心"。你的短视频不是广告，是"行业避坑指南"。
+  </div>
+</div>
+
+<div class="page-break"></div>
+<div class="page-title">三、数字化组合建议</div>
+
+<div class="section">
+  <h2>推荐工具组合</h2>
+  <table>
+    <tr><th>渠道</th><th>定位</th><th>核心内容</th><th>优先级</th></tr>
+    <tr><td>🖥️ 官网</td><td>行业信任锚点</td><td>行业资质/GMP/FDA等认证矩阵、法规解读库、客户合规案例</td><td>⭐⭐⭐⭐⭐ 必做</td></tr>
+    <tr><td>🎬 短视频</td><td>行业洞察</td><td>法规解读、选型避坑、审计准备指南</td><td>⭐⭐⭐⭐ 强烈建议</td></tr>
+    <tr><td>📱 小程序</td><td>行业工具箱</td><td>法规标准查询、设备说明书/备件查询、售后报修</td><td>⭐⭐⭐ 按需</td></tr>
+    <tr><td>📰 公众号/视频号</td><td>行业影响力</td><td>深度行业分析、法规变动解读、老板行业观点</td><td>⭐⭐⭐⭐⭐ 必做</td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>官网栏目架构</h2>
+  <div class="arch-tree">
+首页 — "在{{INDUSTRY_NAME}}行业，我们最懂行"
+├── 行业解决方案
+│   ├── {{SOLUTION_1}}
+│   ├── {{SOLUTION_2}}
+│   └── {{SOLUTION_3}}
+├── 合规体系 & 资质
+│   ├── 行业认证（GMP / FDA / ISO / ...）
+│   ├── 审计通过记录
+│   └── 合规白皮书
+├── 客户案例
+│   ├── 知名客户 Logo 墙
+│   ├── 深度案例（每个案例含合规细节）
+│   └── 客户证言视频
+├── 行业知识中心
+│   ├── 法规 / 标准解读
+│   ├── 选型避坑指南
+│   └── 行业趋势报告
+├── 服务支持
+│   ├── 售后 & 备件
+│   ├── 培训 & 验证
+│   └── 技术咨询
+└── 联系 & 询盘
+  </div>
+</div>
+
+<div class="section">
+  <h2>各渠道内容策略</h2>
+  <table>
+    <tr><th>渠道</th><th>内容类型</th><th>更新频率</th></tr>
+    <tr><td>官网·知识中心</td><td>法规解读、标准变化、行业趋势报告</td><td>每月1-2篇</td></tr>
+    <tr><td>视频号</td><td>行业观点、合规解读、客户项目纪实</td><td>每周1条</td></tr>
+    <tr><td>抖音</td><td>15-40秒避坑快剪、客户现场快速展示</td><td>每周1条</td></tr>
+    <tr><td>公众号</td><td>深度行业分析、法规首发解读、老板观点</td><td>每周1篇</td></tr>
+    <tr><td>行业媒体</td><td>专业文章投稿、行业论坛演讲内容</td><td>每月1-2篇</td></tr>
+  </table>
+</div>
+
+<div class="page-break"></div>
+<div class="page-title">四、短视频选题清单</div>
+
+<div class="section">
+  <h2>选题分布</h2>
+  <table>
+    <tr><th>类型</th><th>占比</th><th>目的</th></tr>
+    <tr><td><span class="tag tag-insight">法规洞察</span></td><td>35%</td><td>证明你最懂行业规则——这是行业型最核心的内容壁垒</td></tr>
+    <tr><td><span class="tag tag-pain">避坑指南</span></td><td>25%</td><td>让自己人设变成"帮你省钱省事的行业专家"</td></tr>
+    <tr><td><span class="tag tag-case">客户现场</span></td><td>25%</td><td>展示实战能力——"XX客户的项目，一次通过审计"</td></tr>
+    <tr><td><span class="tag tag-ip">老板IP</span></td><td>15%</td><td>"为什么我们只做这个行业"——建立行业信仰</td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>具体选题（8个）</h2>
+  <ol class="topic-list">
+    {{TOPIC_LIST}}
+  </ol>
+</div>
+
+<div class="section">
+  <h2>平台分发建议</h2>
+  <table>
+    <tr><th>内容类型</th><th>首发平台</th><th>同步平台</th></tr>
+    <tr><td>法规洞察（1-3分钟）</td><td>视频号 + 公众号</td><td>抖音</td></tr>
+    <tr><td>避坑指南（30-60秒）</td><td>抖音 + 视频号</td><td>小红书</td></tr>
+    <tr><td>客户项目纪实（2-3分钟）</td><td>视频号</td><td>公众号、LinkedIn</td></tr>
+    <tr><td>行业对比/深度观点</td><td>视频号</td><td>公众号</td></tr>
+    <tr><td>老板IP</td><td>视频号</td><td>抖音</td></tr>
+  </table>
+</div>
+
+<div class="page-break"></div>
+<div class="page-title">五、下一步行动清单</div>
+
+<div class="section">
+  <h2>按优先级执行</h2>
+  <ol class="action-list">
+    {{ACTION_LIST}}
+  </ol>
+</div>
+
+<div class="section">
+  <h2>效果衡量维度</h2>
+  <table>
+    <tr><th>维度</th><th>指标</th><th>目标（6个月）</th></tr>
+    <tr><td>官网</td><td>自然搜索流量 + 知识中心下载量</td><td>流量提升50%，月均文档下载30+</td></tr>
+    <tr><td>短视频</td><td>视频号转发量 + 粉丝增长</td><td>单条转发50+，粉丝增长200%</td></tr>
+    <tr><td>行业影响力</td><td>公众号阅读量 + 行业引用/转载</td><td>单篇阅读1000+，被行业媒体引用</td></tr>
+    <tr><td>品牌</td><td>"行业名+关键词"搜索结果</td><td>搜索结果首页出现</td></tr>
+  </table>
+</div>
+
+<div class="footer-brand">
+  雄韬XTOCN | www.xtocn.com | 本报告由AI辅助生成，仅供参考
+</div>
+
+</body>
+</html>

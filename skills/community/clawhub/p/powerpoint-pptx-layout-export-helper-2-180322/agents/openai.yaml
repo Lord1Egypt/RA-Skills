@@ -1,0 +1,7 @@
+interface:
+  display_name: "PowerPoint Template Master Fixer"
+  short_description: "Repair PPTX masters, layouts, placeholders, theme colors, and chart links."
+  default_prompt: "Use $powerpoint-pptx-layout-export-helper-2 to fix this PowerPoint template or slide master issue."
+
+policy:
+  allow_implicit_invocation: true

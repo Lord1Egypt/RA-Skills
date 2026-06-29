@@ -1,5 +1,5 @@
 ## Description: <br>
-Use CamScanner to convert images such as PNG or JPG files into structured Markdown with OCR, table recognition, and reading-order extraction. <br>
+CamScanner-Image2Markdown helps agents convert image files into structured Markdown using CamScanner's OCR and document parsing service. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,32 +11,30 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users, developers, and agents use this skill to extract text, tables, code, and structured document content from images into Markdown before analysis or response generation. <br>
+Developers and end users can use this skill when they need an agent to extract text, tables, code, or structured document content from screenshots or image files and return it as Markdown. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The workflow may upload image files to CamScanner servers by default. <br>
-Mitigation: Use only after the user understands and approves the upload, especially when images may contain private or regulated content. <br>
-Risk: Sensitive personal, legal, medical, financial, proprietary, or regulated images may leave the local environment during OCR conversion. <br>
-Mitigation: Avoid this skill for sensitive images unless explicit approval and applicable compliance review are in place; use a local OCR workflow when images must remain private. <br>
+Risk: Images may be uploaded to CamScanner servers when the skill is used for OCR or image-to-Markdown conversion. <br>
+Mitigation: Use the skill only for explicit OCR or image-conversion requests, and avoid sensitive personal, legal, medical, financial, proprietary, or regulated images without clear user approval. <br>
 
 
 ## Reference(s): <br>
-- [CamScanner Homepage](https://www.camscanner.com) <br>
-- [CamScanner Image2Markdown on ClawHub](https://clawhub.ai/camscanner-ai/camscanner-image2markdown-office) <br>
-- [CamScanner AI Tools API](https://ai-tools.camscanner.com) <br>
+- [ClawHub skill page](https://clawhub.ai/camscanner-ai/skills/camscanner-image2markdown-office) <br>
+- [CamScanner homepage](https://www.camscanner.com) <br>
+- [CamScanner AI tools API](https://ai-tools.camscanner.com) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Markdown, Text, Files, Shell commands, Guidance] <br>
-**Output Format:** [Markdown file output with shell-command guidance] <br>
+**Output Type(s):** [Markdown, Shell commands, Guidance] <br>
+**Output Format:** [Markdown guidance with bash command examples; converted image content is downloaded as a Markdown file.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires curl and jq; image files are uploaded to CamScanner servers for conversion.] <br>
+**Other Properties Related to Output:** [Requires curl and jq; image files are uploaded to CamScanner servers for processing.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: server release evidence) <br>
+1.0.0 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

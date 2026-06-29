@@ -1,5 +1,5 @@
 ## Description: <br>
-Through fixed enclosure cameras, the skill analyzes reptile behavior videos to report movement frequency, dwell duration, thermal-zone preference, activity rhythm, and alerts for abnormal basking, hiding, shuttling, or immobility patterns. <br>
+Analyzes fixed-camera reptile enclosure videos to report basking and hiding zone dwell time, movement frequency, activity rhythm, thermal preference labels, and alerts. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,36 +11,36 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users, developers, and reptile keepers use this skill to analyze fixed-camera vivarium videos, generate thermal-zone utilization reports, and receive environment-focused guidance without disease diagnosis or medication advice. <br>
+External users, developers, and reptile-care operators use this skill to analyze vivarium or breeding-enclosure video for thermal-zone usage, activity rhythm, and behavior-based warning signs. It supports structured reports and history queries for basking, hiding, cold-zone, and transition-zone behavior. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill sends reptile enclosure videos or video URLs, user identifiers, and report-history queries to a third-party cloud service. <br>
-Mitigation: Use the skill only with trusted publisher accounts, user authorization, and videos that are acceptable to transmit to the SMYX/LifeEmergence cloud service. <br>
-Risk: The local workspace database may cache account tokens or related account state. <br>
-Mitigation: Treat the workspace as sensitive, restrict local access, and clear cached credentials before sharing or archiving the environment. <br>
-Risk: The skill asks for open-id/user identifiers and also exposes an API-key parameter, which can be confused during setup. <br>
-Mitigation: Keep API keys separate from user identifiers, avoid placing secrets in open-id fields, and review configuration files before execution. <br>
-Risk: Behavior reports may influence animal-care decisions while the artifact states it is not a disease diagnosis or medication advisor. <br>
-Mitigation: Use results as behavior and environment guidance only, verify enclosure conditions directly, and consult a qualified reptile veterinarian for health concerns. <br>
+Risk: Reptile videos or URLs are sent to the LifeEmergence cloud service for analysis. <br>
+Mitigation: Use the skill only with videos the user is authorized to upload, and disclose cloud processing before analysis. <br>
+Risk: The skill maintains local identity or token state for cloud access. <br>
+Mitigation: Review local identity and token files before installation and remove any stale or unintended API key values. <br>
+Risk: History-report queries can run automatically when the user asks for past thermoregulation reports. <br>
+Mitigation: Prefer explicit confirmation before querying historical reports, especially in shared or multi-user environments. <br>
+Risk: Behavior analysis may be mistaken for veterinary diagnosis. <br>
+Mitigation: Present outputs as behavior-based observations and environmental guidance only; keep disease confirmation and treatment decisions with qualified reptile veterinarians. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/18072937735/smyx-reptile-thermoregulation-behavior-analysis) <br>
-- [Primary API Documentation](artifact/references/api_doc.md) <br>
-- [Analysis API Documentation](artifact/skills/smyx_analysis/references/api_doc.md) <br>
+- [ClawHub Skill Page](https://clawhub.ai/18072937735/skills/smyx-reptile-thermoregulation-behavior-analysis) <br>
+- [API Documentation](references/api_doc.md) <br>
+- [Skill Demo](https://lifeemergence.com/sample.html) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, JSON, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown and structured JSON-like report content, with optional shell commands and saved text output] <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown and JSON-style structured analysis reports with report links; optional file output] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports include thermal-zone dwell ratios, transition counts, rhythm signals, preference labels, alert level, recommended actions, history listings, and export links when returned by the cloud service.] <br>
+**Other Properties Related to Output:** [Reports can include thermal-zone dwell ratios, movement frequency, rhythm consistency, preference labels, alert levels, recommended actions, disclaimers, and cloud history-query results.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+1.0.1 (source: server release metadata; artifact frontmatter lists 1.0.3) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

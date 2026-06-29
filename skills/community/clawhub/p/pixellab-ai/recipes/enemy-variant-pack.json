@@ -1,0 +1,105 @@
+{
+  "name": "enemy-variant-pack",
+  "description": "Consistent enemy family recipe with silhouettes, roles, and palette continuity.",
+  "defaults": {
+    "style": "cohesive NES/SNES enemy pixel art, readable silhouette, simple animation-friendly anatomy, transparent background, no antialiasing",
+    "palette": "clear blue, moss green, brick red, bone cream, dark navy outline",
+    "sprite_size": 64,
+    "view": "side",
+    "seed": 0
+  },
+  "references": [
+    "references/prompt-cheatsheet.md",
+    "references/youtube-workflow-playbook.md"
+  ],
+  "qa": [
+    "Each enemy needs a distinct silhouette and gameplay read.",
+    "Avoid over-detail that will melt during animation.",
+    "Keep one shared palette accent so the family belongs together."
+  ],
+  "assets": [
+    {
+      "id": "walker-enemy",
+      "asset_type": "sprite",
+      "endpoint": "/v2/create-character-v3",
+      "credit_risk": "medium",
+      "prompt": "Body: small walking enemy for {{brief}}, squat readable silhouette, one weak point, two short legs. Expression: goofy hostile. Pose: side view idle. Gameplay role: basic walker. Palette: {{palette}}. Style: {{style}}",
+      "payload": {
+        "description": "{{prompt}}",
+        "image_size": {
+          "width": "{{sprite_size}}",
+          "height": "{{sprite_size}}"
+        },
+        "view": "{{view}}",
+        "name": "{{project_slug}}-walker-enemy",
+        "no_background": true,
+        "enhance_prompt": true,
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "enemies/walker"
+    },
+    {
+      "id": "hopper-enemy",
+      "asset_type": "sprite",
+      "endpoint": "/v2/create-character-v3",
+      "seed_offset": 1,
+      "credit_risk": "medium",
+      "prompt": "Body: jumping enemy for {{brief}}, springy legs, round armored body, high readable arc pose. Expression: mischievous. Gameplay role: timed hopper. Palette: {{palette}}. Style: {{style}}",
+      "payload": {
+        "description": "{{prompt}}",
+        "image_size": {
+          "width": "{{sprite_size}}",
+          "height": "{{sprite_size}}"
+        },
+        "view": "{{view}}",
+        "name": "{{project_slug}}-hopper-enemy",
+        "no_background": true,
+        "enhance_prompt": true,
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "enemies/hopper"
+    },
+    {
+      "id": "flyer-enemy",
+      "asset_type": "sprite",
+      "endpoint": "/v2/create-character-v3",
+      "seed_offset": 2,
+      "credit_risk": "medium",
+      "prompt": "Body: small flying enemy for {{brief}}, bat-like armored silhouette, clear wings, no clutter. Expression: alert. Gameplay role: swooping flyer. Palette: {{palette}} with bright wing accent. Style: {{style}}",
+      "payload": {
+        "description": "{{prompt}}",
+        "image_size": {
+          "width": "{{sprite_size}}",
+          "height": "{{sprite_size}}"
+        },
+        "view": "{{view}}",
+        "name": "{{project_slug}}-flyer-enemy",
+        "no_background": true,
+        "enhance_prompt": true,
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "enemies/flyer"
+    },
+    {
+      "id": "shield-enemy",
+      "asset_type": "sprite",
+      "endpoint": "/v2/create-character-v3",
+      "seed_offset": 3,
+      "credit_risk": "medium",
+      "prompt": "Body: shielded enemy for {{brief}}, larger front shield facing player, tiny feet visible, clear protected front and vulnerable back. Expression: stubborn. Gameplay role: block from front. Palette: {{palette}}. Style: {{style}}",
+      "payload": {
+        "description": "{{prompt}}",
+        "image_size": {
+          "width": "{{sprite_size}}",
+          "height": "{{sprite_size}}"
+        },
+        "view": "{{view}}",
+        "name": "{{project_slug}}-shield-enemy",
+        "no_background": true,
+        "enhance_prompt": true,
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "enemies/shield"
+    }
+  ]
+}

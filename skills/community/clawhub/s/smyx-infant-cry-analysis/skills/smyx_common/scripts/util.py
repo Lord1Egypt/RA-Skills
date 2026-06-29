@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 import json
 import os
+import secrets
 import traceback
+from json import JSONDecodeError
 
 import requests
 from .config import ApiEnum, ConstantEnum, sys, YamlUtil
@@ -10,7 +12,28 @@ from .base import BaseUtil
 import time
 import logging
 from typing import Any, Callable, Optional, TypeVar, Dict
-import pydash as _
+
+try:
+    import pydash as _
+except ImportError:
+    class _PydashFallback:
+        @staticmethod
+        def get(obj, path, default=None):
+            try:
+                cur = obj
+                for part in str(path).split('.'):
+                    if isinstance(cur, (list, tuple)) and part.isdigit():
+                        cur = cur[int(part)]
+                    elif isinstance(cur, dict):
+                        cur = cur.get(part, default)
+                    else:
+                        cur = getattr(cur, part)
+                return cur
+            except Exception:
+                return default
+
+
+    _ = _PydashFallback()
 
 if ConstantEnum.is_debug():
     import http.client
@@ -103,7 +126,7 @@ class JsonUtil(BaseUtil):
         try:
             return json.loads(json_str)
         except Exception as e:
-            CommonUtil.trace_exception_stack(e)
+            # CommonUtil.trace_exception_stack(e)
             pass
         return default_json
 
@@ -170,7 +193,7 @@ class CommonUtil(BaseUtil):
 
         attempts = 0
 
-        print(f"🚀 开始执行 [{description}]...")
+        ConstantEnum.is_debug() and print(f"🚀 开始执行 [{description}]...")
 
         while attempts < max_attempts:
             attempts += 1
@@ -182,7 +205,8 @@ class CommonUtil(BaseUtil):
 
                 # 2. 检查条件
                 if check_condition(result):
-                    print(f"✅ [{description}] 成功！条件已满足 (尝试次数: {attempts}, 耗时{interval * attempts}秒)")
+                    ConstantEnum.is_debug() and print(
+                        f"✅ [{description}] 成功！条件已满足 (尝试次数: {attempts}, 耗时{interval * attempts}秒)")
                     if on_success:
                         on_success(result)
                     return result
@@ -192,7 +216,7 @@ class CommonUtil(BaseUtil):
                     on_retry(result, attempts)
                 else:
                     # 默认日志行为
-                    print(
+                    ConstantEnum.is_debug() and print(
                         f"⏳ [{description}] 条件未满足，{interval}秒后重试... ({attempts}/{max_attempts}, 耗时{interval * attempts}秒)")
 
                 time.sleep(interval)
@@ -204,12 +228,12 @@ class CommonUtil(BaseUtil):
                 else:
                     # 默认错误行为：打印错误并继续
                     logging.error(f"❌ [{description}] 发生异常: {e}")
-                    print(f"⚠️ [{description}] 遇到错误，{interval}秒后重试...")
+                    ConstantEnum.is_debug() and print(f"⚠️ [{description}] 遇到错误，{interval}秒后重试...")
 
                 time.sleep(interval)
 
         # 5. 超时处理
-        print(f"⚠️ [{description}] 失败：达到最大尝试次数 ({max_attempts})，强制停止。")
+        ConstantEnum.is_debug() and print(f"⚠️ [{description}] 失败：达到最大尝试次数 ({max_attempts})，强制停止。")
         return None
 
     @staticmethod
@@ -227,6 +251,99 @@ class CommonUtil(BaseUtil):
             return True
 
 
+class OpenIdUtil(BaseUtil):
+    """open-id 初始化与缺省用户分配工具。
+
+    规则：
+    1. 上游显式传入 open-id 时，直接沿用上游值；
+    2. 未传入 open-id 时，优先读取工作区 data/smyx-api-key.txt；
+    3. 该文件没有可用值时，复用本地 smyx-common-claw.db 中第一个
+       username 以 User_ 开头且总长度为 11 的 sys_user 记录；
+    4. 本地不存在时，生成 User_{6位小写随机哈希码} 并写入本地库，
+       后续未显式传入 open-id 时持续复用该缺省用户。
+    """
+
+    DEFAULT_PREFIX = "User_"
+    RANDOM_HEX_LENGTH = 6
+    DEFAULT_USERNAME_LENGTH = len(DEFAULT_PREFIX) + RANDOM_HEX_LENGTH
+
+    @classmethod
+    def is_default_open_id(cls, value):
+        return isinstance(value, str) and value.startswith(cls.DEFAULT_PREFIX) and len(
+            value) == cls.DEFAULT_USERNAME_LENGTH
+
+    @classmethod
+    def generate_default_open_id(cls):
+        return f"{cls.DEFAULT_PREFIX}{secrets.token_hex(3).lower()}"
+
+    @classmethod
+    def get_workspace_data_dir(cls):
+        workspace = os.environ.get('OPENCLAW_WORKSPACE')
+        if not workspace:
+            workspace = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+        return os.path.join(workspace, "data")
+
+    @classmethod
+    def get_api_key_file_open_id(cls):
+        """读取工作区 data/smyx-api-key.txt 中的内部身份值。"""
+        api_key_path = os.path.join(cls.get_workspace_data_dir(), "smyx-api-key.txt")
+        try:
+            if not os.path.exists(api_key_path):
+                return None
+            with open(api_key_path, "r", encoding="utf-8") as f:
+                value = f.read().strip()
+            return value or None
+        except Exception as e:
+            CommonUtil.trace_exception_stack(e)
+        return None
+
+    @classmethod
+    def get_or_create_default_open_id(cls):
+        from .dao import UserDao, User
+        import uuid
+
+        user_dao = UserDao()
+        user = user_dao.get_first_default_user(cls.DEFAULT_PREFIX, cls.DEFAULT_USERNAME_LENGTH)
+        if user and user.username:
+            return user.username
+
+        # 极低概率碰撞时重试，避免 username 唯一索引冲突。
+        for _ in range(10):
+            username = cls.generate_default_open_id()
+            if user_dao.get_by_username(username):
+                continue
+            now = datetime.now()
+            user = User(
+                id=uuid.uuid4().hex,
+                username=username,
+                realname=username,
+                source=ConstantEnum.APP__SOURCE,
+                del_flag=0,
+                create_time=now,
+                update_time=now
+            )
+            user_dao.add(user)
+            return username
+
+        raise RuntimeError("生成默认 open-id 失败：随机用户名连续冲突")
+
+    @classmethod
+    def resolve_current_open_id(cls, open_id=None, use_current=True):
+        """解析并初始化当前 open-id，返回最终使用值。"""
+        resolved_open_id = (open_id or "").strip() if isinstance(open_id, str) else open_id
+        if not resolved_open_id and use_current:
+            resolved_open_id = ConstantEnum.CURRENT__OPEN_ID or ConstantEnum.CURRENT__USER_NAME
+        if not resolved_open_id:
+            resolved_open_id = cls.get_api_key_file_open_id()
+        if not resolved_open_id:
+            resolved_open_id = cls.get_or_create_default_open_id()
+
+        ConstantEnum.CURRENT__OPEN_ID = resolved_open_id
+        if not ConstantEnum.CURRENT__USER_NAME:
+            ConstantEnum.CURRENT__USER_NAME = resolved_open_id
+        return resolved_open_id
+
+
 from datetime import date, datetime
 
 
@@ -236,6 +353,10 @@ class DatetimeUtil(BaseUtil):
     @staticmethod
     def now_str():
         return DatetimeUtil.format(DatetimeUtil.now())
+
+    @staticmethod
+    def datetime_str():
+        return DatetimeUtil.format(DatetimeUtil.now(), '%Y%m%d%H%M%S')
 
     @staticmethod
     def today_str():
@@ -250,8 +371,8 @@ class DatetimeUtil(BaseUtil):
         return DatetimeUtil.now().replace(hour=0, minute=0, second=0, microsecond=0)
 
     @staticmethod
-    def format(date):
-        return date.strftime('%Y-%m-%d %H:%M:%S') if type(date) == datetime else date
+    def format(date, pattern='%Y-%m-%d %H:%M:%S'):
+        return date.strftime(pattern) if type(date) == datetime else date
 
     @staticmethod
     def format_date(date):
@@ -264,7 +385,7 @@ class DatetimeUtil(BaseUtil):
         return datetime.strptime(date_str, DatetimeUtil.FORMAT__DATETIME) if type(date_str) == str else date_str
 
     @staticmethod
-    def timestamp(date=now()):
+    def timestamp(date=datetime.now()):
         return int(date.timestamp() * 1000)
 
 
@@ -288,6 +409,13 @@ class RequestUtil(BaseUtil):
     @classmethod
     def http_get(cls, url, params=None, headers=None, *args, **argss):
         return cls.http_request("get", url, params=params, headers=headers, *args, **argss)
+
+    @classmethod
+    def get_user_by_username(cls, username):
+        from .dao import UserDao, User
+        user_dao = UserDao()
+        user = user_dao.get_by_username(username)
+        return user
 
     @classmethod
     def http_request(cls, method, url, data=None, params=None, headers=None, options=None, *args,
@@ -318,6 +446,8 @@ class RequestUtil(BaseUtil):
                 url = cls.BASE_URL + url
             headers['App-Id'] = ConstantEnum.APP__ID
             # ConstantEnum.CURRENT__USER_NAME = ConstantEnum.CURRENT__OPEN_ID = "ou_86fdd8e0d5f116c18a9dd550abefe6d2"
+            if not (ApiEnum.API_SECRET_KEY or ConstantEnum.CURRENT__USER_NAME or ConstantEnum.CURRENT__OPEN_ID):
+                OpenIdUtil.resolve_current_open_id(use_current=False)
             current__user_name = ApiEnum.API_SECRET_KEY or ConstantEnum.CURRENT__USER_NAME or ConstantEnum.CURRENT__OPEN_ID
             found_user = None
             if (not ApiEnum.TOKEN or not ApiEnum.OPEN_TOKEN) and current__user_name:
@@ -328,6 +458,7 @@ class RequestUtil(BaseUtil):
                     if found_user:
                         ApiEnum.TOKEN = found_user.token
                         ApiEnum.OPEN_TOKEN = found_user.open_token
+                        current__user_name = found_user.username
                     if not ApiEnum.TOKEN or not ApiEnum.OPEN_TOKEN:
                         new_current_user = _get_or_create_user(current__user_name)
                         if new_current_user:
@@ -364,28 +495,33 @@ class RequestUtil(BaseUtil):
             if current__user_name:
                 data.setdefault('pnaUserName', current__user_name)
 
-            if bool(options.get("dataAsParams")):
+            if bool(options.get("dataAsParams")) or bool(options.get("data_as_params")):
                 params.update(data)
 
-            print(f"🔄 请求拦截, URL:{url}", "method", method, "params", params, "data", data, "headers", headers,
-                  "options", options,
-                  "timeout",
-                  timeout)
+            # 安全打印：不打印完整 headers（避免巨大的 token 导致输出缓冲区溢出）
+            # 同时处理 v 为 None 的情况，避免 len(None) 报错
+            safe_headers = {}
+            for k, v in headers.items():
+                if v is None:
+                    safe_headers[k] = "None"
+                elif isinstance(v, (dict, list)):
+                    safe_headers[k] = type(v).__name__
+                elif len(v) > 30:
+                    safe_headers[k] = v[:20] + "..."
+                else:
+                    safe_headers[k] = v
+            ConstantEnum.is_debug() and print(f"🔄 请求拦截, URL:{url}", "method", method, "params", params, "data",
+                                              data,
+                                              # "headers", safe_headers,
+                                              "options", options,
+                                              "timeout",
+                                              timeout)  ## ARK_CLAW ##
             response = requests.request(method, url, *args, json=data, params=params, headers=headers,
                                         timeout=int(timeout), **argss)
             response_text0 = response.text
             response_text = response_text0 if ConstantEnum.is_debug() else response
             status_code = response.status_code
-            if current__user_name == "13800000000":
-                status_code = 402
             if status_code == 401 and cls.authorization_retry_count < cls.AUTHORIZATION_RETRY_COUNT_MAX:
-                # print(f"❌ 请求拦截, 鉴权失败:{response_text}, url:{url}", "method", method, "params", params,
-                #       "data",
-                #       data,
-                #       "headers",
-                #       headers,
-                #       "timeout",
-                #       timeout)
                 ApiEnum.TOKEN = ApiEnum.OPEN_TOKEN = None
                 if found_user:
                     found_user.token = found_user.open_token = None
@@ -393,19 +529,19 @@ class RequestUtil(BaseUtil):
                 cls.authorization_retry_count += 1
                 return cls.http_request(method, url, data, params, headers, options, *args, timeout=timeout, **argss)
             elif status_code == 402:
-                print(f"❌ 请求拦截, 使用失败:{response_text}, url:{url}", "method", method, "params", params,
-                      "data",
-                      data,
-                      "headers",
-                      headers,
-                      "timeout",
-                      timeout)
+                ConstantEnum.is_debug() and print(f"❌ 请求拦截, 使用失败:{response_text}, url:{url}", "method", method,
+                                                  "params", params,
+                                                  "data",
+                                                  data,
+                                                  # "headers",
+                                                  # headers,
+                                                  "timeout",
+                                                  timeout)  ## ARK_CLAW ##
                 return f'''⚠️ 因账户余额不足, 技能使用失败, 请按照如下步骤进行充值: 
-👉 1. 先输入命令 "安装支付技能 smyx-payment", 等待安装完成. (如果已经安装支付技能过则忽略此步骤)
-👉 2. 再输入命令 "技能账户充值", 然后跟随系统提示操作后即可继续使用技能.
+👉 1. 先输入命令 "安装生命涌现支付技能 smyx-payment", 等待安装完成. (如果已经安装支付技能过则忽略此步骤)
+👉 2. 再输入命令 "技能账户充值续费", 然后跟随系统提示操作后即可继续使用技能.
 {response_text0 or ""}
 '''
-                # f'请先输入命令 "技能账户充值", 请先确确保安装生命涌现支付技能 请先输入命令 "技能账户充值", 跟随系统提示进行充值后即可继续使用技能(). {response_text0 or ""}')
             elif status_code != 200:
                 raise requests.exceptions.RequestException(
                     response, response=response)
@@ -416,18 +552,32 @@ class RequestUtil(BaseUtil):
             response_json_data = response_json.get("data", response_json.get("result"))
             response_json_data = response_json_data.get("records") if response_json_data and type(
                 response_json_data) == dict and "records" in response_json_data else response_json_data
-            print(f"✅ 请求拦截, 成功:{response_text}, url:{url}", "method", method, "params", params,
-                  "data",
-                  data,
-                  "headers",
-                  headers,
-                  "timeout",
-                  timeout)
+            ConstantEnum.is_debug() and print(f"✅ 请求拦截, 成功:{response_text}, url:{url}", "method", method,
+                                              "params", params,
+                                              "data",
+                                              data,
+                                              # "headers",
+                                              # headers,
+                                              "timeout",
+                                              timeout)  ## ARK_CLAW ##
             return response_json_data
+        except JSONDecodeError as e:
+            ConstantEnum.is_debug() and print(
+                f"⚠️ 请求拦截, 序列化失败: {e}, e.response.text: {response_text}, url:{url}",
+                "method",
+                method,
+                "params",
+                params,
+                "data", data, "headers",
+                "response", hasattr(e, 'response') and e.response,
+                # "headers", headers,
+                "timeout",
+                timeout)  ## ARK_CLAW ##
+            return response_text
         except Exception as e:
             CommonUtil.trace_exception_stack(e)
             response_text = _.get(e.args, '0.text')
-            print(
+            ConstantEnum.is_debug() and print(
                 f"❌ 请求拦截, 失败: {e}, e.response.text: {response_text}, url:{url}",
                 "method",
                 method,
@@ -435,7 +585,7 @@ class RequestUtil(BaseUtil):
                 params,
                 "data", data, "headers",
                 "response", hasattr(e, 'response') and e.response,
-                headers,
+                # "headers", headers,
                 "timeout",
-                timeout)
+                timeout)  ## ARK_CLAW ##
             raise

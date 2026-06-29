@@ -1,5 +1,5 @@
 ## Description: <br>
-Provisions the Oracle ML inference daemon with onnxruntime via uv. <br>
+Provisions the oracle ML inference daemon with onnxruntime via uv. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,28 +11,29 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill to provision a local Oracle ONNX inference environment, verify the onnxruntime installation, and report whether the daemon can start in a later session. <br>
+Developers and engineers use this skill to prepare the oracle plugin's local ONNX inference environment and verify that ONNX Runtime is installed before the daemon starts in a later session. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Setup creates a local Python virtual environment and downloads Python packages for ONNX inference. <br>
-Mitigation: Run it only when that local inference environment is intended, uv is installed, and network package downloads are acceptable for the workspace. <br>
+Risk: The setup command creates a local Python environment, downloads ONNX Runtime, and imports oracle.provision code that is not included in the submitted artifact. <br>
+Mitigation: Run it only from the expected plugins/oracle directory after confirming uv is installed, network access is intended, and the local oracle.provision implementation is trusted. <br>
 
 
 ## Reference(s): <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-oracle-setup) <br>
 - [Oracle plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/oracle) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, Guidance] <br>
+**Output Type(s):** [Shell commands, Configuration instructions, Guidance] <br>
 **Output Format:** [Markdown with inline bash code blocks] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Reports provisioning success or failure and suggests checking uv and network access when setup fails.] <br>
+**Other Properties Related to Output:** [Includes success or failure reporting guidance for the agent.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata) <br>
+1.9.13 (source: ClawHub release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

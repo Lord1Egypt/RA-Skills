@@ -1,0 +1,4 @@
+Place your resume PDF in this folder named exactly: resume.pdf
+
+The skill reads workspace/resume.pdf on every run.
+Replace this file whenever you update your CV — no other changes needed.

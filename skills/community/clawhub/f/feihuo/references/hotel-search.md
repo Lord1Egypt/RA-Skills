@@ -4,18 +4,12 @@
 
 ## 使用前提
 
-CLI 从 `~/.openclaw/qclaw/user-info.json` 读取 `accessToken`，请求 API 时使用：
-
-```http
-Authorization: Bearer <accessToken>
-```
-
-请确保该文件存在且 `accessToken` 有效。
+CLI 已内置在技能目录 `./cli/`，通过 FClaw 注入的 `FCLAW_OIDC_TOKEN_URL` 与 `FCLAW_OIDC_TOKEN_SECRET` 从本地 OIDC token 端点获取 access_token。请在 FClaw 中登录，并在技能根目录下执行命令（工作目录须包含 `cli/index.js`）。
 
 ## 命令格式
 
 ```bash
-feihuo hotel-search --city-name <入住城市> --check-in-date <入住日期> --check-out-date <离店日期> [--region-name <区域>] [--stars <星级>] [--min-price <最低价格>] [--max-price <最高价格>]
+node ./cli/index.js hotel-search --city-name <入住城市> --check-in-date <入住日期> --check-out-date <离店日期> [--region-name <区域>] [--stars <星级>] [--min-price <最低价格>] [--max-price <最高价格>]
 ```
 
 ## 参数
@@ -42,7 +36,7 @@ feihuo hotel-search --city-name <入住城市> --check-in-date <入住日期> --
 **示例**（用户：「上海住 3 晚，人民广场附近四五星，每晚 500–800」）：
 
 ```bash
-feihuo hotel-search --city-name "上海" --check-in-date 2026-06-18 --check-out-date 2026-06-21 --region-name "人民广场" --stars 4,5 --min-price 500 --max-price 800
+node ./cli/index.js hotel-search --city-name "上海" --check-in-date 2026-06-18 --check-out-date 2026-06-21 --region-name "人民广场" --stars 4,5 --min-price 500 --max-price 800
 ```
 
 ## 示例
@@ -50,37 +44,37 @@ feihuo hotel-search --city-name "上海" --check-in-date 2026-06-18 --check-out-
 搜索指定城市和日期：
 
 ```bash
-feihuo hotel-search --city-name "上海" --check-in-date 2026-03-20 --check-out-date 2026-03-25
+node ./cli/index.js hotel-search --city-name "上海" --check-in-date 2026-03-20 --check-out-date 2026-03-25
 ```
 
 按区域筛选：
 
 ```bash
-feihuo hotel-search --city-name "上海" --check-in-date 2026-03-20 --check-out-date 2026-03-25 --region-name "人民广场"
+node ./cli/index.js hotel-search --city-name "上海" --check-in-date 2026-03-20 --check-out-date 2026-03-25 --region-name "人民广场"
 ```
 
 按星级筛选：
 
 ```bash
-feihuo hotel-search --city-name "上海" --check-in-date 2026-03-20 --check-out-date 2026-03-25 --stars 1,2,3
+node ./cli/index.js hotel-search --city-name "上海" --check-in-date 2026-03-20 --check-out-date 2026-03-25 --stars 1,2,3
 ```
 
 按价格范围筛选：
 
 ```bash
-feihuo hotel-search --city-name "上海" --check-in-date 2026-03-20 --check-out-date 2026-03-25 --min-price 300 --max-price 1000
+node ./cli/index.js hotel-search --city-name "上海" --check-in-date 2026-03-20 --check-out-date 2026-03-25 --min-price 300 --max-price 1000
 ```
 
 完整示例：
 
 ```bash
-feihuo hotel-search --city-name "上海" --check-in-date 2026-03-20 --check-out-date 2026-03-25 --region-name "人民广场" --stars 3,4,5 --min-price 300 --max-price 1000
+node ./cli/index.js hotel-search --city-name "上海" --check-in-date 2026-03-20 --check-out-date 2026-03-25 --region-name "人民广场" --stars 3,4,5 --min-price 300 --max-price 1000
 ```
 
 查看帮助：
 
 ```bash
-feihuo hotel-search --help
+node ./cli/index.js hotel-search --help
 ```
 
 ## 输出

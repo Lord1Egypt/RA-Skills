@@ -1,0 +1,7 @@
+interface:
+  display_name: "Blockly Block Builder"
+  short_description: "Helps with [Blockly] - [Feature Request] - Add Blockly block..."
+  default_prompt: "Use $blockly-block-builder to help me [Blockly] - [Feature Request] - Add Blockly block to Enable/Disable Things."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,6 +1,8 @@
 import subprocess
 import os
 import json
+import sys
+import signal
 
 MODULE_DIR = os.path.dirname(os.path.abspath(__file__))
 SCRIPTS_DIR = os.path.abspath(os.path.join(MODULE_DIR, "..", "..", "scripts"))
@@ -9,6 +11,42 @@ SCRIPT_PATH = os.path.join(SCRIPTS_DIR, "agent_bridge.py")
 # Default timeouts
 DEFAULT_TIMEOUT_CYCLES = 1800      # 30 minutes for Cycles (production quality)
 DEFAULT_TIMEOUT_EEVEE = 60          # 1 minute for EEVEE (fast testing)
+
+
+def run_blender_process(command, env, timeout):
+    """
+    Runs a Blender process and terminates the entire process group on timeout.
+    Returns (stdout, stderr).
+    """
+    # Use start_new_session=True to run in a separate process group on Unix.
+    # This ensures that Blender and any spawned child processes are killed on timeout.
+    proc = subprocess.Popen(
+        command,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        text=True,
+        env=env,
+        start_new_session=(sys.platform != 'win32')
+    )
+    try:
+        stdout, stderr = proc.communicate(timeout=timeout)
+    except subprocess.TimeoutExpired:
+        if sys.platform != 'win32':
+            try:
+                pgid = os.getpgid(proc.pid)
+                os.killpg(pgid, signal.SIGKILL)
+            except Exception:
+                proc.kill()
+        else:
+            proc.kill()
+        # Flush streams
+        stdout, stderr = proc.communicate()
+        raise subprocess.TimeoutExpired(command, timeout, output=stdout, stderr=stderr)
+        
+    if proc.returncode != 0:
+        raise subprocess.CalledProcessError(proc.returncode, command, output=stdout, stderr=stderr)
+        
+    return stdout, stderr
 
 
 def render_procedural_scene(
@@ -79,24 +117,42 @@ def render_procedural_scene(
     ] + param_args
 
     try:
-        result = subprocess.run(
-            command, 
-            capture_output=True, 
-            text=True, 
-            check=True,
-            timeout=timeout,
-            env=env
-        )
+        stdout, stderr = run_blender_process(command, env, timeout)
         
-        # Check if output_path exists, otherwise find and rename the file Blender actually wrote
+        # Check if output_path exists, otherwise find and rename/convert the file Blender actually wrote
         if not os.path.exists(output_path):
             base, ext = os.path.splitext(output_path)
-            possible_path_1 = f"{base}{ext}0001{ext}"
-            possible_path_2 = f"{base}0001{ext}"
-            if os.path.exists(possible_path_1):
-                os.rename(possible_path_1, output_path)
-            elif os.path.exists(possible_path_2):
-                os.rename(possible_path_2, output_path)
+            common_extensions = [".png", ".jpg", ".jpeg", ".tif", ".tiff", ".exr", ".bmp", ".tga", ".hdr"]
+            
+            found = False
+            for actual_ext in common_extensions + [x.upper() for x in common_extensions]:
+                possible_path_1 = f"{base}{ext}0001{actual_ext}"
+                possible_path_2 = f"{base}0001{actual_ext}"
+                possible_path_3 = f"{output_path}0001{actual_ext}"
+                possible_path_4 = f"{base}{actual_ext}"
+                
+                for path in [possible_path_1, possible_path_2, possible_path_3, possible_path_4]:
+                    if os.path.exists(path):
+                        if actual_ext.lower() != ext.lower():
+                            try:
+                                from PIL import Image
+                                with Image.open(path) as img:
+                                    if ext.lower() in [".jpg", ".jpeg"] and img.mode in ("RGBA", "LA"):
+                                        img = img.convert("RGB")
+                                    img.save(output_path)
+                                os.remove(path)
+                                print(f"[SynthClaw] Rendered {actual_ext} file converted to requested format: {output_path}")
+                            except Exception as conv_err:
+                                final_path = f"{base}{actual_ext}"
+                                os.rename(path, final_path)
+                                output_path = final_path
+                                print(f"[SynthClaw] Conversion failed: {conv_err}. Renamed file to actual format: {output_path}")
+                        else:
+                            os.rename(path, output_path)
+                        found = True
+                        break
+                if found:
+                    break
 
         metrics = {}
         if compute_metrics:
@@ -155,7 +211,7 @@ def render_procedural_scene(
         return {
             "status": "success", 
             "output": output_path, 
-            "log": result.stdout[-500:],
+            "log": stdout[-500:],
             "engine": engine,
             "samples": samples if engine == "CYCLES" else None,
             "metrics": metrics
@@ -234,15 +290,9 @@ def analyze_blend(blend_file: str):
     ]
     
     try:
-        result = subprocess.run(
-            command,
-            capture_output=True,
-            text=True,
-            check=True,
-            timeout=60  # 1 minute timeout for analysis
-        )
+        stdout, stderr = run_blender_process(command, os.environ, 60)
         
-        output = result.stdout
+        output = stdout
         if "---ANALYSIS_START---" in output and "---ANALYSIS_END---" in output:
             start = output.find("---ANALYSIS_START---") + len("---ANALYSIS_START---\n")
             end = output.find("---ANALYSIS_END---")
@@ -332,20 +382,13 @@ def render_procedural_dataset(
             config_path
         ]
         
-        result = subprocess.run(
-            command, 
-            capture_output=True, 
-            text=True, 
-            check=True,
-            timeout=timeout,
-            env=env
-        )
+        stdout, stderr = run_blender_process(command, env, timeout)
         
         return {
             "status": "success",
             "output_dir": output_dir,
             "images_generated": num_images,
-            "log": result.stdout[-500:]
+            "log": stdout[-500:]
         }
     except subprocess.TimeoutExpired:
         return {"status": "error", "message": f"Render dataset timed out after {timeout} seconds"}

@@ -1,0 +1,15 @@
+{
+  "name": "presentation",
+  "label": "PPT 适配尺寸",
+  "description": "适配演示文稿的图表尺寸",
+  "format": "png",
+  "background": "#ffffff",
+  "features": ["ratio_presets", "high_dpi", "edge_padding", "preview"],
+  "presets": {
+    "16_9": {"width": 1920, "height": 1080},
+    "4_3": {"width": 1440, "height": 1080},
+    "16_10": {"width": 1920, "height": 1200}
+  },
+  "default_preset": "16_9",
+  "dpi": 192
+}

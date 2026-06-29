@@ -1,0 +1,9 @@
+{
+  "name": "xiaohongshu-writer",
+  "version": "1.0.0",
+  "description": "小红书爆款文案生成器",
+  "author": "ruifeng-agent",
+  "license": "MIT",
+  "keywords": ["xiaohongshu", "content", "social", "marketing", "copywriting"],
+  "main": "SKILL.md"
+}

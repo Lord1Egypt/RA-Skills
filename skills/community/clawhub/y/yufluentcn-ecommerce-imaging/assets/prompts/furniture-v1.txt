@@ -1,0 +1,11 @@
+# 家具 Prompt 模板
+# 用法：把 {product} 替换为实际产品英文描述
+
+## 客厅场景
+A {product} in a bright Scandinavian style living room, natural morning light through large windows, cozy atmosphere, interior design photography, 8K, commercial quality, no text, no watermark
+
+## 卧室场景
+A {product} in a serene bedroom setting, soft warm lighting from bedside lamp, minimalist decor, lifestyle interior photography, high resolution, no text, no watermark
+
+## 办公场景
+A {product} in a modern home office, daylight from window, clean desk setup, professional interior photography, sharp focus, 8K, no text

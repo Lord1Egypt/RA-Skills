@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes infant diaper or stool images through a remote visual analysis service to classify stool color, flag clay-pale or bloody findings, and return risk-oriented guidance and history reports. <br>
+Analyzes infant diaper or stool images and videos to classify stool color, flag clay-pale or bloody findings, and return structured risk guidance and report links. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,37 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users, developers, and infant-care operators use this skill to submit infant diaper or stool images or image URLs for stool color screening, abnormal-color risk reminders, and cloud history lookup. It is intended as visual screening support, not a medical diagnosis. <br>
+External caregivers, pediatric-adjacent staff, and developers use this skill to submit infant diaper or stool media for visual color screening and to retrieve cloud-stored screening report history. It provides directional risk prompts only and is not a medical diagnosis. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill sends sensitive infant health images or image URLs and user identifiers to a remote service and can retrieve cloud-stored history reports. <br>
-Mitigation: Use only with explicit guardian consent, a trusted backend, understood retention and deletion terms, and the minimum necessary identifier. <br>
-Risk: The skill may store account tokens or API credentials in local configuration. <br>
-Mitigation: Keep credentials out of shared workspaces, restrict file access, and rotate or remove tokens after use. <br>
-Risk: Visual screening output could be mistaken for clinical diagnosis. <br>
-Mitigation: Treat results as directional screening only and require pediatric or surgical evaluation for warning or urgent findings. <br>
+Risk: Sensitive infant health images are uploaded to remote services for analysis. <br>
+Mitigation: Use only with explicit guardian consent and only when the publisher and backend service are trusted for handling minor health data. <br>
+Risk: The skill can silently create or reuse a cloud-linked identity and store local account tokens. <br>
+Mitigation: Review local identity and token storage before deployment, restrict workspace access, and require clear account-control procedures for users. <br>
+Risk: Cloud history retrieval can expose prior screening reports. <br>
+Mitigation: Limit use to environments where report access is authorized and where retention, deletion, and access-control expectations are documented. <br>
+Risk: Visual stool-color screening can be misleading under poor lighting or with filtered images. <br>
+Mitigation: Require clear natural or cool-white lighting, avoid filters, and treat abnormal or inconclusive results as prompts for professional pediatric review rather than diagnosis. <br>
 
 
 ## Reference(s): <br>
-- [API interface documentation](references/api_doc.md) <br>
-- [ClawHub skill release page](https://clawhub.ai/smyx-sunjinhui/smyx-infant-stool-color-abnormality-analysis) <br>
+- [ClawHub Skill Page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-infant-stool-color-abnormality-analysis) <br>
+- [Infant Stool Color API Documentation](references/api_doc.md) <br>
+- [SMYX Analysis API Documentation](skills/smyx_analysis/references/api_doc.md) <br>
+- [Skill Demo](https://lifeemergence.com/sample.html) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON text with optional saved output files and Markdown tables for history reports] <br>
+**Output Type(s):** [Text, Markdown, JSON, Guidance, Shell commands] <br>
+**Output Format:** [Markdown text with structured JSON report content and report links] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include stool color class, risk level, confidence, recommended action, alert text, and cloud report links.] <br>
+**Other Properties Related to Output:** [May save analysis output to a user-specified file and may render history results as a Markdown table.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: frontmatter and server release metadata) <br>
+1.0.1 (source: server release metadata; artifact frontmatter says 1.0.0) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

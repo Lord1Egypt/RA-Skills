@@ -1,0 +1,7 @@
+{
+  "callback_token": "ae093cd8-cde6-4f90-813b-5f230444e985",
+  "code": 1000,
+  "data": "任务已经提交,请稍候通过async_result接口查询任务结果...",
+  "msg": "success",
+  "task_id": "84a9fc73-9de9-40c1-8446-ab5092da7153"
+}

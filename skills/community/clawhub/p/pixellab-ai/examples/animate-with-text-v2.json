@@ -1,0 +1,20 @@
+{
+  "reference_image": {
+    "type": "base64",
+    "format": "png",
+    "base64": "REPLACE_WITH_BASE64_REFERENCE_IMAGE"
+  },
+  "reference_image_size": {
+    "width": 64,
+    "height": 64
+  },
+  "action": "short sword slash loop, feet stay planted, stable outfit, no camera movement",
+  "image_size": {
+    "width": 64,
+    "height": 64
+  },
+  "view": "side",
+  "direction": "east",
+  "no_background": true,
+  "seed": 0
+}

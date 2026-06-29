@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill2Team"
+  short_description: "Design profile-based agent teams"
+  default_prompt: "Use $skill2team to turn this workflow into a profile-based agent team design."

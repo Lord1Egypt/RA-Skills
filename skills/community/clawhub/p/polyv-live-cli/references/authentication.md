@@ -38,8 +38,10 @@ export POLYV_USER_ID="your-user-id"
 
 ```bash
 <CLI> channel list -a production
-<CLI> channel list --appId <id> --appSecret <secret> --userId <userId>
+<CLI> --appId <id> --appSecret <secret> --userId <userId> channel list
 ```
+
+`-a/--account` 用于指定已存在的账号配置；根级凭证参数放在 CLI 前缀后、业务命令前。需要长期切换账号时，优先使用 `account set-default` 或 `use`，再执行业务命令。
 
 ## 推荐流程
 
@@ -94,7 +96,7 @@ steps:
 <CLI> account set-default <账号名称>
 ```
 
-也可以在单次命令中用 `-a <账号名称>` 指定账号。
+也可以在单次命令中用 `-a <账号名称>` 指定已存在账号，或先用 `use <账号名称>` 切换当前终端会话账号。
 
 ### 凭证无效
 

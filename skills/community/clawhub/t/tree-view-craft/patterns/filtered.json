@@ -1,0 +1,10 @@
+{
+  "name": "filtered",
+  "label": "按类型筛选",
+  "description": "按文件扩展名类型快速筛选展示",
+  "layout": "tree",
+  "features": ["type_filter_chips", "extension_group", "count_badge", "search"],
+  "icon_style": "css-only",
+  "sort_order": "default",
+  "filter_mode": "chips"
+}

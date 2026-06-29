@@ -1,0 +1,15 @@
+{
+  "name": "human-writing-cn",
+  "version": "1.0.0",
+  "description": "中文防AI味写作助手 — 让AI文字读起来像人写的",
+  "author": "拾珍小栈",
+  "license": "Apache-2.0",
+  "language": "zh-CN",
+  "tags": ["writing", "写作", "humanize", "防AI味", "口语化", "内容创作"],
+  "triggers": ["改写", "润色", "人味", "AI味", "口语化", "内容创作", "文案优化"],
+  "platforms": ["Claude Code", "OpenClaw", "Cursor", "Codex", "Gemini CLI"],
+  "pricing": {
+    "retail": 69,
+    "currency": "CNY"
+  }
+}

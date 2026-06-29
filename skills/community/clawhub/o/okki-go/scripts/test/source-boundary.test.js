@@ -46,12 +46,39 @@ test('company search guidance separates product terms from buyer roles to avoid 
   assert.match(skill, /Put product or offer terms in `productKeywords`/);
   assert.match(skill, /put buyer roles in `companyTypeKeywords`/);
   assert.match(skill, /Do not combine product and buyer-role terms inside `companyTypeKeywords`/);
+  assert.match(skill, /工业自动化系统集成商/);
+  assert.match(skill, /"industryKeywords": \["工业自动化系统"\]/);
+  assert.match(skill, /"companyTypeKeywords": \["集成商"\]/);
+  assert.match(skill, /Target-side first still applies/);
 
   assert.match(fastPath, /Do not pack product \+ role phrases into `companyTypeKeywords`/);
+  assert.match(fastPath, /"companyTypeKeywords": \["控制系统工程商"\]/);
+  assert.match(fastPath, /"productKeywords": \["控制系统"\]/);
+  assert.match(fastPath, /"companyTypeKeywords": \["工程商"\]/);
+  assert.match(fastPath, /target-buyer profile keywords/i);
   assert.match(fastPath, /"productKeywords": \["汽车玻璃", "挡风玻璃"\]/);
   assert.match(fastPath, /"companyTypeKeywords": \["进口商"\]/);
   assert.match(fastPath, /`size` and `from` do not reduce ES query rewrite clauses/);
 
   assert.match(scriptsReadme, /companyTypeKeywords` to one value per API request/);
-  assert.match(scriptsReadme, /does not semantically split compound phrases/);
+  assert.match(scriptsReadme, /reject compound phrases such as `汽车玻璃供应商` before API calls/);
+  assert.match(scriptsReadme, /target-buyer `productKeywords` or `industryKeywords` plus pure role `companyTypeKeywords`/);
+});
+
+test('companyHashId guidance forbids using free-search IDs for profile lookups', () => {
+  const skill = readSkillFile('SKILL.md');
+  const paidActions = readSkillFile('references/paid-actions.md');
+  const outputContracts = readSkillFile('references/output-contracts.md');
+  const apiReference = readSkillFile('references/api-reference.md');
+  const scriptsReadme = readSkillFile('scripts/README.md');
+
+  for (const content of [skill, paidActions, outputContracts, apiReference, scriptsReadme]) {
+    assert.match(content, /companyHashId/);
+    assert.match(content, /\/companies\/unlock/);
+    assert.match(content, /free[- ]search ID/i);
+  }
+
+  assert.match(apiReference, /Do not use free[- ]search `id`/i);
+  assert.match(apiReference, /The only valid source for `companyHashId` is the `\/companies\/unlock` response/i);
+  assert.doesNotMatch(apiReference, /companyHashId[^.\n]*来自搜索结果/i);
 });

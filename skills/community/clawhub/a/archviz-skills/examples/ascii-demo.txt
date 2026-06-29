@@ -1,0 +1,35 @@
+archviz-skills ASCII Demo
+=========================
+
+Flowchart
+---------
+
+[Start] --> [Brief] --> [Design] --> [Build]
+                                |
+                                v
+                           {Test?}
+                          /       \
+                     [Pass]    [Fail]
+                        |         |
+                        v         v
+                      [Ship]    [Fix]
+
+Gantt
+-----
+
+2026-Q3       2026-Q4       2027-Q1
+|             |             |
+V1 Setup ========      |
+V1 Core          ===========      |
+V2 Sync               ===========      |
+V2 Charts                    ===========
+
+Legend: ==== = task duration
+
+Architecture
+
+[[System Core]]
+  [Module A] -- [Module B]
+       |            |
+       v            v
+  [Store]      [API Layer]

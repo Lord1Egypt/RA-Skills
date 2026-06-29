@@ -1,0 +1,5 @@
+name: shanhai_story_teller
+description: 山海经童话故事生成器：根据用户给出的提示词（如主角、场景、主题），生成模仿安徒生童话结构的幽默故事，并生成播客音频播放出来。适合讲给8岁左右女孩子听，可适当加入适度的神秘/恐怖元素增加吸引力。
+show_name: 山海经童话机
+show_description: 山海经童话故事生成器 — 主角提示词 → 故事 + 播客音频
+icon_url: https://s.coze.cn/image/wgHLZPKKOOo/

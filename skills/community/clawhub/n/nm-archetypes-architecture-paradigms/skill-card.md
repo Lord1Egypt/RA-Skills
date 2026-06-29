@@ -11,31 +11,29 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and software architects use this skill to compare software architecture paradigms, choose suitable patterns for a system, and route to more specific paradigm guidance for implementation planning or ADR work. <br>
+Developers and software architects use this skill to compare system architecture paradigms, select appropriate patterns, and route to paradigm-specific implementation guidance. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Broad architecture and implementation triggers may activate the skill when the user did not need architecture-pattern routing. <br>
-Mitigation: Confirm that the current task is an architecture selection or trade-off discussion before applying the recommendations. <br>
-Risk: Architecture recommendations can be incomplete if applied without enough system context. <br>
-Mitigation: Validate the selected paradigm against team size, domain complexity, operational constraints, and ADR review before implementation. <br>
+Risk: The skill may activate more often than intended in broad architecture or implementation conversations. <br>
+Mitigation: Review routing behavior during installation and narrow trigger wording if tighter activation is needed. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-archetypes-architecture-paradigms) <br>
-- [OpenClaw homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigms) <br>
+- [Configured Clawdis homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with routing tables and optional skill-loading examples] <br>
+**Output Type(s):** [guidance, markdown, shell commands] <br>
+**Output Format:** [Markdown with tables, checklists, and inline command examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend related architecture paradigm skills listed in the release metadata.] <br>
+**Other Properties Related to Output:** [Routes users to related architecture paradigm skills when deeper implementation guidance is needed.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata) <br>
+1.9.13 (source: release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

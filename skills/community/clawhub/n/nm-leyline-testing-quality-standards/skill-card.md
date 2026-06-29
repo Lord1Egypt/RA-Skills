@@ -11,31 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill to establish testing quality gates, coverage thresholds, and review checklists for plugin and agent skill test suites. <br>
+Developers and engineering teams use this skill to establish testing quality gates, coverage targets, review checklists, and content assertion standards for agent-facing skill and plugin work. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Generic testing thresholds may be applied as universal gates even when a project needs stricter or domain-specific standards. <br>
-Mitigation: Review the thresholds against the project's risk tier, existing quality gates, and safety requirements before adopting them. <br>
+Risk: The skill may activate on broad quality or metrics wording. <br>
+Mitigation: Review trigger scope against the intended workflow before installation or deployment. <br>
+Risk: Testing thresholds and quality guidance may be applied too rigidly to exploratory work or projects with existing gates. <br>
+Mitigation: Apply the guidance when establishing or validating quality standards, and defer to established project-specific gates where they already meet requirements. <br>
 
 
 ## Reference(s): <br>
-- [Claude Night Market Leyline](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
-- [Testing Anti-Patterns](modules/anti-patterns.md) <br>
-- [Testing Best Practices](modules/best-practices.md) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-testing-quality-standards) <br>
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
+- [Anti-Patterns](modules/anti-patterns.md) <br>
+- [Best Practices](modules/best-practices.md) <br>
 - [Content Assertion Levels](modules/content-assertion-levels.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
-**Output Format:** [Markdown guidance with checklists, tables, code examples, and inline shell commands] <br>
+**Output Type(s):** [Text, Markdown, Guidance, Shell commands] <br>
+**Output Format:** [Markdown guidance with checklists, tables, examples, and short shell command references] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Includes coverage thresholds, testing quality metrics, anti-pattern examples, best practices, and content assertion guidance.] <br>
+**Other Properties Related to Output:** [Documentation-only guidance; no hidden execution, credential access, or persistence behavior was identified in the security evidence.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: release metadata) <br>
+1.9.13 (source: release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

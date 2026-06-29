@@ -1,0 +1,172 @@
+{
+  "summary": "Analyzed the collected primary/official sources into a provider-neutral risk model, a concrete safe web-to-Markdown capture workflow, and a file-by-file map for the requested public example package.",
+  "next_angle": "Synthesize the five requested English Markdown files under the public example package shape, using the workflow map as the scaffold and preserving provider-neutral language.",
+  "meaningful_progress": true,
+  "code_used": false,
+  "phase": "analyze",
+  "open_questions": [
+    "No blocking research questions remain; synthesis should still verify that generated package text avoids private paths, local tool names, chat IDs, tokens, and real unsanitized capture transcripts."
+  ],
+  "sources": [
+    {
+      "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+      "title": "RFC 9309: Robots Exclusion Protocol",
+      "note": "Used to frame robots.txt as crawler coordination/politeness, not authorization."
+    },
+    {
+      "url": "https://datatracker.ietf.org/doc/html/rfc9110",
+      "title": "RFC 9110: HTTP Semantics",
+      "note": "Used for safe-method framing and redirect Location handling."
+    },
+    {
+      "url": "https://docs.python.org/3/library/urllib.parse.html",
+      "title": "Python urllib.parse documentation",
+      "note": "Used for the warning that URL parsing APIs do not validate security-sensitive input."
+    },
+    {
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+      "title": "OWASP Server-Side Request Forgery Prevention Cheat Sheet",
+      "note": "Used for URL-controlled fetch risks, parser abuse, and allowlist/network containment guidance."
+    },
+    {
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html",
+      "title": "OWASP LLM Prompt Injection Prevention Cheat Sheet",
+      "note": "Used for untrusted fetched-context handling, action screening, and quarantine/privilege separation patterns."
+    },
+    {
+      "url": "https://spec.commonmark.org/0.31.2/",
+      "title": "CommonMark Spec 0.31.2",
+      "note": "Used to support the caveat that Markdown can include raw HTML blocks and should not be treated as sanitized output."
+    },
+    {
+      "url": "https://github.com/microsoft/markitdown",
+      "title": "Microsoft MarkItDown repository",
+      "note": "Used only as an illustrative converter reference while keeping the example converter-neutral."
+    }
+  ],
+  "findings": [
+    {
+      "kind": "synthesis",
+      "text": "The example should organize risks into five reader-facing categories: permission/politeness, request safety, URL and network containment, conversion/Markdown handling, and prompt-injection boundaries.",
+      "source_urls": [
+        "https://datatracker.ietf.org/doc/html/rfc9309",
+        "https://datatracker.ietf.org/doc/html/rfc9110",
+        "https://docs.python.org/3/library/urllib.parse.html",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+        "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html",
+        "https://spec.commonmark.org/0.31.2/"
+      ]
+    },
+    {
+      "kind": "synthesis",
+      "text": "A safe capture workflow can be presented as six stages: intake, preflight, fetch, convert, analyze, and package. The workflow should require URL policy checks before fetch, redirect revalidation, bounded content, provenance metadata, and untrusted-content handling during analysis.",
+      "source_urls": [
+        "https://datatracker.ietf.org/doc/html/rfc9110",
+        "https://docs.python.org/3/library/urllib.parse.html",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+        "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html"
+      ]
+    },
+    {
+      "kind": "plan",
+      "text": "The five requested files map cleanly to package roles: README.md for purpose and safety boundaries, prompt.md for the worker contract, research-plan.md for gates and stages, sources.md for official references, and final-report.md for the evaluated workflow and artifact checklist.",
+      "source_urls": [
+        "https://datatracker.ietf.org/doc/html/rfc9309",
+        "https://datatracker.ietf.org/doc/html/rfc9110",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+        "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html"
+      ]
+    },
+    {
+      "kind": "synthesis",
+      "text": "The public example should not include a live capture transcript in the initial five-file package. A transcript is useful only as a later synthetic or explicitly sanitized extension, because the requested deliverable is a package template and should avoid redistribution concerns.",
+      "source_urls": [
+        "https://datatracker.ietf.org/doc/html/rfc9309",
+        "https://spec.commonmark.org/0.31.2/"
+      ]
+    },
+    {
+      "kind": "synthesis",
+      "text": "The example should stay converter-neutral. MarkItDown can be named as one illustrative converter with safety caveats, but the workflow should describe hardened fetch and bounded conversion independent of any required dependency.",
+      "source_urls": [
+        "https://github.com/microsoft/markitdown",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html"
+      ]
+    }
+  ],
+  "analysis_artifacts": [
+    {
+      "path": "workspace/analysis/workflow-map.md",
+      "kind": "artifact",
+      "note": "Intermediate synthesis map of risks, workflow stages, resolved open questions, source anchors, and package-file responsibilities."
+    }
+  ],
+  "packages_used": [],
+  "database_used": false,
+  "database_artifacts": [],
+  "database_summary": null,
+  "vision_used": false,
+  "vision_artifacts": [],
+  "vision_summary": null,
+  "adequacy": {
+    "status": "not_started",
+    "goal_alignment": "Adequacy was not formally evaluated in this analyze iteration. The analysis now directly supports the goal by translating collected sources into the requested safe capture workflow and example-package structure.",
+    "coverage_summary": "Covered risk model, workflow stages, file mapping, and both prior open questions. Remaining work is synthesis of the actual five Markdown files followed by a verify phase.",
+    "covered_requirements": [
+      {
+        "requirement": "Provider-neutral safe web-to-Markdown capture workflow",
+        "evidence": "workspace/analysis/workflow-map.md defines a converter-neutral workflow and uses MarkItDown only as an illustrative converter reference."
+      },
+      {
+        "requirement": "Public-safe five-file package shape",
+        "evidence": "workspace/analysis/workflow-map.md maps README.md, prompt.md, research-plan.md, sources.md, and final-report.md to concrete roles."
+      },
+      {
+        "requirement": "Direct official or primary sources",
+        "evidence": "The map anchors claims in RFC 9309, RFC 9110, Python docs, OWASP cheat sheets, CommonMark, and the official MarkItDown repository."
+      }
+    ],
+    "coverage_gaps": [
+      {
+        "gap": "The actual five Markdown package files have not yet been drafted.",
+        "severity": "blocking"
+      },
+      {
+        "gap": "A verify pass has not yet checked the final package for private paths, local tool names, chat IDs, tokens, or unsanitized real captures.",
+        "severity": "blocking"
+      }
+    ],
+    "evidence_risks": [
+      {
+        "risk": "MarkItDown repository text may change over time; keep any converter-specific language illustrative and avoid depending on exact current implementation details.",
+        "severity": "minor"
+      }
+    ],
+    "contradictions": [],
+    "recommended_next_phase": "synthesize",
+    "recommended_next_angle": "Draft the five requested Markdown files from the workflow map and source list, then run a verify phase before finalization.",
+    "blocking_reasons": [
+      "Requested package files are not yet produced."
+    ],
+    "validation_evidence": [
+      {
+        "check": "goal_alignment",
+        "result": "passed",
+        "reason": "The analysis explicitly maps evidence to the user's stated goal and deliverable, but this was not a formal verify phase."
+      },
+      {
+        "check": "open_questions",
+        "result": "passed",
+        "reason": "Both open questions were resolved for synthesis: omit live transcript initially and keep converter references provider-neutral."
+      },
+      {
+        "check": "next_phase_decision",
+        "result": "passed",
+        "reason": "Synthesis is the next useful phase because evidence has been organized and the package structure is now clear."
+      }
+    ]
+  },
+  "notify_recommendation": "silent",
+  "should_complete": false,
+  "final_report_markdown": null
+}

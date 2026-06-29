@@ -1,0 +1,82 @@
+{
+  "baseUrl": "https://api.justserpapi.com",
+  "description": "Call GET /api/v1/google/maps/photos for Google SERP Maps Photos through Just Serp API with data_id.",
+  "displayName": "Google SERP Maps Photos",
+  "endpointPath": "maps/photos",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Google maps Photos data, including related metadata, for visual location research and listing QA.",
+      "method": "GET",
+      "operationId": "mapsPhotos",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "The unique Google Maps location ID (feature ID). You can get this from our Google Maps Search API.",
+          "enumValues": [],
+          "location": "query",
+          "name": "data_id",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the language for the results using its two-letter code (e.g., 'en' for English, 'fr' for French). See <a href=\"/reference/google-language\">Google Language</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "language",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique ID for a photo category (e.g., 'Interior', 'Exterior'). Found in previous Maps Photos API responses.",
+          "enumValues": [],
+          "location": "query",
+          "name": "category_id",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Token for retrieving the next page of photo results.",
+          "enumValues": [],
+          "location": "query",
+          "name": "next_page_token",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/v1/google/maps/photos",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        },
+        {
+          "description": "Authentication failed: API Key is invalid or missing",
+          "statusCode": "401"
+        },
+        {
+          "description": "Access denied: Insufficient credits or quota exceeded",
+          "statusCode": "403"
+        },
+        {
+          "description": "Internal server error or upstream service exception",
+          "statusCode": "500"
+        }
+      ],
+      "summary": "Photos",
+      "tags": [
+        "Google Maps"
+      ]
+    }
+  ],
+  "platformKey": "google",
+  "primaryTag": "Google SERP",
+  "skillName": "justserpapi_google_maps_photos",
+  "skillType": "interface",
+  "slug": "justserpapi-google-maps-photos",
+  "sourceTitle": "API Shop Documentation"
+}

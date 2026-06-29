@@ -1,0 +1,27 @@
+{
+  "_defaults": {
+    "full_front": {"width_ratio": 0.50, "x_center_ratio": 0.50, "y_top_ratio": 0.22, "rotation_deg": 0},
+    "left_chest": {"width_ratio": 0.18, "x_center_ratio": 0.33, "y_top_ratio": 0.22, "rotation_deg": 0},
+    "right_chest": {"width_ratio": 0.18, "x_center_ratio": 0.67, "y_top_ratio": 0.22, "rotation_deg": 0},
+    "full_back": {"width_ratio": 0.55, "x_center_ratio": 0.50, "y_top_ratio": 0.18, "rotation_deg": 0},
+    "back_yoke": {"width_ratio": 0.40, "x_center_ratio": 0.50, "y_top_ratio": 0.10, "rotation_deg": 0},
+    "sleeve": {"width_ratio": 0.12, "x_center_ratio": 0.10, "y_top_ratio": 0.30, "rotation_deg": 0},
+    "front": {"width_ratio": 0.40, "x_center_ratio": 0.50, "y_top_ratio": 0.35, "rotation_deg": 0}
+  },
+  "hoodie": {
+    "full_front": {"width_ratio": 0.55, "x_center_ratio": 0.50, "y_top_ratio": 0.22, "rotation_deg": 0},
+    "left_chest": {"width_ratio": 0.18, "x_center_ratio": 0.33, "y_top_ratio": 0.22, "rotation_deg": 0},
+    "full_back": {"width_ratio": 0.60, "x_center_ratio": 0.50, "y_top_ratio": 0.18, "rotation_deg": 0}
+  },
+  "tee": {
+    "full_front": {"width_ratio": 0.50, "x_center_ratio": 0.50, "y_top_ratio": 0.20, "rotation_deg": 0},
+    "left_chest": {"width_ratio": 0.18, "x_center_ratio": 0.33, "y_top_ratio": 0.20, "rotation_deg": 0},
+    "full_back": {"width_ratio": 0.55, "x_center_ratio": 0.50, "y_top_ratio": 0.15, "rotation_deg": 0}
+  },
+  "hat": {
+    "front": {"width_ratio": 0.35, "x_center_ratio": 0.50, "y_top_ratio": 0.40, "rotation_deg": 0}
+  },
+  "mug": {
+    "front": {"width_ratio": 0.40, "x_center_ratio": 0.50, "y_top_ratio": 0.30, "rotation_deg": 0}
+  }
+}

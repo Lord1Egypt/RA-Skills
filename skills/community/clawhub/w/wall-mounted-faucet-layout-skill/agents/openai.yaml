@@ -1,0 +1,4 @@
+interface:
+  display_name: "Wall-Mounted Faucet Layout"
+  short_description: "Calculate wall faucet geometry"
+  default_prompt: "Use $wall-mounted-faucet-layout to solve faucet reach L or outlet height H1 from the known basin dimensions, stream angle, and either H1 or L."

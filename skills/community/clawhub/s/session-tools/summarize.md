@@ -51,7 +51,7 @@ Show the session list with title, date, message count, etc.
 It is recommended to remove profanity from session files before summarizing:
 
 ```bash
-~/.claude/skills/session/scripts/clean-profanity.py ~/.claude/projects/<project_name>/<session_id>.jsonl
+scripts/clean-profanity.py ~/.claude/projects/<project_name>/<session_id>.jsonl
 ```
 
 See [profanity-cleaner.md](./profanity-cleaner.md) for details.
@@ -59,7 +59,7 @@ See [profanity-cleaner.md](./profanity-cleaner.md) for details.
 ### 4. Extract Conversation Content (Using Script)
 
 ```bash
-~/.claude/skills/session/scripts/summarize-session.py <project_name> <session_id> [limit]
+scripts/summarize-session.py <project_name> <session_id> [limit]
 ```
 
 **Output format:**
@@ -79,13 +79,13 @@ assistant: Next response...
 For sessions that used TodoWrite, extract the completed/incomplete task list directly:
 
 ```bash
-~/.claude/skills/session/scripts/extract-todos.py <project_name> <session_id>
+scripts/extract-todos.py <project_name> <session_id>
 ```
 
 Use `--all` flag to also view intermediate snapshots:
 
 ```bash
-~/.claude/skills/session/scripts/extract-todos.py <project_name> <session_id> --all
+scripts/extract-todos.py <project_name> <session_id> --all
 ```
 
 → Use this result directly as the "completed task list" in step 6 summary generation

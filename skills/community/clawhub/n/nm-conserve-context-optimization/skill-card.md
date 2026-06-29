@@ -11,31 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and agent operators use this skill during long or multi-step work to monitor context pressure, choose conservation strategies, route work across parent context, subagents, or dedicated sessions, and preserve summaries or findings without overloading the active conversation. <br>
+Developers and agent operators use this skill to monitor context pressure, apply MECW guidance, route work to subagents or dedicated sessions, and manage memory tiers during long or multi-file workflows. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may encourage agents to create local coordination, checkpoint, findings, or memory files during long tasks. <br>
-Mitigation: Review workspace write behavior before use in sensitive repositories and keep generated files in approved project or temporary locations. <br>
-Risk: Context-management and delegation advice can introduce misleading summaries or unnecessary subagent workflows if applied without review. <br>
-Mitigation: Use the guidance when context pressure or task complexity warrants it, and review generated summaries or findings before relying on them. <br>
+Risk: The skill describes workflows that can create local checkpoints and coordination files, which may capture sensitive project state if used without boundaries. <br>
+Mitigation: Decide allowed checkpoint and coordination paths before use, and avoid storing secrets or credentials in those files. <br>
+Risk: Subagent and cross-plugin workflows can change shared resources if delegated too broadly. <br>
+Mitigation: Require explicit approval before multi-agent or cross-plugin workflows modify shared resources. <br>
+Risk: Context optimization advice may lead an agent to skip relevant evidence or over-compress important history. <br>
+Mitigation: Review summaries and retained evidence before relying on synthesized results for consequential decisions. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-conserve-context-optimization) <br>
+- [ClawHub release page](https://clawhub.ai/athola/skills/nm-conserve-context-optimization) <br>
 - [OpenClaw homepage](https://github.com/athola/claude-night-market/tree/master/plugins/conserve) <br>
+- [MECW principles module](artifact/modules/mecw-principles.md) <br>
+- [Subagent coordination module](artifact/modules/subagent-coordination.md) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [Guidance, Markdown, Code, Configuration] <br>
-**Output Format:** [Markdown guidance with tables, decision rules, and inline code examples] <br>
+**Output Format:** [Markdown guidance with examples, checklists, and code snippets] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May recommend local summaries, checkpoint files, memory tiers, and optional subagent coordination patterns; no executable installer is included.] <br>
+**Other Properties Related to Output:** [Includes context thresholds, routing rules, memory-tier conventions, and coordination-file patterns.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata; artifact frontmatter: 1.9.8) <br>
+1.9.13 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DouyinScriptOutput",
+  "description": "Output schema for the Douyin Short Video Script Writer skill",
+  "type": "object",
+  "required": ["title", "duration", "version", "scenes", "subtitles", "bgm", "publishTime"],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Video title / headline"
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Target duration in seconds",
+      "enum": [15, 30, 60]
+    },
+    "version": {
+      "type": "string",
+      "description": "Script version identifier",
+      "pattern": "^v\\d+\\.\\d+$"
+    },
+    "scenes": {
+      "type": "array",
+      "description": "Ordered list of scenes forming the video storyboard",
+      "items": {
+        "type": "object",
+        "required": ["timeRange", "visual", "voiceover", "cameraAngle", "shotType"],
+        "properties": {
+          "timeRange": {
+            "type": "string",
+            "description": "Time range in seconds",
+            "examples": ["0-3s", "3-8s", "8-12s"]
+          },
+          "visual": {
+            "type": "string",
+            "description": "Visual / on-screen description of the scene"
+          },
+          "voiceover": {
+            "type": "string",
+            "description": "Voice-over script / spoken lines for this scene"
+          },
+          "cameraAngle": {
+            "type": "string",
+            "description": "Camera angle"
+          },
+          "shotType": {
+            "type": "string",
+            "description": "Shot type"
+          }
+        }
+      },
+      "minItems": 3,
+      "maxItems": 12
+    },
+    "subtitles": {
+      "type": "object",
+      "description": "Subtitle / caption style suggestions",
+      "required": ["style", "highlightKeywords"],
+      "properties": {
+        "style": {
+          "type": "string",
+          "description": "Subtitle style description"
+        },
+        "highlightKeywords": {
+          "type": "array",
+          "description": "Keywords to visually highlight in subtitles",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "bgm": {
+      "type": "object",
+      "description": "Background music suggestions",
+      "required": ["genre", "pace", "exampleTracks"],
+      "properties": {
+        "genre": {
+          "type": "string",
+          "description": "Music genre or style"
+        },
+        "pace": {
+          "type": "string",
+          "description": "Music pace"
+        },
+        "exampleTracks": {
+          "type": "array",
+          "description": "Example music track names or references",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "publishTime": {
+      "type": "array",
+      "description": "Recommended publish time windows",
+      "items": { "type": "string" }
+    },
+    "summary": {
+      "type": "string",
+      "description": "One-line summary of the video content"
+    },
+    "coverCopy": {
+      "type": "string",
+      "description": "Suggested cover / thumbnail text"
+    }
+  }
+}

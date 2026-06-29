@@ -1,0 +1,11 @@
+{
+  "定时扫描（每整点）": {
+    "description": "每小时执行一次，扫描到期追踪项，有变化则推送",
+    "noDeliver": true,
+    "agentTurn": {
+      "message": "🎯 BigFocus 定时扫描。\n按 bigfocus SKILL.md 中「定时扫描」流程执行。\n\n要点：\n1. 调 bigfocus.py scan 获取到期项\n2. 对 need_ai 项做 web_search\n3. 调 bigfocus.py record 记录结果\n4. 有变化则按「定时汇报模板」推送（openclaw message send）\n5. 无变化不推送，不输出任何内容\n6. 严禁输出思考过程和调试信息",
+      "timeoutSeconds": 300,
+      "lightContext": true
+    }
+  }
+}

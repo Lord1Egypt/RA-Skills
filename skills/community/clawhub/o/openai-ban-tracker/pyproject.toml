@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools-scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "openai-ban-tracker"
+version = "1.0.0"
+description = "OpenAI 封号风险检测与解封追踪 CLI"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+dependencies = [
+    "click>=8.0",
+    "rich>=13.0",
+]
+
+[project.scripts]
+openai-ban-tracker = "openai_ban_tracker.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]

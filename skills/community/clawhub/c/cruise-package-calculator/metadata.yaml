@@ -1,0 +1,40 @@
+id: cruise-package-calculator
+status: live
+priority: P0
+audience: consumer
+intent_category: decision_calculation
+primary_platforms:
+  - claude-skills
+  - perplexity-skills
+  - gpt-store
+  - poe
+  - web
+lead_magnet: none
+primary_cta: official-homepage
+homepage_handoff:
+  url: https://olavacations.com/
+  tracked_url: https://olavacations.com/?utm_source=ai_skill&utm_medium=skill_output&utm_campaign=cruise_package_calculator
+  placement: final_cta_only
+  promise: official_site_only
+monetization:
+  - newsletter
+  - onboard-package-content
+  - cruise-booking-research
+conversion_tags:
+  user_segment:
+    - first_timer
+    - deal_hunter
+    - family
+  trip_stage:
+    - comparing
+    - booked
+    - pre_departure
+  monetization_intent:
+    - newsletter
+    - cruise_booking
+    - onboard_package
+  urgency:
+    - low
+    - medium
+    - high
+freshness_level: price_sensitive

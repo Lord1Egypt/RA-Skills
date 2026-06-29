@@ -1,0 +1,96 @@
+/* ============================================================
+   techblue.css —— 科技蓝 / 调试工具风
+   仅视觉：color/background/border/box-shadow/字体渐变/backdrop-filter
+   绝不写：display/flex/grid/width/height/padding/margin/position/gap
+   Ant 蓝 #1677ff 主色 + 浅灰底，内网工具气质
+   ============================================================ */
+:root{--bg:#f5f7fa;--accent:#1677ff;--accent2:#0958d9;--accent3:#13c2c2;--glass-bg:#ffffff;--glass-border:#d9e1ec;--text:#1c2433;--muted:#5c6b80;--card-hover:rgba(22,119,255,0.05);--strong:#0a1525;--nav-w:160px}
+body{background:var(--bg);color:var(--text)}
+body::before{background:radial-gradient(ellipse 90% 50% at 50% 0%,rgba(22,119,255,.10) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 90% 30%,rgba(9,88,217,.06) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 10% 70%,rgba(19,194,194,.05) 0%,transparent 50%)}
+.side-nav{background:rgba(255,255,255,.88);backdrop-filter:blur(16px);border-left:1px solid var(--glass-border);border-radius:12px 0 0 12px;box-shadow:0 4px 24px rgba(10,21,37,.06)}
+.side-nav-item{border-left:2px solid transparent;color:var(--muted);background:transparent}
+.side-nav-item:hover{color:var(--text);background:rgba(22,119,255,.05)}
+.side-nav-item.active{color:var(--accent);border-left-color:var(--accent);background:rgba(22,119,255,.10)}
+.section-label{color:var(--accent)}
+.section-desc{color:var(--muted)}
+.badge{background:rgba(22,119,255,.10);border:1px solid rgba(22,119,255,.30);color:var(--accent)}
+.badge-dot{background:var(--accent)}
+.gradient-text{background-image:linear-gradient(135deg,#1677ff 0%,#0958d9 50%,#13c2c2 100%)}
+.subtitle{color:var(--muted)}
+.trigger-tag{color:var(--muted);background:#ffffff;border:1px solid var(--glass-border)}
+.btn-primary{background:linear-gradient(135deg,#1677ff,#0958d9);color:#fff;box-shadow:0 4px 18px rgba(22,119,255,.30)}
+.btn-primary:hover{box-shadow:0 8px 28px rgba(22,119,255,.45)}
+.btn-ghost{background:#ffffff;color:var(--text);border:1px solid var(--glass-border);backdrop-filter:blur(12px)}
+.btn-ghost:hover{background:#eef2f8}
+.meta-bar{border-top:1px solid var(--glass-border);color:var(--muted)}
+.card{background:#ffffff;border:1px solid var(--glass-border);box-shadow:0 1px 3px rgba(10,21,37,.04)}
+.card::before{background:var(--card-hover)}
+.card:hover{border-color:rgba(22,119,255,.40);box-shadow:0 8px 28px rgba(22,119,255,.12)}
+.card-title{color:var(--strong)}
+.card-desc{color:var(--muted)}
+.feat-cat-card{background:#ffffff;border:1px solid var(--glass-border);box-shadow:0 1px 3px rgba(10,21,37,.04)}
+.feat-cat-blue::before{background:linear-gradient(90deg,#1677ff,#0958d9)}
+.feat-cat-purple::before{background:linear-gradient(90deg,#722ed1,#9254de)}
+.feat-cat-green::before{background:linear-gradient(90deg,#52c41a,#389e0d)}
+.feat-cat-cyan::before{background:linear-gradient(90deg,#13c2c2,#08979c)}
+.feat-cat-orange::before{background:linear-gradient(90deg,#fa8c16,#d46b08)}
+.feat-cat-pink::before{background:linear-gradient(90deg,#eb2f96,#722ed1)}
+.feat-cat-card:hover{border-color:rgba(22,119,255,.40);box-shadow:0 12px 32px rgba(10,21,37,.10)}
+.feat-cat-title{color:var(--strong)}
+.feat-cat-list li{color:var(--muted)}
+.feat-cat-list li::before{color:#bfc8d6}
+.tab-nav{background:#ffffff;border:1px solid var(--glass-border);backdrop-filter:blur(16px)}
+.tab-btn{color:var(--muted)}
+.tab-btn:hover{color:var(--text);background:#eef2f8}
+.tab-btn.active{color:var(--accent);background:rgba(22,119,255,.10);border:1px solid rgba(22,119,255,.30);border-bottom:1px solid transparent}
+.tab-panel{background:#ffffff;border:1px solid var(--glass-border);border-top:none;backdrop-filter:blur(20px);box-shadow:0 12px 36px rgba(10,21,37,.08)}
+.user-step{border-bottom:1px solid #eef2f8}
+.user-step:last-child{border-bottom:none}
+.step-num{background:rgba(22,119,255,.10);border:1px solid rgba(22,119,255,.35);color:var(--accent)}
+.step-title{color:var(--strong)}
+.step-desc{color:var(--muted)}
+.term-bar{background:#0a1525;border-bottom:1px solid #1c2a44}
+.term-dot:nth-child(1){background:#ff5f57}.term-dot:nth-child(2){background:#ffbd2e}.term-dot:nth-child(3){background:#28c840}
+.term-label{color:#8895ad}
+.term-body{background:#0a1525;color:#dde6f5}
+.c-cmd{color:#9254de}.c-flag{color:#4fa3ff}.c-val{color:#52c41a}.c-cmt{color:#5c6b80}.c-out{color:#ffc53d}.c-url{color:#4fa3ff}.c-text{color:#dde6f5}
+.doc-group-title{color:var(--accent);border-bottom:1px solid rgba(22,119,255,.18)}
+.doc-card{background:#ffffff;border:1px solid var(--glass-border)}
+.doc-card-header{background:#f5f7fa;border-bottom:1px solid var(--glass-border)}
+.doc-card-header:hover{background:#eef2f8}
+.doc-card-arrow{color:var(--muted)}
+.tag-blue{background:rgba(22,119,255,.10);color:#1677ff}
+.tag-purple{background:rgba(114,46,209,.10);color:#722ed1}
+.tag-green{background:rgba(82,196,26,.10);color:#389e0d}
+.tag-orange{background:rgba(250,140,22,.10);color:#d46b08}
+.doc-desc{color:var(--text)}
+.doc-ul li,.doc-ol li{color:var(--text)}
+code{background:rgba(114,46,209,.10);color:#722ed1}
+pre.mini-code{background:#0a1525;border:1px solid #1c2a44;color:#dde6f5}
+pre.mini-term{background:#0a1525;border:1px solid #1c2a44;color:#dde6f5}
+.doc-table th{color:var(--muted);border-bottom:1px solid var(--glass-border);background:#f5f7fa}
+.doc-table td{border-bottom:1px solid #eef2f8;color:var(--text)}
+.doc-table tr:last-child td{border-bottom:none}
+.doc-table tr:hover td{background:#f5f7fa}
+blockquote{background:rgba(22,119,255,.06);border-left:3px solid var(--accent)}
+blockquote p{color:var(--text)}
+hr{background:var(--glass-border)}
+.roadmap-card{background:#ffffff;border:1px solid var(--glass-border);box-shadow:0 1px 3px rgba(10,21,37,.04)}
+.roadmap-card:nth-child(1)::before{background:linear-gradient(90deg,#1677ff,#0958d9)}
+.roadmap-card:nth-child(2)::before{background:linear-gradient(90deg,#722ed1,#9254de)}
+.roadmap-card:nth-child(3)::before{background:linear-gradient(90deg,#52c41a,#389e0d)}
+.roadmap-card:nth-child(4)::before{background:linear-gradient(90deg,#fa8c16,#d46b08)}
+.roadmap-card:hover{border-color:rgba(22,119,255,.40);box-shadow:0 12px 32px rgba(10,21,37,.10)}
+.roadmap-title{color:var(--strong)}
+.roadmap-tag{background:rgba(22,119,255,.10);color:#1677ff;border:1px solid rgba(22,119,255,.30)}
+.roadmap-desc{color:var(--muted)}
+.known-issues{background:rgba(250,140,22,.06);border:1px solid rgba(250,140,22,.22)}
+.known-issues-title{color:#d46b08}
+.known-issues li{color:#5c6b80}
+.known-issues li::before{color:#d46b08}
+footer{border-top:1px solid var(--glass-border)}
+.footer-text{color:var(--muted)}
+.src-notice{background:rgba(250,140,22,.06);border:1px solid rgba(250,140,22,.22);color:#a44b08}
+.fab-circle{background:linear-gradient(135deg,#1677ff,#0958d9);box-shadow:0 4px 24px rgba(22,119,255,.45);border:2px solid #ffffff}
+.fab-install:hover .fab-circle{box-shadow:0 8px 36px rgba(22,119,255,.60)}
+.fab-label{color:var(--accent);background:#ffffff;border:1px solid rgba(22,119,255,.30);backdrop-filter:blur(8px);box-shadow:0 2px 8px rgba(10,21,37,.06)}

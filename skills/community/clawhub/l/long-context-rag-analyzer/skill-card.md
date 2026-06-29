@@ -1,5 +1,5 @@
 ## Description: <br>
-AI-powered long-context document analysis and RAG optimization assistant for processing 100K-2M token documents, building hybrid search indexes, evaluating retrieval quality, handling multi-document reasoning, and generating structured reports. <br>
+Analyze and optimize retrieval-augmented generation pipelines for 100K-2M token documents using hybrid search, chunking, reasoning, and structured reporting. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,31 +11,30 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Financial analysts, legal professionals, researchers, and developers use this skill to design, evaluate, and optimize long-context RAG workflows for large document sets. It guides document intake, chunking, hybrid retrieval, retrieval quality evaluation, and structured report generation. <br>
+Developers, analysts, legal professionals, and researchers use this skill to design, evaluate, and improve long-context RAG workflows for large document collections, including financial reports, legal contracts, research papers, and regulatory filings. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Confidential financial, legal, or internal document chunks could be exposed if embeddings, indexes, or retrieval calls are sent to unapproved external providers. <br>
-Mitigation: Decide whether embeddings and indexes must remain local before use, and send sensitive chunks to external providers only when approved. <br>
-Risk: RAG outputs for financial and legal documents can contain incorrect retrievals, missing citations, or misleading synthesis. <br>
-Mitigation: Require source citations, evaluate retrieval quality, and keep expert review in the workflow before relying on generated findings. <br>
+Risk: Confidential financial or legal documents could be exposed if embeddings or model calls are sent to third-party providers without review. <br>
+Mitigation: Decide whether embeddings and model calls must stay local before using the skill with confidential documents. <br>
+Risk: High-stakes RAG outputs can be misleading if generated without source grounding. <br>
+Mitigation: Require citations, page references, and confidence signals for financial, legal, or regulatory answers. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/long-context-rag-analyzer) <br>
-- [Publisher profile](https://clawhub.ai/user/gechengling) <br>
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/long-context-rag-analyzer) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, code, configuration] <br>
-**Output Format:** [Markdown with tables, workflow steps, configuration snippets, and structured report examples] <br>
+**Output Type(s):** [guidance, markdown, code, configuration, shell commands] <br>
+**Output Format:** [Markdown with tables, structured reports, configuration snippets, and code examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces advisory RAG analysis plans and report templates; it does not execute code or access credentials by itself.] <br>
+**Other Properties Related to Output:** [May include citations, confidence scores, retrieval metrics, action plans, and export recommendations.] <br>
 
 ## Skill Version(s): <br>
-3.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+3.0.2 (source: frontmatter and release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

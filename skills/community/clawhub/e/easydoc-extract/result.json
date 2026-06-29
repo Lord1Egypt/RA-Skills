@@ -1,0 +1,30 @@
+{
+  "task_id": "b_extract_023f9a33-ab34-4a7e-9610-5072a568f8e71781669131087",
+  "status": "SUCCESS",
+  "results": [
+    {
+      "page_number": null,
+      "fields": {}
+    }
+  ],
+  "raw": {
+    "success": true,
+    "data": {
+      "task_id": "b_extract_023f9a33-ab34-4a7e-9610-5072a568f8e71781669131087",
+      "status": "SUCCESS",
+      "results": [
+        {
+          "key_index": [
+            "姓名",
+            "日期"
+          ],
+          "page_count": 1,
+          "extracted_fields": {
+            "姓名": "",
+            "日期": "2014-2-25"
+          }
+        }
+      ]
+    }
+  }
+}

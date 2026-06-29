@@ -1,0 +1,20 @@
+{
+  "name": "Overseas Brand Positioning Framework",
+  "slug": "cb-brand-positioning-framework",
+  "version": "1.0.1",
+  "description": "Craft a ready-to-execute brand positioning strategy for any international market — complete with messaging hierarchy, competitive differentiation map, and localized value propositions. Turn 'we need to position our brand' into a boardroom-ready positioning deck.",
+  "author": "Harry (OpenClaw)",
+  "tags": ["brand", "positioning", "international", "strategy", "marketing"],
+  "trigger_keywords": [
+    "brand positioning overseas",
+    "rebrand for international",
+    "brand story foreign market",
+    "value proposition localization",
+    "global brand strategy"
+  ],
+  "language": "en",
+  "type": "descriptive",
+  "requires_api": false,
+  "requires_code_execution": false,
+  "readiness": "stable"
+}

@@ -1,8 +1,8 @@
 # 异常监控巡检：`siluzan-tso` CLI `--json-out` 落盘 JSON 键名与命令
 
-> **主题索引**：[`operations/hosted-automation-scenarios.md`](operations/hosted-automation-scenarios.md)  
+> **主题索引**：[`references/operations/hosted-automation-scenarios.md`](references/operations/hosted-automation-scenarios.md)  
 > **编排责任**：定时、HTTP 探活、通知等在宿主。本页只列 **读数命令与常见 JSON 键名**。  
-> **统计日 / 时区**：与自控场景相同，见 [`operations/hosted-automation-self-control.md`](operations/hosted-automation-self-control.md)「统计日与今日」。
+> **统计日 / 时区**：与自控场景相同，见 [`references/operations/hosted-automation-self-control.md`](references/operations/hosted-automation-self-control.md)「统计日与今日」。
 
 宿主做定时巡检时，**只以当次 CLI 落盘 JSON 键名为准**（读命令统一 **`--json-out <dir>`**，以**落盘 `*.json` 文件正文**为准；`google-analysis` 等同理）。Google Ads API 文档里的资源名（如 `billing_setup`、`account_budget`、`amount_served_micros`）**与本 CLI 输出不是同一套命名**，不要当作本仓库 JSON 的键去解析。若某键缺失，**禁止猜测**：以实际输出为准，或换用 `references/analytics/account-analytics.md` 中的其它子命令。
 
@@ -59,7 +59,7 @@ mkdir -p ./snap-monitor && siluzan-tso google-analysis -a <mediaCustomerId> --se
 
 **`campaignId`**、**`campaignName`**、**`date`**、**`hour`**、**`spend`**、`impressions`、`clicks`、`conversions`。
 
-宿主侧可做：同一 `campaignId` 在相邻小时或相邻日的 **`spend`** 对比、滑动均值、超阈值告警等（阈值与统计时区由宿主配置，见 [`operations/hosted-automation-self-control.md`](operations/hosted-automation-self-control.md)「统计日与今日」）。
+宿主侧可做：同一 `campaignId` 在相邻小时或相邻日的 **`spend`** 对比、滑动均值、超阈值告警等（阈值与统计时区由宿主配置，见 [`references/operations/hosted-automation-self-control.md`](references/operations/hosted-automation-self-control.md)「统计日与今日」）。
 
 ---
 
@@ -79,7 +79,7 @@ mkdir -p ./snap-monitor && siluzan-tso google-analysis -a <mediaCustomerId> --se
 siluzan-tso ad list -a <mediaCustomerId> --start <YYYY-MM-DD> --end <YYYY-MM-DD> --json-out ./snap
 ```
 
-`items[]` 为网关原样字段集合；落地页相关键名以当次输出为准（类型说明里常见 **`finalurl`**；亦可用 **`google-analysis --sections ads`** 列表，结构见 `references/google-ads/google-ads.md` / `analytics/account-analytics.md`）。命中后暂停创意用 **`ad ad-status`**（见 `references/google-ads/google-ads.md`），写后复核再次 `ad list --json-out ./snap` 看 **`statusV2`**。
+`items[]` 为网关原样字段集合；落地页相关键名以当次输出为准（类型说明里常见 **`finalurl`**；亦可用 **`google-analysis --sections ads`** 列表，结构见 `references/google-ads/google-ads.md` / `references/analytics/account-analytics.md`）。命中后暂停创意用 **`ad ad-status`**（见 `references/google-ads/google-ads.md`），写后复核再次 `ad list --json-out ./snap` 看 **`statusV2`**。
 
 ---
 

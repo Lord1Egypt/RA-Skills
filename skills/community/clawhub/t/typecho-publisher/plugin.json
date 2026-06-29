@@ -1,0 +1,7 @@
+{
+  "name": "typecho-publisher",
+  "version": "3.0.0",
+  "description": "AI 直接管理的 Typecho 博客知识库技能 — 通过 typecho-cli 工具创建、查询、更新、删除文章",
+  "config_file": "config.json",
+  "bin": "./typecho-cli"
+}

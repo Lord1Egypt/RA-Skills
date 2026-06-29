@@ -1,0 +1,87 @@
+# 成本效益审计工作流模板
+
+name: 成本效益审计
+type_id: cost_benefit
+description: 对项目/活动的成本投入与效益产出进行系统分析和评价
+version: "1.0"
+
+context_prompt: |
+  项目名称：{project_name}
+  实施单位：{unit_name}
+  评价周期：{period}
+
+steps:
+  - id: cost_collection
+    name: 全口径成本归集
+    action: data_analysis
+    description: 归集全口径成本数据
+    prompt: |
+      归集"{project_name}"的全口径成本：
+      1. 直接成本（人工、材料、设备等）
+      2. 间接成本分摊
+      3. 资本成本和机会成本
+      4. 隐性成本识别
+    skills: [data-analyst-cn]
+    checkpoint: false
+    output_key: cost_data
+
+  - id: benefit_measurement
+    name: 效益测算
+    action: data_analysis
+    description: 测算经济效益和社会效益
+    prompt: |
+      测算"{project_name}"的效益：
+      1. 直接经济效益（收入、节约）
+      2. 间接经济效益（带动、溢出）
+      3. 社会效益量化
+      4. 生态效益评估
+    skills: [data-analyst-cn, statistical-analysis]
+    depends_on: [cost_collection]
+    checkpoint: false
+    output_key: benefit_data
+
+  - id: comparative_analysis
+    name: 横向纵向对比
+    action: invoke_skill
+    description: 投入产出对比分析
+    prompt: |
+      对"{project_name}"进行对比分析：
+      1. 投入产出比计算
+      2. 历史趋势对比
+      3. 行业/同类项目对标
+      4. 成本结构合理性分析
+    skills: [statistical-analysis]
+    depends_on: [cost_collection, benefit_measurement]
+    checkpoint: false
+    output_key: comparison_result
+
+  - id: sensitivity_analysis
+    name: 敏感性模拟
+    action: invoke_skill
+    description: 关键变量敏感性分析
+    prompt: |
+      对"{project_name}"进行敏感性分析：
+      1. 关键变量识别（价格、需求、工期等）
+      2. 单变量敏感性测试
+      3. 多变量情景分析
+      4. 盈亏平衡分析
+    skills: [forecast-simulation]
+    depends_on: [comparative_analysis]
+    checkpoint: false
+    output_key: sensitivity_result
+
+  - id: generate_report
+    name: 成本效益分析报告
+    action: generate
+    description: 编制成本效益分析报告
+    prompt: |
+      编制"{project_name}"成本效益分析报告：
+      1. 项目概述
+      2. 成本分析
+      3. 效益分析
+      4. 成本效益评价
+      5. 优化建议
+    skills: [analysis-report, deepseek-charting]
+    depends_on: [sensitivity_analysis]
+    checkpoint: true
+    output_key: final_report

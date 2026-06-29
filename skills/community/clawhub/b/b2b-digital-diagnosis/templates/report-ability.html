@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>B2B企业数字化诊断报告 - {{COMPANY_NAME}}</title>
+<link rel="stylesheet" href="report-style.css">
+<style>
+  .tag-ability { background: #e3f2fd; color: #0d47a1; display:inline-block;padding:3px 10px;border-radius:3px;font-weight:700; }
+  .highlight-box { background: #e8f0fe; border:1px solid #90caf9; padding:14px 18px; border-radius:4px; margin:12px 0; }
+</style>
+</head>
+<body>
+
+<!-- 封面 -->
+<div class="cover">
+  <div class="brand">雄韬XTOCN</div>
+  <div class="subtitle">B2B企业数字化诊断报告</div>
+  <div class="divider"></div>
+  <div class="company-name">{{COMPANY_NAME}}</div>
+  <div class="meta">{{DATE}}</div>
+  <div class="focus-type">能力型专注</div>
+</div>
+
+<!-- P1: 诊断结论 -->
+<div class="page-break"></div>
+<div class="page-title">一、诊断结论</div>
+
+<div class="result-box">
+  <div class="type-label">🏭 能力型专注</div>
+  <div class="score-detail">
+    3道题得分：能力 {{ABILITY_SCORE}}分 | 行业 {{INDUSTRY_SCORE}}分 | 问题 {{PROBLEM_SCORE}}分<br>
+    选择路径：{{ANSWER_PATH}}<br>
+    {{#TIEBREAKER}}决胜题：{{TIEBREAKER_ANSWER}} → {{TIEBREAKER_RESULT}}{{/TIEBREAKER}}
+  </div>
+</div>
+
+<div class="section">
+  <h2>原点能力定义</h2>
+  <div class="origin-ability">
+    {{ORIGIN_ABILITY}}
+  </div>
+  <p>你不是在做产品，你是在把<strong>一种能力做到极限</strong>。这种能力可以跨行业复用——不同行业、不同客户、不同场景，底层依赖的是同一个能力内核。</p>
+</div>
+
+<div class="section">
+  <h2>你的护城河在哪</h2>
+  <p>能力型企业的护城河不是市场规模，而是<strong>技术壁垒的厚度</strong>：</p>
+  <ul>
+    <li><strong>深度护城河：</strong>你的能力是否有别人无法复制的"极限参数"？——温度、压力、寿命、精度、稳定性，这些数字就是你的护城河。</li>
+    <li><strong>宽度护城河：</strong>你的能力能覆盖多少个行业？行业越多，单一行业波动对你的影响越小。</li>
+    <li><strong>速度护城河：</strong>当新需求出现时，你能不能比别人更快地用现有能力响应？</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>转轴方向</h2>
+  <p>当原有市场饱和时，你不需要进入新行业"重新创业"——<strong>沿着能力画布去找需要这种能力的新场景</strong>。同一项能力，换个行业就是新市场。</p>
+</div>
+
+<div class="warning-box">
+  <strong>资源陷阱警示：</strong>不要因为某个行业"看起来很赚钱"就去跨界做不相关的事。能力型企业的敌人不是竞争对手，是诱惑。偏离原点能力的扩张，大概率会变成资源黑洞。
+</div>
+
+<!-- P2: 战略定位 -->
+<div class="page-break"></div>
+<div class="page-title">二、战略定位分析</div>
+
+<div class="section">
+  <h2>能力型企业特征</h2>
+  <table>
+    <tr><th>维度</th><th>你的情况</th></tr>
+    <tr><td>核心竞争力</td><td>{{CORE_COMPETENCE}}</td></tr>
+    <tr><td>可进入行业</td><td>{{APPLICABLE_INDUSTRIES}}</td></tr>
+    <tr><td>客户决策关键</td><td>技术参数能否达到别人达不到的指标</td></tr>
+    <tr><td>定价权来源</td><td>极限参数 = 不可替代 = 定价权</td></tr>
+    <tr><td>最大风险</td><td>能力被新技术替代，或团队核心人物流失</td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>同类型企业参照</h2>
+  <p>你的模式与<strong>东晟密封</strong>相似——它们只做"极端环境下的可靠密封"，不限定行业，军工/深海/能源/汽车都是它的战场。它的官网不讲"我们卖密封件"，而讲"我们解决极端工况下的材料稳定性问题"。</p>
+  {{#COMPARISON_CASE}}
+  <p>另可参考：{{COMPARISON_CASE}}</p>
+  {{/COMPARISON_CASE}}
+</div>
+
+<div class="section">
+  <h2>数字化核心原则</h2>
+  <div class="highlight-box">
+    <strong>一句话：</strong>能力型企业的数字化，本质是<strong>让不可见的技术变得可见</strong>。你的官网不是产品目录，是"能力展览馆"。你的短视频不是广告，是"能力的可视化证明"。
+  </div>
+</div>
+
+<!-- P3: 数字化组合 -->
+<div class="page-break"></div>
+<div class="page-title">三、数字化组合建议</div>
+
+<div class="section">
+  <h2>推荐工具组合</h2>
+  <table>
+    <tr><th>渠道</th><th>定位</th><th>核心内容</th><th>优先级</th></tr>
+    <tr><td>🖥️ 官网</td><td>技术信任锚点</td><td>材料物性库、极限工况测试数据、实验室资质、跨行业案例矩阵</td><td>⭐⭐⭐⭐⭐ 必做</td></tr>
+    <tr><td>🎬 短视频</td><td>技术可视化</td><td>对比实验、破坏性测试、工艺原理拆解</td><td>⭐⭐⭐⭐ 强烈建议</td></tr>
+    <tr><td>📱 小程序</td><td>选型工具箱</td><td>工况匹配查询、参数对比、文档下载</td><td>⭐⭐⭐ 按需</td></tr>
+    <tr><td>📰 公众号/视频号</td><td>技术内容分发</td><td>白皮书解读、测试数据发布、标准动态</td><td>⭐⭐⭐⭐ 配套</td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>官网栏目架构</h2>
+  <div class="arch-tree">
+首页 — "我能把{{ABILITY_KEYWORD}}做到极限"
+├── 技术纵深
+│   ├── 核心材料 / 工艺
+│   ├── 实验室 & 检测能力（CNAS/第三方认证）
+│   └── 研发团队 & 专利墙
+├── 跨行业应用案例
+│   ├── {{INDUSTRY_1}}
+│   ├── {{INDUSTRY_2}}
+│   └── {{INDUSTRY_3}}
+├── 技术文档中心
+│   ├── 白皮书 / 技术报告
+│   ├── 物性表 / MSDS
+│   └── 选型手册 / 应用指南
+├── 关于我们
+│   ├── 发展历程 & 核心设备
+│   └── 合作客户 Logo 墙
+└── 联系 & 技术咨询
+  </div>
+</div>
+
+<div class="section">
+  <h2>各渠道内容策略</h2>
+  <table>
+    <tr><th>渠道</th><th>内容类型</th><th>更新频率</th></tr>
+    <tr><td>官网·技术文档</td><td>测试报告、物性表、白皮书、认证更新</td><td>每月1-2篇</td></tr>
+    <tr><td>抖音</td><td>15-40秒对比实验、极限测试快剪</td><td>每周1-2条</td></tr>
+    <tr><td>视频号</td><td>工艺深度拆解、跨行业案例故事</td><td>每周1条</td></tr>
+    <tr><td>公众号</td><td>技术白皮书精读、行业标准参与动态</td><td>每两周1篇</td></tr>
+    <tr><td>B站（可选）</td><td>10-15分钟工艺原理深度拆解</td><td>每月1-2条</td></tr>
+  </table>
+</div>
+
+<!-- P4: 短视频选题 -->
+<div class="page-break"></div>
+<div class="page-title">四、短视频选题清单</div>
+
+<div class="section">
+  <h2>选题分布</h2>
+  <table>
+    <tr><th>类型</th><th>占比</th><th>目的</th></tr>
+    <tr><td><span class="tag tag-experiment">对比实验</span></td><td>40%</td><td>用数据证明你的能力领先——这是能力型最核心的内容</td></tr>
+    <tr><td><span class="tag tag-pain">极限测试</span></td><td>25%</td><td>展示能力的边界——"这个条件下只有我们能活"</td></tr>
+    <tr><td><span class="tag tag-case">跨行业案例</span></td><td>20%</td><td>证明能力的可复用性——"XX行业和XX行业，用的都是同一个技术"</td></tr>
+    <tr><td><span class="tag tag-ip">老板/总工IP</span></td><td>15%</td><td>建立人的信任——B2B是"人+技术"的叠加信任</td></tr>
+  </table>
+</div>
+
+<div class="section">
+  <h2>具体选题（8个）</h2>
+  <ol class="topic-list">
+    {{TOPIC_LIST}}
+  </ol>
+</div>
+
+<div class="section">
+  <h2>平台分发建议</h2>
+  <table>
+    <tr><th>内容类型</th><th>首发平台</th><th>同步平台</th></tr>
+    <tr><td>15-30秒对比实验</td><td>抖音</td><td>视频号、小红书</td></tr>
+    <tr><td>极限测试实拍</td><td>抖音 + B站</td><td>视频号</td></tr>
+    <tr><td>工艺原理深度拆解</td><td>B站</td><td>视频号、公众号</td></tr>
+    <tr><td>跨行业案例故事</td><td>视频号</td><td>公众号、LinkedIn</td></tr>
+    <tr><td>老板/总工IP</td><td>视频号</td><td>抖音</td></tr>
+  </table>
+</div>
+
+<!-- P5: 行动清单 -->
+<div class="page-break"></div>
+<div class="page-title">五、下一步行动清单</div>
+
+<div class="section">
+  <h2>按优先级执行</h2>
+  <ol class="action-list">
+    {{ACTION_LIST}}
+  </ol>
+</div>
+
+<div class="section">
+  <h2>效果衡量维度</h2>
+  <table>
+    <tr><th>维度</th><th>指标</th><th>目标（6个月）</th></tr>
+    <tr><td>官网</td><td>自然搜索流量 + 询盘转化率</td><td>流量提升50%，询盘从0到月均5-10条</td></tr>
+    <tr><td>短视频</td><td>播放量 + 主页链接点击</td><td>单条平均5000+播放，主页点击率3%+</td></tr>
+    <tr><td>内容</td><td>白皮书下载量 + 留资数</td><td>月均下载30+，留资转化10%+</td></tr>
+    <tr><td>品牌</td><td>搜索品牌名 + 行业关键词</td><td>品牌搜索量翻倍</td></tr>
+  </table>
+</div>
+
+<div class="footer-brand">
+  雄韬XTOCN | www.xtocn.com | 本报告由AI辅助生成，仅供参考
+</div>
+
+</body>
+</html>

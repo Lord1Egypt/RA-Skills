@@ -1,0 +1,18 @@
+{
+  "name": "anthropic",
+  "description": "Cross-platform SKILL.md base spec (Claude Code / Codex / Copilot / Cursor). name (<=64) + description (<=1024) required, body <5k tokens recommended.",
+  "frontmatter": {
+    "required": ["name", "description"],
+    "version_severity": "INFO",
+    "name_max_len": 64,
+    "description_max_len": 1024
+  },
+  "files": {
+    "require_readme": false,
+    "require_license": false
+  },
+  "slug_regex": "^[a-z0-9][a-z0-9-]*$",
+  "slug_max_len": 64,
+  "bundle_limit_mb": null,
+  "declaration_vs_code": "WARN"
+}

@@ -1,0 +1,1 @@
+{"enabled":false,"controlledAgents":["main"],"blockedTools":["write","edit","exec","process","apply_patch"],"execAllowExcept":{"find":["-exec","-ok","-delete","-fprint","|","$(",">",">>"],"ls":[">",">>","|"],"pwd":[">",">>","|"],"sed":[">",">>","|",".java",".py",".js",".html",".css"],"cat":[">",">>","|"]}}

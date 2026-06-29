@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "jd-link-converter"
+version = "1.1.0"
+description = "将京东移动端分享短链接(3.cn/u.jd.com)转换为PC端纯净商品链接(item.jd.com)"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+keywords = ["jd", "jd.com", "3.cn", "link-converter", "url-shortener", "china-ecommerce", "openclaw", "clawhub"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Utilities",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+]
+
+[project.scripts]
+jd-convert = "jd_link_converter:main"
+
+[tool.setuptools]
+py-modules = ["jd_link_converter"]
+
+[tool.setuptools.package-dir]
+"" = "scripts"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

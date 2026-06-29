@@ -1,0 +1,7 @@
+interface:
+  display_name: "Nextcloud Integration Helper"
+  short_description: "Helps with [Enhancement] Add Nextcloud Support."
+  default_prompt: "Use $nextcloud-integration-helper to help me [Enhancement] Add Nextcloud Support."
+
+policy:
+  allow_implicit_invocation: true

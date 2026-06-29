@@ -1,0 +1,42 @@
+{
+  "last_updated": "2026-06-15",
+  "entries": [
+    {
+      "date": "2026-06-19",
+      "weekday_cn": "周五",
+      "protein": "蛋",
+      "festival": "端午节",
+      "solar_term": null,
+      "breakfast": [
+        {
+          "name": "粽子",
+          "main_ingredient": ""
+        },
+        {
+          "name": "牛奶",
+          "main_ingredient": ""
+        }
+      ],
+      "lunch": [
+        {
+          "name": "蒸豆腐肉末",
+          "main_ingredient": "嫩豆腐"
+        }
+      ],
+      "dinner": [
+        {
+          "name": "蒸蛋羹",
+          "main_ingredient": "鸡蛋"
+        },
+        {
+          "name": "土豆炖排骨",
+          "main_ingredient": "排骨"
+        },
+        {
+          "name": "蒜蓉西兰花",
+          "main_ingredient": "西兰花"
+        }
+      ]
+    }
+  ]
+}

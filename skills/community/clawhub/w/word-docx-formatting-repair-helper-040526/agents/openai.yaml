@@ -1,0 +1,7 @@
+interface:
+  display_name: "Word DOCX Formatting Repair Helper"
+  short_description: "Repair and automate Word DOCX formatting, styles, find-and-replace, numbering, tables, and conversion workf..."
+  default_prompt: "Use $word-docx-formatting-repair-helper to fix broken numbering in this DOCX."
+
+policy:
+  allow_implicit_invocation: true

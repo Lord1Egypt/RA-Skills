@@ -1,0 +1,123 @@
+#!/usr/bin/env node
+/*
+ * scale — read body metrics from a Wyze smart scale.
+ * Wraps wyze-node, reusing the cached login token (shared with the wyze skill).
+ * Config via env: WYZE_NODE_DIR, WYZE_ENV, WYZE_TOKEN_DIR (see SKILL.md).
+ * Multi-user: a scale can hold several people; pass a member name or id to scope
+ * a reading, or run `users` to list everyone the scale knows about.
+ */
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
+const home = os.homedir();
+const exists = p => { try { fs.accessSync(p); return true; } catch { return false; } };
+function die(m) { console.error('error: ' + m); process.exit(1); }
+
+const NODE_DIR = process.env.WYZE_NODE_DIR || path.join(home, 'code', 'wyze-node');
+const ENV = process.env.WYZE_ENV || path.join(home, '.openclaw', 'secrets', 'wyze.env');
+const TOKEN_DIR = process.env.WYZE_TOKEN_DIR || (exists(NODE_DIR) ? NODE_DIR : path.join(home, '.openclaw', 'wyze'));
+
+if (exists(ENV)) {
+  for (const line of fs.readFileSync(ENV, 'utf8').split('\n')) {
+    const m = line.match(/^\s*([A-Z_]+)\s*=\s*(.*)\s*$/);
+    if (m && !process.env[m[1]]) process.env[m[1]] = m[2];
+  }
+}
+try { fs.mkdirSync(TOKEN_DIR, { recursive: true }); process.chdir(TOKEN_DIR); }
+catch { die('cannot use token dir ' + TOKEN_DIR); }
+
+let Wyze;
+try { Wyze = require('wyze-node'); }
+catch { try { Wyze = require(path.join(NODE_DIR, 'src', 'index.js')); }
+  catch { die('wyze-node not found — run `npm i wyze-node` or set WYZE_NODE_DIR'); } }
+
+const w = new Wyze({ username: process.env.WYZE_EMAIL, keyId: process.env.WYZE_KEY_ID, apiKey: process.env.WYZE_API_KEY });
+const KG2LB = 2.2046226;
+const lb = kg => (kg * KG2LB);
+const when = ts => { const d = new Date(Number(ts) || 0); return d.toString() === 'Invalid Date' ? '?' : d.toLocaleString(); };
+
+function records(rec) {
+  let a = (rec && rec.data) || rec || [];
+  if (!Array.isArray(a)) a = [a];
+  return a.filter(r => r && r.weight != null).sort((x, y) => (Number(y.measure_ts) || 0) - (Number(x.measure_ts) || 0));
+}
+
+// a member's id/name can come back under a few keys depending on account setup
+const memberId = m => m && (m.family_member_id || m.user_id || m.id || m.member_id);
+const memberName = m => (m && (m.nickname || m.name || m.member_name || '')) || '';
+
+async function familyMembers(scale) {
+  if (typeof w.getScaleFamilyMembers !== 'function') return [];
+  try {
+    const res = await w.getScaleFamilyMembers(scale);
+    const data = (res && res.data) || res || [];
+    return Array.isArray(data) ? data : [data];
+  } catch { return []; }
+}
+
+// resolve a user selector (member name substring or raw id) to a member id
+async function resolveUser(scale, sel) {
+  if (!sel) return undefined;
+  const members = await familyMembers(scale);
+  const s = sel.toLowerCase().trim();
+  const byName = members.find(m => memberName(m).toLowerCase().includes(s));
+  if (byName) return memberId(byName);
+  const byId = members.find(m => String(memberId(m)).toLowerCase() === s);
+  if (byId) return memberId(byId);
+  return sel; // assume it's a raw id the API will accept
+}
+
+(async () => {
+  const cmd = process.argv[2] || 'latest';
+  const devs = await w.getDeviceList();
+  const scale = devs.find(d => d.product_type === 'WyzeScale');
+  if (!scale) die('no Wyze scale found on this account');
+
+  if (cmd === 'users') {
+    const members = await familyMembers(scale);
+    if (members.length) {
+      members.forEach(m => console.log(`${memberName(m) || '(unnamed)'}  [${memberId(m)}]`));
+    } else {
+      // no named members configured — surface distinct ids seen in weigh-ins
+      const recs = records(await w.getScaleLatestRecord(scale));
+      const ids = [...new Set(recs.map(r => r.family_member_id || r.user_id).filter(Boolean))];
+      if (!ids.length) die('no scale users found');
+      console.log('No named members configured. User id(s) seen in records:');
+      ids.forEach(id => console.log(`  ${id}`));
+    }
+    return;
+  }
+
+  if (cmd === 'history') {
+    // args: history [n] [user]  — n optional, user optional (name or id)
+    const a1 = process.argv[3], a2 = process.argv[4];
+    const n = parseInt(a1, 10);
+    const userSel = isNaN(n) ? a1 : a2;
+    const userId = await resolveUser(scale, userSel);
+    let recs = [];
+    if (typeof w.getScaleRecords === 'function') { try { recs = records(await w.getScaleRecords(scale, userId ? { userId } : {})); } catch {} }
+    if (!recs.length) recs = records(await w.getScaleLatestRecord(scale, userId ? { userId } : {}));
+    if (!recs.length) die('no weigh-ins found');
+    const k = isNaN(n) ? 7 : n;
+    recs.slice(0, k).forEach(r => {
+      const kg = Number(r.weight);
+      console.log(`${new Date(Number(r.measure_ts) || 0).toISOString().slice(0, 10)}  ${kg.toFixed(1)} kg (${lb(kg).toFixed(1)} lb)${r.bmi != null ? '  BMI ' + Number(r.bmi).toFixed(1) : ''}`);
+    });
+    return;
+  }
+
+  // latest (default): latest [user]
+  const userId = await resolveUser(scale, process.argv[3]);
+  const recs = records(await w.getScaleLatestRecord(scale, userId ? { userId } : {}));
+  if (!recs.length) die('no weigh-ins found');
+  const r = recs[0]; const kg = Number(r.weight);
+  console.log(`Weight: ${kg.toFixed(1)} kg (${lb(kg).toFixed(1)} lb)`);
+  if (r.bmi != null) console.log(`BMI: ${Number(r.bmi).toFixed(1)}`);
+  if (r.body_fat != null) console.log(`Body fat: ${r.body_fat}%`);
+  if (r.body_water != null) console.log(`Body water: ${r.body_water}%`);
+  if (r.muscle != null) console.log(`Muscle: ${r.muscle}%`);
+  if (r.bmr != null) console.log(`BMR: ${Math.round(Number(r.bmr))} kcal`);
+  if (r.metabolic_age != null) console.log(`Metabolic age: ${r.metabolic_age}`);
+  console.log(`Measured: ${when(r.measure_ts)}`);
+  if (recs[1]) { const d = lb(kg) - lb(Number(recs[1].weight)); console.log(`Change since previous: ${d >= 0 ? '+' : ''}${d.toFixed(1)} lb`); }
+})().catch(e => die(e.message));

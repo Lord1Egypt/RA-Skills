@@ -1,0 +1,7 @@
+interface:
+  display_name: "LLM API Provider Integration Helper"
+  short_description: "Helps with Feature Request: Support Response API for MiniMax..."
+  default_prompt: "Use $llm-api-provider-integration-helper to help me Feature Request: Support Response API for MiniMax Provider."
+
+policy:
+  allow_implicit_invocation: true

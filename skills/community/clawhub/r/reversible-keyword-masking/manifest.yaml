@@ -1,0 +1,24 @@
+name: reversible-keyword-masking
+version: 1.0.1
+description: Reversible Keyword Masking for locally masking sensitive document keywords before AI editing, then verifying and restoring them from an encrypted local mapping.
+author: FueTsui
+license: MIT
+entrypoint: SKILL.md
+files:
+  - SKILL.md
+  - README.md
+  - manifest.yaml
+  - scripts/
+  - references/
+  - examples/
+  - agents/
+permissions:
+  filesystem:
+    read:
+      - "."
+    write:
+      - "."
+  network: false
+warnings:
+  - Mapping files and passwords must remain local.
+  - This skill masks explicit keywords and patterns, not indirect context or document structure.

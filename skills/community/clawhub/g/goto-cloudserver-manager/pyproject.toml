@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "goto-cloudserver-manager"
+version = "1.0.4"
+description = "多云服务器自动化运维 Skill，支持阿里云/腾讯云/华为云的数据库安装、表结构创建、监控巡检和健康报告"
+requires-python = ">=3.11"
+readme = "README.md"
+license = { text = "MIT" }
+dependencies = [
+    "alibabacloud-ecs20140526>=4.0.0",
+    "alibabacloud-tea-openapi>=0.3.0",
+    "tencentcloud-sdk-python-cvm>=3.0.0",
+    "tencentcloud-sdk-python-tat>=3.0.0",
+    "tencentcloud-sdk-python-vpc>=3.0.0",
+    "huaweicloudsdkcore>=3.1.0",
+    "huaweicloudsdkecs>=3.1.0",
+    "huaweicloudsdkvpc>=3.1.0",
+    "paramiko>=3.4.0",
+    "pywinrm>=0.4.3",
+    "pyyaml>=6.0.1",
+    "python-dotenv>=1.0.0",
+    "pydantic>=2.5.0",
+    "jinja2>=3.1.2",
+    "cryptography>=41.0.0",
+    "structlog>=23.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-mock>=3.12.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.7.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["core*", "providers*", "executor*", "databases*", "os_adapters*", "monitoring*"]
+
+[tool.black]
+line-length = 100
+target-version = ["py311"]
+
+[tool.ruff]
+line-length = 100
+select = ["E", "F", "I", "N", "W"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

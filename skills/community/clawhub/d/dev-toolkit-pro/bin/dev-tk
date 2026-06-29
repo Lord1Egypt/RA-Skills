@@ -1,0 +1,3 @@
+#!/data/data/com.termux/files/usr/bin/env bash
+# Dev Toolkit CLI — 入口
+exec node "$(dirname "$0")/../scripts/dev-tk.js" "$@"

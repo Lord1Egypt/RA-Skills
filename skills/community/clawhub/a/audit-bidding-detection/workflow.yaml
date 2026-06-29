@@ -1,0 +1,131 @@
+# 招投标审计工作流模板
+
+name: 招投标审计
+type_id: bidding_audit
+description: 对招投标全过程的合规性和异常行为进行审计，识别围标串标
+version: "1.0"
+
+context_prompt: |
+  项目名称：{project_name}
+  招标类型：{bid_type}
+  项目数量：{project_count}
+
+steps:
+  - id: bidder_mapping
+    name: 投标人梳理
+    action: data_analysis
+    description: 整理所有投标人信息，建立关联图谱
+    prompt: |
+      梳理"{project_name}"的所有投标人：
+      1. 投标人基本信息（名称、注册地、注册资本）
+      2. 投标人股东结构和高管信息
+      3. 投标人历史中标记录
+      4. 投标人之间的已知关联关系
+    checkpoint: false
+    output_key: bidder_profiles
+
+  - id: relation_analysis
+    name: 关联关系分析
+    action: invoke_skill
+    description: 投标人股权、人员、联系方式关联分析
+    prompt: |
+      分析投标人之间的关联关系：
+      1. 股权穿透：是否存在共同股东或控股关系
+      2. 人员交叉：法定代表人、项目经理等是否交叉任职
+      3. 联系方式：电话、邮箱、地址是否相同或相近
+      4. 历史行为：是否存在多次共同投标的模式
+    skills: [procurement-audit-models]
+    depends_on: [bidder_mapping]
+    checkpoint: false
+    output_key: relation_findings
+
+  - id: price_analysis
+    name: 报价规律分析
+    action: data_analysis
+    description: 投标报价规律、下浮率、异常报价分析
+    prompt: |
+      分析投标报价规律：
+      1. 各投标人报价的规律性差异（梯次、等差）
+      2. 下浮率异常（过高或过低）
+      3. 报价与预算价的偏差模式
+      4. 同一投标人在不同项目中的报价模式一致性
+    skills: [data-analyst-cn, financial-fraud-detection]
+    depends_on: [bidder_mapping]
+    checkpoint: false
+    output_key: price_findings
+
+  - id: time_window
+    name: 时间窗口分析
+    action: data_analysis
+    description: 投标文件制作/提交时间分析
+    prompt: |
+      分析投标时间特征：
+      1. 投标文件制作时间是否异常接近
+      2. 投标文件最后保存时间是否在同一时间段
+      3. 投标文件上传/递交时间间隔是否异常
+      4. 同一IP/MAC地址提交多个投标文件
+    skills: [procurement-audit-models, audit-text-mining]
+    depends_on: [bidder_mapping]
+    checkpoint: false
+    output_key: time_findings
+
+  - id: document_similarity
+    name: 投标文件相似度
+    action: invoke_skill
+    description: 投标文件内容和格式相似度分析
+    prompt: |
+      分析投标文件相似度：
+      1. 技术方案文本的TF-IDF相似度
+      2. 投标文件格式（字体、排版、表格样式）的一致性
+      3. 错误一致性（相同的错别字、格式错误）
+      4. 图片哈希值一致性
+    skills: [procurement-audit-models, audit-text-mining]
+    depends_on: [bidder_mapping]
+    checkpoint: false
+    output_key: similarity_findings
+
+  - id: qualification_check
+    name: 资质合规核查
+    action: data_analysis
+    description: 投标人资质核查和评审合规性
+    prompt: |
+      核查投标资格和评审过程：
+      1. 投标人资质是否符合招标文件要求
+      2. 是否存在挂靠、借用资质的情况
+      3. 评标委员会组成是否合规
+      4. 评分是否存在异常偏差
+    skills: [gov-procurement-violations]
+    depends_on: [bidder_mapping, relation_analysis]
+    checkpoint: false
+    output_key: qualification_findings
+
+  - id: risk_scoring
+    name: 风险定级评分
+    action: invoke_skill
+    description: 逐层评分，输出风险等级
+    prompt: |
+      基于所有分析结果，对围标串标风险进行定级：
+      1. L1-L22 逐层评分
+      2. 综合风险得分
+      3. 各层风险特征描述
+      4. 重点疑点项目排序
+    skills: [procurement-audit-models]
+    depends_on: [relation_analysis, price_analysis, time_window, document_similarity, qualification_check]
+    checkpoint: true
+    output_key: risk_assessment
+
+  - id: generate_report
+    name: 编制疑点分析报告
+    action: generate
+    description: 编制围标串标疑点分析报告
+    prompt: |
+      生成围标串标疑点分析报告：
+      1. 审计概况
+      2. 分析方法说明
+      3. 各维度分析结果
+      4. 综合风险评估
+      5. 重点疑点项目详情
+      6. 审计建议
+    depends_on: [risk_scoring]
+    checkpoint: true
+    output_key: bid_report

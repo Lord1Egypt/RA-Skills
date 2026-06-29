@@ -1,0 +1,15 @@
+{
+  "projectName": "",
+  "totalRounds": 0,
+  "scoreTrend": [],
+  "advisoryCounts": {
+    "warn": 0,
+    "pause_review": 0
+  },
+  "reviewFindings": {
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "lastUpdated": null
+}

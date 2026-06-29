@@ -1,0 +1,37 @@
+﻿id: huawei-cloud-cce-network-failure-diagnoser
+name: huawei-cloud-cce-network-failure-diagnoser
+level: L3
+domain: diagnosis-remediation
+description: |
+  Huawei Cloud CCE Network failure diagnosis skill using Python SDK dispatcher.
+  Diagnose CCE Service, DNS/CoreDNS, Ingress, NetworkPolicy, ELB backend, EIP, NAT, and VPC network failures with Markdown reports.
+  Trigger: "network failure", "网络故障", "Service unreachable", "Service 不通", "Ingress 502", "Ingress 504", "ELB error", "ELB 异常", "DNS failure", "DNS 解析失败", "network diagnosis", "网络诊断", "VPC", "subnet", "子网", "安全组", "网络策略"
+tags: [cce, network-diagnosis, elb, vpc, fault-diagnosis]
+version: 1.0.0
+tools:
+  - huawei_network_failure_diagnose
+  - huawei_get_cce_services
+  - huawei_get_cce_ingresses
+  - huawei_get_cce_pods
+  - huawei_get_kubernetes_nodes
+  - huawei_get_cce_events
+  - huawei_get_pod_logs
+  - huawei_list_elb
+  - huawei_list_elb_listeners
+  - huawei_get_elb_metrics
+  - huawei_get_elb_backend_status
+  - huawei_list_eip
+  - huawei_get_eip_metrics
+  - huawei_list_nat
+  - huawei_get_nat_gateway_metrics
+  - huawei_list_security_groups
+  - huawei_list_vpc_acls
+  - huawei_network_diagnose
+  - huawei_network_diagnose_by_alarm
+  - huawei_network_verify_pod_scheduling
+references:
+  - references/workflow.md
+  - references/risk-rules.md
+  - references/output-schema.md
+guardrails:
+  max_auto_risk: R1

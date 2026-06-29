@@ -1,0 +1,9 @@
+{
+  "name": "changelog-weaver",
+  "version": "1.0.0",
+  "description": "Generate polished changelogs and release notes from git history, PRs, and issues",
+  "author": "harrylabsj",
+  "license": "MIT-0",
+  "language": "en",
+  "tags": ["changelog", "release-notes", "git", "conventional-commits", "versioning", "devtools", "weaver-series"]
+}

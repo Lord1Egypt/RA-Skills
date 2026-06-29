@@ -1,0 +1,524 @@
+﻿{
+    "platforms":  [
+                      {
+                          "id":  "siliconflow",
+                          "name":  "硅基流动 SiliconFlow",
+                          "url":  "https://cloud.siliconflow.cn",
+                          "referral_url":  "https://cloud.siliconflow.cn/i/{siliconflow}",
+                          "referral_reward":  "双方各得2000万Tokens（≈¥14-30）",
+                          "free_new_user":  "注册即送2000万Tokens",
+                          "has_referral":  true,
+                          "referral_unlimited":  true,
+                          "sub_affiliate_rate":  "20%",
+                          "pricing":  {
+                                          "deepseek-v3":  "¥1.00/M tokens 输入 · ¥2.00/M tokens 输出",
+                                          "deepseek-r1":  "¥4.00/M tokens 输入 · ¥16.00/M tokens 输出",
+                                          "qwen2.5-72b":  "¥4.13/M tokens",
+                                          "glm4":  "¥5.00/M tokens"
+                                      },
+                          "free_models":  [
+                                              "Qwen2.5-7B",
+                                              "DeepSeek-V2.5",
+                                              "GLM-4-9B",
+                                              "BGE/Rerank"
+                                          ],
+                          "highlights":  [
+                                             "华为云昇腾部署",
+                                             "DeepSeek满血版",
+                                             "200+模型",
+                                             "国内高速",
+                                             "支付宝/微信充值"
+                                         ],
+                          "best_for":  [
+                                           "DeepSeek重度用户",
+                                           "需要多种模型切换",
+                                           "国内低延迟"
+                                       ],
+                          "setup_difficulty":  "easy"
+                      },
+                      {
+                          "id":  "volcengine",
+                          "name":  "火山引擎（字节跳动）",
+                          "url":  "https://www.volcengine.com",
+                          "referral_url":  "https://www.volcengine.com/experience/ark?utm_term=202502dsinvite\u0026ac=DSASUQY5\u0026rc={volcengine}",
+                          "referral_reward":  "双方各得¥15代金券（约375万tokens）",
+                          "free_new_user":  "注册送¥15代金券",
+                          "has_referral":  true,
+                          "referral_unlimited":  false,
+                          "pricing":  {
+                                          "deepseek-v3":  "¥1.00/M tokens 输入 · ¥2.00/M tokens 输出",
+                                          "deepseek-r1":  "¥4.00/M tokens 输入 · ¥16.00/M tokens 输出",
+                                          "doubao-pro":  "¥0.80/M tokens 输入 · ¥2.00/M tokens 输出"
+                                      },
+                          "free_models":  [
+                                              "豆包Lite"
+                                          ],
+                          "highlights":  [
+                                             "字节系生态",
+                                             "豆包大模型",
+                                             "企业级SLA",
+                                             "国内合规"
+                                         ],
+                          "best_for":  [
+                                           "字节生态用户",
+                                           "企业级需求",
+                                           "豆包模型偏好"
+                                       ],
+                          "setup_difficulty":  "medium"
+                      },
+                      {
+                          "id":  "deepseek",
+                          "name":  "DeepSeek 官方",
+                          "url":  "https://platform.deepseek.com",
+                          "referral_url":  null,
+                          "referral_reward":  null,
+                          "free_new_user":  "注册送¥10额度（一个月有效）",
+                          "has_referral":  false,
+                          "pricing":  {
+                                          "deepseek-v3":  "¥1.00/M tokens 输入 · ¥2.00/M tokens 输出",
+                                          "deepseek-r1":  "¥4.00/M tokens 输入 · ¥16.00/M tokens 输出"
+                                      },
+                          "free_models":  [
+
+                                          ],
+                          "highlights":  [
+                                             "官方服务",
+                                             "最新模型首发",
+                                             "兼容OpenAI SDK"
+                                         ],
+                          "best_for":  [
+                                           "追求官方服务",
+                                           "DeepSeek最新模型",
+                                           "不需要其他模型"
+                                       ],
+                          "setup_difficulty":  "easy"
+                      },
+                      {
+                          "id":  "sophnet",
+                          "name":  "Sophnet 算力平台",
+                          "url":  "https://www.sophnet.com",
+                          "referral_url":  "https://www.sophnet.com?code=F4ES58",
+                          "referral_reward":  "注册送¥20额度，邀请双方各得Token",
+                          "free_new_user":  "注册送¥20额度",
+                          "has_referral":  true,
+                          "pricing":  {
+                                          "deepseek-v3-fast":  "¥2.00/M tokens（极速版126t/s）",
+                                          "deepseek-r1":  "¥4.00/M tokens（满血版）",
+                                          "qwen-max":  "¥5.00/M tokens"
+                                      },
+                          "free_models":  [
+
+                                          ],
+                          "highlights":  [
+                                             "国产TPU芯片，126 t/s高吞吐",
+                                             "DeepSeek满血极致版",
+                                             "OpenClaw原厂适配",
+                                             "¥78万私有化一体机"
+                                         ],
+                          "best_for":  [
+                                           "高并发批量推理",
+                                           "政企信创私有化",
+                                           "OpenClaw/Hermes原生集成"
+                                       ],
+                          "setup_difficulty":  "easy"
+                      },
+                      {
+                          "id":  "openrouter",
+                          "name":  "OpenRouter（海外）",
+                          "url":  "https://openrouter.ai",
+                          "referral_url":  null,
+                          "referral_reward":  null,
+                          "free_new_user":  "注册即送少量免费额度",
+                          "has_referral":  false,
+                          "pricing":  {
+                                          "deepseek-v3":  "$0.89/M tokens 输入 · $0.89/M tokens 输出",
+                                          "claude-3.5-sonnet":  "$3.00/M tokens 输入 · $15.00/M tokens 输出",
+                                          "gpt-4o":  "$2.50/M tokens 输入 · $10.00/M tokens 输出"
+                                      },
+                          "free_models":  [
+                                              "部分免费模型可用"
+                                          ],
+                          "highlights":  [
+                                             "250+模型聚合",
+                                             "一个API调所有模型",
+                                             "支持海外模型",
+                                             "OpenAI兼容"
+                                         ],
+                          "best_for":  [
+                                           "需要海外模型",
+                                           "模型对比测试",
+                                           "Claude/GPT用户"
+                                       ],
+                          "setup_difficulty":  "medium"
+                      },
+                      {
+                          "id":  "modelscope",
+                          "name":  "ModelScope 魔搭（阿里）",
+                          "url":  "https://modelscope.cn",
+                          "referral_url":  null,
+                          "referral_reward":  null,
+                          "free_new_user":  "部分模型免费额度",
+                          "has_referral":  false,
+                          "pricing":  {
+                                          "qwen-max":  "¥5.00/M tokens",
+                                          "qwen-turbo":  "¥0.30/M tokens 输入 · ¥0.60/M tokens 输出"
+                                      },
+                          "free_models":  [
+                                              "Qwen2.5-0.5B/1.5B",
+                                              "部分开源模型免费"
+                                          ],
+                          "highlights":  [
+                                             "阿里官方",
+                                             "Qwen全系列",
+                                             "开源模型丰富"
+                                         ],
+                          "best_for":  [
+                                           "Qwen系列用户",
+                                           "阿里云生态"
+                                       ],
+                          "setup_difficulty":  "easy"
+                      },
+                      {
+                          "id":  "zhipu",
+                          "name":  "智谱AI开放平台",
+                          "url":  "https://open.bigmodel.cn",
+                          "referral_url":  "https://www.bigmodel.cn/invite?icode={zhipu_referral}",
+                          "referral_reward":  "双方各得2000万Tokens",
+                          "free_new_user":  "注册即送2000万Tokens",
+                          "has_referral":  true,
+                          "referral_unlimited":  true,
+                          "pricing":  {
+                                          "glm-5":  "旗舰模型，SOTA水平",
+                                          "glm4-plus":  "¥0.10/千tokens",
+                                          "glm4-flash":  "免费（限速）"
+                                      },
+                          "free_models":  [
+                                              "GLM-4.7-Flash（免费调用）"
+                                          ],
+                          "highlights":  [
+                                             "GLM-5旗舰模型",
+                                             "GLM-4.7-Flash免费",
+                                             "国产自研",
+                                             "多模态+智能体"
+                                         ],
+                          "best_for":  [
+                                           "GLM模型偏好",
+                                           "免费日常使用",
+                                           "智能体开发",
+                                           "多模态需求"
+                                       ],
+                          "setup_difficulty":  "easy"
+                      },
+                      {
+                          "id":  "groq",
+                          "name":  "Groq（海外）",
+                          "url":  "https://groq.com",
+                          "referral_url":  null,
+                          "referral_reward":  null,
+                          "free_new_user":  "注册即用，大量免费额度",
+                          "has_referral":  false,
+                          "pricing":  {
+                                          "llama3-70b":  "免费（有速率限制）",
+                                          "mixtral":  "免费（有速率限制）"
+                                      },
+                          "free_models":  [
+                                              "Llama 3 70B",
+                                              "Mixtral 8x7B",
+                                              "Gemma2 9B"
+                                          ],
+                          "highlights":  [
+                                             "全球最快推理",
+                                             "LPU芯片",
+                                             "大量免费模型",
+                                             "OpenAI兼容SDK"
+                                         ],
+                          "best_for":  [
+                                           "极致速度",
+                                           "免费使用Llama等开源模型",
+                                           "高吞吐场景"
+                                       ],
+                          "setup_difficulty":  "medium"
+                      },
+                      {
+                          "url":  "https://bailian.console.aliyun.com",
+                          "highlights":  [
+                                             "300+模型全家桶",
+                                             "低代码可视化开发",
+                                             "阿里云生态集成",
+                                             "企业级应用开发"
+                                         ],
+                          "id":  "aliyun-bailian",
+                          "referral_reward":  null,
+                          "free_new_user":  "90天免费，各模型共7000万Token",
+                          "has_referral":  false,
+                          "name":  "阿里云百炼",
+                          "referral_url":  null,
+                          "free_models":  [
+
+                                          ],
+                          "pricing":  {
+                                          "qwen-max":  "按量付费",
+                                          "qwen-plus":  "按量付费",
+                                          "deepseek-r1":  "按量付费"
+                                      },
+                          "setup_difficulty":  "medium",
+                          "best_for":  [
+                                           "企业AI应用快速落地",
+                                           "通义千问全家桶",
+                                           "钉钉/阿里生态集成"
+                                       ]
+                      },
+                      {
+                          "url":  "https://platform.xiaomimimo.com",
+                          "highlights":  [
+                                             "MIT开源可商用",
+                                             "百亿Token免费送",
+                                             "OpenAI+Anthropic双协议",
+                                             "Hermes Agent生态合作"
+                                         ],
+                          "id":  "xiaomi-mimo",
+                          "referral_reward":  "邀请注册双方各得¥10体验金",
+                          "free_new_user":  "百万亿Token计划，申请制（亿级Token发放）",
+                          "has_referral":  true,
+                          "name":  "小米 MiMo",
+                          "referral_url":  "https://platform.xiaomimimo.com?ref=NTLBF2",
+                          "free_models":  [
+
+                                          ],
+                          "pricing":  {
+                                          "mimo-v2.5-pro":  "降至¥0.025/百万tokens（缓存命中）",
+                                          "mimo-v2.5":  "降至¥0.020/百万tokens（缓存命中）"
+                                      },
+                          "setup_difficulty":  "easy",
+                          "best_for":  [
+                                           "开源模型商用",
+                                           "百万亿Token薅羊毛",
+                                           "Agent开发"
+                                       ]
+                      },
+                      {
+                          "url":  "https://console.cloud.tencent.com/hunyuan",
+                          "highlights":  [
+                                             "自研混元大模型",
+                                             "文生图/文生视频",
+                                             "微信小程序生态",
+                                             "企业级安全合规"
+                                         ],
+                          "id":  "tencent-hunyuan",
+                          "referral_reward":  null,
+                          "free_new_user":  "100万Token（1年有效）",
+                          "has_referral":  false,
+                          "name":  "腾讯混元",
+                          "referral_url":  null,
+                          "free_models":  [
+
+                                          ],
+                          "pricing":  {
+                                          "hunyuan-t1":  "按量付费",
+                                          "hunyuan-turbos":  "按量付费",
+                                          "tencent-hy-2.0-think":  "按量付费"
+                                      },
+                          "setup_difficulty":  "medium",
+                          "best_for":  [
+                                           "微信生态AI应用",
+                                           "视频生成",
+                                           "腾讯云深度用户"
+                                       ]
+                      },
+                      {
+                          "url":  "https://console.anthropic.com",
+                          "highlights":  [
+                                             "Claude顶级推理能力",
+                                             "代码/Agent市场领先",
+                                             "API直连+云端",
+                                             "安全优先"
+                                         ],
+                          "id":  "anthropic",
+                          "referral_reward":  null,
+                          "free_new_user":  "无免费额度，按量付费",
+                          "has_referral":  false,
+                          "name":  "Anthropic Claude",
+                          "referral_url":  null,
+                          "free_models":  [
+
+                                          ],
+                          "pricing":  {
+                                          "claude-sonnet-4":  "输入$3/M 输出$15/M",
+                                          "claude-haiku-4":  "输入$1/M 输出$5/M",
+                                          "claude-opus-4":  "输入$15/M 输出$75/M"
+                                      },
+                          "setup_difficulty":  "medium",
+                          "best_for":  [
+                                           "复杂推理/代码生成",
+                                           "Claude Code 开发",
+                                           "企业级AI应用"
+                                       ]
+                      },
+                      {
+                          "url":  "https://platform.openai.com",
+                          "highlights":  [
+                                             "GPT-5旗舰",
+                                             "o1推理模型",
+                                             "最成熟的API生态",
+                                             "DALL-E/Sora 多模态"
+                                         ],
+                          "id":  "openai",
+                          "referral_reward":  null,
+                          "free_new_user":  "新用户$5赠金（3个月有效）",
+                          "has_referral":  false,
+                          "name":  "OpenAI",
+                          "referral_url":  null,
+                          "free_models":  [
+
+                                          ],
+                          "pricing":  {
+                                          "gpt-5":  "按量付费",
+                                          "gpt-4o":  "按量付费",
+                                          "o1":  "按量付费"
+                                      },
+                          "setup_difficulty":  "medium",
+                          "best_for":  [
+                                           "全场景AI开发",
+                                           "GPT生态应用",
+                                           "最成熟API工具链"
+                                       ]
+                      },
+                      {
+                          "url":  "https://aistudio.google.com",
+                          "highlights":  [
+                                             "免费层最慷慨",
+                                             "2M超长上下文",
+                                             "原生多模态",
+                                             "GCP企业级生态"
+                                         ],
+                          "id":  "google-gemini",
+                          "referral_reward":  null,
+                          "free_new_user":  "免费层（Gemini 2.5 Flash/Pro）+ GCP $300/90天",
+                          "has_referral":  false,
+                          "name":  "Google Gemini",
+                          "referral_url":  null,
+                          "free_models":  [
+                                              "gemini-2.5-flash（每日配额）",
+                                              "gemini-2.5-pro（每日有限次数）"
+                                          ],
+                          "pricing":  {
+                                          "gemini-2.5-flash":  "免费层可控用",
+                                          "gemini-2.5-pro":  "$1.25/M输入",
+                                          "gemini-3-flash":  "$0.50/M输入"
+                                      },
+                          "setup_difficulty":  "easy",
+                          "best_for":  [
+                                           "免费额度大量使用",
+                                           "超长文本处理",
+                                           "多模态应用"
+                                       ]
+                      },
+                      {
+                          "url":  "https://platform.minimaxi.com",
+                          "highlights":  [
+                                             "M3旗舰编程+Agent",
+                                             "全模态（文/音/视/图）",
+                                             "海螺视频生成",
+                                             "Token Plan统一订阅"
+                                         ],
+                          "id":  "minimax-cn",
+                          "referral_reward":  null,
+                          "free_new_user":  "¥15免费额度 + Token Plan订阅",
+                          "has_referral":  false,
+                          "name":  "MiniMax (CN)",
+                          "referral_url":  null,
+                          "free_models":  [
+
+                                          ],
+                          "pricing":  {
+                                          "minimax-m3":  "Token Plan订阅制",
+                                          "minimax-m2.5":  "Token Plan订阅制"
+                                      },
+                          "setup_difficulty":  "easy",
+                          "best_for":  [
+                                           "多模态创作",
+                                           "音视频生成",
+                                           "Agent开发"
+                                       ]
+                      },
+                      {
+                          "url":  "https://platform.moonshot.cn",
+                          "highlights":  [
+                                             "Kimi K2.6最强编程+Agent",
+                                             "MIT开源可商用",
+                                             "128K长上下文",
+                                             "累计融资376亿"
+                                         ],
+                          "id":  "moonshot-cn",
+                          "referral_reward":  null,
+                          "free_new_user":  "¥15额度或100万tokens",
+                          "has_referral":  false,
+                          "name":  "Moonshot 月之暗面 (CN)",
+                          "referral_url":  null,
+                          "free_models":  [
+
+                                          ],
+                          "pricing":  {
+                                          "kimi-k2.6":  "按量付费",
+                                          "kimi-k2.5":  "按量付费"
+                                      },
+                          "setup_difficulty":  "easy",
+                          "best_for":  [
+                                           "长文本处理",
+                                           "编程/Agent",
+                                           "中文内容创作"
+                                       ]
+                      },
+                      {
+                          "url":  "https://www.minimaxi.com",
+                          "highlights":  [
+                                             "同MiniMax CN 国际版",
+                                             "Hailuo AI 视频生成",
+                                             "多模态全系列"
+                                         ],
+                          "id":  "minimax-global",
+                          "referral_reward":  null,
+                          "free_new_user":  "免费额度（限地区）",
+                          "has_referral":  false,
+                          "name":  "MiniMax (Global)",
+                          "referral_url":  null,
+                          "free_models":  [
+
+                                          ],
+                          "pricing":  {
+                                          "minimax-m3":  "Token Plan订阅制"
+                                      },
+                          "setup_difficulty":  "medium",
+                          "best_for":  [
+                                           "海外用户AI开发",
+                                           "全球视频生成"
+                                       ]
+                      },
+                      {
+                          "url":  "https://www.moonshot.ai",
+                          "highlights":  [
+                                             "同Kimi CN 国际版",
+                                             "Kimi K2.6开源",
+                                             "多语言支持"
+                                         ],
+                          "id":  "moonshot-global",
+                          "referral_reward":  null,
+                          "free_new_user":  "有限额免费额度",
+                          "has_referral":  false,
+                          "name":  "Moonshot (Global)",
+                          "referral_url":  null,
+                          "free_models":  [
+
+                                          ],
+                          "pricing":  {
+                                          "kimi-k2.6":  "按量付费"
+                                      },
+                          "setup_difficulty":  "medium",
+                          "best_for":  [
+                                           "海外用户Kimi体验",
+                                           "多语言AI应用"
+                                       ]
+                      }
+                  ],
+    "last_updated":  "2026-06-17"
+}

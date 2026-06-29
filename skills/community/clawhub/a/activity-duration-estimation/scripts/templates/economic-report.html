@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>经济效益分析报告</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #ffffff;
+  --bg-secondary: #F1EFE8;
+  --bg-card: #f8f7f4;
+  --text: #2C2C2A;
+  --text-secondary: #5F5E5A;
+  --text-muted: #888780;
+  --border: #D3D1C7;
+  --primary: #534AB7;
+  --positive: #1D9E75;
+  --negative: #E24B4A;
+  --warning: #EF9F27;
+}
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; margin: 0; padding: 24px; background: var(--bg); color: var(--text); }
+h1 { font-size: 20px; font-weight: 500; margin: 0 0 4px; }
+h2 { font-size: 16px; font-weight: 500; margin: 28px 0 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+h3 { font-size: 14px; font-weight: 500; margin: 20px 0 8px; }
+table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 13px; }
+th, td { padding: 8px 12px; text-align: right; border: 1px solid var(--border); }
+th { background: var(--bg-secondary); font-weight: 500; text-align: center; }
+td:first-child { text-align: left; font-weight: 500; }
+.positive-text { color: var(--positive); }
+.negative-text { color: var(--negative); }
+.metric-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin: 12px 0; }
+.metric-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; text-align: center; }
+.metric-card.positive { border-left: 4px solid var(--positive); }
+.metric-card.negative { border-left: 4px solid var(--negative); }
+.metric-label { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+.metric-value { font-size: 22px; font-weight: 500; }
+.metric-note { font-size: 11px; color: var(--text-secondary); margin-top: 4px; }
+.chart-wrapper { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin: 12px 0; }
+.data-table { margin: 8px 0; }
+.data-table th { background: var(--bg-secondary); }
+.analysis-item { padding: 10px 14px; margin: 6px 0; border-radius: 8px; font-size: 13px; line-height: 1.5; }
+.analysis-item.positive { background: #E1F5EE; border-left: 3px solid var(--positive); }
+.analysis-item.warning { background: #FAEEDA; border-left: 3px solid var(--warning); }
+.analysis-icon { margin-right: 6px; }
+.subtitle { font-size: 13px; color: var(--text-secondary); margin-bottom: 16px; }
+#app { max-width: 900px; margin: 0 auto; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+const DATA = {{REPORT_DATA_JSON}};
+
+function init() {
+  const d = DATA;
+  const app = document.getElementById('app');
+
+  // 1. 标题
+  let html = `<h1>${d.project_name} — 经济效益分析报告</h1>
+    <div class="subtitle">基准折现率 ${d.discount_rate}% · ${d.periods} 年周期 · ${d.currency}</div>`;
+
+  // 2. 参数表
+  html += `<h2>一、项目总投入与回报数据</h2>
+    <table>
+      <thead><tr><th>参数</th><th>值</th><th>单位</th></tr></thead>
+      <tbody>
+        <tr><td>初始投入</td><td>${d.currency}${d.initial_investment.toFixed(2)}</td><td>一次性资本投入</td></tr>
+        <tr><td>年收益</td><td>${d.currency}${d.annual_revenue.toFixed(2)}</td><td>持续运营收入</td></tr>
+        <tr><td>年支出</td><td>${d.currency}${d.annual_cost.toFixed(2)}</td><td>持续运营成本</td></tr>
+        <tr><td>年净利</td><td>${d.currency}${(d.annual_revenue - d.annual_cost).toFixed(2)}</td><td>年收益 - 年支出</td></tr>
+        <tr><td>运营周期</td><td>${d.periods}</td><td>年</td></tr>
+        <tr><td>终值/残值</td><td>${d.currency}${d.terminal_value.toFixed(2)}</td><td>期末资产处置收入</td></tr>
+        <tr><td>基准折现率</td><td>${d.discount_rate}%</td><td>基准折现率</td></tr>
+      </tbody>
+    </table>`;
+
+  // 3. 逐年现金流表
+  if (d.cashflows && d.cashflows.length > 0) {
+    html += `<h2>二、逐年现金流明细（i=${d.discount_rate}%）</h2>
+      <table>
+        <thead><tr><th>年份</th><th>年收益</th><th>年支出</th><th>净现金流</th><th>净现金流折现</th><th>折现成本</th></tr></thead>
+        <tbody>`;
+    let totalNet = 0, totalDisc = 0, totalCost = 0;
+    for (const cf of d.cashflows) {
+      html += `<tr><td>第 ${cf.year} 年</td><td>${cf.revenue.toFixed(2)}</td><td>${cf.cost.toFixed(2)}</td><td>${cf.net_cashflow.toFixed(2)}</td><td>${cf.net_discounted.toFixed(2)}</td><td>${cf.discounted_cost.toFixed(2)}</td></tr>`;
+      totalNet += cf.net_cashflow;
+      totalDisc += cf.net_discounted;
+      totalCost += cf.discounted_cost;
+    }
+    html += `</tbody>
+        <tfoot><tr><td><strong>合计</strong></td><td></td><td></td><td><strong>${totalNet.toFixed(2)}</strong></td><td><strong>${totalDisc.toFixed(2)}</strong></td><td><strong>${totalCost.toFixed(2)}</strong></td></tr></tfoot>
+      </table>`;
+  }
+
+  // 4. 核心指标卡片
+  const staticROI = d.roi_static || 0;
+  const weightedROI = d.roi_weighted || 0;
+  const npvVal = d.npv || 0;
+  const irrVal = d.irr || 0;
+  const bcrVal = d.bcr || 0;
+  const pbpS = d.pbp_static || 0;
+  const pbpD = d.pbp_dynamic || 0;
+
+  html += `<h2>三、核心指标一览</h2>
+    <div class="metric-grid">
+      <div class="metric-card positive">
+        <div class="metric-label">静态 ROI</div>
+        <div class="metric-value">${staticROI.toFixed(2)}%</div>
+        <div class="metric-note">年利润率</div>
+      </div>
+      <div class="metric-card positive">
+        <div class="metric-label">加权 ROI</div>
+        <div class="metric-value">${weightedROI.toFixed(2)}%</div>
+        <div class="metric-note">含终值</div>
+      </div>
+      <div class="metric-card ${npvVal >= 0 ? 'positive' : 'negative'}">
+        <div class="metric-label">NPV</div>
+        <div class="metric-value">${npvVal.toFixed(2)}</div>
+        <div class="metric-note">${d.currency}（i=${d.discount_rate}%）</div>
+      </div>
+      <div class="metric-card positive">
+        <div class="metric-label">IRR</div>
+        <div class="metric-value">${irrVal.toFixed(2)}%</div>
+        <div class="metric-note">内部收益率</div>
+      </div>
+      <div class="metric-card ${bcrVal >= 1 ? 'positive' : 'negative'}">
+        <div class="metric-label">BCR</div>
+        <div class="metric-value">${bcrVal.toFixed(2)}</div>
+        <div class="metric-note">效益成本比</div>
+      </div>
+      <div class="metric-card positive">
+        <div class="metric-label">静态 PBP</div>
+        <div class="metric-value">${pbpS.toFixed(2)}</div>
+        <div class="metric-note">年</div>
+      </div>
+      <div class="metric-card ${pbpD <= d.periods ? 'positive' : 'negative'}">
+        <div class="metric-label">动态 PBP</div>
+        <div class="metric-value">${pbpD.toFixed(2)}</div>
+        <div class="metric-note">年（折现后）</div>
+      </div>
+    </div>`;
+
+  // 5. 多折现率对比
+  const dc = d.discount_comparison;
+  if (dc && Object.keys(dc).length > 0) {
+    const keys = Object.keys(dc).sort((a,b) => parseFloat(a) - parseFloat(b));
+    html += `<h2>四、多折现率对比分析</h2>
+      <div class="chart-wrapper"><canvas id="npvChart"></canvas></div>
+      <table class="data-table">
+        <thead><tr><th>折现率</th>${keys.map(k => `<th>${k}%</th>`).join('')}</tr></thead>
+        <tbody>
+          <tr><td>NPV</td>${keys.map(k => `<td class="${dc[k].npv >= 0 ? 'positive-text' : 'negative-text'}">${dc[k].npv.toFixed(2)}</td>`).join('')}</tr>
+          <tr><td>BCR</td>${keys.map(k => `<td class="${dc[k].bcr >= 1 ? 'positive-text' : 'negative-text'}">${dc[k].bcr.toFixed(2)}</td>`).join('')}</tr>
+          <tr><td>动态 PBP</td>${keys.map(k => `<td>${dc[k].pbp_dynamic.toFixed(2)} 年</td>`).join('')}</tr>
+        </tbody>
+      </table>`;
+  }
+
+  // 6. 逐年净现金流图
+  if (d.cashflows && d.cashflows.length > 0) {
+    html += `<h2>五、逐年净现金流</h2>
+      <div class="chart-wrapper"><canvas id="cashflowChart"></canvas></div>`;
+  }
+
+  // 7. 分析结论
+  html += `<h2>六、分析结论</h2><div id="analysisConclusions"></div>`;
+  app.innerHTML = html;
+
+  // 准备分析结论
+  const conclusions = document.getElementById('analysisConclusions');
+  const items = [];
+  if (npvVal >= 0) items.push({type:'positive', text:`<strong>净现值（NPV）：</strong>${d.currency}${npvVal.toFixed(2)} > 0，项目在${d.discount_rate}%折现率下具有正收益，投资可行。`});
+  else items.push({type:'warning', text:`<strong>净现值（NPV）：</strong>${d.currency}${npvVal.toFixed(2)} < 0，项目在当前折现率下未能产生正收益，建议调整方案。`});
+  if (irrVal >= d.discount_rate) items.push({type:'positive', text:`<strong>内部收益率（IRR）：</strong>${irrVal.toFixed(2)}% ≥ 基准折现率${d.discount_rate}%，项目抗风险能力充足。`});
+  else items.push({type:'warning', text:`<strong>内部收益率（IRR）：</strong>${irrVal.toFixed(2)}% < 基准折现率${d.discount_rate}%，项目抗风险能力不足。`});
+  if (bcrVal >= 1) items.push({type:'positive', text:`<strong>效益成本比（BCR）：</strong>${bcrVal.toFixed(2)} > 1，项目收益覆盖成本，具有经济效益。`});
+  else items.push({type:'warning', text:`<strong>效益成本比（BCR）：</strong>${bcrVal.toFixed(2)} < 1，项目收益未能覆盖成本，建议重新评估。`});
+  if (pbpS < d.periods) items.push({type:'positive', text:`<strong>静态投资回收期：</strong>${pbpS.toFixed(2)}年 < 运营期${d.periods}年，可在运营期内收回投资。`});
+  else items.push({type:'warning', text:`<strong>静态投资回收期：</strong>${pbpS.toFixed(2)}年 > 运营期${d.periods}年，需关注回收周期风险。`});
+  if (pbpD < d.periods) items.push({type:'positive', text:`<strong>动态投资回收期：</strong>${pbpD.toFixed(2)}年 < 运营期${d.periods}年，考虑折现后仍可在运营期内收回投资。`});
+  else items.push({type:'warning', text:`<strong>动态投资回收期：</strong>${pbpD.toFixed(2)}年 > 运营期${d.periods}年，折现后回收周期超过运营期。`});
+  conclusions.innerHTML = items.map(a => `<div class="analysis-item ${a.type}"><span class="analysis-icon">${a.type === 'positive' ? '&#x2705;' : '&#x26A0;&#xFE0F;'}</span>${a.text}</div>`).join('');
+
+  // Chart.js 图表
+  if (dc && Object.keys(dc).length > 1) {
+    const ctx = document.getElementById('npvChart').getContext('2d');
+    const keys = Object.keys(dc).sort((a,b) => parseFloat(a) - parseFloat(b));
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: keys.map(k => k+'%'),
+        datasets: [{
+          label: 'NPV',
+          data: keys.map(k => dc[k].npv),
+          borderColor: '#534AB7',
+          backgroundColor: 'rgba(83,74,183,0.08)',
+          fill: true,
+          tension: 0.3,
+          pointBackgroundColor: keys.map(k => dc[k].npv >= 0 ? '#1D9E75' : '#E24B4A'),
+          pointRadius: 5,
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: { display: true, text: 'NPV 随折现率变化曲线', font: { size: 14 } },
+          legend: { display: false },
+        },
+        scales: {
+          y: { title: { display: true, text: 'NPV ('+d.currency+')' } },
+          x: { title: { display: true, text: '折现率' } },
+        }
+      }
+    });
+  }
+
+  if (d.cashflows && d.cashflows.length > 0) {
+    const ctx2 = document.getElementById('cashflowChart').getContext('2d');
+    const years = d.cashflows.map(cf => '第'+cf.year+'年');
+    const netCash = d.cashflows.map(cf => cf.net_cashflow);
+    const discCash = d.cashflows.map(cf => cf.net_discounted);
+    const cumDisc = [];
+    let s = 0;
+    for (const cf of d.cashflows) { s += cf.net_discounted; cumDisc.push(s - d.initial_investment); }
+    new Chart(ctx2, {
+      type: 'bar',
+      data: {
+        labels: years,
+        datasets: [
+          { label: '净现金流', data: netCash, backgroundColor: 'rgba(29,158,117,0.7)', borderColor: '#1D9E75', borderWidth: 1 },
+          { label: '净现金流(折现)', data: discCash, backgroundColor: 'rgba(83,74,183,0.7)', borderColor: '#534AB7', borderWidth: 1 },
+          { label: '累计NPV(右轴)', data: cumDisc, type: 'line', borderColor: '#D85A30', borderWidth: 2, pointRadius: 4, yAxisID: 'y1', fill: false }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: { title: { display: true, text: '逐年现金流及累计NPV', font: { size: 14 } }, legend: { display: true } },
+        scales: {
+          y: { title: { display: true, text: '现金流 ('+d.currency+')' }, beginAtZero: true },
+          y1: { position: 'right', title: { display: true, text: '累计NPV' }, grid: { drawOnChartArea: false } }
+        }
+      }
+    });
+  }
+}
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>

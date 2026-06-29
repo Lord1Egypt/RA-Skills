@@ -1,0 +1,87 @@
+{
+  "name": "Juejin Article Optimizer",
+  "slug": "juejin-article-optimizer",
+  "description": "Optimize technical articles for the Juejin community: improve rankings, readability, and developer engagement.",
+  "tags": [
+    "juejin",
+    "article",
+    "optimization",
+    "seo",
+    "writing",
+    "dev-community",
+    "china",
+    "technical-blog"
+  ],
+  "license": "MIT-0",
+  "version": "1.0.0",
+  "workflowSteps": [
+    {
+      "step": 1,
+      "name": "Article Ingestion",
+      "input": "Draft markdown or existing Juejin URL",
+      "output": "Parsed article with structural metadata"
+    },
+    {
+      "step": 2,
+      "name": "Diagnostic Scoring",
+      "input": "Parsed article",
+      "output": "6-dimension radar chart + overall score"
+    },
+    {
+      "step": 3,
+      "name": "Juejin Trend Analysis",
+      "input": "Article topic + category",
+      "output": "Category benchmarks with title/length/code-ratio patterns"
+    },
+    {
+      "step": 4,
+      "name": "Gap Analysis",
+      "input": "Diagnostic score + benchmarks",
+      "output": "Prioritized improvement list with score-impact estimates"
+    },
+    {
+      "step": 5,
+      "name": "Title Optimization",
+      "input": "Original title + category patterns",
+      "output": "3 optimized title variants with CTR scores"
+    },
+    {
+      "step": 6,
+      "name": "Content Optimization",
+      "input": "Original article + gap analysis + chosen title",
+      "output": "Optimized article with enriched code blocks and visual markers"
+    },
+    {
+      "step": 7,
+      "name": "SEO & Discoverability",
+      "input": "Optimized article",
+      "output": "Keywords, tags, TOC, meta description"
+    },
+    {
+      "step": 8,
+      "name": "Publishing Strategy",
+      "input": "Final article + category data",
+      "output": "Best publish time, cross-promotion copy, engagement plan"
+    }
+  ],
+  "firstSuccessPath": {
+    "steps": [
+      "Paste your article draft and say: 帮我优化这篇文章",
+      "Review the diagnostic score and pick your favorite title from 3 variants",
+      "Receive the fully optimized article with SEO tags and publishing strategy in ~30 seconds"
+    ],
+    "cli": "bash scripts/optimizer.sh --title \"Go并发编程入门\" --task diagnose"
+  },
+  "scripts": {
+    "main": "scripts/optimizer.sh",
+    "usage": "bash scripts/optimizer.sh --title \"Go并发编程入门\" --task diagnose",
+    "full": "bash scripts/optimizer.sh --title \"Go并发编程入门\" --task full --tags \"后端,Go语言\""
+  },
+  "schemas": {
+    "input": "schemas/input.schema.json",
+    "output": "schemas/output.schema.json"
+  },
+  "references": {
+    "category_benchmarks": "references/category_benchmarks.json"
+  }
+}

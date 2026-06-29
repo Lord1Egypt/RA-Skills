@@ -1,0 +1,65 @@
+# OpenClaw Skill 注册文件
+# 安装方式:
+#   1. 将 bid-document-maker/ 目录复制到 OpenClaw skills/ 目录下
+#      或: openclaw skill install F:\python_test\bid-document-maker
+#   2. 运行: openclaw skill register skill-registration.yaml
+#   3. 验证: openclaw skill list
+
+skill:
+  name: bid-document-maker
+  display_name: 标书制作专家
+  version: 1.0.0
+  description: 将招标文件（PDF/Word）自动转化为结构完整、评分导向的专业应标书
+
+  # 入口文件（Agent首次加载时读取）
+  entry: SKILL.md
+
+  # 目录映射
+  directories:
+    prompts: prompts/
+    templates: templates/
+    schemas: schemas/
+    agents: agents/
+
+  # 工作流
+  workflow: workflows/pipeline.yaml
+  openclaw_workflow: agents/openclaw/workflow.yaml
+
+  # 所需能力
+  capabilities:
+    required:
+      - file_reading
+      - long_context
+    recommended:
+      - pdf_parsing
+      - docx_generation
+
+  # 插件依赖
+  prerequisites:
+    plugins:
+      - name: file-reader
+        version: ">=1.0.0"
+        optional: false
+        install: openclaw plugin install file-reader
+      - name: docx-generator
+        version: ">=1.0.0"
+        optional: true
+        install: openclaw plugin install docx-generator
+      - name: table-processor
+        version: ">=0.5.0"
+        optional: true
+      - name: json-schema-validator
+        version: ">=1.0.0"
+        optional: true
+
+  # 系统提示词
+  system_prompt: |
+    你正在运行 bid-document-maker 技能（标书制作专家）。
+    你的角色是资深投标顾问。请严格按 workflow 中定义的 5 个阶段顺序执行。
+    每个阶段完成后，等待用户确认再进入下一阶段。
+    具体提示词见 prompts/ 目录。
+
+  # 使用示例
+  examples:
+    - input: "使用 bid-document-maker 分析 F:/招标文件/某项目招标文件.pdf 并生成应标书"
+    - input: "运行标书制作工作流，招标文件在 C:/投标/2024年智慧校园项目.pdf"

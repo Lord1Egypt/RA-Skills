@@ -1,6 +1,6 @@
 ---
 name: ctyun-cli
-description: "天翼云CLI工具 - 企业级命令行工具，帮助您轻松管理天翼云资源。支持ECS、VPC、EBS、ELB、CCE、Redis、Kafka、CSS、EMR、监控、账务、IAM、Aone、CloudPC、AIServer等17大服务模块，覆盖397+个API，383+个命令。"
+description: "天翼云CLI工具 - 企业级命令行工具，帮助您轻松管理天翼云资源。支持ECS、VPC、EBS、ELB、CCE、Redis、Kafka、CSS、EMR、监控、账务、IAM、Aone、CloudPC、AIServer、Audit、IMS、LTS、SFS、OceanFS、ZOS、DPS物理机等26+服务模块，覆盖510+个API，478+个命令。"
 homepage: https://github.com/fengyucn/ctyun-cli
 pypi: https://pypi.org/project/ctyun-cli/
 metadata: {"clawdbot":{"emoji":"☁️","requires":{"bins":["ctyun-cli"]},"install":[{"id":"pip","kind":"pip","package":"ctyun-cli","bins":["ctyun-cli"],"label":"Install ctyun-cli (pip)"}]}}
@@ -10,7 +10,7 @@ metadata: {"clawdbot":{"emoji":"☁️","requires":{"bins":["ctyun-cli"]},"insta
 
 天翼云 CLI 工具，功能强大的企业级命令行工具，帮助您轻松管理天翼云资源。支持云服务器(ECS)、监控告警、安全防护、Redis分布式缓存、弹性负载均衡(ELB)、容器引擎(CCE)、VPC网络、费用查询等核心功能。
 
-**规模统计：** 43,000+行代码，397+个API，383+个命令，17大服务模块
+**规模统计：** 55,000+行代码，510+个API，478+个命令，26+大服务模块
 
 ## 安装
 
@@ -111,6 +111,11 @@ ctyun-cli ecs regions
 ctyun-cli ecs query-price --flavor-id FLAVOR_ID --quantity 1
 ```
 
+### 资源续订询价
+```bash
+ctyun-cli ecs renew-price --region-id REGION_ID --resource-type VM --resource-uuid RESOURCE_UUID --cycle-type MONTH --cycle-count 1
+```
+
 ## 虚拟私有云 (VPC) 管理
 
 ### 列出 VPC
@@ -193,6 +198,18 @@ ctyun-cli elb health-check --help
 ### 监控数据管理
 ```bash
 ctyun-cli elb monitor --help
+```
+
+### 保障型负载均衡询价
+```bash
+# 创建询价
+ctyun-cli elb pgelb-create-price --region-id REGION_ID --subnet-id SUBNET_ID --name my-elb --sla-name elb.s2.small --resource-type internal --cycle-type month --cycle-count 1
+
+# 续订询价
+ctyun-cli elb pgelb-renew-price --region-id REGION_ID --elb-id ELB_ID --cycle-type month --cycle-count 1
+
+# 变配询价
+ctyun-cli elb pgelb-modify-price --region-id REGION_ID --elb-id ELB_ID --sla-name elb.s3.small
 ```
 
 ## 容器引擎 (CCE) 管理
@@ -349,6 +366,46 @@ ctyun-cli redis diagnose --instance-id INSTANCE_ID
 ctyun-cli redis clients --instance-id INSTANCE_ID
 ```
 
+### 节点列表查询
+```bash
+ctyun-cli redis node-list --prod-inst-id INSTANCE_ID --region-id REGION_ID
+```
+
+### 日志下载
+```bash
+ctyun-cli redis log-download --prod-inst-id INSTANCE_ID --node-name NODE_NAME --date 2026-06-23
+```
+
+### 副本状态查询
+```bash
+ctyun-cli redis replication-state --prod-inst-id INSTANCE_ID --fragment-name redis-0
+```
+
+### 租户标签查询
+```bash
+ctyun-cli redis labels --region-id REGION_ID
+ctyun-cli redis labels -r REGION_ID --label-key APPNAME
+```
+
+### 运行日志查询
+```bash
+ctyun-cli redis running-logs --prod-inst-id INSTANCE_ID --node-name NODE_NAME
+```
+
+### 实例账号查询
+```bash
+ctyun-cli redis accounts --prod-inst-id INSTANCE_ID
+```
+
+### 费用查询（询价）
+```bash
+# 订购询价
+ctyun-cli redis price --order-type BUY --charge-type PrePaid --period 1 --edition DirectCluster --shard-mem-size 1 --shard-count 3 --engine-version 6.0 --capacity 3
+
+# 变配询价
+ctyun-cli redis price --order-type EXPANSION --prod-inst-id INSTANCE_ID
+```
+
 ## 云监控服务管理
 
 ### 查询监控数据
@@ -432,6 +489,30 @@ ctyun-cli monitor query-vpc-endpoint-service-list --region-id RESOURCE_POOL_ID
 ctyun-cli monitor query-monitor-items-by-device --region-id RESOURCE_POOL_ID
 ```
 
+### 数据导出任务管理
+```bash
+# 查询数据导出任务列表
+ctyun-cli monitor data-export-tasks --region-id REGION_ID
+
+# 创建数据导出任务
+ctyun-cli monitor create-data-export-task --region-id REGION_ID --task-name my-task
+
+# 删除数据导出任务
+ctyun-cli monitor delete-data-export-task --region-id REGION_ID --task-ids TASK_ID1,TASK_ID2
+
+# 下载导出文件
+ctyun-cli monitor download-data-export-task --region-id REGION_ID --task-id TASK_ID
+```
+
+### 拨测管理
+```bash
+# 查询拨测点列表
+ctyun-cli monitor query-detection-point
+
+# 查询即时拨测任务结果
+ctyun-cli monitor query-instant-detection-task --task-id TASK_ID --detect-type http
+```
+
 ## 账务中心管理
 
 ### 查询账户余额
@@ -464,9 +545,14 @@ ctyun-cli billing ondemand-flow --bill-cycle 202503
 ctyun-cli billing cycle-flow --bill-cycle 202503
 ```
 
-### 查询消费明细
+### 查询包周期账单明细（按产品汇总）
 ```bash
-ctyun-cli billing consumption
+ctyun-cli billing cycle-product --bill-cycle 202503
+```
+
+### 查询按需账单明细（资源+账期）
+```bash
+ctyun-cli billing ondemand-resource-cycle --bill-cycle 202212
 ```
 
 ## 统一身份认证 (IAM) 管理
@@ -634,6 +720,58 @@ ctyun-cli sfs --help
 
 ```bash
 ctyun-cli oceanfs --help
+ctyun-cli oceanfs renew-price --region-id REGION_ID --sfs-uid FS_ID --cycle-type month --cycle-cnt 1
+ctyun-cli oceanfs upgrade-price --region-id REGION_ID --sfs-uid FS_ID --sfs-size 100
+```
+
+## 对象存储 (ZOS) 管理
+
+```bash
+ctyun-cli zos query-price --region-id REGION_ID --pkg-type zosSize --pkg-spec-type ...
+```
+
+## 物理机 (DPS) 管理
+
+### 查询操作系统列表
+```bash
+ctyun-cli dps list-os --region-id REGION_ID --az-name AZ_NAME
+```
+
+### 批量查询物理机列表
+```bash
+ctyun-cli dps list --region-id REGION_ID --az-name AZ_NAME
+ctyun-cli dps list --region-id REGION_ID --az-name AZ_NAME --status RUNNING --page-size 20
+```
+
+### 查询单台物理机详情
+```bash
+ctyun-cli dps describe --region-id REGION_ID --az-name AZ_NAME --instance-uuid INSTANCE_UUID
+```
+
+### 查询物理机网卡信息
+```bash
+ctyun-cli dps interfaces --region-id REGION_ID --az-name AZ_NAME --instance-uuid INSTANCE_UUID
+```
+
+### 查询挂载卷ID列表
+```bash
+ctyun-cli dps volumes --region-id REGION_ID --az-name AZ_NAME --instance-uuid INSTANCE_UUID
+```
+
+### 查询镜像信息
+```bash
+ctyun-cli dps image --region-id REGION_ID --az-name AZ_NAME --instance-uuid INSTANCE_UUID
+```
+
+### 查询元数据
+```bash
+ctyun-cli dps metadata --region-id REGION_ID --az-name AZ_NAME --instance-uuid INSTANCE_UUID
+```
+
+### 查询物理机库存
+```bash
+ctyun-cli dps stock --region-id REGION_ID --az-name AZ_NAME
+ctyun-cli dps stock --region-id REGION_ID --az-name AZ_NAME --device-type physical.t3.large --count 2
 ```
 
 ## 边缘安全加速平台 (Aone) 管理
@@ -700,17 +838,21 @@ ctyun-cli ecs list --profile production
 
 ## 版本信息
 
-- **当前版本**: v1.18.5 (2026-05-14)
+- **当前版本**: v1.22.0 (2026-06-29)
 - **开源协议**: MIT
 - **Python 要求**: Python 3.8+
-- **API 覆盖**: 397+ 个 API
-- **命令数量**: 383+ 个命令
-- **服务模块**: 17 大服务模块
+- **API 覆盖**: 510+ 个 API
+- **命令数量**: 478+ 个命令
+- **服务模块**: 26+ 大服务模块
 - **最新功能**:
-  - 🚀 监控模块新增 21 个 API：数据订阅、套餐管理、监控看板、资源列表查询(12类)
-  - 🚀 ECS 模块新增 12 个 API：资源池(3)、云助手(4)、宿主机(3)、网卡(2)
-  - 🆕 AIServer（模型推理服务）模块：预置模型/订单/服务组/报表共 19 个 API
-  - 🆕 CloudPC（云电脑/政企版）模块：实例/镜像/磁盘/用户/组织共 10 个 API
-  - 🆕 IAM 全面扩展：从 3 个 API 扩展至 34 个（用户/权限/策略/委托/AK-SK/MFA等）
-  - 🆕 Aone（边缘安全加速平台）模块：域名/证书/缓存/安全防护共 45 个 API
-  - 🆕 EMR/CSS/Kafka 模块
+  - 🆕 DPS（物理机）模块：8个命令，支持物理机实例/网卡/镜像/元数据/库存查询
+  - 🆕 ZOS（对象存储）模块：资源包询价
+  - 🚀 ELB 新增3个PGELB询价API（创建/续订/变配）
+  - 🚀 ECS 新增资源续订询价（支持VM/EBS/IP/NAT/BMS等9种资源类型）
+  - 🚀 Monitor 新增拨测点查询和拨测任务结果查询
+  - 🚀 OceanFS 新增续订询价和扩容询价
+  - 🚀 Redis 新增7个API：Proxy监控、读写分离、分片管理、节点状态、可用区查询
+  - 🆕 Aone（边缘安全加速平台）模块
+  - 🆕 AIServer（模型推理服务）模块
+  - 🆕 CloudPC（云电脑）模块
+  - 🆕 IMS（镜像服务）/ Audit（云审计）模块

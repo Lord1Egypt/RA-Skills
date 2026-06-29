@@ -1,0 +1,11 @@
+# 厨具/厨房用品 Prompt 模板
+# 用法：把 {product} 替换为实际产品英文描述
+
+## 现代厨房场景
+A premium {product}, placed on a modern marble kitchen counter, soft natural light from window on the left, professional food photography, warm and inviting atmosphere, shallow depth of field, 8K resolution, commercial photography, no text, no watermark
+
+## 烹饪动作感
+A {product} in use, steam rising, fresh ingredients scattered naturally nearby, warm kitchen lighting, motion blur on hands, cinematic food photography style, professional lighting, no text, no watermark
+
+## 极简白底
+A {product} isolated on pure white background, studio lighting, clean product photography, sharp focus, e-commerce style, 8K, no text, no watermark, no logo

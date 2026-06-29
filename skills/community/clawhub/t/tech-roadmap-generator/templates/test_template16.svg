@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="685" viewBox="0 0 800 685">
+<defs>
+  <style>
+    text { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+  </style>
+</defs>
+<!-- 背景 -->
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<rect x="3.0" y="12.0" width="46.0" height="44.0" rx="5" fill="#A5D6A7" stroke="#888888" stroke-width="1.2"/>
+<text x="26.0" y="39.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">提出问题</text>
+<rect x="62.0" y="12.0" width="728.0" height="65.0" fill="none" stroke="#FAFAFA" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="70.0" y="20.0" width="231.3" height="34.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="185.7" y="41.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">研究背景</text>
+<rect x="307.3" y="20.0" width="231.3" height="34.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="423.0" y="41.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">研究目的</text>
+<rect x="544.7" y="20.0" width="231.3" height="34.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="660.3" y="41.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">研究内容</text>
+<polygon points="414.0,79.0 438.0,79.0 438.0,91.0 444.0,91.0 426.0,103.0 408.0,91.0 414.0,91.0" fill="#8B572A"/>
+<rect x="3.0" y="107.0" width="46.0" height="44.0" rx="5" fill="#A5D6A7" stroke="#888888" stroke-width="1.2"/>
+<text x="26.0" y="134.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">理论基础</text>
+<rect x="62.0" y="107.0" width="728.0" height="97.0" fill="none" stroke="#FAFAFA" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="336.0" y="115.0" width="180.0" height="30.0" rx="4" fill="#F5B875" stroke="#888888" stroke-width="1.2"/>
+<text x="426.0" y="136.0" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#333333" text-anchor="middle" font-weight="bold">智慧课堂建设理论基础</text>
+<rect x="70.0" y="151.0" width="231.3" height="34.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="185.7" y="172.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">智慧课堂建设理论
+1</text>
+<rect x="307.3" y="151.0" width="231.3" height="34.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="423.0" y="172.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">智慧课堂建设理论
+2</text>
+<rect x="544.7" y="151.0" width="231.3" height="34.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="660.3" y="172.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">智慧课堂建设理论
+3</text>
+<polygon points="414.0,206.0 438.0,206.0 438.0,218.0 444.0,218.0 426.0,230.0 408.0,218.0 414.0,218.0" fill="#8B572A"/>
+<rect x="3.0" y="234.0" width="46.0" height="44.0" rx="5" fill="#A5D6A7" stroke="#888888" stroke-width="1.2"/>
+<text x="26.0" y="261.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">现状分析</text>
+<rect x="62.0" y="234.0" width="728.0" height="97.0" fill="none" stroke="#FAFAFA" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="336.0" y="242.0" width="180.0" height="30.0" rx="4" fill="#F5B875" stroke="#888888" stroke-width="1.2"/>
+<text x="426.0" y="263.0" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#333333" text-anchor="middle" font-weight="bold">智慧课堂建设现状分析</text>
+<rect x="70.0" y="278.0" width="172.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="156.0" y="299.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">现状维度1</text>
+<rect x="248.0" y="278.0" width="172.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="334.0" y="299.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">现状维度2</text>
+<rect x="426.0" y="278.0" width="172.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="512.0" y="299.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">现状维度3</text>
+<rect x="604.0" y="278.0" width="172.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="690.0" y="299.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">现状维度4</text>
+<polygon points="414.0,333.0 438.0,333.0 438.0,345.0 444.0,345.0 426.0,357.0 408.0,345.0 414.0,345.0" fill="#8B572A"/>
+<rect x="3.0" y="361.0" width="46.0" height="44.0" rx="5" fill="#A5D6A7" stroke="#888888" stroke-width="1.2"/>
+<text x="26.0" y="388.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">案例分析</text>
+<rect x="62.0" y="361.0" width="728.0" height="97.0" fill="none" stroke="#FAFAFA" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="336.0" y="369.0" width="180.0" height="30.0" rx="4" fill="#F5B875" stroke="#888888" stroke-width="1.2"/>
+<text x="426.0" y="390.0" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#333333" text-anchor="middle" font-weight="bold">智慧课堂建设案例分析</text>
+<rect x="70.0" y="405.0" width="231.3" height="34.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="185.7" y="426.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">案例一智慧课堂建
+设</text>
+<rect x="307.3" y="405.0" width="231.3" height="34.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="423.0" y="426.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">案例二智慧课堂建
+设</text>
+<rect x="544.7" y="405.0" width="231.3" height="34.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="660.3" y="426.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">案例三智慧课堂建
+设</text>
+<polygon points="414.0,460.0 438.0,460.0 438.0,472.0 444.0,472.0 426.0,484.0 408.0,472.0 414.0,472.0" fill="#8B572A"/>
+<rect x="3.0" y="488.0" width="46.0" height="44.0" rx="5" fill="#A5D6A7" stroke="#888888" stroke-width="1.2"/>
+<text x="26.0" y="515.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">理论基础</text>
+<rect x="62.0" y="488.0" width="728.0" height="136.0" fill="none" stroke="#FAFAFA" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="336.0" y="496.0" width="180.0" height="30.0" rx="4" fill="#F5B875" stroke="#888888" stroke-width="1.2"/>
+<text x="426.0" y="517.0" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#333333" text-anchor="middle" font-weight="bold">智慧课堂建设改进建议</text>
+<rect x="70.0" y="532.0" width="172.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="156.0" y="553.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">建议方向1</text>
+<rect x="248.0" y="532.0" width="172.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="334.0" y="553.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">建议方向2</text>
+<rect x="426.0" y="532.0" width="172.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="512.0" y="553.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">建议方向3</text>
+<rect x="604.0" y="532.0" width="172.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="690.0" y="553.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">建议方向4</text>
+<rect x="70.0" y="571.0" width="172.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="156.0" y="592.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">建议方向5</text>
+<rect x="316.0" y="629.0" width="220.0" height="34.0" rx="4" fill="#A5D6A7" stroke="#888888" stroke-width="1.2"/>
+<text x="426.0" y="651.0" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#333333" text-anchor="middle" font-weight="bold">智慧课堂建设研究结论</text>
+</svg>

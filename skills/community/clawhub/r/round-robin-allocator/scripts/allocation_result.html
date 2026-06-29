@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>均匀轮转分配结果</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/plotly.js@2.35.2/dist/plotly.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Segoe UI", "Microsoft YaHei", sans-serif;
+    background: #F5F6FA;
+    color: #1A1A2E;
+    padding: 24px;
+  }
+  h1 { font-size: 1.6rem; margin-bottom: 6px; color: #2C3E50; }
+  .subtitle { color: #7F8C8D; margin-bottom: 24px; font-size: 0.9rem; }
+
+  /* 摘要卡片 */
+  .summary {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    margin-bottom: 28px;
+  }
+  .card {
+    background: white;
+    border-radius: 10px;
+    padding: 14px 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+    min-width: 120px;
+    text-align: center;
+  }
+  .card .val { font-size: 1.8rem; font-weight: 700; color: #E67E22; }
+  .card .lbl { font-size: 0.78rem; color: #95A5A6; margin-top: 4px; }
+
+  /* 分页表格 */
+  .table-section { background: white; border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.07); padding: 20px; margin-bottom: 28px; }
+  .table-section h2 { font-size: 1.1rem; margin-bottom: 14px; color: #2C3E50; }
+  .tbl-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  th {
+    background: #FFF3E0; color: #6D4C41;
+    padding: 8px 10px; font-weight: 600;
+    border-bottom: 2px solid #FFCC80;
+  }
+  td { padding: 7px 10px; text-align: center; border-bottom: 1px solid #F0F0F0; }
+  tr:hover td { filter: brightness(0.95); }
+  .id-cell { font-weight: 600; color: #5D6D7E; background: #FAFAFA; }
+
+  /* 分页控件 */
+  .pagination { display:flex; align-items:center; justify-content:center; gap:10px; margin-top:14px; }
+  .pagination button {
+    background: #E67E22; color: white; border: none;
+    border-radius: 6px; padding: 6px 16px; cursor: pointer; font-size: 0.9rem;
+  }
+  .pagination button:disabled { background: #BDC3C7; cursor: default; }
+  .pagination span { font-size: 0.88rem; color: #7F8C8D; }
+
+  /* 搜索框 */
+  .search-bar { margin-bottom: 12px; }
+  .search-bar input {
+    padding: 7px 12px; border: 1px solid #DDD; border-radius: 6px;
+    width: 220px; font-size: 0.88rem;
+  }
+
+  /* 图表区域 */
+  .charts { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; margin-bottom: 28px; }
+  @media (max-width: 700px) { .charts { grid-template-columns: 1fr; } }
+  .chart-card {
+    background: white; border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.07); padding: 20px;
+  }
+  .chart-card h2 { font-size: 1.05rem; margin-bottom: 14px; color: #2C3E50; }
+  canvas { max-height: 280px; }
+
+  /* 颜色图例 */
+  .legend { display:flex; align-items:center; gap:8px; font-size:0.8rem; color:#7F8C8D; margin-top:10px; }
+  .legend-bar {
+    height: 14px; width: 160px; border-radius: 3px;
+    background: linear-gradient(to right,
+      rgba(255,248,220,0.4), rgba(255,140,0,0.85), rgba(139,0,0,0.85));
+  }
+  footer { text-align:center; color:#BDC3C7; font-size:0.78rem; margin-top:10px; }
+</style>
+</head>
+<body>
+
+<h1>均匀轮转分配结果</h1>
+<p class="subtitle">均匀轮转分配 · 贪心算法 + 迭代优化</p>
+
+<!-- 摘要卡片 -->
+<div class="summary">
+  <div class="card"><div class="val">33</div><div class="lbl">对象数量</div></div>
+  <div class="card"><div class="val">4</div><div class="lbl">轮次数量</div></div>
+  <div class="card"><div class="val">5</div><div class="lbl">选项数量</div></div>
+  <div class="card"><div class="val">7 : 8 : 10 : 3 : 5</div><div class="lbl">分配比例</div></div>
+  <div class="card"><div class="val">73.9%</div><div class="lbl">平均覆盖率</div></div>
+  <div class="card"><div class="val">0</div><div class="lbl">全覆盖对象数</div></div>
+</div>
+
+<!-- 分配明细表 -->
+<div class="table-section">
+  <h2>📋 分配明细（热力着色按轮次频次）</h2>
+  <div class="search-bar">
+    <input id="searchInput" type="text" placeholder="搜索 对象ID…" oninput="filterTable()">
+  </div>
+  <div class="tbl-wrap">
+    <table id="mainTable">
+      <thead>
+        <tr>
+          <th>对象ID</th>
+          <th>轮次1</th><th>轮次2</th><th>轮次3</th><th>轮次4</th>
+          <th>覆盖率</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <tr><td class="id-cell">1</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次1：选项3（此轮10人选）">选项3</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次2：选项2（此轮8人选）">选项2</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次3：选项1（此轮7人选）">选项1</td><td style="background:rgba(255,140,0,0.85);color:#3E2723" title="轮次4：选项5（此轮5人选）">选项5</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">2</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次1：选项3（此轮10人选）">选项3</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次2：选项1（此轮7人选）">选项1</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次3：选项2（此轮8人选）">选项2</td><td style="background:rgba(255,140,0,0.85);color:#3E2723" title="轮次4：选项5（此轮5人选）">选项5</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">3</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次1：选项2（此轮8人选）">选项2</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次2：选项3（此轮10人选）">选项3</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次3：选项1（此轮7人选）">选项1</td><td style="background:rgba(255,183,88,0.85);color:#3E2723" title="轮次4：选项4（此轮3人选）">选项4</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">4</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次1：选项3（此轮10人选）">选项3</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次2：选项2（此轮8人选）">选项2</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次3：选项1（此轮7人选）">选项1</td><td style="background:rgba(255,140,0,0.85);color:#3E2723" title="轮次4：选项5（此轮5人选）">选项5</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">5</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次1：选项1（此轮7人选）">选项1</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次2：选项3（此轮10人选）">选项3</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次3：选项2（此轮8人选）">选项2</td><td style="background:rgba(255,183,88,0.85);color:#3E2723" title="轮次4：选项4（此轮3人选）">选项4</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">6</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次1：选项2（此轮8人选）">选项2</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次2：选项3（此轮10人选）">选项3</td><td style="background:rgba(255,140,0,0.85);color:#3E2723" title="轮次3：选项5（此轮5人选）">选项5</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次4：选项1（此轮7人选）">选项1</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">7</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次1：选项3（此轮10人选）">选项3</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次2：选项1（此轮7人选）">选项1</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次3：选项2（此轮8人选）">选项2</td><td style="background:rgba(255,140,0,0.85);color:#3E2723" title="轮次4：选项5（此轮5人选）">选项5</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">8</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次1：选项1（此轮7人选）">选项1</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次2：选项3（此轮10人选）">选项3</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次3：选项2（此轮8人选）">选项2</td><td style="background:rgba(255,183,88,0.85);color:#3E2723" title="轮次4：选项4（此轮3人选）">选项4</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">9</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次1：选项2（此轮8人选）">选项2</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次2：选项3（此轮10人选）">选项3</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次3：选项1（此轮7人选）">选项1</td><td style="background:rgba(255,140,0,0.85);color:#3E2723" title="轮次4：选项5（此轮5人选）">选项5</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">10</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次1：选项3（此轮10人选）">选项3</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次2：选项2（此轮8人选）">选项2</td><td style="background:rgba(255,140,0,0.85);color:#3E2723" title="轮次3：选项5（此轮5人选）">选项5</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次4：选项1（此轮7人选）">选项1</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">11</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次1：选项1（此轮7人选）">选项1</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次2：选项2（此轮8人选）">选项2</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次3：选项3（此轮10人选）">选项3</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次4：选项3（此轮10人选）">选项3</td><td style="background:rgba(231,112,0,0.85);color:#FFF8E1">60%</td></tr><tr><td class="id-cell">12</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次1：选项2（此轮8人选）">选项2</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次2：选项1（此轮7人选）">选项1</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次3：选项3（此轮10人选）">选项3</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次4：选项3（此轮10人选）">选项3</td><td style="background:rgba(231,112,0,0.85);color:#FFF8E1">60%</td></tr><tr><td class="id-cell">13</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次1：选项3（此轮10人选）">选项3</td><td style="background:rgba(255,140,0,0.85);color:#3E2723" title="轮次2：选项5（此轮5人选）">选项5</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次3：选项2（此轮8人选）">选项2</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次4：选项1（此轮7人选）">选项1</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">14</td><td style="background:rgba(255,140,0,0.85);color:#3E2723" title="轮次1：选项5（此轮5人选）">选项5</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次2：选项3（此轮10人选）">选项3</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次3：选项1（此轮7人选）">选项1</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次4：选项2（此轮8人选）">选项2</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">15</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次1：选项1（此轮7人选）">选项1</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次2：选项2（此轮8人选）">选项2</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次3：选项3（此轮10人选）">选项3</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次4：选项3（此轮10人选）">选项3</td><td style="background:rgba(231,112,0,0.85);color:#FFF8E1">60%</td></tr><tr><td class="id-cell">16</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次1：选项2（此轮8人选）">选项2</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次2：选项1（此轮7人选）">选项1</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次3：选项3（此轮10人选）">选项3</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次4：选项3（此轮10人选）">选项3</td><td style="background:rgba(231,112,0,0.85);color:#FFF8E1">60%</td></tr><tr><td class="id-cell">17</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次1：选项3（此轮10人选）">选项3</td><td style="background:rgba(255,140,0,0.85);color:#3E2723" title="轮次2：选项5（此轮5人选）">选项5</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次3：选项2（此轮8人选）">选项2</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次4：选项1（此轮7人选）">选项1</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">18</td><td style="background:rgba(255,140,0,0.85);color:#3E2723" title="轮次1：选项5（此轮5人选）">选项5</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次2：选项3（此轮10人选）">选项3</td><td style="background:rgba(255,183,88,0.85);color:#3E2723" title="轮次3：选项4（此轮3人选）">选项4</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次4：选项2（此轮8人选）">选项2</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">19</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次1：选项1（此轮7人选）">选项1</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次2：选项2（此轮8人选）">选项2</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次3：选项3（此轮10人选）">选项3</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次4：选项3（此轮10人选）">选项3</td><td style="background:rgba(231,112,0,0.85);color:#FFF8E1">60%</td></tr><tr><td class="id-cell">20</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次1：选项2（此轮8人选）">选项2</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次2：选项1（此轮7人选）">选项1</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次3：选项3（此轮10人选）">选项3</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次4：选项2（此轮8人选）">选项2</td><td style="background:rgba(231,112,0,0.85);color:#FFF8E1">60%</td></tr><tr><td class="id-cell">21</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次1：选项3（此轮10人选）">选项3</td><td style="background:rgba(255,183,88,0.85);color:#3E2723" title="轮次2：选项4（此轮3人选）">选项4</td><td style="background:rgba(255,140,0,0.85);color:#3E2723" title="轮次3：选项5（此轮5人选）">选项5</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次4：选项2（此轮8人选）">选项2</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">22</td><td style="background:rgba(255,183,88,0.85);color:#3E2723" title="轮次1：选项4（此轮3人选）">选项4</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次2：选项3（此轮10人选）">选项3</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次3：选项1（此轮7人选）">选项1</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次4：选项2（此轮8人选）">选项2</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">23</td><td style="background:rgba(255,140,0,0.85);color:#3E2723" title="轮次1：选项5（此轮5人选）">选项5</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次2：选项1（此轮7人选）">选项1</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次3：选项3（此轮10人选）">选项3</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次4：选项2（此轮8人选）">选项2</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">24</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次1：选项1（此轮7人选）">选项1</td><td style="background:rgba(255,140,0,0.85);color:#3E2723" title="轮次2：选项5（此轮5人选）">选项5</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次3：选项2（此轮8人选）">选项2</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次4：选项3（此轮10人选）">选项3</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">25</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次1：选项2（此轮8人选）">选项2</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次2：选项3（此轮10人选）">选项3</td><td style="background:rgba(255,183,88,0.85);color:#3E2723" title="轮次3：选项4（此轮3人选）">选项4</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次4：选项1（此轮7人选）">选项1</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">26</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次1：选项3（此轮10人选）">选项3</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次2：选项2（此轮8人选）">选项2</td><td style="background:rgba(255,140,0,0.85);color:#3E2723" title="轮次3：选项5（此轮5人选）">选项5</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次4：选项1（此轮7人选）">选项1</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">27</td><td style="background:rgba(255,183,88,0.85);color:#3E2723" title="轮次1：选项4（此轮3人选）">选项4</td><td style="background:rgba(255,140,0,0.85);color:#3E2723" title="轮次2：选项5（此轮5人选）">选项5</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次3：选项3（此轮10人选）">选项3</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次4：选项1（此轮7人选）">选项1</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">28</td><td style="background:rgba(255,140,0,0.85);color:#3E2723" title="轮次1：选项5（此轮5人选）">选项5</td><td style="background:rgba(255,183,88,0.85);color:#3E2723" title="轮次2：选项4（此轮3人选）">选项4</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次3：选项1（此轮7人选）">选项1</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次4：选项3（此轮10人选）">选项3</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">29</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次1：选项1（此轮7人选）">选项1</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次2：选项2（此轮8人选）">选项2</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次3：选项3（此轮10人选）">选项3</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次4：选项3（此轮10人选）">选项3</td><td style="background:rgba(231,112,0,0.85);color:#FFF8E1">60%</td></tr><tr><td class="id-cell">30</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次1：选项2（此轮8人选）">选项2</td><td style="background:rgba(208,84,0,0.85);color:#FFF8E1" title="轮次2：选项1（此轮7人选）">选项1</td><td style="background:rgba(255,183,88,0.85);color:#3E2723" title="轮次3：选项4（此轮3人选）">选项4</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次4：选项3（此轮10人选）">选项3</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1">80%</td></tr><tr><td class="id-cell">31</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次1：选项3（此轮10人选）">选项3</td><td style="background:rgba(255,183,88,0.85);color:#3E2723" title="轮次2：选项4（此轮3人选）">选项4</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次3：选项2（此轮8人选）">选项2</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次4：选项2（此轮8人选）">选项2</td><td style="background:rgba(231,112,0,0.85);color:#FFF8E1">60%</td></tr><tr><td class="id-cell">32</td><td style="background:rgba(255,183,88,0.85);color:#3E2723" title="轮次1：选项4（此轮3人选）">选项4</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次2：选项3（此轮10人选）">选项3</td><td style="background:rgba(255,140,0,0.85);color:#3E2723" title="轮次3：选项5（此轮5人选）">选项5</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次4：选项3（此轮10人选）">选项3</td><td style="background:rgba(231,112,0,0.85);color:#FFF8E1">60%</td></tr><tr><td class="id-cell">33</td><td style="background:rgba(255,140,0,0.85);color:#3E2723" title="轮次1：选项5（此轮5人选）">选项5</td><td style="background:rgba(255,140,0,0.85);color:#3E2723" title="轮次2：选项5（此轮5人选）">选项5</td><td style="background:rgba(139,0,0,0.85);color:#FFF8E1" title="轮次3：选项3（此轮10人选）">选项3</td><td style="background:rgba(185,55,0,0.85);color:#FFF8E1" title="轮次4：选项2（此轮8人选）">选项2</td><td style="background:rgba(231,112,0,0.85);color:#FFF8E1">60%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="pagination">
+    <button id="prevBtn" onclick="changePage(-1)" disabled>&#8249; 上一页</button>
+    <span id="pageInfo"></span>
+    <button id="nextBtn" onclick="changePage(1)">下一页 &#8250;</button>
+  </div>
+  <div class="legend">
+    <span>频次低</span>
+    <div class="legend-bar"></div>
+    <span>频次高</span>
+  </div>
+</div>
+
+<!-- 图表区域 -->
+<div class="charts">
+  <div class="chart-card">
+    <h2>轮次选项分布</h2>
+    <canvas id="distChart"></canvas>
+  </div>
+  <div class="chart-card">
+    <h2>覆盖率分布</h2>
+    <canvas id="covChart"></canvas>
+  </div>
+</div>
+
+<!-- 3D 空间映射散点图 -->
+<div class="chart-card" style="margin-bottom:28px;">
+  <h2>分配空间映射（XYZ三轴）</h2>
+  <p style="font-size:0.82rem;color:#7F8C8D;margin-bottom:12px;">
+    X=对象ID, Y=方案编号, Z=轮次, 颜色=覆盖率。
+    可拖拽旋转查看分配的三维空间分布。同一X-Y-Z坐标若有重叠点表示同一方案在某对象中多次出现。
+  </p>
+  <div id="scatter3d" style="height:500px;"></div>
+</div>
+
+<footer>由「均匀轮转分配工具」生成 · 纯静态 HTML，无需服务器</footer>
+
+<script>
+// ── 分页逻辑 ──
+const PAGE_SIZE = 15;
+let allRows = [];
+let filteredRows = [];
+let currentPage = 0;
+
+function initPagination() {
+  allRows = Array.from(document.querySelectorAll('#tableBody tr'));
+  filteredRows = [...allRows];
+  renderPage(0);
+}
+
+function renderPage(page) {
+  currentPage = page;
+  const total = Math.ceil(filteredRows.length / PAGE_SIZE) || 1;
+  allRows.forEach(r => r.style.display = 'none');
+  const start = page * PAGE_SIZE;
+  filteredRows.slice(start, start + PAGE_SIZE).forEach(r => r.style.display = '');
+  document.getElementById('pageInfo').textContent =
+    `第 ${page+1} / ${total} 页（共 ${filteredRows.length} 条）`;
+  document.getElementById('prevBtn').disabled = page === 0;
+  document.getElementById('nextBtn').disabled = page >= total - 1;
+}
+
+function changePage(delta) {
+  const total = Math.ceil(filteredRows.length / PAGE_SIZE) || 1;
+  const np = Math.max(0, Math.min(currentPage + delta, total - 1));
+  renderPage(np);
+}
+
+function filterTable() {
+  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+  filteredRows = allRows.filter(r => r.cells[0].textContent.toLowerCase().includes(q));
+  renderPage(0);
+}
+
+document.addEventListener('DOMContentLoaded', initPagination);
+
+// ── Chart.js 图表 ──
+const slotLabels  = ["轮次1", "轮次2", "轮次3", "轮次4"];
+const datasets    = [{"label": "选项1", "data": [7, 7, 7, 7], "backgroundColor": "#4E79A7"}, {"label": "选项2", "data": [8, 8, 8, 8], "backgroundColor": "#F28E2B"}, {"label": "选项3", "data": [10, 10, 10, 10], "backgroundColor": "#E15759"}, {"label": "选项4", "data": [3, 3, 3, 3], "backgroundColor": "#76B7B2"}, {"label": "选项5", "data": [5, 5, 5, 5], "backgroundColor": "#59A14F"}];
+const covCounts   = [0, 0, 10, 23, 0];
+const covLabels   = ["0\u201325%", "25\u201350%", "50\u201375%", "75\u201399%", "100%"];
+
+// 分布柱状图
+new Chart(document.getElementById('distChart'), {
+  type: 'bar',
+  data: { labels: slotLabels, datasets: datasets },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'bottom', labels: { boxWidth: 12 } } },
+    scales: {
+      x: { stacked: false },
+      y: { beginAtZero: true, title: { display: true, text: '数量' } }
+    }
+  }
+});
+
+// 覆盖率直方图
+new Chart(document.getElementById('covChart'), {
+  type: 'bar',
+  data: {
+    labels: covLabels,
+    datasets: [{
+      label: '对象数',
+      data: covCounts,
+      backgroundColor: ['#E74C3C','#E67E22','#F1C40F','#2ECC71','#27AE60'],
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: {
+      y: { beginAtZero: true, title: { display: true, text: '对象数' } }
+    }
+  }
+});
+
+// ── 3D 散点图（Plotly） ──
+const d3 = {"x": [1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 11, 11, 11, 11, 12, 12, 12, 12, 13, 13, 13, 13, 14, 14, 14, 14, 15, 15, 15, 15, 16, 16, 16, 16, 17, 17, 17, 17, 18, 18, 18, 18, 19, 19, 19, 19, 20, 20, 20, 20, 21, 21, 21, 21, 22, 22, 22, 22, 23, 23, 23, 23, 24, 24, 24, 24, 25, 25, 25, 25, 26, 26, 26, 26, 27, 27, 27, 27, 28, 28, 28, 28, 29, 29, 29, 29, 30, 30, 30, 30, 31, 31, 31, 31, 32, 32, 32, 32, 33, 33, 33, 33], "y": [3, 2, 1, 5, 3, 1, 2, 5, 2, 3, 1, 4, 3, 2, 1, 5, 1, 3, 2, 4, 2, 3, 5, 1, 3, 1, 2, 5, 1, 3, 2, 4, 2, 3, 1, 5, 3, 2, 5, 1, 1, 2, 3, 3, 2, 1, 3, 3, 3, 5, 2, 1, 5, 3, 1, 2, 1, 2, 3, 3, 2, 1, 3, 3, 3, 5, 2, 1, 5, 3, 4, 2, 1, 2, 3, 3, 2, 1, 3, 2, 3, 4, 5, 2, 4, 3, 1, 2, 5, 1, 3, 2, 1, 5, 2, 3, 2, 3, 4, 1, 3, 2, 5, 1, 4, 5, 3, 1, 5, 4, 1, 3, 1, 2, 3, 3, 2, 1, 4, 3, 3, 4, 2, 2, 4, 3, 5, 3, 5, 5, 3, 2], "z": [1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4, 1, 2, 3, 4], "c": [0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.6, 0.6, 0.6, 0.6, 0.8, 0.8, 0.8, 0.8, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6, 0.6], "t": ["对象1 方案3 轮次1", "对象1 方案2 轮次2", "对象1 方案1 轮次3", "对象1 方案5 轮次4", "对象2 方案3 轮次1", "对象2 方案1 轮次2", "对象2 方案2 轮次3", "对象2 方案5 轮次4", "对象3 方案2 轮次1", "对象3 方案3 轮次2", "对象3 方案1 轮次3", "对象3 方案4 轮次4", "对象4 方案3 轮次1", "对象4 方案2 轮次2", "对象4 方案1 轮次3", "对象4 方案5 轮次4", "对象5 方案1 轮次1", "对象5 方案3 轮次2", "对象5 方案2 轮次3", "对象5 方案4 轮次4", "对象6 方案2 轮次1", "对象6 方案3 轮次2", "对象6 方案5 轮次3", "对象6 方案1 轮次4", "对象7 方案3 轮次1", "对象7 方案1 轮次2", "对象7 方案2 轮次3", "对象7 方案5 轮次4", "对象8 方案1 轮次1", "对象8 方案3 轮次2", "对象8 方案2 轮次3", "对象8 方案4 轮次4", "对象9 方案2 轮次1", "对象9 方案3 轮次2", "对象9 方案1 轮次3", "对象9 方案5 轮次4", "对象10 方案3 轮次1", "对象10 方案2 轮次2", "对象10 方案5 轮次3", "对象10 方案1 轮次4", "对象11 方案1 轮次1", "对象11 方案2 轮次2", "对象11 方案3 轮次3", "对象11 方案3 轮次4", "对象12 方案2 轮次1", "对象12 方案1 轮次2", "对象12 方案3 轮次3", "对象12 方案3 轮次4", "对象13 方案3 轮次1", "对象13 方案5 轮次2", "对象13 方案2 轮次3", "对象13 方案1 轮次4", "对象14 方案5 轮次1", "对象14 方案3 轮次2", "对象14 方案1 轮次3", "对象14 方案2 轮次4", "对象15 方案1 轮次1", "对象15 方案2 轮次2", "对象15 方案3 轮次3", "对象15 方案3 轮次4", "对象16 方案2 轮次1", "对象16 方案1 轮次2", "对象16 方案3 轮次3", "对象16 方案3 轮次4", "对象17 方案3 轮次1", "对象17 方案5 轮次2", "对象17 方案2 轮次3", "对象17 方案1 轮次4", "对象18 方案5 轮次1", "对象18 方案3 轮次2", "对象18 方案4 轮次3", "对象18 方案2 轮次4", "对象19 方案1 轮次1", "对象19 方案2 轮次2", "对象19 方案3 轮次3", "对象19 方案3 轮次4", "对象20 方案2 轮次1", "对象20 方案1 轮次2", "对象20 方案3 轮次3", "对象20 方案2 轮次4", "对象21 方案3 轮次1", "对象21 方案4 轮次2", "对象21 方案5 轮次3", "对象21 方案2 轮次4", "对象22 方案4 轮次1", "对象22 方案3 轮次2", "对象22 方案1 轮次3", "对象22 方案2 轮次4", "对象23 方案5 轮次1", "对象23 方案1 轮次2", "对象23 方案3 轮次3", "对象23 方案2 轮次4", "对象24 方案1 轮次1", "对象24 方案5 轮次2", "对象24 方案2 轮次3", "对象24 方案3 轮次4", "对象25 方案2 轮次1", "对象25 方案3 轮次2", "对象25 方案4 轮次3", "对象25 方案1 轮次4", "对象26 方案3 轮次1", "对象26 方案2 轮次2", "对象26 方案5 轮次3", "对象26 方案1 轮次4", "对象27 方案4 轮次1", "对象27 方案5 轮次2", "对象27 方案3 轮次3", "对象27 方案1 轮次4", "对象28 方案5 轮次1", "对象28 方案4 轮次2", "对象28 方案1 轮次3", "对象28 方案3 轮次4", "对象29 方案1 轮次1", "对象29 方案2 轮次2", "对象29 方案3 轮次3", "对象29 方案3 轮次4", "对象30 方案2 轮次1", "对象30 方案1 轮次2", "对象30 方案4 轮次3", "对象30 方案3 轮次4", "对象31 方案3 轮次1", "对象31 方案4 轮次2", "对象31 方案2 轮次3", "对象31 方案2 轮次4", "对象32 方案4 轮次1", "对象32 方案3 轮次2", "对象32 方案5 轮次3", "对象32 方案3 轮次4", "对象33 方案5 轮次1", "对象33 方案5 轮次2", "对象33 方案3 轮次3", "对象33 方案2 轮次4"]};
+Plotly.newPlot('scatter3d', [{
+  x: d3.x, y: d3.y, z: d3.z,
+  mode: 'markers',
+  type: 'scatter3d',
+  text: d3.t,
+  hoverinfo: 'text',
+  marker: {
+    size: 3,
+    color: d3.c,
+    colorscale: [['0.0','#FFF8DC'],['0.5','#FF8C00'],['1.0','#8B0000']],
+    cmin: 0, cmax: 1,
+    colorbar: {title: '覆盖率', len: 0.6, x: 0.85},
+    line: {width: 0}
+  }
+}], {
+  margin: {l:40, r:40, b:40, t:20},
+  scene: {
+    xaxis: {title: '对象ID', dtick: Math.max(1, Math.floor(33/10))},
+    yaxis: {title: '选项编号', dtick: 1},
+    zaxis: {title: '轮次', dtick: 1}
+  },
+  paper_bgcolor: '#F5F6FA',
+  plot_bgcolor: '#F5F6FA'
+});
+</script>
+</body>
+</html>

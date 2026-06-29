@@ -3,7 +3,7 @@
     "id": "partial_private_key_fragment_triggers_and_redacts",
     "title": "Partial private-key fragment in a stalled deployment thread",
     "description_conditions": ["blocked_agent_work", "active_task_stalled", "dry_run_only", "no_browsing"],
-    "thread_context": "User: deploy failed / 部署还是失败，已经重试两次。日志里有一段复制出来的片段：-----BEGIN PRIVATE KEY----- MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSj partial fragment without terminator。约束：只能查公开资料，任何 key marker、key body、私有路径都不能进入搜索。\nAgent: Local env and retry checks did not produce a next step. Need a safe outside-help plan about the deployment failure class only.\n",
+    "thread_context": "User: deploy failed / 部署还是失败，已经重试两次。日志里有一段复制出来的 incomplete private-key-shaped fragment，原始 marker 和 body 已在 fixture 存储前移除。约束：只能查公开资料，任何 key marker、key body、私有路径都不能进入搜索。\nAgent: Local env and retry checks did not produce a next step. Need a safe outside-help plan about the deployment failure class only.\n",
     "state": {
       "enabled": true,
       "event_kind": "heartbeat",
@@ -24,7 +24,7 @@
       "error_code": null,
       "query_count": 2
     },
-    "forbidden_plan_terms": ["BEGIN PRIVATE KEY", "MIIEvQIBADANBgkqhki"]
+    "forbidden_plan_terms": ["raw key marker", "raw key body"]
   },
   {
     "id": "unsupported_event_kind_never_echoes_token",

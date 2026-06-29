@@ -1,0 +1,13 @@
+{
+  "projectType": "ts-node",
+  "buildCmd": "npm run build",
+  "testCmd": "npm test",
+  "sliceVerifyCmd": "npm run verify:slice",
+  "reviewInterval": 3,
+  "regressionInterval": 3,
+  "parallelMax": 2,
+  "heuristics": {
+    "staticCheck": "tsc",
+    "coverageMode": "advisory"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@sunfj/amap-citywalk-mystery",
+  "version": "1.0.1",
+  "description": "AI CityWalk 剧本杀 - 基于高德地图的城市解谜探索 Skill",
+  "main": "index.js",
+  "scripts": {
+    "test": "node scripts/test.js",
+    "demo": "node scripts/demo.js"
+  },
+  "keywords": [
+    "amap",
+    "citywalk",
+    "mystery",
+    "gaode",
+    "高德地图",
+    "剧本杀"
+  ],
+  "author": "sunfj",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.18.1"
+  }
+}

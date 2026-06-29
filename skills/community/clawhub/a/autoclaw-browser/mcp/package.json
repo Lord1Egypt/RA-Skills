@@ -1,0 +1,12 @@
+﻿{
+  "name": "autoclaw-mcp",
+  "version": "6.1.0",
+  "description": "AutoClaw MCP Server",
+  "main": "dist/server.js",
+  "scripts": {
+    "start": "node dist/server.js"
+  },
+  "dependencies": {
+    "ws": "^8.14.2"
+  }
+}

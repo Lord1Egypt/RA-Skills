@@ -1,0 +1,14 @@
+# 社媒 / 营销场景 Prompt 模板 v1
+# 适用于 TikTok / Instagram / 广告素材；不含文字叠加（no text）
+
+## unboxing（开箱）
+A {product} in unboxing moment, partially opened premium packaging, hands gently revealing product, clean tabletop, soft natural window light, authentic UGC-meets-brand quality, TikTok/Reels aesthetic
+
+## gift_set（礼盒套装）
+A {product} arranged as gift set presentation, ribbon and tissue paper props, warm celebratory lighting, ready-to-gift composition, holiday or birthday marketing photography
+
+## influencer_flatlay（达人平铺）
+A {product} in curated influencer flat lay, complementary lifestyle props (coffee cup, notebook, plant), Instagram aesthetic, overhead angle, cohesive color palette, aspirational but authentic
+
+## flash_sale（限时抢购视觉）
+A {product} in high-energy flash sale visual, dynamic diagonal composition, bold color splash backdrop, limited-time offer mood without text overlay, social ad creative photography, eye-catching and urgent

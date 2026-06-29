@@ -1,0 +1,9 @@
+README.md
+pyproject.toml
+model_watch/__init__.py
+model_watch/cli.py
+model_watch.egg-info/PKG-INFO
+model_watch.egg-info/SOURCES.txt
+model_watch.egg-info/dependency_links.txt
+model_watch.egg-info/entry_points.txt
+model_watch.egg-info/top_level.txt

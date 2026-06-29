@@ -1,0 +1,24 @@
+# 全局设置
+
+depth: standard            # quick | standard | deep
+language: zh               # zh | en
+evidence_level: strict     # strict(无证据必标注) | loose(允许隐式假设)
+min_report_words: 3000     # 最终评审报告最小字数
+enable_phase_10: true      # 红蓝对抗（重型阶段，轻量场景可关）
+
+# P10 红蓝对抗设置
+red_blue:
+  arguments_per_side: 20   # 每方论据条数
+  require_response: true   # 每条必须被回应
+  allow_repeat: false      # 论据不可重复
+
+# 交叉审计设置
+cross_review:
+  min_groups: 3            # 最少交叉组数
+  random_selection: true   # 随机选角色组合
+
+# 输出设置
+output:
+  format: markdown
+  include_trace: false     # 是否输出执行 trace
+  evidence_tags_required: true  # 强制证据标注

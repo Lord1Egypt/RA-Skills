@@ -1,0 +1,14 @@
+{
+  "protocol": "research_kb_agent_result",
+  "protocolVersion": "1.0",
+  "taskId": "query_sample_001",
+  "taskType": "kb_query",
+  "success": true,
+  "result": {
+    "answer": "知识库中没有足够资料回答这个问题。\n\n以下是非知识库结论的一般性说明：\n\n可以先补充与问题直接相关的 README、说明文档、会议记录、实验记录或论文摘要，再重新入库后查询。若问题涉及项目或代码，建议优先上传完整项目根目录，让知识库形成代码库总览页；若问题涉及论文或调研，建议上传原文、笔记和关键结论说明。",
+    "citations": [],
+    "usedScopes": ["team"],
+    "readPages": []
+  },
+  "errors": []
+}

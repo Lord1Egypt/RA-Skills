@@ -1,0 +1,30 @@
+# Football Data Hub 配置文件
+# 复制此文件为 config.yaml 并填入你的 API Key
+
+# === API-Football (主数据源, RapidAPI) ===
+# 注册地址: https://rapidapi.com/api-sports/api/api-football
+# 免费配额: 100 请求/天
+api_football:
+  rapidapi_key: "YOUR_RAPIDAPI_KEY_HERE"
+  base_url: "https://v3.football.api-sports.io"
+
+# === football-data.org (备用数据源) ===
+# 注册地址: https://www.football-data.org/client/register
+# 免费配额: 10 请求/分钟
+football_data:
+  api_key: "YOUR_API_KEY_HERE"
+  base_url: "https://api.football-data.org/v4"
+
+# === 偏好设置 ===
+preferences:
+  # 默认联赛 (用于未指定时的搜索)
+  default_leagues:
+    - "Premier League"
+    - "La Liga"
+    - "Serie A"
+    - "Bundesliga"
+    - "Ligue 1"
+  # 默认时区
+  timezone: "Asia/Shanghai"
+  # 赛程默认展示未来天数
+  upcoming_days: 7

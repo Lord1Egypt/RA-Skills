@@ -1,0 +1,22 @@
+[
+  {"query": "帮我看看这份销售数据，从CFO角度分析一下\n| 月份 | 营收 | 成本 | 利润 |\n|------|------|------|------|\n| 1月 | 100万 | 60万 | 40万 |\n| 2月 | 120万 | 70万 | 50万 |", "should_trigger": true},
+  {"query": "ok 我整理了一份采购清单在我桌面上，叫 'Q3 采购计划.xlsx'，你帮我分析一下哪些供应商的订单快逾期了", "should_trigger": true},
+  {"query": "这两张表帮我串起来看看\n\n客户表：\n| ID | Name | Level |\n| 1 | 张三 | VIP |\n\n订单表：\n| OrderID | CustomerID | Amt |\n| ORD001 | 1 | 5000 |", "should_trigger": true},
+  {"query": "我搞了一张考勤表，你看看有没有啥问题\n\n| 工号 | 姓名 | 日期 | 状态 |\n| E001 | 张三 | 06-01 | 正常 |\n| E002 | 李四 | 06-01 | 迟到 |", "should_trigger": true},
+  {"query": "从当妈的视角看这些奶粉数据，哪个性价比高？\n| 品牌 | 价格 | 评分 |\n| 飞鹤 | 158 | 4.0 |\n| 爱他美 | 268 | 4.5 |", "should_trigger": true},
+  {"query": "帮我盘一盘这份库存台账\n| 物料 | 入库 | 出库 | 单价 |\n| A001 | 500 | 300 | 50 |\n| A002 | 200 | 50 | 120 |", "should_trigger": true},
+  {"query": "这表里有什么值得注意的？\n| 产品 | 销量 | 销售额 | 退货率 |\n| A | 1000 | 50万 | 2% |\n| B | 500 | 80万 | 15% |", "should_trigger": true},
+  {"query": "你帮我看看这两列有没有关系：用户年龄和购买金额", "should_trigger": true},
+  {"query": "我手上有一份竞品价格表，想看看我们的定价策略对不对", "should_trigger": true},
+  {"query": "这是我们的季度运营数据，你帮我从各个角度看看\n| 渠道 | 获客成本 | 转化率 | ROI |\n| 抖音 | 80 | 3% | 2.5 |\n| 小红书 | 120 | 5% | 3.2 |", "should_trigger": true},
+  {"query": "帮我对对账，看看这个月的收支", "should_trigger": true},
+  {"query": "你看这组数据有没有猫腻", "should_trigger": true},
+  {"query": "帮我写个Python脚本来处理这个CSV文件", "should_trigger": false},
+  {"query": "帮我解释一下什么是数据库的外键", "should_trigger": false},
+  {"query": "SQL 里 LEFT JOIN 和 INNER JOIN 有什么区别？", "should_trigger": false},
+  {"query": "写个 Python 函数读取 Excel 文件", "should_trigger": false},
+  {"query": "你能画个架构图吗？前端 React + 后端 FastAPI", "should_trigger": false},
+  {"query": "帮我写一封邮件给老板汇报季度总结", "should_trigger": false},
+  {"query": "Vue 和 React 哪个好？", "should_trigger": false},
+  {"query": "我的电脑好卡，怎么清理C盘空间？", "should_trigger": false}
+]

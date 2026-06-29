@@ -1,0 +1,61 @@
+# Changelog
+
+## [0.0.9] - 2026-06-23
+
+### Changed
+
+- Re-released skill metadata to run through the corrected normal tag publish pipeline without runtime changes.
+
+## [0.0.8] - 2026-06-22
+
+### Changed
+
+- Re-released skill metadata to publish through the updated ClawHub pipeline without runtime changes.
+
+## [0.0.7] - 2026-06-10
+
+### Changed
+
+- Re-released skill package with updated marketplace grouping and signed release trust artifacts for Vercel-compatible skill installation.
+- Marked Clawtributor as a harness-neutral global skill for OpenClaw, NanoClaw, Hermes, and Picoclaw installer grouping.
+- Removed OpenClaw CLI as a declared runtime requirement because reporting is manual, approval-gated, and not tied to an OpenClaw command path.
+- Documented Vercel skills installer usage alongside the OpenClaw/ClawHub install path.
+- Moved local report/state guidance to `~/.clawsec/clawtributor/`.
+
+## [0.0.6] - 2026-05-14
+
+### Security
+- Added explicit signed release artifact verification instructions for standalone installs, including `checksums.json`, `checksums.sig`, `signing-public.pem`, archive hash verification, and `SKILL.md`/`skill.json` checksum checks.
+
+All notable changes to Clawtributor will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.0.5] - 2026-04-16
+
+### Changed
+
+- Replaced release-artifact bootstrap instructions in `SKILL.md` with registry-based installation guidance.
+- Switched submission instructions to manual browser-form workflow after explicit approval (no scripted CLI submission flow).
+- Reduced declared runtime requirements to `openclaw` for the packaged skill guidance.
+
+### Security
+
+- Removed automatic remote-install and automated issue-submission guidance patterns that were being classified as suspicious.
+
+## [0.0.4] - 2026-04-14
+
+### Added
+
+- Operational notes that describe the standalone install runtime and the external GitHub submission target.
+- Metadata that records opt-in reporting, local state persistence, and approval-gated network egress.
+
+### Changed
+
+- Corrected the skill homepage in `SKILL.md` to the canonical `clawsec.prompt.security` domain.
+- Declared the full standalone install/reporting toolchain (`bash`, `curl`, `jq`, `shasum`, `unzip`, `gh`) in metadata.
+
+### Security
+
+- Made the off-host reporting trust model explicit: every submission stays approval-gated and evidence must be sanitized before it is sent to GitHub.

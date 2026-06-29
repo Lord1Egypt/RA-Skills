@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes sleep-monitoring video to identify sleep stages, body movement, nighttime awakenings, and sleep apnea indicators for sleep quality reporting. <br>
+Identifies sleep stages including falling asleep, light sleep, deep sleep, and REM; monitors body movement, nighttime awakenings, and sleep apnea for sleep monitoring scenarios. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,34 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and developers use this skill to submit sleep-monitoring video files or URLs and receive structured sleep quality reports, including stage distribution, movement, awakenings, and apnea indicators. It can also retrieve the user's cloud-hosted historical sleep analysis reports when an open-id is provided. <br>
+External users and developers use this skill to analyze sleep-monitoring videos or video URLs, obtain structured sleep-stage and respiratory observations, and query prior cloud-generated sleep analysis reports. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill sends sleep-monitoring videos, remote video URLs, and user identifiers to the publisher's cloud service. <br>
-Mitigation: Use only videos and identifiers that are appropriate to share with the publisher's service, and avoid private or unrelated recordings. <br>
-Risk: The security summary reports under-disclosed account, token, dependency, and API-scope risks. <br>
-Mitigation: Review payment and API-key requirements before use, and deploy only after the publisher resolves the privacy disclosure, token storage behavior, API documentation mismatch, and yaml dependency issue noted by the scan. <br>
-Risk: The skill's sleep quality output is for reference and is not a medical diagnosis. <br>
-Mitigation: Treat the report as informational guidance and consult qualified medical professionals for diagnosis or treatment decisions. <br>
+Risk: Sleep-monitoring videos, video URLs, and report history may be sent to Lifeemergence cloud services. <br>
+Mitigation: Use the skill only when the user accepts the publisher's privacy, retention, and deletion terms for sensitive sleep or medical-adjacent media. <br>
+Risk: The skill may create or reuse a local identity database that stores tokens and profile data with limited user control. <br>
+Mitigation: Review local storage behavior before deployment and avoid use in environments where automatic identity persistence is not acceptable. <br>
+Risk: The analysis is sleep-quality guidance and may be mistaken for clinical diagnosis. <br>
+Mitigation: Present results as informational only and direct users to professional sleep-monitoring equipment or a clinician for diagnosis. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/smyx-sunjinhui/smyx-sleep-quality-analysis) <br>
-- [API Interface Documentation](references/api_doc.md) <br>
-- [SMYX Analysis API Documentation](skills/smyx_analysis/references/api_doc.md) <br>
+- [ClawHub skill page](https://clawhub.ai/smyx-sunjinhui/skills/smyx-sleep-quality-analysis) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
+- [API interface documentation](references/api_doc.md) <br>
+- [Shared analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [analysis, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown reports, JSON detail output, and optional saved text files] <br>
+**Output Type(s):** [text, markdown, JSON, shell commands, files, guidance] <br>
+**Output Format:** [Markdown or JSON sleep analysis report, with optional saved output file and report links] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a sleep video file or public video URL and an open-id; supports basic, standard, and JSON detail levels.] <br>
+**Other Properties Related to Output:** [Outputs may include sleep-stage observations, movement and apnea indicators, historical report listings, and cloud report export links.] <br>
 
 ## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter reports 1.0.2) <br>
+1.0.6 (source: server release metadata; artifact SKILL.md frontmatter says 1.0.4) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

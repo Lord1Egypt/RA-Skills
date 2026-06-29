@@ -1,0 +1,13 @@
+﻿name: huawei-cloud-cce-kubernetes-event-analyzer
+level: L2
+domain: observability
+description: Analyze Kubernetes events in CCE clusters to find warning events, node/pod/workload anomalies, and event patterns that indicate failures.
+tools:
+  - huawei_get_cce_events
+  - huawei_query_k8s_events_from_lts
+references:
+  - references/workflow.md
+  - references/risk-rules.md
+  - references/output-schema.md
+guardrails:
+  max_auto_risk: R1

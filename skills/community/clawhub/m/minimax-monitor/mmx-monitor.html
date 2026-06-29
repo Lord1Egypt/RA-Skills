@@ -125,12 +125,12 @@ body{background:var(--bg);color:#1a1a1a;font-family:'Microsoft YaHei','PingFang 
 .rate-val{font-family:"Roboto Mono",monospace;font-size:14px;font-weight:700}
 .rate-val.green{color:var(--green)}.rate-val.cyan{color:var(--cyan)}.rate-val.yellow{color:var(--yellow)}.rate-val.orange{color:var(--orange)}
 .rate-lat{font-size:9px;color:rgba(255,255,255,0.7);margin-left:3px}
-.latency-item{display:flex;align-items:center;gap:7px;margin-bottom:5px}
+.latency-item{display:flex;align-items:center;gap:7px;margin-bottom:5px;min-height:18px}
 .latency-item:last-child{margin-bottom:0}
-.lat-lbl{font-size:12px;color:rgba(255,255,255,0.8);width:44px;flex-shrink:0}
-.lat-bar-wrap{flex:1;height:4px;background:rgba(0,0,0,0.15);border-radius:2px;overflow:hidden}
+.lat-lbl{font-size:12px;color:rgba(255,255,255,0.8);width:62px;flex-shrink:0}
+.lat-bar-wrap{flex:1 1 auto;height:4px;background:rgba(0,0,0,0.15);border-radius:2px;overflow:hidden;margin-right:10px;min-width:0;max-width:calc(100% - 140px)}
 .lat-bar-fill{height:100%;border-radius:2px}
-.lat-val{font-family:"Roboto Mono",monospace;font-size:13px;color:rgba(255,255,255,0.8);width:46px;text-align:right;flex-shrink:0}
+.lat-val{font-family:"Roboto Mono",monospace;font-size:13px;color:rgba(255,255,255,0.8);width:50px;text-align:right;flex-shrink:0}
 
 .main-grid{display:grid;grid-template-columns:200px 1fr 240px;gap:6px;padding:0 28px 12px;align-items:start}
 
@@ -148,13 +148,12 @@ body{background:var(--bg);color:#1a1a1a;font-family:'Microsoft YaHei','PingFang 
 </div>
 <div class="status-strip">
   <div class="status-item"><span class="lbl">配额数据刷新</span><span class="val cyan" id="stripRefresh">--:--</span></div>
-  <div class="status-item"><span class="lbl">速率测试</span><span class="val cyan" id="stripSpeed">--:--</span></div>
   <div class="status-item hl"><span class="lbl">5小时重置时间</span><span class="val" id="stripReset">剩余 --:--</span></div>
 </div>
 <div class="apikey-bar">
   <label>API Key</label>
-  <input type="password" id="apiKeyInput" placeholder="留空则自动读取本地 ~/.mmx/config.json" style="flex:1;background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#e0e0e0;font-family:"Roboto Mono",monospace;font-size:18px;min-width:0;padding:10px 14px;outline:none;transition:border-color .2s;" />
-  <label style="display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,0.55);white-space:nowrap;cursor:pointer"><input type="checkbox" id="rememberKey" />记住 24 小时</label>
+  <input type="password" id="apiKeyInput" placeholder="手动输入 或 点右侧加载本地凭证" style="flex:1;background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:#e0e0e0;font-family:"Roboto Mono",monospace;font-size:18px;min-width:0;padding:10px 14px;outline:none;transition:border-color .2s;" />
+  <button class="btn-save" id="btnLoadCred" style="background:rgba(255,180,0,0.85);color:#1a1a1a" title="主动点击才会从本地 ~/.mmx/config.json 读取 API key。不会自动读取，也不会存储到浏览器。" >加载本地凭证</button>
   <button class="btn-save" id="btnSave">查询</button>
 </div>
 <div id="errorBanner" style="display:none;margin:8px 28px 0;padding:10px 16px;background:rgba(198,40,40,0.9);border:1px solid rgba(255,80,80,0.4);border-radius:8px;color:#fff;font-size:13px;text-align:center;backdrop-filter:blur(10px);">
@@ -186,6 +185,7 @@ body{background:var(--bg);color:#1a1a1a;font-family:'Microsoft YaHei','PingFang 
   <div class="right-panel">
     <div class="glass-card" id="rateCard" style="box-sizing:border-box">
       <div class="panel-header"><div class="live-dot"></div> 速率监控</div>
+      <button id="btnProbe" style="width:100%;background:linear-gradient(135deg,#0097a7,#00b8d4);color:#fff;border:none;border-radius:6px;padding:8px;font-size:12px;font-weight:700;cursor:pointer;margin-bottom:10px;transition:all .2s" onmouseover="this.style.background='linear-gradient(135deg,#00838f,#00a4bf)'" onmouseout="this.style.background='linear-gradient(135deg,#0097a7,#00b8d4)'">▶ 开始速率测试</button>
       <div class="rate-group"><div class="rate-group-title">SEQ-10 顺序测试</div>
         <div class="rate-row"><span class="rate-lbl">成功/总计</span><span class="rate-val green" id="seqOk">--/--</span></div>
         <div class="rate-row"><span class="rate-lbl">平均延迟</span><span class="rate-val cyan" id="seqLat">--<span class="rate-lat">s</span></span></div>
@@ -210,22 +210,47 @@ body{background:var(--bg);color:#1a1a1a;font-family:'Microsoft YaHei','PingFang 
 
 <script>
 (function(){
-  var API_BASE='http://localhost:9877';
-  var REFRESH_INT=60,SPEED_INT=60;
+  var API_BASE='http://127.0.0.1:9877';
+  var REFRESH_INT=60;
   var CARD_COLORS=['#00e676','#ffd600','#ff5252','#00e5ff','#b388ff','#ff9800','#76ff03','#ff4081','#18ffff','#ff6e40','#eeff41'];
-  // v1.4.0: F13 - 默认不自动加载 localStorage 里的 key。每次启动需要重新输入，
-  // 或勾选 "记住 24 小时" 才临时写入 localStorage。期限到自动清除。
+  // v1.4.0: F13 - 默认不自动加载 localStorage 里的 key。每次启动需要重新输入。
+  // v1.6.0: 行为改为“启动不自动加载；但若用户以前勾过记住 24h 且未过期，恢复时仍走原恢复逻辑”（见下方 startup 函数）。
+  // 勾选 "记住 24 小时" 后才临时写入 localStorage，期限到自动清除。
   var apiKey='';
-  var timers={refresh:REFRESH_INT,speed:SPEED_INT,reset:0};
+  var timers={refresh:REFRESH_INT,reset:0};
   var tickId=null;
   function fmt(s){if(s<=0)return'即将重置';var h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60;if(h>=24){var d=Math.floor(h/24);h=h%24;return d+'天'+h+'小时'+(m>0?m+'分':'');}if(h>0)return h+'小时'+m+'分';if(m>0)return m+'分'+sec+'秒';return sec+'秒';}
   function fmtDate(d){var y=d.getFullYear(),mo=String(d.getMonth()+1).padStart(2,'0'),da=String(d.getDate()).padStart(2,'0'),h=String(d.getHours()).padStart(2,'0'),mi=String(d.getMinutes()).padStart(2,'0');return y+'/'+mo+'/'+da+' '+h+':'+mi;}
   function gaugeColor(p){if(p<60)return'#00e676';if(p<80)return'#b388ff';if(p<95)return'#ffd600';return'#ff5252';}
-  function startMon(){if(tickId)clearInterval(tickId);tickId=setInterval(tick,1000);fetchQuota();doSpeedTest();}
+  function startMon(){if(tickId)clearInterval(tickId);tickId=setInterval(tick,1000);fetchQuota();}
   function showError(msg){var el=document.getElementById('errorBanner');document.getElementById('errorMsg').textContent=msg;el.style.display='block';}
-  function tick(){for(var k in timers)if(k!=='reset')timers[k]=Math.max(0,timers[k]-1);document.getElementById('stripRefresh').textContent=fmt(timers.refresh);document.getElementById('stripSpeed').textContent=fmt(timers.speed);document.getElementById('stripReset').textContent=timers.reset>0?'剩余 '+fmt(timers.reset):'已重置';if(timers.refresh<=0){timers.refresh=REFRESH_INT;fetchQuota();}if(timers.speed<=0){timers.speed=SPEED_INT;doSpeedTest();}}
-  function fetchQuota(){var h={};if(apiKey)h['X-MMX-API-Key']=apiKey;document.getElementById('errorBanner').style.display='none';fetch(API_BASE+'/api/token_plan',{headers:h}).then(function(r){if(!r.ok)throw new Error('HTTP'+r.status);return r.json();}).then(function(result){if(result.ok&&result.data){renderQuota(result.data);}else{console.warn('token_plan failed:',result.error||result.message);showError('配额接口异常：'+(result.error||result.message||'未知错误'));}}).catch(function(e){console.warn('quota failed:',e.message);showError('后端服务未启动，请先运行：node mmx-monitor-server.js');});}
+  function tick(){for(var k in timers)if(k!=='reset')timers[k]=Math.max(0,timers[k]-1);document.getElementById('stripRefresh').textContent=fmt(timers.refresh);document.getElementById('stripReset').textContent=timers.reset>0?'剩余 '+fmt(timers.reset):'已重置';if(timers.refresh<=0){timers.refresh=REFRESH_INT;fetchQuota();}}
+  function fetchQuota(){
+    var h={};if(apiKey)h['X-MMX-API-Key']=apiKey;
+    document.getElementById('errorBanner').style.display='none';
+    fetch(API_BASE+'/api/token_plan',{headers:h}).then(function(r){
+      // v1.6.0: 区分 401 / 网络错误 / 其他。401 = key 未加载，不是服务未启动。
+      if(r.status===401)throw new Error('KEY_REQUIRED');
+      if(!r.ok)throw new Error('HTTP'+r.status);
+      return r.json();
+    }).then(function(result){
+      if(result.ok&&result.data){renderQuota(result.data);}
+      else{console.warn('token_plan failed:',result.error||result.message);showError('配额接口异常：'+(result.error||result.message||'未知错误'));}
+    }).catch(function(e){
+      console.warn('quota failed:',e.message);
+      if(e.message==='KEY_REQUIRED'){
+        showError('请点顶部 “加载本地凭证” 按钮或手动输入 API Key');
+      }else if(e.message&&e.message.indexOf('HTTP')===0){
+        showError('配额接口异常：'+e.message);
+      }else{
+        showError('后端服务未启动，请先运行：node mmx-monitor-server.js');
+      }
+    });
+  }
   function doSpeedTest(){
+    // v1.6.0: 调 /api/probe 之前先弹 confirm 二次确认。说明会发请求、消耗配额、用户可取消。
+    if(!window.confirm('即将发起 5 次 MiniMax chat completion 请求（×~180 token 上限），计入套餐配额。\n\n确认继续吗？'))return;
+    var btn=document.getElementById('btnProbe');if(btn){btn.disabled=true;btn.textContent='⏳ 测试中...';}
     var h={};
     if(apiKey)h['X-MMX-API-Key']=apiKey;
     fetch(API_BASE+'/api/probe',{headers:h})
@@ -246,16 +271,16 @@ body{background:var(--bg);color:#1a1a1a;font-family:'Microsoft YaHei','PingFang 
         document.getElementById('p50Val').textContent=(r.latency||0)+'ms';
         document.getElementById('tokBar').style.width=Math.min(100,(r.speed||0)/30*100)+'%';
         document.getElementById('tokVal').textContent=Number(r.speed||0).toFixed(1);
-        document.getElementById('stripSpeed').textContent='OK';
-      }).catch(function(){});
+      }).catch(function(e){console.warn('probe failed:',e);}).finally(function(){var btn=document.getElementById('btnProbe');if(btn){btn.disabled=false;btn.textContent='▶ 重新测试';}});
   }
+  // v1.6.0: “开始速率测试” 按钮绑定
+  document.getElementById('btnProbe').addEventListener('click',doSpeedTest);
   function renderQuota(data){if(!data)return;document.getElementById('lastUpdate').textContent=new Date().toLocaleTimeString('zh-CN');var fourH=(data.models||[]).filter(function(m){return m.window==='4小时'&&!m.interval_unlimited;});var used=data.totalUsed||fourH.reduce(function(s,m){return s+(m.used||0);},0);var total=data.totalLimit||fourH.reduce(function(s,m){return s+(m.total||0);},0);var pct=total>0?Math.round(used/total*100):0;var color=gaugeColor(pct),fill=document.getElementById('gFill');fill.setAttribute('stroke',color);fill.setAttribute('stroke-dasharray',pct+' 100');document.getElementById('gPct').textContent=pct+'%';document.getElementById('statUsed').textContent=used+'%';document.getElementById('statRemain').textContent=Math.max(0,total-used)+'%';document.getElementById('statTotal').textContent=total+'%';var resetSec=data.resetSeconds||0;timers.reset=resetSec;document.getElementById('statResetTime').textContent=new Date(Date.now()+resetSec*1000).toLocaleTimeString('zh-CN');var weeklyModels=(data.models||[]).filter(function(m){return !m.weekly_unlimited;});var allUnlimited=weeklyModels.length===0&&(data.models||[]).length>0;var weeklyUsed=0;if(weeklyModels.length){weeklyUsed=Math.round(weeklyModels.reduce(function(s,m){return s+(m.weekly_used||0);},0)/weeklyModels.length);}document.getElementById('statWeeklyUsed').textContent=weeklyModels.length?weeklyUsed+'%':(allUnlimited?'--':'--');document.getElementById('statWeeklyTotal').textContent=allUnlimited?'无周限':'100%';renderModels(data.models||[]);}
   var GENERAL_POOL_MODELS=[{n:'M3 对话',t:'llm'},{n:'M2.7 对话',t:'llm'},{n:'语音合成',t:'tts'},{n:'音乐生成',t:'music'},{n:'图像生成',t:'img'},{n:'歌词生成',t:'lyrics'},{n:'代码 VLM',t:'llm'},{n:'代码搜索',t:'llm'},{n:'Embeddings',t:'embed'}];
   function renderModels(models){var grid=document.getElementById('modelGrid');if(!models.length){grid.innerHTML='<div style="color:rgba(255,255,255,0.6);font-size:12px;text-align:center;padding:30px">暂无数据</div>';return;}var html='';for(var i=0;i<models.length;i++){var m=models[i],used=m.used||0,total=m.total||0;var pct=total>0?Math.round(used/total*100):0;var barColor=pct>=95?'#ff5252':pct>=75?'#ffd600':pct>=40?'#b388ff':'#00e676';var resetSec=m.remains_time_ms?Math.ceil(m.remains_time_ms/1000):0;var resetStr=resetSec>0?fmt(resetSec):'--:--';var now=new Date();var endTime=new Date(now.getTime()+resetSec*1000);var windowDurSec=m.window==='4小时'?5*3600:m.window==='24小时'?24*3600:4*3600;var startTime=new Date(endTime.getTime()-windowDurSec*1000);var barAccent=CARD_COLORS[i%CARD_COLORS.length];var intervalDisabled=m.interval_unlimited===true;if(intervalDisabled){barColor='rgba(255,255,255,0.25)';barAccent='#ff5252';}var cardClass=intervalDisabled?'model-card model-card-wide':'model-card model-card-wide';html+='<div class="'+cardClass+'"><div class="model-card-bar" style="background:'+barAccent+'"></div><div class="model-card-body model-card-row">';html+='<div class="model-card-top"><span class="model-name">'+(intervalDisabled?m.name:'通用额度池 (对话/语音/音乐/图像)')+'</span><span class="model-tag">'+(m.window==='4小时'?'5小时':m.window)+'</span></div>';if(intervalDisabled){html+='<div class="model-time-range">'+fmtDate(startTime)+' - '+fmtDate(endTime)+'</div>';html+='<div class="model-reset" style="color:#ff5252">套餐未启用 · 不可调用</div>';html+='<div class="model-usage"><span class="model-used" style="color:rgba(255,255,255,0.5)">状态: 套餐未启用 · 元数据 status=3</span></div>';html+='<div class="upgrade-panel" style="flex:1;margin-top:8px">';html+='<div class="upgrade-panel-left"><div class="upgrade-panel-left-title">升级可获得</div><a class="upgrade-panel-left-link" href="https://platform.minimaxi.com/subscribe/token-plan" target="_blank" rel="noopener">查看官方套餐 →</a></div>';html+='<div class="upgrade-panel-table">';html+='<div class="upgrade-tier upgrade-tier-plus"><div class="upgrade-tier-name">Plus</div><div class="upgrade-tier-price">¥49 / 月</div><div class="upgrade-tier-video upgrade-video-no">❌ 不支持视频</div></div>';html+='<div class="upgrade-tier upgrade-tier-max"><div class="upgrade-tier-name">Max</div><div class="upgrade-tier-price">¥119 / 月</div><div class="upgrade-tier-video upgrade-video-yes">✅ 3 条 / 日</div></div>';html+='<div class="upgrade-tier upgrade-tier-ultra"><div class="upgrade-tier-name">Ultra</div><div class="upgrade-tier-price">¥469 / 月</div><div class="upgrade-tier-video upgrade-video-yes">✅ 5 条 / 日</div></div>';html+='</div></div>';}else{html+='<div class="model-card-split" style="margin-top:8px">';html+='<div class="model-card-split-left">';html+='<div class="split-label">剩余配额</div>';html+='<div class="big-num-row"><span class="big-num" style="color:'+barColor+'">'+(100-pct)+'</span><span class="big-num-suffix">% 可用</span></div>';html+='<div class="split-bar"><div class="split-bar-fill" style="width:'+pct+'%;background:'+barColor+'"></div></div>';html+='<div class="split-meta"><span>已用 '+pct+'%</span><span>重置 '+resetStr+' 后</span></div>';html+='<div class="week-stat"><span class="week-stat-dot'+(m.weekly_unlimited?' unlimited':'')+'"></span>本周: '+(m.weekly_unlimited?'无周限 · 全量可用':'已用 '+(m.weekly_used||0)+'% · 剩 '+(100-(m.weekly_used||0))+'%')+'</div>';html+='<div style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:auto;padding-top:8px">窗口: '+fmtDate(startTime)+' → '+fmtDate(endTime)+'</div>';html+='</div>';html+='<div class="model-card-split-right">';html+='<div class="split-label">本池可用模型</div>';html+='<div class="model-tags">';for(var k=0;k<GENERAL_POOL_MODELS.length;k++){html+='<span class="model-tag-chip">'+GENERAL_POOL_MODELS[k].n+'</span>';}html+='<span class="model-tag-chip muted">+ 视频 (需升级)</span>';html+='</div>';html+='<div style="font-size:10px;color:rgba(255,255,255,0.4);margin-top:8px">总 token: 详见套餐页 →</div>';html+='</div>';html+='</div>';}html+='</div></div>';}grid.innerHTML=html;}
   document.addEventListener('visibilitychange', function() {
     if (document.visibilityState === 'visible') {
       fetchQuota();
-      doSpeedTest();
     }
   });
   document.addEventListener('DOMContentLoaded', function(){
@@ -268,34 +293,44 @@ body{background:var(--bg);color:#1a1a1a;font-family:'Microsoft YaHei','PingFang 
     }
     fitMainH();
     window.addEventListener('resize', fitMainH);
+    // v1.6.0 (F9): 删 localStorage 24h 记忆机制。每次重启重新输入。
+    // v1.6.0 (F8): 不再启动自动读 ~/.mmx/config.json。用户点 "加载本地凭证" 按钮才读。
     document.getElementById('btnSave').onclick=function(){
       var raw=document.getElementById('apiKeyInput').value.trim();
-      var remember=document.getElementById('rememberKey').checked;
-      // 清除旧值
-      localStorage.removeItem('mmx_api_key');
-      localStorage.removeItem('mmx_api_key_expires');
-      if(raw && remember){
-        apiKey=raw;
-        var expires=Date.now()+24*3600*1000;
-        localStorage.setItem('mmx_api_key',apiKey);
-        localStorage.setItem('mmx_api_key_expires',String(expires));
-      }else if(raw){
-        apiKey=raw;
-      }
+      if(raw)apiKey=raw;
       startMon();
     };
-    // 启动时如果勾选过记住且未过期才加载
-    var stored=localStorage.getItem('mmx_api_key');
-    var exp=Number(localStorage.getItem('mmx_api_key_expires')||0);
-    if(stored && exp>Date.now()){
-      apiKey=stored;
-      document.getElementById('apiKeyInput').value=stored;
-      document.getElementById('rememberKey').checked=true;
-    }else if(stored){
-      // 过期清理
-      localStorage.removeItem('mmx_api_key');
-      localStorage.removeItem('mmx_api_key_expires');
-    }
+    // v1.6.0: "加载本地凭证" 按钮 → confirm → 调 /api/load_cred
+    document.getElementById('btnLoadCred').onclick=function(){
+      if(!window.confirm('将读取本地 ~/.mmx/config.json 拿 MiniMax API key，并存入本次会话内存（不写浏览器、不写文件）。\n\n确认继续吗？'))return;
+      var btn=this;btn.disabled=true;btn.textContent='⏳ 加载中...';
+      // v1.6.0: 用 XHR 兑底（Safari WebKit fetch 某些场景下会报 'The string did not match the expected pattern'）
+      var xhr=new XMLHttpRequest();
+      xhr.open('POST', API_BASE+'/api/load_cred', true);
+      xhr.onload=function(){
+        try{
+          var d=JSON.parse(xhr.responseText);
+          if(xhr.status===200 && d.ok && d.key){
+            apiKey=d.key;
+            document.getElementById('apiKeyInput').value=d.key;
+            btn.textContent='✅ 已加载';
+          }else{
+            btn.textContent='❌ '+(d.error||('HTTP '+xhr.status));
+          }
+        }catch(e){
+          btn.textContent='❌ 解析失败';
+          console.error('[load_cred parse]',e,xhr.responseText);
+        }
+        setTimeout(function(){btn.disabled=false;btn.textContent='加载本地凭证';},3000);
+      };
+      xhr.onerror=function(){
+        btn.textContent='❌ 网络错误';
+        console.error('[load_cred] XHR error',xhr.status,xhr.statusText);
+        setTimeout(function(){btn.disabled=false;btn.textContent='加载本地凭证';},3000);
+      };
+      xhr.send();
+    };
+    // v1.6.0: 启动时不读 config.json，不读 localStorage。直接 startMon。
     startMon();
   });
 })();

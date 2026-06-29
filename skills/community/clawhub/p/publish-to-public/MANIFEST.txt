@@ -1,0 +1,8 @@
+# Manifest — axiom-rebrand v0.1.0
+# Generic rebrand pipeline (Akasha-style, idempotent byte-to-byte)
+
+7ecd8ce1d30b8aa26232f5c7c878cca53bc273547ce52f1678f955154746e64f  LICENSE  (709 bytes)
+8b82b829884d66c68d218c25097ed862f0598abd3f8574c77436a883a8575966  README.md  (4633 bytes)
+99b1c2dad0b69b7ab68e7971c860f58afbdccee26f1e3058a8733ca53c3b9044  SKILL.md  (784 bytes)
+a4b631a08d0e258fb2d6ef04852f03120722503ec32821d8ee94f6cf6c651d4b  pyproject.toml  (937 bytes)
+8cef2dab117fb93157ec07c08e1c25a168521ac5a6f9a592df0d8e08b8462399  test_axiom_rebrand.py  (8032 bytes)

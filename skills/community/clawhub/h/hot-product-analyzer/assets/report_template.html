@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{CATEGORY_NAME}} — 电商爆款拆解分析报告</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js">
+</script>
+<style>
+  :root {
+    --primary: #FF6B35;
+    --primary-dark: #E55A2B;
+    --secondary: #004E89;
+    --accent: #1A936F;
+    --bg: #F8F9FA;
+    --card-bg: #FFFFFF;
+    --text: #2D3436;
+    --text-secondary: #636E72;
+    --border: #E9ECEF;
+    --success: #00B894;
+    --warning: #FDCB6E;
+    --danger: #E17055;
+    --gradient-start: #FF6B35;
+    --gradient-end: #E55A2B;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+  .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+    color: white;
+    padding: 48px 32px;
+    border-radius: 16px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+  .header h1 { font-size: 2.2rem; margin-bottom: 8px; position: relative; z-index: 1; }
+  .header .subtitle { font-size: 1rem; opacity: 0.85; position: relative; z-index: 1; }
+  .header .meta {
+    display: flex; gap: 24px; margin-top: 16px; font-size: 0.85rem; opacity: 0.75;
+    position: relative; z-index: 1;
+  }
+
+  /* Stats Cards */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .stat-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    border-left: 4px solid var(--primary);
+  }
+  .stat-card .label { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 4px; }
+  .stat-card .value { font-size: 1.8rem; font-weight: 700; color: var(--text); }
+  .stat-card .value .unit { font-size: 0.9rem; font-weight: 400; color: var(--text-secondary); }
+  .stat-card.warning { border-left-color: var(--warning); }
+  .stat-card.success { border-left-color: var(--success); }
+  .stat-card.danger { border-left-color: var(--danger); }
+  .stat-card.accent { border-left-color: var(--accent); }
+  .stat-card.secondary { border-left-color: var(--secondary); }
+
+  /* Section */
+  .section {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section h2 .icon { font-size: 1.5rem; }
+  .section h3 {
+    font-size: 1.1rem;
+    margin: 20px 0 12px;
+    color: var(--secondary);
+  }
+
+  /* Product Table */
+  .product-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+  .product-table th {
+    background: var(--bg);
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-secondary);
+    border-bottom: 2px solid var(--border);
+    white-space: nowrap;
+  }
+  .product-table td {
+    padding: 14px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+  }
+  .product-table tr:hover { background: #FFF8F5; }
+  .platform-badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .platform-taobao { background: #FFF0E6; color: #FF6B35; }
+  .platform-jd { background: #E8F0FE; color: #E53935; }
+  .platform-pdd { background: #FDE8EC; color: #E0245E; }
+  .platform-douyin { background: #E8EAF6; color: #1A1A1A; }
+  .price { font-weight: 700; color: var(--danger); }
+  .sales { font-weight: 600; color: var(--accent); }
+  .rating { color: var(--warning); font-weight: 600; }
+
+  /* Keywords */
+  .keyword-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .keyword-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 24px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: transform 0.2s;
+  }
+  .keyword-tag:hover { transform: scale(1.05); }
+  .keyword-tag .count {
+    background: rgba(255,255,255,0.5);
+    border-radius: 12px;
+    padding: 0 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+  }
+  .kw-rank-1 { background: #FF6B35; color: white; font-size: 1.2rem; font-weight: 700; }
+  .kw-rank-2 { background: #FF8C5A; color: white; font-size: 1.1rem; }
+  .kw-rank-3 { background: #FFA98A; color: white; font-size: 1rem; }
+  .kw-rank-4 { background: #FFF0E6; color: #E55A2B; }
+  .kw-rank-5 { background: #FFF5F0; color: #E55A2B; }
+
+  /* Charts Row */
+  .charts-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 16px 0;
+  }
+  .chart-container {
+    position: relative;
+    height: 350px;
+  }
+  .chart-container canvas { max-height: 100%; }
+
+  /* Insights Grid */
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .insight-card {
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid var(--border);
+  }
+  .insight-card h4 {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: var(--secondary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .insight-card ul { padding-left: 20px; margin: 0; }
+  .insight-card li {
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+  .insight-card li strong { color: var(--text); }
+
+  /* Action Guide */
+  .action-steps { counter-reset: step; list-style: none; }
+  .action-steps li {
+    counter-increment: step;
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .action-steps li:last-child { border-bottom: none; }
+  .action-steps .step-num {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: var(--primary);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  .action-steps .step-content h4 { margin: 0 0 4px; font-size: 1rem; }
+  .action-steps .step-content p { margin: 0; color: var(--text-secondary); font-size: 0.9rem; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 32px;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+  }
+  .footer p { margin-bottom: 4px; }
+
+  /* Badge */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .badge-hot { background: #FFE0D0; color: #E55A2B; }
+  .badge-new { background: #D4EFDF; color: #1A936F; }
+  .badge-trend { background: #D4E6F1; color: #2980B9; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .header { padding: 32px 20px; }
+    .header h1 { font-size: 1.5rem; }
+    .charts-row { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .product-table { font-size: 0.8rem; }
+    .product-table th, .product-table td { padding: 8px 6px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>🔍 {{CATEGORY_NAME}} — 电商爆款拆解分析报告</h1>
+    <div class="subtitle">基于淘宝/天猫、京东、拼多多、抖音电商多平台数据综合分析</div>
+    <div class="meta">
+      <span>📅 分析时间：{{ANALYSIS_DATE}}</span>
+      <span>📊 数据平台：{{DATA_PLATFORMS}}</span>
+      <span>📝 样本数量：{{SAMPLE_COUNT}} 个爆款商品</span>
+    </div>
+  </div>
+
+  <!-- STATS CARDS -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="label">📦 热门价格带</div>
+      <div class="value">{{PRICE_RANGE}}</div>
+    </div>
+    <div class="stat-card warning">
+      <div class="label">🏆 月销冠军</div>
+      <div class="value">{{TOP_SALES}}<span class="unit">件</span></div>
+    </div>
+    <div class="stat-card success">
+      <div class="label">⭐ 平均评分</div>
+      <div class="value">{{AVG_RATING}}<span class="unit">分</span></div>
+    </div>
+    <div class="stat-card accent">
+      <div class="label">🏪 品牌集中度</div>
+      <div class="value">{{BRAND_CONCENTRATION}}</div>
+    </div>
+    <div class="stat-card secondary">
+      <div class="label">📈 竞争热度</div>
+      <div class="value">{{COMPETITION_LEVEL}}</div>
+    </div>
+  </div>
+
+  <!-- PRODUCT COMPARISON TABLE -->
+  <div class="section">
+    <h2><span class="icon">📋</span>跨平台爆款商品对比</h2>
+    <div style="overflow-x: auto;">
+      <table class="product-table">
+        <thead>
+          <tr>
+            <th>排名</th>
+            <th>平台</th>
+            <th>商品名称</th>
+            <th>价格</th>
+            <th>销量</th>
+            <th>评分</th>
+            <th>核心卖点</th>
+          </tr>
+        </thead>
+        <tbody id="product-table-body">
+          {{PRODUCT_TABLE_ROWS}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- PRICE & SALES CHARTS -->
+  <div class="section">
+    <h2><span class="icon">📊</span>价格与销量分析</h2>
+    <div class="charts-row">
+      <div>
+        <h3>价格带分布</h3>
+        <div class="chart-container">
+          <canvas id="priceChart"></canvas>
+        </div>
+      </div>
+      <div>
+        <h3>各平台销量对比 (Top5)</h3>
+        <div class="chart-container">
+          <canvas id="salesChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TITLE KEYWORDS -->
+  <div class="section">
+    <h2><span class="icon">🏷️</span>爆款标题关键词拆解</h2>
+    <p style="color: var(--text-secondary); margin-bottom: 16px;">
+      从 {{SAMPLE_COUNT}} 个爆款商品标题中提取高频关键词，以下是出现频率最高的词汇：
+    </p>
+    <div class="keyword-cloud">
+      {{KEYWORD_CLOUD}}
+    </div>
+    <div class="charts-row" style="margin-top: 20px;">
+      <div>
+        <h3>关键词类型分布</h3>
+        <div class="chart-container">
+          <canvas id="keywordTypeChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SELLING POINTS ANALYSIS -->
+  <div class="section">
+    <h2><span class="icon">💡</span>核心卖点分析</h2>
+    <p style="color: var(--text-secondary); margin-bottom: 16px;">
+      拆解爆款商品的宣传语和核心卖点，按类型分组分析：
+    </p>
+    <div class="insights-grid">
+      {{SELLING_POINT_CARDS}}
+    </div>
+  </div>
+
+  <!-- VISUAL STYLE -->
+  <div class="section">
+    <h2><span class="icon">🎨</span>视觉风格分析</h2>
+    <div class="charts-row">
+      <div>
+        <h3>主图风格分布</h3>
+        <div class="chart-container">
+          <canvas id="styleChart"></canvas>
+        </div>
+      </div>
+      <div>
+        <h3>设计元素使用频率</h3>
+        <div class="chart-container">
+          <canvas id="designElementChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOT PRODUCT RULES -->
+  <div class="section">
+    <h2><span class="icon">🔥</span>爆款规律总结</h2>
+    <div class="insights-grid">
+      {{RULE_CARDS}}
+    </div>
+  </div>
+
+  <!-- COMPETITION LANDSCAPE -->
+  <div class="section">
+    <h2><span class="icon">🏟️</span>竞争格局分析</h2>
+    <div class="charts-row">
+      <div>
+        <h3>品牌市场份额分布</h3>
+        <div class="chart-container">
+          <canvas id="brandChart"></canvas>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top: 16px; padding: 16px; background: var(--bg); border-radius: 8px;">
+      <h4 style="margin-bottom: 8px;">📌 竞争格局洞察</h4>
+      <p style="color: var(--text-secondary); font-size: 0.9rem;">{{COMPETITION_INSIGHT}}</p>
+    </div>
+  </div>
+
+  <!-- ACTION GUIDE -->
+  <div class="section">
+    <h2><span class="icon">🚀</span>选品行动指南</h2>
+    <p style="color: var(--text-secondary); margin-bottom: 20px;">
+      基于以上分析，如要进入「{{CATEGORY_NAME}}」类目，建议按以下步骤执行：
+    </p>
+    <ol class="action-steps">
+      {{ACTION_STEPS}}
+    </ol>
+  </div>
+
+  <!-- DISCLAIMER -->
+  <div class="section" style="background: #FFF8F5; border: 1px solid #FFE0D0;">
+    <h2 style="border-color: #FFE0D0;">
+      <span class="icon">⚠️</span>数据说明与免责
+    </h2>
+    <ul style="padding-left: 20px; color: var(--text-secondary); font-size: 0.9rem;">
+      <li>数据来源于公开搜索结果，价格和销量为搜索时刻的快照，可能与实际有偏差</li>
+      <li>不同平台销量统计口径不同（淘宝=月销量、京东=累计评价、拼多多=已拼件数），对比时仅供参考</li>
+      <li>分析结果基于有限样本（{{SAMPLE_COUNT}} 个商品），不代表整个类目的全貌</li>
+      <li>爆款规律总结了当前阶段的趋势，市场快速变化时可能失效</li>
+      <li>本报告仅供参考，不构成投资或经营建议</li>
+    </ul>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>📊 电商爆款拆解分析报告 · 由 WorkBuddy AI 自动生成</p>
+    <p>生成时间：{{ANALYSIS_DATE}} · 数据来源：淘宝/天猫、京东、拼多多、抖音电商</p>
+  </div>
+</div>
+
+<script>
+// ======= Chart Color Palette =======
+const colors = {
+  primary: '#FF6B35', secondary: '#004E89', accent: '#1A936F',
+  warning: '#FDCB6E', danger: '#E17055', info: '#74B9FF',
+  purple: '#A29BFE', pink: '#FD79A8', dark: '#2D3436',
+  palette: ['#FF6B35','#004E89','#1A936F','#FDCB6E','#E17055','#74B9FF','#A29BFE','#FD79A8','#00B894','#636E72']
+};
+
+Chart.defaults.font.family = '-apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif';
+
+// ======= Price Distribution Chart =======
+const priceCtx = document.getElementById('priceChart').getContext('2d');
+new Chart(priceCtx, {
+  type: 'bar',
+  data: {
+    labels: {{PRICE_LABELS}},
+    datasets: [{
+      label: '商品数量',
+      data: {{PRICE_DATA}},
+      backgroundColor: colors.palette.slice(0, {{PRICE_LABELS}}.length),
+      borderRadius: 6,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => ctx.parsed.y + ' 个商品'
+        }
+      }
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: { stepSize: 1 },
+        title: { display: true, text: '商品数量' }
+      },
+      x: { title: { display: true, text: '价格区间 (元)' } }
+    }
+  }
+});
+
+// ======= Sales Comparison Chart =======
+const salesCtx = document.getElementById('salesChart').getContext('2d');
+new Chart(salesCtx, {
+  type: 'bar',
+  data: {
+    labels: {{SALES_LABELS}},
+    datasets: [{
+      label: '销量',
+      data: {{SALES_DATA}},
+      backgroundColor: ['#FF6B35','#E53935','#E0245E','#1A1A1A'],
+      borderRadius: 6,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => '约 ' + ctx.parsed.x.toLocaleString() + ' 件'
+        }
+      }
+    },
+    scales: {
+      x: {
+        beginAtZero: true,
+        ticks: { callback: v => v >= 10000 ? (v/10000).toFixed(1)+'万' : v >= 1000 ? (v/1000).toFixed(1)+'k' : v },
+        title: { display: true, text: '销量' }
+      }
+    }
+  }
+});
+
+// ======= Keyword Type Chart =======
+const kwTypeCtx = document.getElementById('keywordTypeChart').getContext('2d');
+new Chart(kwTypeCtx, {
+  type: 'doughnut',
+  data: {
+    labels: {{KEYWORD_TYPE_LABELS}},
+    datasets: [{
+      data: {{KEYWORD_TYPE_DATA}},
+      backgroundColor: colors.palette.slice(0, {{KEYWORD_TYPE_LABELS}}.length),
+      borderWidth: 2,
+      borderColor: '#fff',
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom' }
+    }
+  }
+});
+
+// ======= Style Distribution Chart =======
+const styleCtx = document.getElementById('styleChart').getContext('2d');
+new Chart(styleCtx, {
+  type: 'radar',
+  data: {
+    labels: {{STYLE_LABELS}},
+    datasets: [{
+      label: '使用率 (%)',
+      data: {{STYLE_DATA}},
+      backgroundColor: 'rgba(255, 107, 53, 0.2)',
+      borderColor: '#FF6B35',
+      borderWidth: 2,
+      pointBackgroundColor: '#FF6B35',
+      pointBorderColor: '#fff',
+      pointBorderWidth: 2,
+      pointRadius: 5,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      r: {
+        beginAtZero: true,
+        max: 100,
+        ticks: { stepSize: 20, backdropColor: 'transparent' }
+      }
+    },
+    plugins: {
+      legend: { display: false }
+    }
+  }
+});
+
+// ======= Design Element Chart =======
+const designCtx = document.getElementById('designElementChart').getContext('2d');
+new Chart(designCtx, {
+  type: 'bar',
+  data: {
+    labels: {{DESIGN_ELEMENT_LABELS}},
+    datasets: [{
+      label: '使用频率 (%)',
+      data: {{DESIGN_ELEMENT_DATA}},
+      backgroundColor: ['#FF6B35','#004E89','#1A936F','#FDCB6E','#E17055','#74B9FF','#A29BFE'],
+      borderRadius: 6,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        callbacks: {
+          label: ctx => ctx.parsed.x + '% 的爆款使用'
+        }
+      }
+    },
+    scales: {
+      x: {
+        beginAtZero: true,
+        max: 100,
+        ticks: { callback: v => v + '%' },
+        title: { display: true, text: '使用率' }
+      }
+    }
+  }
+});
+
+// ======= Brand Share Chart =======
+const brandCtx = document.getElementById('brandChart').getContext('2d');
+new Chart(brandCtx, {
+  type: 'pie',
+  data: {
+    labels: {{BRAND_LABELS}},
+    datasets: [{
+      data: {{BRAND_DATA}},
+      backgroundColor: colors.palette.slice(0, {{BRAND_LABELS}}.length),
+      borderWidth: 2,
+      borderColor: '#fff',
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'bottom',
+        labels: { padding: 16, usePointStyle: true, pointStyleWidth: 10 }
+      }
+    }
+  }
+});
+</script>
+</body>
+</html>

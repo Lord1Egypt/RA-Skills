@@ -1,0 +1,213 @@
+[自动检测] 距上次检测不足24小时，跳过检测。当前版本: 1.1.11
+请求成功: success
+[
+  {
+    "companyAccount": "06187001040006572",
+    "companyName": "沈阳维科真空技术有限公司",
+    "page_data": [
+      {
+        "abstract": "转存",
+        "amount": 30000.0,
+        "balanceDirection": "借",
+        "bankName": "中国农业银行",
+        "createDate": "2026-03-02",
+        "curName": "人民币",
+        "expendAccount": "124902704710802",
+        "expendCustomer": "沈阳维科真空技术有限公司",
+        "image_url": "https://ks3-cn-shanghai.ksyun.com/prodzwy/file/aiservice_images/202606/c1f252cd02054d95af792da1ed18732d.png",
+        "incomeAccount": "06187001040006572",
+        "incomeCustomer": "沈阳维科真空技术有限公司",
+        "remark": "往来",
+        "transNo": "21120072069506284851"
+      },
+      {
+        "abstract": "转取",
+        "amount": 14000.0,
+        "balanceDirection": "贷",
+        "bankName": "中国农业银行",
+        "createDate": "2026-03-02",
+        "curName": "人民币",
+        "expendAccount": "06187001040006572",
+        "expendCustomer": "沈阳维科真空技术有限公司",
+        "image_url": "https://ks3-cn-shanghai.ksyun.com/prodzwy/file/aiservice_images/202606/216c03bcb7484e7fbd48d0c353a1e8dc.png",
+        "incomeAccount": "0321010140800009702",
+        "incomeCustomer": "沈阳运合物流有限公司",
+        "remark": "阿尔斯通运费",
+        "transNo": "21117271486784289236"
+      },
+      {
+        "abstract": "转取",
+        "amount": 1045.0,
+        "balanceDirection": "贷",
+        "bankName": "中国农业银行",
+        "createDate": "2026-03-02",
+        "curName": "人民币",
+        "expendAccount": "06187001040006572",
+        "expendCustomer": "沈阳维科真空技术有限公司",
+        "image_url": "https://ks3-cn-shanghai.ksyun.com/prodzwy/file/aiservice_images/202606/d7d765163a974779bf7c47508c78ca01.png",
+        "incomeAccount": "100690158700010001",
+        "incomeCustomer": "曲阜市光明五金机电商场",
+        "remark": "油漆",
+        "transNo": "21116571496414596634"
+      }
+    ],
+    "page_index": 1
+  },
+  {
+    "companyAccount": "06187001040006572",
+    "companyName": "沈阳维科真空技术有限公司",
+    "page_data": [
+      {
+        "abstract": "转取",
+        "amount": 2464.0,
+        "balanceDirection": "贷",
+        "bankName": "中国农业银行",
+        "createDate": "2026-03-02",
+        "curName": "人民币",
+        "expendAccount": "06187001040006572",
+        "expendCustomer": "沈阳维科真空技术有限公司",
+        "image_url": "https://ks3-cn-shanghai.ksyun.com/prodzwy/file/aiservice_images/202606/1c783540444146779ebeceaadb12f488.png",
+        "incomeAccount": "815011701421051863",
+        "incomeCustomer": "山东金毅建材有限公司",
+        "remark": "保温",
+        "transNo": "21120071793344913555"
+      },
+      {
+        "abstract": "费用外收",
+        "amount": 9.0,
+        "balanceDirection": "贷",
+        "bankName": "中国农业银行",
+        "createDate": "2026-03-02",
+        "curName": "人民币",
+        "expendAccount": "06187001040006572",
+        "expendCustomer": "沈阳维科真空技术有限公司",
+        "image_url": "https://ks3-cn-shanghai.ksyun.com/prodzwy/file/aiservice_images/202606/cbc54f0e3ef745468f6bf919148817f5.png",
+        "incomeAccount": "06187043CNYFC1644",
+        "incomeCustomer": "中国农业银行股份有限公司沈阳五三支行",
+        "remark": "付6572账户本金14000日志号1727148678手续费（050273）优惠10.00",
+        "transNo": "21117971715175298417"
+      },
+      {
+        "abstract": "费用外收",
+        "amount": 4.5,
+        "balanceDirection": "贷",
+        "bankName": "中国农业银行",
+        "createDate": "2026-03-02",
+        "curName": "人民币",
+        "expendAccount": "06187001040006572",
+        "expendCustomer": "沈阳维科真空技术有限公司",
+        "image_url": "https://ks3-cn-shanghai.ksyun.com/prodzwy/file/aiservice_images/202606/f985d88cf2b84a969c4b9e161c35458a.png",
+        "incomeAccount": "06187043CNYFC1644",
+        "incomeCustomer": "中国农业银行股份有限公司沈阳五三支行",
+        "remark": "付6572账户本金1045日志号1657149641手续费（050268）优惠10.00%",
+        "transNo": "21116571575885551015"
+      }
+    ],
+    "page_index": 2
+  },
+  {
+    "companyAccount": "06187001040006572",
+    "companyName": "沈阳维科真空技术有限公司",
+    "page_data": [
+      {
+        "abstract": "费用外收",
+        "amount": 4.5,
+        "balanceDirection": "贷",
+        "bankName": "中国农业银行",
+        "createDate": "2026-03-02",
+        "curName": "人民币",
+        "expendAccount": "06187001040006572",
+        "expendCustomer": "沈阳维科真空技术有限公司",
+        "image_url": "https://ks3-cn-shanghai.ksyun.com/prodzwy/file/aiservice_images/202606/7890be83a3d5465ab775807a65f0489f.png",
+        "incomeAccount": "06187043CNYFC1644",
+        "incomeCustomer": "中国农业银行股份有限公司沈阳五三支行",
+        "remark": "付6572账户本金2464日志号2007179334手续费（050268）优惠10.00%",
+        "transNo": "21117271347345788523"
+      },
+      {
+        "abstract": "转取",
+        "amount": 300.0,
+        "balanceDirection": "贷",
+        "bankName": "中国农业银行",
+        "createDate": "2026-03-02",
+        "curName": "人民币",
+        "expendAccount": "06187001040006572",
+        "expendCustomer": "沈阳维科真空技术有限公司",
+        "image_url": "https://ks3-cn-shanghai.ksyun.com/prodzwy/file/aiservice_images/202606/f635b115f6704f469d422b9d1dcfcd3b.png",
+        "incomeAccount": "21050141004200000104",
+        "incomeCustomer": "沈阳市万诚职业培训学校",
+        "remark": "杨洪兴 潘阳电工证复审",
+        "transNo": "21115871157566908435"
+      },
+      {
+        "abstract": "费用外收",
+        "amount": 4.5,
+        "balanceDirection": "贷",
+        "bankName": "中国农业银行",
+        "createDate": "2026-03-02",
+        "curName": "人民币",
+        "expendAccount": "06187001040006572",
+        "expendCustomer": "沈阳维科真空技术有限公司",
+        "image_url": "https://ks3-cn-shanghai.ksyun.com/prodzwy/file/aiservice_images/202606/d2d327fbb180422b8b3ee4360649c2cd.png",
+        "incomeAccount": "06187043CNYFC1644",
+        "incomeCustomer": "中国农业银行股份有限公司沈阳五三支行",
+        "remark": "付6572账户本金300日志号1587115756手续费（050273）优惠10.00%",
+        "transNo": "21120071250937254932"
+      }
+    ],
+    "page_index": 3
+  },
+  {
+    "companyAccount": "06187001040006572",
+    "companyName": "沈阳维科真空技术有限公司",
+    "page_data": [
+      {
+        "abstract": "转存",
+        "amount": 13800.0,
+        "balanceDirection": "借",
+        "bankName": "中国农业银行",
+        "createDate": "2026-03-02",
+        "curName": "人民币",
+        "expendAccount": "32050161615000000424",
+        "expendCustomer": "江阴市双宇有色线材有限公司",
+        "image_url": "https://ks3-cn-shanghai.ksyun.com/prodzwy/file/aiservice_images/202606/97f8601a25814824aa546aa9f1028e09.png",
+        "incomeAccount": "06187001040006572",
+        "incomeCustomer": "沈阳维科真空技术有限公司",
+        "remark": "货款",
+        "transNo": "21117250123923006817"
+      },
+      {
+        "abstract": "转取",
+        "amount": 2134.0,
+        "balanceDirection": "贷",
+        "bankName": "中国农业银行",
+        "createDate": "2026-03-03",
+        "curName": "人民币",
+        "expendAccount": "06187001040006572",
+        "expendCustomer": "沈阳维科真空技术有限公司",
+        "image_url": "https://ks3-cn-shanghai.ksyun.com/prodzwy/file/aiservice_images/202606/ffbc100432be4718b4871eefe7daba39.png",
+        "incomeAccount": "1205281009100034246",
+        "incomeCustomer": "浙江至宝电机科技有限公司",
+        "remark": "减速机",
+        "transNo": "21117283037551806871"
+      },
+      {
+        "abstract": "转取",
+        "amount": 1800.0,
+        "balanceDirection": "贷",
+        "bankName": "中国农业银行",
+        "createDate": "2026-03-03",
+        "curName": "人民币",
+        "expendAccount": "06187001040006572",
+        "expendCustomer": "沈阳维科真空技术有限公司",
+        "image_url": "https://ks3-cn-shanghai.ksyun.com/prodzwy/file/aiservice_images/202606/e7941de096da47d686eed314109b0191.png",
+        "incomeAccount": "03830100040032862",
+        "incomeCustomer": "上海托高精密机械有限公司",
+        "remark": "气动马达",
+        "transNo": "21117282579452047962"
+      }
+    ],
+    "page_index": 4
+  }
+]
+

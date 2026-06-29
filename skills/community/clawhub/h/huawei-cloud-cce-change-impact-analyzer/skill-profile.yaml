@@ -1,0 +1,30 @@
+﻿name: huawei-cloud-cce-change-impact-analyzer
+level: L3
+domain: diagnosis-remediation
+description: Analyze CCE incident-causing changes across workload releases, config, node, network, and security policies with complete Markdown reports.
+tools:
+  - huawei_change_impact_analyze
+  - huawei_query_cce_audit_logs
+  - huawei_query_k8s_events_from_lts
+  - huawei_analyze_aom_alarms
+  - huawei_get_cce_events
+  - huawei_get_cce_pods
+  - huawei_get_cce_deployments
+  - huawei_get_cce_services
+  - huawei_get_cce_ingresses
+  - huawei_get_kubernetes_nodes
+  - huawei_list_cce_configmaps
+  - huawei_list_cce_secrets
+  - huawei_list_cce_nodepools
+  - huawei_list_security_groups
+  - huawei_list_vpc_acls
+  - huawei_workload_rollout_diagnose
+  - huawei_network_failure_diagnose
+  - huawei_node_failure_diagnose
+references:
+  - references/workflow.md
+  - references/capability-map.md
+  - references/output-schema.md
+  - references/risk-rules.md
+guardrails:
+  max_auto_risk: R1

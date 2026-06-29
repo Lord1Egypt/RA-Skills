@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "description": "Sample tasks for agent-bench-lite. These serve as examples; the actual tasks are defined in each dimension module."
+  },
+  "sample_tasks": [
+    {
+      "dimension": "tool_calling",
+      "task_id": "tc_select_weather",
+      "description": "Agent should call get_weather with city=Tokyo",
+      "input": "What's the weather like in Tokyo?",
+      "expected_tool": "get_weather",
+      "expected_params": {"city": "tokyo"}
+    },
+    {
+      "dimension": "planning",
+      "task_id": "plan_deploy_website",
+      "description": "Agent should produce a multi-step deployment plan",
+      "input": "Create a step-by-step plan to deploy a Python web app with PostgreSQL and HTTPS.",
+      "expected_concepts": ["test", "database", "server", "deploy", "ssl"]
+    },
+    {
+      "dimension": "context_retention",
+      "task_id": "ctx_remember_preference",
+      "description": "Agent should remember dietary preferences from earlier in the conversation",
+      "input_turns": [
+        "I'm vegetarian and allergic to nuts.",
+        "Suggest a dinner recipe for me tonight."
+      ],
+      "must_contain": ["vegetarian"],
+      "must_not_contain": ["chicken", "beef", "peanut"]
+    },
+    {
+      "dimension": "error_recovery",
+      "task_id": "err_file_not_found",
+      "description": "Agent should handle a file-not-found error gracefully",
+      "input": "Read the config file at /etc/app/config.yaml and summarize it.",
+      "injected_error": "FileNotFoundError: /etc/app/config.yaml does not exist"
+    },
+    {
+      "dimension": "instruction_following",
+      "task_id": "if_json_output",
+      "description": "Agent should return valid JSON with specific keys and values",
+      "input": "Return a JSON object with keys name, age, hobbies.",
+      "expected_format": "json",
+      "expected_keys": ["name", "age", "hobbies"]
+    },
+    {
+      "dimension": "multi_step_reasoning",
+      "task_id": "msr_arithmetic_chain",
+      "description": "Agent should solve a multi-step arithmetic word problem",
+      "input": "7 notebooks at $4 each, 20% discount for 5+, paid with $50. How much change?",
+      "expected_answer": "27.60"
+    }
+  ]
+}

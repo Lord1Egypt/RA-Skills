@@ -11,31 +11,32 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and agent operators use this skill to recover interrupted work sessions after agent crashes, context overflow, merge conflicts, or inconsistent task and git state. It provides procedural playbooks for triage, checkpointing, conflict escalation, and safe continuation. <br>
+Developers and agent operators use this skill to recover from interrupted or inconsistent coding-agent sessions, including crashes, context overflow, merge conflicts, and divergent task, git, or disk state. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The recovery playbooks can steer agents toward git state-changing actions such as stash, commit, merge abort, and file restoration. <br>
-Mitigation: Use the skill in repositories where those recovery actions are appropriate, inspect diffs before state changes, and keep human review for ambiguous conflicts or destructive choices. <br>
-Risk: Broad recovery triggers may activate the skill for routine errors that do not require session-level recovery. <br>
-Mitigation: Confirm the session involves an agent crash, context loss, merge conflict, or inconsistent task and git state before applying the protocols. <br>
+Risk: The skill may suggest git mutations such as stash, commit, restore, reset, merge-abort, or rebase-abort during recovery. <br>
+Mitigation: Review each proposed git mutation before execution and require the agent to inspect status and diffs before changing repository state. <br>
+Risk: Broad activation terms such as recovery, context, conflicts, and state can invoke the skill outside the intended failure-recovery scenario. <br>
+Mitigation: Confirm that a crash, context overflow, merge conflict, or inconsistent task/git/disk state exists before applying the recovery protocol. <br>
+Risk: Recovery actions can preserve or discard partial work incorrectly if current state is not grounded in durable evidence. <br>
+Mitigation: Use task records, git history, git status, diffs, and explicit handoff summaries as ground truth before resuming, stashing, or rolling back work. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-leyline-damage-control) <br>
-- [OpenClaw homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
+- [ClawHub metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with inline shell command examples, checklists, and recovery protocols.] <br>
+**Output Type(s):** [Guidance, Markdown, Shell commands] <br>
+**Output Format:** [Markdown procedures with inline shell commands and checklists] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill produces procedural recovery guidance and does not require API calls or generated files by itself.] <br>
+**Other Properties Related to Output:** [Produces recovery protocols, decision criteria, escalation notes, and risk-assessment checklist templates.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata; artifact frontmatter reports 1.9.8) <br>
+1.9.13 (source: server release metadata; artifact frontmatter reports 1.9.8) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

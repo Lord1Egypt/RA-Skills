@@ -1,0 +1,20 @@
+{
+  "name": "daily-report-generator",
+  "version": "1.0.0",
+  "description": "智能企业日报生成器：多源数据采集 + AI分析 + 多格式输出",
+  "entry": "SKILL.md",
+  "dependencies": {
+    "python": ">=3.8",
+    "packages": ["pandas", "jinja2", "reportlab"]
+  },
+  "permissions": ["fs", "net", "exec"],
+  "scripts": {
+    "generate": "python3 scripts/generate_report.py",
+    "test": "python3 scripts/generate_report.py --csv test/sample.csv --output test/output.md"
+  },
+  "supported_platforms": ["linux", "macos", "windows"],
+  "languages": ["zh-CN", "en"],
+  "keywords": ["report", "daily", "generator", "automation", "work-log"],
+  "homepage": "",
+  "license": "MIT"
+}

@@ -1,0 +1,12 @@
+{
+  "name": "__APP_NAME__",
+  "short_name": "__APP_SHORT_NAME__",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "__BG_COLOR__",
+  "theme_color": "__THEME_COLOR__",
+  "icons": [
+    { "src": "./icon-180.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

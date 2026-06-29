@@ -1,0 +1,1 @@
+- Clarify pre-seeded default measurement types in README and SKILL.md

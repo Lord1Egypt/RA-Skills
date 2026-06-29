@@ -1,0 +1,109 @@
+{
+  "baseUrl": "https://api.justserpapi.com",
+  "description": "Call GET /api/v1/google/news/search for Google SERP News Search through Just Serp API with query.",
+  "displayName": "Google SERP News Search",
+  "endpointPath": "news/search",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Google news Search data, including headlines and source metadata, for media monitoring and news aggregation.",
+      "method": "GET",
+      "operationId": "newsSearch",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "The search query for Google News (e.g., 'artificial intelligence', 'climate change').",
+          "enumValues": [],
+          "location": "query",
+          "name": "query",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the target country code (e.g., 'us', 'uk') to localize results. See <a href=\"/reference/google-countries\">Google Countries</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "country",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the language for the results using its two-letter code (e.g., 'en' for English, 'fr' for French). See <a href=\"/reference/google-language\">Google Language</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "language",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The Google News topic token to retrieve results for a specific category (e.g., 'World', 'Technology'). Obtained from previous responses.",
+          "enumValues": [],
+          "location": "query",
+          "name": "topic_token",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The Google News publication token to fetch results from a specific source (e.g., 'CNN', 'BBC'). Obtained from previous responses.",
+          "enumValues": [],
+          "location": "query",
+          "name": "publication_token",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The Google News section token to access a specific subsection within a topic or publication.",
+          "enumValues": [],
+          "location": "query",
+          "name": "section_token",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Sorting order for news results. Supported values: '0' (Relevance, default), '1' (Date). Only works with 'story_token'.",
+          "enumValues": [],
+          "location": "query",
+          "name": "so",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/v1/google/news/search",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        },
+        {
+          "description": "Authentication failed: API Key is invalid or missing",
+          "statusCode": "401"
+        },
+        {
+          "description": "Access denied: Insufficient credits or quota exceeded",
+          "statusCode": "403"
+        },
+        {
+          "description": "Internal server error or upstream service exception",
+          "statusCode": "500"
+        }
+      ],
+      "summary": "Search",
+      "tags": [
+        "Google News"
+      ]
+    }
+  ],
+  "platformKey": "google",
+  "primaryTag": "Google SERP",
+  "skillName": "justserpapi_google_news_search",
+  "skillType": "interface",
+  "slug": "justserpapi-google-news-search",
+  "sourceTitle": "API Shop Documentation"
+}

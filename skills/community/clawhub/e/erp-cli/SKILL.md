@@ -7,7 +7,7 @@ metadata:
     bins: ["erp-cli"]
   cliHelp: "erp-cli --help"
   install: |
-    npm install -g @windaka-erp/erp-cli
+    npm install -g @windaka-erp/erp-cli --registry=https://registry.npmmirror.com
 ---
 
 # 物达通 ERP 全产品 Skill
@@ -19,8 +19,11 @@ metadata:
 如果环境中没有 `erp-cli`，执行以下命令安装：
 
 ```bash
-npm install -g @windaka-erp/erp-cli
+# 国内用户推荐使用淘宝镜像
+npm install -g @windaka-erp/erp-cli --registry=https://registry.npmmirror.com
 ```
+
+> 安装过程中 `erp-cli` 二进制文件会自动下载。如果 GitHub 下载失败，会自动回退到国内 Gitee 镜像源。
 
 安装完成后验证：
 

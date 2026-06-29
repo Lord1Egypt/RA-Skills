@@ -1,0 +1,118 @@
+# 预算绩效管理工作流模板
+
+name: 预算绩效管理
+type_id: budget_performance
+description: 预算绩效目标设置、事前评估、事中监控、重点项目绩效评价
+version: "1.0"
+
+context_prompt: |
+  项目名称：{project_name}
+  主管部门：{dept_name}
+  评价年度：{year}
+  资金规模：{budget_amount}
+
+steps:
+  - id: target_review
+    name: 绩效目标审核
+    action: knowledge_query
+    description: 梳理绩效目标设置和指标体系
+    prompt: |
+      审核"{project_name}"的绩效目标设置：
+      1. 绩效目标的明确性（是否具体、可衡量）
+      2. 绩效指标的相关性（与项目目标是否匹配）
+      3. 指标值的合理性（是否偏高或偏低）
+      4. 指标体系的完整性（产出+效益+满意度）
+    checkpoint: false
+    output_key: target_review_result
+
+  - id: data_collection
+    name: 数据收集整理
+    action: data_analysis
+    description: 收集绩效数据、自评报告、财务数据
+    prompt: |
+      收集"{project_name}"的绩效评价数据：
+      1. 项目立项和批复文件
+      2. 预算批复和执行数据
+      3. 项目自评报告
+      4. 财务支出明细
+      5. 满意度调查数据
+    depends_on: [target_review]
+    checkpoint: false
+    output_key: collected_data
+
+  - id: completion_rate
+    name: 绩效完成率分析
+    action: data_analysis
+    description: 绩效指标完成率计算和分析
+    prompt: |
+      分析"{project_name}"的绩效指标完成情况：
+      1. 产出指标完成率（数量、质量、时效）
+      2. 效益指标达成度（经济、社会、生态）
+      3. 满意度指标得分
+      4. 未完成指标的原因分析
+    skills: [data-analyst-cn]
+    depends_on: [data_collection]
+    checkpoint: false
+    output_key: completion_analysis
+
+  - id: budget_efficiency
+    name: 资金使用效率分析
+    action: data_analysis
+    description: 预算资金使用效率和效益分析
+    prompt: |
+      分析"{project_name}"的资金使用效率：
+      1. 预算执行率
+      2. 资金到位率
+      3. 资金节约率
+      4. 成本效益分析
+      5. 资金使用合规性
+    skills: [data-analyst-cn, financial-fraud-detection]
+    depends_on: [data_collection]
+    checkpoint: false
+    output_key: efficiency_analysis
+
+  - id: satisfaction_stats
+    name: 满意度统计分析
+    action: invoke_skill
+    description: 服务对象满意度调查统计分析
+    prompt: |
+      对"{project_name}"的满意度调查进行统计分析：
+      1. 样本代表性和有效性
+      2. 满意度总体得分和分布
+      3. 各维度满意度对比
+      4. 不满意原因归类分析
+    skills: [statistical-analysis]
+    depends_on: [data_collection]
+    checkpoint: false
+    output_key: satisfaction_result
+
+  - id: comprehensive_scoring
+    name: 综合评分
+    action: invoke_skill
+    description: 多维度综合绩效评分
+    prompt: |
+      对"{project_name}"进行综合绩效评分：
+      1. 按决策、过程、产出、效益四维度打分
+      2. 各指标权重和得分明细
+      3. 总分和等次判定
+      4. 各维度得分分析
+    skills: [budget-performance-methodology]
+    depends_on: [completion_analysis, budget_efficiency, satisfaction_stats]
+    checkpoint: true
+    output_key: final_score
+
+  - id: generate_report
+    name: 编制绩效评价报告
+    action: invoke_skill
+    description: 生成绩效评价报告
+    prompt: |
+      生成"{project_name}"的绩效评价报告：
+      1. 项目基本情况
+      2. 绩效评价工作开展情况
+      3. 绩效评价指标分析
+      4. 评价结论和等次
+      5. 主要问题和建议
+    skills: [gov-audit-report-writer, gov-doc-formatting]
+    depends_on: [comprehensive_scoring]
+    checkpoint: true
+    output_key: performance_report

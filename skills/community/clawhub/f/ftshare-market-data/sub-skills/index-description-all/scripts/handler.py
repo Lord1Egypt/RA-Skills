@@ -8,7 +8,7 @@ import urllib.request
 SAFE_URLOPENER = urllib.request.build_opener()
 
 BASE_URL = "https://market.ft.tech"
-ENDPOINT = "/data/api/v1/market/data/index-description-all"
+ENDPOINT = "/gateway/api/v1/market/data/index-description-all"
 
 
 def main():

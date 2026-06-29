@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>质量仪表盘 - AI测试工程师</title>
+<style>
+:root {
+  --bg: #f8f9fa;
+  --card-bg: #ffffff;
+  --text: #1a1a2e;
+  --text-secondary: #6c757d;
+  --border: #e9ecef;
+  --green: #28a745;
+  --yellow: #ffc107;
+  --red: #dc3545;
+  --blue: #007bff;
+  --primary: #4f46e5;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 24px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.header h1 { font-size: 28px; }
+.header .version { color: var(--text-secondary); font-size: 14px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+.card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  border: 1px solid var(--border);
+}
+.card h3 { font-size: 14px; color: var(--text-secondary); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+.card .value { font-size: 36px; font-weight: 700; }
+.card .sub { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+.gauge { display: flex; align-items: center; gap: 12px; }
+.gauge-ring {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; font-weight: 700;
+}
+.gauge-green { background: conic-gradient(var(--green) 0deg, var(--green) var(--deg), #eee var(--deg)); }
+.gauge-yellow { background: conic-gradient(var(--yellow) 0deg, var(--yellow) var(--deg), #eee var(--deg)); }
+.gauge-red { background: conic-gradient(var(--red) 0deg, var(--red) var(--deg), #eee var(--deg)); }
+.gauge-inner {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  display: flex; align-items: center; justify-content: center;
+}
+.metrics-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.metric-item { text-align: center; }
+.metric-item .num { font-size: 24px; font-weight: 700; }
+.metric-item .label { font-size: 12px; color: var(--text-secondary); }
+.bar-container { margin-top: 8px; }
+.bar-label { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 4px; }
+.bar-track { height: 8px; background: #eee; border-radius: 4px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+th { color: var(--text-secondary); font-weight: 600; }
+.status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+.status-green { background: var(--green); }
+.status-yellow { background: var(--yellow); }
+.status-red { background: var(--red); }
+.full-width { grid-column: 1 / -1; }
+.pull-right { float: right; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1>📊 质量仪表盘</h1>
+    <div class="version">版本 v2.3.1 | 更新于 <span id="update-time">--</span></div>
+  </div>
+  <div style="text-align:right;">
+    <div style="font-size:14px; color:var(--text-secondary);">发布就绪状态</div>
+    <div style="font-size:32px; font-weight:700;" id="release-status">--</div>
+  </div>
+</div>
+
+<div class="grid">
+  <!-- 核心指标卡片 -->
+  <div class="card">
+    <h3>📋 测试执行</h3>
+    <div class="metrics-grid">
+      <div class="metric-item">
+        <div class="num" id="total-cases">--</div>
+        <div class="label">总用例数</div>
+      </div>
+      <div class="metric-item">
+        <div class="num" id="executed-cases">--</div>
+        <div class="label">已执行</div>
+      </div>
+      <div class="metric-item">
+        <div class="num" id="passed-cases">--</div>
+        <div class="label" style="color:var(--green);">通过</div>
+      </div>
+      <div class="metric-item">
+        <div class="num" id="failed-cases">--</div>
+        <div class="label" style="color:var(--red);">失败</div>
+      </div>
+    </div>
+    <div class="bar-container">
+      <div class="bar-label"><span>执行进度</span><span id="exec-progress-pct">--%</span></div>
+      <div class="bar-track"><div class="bar-fill" id="exec-progress-bar" style="width:0; background:var(--blue);"></div></div>
+    </div>
+    <div class="bar-container" style="margin-top:8px;">
+      <div class="bar-label"><span>通过率</span><span id="pass-rate-pct">--%</span></div>
+      <div class="bar-track"><div class="bar-fill" id="pass-rate-bar" style="width:0; background:var(--green);"></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🐛 缺陷追踪</h3>
+    <div class="gauge">
+      <div class="gauge-ring" id="defect-gauge" style="--deg: 0deg;">
+        <div class="gauge-inner"><span id="open-defects">--</span></div>
+      </div>
+      <div>
+        <div style="font-size:13px;">未解决缺陷</div>
+        <div style="font-size:12px; color:var(--text-secondary); margin-top:4px;">
+          P0: <span id="p0-count" style="color:var(--red);">0</span> | 
+          P1: <span id="p1-count" style="color:var(--yellow);">0</span>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:12px;">
+      <div class="bar-container" style="margin-top:6px;">
+        <div class="bar-label"><span>修复率</span><span id="fix-rate-pct">--%</span></div>
+        <div class="bar-track"><div class="bar-fill" id="fix-rate-bar" style="width:0; background:var(--green);"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🎯 覆盖率</h3>
+    <div class="bar-container">
+      <div class="bar-label"><span>行覆盖率</span><span id="line-cov">--%</span></div>
+      <div class="bar-track"><div class="bar-fill" id="line-cov-bar" style="width:0; background:var(--primary);"></div></div>
+    </div>
+    <div class="bar-container" style="margin-top:10px;">
+      <div class="bar-label"><span>分支覆盖率</span><span id="branch-cov">--%</span></div>
+      <div class="bar-track"><div class="bar-fill" id="branch-cov-bar" style="width:0; background:var(--primary);"></div></div>
+    </div>
+    <div class="bar-container" style="margin-top:10px;">
+      <div class="bar-label"><span>需求覆盖率</span><span id="req-cov">--%</span></div>
+      <div class="bar-track"><div class="bar-fill" id="req-cov-bar" style="width:0; background:var(--primary);"></div></div>
+    </div>
+    <div class="bar-container" style="margin-top:10px;">
+      <div class="bar-label"><span>风险覆盖率 (P0)</span><span id="risk-cov">--%</span></div>
+      <div class="bar-track"><div class="bar-fill" id="risk-cov-bar" style="width:0; background:#e11d48;"></div></div>
+    </div>
+  </div>
+
+  <!-- 质量门禁 -->
+  <div class="card full-width">
+    <h3>🚦 质量门禁状态</h3>
+    <table>
+      <thead>
+        <tr><th>门禁项</th><th>标准</th><th>实际</th><th>状态</th></tr>
+      </thead>
+      <tbody id="quality-gates">
+        <tr><td colspan="4" style="text-align:center; color:var(--text-secondary);">请配置数据源</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 自动化健康度 -->
+  <div class="card">
+    <h3>🤖 自动化健康度</h3>
+    <div class="metrics-grid">
+      <div class="metric-item">
+        <div class="num" id="auto-total">--</div>
+        <div class="label">自动化用例(个)</div>
+      </div>
+      <div class="metric-item">
+        <div class="num" id="auto-pass-rate">--%</div>
+        <div class="label">成功率</div>
+      </div>
+      <div class="metric-item">
+        <div class="num" id="auto-duration">--</div>
+        <div class="label">执行耗时(min)</div>
+      </div>
+      <div class="metric-item">
+        <div class="num" id="flaky-count">--</div>
+        <div class="label" style="color:var(--yellow);">Flaky用例</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 风险雷达 -->
+  <div class="card">
+    <h3>⚠️ 风险监控</h3>
+    <table>
+      <thead>
+        <tr><th>风险项</th><th>等级</th><th>状态</th></tr>
+      </thead>
+      <tbody id="risk-table">
+        <tr><td colspan="3" style="text-align:center; color:var(--text-secondary);">暂无风险</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+// 示例数据 - 可替换为API数据源
+const sampleData = {
+  totalCases: 245,
+  executedCases: 220,
+  passedCases: 208,
+  failedCases: 9,
+  blockedCases: 3,
+  openDefects: 12,
+  p0Defects: 0,
+  p1Defects: 2,
+  fixedDefects: 45,
+  totalDefects: 57,
+  lineCoverage: 82.5,
+  branchCoverage: 68.3,
+  reqCoverage: 95.0,
+  riskCoverage: 100,
+  autoTotal: 180,
+  autoPassRate: 96.7,
+  autoDuration: 18.5,
+  flakyCount: 3,
+  risks: [
+    { name: '第三方支付接口不稳定', level: '中', status: '监控中' },
+    { name: '订单模块近期变更频繁', level: '低', status: '观察中' },
+  ],
+  qualityGates: [
+    { name: 'P0缺陷=0', standard: '0个', actual: '0个', pass: true },
+    { name: '核心用例通过率', standard: '≥95%', actual: '97.2%', pass: true },
+    { name: '代码覆盖率', standard: '≥80%', actual: '82.5%', pass: true },
+    { name: '接口测试通过率', standard: '100%', actual: '98.6%', pass: false },
+    { name: '性能P99', standard: '<500ms', actual: '420ms', pass: true },
+  ],
+};
+
+function updateDashboard(data) {
+  const execRate = data.executedCases / data.totalCases * 100;
+  const passRate = data.passedCases / data.executedCases * 100;
+  const fixRate = data.fixedDefects / data.totalDefects * 100;
+
+  // 核心指标
+  document.getElementById('total-cases').textContent = data.totalCases;
+  document.getElementById('executed-cases').textContent = data.executedCases;
+  document.getElementById('passed-cases').textContent = data.passedCases;
+  document.getElementById('failed-cases').textContent = data.failedCases;
+
+  // 进度条
+  document.getElementById('exec-progress-pct').textContent = execRate.toFixed(1) + '%';
+  document.getElementById('exec-progress-bar').style.width = execRate + '%';
+  document.getElementById('pass-rate-pct').textContent = passRate.toFixed(1) + '%';
+  document.getElementById('pass-rate-bar').style.width = passRate + '%';
+
+  // 缺陷
+  document.getElementById('open-defects').textContent = data.openDefects;
+  document.getElementById('p0-count').textContent = data.p0Defects;
+  document.getElementById('p1-count').textContent = data.p1Defects;
+  document.getElementById('fix-rate-pct').textContent = fixRate.toFixed(1) + '%';
+  document.getElementById('fix-rate-bar').style.width = fixRate + '%';
+
+  // 覆盖率
+  document.getElementById('line-cov').textContent = data.lineCoverage.toFixed(1) + '%';
+  document.getElementById('line-cov-bar').style.width = data.lineCoverage + '%';
+  document.getElementById('branch-cov').textContent = data.branchCoverage.toFixed(1) + '%';
+  document.getElementById('branch-cov-bar').style.width = data.branchCoverage + '%';
+  document.getElementById('req-cov').textContent = data.reqCoverage.toFixed(1) + '%';
+  document.getElementById('req-cov-bar').style.width = data.reqCoverage + '%';
+  document.getElementById('risk-cov').textContent = data.riskCoverage.toFixed(1) + '%';
+  document.getElementById('risk-cov-bar').style.width = data.riskCoverage + '%';
+
+  // 自动化
+  document.getElementById('auto-total').textContent = data.autoTotal;
+  document.getElementById('auto-pass-rate').textContent = data.autoPassRate.toFixed(1) + '%';
+  document.getElementById('auto-duration').textContent = data.autoDuration;
+  document.getElementById('flaky-count').textContent = data.flakyCount;
+
+  // 质量门禁
+  const gatesHtml = data.qualityGates.map(g => `
+    <tr>
+      <td>${g.name}</td>
+      <td>${g.standard}</td>
+      <td>${g.actual}</td>
+      <td><span class="status-dot ${g.pass ? 'status-green' : 'status-red'}"></span>${g.pass ? '通过' : '未通过'}</td>
+    </tr>
+  `).join('');
+  document.getElementById('quality-gates').innerHTML = gatesHtml;
+
+  // 风险表
+  if (data.risks.length > 0) {
+    document.getElementById('risk-table').innerHTML = data.risks.map(r => `
+      <tr>
+        <td>${r.name}</td>
+        <td><span style="color:${r.level==='高'?'var(--red)':r.level==='中'?'var(--yellow)':'var(--text-secondary)'};">${r.level}</span></td>
+        <td>${r.status}</td>
+      </tr>
+    `).join('');
+  }
+
+  // 发布状态
+  const allPassed = data.qualityGates.every(g => g.pass);
+  const statusEl = document.getElementById('release-status');
+  if (allPassed && data.p0Defects === 0) {
+    statusEl.textContent = '✅ 就绪';
+    statusEl.style.color = 'var(--green)';
+  } else if (data.p0Defects > 0) {
+    statusEl.textContent = '🔴 阻塞';
+    statusEl.style.color = 'var(--red)';
+  } else {
+    statusEl.textContent = '⚠️ 关注';
+    statusEl.style.color = 'var(--yellow)';
+  }
+
+  document.getElementById('update-time').textContent = new Date().toLocaleString('zh-CN');
+}
+
+// 初始化
+updateDashboard(sampleData);
+</script>
+
+</body>
+</html>

@@ -113,7 +113,7 @@ def merge_results(result_files: List[str]) -> Dict:
         })
         if data.get("knowledgeBase"):
             knowledge_bases.append({
-                "file": file_path,
+                "file": str(safe_file_path),
                 "query": search_meta.get("query", ""),
                 "area": region,
                 "knowledgeBase": data.get("knowledgeBase", ""),

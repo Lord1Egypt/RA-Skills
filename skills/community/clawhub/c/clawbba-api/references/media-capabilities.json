@@ -1,0 +1,4936 @@
+{
+  "version": "2.2",
+  "generated_at": "2026-06-10T21:02:17.443Z",
+  "agent_guidance": {
+    "prompt_fidelity": "image_generate.prompt / video_generate.prompt 必须包含用户在本轮对话中声明的生成意图（产品、主体、风格、场景、相对参考图的修改）。允许翻译为英文或补充光影，但禁止用与用户需求无关的通用套话替代；图生图时参考图不能替代用户文字要求。model、aspectRatio、resolution、durationSeconds 写入工具字段，不要只写在 prompt 里。",
+    "image_param_assembly": "生图：读取 models.<id>.generation_params；aspectRatio 须在 parameters.aspectRatio.allowed 内；仅当 parameters.resolution 存在时才传 resolution（Riverflow 等 super_resolution 模型勿传 image_size）。图生图用 image/images[]；Riverflow 用 super_resolution_references 工作流。",
+    "video_param_assembly": "生视频：先与用户确认模型、工作流（文生/图生首帧尾帧/参考图）、时长、比例、分辨率、是否带音频（若该模型支持）。全部选完后，读取该模型 models.<id>.generation_params，将用户选择映射为 video_generate 工具字段并一次性调用；字段值必须在 generation_params.parameters.*.allowed 内；用户未指定的可选项用 default，用户说了「随便/默认」时用 default，否则追问缺失项。",
+    "video_workflow_pick": "无参考图 → text_to_video；首帧 → image_to_video_first_frame（image + imageRoles:[first_frame]）；尾帧 → image_to_video_last_frame；风格/主体参考 → image_to_video_reference（images + imageRoles:[reference_image]）。supported_frame_types 或 supports_reference_images 含 reference 时方可提供参考图工作流。"
+  },
+  "defaults": {
+    "image": "google/gemini-3.1-flash-image-preview",
+    "image_openclaw": "openrouter/google/gemini-3.1-flash-image-preview",
+    "video": "google/veo-3.1-fast",
+    "video_openclaw": "openrouter/google/veo-3.1-fast"
+  },
+  "workflows": {
+    "text_to_image": {
+      "tool": "image_generate",
+      "label": "文生图",
+      "required": [
+        "prompt"
+      ],
+      "optional": [
+        "model",
+        "aspectRatio",
+        "resolution",
+        "quality",
+        "outputFormat"
+      ],
+      "openclaw_notes": "model 省略时用 agents.defaults.imageGenerationModel.primary（平台模型 ID）"
+    },
+    "image_to_image": {
+      "tool": "image_generate",
+      "label": "图生图",
+      "required": [
+        "prompt",
+        "images"
+      ],
+      "optional": [
+        "model",
+        "aspectRatio",
+        "resolution"
+      ],
+      "openclaw_notes": "参考图用 image 或 images[]（~/.openclaw/media/inbound/… 本地路径）"
+    },
+    "image_super_resolution": {
+      "tool": "image_generate",
+      "label": "超分参考图（Riverflow）",
+      "required": [
+        "prompt",
+        "images"
+      ],
+      "optional": [
+        "model",
+        "aspectRatio"
+      ],
+      "openclaw_notes": "勿传 resolution；参考图走 super_resolution_references，见 generation_params"
+    },
+    "text_to_video": {
+      "tool": "video_generate",
+      "label": "文生视频",
+      "required": [
+        "prompt",
+        "durationSeconds"
+      ],
+      "optional": [
+        "model",
+        "aspectRatio",
+        "resolution"
+      ],
+      "openclaw_notes": "durationSeconds 须为模型支持的秒数"
+    },
+    "image_to_video_first_frame": {
+      "tool": "video_generate",
+      "label": "图生视频（首帧）",
+      "required": [
+        "prompt",
+        "durationSeconds",
+        "image",
+        "imageRoles"
+      ],
+      "imageRoles": [
+        "first_frame"
+      ],
+      "optional": [
+        "model",
+        "aspectRatio",
+        "resolution"
+      ]
+    },
+    "image_to_video_last_frame": {
+      "tool": "video_generate",
+      "label": "图生视频（尾帧）",
+      "required": [
+        "prompt",
+        "durationSeconds",
+        "image",
+        "imageRoles"
+      ],
+      "imageRoles": [
+        "last_frame"
+      ],
+      "optional": [
+        "model",
+        "aspectRatio",
+        "resolution"
+      ]
+    },
+    "image_to_video_reference": {
+      "tool": "video_generate",
+      "label": "图生视频（参考图）",
+      "required": [
+        "prompt",
+        "durationSeconds",
+        "images",
+        "imageRoles"
+      ],
+      "imageRoles": [
+        "reference_image"
+      ],
+      "optional": [
+        "model",
+        "aspectRatio",
+        "resolution"
+      ]
+    }
+  },
+  "openclaw_tool_schema": {
+    "image_generate": {
+      "aspectRatio": [
+        "1:1",
+        "2:3",
+        "3:2",
+        "3:4",
+        "4:3",
+        "4:5",
+        "5:4",
+        "9:16",
+        "16:9",
+        "21:9",
+        "9:21",
+        "1:4",
+        "4:1",
+        "1:8",
+        "8:1"
+      ],
+      "resolution": [
+        "0.5K",
+        "1K",
+        "2K",
+        "4K"
+      ],
+      "params": [
+        "action",
+        "prompt",
+        "model",
+        "aspectRatio",
+        "resolution",
+        "image",
+        "images",
+        "quality",
+        "outputFormat",
+        "jobId"
+      ]
+    },
+    "video_generate": {
+      "aspectRatio": [
+        "1:1",
+        "16:9",
+        "9:16",
+        "4:3",
+        "3:4",
+        "3:2",
+        "2:3",
+        "21:9",
+        "adaptive"
+      ],
+      "resolution": [
+        "480P",
+        "720P",
+        "768P",
+        "1080P",
+        "4K"
+      ],
+      "imageRoles": [
+        "first_frame",
+        "last_frame",
+        "reference_image"
+      ],
+      "params": [
+        "action",
+        "prompt",
+        "model",
+        "aspectRatio",
+        "resolution",
+        "durationSeconds",
+        "audio",
+        "image",
+        "images",
+        "imageRoles",
+        "jobId"
+      ]
+    }
+  },
+  "models": {
+    "google/gemini-3.1-flash-image-preview": {
+      "id": "google/gemini-3.1-flash-image-preview",
+      "name": "Nano Banana 2",
+      "category": "image",
+      "openclaw_ref": "openrouter/google/gemini-3.1-flash-image-preview",
+      "aspect_ratios": [
+        "1:1",
+        "2:3",
+        "3:2",
+        "3:4",
+        "4:3",
+        "4:5",
+        "5:4",
+        "9:16",
+        "16:9",
+        "21:9",
+        "1:4",
+        "4:1",
+        "1:8",
+        "8:1"
+      ],
+      "image_sizes": [
+        "0.5K",
+        "1K",
+        "2K",
+        "4K"
+      ],
+      "default_aspect_ratio": "1:1",
+      "default_image_size": "1K",
+      "image_workflows": [
+        "text",
+        "image"
+      ],
+      "reference_input_mode": "messages",
+      "supports_super_resolution_refs": false,
+      "supports_strength": false,
+      "max_reference_images": 4,
+      "supports_reference_images": true,
+      "generation_params": {
+        "tool": "image_generate",
+        "model_id": "google/gemini-3.1-flash-image-preview",
+        "model": "openrouter/google/gemini-3.1-flash-image-preview",
+        "reference_input_mode": "messages",
+        "workflows": {
+          "text_to_image": {
+            "label": "文生图",
+            "required_parameters": [
+              "model",
+              "prompt"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ]
+          },
+          "image_to_image": {
+            "label": "图生图",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "images"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ],
+            "reference_input_mode": "messages"
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/google/gemini-3.1-flash-image-preview",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1:1",
+              "2:3",
+              "3:2",
+              "3:4",
+              "4:3",
+              "4:5",
+              "5:4",
+              "9:16",
+              "16:9",
+              "21:9",
+              "1:4",
+              "4:1",
+              "1:8",
+              "8:1"
+            ],
+            "default": "1:1",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "1:1",
+              "竖图",
+              "横图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "0.5K",
+              "1K",
+              "2K",
+              "4K"
+            ],
+            "default": "1K",
+            "maps_to_api": "image_config.image_size",
+            "user_phrases": [
+              "0.5K",
+              "1K",
+              "2K",
+              "4K"
+            ]
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "参考图本地路径（~/.openclaw/media/inbound/…）"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将选择映射到 parameters 同名 tool_field；resolution 仅在该模型 parameters.resolution 存在时填写。",
+        "example_call": {
+          "model": "openrouter/google/gemini-3.1-flash-image-preview",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "aspectRatio": "1:1",
+          "resolution": "1K"
+        }
+      }
+    },
+    "google/gemini-3-pro-image-preview": {
+      "id": "google/gemini-3-pro-image-preview",
+      "name": "Nano Banana Pro",
+      "category": "image",
+      "openclaw_ref": "openrouter/google/gemini-3-pro-image-preview",
+      "aspect_ratios": [
+        "1:1",
+        "2:3",
+        "3:2",
+        "3:4",
+        "4:3",
+        "4:5",
+        "5:4",
+        "9:16",
+        "16:9",
+        "21:9"
+      ],
+      "image_sizes": [
+        "1K",
+        "2K",
+        "4K"
+      ],
+      "default_aspect_ratio": "1:1",
+      "default_image_size": "1K",
+      "image_workflows": [
+        "text",
+        "image"
+      ],
+      "reference_input_mode": "messages",
+      "supports_super_resolution_refs": false,
+      "supports_strength": false,
+      "max_reference_images": 4,
+      "supports_reference_images": true,
+      "generation_params": {
+        "tool": "image_generate",
+        "model_id": "google/gemini-3-pro-image-preview",
+        "model": "openrouter/google/gemini-3-pro-image-preview",
+        "reference_input_mode": "messages",
+        "workflows": {
+          "text_to_image": {
+            "label": "文生图",
+            "required_parameters": [
+              "model",
+              "prompt"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ]
+          },
+          "image_to_image": {
+            "label": "图生图",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "images"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ],
+            "reference_input_mode": "messages"
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/google/gemini-3-pro-image-preview",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1:1",
+              "2:3",
+              "3:2",
+              "3:4",
+              "4:3",
+              "4:5",
+              "5:4",
+              "9:16",
+              "16:9",
+              "21:9"
+            ],
+            "default": "1:1",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "1:1",
+              "竖图",
+              "横图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1K",
+              "2K",
+              "4K"
+            ],
+            "default": "1K",
+            "maps_to_api": "image_config.image_size",
+            "user_phrases": [
+              "0.5K",
+              "1K",
+              "2K",
+              "4K"
+            ]
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "参考图本地路径（~/.openclaw/media/inbound/…）"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将选择映射到 parameters 同名 tool_field；resolution 仅在该模型 parameters.resolution 存在时填写。",
+        "example_call": {
+          "model": "openrouter/google/gemini-3-pro-image-preview",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "aspectRatio": "1:1",
+          "resolution": "1K"
+        }
+      }
+    },
+    "google/gemini-2.5-flash-image": {
+      "id": "google/gemini-2.5-flash-image",
+      "name": "Nano Banana",
+      "category": "image",
+      "openclaw_ref": "openrouter/google/gemini-2.5-flash-image",
+      "aspect_ratios": [
+        "1:1",
+        "2:3",
+        "3:2",
+        "3:4",
+        "4:3",
+        "4:5",
+        "5:4",
+        "9:16",
+        "16:9",
+        "21:9"
+      ],
+      "image_sizes": [
+        "1K",
+        "2K",
+        "4K"
+      ],
+      "default_aspect_ratio": "1:1",
+      "default_image_size": "1K",
+      "image_workflows": [
+        "text",
+        "image"
+      ],
+      "reference_input_mode": "messages",
+      "supports_super_resolution_refs": false,
+      "supports_strength": false,
+      "max_reference_images": 4,
+      "supports_reference_images": true,
+      "generation_params": {
+        "tool": "image_generate",
+        "model_id": "google/gemini-2.5-flash-image",
+        "model": "openrouter/google/gemini-2.5-flash-image",
+        "reference_input_mode": "messages",
+        "workflows": {
+          "text_to_image": {
+            "label": "文生图",
+            "required_parameters": [
+              "model",
+              "prompt"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ]
+          },
+          "image_to_image": {
+            "label": "图生图",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "images"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ],
+            "reference_input_mode": "messages"
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/google/gemini-2.5-flash-image",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1:1",
+              "2:3",
+              "3:2",
+              "3:4",
+              "4:3",
+              "4:5",
+              "5:4",
+              "9:16",
+              "16:9",
+              "21:9"
+            ],
+            "default": "1:1",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "1:1",
+              "竖图",
+              "横图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1K",
+              "2K",
+              "4K"
+            ],
+            "default": "1K",
+            "maps_to_api": "image_config.image_size",
+            "user_phrases": [
+              "0.5K",
+              "1K",
+              "2K",
+              "4K"
+            ]
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "参考图本地路径（~/.openclaw/media/inbound/…）"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将选择映射到 parameters 同名 tool_field；resolution 仅在该模型 parameters.resolution 存在时填写。",
+        "example_call": {
+          "model": "openrouter/google/gemini-2.5-flash-image",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "aspectRatio": "1:1",
+          "resolution": "1K"
+        }
+      }
+    },
+    "black-forest-labs/flux.2-pro": {
+      "id": "black-forest-labs/flux.2-pro",
+      "name": "FLUX.2 Pro",
+      "category": "image",
+      "openclaw_ref": "openrouter/black-forest-labs/flux.2-pro",
+      "aspect_ratios": [
+        "1:1",
+        "2:3",
+        "3:2",
+        "3:4",
+        "4:3",
+        "4:5",
+        "5:4",
+        "9:16",
+        "16:9",
+        "21:9"
+      ],
+      "image_sizes": [
+        "1K",
+        "2K",
+        "4K"
+      ],
+      "default_aspect_ratio": "1:1",
+      "default_image_size": "1K",
+      "image_workflows": [
+        "text",
+        "image"
+      ],
+      "reference_input_mode": "messages",
+      "supports_super_resolution_refs": false,
+      "supports_strength": false,
+      "max_reference_images": 4,
+      "supports_reference_images": true,
+      "generation_params": {
+        "tool": "image_generate",
+        "model_id": "black-forest-labs/flux.2-pro",
+        "model": "openrouter/black-forest-labs/flux.2-pro",
+        "reference_input_mode": "messages",
+        "workflows": {
+          "text_to_image": {
+            "label": "文生图",
+            "required_parameters": [
+              "model",
+              "prompt"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ]
+          },
+          "image_to_image": {
+            "label": "图生图",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "images"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ],
+            "reference_input_mode": "messages"
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/black-forest-labs/flux.2-pro",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1:1",
+              "2:3",
+              "3:2",
+              "3:4",
+              "4:3",
+              "4:5",
+              "5:4",
+              "9:16",
+              "16:9",
+              "21:9"
+            ],
+            "default": "1:1",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "1:1",
+              "竖图",
+              "横图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1K",
+              "2K",
+              "4K"
+            ],
+            "default": "1K",
+            "maps_to_api": "image_config.image_size",
+            "user_phrases": [
+              "0.5K",
+              "1K",
+              "2K",
+              "4K"
+            ]
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "参考图本地路径（~/.openclaw/media/inbound/…）"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将选择映射到 parameters 同名 tool_field；resolution 仅在该模型 parameters.resolution 存在时填写。",
+        "example_call": {
+          "model": "openrouter/black-forest-labs/flux.2-pro",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "aspectRatio": "1:1",
+          "resolution": "1K"
+        }
+      }
+    },
+    "black-forest-labs/flux.2-max": {
+      "id": "black-forest-labs/flux.2-max",
+      "name": "FLUX.2 Max",
+      "category": "image",
+      "openclaw_ref": "openrouter/black-forest-labs/flux.2-max",
+      "aspect_ratios": [
+        "1:1",
+        "2:3",
+        "3:2",
+        "3:4",
+        "4:3",
+        "4:5",
+        "5:4",
+        "9:16",
+        "16:9",
+        "21:9"
+      ],
+      "image_sizes": [
+        "1K",
+        "2K",
+        "4K"
+      ],
+      "default_aspect_ratio": "1:1",
+      "default_image_size": "1K",
+      "image_workflows": [
+        "text",
+        "image"
+      ],
+      "reference_input_mode": "messages",
+      "supports_super_resolution_refs": false,
+      "supports_strength": false,
+      "max_reference_images": 4,
+      "supports_reference_images": true,
+      "generation_params": {
+        "tool": "image_generate",
+        "model_id": "black-forest-labs/flux.2-max",
+        "model": "openrouter/black-forest-labs/flux.2-max",
+        "reference_input_mode": "messages",
+        "workflows": {
+          "text_to_image": {
+            "label": "文生图",
+            "required_parameters": [
+              "model",
+              "prompt"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ]
+          },
+          "image_to_image": {
+            "label": "图生图",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "images"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ],
+            "reference_input_mode": "messages"
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/black-forest-labs/flux.2-max",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1:1",
+              "2:3",
+              "3:2",
+              "3:4",
+              "4:3",
+              "4:5",
+              "5:4",
+              "9:16",
+              "16:9",
+              "21:9"
+            ],
+            "default": "1:1",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "1:1",
+              "竖图",
+              "横图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1K",
+              "2K",
+              "4K"
+            ],
+            "default": "1K",
+            "maps_to_api": "image_config.image_size",
+            "user_phrases": [
+              "0.5K",
+              "1K",
+              "2K",
+              "4K"
+            ]
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "参考图本地路径（~/.openclaw/media/inbound/…）"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将选择映射到 parameters 同名 tool_field；resolution 仅在该模型 parameters.resolution 存在时填写。",
+        "example_call": {
+          "model": "openrouter/black-forest-labs/flux.2-max",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "aspectRatio": "1:1",
+          "resolution": "1K"
+        }
+      }
+    },
+    "black-forest-labs/flux.2-flex": {
+      "id": "black-forest-labs/flux.2-flex",
+      "name": "FLUX.2 Flex",
+      "category": "image",
+      "openclaw_ref": "openrouter/black-forest-labs/flux.2-flex",
+      "aspect_ratios": [
+        "1:1",
+        "2:3",
+        "3:2",
+        "3:4",
+        "4:3",
+        "4:5",
+        "5:4",
+        "9:16",
+        "16:9",
+        "21:9"
+      ],
+      "image_sizes": [
+        "1K",
+        "2K",
+        "4K"
+      ],
+      "default_aspect_ratio": "1:1",
+      "default_image_size": "1K",
+      "image_workflows": [
+        "text",
+        "image"
+      ],
+      "reference_input_mode": "messages",
+      "supports_super_resolution_refs": false,
+      "supports_strength": false,
+      "max_reference_images": 4,
+      "supports_reference_images": true,
+      "generation_params": {
+        "tool": "image_generate",
+        "model_id": "black-forest-labs/flux.2-flex",
+        "model": "openrouter/black-forest-labs/flux.2-flex",
+        "reference_input_mode": "messages",
+        "workflows": {
+          "text_to_image": {
+            "label": "文生图",
+            "required_parameters": [
+              "model",
+              "prompt"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ]
+          },
+          "image_to_image": {
+            "label": "图生图",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "images"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ],
+            "reference_input_mode": "messages"
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/black-forest-labs/flux.2-flex",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1:1",
+              "2:3",
+              "3:2",
+              "3:4",
+              "4:3",
+              "4:5",
+              "5:4",
+              "9:16",
+              "16:9",
+              "21:9"
+            ],
+            "default": "1:1",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "1:1",
+              "竖图",
+              "横图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1K",
+              "2K",
+              "4K"
+            ],
+            "default": "1K",
+            "maps_to_api": "image_config.image_size",
+            "user_phrases": [
+              "0.5K",
+              "1K",
+              "2K",
+              "4K"
+            ]
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "参考图本地路径（~/.openclaw/media/inbound/…）"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将选择映射到 parameters 同名 tool_field；resolution 仅在该模型 parameters.resolution 存在时填写。",
+        "example_call": {
+          "model": "openrouter/black-forest-labs/flux.2-flex",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "aspectRatio": "1:1",
+          "resolution": "1K"
+        }
+      }
+    },
+    "black-forest-labs/flux.2-klein-4b": {
+      "id": "black-forest-labs/flux.2-klein-4b",
+      "name": "FLUX.2 Klein",
+      "category": "image",
+      "openclaw_ref": "openrouter/black-forest-labs/flux.2-klein-4b",
+      "aspect_ratios": [
+        "1:1",
+        "2:3",
+        "3:2",
+        "3:4",
+        "4:3",
+        "4:5",
+        "5:4",
+        "9:16",
+        "16:9",
+        "21:9"
+      ],
+      "image_sizes": [
+        "1K",
+        "2K",
+        "4K"
+      ],
+      "default_aspect_ratio": "1:1",
+      "default_image_size": "1K",
+      "image_workflows": [
+        "text",
+        "image"
+      ],
+      "reference_input_mode": "messages",
+      "supports_super_resolution_refs": false,
+      "supports_strength": false,
+      "max_reference_images": 4,
+      "supports_reference_images": true,
+      "generation_params": {
+        "tool": "image_generate",
+        "model_id": "black-forest-labs/flux.2-klein-4b",
+        "model": "openrouter/black-forest-labs/flux.2-klein-4b",
+        "reference_input_mode": "messages",
+        "workflows": {
+          "text_to_image": {
+            "label": "文生图",
+            "required_parameters": [
+              "model",
+              "prompt"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ]
+          },
+          "image_to_image": {
+            "label": "图生图",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "images"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ],
+            "reference_input_mode": "messages"
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/black-forest-labs/flux.2-klein-4b",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1:1",
+              "2:3",
+              "3:2",
+              "3:4",
+              "4:3",
+              "4:5",
+              "5:4",
+              "9:16",
+              "16:9",
+              "21:9"
+            ],
+            "default": "1:1",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "1:1",
+              "竖图",
+              "横图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1K",
+              "2K",
+              "4K"
+            ],
+            "default": "1K",
+            "maps_to_api": "image_config.image_size",
+            "user_phrases": [
+              "0.5K",
+              "1K",
+              "2K",
+              "4K"
+            ]
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "参考图本地路径（~/.openclaw/media/inbound/…）"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将选择映射到 parameters 同名 tool_field；resolution 仅在该模型 parameters.resolution 存在时填写。",
+        "example_call": {
+          "model": "openrouter/black-forest-labs/flux.2-klein-4b",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "aspectRatio": "1:1",
+          "resolution": "1K"
+        }
+      }
+    },
+    "bytedance-seed/seedream-4.5": {
+      "id": "bytedance-seed/seedream-4.5",
+      "name": "Seedream 4.5",
+      "category": "image",
+      "openclaw_ref": "openrouter/bytedance-seed/seedream-4.5",
+      "aspect_ratios": [
+        "1:1",
+        "2:3",
+        "3:2",
+        "3:4",
+        "4:3",
+        "4:5",
+        "5:4",
+        "9:16",
+        "16:9",
+        "21:9"
+      ],
+      "image_sizes": [
+        "1K",
+        "2K",
+        "4K"
+      ],
+      "default_aspect_ratio": "1:1",
+      "default_image_size": "1K",
+      "image_workflows": [
+        "text",
+        "image"
+      ],
+      "reference_input_mode": "messages",
+      "supports_super_resolution_refs": false,
+      "supports_strength": false,
+      "max_reference_images": 4,
+      "supports_reference_images": true,
+      "generation_params": {
+        "tool": "image_generate",
+        "model_id": "bytedance-seed/seedream-4.5",
+        "model": "openrouter/bytedance-seed/seedream-4.5",
+        "reference_input_mode": "messages",
+        "workflows": {
+          "text_to_image": {
+            "label": "文生图",
+            "required_parameters": [
+              "model",
+              "prompt"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ]
+          },
+          "image_to_image": {
+            "label": "图生图",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "images"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ],
+            "reference_input_mode": "messages"
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/bytedance-seed/seedream-4.5",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1:1",
+              "2:3",
+              "3:2",
+              "3:4",
+              "4:3",
+              "4:5",
+              "5:4",
+              "9:16",
+              "16:9",
+              "21:9"
+            ],
+            "default": "1:1",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "1:1",
+              "竖图",
+              "横图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1K",
+              "2K",
+              "4K"
+            ],
+            "default": "1K",
+            "maps_to_api": "image_config.image_size",
+            "user_phrases": [
+              "0.5K",
+              "1K",
+              "2K",
+              "4K"
+            ]
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "参考图本地路径（~/.openclaw/media/inbound/…）"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将选择映射到 parameters 同名 tool_field；resolution 仅在该模型 parameters.resolution 存在时填写。",
+        "example_call": {
+          "model": "openrouter/bytedance-seed/seedream-4.5",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "aspectRatio": "1:1",
+          "resolution": "1K"
+        }
+      }
+    },
+    "openai/gpt-5.4-image-2": {
+      "id": "openai/gpt-5.4-image-2",
+      "name": "GPT-5.4 Image",
+      "category": "image",
+      "openclaw_ref": "openrouter/openai/gpt-5.4-image-2",
+      "aspect_ratios": [
+        "1:1",
+        "2:3",
+        "3:2",
+        "3:4",
+        "4:3",
+        "4:5",
+        "5:4",
+        "9:16",
+        "16:9",
+        "21:9"
+      ],
+      "image_sizes": [
+        "1K",
+        "2K"
+      ],
+      "default_aspect_ratio": "1:1",
+      "default_image_size": "1K",
+      "image_workflows": [
+        "text",
+        "image"
+      ],
+      "reference_input_mode": "messages",
+      "supports_super_resolution_refs": false,
+      "supports_strength": false,
+      "max_reference_images": 4,
+      "supports_reference_images": true,
+      "generation_params": {
+        "tool": "image_generate",
+        "model_id": "openai/gpt-5.4-image-2",
+        "model": "openrouter/openai/gpt-5.4-image-2",
+        "reference_input_mode": "messages",
+        "workflows": {
+          "text_to_image": {
+            "label": "文生图",
+            "required_parameters": [
+              "model",
+              "prompt"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ]
+          },
+          "image_to_image": {
+            "label": "图生图",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "images"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ],
+            "reference_input_mode": "messages"
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/openai/gpt-5.4-image-2",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1:1",
+              "2:3",
+              "3:2",
+              "3:4",
+              "4:3",
+              "4:5",
+              "5:4",
+              "9:16",
+              "16:9",
+              "21:9"
+            ],
+            "default": "1:1",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "1:1",
+              "竖图",
+              "横图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1K",
+              "2K"
+            ],
+            "default": "1K",
+            "maps_to_api": "image_config.image_size",
+            "user_phrases": [
+              "0.5K",
+              "1K",
+              "2K",
+              "4K"
+            ]
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "参考图本地路径（~/.openclaw/media/inbound/…）"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将选择映射到 parameters 同名 tool_field；resolution 仅在该模型 parameters.resolution 存在时填写。",
+        "example_call": {
+          "model": "openrouter/openai/gpt-5.4-image-2",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "aspectRatio": "1:1",
+          "resolution": "1K"
+        }
+      }
+    },
+    "openai/gpt-5-image": {
+      "id": "openai/gpt-5-image",
+      "name": "GPT-5 Image",
+      "category": "image",
+      "openclaw_ref": "openrouter/openai/gpt-5-image",
+      "aspect_ratios": [
+        "1:1",
+        "2:3",
+        "3:2",
+        "3:4",
+        "4:3",
+        "4:5",
+        "5:4",
+        "9:16",
+        "16:9",
+        "21:9"
+      ],
+      "image_sizes": [
+        "1K",
+        "2K",
+        "4K"
+      ],
+      "default_aspect_ratio": "1:1",
+      "default_image_size": "1K",
+      "image_workflows": [
+        "text",
+        "image"
+      ],
+      "reference_input_mode": "messages",
+      "supports_super_resolution_refs": false,
+      "supports_strength": false,
+      "max_reference_images": 4,
+      "supports_reference_images": true,
+      "generation_params": {
+        "tool": "image_generate",
+        "model_id": "openai/gpt-5-image",
+        "model": "openrouter/openai/gpt-5-image",
+        "reference_input_mode": "messages",
+        "workflows": {
+          "text_to_image": {
+            "label": "文生图",
+            "required_parameters": [
+              "model",
+              "prompt"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ]
+          },
+          "image_to_image": {
+            "label": "图生图",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "images"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ],
+            "reference_input_mode": "messages"
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/openai/gpt-5-image",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1:1",
+              "2:3",
+              "3:2",
+              "3:4",
+              "4:3",
+              "4:5",
+              "5:4",
+              "9:16",
+              "16:9",
+              "21:9"
+            ],
+            "default": "1:1",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "1:1",
+              "竖图",
+              "横图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1K",
+              "2K",
+              "4K"
+            ],
+            "default": "1K",
+            "maps_to_api": "image_config.image_size",
+            "user_phrases": [
+              "0.5K",
+              "1K",
+              "2K",
+              "4K"
+            ]
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "参考图本地路径（~/.openclaw/media/inbound/…）"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将选择映射到 parameters 同名 tool_field；resolution 仅在该模型 parameters.resolution 存在时填写。",
+        "example_call": {
+          "model": "openrouter/openai/gpt-5-image",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "aspectRatio": "1:1",
+          "resolution": "1K"
+        }
+      }
+    },
+    "openai/gpt-5-image-mini": {
+      "id": "openai/gpt-5-image-mini",
+      "name": "GPT-5 Image Mini",
+      "category": "image",
+      "openclaw_ref": "openrouter/openai/gpt-5-image-mini",
+      "aspect_ratios": [
+        "1:1",
+        "2:3",
+        "3:2",
+        "3:4",
+        "4:3",
+        "4:5",
+        "5:4",
+        "9:16",
+        "16:9",
+        "21:9"
+      ],
+      "image_sizes": [
+        "1K",
+        "2K",
+        "4K"
+      ],
+      "default_aspect_ratio": "1:1",
+      "default_image_size": "1K",
+      "image_workflows": [
+        "text",
+        "image"
+      ],
+      "reference_input_mode": "messages",
+      "supports_super_resolution_refs": false,
+      "supports_strength": false,
+      "max_reference_images": 4,
+      "supports_reference_images": true,
+      "generation_params": {
+        "tool": "image_generate",
+        "model_id": "openai/gpt-5-image-mini",
+        "model": "openrouter/openai/gpt-5-image-mini",
+        "reference_input_mode": "messages",
+        "workflows": {
+          "text_to_image": {
+            "label": "文生图",
+            "required_parameters": [
+              "model",
+              "prompt"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ]
+          },
+          "image_to_image": {
+            "label": "图生图",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "images"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ],
+            "reference_input_mode": "messages"
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/openai/gpt-5-image-mini",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1:1",
+              "2:3",
+              "3:2",
+              "3:4",
+              "4:3",
+              "4:5",
+              "5:4",
+              "9:16",
+              "16:9",
+              "21:9"
+            ],
+            "default": "1:1",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "1:1",
+              "竖图",
+              "横图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1K",
+              "2K",
+              "4K"
+            ],
+            "default": "1K",
+            "maps_to_api": "image_config.image_size",
+            "user_phrases": [
+              "0.5K",
+              "1K",
+              "2K",
+              "4K"
+            ]
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "参考图本地路径（~/.openclaw/media/inbound/…）"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将选择映射到 parameters 同名 tool_field；resolution 仅在该模型 parameters.resolution 存在时填写。",
+        "example_call": {
+          "model": "openrouter/openai/gpt-5-image-mini",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "aspectRatio": "1:1",
+          "resolution": "1K"
+        }
+      }
+    },
+    "x-ai/grok-imagine-image-quality": {
+      "id": "x-ai/grok-imagine-image-quality",
+      "name": "Grok Imagine",
+      "category": "image",
+      "openclaw_ref": "openrouter/x-ai/grok-imagine-image-quality",
+      "aspect_ratios": [
+        "1:1",
+        "2:3",
+        "3:2",
+        "3:4",
+        "4:3",
+        "4:5",
+        "5:4",
+        "9:16",
+        "16:9",
+        "21:9"
+      ],
+      "image_sizes": [
+        "1K",
+        "2K"
+      ],
+      "default_aspect_ratio": "1:1",
+      "default_image_size": "1K",
+      "image_workflows": [
+        "text",
+        "image"
+      ],
+      "reference_input_mode": "messages",
+      "supports_super_resolution_refs": false,
+      "supports_strength": false,
+      "max_reference_images": 4,
+      "supports_reference_images": true,
+      "generation_params": {
+        "tool": "image_generate",
+        "model_id": "x-ai/grok-imagine-image-quality",
+        "model": "openrouter/x-ai/grok-imagine-image-quality",
+        "reference_input_mode": "messages",
+        "workflows": {
+          "text_to_image": {
+            "label": "文生图",
+            "required_parameters": [
+              "model",
+              "prompt"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ]
+          },
+          "image_to_image": {
+            "label": "图生图",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "images"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ],
+            "reference_input_mode": "messages"
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/x-ai/grok-imagine-image-quality",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1:1",
+              "2:3",
+              "3:2",
+              "3:4",
+              "4:3",
+              "4:5",
+              "5:4",
+              "9:16",
+              "16:9",
+              "21:9"
+            ],
+            "default": "1:1",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "1:1",
+              "竖图",
+              "横图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1K",
+              "2K"
+            ],
+            "default": "1K",
+            "maps_to_api": "image_config.image_size",
+            "user_phrases": [
+              "0.5K",
+              "1K",
+              "2K",
+              "4K"
+            ]
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "参考图本地路径（~/.openclaw/media/inbound/…）"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将选择映射到 parameters 同名 tool_field；resolution 仅在该模型 parameters.resolution 存在时填写。",
+        "example_call": {
+          "model": "openrouter/x-ai/grok-imagine-image-quality",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "aspectRatio": "1:1",
+          "resolution": "1K"
+        }
+      }
+    },
+    "sourceful/riverflow-v2-pro": {
+      "id": "sourceful/riverflow-v2-pro",
+      "name": "Riverflow Pro",
+      "category": "image",
+      "openclaw_ref": "openrouter/sourceful/riverflow-v2-pro",
+      "aspect_ratios": [
+        "1:1",
+        "2:3",
+        "3:2",
+        "3:4",
+        "4:3",
+        "4:5",
+        "5:4",
+        "9:16",
+        "16:9",
+        "21:9"
+      ],
+      "image_sizes": [],
+      "default_aspect_ratio": "1:1",
+      "default_image_size": null,
+      "image_workflows": [
+        "text",
+        "image"
+      ],
+      "reference_input_mode": "super_resolution_references",
+      "supports_super_resolution_refs": true,
+      "supports_strength": false,
+      "max_reference_images": 4,
+      "supports_reference_images": true,
+      "generation_params": {
+        "tool": "image_generate",
+        "model_id": "sourceful/riverflow-v2-pro",
+        "model": "openrouter/sourceful/riverflow-v2-pro",
+        "reference_input_mode": "super_resolution_references",
+        "workflows": {
+          "text_to_image": {
+            "label": "文生图",
+            "required_parameters": [
+              "model",
+              "prompt"
+            ],
+            "optional_parameters": [
+              "aspectRatio"
+            ]
+          },
+          "image_super_resolution": {
+            "label": "超分参考图",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "images"
+            ],
+            "optional_parameters": [
+              "aspectRatio"
+            ],
+            "reference_input_mode": "super_resolution_references",
+            "notes": "勿传 resolution / image_size"
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/sourceful/riverflow-v2-pro",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1:1",
+              "2:3",
+              "3:2",
+              "3:4",
+              "4:3",
+              "4:5",
+              "5:4",
+              "9:16",
+              "16:9",
+              "21:9"
+            ],
+            "default": "1:1",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "1:1",
+              "竖图",
+              "横图",
+              "方图"
+            ]
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "参考图本地路径；Riverflow 映射为 super_resolution_references"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将选择映射到 parameters 同名 tool_field；resolution 仅在该模型 parameters.resolution 存在时填写。",
+        "example_call": {
+          "model": "openrouter/sourceful/riverflow-v2-pro",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "aspectRatio": "1:1"
+        }
+      }
+    },
+    "google/veo-3.1-fast": {
+      "id": "google/veo-3.1-fast",
+      "name": "Veo 3.1 Fast",
+      "category": "video",
+      "openclaw_ref": "openrouter/google/veo-3.1-fast",
+      "aspect_ratios": [
+        "16:9",
+        "9:16"
+      ],
+      "resolutions": [
+        "720P",
+        "1080P"
+      ],
+      "duration_presets": [
+        4,
+        6,
+        8
+      ],
+      "default_duration": 8,
+      "default_aspect_ratio": "16:9",
+      "default_resolution": "720P",
+      "supports_image_to_video": true,
+      "supported_frame_types": [
+        "first_frame",
+        "last_frame"
+      ],
+      "supports_reference_images": false,
+      "supports_input_references": false,
+      "show_audio_toggle": true,
+      "default_generate_audio": true,
+      "generation_params": {
+        "tool": "video_generate",
+        "model_id": "google/veo-3.1-fast",
+        "model": "openrouter/google/veo-3.1-fast",
+        "workflows": {
+          "text_to_video": {
+            "label": "文生视频",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_first_frame": {
+            "label": "图生视频（首帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "first_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_last_frame": {
+            "label": "图生视频（尾帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "last_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/google/veo-3.1-fast",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "durationSeconds": {
+            "tool_field": "durationSeconds",
+            "required": true,
+            "type": "integer",
+            "allowed": [
+              4,
+              6,
+              8
+            ],
+            "default": 8,
+            "user_phrases": [
+              "N秒",
+              "N 秒",
+              "duration N"
+            ]
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "16:9",
+              "9:16"
+            ],
+            "default": "16:9",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "横图",
+              "竖图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "720P",
+              "1080P"
+            ],
+            "default": "720P",
+            "user_phrases": [
+              "480p",
+              "720p",
+              "1080p",
+              "4K"
+            ]
+          },
+          "audio": {
+            "tool_field": "audio",
+            "required": false,
+            "type": "boolean",
+            "allowed": [
+              true,
+              false
+            ],
+            "default": true,
+            "user_phrases": [
+              "带音频",
+              "不要音频",
+              "静音"
+            ],
+            "maps_to_api": "generate_audio"
+          },
+          "image": {
+            "tool_field": "image",
+            "required": false,
+            "type": "string",
+            "description": "单张参考图本地路径（~/.openclaw/media/inbound/…）；首帧/尾帧工作流用"
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "多张参考图；reference_image 工作流用"
+          },
+          "imageRoles": {
+            "tool_field": "imageRoles",
+            "required": false,
+            "type": "array",
+            "allowed": [
+              "first_frame",
+              "last_frame"
+            ],
+            "description": "与 image/images 配合；first_frame | last_frame | reference_image"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将每项用户选择映射到 parameters 中同名 tool_field；allowed 外的值须改选或告知用户不支持；然后一次性调用 video_generate。",
+        "example_call": {
+          "model": "openrouter/google/veo-3.1-fast",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "durationSeconds": 8,
+          "aspectRatio": "16:9",
+          "resolution": "720P",
+          "audio": true
+        }
+      }
+    },
+    "google/veo-3.1": {
+      "id": "google/veo-3.1",
+      "name": "Veo 3.1",
+      "category": "video",
+      "openclaw_ref": "openrouter/google/veo-3.1",
+      "aspect_ratios": [
+        "16:9",
+        "9:16"
+      ],
+      "resolutions": [
+        "720P",
+        "1080P",
+        "4K"
+      ],
+      "duration_presets": [
+        4,
+        6,
+        8
+      ],
+      "default_duration": 8,
+      "default_aspect_ratio": "16:9",
+      "default_resolution": "1080P",
+      "supports_image_to_video": true,
+      "supported_frame_types": [
+        "first_frame",
+        "last_frame"
+      ],
+      "supports_reference_images": false,
+      "supports_input_references": false,
+      "show_audio_toggle": true,
+      "default_generate_audio": true,
+      "generation_params": {
+        "tool": "video_generate",
+        "model_id": "google/veo-3.1",
+        "model": "openrouter/google/veo-3.1",
+        "workflows": {
+          "text_to_video": {
+            "label": "文生视频",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_first_frame": {
+            "label": "图生视频（首帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "first_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_last_frame": {
+            "label": "图生视频（尾帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "last_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/google/veo-3.1",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "durationSeconds": {
+            "tool_field": "durationSeconds",
+            "required": true,
+            "type": "integer",
+            "allowed": [
+              4,
+              6,
+              8
+            ],
+            "default": 8,
+            "user_phrases": [
+              "N秒",
+              "N 秒",
+              "duration N"
+            ]
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "16:9",
+              "9:16"
+            ],
+            "default": "16:9",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "横图",
+              "竖图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "720P",
+              "1080P",
+              "4K"
+            ],
+            "default": "1080P",
+            "user_phrases": [
+              "480p",
+              "720p",
+              "1080p",
+              "4K"
+            ]
+          },
+          "audio": {
+            "tool_field": "audio",
+            "required": false,
+            "type": "boolean",
+            "allowed": [
+              true,
+              false
+            ],
+            "default": true,
+            "user_phrases": [
+              "带音频",
+              "不要音频",
+              "静音"
+            ],
+            "maps_to_api": "generate_audio"
+          },
+          "image": {
+            "tool_field": "image",
+            "required": false,
+            "type": "string",
+            "description": "单张参考图本地路径（~/.openclaw/media/inbound/…）；首帧/尾帧工作流用"
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "多张参考图；reference_image 工作流用"
+          },
+          "imageRoles": {
+            "tool_field": "imageRoles",
+            "required": false,
+            "type": "array",
+            "allowed": [
+              "first_frame",
+              "last_frame"
+            ],
+            "description": "与 image/images 配合；first_frame | last_frame | reference_image"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将每项用户选择映射到 parameters 中同名 tool_field；allowed 外的值须改选或告知用户不支持；然后一次性调用 video_generate。",
+        "example_call": {
+          "model": "openrouter/google/veo-3.1",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "durationSeconds": 8,
+          "aspectRatio": "16:9",
+          "resolution": "1080P",
+          "audio": true
+        }
+      }
+    },
+    "google/veo-3.1-lite": {
+      "id": "google/veo-3.1-lite",
+      "name": "Veo 3.1 Lite",
+      "category": "video",
+      "openclaw_ref": "openrouter/google/veo-3.1-lite",
+      "aspect_ratios": [
+        "16:9",
+        "9:16"
+      ],
+      "resolutions": [
+        "720P",
+        "1080P"
+      ],
+      "duration_presets": [
+        4,
+        6,
+        8
+      ],
+      "default_duration": 8,
+      "default_aspect_ratio": "9:16",
+      "default_resolution": "720P",
+      "supports_image_to_video": true,
+      "supported_frame_types": [
+        "first_frame",
+        "last_frame"
+      ],
+      "supports_reference_images": false,
+      "supports_input_references": false,
+      "show_audio_toggle": true,
+      "default_generate_audio": true,
+      "generation_params": {
+        "tool": "video_generate",
+        "model_id": "google/veo-3.1-lite",
+        "model": "openrouter/google/veo-3.1-lite",
+        "workflows": {
+          "text_to_video": {
+            "label": "文生视频",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_first_frame": {
+            "label": "图生视频（首帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "first_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_last_frame": {
+            "label": "图生视频（尾帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "last_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/google/veo-3.1-lite",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "durationSeconds": {
+            "tool_field": "durationSeconds",
+            "required": true,
+            "type": "integer",
+            "allowed": [
+              4,
+              6,
+              8
+            ],
+            "default": 8,
+            "user_phrases": [
+              "N秒",
+              "N 秒",
+              "duration N"
+            ]
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "16:9",
+              "9:16"
+            ],
+            "default": "9:16",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "横图",
+              "竖图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "720P",
+              "1080P"
+            ],
+            "default": "720P",
+            "user_phrases": [
+              "480p",
+              "720p",
+              "1080p",
+              "4K"
+            ]
+          },
+          "audio": {
+            "tool_field": "audio",
+            "required": false,
+            "type": "boolean",
+            "allowed": [
+              true,
+              false
+            ],
+            "default": true,
+            "user_phrases": [
+              "带音频",
+              "不要音频",
+              "静音"
+            ],
+            "maps_to_api": "generate_audio"
+          },
+          "image": {
+            "tool_field": "image",
+            "required": false,
+            "type": "string",
+            "description": "单张参考图本地路径（~/.openclaw/media/inbound/…）；首帧/尾帧工作流用"
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "多张参考图；reference_image 工作流用"
+          },
+          "imageRoles": {
+            "tool_field": "imageRoles",
+            "required": false,
+            "type": "array",
+            "allowed": [
+              "first_frame",
+              "last_frame"
+            ],
+            "description": "与 image/images 配合；first_frame | last_frame | reference_image"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将每项用户选择映射到 parameters 中同名 tool_field；allowed 外的值须改选或告知用户不支持；然后一次性调用 video_generate。",
+        "example_call": {
+          "model": "openrouter/google/veo-3.1-lite",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "durationSeconds": 8,
+          "aspectRatio": "9:16",
+          "resolution": "720P",
+          "audio": true
+        }
+      }
+    },
+    "bytedance/seedance-2.0": {
+      "id": "bytedance/seedance-2.0",
+      "name": "Seedance 2.0",
+      "category": "video",
+      "openclaw_ref": "openrouter/bytedance/seedance-2.0",
+      "aspect_ratios": [
+        "1:1",
+        "3:4",
+        "9:16",
+        "4:3",
+        "16:9",
+        "21:9",
+        "9:21"
+      ],
+      "resolutions": [
+        "480P",
+        "720P",
+        "1080P"
+      ],
+      "duration_presets": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "default_duration": 5,
+      "default_aspect_ratio": "9:16",
+      "default_resolution": "720P",
+      "supports_image_to_video": true,
+      "supported_frame_types": [
+        "first_frame",
+        "last_frame",
+        "reference_image"
+      ],
+      "supports_reference_images": true,
+      "supports_input_references": true,
+      "show_audio_toggle": true,
+      "default_generate_audio": true,
+      "generation_params": {
+        "tool": "video_generate",
+        "model_id": "bytedance/seedance-2.0",
+        "model": "openrouter/bytedance/seedance-2.0",
+        "workflows": {
+          "text_to_video": {
+            "label": "文生视频",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_first_frame": {
+            "label": "图生视频（首帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "first_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_last_frame": {
+            "label": "图生视频（尾帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "last_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_reference": {
+            "label": "图生视频（参考图）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "images",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "reference_image"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/bytedance/seedance-2.0",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "durationSeconds": {
+            "tool_field": "durationSeconds",
+            "required": true,
+            "type": "integer",
+            "allowed": [
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "default": 5,
+            "user_phrases": [
+              "N秒",
+              "N 秒",
+              "duration N"
+            ]
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1:1",
+              "3:4",
+              "9:16",
+              "4:3",
+              "16:9",
+              "21:9",
+              "9:21"
+            ],
+            "default": "9:16",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "横图",
+              "竖图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "480P",
+              "720P",
+              "1080P"
+            ],
+            "default": "720P",
+            "user_phrases": [
+              "480p",
+              "720p",
+              "1080p",
+              "4K"
+            ]
+          },
+          "audio": {
+            "tool_field": "audio",
+            "required": false,
+            "type": "boolean",
+            "allowed": [
+              true,
+              false
+            ],
+            "default": true,
+            "user_phrases": [
+              "带音频",
+              "不要音频",
+              "静音"
+            ],
+            "maps_to_api": "generate_audio"
+          },
+          "image": {
+            "tool_field": "image",
+            "required": false,
+            "type": "string",
+            "description": "单张参考图本地路径（~/.openclaw/media/inbound/…）；首帧/尾帧工作流用"
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "多张参考图；reference_image 工作流用"
+          },
+          "imageRoles": {
+            "tool_field": "imageRoles",
+            "required": false,
+            "type": "array",
+            "allowed": [
+              "first_frame",
+              "last_frame",
+              "reference_image"
+            ],
+            "description": "与 image/images 配合；first_frame | last_frame | reference_image"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将每项用户选择映射到 parameters 中同名 tool_field；allowed 外的值须改选或告知用户不支持；然后一次性调用 video_generate。",
+        "example_call": {
+          "model": "openrouter/bytedance/seedance-2.0",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "durationSeconds": 5,
+          "aspectRatio": "9:16",
+          "resolution": "720P",
+          "audio": true
+        }
+      }
+    },
+    "bytedance/seedance-2.0-fast": {
+      "id": "bytedance/seedance-2.0-fast",
+      "name": "Seedance 2.0 Fast",
+      "category": "video",
+      "openclaw_ref": "openrouter/bytedance/seedance-2.0-fast",
+      "aspect_ratios": [
+        "1:1",
+        "3:4",
+        "9:16",
+        "4:3",
+        "16:9",
+        "21:9",
+        "9:21"
+      ],
+      "resolutions": [
+        "480P",
+        "720P"
+      ],
+      "duration_presets": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "default_duration": 5,
+      "default_aspect_ratio": "9:16",
+      "default_resolution": "720P",
+      "supports_image_to_video": true,
+      "supported_frame_types": [
+        "first_frame",
+        "last_frame",
+        "reference_image"
+      ],
+      "supports_reference_images": true,
+      "supports_input_references": true,
+      "show_audio_toggle": true,
+      "default_generate_audio": true,
+      "generation_params": {
+        "tool": "video_generate",
+        "model_id": "bytedance/seedance-2.0-fast",
+        "model": "openrouter/bytedance/seedance-2.0-fast",
+        "workflows": {
+          "text_to_video": {
+            "label": "文生视频",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_first_frame": {
+            "label": "图生视频（首帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "first_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_last_frame": {
+            "label": "图生视频（尾帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "last_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_reference": {
+            "label": "图生视频（参考图）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "images",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "reference_image"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/bytedance/seedance-2.0-fast",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "durationSeconds": {
+            "tool_field": "durationSeconds",
+            "required": true,
+            "type": "integer",
+            "allowed": [
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "default": 5,
+            "user_phrases": [
+              "N秒",
+              "N 秒",
+              "duration N"
+            ]
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1:1",
+              "3:4",
+              "9:16",
+              "4:3",
+              "16:9",
+              "21:9",
+              "9:21"
+            ],
+            "default": "9:16",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "横图",
+              "竖图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "480P",
+              "720P"
+            ],
+            "default": "720P",
+            "user_phrases": [
+              "480p",
+              "720p",
+              "1080p",
+              "4K"
+            ]
+          },
+          "audio": {
+            "tool_field": "audio",
+            "required": false,
+            "type": "boolean",
+            "allowed": [
+              true,
+              false
+            ],
+            "default": true,
+            "user_phrases": [
+              "带音频",
+              "不要音频",
+              "静音"
+            ],
+            "maps_to_api": "generate_audio"
+          },
+          "image": {
+            "tool_field": "image",
+            "required": false,
+            "type": "string",
+            "description": "单张参考图本地路径（~/.openclaw/media/inbound/…）；首帧/尾帧工作流用"
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "多张参考图；reference_image 工作流用"
+          },
+          "imageRoles": {
+            "tool_field": "imageRoles",
+            "required": false,
+            "type": "array",
+            "allowed": [
+              "first_frame",
+              "last_frame",
+              "reference_image"
+            ],
+            "description": "与 image/images 配合；first_frame | last_frame | reference_image"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将每项用户选择映射到 parameters 中同名 tool_field；allowed 外的值须改选或告知用户不支持；然后一次性调用 video_generate。",
+        "example_call": {
+          "model": "openrouter/bytedance/seedance-2.0-fast",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "durationSeconds": 5,
+          "aspectRatio": "9:16",
+          "resolution": "720P",
+          "audio": true
+        }
+      }
+    },
+    "bytedance/seedance-1-5-pro": {
+      "id": "bytedance/seedance-1-5-pro",
+      "name": "Seedance 1.5 Pro",
+      "category": "video",
+      "openclaw_ref": "openrouter/bytedance/seedance-1-5-pro",
+      "aspect_ratios": [
+        "1:1",
+        "3:4",
+        "9:16",
+        "9:21",
+        "4:3",
+        "16:9",
+        "21:9"
+      ],
+      "resolutions": [
+        "480P",
+        "720P",
+        "1080P"
+      ],
+      "duration_presets": [
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "default_duration": 8,
+      "default_aspect_ratio": "16:9",
+      "default_resolution": "720P",
+      "supports_image_to_video": true,
+      "supported_frame_types": [
+        "first_frame",
+        "last_frame"
+      ],
+      "supports_reference_images": false,
+      "supports_input_references": false,
+      "show_audio_toggle": true,
+      "default_generate_audio": true,
+      "generation_params": {
+        "tool": "video_generate",
+        "model_id": "bytedance/seedance-1-5-pro",
+        "model": "openrouter/bytedance/seedance-1-5-pro",
+        "workflows": {
+          "text_to_video": {
+            "label": "文生视频",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_first_frame": {
+            "label": "图生视频（首帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "first_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_last_frame": {
+            "label": "图生视频（尾帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "last_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/bytedance/seedance-1-5-pro",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "durationSeconds": {
+            "tool_field": "durationSeconds",
+            "required": true,
+            "type": "integer",
+            "allowed": [
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12
+            ],
+            "default": 8,
+            "user_phrases": [
+              "N秒",
+              "N 秒",
+              "duration N"
+            ]
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1:1",
+              "3:4",
+              "9:16",
+              "9:21",
+              "4:3",
+              "16:9",
+              "21:9"
+            ],
+            "default": "16:9",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "横图",
+              "竖图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "480P",
+              "720P",
+              "1080P"
+            ],
+            "default": "720P",
+            "user_phrases": [
+              "480p",
+              "720p",
+              "1080p",
+              "4K"
+            ]
+          },
+          "audio": {
+            "tool_field": "audio",
+            "required": false,
+            "type": "boolean",
+            "allowed": [
+              true,
+              false
+            ],
+            "default": true,
+            "user_phrases": [
+              "带音频",
+              "不要音频",
+              "静音"
+            ],
+            "maps_to_api": "generate_audio"
+          },
+          "image": {
+            "tool_field": "image",
+            "required": false,
+            "type": "string",
+            "description": "单张参考图本地路径（~/.openclaw/media/inbound/…）；首帧/尾帧工作流用"
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "多张参考图；reference_image 工作流用"
+          },
+          "imageRoles": {
+            "tool_field": "imageRoles",
+            "required": false,
+            "type": "array",
+            "allowed": [
+              "first_frame",
+              "last_frame"
+            ],
+            "description": "与 image/images 配合；first_frame | last_frame | reference_image"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将每项用户选择映射到 parameters 中同名 tool_field；allowed 外的值须改选或告知用户不支持；然后一次性调用 video_generate。",
+        "example_call": {
+          "model": "openrouter/bytedance/seedance-1-5-pro",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "durationSeconds": 8,
+          "aspectRatio": "16:9",
+          "resolution": "720P",
+          "audio": true
+        }
+      }
+    },
+    "kwaivgi/kling-v3.0-pro": {
+      "id": "kwaivgi/kling-v3.0-pro",
+      "name": "Kling 3.0 Pro",
+      "category": "video",
+      "openclaw_ref": "openrouter/kwaivgi/kling-v3.0-pro",
+      "aspect_ratios": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "resolutions": [
+        "720P"
+      ],
+      "duration_presets": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "default_duration": 8,
+      "default_aspect_ratio": "16:9",
+      "default_resolution": "720P",
+      "supports_image_to_video": true,
+      "supported_frame_types": [
+        "first_frame",
+        "last_frame",
+        "reference_image"
+      ],
+      "supports_reference_images": true,
+      "supports_input_references": true,
+      "show_audio_toggle": true,
+      "default_generate_audio": true,
+      "generation_params": {
+        "tool": "video_generate",
+        "model_id": "kwaivgi/kling-v3.0-pro",
+        "model": "openrouter/kwaivgi/kling-v3.0-pro",
+        "workflows": {
+          "text_to_video": {
+            "label": "文生视频",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_first_frame": {
+            "label": "图生视频（首帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "first_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_last_frame": {
+            "label": "图生视频（尾帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "last_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_reference": {
+            "label": "图生视频（参考图）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "images",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "reference_image"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/kwaivgi/kling-v3.0-pro",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "durationSeconds": {
+            "tool_field": "durationSeconds",
+            "required": true,
+            "type": "integer",
+            "allowed": [
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "default": 8,
+            "user_phrases": [
+              "N秒",
+              "N 秒",
+              "duration N"
+            ]
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "16:9",
+              "9:16",
+              "1:1"
+            ],
+            "default": "16:9",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "横图",
+              "竖图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "720P"
+            ],
+            "default": "720P",
+            "user_phrases": [
+              "480p",
+              "720p",
+              "1080p",
+              "4K"
+            ]
+          },
+          "audio": {
+            "tool_field": "audio",
+            "required": false,
+            "type": "boolean",
+            "allowed": [
+              true,
+              false
+            ],
+            "default": true,
+            "user_phrases": [
+              "带音频",
+              "不要音频",
+              "静音"
+            ],
+            "maps_to_api": "generate_audio"
+          },
+          "image": {
+            "tool_field": "image",
+            "required": false,
+            "type": "string",
+            "description": "单张参考图本地路径（~/.openclaw/media/inbound/…）；首帧/尾帧工作流用"
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "多张参考图；reference_image 工作流用"
+          },
+          "imageRoles": {
+            "tool_field": "imageRoles",
+            "required": false,
+            "type": "array",
+            "allowed": [
+              "first_frame",
+              "last_frame",
+              "reference_image"
+            ],
+            "description": "与 image/images 配合；first_frame | last_frame | reference_image"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将每项用户选择映射到 parameters 中同名 tool_field；allowed 外的值须改选或告知用户不支持；然后一次性调用 video_generate。",
+        "example_call": {
+          "model": "openrouter/kwaivgi/kling-v3.0-pro",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "durationSeconds": 8,
+          "aspectRatio": "16:9",
+          "resolution": "720P",
+          "audio": true
+        }
+      }
+    },
+    "kwaivgi/kling-v3.0-std": {
+      "id": "kwaivgi/kling-v3.0-std",
+      "name": "Kling 3.0 Standard",
+      "category": "video",
+      "openclaw_ref": "openrouter/kwaivgi/kling-v3.0-std",
+      "aspect_ratios": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "resolutions": [
+        "720P"
+      ],
+      "duration_presets": [
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "default_duration": 8,
+      "default_aspect_ratio": "16:9",
+      "default_resolution": "720P",
+      "supports_image_to_video": true,
+      "supported_frame_types": [
+        "first_frame",
+        "last_frame"
+      ],
+      "supports_reference_images": false,
+      "supports_input_references": false,
+      "show_audio_toggle": true,
+      "default_generate_audio": true,
+      "generation_params": {
+        "tool": "video_generate",
+        "model_id": "kwaivgi/kling-v3.0-std",
+        "model": "openrouter/kwaivgi/kling-v3.0-std",
+        "workflows": {
+          "text_to_video": {
+            "label": "文生视频",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_first_frame": {
+            "label": "图生视频（首帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "first_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_last_frame": {
+            "label": "图生视频（尾帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "last_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/kwaivgi/kling-v3.0-std",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "durationSeconds": {
+            "tool_field": "durationSeconds",
+            "required": true,
+            "type": "integer",
+            "allowed": [
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "default": 8,
+            "user_phrases": [
+              "N秒",
+              "N 秒",
+              "duration N"
+            ]
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "16:9",
+              "9:16",
+              "1:1"
+            ],
+            "default": "16:9",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "横图",
+              "竖图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "720P"
+            ],
+            "default": "720P",
+            "user_phrases": [
+              "480p",
+              "720p",
+              "1080p",
+              "4K"
+            ]
+          },
+          "audio": {
+            "tool_field": "audio",
+            "required": false,
+            "type": "boolean",
+            "allowed": [
+              true,
+              false
+            ],
+            "default": true,
+            "user_phrases": [
+              "带音频",
+              "不要音频",
+              "静音"
+            ],
+            "maps_to_api": "generate_audio"
+          },
+          "image": {
+            "tool_field": "image",
+            "required": false,
+            "type": "string",
+            "description": "单张参考图本地路径（~/.openclaw/media/inbound/…）；首帧/尾帧工作流用"
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "多张参考图；reference_image 工作流用"
+          },
+          "imageRoles": {
+            "tool_field": "imageRoles",
+            "required": false,
+            "type": "array",
+            "allowed": [
+              "first_frame",
+              "last_frame"
+            ],
+            "description": "与 image/images 配合；first_frame | last_frame | reference_image"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将每项用户选择映射到 parameters 中同名 tool_field；allowed 外的值须改选或告知用户不支持；然后一次性调用 video_generate。",
+        "example_call": {
+          "model": "openrouter/kwaivgi/kling-v3.0-std",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "durationSeconds": 8,
+          "aspectRatio": "16:9",
+          "resolution": "720P",
+          "audio": true
+        }
+      }
+    },
+    "kwaivgi/kling-video-o1": {
+      "id": "kwaivgi/kling-video-o1",
+      "name": "Kling Video O1",
+      "category": "video",
+      "openclaw_ref": "openrouter/kwaivgi/kling-video-o1",
+      "aspect_ratios": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "resolutions": [
+        "720P"
+      ],
+      "duration_presets": [
+        5,
+        10
+      ],
+      "default_duration": 5,
+      "default_aspect_ratio": "16:9",
+      "default_resolution": "720P",
+      "supports_image_to_video": true,
+      "supported_frame_types": [
+        "first_frame",
+        "last_frame",
+        "reference_image"
+      ],
+      "supports_reference_images": true,
+      "supports_input_references": true,
+      "show_audio_toggle": true,
+      "default_generate_audio": true,
+      "generation_params": {
+        "tool": "video_generate",
+        "model_id": "kwaivgi/kling-video-o1",
+        "model": "openrouter/kwaivgi/kling-video-o1",
+        "workflows": {
+          "text_to_video": {
+            "label": "文生视频",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_first_frame": {
+            "label": "图生视频（首帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "first_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_last_frame": {
+            "label": "图生视频（尾帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "last_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_reference": {
+            "label": "图生视频（参考图）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "images",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "reference_image"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/kwaivgi/kling-video-o1",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "durationSeconds": {
+            "tool_field": "durationSeconds",
+            "required": true,
+            "type": "integer",
+            "allowed": [
+              5,
+              10
+            ],
+            "default": 5,
+            "user_phrases": [
+              "N秒",
+              "N 秒",
+              "duration N"
+            ]
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "16:9",
+              "9:16",
+              "1:1"
+            ],
+            "default": "16:9",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "横图",
+              "竖图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "720P"
+            ],
+            "default": "720P",
+            "user_phrases": [
+              "480p",
+              "720p",
+              "1080p",
+              "4K"
+            ]
+          },
+          "audio": {
+            "tool_field": "audio",
+            "required": false,
+            "type": "boolean",
+            "allowed": [
+              true,
+              false
+            ],
+            "default": true,
+            "user_phrases": [
+              "带音频",
+              "不要音频",
+              "静音"
+            ],
+            "maps_to_api": "generate_audio"
+          },
+          "image": {
+            "tool_field": "image",
+            "required": false,
+            "type": "string",
+            "description": "单张参考图本地路径（~/.openclaw/media/inbound/…）；首帧/尾帧工作流用"
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "多张参考图；reference_image 工作流用"
+          },
+          "imageRoles": {
+            "tool_field": "imageRoles",
+            "required": false,
+            "type": "array",
+            "allowed": [
+              "first_frame",
+              "last_frame",
+              "reference_image"
+            ],
+            "description": "与 image/images 配合；first_frame | last_frame | reference_image"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将每项用户选择映射到 parameters 中同名 tool_field；allowed 外的值须改选或告知用户不支持；然后一次性调用 video_generate。",
+        "example_call": {
+          "model": "openrouter/kwaivgi/kling-video-o1",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "durationSeconds": 5,
+          "aspectRatio": "16:9",
+          "resolution": "720P",
+          "audio": true
+        }
+      }
+    },
+    "openai/sora-2-pro": {
+      "id": "openai/sora-2-pro",
+      "name": "Sora 2 Pro",
+      "category": "video",
+      "openclaw_ref": "openrouter/openai/sora-2-pro",
+      "aspect_ratios": [
+        "16:9",
+        "9:16"
+      ],
+      "resolutions": [
+        "720P",
+        "1080P"
+      ],
+      "duration_presets": [
+        4,
+        8,
+        12,
+        16,
+        20
+      ],
+      "default_duration": 8,
+      "default_aspect_ratio": "16:9",
+      "default_resolution": "1080P",
+      "supports_image_to_video": true,
+      "supported_frame_types": [
+        "first_frame"
+      ],
+      "supports_reference_images": false,
+      "supports_input_references": false,
+      "show_audio_toggle": true,
+      "default_generate_audio": true,
+      "generation_params": {
+        "tool": "video_generate",
+        "model_id": "openai/sora-2-pro",
+        "model": "openrouter/openai/sora-2-pro",
+        "workflows": {
+          "text_to_video": {
+            "label": "文生视频",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_first_frame": {
+            "label": "图生视频（首帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "first_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/openai/sora-2-pro",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "durationSeconds": {
+            "tool_field": "durationSeconds",
+            "required": true,
+            "type": "integer",
+            "allowed": [
+              4,
+              8,
+              12,
+              16,
+              20
+            ],
+            "default": 8,
+            "user_phrases": [
+              "N秒",
+              "N 秒",
+              "duration N"
+            ]
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "16:9",
+              "9:16"
+            ],
+            "default": "16:9",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "横图",
+              "竖图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "720P",
+              "1080P"
+            ],
+            "default": "1080P",
+            "user_phrases": [
+              "480p",
+              "720p",
+              "1080p",
+              "4K"
+            ]
+          },
+          "audio": {
+            "tool_field": "audio",
+            "required": false,
+            "type": "boolean",
+            "allowed": [
+              true,
+              false
+            ],
+            "default": true,
+            "user_phrases": [
+              "带音频",
+              "不要音频",
+              "静音"
+            ],
+            "maps_to_api": "generate_audio"
+          },
+          "image": {
+            "tool_field": "image",
+            "required": false,
+            "type": "string",
+            "description": "单张参考图本地路径（~/.openclaw/media/inbound/…）；首帧/尾帧工作流用"
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "多张参考图；reference_image 工作流用"
+          },
+          "imageRoles": {
+            "tool_field": "imageRoles",
+            "required": false,
+            "type": "array",
+            "allowed": [
+              "first_frame"
+            ],
+            "description": "与 image/images 配合；first_frame | last_frame | reference_image"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将每项用户选择映射到 parameters 中同名 tool_field；allowed 外的值须改选或告知用户不支持；然后一次性调用 video_generate。",
+        "example_call": {
+          "model": "openrouter/openai/sora-2-pro",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "durationSeconds": 8,
+          "aspectRatio": "16:9",
+          "resolution": "1080P",
+          "audio": true
+        }
+      }
+    },
+    "alibaba/wan-2.7": {
+      "id": "alibaba/wan-2.7",
+      "name": "Wan 2.7",
+      "category": "video",
+      "openclaw_ref": "openrouter/alibaba/wan-2.7",
+      "aspect_ratios": [
+        "16:9",
+        "9:16",
+        "1:1",
+        "4:3",
+        "3:4"
+      ],
+      "resolutions": [
+        "720P",
+        "1080P"
+      ],
+      "duration_presets": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "default_duration": 8,
+      "default_aspect_ratio": "16:9",
+      "default_resolution": "720P",
+      "supports_image_to_video": true,
+      "supported_frame_types": [
+        "first_frame",
+        "last_frame",
+        "reference_image"
+      ],
+      "supports_reference_images": true,
+      "supports_input_references": true,
+      "show_audio_toggle": true,
+      "default_generate_audio": true,
+      "generation_params": {
+        "tool": "video_generate",
+        "model_id": "alibaba/wan-2.7",
+        "model": "openrouter/alibaba/wan-2.7",
+        "workflows": {
+          "text_to_video": {
+            "label": "文生视频",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_first_frame": {
+            "label": "图生视频（首帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "first_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_last_frame": {
+            "label": "图生视频（尾帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "last_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_reference": {
+            "label": "图生视频（参考图）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "images",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "reference_image"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/alibaba/wan-2.7",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "durationSeconds": {
+            "tool_field": "durationSeconds",
+            "required": true,
+            "type": "integer",
+            "allowed": [
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "default": 8,
+            "user_phrases": [
+              "N秒",
+              "N 秒",
+              "duration N"
+            ]
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "16:9",
+              "9:16",
+              "1:1",
+              "4:3",
+              "3:4"
+            ],
+            "default": "16:9",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "横图",
+              "竖图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "720P",
+              "1080P"
+            ],
+            "default": "720P",
+            "user_phrases": [
+              "480p",
+              "720p",
+              "1080p",
+              "4K"
+            ]
+          },
+          "audio": {
+            "tool_field": "audio",
+            "required": false,
+            "type": "boolean",
+            "allowed": [
+              true,
+              false
+            ],
+            "default": true,
+            "user_phrases": [
+              "带音频",
+              "不要音频",
+              "静音"
+            ],
+            "maps_to_api": "generate_audio"
+          },
+          "image": {
+            "tool_field": "image",
+            "required": false,
+            "type": "string",
+            "description": "单张参考图本地路径（~/.openclaw/media/inbound/…）；首帧/尾帧工作流用"
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "多张参考图；reference_image 工作流用"
+          },
+          "imageRoles": {
+            "tool_field": "imageRoles",
+            "required": false,
+            "type": "array",
+            "allowed": [
+              "first_frame",
+              "last_frame",
+              "reference_image"
+            ],
+            "description": "与 image/images 配合；first_frame | last_frame | reference_image"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将每项用户选择映射到 parameters 中同名 tool_field；allowed 外的值须改选或告知用户不支持；然后一次性调用 video_generate。",
+        "example_call": {
+          "model": "openrouter/alibaba/wan-2.7",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "durationSeconds": 8,
+          "aspectRatio": "16:9",
+          "resolution": "720P",
+          "audio": true
+        }
+      }
+    },
+    "alibaba/wan-2.6": {
+      "id": "alibaba/wan-2.6",
+      "name": "Wan 2.6",
+      "category": "video",
+      "openclaw_ref": "openrouter/alibaba/wan-2.6",
+      "aspect_ratios": [
+        "16:9",
+        "9:16"
+      ],
+      "resolutions": [
+        "720P",
+        "1080P"
+      ],
+      "duration_presets": [
+        5,
+        10
+      ],
+      "default_duration": 5,
+      "default_aspect_ratio": "16:9",
+      "default_resolution": "720P",
+      "supports_image_to_video": true,
+      "supported_frame_types": [
+        "first_frame",
+        "reference_image"
+      ],
+      "supports_reference_images": true,
+      "supports_input_references": true,
+      "show_audio_toggle": true,
+      "default_generate_audio": true,
+      "generation_params": {
+        "tool": "video_generate",
+        "model_id": "alibaba/wan-2.6",
+        "model": "openrouter/alibaba/wan-2.6",
+        "workflows": {
+          "text_to_video": {
+            "label": "文生视频",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_first_frame": {
+            "label": "图生视频（首帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "first_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          },
+          "image_to_video_reference": {
+            "label": "图生视频（参考图）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "images",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "reference_image"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution",
+              "audio"
+            ]
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/alibaba/wan-2.6",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "durationSeconds": {
+            "tool_field": "durationSeconds",
+            "required": true,
+            "type": "integer",
+            "allowed": [
+              5,
+              10
+            ],
+            "default": 5,
+            "user_phrases": [
+              "N秒",
+              "N 秒",
+              "duration N"
+            ]
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "16:9",
+              "9:16"
+            ],
+            "default": "16:9",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "横图",
+              "竖图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "720P",
+              "1080P"
+            ],
+            "default": "720P",
+            "user_phrases": [
+              "480p",
+              "720p",
+              "1080p",
+              "4K"
+            ]
+          },
+          "audio": {
+            "tool_field": "audio",
+            "required": false,
+            "type": "boolean",
+            "allowed": [
+              true,
+              false
+            ],
+            "default": true,
+            "user_phrases": [
+              "带音频",
+              "不要音频",
+              "静音"
+            ],
+            "maps_to_api": "generate_audio"
+          },
+          "image": {
+            "tool_field": "image",
+            "required": false,
+            "type": "string",
+            "description": "单张参考图本地路径（~/.openclaw/media/inbound/…）；首帧/尾帧工作流用"
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "多张参考图；reference_image 工作流用"
+          },
+          "imageRoles": {
+            "tool_field": "imageRoles",
+            "required": false,
+            "type": "array",
+            "allowed": [
+              "first_frame",
+              "reference_image"
+            ],
+            "description": "与 image/images 配合；first_frame | last_frame | reference_image"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将每项用户选择映射到 parameters 中同名 tool_field；allowed 外的值须改选或告知用户不支持；然后一次性调用 video_generate。",
+        "example_call": {
+          "model": "openrouter/alibaba/wan-2.6",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "durationSeconds": 5,
+          "aspectRatio": "16:9",
+          "resolution": "720P",
+          "audio": true
+        }
+      }
+    },
+    "minimax/hailuo-2.3": {
+      "id": "minimax/hailuo-2.3",
+      "name": "Hailuo 2.3",
+      "category": "video",
+      "openclaw_ref": "openrouter/minimax/hailuo-2.3",
+      "aspect_ratios": [
+        "16:9"
+      ],
+      "resolutions": [
+        "1080P"
+      ],
+      "duration_presets": [
+        6,
+        10
+      ],
+      "default_duration": 6,
+      "default_aspect_ratio": "16:9",
+      "default_resolution": "1080P",
+      "supports_image_to_video": true,
+      "supported_frame_types": [
+        "first_frame",
+        "reference_image"
+      ],
+      "supports_reference_images": true,
+      "supports_input_references": true,
+      "show_audio_toggle": false,
+      "generation_params": {
+        "tool": "video_generate",
+        "model_id": "minimax/hailuo-2.3",
+        "model": "openrouter/minimax/hailuo-2.3",
+        "workflows": {
+          "text_to_video": {
+            "label": "文生视频",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ]
+          },
+          "image_to_video_first_frame": {
+            "label": "图生视频（首帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "first_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ]
+          },
+          "image_to_video_reference": {
+            "label": "图生视频（参考图）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "images",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "reference_image"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ]
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/minimax/hailuo-2.3",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "durationSeconds": {
+            "tool_field": "durationSeconds",
+            "required": true,
+            "type": "integer",
+            "allowed": [
+              6,
+              10
+            ],
+            "default": 6,
+            "user_phrases": [
+              "N秒",
+              "N 秒",
+              "duration N"
+            ]
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "16:9"
+            ],
+            "default": "16:9",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "横图",
+              "竖图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "1080P"
+            ],
+            "default": "1080P",
+            "user_phrases": [
+              "480p",
+              "720p",
+              "1080p",
+              "4K"
+            ]
+          },
+          "image": {
+            "tool_field": "image",
+            "required": false,
+            "type": "string",
+            "description": "单张参考图本地路径（~/.openclaw/media/inbound/…）；首帧/尾帧工作流用"
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "多张参考图；reference_image 工作流用"
+          },
+          "imageRoles": {
+            "tool_field": "imageRoles",
+            "required": false,
+            "type": "array",
+            "allowed": [
+              "first_frame",
+              "reference_image"
+            ],
+            "description": "与 image/images 配合；first_frame | last_frame | reference_image"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将每项用户选择映射到 parameters 中同名 tool_field；allowed 外的值须改选或告知用户不支持；然后一次性调用 video_generate。",
+        "example_call": {
+          "model": "openrouter/minimax/hailuo-2.3",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "durationSeconds": 6,
+          "aspectRatio": "16:9",
+          "resolution": "1080P"
+        }
+      }
+    },
+    "x-ai/grok-imagine-video": {
+      "id": "x-ai/grok-imagine-video",
+      "name": "Grok Imagine Video",
+      "category": "video",
+      "openclaw_ref": "openrouter/x-ai/grok-imagine-video",
+      "aspect_ratios": [
+        "16:9",
+        "9:16",
+        "1:1",
+        "4:3",
+        "3:4",
+        "3:2",
+        "2:3"
+      ],
+      "resolutions": [
+        "480P",
+        "720P"
+      ],
+      "duration_presets": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "default_duration": 8,
+      "default_aspect_ratio": "16:9",
+      "default_resolution": "720P",
+      "supports_image_to_video": true,
+      "supported_frame_types": [
+        "first_frame",
+        "reference_image"
+      ],
+      "supports_reference_images": true,
+      "supports_input_references": true,
+      "show_audio_toggle": false,
+      "generation_params": {
+        "tool": "video_generate",
+        "model_id": "x-ai/grok-imagine-video",
+        "model": "openrouter/x-ai/grok-imagine-video",
+        "workflows": {
+          "text_to_video": {
+            "label": "文生视频",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ]
+          },
+          "image_to_video_first_frame": {
+            "label": "图生视频（首帧）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "image",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "first_frame"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ]
+          },
+          "image_to_video_reference": {
+            "label": "图生视频（参考图）",
+            "required_parameters": [
+              "model",
+              "prompt",
+              "durationSeconds",
+              "images",
+              "imageRoles"
+            ],
+            "imageRoles_value": [
+              "reference_image"
+            ],
+            "optional_parameters": [
+              "aspectRatio",
+              "resolution"
+            ]
+          }
+        },
+        "parameters": {
+          "model": {
+            "tool_field": "model",
+            "required": true,
+            "value": "openrouter/x-ai/grok-imagine-video",
+            "description": "固定为本模型；用户指定其它模型时换读对应 models.<id>.generation_params"
+          },
+          "prompt": {
+            "tool_field": "prompt",
+            "required": true,
+            "type": "string",
+            "description": "画面描述，须保留用户在本轮对话中的生成意图"
+          },
+          "durationSeconds": {
+            "tool_field": "durationSeconds",
+            "required": true,
+            "type": "integer",
+            "allowed": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "default": 8,
+            "user_phrases": [
+              "N秒",
+              "N 秒",
+              "duration N"
+            ]
+          },
+          "aspectRatio": {
+            "tool_field": "aspectRatio",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "16:9",
+              "9:16",
+              "1:1",
+              "4:3",
+              "3:4",
+              "3:2",
+              "2:3"
+            ],
+            "default": "16:9",
+            "user_phrases": [
+              "16:9",
+              "9:16",
+              "横图",
+              "竖图",
+              "方图"
+            ]
+          },
+          "resolution": {
+            "tool_field": "resolution",
+            "required": false,
+            "type": "string",
+            "allowed": [
+              "480P",
+              "720P"
+            ],
+            "default": "720P",
+            "user_phrases": [
+              "480p",
+              "720p",
+              "1080p",
+              "4K"
+            ]
+          },
+          "image": {
+            "tool_field": "image",
+            "required": false,
+            "type": "string",
+            "description": "单张参考图本地路径（~/.openclaw/media/inbound/…）；首帧/尾帧工作流用"
+          },
+          "images": {
+            "tool_field": "images",
+            "required": false,
+            "type": "array",
+            "description": "多张参考图；reference_image 工作流用"
+          },
+          "imageRoles": {
+            "tool_field": "imageRoles",
+            "required": false,
+            "type": "array",
+            "allowed": [
+              "first_frame",
+              "reference_image"
+            ],
+            "description": "与 image/images 配合；first_frame | last_frame | reference_image"
+          }
+        },
+        "assembly": "用户选完模型与本表 workflows 后，将每项用户选择映射到 parameters 中同名 tool_field；allowed 外的值须改选或告知用户不支持；然后一次性调用 video_generate。",
+        "example_call": {
+          "model": "openrouter/x-ai/grok-imagine-video",
+          "prompt": "用户确认的画面描述（保留原意）",
+          "durationSeconds": 8,
+          "aspectRatio": "16:9",
+          "resolution": "720P"
+        }
+      }
+    }
+  }
+}

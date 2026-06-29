@@ -1045,6 +1045,21 @@ test('config example enables OpenClaw and Hermes cron with runner proof logs', (
   assert.match(runner, /Source "\$\{sourceName\}" command failed: command/);
 });
 
+test('AnalyticsCLI connector rejects expiring or session tokens for scheduled OpenClaw runs', () => {
+  const wizard = readFileSync(join(skillRoot, 'scripts/openclaw-growth-wizard.mjs'), 'utf8');
+  const preflight = readFileSync(join(skillRoot, 'scripts/openclaw-growth-preflight.mjs'), 'utf8');
+  const exporter = readFileSync(join(skillRoot, 'scripts/export-analytics-summary.mjs'), 'utf8');
+
+  for (const source of [wizard, preflight, exporter]) {
+    assert.match(source, /validateOpenClawAnalyticsToken/);
+    assert.match(source, /read:queries/);
+    assert.match(source, /expiring/);
+  }
+  assert.match(wizard, /Not saved: \$\{validation\.detail\}/);
+  assert.match(preflight, /ANALYTICSCLI_ACCESS_TOKEN is an expiring legacy token/);
+  assert.match(exporter, /do not use dashboard session\/admin tokens/);
+});
+
 test('setup and preflight harden sudo commands for unattended VPS runs', () => {
   const start = readFileSync(join(skillRoot, 'scripts/openclaw-growth-start.mjs'), 'utf8');
   const preflight = readFileSync(join(skillRoot, 'scripts/openclaw-growth-preflight.mjs'), 'utf8');

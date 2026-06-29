@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>直播间命案 - 剧本杀可视化</title>
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif; background:#f5f5f7; color:#1d1d1f; }
+
+  .header { background:#fff; padding:20px 32px; border-bottom:1px solid #e5e5ea; display:flex; align-items:center; gap:20px; }
+  .header h1 { font-size:20px; font-weight:600; }
+  .header .meta { font-size:13px; color:#86868b; }
+
+  .tabs { display:flex; gap:4px; padding:16px 32px 0; background:#fff; border-bottom:1px solid #e5e5ea; }
+  .tab { padding:10px 20px; font-size:14px; color:#86868b; cursor:pointer; border-bottom:2px solid transparent; transition:all 0.2s; user-select:none; }
+  .tab:hover { color:#1d1d1f; }
+  .tab.active { color:#0071e3; border-bottom-color:#0071e3; font-weight:500; }
+
+  .panel { display:none; padding:24px 32px; }
+  .panel.active { display:block; }
+
+  /* 关系图谱 */
+  #graph svg { width:100%; height:600px; background:#fff; border-radius:12px; border:1px solid #e5e5ea; }
+  .node-circle { cursor:pointer; transition:all 0.2s; }
+  .node-circle:hover circle { filter:brightness(1.1); }
+  .node-label { font-size:12px; fill:#1d1d1f; font-weight:500; pointer-events:none; text-anchor:middle; }
+  .node-sublabel { font-size:10px; fill:#86868b; pointer-events:none; text-anchor:middle; }
+  .link-line { stroke:#c7c7cc; stroke-width:1.5; }
+  .link-line.suspect-link { stroke:#ff3b30; stroke-width:1; stroke-dasharray:4,3; opacity:0.5; }
+  .link-label { font-size:10px; fill:#86868b; pointer-events:none; }
+
+  /* 角色卡片 */
+  .char-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:16px; }
+  .char-card { background:#fff; border-radius:12px; border:1px solid #e5e5ea; padding:20px; cursor:pointer; transition:all 0.2s; }
+  .char-card:hover { box-shadow:0 4px 16px rgba(0,0,0,0.08); transform:translateY(-2px); }
+  .char-card .avatar { width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:600; color:#fff; margin-bottom:12px; }
+  .char-card .name { font-size:15px; font-weight:600; margin-bottom:4px; }
+  .char-card .role { font-size:12px; color:#86868b; margin-bottom:8px; }
+  .char-card .desc { font-size:13px; color:#424245; line-height:1.5; }
+
+  /* 时间线 */
+  .timeline { position:relative; padding-left:40px; }
+  .timeline::before { content:''; position:absolute; left:15px; top:0; bottom:0; width:2px; background:#e5e5ea; }
+  .tl-item { position:relative; margin-bottom:24px; }
+  .tl-dot { position:absolute; left:-33px; top:4px; width:12px; height:12px; border-radius:50%; border:2px solid #0071e3; background:#fff; }
+  .tl-dot.crime { border-color:#ff3b30; background:#ff3b30; }
+  .tl-dot.clue { border-color:#ff9500; background:#ff9500; }
+  .tl-dot.relation { border-color:#34c759; background:#34c759; }
+  .tl-dot.evidence { border-color:#af52de; background:#af52de; }
+  .tl-time { font-size:12px; color:#86868b; margin-bottom:4px; }
+  .tl-title { font-size:14px; font-weight:500; margin-bottom:4px; }
+  .tl-desc { font-size:13px; color:#424245; line-height:1.5; }
+
+  /* 线索面板 */
+  .clue-filters { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
+  .clue-filter { padding:6px 14px; border-radius:20px; font-size:13px; cursor:pointer; border:1px solid #e5e5ea; background:#fff; color:#424245; transition:all 0.2s; user-select:none; }
+  .clue-filter.active, .clue-filter:hover { background:#0071e3; color:#fff; border-color:#0071e3; }
+  .clue-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:12px; }
+  .clue-card { background:#fff; border-radius:10px; border:1px solid #e5e5ea; padding:16px; }
+  .clue-card .clue-type { display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px; font-weight:500; margin-bottom:8px; }
+  .clue-type.C { background:#ffebee; color:#d32f2f; }
+  .clue-type.M { background:#fff3e0; color:#e65100; }
+  .clue-type.T { background:#e3f2fd; color:#1565c0; }
+  .clue-type.W { background:#f3e5f5; color:#7b1fa2; }
+  .clue-card .clue-name { font-size:14px; font-weight:500; margin-bottom:6px; }
+  .clue-card .clue-desc { font-size:12px; color:#86868b; line-height:1.5; }
+  .clue-card .clue-related { font-size:11px; color:#0071e3; margin-top:8px; }
+
+  /* 角色剧本面板 */
+  .script-layout { display:flex; gap:0; border:1px solid #e5e5ea; border-radius:12px; overflow:hidden; background:#fff; min-height:520px; }
+  .script-list { width:220px; border-right:1px solid #e5e5ea; padding:8px 0; overflow-y:auto; flex-shrink:0; }
+  .script-list-item { padding:10px 16px; cursor:pointer; font-size:13px; color:#424245; transition:all 0.15s; border-left:3px solid transparent; }
+  .script-list-item:hover { background:#f5f5f7; }
+  .script-list-item.active { background:#f0f4ff; color:#0071e3; border-left-color:#0071e3; font-weight:500; }
+  .script-list-item .sl-name { font-size:14px; font-weight:500; }
+  .script-list-item .sl-role { font-size:11px; color:#86868b; margin-top:2px; }
+  .script-list-item.is-victim .sl-name::after { content:' 死者'; color:#ff3b30; font-size:11px; }
+  .script-content { flex:1; padding:24px; overflow-y:auto; }
+  .script-section { margin-bottom:20px; }
+  .script-section h3 { font-size:13px; color:#86868b; font-weight:500; margin-bottom:8px; padding-bottom:4px; border-bottom:1px solid #f0f0f0; }
+  .script-section .script-text { font-size:14px; line-height:1.8; color:#1d1d1f; white-space:pre-wrap; }
+  .script-goal-card { background:#f5f5f7; border-radius:8px; padding:12px 16px; margin-bottom:8px; font-size:13px; line-height:1.6; }
+  .script-tab-bar { display:flex; gap:0; margin-bottom:16px; border-bottom:1px solid #e5e5ea; }
+  .script-tab { padding:8px 16px; font-size:13px; color:#86868b; cursor:pointer; border-bottom:2px solid transparent; transition:all 0.2s; user-select:none; }
+  .script-tab:hover { color:#1d1d1f; }
+  .script-tab.active { color:#0071e3; border-bottom-color:#0071e3; font-weight:500; }
+  .script-panel { display:none; }
+  .script-panel.active { display:block; }
+
+  /* 详情弹窗 */
+  .modal-overlay { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.4); z-index:100; justify-content:center; align-items:center; }
+  .modal-overlay.show { display:flex; }
+  .modal { background:#fff; border-radius:16px; padding:32px; max-width:520px; width:90%; max-height:80vh; overflow-y:auto; position:relative; }
+  .modal .close-btn { position:absolute; right:16px; top:16px; width:28px; height:28px; border-radius:50%; border:none; background:#f5f5f7; cursor:pointer; font-size:16px; display:flex; align-items:center; justify-content:center; }
+  .modal h2 { font-size:20px; margin-bottom:4px; }
+  .modal .modal-role { font-size:13px; color:#86868b; margin-bottom:16px; }
+  .modal .modal-section { margin-bottom:16px; }
+  .modal .modal-section h3 { font-size:13px; color:#86868b; margin-bottom:6px; }
+  .modal .modal-section p { font-size:14px; line-height:1.6; }
+  .modal .relation-tag { display:inline-block; padding:3px 10px; background:#f5f5f7; border-radius:6px; font-size:12px; margin:2px 4px 2px 0; }
+
+  .stats { display:flex; gap:16px; margin-bottom:24px; flex-wrap:wrap; }
+  .stat-card { background:#fff; border-radius:12px; border:1px solid #e5e5ea; padding:16px 20px; min-width:100px; }
+  .stat-card .stat-label { font-size:12px; color:#86868b; margin-bottom:4px; }
+  .stat-card .stat-value { font-size:28px; font-weight:600; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <h1 id="script-title">直播间命案</h1>
+    <div class="meta" id="script-meta">现代悬疑 · 6人 · 约4小时</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab" data-tab="graph">关系图谱</div>
+  <div class="tab" data-tab="chars">角色档案</div>
+  <div class="tab" data-tab="timeline">事件时间线</div>
+  <div class="tab" data-tab="clues">线索面板</div>
+  <div class="tab" data-tab="scripts">角色剧本</div>
+</div>
+
+<!-- 关系图谱 -->
+<div class="panel active" id="panel-graph">
+  <div class="stats">
+    <div class="stat-card"><div class="stat-label">角色数</div><div class="stat-value" id="stat-chars">7</div></div>
+    <div class="stat-card"><div class="stat-label">线索数</div><div class="stat-value" id="stat-clues">10</div></div>
+    <div class="stat-card"><div class="stat-label">事件数</div><div class="stat-value" id="stat-events">15</div></div>
+  </div>
+  <div id="graph"><svg></svg></div>
+</div>
+
+<!-- 角色档案 -->
+<div class="panel" id="panel-chars">
+  <div class="char-grid" id="char-grid"></div>
+</div>
+
+<!-- 事件时间线 -->
+<div class="panel" id="panel-timeline">
+  <div class="timeline" id="timeline"></div>
+</div>
+
+<!-- 线索面板 -->
+<div class="panel" id="panel-clues">
+  <div class="clue-filters" id="clue-filters"></div>
+  <div class="clue-grid" id="clue-grid"></div>
+</div>
+
+<!-- 角色剧本 -->
+<div class="panel" id="panel-scripts">
+  <div class="script-layout">
+    <div class="script-list" id="script-list"></div>
+    <div class="script-content" id="script-content">
+      <div style="color:#86868b;font-size:14px;padding-top:40px;text-align:center;">请从左侧选择角色查看剧本</div>
+    </div>
+  </div>
+</div>
+
+<!-- 详情弹窗 -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal">
+    <button class="close-btn" id="modal-close">✕</button>
+    <h2 id="modal-name"></h2>
+    <div class="modal-role" id="modal-role"></div>
+    <div class="modal-section">
+      <h3>人物介绍</h3>
+      <p id="modal-desc"></p>
+    </div>
+    <div class="modal-section">
+      <h3>人物关系</h3>
+      <div id="modal-relations"></div>
+    </div>
+    <div class="modal-section" id="modal-clues-section">
+      <h3>相关线索</h3>
+      <div id="modal-clues"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ========== 数据区域 ==========
+const DATA = {
+  title: "直播间命案",
+  genre: "现代悬疑",
+  players: "6人",
+  duration: "约4小时",
+  victim: "孙浩然",
+
+  characters: [
+    {
+      id: "char_victim",
+      name: "孙浩然",
+      role: "锐锋资本CEO（死者）",
+      desc: "42岁，'星光小屋'最大投资人。身材魁梧，留寸头，戴金表，说话咄咄逼人。在书房被钝器重击后脑身亡。",
+      color: "#ff3b30",
+      relations: [
+        { target: "char1", type: "前投资人兼前男友" },
+        { target: "char3", type: "金主兼债主" },
+        { target: "char4", type: "实际控制者" },
+        { target: "char2", type: "前老板" }
+      ],
+      scriptPublic: "孙浩然，42岁，锐锋资本CEO，'星光小屋'最大投资人。\n\n案发当晚来到别墅'视察'。20:05发微信威胁孙建国：'你要是今晚不给我一个交代，明天直播我全抖出来。'\n\n当晚20:15至20:20之间，孙浩然在二楼书房被人用铜制地球仪重击后脑身亡。书房门窗紧闭，监控因停电失效。",
+      scriptPrivate: "",
+      goals: ""
+    },
+    {
+      id: "char1",
+      name: "夏小鱼",
+      role: "头部美妆主播",
+      desc: "25岁，全网粉丝超过两千万。长发披肩，妆容精致，气质冷艳。三年前被孙浩然以投资名义控制，后独立出来。手中握有孙浩然偷税漏税证据U盘。",
+      color: "#ff6b9d",
+      relations: [
+        { target: "char_victim", type: "前投资人兼前男友" },
+        { target: "char2", type: "暧昧对象（远山如黛）" },
+        { target: "char5", type: "偶像与粉丝" }
+      ],
+      scriptPublic: "你叫夏小鱼，25岁，全网粉丝超过两千万的头部美妆主播。镜头前的你永远光鲜亮丽、自信从容，但没人知道你背后的故事。\n\n三年前，你还只是个小主播。孙浩然以'投资孵化'的名义找到你，承诺帮你打造个人品牌。你信了他，签了合约。那段时间你们也在一起了——他是你第一个真正信任的男人。\n\n但他变了。他开始用合约控制你的收入，用私人关系绑架你的事业。你想离开，他拿出违约金条款——3000万。你根本付不起。\n\n去年你终于忍无可忍，用自己攒的钱请律师打官司，费了九牛二虎之力才从他的公司独立出来。你恨他，恨到骨子里。\n\n'星光小屋'是你重新出发的机会。你想证明自己不只是孙浩然的附庸。你没想到，他会以投资人的身份出现在这里。\n\n---\n\n案发当晚时间线：\n- 20:00：你在客厅看电视。孙浩然从书房下来，经过客厅时看了你一眼。\n- 20:12：你去一楼洗手间补妆。\n- 20:13：你在洗手间里，听到走廊有脚步声，很快，朝配电间方向去。\n- 20:15：你从洗手间出来，灯突然灭了——停电了。\n- 20:16：你摸黑走回客厅，握住丁思琪的手。\n- 20:16-20:32：停电期间你一直和丁思琪在客厅。\n- 20:32：灯亮了。孙浩然被发现死亡。",
+      scriptPrivate: "你的秘密：\n1. 你和孙浩然有过一段恋情，但你从未告诉任何人。如果曝光，你的粉丝会认为你所有的成就都是靠他得来的。\n2. 你有一个U盘，里面存着孙浩然偷税漏税的证据，是你从他办公室拷贝的。你一直没敢用，怕鱼死网破。\n3. 你的网名叫'小鱼'，两年前你在网上和一个叫'远山如黛'的人暧昧过。你不知道他是谁，但你觉得他可能就在这个节目里。\n\n你在洗手间时（20:13），听到走廊有脚步声朝配电间方向去。停电时你在走廊里，闻到了一股淡淡的烟草味。",
+      goals: "1. 主线任务：找出杀死孙浩然的凶手。你恨他，但你没有杀他。你需要证明自己的清白。\n2. 支线任务：隐藏你和孙浩然的过去恋情关系。\n3. 支线任务：弄清楚林远是不是'远山如黛'——如果是，他来这个节目的目的是什么？"
+    },
+    {
+      id: "char2",
+      name: "林远",
+      role: "游戏主播",
+      desc: "26岁，ID'远山如黛'，主打FPS和独立游戏。短寸头，戴黑框眼镜，身材偏瘦。曾是锐锋资本员工，被孙浩然开除后重新崛起。来节目是为了搜集孙浩然违法证据。",
+      color: "#5ac8fa",
+      relations: [
+        { target: "char_victim", type: "前老板（仇恨）" },
+        { target: "char1", type: "网恋对象（远山如黛）" },
+        { target: "char3", type: "发现其异常行为" }
+      ],
+      scriptPublic: "你叫林远，26岁，游戏主播，ID'远山如黛'，主打FPS和独立游戏。你的直播间风格是话少技术好，粉丝都说你是'电竞沉默杀手'。\n\n你有一个没人知道的身份：你曾经是锐锋资本的底层员工。两年前你入职孙浩然的公司做新媒体运营，本想学习商业运作，结果发现孙浩然的资本运作完全是在割韭菜——他投资直播行业的目的不是孵化内容，而是用数据造假骗取下一轮融资。\n\n你收集了证据，准备举报。但孙浩然先发现了你，直接把你开除，还威胁说'你要是敢乱说，我让你在这个行业待不下去'。\n\n你咽不下这口气。你换了个ID，从零开始做游戏主播，用了两年时间重新崛起。'星光小屋'对你来说不只是比赛——你要在这里搜集孙浩然更多的违法证据，彻底扳倒他。\n\n---\n\n案发当晚时间线：\n- 20:00：你在客厅打手游。\n- 20:10：你离开客厅去厨房拿啤酒。\n- 20:15：停电了。你在厨房摸黑待着，没动。\n- 20:20：你听到二楼方向传来一声闷响。\n- 20:25：你拿着啤酒回到客厅。\n- 20:32：灯亮了。孙浩然被发现死亡。",
+      scriptPrivate: "你的秘密：\n1. 你曾是锐锋资本的员工，被孙浩然开除。你参加节目的真实目的是搜集他的违法证据。\n2. 你就是'远山如黛'——夏小鱼的网恋对象。你来这个节目有一半原因是为了她。\n3. 你今天傍晚在花园散步时，看到孙建国在车库旁偷偷打电话，表情紧张，嘴里说着'再给我一天时间'。\n4. 你认出了许志明——他是一家反垄断调查公司的高级分析师，不是普通赞助商。",
+      goals: "1. 主线任务：找出凶手。同时利用这个机会，搜集孙浩然更多的秘密。\n2. 支线任务：隐藏你曾是锐锋资本员工的身份。\n3. 支线任务：保护夏小鱼。如果你发现她有嫌疑，帮她洗清。"
+    },
+    {
+      id: "char3",
+      name: "孙建国",
+      role: "节目总导演（凶手）",
+      desc: "45岁，从业二十年的综艺节目导演。微胖，头发稀疏，总是穿深色Polo衫。染上赌博欠了480万高利贷，被孙浩然控制挪用公款。因孙浩然要当众揭露他而痛下杀手。",
+      color: "#ff9500",
+      relations: [
+        { target: "char_victim", type: "金主兼债主（杀意）" },
+        { target: "char4", type: "同事（互相知情）" },
+        { target: "char1", type: "知道其与孙浩然的过去" }
+      ],
+      scriptPublic: "你叫孙建国，45岁，从业二十年的综艺节目导演。你曾经是业内响当当的人物，连续做出过三档收视破纪录的真人秀。但这几年你走下坡路——项目黄了、口碑崩了、人脉断了。\n\n更致命的是你染上了赌博。你在澳门输了四百多万，高利贷追着你要钱。你走投无路的时候，孙浩然出现了。他出钱做了'星光小屋'这档节目，让你当总导演。你以为这是救命稻草，但你很快发现——孙浩然的钱不是白给的。\n\n他让你在节目账目上做手脚，把投资款的一部分转到他的私人账户。你不敢拒绝。\n\n今天下午，孙浩然把你叫到书房，拍着桌子说：'明天直播的时候，我会当着所有观众的面揭露你挪用公款的事。你准备坐牢吧。'\n\n---\n\n案发当晚对外口径：\n- 20:00：你在客厅看监视器。\n- 20:08：你以'检查二楼设备'为由离开客厅。\n- 20:09：你进入书房，用座机拨打电话后离开。\n- 停电期间你声称在二楼走廊不敢动。\n- 20:22：你回到客厅。",
+      scriptPrivate: "【凶手剧本，严格保密】\n\n你就是凶手。你已经计划好了今晚动手。\n\n你的行动时间线：\n- 20:05：孙浩然给你发微信威胁。\n- 20:08：你以'检查二楼设备'为由离开客厅。\n- 20:09：你进入书房，用座机拨打自己的手机号，响一声就挂。制造'未接来电'作为上楼借口。\n- 20:09-20:12：你在二楼走廊等待时机，写下'时间不多了'纸条。\n- 20:13：你从二楼下来，走向配电间。\n- 20:14：你拉下总闸，整栋楼停电。\n- 20:15：你摸黑上到二楼，进入书房，用铜制地球仪猛击孙浩然后脑。\n- 20:15-20:18：你擦掉指纹，快速离开书房。\n- 20:18：何婉清听到的闷响是你关门的声音。\n- 20:22：你回到客厅，装作被停电困在楼上的样子。\n\n你还给何婉清发了匿名短信制造恐慌，分散嫌疑。",
+      goals: "1. 主线任务：不要被发现是凶手。把嫌疑引向其他人。\n2. 支线任务：隐藏你挪用节目资金的事。\n3. 支线任务：隐藏你计划今晚动手的事实。\n\n自辩策略：抛出夏小鱼和孙浩然的恋情、何婉清和孙浩然的商业关系来转移注意力。"
+    },
+    {
+      id: "char4",
+      name: "何婉清",
+      role: "节目运营总监",
+      desc: "32岁，干练短发，职业装，戴银色耳钉。三年前被孙浩然蚕食公司后沦为棋子。暗中收集孙浩然违法证据，掌握洗钱银行流水。案发当天收到匿名短信制造恐慌。",
+      color: "#34c759",
+      relations: [
+        { target: "char_victim", type: "实际控制者（仇恨）" },
+        { target: "char3", type: "同事（同为受害者）" },
+        { target: "char1", type: "知道其与孙浩然的过去" }
+      ],
+      scriptPublic: "你叫何婉清，32岁，'星光小屋'的运营总监。你是那种在职场上杀出一条血路的女人——冷静、高效、从不感情用事。\n\n你和孙浩然的关系比任何人知道的都深。三年前，你是一家小型MCN的创始人，孙浩然以投资人的身份找上门。他投了钱，然后一点一点蚕食你的公司，最后把你变成了他的'运营总监'——名义上是高管，实际上是他商业帝国的一颗棋子。\n\n你恨他，但你更恨自己当初引狼入室。\n\n你不甘心就这样被他控制。过去一年，你一直在暗中收集孙浩然的违法证据——内幕交易、数据造假、偷税漏税。\n\n---\n\n案发当晚时间线：\n- 20:00：你在客厅用笔记本电脑处理工作。\n- 20:10：你决定去阳台打电话联系律师。\n- 20:14：你去了二楼阳台。\n- 20:15：停电了。你在阳台上继续打电话。\n- 20:18：你隐约听到书房方向传来一声闷响。\n- 20:20-20:30：你继续在阳台打电话。\n- 20:30：你挂了电话，回到客厅。\n- 20:32：灯亮了。孙浩然被发现死亡。",
+      scriptPrivate: "你的秘密：\n1. 你掌握着孙浩然违法的全部证据，包括他利用'星光小屋'洗钱的银行流水。\n2. 你在节目的运营数据上做过手脚——这是孙浩然要求你做的，但你也从中获利了。\n3. 今天下午你在书房门口偷听到孙浩然对孙建国说的话——他要明天当众揭露孙建国。你心里一惊：如果孙建国被揭露，节目资金的事也会被牵出来。\n4. 你在20:00收到一条匿名短信：'孙浩然明天要公开所有人的秘密。'\n5. 你看到孙建国今天下午从书房出来时表情很难看，眼眶发红。",
+      goals: "1. 主线任务：找出凶手。同时确保你手中的证据报告能发挥作用。\n2. 支线任务：隐藏你参与数据造假的事。\n3. 支线任务：查出那条匿名短信是谁发的。"
+    },
+    {
+      id: "char5",
+      name: "丁思琪",
+      role: "超级粉丝/素人参与者",
+      desc: "20岁，大二学生，夏小鱼的超级粉丝。马尾辫，圆脸，穿卫衣牛仔裤。管理着三千多人的粉丝群。曾黑进孙浩然公司邮箱，发现可疑商业邮件。",
+      color: "#af52de",
+      relations: [
+        { target: "char1", type: "偶像与粉丝（极端崇拜）" },
+        { target: "char_victim", type: "仇恨（伤害偶像的人）" },
+        { target: "char2", type: "警惕（接近偶像的人）" }
+      ],
+      scriptPublic: "你叫丁思琪，20岁，大二学生。你是夏小鱼的超级粉丝——不，你不只是粉丝，你是最了解她的人。\n\n你从夏小鱼刚开始做直播的时候就关注她了。你知道她喜欢什么颜色（雾蓝色）、喝什么咖啡（燕麦拿铁）、用什么口红色号（MAC Chili）。你建了一个粉丝群，管理着三千多个'鱼你同行'的成员。\n\n三个月前，'星光小屋'举办观众投票，获胜者可以作为素人参与者住进小屋。你疯狂拉票，最终以第一名的身份入选。\n\n但你没想到，孙浩然也来了。你恨他。你恨任何伤害过夏小鱼的人。\n\n---\n\n案发当晚时间线：\n- 20:00：你在客厅和夏小鱼聊天。\n- 20:12：夏小鱼去洗手间。你一个人在客厅看电视。\n- 20:15：停电了。客厅一片漆黑。你很害怕，蜷缩在沙发上没动。\n- 20:16：夏小鱼回到客厅，握住你的手。\n- 20:16-20:32：停电期间你和夏小鱼一直在客厅。\n- 20:32：灯亮了。孙浩然被发现死亡。",
+      scriptPrivate: "你的秘密：\n1. 你在来节目之前，黑进了孙浩然公司的公开邮箱系统（你是计算机专业的），发现了一些可疑的商业邮件。你把这些邮件截图保存了。\n2. 你在粉丝群里发过一条消息：'如果有人敢伤害小鱼，我不会放过他。'\n3. 今天傍晚你在三楼走廊捡到了一个打火机，上面刻着一个'孙'字。你觉得可能是孙建国的，但你没在意，随手放在了自己房间的床头柜上。\n4. 停电期间你听到外面有脚步声——从客厅方向往一楼走廊方向去。你不确定是谁。\n5. 夏小鱼在停电时握着你的手——你觉得她的手在发抖。",
+      goals: "1. 主线任务：找出凶手。保护夏小鱼——如果她有嫌疑，帮她洗清。\n2. 支线任务：隐藏你黑进孙浩然公司邮箱的事。\n3. 支线任务：查出那个打火机到底是谁的。"
+    },
+    {
+      id: "char6",
+      name: "许志明",
+      role: "赞助商代表（实为调查员）",
+      desc: "38岁，西装革履，国字脸，表情严肃。表面身份是'星辰乳业'品牌代表，实际是鼎正调查事务所高级调查员。受匿名委托人雇佣调查孙浩然资本运作。在书房安装了窃听器。",
+      color: "#5856d6",
+      relations: [
+        { target: "char_victim", type: "调查目标" },
+        { target: "char3", type: "掌握其纸条证据" },
+        { target: "char2", type: "互相怀疑" }
+      ],
+      scriptPublic: "你叫许志明，38岁，表面身份是'星辰乳业'的品牌代表，负责公司对'星光小屋'的赞助投放。但你的真正身份是——鼎正调查事务所的高级调查员。\n\n你受一个匿名委托人的雇佣，调查孙浩然的资本运作。过去两个月，你以赞助商代表的身份混入节目组，暗中收集孙浩然的证据。你发现他涉嫌利用多个投资项目进行洗钱，金额超过两亿元。\n\n---\n\n案发当晚时间线：\n- 20:00：你在客厅假装看手机，观察各人动向。\n- 20:11：你去一楼洗手间，先绕到配电间检查。\n- 20:13：你在配电间发现总闸附近有新鲜的指纹痕迹。\n- 20:15：停电了。你当时在洗手间。\n- 20:16-20:19：你在洗手间待了一会儿，然后摸黑走回客厅。\n- 20:19：你回到客厅。\n- 20:32：灯亮了。孙浩然被发现死亡。",
+      scriptPrivate: "你的秘密：\n1. 你的真正身份是调查员，不是赞助商代表。\n2. 你在书房安装了一个微型窃听器（藏在书架第三层的一本书里），用来监听孙浩然的谈话。\n3. 你今天下午在书房外面的走廊捡到了一张纸条，上面写着：'时间不多了。'字迹潦草。\n4. 你在配电间发现总闸附近有新鲜的指纹痕迹（20:13，停电前）。\n5. 你的窃听器还在书房——你需要找机会取回它。",
+      goals: "1. 主线任务：找出凶手。作为调查员，你有专业能力还原真相。\n2. 支线任务：隐藏你的调查员身份。\n3. 支线任务：取回你安装在书房的窃听器——里面的录音可能包含关键证据。"
+    }
+  ],
+
+  clues: [
+    {
+      id: "C001",
+      type: "C",
+      name: "配电间指纹",
+      desc: "配电间的电闸总开关上，发现了多枚新鲜指纹。经比对，其中一组指纹属于孙建国。其他指纹模糊无法辨认。",
+      relatedChars: ["孙建国"]
+    },
+    {
+      id: "C002",
+      type: "T",
+      name: "书房座机通话记录",
+      desc: "书房座机的通话记录显示，20:09有一个拨出电话，号码为138XXXX6789（孙建国手机号），通话时长不足1秒（响一声即挂断）。",
+      relatedChars: ["孙建国"]
+    },
+    {
+      id: "C003",
+      type: "T",
+      name: "孙建国手机未接来电",
+      desc: "孙建国手机在20:09有一个未接来电，来电号码为书房座机。孙建国声称这是'节目组打来的电话'，他上楼是为了找孙总。但通话时长不足1秒，更像是故意制造的'未接来电'。",
+      relatedChars: ["孙建国"]
+    },
+    {
+      id: "C004",
+      type: "M",
+      name: "何婉清的证词",
+      desc: "何婉清在阳台打电话时（约20:18），听到书房方向传来一声闷响。她当时以为是什么东西倒了，没有在意。",
+      relatedChars: ["何婉清", "孙浩然"]
+    },
+    {
+      id: "C005",
+      type: "M",
+      name: "林远的证词",
+      desc: "林远在厨房期间（约20:20），听到二楼方向传来一声闷响。他以为是停电导致什么东西倒了。与何婉清的证词互相印证。",
+      relatedChars: ["林远", "孙浩然"]
+    },
+    {
+      id: "C006",
+      type: "C",
+      name: "孙建国的打火机",
+      desc: "一个金属打火机，上面刻着一个'孙'字。丁思琪在傍晚时分在三楼走廊捡到。孙建国声称自己的打火机一直在身上。",
+      relatedChars: ["孙建国", "丁思琪"]
+    },
+    {
+      id: "C007",
+      type: "T",
+      name: "匿名短信",
+      desc: "何婉清在20:00收到一条匿名短信：'孙浩然明天要公开所有人的秘密。'发送号码为虚拟号码，无法追踪。后经查证，孙建国手机在19:58有发送至虚拟号码平台的短信记录。",
+      relatedChars: ["何婉清", "孙建国"]
+    },
+    {
+      id: "C008",
+      type: "C",
+      name: "走廊纸条",
+      desc: "一张普通便签纸，上面手写：'时间不多了。'字迹潦草。许志明在案发当天下午在书房外的走廊捡到。经笔迹鉴定，与孙建国笔记本字迹高度吻合，且便签纸与书房桌上的为同一种。",
+      relatedChars: ["孙建国", "许志明"]
+    },
+    {
+      id: "C009",
+      type: "T",
+      name: "孙浩然手机记录",
+      desc: "孙浩然手机最后一条微信（20:05）发给孙建国：'你要是今晚不给我一个交代，明天直播我全抖出来。'证实两人在案发前有激烈矛盾。",
+      relatedChars: ["孙浩然", "孙建国"]
+    },
+    {
+      id: "C010",
+      type: "W",
+      name: "窃听器录音",
+      desc: "书房书架第三层窃听器录音：20:09有人拨打电话（响一声即挂）。随后听到孙浩然说：'谁打的电话？'男声回答：'没事，打错了。'20:15录音中断（停电断电）。确认孙建国20:09在书房。",
+      relatedChars: ["孙建国", "孙浩然", "许志明"]
+    }
+  ],
+
+  events: [
+    {
+      time: "19:58",
+      title: "孙建国发送匿名短信",
+      desc: "孙建国手机发送短信至虚拟号码平台，故意通知何婉清'孙浩然明天要公开所有人的秘密'，制造恐慌分散嫌疑。",
+      type: "relation",
+      relatedChars: ["孙建国", "何婉清"]
+    },
+    {
+      time: "20:00",
+      title: "何婉清收到匿名短信",
+      desc: "何婉清收到匿名短信：'孙浩然明天要公开所有人的秘密。'发送号码为虚拟号码，无法追踪。",
+      type: "clue",
+      relatedChars: ["何婉清"]
+    },
+    {
+      time: "20:05",
+      title: "孙浩然发出威胁微信",
+      desc: "孙浩然给孙建国发微信：'你要是今晚不给我一个交代，明天直播我全抖出来。'两人矛盾激化。",
+      type: "crime",
+      relatedChars: ["孙浩然", "孙建国"]
+    },
+    {
+      time: "20:08",
+      title: "孙建国离开客厅",
+      desc: "孙建国以'检查二楼设备'为由离开客厅，开始执行杀人计划。",
+      type: "crime",
+      relatedChars: ["孙建国"]
+    },
+    {
+      time: "20:09",
+      title: "孙建国制造通话记录",
+      desc: "孙建国进入书房，用座机拨打自己的手机号（响一声即挂），制造'未接来电'作为上楼借口。孙浩然问他'谁打的电话'，他说'打错了'就离开。",
+      type: "crime",
+      relatedChars: ["孙建国", "孙浩然"]
+    },
+    {
+      time: "20:10",
+      title: "林远去厨房",
+      desc: "林远离开客厅去厨房拿啤酒，此后一直在厨房待到20:25。",
+      type: "relation",
+      relatedChars: ["林远"]
+    },
+    {
+      time: "20:12",
+      title: "夏小鱼去洗手间",
+      desc: "夏小鱼去一楼洗手间补妆。20:13听到走廊有脚步声朝配电间方向去。",
+      type: "relation",
+      relatedChars: ["夏小鱼"]
+    },
+    {
+      time: "20:14",
+      title: "孙建国拉下电闸",
+      desc: "孙建国进入一楼配电间，拉下总闸。监控最后一帧（20:14:52）拍到他在一楼走廊朝配电间方向走去。",
+      type: "crime",
+      relatedChars: ["孙建国"]
+    },
+    {
+      time: "20:15",
+      title: "停电·孙浩然遇害",
+      desc: "整栋楼停电，监控失效。孙建国摸黑进入书房，用铜制地球仪猛击孙浩然后脑。孙浩然倒下身亡。",
+      type: "crime",
+      relatedChars: ["孙建国", "孙浩然"]
+    },
+    {
+      time: "20:18",
+      title: "何婉清听到闷响",
+      desc: "何婉清在阳台打电话时听到书房方向传来一声闷响——这是孙建国离开书房时关门的声音。",
+      type: "evidence",
+      relatedChars: ["何婉清", "孙建国"]
+    },
+    {
+      time: "20:20",
+      title: "林远听到闷响",
+      desc: "林远在厨房听到二楼方向传来一声闷响——这是孙建国在走廊移动时碰到什么东西的声音。",
+      type: "evidence",
+      relatedChars: ["林远", "孙建国"]
+    },
+    {
+      time: "20:22",
+      title: "孙建国回到客厅",
+      desc: "孙建国回到客厅，装作被停电困在楼上的样子。",
+      type: "crime",
+      relatedChars: ["孙建国"]
+    },
+    {
+      time: "20:32",
+      title: "电力恢复·发现尸体",
+      desc: "灯亮了。随后听到楼上有人尖叫——众人发现孙浩然倒在二楼书房，后脑遭钝器重击，已无生命体征。",
+      type: "crime",
+      relatedChars: ["孙浩然"]
+    },
+    {
+      time: "20:32后",
+      title: "配电间指纹鉴定",
+      desc: "电闸把手上发现孙建国的清晰指纹，覆盖在最上层。配电间门把手上也有孙建国的指纹。",
+      type: "evidence",
+      relatedChars: ["孙建国"]
+    },
+    {
+      time: "20:32后",
+      title: "窃听器录音揭示真相",
+      desc: "许志明交出书房窃听器，录音确认孙建国20:09在书房制造通话记录，且其'在二楼走廊'的说辞与监控矛盾。",
+      type: "evidence",
+      relatedChars: ["孙建国", "许志明", "孙浩然"]
+    }
+  ]
+};
+
+// ========== Tab 切换 ==========
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    const panelId = 'panel-' + tab.dataset.tab;
+    document.getElementById(panelId).classList.add('active');
+    if (tab.dataset.tab === 'graph') renderGraph();
+  });
+});
+
+// ========== 关系图谱 ==========
+let graphRendered = false;
+
+function renderGraph() {
+  if (graphRendered) return;
+  graphRendered = true;
+
+  const svg = d3.select('#graph svg');
+  svg.selectAll('*').remove();
+  const width = svg.node().parentElement.clientWidth;
+  const height = 600;
+  svg.attr('width', width).attr('height', height);
+
+  const chars = DATA.characters;
+  const victimName = DATA.victim;
+
+  const nodes = chars.map(c => ({
+    ...c,
+    isVictim: c.name === victimName
+  }));
+
+  const links = [];
+  chars.forEach(c => {
+    if (c.relations) {
+      c.relations.forEach(r => {
+        if (c.id < r.target) {
+          links.push({ source: c.id, target: r.target, type: 'inter', desc: r.type });
+        }
+      });
+    }
+  });
+
+  const g = svg.append('g');
+
+  g.append('g').selectAll('line')
+    .data(links).enter().append('line')
+    .attr('class', d => d.type === 'inter' ? 'link-line suspect-link' : 'link-line');
+
+  const linkLabels = g.append('g').selectAll('text')
+    .data(links.filter(l => l.desc)).enter().append('text')
+    .attr('class', 'link-label')
+    .text(d => d.desc.length > 8 ? d.desc.slice(0, 8) + '…' : d.desc);
+
+  const node = g.append('g').selectAll('g')
+    .data(nodes).enter().append('g')
+    .attr('class', 'node-circle')
+    .on('click', (event, d) => showCharModal(d));
+
+  node.append('circle')
+    .attr('r', d => d.isVictim ? 32 : 26)
+    .attr('fill', d => d.isVictim ? '#ff3b30' : (d.color || '#0071e3'))
+    .attr('stroke', '#fff')
+    .attr('stroke-width', 3);
+
+  node.append('text')
+    .attr('class', 'node-label')
+    .attr('dy', d => d.isVictim ? '-0.6em' : '-0.4em')
+    .text(d => d.name);
+
+  node.filter(d => d.isVictim)
+    .append('text')
+    .attr('class', 'node-sublabel')
+    .attr('dy', '1em')
+    .text('死者');
+
+  node.filter(d => d.role && !d.isVictim)
+    .append('text')
+    .attr('class', 'node-sublabel')
+    .attr('dy', '0.8em')
+    .text(d => d.role.length > 6 ? d.role.slice(0, 6) + '…' : d.role);
+
+  const simulation = d3.forceSimulation(nodes)
+    .force('link', d3.forceLink(links).id(d => d.id).distance(130))
+    .force('charge', d3.forceManyBody().strength(-350))
+    .force('center', d3.forceCenter(width / 2, height / 2))
+    .force('collide', d3.forceCollide(55));
+
+  node.call(d3.drag()
+    .on('start', (event, d) => {
+      if (!event.active) simulation.alphaTarget(0.3).restart();
+      d.fx = d.x; d.fy = d.y;
+    })
+    .on('drag', (event, d) => {
+      d.fx = event.x; d.fy = event.y;
+    })
+    .on('end', (event, d) => {
+      if (!event.active) simulation.alphaTarget(0);
+      d.fx = null; d.fy = null;
+    })
+  );
+
+  simulation.on('tick', () => {
+    g.selectAll('line')
+      .attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+      .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+    linkLabels
+      .attr('x', d => (d.source.x + d.target.x) / 2)
+      .attr('y', d => (d.source.y + d.target.y) / 2);
+    node.attr('transform', d => `translate(${d.x},${d.y})`);
+  });
+}
+
+// ========== 角色档案 ==========
+function renderChars() {
+  const grid = document.getElementById('char-grid');
+  grid.innerHTML = '';
+  DATA.characters.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'char-card';
+    card.onclick = () => showCharModal(c);
+    card.innerHTML = `
+      <div class="avatar" style="background:${c.color || '#0071e3'}">${c.name[0]}</div>
+      <div class="name">${c.name}</div>
+      <div class="role">${c.role || ''}</div>
+      <div class="desc">${c.desc || ''}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// ========== 时间线 ==========
+function renderTimeline() {
+  const tl = document.getElementById('timeline');
+  tl.innerHTML = '';
+  DATA.events.forEach(e => {
+    const item = document.createElement('div');
+    item.className = 'tl-item';
+    item.innerHTML = `
+      <div class="tl-dot ${e.type || ''}"></div>
+      <div class="tl-time">${e.time || ''}</div>
+      <div class="tl-title">${e.title || ''}</div>
+      <div class="tl-desc">${e.desc || ''}</div>
+    `;
+    tl.appendChild(item);
+  });
+}
+
+// ========== 线索面板 ==========
+function renderClues() {
+  const filtersEl = document.getElementById('clue-filters');
+  filtersEl.innerHTML = '';
+  const allBtn = document.createElement('div');
+  allBtn.className = 'clue-filter active';
+  allBtn.textContent = '全部';
+  allBtn.onclick = () => { setClueFilter('all', allBtn); };
+  filtersEl.appendChild(allBtn);
+
+  const types = [...new Set(DATA.clues.map(c => c.type))];
+  const typeNames = { C: '物证', M: '口供', T: '电子证据', W: '其他' };
+  types.forEach(t => {
+    const btn = document.createElement('div');
+    btn.className = 'clue-filter';
+    btn.textContent = typeNames[t] || t;
+    btn.onclick = () => { setClueFilter(t, btn); };
+    filtersEl.appendChild(btn);
+  });
+
+  renderClueCards('all');
+}
+
+function setClueFilter(type, btn) {
+  document.querySelectorAll('.clue-filter').forEach(f => f.classList.remove('active'));
+  btn.classList.add('active');
+  renderClueCards(type);
+}
+
+function renderClueCards(filter) {
+  const grid = document.getElementById('clue-grid');
+  grid.innerHTML = '';
+  const clues = filter === 'all' ? DATA.clues : DATA.clues.filter(c => c.type === filter);
+  const typeNames = { C: '物证', M: '口供', T: '电子证据', W: '其他' };
+  clues.forEach(c => {
+    const card = document.createElement('div');
+    card.className = 'clue-card';
+    card.innerHTML = `
+      <div class="clue-type ${c.type}">${typeNames[c.type] || c.type} · ${c.id || ''}</div>
+      <div class="clue-name">${c.name || ''}</div>
+      <div class="clue-desc">${c.desc || ''}</div>
+      <div class="clue-related">关联：${(c.relatedChars || []).join('、')}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+// ========== 弹窗 ==========
+function showCharModal(c) {
+  document.getElementById('modal-name').textContent = c.name || '';
+  document.getElementById('modal-role').textContent = c.role || '';
+  document.getElementById('modal-desc').textContent = c.desc || '';
+
+  const relDiv = document.getElementById('modal-relations');
+  relDiv.innerHTML = '';
+  if (c.relations) {
+    c.relations.forEach(r => {
+      const tag = document.createElement('span');
+      tag.className = 'relation-tag';
+      const target = DATA.characters.find(x => x.id === r.target);
+      tag.textContent = `${target ? target.name : r.target}：${r.type || ''}`;
+      relDiv.appendChild(tag);
+    });
+  }
+
+  const clueDiv = document.getElementById('modal-clues');
+  clueDiv.innerHTML = '';
+  const relatedClues = DATA.clues.filter(cl => (cl.relatedChars || []).includes(c.name));
+  if (relatedClues.length > 0) {
+    document.getElementById('modal-clues-section').style.display = 'block';
+    relatedClues.forEach(cl => {
+      const tag = document.createElement('span');
+      tag.className = 'relation-tag';
+      tag.textContent = `${cl.id || ''} ${cl.name || ''}`;
+      clueDiv.appendChild(tag);
+    });
+  } else {
+    document.getElementById('modal-clues-section').style.display = 'none';
+  }
+
+  document.getElementById('modal-overlay').classList.add('show');
+}
+
+document.getElementById('modal-close').onclick = closeModal;
+document.getElementById('modal-overlay').onclick = function(e) {
+  if (e.target === this) closeModal();
+};
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('show');
+}
+
+// ========== 角色剧本面板 ==========
+function renderScripts() {
+  const list = document.getElementById('script-list');
+  list.innerHTML = '';
+  DATA.characters.forEach((c, idx) => {
+    const item = document.createElement('div');
+    item.className = 'script-list-item' + (c.name === DATA.victim ? ' is-victim' : '');
+    if (idx === 0) item.classList.add('active');
+    item.innerHTML = `<div class="sl-name">${c.name}</div><div class="sl-role">${c.role || ''}</div>`;
+    item.onclick = () => showScript(c, item);
+    list.appendChild(item);
+  });
+  if (DATA.characters.length > 0) {
+    showScript(DATA.characters[0], list.firstChild);
+  }
+}
+
+function showScript(c, listItem) {
+  document.querySelectorAll('.script-list-item').forEach(i => i.classList.remove('active'));
+  if (listItem) listItem.classList.add('active');
+
+  const content = document.getElementById('script-content');
+  const hasPublic = c.scriptPublic && c.scriptPublic.trim();
+  const hasPrivate = c.scriptPrivate && c.scriptPrivate.trim();
+  const hasGoals = c.goals && c.goals.trim();
+
+  let tabsHTML = '';
+  let panelsHTML = '';
+  let tabIdx = 0;
+
+  if (hasPublic) {
+    tabsHTML += `<div class="script-tab active" data-stab="pub-${c.id}" onclick="switchScriptTab('pub-${c.id}',this)">公开剧本</div>`;
+    panelsHTML += `<div class="script-panel active" id="pub-${c.id}"><div class="script-section"><div class="script-text">${c.scriptPublic.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div></div></div>`;
+    tabIdx++;
+  }
+  if (hasPrivate) {
+    tabsHTML += `<div class="script-tab${tabIdx===0?' active':''}" data-stab="priv-${c.id}" onclick="switchScriptTab('priv-${c.id}',this)">私密剧本</div>`;
+    panelsHTML += `<div class="script-panel${tabIdx===0?' active':''}" id="priv-${c.id}"><div class="script-section"><div class="script-text">${c.scriptPrivate.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div></div></div>`;
+    tabIdx++;
+  }
+  if (hasGoals) {
+    tabsHTML += `<div class="script-tab${tabIdx===0?' active':''}" data-stab="goal-${c.id}" onclick="switchScriptTab('goal-${c.id}',this)">隐藏目标</div>`;
+    panelsHTML += `<div class="script-panel${tabIdx===0?' active':''}" id="goal-${c.id}"><div class="script-goal-card">${c.goals.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</div></div>`;
+  }
+
+  content.innerHTML = `
+    <div style="margin-bottom:16px;">
+      <div style="font-size:18px;font-weight:600;">${c.name}</div>
+      <div style="font-size:13px;color:#86868b;">${c.role || ''}${c.name===DATA.victim?' · 死者':''}</div>
+    </div>
+    <div class="script-tab-bar">${tabsHTML}</div>
+    ${panelsHTML}
+  `;
+}
+
+function switchScriptTab(tabId, el) {
+  document.querySelectorAll('.script-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.script-panel').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById(tabId).classList.add('active');
+}
+
+// ========== 初始化 ==========
+document.addEventListener('DOMContentLoaded', () => {
+  renderChars();
+  renderTimeline();
+  renderClues();
+  renderGraph();
+});
+</script>
+</body>
+</html>

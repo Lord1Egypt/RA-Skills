@@ -1,0 +1,11 @@
+{
+  "name": "jpg-export",
+  "label": "JPG 导出",
+  "description": "导出为 JPG 图片，白色背景",
+  "format": "jpeg",
+  "background": "#ffffff",
+  "features": ["quality_setting", "white_bg", "resolution_setting", "preview"],
+  "default_width": 800,
+  "default_quality": 0.92,
+  "use_canvas": true
+}

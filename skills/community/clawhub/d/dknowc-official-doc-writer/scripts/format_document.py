@@ -80,6 +80,14 @@ def sanitize_url(raw_url):
     return url.strip().rstrip('，。、；;,.')
 
 
+def hyperlink_display_text(label=None):
+    """生成知识专库链接的可见文本。"""
+    clean_label = (label or "").strip().rstrip('：:')
+    if not clean_label:
+        clean_label = "知识专库链接"
+    return f"{clean_label}（点击打开）"
+
+
 def is_internal_search_endpoint(url):
     """识别深知搜索接口地址，避免误当成知识专库链接输出。"""
     return "open.dknowc.cn/dependable/search" in url
@@ -289,6 +297,16 @@ def get_next_version(output_path: str) -> str:
     return str(output_dir / f"{filename}_v{next_version}{ext}")
 
 
+def sanitize_filename_component(text: str, max_length: int = 80) -> str:
+    """将公文标题转换为可用文件名。"""
+    value = re.sub(r'\s+', '', text.strip())
+    value = re.sub(r'[\\/:*?"<>|]', '', value)
+    value = value.strip('. ')
+    if not value:
+        return ""
+    return value[:max_length]
+
+
 try:
     from docx import Document
     from docx.shared import Pt, Cm, Mm, RGBColor
@@ -432,6 +450,20 @@ def add_ai_disclaimer(doc):
     add_formatted_text(para, AI_DISCLAIMER_TEXT, '仿宋_GB2312', 10.5, color=RGBColor(0x80, 0x80, 0x80))
 
 
+def set_document_core_properties(doc, title=None):
+    """清理并写入基础 DOCX 元数据。"""
+    props = doc.core_properties
+    now = datetime.now()
+    props.title = title or ""
+    props.subject = ""
+    props.author = ""
+    props.keywords = ""
+    props.comments = ""
+    props.last_modified_by = ""
+    props.created = now
+    props.modified = now
+
+
 def get_line_type(line):
     """
     根据Markdown结构判断行类型
@@ -505,10 +537,41 @@ def infer_title_from_output_path(output_path):
     return stem
 
 
+def extract_document_title(lines):
+    """从正文行中提取公文标题，用于默认输出文件名。"""
+    for line in lines:
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if get_line_type(stripped) == 'title':
+            title = strip_markdown_heading(stripped)
+        elif is_plain_document_title(stripped):
+            title = stripped
+        else:
+            continue
+        title = sanitize_filename_component(title)
+        if title:
+            return title
+    return None
+
+
 def strip_markdown_bold(text):
     """去掉Markdown加粗标记 **text** 或 __text__"""
     text = re.sub(r'\*\*([^*]+)\*\*', r'\1', text)
     text = re.sub(r'__([^_]+)__', r'\1', text)
+    return text
+
+
+def normalize_appendix_text(text):
+    """清理素材附录中的内部写作痕迹。"""
+    text = strip_markdown_bold(text.strip())
+    text = re.sub(r'^[→➜]\s*用于[:：]\s*', '用途：', text)
+    text = re.sub(r'^[→➜]\s*参考[:：]\s*', '参考：', text)
+    text = re.sub(r'^[→➜]\s*用途[:：]\s*', '用途：', text)
+    while '来源：来源：' in text:
+        text = text.replace('来源：来源：', '来源：')
+    while '数据源：数据源：' in text:
+        text = text.replace('数据源：数据源：', '数据源：')
     return text
 
 
@@ -556,6 +619,32 @@ def is_attachment_section_title(line):
 def document_has_visible_content(doc):
     """判断文档中是否已经有正文内容，用于附件页前分页。"""
     return any(paragraph.text.strip() for paragraph in doc.paragraphs)
+
+
+def paragraph_has_page_break(paragraph):
+    """判断段落中是否包含分页符。"""
+    return bool(paragraph._p.xpath('.//w:br[@w:type="page"]'))
+
+
+def document_ends_with_page_break(doc):
+    """判断当前文档末尾是否已经是分页符，避免重复插入空白页。"""
+    for paragraph in reversed(doc.paragraphs):
+        if paragraph_has_page_break(paragraph):
+            return True
+        if paragraph.text.strip():
+            return False
+    return False
+
+
+def add_page_break_if_needed(doc, line_spacing=None):
+    """在已有正文后插入分页符；若末尾已有分页符则不重复插入。"""
+    if not document_has_visible_content(doc) or document_ends_with_page_break(doc):
+        return
+    para = doc.add_paragraph()
+    run = para.add_run()
+    run.add_break(WD_BREAK.PAGE)
+    if line_spacing:
+        set_paragraph_format(para, first_line_indent=False, line_spacing=line_spacing)
 
 
 def is_signing_entity(line):
@@ -899,6 +988,7 @@ def create_document(content_text, output_path=None):
     
     # 处理正文内容
     lines = content_text.strip().split('\n')
+    default_title = extract_document_title(lines)
     if not has_markdown_title(lines):
         inferred_title = infer_title_from_output_path(output_path)
         before = list(lines)
@@ -921,6 +1011,8 @@ def create_document(content_text, output_path=None):
     in_appendix_section = False
     # 知识专库链接区域标志：URL 生成可点击蓝链
     in_kb_section = False
+    # 知识专库链接前一行标签，用于显示为“标题（点击打开）”
+    pending_kb_label = None
     # 附件正文首页“附件”后的下一行作为附件标题处理
     awaiting_attachment_title = False
     # 正文末尾附件目录后，落款前需要固定空三行
@@ -979,6 +1071,7 @@ def create_document(content_text, output_path=None):
 
         marker_text = strip_markdown_heading(stripped)
         if marker_text in ("素材使用情况", "参考资料", "参考来源"):
+            add_page_break_if_needed(doc, body_line_spacing)
             in_appendix_section = True
             para = doc.add_paragraph()
             label = "【素材使用情况】" if marker_text == "素材使用情况" else f"【{marker_text}】"
@@ -988,8 +1081,11 @@ def create_document(content_text, output_path=None):
             continue
 
         if marker_text == "知识专库链接":
+            if not in_appendix_section:
+                add_page_break_if_needed(doc, body_line_spacing)
             in_appendix_section = True
             in_kb_section = True
+            pending_kb_label = None
             para = doc.add_paragraph()
             add_formatted_text(para, "【知识专库链接】", body_font, body_size)
             set_paragraph_format(para, first_line_indent=False, alignment=WD_ALIGN_PARAGRAPH.LEFT, line_spacing=body_line_spacing)
@@ -1003,12 +1099,49 @@ def create_document(content_text, output_path=None):
             or re.match(r'^【参考来源】', stripped)
             or stripped in ("素材使用情况", "参考资料", "参考来源")
         ):
+            if not in_appendix_section:
+                add_page_break_if_needed(doc, body_line_spacing)
             in_appendix_section = True
 
         # 检测【知识专库链接】区域开始
         if re.match(r'^【知识专库链接】', stripped):
+            if not in_appendix_section:
+                add_page_break_if_needed(doc, body_line_spacing)
             in_appendix_section = True
             in_kb_section = True
+            pending_kb_label = None
+
+        # 附录区域：统一靠左排版；知识专库 URL 生成可点击蓝链。
+        # 必须早于标题识别，避免“15. XXX”这类素材编号被误判为三级标题。
+        if in_appendix_section:
+            if in_kb_section and re.search(r'https?://', stripped):
+                url_match = re.search(r'(https?://\S+)', stripped)
+                if url_match:
+                    url = sanitize_url(url_match.group(1))
+                    if is_internal_search_endpoint(url):
+                        i += 1
+                        continue
+                    para = doc.add_paragraph()
+                    add_hyperlink(
+                        para,
+                        url,
+                        hyperlink_display_text(pending_kb_label),
+                        font_name=body_font,
+                        font_size=body_size,
+                    )
+                    set_paragraph_format(para, first_line_indent=False, alignment=WD_ALIGN_PARAGRAPH.LEFT, line_spacing=body_line_spacing)
+                    pending_kb_label = None
+                    i += 1
+                    continue
+
+            para = doc.add_paragraph()
+            clean_text = normalize_appendix_text(stripped)
+            add_formatted_text(para, clean_text, body_font, body_size)
+            set_paragraph_format(para, first_line_indent=False, alignment=WD_ALIGN_PARAGRAPH.LEFT, line_spacing=body_line_spacing)
+            if in_kb_section and clean_text and not clean_text.startswith("【"):
+                pending_kb_label = clean_text
+            i += 1
+            continue
 
         # 附件清单续行要先于三级标题识别，避免 “2.附件名” 被误判为三级标题。
         if i > 0 and is_attachment_continuation(stripped):
@@ -1133,52 +1266,6 @@ def create_document(content_text, output_path=None):
             i += 1
             continue
 
-        # 附录区域：统一靠左排版；知识专库 URL 生成可点击蓝链
-        if in_appendix_section:
-            if in_kb_section and re.search(r'https?://', stripped):
-                url_match = re.search(r'(https?://\S+)', stripped)
-                if url_match:
-                    url = sanitize_url(url_match.group(1))
-                    if is_internal_search_endpoint(url):
-                        i += 1
-                        continue
-                    para = doc.add_paragraph()
-                    add_hyperlink(para, url, url, font_name=body_font, font_size=body_size)
-                    set_paragraph_format(para, first_line_indent=False, alignment=WD_ALIGN_PARAGRAPH.LEFT, line_spacing=body_line_spacing)
-                    i += 1
-                    continue
-
-            para = doc.add_paragraph()
-            clean_text = strip_markdown_bold(stripped)
-            add_formatted_text(para, clean_text, body_font, body_size)
-            set_paragraph_format(para, first_line_indent=False, alignment=WD_ALIGN_PARAGRAPH.LEFT, line_spacing=body_line_spacing)
-            i += 1
-            continue
-
-        # 知识专库链接区域：靠左排版，URL生成可点击蓝链
-        if in_kb_section:
-            # URL行：生成超链接
-            if re.search(r'https?://', stripped):
-                # 提取URL
-                url_match = re.search(r'(https?://\S+)', stripped)
-                if url_match:
-                    url = sanitize_url(url_match.group(1))
-                    if is_internal_search_endpoint(url):
-                        i += 1
-                        continue
-                    para = doc.add_paragraph()
-                    add_hyperlink(para, url, url, font_name=body_font, font_size=body_size)
-                    set_paragraph_format(para, first_line_indent=False, alignment=WD_ALIGN_PARAGRAPH.LEFT, line_spacing=body_line_spacing)
-                    i += 1
-                    continue
-            # 非URL行（标签、标题等）：靠左排版，不缩进
-            para = doc.add_paragraph()
-            clean_text = strip_markdown_bold(stripped)
-            add_formatted_text(para, clean_text, body_font, body_size)
-            set_paragraph_format(para, first_line_indent=False, alignment=WD_ALIGN_PARAGRAPH.LEFT, line_spacing=body_line_spacing)
-            i += 1
-            continue
-
         # 普通正文
         # 清理Markdown加粗标记
         clean_text = strip_markdown_bold(stripped)
@@ -1190,7 +1277,8 @@ def create_document(content_text, output_path=None):
     # 保存文件
     timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
     if not output_path:
-        output_path = os.path.join(get_configured_output_dir(), f'公文_{timestamp}.docx')
+        default_stem = default_title or f'公文_{timestamp}'
+        output_path = os.path.join(get_configured_output_dir(), f'{default_stem}.docx')
 
     output_path = resolve_output_path(output_path)
 
@@ -1205,6 +1293,7 @@ def create_document(content_text, output_path=None):
         os.makedirs(output_dir, exist_ok=True)
 
     add_ai_disclaimer(doc)
+    set_document_core_properties(doc, default_title)
     doc.save(output_path)
     return output_path
 

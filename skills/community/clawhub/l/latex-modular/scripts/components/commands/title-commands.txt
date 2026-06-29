@@ -1,0 +1,32 @@
+% --- 字体指令 ---
+\usepackage{ctex,amssymb}
+
+\newCJKfontfamily\timucn{SimSun}[AutoFakeBold=3] % 启用伪粗体
+\newCJKfontfamily\yijitimucn{SimHei}
+\newCJKfontfamily\erjitimucn{KaiTi}
+\newCJKfontfamily\sanjitimucn{FangSong}
+\newCJKfontfamily\zzcn{FangSong}
+\newCJKfontfamily\dwcn{FangSong}
+\newCJKfontfamily\zdcn{FangSong}[
+  AutoFakeSlant = 0.2,  % 倾斜角度（0.2≈11.3度）
+  ItalicFeatures = {FakeSlant=0.2}  % 确保斜体命令继承此设置
+]
+
+\newcommand{\timu}[1]{{\timucn #1}}
+\newcommand{\yijitimu}[1]{{\yijitimucn #1}}
+\newcommand{\erjitimu}[1]{{\erjitimucn #1}}
+\newcommand{\sanjitimu}[1]{{\sanjitimucn #1}}
+\newcommand{\zz}[1]{{\zzcn #1}}
+\newcommand{\dw}[1]{{\dwcn #1}}
+\newcommand{\seeref}[1]{%
+  % 确保段落开始，继承全局 \parindent=2em
+  \par 
+  % 符号与缩进对齐（通过负间距微调位置）
+  \hspace*{1em}\raisebox{-0.2ex}{\fontspec{Segoe UI Symbol}▶}%
+  % 符号与文字间距
+  \hspace{0.5em}%
+  % 正文样式
+  {\zdcn\zihao{-4}\itshape #1}%
+  % 防止后续段落继承格式
+  \par\noindent\ignorespaces
+}

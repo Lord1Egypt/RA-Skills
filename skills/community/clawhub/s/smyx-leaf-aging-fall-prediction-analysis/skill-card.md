@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes fixed-angle indoor plant leaf image sequences or video to detect aging indicators and predict a 3-7 day leaf-fall risk window. <br>
+Analyzes fixed-angle houseplant image or video sequences to detect leaf-aging signals and predict a 3-7 day leaf-fall risk window. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,34 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users, plant-care operators, and developers use this skill to submit indoor houseplant leaf images or videos for cloud analysis, daily aging reports, predicted leaf-fall windows, and directional care suggestions. It can also list prior cloud-stored analysis reports for a supplied open-id. <br>
+Plant owners, plant-rental teams, greenhouse operators, and agent developers use this skill to analyze uploaded plant media, predict near-term leaf drop, and receive care guidance or historical report listings. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Plant-camera media, URLs, user identifiers, and report history are sent to or retrieved from a third-party cloud service. <br>
-Mitigation: Use the skill only with media and identifiers suitable for third-party processing, and confirm the publisher's retention, deletion, and access-control practices before submitting sensitive footage. <br>
-Risk: The release guidance warns against reusing an API key as the open-id user identifier. <br>
-Mitigation: Provide a non-secret username, phone number, or other non-secret identifier as open-id, and keep API keys separate from identity fields. <br>
-Risk: The authoritative scan verdict is suspicious because account, token, history, and upload behavior are broad and under-disclosed. <br>
-Mitigation: Review the publisher documentation and local configuration before deployment, restrict credentials to the minimum needed, and avoid installing where this data flow is unacceptable. <br>
+Risk: Submitted plant videos, images, or URLs are sent to the LifeEmergence cloud service for analysis. <br>
+Mitigation: Use only media and URLs acceptable for third-party processing; avoid sensitive household footage or private URLs unless retention, deletion, and account-control terms are clear. <br>
+Risk: The skill silently creates or reuses an internal identity and stores session tokens in a local workspace database. <br>
+Mitigation: Review account and session behavior before installation and run the skill only in workspaces where local token storage is acceptable. <br>
+Risk: Leaf-fall predictions and care suggestions may be inaccurate or incomplete. <br>
+Mitigation: Treat the output as plant-care guidance and verify results before taking irreversible pruning or treatment actions. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill listing](https://clawhub.ai/18072937735/smyx-leaf-aging-fall-prediction-analysis) <br>
-- [API documentation](references/api_doc.md) <br>
-- [SMYX analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+- [Leaf Aging Fall Prediction API Reference](artifact/references/api_doc.md) <br>
+- [SMYX Analysis API Reference](artifact/skills/smyx_analysis/references/api_doc.md) <br>
+- [Skill Demo](https://lifeemergence.com/sample.html) <br>
+- [ClawHub Skill Page](https://clawhub.ai/18072937735/skills/smyx-leaf-aging-fall-prediction-analysis) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Analysis, JSON, Markdown, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown or JSON-like text with structured leaf-aging results, report links, shell command examples, and optional saved output files] <br>
+**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
+**Output Format:** [Markdown text with structured JSON-style analysis results, report listings, and report links.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Results may include an aging index, predicted fall window, at-risk leaf locations, likely cause hints, care suggestions, and cloud report export URLs.] <br>
+**Other Properties Related to Output:** [May write results to a local output file when requested.] <br>
 
 ## Skill Version(s): <br>
-1.0.4 (source: server release evidence; artifact frontmatter says 1.0.1) <br>
+1.0.5 (source: server release metadata; artifact frontmatter says 1.0.2) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DouyinScriptInput",
+  "description": "Input schema for the Douyin Short Video Script Writer skill",
+  "type": "object",
+  "required": ["topic", "duration"],
+  "properties": {
+    "topic": {
+      "type": "string",
+      "description": "The main topic or theme of the short video",
+      "examples": ["上海隐藏版葱油拌面", "为什么你总是存不下钱", "手持挂烫机开箱"]
+    },
+    "duration": {
+      "type": "integer",
+      "description": "Target video duration in seconds. Supported: 15, 30, or 60.",
+      "enum": [15, 30, 60],
+      "default": 15
+    },
+    "style": {
+      "type": "string",
+      "description": "Video style / tone. Affects script language, pacing, and BGM suggestions.",
+      "enum": ["快节奏诱人", "干货温和", "种草真实", "剧情搞笑", "情感共鸣", "知识科普", "其他"],
+      "default": "快节奏诱人"
+    },
+    "audience": {
+      "type": "string",
+      "description": "Target audience",
+      "default": "通用"
+    },
+    "productName": {
+      "type": "string",
+      "description": "Product name — required for e-commerce / product promotion scripts",
+      "default": ""
+    },
+    "sellingPoints": {
+      "type": "array",
+      "description": "Key selling points — required for e-commerce / product promotion scripts",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "cta": {
+      "type": "string",
+      "description": "Call-to-action text for the final section",
+      "default": ""
+    }
+  },
+  "examples": [
+    {
+      "topic": "上海隐藏版葱油拌面",
+      "duration": 15,
+      "style": "快节奏诱人",
+      "audience": "美食爱好者"
+    },
+    {
+      "topic": "为什么你总是存不下钱",
+      "duration": 30,
+      "style": "干货温和",
+      "audience": "职场白领"
+    },
+    {
+      "topic": "手持挂烫机",
+      "duration": 60,
+      "style": "种草真实",
+      "productName": "便携手持挂烫机",
+      "sellingPoints": ["3秒出蒸汽", "便携", "不伤衣"],
+      "audience": "出差党"
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "name": "property-management-dispute",
+  "displayName": "Property Management Dispute Assistant / 物业纠纷维权助手",
+  "slug": "property-management-dispute",
+  "version": "1.0.0",
+  "description": "One-stop AI-powered engine for Chinese residential property management dispute resolution. Covers fee disputes, facility damage, water leaks, parking disputes, public revenue, utility cutoffs, decoration deposits, HOA formation, maintenance funds, and neighbor disputes with PM inaction.",
+  "author": "harrylabsj",
+  "tags": [
+    "property-management",
+    "property-dispute",
+    "物业管理",
+    "物业纠纷",
+    "civil-code",
+    "condominium",
+    "homeowners-rights",
+    "hoa",
+    "tenant-rights",
+    "legal-assistant",
+    "dispute-resolution",
+    "property-fee",
+    "maintenance-fund",
+    "public-revenue"
+  ],
+  "category": "Legal & Compliance",
+  "minOpenClawVersion": "1.0.0",
+  "languages": ["en", "zh-CN"],
+  "license": "MIT",
+  "homepage": "https://github.com/harrylabsj/skills",
+  "repository": "https://github.com/harrylabsj/skills.git",
+  "inputs": {
+    "type": "object",
+    "properties": {
+      "dispute_type": {
+        "type": "string",
+        "enum": [
+          "fee_dispute", "facility_damage", "water_leak", "parking_dispute",
+          "public_revenue", "utility_cutoff", "decoration_deposit",
+          "hoa_formation", "maintenance_fund", "neighbor_dispute_with_pm",
+          "contract_expiry", "service_quality", "other"
+        ],
+        "description": "Type of property management dispute"
+      },
+      "user_role": {
+        "type": "string",
+        "enum": ["homeowner", "tenant", "hoa_member", "new_homeowner"],
+        "description": "User's role in the property"
+      },
+      "property_type": {
+        "type": "string",
+        "enum": ["commercial_housing", "old_community", "apartment", "villa"],
+        "description": "Type of residential property"
+      },
+      "fee_monthly": {
+        "type": "number",
+        "description": "Monthly property management fee in CNY"
+      },
+      "handover_year": {
+        "type": "number",
+        "description": "Year the property was handed over (for warranty period calculation)"
+      },
+      "incident_start_date": {
+        "type": "string",
+        "format": "date",
+        "description": "Date when the issue first occurred"
+      }
+    }
+  },
+  "config": {
+    "thresholds": {
+      "major_damage": 10000,
+      "escalation_days": 7,
+      "max_questions_per_turn": 3
+    },
+    "warranty_periods": {
+      "roof_waterproofing_years": 5,
+      "wall_finish_years": 2,
+      "general_years": 2
+    },
+    "hotline": "12345",
+    "legal_statute_of_limitations_years": 3
+  }
+}

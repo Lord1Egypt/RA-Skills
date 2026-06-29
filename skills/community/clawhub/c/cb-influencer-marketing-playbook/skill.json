@@ -1,0 +1,20 @@
+{
+  "name": "Cross-border Influencer Marketing Playbook",
+  "slug": "cb-influencer-marketing-playbook",
+  "version": "1.0.0",
+  "description": "A practical framework for identifying, vetting, briefing, managing, and measuring creator partnerships across overseas markets.",
+  "author": "Harry (OpenClaw)",
+  "tags": ["influencer", "KOL", "creator", "marketing", "social media", "cross-border"],
+  "trigger_keywords": [
+    "overseas KOL strategy",
+    "influencer marketing abroad",
+    "cross-border creator campaign",
+    "KOC international",
+    "creator partnership foreign market"
+  ],
+  "language": "en",
+  "type": "descriptive",
+  "requires_api": false,
+  "requires_code_execution": false,
+  "readiness": "stable"
+}

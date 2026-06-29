@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Anthropic API router for Claude-style clients: one Anthropic-compatible base URL, Claude Code setup, Dario-ready routing, authorized Anthropic keys, 429 failover, and multimodal model routing." />
+  <link rel="canonical" href="https://sagerouter.dev/anthropic-api-router" />
+  <meta property="og:title" content="Anthropic API router | Sage Router" />
+  <meta property="og:description" content="Route Claude Code, Anthropic-compatible clients, Dario, local models, OpenAI, Gemini, and BYOK providers through Sage Router without bundling unauthorized provider access." />
+  <meta property="og:url" content="https://sagerouter.dev/anthropic-api-router" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Anthropic API router | Sage Router</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07100d;--panel:rgba(13,29,24,.84);--soft:rgba(255,255,255,.045);--border:rgba(166,255,207,.16);--muted:#a9c5b8;--text:#edfdf5;--brand:#8df0b2;--amber:#f7d57a;--blue:#8ab4ff}*{box-sizing:border-box}body{margin:0;min-width:320px;background:linear-gradient(180deg,#07100d 0%,#0b1518 54%,#07100d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}a{color:inherit}.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;color:var(--muted)}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;color:var(--text);text-decoration:none}.brandMark{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(141,240,178,.42);border-radius:8px;color:#062016;background:linear-gradient(135deg,var(--brand),var(--amber))}.navLinks{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;font-weight:750}.navLinks a{text-decoration:none}.navLinks a:hover,footer a:hover{color:var(--text)}header{padding:72px 0 38px}.eyebrow{color:var(--brand);font-weight:900;letter-spacing:.16em;text-transform:uppercase;font-size:12px;margin:0 0 16px}h1{font-size:clamp(44px,7vw,82px);line-height:.94;margin:0 0 22px;max-width:980px}h2{font-size:clamp(28px,4vw,44px);line-height:1.05;margin:0 0 16px}h3{font-size:21px;margin:0 0 8px}.lead{font-size:clamp(20px,2.2vw,26px);line-height:1.36;color:#d2eadf;max-width:900px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.button{min-height:46px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:0 20px;font-weight:900;text-decoration:none}.primary{background:var(--brand);color:#06160d}.secondary{border:1px solid var(--border);background:rgba(255,255,255,.05);color:var(--text)}main{padding:24px 0 68px}.stack{display:grid;gap:22px}.panel{border:1px solid var(--border);border-radius:8px;background:var(--panel);padding:28px}.panel.soft{background:var(--soft)}.panel p,.panel li,.muted{color:var(--muted)}.panel p{margin:0 0 14px}.panel p:last-child{margin-bottom:0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.two{display:grid;grid-template-columns:minmax(0,.95fr) minmax(330px,.65fr);gap:18px;align-items:start}.list{display:grid;gap:10px;margin:0;padding-left:22px}.codebox{white-space:pre-wrap;overflow:auto;border:1px solid var(--border);border-radius:8px;background:rgba(0,0,0,.28);color:#d9e6ff;padding:18px;font-size:.92rem}.copyRow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px}.copyButton{border:0;border-radius:999px;background:var(--brand);color:#04150d;cursor:pointer;font-weight:900;min-height:42px;padding:0 18px}.copyStatus{color:var(--muted);font-size:14px;min-height:22px}code{color:#d9e6ff}.callout{border-color:rgba(247,213,122,.32);background:rgba(247,213,122,.07)}.callout strong{color:var(--amber)}footer{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:.9rem;padding:34px 0 54px;border-top:1px solid rgba(166,255,207,.1)}footer span{margin-right:auto}@media(max-width:900px){.grid,.two{grid-template-columns:1fr}.nav{align-items:flex-start;flex-direction:column}.button{width:100%}}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Sage Router Anthropic API router",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Linux, macOS, Windows, Docker",
+    "url": "https://sagerouter.dev/anthropic-api-router",
+    "description": "Anthropic-compatible API router for Claude Code, Claude-style clients, authorized Anthropic or Dario routes, 429 failover, multimodal routing, and hosted Sage Router generated keys."
+  }
+  </script>
+</head>
+<body>
+  <nav class="nav wrap" aria-label="Main navigation">
+    <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+    <div class="navLinks">
+      <a href="/quickstart">Quickstart</a>
+      <a href="/integrations">Integrations</a>
+      <a href="/models">Models</a>
+      <a href="/openai-api-router">OpenAI API</a>
+      <a href="/pricing">Pricing</a>
+      <a href="https://app.sagerouter.dev/account.html">Account</a>
+    </div>
+  </nav>
+
+  <header class="wrap">
+    <p class="eyebrow">Claude-style routing</p>
+    <h1>Anthropic API router for Claude Code and Claude-style clients</h1>
+    <p class="lead">Use one Anthropic-compatible base URL for Claude Code, Claude-style SDK clients, Dario-backed routes, local models, and BYOK providers. Sage Router keeps provider access authorized by the customer; public plans do not bundle or pool unauthorized Anthropic subscriptions.</p>
+    <div class="actions">
+      <a class="button primary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key" data-anthropic-event="content_article_key_activation_clicked" data-anthropic-button="create-api-key">Create API key</a>
+      <a class="button secondary" href="/integrations" data-anthropic-event="content_article_quickstart_clicked" data-anthropic-button="integrations">Read integrations</a>
+      <a class="button secondary" href="https://github.com/earlvanze/sage-router/blob/master/docs/integrations/claude-code.md" data-anthropic-event="content_article_codex_clicked" data-anthropic-button="claude-code">Claude Code guide</a>
+      <a class="button secondary" href="/models" data-anthropic-event="content_article_compare_clicked" data-anthropic-button="models">Browse models</a>
+    </div>
+  </header>
+
+  <main class="wrap stack">
+    <section class="grid">
+      <article class="panel">
+        <h2>Anthropic-compatible base URL</h2>
+        <p>Point supported Claude-style clients at <code>ANTHROPIC_BASE_URL=https://api.sagerouter.dev</code> for hosted routing, or at a local/Tailnet Sage Router when provider credentials should stay private.</p>
+      </article>
+      <article class="panel">
+        <h2>Dario-ready routing</h2>
+        <p>If Dario or another authorized Anthropic-compatible path is available, keep it in the routing matrix. If it is not active, the route stays optional instead of becoming a bundled entitlement.</p>
+      </article>
+      <article class="panel">
+        <h2>429 failover</h2>
+        <p>When a Claude-compatible route, provider key, or fallback provider rate-limits, Sage Router can select another eligible authorized route instead of forcing each client to own failover logic.</p>
+      </article>
+    </section>
+
+    <section class="two">
+      <article class="panel">
+        <h2>60-second Anthropic-compatible setup</h2>
+        <pre id="anthropic-router-start-code" class="codebox">export ANTHROPIC_BASE_URL=https://api.sagerouter.dev
+export ANTHROPIC_API_KEY=sk_sage_your_generated_key
+
+curl "$ANTHROPIC_BASE_URL/v1/messages" \
+  -H "x-api-key: $ANTHROPIC_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "sage-router/frontier",
+    "max_tokens": 200,
+    "messages": [{"role": "user", "content": "Route this Claude-style request"}]
+  }'</pre>
+        <div class="copyRow">
+          <button id="anthropic-router-copy-start" class="copyButton" type="button">Copy 60-second Anthropic setup</button>
+          <span id="anthropic-router-copy-status" class="copyStatus" role="status" aria-live="polite"></span>
+        </div>
+      </article>
+      <aside class="panel soft">
+        <h2>Where it fits</h2>
+        <ul class="list">
+          <li>Claude Code and Anthropic-compatible harnesses that expect <code>/v1/messages</code>.</li>
+          <li>Authorized Anthropic API keys, Dario subscription paths, OpenAI-compatible fallbacks, Gemini, Ollama, and private endpoints.</li>
+          <li>Teams that want generated hosted keys, quotas, analytics, and route telemetry without sharing provider secrets in public support channels.</li>
+          <li>Local or Tailnet deployments where Anthropic/Dario credentials stay on trusted machines.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="grid">
+      <article class="panel soft">
+        <h3>Multimodal routing</h3>
+        <p>Image, audio, video, and document inputs are routed only to capable models, and served modalities are recorded per model for future routing decisions.</p>
+      </article>
+      <article class="panel soft">
+        <h3>Multiple credentials</h3>
+        <p>Provider credential pools can load balance and fail over across authorized keys or subscription paths when a route is unhealthy or rate-limited.</p>
+      </article>
+      <article class="panel soft">
+        <h3>Provider boundary</h3>
+        <p>Sage Router does not grant unauthorized Anthropic access. Customers bring authorized provider access or use hosted routing for Sage Router account control.</p>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>Why route Claude-style traffic?</h2>
+      <p>Anthropic-compatible clients are excellent when Claude is the intended model family, but agent teams still need policy, fallback, local models, OpenAI-compatible alternatives, credential health, and observability. Sage Router keeps the Claude-style interface while moving route choice behind a controllable gateway.</p>
+    </section>
+
+    <section class="panel callout">
+      <h2><strong>Next steps</strong></h2>
+      <p><a href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key" data-anthropic-event="content_article_key_activation_clicked" data-anthropic-button="next-create-api-key">Create an API key</a>, <a href="/integrations" data-anthropic-event="content_article_quickstart_clicked" data-anthropic-button="next-integrations">read integrations</a>, <a href="https://github.com/earlvanze/sage-router/blob/master/docs/integrations/anthropic-compatible.md" data-anthropic-event="content_article_codex_clicked" data-anthropic-button="anthropic-compatible-guide">open the Anthropic-compatible guide</a>, or <a href="/managed-access?intent=anthropic" data-anthropic-event="content_article_key_activation_clicked" data-anthropic-button="managed-review">request managed Anthropic review</a>.</p>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <span>Sage Router</span>
+    <a href="/quickstart">Quickstart</a>
+    <a href="/integrations">Integrations</a>
+    <a href="/openai-api-router">OpenAI API</a>
+    <a href="/models">Models</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/security">Security</a>
+  </footer>
+  <script>
+    function trackAnthropicRouterEvent(event, data = {}) {
+      const params = new URLSearchParams(window.location.search);
+      let referrerHost = null;
+      try {
+        const referrer = document.referrer ? new URL(document.referrer) : null;
+        referrerHost = referrer && referrer.host !== window.location.host ? referrer.host : null;
+      } catch {}
+      const payload = JSON.stringify({
+        event,
+        plan: data.plan || null,
+        sourcePage: window.location.href,
+        target: data.target || null,
+        metadata: {
+          source: 'article',
+          button: data.button || null,
+          state: 'anthropic-api-router',
+          utmSource: params.get('utm_source') || params.get('utmSource') || null,
+          utmMedium: params.get('utm_medium') || params.get('utmMedium') || null,
+          utmCampaign: params.get('utm_campaign') || params.get('utmCampaign') || null,
+          referrerHost,
+          landingPath: window.location.pathname,
+          snippet: data.snippet || null
+        }
+      });
+      try {
+        if (navigator.sendBeacon) {
+          const blob = new Blob([payload], { type: 'application/json' });
+          if (navigator.sendBeacon('/api/funnel-event', blob)) return;
+        }
+      } catch {}
+      fetch('/api/funnel-event', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: payload,
+        keepalive: true,
+        credentials: 'omit'
+      }).catch(() => {});
+    }
+
+    function anthropicRouterStartText() {
+      return `${document.getElementById('anthropic-router-start-code')?.textContent.trim() || ''}
+
+# Create a hosted generated key:
+# https://app.sagerouter.dev/account.html?plan=pro&start=create_key`;
+    }
+
+    async function writeClipboardText(text) {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      textarea.remove();
+    }
+
+    async function copyAnthropicRouterStart() {
+      const status = document.getElementById('anthropic-router-copy-status');
+      try {
+        await writeClipboardText(anthropicRouterStartText());
+        trackAnthropicRouterEvent('quickstart_snippet_copied', {
+          button: 'copy_anthropic_router_start',
+          snippet: 'anthropic-router-start'
+        });
+        if (status) status.textContent = 'Copied Anthropic-compatible setup.';
+      } catch {
+        if (status) status.textContent = 'Copy failed. Select the command block manually.';
+      }
+    }
+
+    trackAnthropicRouterEvent('content_article_viewed', { button: 'page-view' });
+    document.getElementById('anthropic-router-copy-start')?.addEventListener('click', copyAnthropicRouterStart);
+    document.querySelectorAll('[data-anthropic-event]').forEach((link) => {
+      link.addEventListener('click', () => {
+        const href = link.getAttribute('href') || '';
+        const planMatch = href.match(/plan=(lite|pro|max)\b/);
+        trackAnthropicRouterEvent(link.dataset.anthropicEvent, {
+          plan: planMatch ? planMatch[1] : null,
+          target: href,
+          button: link.dataset.anthropicButton || link.textContent.trim().slice(0, 60)
+        });
+      });
+    });
+  </script>
+  <script src="/article-activation-dock.js" defer></script>
+</body>
+</html>

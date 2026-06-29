@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3D Architecture Walkthrough — archviz-skills</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f5f0eb; font-family: -apple-system, 'Helvetica Neue', sans-serif; overflow: hidden; }
+  #canvas { width: 100vw; height: 100vh; display: block; }
+  #info {
+    position: fixed; bottom: 20px; left: 20px; z-index: 10;
+    color: #78716c; font-size: 12px; line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+<!-- Three.js 3D Architecture Walkthrough — archviz-skills -->
+<div id="info">
+  3D 建筑漫游 · archviz-skills<br>
+  鼠标拖拽旋转/缩放
+</div>
+<canvas id="canvas"></canvas>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+    "animejs": "https://cdn.jsdelivr.net/npm/animejs@4.4.1/dist/bundles/anime.esm.js"
+  }
+}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { animate } from 'animejs';
+
+// animejs v4 helper
+function tween(target, props) { return animate(target, props); }
+
+// === Tokens ===
+const TOKENS = {
+  wall:    0xe8e4e0,
+  floor:   0xd6d3d1,
+  accent:  0x002FA7,
+  ambient: 0xf5f5f4,
+  ground:  0xd6d3d1,
+};
+
+// === Scene ===
+const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xf5f0eb);
+
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.set(8, 6, 10);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
+controls.minDistance = 3;
+controls.maxDistance = 50;
+controls.target.set(0, 1, 0);
+
+// === Lights ===
+scene.add(new THREE.HemisphereLight(0xffffff, TOKENS.ground, 0.7));
+const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+dirLight.position.set(5, 8, 5);
+dirLight.castShadow = true;
+scene.add(dirLight);
+scene.add(new THREE.AmbientLight(0xffffff, 0.2));
+
+// === Materials ===
+const matWall = new THREE.MeshStandardMaterial({ color: TOKENS.wall, roughness: 0.9 });
+const matAccent = new THREE.MeshStandardMaterial({ color: TOKENS.accent, roughness: 0.3 });
+const matFloor = new THREE.MeshStandardMaterial({ color: TOKENS.floor, roughness: 0.8 });
+
+// Floor
+const floor = new THREE.Mesh(new THREE.BoxGeometry(12, 0.2, 8), matFloor);
+floor.position.y = -0.1;
+floor.receiveShadow = true;
+scene.add(floor);
+
+// Walls
+function addWall(x, y, z, w, h, d) {
+  const wall = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), matWall);
+  wall.position.set(x, y, z);
+  wall.castShadow = true;
+  wall.receiveShadow = true;
+  scene.add(wall);
+}
+addWall(0, 1.5, -4, 12, 3, 0.2);   // back
+addWall(-6, 1.5, 0, 0.2, 3, 8);     // left
+addWall(6, 1.5, 0, 0.2, 3, 8);      // right
+
+// Accent element
+const accent = new THREE.Mesh(new THREE.BoxGeometry(2, 2.5, 0.3), matAccent);
+accent.position.set(0, 1.25, -3.8);
+scene.add(accent);
+
+// Columns
+for (let i = -4; i <= 4; i += 4) {
+  const col = new THREE.Mesh(new THREE.CylinderGeometry(0.15, 0.15, 3, 8), matWall);
+  col.position.set(i, 1.5, 2);
+  col.castShadow = true;
+  scene.add(col);
+}
+
+// === Responsive ===
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// === Render loop ===
+function renderLoop() {
+  requestAnimationFrame(renderLoop);
+  controls.update();
+  renderer.render(scene, camera);
+}
+renderLoop();
+</script>
+</body>
+</html>

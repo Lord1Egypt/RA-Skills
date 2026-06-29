@@ -42,14 +42,14 @@ siluzan-tso rag query -q "行业术语 英文类目" --folder-id <id> --top-k 10
 
 | 用户意图                       | 建议检索词（示例）                        | 后续 TSO 命令                                                                                                              |
 | ------------------------------ | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| Google 搜索广告方案 / 批量草稿 | 产品卖点、应用行业、目标国家、竞品差异    | `google-ads/google-ads-campaign-plan.md` + `keyword` / `campaign-create`；草稿发布见 `google-ads/google-ads.md` § ad batch |
-| 关键字拓词补语境               | 产品型号、英文类目、行业术语、应用场景    | `keyword suggest -k "..."`；编排见 `analytics/keyword-planner-workflows.md`                                                |
+| Google 搜索广告方案 / 批量草稿 | 产品卖点、应用行业、目标国家、竞品差异    | `references/google-ads/google-ads-campaign-plan.md` + `keyword` / `campaign-create`；草稿发布见 `references/google-ads/google-ads.md` § ad batch |
+| 关键字拓词补语境               | 产品型号、英文类目、行业术语、应用场景    | `keyword suggest -k "..."`；编排见 `references/analytics/keyword-planner-workflows.md`                                                |
 | 账户诊断 / 周期报告「背景」段  | 公司简介、主营产品、目标市场、认证资质    | `google-analysis` + `report-templates/` 对应模板                                                                           |
 | 询盘分析报告                   | 产品线、出口市场、客户画像、大洲业务侧重  | `report-templates/google-inquiry-analysis.md`                                                                              |
-| 开户行业/资质核对              | 营业执照经营范围、行业描述、品牌全称      | `accounts/open-account-by-media.md` 对应媒体开户流                                                                         |
+| 开户行业/资质核对              | 营业执照经营范围、行业描述、品牌全称      | `references/accounts/open-account-by-media.md` 对应媒体开户流                                                                         |
 | 优化建议解释                   | 产品毛利结构、旺季、转化路径（表单/电话） | `optimize` 记录 + 人工解读；数据仍来自 `google-analysis`                                                                   |
 
-检索结果**只作事实参考**：广告标题/描述须符合 `google-ads/rules/google-ads-compliance.md`；数值指标仍以 CLI 拉数为准。
+检索结果**只作事实参考**：广告标题/描述须符合 `references/google-ads/rules/google-ads-compliance.md`；数值指标仍以 CLI 拉数为准。
 
 ---
 

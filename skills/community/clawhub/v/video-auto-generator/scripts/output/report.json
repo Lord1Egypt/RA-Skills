@@ -1,0 +1,11 @@
+{
+  "topic": "2026年最值得用的5个AI工具",
+  "duration": 60,
+  "style": "review",
+  "voice_name": "zh-CN-XiaoxiaoNeural",
+  "script_path": "output\\script.md",
+  "voice_path": "output\\voice.mp3",
+  "cover_path": "output\\cover.png",
+  "video_path": "output\\final_video.mp4",
+  "generate_time": "2026-06-29 13:36:19"
+}

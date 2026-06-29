@@ -1,0 +1,160 @@
+{
+  "name": "myknowledge",
+  "version": "1.4.89",
+  "description": "路径清单 - 单一真理来源。lint-paths.sh 据此检查文档和配置里引用的所有路径。",
+  "_doc": "本文件由 scripts/lint-paths.sh 读取。修改时记得同步运行 lint 验证。",
+
+  "_truth_disclaimer": {
+    "_warning": "本文件是『声明』(manifest)，不是『事实』(state of filesystem)。",
+    "_use_correctly": [
+      "✅ 应该：用 manifest 作为『应该存在什么』的清单，验证真实文件系统和它是否一致",
+      "✅ 应该：读取 manifest 中的 version/name/platforms 作为元数据",
+      "❌ 不应该：直接相信 manifest 里的 required_files/path_aliases 反映真实状态",
+      "❌ 不应该：跳过独立的文件系统检查，只看 manifest 就认为通过"
+    ],
+    "_for_platform_readers": "你是 AI 平台/SkillHub 吗？不要只读 manifest。请同时用真实文件系统验证（os.path.exists 等）。manifest 错误或过时时，真实状态才是 ground truth。",
+    "_for_developers": "本 manifest 由开发者主动维护。lint-paths.sh 强制检查它和真实文件的一致性。修改 manifest 后必须跑 lint。",
+    "_design_history": "v1.1.4 增加：之前 manifest 误用可能让平台跳过自己的检查（self-endorsement trap）。本字段是降低该风险的免责声明，但根本防御在调用方的独立验证。"
+  },
+
+  "required_files": [
+    "SKILL.md",
+    "settings.yaml",
+    "_meta.json",
+
+    "PRIVACY.md",
+    "FAQ.md",
+    "docs/PITFALLS.md",
+
+    "core/main.md",
+    "core/templates/project-status-template.md",
+    "core/templates/requirement-readme-template.md",
+    "core/templates/requirements-index-template.md",
+    "core/templates/kb-readme-template.md",
+    "core/templates/public-readme-template.md",
+    "core/templates/archive-readme-template.md",
+    "core/templates/design-doc-template.md",
+    "core/templates/projects-yaml-spec.md",
+
+    "modules/commands/main.md",
+    "modules/management/main.md",
+    "modules/error/main.md",
+    "modules/export/main.md",
+    "modules/auto-track/main.md",
+
+    "one-time/onboarding/main.md",
+    "one-time/setup/install-source.md",
+    "one-time/setup/platform-detector.md",
+    "one-time/setup/update-checker.md",
+
+    "hooks/openclaw/HOOK.md",
+    "hooks/openclaw/handler.ts",
+    "hooks/openclaw/hook-guide.md",
+    "hooks/claude/README.md",
+    "hooks/claude/handler.js",
+    "hooks/claude/hooks.json",
+
+    "scripts/build-skillhub.sh",
+    "scripts/lint-paths.sh"
+  ],
+
+  "_required_files_doc": "所有声明必须真实存在的文件。lint 会校验。",
+
+  "skillhub_includes": [
+    "SKILL.md",
+    "settings.yaml",
+    "_meta.json",
+    "manifest.json",
+    "README.md",
+    "CHANGELOG.md",
+    "FAQ.md",
+    "docs/PITFALLS.md",
+    "core/",
+    "modules/",
+    "one-time/",
+    "hooks/"
+  ],
+
+  "_skillhub_includes_doc": "build-skillhub.sh 实际会打包的目录/文件。lint 校验此处声明与 build 脚本一致。注意：scripts/、test/、.github/ 是开发者专用，不进 zip。v1.1.12 新增 FAQ.md + docs/PITFALLS.md，让用户本地可查。",
+
+  "path_aliases": {
+    "templates/": "core/templates/",
+    "prompts/main.md": "core/main.md",
+    "prompts/onboarding.md": "one-time/onboarding/main.md",
+    "prompts/auto-track.md": "modules/auto-track/main.md",
+    "prompts/silent-mode.md": "modules/auto-track/main.md",
+    "hooks/handler.ts": "hooks/openclaw/handler.ts",
+    "helpers/": "one-time/setup/",
+    "docs/": "（根目录的用户文档，无子目录）"
+  },
+
+  "_path_aliases_doc": "历史别名 -> 实际路径。lint 检查文档里如果出现历史别名，警告（不报错）。",
+
+  "version_synced_files": [
+    "SKILL.md",
+    "settings.yaml",
+    "_meta.json",
+    "one-time/onboarding/main.md",
+    "hooks/claude/hooks.json",
+    "hooks/claude/README.md",
+    "hooks/openclaw/HOOK.md",
+    "hooks/openclaw/hook-guide.md",
+    "CHANGELOG.md"
+  ],
+
+  "_version_synced_files_doc": "版本号需要保持同步的文件列表。lint 检查所有文件里出现的 1.x.x 字符串是否一致。",
+
+  "platforms_supported": [
+    "codebuddy",
+    "workbuddy",
+    "openclaw",
+    "claude"
+  ],
+
+  "_platforms_supported_doc": "支持的平台列表。lint 检查 README/USAGE/FAQ/INSTALL/TEST-PLAN 里是否提及所有平台。",
+
+  "path_check_exempt": {
+    "_doc": "路径检查豁免规则。每行是 '文件:豁免行号范围' 或 '文件:[行号1,行号2,...]' 或 '文件:豁免模式'",
+    "DEVELOPMENT.md": {
+      "_doc": "DEVELOPMENT.md 里有目录树和测试场景表格，引用了 test/ 下的简化路径",
+      "line_ranges": [[50, 90], [200, 250]],
+      "patterns": ["onboarding.md", "skillhub-only.md", "github-only.md", "cross-update.md", "releases/"]
+    },
+    "TEST-PLAN.md": {
+      "_doc": "测试计划里有需求目录格式示例（不是真实路径）",
+      "patterns": ["requirements/REQ-YYYYMMDD-XXX/"]
+    },
+    "hooks/claude/README.md": {
+      "_doc": "Claude README 引用的是同目录下的 handler.js，简化写法",
+      "patterns": ["handler.js"]
+    },
+    "PITFALLS.md": {
+      "_doc": "避坑指南是用户文档，引用的是用户 KB 里的路径（archive/、MyKnowledge/ 等），不是 Skill 自身",
+      "patterns": ["archive/", "MyKnowledge/"]
+    },
+    "core/main.md": {
+      "_doc": "输出规范和创建知识库段引用了用户知识库内的路径（requirements/README.md 等），不是 Skill 自身文件",
+      "patterns": ["requirements/README.md", "public/README.md", "archive/README.md", "requirements/{id}/README.md", "{kb}/README.md", "PROJECT-STATUS.md"]
+    },
+    "core/templates/archive-readme-template.md": {
+      "_doc": "归档模板引用用户知识库内的路径，不是 Skill 自身",
+      "patterns": ["requirements/"]
+    },
+    "RELEASE-LOG.md": {
+      "_doc": "开发参考文档，引用了 scripts/ 目录下的文件（不进 zip）",
+      "patterns": ["scripts/", "build-skillhub.sh", "lint-paths.sh", "bump-version.sh", "check-file-size.sh", "release.sh"]
+    },
+    "CHANGELOG-FOR-DEV.md": {
+      "_doc": "开发变更记录，描述的是开发历史，不是引用文件路径",
+      "patterns": ["requirement-readme-template.md", "error/main.md", "console.log", "templates/", "release.sh", "install.sh", "agentskill.sh"]
+    },
+    "docs/github-actions-publish-setup.md": {
+      "_doc": "GitHub Actions 发布设置指南，描述的是开发流程，不是引用文件路径",
+      "patterns": ["release.sh", "install.sh"]
+    },
+    "docs/submit-to-agentskill.sh.md": {
+      "_doc": "agentskill.sh 提交指南，描述的是提交流程，不是引用文件路径",
+      "patterns": ["agentskill.sh"]
+    }
+  }
+}

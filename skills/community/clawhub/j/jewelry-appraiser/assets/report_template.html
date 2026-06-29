@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TITLE}}</title>
+<style>
+  :root {
+    --primary: #1a1a2e;
+    --accent: #d4a574;
+    --accent2: #c9a96e;
+    --bg: #faf8f5;
+    --card-bg: #ffffff;
+    --text: #2c2c2c;
+    --text-secondary: #666;
+    --border: #e8e0d5;
+    --success: #2d8a4e;
+    --warning: #c77d20;
+    --danger: #c0392b;
+    --info: #2c6faa;
+    --tag-1: #e8d5c4;
+    --tag-2: #d4e5d9;
+    --tag-3: #d4dce5;
+    --tag-4: #e5d4e0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* Hero Header */
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, #2d2d4e 100%);
+    color: #fff;
+    padding: 48px 32px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 50%, rgba(212,165,116,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(201,169,110,0.1) 0%, transparent 50%);
+  }
+  .hero h1 { font-size: 2rem; position: relative; margin-bottom: 8px; }
+  .hero .subtitle { font-size: 0.95rem; opacity: 0.8; position: relative; }
+  .hero .badge-row { margin-top: 16px; position: relative; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+  }
+  .badge-tag1 { background: var(--tag-1); color: #5a3e2b; }
+  .badge-tag2 { background: var(--tag-2); color: #2a5a3a; }
+  .badge-tag3 { background: var(--tag-3); color: #2a3a5a; }
+  .badge-tag4 { background: var(--tag-4); color: #5a2a4a; }
+
+  /* Main Content */
+  .container { max-width: 900px; margin: 0 auto; padding: 32px 20px; }
+
+  /* Cards */
+  .card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    border: 1px solid var(--border);
+  }
+  .card h2 {
+    font-size: 1.25rem;
+    color: var(--primary);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card h2 .icon { font-size: 1.3rem; }
+
+  /* Knowledge Cards */
+  .knowledge-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 16px;
+    margin-top: 12px;
+  }
+  .knowledge-item {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 16px;
+    border-left: 3px solid var(--accent);
+  }
+  .knowledge-item h4 { font-size: 0.95rem; color: var(--primary); margin-bottom: 6px; }
+  .knowledge-item p { font-size: 0.85rem; color: var(--text-secondary); }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    font-size: 0.9rem;
+  }
+  th {
+    background: var(--primary);
+    color: #fff;
+    padding: 10px 12px;
+    text-align: left;
+    font-weight: 500;
+    font-size: 0.85rem;
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  tr:hover td { background: #faf6f0; }
+  tr:nth-child(even) td { background: #fdfbf8; }
+  tr:nth-child(even):hover td { background: #faf6f0; }
+
+  /* Advice Items */
+  .advice-list { margin-top: 12px; }
+  .advice-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--border);
+  }
+  .advice-item:last-child { border-bottom: none; }
+  .advice-priority {
+    flex-shrink: 0;
+    width: 40px;
+    height: 26px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+  }
+  .priority-p0 { background: var(--danger); }
+  .priority-p1 { background: var(--warning); }
+  .priority-p2 { background: var(--info); }
+
+  .advice-content h4 { font-size: 0.9rem; margin-bottom: 2px; }
+  .advice-content p { font-size: 0.83rem; color: var(--text-secondary); }
+
+  /* Score/Dashboard */
+  .score-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 12px 0;
+  }
+  .score-card {
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 16px 12px;
+  }
+  .score-card .score-num {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent2);
+  }
+  .score-card .score-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  /* Price Reference */
+  .price-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin: 4px;
+  }
+
+  /* Warnings */
+  .warning-box {
+    background: #fff8f0;
+    border: 1px solid #e8c48a;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 12px 0;
+  }
+  .warning-box .warn-title {
+    color: var(--warning);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .warning-box ul {
+    list-style: none;
+    padding: 0;
+  }
+  .warning-box li {
+    padding: 4px 0;
+    font-size: 0.88rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .warning-box li::before {
+    content: '⚠';
+    flex-shrink: 0;
+  }
+
+  /* Checklist */
+  .checklist { margin-top: 12px; }
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 0.9rem;
+  }
+  .checklist-item .check-icon {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--success);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    margin-top: 2px;
+  }
+
+  /* Disclaimer */
+  .disclaimer {
+    text-align: center;
+    padding: 24px;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+    border-top: 1px solid var(--border);
+    margin-top: 32px;
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 1.5rem; }
+    .container { padding: 20px 12px; }
+    .card { padding: 16px; }
+    .knowledge-grid { grid-template-columns: 1fr; }
+    .score-row { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+  <h1>{{HERO_TITLE}}</h1>
+  <p class="subtitle">{{HERO_SUBTITLE}}</p>
+  <div class="badge-row">
+    {{BADGES}}
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- 核心知识 -->
+  <div class="card">
+    <h2><span class="icon">📖</span> 核心知识</h2>
+    {{KNOWLEDGE_CONTENT}}
+  </div>
+
+  <!-- 分析结论 -->
+  <div class="card">
+    <h2><span class="icon">🔍</span> 分析结论</h2>
+    {{ANALYSIS_CONTENT}}
+  </div>
+
+  <!-- 评分/仪表盘（如有） -->
+  {{SCORE_SECTION}}
+
+  <!-- 价格参考 -->
+  <div class="card">
+    <h2><span class="icon">💰</span> 价格参考</h2>
+    {{PRICE_CONTENT}}
+  </div>
+
+  <!-- 选购/鉴定建议 -->
+  <div class="card">
+    <h2><span class="icon">📋</span> {{ADVICE_TITLE}}</h2>
+    <div class="advice-list">
+      {{ADVICE_ITEMS}}
+    </div>
+  </div>
+
+  <!-- 证书解读（如有） -->
+  {{CERT_SECTION}}
+
+  <!-- 风险提示 -->
+  <div class="card">
+    <h2><span class="icon">⚠️</span> 风险提示与避坑指南</h2>
+    <div class="warning-box">
+      <div class="warn-title">常见陷阱</div>
+      <ul>
+        {{WARNING_ITEMS}}
+      </ul>
+    </div>
+  </div>
+
+  <!-- 行动清单 -->
+  <div class="card">
+    <h2><span class="icon">✅</span> 行动清单</h2>
+    <div class="checklist">
+      {{CHECKLIST_ITEMS}}
+    </div>
+  </div>
+
+  <!-- 免责声明 -->
+  <div class="disclaimer">
+    ⚠️ 本报告基于公开数据和 AI 分析生成，仅供参考。实际购买前请核实实物、查看权威鉴定证书，并咨询专业鉴定师。市场行情波动频繁，价格信息具有时效性。
+  </div>
+</div>
+
+</body>
+</html>

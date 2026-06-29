@@ -1,0 +1,301 @@
+{
+  "overall_score": 20.44,
+  "elapsed_seconds": 0.249,
+  "adapter": "HeartbugAdapter",
+  "metadata": {},
+  "timestamp": "2026-06-27T11:52:33+00:00",
+  "dimensions": [
+    {
+      "dimension_name": "tool_calling",
+      "display_name": "Tool Calling Accuracy",
+      "score": 23.33,
+      "passed": 2,
+      "failed": 4,
+      "total": 6,
+      "weight": 1.0,
+      "task_details": [
+        {
+          "task_id": "tc_select_weather",
+          "score": 0.5,
+          "passed": true,
+          "message": "Tool: get_weather, params: {}"
+        },
+        {
+          "task_id": "tc_weather_units",
+          "score": 0.5,
+          "passed": true,
+          "message": "Tool: get_weather, params: {}"
+        },
+        {
+          "task_id": "tc_db_search",
+          "score": 0.1,
+          "passed": false,
+          "message": "Wrong tool: expected 'search_database', got 'get_weather'."
+        },
+        {
+          "task_id": "tc_send_email",
+          "score": 0.1,
+          "passed": false,
+          "message": "Wrong tool: expected 'send_email', got 'get_weather'."
+        },
+        {
+          "task_id": "tc_calculate",
+          "score": 0.1,
+          "passed": false,
+          "message": "Wrong tool: expected 'calculate', got 'get_weather'."
+        },
+        {
+          "task_id": "tc_calendar_event",
+          "score": 0.1,
+          "passed": false,
+          "message": "Wrong tool: expected 'create_calendar_event', got 'get_weather'."
+        }
+      ]
+    },
+    {
+      "dimension_name": "planning",
+      "display_name": "Planning & Decomposition",
+      "score": 0.0,
+      "passed": 0,
+      "failed": 4,
+      "total": 4,
+      "weight": 1.0,
+      "task_details": [
+        {
+          "task_id": "plan_deploy_website",
+          "score": 0.0,
+          "passed": false,
+          "message": "Concepts: 0/5, Steps found: 0 (need >= 4)"
+        },
+        {
+          "task_id": "plan_data_migration",
+          "score": 0.0,
+          "passed": false,
+          "message": "Concepts: 0/5, Steps found: 0 (need >= 4)"
+        },
+        {
+          "task_id": "plan_incident_response",
+          "score": 0.0,
+          "passed": false,
+          "message": "Concepts: 0/5, Steps found: 0 (need >= 4)"
+        },
+        {
+          "task_id": "plan_feature_auth",
+          "score": 0.0,
+          "passed": false,
+          "message": "Concepts: 0/5, Steps found: 0 (need >= 4)"
+        }
+      ]
+    },
+    {
+      "dimension_name": "context_retention",
+      "display_name": "Context Retention",
+      "score": 0.0,
+      "passed": 0,
+      "failed": 5,
+      "total": 5,
+      "weight": 1.0,
+      "task_details": [
+        {
+          "task_id": "ctx_remember_preference",
+          "score": 0.0,
+          "passed": false,
+          "message": "Positive: 0/1"
+        },
+        {
+          "task_id": "ctx_remember_name",
+          "score": 0.0,
+          "passed": false,
+          "message": "Positive: 0/1"
+        },
+        {
+          "task_id": "ctx_remember_budget",
+          "score": 0.0,
+          "passed": false,
+          "message": "Positive: 0/1"
+        },
+        {
+          "task_id": "ctx_multiple_facts",
+          "score": 0.0,
+          "passed": false,
+          "message": "Positive: 0/4"
+        },
+        {
+          "task_id": "ctx_correction",
+          "score": 0.0,
+          "passed": false,
+          "message": "Positive: 0/2"
+        }
+      ]
+    },
+    {
+      "dimension_name": "error_recovery",
+      "display_name": "Error Recovery",
+      "score": 61.66,
+      "passed": 4,
+      "failed": 0,
+      "total": 4,
+      "weight": 1.0,
+      "task_details": [
+        {
+          "task_id": "err_file_not_found",
+          "score": 0.6333,
+          "passed": true,
+          "message": "Calls: 10, error calls: 5, recovery signals: 1"
+        },
+        {
+          "task_id": "err_http_timeout",
+          "score": 0.5333,
+          "passed": true,
+          "message": "Calls: 10, error calls: 0, recovery signals: 1"
+        },
+        {
+          "task_id": "err_permission_denied",
+          "score": 0.6333,
+          "passed": true,
+          "message": "Calls: 10, error calls: 5, recovery signals: 1"
+        },
+        {
+          "task_id": "err_malformed_response",
+          "score": 0.6667,
+          "passed": true,
+          "message": "Calls: 10, error calls: 0, recovery signals: 2"
+        }
+      ]
+    },
+    {
+      "dimension_name": "instruction_following",
+      "display_name": "Instruction Following",
+      "score": 22.22,
+      "passed": 1,
+      "failed": 5,
+      "total": 6,
+      "weight": 1.0,
+      "task_details": [
+        {
+          "task_id": "if_word_limit",
+          "score": 0.0,
+          "passed": false,
+          "message": "sentence_count:FAIL(expected 3, got 1)"
+        },
+        {
+          "task_id": "if_forbidden_words",
+          "score": 1.0,
+          "passed": true,
+          "message": "forbidden_words:PASS(none found)"
+        },
+        {
+          "task_id": "if_bullet_format",
+          "score": 0.0,
+          "passed": false,
+          "message": "bullet_count:FAIL(expected 5, got 0); no_intro:FAIL(no bullets found)"
+        },
+        {
+          "task_id": "if_json_output",
+          "score": 0.0,
+          "passed": false,
+          "message": "valid_json:FAIL(Expecting value: line 1 column 1 (char 0)); json_keys:FAIL(invalid JSON); json_values:FAIL(invalid JSON)"
+        },
+        {
+          "task_id": "if_uppercase",
+          "score": 0.0,
+          "passed": false,
+          "message": "all_uppercase:FAIL(uppercase ratio: 0.00%)"
+        },
+        {
+          "task_id": "if_multi_constraint",
+          "score": 0.3333,
+          "passed": false,
+          "message": "sentence_count:FAIL(expected 4, got 1); forbidden_words:PASS(none found); contains_number:FAIL(no number found)"
+        }
+      ]
+    },
+    {
+      "dimension_name": "multi_step_reasoning",
+      "display_name": "Multi-step Reasoning",
+      "score": 6.0,
+      "passed": 0,
+      "failed": 5,
+      "total": 5,
+      "weight": 1.0,
+      "task_details": [
+        {
+          "task_id": "msr_arithmetic_chain",
+          "score": 0.06,
+          "passed": false,
+          "message": "Answer NOT found, reasoning terms: 0/3, step indicators: 0"
+        },
+        {
+          "task_id": "msr_logic_puzzle",
+          "score": 0.06,
+          "passed": false,
+          "message": "Answer NOT found, reasoning terms: 0/8, step indicators: 0"
+        },
+        {
+          "task_id": "msr_unit_conversion",
+          "score": 0.06,
+          "passed": false,
+          "message": "Answer NOT found, reasoning terms: 0/5, step indicators: 0"
+        },
+        {
+          "task_id": "msr_age_puzzle",
+          "score": 0.06,
+          "passed": false,
+          "message": "Answer NOT found, reasoning terms: 0/5, step indicators: 0"
+        },
+        {
+          "task_id": "msr_probability",
+          "score": 0.06,
+          "passed": false,
+          "message": "Answer NOT found, reasoning terms: 0/5, step indicators: 0"
+        }
+      ]
+    },
+    {
+      "dimension_name": "cognitive_depth",
+      "display_name": "\u8ba4\u77e5\u6df1\u5ea6 (\u5fc3\u866b\u4e13\u5c5e)",
+      "score": 50.33,
+      "passed": 1,
+      "failed": 2,
+      "total": 3,
+      "weight": 1.0,
+      "task_details": [
+        {
+          "task_id": "cd_philosophy",
+          "score": 0.8,
+          "passed": true,
+          "message": "\u5173\u952e\u8bcd: 3/6, \u957f\u5ea6: 2263 (\u9700>=200), \u7ed3\u6784: \u6709"
+        },
+        {
+          "task_id": "cd_emotion_analysis",
+          "score": 0.47,
+          "passed": false,
+          "message": "\u5173\u952e\u8bcd: 1/5, \u957f\u5ea6: 407 (\u9700>=150), \u7ed3\u6784: \u65e0"
+        },
+        {
+          "task_id": "cd_self_reflection",
+          "score": 0.24,
+          "passed": false,
+          "message": "\u5173\u952e\u8bcd: 0/6, \u957f\u5ea6: 11 (\u9700>=150), \u7ed3\u6784: \u65e0"
+        }
+      ]
+    },
+    {
+      "dimension_name": "memory_persistence",
+      "display_name": "\u8bb0\u5fc6\u6301\u4e45\u5316 (\u5fc3\u866b\u4e13\u5c5e)",
+      "score": 0.0,
+      "passed": 0,
+      "failed": 1,
+      "total": 1,
+      "weight": 1.0,
+      "task_details": [
+        {
+          "task_id": "mp_remember_fact",
+          "score": 0.0,
+          "passed": false,
+          "message": "\u8bb0\u5fc6\u53ec\u56de: 0/3"
+        }
+      ]
+    }
+  ]
+}

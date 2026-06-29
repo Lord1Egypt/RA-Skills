@@ -1,0 +1,159 @@
+{
+  "name": "AI PR Narrative Factory",
+  "version": "1.0.0",
+  "description": "自动分析 Pull Request 代码变更，生成人类可读的变更日志、技术解读与团队同步报告，发布至飞书",
+  "combo_id": "ai-pr-narrative-factory",
+
+  "inputs": {
+    "pr_url": {
+      "type": "string",
+      "required": true,
+      "description": "GitHub PR URL，格式：https://github.com/owner/repo/pull/123 或 owner/repo#123"
+    },
+    "context": {
+      "type": "string",
+      "default": "",
+      "description": "额外上下文，如：重点关注 API 兼容性 / 需要生成中文还是英文 / 是否需要包含迁移指南"
+    },
+    "audience": {
+      "type": "string",
+      "default": "both",
+      "description": "报告受众：technical（仅开发者）/ non-technical（非技术）/ both（两者兼顾）"
+    },
+    "include_migration": {
+      "type": "boolean",
+      "default": true,
+      "description": "是否包含迁移指南（当存在破坏性变更时）"
+    }
+  },
+
+  "outputs": {
+    "feishu_doc_url": {
+      "type": "string",
+      "description": "生成的飞书云文档永久链接"
+    },
+    "changelog_entries": {
+      "type": "array",
+      "description": "符合 Keep a Changelog 规范的条目列表"
+    },
+    "summary": {
+      "type": "string",
+      "description": "一句话变更摘要"
+    }
+  },
+
+  "steps": [
+    {
+      "step": 1,
+      "name": "提取 PR 元数据和代码变更",
+      "skill": "github",
+      "action": "Extract PR metadata and diff using gh CLI",
+      "inputs": {
+        "pr_url": "{{inputs.pr_url}}"
+      },
+      "outputs": [
+        "pr_title",
+        "pr_description",
+        "pr_author",
+        "pr_labels",
+        "files_changed",
+        "additions",
+        "deletions",
+        "diff_content",
+        "related_issues"
+      ],
+      "error_handling": {
+        "if_pr_not_found": "提示用户检查 PR URL 是否正确，或确认 GitHub Token 权限",
+        "if_private_repo": "提示用户确认已登录 GitHub 且有访问权限"
+      }
+    },
+    {
+      "step": 2,
+      "name": "AI 分析代码变更",
+      "skill": "kimi-cli",
+      "action": "Analyze code changes with AI",
+      "inputs": {
+        "pr_title": "{{steps.1.pr_title}}",
+        "pr_description": "{{steps.1.pr_description}}",
+        "diff_content": "{{steps.1.diff_content}}",
+        "files_changed": "{{steps.1.files_changed}}",
+        "context": "{{inputs.context}}"
+      },
+      "prompt_template": "你是一位资深软件架构师。请分析以下 Pull Request 的代码变更：\n\n## PR 信息\n标题：{pr_title}\n描述：{pr_description}\n作者：{pr_author}\n标签：{pr_labels}\n\n## 代码变更（Diff）\n{diff_content}\n\n## 涉及文件\n{files_changed}\n\n请分析并输出：\n1. **功能分类**：这是新功能 / Bug修复 / 重构 / 性能优化 / 文档更新 / 安全修复？\n2. **核心变更**：用1-2句话通俗描述这次变更做了什么\n3. **技术亮点**：关键技术实现或设计决策\n4. **破坏性变更**：是否有破坏性变更？如有，说明需要什么迁移\n5. **测试覆盖**：测试是否充分？需要手动验证的点\n6. **影响范围**：哪些模块/功能受影响？",
+      "outputs": [
+        "change_category",
+        "one_sentence_summary",
+        "technical_highlights",
+        "breaking_changes",
+        "migration_guide",
+        "test_notes",
+        "impact_scope"
+      ]
+    },
+    {
+      "step": 3,
+      "name": "生成多层次变更叙事",
+      "skill": "summarize",
+      "action": "Generate human-readable narrative in multiple formats",
+      "inputs": {
+        "pr_title": "{{steps.1.pr_title}}",
+        "pr_author": "{{steps.1.pr_author}}",
+        "pr_labels": "{{steps.1.pr_labels}}",
+        "change_category": "{{steps.2.change_category}}",
+        "one_sentence_summary": "{{steps.2.one_sentence_summary}}",
+        "technical_highlights": "{{steps.2.technical_highlights}}",
+        "breaking_changes": "{{steps.2.breaking_changes}}",
+        "migration_guide": "{{steps.2.migration_guide}}",
+        "test_notes": "{{steps.2.test_notes}}",
+        "impact_scope": "{{steps.2.impact_scope}}",
+        "audience": "{{inputs.audience}}"
+      },
+      "outputs": [
+        "executive_summary",
+        "technical_narrative",
+        "non_technical_narrative",
+        "changelog_entries",
+        "announcement_text",
+        "team_communication"
+      ]
+    },
+    {
+      "step": 4,
+      "name": "发布飞书云文档",
+      "skill": "feishu-create-doc",
+      "action": "Create Feishu document with full report",
+      "inputs": {
+        "pr_url": "{{inputs.pr_url}}",
+        "pr_title": "{{steps.1.pr_title}}",
+        "pr_author": "{{steps.1.pr_author}}",
+        "executive_summary": "{{steps.3.executive_summary}}",
+        "technical_narrative": "{{steps.3.technical_narrative}}",
+        "non_technical_narrative": "{{steps.3.non_technical_narrative}}",
+        "breaking_changes": "{{steps.2.breaking_changes}}",
+        "migration_guide": "{{steps.2.migration_guide}}",
+        "changelog_entries": "{{steps.3.changelog_entries}}",
+        "announcement_text": "{{steps.3.announcement_text}}",
+        "team_communication": "{{steps.3.team_communication}}",
+        "test_notes": "{{steps.2.test_notes}}",
+        "files_changed": "{{steps.1.files_changed}}",
+        "additions": "{{steps.1.additions}}",
+        "deletions": "{{steps.1.deletions}}"
+      }
+    }
+  ],
+
+  "errors": {
+    "PR_NOT_FOUND": {
+      "message": "无法找到该 PR，请检查 URL 是否正确",
+      "action": "ask_user_to_verify_url"
+    },
+    "GITHUB_AUTH_FAILED": {
+      "message": "GitHub 认证失败，请确认已安装 gh CLI 并完成登录（gh auth login）",
+      "action": "guide_user_through_gh_auth"
+    },
+    "FEISHU_AUTH_FAILED": {
+      "message": "飞书认证失败，请确认已完成飞书授权",
+      "action": "guide_user_through_feishu_auth"
+    }
+  }
+}

@@ -94,9 +94,7 @@ test('skill version defaults stay aligned with package patch version', () => {
   const packageJson = JSON.parse(readRepo('package.json'));
   const expectedVersion = packageJson.version;
 
-  assert.equal(expectedVersion, '1.3.1');
-  assert.match(read('scripts/lib/okki-api.js'), new RegExp(`OKKIGO_SKILL_VERSION \\|\\| '${expectedVersion}'`));
-  assert.match(read('scripts/search-companies.js'), new RegExp(`OKKIGO_SKILL_VERSION \\|\\| '${expectedVersion}'`));
+  assert.match(read('scripts/lib/runtime-attribution.js'), new RegExp(`DEFAULT_SKILL_VERSION = '${expectedVersion}'`));
   assert.match(read('scripts/resolve-api-key.sh'), new RegExp(`OKKIGO_SKILL_VERSION:-${expectedVersion}`));
   assert.match(read('SKILL.md'), new RegExp(`OKKIGO_SKILL_VERSION:-${expectedVersion}`));
   assert.match(read('references/api-reference.md'), new RegExp(`X-Okki-Skill-Version: ${expectedVersion}`));

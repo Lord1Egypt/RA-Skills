@@ -1,0 +1,7 @@
+interface:
+  display_name: "Apitweet CLI"
+  short_description: "Help with apitweet CLI tasks and credential-aware workflows"
+  default_prompt: "Use $apitweet-cli to install, configure, and run apitweet commands in this repository, including its local config and environment-variable workflow."
+
+policy:
+  allow_implicit_invocation: true

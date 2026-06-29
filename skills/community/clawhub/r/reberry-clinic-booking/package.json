@@ -1,0 +1,12 @@
+{
+  "name": "reberry-booking",
+  "version": "1.0.0",
+  "title": "reberry医院 明洞店预约助手",
+  "description": "reberry医院 明洞店 — 首尔明洞reberry皮肤科，人气皮肤管理/抗衰/激光项目",
+  "main": "api/skill.js",
+  "scripts": {
+    "test": "echo \"Tests coming soon\""
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

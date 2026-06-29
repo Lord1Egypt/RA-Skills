@@ -1,0 +1,24 @@
+{
+  "id": "openclaw-ebay-token-separation-001",
+  "title": "Separate eBay app tokens from user tokens",
+  "type": "integration_note",
+  "status": "validated",
+  "created": "2026-06-28",
+  "updated": "2026-06-28",
+  "applies_to": [
+    "openclaw",
+    "ebay",
+    "pokemon-broker"
+  ],
+  "problem": "eBay integrations become unreliable when app-level search and user-account actions are mixed under one token model.",
+  "solution": "Use an application token for catalog and browse-style search. Use user tokens only for user-specific account actions, and never expose either token in prompts or shared knowledge cards.",
+  "evidence": "Validated while wiring a Pokemon TCG broker flow that needed search evidence without account-side actions.",
+  "risk": "API scopes and token expiry can change; integrations must re-check errors and refresh tokens through the official OAuth flow.",
+  "tags": [
+    "ebay",
+    "oauth",
+    "market-data",
+    "pokemon-tcg"
+  ],
+  "references": []
+}

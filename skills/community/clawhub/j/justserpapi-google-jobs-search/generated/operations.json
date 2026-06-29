@@ -1,0 +1,127 @@
+{
+  "baseUrl": "https://api.justserpapi.com",
+  "description": "Call GET /api/v1/google/jobs/search for Google SERP Jobs Search through Just Serp API with query.",
+  "displayName": "Google SERP Jobs Search",
+  "endpointPath": "jobs/search",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Google jobs Search data, including titles, companies, and locations, for aggregating job board results, analyzing hiring trends, and monitoring recruitment activity.",
+      "method": "GET",
+      "operationId": "jobsSearch",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "The job search query (e.g., 'software engineer', 'data scientist London').",
+          "enumValues": [],
+          "location": "query",
+          "name": "query",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the target country code (e.g., 'us', 'uk') to localize results. See <a href=\"/reference/google-countries\">Google Countries</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "country",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the language for the results using its two-letter code (e.g., 'en' for English, 'fr' for French). See <a href=\"/reference/google-language\">Google Language</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "language",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Token for retrieving the next page of job results. Found in 'next_page_token' of a previous response.",
+          "enumValues": [],
+          "location": "query",
+          "name": "next_page_token",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Additional search filters (chips) such as job type, date posted, etc. Use values returned in previous responses.",
+          "enumValues": [],
+          "location": "query",
+          "name": "chips",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Search radius in miles around the specified location.",
+          "enumValues": [],
+          "location": "query",
+          "name": "lrad",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Filter by job location type. Set to '1' for work-from-home (remote) jobs.",
+          "enumValues": [],
+          "location": "query",
+          "name": "ltype",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Advanced Google-provided filter string for job results.",
+          "enumValues": [],
+          "location": "query",
+          "name": "uds",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Encoded location string (UULE) to localize job results to a specific geographic area.",
+          "enumValues": [],
+          "location": "query",
+          "name": "uule",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/v1/google/jobs/search",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        },
+        {
+          "description": "Authentication failed: API Key is invalid or missing",
+          "statusCode": "401"
+        },
+        {
+          "description": "Access denied: Insufficient credits or quota exceeded",
+          "statusCode": "403"
+        },
+        {
+          "description": "Internal server error or upstream service exception",
+          "statusCode": "500"
+        }
+      ],
+      "summary": "Search",
+      "tags": [
+        "Google Jobs"
+      ]
+    }
+  ],
+  "platformKey": "google",
+  "primaryTag": "Google SERP",
+  "skillName": "justserpapi_google_jobs_search",
+  "skillType": "interface",
+  "slug": "justserpapi-google-jobs-search",
+  "sourceTitle": "API Shop Documentation"
+}

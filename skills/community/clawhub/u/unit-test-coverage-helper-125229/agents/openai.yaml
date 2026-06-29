@@ -1,0 +1,7 @@
+interface:
+  display_name: "Unit Test Coverage Helper"
+  short_description: "Helps with Add Unit Tests."
+  default_prompt: "Use $unit-test-coverage-helper to help me Add Unit Tests."
+
+policy:
+  allow_implicit_invocation: true

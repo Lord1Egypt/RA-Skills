@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>藏品鉴定报告 - {item_name}</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: #e8d5b7;
+    min-height: 100vh;
+    padding: 20px;
+  }
+  .container { max-width: 860px; margin: 0 auto; }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 40px 20px 30px;
+    border-bottom: 2px solid #c9a96e;
+    margin-bottom: 30px;
+  }
+  .header .seal {
+    width: 80px; height: 80px;
+    border: 3px solid #c0392b;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
+  .header h1 {
+    font-size: 2em;
+    color: #c9a96e;
+    letter-spacing: 6px;
+    margin-bottom: 8px;
+  }
+  .header .subtitle {
+    color: #a08c6a;
+    font-size: 0.95em;
+    letter-spacing: 3px;
+  }
+
+  /* Cards */
+  .card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(201,169,110,0.25);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+  }
+  .card h2 {
+    font-size: 1.25em;
+    color: #c9a96e;
+    border-left: 4px solid #c9a96e;
+    padding-left: 14px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+  }
+
+  /* 基本信息表格 */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .info-item {
+    display: flex;
+    border-bottom: 1px dashed rgba(201,169,110,0.2);
+    padding: 8px 0;
+  }
+  .info-item .label {
+    color: #a08c6a;
+    min-width: 70px;
+    font-size: 0.9em;
+  }
+  .info-item .value {
+    color: #f0e6d3;
+    font-weight: 500;
+  }
+
+  /* 评分环 */
+  .score-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+  }
+  .score-ring {
+    position: relative;
+    width: 140px; height: 140px;
+  }
+  .score-ring svg { transform: rotate(-90deg); }
+  .score-value {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  .score-value .number {
+    font-size: 2.8em;
+    font-weight: 700;
+    color: #c9a96e;
+    line-height: 1;
+  }
+  .score-value .label {
+    font-size: 0.8em;
+    color: #a08c6a;
+  }
+
+  .score-details { flex: 1; min-width: 250px; }
+  .score-bar { margin-bottom: 12px; }
+  .score-bar .bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85em;
+    margin-bottom: 4px;
+    color: #c0b090;
+  }
+  .score-bar .bar-track {
+    height: 8px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .score-bar .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1.2s ease;
+  }
+
+  /* 价格区间 */
+  .price-range {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 20px 0;
+  }
+  .price-block {
+    text-align: center;
+    padding: 16px 28px;
+    border-radius: 10px;
+    background: rgba(201,169,110,0.08);
+    border: 1px solid rgba(201,169,110,0.2);
+    min-width: 140px;
+  }
+  .price-block .amount {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #c9a96e;
+  }
+  .price-block .level {
+    font-size: 0.8em;
+    color: #a08c6a;
+    margin-top: 4px;
+  }
+  .price-arrow {
+    font-size: 1.5em;
+    color: #c9a96e;
+  }
+
+  /* 分析文字 */
+  .analysis-text {
+    line-height: 1.9;
+    color: #d4c5a9;
+    font-size: 0.95em;
+  }
+  .analysis-text p { margin-bottom: 12px; }
+  .highlight {
+    color: #e8c97a;
+    font-weight: 500;
+  }
+  .tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    margin: 3px 4px;
+    background: rgba(201,169,110,0.15);
+    color: #c9a96e;
+    border: 1px solid rgba(201,169,110,0.3);
+  }
+
+  /* 建议卡片 */
+  .advice-list { list-style: none; }
+  .advice-list li {
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.03);
+    border-left: 3px solid;
+    font-size: 0.93em;
+    line-height: 1.7;
+  }
+  .advice-list li.positive { border-color: #2ecc71; color: #a8d8b9; }
+  .advice-list li.neutral  { border-color: #f39c12; color: #e8c97a; }
+  .advice-list li.warning  { border-color: #e74c3c; color: #e8a0a0; }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 30px 20px;
+    border-top: 1px solid rgba(201,169,110,0.15);
+    margin-top: 30px;
+    color: #6a5a4a;
+    font-size: 0.8em;
+    line-height: 2;
+  }
+  .footer .disclaimer {
+    margin-top: 10px;
+    padding: 12px 16px;
+    background: rgba(231,76,60,0.1);
+    border-radius: 8px;
+    color: #d4a0a0;
+    font-size: 0.85em;
+  }
+
+  /* 响应式 */
+  @media (max-width: 600px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .score-section { flex-direction: column; }
+    .price-range { flex-direction: column; }
+    .price-arrow { transform: rotate(90deg); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="seal">
+      <svg width="50" height="50" viewBox="0 0 50 50">
+        <text x="25" y="32" text-anchor="middle" fill="#c0392b" font-size="20" font-weight="bold">鉴</text>
+      </svg>
+    </div>
+    <h1>藏品鉴定报告</h1>
+    <div class="subtitle">ANTIQUE APPRAISAL REPORT</div>
+  </div>
+
+  <!-- 基本信息卡片 -->
+  <div class="card">
+    <h2>📋 藏品基本信息</h2>
+    <div class="info-grid">
+      <div class="info-item"><span class="label">藏品名称</span><span class="value">{item_name}</span></div>
+      <div class="info-item"><span class="label">藏品类型</span><span class="value">{item_type}</span></div>
+      <div class="info-item"><span class="label">年代判断</span><span class="value">{era_judgment}</span></div>
+      <div class="info-item"><span class="label">品相评级</span><span class="value">{condition_rating}</span></div>
+      <div class="info-item"><span class="label">报告编号</span><span class="value">{order_id}</span></div>
+      <div class="info-item"><span class="label">报告日期</span><span class="value">{report_date}</span></div>
+    </div>
+  </div>
+
+  <!-- 综合评分 -->
+  <div class="card">
+    <h2>⭐ 综合评分</h2>
+    <div class="score-section">
+      <div class="score-ring">
+        <svg width="140" height="140" viewBox="0 0 140 140">
+          <circle cx="70" cy="70" r="60" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="10"/>
+          <circle cx="70" cy="70" r="60" fill="none" stroke="#c9a96e" stroke-width="10"
+            stroke-dasharray="{score_circumference}" stroke-dashoffset="{score_offset}"
+            stroke-linecap="round"/>
+        </svg>
+        <div class="score-value">
+          <div class="number">{overall_score}</div>
+          <div class="label">综合评分</div>
+        </div>
+      </div>
+      <div class="score-details" id="score-bars">
+        <!-- 动态填充 -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 市场估价 -->
+  <div class="card">
+    <h2>💰 市场参考估价</h2>
+    <div class="price-range">
+      <div class="price-block">
+        <div class="level">保守估价</div>
+        <div class="amount">{price_low}</div>
+      </div>
+      <div class="price-arrow">→</div>
+      <div class="price-block">
+        <div class="level">市场中位</div>
+        <div class="amount">{price_mid}</div>
+      </div>
+      <div class="price-arrow">→</div>
+      <div class="price-block">
+        <div class="level">乐观估价</div>
+        <div class="amount">{price_high}</div>
+      </div>
+    </div>
+    <div class="analysis-text" style="margin-top:16px;">
+      {market_analysis}
+    </div>
+  </div>
+
+  <!-- 鉴定详情 -->
+  <div class="card">
+    <h2>🔍 鉴定详细分析</h2>
+    <div class="analysis-text">
+      {appraisal_details}
+    </div>
+  </div>
+
+  <!-- 专家建议 -->
+  <div class="card">
+    <h2>📌 收藏与投资建议</h2>
+    <ul class="advice-list">
+      {expert_advice}
+    </ul>
+  </div>
+
+  <!-- 风险提示 -->
+  <div class="card">
+    <h2>⚠️ 注意事项与风险提示</h2>
+    <div class="analysis-text">
+      {risk_notes}
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>鉴定机构：AI古董鉴定中心（虚拟演示）</p>
+    <p>报告编号：{order_id} | 生成日期：{report_date}</p>
+    <div class="disclaimer">
+      <strong>⚠ 免责声明</strong><br>
+      本报告由AI辅助生成，仅供学习参考，不构成法律、交易或投资建议。<br>
+      重大交易请委托具有资质的权威鉴定机构进行实物鉴定。<br>
+      如涉及文物，请遵守《中华人民共和国文物保护法》相关规定。
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

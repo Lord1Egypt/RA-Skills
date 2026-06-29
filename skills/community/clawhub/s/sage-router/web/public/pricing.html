@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sage Router hosted pricing for local-first AI model routing, BYOK provider fallback, hosted API keys, usage quotas, analytics, and reliability infrastructure." />
+  <link rel="canonical" href="https://sagerouter.dev/pricing" />
+  <meta property="og:title" content="Sage Router Hosted Pricing" />
+  <meta property="og:description" content="Lite, Pro, and Max hosted routing plans for agent teams that want one OpenAI-compatible endpoint without giving up local-first provider control." />
+  <meta property="og:url" content="https://sagerouter.dev/pricing" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Sage Router Hosted Pricing</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07100d;--panel:rgba(13,29,24,.84);--panel2:rgba(255,255,255,.04);--border:rgba(166,255,207,.16);--muted:#a9c5b8;--text:#edfdf5;--brand:#8df0b2;--blue:#8ab4ff;--amber:#f7d57a;--shadow:0 24px 80px rgba(0,0,0,.36)}*{box-sizing:border-box}body{margin:0;min-width:320px;background:linear-gradient(180deg,#07100d 0%,#0b1518 48%,#07100d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;color:var(--muted)}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;color:var(--text)}.brandMark{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(141,240,178,.42);border-radius:8px;color:#062016;background:linear-gradient(135deg,var(--brand),var(--amber))}.navLinks{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;font-weight:750}.navLinks a:hover{color:var(--text)}.hero{padding:74px 0 50px}.eyebrow{color:var(--brand);text-transform:uppercase;letter-spacing:.16em;font-weight:900;font-size:12px;margin:0 0 16px}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(44px,8vw,84px);line-height:.94;margin-bottom:24px;max-width:900px}h2{font-size:clamp(30px,4vw,50px);line-height:1;margin-bottom:18px}h3{font-size:21px;margin-bottom:10px}.lead{font-size:clamp(20px,2.2vw,27px);line-height:1.35;color:#d2eadf;max-width:920px}.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}.button{min-height:48px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:0 22px;font-weight:900}.primary{background:linear-gradient(135deg,var(--brand),#50d891);color:#04150d}.secondary{border:1px solid var(--border);background:rgba(255,255,255,.04)}.section{padding:54px 0}.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.plan,.panel,.tableWrap{background:var(--panel);border:1px solid var(--border);border-radius:8px;box-shadow:0 18px 60px rgba(0,0,0,.18)}.plan{padding:26px;display:grid;gap:16px}.plan.featured{border-color:rgba(138,180,255,.42);background:linear-gradient(180deg,rgba(21,38,53,.9),rgba(12,28,22,.86))}.price{font-size:44px;line-height:1;font-weight:950;letter-spacing:-.04em}.price small{font-size:16px;color:var(--muted);font-weight:800}.muted,.plan li,td{color:var(--muted)}ul{padding-left:18px;margin:0;display:grid;gap:8px}.pill{display:inline-flex;width:max-content;border:1px solid rgba(138,180,255,.3);border-radius:999px;padding:6px 10px;color:var(--blue);font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.pill.ok{border-color:rgba(141,240,178,.38);color:var(--brand)}.pill.warn{border-color:rgba(247,213,122,.4);color:var(--amber)}.grid2{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px}.panel{padding:26px}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:720px}th,td{text-align:left;border-bottom:1px solid rgba(166,255,207,.12);padding:16px 18px;vertical-align:top}th{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--text);background:rgba(255,255,255,.035)}td:first-child{color:var(--text);font-weight:850}.callout{border-color:rgba(141,240,178,.32);background:linear-gradient(180deg,rgba(26,67,50,.9),rgba(12,28,22,.86))}.readinessGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:18px 0}.readinessItem{border:1px solid rgba(166,255,207,.12);border-radius:8px;background:rgba(255,255,255,.045);padding:14px}.readinessItem b{display:block;font-size:1.3rem;color:var(--text)}.missingControls{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.missingControls span{border:1px solid rgba(247,213,122,.22);border-radius:999px;padding:5px 9px;color:var(--amber);font-size:12px;font-weight:800}.note{font-size:14px;color:var(--muted);max-width:900px}code{color:#d9f8e6}footer{display:flex;gap:18px;flex-wrap:wrap;padding:34px 0 54px;color:var(--muted);border-top:1px solid rgba(166,255,207,.1)}footer span{margin-right:auto}@media(max-width:920px){.plans,.grid2,.readinessGrid{grid-template-columns:1fr}.nav{align-items:flex-start;flex-direction:column}.button{width:100%}}@media(max-width:560px){.hero{padding-top:42px}.navLinks{gap:14px}.price{font-size:38px}}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Sage Router hosted routing",
+    "description": "Hosted account, API key, quota, analytics, and reliability layer for local-first AI model routing.",
+    "offers": [
+      {"@type": "Offer", "name": "Lite", "price": "6", "priceCurrency": "USD"},
+      {"@type": "Offer", "name": "Pro", "price": "30", "priceCurrency": "USD"},
+      {"@type": "Offer", "name": "Max", "price": "72", "priceCurrency": "USD"}
+    ]
+  }
+  </script>
+  <style>
+    .emailStart{margin-top:22px;max-width:760px;border:1px solid rgba(141,240,178,.32);border-radius:8px;background:rgba(141,240,178,.07);padding:16px}
+    .emailStart form{display:grid;grid-template-columns:minmax(220px,1fr) auto;gap:10px;margin:10px 0 0}
+    .emailStart input{min-height:48px;border:1px solid var(--border);border-radius:999px;background:rgba(0,0,0,.22);color:var(--text);font:inherit;padding:0 16px}
+    .emailStartStatus{min-height:22px;margin:10px 0 0;color:var(--brand);font-size:14px}
+    .pricingOauthActions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0 0}
+    .pricingOauthActions .button{width:100%;border:0;cursor:pointer}
+    .pricingOauthActions .button:not(.primary){border:1px solid var(--border);background:rgba(255,255,255,.04);color:var(--text)}
+    .planEmailForm{display:grid;gap:8px;margin-top:4px}
+    .planEmailForm input{min-height:44px;border:1px solid var(--border);border-radius:999px;background:rgba(0,0,0,.18);color:var(--text);font:inherit;padding:0 14px}
+    .planEmailForm .button{width:100%;border:0;cursor:pointer}
+    .pricingSetupCopy{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:18px;padding:14px 16px;border:1px solid rgba(138,180,255,.28);border-radius:8px;background:rgba(138,180,255,.07);max-width:920px}
+    .pricingSetupCopy strong{margin-right:auto}
+    .pricingSetupCopy button{border:0;cursor:pointer}
+    .pricingSetupCopy span{min-height:22px;color:var(--brand);font-size:14px}
+    .recoveryCallout{margin-top:16px;max-width:920px;border:1px solid rgba(247,213,122,.32);border-radius:8px;background:rgba(247,213,122,.08);padding:16px}
+    .recoveryCallout .actions{margin-top:12px}
+    .hidden{display:none!important}
+    @media(max-width:720px){.emailStart form,.pricingOauthActions{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+      <div class="navLinks">
+        <a href="/">Home</a>
+        <a href="/quickstart">Quickstart</a>
+        <a href="/fusion">Fusion</a>
+        <a href="/compare/model-gateways">Compare</a>
+        <a href="/compare/openrouter">OpenRouter</a>
+        <a href="/models">Models</a>
+        <a href="/model-routing-calculator">Calculator</a>
+        <a href="/launch-plan">Launch Plan</a>
+        <a href="/managed-access">Managed Access</a>
+        <a href="/billing">Billing</a>
+        <a href="/status">Status</a>
+        <a href="/support">Support</a>
+        <a href="https://app.sagerouter.dev/account.html">Account</a>
+        <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Hosted routing plans</p>
+        <h1>One subscription for Sage Router control plane access.</h1>
+        <p class="lead">Use the hosted edge at <code>https://api.sagerouter.dev/v1</code> for account-managed API keys, quotas, fallback reliability, and routing telemetry while keeping provider access customer-authorized and local-first by default.</p>
+        <div class="actions">
+          <a class="button primary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key&utm_source=pricing&utm_medium=activation&utm_campaign=sage-router-launch">Start API key activation</a>
+          <a class="button secondary" href="/quickstart">Read quickstart</a>
+          <a class="button secondary" href="/status">View public status</a>
+          <a class="button secondary" href="/billing">Billing help</a>
+          <a class="button secondary" href="/fusion">Fusion</a>
+          <a class="button secondary" href="/compare/model-gateways">Compare gateways</a>
+          <a class="button secondary" href="/compare/openrouter">Compare OpenRouter</a>
+          <a class="button secondary" href="/model-routing-calculator">Estimate savings</a>
+          <a class="button secondary" href="/launch-plan">See launch plan</a>
+        </div>
+        <p class="note">Sage Router sells routing, reliability, account management, quotas, analytics, and support. It does not grant unauthorized model access, pool provider accounts, or bypass provider terms.</p>
+        <div class="emailStart">
+          <strong>Fastest API key start: email yourself the setup link</strong>
+          <p class="note">No provider key or credit card is required until your generated <code>sk_sage_*</code> key exists. Continue with GitHub or email; both open the hosted account page with Pro selected, then you can create the key first and complete checkout.</p>
+          <div id="pricing-oauth-actions" class="pricingOauthActions" aria-label="One-click Pro signup options">
+            <button id="pricing-github-pro" class="button primary" type="button" data-pricing-oauth="github" data-plan="pro">Continue with GitHub for Pro</button>
+            <button id="pricing-google-pro" class="button secondary hidden" type="button" data-pricing-oauth="google" data-plan="pro">Google for Pro</button>
+            <button id="pricing-discord-pro" class="button secondary hidden" type="button" data-pricing-oauth="discord" data-plan="pro">Discord for Pro</button>
+          </div>
+          <form id="pricing-email-form" data-plan="pro">
+            <input id="pricing-email" type="email" autocomplete="email" placeholder="you@example.com" aria-label="Email for Sage Router Pro activation" required>
+            <button class="button primary" type="submit">Email API key setup link</button>
+          </form>
+          <p id="pricing-email-status" class="emailStartStatus" role="status" aria-live="polite"></p>
+        </div>
+        <div class="pricingSetupCopy">
+          <strong>Copy setup first.</strong>
+          <span class="muted">Paste the bundle now, then replace the placeholder with your generated <code>sk_sage_*</code> key after Pro setup.</span>
+          <button id="pricing-copy-setup" class="button primary" type="button">Copy 60-second setup bundle</button>
+          <a id="pricing-copy-next-account" class="button primary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key&utm_source=pricing&utm_medium=activation&utm_campaign=sage-router-launch">Create API key next</a>
+          <span id="pricing-copy-status" role="status" aria-live="polite"></span>
+        </div>
+        <div class="recoveryCallout">
+          <strong>Already signed up but no <code>sk_sage_*</code> key?</strong>
+          <p class="note">Skip plan comparison and reopen the generated-key setup path. It preserves the key-first flow and records this as recovery demand.</p>
+          <div class="actions">
+            <a class="button primary" data-pricing-key-recovery="true" href="https://app.sagerouter.dev/login.html?plan=pro&start=create_key&utm_source=pricing&utm_medium=recovery&utm_campaign=signup_to_key_recovery&auth=email">Finish setup key</a>
+            <a class="button secondary" data-pricing-key-recovery="true" href="https://app.sagerouter.dev/login.html?plan=pro&start=create_key&utm_source=pricing&utm_medium=recovery&utm_campaign=signup_to_key_recovery&auth=email">Use email/password fallback</a>
+          </div>
+        </div>
+        <div class="readinessGrid" aria-label="Hosted activation path">
+          <div class="readinessItem"><b>1. Copy setup</b><span class="muted">Put the OpenAI-compatible endpoint into your agent config first.</span></div>
+          <div class="readinessItem"><b>2. Generate key</b><span class="muted">Create an <code>sk_sage_*</code> key from the browser account flow.</span></div>
+          <div class="readinessItem"><b>3. Verify route</b><span class="muted">Test <code>/v1/models</code>, then send the first hosted request.</span></div>
+        </div>
+        <div class="panel callout" id="pricing-key-first-proof">
+          <p class="eyebrow">Key-first activation proof</p>
+          <h2>Create the key before checkout.</h2>
+          <p class="muted">The Pro handoff opens generated-key creation first. That gives a buyer the setup artifact before payment, then checkout unlocks hosted routing once the account is active.</p>
+          <div class="actions">
+            <a class="button primary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key&utm_source=pricing&utm_medium=activation&utm_campaign=sage-router-launch">Create API key first</a>
+            <a class="button secondary" href="/quickstart">Verify with the quickstart</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section plans" aria-label="Hosted pricing plans">
+        <article class="plan">
+          <span class="pill">Lite</span>
+          <div class="price">$6 <small>/ month</small></div>
+          <p class="muted">For individual agent experiments and lightweight hosted routing.</p>
+          <ul>
+            <li>10,000 included requests per month</li>
+            <li>60 requests per minute</li>
+            <li>Hosted API keys and basic usage visibility</li>
+            <li>Standard fallback chains</li>
+          </ul>
+          <a class="button secondary" href="https://app.sagerouter.dev/account.html?plan=lite&start=checkout&utm_source=pricing&utm_medium=activation&utm_campaign=sage-router-launch">Start Lite</a>
+          <form class="planEmailForm" data-pricing-plan-email data-plan="lite">
+            <input type="email" autocomplete="email" placeholder="you@example.com" aria-label="Email for Sage Router Lite activation" required>
+            <button class="button secondary" type="submit">Email Lite setup link</button>
+            <p class="emailStartStatus" role="status" aria-live="polite"></p>
+          </form>
+        </article>
+
+        <article class="plan featured">
+          <span class="pill">Pro</span>
+          <div class="price">$30 <small>/ month</small></div>
+          <p class="muted">For daily AI agent work, frontier profiles, and practical fallback policy.</p>
+          <ul>
+            <li>50,000 included requests per month</li>
+            <li>180 requests per minute</li>
+            <li>Agentic, frontier, and Fusion route profiles</li>
+            <li>Analytics snapshots and route telemetry</li>
+          </ul>
+          <a class="button primary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key&utm_source=pricing&utm_medium=activation&utm_campaign=sage-router-launch">Start API key setup</a>
+          <form class="planEmailForm" data-pricing-plan-email data-plan="pro">
+            <input type="email" autocomplete="email" placeholder="you@example.com" aria-label="Email for Sage Router Pro activation" required>
+            <button class="button primary" type="submit">Email API key setup link</button>
+            <p class="emailStartStatus" role="status" aria-live="polite"></p>
+          </form>
+        </article>
+
+        <article class="plan">
+          <span class="pill">Max</span>
+          <div class="price">$72 <small>/ month</small></div>
+          <p class="muted">For higher-volume automation, teams, and priority routing capacity.</p>
+          <ul>
+            <li>200,000 included requests per month</li>
+            <li>600 requests per minute</li>
+            <li>Priority fallback and Fusion budget</li>
+            <li>Team and private deployment support path</li>
+          </ul>
+          <a class="button secondary" href="https://app.sagerouter.dev/account.html?plan=max&start=checkout&utm_source=pricing&utm_medium=activation&utm_campaign=sage-router-launch">Start Max</a>
+          <form class="planEmailForm" data-pricing-plan-email data-plan="max">
+            <input type="email" autocomplete="email" placeholder="you@example.com" aria-label="Email for Sage Router Max activation" required>
+            <button class="button secondary" type="submit">Email Max setup link</button>
+            <p class="emailStartStatus" role="status" aria-live="polite"></p>
+          </form>
+        </article>
+      </section>
+
+      <section class="section grid2">
+        <div class="panel callout">
+          <p class="eyebrow">Launch math</p>
+          <h2>A credible path to $10k MRR.</h2>
+          <p class="muted">The hosted plan ladder is designed to reach a real SaaS target without pretending Sage Router is a model resale marketplace. A mixed cohort of 100 Lite, 200 Pro, and 50 Max customers is $10,200 MRR.</p>
+        </div>
+        <div class="tableWrap">
+          <table>
+            <thead>
+              <tr><th>Customer mix</th><th>Monthly recurring revenue</th><th>What it proves</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>334 Pro</td><td>$10,020</td><td>Daily agent developers value hosted routing and analytics.</td></tr>
+              <tr><td>139 Max</td><td>$10,008</td><td>High-volume teams pay for reliability and priority capacity.</td></tr>
+              <tr><td>100 Lite + 200 Pro + 50 Max</td><td>$10,200</td><td>Balanced conversion across hobby, professional, and team use.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">What customers buy</p>
+          <h2>Hosted convenience without losing control.</h2>
+        </div>
+        <div class="panel">
+          <ul>
+            <li>Generated <code>sk_sage_*</code> API keys for OpenAI-compatible clients.</li>
+            <li>Supabase-backed account login, Stripe checkout, and self-service billing.</li>
+            <li>Public edge routing with anonymous model traffic blocked by default.</li>
+            <li>Usage quotas, request-per-minute limits, route telemetry, and fallback health.</li>
+            <li>Tailnet/private-router resilience for teams that keep provider credentials on their own hosts.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">Managed provider access</p>
+          <h2>A guarded path toward one subscription for bundled model access.</h2>
+        </div>
+        <div class="panel">
+          <p class="muted">Managed provider access is not active in the public plans yet. It will stay disabled until Sage Router has explicit provider resale terms, a published margin policy, durable quotas and rate limits, durable operator audit events, and acceptable-use terms for managed model access.</p>
+          <ul>
+            <li>Default launch: customer-authorized providers and local models.</li>
+            <li>OpenRouter remains supported for customer-authorized BYOK routing, not bundled public resale.</li>
+            <li>OpenRouter-specific buyers can review the <a href="/compare/openrouter">Sage Router vs OpenRouter</a> page before choosing a hosted marketplace API, local-first routing layer, or both.</li>
+            <li>Future path: private-beta managed access after contract, billing, and abuse-control readiness checks pass.</li>
+            <li>Readiness is exposed in the public <code>/pricing</code> metadata as <code>managedProviderAccess</code>.</li>
+            <li>Positive unit economics must be backed by a configured cost model and plan-margin checks before bundled model access can become active.</li>
+            <li>Prerequisite boundaries are published as <a href="/provider-resale-terms">provider resale terms</a>, a <a href="/margin-policy">margin policy</a>, and <a href="/acceptable-use">acceptable use</a>.</li>
+          </ul>
+          <div class="actions">
+            <a class="button primary" href="/managed-access?intent=max-implementation">Request Max implementation review</a>
+            <a class="button secondary" href="https://app.sagerouter.dev/account.html?plan=max&start=checkout&utm_source=pricing&utm_medium=activation&utm_campaign=sage-router-launch">Start Max with BYOK</a>
+          </div>
+          <p class="note">Beta interest and implementation review are demand capture only. Public checkout still buys Sage Router routing, account, quota, analytics, and reliability infrastructure.</p>
+        </div>
+      </section>
+
+      <section class="section grid2" id="managed-readiness" aria-live="polite">
+        <div>
+          <p class="eyebrow">Runtime guard</p>
+          <h2>Live managed-access readiness checkpoint.</h2>
+        </div>
+        <div class="panel">
+          <span class="pill warn" id="managed-readiness-status">Disabled pending provider terms</span>
+          <p class="muted" id="managed-readiness-summary">The public API keeps managed provider access disabled until provider resale terms, an allowlist, margin policy, configured cost model, plan-margin checks, quotas, audit events, and acceptable-use controls are all ready.</p>
+          <div class="readinessGrid">
+            <div class="readinessItem">
+              <b id="readiness-missing-count">6</b>
+              <span class="muted">missing controls</span>
+            </div>
+            <div class="readinessItem">
+              <b id="readiness-cost-model">Not configured</b>
+              <span class="muted">provider cost model</span>
+            </div>
+            <div class="readinessItem">
+              <b id="readiness-unit-economics">Not satisfied</b>
+              <span class="muted">unit economics</span>
+            </div>
+          </div>
+          <div class="tableWrap">
+            <table id="readiness-plan-table">
+              <thead>
+                <tr><th>Plan</th><th>Public revenue / 1k requests</th><th>Max safe provider cost / 1k</th><th>Managed-access margin status</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Lite</td><td>60 cents</td><td>39 cents</td><td>Waiting on provider cost model</td></tr>
+                <tr><td>Pro</td><td>60 cents</td><td>39 cents</td><td>Waiting on provider cost model</td></tr>
+                <tr><td>Max</td><td>36 cents</td><td>23.4 cents</td><td>Waiting on provider cost model</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tableWrap">
+            <table id="provider-family-readiness-table">
+              <thead>
+                <tr><th>Provider family</th><th>Managed access status</th><th>Boundary</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Ollama</td><td>Not allowlisted</td><td>Eligible only after provider authorization, cost, quota, audit, and abuse controls</td></tr>
+                <tr><td>OpenAI</td><td>Not allowlisted</td><td>Eligible only after provider authorization, cost, quota, audit, and abuse controls</td></tr>
+                <tr><td>Anthropic</td><td>Not allowlisted</td><td>Eligible only after provider authorization, cost, quota, audit, and abuse controls</td></tr>
+                <tr><td>OpenRouter</td><td>BYOK supported; not bundled resale</td><td>Supported routing provider, but not part of the managed subscription offer</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note" id="one-subscription-readiness">oneSubscriptionReadiness keeps the commercial preference visible while providerFamilyReadiness keeps OpenRouter available as BYOK routing without bundling it into managed resale.</p>
+          <div class="missingControls" id="readiness-missing-controls">
+            <span>provider_resale_terms</span>
+            <span>provider_terms_acknowledgment</span>
+            <span>authorized_provider_allowlist</span>
+            <span>margin_policy</span>
+            <span>provider_cost_model</span>
+            <span>positive_unit_economics</span>
+          </div>
+          <p class="note">This checkpoint is public metadata only. It does not expose provider credentials, costs, OAuth tokens, customer prompts, raw responses, or generated API keys.</p>
+          <p class="note" id="managed-provider-boundary">OpenRouter and other BYOK-compatible gateways can be routed with authorized customer keys, but they do not satisfy the managed resale allowlist.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>&copy; Sage Router</span>
+      <a href="/">Home</a>
+      <a href="https://app.sagerouter.dev/account.html">Account</a>
+      <a href="/quickstart">Quickstart</a>
+      <a href="/fusion">Fusion</a>
+      <a href="/models">Models</a>
+      <a href="/managed-access">Managed Access</a>
+      <a href="/billing">Billing</a>
+      <a href="/status">Status</a>
+      <a href="/support">Support</a>
+      <a href="/compare/model-gateways">Compare</a>
+      <a href="/compare/openrouter">OpenRouter</a>
+      <a href="/model-routing-calculator">Calculator</a>
+      <a href="/launch-plan">Launch Plan</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/acceptable-use">Acceptable Use</a>
+      <a href="/provider-resale-terms">Provider Terms</a>
+      <a href="/margin-policy">Margin Policy</a>
+      <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+    </footer>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const API_PRICING_URL = 'https://api.sagerouter.dev/pricing';
+    const SUPABASE_URL = 'https://awtangrlqqsdpksarhwo.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3dGFuZ3JscXFzZHBrc2FyaHdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMTYzNzEsImV4cCI6MjA4ODU5MjM3MX0.U7TmEJMgYMH0rR8tTWFQ2tzReO5syRwnI3Ytg-BbDaw';
+    const ACCOUNT_PAGE_BASE_URL = 'https://app.sagerouter.dev/account.html';
+    const ACCOUNT_PAGE_URL = `${ACCOUNT_PAGE_BASE_URL}?plan=pro&start=create_key&utm_source=pricing&utm_medium=activation&utm_campaign=sage-router-launch`;
+    const sb = window.supabase?.createClient?.(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const PRICING_OAUTH_LABELS = { github: 'GitHub', google: 'Google', discord: 'Discord' };
+    const PRICING_OAUTH_ORDER = ['github', 'google', 'discord'];
+
+    function normalizePlan(plan) {
+      return ['lite', 'pro', 'max'].includes(plan) ? plan : 'pro';
+    }
+
+    function accountPageUrlForPlan(plan) {
+      return `${ACCOUNT_PAGE_BASE_URL}?plan=${encodeURIComponent(normalizePlan(plan))}&start=create_key&utm_source=pricing&utm_medium=activation&utm_campaign=sage-router-launch`;
+    }
+
+    function planDisplay(plan) {
+      const normalized = normalizePlan(plan);
+      return normalized.charAt(0).toUpperCase() + normalized.slice(1);
+    }
+
+    function formatControlName(value) {
+      return String(value || '').replace(/_/g, ' ');
+    }
+
+    function formatCents(value) {
+      if (typeof value !== 'number' || !Number.isFinite(value)) return 'unknown';
+      return `${value.toLocaleString(undefined, { maximumFractionDigits: 2 })} cents`;
+    }
+
+    function setText(id, value) {
+      const element = document.getElementById(id);
+      if (element) element.textContent = value;
+    }
+
+    function renderManagedAccessReadiness(metadata) {
+      const managed = metadata?.publicLaunch?.managedProviderAccess || {};
+      const unitEconomics = managed.unitEconomics || {};
+      const missing = Array.isArray(managed.missingControls) ? managed.missingControls : [];
+      const status = document.getElementById('managed-readiness-status');
+      const missingControls = document.getElementById('readiness-missing-controls');
+      const tbody = document.querySelector('#readiness-plan-table tbody');
+      const familyTbody = document.querySelector('#provider-family-readiness-table tbody');
+
+      if (status) {
+        status.textContent = managed.enabled ? 'Ready for private beta' : (managed.requested ? 'Requested, incomplete' : 'Disabled pending provider terms');
+        status.classList.toggle('ok', Boolean(managed.enabled));
+        status.classList.toggle('warn', !managed.enabled);
+      }
+
+      setText('managed-readiness-summary', managed.enabled
+        ? 'Managed provider access has all public readiness controls satisfied for private-beta operation.'
+        : `Managed provider access remains disabled until every readiness control passes. ${missing.length || 0} controls are still missing.`);
+      setText('readiness-missing-count', String(missing.length || 0));
+      setText('readiness-cost-model', unitEconomics.costModelConfigured ? 'Configured' : 'Not configured');
+      setText('readiness-unit-economics', unitEconomics.satisfied ? 'Satisfied' : 'Not satisfied');
+
+      if (missingControls) {
+        const controls = missing.length ? missing : ['all_controls_satisfied'];
+        missingControls.replaceChildren(...controls.map((item) => {
+          const span = document.createElement('span');
+          span.textContent = formatControlName(item);
+          return span;
+        }));
+      }
+
+      if (tbody && Array.isArray(unitEconomics.evaluatedPlans) && unitEconomics.evaluatedPlans.length) {
+        tbody.replaceChildren(...unitEconomics.evaluatedPlans.map((row) => {
+          const tr = document.createElement('tr');
+          const plan = document.createElement('td');
+          const revenue = document.createElement('td');
+          const maxCost = document.createElement('td');
+          const margin = document.createElement('td');
+          plan.textContent = String(row.plan || '').toUpperCase();
+          revenue.textContent = formatCents(row.revenueCentsPerThousandRequests);
+          maxCost.textContent = formatCents(row.maximumProviderCostCentsPerThousandRequests);
+          margin.textContent = row.meetsMinimumGrossMargin
+            ? `Meets ${row.minimumGrossMarginPercent}% minimum`
+            : (unitEconomics.costModelConfigured ? `Below ${row.minimumGrossMarginPercent}% minimum` : 'Waiting on provider cost model');
+          tr.append(plan, revenue, maxCost, margin);
+          return tr;
+        }));
+      }
+
+      if (familyTbody) {
+        const fallbackRows = [
+          {
+            label: 'Ollama',
+            status: 'not_allowlisted',
+            resaleEligible: true,
+            byokOnly: false,
+            missingControls: ['authorized_provider_allowlist']
+          },
+          {
+            label: 'OpenAI',
+            status: 'not_allowlisted',
+            resaleEligible: true,
+            byokOnly: false,
+            missingControls: ['authorized_provider_allowlist']
+          },
+          {
+            label: 'Anthropic',
+            status: 'not_allowlisted',
+            resaleEligible: true,
+            byokOnly: false,
+            missingControls: ['authorized_provider_allowlist']
+          },
+          {
+            label: 'OpenRouter',
+            status: 'byok_supported_not_managed_resale',
+            resaleEligible: false,
+            byokOnly: true,
+            missingControls: ['provider_resale_authorization']
+          }
+        ];
+        const providerRows = Array.isArray(managed.providerFamilyReadiness) && managed.providerFamilyReadiness.length
+          ? managed.providerFamilyReadiness
+          : fallbackRows;
+        familyTbody.replaceChildren(...providerRows.map((row) => {
+          const tr = document.createElement('tr');
+          const family = document.createElement('td');
+          const statusCell = document.createElement('td');
+          const boundary = document.createElement('td');
+          family.textContent = row.label || row.family || 'Provider';
+          statusCell.textContent = row.status === 'ready_for_private_beta'
+            ? 'Ready for private beta'
+            : (row.byokOnly ? 'BYOK supported; not bundled resale' : formatControlName(row.status || 'not_allowlisted'));
+          if (row.byokOnly) {
+            boundary.textContent = 'Supported routing provider, but not part of the managed subscription offer';
+          } else if (row.resaleEligible) {
+            boundary.textContent = row.ready
+              ? 'Eligible managed-access family after global controls remain satisfied'
+              : 'Eligible only after provider authorization, cost, quota, audit, and abuse controls';
+          } else {
+            boundary.textContent = 'Review required before managed subscription resale';
+          }
+          tr.append(family, statusCell, boundary);
+          return tr;
+        }));
+      }
+    }
+
+    function trackPricingFunnelEvent(event, data = {}) {
+      const params = new URLSearchParams(window.location.search);
+      let referrerHost = null;
+      try {
+        const referrer = document.referrer ? new URL(document.referrer) : null;
+        referrerHost = referrer && referrer.host !== window.location.host ? referrer.host : null;
+      } catch {}
+      const payload = JSON.stringify({
+        event,
+        plan: data.plan || null,
+        sourcePage: window.location.href,
+        target: data.target || null,
+        metadata: {
+          source: 'pricing',
+          button: data.button || null,
+          state: data.state || null,
+          utmSource: params.get('utm_source') || params.get('utmSource') || null,
+          utmMedium: params.get('utm_medium') || params.get('utmMedium') || null,
+          utmCampaign: params.get('utm_campaign') || params.get('utmCampaign') || null,
+          referrerHost,
+          landingPath: window.location.pathname,
+          snippet: data.snippet || null,
+          enabledProviders: data.enabledProviders || null,
+          githubEnabled: data.githubEnabled ?? null,
+          oauthProviderCount: data.oauthProviderCount ?? null
+        }
+      });
+      try {
+        if (navigator.sendBeacon) {
+          const blob = new Blob([payload], { type: 'application/json' });
+          if (navigator.sendBeacon('/api/funnel-event', blob)) return;
+        }
+      } catch {}
+      fetch('/api/funnel-event', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: payload,
+        keepalive: true,
+        credentials: 'omit'
+      }).catch(() => {});
+    }
+
+    function applyPricingOauthButtons(external = {}, state = 'loaded') {
+      const enabledProviders = PRICING_OAUTH_ORDER.filter((provider) => external[provider] === true);
+      const recommendedProvider = enabledProviders[0] || 'github';
+      document.querySelectorAll('[data-pricing-oauth]').forEach((button) => {
+        const provider = button.dataset.pricingOauth;
+        const enabled = external[provider] === true || (state !== 'loaded' && provider === 'github');
+        const label = PRICING_OAUTH_LABELS[provider] || provider;
+        button.classList.toggle('hidden', !enabled);
+        button.classList.toggle('primary', provider === recommendedProvider);
+        button.classList.toggle('secondary', provider !== recommendedProvider);
+        button.disabled = !enabled;
+        button.textContent = provider === recommendedProvider ? `Continue with ${label} for Pro` : `${label} for Pro`;
+      });
+      trackPricingFunnelEvent('pricing_auth_provider_state_checked', {
+        state,
+        button: 'pricing-oauth-options',
+        enabledProviders: enabledProviders.join(',') || 'none',
+        githubEnabled: external.github === true,
+        oauthProviderCount: enabledProviders.length,
+      });
+    }
+
+    async function loadPricingAuthSettings() {
+      try {
+        const response = await fetch(`${SUPABASE_URL}/auth/v1/settings`, { headers: { apikey: SUPABASE_ANON_KEY } });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const external = (await response.json()).external || {};
+        applyPricingOauthButtons(external, 'loaded');
+      } catch {
+        applyPricingOauthButtons({ github: true }, 'fallback');
+      }
+    }
+
+    function pricingSetupBundleText() {
+      return `# Sage Router 60-second Pro setup
+# 1. Create or paste your generated key from:
+# ${accountPageUrlForPlan('pro')}
+# 2. Paste this into your terminal or agent environment:
+
+export OPENAI_BASE_URL=https://api.sagerouter.dev/v1
+export OPENAI_API_KEY=sk_sage_your_key_here
+
+curl "$OPENAI_BASE_URL/models" \\
+  -H "Authorization: Bearer $OPENAI_API_KEY"
+
+curl "$OPENAI_BASE_URL/chat/completions" \\
+  -H "Authorization: Bearer $OPENAI_API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "model": "sage-router/frontier",
+    "messages": [{"role": "user", "content": "Route this well"}]
+  }'`;
+    }
+
+    async function writeClipboardText(text) {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      textarea.remove();
+    }
+
+    async function copyPricingSetupBundle() {
+      const status = document.getElementById('pricing-copy-status');
+      try {
+        await writeClipboardText(pricingSetupBundleText());
+        trackPricingFunnelEvent('quickstart_snippet_copied', {
+          plan: 'pro',
+          button: 'Copy 60-second setup bundle',
+          state: 'pricing-activation',
+          snippet: 'pricing-full-setup-bundle'
+        });
+        if (status) status.textContent = 'Copied. Create your API key next; no provider key or credit card required yet.';
+        const nextAccount = document.getElementById('pricing-copy-next-account');
+        if (nextAccount) nextAccount.dataset.setupCopied = 'true';
+      } catch {
+        if (status) status.textContent = 'Copy failed. Open the quickstart for manual setup.';
+      }
+    }
+
+    trackPricingFunnelEvent('pricing_viewed', { state: 'page-view' });
+    loadPricingAuthSettings();
+    document.getElementById('pricing-copy-setup')?.addEventListener('click', copyPricingSetupBundle);
+
+    async function pricingOauthLogin(event) {
+      const button = event.currentTarget;
+      const provider = button.dataset.pricingOauth;
+      const plan = normalizePlan(button.dataset.plan);
+      const planName = planDisplay(plan);
+      const target = accountPageUrlForPlan(plan);
+      const status = document.getElementById('pricing-email-status');
+      const buttonLabel = button.textContent.trim();
+      if (!provider || !sb) {
+        if (status) status.textContent = 'Opening the hosted account page instead.';
+        window.location.href = target;
+        return;
+      }
+      button.disabled = true;
+      button.textContent = `Opening ${provider}...`;
+      if (status) status.textContent = `Opening ${provider} sign-in for ${planName}.`;
+      trackPricingFunnelEvent('pricing_oauth_clicked', {
+        plan,
+        target,
+        button: buttonLabel,
+        state: provider,
+      });
+      try {
+        const { error } = await sb.auth.signInWithOAuth({
+          provider,
+          options: { redirectTo: target },
+        });
+        if (error) throw error;
+      } catch (error) {
+        if (status) status.textContent = 'OAuth was unavailable here. Opening the hosted account page instead.';
+        trackPricingFunnelEvent('pricing_oauth_failed', {
+          plan,
+          target,
+          button: buttonLabel,
+          state: provider,
+        });
+        setTimeout(() => { window.location.href = target; }, 700);
+      } finally {
+        button.disabled = false;
+        button.textContent = buttonLabel;
+      }
+    }
+
+    async function sendPricingMagicLink(event) {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const plan = normalizePlan(form.dataset.plan);
+      const planName = planDisplay(plan);
+      const target = accountPageUrlForPlan(plan);
+      const status = form.querySelector('[role="status"]') || document.getElementById('pricing-email-status');
+      const input = form.querySelector('input[type="email"]');
+      const button = form.querySelector('button[type="submit"]');
+      const buttonLabel = button?.textContent?.trim() || `Email ${planName} setup link`;
+      const email = input?.value.trim();
+      if (!email) {
+        if (status) status.textContent = 'Enter your email first.';
+        input?.focus();
+        return;
+      }
+      if (button) {
+        button.disabled = true;
+        button.textContent = 'Sending...';
+      }
+      if (status) status.textContent = `Sending ${planName} API key setup link...`;
+      trackPricingFunnelEvent('pricing_magic_link_requested', {
+        plan,
+        target,
+        button: buttonLabel,
+        state: 'email',
+      });
+      try {
+        if (!sb) throw new Error('Supabase client unavailable');
+        const { error } = await sb.auth.signInWithOtp({
+          email,
+          options: {
+            emailRedirectTo: target,
+            data: {
+              sage_router_onboarding: true,
+              signup_source: 'pricing',
+              selected_plan: plan,
+              auth_method: 'magic_link',
+            },
+          },
+        });
+        if (error) throw error;
+        form.reset();
+        if (status) status.textContent = `Setup link sent. Check your email to create the ${planName} key and continue checkout.`;
+        trackPricingFunnelEvent('pricing_magic_link_sent', {
+          plan,
+          target,
+          button: buttonLabel,
+          state: 'email',
+        });
+      } catch (error) {
+        if (status) status.textContent = 'Could not send a link here. Opening the hosted account page instead.';
+        trackPricingFunnelEvent('pricing_magic_link_failed', {
+          plan,
+          target,
+          button: buttonLabel,
+          state: 'fallback_account',
+        });
+        setTimeout(() => { window.location.href = target; }, 700);
+      } finally {
+        if (button) {
+          button.disabled = false;
+          button.textContent = buttonLabel;
+        }
+      }
+    }
+
+    document.getElementById('pricing-email-form')?.addEventListener('submit', sendPricingMagicLink);
+    document.querySelectorAll('[data-pricing-oauth]').forEach((button) => {
+      button.addEventListener('click', pricingOauthLogin);
+    });
+    document.querySelectorAll('[data-pricing-plan-email]').forEach((form) => {
+      form.addEventListener('submit', sendPricingMagicLink);
+    });
+
+    fetch(API_PRICING_URL, { credentials: 'omit' })
+      .then((response) => response.ok ? response.json() : null)
+      .then((metadata) => {
+        if (metadata) renderManagedAccessReadiness(metadata);
+      })
+      .catch(() => {});
+
+    document.querySelectorAll('a[href]').forEach((link) => {
+      const href = link.getAttribute('href') || '';
+      const planMatch = href.match(/\/(?:account|login)\.html\?plan=(lite|pro|max)\b/);
+      if (planMatch) {
+        link.addEventListener('click', () => {
+          if (link.id === 'pricing-copy-next-account') {
+            trackPricingFunnelEvent('pricing_setup_next_clicked', {
+              plan: 'pro',
+              target: href,
+              button: link.textContent.trim().slice(0, 60),
+              state: link.dataset.setupCopied === 'true' ? 'post-copy' : 'pre-copy',
+              snippet: 'pricing-full-setup-bundle'
+            });
+            return;
+          }
+          if (link.dataset.pricingKeyRecovery === 'true') {
+            trackPricingFunnelEvent('pricing_key_recovery_clicked', {
+              plan: planMatch[1],
+              target: href,
+              button: link.textContent.trim().slice(0, 60),
+              state: 'pricing_returning_no_key'
+            });
+            return;
+          }
+          const startMatch = href.match(/[?&]start=([^&]+)/);
+          const eventName = startMatch?.[1] === 'create_key' ? 'pricing_key_activation_clicked' : 'pricing_checkout_clicked';
+          trackPricingFunnelEvent(eventName, {
+            plan: planMatch[1],
+            target: href,
+            button: link.textContent.trim().slice(0, 60),
+            state: startMatch?.[1] || 'checkout'
+          });
+        });
+      } else if ((href === '/account.html' || href === 'https://app.sagerouter.dev/account.html')) {
+        link.addEventListener('click', () => trackPricingFunnelEvent('pricing_account_clicked', {
+          target: href,
+          button: link.textContent.trim().slice(0, 60)
+        }));
+      } else if (href === '/quickstart') {
+        link.addEventListener('click', () => trackPricingFunnelEvent('pricing_quickstart_clicked', {
+          target: href,
+          button: link.textContent.trim().slice(0, 60)
+        }));
+      } else if (href === '/managed-access' || href.includes('managed-access')) {
+        link.addEventListener('click', () => trackPricingFunnelEvent('managed_access_interest_clicked', {
+          plan: 'max',
+          target: href,
+          button: link.textContent.trim().slice(0, 60)
+        }));
+      }
+    });
+  </script>
+</body>
+</html>

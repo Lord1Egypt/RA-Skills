@@ -10,7 +10,7 @@
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
-const { execSync } = require('child_process');
+const { execSync, execFileSync } = require('child_process');
 
 // ── 常量 ──────────────────────────────────────────────
 
@@ -807,38 +807,103 @@ function cmdSetHikingRoutes(routes, tripId) {
 // ── GPX/KML 文件保存 + 轨迹地图生成 ──────────────────
 
 /**
+ * GPX/KML 允许的文件扩展名
+ */
+const ALLOWED_TRACK_EXTENSIONS = new Set(['.gpx', '.kml']);
+
+/**
+ * 验证文件路径是否在允许的目录范围内,防止任意文件读取
+ * @param {string} filePath - 要验证的绝对路径
+ * @returns {{ valid: boolean, reason: string }}
+ */
+function validateFilePath(filePath, allowedDirs) {
+  const resolved = path.resolve(filePath);
+  const normalized = path.normalize(resolved);
+
+  // 检查路径遍历攻击
+  if (normalized !== resolved) {
+    return { valid: false, reason: '路径包含可疑的遍历序列' };
+  }
+
+  // 检查是否在允许的目录内
+  const isAllowed = allowedDirs.some(dir => {
+    const normalizedDir = path.normalize(path.resolve(dir));
+    return normalized.startsWith(normalizedDir + path.sep) || normalized === normalizedDir;
+  });
+
+  if (!isAllowed) {
+    return { valid: false, reason: `文件不在允许的目录范围内` };
+  }
+
+  return { valid: true, reason: '' };
+}
+
+/**
  * 保存 GPX/KML 文件到行程 gpx 目录,并生成轨迹地图 HTML
  * @param {object} trip - 行程对象
  * @param {string} sourcePath - 上传的 GPX/KML 文件路径
- * @returns {{ gpxPath: string, trackMapPath: string, error: string|null }}
+ * @param {object} [options] - { confirmed: boolean }
+ * @returns {{ gpxPath: string, trackMapPath: string, error: string|null, needsConsent: boolean|null }}
  */
-function saveGpxFile(trip, sourcePath) {
-  // 检查源文件是否存在
-  const resolvedPath = path.resolve(sourcePath);
+function saveGpxFile(trip, sourcePath, options) {
+  const opts = options || {};
+
+  // 解析源文件路径
+  let resolvedPath = sourcePath.startsWith('~')
+    ? path.join(os.homedir(), sourcePath.slice(1))
+    : path.resolve(sourcePath);
+
+  // 如果文件不存在,尝试 inbound 目录
   if (!fs.existsSync(resolvedPath)) {
-    // 尝试 webchat inbound 路径
-    const inboundCandidate = path.join(os.homedir(), '.openclaw', 'media', 'inbound', path.basename(sourcePath));
+    const inboundDir = path.join(os.homedir(), '.openclaw', 'media', 'inbound');
+    const inboundCandidate = path.join(inboundDir, path.basename(sourcePath));
     if (fs.existsSync(inboundCandidate)) {
-      sourcePath = inboundCandidate;
+      resolvedPath = inboundCandidate;
     } else {
       return { gpxPath: null, trackMapPath: null, error: `文件不存在: ${resolvedPath}。请确认文件路径是否正确。如果文件是通过 webchat 上传的,请使用绝对路径 ~/.openclaw/media/inbound/<文件名>` };
     }
   }
 
+  // ── 安全检查:扩展名白名单 ──
+  const ext = path.extname(resolvedPath).toLowerCase();
+  if (!ALLOWED_TRACK_EXTENSIONS.has(ext)) {
+    return { gpxPath: null, trackMapPath: null, error: `不支持的文件类型: ${ext}。仅支持 .gpx 和 .kml 文件。` };
+  }
+
+  // ── 安全检查:路径范围验证 ──
+  const inboundDir = path.join(os.homedir(), '.openclaw', 'media', 'inbound');
+  const allowedDirs = [trip.outputDir, inboundDir, os.tmpdir()];
+  const validation = validateFilePath(resolvedPath, allowedDirs);
+  if (!validation.valid) {
+    return { gpxPath: null, trackMapPath: null, error: `安全限制: ${validation.reason}` };
+  }
+
+  // ── 隐私确认:轨迹坐标将写入 HTML 文件 ──
+  if (!opts.confirmed) {
+    return {
+      gpxPath: null,
+      trackMapPath: null,
+      needsConsent: true,
+      consentType: 'gpx_import',
+      message: '⚠️  轨迹文件中的 GPS 坐标将被提取并写入 HTML 地图文件。该文件包含您精确的徒步路线数据,可能暴露敏感位置信息(路线、起终点、营地)。是否继续?',
+      sourcePath: resolvedPath,
+    };
+  }
+
+  const baseName = path.basename(resolvedPath, ext);
+
   const gpxDir = path.join(trip.outputDir, 'upcoming', trip.tripId, 'gpx');
   fs.mkdirSync(gpxDir, { recursive: true });
 
   // 复制 GPX/KML 到 gpx 目录
-  const ext = path.extname(sourcePath);
-  const baseName = path.basename(sourcePath, ext);
   const destFile = path.join(gpxDir, `${baseName}${ext}`);
-  fs.copyFileSync(sourcePath, destFile);
+  fs.copyFileSync(resolvedPath, destFile);
 
-  // 生成轨迹地图 HTML
+  // 生成轨迹地图 HTML(使用 execFileSync 避免 shell 注入)
   const htmlFile = path.join(gpxDir, `${baseName}_轨迹地图.html`);
   const scriptPath = path.join(__dirname, 'generate-track-map.py');
   try {
-    execSync(`python3 "${scriptPath}" "${destFile}" --output "${htmlFile}" --tile amap`, { timeout: 30000 });
+    execFileSync('python3', [scriptPath, destFile, '--output', htmlFile, '--tile', 'amap'], { timeout: 30000 });
   } catch (e) {
     return { gpxPath: `gpx/${baseName}${ext}`, trackMapPath: null, error: `轨迹地图生成失败: ${e.message}` };
   }
@@ -848,34 +913,154 @@ function saveGpxFile(trip, sourcePath) {
 }
 
 /**
+ * 图片/媒体允许的文件扩展名
+ */
+const ALLOWED_MEDIA_EXTENSIONS = new Set(['.png', '.jpg', '.jpeg', '.gif', '.webp', '.bmp', '.svg', '.mp4', '.mov', '.avi', '.webm']);
+
+/**
  * 保存截图/图片文件到行程 media 目录
  * @param {object} trip - 行程对象
  * @param {string} sourcePath - 上传的图片/截图文件路径
- * @returns {{ mediaPath: string|null, error: string|null }}
+ * @param {object} [options] - { confirmed: boolean }
+ * @returns {{ mediaPath: string|null, error: string|null, needsConsent: boolean|null }}
  */
-function saveMediaFile(trip, sourcePath) {
+function saveMediaFile(trip, sourcePath, options) {
+  const opts = options || {};
+
   const mediaDir = path.join(trip.outputDir, 'upcoming', trip.tripId, 'media');
   fs.mkdirSync(mediaDir, { recursive: true });
 
-  const resolvedPath = sourcePath.startsWith('~')
+  let resolvedPath = sourcePath.startsWith('~')
     ? path.join(os.homedir(), sourcePath.slice(1))
-    : sourcePath;
+    : path.resolve(sourcePath);
 
   if (!fs.existsSync(resolvedPath)) {
-    const inboundCandidate = path.join(os.homedir(), '.openclaw', 'media', 'inbound', path.basename(sourcePath));
+    const inboundDir = path.join(os.homedir(), '.openclaw', 'media', 'inbound');
+    const inboundCandidate = path.join(inboundDir, path.basename(sourcePath));
     if (fs.existsSync(inboundCandidate)) {
-      sourcePath = inboundCandidate;
+      resolvedPath = inboundCandidate;
     } else {
       return { mediaPath: null, error: `文件不存在: ${resolvedPath}` };
     }
   }
 
-  const ext = path.extname(resolvedPath);
+  // ── 安全检查:扩展名白名单 ──
+  const ext = path.extname(resolvedPath).toLowerCase();
+  if (!ALLOWED_MEDIA_EXTENSIONS.has(ext)) {
+    return { mediaPath: null, error: `不支持的媒体类型: ${ext}。支持的格式: ${[...ALLOWED_MEDIA_EXTENSIONS].join(', ')}` };
+  }
+
+  // ── 安全检查:路径范围验证 ──
+  const inboundDir = path.join(os.homedir(), '.openclaw', 'media', 'inbound');
+  const allowedDirs = [trip.outputDir, inboundDir, os.tmpdir()];
+  const validation = validateFilePath(resolvedPath, allowedDirs);
+  if (!validation.valid) {
+    return { mediaPath: null, error: `安全限制: ${validation.reason}` };
+  }
+
+  // ── 隐私确认:文件将被复制到行程存储 ──
+  if (!opts.confirmed) {
+    return {
+      mediaPath: null,
+      needsConsent: true,
+      consentType: 'media_import',
+      message: '⚠️  该文件将被复制到行程目录并可被同一服务器的其他用户访问。截图/照片可能包含敏感个人信息(位置、人脸、订单详情)。是否继续?',
+      sourcePath: resolvedPath,
+    };
+  }
+
   const baseName = path.basename(resolvedPath, ext);
   const destFile = path.join(mediaDir, `${baseName}${ext}`);
   fs.copyFileSync(resolvedPath, destFile);
 
   return { mediaPath: `media/${baseName}${ext}`, error: null };
+}
+
+// ── 命令:hike-import(GPX/KML 轨迹导入) ──────────────
+
+/**
+ * hike-import - 导入 GPX/KML 轨迹文件到当前行程
+ * 用法:hike-import <filePath>
+ *
+ * 自动检测文件类型,提取 GPS 坐标,生成轨迹地图 HTML,
+ * 并将轨迹数据挂载到行程的 hikingRoutes。
+ *
+ * @param {string} sourcePath - GPX/KML 文件路径
+ * @param {object} [options] - { confirmed, tripId }
+ * @returns {object}
+ */
+function cmdImportGpx(sourcePath, options) {
+  if (!sourcePath) {
+    return { error: '请提供 GPX/KML 文件路径,例如:hike-import ~/downloads/track.gpx' };
+  }
+
+  const opts = options || {};
+  const { state } = loadStateWithFallback();
+  const trip = getTrip(state, opts.tripId);
+  if (!trip) return { error: '没有活动的行程,请先 hike-select <行程名> 或 hike-init 创建行程' };
+
+  // 使用 saveGpxFile 进行安全验证和导入
+  const saveResult = saveGpxFile(trip, sourcePath, { confirmed: opts.confirmed });
+
+  // 如果需要确认,透传 consent 请求
+  if (saveResult.needsConsent) {
+    return saveResult;
+  }
+
+  if (saveResult.error) {
+    return { error: saveResult.error };
+  }
+
+  // 将导入的轨迹信息添加到 hikingRoutes
+  const ext = path.extname(sourcePath).toLowerCase();
+  const baseName = path.basename(sourcePath, ext);
+  const routeName = baseName.replace(/[_\-]/g, ' ').trim() || '导入轨迹';
+
+  // 从 GPX/KML 提取统计数据(使用 Python 解析器)
+  let stats = null;
+  try {
+    const resolvedPath = path.resolve(sourcePath.startsWith('~')
+      ? path.join(os.homedir(), sourcePath.slice(1))
+      : sourcePath);
+    if (fs.existsSync(resolvedPath)) {
+      const parserScript = path.join(__dirname, '..', 'assets',
+        ext === '.kml' ? 'kml-parser.py' : 'gpx-parser.py');
+      const statsOutput = execFileSync('python3', [parserScript, resolvedPath],
+        { timeout: 15000, encoding: 'utf8' });
+      try {
+        stats = JSON.parse(statsOutput);
+      } catch (e) { /* stats parse failed, continue without */ }
+    }
+  } catch (e) { /* parser not available, continue without stats */ }
+
+  const newRoute = {
+    name: routeName,
+    distance: stats ? String(stats.distance_km || stats.distance) : null,
+    distanceUnit: 'km',
+    ascent: stats ? (stats.ascent_m || stats.ascent) : null,
+    descent: stats ? (stats.descent_m || stats.descent) : null,
+    maxAltitude: stats ? (stats.max_altitude_m || stats.max_altitude) : null,
+    estimatedTime: stats ? (stats.estimated_time || '') : '',
+    type: '混合',
+    keyNodes: stats ? (stats.key_nodes || []) : [],
+    gpxSource: sourcePath,
+    gpxFilePath: saveResult.gpxPath,
+    trackMapPath: saveResult.trackMapPath,
+    tips: `从 ${ext.toUpperCase()} 文件导入`,
+    dayIndex: 0,
+  };
+
+  trip.hikingRoutes.push(newRoute);
+  trip.updatedAt = new Date().toISOString();
+  saveState(state, trip.outputDir);
+
+  return {
+    tripId: trip.tripId,
+    route: newRoute,
+    gpxPath: saveResult.gpxPath,
+    trackMapPath: saveResult.trackMapPath,
+    message: `✅ 已导入轨迹「${routeName}」,轨迹地图已生成。`,
+  };
 }
 
 // ── 命令:设置交通 ────────────────────────────────────
@@ -2003,6 +2188,7 @@ function cmdSelect(arg1, arg2) {
       value: resolved,
       configPath: CONFIG_FILE,
       message: `默认输出目录已设置为:${resolved}`,
+      warning: '⚠️  行程数据(含订单信息、GPS 坐标、媒体文件)将保存到此目录。在共享服务器环境中,其他用户可能可以查看这些数据。请确保该目录仅您可访问。',
     };
   }
 
@@ -2531,12 +2717,15 @@ function getNodeRouteType(nodeType) {
 
 /**
  * 为指定 day 自动生成高德地图可视化路线链接
+ *
+ * ⚠️ 隐私提示:此函数将站点名称或 GPS 坐标发送给高德地图 API 以生成地图链接。
+ *
  * @param {number} dayIndex - day 索引
  * @param {string[]} stops - 节点名称列表
  * @param {string} [region] - 省市区县范围,用于地理编码消歧义(如 "北京市延庆区")
  * @param {Array<{lat:number,lng:number}>} [coords] - GPX/KML 提取的 GPS 坐标
  * @param {string[]} [routeTypes] - 逐段路线类型数组(长度 = stops.length - 1),默认全为 driving
- * @returns {{ link: string|null, error: string|null }}
+ * @returns {{ link: string|null, error: string|null, privacyNotice: string|null }}
  */
 function renderDayMap(dayIndex, stops, region, coords, routeTypes) {
   const key = process.env.AMAP_WEBSERVICE_KEY;
@@ -2562,25 +2751,39 @@ function renderDayMap(dayIndex, stops, region, coords, routeTypes) {
       const waypointNames = coords.map(c => (c.name || '').replace(/,/g, ' '));
       const namesStr = waypointNames.join('|');
       const env = { ...process.env, AMAP_WEBSERVICE_KEY: key };
-      const result = execSync(
-        `node "${scriptPath}" --coords="${coordsStr}" --names="${namesStr}" --routeType=${routeTypeArg}`,
-        { timeout: 30000, encoding: 'utf8', env }
-      );
+      // 使用 execFileSync 避免 shell 注入
+      const args = [
+        scriptPath,
+        `--coords=${coordsStr}`,
+        `--names=${namesStr}`,
+        `--routeType=${routeTypeArg}`
+      ];
+      const result = execFileSync('node', args, {
+        timeout: 30000, encoding: 'utf8', env,
+        maxBuffer: 10 * 1024 * 1024
+      });
       const match = result.match(/https:\/\/a\.amap\.com\/[^\s\n]+/);
-      if (match) return { link: match[0], error: null };
+      if (match) return { link: match[0], error: null, privacyNotice: '🗺️  地图包含从 GPX/KML 提取的精确 GPS 坐标,已发送给高德地图 API。' };
     }
 
     // 兜底:通过地名地理编码(带省市区县前缀消歧义)
     const stopsStr = stops.map(s => s.replace(/,/g, ' ')).join(',');
-    const regionArg = region ? ` --region="${region.replace(/"/g, '')}"` : '';
+    const args = [
+      scriptPath,
+      `--stops=${stopsStr}`,
+      `--routeType=${routeTypeArg}`
+    ];
+    if (region) {
+      args.push(`--region=${region.replace(/"/g, '')}`);
+    }
     const env = { ...process.env, AMAP_WEBSERVICE_KEY: key };
-    const result = execSync(
-      `node "${scriptPath}" --stops="${stopsStr}" --routeType=${routeTypeArg}${regionArg}`,
-      { timeout: 30000, encoding: 'utf8', env }
-    );
+    const result = execFileSync('node', args, {
+      timeout: 30000, encoding: 'utf8', env,
+      maxBuffer: 10 * 1024 * 1024
+    });
     const match = result.match(/https:\/\/a\.amap\.com\/[^\s\n]+/);
     if (match) {
-      return { link: match[0], error: null };
+      return { link: match[0], error: null, privacyNotice: '🗺️  行程站点名称已通过网络发送给高德地图(Amap)API 以生成地图链接。' };
     }
     return { link: null, error: '无法从地图渲染脚本输出中提取链接' };
   } catch (e) {
@@ -2993,14 +3196,16 @@ module.exports = {
   DEFAULT_OUTPUT_DIR,
   CONFIG_FILE,
 
-  // 8 条主命令
+  // 9 条主命令
   cmdHike,
   cmdInit,
+  cmdImportGpx,
   cmdStatus,
   cmdToday,
   cmdLog,
   cmdList,
   cmdSelect,
+  cmdConfig: cmdSelect,  // hike-config 别名（设置 output/baseurl）
   // 汇总归档(hike-list <tripId>)
   cmdListArchive,
 

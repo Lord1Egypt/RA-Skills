@@ -1,0 +1,21 @@
+{
+  "slug": "arabic-flashcard-maker-skill",
+  "name": "Arabic Flashcard Maker Skill",
+  "version": "0.1.0",
+  "tags": [
+    "arabic",
+    "flashcards",
+    "education",
+    "language-learning",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Education & Study",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-06-11",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

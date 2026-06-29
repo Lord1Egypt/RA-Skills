@@ -1,0 +1,20 @@
+node_modules/
+.claude/
+*.log
+.DS_Store
+
+# Output directories (generated scan/report files)
+leads-output/
+output/
+
+# OS / editor artifacts
+Thumbs.db
+desktop.ini
+.Spotlight-V100
+.Trashes
+*.tmp
+*.temp
+
+# Environment / secrets
+.env
+.env.local

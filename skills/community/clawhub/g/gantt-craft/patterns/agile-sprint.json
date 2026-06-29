@@ -1,0 +1,10 @@
+{
+  "name": "agile-sprint",
+  "label": "敏捷冲刺看板",
+  "description": "看板+时间轴混合视图，适合Scrum团队",
+  "layout": "kanban-timeline",
+  "features": ["sprint_backlog", "status_columns", "time_axis", "wip_limit", "burndown"],
+  "time_unit": "day",
+  "statuses": ["待办", "进行中", "测试中", "已完成"],
+  "wip_limit": 3
+}

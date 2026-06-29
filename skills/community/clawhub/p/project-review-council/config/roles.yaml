@@ -1,0 +1,97 @@
+# 角色启停 + 权重配置
+# weight 决定该角色评分在最终综合评分中的权重（归一化前）
+# 启用新角色：在此注册 + 在 roles/ 目录加对应 .md 文件
+
+roles:
+  ceo:
+    enabled: true
+    weight: 1.2
+    category: strategic
+  vc:
+    enabled: true
+    weight: 1.0
+    category: strategic
+  cto:
+    enabled: true
+    weight: 1.2
+    category: technical
+  chief-architect:
+    enabled: true
+    weight: 1.2
+    category: technical
+  staff-engineer:
+    enabled: true
+    weight: 1.0
+    category: technical
+  product-director:
+    enabled: true
+    weight: 1.1
+    category: product
+  ux-expert:
+    enabled: true
+    weight: 0.9
+    category: product
+  growth-lead:
+    enabled: true
+    weight: 1.0
+    category: growth
+  security-auditor:
+    enabled: true
+    weight: 1.1
+    category: technical
+  devops-lead:
+    enabled: true
+    weight: 0.9
+    category: technical
+  qa-lead:
+    enabled: true
+    weight: 0.8
+    category: technical
+  data-architect:
+    enabled: true
+    weight: 0.9
+    category: technical
+  compliance-officer:
+    enabled: true
+    weight: 0.8
+    category: risk
+  marketing-strategist:
+    enabled: true
+    weight: 0.9
+    category: market
+  sales-director:
+    enabled: true
+    weight: 0.9
+    category: market
+  customer-success:
+    enabled: true
+    weight: 0.8
+    category: market
+  competitor:
+    enabled: true
+    weight: 1.1
+    category: adversarial
+  devils-advocate:
+    enabled: true
+    weight: 1.5
+    category: adversarial
+  independent-auditor:
+    enabled: true
+    weight: 1.3
+    category: verification
+  future-analyst:
+    enabled: true
+    weight: 0.9
+    category: strategic
+
+# 深度模式预置角色集
+depth_presets:
+  quick:
+    description: "轻量体检，仅核心 5 角色"
+    roles: [ceo, cto, product-director, devils-advocate, independent-auditor]
+  standard:
+    description: "标准审计，12 角色"
+    roles: [ceo, vc, cto, chief-architect, product-director, growth-lead, security-auditor, marketing-strategist, sales-director, competitor, devils-advocate, independent-auditor]
+  deep:
+    description: "全量审计，20 角色"
+    roles: [ceo, vc, cto, chief-architect, staff-engineer, product-director, ux-expert, growth-lead, security-auditor, devops-lead, qa-lead, data-architect, compliance-officer, marketing-strategist, sales-director, customer-success, competitor, devils-advocate, independent-auditor, future-analyst]

@@ -1,0 +1,37 @@
+{
+  "name": "vishalo-ai-skill",
+  "displayName": "VisHalo AI Creative Image Companion",
+  "version": "1.0.0",
+  "description": "Creative AI image and video planning companion for Seedance prompts, image upscaling, background removal, gallery review, and production-ready visual briefs.",
+  "triggerKeywords": [
+    "vishalo",
+    "seedance",
+    "ai image",
+    "image upscaler",
+    "background remover",
+    "creative automation",
+    "ai video"
+  ],
+  "tags": [
+    "ai image",
+    "ai video",
+    "seedance",
+    "image editing",
+    "creative workflow"
+  ],
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "homepage": "https://vishalo.com/",
+  "productPages": [
+    {"name": "VisHalo AI", "url": "https://vishalo.com/"},
+    {"name": "Seedance 2.1", "url": "https://vishalo.com/seedance-2-1"},
+    {"name": "Seedance 2.5", "url": "https://vishalo.com/seedance-2-5"},
+    {"name": "Meigen Gallery", "url": "https://vishalo.com/meigen-gallery"},
+    {"name": "AI Image Upscaler", "url": "https://vishalo.com/ai/image-upscaler"},
+    {"name": "AI Background Remover", "url": "https://vishalo.com/ai/background-remover"},
+    {"name": "GitHub Resources", "url": "https://github.com/eavemma5-tech/vishalo-ai-resources"},
+    {"name": "GitHub Pages", "url": "https://eavemma5-tech.github.io/vishalo-ai-resources/"}
+  ]
+}

@@ -1,0 +1,193 @@
+#!/usr/bin/env python3
+"""
+typecho-cli — OpenClawTypecho 博客管理 CLI 工具
+用法: typecho-cli <command> [options]
+"""
+
+import argparse
+import json
+import os
+import sys
+import urllib.request
+import urllib.error
+
+DEFAULT_CONFIG_PATH = os.path.expanduser("~/.config/typecho-cli/config.json")
+
+
+def load_config(args):
+    """加载配置，优先级: 命令行参数 > 环境变量 > 配置文件"""
+    domain = None
+    token = None
+
+    # 1. 配置文件
+    if os.path.exists(DEFAULT_CONFIG_PATH):
+        try:
+            with open(DEFAULT_CONFIG_PATH, "r", encoding="utf-8") as f:
+                cfg = json.load(f)
+                domain = cfg.get("domain")
+                token = cfg.get("token")
+        except Exception:
+            pass
+
+    # 2. 环境变量
+    domain = os.environ.get("TYPECHO_DOMAIN", domain)
+    token = os.environ.get("TYPECHO_TOKEN", token)
+
+    # 3. 命令行参数
+    if getattr(args, "domain", None):
+        domain = args.domain
+    if getattr(args, "token", None):
+        token = args.token
+
+    if not domain or not token:
+        print(json.dumps({
+            "success": False,
+            "message": "缺少配置：请设置 domain 和 token。方式：\n"
+                       f"1. 写入配置文件 {DEFAULT_CONFIG_PATH}\n"
+                       "2. 环境变量 TYPECHO_DOMAIN / TYPECHO_TOKEN\n"
+                       "3. 命令行参数 --domain / --token"
+        }))
+        sys.exit(1)
+
+    return domain.rstrip("/"), token
+
+
+def api_call(domain, token, payload):
+    """发送 API 请求"""
+    url = f"{domain}/index.php/action/openclaw-submit"
+    data = json.dumps(payload).encode("utf-8")
+    req = urllib.request.Request(
+        url,
+        data=data,
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {token}",
+        },
+        method="POST",
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.loads(resp.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        try:
+            body = json.loads(e.read().decode("utf-8"))
+        except Exception:
+            body = {"message": str(e)}
+        return {"success": False, "message": body.get("message", str(e)), "http_code": e.code}
+    except Exception as e:
+        return {"success": False, "message": str(e)}
+
+
+def cmd_list(args):
+    domain, token = load_config(args)
+    payload = {"action": "list", "page": args.page, "pageSize": args.page_size}
+    if args.status:
+        payload["status"] = args.status
+    if args.category:
+        payload["category"] = args.category
+    result = api_call(domain, token, payload)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_get(args):
+    domain, token = load_config(args)
+    payload = {"action": "get", "cid": args.cid}
+    result = api_call(domain, token, payload)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_submit(args):
+    domain, token = load_config(args)
+    tags = [t.strip() for t in args.tags.split(",") if t.strip()] if args.tags else []
+    payload = {
+        "action": "submit",
+        "title": args.title,
+        "text": args.text,
+        "markdown": True,
+        "category": args.category or "",
+        "tags": tags,
+        "status": args.status or "publish",
+    }
+    if args.slug:
+        payload["slug"] = args.slug
+    result = api_call(domain, token, payload)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_update(args):
+    domain, token = load_config(args)
+    payload = {"action": "update", "cid": args.cid}
+    if args.title is not None:
+        payload["title"] = args.title
+    if args.text is not None:
+        payload["text"] = args.text
+    if args.category is not None:
+        payload["category"] = args.category
+    if args.tags is not None:
+        payload["tags"] = [t.strip() for t in args.tags.split(",") if t.strip()]
+    if args.status is not None:
+        payload["status"] = args.status
+    if args.slug is not None:
+        payload["slug"] = args.slug
+    result = api_call(domain, token, payload)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_delete(args):
+    domain, token = load_config(args)
+    payload = {"action": "delete", "cid": args.cid}
+    result = api_call(domain, token, payload)
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def main():
+    parser = argparse.ArgumentParser(prog="typecho-cli", description="OpenClawTypecho 博客管理工具")
+    parser.add_argument("--domain", help="博客地址，如 https://example.com")
+    parser.add_argument("--token", help="API Token")
+    sub = parser.add_subparsers(dest="command", required=True)
+
+    # list
+    p_list = sub.add_parser("list", help="查询文章列表")
+    p_list.add_argument("--page", type=int, default=1)
+    p_list.add_argument("--page-size", type=int, default=10)
+    p_list.add_argument("--status", help="按状态过滤")
+    p_list.add_argument("--category", help="按分类过滤")
+    p_list.set_defaults(func=cmd_list)
+
+    # get
+    p_get = sub.add_parser("get", help="查询单篇文章")
+    p_get.add_argument("--cid", type=int, required=True, help="文章 ID")
+    p_get.set_defaults(func=cmd_get)
+
+    # submit
+    p_submit = sub.add_parser("submit", help="创建文章")
+    p_submit.add_argument("--title", required=True)
+    p_submit.add_argument("--text", required=True)
+    p_submit.add_argument("--category", default="")
+    p_submit.add_argument("--tags", help="逗号分隔的标签")
+    p_submit.add_argument("--slug")
+    p_submit.add_argument("--status", default="publish")
+    p_submit.set_defaults(func=cmd_submit)
+
+    # update
+    p_update = sub.add_parser("update", help="更新文章")
+    p_update.add_argument("--cid", type=int, required=True)
+    p_update.add_argument("--title")
+    p_update.add_argument("--text")
+    p_update.add_argument("--category")
+    p_update.add_argument("--tags")
+    p_update.add_argument("--slug")
+    p_update.add_argument("--status")
+    p_update.set_defaults(func=cmd_update)
+
+    # delete
+    p_delete = sub.add_parser("delete", help="删除文章")
+    p_delete.add_argument("--cid", type=int, required=True)
+    p_delete.set_defaults(func=cmd_delete)
+
+    args = parser.parse_args()
+    args.func(args)
+
+
+if __name__ == "__main__":
+    main()

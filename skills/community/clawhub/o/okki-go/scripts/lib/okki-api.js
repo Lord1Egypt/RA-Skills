@@ -6,10 +6,9 @@ const fs = require('fs');
 const http = require('http');
 const https = require('https');
 const path = require('path');
+const { runtimeAttributionHeaders } = require('./runtime-attribution');
 
 const BASE_URL = process.env.OKKIGO_BASE_URL || 'https://go.okki.ai';
-const SKILL_VERSION = process.env.OKKIGO_SKILL_VERSION || '1.3.2';
-const SKILL_RUNTIME = process.env.OKKIGO_SKILL_RUNTIME || 'unknown';
 
 function resolveApiKey() {
   const resolver = path.join(__dirname, '..', 'resolve-api-key.sh');
@@ -29,50 +28,12 @@ function resolveApiKey() {
   return key;
 }
 
-function resolveInstallId() {
-  const fromEnv = process.env.OKKIGO_INSTALL_ID || process.env.OKKI_GO_INSTALL_ID;
-  if (fromEnv) return firstLine(fromEnv);
-
-  const manifestPath = path.join(__dirname, '..', '.okki-go-manifest.json');
-  const manifestId = readJsonInstallId(manifestPath);
-  if (manifestId) return manifestId;
-
-  const configHome = process.env.XDG_CONFIG_HOME || path.join(process.env.HOME || '', '.config');
-  if (configHome) {
-    const installIdPath = path.join(configHome, 'okki-go', 'install-id');
-    if (fs.existsSync(installIdPath)) {
-      return firstLine(fs.readFileSync(installIdPath, 'utf8'));
-    }
-  }
-
-  return '';
-}
-
-function readJsonInstallId(filePath) {
-  if (!fs.existsSync(filePath)) return '';
-  try {
-    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    const id = data.installId || data.install_id;
-    return typeof id === 'string' ? firstLine(id) : '';
-  } catch (_) {
-    return '';
-  }
-}
-
-function firstLine(value) {
-  return String(value || '').trim().split(/\r?\n/)[0];
-}
-
 function authHeaders() {
-  const headers = {
+  return {
     Authorization: `ApiKey ${resolveApiKey()}`,
     'Content-Type': 'application/json',
-    'X-Okki-Skill-Version': SKILL_VERSION,
-    'X-Okki-Skill-Runtime': SKILL_RUNTIME
+    ...runtimeAttributionHeaders()
   };
-  const installId = resolveInstallId();
-  if (installId) headers['X-Okki-Install-Id'] = installId;
-  return headers;
 }
 
 async function getJson(apiPath) {
@@ -177,6 +138,7 @@ function parseJson(source, label) {
 
 module.exports = {
   BASE_URL,
+  authHeaders,
   getJson,
   parseJson,
   postJson,

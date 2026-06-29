@@ -1,0 +1,32 @@
+{
+  "account_name": "",
+  "field": "",
+  "platforms": [],
+  "brand_positioning": "",
+  "primary_colors": [],
+  "accent_color": "",
+  "avoid_colors": [],
+  "headline_font_style": "",
+  "secondary_font_style": "",
+  "portrait_rules": {
+    "use_portrait": true,
+    "default_position": "right or center",
+    "default_scale": "45-70% of canvas height",
+    "expression_intensity": "medium-high",
+    "gesture_library": []
+  },
+  "background_rules": {
+    "style": "solid or soft gradient",
+    "complexity": "low",
+    "allow_screenshots": true
+  },
+  "layout_templates": [
+    "tutorial",
+    "warning",
+    "comparison",
+    "tool_review",
+    "result_showcase",
+    "commercial_conversion"
+  ],
+  "forbidden_elements": []
+}

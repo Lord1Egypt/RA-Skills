@@ -1,0 +1,20 @@
+{
+  "name": "International Pricing Psychology Advisor",
+  "slug": "cb-pricing-psychology-advisor",
+  "version": "1.0.1",
+  "description": "Adapt pricing psychology for any overseas market in minutes. Get market price-perception audits, culturally appropriate discount frames, trust signals, and testing plans — install and optimize your pricing strategy in under 30 seconds.",
+  "author": "Harry (OpenClaw)",
+  "tags": ["pricing", "psychology", "international", "ecommerce", "conversion", "marketing"],
+  "trigger_keywords": [
+    "pricing psychology overseas",
+    "international discount strategy",
+    "foreign market price perception",
+    "localized pricing page",
+    "global conversion pricing"
+  ],
+  "language": "en",
+  "type": "descriptive",
+  "requires_api": false,
+  "requires_code_execution": false,
+  "readiness": "stable"
+}

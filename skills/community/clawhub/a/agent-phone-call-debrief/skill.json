@@ -1,0 +1,37 @@
+{
+  "slug": "agent-phone-call-debrief",
+  "name": "agent-phone-call-debrief",
+  "displayName": "Agent Phone Call Debrief",
+  "version": "1.0.0",
+  "description": "Debrief after an AI agent phone call — compare outcome to goal, capture commitments, flag escalations, and produce follow-up tasks and CRM-ready notes.",
+  "triggerKeywords": [
+    "agent phone call debrief",
+    "post call debrief agent",
+    "after phone call summary",
+    "call outcome report",
+    "agent call notes",
+    "phone call follow up",
+    "call debrief template",
+    "polly call summary",
+    "inbound call debrief",
+    "outbound call recap"
+  ],
+  "tags": [
+    "agent-phone-call",
+    "customer-service",
+    "booking",
+    "inbound-call",
+    "debrief"
+  ],
+  "license": "MIT",
+  "language": "en",
+  "promptOnly": true,
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "execution": "noExec",
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "safety": "Post-call analysis only. Does not place or record calls. Does not invent facts beyond provided transcript or summary."
+}

@@ -1,0 +1,19 @@
+{
+  "description": "replace only the masked shield with a round wooden shield, preserve pose and transparent background",
+  "image_size": {
+    "width": 64,
+    "height": 64
+  },
+  "inpainting_image": {
+    "type": "base64",
+    "format": "png",
+    "base64": "REPLACE_WITH_BASE64_INPAINTING_IMAGE"
+  },
+  "mask_image": {
+    "type": "base64",
+    "format": "png",
+    "base64": "REPLACE_WITH_BASE64_MASK_IMAGE"
+  },
+  "no_background": true,
+  "seed": 0
+}

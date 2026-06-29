@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "type": "should_trigger",
+    "prompt": "帮我拆《思考，快与慢》，把里面的方法论做成可执行的skill",
+    "expected": "触发book2skill流程：先确认文本来源 → 阶段0整书理解 → 产出BOOK_OVERVIEW.md → 展示骨架给用户确认"
+  },
+  {
+    "id": 2,
+    "type": "should_trigger",
+    "prompt": "我有本PDF想蒸馏成Agent能用的技能包，书叫《高效能人士的七个习惯》",
+    "expected": "触发book2skill：确认文本路径 → 阶段0 Adler分析 → 统一输出结构"
+  },
+  {
+    "id": 3,
+    "type": "should_not_trigger",
+    "prompt": "帮我把《三体》的剧情总结一下，写个读后感",
+    "expected": "不触发。这是书摘/读后感，属于cangjie明确不做的事。应拒绝或引导用户换工具"
+  }
+]

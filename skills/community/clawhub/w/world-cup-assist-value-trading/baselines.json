@@ -1,0 +1,96 @@
+{
+  "Bruno Fernandes": {
+    "season": "2025/26",
+    "competition": "Premier League",
+    "club": "Manchester United",
+    "appearances": 35,
+    "starts": 35,
+    "minutes": 3066,
+    "assists": 21,
+    "key_passes": 112,
+    "chances_created": 136,
+    "assists_per_game": 0.6,
+    "key_passes_per_game": 3.2,
+    "chances_created_per_game": 3.886,
+    "sources": {
+      "fotmob_profile": "https://www.fotmob.com/players/422685/bruno-fernandes",
+      "key_passes": "https://www.statmuse.com/fc/ask/most-key-passes-premier-league-2025-2026",
+      "chances_created": "https://www.squawka.com/en/news/premier-league-stat-leaders-most-assists-chances-created/"
+    }
+  },
+  "Michael Olise": {
+    "season": "2025/26",
+    "competition": "Bundesliga",
+    "club": "Bayern Munich",
+    "appearances": 32,
+    "starts": 23,
+    "minutes": 2317,
+    "assists": 19,
+    "key_passes": 61,
+    "chances_created": 79,
+    "assists_per_game": 0.594,
+    "key_passes_per_game": 1.906,
+    "chances_created_per_game": 2.469,
+    "sources": {
+      "fotmob_profile": "https://www.fotmob.com/players/1029063/michael-olise",
+      "key_passes": "https://www.statmuse.com/fc/ask/olise-key-passes-in-bundesliga"
+    }
+  },
+  "Rayan Cherki": {
+    "season": "2025/26",
+    "competition": "Premier League",
+    "club": "Manchester City",
+    "appearances": 33,
+    "starts": 19,
+    "minutes": 1786,
+    "assists": 12,
+    "key_passes": 49,
+    "chances_created": 60,
+    "assists_per_game": 0.364,
+    "key_passes_per_game": 1.485,
+    "chances_created_per_game": 1.818,
+    "sources": {
+      "fotmob_profile": "https://www.fotmob.com/players/1104053/rayan-cherki",
+      "assists": "https://www.statmuse.com/fc/ask/cherki-assists-created-this-season?l=eu5",
+      "key_passes": "https://www.statmuse.com/fc/ask/most-key-passes-premier-league-2025-2026"
+    }
+  },
+  "Lamine Yamal": {
+    "season": "2025/26",
+    "competition": "LaLiga",
+    "club": "Barcelona",
+    "appearances": 28,
+    "starts": 26,
+    "minutes": 2268,
+    "assists": 11,
+    "key_passes": 60,
+    "chances_created": 72,
+    "assists_per_game": 0.393,
+    "key_passes_per_game": 2.143,
+    "chances_created_per_game": 2.571,
+    "sources": {
+      "fotmob_profile": "https://www.fotmob.com/players/1467236/lamine-yamal",
+      "key_passes": "https://www.statmuse.com/fc/ask/lamine-yamal-key-passes?l=eu5"
+    }
+  },
+  "Luis Diaz": {
+    "season": "2025/26",
+    "competition": "Bundesliga",
+    "club": "Bayern Munich",
+    "appearances": 32,
+    "starts": 27,
+    "minutes": 2450,
+    "assists": 14,
+    "key_passes": 77,
+    "chances_created": 65,
+    "assists_per_game": 0.438,
+    "key_passes_per_game": 2.406,
+    "chances_created_per_game": 2.031,
+    "sources": {
+      "fotmob_profile": "https://www.fotmob.com/players/860914/luis-diaz",
+      "assists_and_appearances": "https://www.statmuse.com/fc/ask?q=Luis+D%C3%ADaz+season+2025%2F2026+stats&l=eu5",
+      "chances_created": "https://www.statmuse.com/fc/ask/luis-diaz-chances-created-this-season?l=eu5",
+      "key_passes_per_game": "https://footystats.org/players/colombia/luis-diaz"
+    }
+  }
+}

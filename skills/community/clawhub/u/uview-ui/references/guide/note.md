@@ -1,0 +1,73 @@
+---
+name: "note"
+description: "注意事项 -- uView UI uni-app Vue2 组件/工具。Invoke when user needs 注意事项 in uni-app Vue 2.x project."
+url: "https://www.uviewui.com/guide/note.html"
+---
+
+---
+
+## [#](#注意事项) 注意事项
+
+#### [#](#u-被占用) "$u"被占用
+
+uView有很多的自带的js工具函数，挂载在`$u`对象中，而`$u`又挂载在`Vue.prototype`中，所以，请勿占用`$u`变量名并 挂载到`Vue.prototype`。
+
+#### [#](#uview对nvue的支持) uView对nvue的支持
+
+什么是`nvue`？见[关于nvue](https://www.uviewui.com/guide/design.html#%E5%85%B3%E4%BA%8Envue)
+在uview2.0中，我们为兼容`nvue`做了不懈的努力，终于在无数个日夜后将`vue`和`nvue`打通在uview2.0的版本中，我们相信： 您在使用2.0版本的uview开发`nvue`时将会如鱼得水，信手拈来。
+
+#### [#](#对vue3的支持) 对VUE3的支持
+
+目前uView尚未支持`VUE3.0`版本(`nvue`也尚未支持`VUE3.0`)，在nvue支持 `VUE3.0`之后，我们会迅速跟对`VUE3.0`的兼容。
+
+#### [#](#技术点要求) 技术点要求
+
+1.  uView依赖`SCSS`预处理器，所以您需要给HBuilder X安装 “sass/scss编译” 插件，详见[快速上手](https://www.uviewui.com/components/quickstart.html)
+2.  uView基于HX的最新版本开发，旧版本可能会不兼容，如遇问题，请升级HX尝试是否可解决
+3.  uView要求项目开启uniapp的V3版本，V3有很大的优势，详见[V3版本介绍 (opens new window)](https://ask.dcloud.net.cn/article/36599)
+4.  HX2.5.5稳定版正式引入`easycom`，建议开发者升级HX到2.5.1及以上的稳定版，详见[关于easycom](https://www.uviewui.com/components/quickstart.html#_3-%E9%85%8D%E7%BD%AEeasycom%E7%BB%84%E4%BB%B6%E6%A8%A1%E5%BC%8F)
+
+#### [#](#关于hbuilder-x) 关于Hbuilder X
+
+uniapp依赖于HX，uniapp经过这两年发展(2018-2020)，势头强劲，茁壮成长。我们目睹了整个过程，陪着uniapp一起成长，感慨能有 一家良心企业能扎根技术，埋头苦干，把APP，H5还有各家小程序做到大一统，同时也愤慨各家大厂的小程序各自为营，仿佛倒退到多年前 各家[浏览器大战 (opens new window)](https://tatrck.com/h/0Hu30uVO1IJy?url=https%3A%2F%2Fbaike.baidu.com%2Fitem%2F%25E6%25B5%258F%25E8%25A7%2588%25E5%2599%25A8%25E5%25A4%25A7%25E6%2588%2598%2F8488119%3Ffr%3Daladdin)的时代，让人唏嘘不已。
+根据我们的经验，我们强烈建议:
+
+-   开发者在开发线上项目的时候只使用HX的稳定版
+-   初学者不要使用HX内测版，不然会碰到莫名其妙的问题，会挫败学习信心
+-   每当HX更新大功能的时候，比如以往的自定义组件模式，近来的V3版本，还是目前的uniCloud，或者以后可能关于nuve的大功能，线上项目请过一段时间再使用。
+-   建议喜欢尝鲜并熟悉uniapp的用户，在电脑分别安装HX的稳定版和内测版，尝鲜使用内测版，开发使用稳定版，二者分别更新，互不干扰
+
+#### [#](#编译调试) 编译调试
+
+开发的时候，特别是写布局的时候，我们建议使用chrome或者HX内置的浏览器，需要说明的是，电脑浏览器的预览效果是不精细的， 写完之后，可以手机连上电脑同一局域网的WiFi，在手机浏览器上再进行细微的调整。
+写完布局再写逻辑的时候，如果还需要兼容小程序和APP，一定要每写完一个页面，就用APP基座和小程序真机进行调试，这能及早发现问题，否则会剪不断理还乱。
+
+#### [#](#内网穿透) 内网穿透
+
+有时候需要通过花生壳等工具，进行内网穿透，让外部的人可以访问到本地的调试网页，这时由于`webpack-dev-server`会默认检查`hostname`， 去掉此限制即可，在uniapp项目根目录下新建`vue.config.js`文件(如果有，不用创建)，修改如下内容：
+
+```
+module.exports = {
+	configureWebpack: {
+		devServer: {
+			disableHostCheck: true
+		}
+	}
+}
+```
+
+#### [#](#安全区适配-针对app) 安全区适配(针对APP)
+
+在iPhone X等机型，底部带有指示条，如果配置了`safearea`则会在底部生成一个原生的白色区块，好处是不会导致 误触，缺点是颜色无法修改，有时候也影响美观。
+uView在各个可能会受到指示条影响的地方都做了特别处理，比如弹窗，键盘组件等，详见[底部安全区适配](https://www.uviewui.com/components/safeAreaInset.html)
+
+#### [#](#为什么uview的源码中会有那么多的注释) 为什么uView的源码中会有那么多的注释？
+
+很多开源项目，发布的时候都会刻意去掉注释，这可能是为了干净整洁，也可能是为了减少体积，还可能是出品方认为用户不会，也没必要去阅读源码。
+相反，uView不这么认为，我们会一直将注释保留在发行的版本中，这些注释不是为了给我们自己看的，而是为了给用户看的。
+我们希望用户在使用的过程中，能通过阅读源码，既能提升工作效率，还能学到知识。因为uView的理念是"挣脱束缚，向往自由"，我们也希望您在阅读 源码的过程中，如果发现问题，或者有更好的实现方式和想法，可以反馈给我们，进而构建一个更强健的UI框架。
+
+← [HBuilder X 代码提示](https://www.uviewui.com/guide/codeHint.html)
+
+

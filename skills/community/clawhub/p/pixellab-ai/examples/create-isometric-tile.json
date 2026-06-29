@@ -1,0 +1,10 @@
+{
+  "description": "grass on top of dirt",
+  "image_size": {
+    "width": 32,
+    "height": 32
+  },
+  "isometric_tile_size": 32,
+  "isometric_tile_shape": "block",
+  "seed": 0
+}

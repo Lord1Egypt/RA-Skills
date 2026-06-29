@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sage Router API quickstart for OpenAI-compatible clients, Codex, curl, Python, and JavaScript using hosted sk_sage API keys." />
+  <link rel="canonical" href="https://sagerouter.dev/quickstart" />
+  <meta property="og:title" content="Sage Router API Quickstart" />
+  <meta property="og:description" content="Create a hosted API key and point OpenAI-compatible clients at https://api.sagerouter.dev/v1." />
+  <meta property="og:url" content="https://sagerouter.dev/quickstart" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Sage Router API Quickstart</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07100d;--panel:rgba(13,29,24,.84);--panel2:rgba(255,255,255,.04);--border:rgba(166,255,207,.16);--muted:#a9c5b8;--text:#edfdf5;--brand:#8df0b2;--blue:#8ab4ff;--amber:#f7d57a;--danger:#ff9f9f;--shadow:0 24px 80px rgba(0,0,0,.36)}*{box-sizing:border-box}body{margin:0;min-width:320px;background:linear-gradient(180deg,#07100d 0%,#0b1518 48%,#07100d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;color:var(--muted)}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;color:var(--text)}.brandMark{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(141,240,178,.42);border-radius:8px;color:#062016;background:linear-gradient(135deg,var(--brand),var(--amber))}.navLinks{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;font-weight:750}.navLinks a:hover{color:var(--text)}.hero{padding:74px 0 48px}.eyebrow{color:var(--brand);text-transform:uppercase;letter-spacing:.16em;font-weight:900;font-size:12px;margin:0 0 16px}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(44px,8vw,84px);line-height:.94;margin-bottom:24px;max-width:980px}h2{font-size:clamp(28px,4vw,46px);line-height:1;margin-bottom:18px}h3{font-size:21px;margin-bottom:10px}.lead{font-size:clamp(20px,2.2vw,27px);line-height:1.35;color:#d2eadf;max-width:920px}.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}.button{min-height:48px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:0 22px;font-weight:900}.primary{background:linear-gradient(135deg,var(--brand),#50d891);color:#04150d}.secondary{border:1px solid var(--border);background:rgba(255,255,255,.04)}.emailStart{display:grid;gap:10px;max-width:760px;margin:22px 0 0;padding:16px;border:1px solid rgba(141,240,178,.26);border-radius:8px;background:rgba(13,29,24,.78)}.emailStart label{color:var(--brand);font-weight:900;font-size:13px;letter-spacing:.08em;text-transform:uppercase}.emailStart div{display:grid;grid-template-columns:minmax(220px,1fr) auto;gap:10px}.emailStart input{min-width:0;height:48px;border-radius:999px;border:1px solid var(--border);background:rgba(255,255,255,.055);color:var(--text);padding:0 18px;font:inherit}.emailStart input:focus{outline:2px solid rgba(141,240,178,.42);outline-offset:2px}.emailStart button{height:48px;border:0;border-radius:999px;padding:0 18px;background:var(--brand);color:#04150d;font-weight:900;cursor:pointer}.emailStart button:disabled{cursor:wait;opacity:.72}.emailStart p{margin:0;min-height:20px;color:var(--muted);font-size:14px}.bundleCta{display:flex;flex-wrap:wrap;align-items:center;gap:12px;max-width:920px;margin-top:18px;padding:14px 16px;border:1px solid rgba(138,180,255,.28);border-radius:8px;background:rgba(138,180,255,.07)}.bundleCta strong{margin-right:auto}.bundleCta .copyCodeButton{min-height:40px;padding:0 16px}.section{padding:48px 0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.grid2{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px}.card,.panel,.tableWrap{background:var(--panel);border:1px solid var(--border);border-radius:8px;box-shadow:0 18px 60px rgba(0,0,0,.18)}.card,.panel{padding:24px}.muted,.card li,td{color:var(--muted)}ul,ol{padding-left:18px;margin:0;display:grid;gap:8px}.pill{display:inline-flex;width:max-content;border:1px solid rgba(138,180,255,.3);border-radius:999px;padding:6px 10px;color:var(--blue);font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.tableWrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:760px}th,td{text-align:left;border-bottom:1px solid rgba(166,255,207,.12);padding:16px 18px;vertical-align:top}th{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--text);background:rgba(255,255,255,.035)}td:first-child{color:var(--text);font-weight:850}.note{font-size:14px;color:var(--muted);max-width:900px}code{color:#d9f8e6}pre{overflow:auto;margin:0;border:1px solid rgba(166,255,207,.12);border-radius:8px;background:#050807;padding:16px;color:#d9f8e6}.snippetHeader{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px;color:var(--muted);font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.08em}.copyCodeButton{min-width:72px;min-height:34px;border:1px solid rgba(141,240,178,.34);border-radius:999px;background:rgba(141,240,178,.09);color:var(--text);font:inherit;font-size:13px;font-weight:900;cursor:pointer}.copyCodeButton:hover,.copyCodeButton:focus-visible{background:rgba(141,240,178,.16);outline:none}.copyStatus{min-height:22px;margin:14px 0 0;color:var(--brand);font-size:14px}.steps{counter-reset:step}.steps li{margin-bottom:10px}.warn{border-color:rgba(247,213,122,.34);background:rgba(247,213,122,.06)}footer{display:flex;gap:18px;flex-wrap:wrap;padding:34px 0 54px;color:var(--muted);border-top:1px solid rgba(166,255,207,.1)}footer span{margin-right:auto}@media(max-width:920px){.grid,.grid2{grid-template-columns:1fr}.nav{align-items:flex-start;flex-direction:column}.button{width:100%}.emailStart div{grid-template-columns:1fr}.emailStart button{width:100%}.bundleCta .copyCodeButton{width:100%}}@media(max-width:560px){.hero{padding-top:42px}.navLinks{gap:14px}}
+  </style>
+  <style>
+    .emailStart .oauthButton{width:max-content;min-width:240px;background:linear-gradient(135deg,var(--brand),#50d891)}
+    @media(max-width:920px){.emailStart .oauthButton{width:100%;min-width:0}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+      <div class="navLinks">
+        <a href="/">Home</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/fusion">Fusion</a>
+        <a href="/models">Models</a>
+        <a href="/docs/api-reference">API Reference</a>
+        <a href="/docs/gateway-migration">Migration</a>
+        <a href="/docs/codex">Codex</a>
+        <a href="/api-troubleshooting">Troubleshooting</a>
+        <a href="/compare/model-gateways">Compare</a>
+        <a href="/status">Status</a>
+        <a href="https://app.sagerouter.dev/account.html">Account</a>
+        <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">API quickstart</p>
+        <h1>Use Sage Router from any OpenAI-compatible client.</h1>
+        <p class="lead">Create a hosted API key, set one base URL, and use Sage Router profiles such as <code>sage-router/frontier</code> without opening anonymous model traffic.</p>
+        <form id="quickstart-email-form" class="emailStart">
+          <label for="quickstart-email">Email the API key setup link before copying snippets</label>
+          <button id="quickstart-github-pro" class="oauthButton" type="button">Continue with GitHub for Pro</button>
+          <div>
+            <input id="quickstart-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" required />
+            <button type="submit">Email API key setup link</button>
+          </div>
+          <p id="quickstart-email-status" role="status" aria-live="polite">No provider key or credit card required until your generated sk_sage key exists.</p>
+        </form>
+        <div class="bundleCta">
+          <strong>Copy setup first.</strong>
+          <span class="muted">Paste the bundle into your terminal now, then replace the placeholder with your generated <code>sk_sage_*</code> key after account setup.</span>
+          <button id="quickstart-copy-bundle" class="copyCodeButton" type="button">Copy 60-second setup bundle</button>
+          <a id="quickstart-copy-next-account" class="button primary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key" data-quickstart-event="quickstart_setup_next_clicked" data-quickstart-button="create-api-key-next" data-quickstart-plan="pro" data-quickstart-snippet="quickstart-full-setup-bundle">Create API key next</a>
+        </div>
+        <div class="actions">
+          <a class="button primary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key" data-quickstart-event="quickstart_account_clicked" data-quickstart-button="start-api-key" data-quickstart-plan="pro">Start API key setup</a>
+          <a class="button secondary" href="/docs/api-reference" data-quickstart-event="quickstart_api_reference_clicked" data-quickstart-button="api-reference">API reference</a>
+          <a class="button secondary" href="/docs/gateway-migration" data-quickstart-event="quickstart_gateway_migration_clicked" data-quickstart-button="gateway-migration">Gateway migration</a>
+          <a class="button secondary" href="/managed-access?intent=max-implementation" data-quickstart-event="quickstart_managed_access_clicked" data-quickstart-button="max-implementation-review">Max implementation review</a>
+          <a class="button secondary" href="/fusion" data-quickstart-event="quickstart_pricing_clicked" data-quickstart-button="fusion">Fusion</a>
+          <a class="button secondary" href="/models" data-quickstart-event="quickstart_models_clicked" data-quickstart-button="models">Browse models</a>
+          <a class="button secondary" href="/docs/codex" data-quickstart-event="quickstart_codex_clicked" data-quickstart-button="codex">Codex setup</a>
+          <a class="button secondary" href="/api-troubleshooting" data-quickstart-event="quickstart_troubleshooting_clicked" data-quickstart-button="troubleshooting">Troubleshoot API errors</a>
+          <a class="button secondary" href="/pricing" data-quickstart-event="quickstart_pricing_clicked" data-quickstart-button="pricing">View pricing</a>
+          <a class="button secondary" href="/status" data-quickstart-event="quickstart_status_clicked" data-quickstart-button="status">Check status</a>
+        </div>
+        <p class="note">Live <code>/v1/models</code> requires an active generated <code>sk_sage_*</code> key. The primary setup path opens the hosted account page with Pro preselected, then verifies the generated key against the public edge.</p>
+      </section>
+
+      <section class="section grid">
+        <article class="card">
+          <span class="pill">1 minute</span>
+          <h3>Create an API key</h3>
+          <p class="muted">Open the hosted account page with Pro preselected, sign in, then generate an <code>sk_sage_*</code> key. Raw keys are shown once.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Base URL</span>
+          <h3>Point your client</h3>
+          <p class="muted">Use <code>OPENAI_BASE_URL=https://api.sagerouter.dev/v1</code> and your generated key as <code>OPENAI_API_KEY</code>.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Profile</span>
+          <h3>Pick a route</h3>
+          <p class="muted">Start with <code>sage-router/frontier</code>, verify <code>/v1/models</code>, then send the first chat request. Pro/Max users can use <code>sage-router/fusion</code> for panel-plus-judge synthesis.</p>
+        </article>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">Environment</p>
+          <h2>Set the OpenAI-compatible endpoint.</h2>
+        </div>
+        <div class="panel">
+          <div class="snippetHeader"><span>Environment</span><button class="copyCodeButton" type="button" data-copy-code="quickstart-env">Copy</button></div>
+          <pre><code id="quickstart-env">export OPENAI_BASE_URL=https://api.sagerouter.dev/v1
+export OPENAI_API_KEY=sk_sage_your_key_here
+export OPENAI_MODEL=sage-router/frontier</code></pre>
+        </div>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">First request</p>
+          <h2>Verify the key before wiring an agent.</h2>
+        </div>
+        <div class="panel">
+          <div class="snippetHeader"><span>Curl</span><button class="copyCodeButton" type="button" data-copy-code="quickstart-curl">Copy</button></div>
+          <pre><code id="quickstart-curl">curl https://api.sagerouter.dev/v1/chat/completions \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "sage-router/frontier",
+    "messages": [
+      {"role": "user", "content": "Reply with one sentence about Sage Router."}
+    ]
+  }'</code></pre>
+        </div>
+      </section>
+
+      <section class="section grid">
+        <article class="card">
+          <span class="pill">JavaScript</span>
+          <h3>OpenAI SDK</h3>
+          <div class="snippetHeader"><span>JavaScript</span><button class="copyCodeButton" type="button" data-copy-code="quickstart-js">Copy</button></div>
+          <pre><code id="quickstart-js">import OpenAI from "openai";
+
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+  baseURL: "https://api.sagerouter.dev/v1",
+});
+
+await client.chat.completions.create({
+  model: "sage-router/frontier",
+  messages: [{ role: "user", content: "Plan one launch task." }],
+});</code></pre>
+        </article>
+        <article class="card">
+          <span class="pill">Python</span>
+          <h3>OpenAI SDK</h3>
+          <div class="snippetHeader"><span>Python</span><button class="copyCodeButton" type="button" data-copy-code="quickstart-python">Copy</button></div>
+          <pre><code id="quickstart-python">import os
+
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.environ["OPENAI_API_KEY"],
+    base_url="https://api.sagerouter.dev/v1",
+)
+
+client.chat.completions.create(
+    model="sage-router/frontier",
+    messages=[{"role": "user", "content": "Plan one launch task."}],
+)</code></pre>
+          <p class="muted">The OpenAI SDK sends a normal client <code>User-Agent</code>. If you use raw <code>urllib</code> or a custom HTTP stack and see Cloudflare <code>1010</code>, set a descriptive <code>User-Agent</code> and retry.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Codex</span>
+          <h3>Hosted profile</h3>
+          <div class="snippetHeader"><span>Codex</span><button class="copyCodeButton" type="button" data-copy-code="quickstart-codex">Copy</button></div>
+          <pre><code id="quickstart-codex">mkdir -p ~/.codex
+cat >> ~/.codex/config.toml &lt;&lt;'TOML'
+[model_providers.sage-router-hosted]
+name = "Sage Router Hosted"
+base_url = "https://api.sagerouter.dev/v1/"
+env_key = "OPENAI_API_KEY"
+wire_api = "responses"
+
+[profiles.sage-router-frontier]
+model_provider = "sage-router-hosted"
+model = "sage-router/frontier"
+TOML
+
+export OPENAI_API_KEY=sk_sage_your_key_here
+codex --profile sage-router-frontier</code></pre>
+          <p class="muted"><a href="/docs/codex">Read the dedicated Codex setup page</a> for hosted, local port <code>8790</code>, and Tailnet profiles.</p>
+        </article>
+      </section>
+      <p id="copy-status" class="copyStatus" role="status" aria-live="polite"></p>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">Premium synthesis</p>
+          <h2>Call Fusion when one answer is not enough.</h2>
+          <p class="muted">On Pro, Max, metered, manual, or operator-enabled accounts, <code>sage-router/fusion</code> runs a small panel of eligible authorized routes, then asks a judge route to synthesize one final answer. Clients can request the model directly or attach <code>{"type":"sage-router:fusion"}</code> as a premium server tool. Lite keys receive <code>402 fusion_plan_required</code>. <a href="/fusion">Read the Fusion guide</a>.</p>
+        </div>
+        <div class="panel">
+          <div class="snippetHeader"><span>Curl</span><button class="copyCodeButton" type="button" data-copy-code="quickstart-fusion">Copy</button></div>
+          <pre><code id="quickstart-fusion">curl https://api.sagerouter.dev/v1/chat/completions \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "sage-router/fusion",
+    "messages": [
+      {"role": "user", "content": "Compare the strongest launch risks and give one recommendation."}
+    ]
+  }'</code></pre>
+          <div class="snippetHeader"><span>Server tool</span><button class="copyCodeButton" type="button" data-copy-code="quickstart-fusion-tool">Copy</button></div>
+          <pre><code id="quickstart-fusion-tool">curl https://api.sagerouter.dev/v1/chat/completions \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "sage-router/frontier",
+    "messages": [
+      {"role": "user", "content": "Survey the strongest arguments for and against this launch."}
+    ],
+    "tools": [{"type": "sage-router:fusion"}],
+    "tool_choice": "required"
+  }'</code></pre>
+        </div>
+      </section>
+
+      <section class="section tableWrap">
+        <table>
+          <thead>
+            <tr><th>Status</th><th>Likely cause</th><th>Next action</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>401</td><td>Missing, revoked, or inactive <code>sk_sage_*</code> key.</td><td>Create or verify a hosted API key on the account page.</td></tr>
+            <tr><td>402</td><td>Plan, quota, or billing state blocks routing.</td><td>Choose a plan, finish checkout, or review current quota.</td></tr>
+            <tr><td>429</td><td>Request-per-minute limit or abuse control triggered.</td><td>Back off, reduce concurrency, or upgrade the plan limit.</td></tr>
+            <tr><td>503</td><td>No healthy authorized backend route is available.</td><td>Check public status, provider credentials, local router health, or fallback policy.</td></tr>
+          </tbody>
+        </table>
+        <p class="note">For safe diagnostics, response headers, and support context, read the dedicated <a href="/api-troubleshooting">API troubleshooting page</a>.</p>
+      </section>
+
+      <section class="section grid2">
+        <div>
+          <p class="eyebrow">Boundary</p>
+          <h2>Hosted routing does not bypass provider authorization.</h2>
+        </div>
+        <div class="panel warn">
+          <p class="muted">Sage Router sells routing, account management, quotas, analytics, and reliability infrastructure. Public plans route across customer-authorized provider access, local models, subscriptions, API keys, cloud accounts, or endpoints. Sage Router does not grant unauthorized model access, pool personal accounts, or override provider terms.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>&copy; Sage Router</span>
+      <a href="/">Home</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/quickstart">Quickstart</a>
+      <a href="/docs/api-reference">API Reference</a>
+      <a href="/docs/gateway-migration">Migration</a>
+      <a href="/api-troubleshooting">Troubleshooting</a>
+      <a href="/docs/codex">Codex</a>
+      <a href="/models">Models</a>
+      <a href="/status">Status</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/acceptable-use">Acceptable Use</a>
+      <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+    </footer>
+  </div>
+  <script>
+    const ACCOUNT_PAGE_URL = 'https://app.sagerouter.dev/account.html?plan=pro&start=create_key';
+    const SUPABASE_URL = 'https://awtangrlqqsdpksarhwo.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3dGFuZ3JscXFzZHBrc2FyaHdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMTYzNzEsImV4cCI6MjA4ODU5MjM3MX0.U7TmEJMgYMH0rR8tTWFQ2tzReO5syRwnI3Ytg-BbDaw';
+    const copyStatus = document.getElementById('copy-status');
+
+    function loadSupabaseScript() {
+      return new Promise((resolve, reject) => {
+        if (window.supabase?.createClient) {
+          resolve(window.supabase);
+          return;
+        }
+        const existing = document.querySelector('script[data-supabase-js]');
+        if (existing) {
+          existing.addEventListener('load', () => resolve(window.supabase), { once: true });
+          existing.addEventListener('error', reject, { once: true });
+          return;
+        }
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+        script.async = true;
+        script.defer = true;
+        script.dataset.supabaseJs = 'true';
+        script.addEventListener('load', () => resolve(window.supabase), { once: true });
+        script.addEventListener('error', reject, { once: true });
+        document.head.appendChild(script);
+      });
+    }
+
+    function attributionValue(value) {
+      const sanitized = String(value || '')
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9._/-]+/g, '-')
+        .slice(0, 80);
+      return sanitized || undefined;
+    }
+
+    function quickstartMetadata(extra = {}) {
+      const params = new URLSearchParams(window.location.search);
+      let referrerHost;
+      try {
+        referrerHost = document.referrer ? new URL(document.referrer).hostname : '';
+      } catch {
+        referrerHost = '';
+      }
+      return {
+        source: 'quickstart',
+        utmSource: attributionValue(params.get('utm_source')),
+        utmMedium: attributionValue(params.get('utm_medium')),
+        utmCampaign: attributionValue(params.get('utm_campaign')),
+        referrerHost: attributionValue(referrerHost),
+        landingPath: attributionValue(window.location.pathname),
+        ...extra,
+      };
+    }
+
+    function trackQuickstartFunnelEvent(eventName, extra = {}) {
+      const payload = JSON.stringify({
+        event: eventName,
+        plan: extra.plan || null,
+        sourcePage: window.location.href,
+        source_page: window.location.href,
+        target: extra.target || null,
+        metadata: quickstartMetadata(extra),
+      });
+      if (navigator.sendBeacon?.('/api/funnel-event', new Blob([payload], { type: 'application/json' }))) {
+        return;
+      }
+      fetch('/api/funnel-event', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: payload,
+        credentials: 'omit',
+        keepalive: true,
+      }).catch(() => {});
+    }
+
+    async function writeClipboardText(text) {
+      if (navigator.clipboard?.writeText && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      textarea.remove();
+    }
+
+    async function copyCodeSnippet(button) {
+      const snippet = button.getAttribute('data-copy-code');
+      const code = document.getElementById(snippet);
+      if (!code) return;
+      const original = button.textContent;
+      try {
+        await writeClipboardText(code.textContent.trim());
+        button.textContent = 'Copied';
+        if (copyStatus) copyStatus.textContent = `Copied ${snippet.replace('quickstart-', '')} snippet.`;
+        trackQuickstartFunnelEvent('quickstart_snippet_copied', { state: 'copied', snippet });
+      } catch {
+        button.textContent = 'Copy failed';
+        if (copyStatus) copyStatus.textContent = 'Copy failed.';
+      } finally {
+        setTimeout(() => {
+          button.textContent = original;
+        }, 1800);
+      }
+    }
+
+    function fullSetupBundleText() {
+      return `# Sage Router hosted quickstart
+# 1. Create or paste your generated key from https://app.sagerouter.dev/account.html?plan=pro&start=create_key
+export OPENAI_BASE_URL=https://api.sagerouter.dev/v1
+export OPENAI_API_KEY=sk_sage_your_key_here
+export OPENAI_MODEL=sage-router/frontier
+
+# 2. Verify the key reaches the public edge before wiring an agent
+curl -fsS "$OPENAI_BASE_URL/models" \\
+  -H "Authorization: Bearer $OPENAI_API_KEY"
+
+# 3. Send the first routed request
+curl "$OPENAI_BASE_URL/chat/completions" \\
+  -H "Authorization: Bearer $OPENAI_API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "model": "sage-router/frontier",
+    "messages": [
+      {"role": "user", "content": "Reply with one sentence about Sage Router."}
+    ]
+  }'
+
+# 4. Optional Codex profile
+mkdir -p ~/.codex
+cat >> ~/.codex/config.toml <<'TOML'
+[model_providers.sage-router-hosted]
+name = "Sage Router Hosted"
+base_url = "https://api.sagerouter.dev/v1/"
+env_key = "OPENAI_API_KEY"
+wire_api = "responses"
+
+[profiles.sage-router-frontier]
+model_provider = "sage-router-hosted"
+model = "sage-router/frontier"
+TOML
+
+codex --profile sage-router-frontier`;
+    }
+
+    async function copyFullSetupBundle() {
+      const button = document.getElementById('quickstart-copy-bundle');
+      if (!button) return;
+      const original = button.textContent;
+      try {
+        await writeClipboardText(fullSetupBundleText());
+        button.textContent = 'Copied bundle';
+        if (copyStatus) copyStatus.textContent = 'Copied. Create your API key next; no provider key or credit card required yet.';
+        const nextAccount = document.getElementById('quickstart-copy-next-account');
+        if (nextAccount) nextAccount.dataset.setupCopied = 'true';
+        trackQuickstartFunnelEvent('quickstart_snippet_copied', {
+          button: 'Copy 60-second setup bundle',
+          state: 'copied',
+          snippet: 'quickstart-full-setup-bundle',
+        });
+      } catch {
+        button.textContent = 'Copy failed';
+        if (copyStatus) copyStatus.textContent = 'Copy failed.';
+      } finally {
+        setTimeout(() => {
+          button.textContent = original;
+        }, 1800);
+      }
+    }
+
+    document.querySelectorAll('[data-copy-code]').forEach((button) => {
+      button.addEventListener('click', () => copyCodeSnippet(button));
+    });
+    document.getElementById('quickstart-copy-bundle')?.addEventListener('click', copyFullSetupBundle);
+    document.getElementById('quickstart-github-pro')?.addEventListener('click', async (event) => {
+      const button = event.currentTarget;
+      const original = button.textContent;
+      const status = document.getElementById('quickstart-email-status');
+      button.disabled = true;
+      button.textContent = 'Opening GitHub...';
+      if (status) status.textContent = 'Opening GitHub sign-in for Pro.';
+      trackQuickstartFunnelEvent('quickstart_oauth_clicked', {
+        plan: 'pro',
+        target: ACCOUNT_PAGE_URL,
+        button: 'Continue with GitHub for Pro',
+        state: 'github',
+      });
+      try {
+        const api = await loadSupabaseScript();
+        const client = api.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const { error } = await client.auth.signInWithOAuth({
+          provider: 'github',
+          options: { redirectTo: ACCOUNT_PAGE_URL },
+        });
+        if (error) throw error;
+      } catch {
+        trackQuickstartFunnelEvent('quickstart_oauth_failed', {
+          plan: 'pro',
+          target: ACCOUNT_PAGE_URL,
+          button: 'Continue with GitHub for Pro',
+          state: 'github',
+        });
+        if (status) status.textContent = 'GitHub sign-in failed here. Opening the account flow...';
+        window.setTimeout(() => {
+          window.location.href = ACCOUNT_PAGE_URL;
+        }, 900);
+      } finally {
+        button.disabled = false;
+        button.textContent = original;
+      }
+    });
+    document.getElementById('quickstart-email-form')?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const button = form.querySelector('button');
+      const status = document.getElementById('quickstart-email-status');
+      const email = String(new FormData(form).get('email') || '').trim();
+      if (!email) {
+        if (status) status.textContent = 'Enter an email first.';
+        return;
+      }
+      button.disabled = true;
+      button.textContent = 'Sending...';
+      if (status) status.textContent = 'Sending secure sign-in link...';
+      trackQuickstartFunnelEvent('quickstart_magic_link_requested', {
+        plan: 'pro',
+        target: ACCOUNT_PAGE_URL,
+        button: 'Email API key setup link',
+        state: 'email-start',
+      });
+      try {
+        const api = await loadSupabaseScript();
+        const client = api.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        const { error } = await client.auth.signInWithOtp({
+          email,
+          options: {
+            emailRedirectTo: ACCOUNT_PAGE_URL,
+            data: {
+              sage_router_onboarding: true,
+              signup_source: 'quickstart',
+              selected_plan: 'pro',
+              auth_method: 'magic_link',
+            },
+          },
+        });
+        if (error) throw error;
+        form.reset();
+        trackQuickstartFunnelEvent('quickstart_magic_link_sent', {
+          plan: 'pro',
+          target: ACCOUNT_PAGE_URL,
+          button: 'Email API key setup link',
+          state: 'email-start',
+        });
+        if (status) status.textContent = 'Check your inbox for the API key setup link. It opens Pro activation at generated key creation.';
+      } catch {
+        trackQuickstartFunnelEvent('quickstart_magic_link_failed', {
+          plan: 'pro',
+          target: ACCOUNT_PAGE_URL,
+          button: 'Email API key setup link',
+          state: 'email-start',
+        });
+        if (status) status.textContent = 'Email link failed. Opening the account flow...';
+        window.setTimeout(() => {
+          window.location.href = ACCOUNT_PAGE_URL;
+        }, 900);
+      } finally {
+        button.disabled = false;
+        button.textContent = 'Email API key setup link';
+      }
+    });
+    document.querySelectorAll('[data-quickstart-event]').forEach((link) => {
+      link.addEventListener('click', () => {
+        const href = link.getAttribute('href') || '';
+        const planMatch = href.match(/[?&]plan=(lite|pro|max)\b/);
+        trackQuickstartFunnelEvent(link.dataset.quickstartEvent, {
+          button: link.dataset.quickstartButton || link.textContent.trim().toLowerCase(),
+          target: href,
+          plan: link.dataset.quickstartPlan || planMatch?.[1] || undefined,
+          state: link.dataset.setupCopied === 'true' ? 'post-copy' : (link.dataset.quickstartSnippet ? 'pre-copy' : undefined),
+          snippet: link.dataset.quickstartSnippet || undefined,
+        });
+      });
+    });
+    trackQuickstartFunnelEvent('quickstart_viewed', { state: 'page-view' });
+  </script>
+</body>
+</html>

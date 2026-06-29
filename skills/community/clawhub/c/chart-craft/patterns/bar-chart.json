@@ -1,0 +1,10 @@
+{
+  "name": "bar-chart",
+  "label": "柱状图",
+  "description": "分类数据对比，支持垂直/水平柱状图",
+  "chart_type": "bar",
+  "features": ["hover_tooltip", "data_labels", "value_axis", "category_axis", "grid_lines"],
+  "orientation": "vertical",
+  "animation": true,
+  "max_categories": 30
+}

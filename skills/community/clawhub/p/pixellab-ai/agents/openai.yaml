@@ -1,0 +1,6 @@
+interface:
+  display_name: "PixelLab AI Asset Workflow"
+  short_description: "PixelLab API workflows for game art, sprites, and animation. Requires PIXELLAB_API_KEY for live generation."
+  default_prompt: "When the user explicitly asks for PixelLab or pixellab-ai, turn the rough asset idea into a visual brief, choose PixelLab endpoints, create a manifest, review seed/candidate contact sheets, approve outputs, and validate files before calling assets ready."
+policy:
+  allow_implicit_invocation: false

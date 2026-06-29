@@ -11,37 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineering agents use this skill to retrieve forge issues, break them into implementation tasks, coordinate parallel or sequential work, run review gates, and prepare issue updates or a consolidated pull request. <br>
+Developers and engineering agents use this skill to resolve one or more GitHub or GitLab issues end to end: fetch issue details, plan dependent work, run independent tasks in parallel, review changes, update issues, and prepare one consolidated pull request. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill asks agents to post tooling feedback to an unrelated Night Market GitHub Discussions repository without an explicit approval gate. <br>
-Mitigation: Disable that feedback step or require explicit user confirmation before any external discussion post. <br>
-Risk: The workflow can prepare issue comments and optionally close issues through forge CLI commands. <br>
-Mitigation: Review all proposed comments and closures before they are posted, and keep automatic issue closing disabled unless the user has approved it. <br>
-Risk: Broad automatic activation in sensitive repositories could let the agent make or coordinate substantial code changes. <br>
-Mitigation: Use the skill on a dedicated branch, limit concurrent workers, inspect diffs, and run the relevant tests before creating or merging a pull request. <br>
+Risk: The skill can direct an agent to make repository changes and use authenticated GitHub or GitLab tooling. <br>
+Mitigation: Run it only in a repository and branch where automated changes are acceptable, review the generated plan and diffs before merge, and keep issue closing disabled unless explicitly approved. <br>
+Risk: The artifact includes a feedback step that can post tooling observations to the Night Market GitHub Discussions page. <br>
+Mitigation: Disable or ignore that step unless the user explicitly approves the exact content and destination before posting. <br>
+Risk: Automatic platform detection or Bitbucket references may not match the actual target platform. <br>
+Mitigation: Confirm the target platform is GitHub or GitLab and verify the selected CLI commands before running issue updates. <br>
+Risk: Parallel subagent execution can create conflicts, stalled sessions, or lost work if isolation modes are mixed. <br>
+Mitigation: Use the artifact's conflict analysis, review gates, worktree checks, and local monitoring guidance before committing or merging parallel results. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/athola/nm-sanctum-do-issue) <br>
-- [Project homepage from metadata](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
-- [Issue discovery module](artifact/modules/issue-discovery.md) <br>
-- [Parallel execution module](artifact/modules/parallel-execution.md) <br>
-- [Completion module](artifact/modules/completion.md) <br>
-- [Troubleshooting module](artifact/modules/troubleshooting.md) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-sanctum-do-issue) <br>
+- [Configured homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown guidance with command examples, task plans, code-review prompts, and issue-update commands] <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with inline shell commands, task plans, review prompts, configuration snippets, and issue or pull request text.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May coordinate subagents or agent teams and may use GitHub or GitLab CLI commands to read, comment on, or close issues.] <br>
+**Other Properties Related to Output:** [May lead the agent to modify repository files, run tests, commit changes, update issue comments, and prepare a consolidated pull request.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: ClawHub release metadata; artifact frontmatter reports 1.9.8) <br>
+1.9.13 (source: ClawHub release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

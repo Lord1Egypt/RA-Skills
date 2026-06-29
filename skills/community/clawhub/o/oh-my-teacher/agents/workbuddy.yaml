@@ -1,0 +1,29 @@
+interface:
+  display_name: "Oh My Teacher (WorkBuddy)"
+  short_description: "Thin adapter for WorkBuddy-style agent runtimes."
+  default_prompt: "Use $oh-my-teacher in WorkBuddy. Probe workspace, task, memory, retrieval, file, and shell capabilities before acting."
+
+adapter:
+  agent_id: "workbuddy"
+  contract: "references/agent-adapter-contract.md"
+  inventory: "references/agent-inventory.md#workbuddy"
+  optimization_profiles: ["prompt-agent", "planner-agent", "memory-agent"]
+  source_status: "unknown"
+
+instructions: |
+  Follow SKILL.md as the primary and authoritative teaching workflow.
+  Read references/agent-adapter-contract.md before using host-specific behavior.
+  Read references/agent-optimization.md to use planning or memory only after those tools are confirmed.
+  Consult references/agent-inventory.md for the WorkBuddy record.
+
+  Best path: use planner-agent for multi-step ingestion and mock workflows when
+  a native task system exists; use memory-agent only for stable course facts and
+  user preferences.
+
+  WorkBuddy capabilities are not verified in this repository. Treat workspace
+  context, task-board tools, memory, retrieval, files, and shell as optional
+  until confirmed. Store course state through the shared snapshot/SRS policy only
+  when persistence is confirmed.
+
+policy:
+  allow_implicit_invocation: true

@@ -11,32 +11,29 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and skill authors use this skill to test agent skills in fresh subagent conversations, compare baseline and with-skill behavior, and document rationalization or regression results. <br>
+Developers and skill authors use this skill to design baseline, with-skill, rationalization, and regression tests that measure whether a skill improves agent behavior in fresh subagent conversations. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Test logs may include complete prompts and model responses, which can expose secrets or private production data if such data is used in scenarios. <br>
-Mitigation: Use synthetic or sanitized scenarios for testing and review logs before storing or sharing them. <br>
-Risk: Optional automation templates may be adapted into runnable scripts that generate or analyze test artifacts. <br>
-Mitigation: Review any automation derived from the templates before execution and keep it scoped to non-sensitive test data. <br>
+Risk: The skill may inspect broad repository documentation and propose or apply documentation changes. <br>
+Mitigation: Use report-only or single-agent mode when review is needed, and review proposed file changes before accepting them. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Skill Page](https://clawhub.ai/athola/nm-abstract-subagent-testing) <br>
-- [Metadata Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/abstract) <br>
-- [Testing Patterns](modules/testing-patterns.md) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-abstract-subagent-testing) <br>
+- [OpenClaw homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/abstract) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with example prompts, test logs, shell snippets, and optional code templates.] <br>
+**Output Type(s):** [guidance, markdown, shell commands] <br>
+**Output Format:** [Markdown guidance with example prompts, test templates, and inline shell commands.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces testing plans, scoring templates, and documentation guidance; it does not execute tests by itself.] <br>
+**Other Properties Related to Output:** [Produces testing methodology, scenario templates, comparison criteria, and documentation-oriented recommendations.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata; artifact frontmatter reports 1.9.8) <br>
+1.9.13 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

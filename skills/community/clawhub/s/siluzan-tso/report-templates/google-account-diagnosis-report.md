@@ -5,6 +5,14 @@
 
 按章节组织结论与建议；各节所需数据与建议 CLI 如下（**`google-analysis` 子命令请使用 `--json-out <目录>`** 落盘，脚本读磁盘 JSON 再写入报告）。
 
+**HTML 终稿**（与 MarkAI 样式一致）：
+
+```bash
+siluzan-tso google-ads-diagnosis render \
+  --data ./snap-p1/google-ads-diagnosis.json \
+  --out ./snap-p1/google-ads-diagnosis-report.html
+```
+
 **完整章节结构、HTML 区块 ID、分析/建议必填规则、每日趋势小数格式** → 必读同目录 **`google-ads-diagnosis.md` § 撰写硬约束**（产品验收）。
 
 ### 撰写要点（摘要）

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Tax Document Deduction Organizer"
+  short_description: "Helps with Tax preparers and taxpayers need practical help or..."
+  default_prompt: "Use $tax-document-deduction-organizer to help me Tax preparers and taxpayers need practical help organizing income statements, receipts, deductions, estimated taxes, and."
+
+policy:
+  allow_implicit_invocation: true

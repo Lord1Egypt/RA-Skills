@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triphasic Execution - 设置</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background: #1a1a2e;
+            color: #e0e0e0;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #16213e;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #4ecdc4;
+            margin-bottom: 10px;
+            font-size: 28px;
+            border-bottom: 2px solid #4ecdc4;
+            padding-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #a0a0a0;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        fieldset {
+            border: 1px solid #0f3460;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #1a1a2e;
+        }
+
+        legend {
+            color: #4ecdc4;
+            font-weight: bold;
+            font-size: 16px;
+            padding: 0 10px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px 15px;
+            background: #0f3460;
+            border-radius: 6px;
+            flex: 1;
+            transition: all 0.3s;
+        }
+
+        .radio-label:hover {
+            background: #1a3a6e;
+        }
+
+        .radio-label input[type="radio"] {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .radio-label:has(input:checked) {
+            background: #4ecdc4;
+            color: #1a1a2e;
+        }
+
+        /* ── 钩子配置（checkbox 堆叠+开关样式） ──────────── */
+        .hook-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .hook-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 15px;
+            background: #0f3460;
+            border-radius: 6px;
+            transition: background 0.3s;
+            cursor: pointer;
+        }
+
+        .hook-item:hover {
+            background: #1a3a6e;
+        }
+
+        .hook-item input[type="checkbox"] {
+            display: none;
+        }
+
+        .hook-item .toggle-track {
+            flex-shrink: 0;
+            width: 40px;
+            height: 22px;
+            background: #555;
+            border-radius: 11px;
+            position: relative;
+            transition: background 0.3s;
+            margin-top: 2px;
+        }
+
+        .hook-item .toggle-track::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 18px;
+            height: 18px;
+            background: #e0e0e0;
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+
+        .hook-item input[type="checkbox"]:checked + .toggle-track {
+            background: #4ecdc4;
+        }
+
+        .hook-item input[type="checkbox"]:checked + .toggle-track::after {
+            transform: translateX(18px);
+            background: #1a1a2e;
+        }
+
+        .hook-label-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .hook-label-content .hook-title {
+            font-weight: 600;
+            color: #e0e0e0;
+            font-size: 14px;
+        }
+
+        .hook-label-content .hook-desc {
+            color: #8899aa;
+            font-size: 12px;
+            margin-top: 2px;
+            line-height: 1.4;
+        }
+
+        .path-group {
+            margin-top: 15px;
+        }
+
+        .path-item {
+            margin-bottom: 12px;
+        }
+
+        .path-item label {
+            display: block;
+            color: #a0a0a0;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .path-item input[type="text"] {
+            width: 100%;
+            padding: 8px 12px;
+            background: #0f3460;
+            border: 1px solid #1a3a6e;
+            border-radius: 6px;
+            color: #e0e0e0;
+            font-size: 14px;
+        }
+
+        .path-item input[type="text"]:focus {
+            outline: none;
+            border-color: #4ecdc4;
+        }
+
+        .note {
+            color: #a0a0a0;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+            border: none;
+            border-radius: 8px;
+            color: #1a1a2e;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(78, 205, 196, 0.4);
+        }
+
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .message.success {
+            background: rgba(78, 205, 196, 0.1);
+            border: 1px solid #4ecdc4;
+            color: #4ecdc4;
+            display: block;
+        }
+
+        .message.error {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid #ff6b6b;
+            color: #ff6b6b;
+            display: block;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            color: #4ecdc4;
+        }
+
+        .btn-finish {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #c44569 100%);
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .btn-finish:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+        }
+            content: '...';
+            animation: dots 1.5s steps(4, end) infinite;
+        }
+
+        @keyframes dots {
+            0%, 20% { content: '.'; }
+            40% { content: '..'; }
+            60%, 100% { content: '...'; }
+        }
+
+        .info {
+            padding: 15px;
+            background: rgba(78, 205, 196, 0.1);
+            border: 1px solid #4ecdc4;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚙️ Triphasic Execution 设置</h1>
+        <p class="subtitle">配置调用方式、记录文件路径和任务确认行为</p>
+
+        <form id="settings-form">
+            <fieldset>
+                <legend>🔧 默认调用方式</legend>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="mode" value="on_demand" checked>
+                        <span>🟢 调用模式（按需）</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="mode" value="global">
+                        <span>🔵 全局模式</span>
+                    </label>
+                </div>
+                <p class="note">💡 调用模式：仅当主动加载技能时应用三步框架。全局模式：所有任务自动应用三步框架（需启动 daemon）。</p>
+            </fieldset>
+
+            <fieldset>
+                <legend>📂 记录文件路径</legend>
+                <div class="path-group">
+                    <div class="path-item">
+                        <label>TRIPHASIC_HOME（数据目录）</label>
+                        <input type="text" name="triphasic_home" id="triphasic_home" placeholder="skills/.standardization/triphasic-execution/data/">
+                    </div>
+                    <div class="path-item">
+                        <label>Problems 文件</label>
+                        <input type="text" name="problems_file" id="problems_file" placeholder="PROBLEMS.md">
+                    </div>
+                    <div class="path-item">
+                        <label>Risks 文件</label>
+                        <input type="text" name="risks_file" id="risks_file" placeholder="RISKS.md">
+                    </div>
+                    <div class="path-item">
+                        <label>Lessons 文件</label>
+                        <input type="text" name="lessons_file" id="lessons_file" placeholder="LESSONS_REGISTER.md">
+                    </div>
+                    <div class="path-item">
+                        <label>Logs 目录</label>
+                        <input type="text" name="logs_dir" id="logs_dir" placeholder=".problem_logs">
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>✅ 任务规划确认</legend>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="require_confirmation" value="true" checked>
+                        <span>🟢 询问确认后再执行</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="require_confirmation" value="false">
+                        <span>🔵 直接按照规划执行</span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>🔗 强制纪律（钩子配置）</legend>
+                <div class="hook-group">
+                    <label class="hook-item">
+                        <input type="checkbox" name="hook_pre_exec_search" value="true" checked>
+                        <span class="toggle-track"></span>
+                        <span class="hook-label-content">
+                            <span class="hook-title">🛡️ 执行前校验</span>
+                            <span class="hook-desc">执行命令前检查进度文件状态，若上一步未 REVIEW 则拦截执行</span>
+                        </span>
+                    </label>
+
+                    <label class="hook-item">
+                        <input type="checkbox" name="hook_auto_record_exception" value="true" checked>
+                        <span class="toggle-track"></span>
+                        <span class="hook-label-content">
+                            <span class="hook-title">📝 异常自动记录</span>
+                            <span class="hook-desc">命令执行失败时自动写入 PROBLEMS.md</span>
+                        </span>
+                    </label>
+
+                    <label class="hook-item">
+                        <input type="checkbox" name="hook_require_task_confirmation" value="true" checked>
+                        <span class="toggle-track"></span>
+                        <span class="hook-label-content">
+                            <span class="hook-title">✅ 执行前需确认</span>
+                            <span class="hook-desc">每次任务规划后需要用户确认才执行</span>
+                        </span>
+                    </label>
+
+                    <label class="hook-item">
+                        <input type="checkbox" name="hook_require_complete_validation" value="true" checked>
+                        <span class="toggle-track"></span>
+                        <span class="hook-label-content">
+                            <span class="hook-title">🔒 完成前强制校验</span>
+                            <span class="hook-desc">complete 时检查步骤完整率 + 每步有 REVIEW + 空转/重试未超限 + 记录文件存在</span>
+                        </span>
+                    </label>
+
+                    <label class="hook-item">
+                        <input type="checkbox" name="hook_auto_idle_cutoff" value="true">
+                        <span class="toggle-track"></span>
+                        <span class="hook-label-content">
+                            <span class="hook-title">✂️ 空转自动截断</span>
+                            <span class="hook-desc">空转超限（≥3 次）时自动调用 complete abort，无需等待 AI 自觉</span>
+                        </span>
+                    </label>
+
+                    <label class="hook-item">
+                        <input type="checkbox" name="hook_block_skip_review" value="true">
+                        <span class="toggle-track"></span>
+                        <span class="hook-label-content">
+                            <span class="hook-title">🚫 禁止跳过 REVIEW</span>
+                            <span class="hook-desc">update 时检查上一步是否已 REVIEW，未 REVIEW 则拒绝更新下一步</span>
+                        </span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <button type="submit" class="btn-submit" id="btn-submit">保存配置</button>
+            <button type="button" class="btn-finish" id="btn-finish" style="display:none;">完成设置</button>
+        </form>
+
+        <div class="loading" id="loading">正在保存设置</div>
+        <div class="message" id="message"></div>
+    </div>
+
+    <script>
+        // 当前配置数据（用于轮询）
+        let currentConfig = null;
+
+        // 页面加载时获取当前配置
+        window.addEventListener('load', async () => {
+            try {
+                const response = await fetch('/config');
+                if (!response.ok) throw new Error('Failed to load config');
+                currentConfig = await response.json();
+                populateForm(currentConfig);
+            } catch (error) {
+                console.error('Error loading config:', error);
+                showMessage('加载当前配置失败，将使用默认值。', 'error');
+                // 使用默认值填充
+                currentConfig = getDefaultConfig();
+                populateForm(currentConfig);
+            }
+        });
+
+        // 获取默认配置
+        function getDefaultConfig() {
+            return {
+                mode: 'on_demand',
+                triphasic_home: 'skills/.standardization/triphasic-execution/',
+                problems_file: 'PROBLEMS.md',
+                risks_file: 'RISKS.md',
+                lessons_file: 'LESSONS_REGISTER.md',
+                logs_dir: '.problem_logs',
+                require_confirmation: true,
+                hooks: {
+                    pre_exec_search: true,
+                    auto_record_exception: true,
+                    require_task_confirmation: true,
+                    require_complete_validation: true,
+                    auto_idle_cutoff: false,
+                    block_skip_review: false
+                }
+            };
+        }
+
+        // 填充表单
+        function populateForm(config) {
+            // 调用方式
+            const mode = config.mode || 'on_demand';
+            document.querySelector(`input[name="mode"][value="${mode}"]`).checked = true;
+
+            // 记录文件路径
+            document.getElementById('triphasic_home').value = config.triphasic_home || 'skills/.standardization/triphasic-execution/';
+            document.getElementById('problems_file').value = config.problems_file || 'PROBLEMS.md';
+            document.getElementById('risks_file').value = config.risks_file || 'RISKS.md';
+            document.getElementById('lessons_file').value = config.lessons_file || 'LESSONS_REGISTER.md';
+            document.getElementById('logs_dir').value = config.logs_dir || '.problem_logs';
+
+            // 任务规划确认
+            const requireConfirmation = config.require_confirmation !== false;
+            document.querySelector(`input[name="require_confirmation"][value="${requireConfirmation}"]`).checked = true;
+
+            // 钩子配置
+            const hooks = config.hooks || {};
+            const hookFields = ['pre_exec_search', 'auto_record_exception', 'require_task_confirmation',
+                                'require_complete_validation', 'auto_idle_cutoff', 'block_skip_review'];
+            hookFields.forEach(name => {
+                const el = document.querySelector(`input[name="hook_${name}"]`);
+                if (el) el.checked = hooks[name] !== false;
+            });
+        }
+
+        // 显示消息
+        function showMessage(text, type) {
+            const message = document.getElementById('message');
+            message.innerHTML = text;
+            message.className = 'message ' + type;
+            message.style.display = 'block';
+        }
+
+        // 显示完成设置按钮
+        function showFinishButton() {
+            const finishBtn = document.getElementById('btn-finish');
+            finishBtn.style.display = 'block';
+        }
+
+        // 完成设置按钮点击事件
+        document.getElementById('btn-finish').addEventListener('click', () => {
+            window.location.href = '/done';
+        });
+
+        // 表单提交 - 通过文件方式保存
+        document.getElementById('settings-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const btnSubmit = document.getElementById('btn-submit');
+            const loading = document.getElementById('loading');
+            const message = document.getElementById('message');
+
+            // 禁用按钮，显示加载
+            btnSubmit.disabled = true;
+            loading.style.display = 'block';
+            message.style.display = 'none';
+
+            // 收集表单数据
+            const hookFields = ['pre_exec_search', 'auto_record_exception', 'require_task_confirmation',
+                                'require_complete_validation', 'auto_idle_cutoff', 'block_skip_review'];
+            const hooks = {};
+            hookFields.forEach(name => {
+                const el = document.querySelector(`input[name="hook_${name}"]`);
+                hooks[name] = el ? el.checked : false;
+            });
+
+            const formData = {
+                mode: document.querySelector('input[name="mode"]:checked').value,
+                triphasic_home: document.getElementById('triphasic_home').value,
+                problems_file: document.getElementById('problems_file').value,
+                risks_file: document.getElementById('risks_file').value,
+                lessons_file: document.getElementById('lessons_file').value,
+                logs_dir: document.getElementById('logs_dir').value,
+                require_confirmation: document.querySelector('input[name="require_confirmation"]:checked').value === 'true',
+                hooks: hooks
+            };
+
+            // 通过 fetch 请求让 Python 保存配置
+            try {
+                const response = await fetch('/save', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    loading.style.display = 'none';
+                    showMessage('✅ 设置已保存！正在验证...', 'success');
+
+                    // 开始轮询检查保存是否完成
+                    setTimeout(checkSaveStatus, 1000);
+                } else {
+                    throw new Error(result.error || 'Unknown error');
+                }
+            } catch (error) {
+                console.error('Error saving settings:', error);
+                loading.style.display = 'none';
+                showMessage('❌ 保存失败：' + error.message, 'error');
+                btnSubmit.disabled = false;
+            }
+        });
+
+        // 轮询检查保存状态
+        function checkSaveStatus() {
+            const maxAttempts = 60;
+            let attempts = 0;
+
+            const check = async () => {
+                attempts++;
+                try {
+                    const response = await fetch('/config');
+                    const config = await response.json();
+
+                    // 检查是否包含 _saved 标记
+                    if (config._saved) {
+                        showMessage('✅ <strong>配置已成功保存！</strong><br><br>可以关闭此页面。', 'success');
+                        document.getElementById('btn-submit').disabled = true;
+                        // 显示"完成设置"按钮
+                        showFinishButton();
+                        return;
+                    }
+                } catch (e) {
+                    console.error('Check failed:', e);
+                }
+
+                if (attempts < maxAttempts) {
+                    setTimeout(check, 2000);
+                } else {
+                    showMessage('⚠️ 保存超时，请检查 Python 程序是否正常运行。', 'error');
+                }
+            };
+
+            check();
+        }
+    </script>
+</body>
+</html>

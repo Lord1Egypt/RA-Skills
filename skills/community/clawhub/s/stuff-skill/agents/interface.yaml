@@ -1,0 +1,51 @@
+interface:
+  display_name: "Stuff Skill - 秩"
+  short_description: "从自然语言描述生成个人数据管理 PWA 应用"
+  default_prompt: "Use $stuff-skill to turn a natural-language description of what I want to manage into a personal data PWA — Agent designs the UI per scene, reuses the data-layer engine, and ships a local-first or Cloudflare-synced app."
+compatibility:
+  canonical_format: "agent-skills"
+  adapter_targets:
+    - "claude"
+    - "generic"
+  activation:
+    mode: "manual"
+    paths: []
+  execution:
+    context: "inline"
+    shell: "bash"
+  trust:
+    source_tier: "local"
+    remote_inline_execution: "forbid"
+    remote_metadata_policy: "allow-metadata-only"
+  degradation:
+    claude: "neutral-source-plus-adapter"
+    generic: "neutral-source"
+
+# --- 以下为人类可读的能力契约（非 validate 必需，但作为 skill 的接口说明）---
+contract:
+  inputs:
+    - name: "管理对象描述"
+      required: true
+      desc: "自然语言：用户想管理什么（收藏/库存/记录/清单等）"
+    - name: "用户画像"
+      required: false
+      desc: "使用者特征（年龄/性别/职业/场景），用于调整字段、主题、设计语言"
+    - name: "部署模式"
+      required: false
+      desc: "本地模式（默认，零依赖）或云模式（Cloudflare Pages + D1 多设备同步）"
+  outputs:
+    - name: "PWA 应用"
+      desc: "本地模式 4 文件（index.html/styles.css/app.js/icon）；云模式额外含 functions/ + schema.sql + sw.js + 多尺寸图标"
+    - name: "设计提案"
+      desc: "布局方案 + 主题 + 卡片预览 + 配色，交付前一次确认"
+    - name: "部署指南"
+      desc: "面向用户的本地/云模式部署说明 + 数据导入导出说明"
+  triggers:
+    - "我想管理我的 XXX"
+    - "帮我做个记录 XXX 的 App / 工具"
+    - "生成一个个人数据管理应用"
+  excludes:
+    - "多人协作 / 用户认证 / 第三方 API 集成"
+    - "复杂关系型数据（多表关联）"
+    - "实时数据流 / 支付 / 审批等后端业务逻辑"
+    - "单库 > 10000 条数据"

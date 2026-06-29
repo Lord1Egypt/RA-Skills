@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>纹身设计咨询报告 - {{REPORT_TITLE}}</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg-primary: #1a1a1a;
+    --bg-card: #242424;
+    --bg-card-hover: #2a2a2a;
+    --text-primary: #e0d6c2;
+    --text-secondary: #a89880;
+    --accent-gold: #c9a84c;
+    --accent-amber: #d4782f;
+    --accent-red: #c0392b;
+    --accent-green: #27ae60;
+    --border-color: #3a3a3a;
+    --shadow: 0 4px 24px rgba(0,0,0,0.3);
+    --radius: 12px;
+    --font-serif: Georgia, "Times New Roman", "Noto Serif SC", "Source Han Serif SC", serif;
+    --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .report-header {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2015 50%, #1a1a1a 100%);
+    padding: 48px 24px;
+    text-align: center;
+    border-bottom: 2px solid var(--accent-gold);
+  }
+
+  .report-header h1 {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    color: var(--accent-gold);
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  .report-header .subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  .report-header .meta {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+
+  .divider {
+    width: 80px;
+    height: 2px;
+    background: var(--accent-gold);
+    margin: 20px auto;
+    opacity: 0.5;
+  }
+
+  /* Container */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px 20px;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 40px;
+  }
+
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--accent-gold);
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-title .icon {
+    font-size: 1.3rem;
+  }
+
+  /* Cards */
+  .card-grid {
+    display: grid;
+    gap: 20px;
+  }
+
+  .card-grid.cols-2 { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .card-grid.cols-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+
+  .card {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 24px;
+    border: 1px solid var(--border-color);
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-gold);
+  }
+
+  .card.primary {
+    border-color: var(--accent-gold);
+    border-width: 2px;
+  }
+
+  .card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    color: var(--accent-gold);
+    margin-bottom: 12px;
+  }
+
+  .card h4 {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    margin: 12px 0 6px;
+  }
+
+  .card p, .card li {
+    color: var(--text-secondary);
+    font-size: 0.92rem;
+    line-height: 1.7;
+  }
+
+  .card ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .card ul li::before {
+    content: "▸ ";
+    color: var(--accent-gold);
+  }
+
+  /* Badge/Tag */
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin: 3px 4px;
+  }
+
+  .badge.gold { background: rgba(201,168,76,0.2); color: var(--accent-gold); }
+  .badge.amber { background: rgba(212,120,47,0.2); color: var(--accent-amber); }
+  .badge.red { background: rgba(192,57,43,0.2); color: var(--accent-red); }
+  .badge.green { background: rgba(39,174,96,0.2); color: var(--accent-green); }
+  .badge.gray { background: rgba(160,160,160,0.15); color: #999; }
+
+  /* Score meter */
+  .score-meter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 8px 0;
+  }
+
+  .score-meter .label {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    min-width: 80px;
+  }
+
+  .score-meter .bar {
+    flex: 1;
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .score-meter .fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.6s ease;
+  }
+
+  .score-meter .fill.high { background: var(--accent-green); }
+  .score-meter .fill.medium { background: var(--accent-amber); }
+  .score-meter .fill.low { background: var(--accent-red); }
+
+  .score-meter .value {
+    font-weight: 700;
+    font-size: 0.9rem;
+    min-width: 32px;
+    text-align: right;
+  }
+
+  /* Chart containers */
+  .chart-container {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 24px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 20px;
+  }
+
+  .chart-container canvas {
+    max-height: 350px;
+  }
+
+  .chart-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  @media (max-width: 768px) {
+    .chart-row { grid-template-columns: 1fr; }
+    .card-grid.cols-2, .card-grid.cols-3 { grid-template-columns: 1fr; }
+    .report-header h1 { font-size: 1.6rem; }
+    .container { padding: 20px 12px; }
+  }
+
+  /* Checklist */
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .checklist-item .checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--accent-gold);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    cursor: pointer;
+  }
+
+  .checklist-item .checkbox.checked {
+    background: var(--accent-gold);
+  }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--accent-gold);
+    opacity: 0.4;
+  }
+
+  .timeline-item {
+    position: relative;
+    margin-bottom: 24px;
+    padding-left: 16px;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 6px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent-gold);
+  }
+
+  .timeline-item .phase {
+    font-family: var(--font-serif);
+    color: var(--accent-gold);
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+  }
+
+  .timeline-item .desc {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+  }
+
+  /* Warning box */
+  .warning-box {
+    background: rgba(192,57,43,0.1);
+    border: 1px solid rgba(192,57,43,0.3);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+
+  .warning-box .title {
+    color: var(--accent-red);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .warning-box p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  /* Info box */
+  .info-box {
+    background: rgba(201,168,76,0.08);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin: 16px 0;
+  }
+
+  .info-box .title {
+    color: var(--accent-gold);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .info-box p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  /* Price tag */
+  .price-tag {
+    font-family: var(--font-serif);
+    font-size: 1.4rem;
+    color: var(--accent-gold);
+    font-weight: 700;
+  }
+
+  .price-range {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 12px 0;
+  }
+
+  .price-range .min, .price-range .max {
+    font-weight: 700;
+  }
+
+  .price-range .bar {
+    flex: 1;
+    height: 6px;
+    background: var(--border-color);
+    border-radius: 3px;
+    position: relative;
+  }
+
+  .price-range .bar .range {
+    position: absolute;
+    height: 100%;
+    background: var(--accent-gold);
+    border-radius: 3px;
+  }
+
+  /* Comparison table */
+  .style-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    margin: 12px 0;
+  }
+
+  .style-table th {
+    background: rgba(201,168,76,0.15);
+    color: var(--accent-gold);
+    padding: 10px 8px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  .style-table td {
+    padding: 10px 8px;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-secondary);
+  }
+
+  .style-table tr:hover td {
+    background: rgba(255,255,255,0.03);
+  }
+
+  /* Action steps */
+  .action-steps {
+    counter-reset: step;
+    list-style: none;
+    padding: 0;
+  }
+
+  .action-steps li {
+    counter-increment: step;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .action-steps li::before {
+    content: counter(step);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--accent-gold);
+    color: var(--bg-primary);
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .action-steps .step-content h4 {
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+  }
+
+  .action-steps .step-content p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+  }
+
+  /* Footer */
+  .report-footer {
+    text-align: center;
+    padding: 32px 20px;
+    border-top: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    opacity: 0.6;
+  }
+
+  /* Traffic light */
+  .traffic-light {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    margin: 16px 0;
+  }
+
+  .traffic-light .light {
+    text-align: center;
+    min-width: 100px;
+  }
+
+  .traffic-light .circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0 auto 8px;
+    opacity: 0.3;
+  }
+
+  .traffic-light .light.active .circle { opacity: 1; }
+  .traffic-light .green .circle { background: var(--accent-green); }
+  .traffic-light .yellow .circle { background: var(--accent-amber); }
+  .traffic-light .red .circle { background: var(--accent-red); }
+
+  .traffic-light .label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+
+  /* Tooltip-like */
+  .stat-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+  }
+
+  .stat-item {
+    text-align: center;
+    min-width: 80px;
+  }
+
+  .stat-item .value {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    color: var(--accent-gold);
+    font-weight: 700;
+  }
+
+  .stat-item .label {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+  }
+</style>
+</head>
+<body>
+
+<!-- REPORT CONTENT WILL BE GENERATED HERE -->
+
+<div class="report-footer">
+  <p>本报告由 AI 纹身设计助手生成，仅供参考。实际纹身前请务必咨询持证专业纹身师并进行面诊。</p>
+  <p>AI Tattoo Design Assistant &copy; {{YEAR}}</p>
+</div>
+
+<script>
+// Chart.js global config
+Chart.defaults.color = '#a89880';
+Chart.defaults.borderColor = 'rgba(201,168,76,0.2)';
+Chart.defaults.font.family = '-apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif';
+
+// Interactive checklist toggle
+document.querySelectorAll('.checklist-item .checkbox').forEach(cb => {
+  cb.addEventListener('click', function() {
+    this.classList.toggle('checked');
+  });
+});
+
+// Radar chart template function
+function createStyleRadar(ctx, labels, data) {
+  return new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '风格匹配度',
+        data: data,
+        backgroundColor: 'rgba(201,168,76,0.15)',
+        borderColor: '#c9a84c',
+        borderWidth: 2,
+        pointBackgroundColor: '#c9a84c',
+        pointBorderColor: '#1a1a1a',
+        pointBorderWidth: 2,
+        pointRadius: 5,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      scales: {
+        r: {
+          beginAtZero: true,
+          max: 10,
+          ticks: { stepSize: 2, backdropColor: 'transparent' },
+          grid: { color: 'rgba(201,168,76,0.1)' },
+          pointLabels: { font: { size: 12 } }
+        }
+      },
+      plugins: {
+        legend: { display: false }
+      }
+    }
+  });
+}
+
+// Bar chart template function
+function createBarChart(ctx, labels, data, colors) {
+  return new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        data: data,
+        backgroundColor: colors || '#c9a84c',
+        borderRadius: 6,
+        barThickness: 28,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      indexAxis: 'y',
+      scales: {
+        x: { beginAtZero: true, max: 10, grid: { color: 'rgba(255,255,255,0.05)' } },
+        y: { grid: { display: false } }
+      },
+      plugins: {
+        legend: { display: false }
+      }
+    }
+  });
+}
+</script>
+</body>
+</html>

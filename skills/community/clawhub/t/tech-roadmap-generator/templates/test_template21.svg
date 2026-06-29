@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="704" viewBox="0 0 1050 704">
+<defs>
+  <style>
+    text { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+  </style>
+</defs>
+<!-- 背景 -->
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<rect x="65.0" y="15.0" width="915.0" height="70.0" fill="none" stroke="#FAFAFA" stroke-width="1.2" stroke-dasharray="6,4"/>
+<rect x="3.0" y="25.0" width="44.0" height="50.0" rx="4" fill="#A5D6A7" stroke="#888888" stroke-width="1.2"/>
+<text x="28.0" y="45.0" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#333333" text-anchor="middle" font-weight="bold">提出问题</text>
+<rect x="998.0" y="25.0" width="49.0" height="50.0" rx="4" fill="#E8B4B4" stroke="#888888" stroke-width="1.2"/>
+<text x="1022.5" y="45.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">第一章</text>
+<rect x="83.0" y="25.0" width="211.2" height="36.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="188.6" y="48.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">社区治理数字背景
+与意义</text>
+<rect x="304.2" y="25.0" width="211.2" height="36.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="409.9" y="48.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">国内外研究现状</text>
+<rect x="525.5" y="25.0" width="211.2" height="36.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="631.1" y="48.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">研究对象界定</text>
+<rect x="746.8" y="25.0" width="211.2" height="36.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="852.4" y="48.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">研究方法设计</text>
+<line x1="522.5" y1="85.0" x2="522.5" y2="91.0" stroke="#333333" stroke-width="2.5"/><polygon points="522.5,103.0 516.5,91.0 528.5,91.0" fill="#333333"/>
+<rect x="65.0" y="107.0" width="915.0" height="70.0" fill="none" stroke="#FAFAFA" stroke-width="1.2" stroke-dasharray="6,4"/>
+<rect x="3.0" y="117.0" width="44.0" height="50.0" rx="4" fill="#A5D6A7" stroke="#888888" stroke-width="1.2"/>
+<text x="28.0" y="137.0" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#333333" text-anchor="middle" font-weight="bold">研究基础</text>
+<rect x="998.0" y="117.0" width="49.0" height="50.0" rx="4" fill="#E8B4B4" stroke="#888888" stroke-width="1.2"/>
+<text x="1022.5" y="137.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">第二章</text>
+<rect x="83.0" y="117.0" width="285.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="225.5" y="140.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">社区治理数字相关
+理论</text>
+<rect x="378.0" y="117.0" width="285.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="520.5" y="140.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">社区治理数字内涵
+界定</text>
+<rect x="673.0" y="117.0" width="285.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="815.5" y="140.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">社区治理数字影响
+因素分析</text>
+<line x1="522.5" y1="177.0" x2="522.5" y2="183.0" stroke="#333333" stroke-width="2.5"/><polygon points="522.5,195.0 516.5,183.0 528.5,183.0" fill="#333333"/>
+<rect x="65.0" y="199.0" width="915.0" height="267.0" fill="none" stroke="#FAFAFA" stroke-width="1.2" stroke-dasharray="6,4"/>
+<rect x="3.0" y="307.5" width="44.0" height="50.0" rx="4" fill="#A5D6A7" stroke="#888888" stroke-width="1.2"/>
+<text x="28.0" y="327.5" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#333333" text-anchor="middle" font-weight="bold">分析问题</text>
+<rect x="998.0" y="307.5" width="49.0" height="50.0" rx="4" fill="#E8B4B4" stroke="#888888" stroke-width="1.2"/>
+<text x="1022.5" y="327.5" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">第三章</text>
+<rect x="440.5" y="209.0" width="164.0" height="28.0" rx="3" fill="#F5B875" stroke="#888888" stroke-width="1.2"/>
+<text x="522.5" y="228.0" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#333333" text-anchor="middle" font-weight="bold">社区治理数字发展情况</text>
+<rect x="183.0" y="242.0" width="221.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="293.5" y="264.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">现状调查1</text>
+<rect x="412.0" y="242.0" width="221.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="522.5" y="264.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">现状调查2</text>
+<rect x="641.0" y="242.0" width="221.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="751.5" y="264.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">现状调查3</text>
+<rect x="440.5" y="290.0" width="164.0" height="28.0" rx="3" fill="#F5B875" stroke="#888888" stroke-width="1.2"/>
+<text x="522.5" y="309.0" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#333333" text-anchor="middle" font-weight="bold">社区治理数字问题分析</text>
+<rect x="183.0" y="323.0" width="221.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="293.5" y="345.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">维度一分析</text>
+<rect x="412.0" y="323.0" width="221.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="522.5" y="345.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">维度二分析</text>
+<rect x="641.0" y="323.0" width="221.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="751.5" y="345.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">维度三分析</text>
+<rect x="482.5" y="371.0" width="80.0" height="28.0" rx="3" fill="#F5B875" stroke="#888888" stroke-width="1.2"/>
+<text x="522.5" y="390.0" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#333333" text-anchor="middle" font-weight="bold">深层原因</text>
+<rect x="183.0" y="404.0" width="221.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="293.5" y="426.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">原因一</text>
+<rect x="412.0" y="404.0" width="221.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="522.5" y="426.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">原因二</text>
+<rect x="641.0" y="404.0" width="221.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="751.5" y="426.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">原因三</text>
+<line x1="522.5" y1="466.0" x2="522.5" y2="472.0" stroke="#333333" stroke-width="2.5"/><polygon points="522.5,484.0 516.5,472.0 528.5,472.0" fill="#333333"/>
+<rect x="65.0" y="488.0" width="915.0" height="150.0" fill="none" stroke="#FAFAFA" stroke-width="1.2" stroke-dasharray="6,4"/>
+<rect x="3.0" y="538.0" width="44.0" height="50.0" rx="4" fill="#A5D6A7" stroke="#888888" stroke-width="1.2"/>
+<text x="28.0" y="558.0" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#333333" text-anchor="middle" font-weight="bold">解决问题</text>
+<rect x="998.0" y="538.0" width="49.0" height="50.0" rx="4" fill="#E8B4B4" stroke="#888888" stroke-width="1.2"/>
+<text x="1022.5" y="558.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#333333" text-anchor="middle" font-weight="bold">第四章</text>
+<rect x="83.0" y="498.0" width="211.2" height="36.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="188.6" y="521.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">外部环境优化</text>
+<rect x="304.2" y="498.0" width="211.2" height="36.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="409.9" y="521.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">核心机制创新</text>
+<rect x="525.5" y="498.0" width="211.2" height="36.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="631.1" y="521.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">保障体系完善</text>
+<rect x="746.8" y="498.0" width="211.2" height="36.0" rx="4" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="852.4" y="521.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">实施路径设计</text>
+<rect x="107.6" y="547.0" width="52.0" height="32.0" rx="2" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="133.6" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">政策1</text>
+<line x1="188.6" y1="537.0" x2="133.6" y2="547.0" stroke="#333333" stroke-width="1"/>
+<rect x="162.6" y="547.0" width="52.0" height="32.0" rx="2" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="188.6" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">制度2</text>
+<line x1="188.6" y1="537.0" x2="188.6" y2="547.0" stroke="#333333" stroke-width="1"/>
+<rect x="217.6" y="547.0" width="52.0" height="32.0" rx="2" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="243.6" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">资源3</text>
+<line x1="188.6" y1="537.0" x2="243.6" y2="547.0" stroke="#333333" stroke-width="1"/>
+<rect x="201.1" y="547.0" width="207.2" height="32.0" rx="2" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="304.8" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">机制1</text>
+<line x1="409.9" y1="537.0" x2="304.8" y2="547.0" stroke="#333333" stroke-width="1"/>
+<rect x="411.4" y="547.0" width="207.2" height="32.0" rx="2" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="515.0" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">机制2</text>
+<line x1="409.9" y1="537.0" x2="515.0" y2="547.0" stroke="#333333" stroke-width="1"/>
+<rect x="522.6" y="547.0" width="52.0" height="32.0" rx="2" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="548.6" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">体系1</text>
+<line x1="631.1" y1="537.0" x2="548.6" y2="547.0" stroke="#333333" stroke-width="1"/>
+<rect x="577.6" y="547.0" width="52.0" height="32.0" rx="2" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="603.6" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">体系2</text>
+<line x1="631.1" y1="537.0" x2="603.6" y2="547.0" stroke="#333333" stroke-width="1"/>
+<rect x="632.6" y="547.0" width="52.0" height="32.0" rx="2" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="658.6" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">体系3</text>
+<line x1="631.1" y1="537.0" x2="658.6" y2="547.0" stroke="#333333" stroke-width="1"/>
+<rect x="687.6" y="547.0" width="52.0" height="32.0" rx="2" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="713.6" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">体系4</text>
+<line x1="631.1" y1="537.0" x2="713.6" y2="547.0" stroke="#333333" stroke-width="1"/>
+<rect x="771.4" y="547.0" width="52.0" height="32.0" rx="2" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="797.4" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">步骤1</text>
+<line x1="852.4" y1="537.0" x2="797.4" y2="547.0" stroke="#333333" stroke-width="1"/>
+<rect x="826.4" y="547.0" width="52.0" height="32.0" rx="2" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="852.4" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">步骤2</text>
+<line x1="852.4" y1="537.0" x2="852.4" y2="547.0" stroke="#333333" stroke-width="1"/>
+<rect x="881.4" y="547.0" width="52.0" height="32.0" rx="2" fill="#C8E6C9" stroke="#888888" stroke-width="1.2"/>
+<text x="907.4" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">步骤3</text>
+<line x1="852.4" y1="537.0" x2="907.4" y2="547.0" stroke="#333333" stroke-width="1"/>
+<rect x="447.5" y="643.0" width="150.0" height="36.0" rx="4" fill="#A5D6A7" stroke="#888888" stroke-width="1.2"/>
+<text x="522.5" y="666.0" font-family="Microsoft YaHei, sans-serif" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">结论与展望</text>
+</svg>

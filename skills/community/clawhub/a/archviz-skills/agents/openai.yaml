@@ -1,0 +1,8 @@
+interface:
+  display_name: "archviz-skills"
+  short_description: "Brief-first restrained diagrams, charts, and 3D archviz"
+  brand_color: "#002FA7"
+  default_prompt: "Use $archviz-skills to create a restrained visualization from this brief — start with a one-line diagram read and three dials."
+
+policy:
+  allow_implicit_invocation: true

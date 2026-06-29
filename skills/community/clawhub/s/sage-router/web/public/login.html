@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login · Sage Router</title>
+    <meta
+      name="description"
+      content="Sign in to Sage Router with enabled OAuth providers, email, or wallet."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #07100d;
+        --panel: rgba(13, 29, 24, 0.78);
+        --border: rgba(166, 255, 207, 0.16);
+        --muted: #a9c5b8;
+        --text: #edfdf5;
+        --brand: #8df0b2;
+        --brand-strong: #50d891;
+        --amber: #f7d57a;
+        --shadow: 0 24px 80px rgba(0, 0, 0, 0.36);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-width: 320px;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        background:
+          radial-gradient(
+            circle at 18% 5%,
+            rgba(80, 216, 145, 0.28),
+            transparent 28rem
+          ),
+          radial-gradient(
+            circle at 85% 15%,
+            rgba(247, 213, 122, 0.14),
+            transparent 25rem
+          ),
+          linear-gradient(180deg, #07100d 0%, #0a1511 48%, #07100d 100%);
+        color: var(--text);
+        line-height: 1.5;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(141, 240, 178, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(141, 240, 178, 0.04) 1px, transparent 1px);
+        background-size: 52px 52px;
+        mask-image: linear-gradient(to bottom, black, transparent 78%);
+        pointer-events: none;
+      }
+      .container {
+        max-width: 1180px;
+        margin: 0 auto;
+        padding: 0 clamp(20px, 5vw, 72px);
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: rgba(7, 16, 13, 0.72);
+        border-bottom: 1px solid rgba(166, 255, 207, 0.1);
+        backdrop-filter: blur(18px);
+      }
+      .navInner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 18px 0;
+      }
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 900;
+        letter-spacing: -0.03em;
+      }
+      .brandMark {
+        display: grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        border: 1px solid rgba(141, 240, 178, 0.42);
+        border-radius: 12px;
+        color: #062016;
+        background: linear-gradient(135deg, var(--brand), var(--amber));
+        box-shadow: 0 12px 40px rgba(80, 216, 145, 0.28);
+      }
+      .links {
+        display: flex;
+        align-items: center;
+        gap: clamp(14px, 3vw, 28px);
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .links a,
+      .links button {
+        color: var(--muted);
+        background: none;
+        border: 0;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+      }
+      .links a:hover,
+      .links a.active,
+      .links button:hover {
+        color: var(--text);
+      }
+      .hero {
+        position: relative;
+        min-height: calc(100vh - 73px);
+        display: grid;
+        place-items: center;
+        padding: 72px 0;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(340px, 0.86fr);
+        gap: clamp(36px, 6vw, 76px);
+        align-items: center;
+      }
+      .eyebrow {
+        display: block;
+        color: var(--brand);
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        font-weight: 900;
+        font-size: 12px;
+        margin: 0 0 16px;
+      }
+      h1 {
+        font-size: clamp(44px, 7vw, 82px);
+        line-height: 0.94;
+        letter-spacing: -0.075em;
+        margin: 0 0 26px;
+        max-width: 900px;
+      }
+      p {
+        color: #d2eadf;
+        font-size: clamp(18px, 2vw, 24px);
+        line-height: 1.35;
+        margin: 0;
+      }
+      .panel {
+        background: linear-gradient(
+          180deg,
+          rgba(12, 28, 22, 0.94),
+          rgba(5, 12, 10, 0.94)
+        );
+        border: 1px solid var(--border);
+        border-radius: 28px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+        padding: 28px;
+      }
+      .panel h2 {
+        font-size: clamp(28px, 4vw, 46px);
+        line-height: 1;
+        letter-spacing: -0.055em;
+        margin: 0 0 12px;
+      }
+      .muted,
+      .status {
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .recoveryPanel {
+        margin: 16px 0 8px;
+        padding: 14px;
+        border: 1px solid rgba(141, 240, 178, 0.28);
+        border-radius: 18px;
+        background: rgba(141, 240, 178, 0.08);
+      }
+      .recoveryPanel strong,
+      .recoveryPanel span {
+        display: block;
+      }
+      .recoveryPanel strong {
+        color: var(--text);
+        font-size: 15px;
+      }
+      .recoveryPanel span {
+        color: var(--muted);
+        font-size: 14px;
+        margin: 4px 0 10px;
+      }
+      .recoverySteps {
+        display: grid;
+        gap: 6px;
+        margin: 12px 0 0;
+        padding: 0;
+        list-style: none;
+        color: #d2eadf;
+        font-size: 13px;
+      }
+      .recoverySteps li {
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+      }
+      .recoverySteps li::before {
+        content: "->";
+        color: var(--brand);
+        font-weight: 900;
+      }
+      .actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin: 18px 0;
+      }
+      .btn {
+        min-height: 48px;
+        border: 0;
+        border-radius: 999px;
+        padding: 0 20px;
+        background: linear-gradient(135deg, var(--brand), var(--brand-strong));
+        color: #04150d;
+        font-weight: 900;
+        cursor: pointer;
+        transition: transform 0.18s ease;
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+      .btn.secondary,
+      .btn.ghost {
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+        border: 1px solid var(--border);
+      }
+      .authGrid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 18px;
+      }
+      label {
+        display: block;
+        color: var(--muted);
+        font-weight: 900;
+        font-size: 0.82rem;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+      input {
+        width: 100%;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        padding: 13px 16px;
+        font: inherit;
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text);
+      }
+      input:focus {
+        outline: 2px solid rgba(141, 240, 178, 0.42);
+        outline-offset: 2px;
+      }
+      .hidden {
+        display: none !important;
+      }
+      @media (max-width: 920px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+        .links {
+          flex-wrap: wrap;
+          justify-content: flex-end;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="container navInner">
+        <a class="brand" href="/"
+          ><span class="brandMark">S</span><span>Sage Router</span></a
+        >
+        <div class="links">
+          <a href="/">Home</a><a href="/status">Status</a><a href="/analytics.html">Analytics</a
+          ><a class="active" href="/login.html">Login</a
+          ><button id="sign-out" class="hidden">Sign out</button>
+        </div>
+      </div>
+    </nav>
+    <main class="hero">
+      <div class="container grid">
+        <section>
+          <span class="eyebrow">Sage Router account</span>
+          <h1>Access your routing control plane.</h1>
+          <p>
+            Create an account or sign in with enabled OAuth providers, email,
+            or an Algorand wallet. Provider access stays separate from model
+            credentials.
+          </p>
+        </section>
+        <section class="panel">
+          <h2>Login</h2>
+          <p class="muted" id="session-status">Choose a sign-in method.</p>
+          <div class="actions">
+            <button data-oauth="discord" class="btn hidden" disabled>
+              Discord</button
+            ><button data-oauth="google" class="btn hidden" disabled>
+              Google</button
+            ><button data-oauth="github" class="btn hidden" disabled>
+              GitHub</button
+            ><button id="wallet-login" class="btn secondary">Wallet</button>
+          </div>
+          <div id="oauth-status" class="status">
+            Checking enabled OAuth providers...
+          </div>
+          <div class="recoveryPanel">
+            <strong>Already signed up? Finish setup key</strong>
+            <span id="login-key-recovery-copy">Go straight to generated-key setup. No provider key or checkout is required until your sk_sage setup key exists.</span>
+            <ul class="recoverySteps" aria-label="Generated key recovery steps">
+              <li>Use the same email or same OAuth identity from signup.</li>
+              <li>The next page opens with <code>start=create_key</code> and creates the setup key before checkout.</li>
+              <li>Copy setup first; billing only unlocks routing after the key exists.</li>
+            </ul>
+            <div class="actions recoveryActions">
+              <button id="login-key-recovery-email-focus" class="btn" type="button">Use same-email setup link</button>
+              <a
+                id="login-key-recovery"
+                class="btn secondary"
+                href="/account.html?plan=pro&start=create_key&utm_source=login&utm_medium=recovery&utm_campaign=signup_to_key_recovery&auth=email"
+                data-key-recovery="true"
+                >Open API key setup</a
+              >
+            </div>
+          </div>
+          <div class="authGrid">
+            <div>
+              <label for="email">Email</label
+              ><input
+                id="email"
+                type="email"
+                autocomplete="email"
+                placeholder="you@example.com"
+              />
+            </div>
+            <div>
+              <label for="password">Password</label
+              ><input
+                id="password"
+                type="password"
+                autocomplete="new-password"
+                placeholder="Optional for magic link"
+              />
+            </div>
+          </div>
+          <div class="actions">
+            <button id="password-signup" class="btn">Create account</button
+            ><button id="password-login" class="btn ghost">
+              Sign in with password</button
+            ><button id="magic-login" class="btn ghost">Send magic link</button>
+          </div>
+          <div id="wallet-status" class="status"></div>
+          <div id="auth-status" class="status"></div>
+        </section>
+      </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="/auth.js"></script>
+  </body>
+</html>

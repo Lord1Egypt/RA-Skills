@@ -23,7 +23,7 @@ def safe_urlopen(req_or_url):
 
 
 def main():
-    url = f"{BASE_URL}/data/api/v1/market/data/block-trades"
+    url = f"{BASE_URL}/gateway/api/v1/market/data/block-trades"
 
     try:
         with safe_urlopen(url) as resp:

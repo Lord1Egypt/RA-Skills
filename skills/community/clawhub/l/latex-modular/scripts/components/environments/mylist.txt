@@ -1,0 +1,33 @@
+% --- 列表系统 ---
+% 定义层级基准缩进
+\newlength{\titleindent}
+\setlength{\titleindent}{2em}
+
+% 智能列表环境定义
+\NewDocumentEnvironment{mylist}{}{%
+  \ifnum\value{listlevel}>2
+    \begin{enumerate}[label=\alph*、, % 使用Unicode中文顿号
+                     leftmargin=\dimexpr\titleindent*(\value{listlevel}+ 2-\value{listlevel})\relax,
+                     labelindent=0pt,
+                     labelwidth=1.5em,
+                     labelsep*=0.5em,
+                     align=left]
+  \else
+    \begin{enumerate}[label=(\arabic*),
+                     leftmargin=\dimexpr\titleindent*(\value{listlevel} + 2-\value{listlevel})\relax,
+                     labelindent=0pt,
+                     labelwidth=1.5em,
+                     labelsep*=0.5em,
+                     align=left]
+  \fi
+}{%
+  \end{enumerate}
+}
+
+% 层级跟踪系统（保持不变）
+\newcounter{listlevel}
+\pretocmd{\section}{\setcounter{listlevel}{0}}{}{}
+\pretocmd{\subsection}{\setcounter{listlevel}{1}}{}{}
+\pretocmd{\subsubsection}{\setcounter{listlevel}{2}}{}{}
+\pretocmd{\paragraph}{\setcounter{listlevel}{3}}{}{}
+\pretocmd{\subparagraph}{\setcounter{listlevel}{4}}{}{}

@@ -1,0 +1,5 @@
+product_id,name,price,category
+PROD-001,Widget A,179.00,Gadgets
+PROD-002,Widget B,299.00,Gadgets
+PROD-003,Gadget X,89.00,Electronics
+PROD-005,New Widget,249.00,Gadgets

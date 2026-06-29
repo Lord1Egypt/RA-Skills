@@ -1,0 +1,7 @@
+interface:
+  display_name: "Document Formatting Automation Helper"
+  short_description: "Helps with Knowledge workers need practical help automating d..."
+  default_prompt: "Use $document-formatting-automation-helper to help me Knowledge workers need practical help automating document formatting, find-and-replace, styles, and Word-like editing ta."
+
+policy:
+  allow_implicit_invocation: true

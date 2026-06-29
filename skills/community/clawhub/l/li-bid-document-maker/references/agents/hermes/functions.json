@@ -1,0 +1,245 @@
+{
+  "$schema": "hermes-function-schema",
+  "skill": "bid-document-maker",
+  "version": "1.0.0",
+  "description": "标书制作工作流 - Hermes Function Calling 定义",
+  "functions": [
+    {
+      "name": "parse_tender_document",
+      "description": "[阶段1] 解析招标文件，读取PDF/Word并提取结构化信息（项目信息、资质要求、技术参数、评分标准等）",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "file_path": {
+            "type": "string",
+            "description": "招标文件路径（支持 .pdf 和 .docx 格式）"
+          },
+          "extract_depth": {
+            "type": "string",
+            "enum": ["quick", "full"],
+            "description": "解析深度: quick=仅基本信息, full=全部字段",
+            "default": "full"
+          }
+        },
+        "required": ["file_path"]
+      },
+      "output_schema": {
+        "type": "object",
+        "$ref": "../../schemas/tender-info.schema.json"
+      }
+    },
+    {
+      "name": "generate_strategy_report",
+      "description": "[阶段2] 基于招标解析结果，生成评分策略分析报告（评分权重分析、竞争优势、风险识别）",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "tender_info": {
+            "type": "object",
+            "description": "阶段1输出的招标解析结果"
+          },
+          "enterprise_info": {
+            "type": "object",
+            "description": "企业自身信息（优势资质、历史业绩等，可选）",
+            "properties": {
+              "strengths": { "type": "array", "items": { "type": "string" } },
+              "past_performance": { "type": "array", "items": { "type": "string" } },
+              "certifications": { "type": "array", "items": { "type": "string" } }
+            }
+          }
+        },
+        "required": ["tender_info"]
+      }
+    },
+    {
+      "name": "generate_bid_outline",
+      "description": "[阶段3] 基于策略分析结果，生成评分导向的应标书完整大纲（带评分标注和字数分配）",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "tender_info": {
+            "type": "object",
+            "description": "招标解析结果"
+          },
+          "strategy_report": {
+            "type": "object",
+            "description": "策略分析报告"
+          },
+          "outline_depth": {
+            "type": "integer",
+            "minimum": 2,
+            "maximum": 4,
+            "description": "大纲层级深度（2=章→节, 3=章→节→条, 4=章→节→条→款）",
+            "default": 3
+          }
+        },
+        "required": ["tender_info", "strategy_report"]
+      }
+    },
+    {
+      "name": "write_chapter",
+      "description": "[阶段4] 编写标书指定章节内容，需评分导向、量化具体、有证据支撑",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "chapter_id": {
+            "type": "string",
+            "description": "章节标识符（如 technical_proposal, implementation, quality_assurance, after_sales, price_proposal）"
+          },
+          "chapter_title": {
+            "type": "string",
+            "description": "章节标题（如 第七章 技术方案）"
+          },
+          "scoring_dimension": {
+            "type": "string",
+            "description": "对应评分维度"
+          },
+          "scoring_score": {
+            "type": "number",
+            "description": "对应分值"
+          },
+          "target_words": {
+            "type": "integer",
+            "description": "建议字数"
+          },
+          "tender_requirements": {
+            "type": "array",
+            "description": "该章节需响应的具体要求列表（从招标解析结果中提取）",
+            "items": { "type": "string" }
+          }
+        },
+        "required": ["chapter_id", "chapter_title"]
+      }
+    },
+    {
+      "name": "quality_check",
+      "description": "[阶段5] 对标书进行全面质量检查：覆盖度检查、格式合规性、法律合规性、内容质量、评分一致性",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "chapters": {
+            "type": "array",
+            "description": "所有已完成的章节"
+          },
+          "tender_info": {
+            "type": "object",
+            "description": "招标解析结果（用于核对评分项和技术要求）"
+          },
+          "check_level": {
+            "type": "string",
+            "enum": ["standard", "strict"],
+            "description": "检查严格程度: standard=仅错误级, strict=错误+警告级",
+            "default": "strict"
+          }
+        },
+        "required": ["chapters", "tender_info"]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "coverage_rate": { "type": "number" },
+          "tech_response_rate": { "type": "number" },
+          "format_compliance": { "type": "boolean" },
+          "legal_compliance": { "type": "boolean" },
+          "issues": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "severity": { "type": "string", "enum": ["error", "warning", "suggestion"] },
+                "description": { "type": "string" },
+                "location": { "type": "string" },
+                "suggestion": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "assemble_bid_document",
+      "description": "[阶段5-输出] 将所有章节整合为完整的应标书文档（Markdown或Word格式）",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "chapters": {
+            "type": "array",
+            "description": "所有已通过的章节内容"
+          },
+          "output_format": {
+            "type": "string",
+            "enum": ["markdown", "docx"],
+            "description": "输出格式",
+            "default": "markdown"
+          },
+          "include_toc": {
+            "type": "boolean",
+            "description": "是否包含目录",
+            "default": true
+          }
+        },
+        "required": ["chapters"]
+      }
+    },
+    {
+      "name": "pdca_improve",
+      "description": "[阶段6] 执行PDCA三轮自动改进：第1轮修复错误→第2轮修复警告→第3轮一致性打磨→确认无问题后交付",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "chapters": {
+            "type": "object",
+            "description": "标书各章节内容"
+          },
+          "quality_report": {
+            "type": "object",
+            "description": "阶段5输出的质检报告"
+          },
+          "tender_info": {
+            "type": "object",
+            "description": "招标解析结果"
+          },
+          "max_rounds": {
+            "type": "integer",
+            "description": "最大PDCA轮数",
+            "default": 3,
+            "minimum": 1,
+            "maximum": 3
+          }
+        },
+        "required": ["chapters", "quality_report", "tender_info"]
+      },
+      "output_schema": {
+        "type": "object",
+        "properties": {
+          "final_document": { "type": "object", "description": "最终标书" },
+          "improvement_report": {
+            "type": "object",
+            "properties": {
+              "rounds": { "type": "array", "description": "每轮改进记录" },
+              "unfixed_issues": { "type": "array" },
+              "final_status": { "type": "string" }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "state_schema": {
+    "type": "object",
+    "description": "Hermes多轮对话状态管理",
+    "properties": {
+      "stage": {
+        "type": "string",
+        "enum": ["parsing", "strategy", "outline", "writing", "quality_check", "pdca_improving", "complete"],
+        "description": "当前工作流阶段"
+      },
+      "tender_info": { "type": "object", "description": "招标解析结果" },
+      "strategy_report": { "type": "object", "description": "策略分析报告" },
+      "outline": { "type": "object", "description": "标书大纲" },
+      "chapters": { "type": "object", "description": "已完成的章节 {chapter_id: content}" },
+      "quality_report": { "type": "object", "description": "质检报告" },
+      "pdca_report": { "type": "object", "description": "PDCA改进报告" }
+    }
+  }
+}

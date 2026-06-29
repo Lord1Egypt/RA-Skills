@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sage Router hosted privacy policy for account data, billing data, API key metadata, usage counters, and privacy-safe route telemetry." />
+  <link rel="canonical" href="https://sagerouter.dev/privacy" />
+  <meta property="og:title" content="Sage Router Privacy" />
+  <meta property="og:description" content="How Sage Router handles hosted account data, billing metadata, generated API keys, quotas, and route telemetry." />
+  <meta property="og:url" content="https://sagerouter.dev/privacy" />
+  <meta property="og:type" content="website" />
+  <title>Sage Router Privacy</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07100d;--panel:rgba(13,29,24,.84);--border:rgba(166,255,207,.16);--muted:#a9c5b8;--text:#edfdf5;--brand:#8df0b2;--amber:#f7d57a}*{box-sizing:border-box}body{margin:0;min-width:320px;background:linear-gradient(180deg,#07100d 0%,#0b1518 48%,#07100d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}.wrap{max-width:980px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}a{color:inherit;text-decoration:none}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;color:var(--muted)}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;color:var(--text)}.brandMark{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(141,240,178,.42);border-radius:8px;color:#062016;background:linear-gradient(135deg,var(--brand),var(--amber))}.navLinks,footer{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;font-weight:750}.navLinks a:hover,footer a:hover{color:var(--text)}main{padding:48px 0 64px}.eyebrow{color:var(--brand);text-transform:uppercase;letter-spacing:.16em;font-weight:900;font-size:12px;margin:0 0 16px}h1{font-size:clamp(42px,7vw,76px);line-height:.96;margin:0 0 20px}h2{font-size:clamp(24px,3vw,34px);line-height:1.08;margin:34px 0 10px}p,li{color:var(--muted)}.panel{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:26px;margin-top:24px}.note{border-color:rgba(141,240,178,.32);background:linear-gradient(180deg,rgba(26,67,50,.9),rgba(12,28,22,.86))}ul{padding-left:20px;display:grid;gap:8px}code{color:#d9f8e6}footer{padding:34px 0 54px;color:var(--muted);border-top:1px solid rgba(166,255,207,.1)}footer span{margin-right:auto}@media(max-width:760px){.nav{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+      <div class="navLinks">
+        <a href="/pricing">Pricing</a>
+        <a href="/status">Status</a>
+        <a href="/support">Support</a>
+        <a href="https://app.sagerouter.dev/account.html">Account</a>
+        <a href="/terms">Terms</a>
+        <a href="/acceptable-use">Acceptable Use</a>
+      </div>
+    </nav>
+
+    <main>
+      <p class="eyebrow">Hosted privacy policy</p>
+      <h1>Sage Router Privacy</h1>
+      <p>Effective June 19, 2026. This policy describes the hosted Sage Router web app, public API edge, account system, billing flows, API keys, usage quotas, and route analytics.</p>
+
+      <section class="panel note">
+        <h2>Privacy Boundary</h2>
+        <p>Launch analytics are designed to be privacy-safe. The hosted funnel and route telemetry should not return or store prompt bodies, message bodies, raw provider responses, provider credentials, OAuth tokens, plaintext API keys, or customer email addresses in operator analytics responses.</p>
+      </section>
+
+      <section class="panel">
+        <h2>Data We Process</h2>
+        <ul>
+          <li>Account identifiers from Supabase Auth, such as user id and email for account access.</li>
+          <li>Billing metadata from Stripe or manual settlement, such as customer id, subscription status, selected plan, and payment lifecycle status.</li>
+          <li>Generated API key metadata, including key prefix, key status, plan, timestamps, and hashed key material. Raw generated keys are shown once.</li>
+          <li>Usage counters for quota enforcement, rate limits, first-request tracking, paid conversion tracking, and retained paid account tracking.</li>
+          <li>Route telemetry such as selected provider/model, status, timing, error class, estimated token counts, and fallback behavior.</li>
+        </ul>
+
+        <h2>Provider Credentials</h2>
+        <p>Sage Router is local-first by design. Provider credentials should stay on customer-controlled machines, private routers, or Tailnet hosts by default. Do not send provider credentials, OAuth tokens, private keys, or raw secrets to support channels unless a separate secure process has been agreed.</p>
+
+        <h2>How Data Is Used</h2>
+        <p>Hosted data is used to authenticate users, enforce generated API key access, apply quotas and rate limits, process billing, provide status and route telemetry, detect abuse, debug reliability, and improve the product.</p>
+
+        <h2>Third-Party Services</h2>
+        <p>The hosted service uses infrastructure and services such as Supabase, Stripe, Cloudflare, Google Cloud, GitHub, and customer-selected model providers. Those services may process data according to their own terms and privacy policies.</p>
+
+        <h2>Retention and Deletion</h2>
+        <p>Operational records may be retained as needed for security, billing, accounting, abuse prevention, reliability debugging, and legal obligations. Customers may revoke generated API keys from the account page and may request account review or deletion through the support path published by the project.</p>
+
+        <h2>Security</h2>
+        <p>The hosted web app uses HTTPS, HSTS, a Content Security Policy, frame blocking, referrer controls, and account/API-key auth gates. These controls reduce risk but do not replace customer responsibility for securing their own provider accounts, local routers, API keys, and Tailnet hosts.</p>
+      </section>
+    </main>
+
+    <footer>
+      <span>&copy; Sage Router</span>
+      <a href="/terms">Terms</a>
+      <a href="/acceptable-use">Acceptable Use</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/status">Status</a>
+      <a href="/support">Support</a>
+      <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Orchestration Dashboard v3</title>
+<style>
+:root{--bg:#0d1117;--card:#161b22;--border:#30363d;--text:#c9d1d9;--muted:#8b949e;--blue:#58a6ff;--green:#3fb950;--red:#f85149;--yellow:#d29922;--orange:#f0883e;--purple:#bc8cff}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;padding:24px;min-width:900px}
+h1{font-size:22px;margin-bottom:2px;color:#fff}
+.sub{color:var(--muted);margin-bottom:20px;font-size:13px}
+/* ── Status bar ── */
+.sb{display:flex;gap:10px;align-items:center;padding:10px 14px;background:var(--card);border:1px solid var(--border);border-radius:8px;margin-bottom:14px;font-size:12px;flex-wrap:wrap}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
+.dot.g{background:var(--green)}.dot.r{background:var(--red)}.dot.y{background:var(--yellow)}
+.pill{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:10px;font-size:11px;font-weight:600;white-space:nowrap}
+.pill.g{background:rgba(63,185,80,.15);color:var(--green)}
+.pill.r{background:rgba(248,81,73,.15);color:var(--red)}
+.pill.b{background:rgba(88,166,255,.15);color:var(--blue)}
+.pill.y{background:rgba(210,153,34,.15);color:var(--yellow)}
+.pill.p{background:rgba(188,140,255,.15);color:var(--purple)}
+/* ── Toggles ── */
+.tog{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);cursor:pointer;user-select:none}
+.tog .lbl{font-weight:500;white-space:nowrap}
+.sw{position:relative;width:34px;height:18px;background:var(--border);border-radius:9px;transition:.15s;flex-shrink:0}
+.sw.on{background:var(--green)}
+.sw::after{content:'';position:absolute;top:2px;left:2px;width:14px;height:14px;background:#fff;border-radius:50%;transition:.15s}
+.sw.on::after{left:18px}
+/* ── Tabs ── */
+.tabs{display:flex;gap:0;margin-bottom:14px;border-bottom:1px solid var(--border)}
+.tbp{padding:7px 14px;font-size:13px;cursor:pointer;border-bottom:2px solid transparent;color:var(--muted)}
+.tbp.a{color:#fff;border-bottom-color:var(--blue)}
+.sec{display:none}.sec.a{display:block}
+/* ── Cards ── */
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:12px}
+.card h2{font-size:13px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);margin-bottom:10px}
+/* ── Grid stats ── */
+.gr{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:12px}
+.st{text-align:center}
+.st .v{font-size:26px;font-weight:700;color:#fff}
+.st .l{font-size:11px;color:var(--muted);margin-top:2px}
+/* ── Tables ── */
+.tw{max-height:480px;overflow-y:auto}
+table{width:100%;border-collapse:collapse;font-size:12px}
+th{text-align:left;padding:5px 7px;color:var(--muted);border-bottom:1px solid var(--border);font-weight:500;position:sticky;top:0;background:var(--card);z-index:1;cursor:pointer;user-select:none}
+th:hover{color:#fff}
+td{padding:5px 7px;border-bottom:1px solid var(--border);vertical-align:middle}
+tr:hover td{background:rgba(88,166,255,.03)}
+tr.dim td{opacity:.4}
+/* ── Badges ── */
+.b{display:inline-block;padding:1px 5px;border-radius:8px;font-size:10px;font-weight:600}
+.b-act{background:rgba(63,185,80,.15);color:var(--green)}
+.b-brk{background:rgba(248,81,73,.15);color:var(--red)}
+.b-rem{background:rgba(139,148,158,.15);color:var(--muted)}
+.b-dis{background:rgba(248,81,73,.2);color:var(--red);border:1px solid rgba(248,81,73,.3)}
+.b-free{background:rgba(88,166,255,.15);color:var(--blue)}
+.b-sub{background:rgba(210,153,34,.15);color:var(--yellow)}
+.b-payg{background:rgba(248,81,73,.15);color:var(--red)}
+.b-t1{background:rgba(63,185,80,.2);color:var(--green)}
+.b-t2{background:rgba(88,166,255,.2);color:var(--blue)}
+.b-t3{background:rgba(139,148,158,.2);color:var(--muted)}
+/* ── Buttons ── */
+.btn{background:var(--blue);color:#fff;border:none;padding:3px 8px;border-radius:4px;cursor:pointer;font-size:11px;font-weight:500}
+.btn:hover{opacity:.85}
+.btn-g{background:var(--green);color:#000}
+.btn-r{background:var(--red)}
+.btn-y{background:var(--yellow);color:#000}
+.btn-m{background:var(--muted);color:#000}
+.btn-p{background:var(--purple)}
+.btn-xs{padding:1px 6px;font-size:10px}
+/* ── Inputs ── */
+.inp{background:#0d1117;color:var(--text);border:1px solid var(--border);border-radius:4px;padding:4px 8px;font-size:12px;font-family:inherit;width:100%}
+.inp:focus{border-color:var(--blue);outline:none}
+.inp-s{width:auto;min-width:80px}
+textarea.inp{min-height:50px;resize:vertical}
+select.inp{cursor:pointer}
+/* ── Filter bar ── */
+.flt{display:flex;gap:6px;align-items:center;margin-bottom:10px;flex-wrap:wrap}
+.flt label{font-size:11px;color:var(--muted)}
+/* ── Modals ── */
+.mod{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);z-index:100;overflow:auto;padding:30px}
+.mod.open{display:block}
+.mi{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;max-width:960px;margin:0 auto}
+.mh{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.mh h2{font-size:16px;color:#fff;text-transform:none;letter-spacing:0}
+/* ── Form layout ── */
+.fr{display:grid;grid-template-columns:160px 1fr;gap:10px;margin-bottom:8px;align-items:start}
+.fl{font-size:11px;color:var(--muted);padding-top:5px;text-transform:uppercase;letter-spacing:.3px}
+.fv{font-size:12px}
+/* ── Stars ── */
+.stars{color:var(--yellow);letter-spacing:1px;font-size:13px;cursor:pointer}
+/* ── Capabilities ── */
+.caps{display:flex;gap:10px;flex-wrap:wrap}
+.cap{display:flex;align-items:center;gap:4px;font-size:11px}
+/* ── Tags ── */
+.tag{display:inline-block;background:rgba(88,166,255,.1);color:var(--blue);padding:1px 6px;border-radius:10px;font-size:10px;margin:1px}
+/* ── Toast ── */
+.toast{position:fixed;bottom:20px;right:20px;padding:8px 16px;border-radius:6px;font-size:12px;z-index:200;transition:.3s;opacity:0;transform:translateY(8px);pointer-events:none}
+.toast.show{opacity:1;transform:translateY(0)}
+.toast.ok{background:var(--green);color:#000}
+.toast.err{background:var(--red);color:#fff}
+/* ── Allowlist picker ── */
+.alp{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:4px;max-height:280px;overflow-y:auto;padding:6px;background:#0d1117;border:1px solid var(--border);border-radius:6px;margin-bottom:10px}
+.ali{display:flex;align-items:center;gap:6px;padding:3px 6px;border-radius:4px;cursor:pointer;font-size:11px}
+.ali:hover{background:rgba(88,166,255,.08)}
+.ali input[type=checkbox]{accent-color:var(--green);flex-shrink:0}
+.ali .nm{font-weight:500}
+.ali .id{font-size:9px;color:var(--muted);font-family:monospace}
+/* ── Inline edit ── */
+.ie{cursor:pointer;border-bottom:1px dashed transparent;transition:.1s}
+.ie:hover{border-bottom-color:var(--blue);color:var(--blue)}
+/* ── Cost editor ── */
+.ced{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+/* ── Row actions ── */
+.ra{display:flex;gap:3px}
+/* ── Checkbox column ── */
+.chk{width:28px;text-align:center}
+/* ── Sort indicator ── */
+.si{margin-left:4px;font-size:9px}
+</style>
+</head>
+<body>
+<h1>🎛️ Orchestration Dashboard</h1>
+<p class="sub">Model management · Routing control · Project configuration</p>
+
+<!-- ═══ STATUS BAR ═══ -->
+<div class="sb">
+  <span class="dot g" id="sdot"></span>
+  <span id="stxt">Connecting...</span>
+  <span class="pill g" id="fpill" style="display:none">FREE ONLY</span>
+  <span class="pill r" id="dpill" style="display:none">0 DISABLED</span>
+  <div style="margin-left:auto;display:flex;gap:8px;align-items:center;flex-wrap:nowrap">
+    <div class="tog" onclick="togCfg('free_only_mode')"><span class="lbl">Free Only</span><div class="sw" id="fsw"></div></div>
+  </div>
+  <span style="font-size:10px;color:var(--muted)">Auto-refresh 30s</span>
+</div>
+
+<!-- ═══ TABS ═══ -->
+<div class="tabs">
+  <div class="tbp a" data-tab="models">Models</div>
+  <div class="tbp" data-tab="projects">Projects</div>
+  <div class="tbp" data-tab="sessions">Sessions</div>
+  <div class="tbp" data-tab="prices">Prices</div>
+</div>
+
+<!-- ═══ MODELS TAB ═══ -->
+<div id="sec-models" class="sec a">
+  <div id="mstats" class="gr"></div>
+  <div class="card">
+    <div id="mlist"></div>
+  </div>
+</div>
+
+<!-- ═══ PROJECTS TAB ═══ -->
+<div id="sec-projects" class="sec">
+  <div id="pstats" class="gr"></div>
+  <div id="parea">
+    <!-- Project list view -->
+    <div id="plist"></div>
+    <!-- Project detail view (hidden by default) -->
+    <div id="pdetail" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="btn btn-m btn-xs" onclick="closeProjDetail()">← Back to Projects</button>
+          <span style="font-size:16px;font-weight:600;color:#fff" id="pd-name"></span>
+        </div>
+        <div style="display:flex;gap:6px">
+          <button class="btn btn-y btn-xs" onclick="openProjConfig()">⚙ Allowlist</button>
+          <button class="btn btn-xs" onclick="togProjFreeCur()">Toggle Free-Only</button>
+        </div>
+      </div>
+      <!-- Doc tabs -->
+      <div style="display:flex;gap:0;margin-bottom:0;border-bottom:1px solid var(--border)" id="docTabs">
+        <div class="tbp a" data-dtab="state" onclick="switchDocTab('state')">📋 STATE</div>
+        <div class="tbp" data-dtab="roadmap" onclick="switchDocTab('roadmap')">🗺️ ROADMAP</div>
+        <div class="tbp" data-dtab="context" onclick="switchDocTab('context')">📖 CONTEXT</div>
+        <div class="tbp" data-dtab="notes" onclick="switchDocTab('notes')">📝 NOTES</div>
+        <div class="tbp" data-dtab="sessions" onclick="switchDocTab('sessions')">⚡ Sessions</div>
+        <div class="tbp" data-dtab="files" onclick="switchDocTab('files')">📁 Files</div>
+      </div>
+      <!-- Editor area -->
+      <div id="docEditorArea" style="margin-top:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+          <span style="font-size:12px;color:var(--muted)" id="docFileName">STATE.md</span>
+          <div style="display:flex;gap:4px">
+            <button class="btn btn-xs" id="docEditBtn" onclick="toggleDocEdit()">✏️ Edit</button>
+            <button class="btn btn-g btn-xs" id="docSaveBtn" onclick="saveDoc()" style="display:none">💾 Save</button>
+            <button class="btn btn-m btn-xs" id="docCancelBtn" onclick="cancelDocEdit()" style="display:none">Cancel</button>
+          </div>
+        </div>
+        <textarea class="inp" id="docEditor" style="min-height:400px;font-family:monospace;font-size:12px;resize:vertical" disabled></textarea>
+        <div id="docPreview" class="card" style="min-height:400px;display:none;overflow-y:auto;font-size:13px;line-height:1.6"></div>
+      </div>
+      <!-- Sessions view -->
+      <div id="docSessionsArea" style="display:none;margin-top:12px">
+        <div class="tw"><table><tr><th>Date</th><th>Task</th><th>Model</th><th>Agent</th><th>Status</th><th>Duration</th></tr><tbody id="projSessionsBody"></tbody></table></div>
+      </div>
+      <!-- Files view -->
+      <div id="docFilesArea" style="display:none;margin-top:12px">
+        <div style="display:flex;gap:6px;margin-bottom:10px">
+          <input class="inp" id="newFileName" placeholder="filename.md" style="width:200px">
+          <button class="btn btn-g btn-xs" onclick="createDocFile()">+ Create File</button>
+        </div>
+        <div id="projFilesList"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ SESSIONS TAB ═══ -->
+<div id="sec-sessions" class="sec">
+  <div class="card" id="scontent"></div>
+</div>
+
+<!-- ═══ PRICES TAB ═══ -->
+<div id="sec-prices" class="sec">
+  <div class="card" id="prcontent"></div>
+</div>
+
+<!-- ═══ MODEL DETAIL / EDIT MODAL ═══ -->
+<div class="mod" id="mmod" onclick="if(event.target===this)closeMod('mmod')">
+  <div class="mi" id="mcont"></div>
+</div>
+
+<!-- ═══ PROJECT CONFIG MODAL ═══ -->
+<div class="mod" id="pmod" onclick="if(event.target===this)closeMod('pmod')">
+  <div class="mi" id="pcont"></div>
+</div>
+
+<!-- ═══ NEW MODEL MODAL ═══ -->
+<div class="mod" id="nmod" onclick="if(event.target===this)closeMod('nmod')">
+  <div class="mi" id="ncont"></div>
+</div>
+
+<!-- ═══ TOAST ═══ -->
+<div class="toast" id="toast"></div>
+
+<script>
+const BASE='';
+let D=null; // all data
+let sortKey='tier',sortDir=1;
+let editMid=null,editMode=false;
+
+// ── UTILS ──
+function toast(msg,ok){const t=document.getElementById('toast');t.textContent=msg;t.className='toast show '+(ok?'ok':'err');setTimeout(()=>t.className='toast',3000)}
+function s(n,m){return'★'.repeat(Math.min(n,m))+'☆'.repeat(Math.max(0,m-n))}
+function fmt(n){return n>=1048576?(n/1048576).toFixed(0)+'M':n>=1000?(n/1000).toFixed(0)+'K':n}
+function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function escv(s){return(s||'').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+async function api(path,opts){const r=await fetch(BASE+path,opts);return r.json()}
+
+// ── TABS ──
+document.querySelectorAll('.tbp[data-tab]').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tbp[data-tab]').forEach(x=>x.classList.remove('a'));
+  document.querySelectorAll('.sec').forEach(x=>x.classList.remove('a'));
+  t.classList.add('a');document.getElementById('sec-'+t.dataset.tab).classList.add('a');
+}));
+
+// ── STATUS ──
+function updStatus(ok,msg){
+  document.getElementById('sdot').className='dot '+(ok?'g':'r');
+  document.getElementById('stxt').textContent=msg;
+  if(!D||!D.status) return;
+  const c=D.config||{};
+  document.getElementById('fsw').className='sw'+(c.free_only_mode?' on':'');
+  const fp=document.getElementById('fpill');fp.style.display=c.free_only_mode?'inline-flex':'none';
+  const dc=(c.disabled_models||[]).length;
+  const dp=document.getElementById('dpill');dp.textContent=dc+' DISABLED';dp.style.display=dc>0?'inline-flex':'none';
+}
+
+// ── CONFIG TOGGLE ──
+async function togCfg(key){
+  const c=D.config||await api('/api/config');
+  const r=await api('/api/config',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({[key]:!c[key]})});
+  if(r&&r.ok){toast(key+' '+(r.config[key]?'ON':'OFF'),true);await refresh()}else toast('Toggle failed',false);
+}
+
+// ── REFRESH ──
+async function refresh(){
+  try{
+    D=await api('/api/all');
+    const m=D.models||{},ss=D.sessions||{},p=D.projects||{};
+    const lf=D.status.free_only_mode?' [FREE ONLY]':'';
+    updStatus(true,(m.total||0)+' models · '+(ss.count||0)+' sessions · '+(p.count||0)+' projects'+lf);
+    renderModels();renderProjects();renderSessions();renderPrices();
+  }catch(e){updStatus(false,'Error: '+e.message)}
+}
+
+// ═══════════════════════════════════════════════════════════
+// MODELS TAB
+// ═══════════════════════════════════════════════════════════
+function renderModels(){
+  const m=D.models;
+  if(!m){document.getElementById('mstats').innerHTML='<div class="card">No data</div>';return;}
+  const c=D.config||{},dc=(c.disabled_models||[]).length;
+  document.getElementById('mstats').innerHTML=`
+    <div class="card st"><div class="v">${m.total}</div><div class="l">Visible</div></div>
+    <div class="card st"><div class="v">${m.active}</div><div class="l">Active</div></div>
+    <div class="card st"><div class="v" style="color:var(--red)">${dc}</div><div class="l">Disabled</div></div>
+    <div class="card st"><div class="v" style="color:var(--green)">${m.free_only?'ON':'OFF'}</div><div class="l">Free Only</div></div>`;
+
+  // Bulk actions bar
+  let h=`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+    <div style="display:flex;gap:6px;align-items:center">
+      <span style="font-size:13px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)">Models</span>
+      <button class="btn btn-xs" onclick="refresh()">↻ Refresh</button>
+      <button class="btn btn-g btn-xs" onclick="openNewModel()">+ New Model</button>
+    </div>
+    <div style="display:flex;gap:4px">
+      <button class="btn btn-r btn-xs" id="bulkDisBtn" onclick="bulkDisable()" style="display:none">Disable Selected</button>
+      <button class="btn btn-g btn-xs" id="bulkEnaBtn" onclick="bulkEnable()" style="display:none">Enable Selected</button>
+      <span id="selCount" style="font-size:11px;color:var(--muted);padding:2px 6px"></span>
+    </div>
+  </div>`;
+
+  // Filters
+  h+=`<div class="flt">
+    <input class="inp inp-s" id="mSearch" placeholder="Search..." oninput="filterModels()" style="width:200px">
+    <label>Status:</label><select class="inp inp-s" id="fStat" onchange="filterModels()"><option value="">All</option><option value="active">Active</option><option value="broken">Broken</option><option value="removed">Removed</option></select>
+    <label>Cost:</label><select class="inp inp-s" id="fCost" onchange="filterModels()"><option value="">All</option><option value="free">Free</option><option value="subscription">Subscription</option><option value="payg">Pay-as-you-go</option></select>
+    <label>Tier:</label><select class="inp inp-s" id="fTier" onchange="filterModels()"><option value="">All</option><option value="1">T1</option><option value="2">T2</option><option value="3">T3</option><option value="4">T4</option></select>
+    <label>Provider:</label><select class="inp inp-s" id="fProv" onchange="filterModels()"><option value="">All</option></select>
+    <label>Routing:</label><select class="inp inp-s" id="fRout" onchange="filterModels()"><option value="">All</option><option value="allowed">Allowed</option><option value="blocked">Blocked</option></select>
+  </div>`;
+
+  // Table
+  h+=`<div class="tw"><table><thead><tr>
+    <th class="chk"><input type="checkbox" id="selAll" onchange="toggleSelAll(this)" style="accent-color:var(--blue)"></th>
+    <th onclick="sortM('name')">Name<span class="si" id="sn_name"></span></th>
+    <th onclick="sortM('id')">ID<span class="si" id="sn_id"></span></th>
+    <th onclick="sortM('provider')">Provider<span class="si" id="sn_provider"></span></th>
+    <th onclick="sortM('tier')">Tier<span class="si" id="sn_tier"></span></th>
+    <th onclick="sortM('speed_rating')">Speed<span class="si" id="sn_speed_rating"></span></th>
+    <th onclick="sortM('context_window')">Context<span class="si" id="sn_context_window"></span></th>
+    <th>Cost</th>
+    <th>Routing</th>
+    <th>Actions</th>
+  </tr></thead><tbody id="mtbody"></tbody></table></div>`;
+  document.getElementById('mlist').innerHTML=h;
+
+  // Populate provider filter
+  const providers=[...new Set((m.models||[]).map(x=>x.provider))].sort();
+  const pf=document.getElementById('fProv');
+  providers.forEach(p=>{const o=document.createElement('option');o.value=p;o.textContent=p;pf.appendChild(o)});
+
+  renderModelTable();
+}
+
+function renderModelTable(){
+  const m=D.models,models=m.models||[];
+  const c=D.config||{},disabled=c.disabled_models||[];
+  const q=(document.getElementById('mSearch')||{value:''}).value.toLowerCase();
+  const fs=(document.getElementById('fStat')||{value:''}).value;
+  const fc=(document.getElementById('fCost')||{value:''}).value;
+  const ft=(document.getElementById('fTier')||{value:''}).value;
+  const fp=(document.getElementById('fProv')||{value:''}).value;
+  const fr=(document.getElementById('fRout')||{value:''}).value;
+
+  let filtered=models.filter(x=>{
+    if(q&&!x.name?.toLowerCase().includes(q)&&!x.id?.toLowerCase().includes(q))return false;
+    if(fs){const st=x.agent_ready&&x.status!='removed'?'active':x.status=='removed'?'removed':'broken';if(st!==fs)return false}
+    if(fc){const ct=x.cost_type||'';if(fc==='free'&&ct!=='free'&&ct!=='free_tier')return false;if(fc==='subscription'&&ct!=='subscription')return false;if(fc==='payg'&&ct!=='payg'&&ct!=='pay_per_token')return false}
+    if(ft&&x.tier!=parseInt(ft))return false;
+    if(fp&&x.provider!==fp)return false;
+    if(fr){const isDis=disabled.includes(x.id);if(fr==='allowed'&&isDis)return false;if(fr==='blocked'&&!isDis)return false}
+    return true;
+  });
+
+  // Sort
+  filtered.sort((a,b)=>{
+    let va=a[sortKey]??'',vb=b[sortKey]??'';
+    if(typeof va==='string')return va.localeCompare(vb)*sortDir;
+    return(va-vb)*sortDir;
+  });
+
+  // Update sort indicators
+  document.querySelectorAll('[id^="sn_"]').forEach(x=>x.textContent='');
+  const si=document.getElementById('sn_'+sortKey);if(si)si.textContent=sortDir>1?' ▲':' ▼';
+
+  const tbody=document.getElementById('mtbody');
+  let html='';
+  for(const x of filtered){
+    const isDis=disabled.includes(x.id);
+    const st=x.agent_ready&&x.status!='removed'?'active':x.status=='removed'?'removed':'broken';
+    const cb=(x.cost_type||'').includes('free')?'b-free':x.cost_type==='subscription'?'b-sub':'b-payg';
+    const clb=x.cost_type||'?';
+    const tb=x.tier?`b-t${x.tier}`:'';
+    const dim=isDis?'dim':'';
+    html+=`<tr class="${dim}">
+      <td class="chk"><input type="checkbox" class="mchk" data-id="${escv(x.id)}" style="accent-color:var(--blue)"></td>
+      <td><span class="ie" onclick="openModelDetail('${escv(x.id)}')">${esc(x.name||x.id.split('/').pop())}</span></td>
+      <td style="font-family:monospace;font-size:10px;color:var(--muted)">${esc(x.id)}</td>
+      <td>${esc(x.provider)}</td>
+      <td><span class="b ${tb}">${x.tier?'T'+x.tier:'–'}</td>
+      <td><span class="stars" onclick="cycleSpeed('${escv(x.id)}',${x.speed_rating||0})">${s(x.speed_rating||0,5)}</span></td>
+      <td>${fmt(x.context_window)}</td>
+      <td><span class="b ${cb}">${clb}</span></td>
+      <td>${isDis?'<span class="b b-dis">BLOCKED</span>':'<span class="b b-act">ALLOWED</span>'}</td>
+      <td><div class="ra">
+        <button class="btn btn-y btn-xs" onclick="openModelDetail('${escv(x.id)}')">Edit</button>
+        <button class="btn ${isDis?'btn-g':'btn-r'} btn-xs" onclick="${isDis?`enableM('${escv(x.id)}')`:`disableM('${escv(x.id)}')`}">${isDis?'Enable':'Disable'}</button>
+      </div></td>
+    </tr>`;
+  }
+  tbody.innerHTML=html||'<tr><td colspan="10" style="text-align:center;color:var(--muted);padding:20px">No models match filters</td></tr>';
+
+  // Checkbox listeners
+  document.querySelectorAll('.mchk').forEach(chk=>chk.addEventListener('change',updateSelCount));
+}
+
+function sortM(key){
+  if(sortKey===key)sortDir*=-1;else{sortKey=key;sortDir=1}
+  renderModelTable();
+}
+
+function filterModels(){renderModelTable()}
+
+function updateSelCount(){
+  const sel=Array.from(document.querySelectorAll('.mchk:checked'));
+  const cnt=document.getElementById('selCount');
+  const bDis=document.getElementById('bulkDisBtn');
+  const bEna=document.getElementById('bulkEnaBtn');
+  cnt.textContent=sel.length?sel.length+' selected':'';
+  bDis.style.display=sel.length?'inline-block':'none';
+  bEna.style.display=sel.length?'inline-block':'none';
+}
+
+function toggleSelAll(cb){
+  document.querySelectorAll('.mchk').forEach(x=>x.checked=cb.checked);
+  updateSelCount();
+}
+
+async function bulkDisable(){
+  const sel=Array.from(document.querySelectorAll('.mchk:checked')).map(x=>x.dataset.id);
+  const c=D.config||{},dis=new Set(c.disabled_models||[]);
+  sel.forEach(x=>dis.add(x));
+  const r=await api('/api/config',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({disabled_models:[...dis]})});
+  if(r&&r.ok){toast('Disabled '+sel.length+' models',true);await refresh()}else toast('Failed',false)}
+async function bulkEnable(){
+  const sel=Array.from(document.querySelectorAll('.mchk:checked')).map(x=>x.dataset.id);
+  const c=D.config||{},dis=(c.disabled_models||[]).filter(x=>!sel.includes(x));
+  const r=await api('/api/config',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({disabled_models:dis})});
+  if(r&&r.ok){toast('Enabled '+sel.length+' models',true);await refresh()}else toast('Failed',false)}
+
+async function disableM(id){
+  const c=D.config||{},dis=[...new Set([...(c.disabled_models||[]),id])];
+  const r=await api('/api/config',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({disabled_models:dis})});
+  if(r&&r.ok){toast('Disabled: '+id,true);await refresh()}else toast('Failed',false)}
+async function enableM(id){
+  const c=D.config||{},dis=(c.disabled_models||[]).filter(x=>x!==id);
+  const r=await api('/api/config',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({disabled_models:dis})});
+  if(r&&r.ok){toast('Enabled: '+id,true);await refresh()}else toast('Failed',false)}
+
+async function cycleSpeed(id,current){
+  const models=D.models.models||[];
+  const idx=models.findIndex(m=>m.id===id);
+  if(idx<0)return;
+  const newVal=(current%5)+1;
+  const updated={...models[idx],speed_rating:newVal};
+  const r=await api('/api/models',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(updated)});
+  if(r&&r.ok){toast('Speed: '+id+' → '+newVal,true);await refresh()}else toast('Failed',false)}
+
+// ── MODEL DETAIL MODAL ──
+async function openModelDetail(id){
+  const m=await api('/api/models?id='+encodeURIComponent(id));
+  if(!m||m.error)return toast('Not found',false);
+  editMid=m.id;editMode=false;
+  renderModelDetail(m);
+}
+
+function renderModelDetail(m){
+  const c=D.config||{},isDis=(c.disabled_models||[]).includes(m.id);
+  const cap=m.capabilities||{},cost=m.cost||{};
+  let h=`<div class="mh"><h2>${esc(m.name||m.id)}</h2>
+    <div style="display:flex;gap:6px">
+      ${!editMode?`<button class="btn btn-y" onclick="editMode=true;renderModelDetail(D.editM||m)">Edit</button>`:''}
+      ${editMode?`<button class="btn btn-g" onclick="saveModelDetail()">Save</button><button class="btn btn-m" onclick="editMode=false;renderModelDetail(D.editM||m)">Cancel</button>`:''}
+      <button class="btn btn-m" onclick="closeMod('mmod')">Close</button>
+    </div></div>`;
+
+  if(!editMode){
+    h+=`
+    <div class="fr"><div class="fl">ID</div><div class="fv" style="font-family:monospace">${esc(m.id)}</div></div>
+    <div class="fr"><div class="fl">Provider</div><div class="fv">${esc(m.provider||'–')}</div></div>
+    <div class="fr"><div class="fl">Name</div><div class="fv">${esc(m.name||'–')}</div></div>
+    <div class="fr"><div class="fl">Tier</div><div class="fv"><span class="b b-t${m.tier||0}">${m.tier?'T'+m.tier:'–'}</span></div></div>
+    <div class="fr"><div class="fl">Architecture</div><div class="fv">${esc(m.architecture||'–')}</div></div>
+    <div class="fr"><div class="fl">Status</div><div class="fv"><span class="b b-${m.agent_ready&&m.status!='removed'?'act':'brk'}">${m.status||'active'}</span></div></div>
+    <div class="fr"><div class="fl">Agent Ready</div><div class="fv">${m.agent_ready?'✅ Yes':'❌ No'}</div></div>
+    <div class="fr"><div class="fl">Speed</div><div class="fv"><span class="stars">${s(m.speed_rating||0,5)}</span> ${m.speed_rating||0}/5</div></div>
+    <div class="fr"><div class="fl">Context</div><div class="fv">${fmt(m.context_window)}</div></div>
+    <div class="fr"><div class="fl">GPU</div><div class="fv">${esc(m.gpu||'–')}</div></div>
+    <h3 style="margin:14px 0 8px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px">Pricing</h3>
+    <div class="fr"><div class="fl">Cost Type</div><div class="fv"><span class="b ${(cost.type||'').includes('free')?'b-free':cost.type==='subscription'?'b-sub':'b-payg'}">${cost.type||'–'}</span></div></div>
+    <div class="fr"><div class="fl">Amount</div><div class="fv">${cost.amount!=null?'$'+cost.amount:'–'}</div></div>
+    <div class="fr"><div class="fl">Period</div><div class="fv">${esc(cost.period||'–')}</div></div>
+    <div class="fr"><div class="fl">Limits</div><div class="fv">${esc(cost.limits||'–')}</div></div>
+    <div class="fr"><div class="fl">Source URL</div><div class="fv">${cost.source_url?`<a href="${esc(cost.source_url)}" target="_blank" style="color:var(--blue)">${esc(cost.source_url)}</a>`:'–'}</div></div>
+    <div class="fr"><div class="fl">Last Checked</div><div class="fv">${esc(cost.last_checked||'–')}</div></div>
+    <h3 style="margin:14px 0 8px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px">Capabilities</h3>
+    <div class="fr"><div class="fl">Capabilities</div><div class="fv"><div class="caps">`;
+    for(const[k,v]of Object.entries(cap))h+=`<span class="cap">${k}:<strong>${typeof v==='number'?s(v,5):v}</strong></span>`;
+    h+=`</div></div></div>
+    <div class="fr"><div class="fl">User Notes</div><div class="fv" style="white-space:pre-wrap">${esc(m.user_notes||'–')}</div></div>
+    <div class="fr"><div class="fl">Research Notes</div><div class="fv" style="white-space:pre-wrap">${esc(m.research_notes||'–')}</div></div>
+    <div class="fr"><div class="fl">Catalogued By</div><div class="fv">${esc(m.catalogued_by||'–')}</div></div>
+    <div class="fr"><div class="fl">Last Tested</div><div class="fv">${esc(m.last_tested||'–')}</div></div>
+    <div style="margin-top:16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">`;
+    if(isDis){
+      h+=`<button class="btn btn-g btn-xs" onclick="enableM('${escv(m.id)}');closeMod('mmod')">✅ Enable Routing</button>`;
+      h+=`<span style="color:var(--red);font-size:12px">⛔ Currently BLOCKED from routing</span>`;
+    } else {
+      h+=`<button class="btn btn-r btn-xs" onclick="disableM('${escv(m.id)}');closeMod('mmod')">⛔ Disable Routing</button>`;
+      h+=`<span style="color:var(--green);font-size:12px">✅ Currently ALLOWED for routing</span>`;
+    }
+    h+=`<button class="btn btn-r btn-xs" onclick="deleteModel('${escv(m.id)}')" style="margin-left:auto">🗑 Delete</button></div>`;
+  } else {
+    // EDIT MODE
+    h+=`
+    <div class="fr"><div class="fl">ID</div><div class="fv" style="font-family:monospace;color:var(--muted)">${esc(m.id)} <span style="font-size:10px">(read-only)</span></div></div>
+    <div class="fr"><div class="fl">Name *</div><div class="fv"><input class="inp" id="e_name" value="${escv(m.name||'')}"></div></div>
+    <div class="fr"><div class="fl">Provider</div><div class="fv"><input class="inp" id="e_provider" value="${escv(m.provider||'')}"></div></div>
+    <div class="fr"><div class="fl">Tier</div><div class="fv"><select class="inp" id="e_tier"><option value="">–</option><option value="1"${m.tier===1?' selected':''}>T1 (Best)</option><option value="2"${m.tier===2?' selected':''}>T2</option><option value="3"${m.tier===3?' selected':''}>T3</option><option value="4"${m.tier===4?' selected':''}>T4</option></select></div></div>
+    <div class="fr"><div class="fl">Architecture</div><div class="fv"><input class="inp" id="e_arch" value="${escv(m.architecture||'')}"></div></div>
+    <div class="fr"><div class="fl">Status</div><div class="fv"><select class="inp" id="e_status"><option value="active"${m.status==='active'?' selected':''}>Active</option><option value="broken"${m.status==='broken'?' selected':''}>Broken</option><option value="removed"${m.status==='removed'?' selected':''}>Removed</option></select></div></div>
+    <div class="fr"><div class="fl">Agent Ready</div><div class="fv"><select class="inp" id="e_ready"><option value="true"${m.agent_ready?' selected':''}>Yes</option><option value="false"${!m.agent_ready?' selected':''}>No</option></select></div></div>
+    <div class="fr"><div class="fl">Speed (0-5)</div><div class="fv"><input class="inp" type="number" min="0" max="5" id="e_speed" value="${m.speed_rating||0}"></div></div>
+    <div class="fr"><div class="fl">Context Window</div><div class="fv"><input class="inp" type="number" id="e_ctx" value="${m.context_window||0}"></div></div>
+    <div class="fr"><div class="fl">GPU</div><div class="fv"><input class="inp" id="e_gpu" value="${escv(m.gpu||'')}"></div></div>
+    <h3 style="margin:14px 0 8px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px">Pricing</h3>
+    <div class="fr"><div class="fl">Cost Type</div><div class="fv"><select class="inp" id="e_ctype">
+      <option value="free"${(cost.type||'').includes('free')?' selected':''}>Free</option>
+      <option value="free_tier"${cost.type==='free_tier'?' selected':''}>Free Tier</option>
+      <option value="subscription"${cost.type==='subscription'?' selected':''}>Subscription</option>
+      <option value="payg"${cost.type==='payg'?' selected':''}>Pay-as-you-go</option>
+      <option value="pay_per_token"${cost.type==='pay_per_token'?' selected':''}>Pay per Token</option>
+    </select></div></div>
+    <div class="fr"><div class="fl">Amount ($)</div><div class="fv"><input class="inp" type="number" step="0.01" id="e_camount" value="${cost.amount||0}"></div></div>
+    <div class="fr"><div class="fl">Period</div><div class="fv"><input class="inp" id="e_cperiod" value="${escv(cost.period||'')}" placeholder="e.g. monthly, hourly"></div></div>
+    <div class="fr"><div class="fl">Limits</div><div class="fv"><input class="inp" id="e_climits" value="${escv(cost.limits||'')}" placeholder="e.g. 100K tokens/day"></div></div>
+    <div class="fr"><div class="fl">Source URL</div><div class="fv"><input class="inp" id="e_csource" value="${escv(cost.source_url||'')}" placeholder="https://..."></div></div>
+    <h3 style="margin:14px 0 8px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px">Capabilities (0-5)</h3>
+    <div class="fr"><div class="fl">Reasoning</div><div class="fv"><input class="inp" type="number" min="0" max="5" id="e_creason" value="${cap.reasoning||0}"></div></div>
+    <div class="fr"><div class="fl">Coding</div><div class="fv"><input class="inp" type="number" min="0" max="5" id="e_ccoding" value="${cap.coding||0}"></div></div>
+    <div class="fr"><div class="fl">Creative</div><div class="fv"><input class="inp" type="number" min="0" max="5" id="e_ccreative" value="${cap.creative||0}"></div></div>
+    <div class="fr"><div class="fl">Vision</div><div class="fv"><select class="inp" id="e_cvision"><option value="true"${cap.vision?' selected':''}>Yes</option><option value="false"${!cap.vision?' selected':''}>No</option></select></div></div>
+    <div class="fr"><div class="fl">Tool Calls</div><div class="fv"><select class="inp" id="e_ctools"><option value="true"${cap.tool_calls?' selected':''}>Yes</option><option value="false"${!cap.tool_calls?' selected':''}>No</option></select></div></div>
+    <div class="fr"><div class="fl">Thinking</div><div class="fv"><select class="inp" id="e_cthinking"><option value="true"${cap.thinking?' selected':''}>Yes</option><option value="false"${!cap.thinking?' selected':''}>No</option></select></div></div>
+    <h3 style="margin:14px 0 8px;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px">Notes</h3>
+    <div class="fr"><div class="fl">User Notes</div><div class="fv"><textarea class="inp" id="e_unotes">${esc(m.user_notes||'')}</textarea></div></div>
+    <div class="fr"><div class="fl">Research Notes</div><div class="fv"><textarea class="inp" id="e_rnotes">${esc(m.research_notes||'')}</textarea></div></div>
+    <div class="fr"><div class="fl">Last Tested</div><div class="fv"><input class="inp" type="date" id="e_tested" value="${m.last_tested||''}"></div></div>`;
+  }
+  document.getElementById('mcont').innerHTML=h;
+  document.getElementById('mmod').classList.add('open');
+  D.editM=m;
+}
+
+async function saveModelDetail(){
+  const m=D.editM;if(!m)return;
+  const updated={
+    id:m.id,
+    name:document.getElementById('e_name').value,
+    provider:document.getElementById('e_provider').value,
+    tier:parseInt(document.getElementById('e_tier').value)||0,
+    architecture:document.getElementById('e_arch').value,
+    status:document.getElementById('e_status').value,
+    agent_ready:document.getElementById('e_ready').value==='true',
+    speed_rating:parseInt(document.getElementById('e_speed').value)||0,
+    context_window:parseInt(document.getElementById('e_ctx').value)||0,
+    gpu:document.getElementById('e_gpu').value,
+    cost:{
+      type:document.getElementById('e_ctype').value,
+      amount:parseFloat(document.getElementById('e_camount').value)||0,
+      period:document.getElementById('e_cperiod').value,
+      limits:document.getElementById('e_climits').value,
+      source_url:document.getElementById('e_csource').value,
+      last_checked:new Date().toISOString().split('T')[0]
+    },
+    capabilities:{
+      reasoning:parseInt(document.getElementById('e_creason').value)||0,
+      coding:parseInt(document.getElementById('e_ccoding').value)||0,
+      creative:parseInt(document.getElementById('e_ccreative').value)||0,
+      vision:document.getElementById('e_cvision').value==='true',
+      tool_calls:document.getElementById('e_ctools').value==='true',
+      thinking:document.getElementById('e_cthinking').value==='true'
+    },
+    user_notes:document.getElementById('e_unotes').value,
+    research_notes:document.getElementById('e_rnotes').value,
+    last_tested:document.getElementById('e_tested').value,
+    // Preserve existing fields
+    research_sources:m.research_sources||[],
+    catalogued_by:m.catalogued_by||'dashboard'
+  };
+  const r=await api('/api/models',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(updated)});
+  if(r&&r.ok){toast('Saved: '+updated.id,true);editMode=false;await refresh();await openModelDetail(updated.id)}
+  else toast('Save failed: '+(r&&r.error||'unknown'),false)}
+
+async function deleteModel(id){
+  if(!confirm('Delete "'+id+'"? Cannot be undone.'))return;
+  const r=await api('/api/models?id='+encodeURIComponent(id),{method:'DELETE'});
+  if(r&&r.ok){toast('Deleted: '+id,true);closeMod('mmod');await refresh()}else toast('Failed',false)}
+
+function openNewModel(){
+  const m={id:'provider/model-name',name:'',provider:'',status:'active',agent_ready:true,speed_rating:3,context_window:128000,cost:{type:'free',amount:0,period:'',limits:'',source_url:''},capabilities:{reasoning:3,coding:3,creative:3,vision:false,tool_calls:true,thinking:false},user_notes:'',research_notes:'',catalogued_by:'dashboard',last_tested:''};
+  editMid=null;editMode=true;renderModelDetail(m);
+}
+
+function closeMod(id){document.getElementById(id).classList.remove('open');editMode=false;editMid=null;D.editM=null}
+
+// ═══════════════════════════════════════════════════════════
+// PROJECTS TAB
+// ═══════════════════════════════════════════════════════════
+function renderProjects(){
+  const p=D.projects;
+  if(!p||!p.projects.length){
+    document.getElementById('pstats').innerHTML='<div class="card">No projects yet.</div>';return;
+  }
+  document.getElementById('pstats').innerHTML=`
+    <div class="card st"><div class="v">${p.count}</div><div class="l">Projects</div></div>
+    <div class="card st"><div class="v">${p.projects.filter(x=>x.session_count>0).length}</div><div class="l">Active</div></div>`;
+  let h='';
+  for(const proj of p.projects){
+    const al=proj.allowlist_count||0,fo=proj.free_only||false;
+    h+=`<div class="card" style="margin-bottom:8px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px">
+        <div>
+          <div style="font-weight:600;color:#fff;font-size:14px">${esc(proj.name)}</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:3px">${proj.session_count} sessions · ${proj.task_count||0} tasks</div>
+          <div style="margin-top:5px">
+            ${al?`<span class="pill g">${al} whitelisted</span>`:''}
+            ${fo?`<span class="pill b">FREE ONLY</span>`:''}
+            ${!al&&!fo?`<span style="font-size:11px;color:var(--muted)">All models allowed</span>`:''}
+          </div>
+        </div>
+        <div style="display:flex;gap:4px;flex-shrink:0">
+          <button class="btn btn-y btn-xs" onclick="openProjConfig('${escv(proj.name)}')">${al?'Edit':'Set'} Allowlist</button>
+          <button class="btn btn-xs" onclick="togProjFree('${escv(proj.name)}',${!fo})">${fo?'Disable':'Enable'} Free-Only</button>
+        </div>
+      </div></div>`;
+  }
+  document.getElementById('plist').innerHTML=h;
+}
+
+async function openProjConfig(name){
+  const all=await api('/api/models?all=1');
+  const pc=((D.config||{}).projects||{})[name]||{};
+  const wl=pc.model_allowlist||[],fo=pc.free_only||false;
+  const models=all.models||[];
+
+  let h=`<div class="mh"><h2>Allowlist — ${esc(name)}</h2><button class="btn btn-m" onclick="closeMod('pmod')">Close</button></div>`;
+  h+=`<p style="font-size:12px;color:var(--muted);margin-bottom:10px">Select which models this project can use. Empty = all allowed (subject to global filters).</p>`;
+
+  // Free-only toggle
+  h+=`<div style="margin-bottom:14px;display:flex;align-items:center;gap:10px">
+    <div class="tog" onclick="togPill('pfp','pfc')"><span class="lbl">Per-Project Free-Only</span><div class="sw ${fo?' on':''}" id="pfc"></div></div>
+    <span class="pill g" id="pfp" style="display:${fo?'inline-flex':'none'}">ON</span>
+    <button class="btn btn-g btn-xs" onclick="saveProjCfg('${escv(name)}')">💾 Save</button>
+  </div>`;
+
+  // Search
+  h+=`<input class="inp" id="alSearch" placeholder="Search models..." oninput="filterAlp()" style="width:100%;margin-bottom:8px"><br>`;
+
+  // Picker
+  h+=`<div class="alp" id="alp">`;
+  for(const m of models){
+    const ck=wl.includes(m.id)?'checked':'';
+    h+=`<label class="ali"><input type="checkbox" value="${escv(m.id)}" ${ck} class="alcb">
+      <div><div class="nm">${esc(m.name||m.id.split('/').pop())}</div><div class="id">${esc(m.id)}</div></div></label>`;
+  }
+  h+=`</div>`;
+  h+=`<div style="font-size:11px;color:var(--muted)">${wl.length} currently whitelisted</div>`;
+  document.getElementById('pcont').innerHTML=h;
+  document.getElementById('pmod').classList.add('open');
+}
+
+function filterAlp(){
+  const q=(document.getElementById('alSearch').value||'').toLowerCase();
+  document.querySelectorAll('#alp .ali').forEach(el=>{el.style.display=el.textContent.toLowerCase().includes(q)?'flex':'none'})}
+function togPill(pid,cid){const p=document.getElementById(pid),c=document.getElementById(cid);if(c.classList.contains('on')){c.classList.remove('on');p.style.display='none'}else{c.classList.add('on');p.style.display='inline-flex'}}
+async function saveProjCfg(name){
+  const checks=document.querySelectorAll('#alp .alcb:checked');
+  const wl=Array.from(checks).map(c=>c.value);
+  const fo=document.getElementById('pfc').classList.contains('on');
+  const r=await api('/api/config',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({projects:{[name]:{model_allowlist:wl,free_only:fo}}})});
+  if(r&&r.ok){toast('Saved: '+name+' ('+wl.length+' models)',true);closeMod('pmod');await refresh()}else toast('Failed',false)}
+async function togProjFree(name,val){
+  const pc=((D.config||{}).projects||{})[name]||{};
+  const r=await api('/api/config',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({projects:{[name]:{model_allowlist:pc.model_allowlist||[],free_only:val}}})});
+  if(r&&r.ok){toast('Free-only '+(val?'ON':'OFF')+' for '+name,true);await refresh()}else toast('Failed',false)}
+
+// ═══════════════════════════════════════════════════════════
+// SESSIONS TAB
+// ═══════════════════════════════════════════════════════════
+function renderSessions(){
+  const ss=D.sessions;
+  if(!ss||!ss.sessions||!ss.sessions.length){
+    document.getElementById('scontent').innerHTML='<h2>Sessions</h2><p style="color:var(--muted)">No sessions logged.</p>';return;
+  }
+  let h='<h2>Sessions ('+ss.count+')</h2><div class="tw"><table><tr><th>Date</th><th>Project</th><th>Task</th><th>Model</th><th>Agent</th><th>QA</th><th>Status</th></tr>';
+  for(const s of ss.sessions){
+    h+=`<tr><td>${esc(s.date)}</td><td>${esc(s.project)}</td>
+      <td style="font-family:monospace;font-size:11px;max-width:200px;overflow:hidden;text-overflow:ellipsis">${esc(s.task)}</td>
+      <td>${esc(s.model)}</td><td>${s.agent||'shell'}</td>
+      <td>${s.qa_done?'<span style="color:var(--green)">✓</span>':'–'}</td><td>${esc(s.status)}</td></tr>`;
+  }
+  h+='</table></div>';
+  document.getElementById('scontent').innerHTML=h;
+}
+
+// ═══════════════════════════════════════════════════════════
+// PRICES TAB
+// ═══════════════════════════════════════════════════════════
+function renderPrices(){
+  const p=D.prices;
+  if(!p||!p.entries.length){
+    document.getElementById('prcontent').innerHTML='<h2>Price Changes</h2><p style="color:var(--muted)">No entries.</p>';return;
+  }
+  let h='<h2>Price Changes ('+p.count+')</h2><pre style="font-family:monospace;font-size:11px;white-space:pre-wrap;max-height:400px;overflow-y:auto">';
+  for(const e of p.entries)h+=esc(e.text)+'\n';
+  h+='</pre>';
+  document.getElementById('prcontent').innerHTML=h;
+}
+
+// ── INIT ──
+// ═══════════════════════════════════════════════════════════
+// PROJECT DETAIL — Doc Editor, Sessions, Files
+// ═══════════════════════════════════════════════════════════
+let curProj=null,curDocTab='state',docEditing=false,docOrigContent='';
+
+function openProjDetail(name){
+  document.getElementById('plist').style.display='none';
+  document.getElementById('pdetail').style.display='block';
+  document.getElementById('pd-name').textContent=name;
+  loadProjDetail(name);
+}
+function closeProjDetail(){
+  document.getElementById('plist').style.display='block';
+  document.getElementById('pdetail').style.display='none';
+  curProj=null;curDocTab='state';docEditing=false;
+}
+async function loadProjDetail(name){
+  curProj=name;
+  const state=await api('/api/project-state?name='+encodeURIComponent(name));
+  D.projectState=state;
+  renderDocTab();
+}
+function switchDocTab(tab){
+  curDocTab=tab;docEditing=false;
+  document.querySelectorAll('[data-dtab]').forEach(el=>el.classList.toggle('a',el.dataset.dtab===tab));
+  renderDocTab();
+}
+function renderDocTab(){
+  const state=D.projectState;if(!state)return;
+  const editor=document.getElementById('docEditor');
+  const preview=document.getElementById('docPreview');
+  const sessionsArea=document.getElementById('docSessionsArea');
+  const filesArea=document.getElementById('docFilesArea');
+  const editorArea=document.getElementById('docEditorArea');
+  sessionsArea.style.display='none';filesArea.style.display='none';
+  if(curDocTab==='sessions'){
+    editorArea.style.display='none';sessionsArea.style.display='block';
+    const tbody=document.getElementById('projSessionsBody');
+    if(!state.sessions||!state.sessions.length){tbody.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--muted);padding:16px">No sessions</td></tr>';return;}
+    let h='';for(const s of state.sessions){h+=`<tr><td>${esc(s.date||'')}</td><td style="font-family:monospace;font-size:11px;max-width:200px;overflow:hidden;text-overflow:ellipsis">${esc(s.task||'')}</td><td>${esc(s.model||'')}</td><td>${esc(s.agent||'shell')}</td><td>${esc(s.status||'')}</td><td>${esc(s.duration||'')}</td></tr>`;}
+    tbody.innerHTML=h;return;
+  }
+  if(curDocTab==='files'){
+    editorArea.style.display='none';filesArea.style.display='block';renderProjFiles();return;
+  }
+  editorArea.style.display='block';
+  const dm={state:'STATE.md',roadmap:'ROADMAP.md',context:'CONTEXT.md',notes:'NOTES.md'};
+  const cm={state:state.state||'',roadmap:state.roadmap||'',context:state.context||'',notes:state.notes||''};
+  document.getElementById('docFileName').textContent=dm[curDocTab];
+  docOrigContent=cm[curDocTab];docEditing=false;
+  editor.value=docOrigContent;editor.disabled=true;
+  preview.style.display='none';editor.style.display='block';
+  document.getElementById('docEditBtn').style.display='inline-block';
+  document.getElementById('docSaveBtn').style.display='none';
+  document.getElementById('docCancelBtn').style.display='none';
+  preview.innerHTML=renderMd(docOrigContent);
+}
+function toggleDocEdit(){
+  docEditing=true;
+  const e=document.getElementById('docEditor');e.disabled=false;e.style.display='block';
+  document.getElementById('docPreview').style.display='none';
+  document.getElementById('docEditBtn').style.display='none';
+  document.getElementById('docSaveBtn').style.display='inline-block';
+  document.getElementById('docCancelBtn').style.display='inline-block';
+}
+function cancelDocEdit(){
+  docEditing=false;const e=document.getElementById('docEditor');
+  e.value=docOrigContent;e.disabled=true;
+  document.getElementById('docEditBtn').style.display='inline-block';
+  document.getElementById('docSaveBtn').style.display='none';
+  document.getElementById('docCancelBtn').style.display='none';
+}
+async function saveDoc(){
+  const content=document.getElementById('docEditor').value;
+  const dm={state:'STATE.md',roadmap:'ROADMAP.md',context:'CONTEXT.md',notes:'NOTES.md'};
+  const r=await api('/api/project-doc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:curProj,file:dm[curDocTab],content})});
+  if(r&&r.ok){
+    toast('Saved: '+dm[curDocTab],true);docEditing=false;
+    document.getElementById('docEditor').disabled=true;
+    document.getElementById('docEditBtn').style.display='inline-block';
+    document.getElementById('docSaveBtn').style.display='none';
+    document.getElementById('docCancelBtn').style.display='none';
+    if(D.projectState){const k=curDocTab==='state'?'state':curDocTab==='roadmap'?'roadmap':curDocTab==='context'?'context':'notes';D.projectState[k]=content;}
+    document.getElementById('docPreview').innerHTML=renderMd(content);
+  }else toast('Save failed',false);
+}
+function renderProjFiles(){
+  const state=D.projectState;if(!state)return;
+  const docs=state.docs||[];let h='';
+  for(const f of docs){
+    h+=`<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 8px;border-bottom:1px solid var(--border)"><div><span style="font-size:12px">${f.is_md?'📄':'📁'} ${esc(f.name)}</span><span style="font-size:10px;color:var(--muted);margin-left:8px">${f.size}B</span></div><div style="display:flex;gap:4px">${f.is_md?`<button class="btn btn-xs" onclick="openDocFile('${escv(f.name)}')">Open</button>`:''}<button class="btn btn-r btn-xs" onclick="deleteDocFile('${escv(f.name)}')">Delete</button></div></div>`;
+  }
+  if(!h)h='<p style="color:var(--muted);font-size:12px">No files yet.</p>';
+  document.getElementById('projFilesList').innerHTML=h;
+}
+async function openDocFile(fn){
+  const c=await api('/api/project-doc?name='+encodeURIComponent(curProj)+'&file='+encodeURIComponent(fn));
+  if(c&&c.content!==undefined){
+    document.getElementById('docFileName').textContent=fn;
+    const e=document.getElementById('docEditor');e.value=c.content;e.disabled=true;
+    document.getElementById('docPreview').innerHTML=renderMd(c.content);
+    document.getElementById('docEditBtn').style.display='inline-block';
+    document.getElementById('docSaveBtn').style.display='none';
+    document.getElementById('docCancelBtn').style.display='none';
+    document.getElementById('docEditorArea').style.display='block';
+    document.getElementById('docSessionsArea').style.display='none';
+    document.getElementById('docFilesArea').style.display='none';
+    docEditing=false;docOrigContent=c.content;
+  }
+}
+async function deleteDocFile(fn){
+  if(!confirm('Delete "'+fn+'"?'))return;
+  const r=await api('/api/project-doc?name='+encodeURIComponent(curProj)+'&file='+encodeURIComponent(fn),{method:'DELETE'});
+  if(r&&r.ok){toast('Deleted: '+fn,true);await loadProjDetail(curProj)}else toast('Failed',false);
+}
+async function createDocFile(){
+  const fn=document.getElementById('newFileName').value.trim();
+  if(!fn)return toast('Enter filename',false);
+  const r=await api('/api/project-doc',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:curProj,file:fn,content:'# '+fn+'\n\n'})});
+  if(r&&r.ok){toast('Created: '+fn,true);document.getElementById('newFileName').value='';await loadProjDetail(curProj)}else toast('Failed',false);
+}
+function togProjFreeCur(){
+  if(!curProj)return;
+  const s=D.projectState;const cur=s&&s.config?s.config.free_only:false;
+  togProjFree(curProj,!cur);if(s)s.config.free_only=!cur;
+}
+function renderMd(md){
+  if(!md)return '<p style="color:var(--muted)">No content yet. Click Edit to start.</p>';
+  let h=md.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/^### (.+)$/gm,'<h3 style="font-size:14px;font-weight:600;color:#fff;margin:12px 0 6px">$1</h3>')
+    .replace(/^## (.+)$/gm,'<h2 style="font-size:16px;font-weight:700;color:#fff;margin:14px 0 8px">$1</h2>')
+    .replace(/^# (.+)$/gm,'<h1 style="font-size:18px;font-weight:700;color:#fff;margin:16px 0 10px">$1</h1>')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,'<em>$1</em>')
+    .replace(/`(.+?)`/g,'<code style="background:rgba(88,166,255,.1);padding:1px 4px;border-radius:3px;font-size:11px">$1</code>')
+    .replace(/^- (.+)$/gm,'<li style="margin:3px 0 3px 16px">$1</li>')
+    .replace(/\n\n/g,'</p><p style="margin:8px 0">').replace(/\n/g,'<br>');
+  return '<p style="margin:8px 0">'+h+'</p>';
+}
+
+// ── INIT ──
+refresh();
+setInterval(refresh,30000);
+</script>
+</body>
+</html>

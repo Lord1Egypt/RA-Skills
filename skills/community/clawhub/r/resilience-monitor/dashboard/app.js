@@ -8,6 +8,9 @@ const ERROR_LABELS = {
   network_error: "网络错误",
   model_unavailable: "模型不可用",
   context_too_long: "上下文过长",
+  token_parse_error: "Token 解析错误",
+  invalid_model_output: "模型输出格式错误",
+  session_runtime_error: "会话运行错误",
   unknown: "未知",
 };
 

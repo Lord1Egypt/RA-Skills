@@ -1,4 +1,8 @@
-# 🦞 clawbsky v2.0.4
+# 🦞 clawbsky v2.0.13
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/jyothish12345/Clawbsky/main/icon.png" alt="Clawbsky Logo" width="400" />
+</p>
 
 **AI-powered Bluesky CLI** for power users, creators, and automation enthusiasts.
 

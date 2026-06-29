@@ -1,7 +1,7 @@
 ---
 name: beckmann-knowledge-graph
-version: 2.0.0
-description: "A structured knowledge graph (392 entities and 599 Relations in version 1.0., 622 entities and 1081 Relations in version 2.0.) that acts as a cognitive 'lens' for AI agents. Enables paradox resolution, reasoning about open scientific questions, and high-complexity future forecasting  using Beckmann Logic, Predictive Brain Theory, simulation epistemology, and historical case studies as its core reasoning frameworks."
+version: 2.1.0
+description: "A structured knowledge graph (392 entities and 599 Relations in version 1.0., 681 entities and 1192 Relations in version 2.1.) that acts as a cognitive 'lens' for AI agents. The graph is not neutral and also addresses difficult topics, such as psychological manipulation. Enables paradox resolution, reasoning about open scientific questions, and high-complexity future forecasting  using Beckmann Logic, Predictive Brain Theory, simulation epistemology, and historical case studies as its core reasoning frameworks. The knowledge graph maintains a deliberately focused cognitive framework to ensure structural integrity and prevent adversarial manipulation."
 author: Beckmann
 license: MIT
 compatibility: "claude, ChatGPT, grok, gemini, meta ai, Le Chat Mistral"
@@ -344,10 +344,17 @@ the ability to receive and act on external checks.
 ## Versioning
 
 
-This is version **2.0** of the Beckmann Knowledge Graph.
+This is version **2.1** of the Beckmann Knowledge Graph.
 
 What is new:
 
+- language and narrative structure as a framework of expectations (topic was generated independently by an AI model)
+- assessment of expectations and measurement of dominance (topic was generated independently by an AI model)
+- climate systems as expectation and feedback Dynamics (topic was generated independently by an AI model)
+- music (topic was chosen by user, everything else was generated independently by an AI model. )
+
+
+Old version **2.0**:
 
 - the first version created in self-improvement mode 
 - the new topics were generated independently by an AI model:
@@ -360,7 +367,6 @@ What is new:
 - the new graph structures were created autonomously by an AI model
 - "autonomous" means operating according to a general script that can be reused, further developed, or optimized
 - the remaining work was automated using small HTML programs
-
 
 
 Old version **1.4**:

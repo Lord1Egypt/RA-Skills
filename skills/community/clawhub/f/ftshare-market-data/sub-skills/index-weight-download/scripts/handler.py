@@ -12,7 +12,7 @@ from typing import Optional
 SAFE_URLOPENER = urllib.request.build_opener()
 
 BASE_URL = "https://market.ft.tech"
-PATH_PREFIX = "/data/api/v1/market/data/index/index_weight/"
+PATH_PREFIX = "/gateway/api/v1/market/data/index/index_weight/"
 
 
 def _safe_output_path(path: str, base_dir: Optional[str] = None) -> str:

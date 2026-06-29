@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Sunburst Chart</title></head>
+<body style="margin:0;background:#f5f0eb;font-family:system-ui">
+<!-- Sunburst Chart — archviz-skills -->
+<!-- Use for: hierarchical composition, multi-level part-to-whole -->
+<canvas id="c" width="500" height="500"></canvas>
+<script>
+const data = {
+  name:"Root",value:100,color:"#a8a29e",
+  children:[
+    {name:"Product",value:45,color:"#002FA7",
+     children:[{name:"A",value:25,color:"#3355aa"},{name:"B",value:20,color:"#5577cc"}]},
+    {name:"Service",value:30,color:"#94a3b8",
+     children:[{name:"C",value:18,color:"#7a8fa0"},{name:"D",value:12,color:"#a0b0c0"}]},
+    {name:"Other",value:25,color:"#d6d3d1",
+     children:[{name:"E",value:15,color:"#c0c0c0"},{name:"F",value:10,color:"#d8d8d8"}]}
+  ]
+};
+const ctx=document.getElementById("c").getContext("2d");
+const cx=250,cy=250;
+function drawArc(innerR,outerR,startAngle,endAngle,color){
+  ctx.beginPath();ctx.arc(cx,cy,outerR,startAngle,endAngle);ctx.arc(cx,cy,innerR,endAngle,startAngle,true);ctx.closePath();ctx.fillStyle=color;ctx.fill();ctx.strokeStyle="#f5f0eb";ctx.lineWidth=2;ctx.stroke();
+}
+let angle=-Math.PI/2;
+const total=data.children.reduce((s,c)=>s+c.value,0);
+data.children.forEach(c=>{
+  const sweep=Math.PI*2*c.value/total;
+  drawArc(60,120,angle,angle+sweep,c.color);
+  if(c.children){
+    let ca=angle;
+    const ct=c.children.reduce((s,ch)=>s+ch.value,0);
+    c.children.forEach(ch=>{
+      const cs=Math.PI*2*ch.value/ct*(sweep);
+      drawArc(120,180,ca,ca+cs,ch.color);
+      ctx.fillStyle="#44403c";ctx.font="11px system-ui";ctx.textAlign="center";
+      const mid=ca+cs/2, mr=(120+180)/2;
+      ctx.fillText(ch.name,cx+mr*Math.cos(mid),cy+mr*Math.sin(mid)+4);
+      ca+=cs;
+    });
+  }
+  ctx.fillStyle="#1B365D";ctx.font="bold 13px system-ui";ctx.textAlign="center";
+  const mid=angle+sweep/2,mr=(60+120)/2;
+  ctx.fillText(c.name,cx+mr*Math.cos(mid),cy+mr*Math.sin(mid)+4);
+  angle+=sweep;
+});
+</script>
+</body></html>

@@ -1,0 +1,19 @@
+{
+  "scan_limit": 700,
+  "import_source": "polymarket",
+  "team_universe": "Brazil,France,England,Argentina,Spain,Germany,Portugal,Netherlands,Sweden,Mexico,USA,Japan,Morocco,Croatia,Uruguay",
+  "min_advance_yes": 0.2,
+  "max_advance_yes": 0.75,
+  "min_winner_yes": 0.002,
+  "max_winner_yes": 0.35,
+  "winner_reprice_boost": 0.1,
+  "min_settle_edge": 0.0,
+  "min_cross_gap": 0.15,
+  "min_reprice_edge": -0.35,
+  "max_spread": 0.06,
+  "max_slippage_pct": 0.1,
+  "per_leg_usd": 1.0,
+  "daily_budget_usd": 2.5,
+  "max_pairs_per_run": 1,
+  "cooldown_hours": 24
+}

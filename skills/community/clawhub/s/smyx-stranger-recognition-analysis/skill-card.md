@@ -1,5 +1,5 @@
 ## Description: <br>
-Identifies strangers in surveillance video or images through facial comparison and returns structured recognition reports. <br>
+Identifies strangers in surveillance-area images or video streams through facial comparison, then returns structured recognition results, warnings, and report links. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,37 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Security operators, property managers, and access-control teams use this skill to analyze authorized surveillance media, identify known or unfamiliar faces, enroll approved people into a face database, and review cloud-hosted recognition report history. <br>
+Security operators, facility managers, and developers use this skill to analyze uploaded or URL-based surveillance media for unfamiliar faces, compare faces against a known-person base, enroll known persons when authorized, and query historical recognition reports. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Cloud facial-recognition analysis may upload surveillance media and biometric face data to a provider-controlled service. <br>
-Mitigation: Use only with authorization for the people, locations, and media involved; confirm consent, retention, and provider data-handling requirements before installation. <br>
-Risk: Enrollment can persist face records in a cloud database under the supplied open-id. <br>
-Mitigation: Enroll people only when there is a clear operational need, use a controlled open-id, and review how enrolled records can be accessed, retained, or removed. <br>
-Risk: The security evidence flags under-disclosed account, token, local persistence, enrollment, and API-documentation risks. <br>
-Mitigation: Review configuration files and credentials before use, avoid storing sensitive tokens in shared workspaces, and verify API behavior against the provider before relying on reports. <br>
+Risk: Surveillance images or videos and account-linked metadata are sent to the provider's cloud service. <br>
+Mitigation: Use only with explicit authorization for the monitored area and the people affected; avoid submitting sensitive media unless the operator accepts the provider-cloud exposure. <br>
+Risk: Face enrollment and history retrieval can affect or expose account-linked biometric records. <br>
+Mitigation: Require operator approval before enrollment or history lookup, and confirm the intended account context before running those actions. <br>
+Risk: Local workspace data can include a SQLite token store or default account context. <br>
+Mitigation: Protect the workspace, avoid shared environments, and clear local data after use when the environment is not trusted. <br>
+Risk: The security verdict is suspicious due to biometric media handling, cloud history, enrollment, and local persistence concerns. <br>
+Mitigation: Review the skill and scan results before deployment, especially for privacy, consent, account ownership, and retention requirements. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/smyx-stranger-recognition-analysis) <br>
-- [Skill API reference](references/api_doc.md) <br>
+- [ClawHub Skill Page](https://clawhub.ai/18072937735/skills/smyx-stranger-recognition-analysis) <br>
+- [Skill Demo](https://lifeemergence.com/sample.html) <br>
+- [API Interface Documentation](references/api_doc.md) <br>
+- [Shared Analysis API Notes](skills/smyx_analysis/references/api_doc.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON report text, with Python command examples and configuration guidance.] <br>
+**Output Type(s):** [text, markdown, json, files, shell commands] <br>
+**Output Format:** [Markdown reports and JSON-formatted structured results, with optional saved text output files.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an open-id plus an authorized video, image, or media URL; can optionally enroll a named person into the face database.] <br>
+**Other Properties Related to Output:** [May include recognition summaries, enrollment results, warning text, report links, and cloud history query results.] <br>
 
 ## Skill Version(s): <br>
-1.0.3 (source: server release evidence and SKILL.md frontmatter) <br>
+1.0.4 (source: server release metadata; artifact frontmatter says 1.0.3) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

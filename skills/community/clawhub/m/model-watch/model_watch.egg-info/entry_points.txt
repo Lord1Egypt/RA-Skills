@@ -1,0 +1,2 @@
+[console_scripts]
+model-watch = model_watch.cli:main

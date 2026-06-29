@@ -1,0 +1,12 @@
+{
+  "description": "Body: short village merchant with round silhouette. Clothing: patched green coat, red scarf, tiny backpack. Expression: curious and friendly. Pose: standing idle, hands visible. Accessories: small coin pouch and wooden staff.",
+  "image_size": {
+    "width": 64,
+    "height": 64
+  },
+  "view": "low top-down",
+  "name": "village-merchant",
+  "no_background": true,
+  "enhance_prompt": true,
+  "seed": 0
+}

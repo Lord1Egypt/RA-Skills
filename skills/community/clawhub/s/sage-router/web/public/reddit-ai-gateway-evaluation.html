@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI gateway evaluation kit for Reddit-style model-router comparisons: local-first custody, OpenRouter BYOK boundary, 429 failover, multimodal routing, hosted key activation, and a copyable setup proof." />
+  <link rel="canonical" href="https://sagerouter.dev/reddit-ai-gateway-evaluation" />
+  <meta property="og:title" content="AI gateway evaluation kit | Sage Router" />
+  <meta property="og:description" content="A practical evaluation page for comparing Sage Router with hosted model gateways, OpenRouter, BYOK providers, local Ollama, and Tailnet routing." />
+  <meta property="og:url" content="https://sagerouter.dev/reddit-ai-gateway-evaluation" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>AI gateway evaluation kit | Sage Router</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07100d;--panel:rgba(13,29,24,.84);--soft:rgba(255,255,255,.045);--border:rgba(166,255,207,.16);--muted:#a9c5b8;--text:#edfdf5;--brand:#8df0b2;--amber:#f7d57a;--blue:#8ab4ff}*{box-sizing:border-box}body{margin:0;min-width:320px;background:linear-gradient(180deg,#07100d 0%,#0b1518 54%,#07100d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}a{color:inherit}.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;color:var(--muted)}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;color:var(--text);text-decoration:none}.brandMark{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(141,240,178,.42);border-radius:8px;color:#062016;background:linear-gradient(135deg,var(--brand),var(--amber))}.navLinks{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;font-weight:750}.navLinks a{text-decoration:none}.navLinks a:hover,footer a:hover{color:var(--text)}header{padding:72px 0 38px}.eyebrow{color:var(--brand);font-weight:900;letter-spacing:.16em;text-transform:uppercase;font-size:12px;margin:0 0 16px}h1{font-size:clamp(44px,7vw,82px);line-height:.94;margin:0 0 22px;max-width:960px}h2{font-size:clamp(28px,4vw,44px);line-height:1.05;margin:0 0 16px}h3{font-size:21px;margin:0 0 8px}.lead{font-size:clamp(20px,2.2vw,26px);line-height:1.36;color:#d2eadf;max-width:900px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.button{min-height:46px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:0 20px;font-weight:900;text-decoration:none}.primary{background:var(--brand);color:#06160d}.secondary{border:1px solid var(--border);background:rgba(255,255,255,.05);color:var(--text)}main{padding:24px 0 68px}.stack{display:grid;gap:22px}.panel{border:1px solid var(--border);border-radius:8px;background:var(--panel);padding:28px}.panel.soft{background:var(--soft)}.panel p,.panel li,.muted{color:var(--muted)}.panel p{margin:0 0 14px}.panel p:last-child{margin-bottom:0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.two{display:grid;grid-template-columns:minmax(0,.9fr) minmax(330px,.7fr);gap:18px;align-items:start}.list{display:grid;gap:10px;margin:0;padding-left:22px}.codebox{white-space:pre-wrap;overflow:auto;border:1px solid var(--border);border-radius:8px;background:rgba(0,0,0,.28);color:#d9e6ff;padding:18px;font-size:.92rem}.copyRow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px}.copyButton{border:0;border-radius:999px;background:var(--brand);color:#04150d;cursor:pointer;font-weight:900;min-height:42px;padding:0 18px}.copyStatus{color:var(--muted);font-size:14px;min-height:22px}code{color:#d9e6ff}.callout{border-color:rgba(247,213,122,.32);background:rgba(247,213,122,.07)}.callout strong{color:var(--amber)}footer{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:.9rem;padding:34px 0 54px;border-top:1px solid rgba(166,255,207,.1)}footer span{margin-right:auto}@media(max-width:900px){.grid,.two{grid-template-columns:1fr}.nav{align-items:flex-start;flex-direction:column}.button{width:100%}}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "AI gateway evaluation kit",
+    "description": "AI gateway evaluation kit for Reddit-style model-router comparisons: local-first custody, OpenRouter BYOK boundary, 429 failover, multimodal routing, hosted key activation, and a copyable setup proof.",
+    "author": {"@type": "Organization", "name": "Sage Router"},
+    "publisher": {"@type": "Organization", "name": "Sage Router"},
+    "mainEntityOfPage": "https://sagerouter.dev/reddit-ai-gateway-evaluation"
+  }
+  </script>
+</head>
+<body>
+  <nav class="nav wrap" aria-label="Main navigation">
+    <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+    <div class="navLinks">
+      <a href="/quickstart">Quickstart</a>
+      <a href="/compare/model-gateways">Model gateway</a>
+      <a href="/compare/openrouter">vs OpenRouter</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/status">Status</a>
+      <a href="https://app.sagerouter.dev/account.html">Account</a>
+    </div>
+  </nav>
+
+  <header class="wrap">
+    <p class="eyebrow">Reddit evaluation kit</p>
+    <h1>Evaluate an AI gateway without losing provider custody</h1>
+    <p class="lead">Use this page when comparing Sage Router with hosted model gateways, OpenRouter, BYOK providers, local Ollama, and Tailnet routing. It packages the practical proof points people ask for in Reddit-style evaluation threads.</p>
+    <div class="actions">
+      <a class="button primary" href="/quickstart" data-reddit-event="content_article_quickstart_clicked" data-reddit-button="quickstart">Run the 60-second setup</a>
+      <a class="button secondary" href="/compare/model-gateways" data-reddit-event="content_article_compare_clicked" data-reddit-button="compare-gateways">Compare model gateways</a>
+      <a class="button secondary" href="/compare/openrouter" data-reddit-event="content_article_compare_clicked" data-reddit-button="compare-openrouter">Compare OpenRouter</a>
+      <a class="button secondary" href="/managed-access?intent=max-implementation" data-reddit-event="content_article_managed_access_clicked" data-reddit-button="max-implementation-review">Request Max implementation review</a>
+      <a class="button secondary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key" data-reddit-event="content_article_key_activation_clicked" data-reddit-button="start-pro">Create hosted key</a>
+    </div>
+  </header>
+
+  <main class="wrap stack">
+    <section class="grid">
+      <article class="panel">
+        <h2>Local-first custody</h2>
+        <p>Provider keys, OAuth subscription paths, local Ollama, and private endpoints can stay on the router host. Hosted Sage Router keys authorize account access, quotas, telemetry, and the public edge.</p>
+      </article>
+      <article class="panel">
+        <h2>OpenRouter BYOK boundary</h2>
+        <p>OpenRouter can remain a customer-authorized BYOK route behind Sage Router. Public Sage Router plans do not pretend that OpenRouter access is bundled managed resale.</p>
+      </article>
+      <article class="panel">
+        <h2>Reliability proof</h2>
+        <p>Multiple API keys per provider, load balancing, health-aware failover, 429 retry behavior, and multimodal capability checks are router responsibilities rather than app-by-app glue.</p>
+      </article>
+    </section>
+
+    <section class="two">
+      <article class="panel">
+        <h2>Copyable Reddit-style evaluation post</h2>
+        <pre id="reddit-evaluation-post" class="codebox">I am evaluating AI gateways for agent workloads and want the model layer to stay hot-swappable.
+
+Checklist I am using:
+- One OpenAI-compatible endpoint for Codex, Cursor, OpenClaw, Aider, Continue, OpenHands, and SDK clients.
+- Local-first routing where provider API keys, OAuth subscription paths, local Ollama, and private endpoints can stay on my host or Tailnet.
+- OpenRouter support as a BYOK-compatible route, without assuming bundled marketplace resale in the subscription.
+- Multiple API keys per provider with load balancing and failover, especially on 429s.
+- Capability-aware routing for image, audio, video, document, tool, and long-context requests.
+- A hosted generated key path for quotas, analytics, and public-edge access when I need it.
+
+Sage Router proof page: https://sagerouter.dev/reddit-ai-gateway-evaluation
+60-second setup: https://sagerouter.dev/quickstart
+Gateway comparison: https://sagerouter.dev/compare/model-gateways
+Max implementation review: https://sagerouter.dev/managed-access?intent=max-implementation</pre>
+        <div class="copyRow">
+          <button id="reddit-copy-evaluation-post" class="copyButton" type="button">Copy evaluation post</button>
+          <span id="reddit-copy-post-status" class="copyStatus" role="status" aria-live="polite"></span>
+        </div>
+      </article>
+      <aside class="panel soft">
+        <h2>What to ask in a thread</h2>
+        <ul class="list">
+          <li>Does the gateway route local Ollama and private Tailnet endpoints, or only hosted marketplace models?</li>
+          <li>Can I keep provider credentials and OAuth subscription paths under my control?</li>
+          <li>Can it fail over on 429 without leaking prompts to a random next model family?</li>
+          <li>Does multimodal input get routed only to models that can actually accept it?</li>
+          <li>Can I verify the first generated key before committing an agent harness?</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="two">
+      <article class="panel">
+        <h2>Copyable r/Ollama launch post</h2>
+        <pre id="reddit-ollama-post" class="codebox">I built and open-sourced the model router I run between my agents and Ollama.
+
+Sage Router exposes one OpenAI-compatible endpoint, routes by task/model capability/provider health/policy, and can fail over between local Ollama, Ollama Cloud through your authorized local Ollama runtime, and other providers you configure.
+
+The Ollama-specific use case:
+- keep local Ollama first for privacy, latency, or cost;
+- overflow to cloud providers when local capacity is not enough;
+- fall back to local Ollama when a cloud provider rate-limits or fails;
+- keep provider keys and OAuth/subscription paths on your router host by default;
+- route image/audio/video requests only to models that can actually handle those inputs.
+
+30-second local start:
+python3 router.py --port 8790
+export OPENAI_BASE_URL=http://localhost:8790/v1
+export OPENAI_API_KEY=local-router
+
+Ollama route overview:
+https://sagerouter.dev/ollama-ai-model-router?utm_source=reddit&utm_medium=community&utm_campaign=sage-router-launch
+
+Public model catalog:
+https://sagerouter.dev/models?utm_source=reddit&utm_medium=community&utm_campaign=sage-router-launch
+
+Quickstart:
+https://sagerouter.dev/quickstart?utm_source=reddit&utm_medium=community&utm_campaign=sage-router-launch
+
+Repo:
+https://github.com/earlvanze/sage-router?utm_source=reddit&utm_medium=community&utm_campaign=sage-router-launch
+
+How are you handling failover between local Ollama and cloud models today? Are people mostly keeping that in each app, using Open WebUI, writing a small gateway, or just accepting provider failures?</pre>
+        <div class="copyRow">
+          <button id="reddit-copy-ollama-post" class="copyButton" type="button">Copy r/Ollama post</button>
+          <span id="reddit-copy-ollama-status" class="copyStatus" role="status" aria-live="polite"></span>
+        </div>
+      </article>
+      <aside class="panel soft">
+        <h2>Why this post is separate</h2>
+        <p>r/Ollama readers care about local model ergonomics first. This version leads with local Ollama, Ollama Cloud through authorized local runtime access, cloud overflow, 429 failover, and multimodal capability checks instead of generic gateway comparison language.</p>
+        <p><a href="/ollama-ai-model-router" data-reddit-event="content_article_ollama_clicked" data-reddit-button="ollama-route">Open the Ollama route page →</a></p>
+      </aside>
+    </section>
+
+    <section class="two">
+      <article class="panel">
+        <h2>Copyable r/SideProject launch post</h2>
+        <pre id="reddit-sideproject-post" class="codebox">I built Sage Router because every agent tool I use has its own model config, fallback behavior, and rate-limit failure mode.
+
+The side project became a product: one OpenAI-compatible endpoint for Codex, Cursor, Aider, Continue, OpenHands, OpenAI SDKs, Anthropic-compatible clients, local Ollama, Ollama Cloud through authorized local runtime access, and other BYOK providers.
+
+What it does:
+- chooses routes by task, provider health, model capability, latency, and policy;
+- fails over on 429s and provider outages;
+- load-balances multiple API keys per provider;
+- routes image/audio/video inputs only to capable models;
+- keeps provider credentials local by default when self-hosted;
+- offers hosted generated sk_sage_* keys, quotas, analytics, and reliability routing for teams that want a public edge.
+
+Commercial boundary: Sage Router sells routing infrastructure, not bundled model resale. You still bring authorized provider access unless a future managed-provider beta explicitly satisfies provider terms and unit economics.
+
+Hosted plans are live:
+- Lite: $6/month
+- Pro: $30/month
+- Max: $72/month
+
+Pricing:
+https://sagerouter.dev/pricing?utm_source=reddit&utm_medium=community&utm_campaign=sage-router-launch
+
+Create a hosted key:
+https://app.sagerouter.dev/account.html?plan=pro&start=create_key&utm_source=reddit&utm_medium=community&utm_campaign=sage-router-launch
+
+Quickstart:
+https://sagerouter.dev/quickstart?utm_source=reddit&utm_medium=community&utm_campaign=sage-router-launch
+
+Repo:
+https://github.com/earlvanze/sage-router?utm_source=reddit&utm_medium=community&utm_campaign=sage-router-launch
+
+For people launching AI infrastructure side projects: would you lead with the hosted key workflow, the local-first open-source core, or the OpenRouter comparison?</pre>
+        <div class="copyRow">
+          <button id="reddit-copy-sideproject-post" class="copyButton" type="button">Copy r/SideProject post</button>
+          <span id="reddit-copy-sideproject-status" class="copyStatus" role="status" aria-live="polite"></span>
+        </div>
+      </article>
+      <aside class="panel soft">
+        <h2>Why this post is separate</h2>
+        <p>r/SideProject readers evaluate packaging, pricing, positioning, and founder lessons. This version leads with the shipped hosted plans, generated key flow, and clear commercial boundary rather than only self-hosting mechanics.</p>
+        <p><a href="/pricing" data-reddit-event="content_article_pricing_clicked" data-reddit-button="sideproject-pricing">Open pricing →</a></p>
+        <p><a href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key" data-reddit-event="content_article_key_activation_clicked" data-reddit-button="sideproject-account">Create hosted key →</a></p>
+      </aside>
+    </section>
+
+    <section class="two">
+      <article class="panel">
+        <h2>Copyable 60-second setup proof</h2>
+        <pre id="reddit-setup-proof" class="codebox">export OPENAI_BASE_URL=https://api.sagerouter.dev/v1
+export OPENAI_API_KEY=sk_sage_your_key_here
+
+curl "$OPENAI_BASE_URL/chat/completions" \
+  -H "Authorization: Bearer $OPENAI_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "sage-router/frontier",
+    "messages": [{"role": "user", "content": "Route this through the best healthy model."}]
+  }'
+
+# Account/key setup:
+# https://app.sagerouter.dev/account.html?plan=pro&start=create_key</pre>
+        <div class="copyRow">
+          <button id="reddit-copy-setup-proof" class="copyButton" type="button">Copy 60-second setup proof</button>
+          <span id="reddit-copy-setup-status" class="copyStatus" role="status" aria-live="polite"></span>
+        </div>
+      </article>
+      <aside class="panel callout">
+        <h2><strong>Commercial boundary</strong></h2>
+        <p>Sage Router sells routing infrastructure: generated keys, quotas, analytics, dashboards, health checks, failover, and support. Customers remain responsible for authorized provider access, subscriptions, terms, credentials, and usage rights.</p>
+      </aside>
+    </section>
+
+    <section class="grid">
+      <article class="panel soft">
+        <h3>Ollama and OpenAI first</h3>
+        <p>Primary evaluation paths are local Ollama/Ollama Cloud through local Ollama and OpenAI-compatible hosted routes, with the same endpoint presented to agents.</p>
+      </article>
+      <article class="panel soft">
+        <h3>Anthropic/Dario ready</h3>
+        <p>Anthropic-compatible routing remains part of the provider matrix. If you do not have an active subscription, it stays an optional authorized route rather than a bundled entitlement.</p>
+      </article>
+      <article class="panel soft">
+        <h3>Dashboard-configured</h3>
+        <p>Provider credentials, API-key pools, OAuth paths, load-balancing strategy, failover policy, and learned modalities are visible in the router dashboard for operational review.</p>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>Next steps</h2>
+      <p><a href="/quickstart" data-reddit-event="content_article_quickstart_clicked" data-reddit-button="next-quickstart">Copy the hosted quickstart</a>, <a href="/compare/model-gateways" data-reddit-event="content_article_compare_clicked" data-reddit-button="next-model-gateway">compare model gateways</a>, <a href="/compare/openrouter" data-reddit-event="content_article_compare_clicked" data-reddit-button="next-openrouter">compare OpenRouter</a>, <a href="/model-routing-calculator" data-reddit-event="content_article_calculator_clicked" data-reddit-button="calculator">estimate routing fit</a>, <a href="/managed-access?intent=max-implementation" data-reddit-event="content_article_managed_access_clicked" data-reddit-button="next-max-implementation">request Max implementation review</a>, or <a href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key" data-reddit-event="content_article_key_activation_clicked" data-reddit-button="next-account">create the generated key</a>.</p>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <span>Sage Router</span>
+    <a href="/quickstart">Quickstart</a>
+    <a href="/compare/model-gateways">Model gateway</a>
+    <a href="/compare/openrouter">OpenRouter</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/security">Security</a>
+  </footer>
+  <script>
+    function trackRedditEvaluationEvent(event, data = {}) {
+      const params = new URLSearchParams(window.location.search);
+      let referrerHost = null;
+      try {
+        const referrer = document.referrer ? new URL(document.referrer) : null;
+        referrerHost = referrer && referrer.host !== window.location.host ? referrer.host : null;
+      } catch {}
+      const payload = JSON.stringify({
+        event,
+        plan: data.plan || null,
+        sourcePage: window.location.href,
+        target: data.target || null,
+        metadata: {
+          source: 'article',
+          button: data.button || null,
+          state: 'reddit-evaluation-kit',
+          utmSource: params.get('utm_source') || params.get('utmSource') || null,
+          utmMedium: params.get('utm_medium') || params.get('utmMedium') || null,
+          utmCampaign: params.get('utm_campaign') || params.get('utmCampaign') || null,
+          referrerHost,
+          landingPath: window.location.pathname,
+          snippet: data.snippet || null
+        }
+      });
+      try {
+        if (navigator.sendBeacon) {
+          const blob = new Blob([payload], { type: 'application/json' });
+          if (navigator.sendBeacon('/api/funnel-event', blob)) return;
+        }
+      } catch {}
+      fetch('/api/funnel-event', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: payload,
+        keepalive: true,
+        credentials: 'omit'
+      }).catch(() => {});
+    }
+
+    async function writeClipboardText(text) {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      textarea.remove();
+    }
+
+    async function copyBlock(blockId, statusId, successText, snippet) {
+      const block = document.getElementById(blockId);
+      const status = document.getElementById(statusId);
+      if (!block) return;
+      try {
+        await writeClipboardText(block.textContent.trim());
+        trackRedditEvaluationEvent('quickstart_snippet_copied', {
+          button: blockId,
+          snippet
+        });
+        if (status) status.textContent = successText;
+      } catch {
+        if (status) status.textContent = 'Copy failed. Select the block manually.';
+      }
+    }
+
+    trackRedditEvaluationEvent('content_article_viewed', { button: 'page-view' });
+    document.getElementById('reddit-copy-evaluation-post')?.addEventListener('click', () => {
+      copyBlock('reddit-evaluation-post', 'reddit-copy-post-status', 'Copied evaluation post.', 'reddit-evaluation-post');
+    });
+    document.getElementById('reddit-copy-ollama-post')?.addEventListener('click', () => {
+      copyBlock('reddit-ollama-post', 'reddit-copy-ollama-status', 'Copied r/Ollama post.', 'reddit-ollama-post');
+    });
+    document.getElementById('reddit-copy-sideproject-post')?.addEventListener('click', () => {
+      copyBlock('reddit-sideproject-post', 'reddit-copy-sideproject-status', 'Copied r/SideProject post.', 'reddit-sideproject-post');
+    });
+    document.getElementById('reddit-copy-setup-proof')?.addEventListener('click', () => {
+      copyBlock('reddit-setup-proof', 'reddit-copy-setup-status', 'Copied setup proof.', 'reddit-setup-proof');
+    });
+    document.querySelectorAll('[data-reddit-event]').forEach((link) => {
+      link.addEventListener('click', () => {
+        const href = link.getAttribute('href') || '';
+        const planMatch = href.match(/plan=(lite|pro|max)\b/);
+        trackRedditEvaluationEvent(link.dataset.redditEvent, {
+          plan: planMatch ? planMatch[1] : null,
+          target: href,
+          button: link.dataset.redditButton || link.textContent.trim().slice(0, 60)
+        });
+      });
+    });
+  </script>
+  <script src="/article-activation-dock.js" defer></script>
+</body>
+</html>

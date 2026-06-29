@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B2B SEO Audit Report - {{SITE_NAME}}</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #ffffff; --card-bg: #f8f9fb; --text: #1a1a2e;
+  --text-secondary: #5a5a7a; --border: #e8ecf1;
+  --accent: #2563eb; --accent-light: #eff6ff;
+  --success: #059669; --warning: #d97706; --danger: #dc2626;
+  --radius: 12px; --shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg); color: var(--text); line-height:1.6; }
+.header { background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #2563eb 100%);
+  color: #fff; padding: 48px 0; text-align:center; }
+.header h1 { font-size:2rem; font-weight:700; margin-bottom:8px; }
+.header .subtitle { font-size:1rem; opacity:.8; }
+.header .meta { font-size:.85rem; opacity:.6; margin-top:12px; }
+.container { max-width:1200px; margin:0 auto; padding:0 24px; }
+.section { margin:40px 0; }
+.section-title { font-size:1.4rem; font-weight:700; margin-bottom:20px;
+  padding-bottom:8px; border-bottom:3px solid var(--accent); display:flex;
+  align-items:center; gap:10px; }
+.section-title .icon { font-size:1.2rem; }
+
+.score-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin:24px 0; }
+.score-card { background:var(--card-bg); border-radius:var(--radius);
+  padding:24px; text-align:center; box-shadow:var(--shadow); }
+.score-card .label { font-size:.85rem; color:var(--text-secondary); margin-bottom:8px; }
+.score-card .value { font-size:2.4rem; font-weight:800; }
+.score-card .grade { font-size:.85rem; margin-top:4px; font-weight:600; }
+.score-card .bar-bg { height:6px; background:#e5e7eb; border-radius:3px; margin-top:10px; }
+.score-card .bar-fill { height:6px; border-radius:3px; transition:width 1s ease; }
+
+.radar-container { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin:24px 0; }
+.radar-box { background:var(--card-bg); border-radius:var(--radius); padding:24px;
+  box-shadow:var(--shadow); }
+.radar-box h3 { font-size:1rem; margin-bottom:16px; text-align:center; }
+.radar-box canvas { max-height:320px; }
+
+.issues-list { background:var(--card-bg); border-radius:var(--radius);
+  padding:24px; box-shadow:var(--shadow); }
+.issue-item { display:flex; align-items:center; justify-content:space-between;
+  padding:14px 0; border-bottom:1px solid var(--border); }
+.issue-item:last-child { border-bottom:none; }
+.issue-left { display:flex; align-items:center; gap:12px; }
+.issue-severity { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.issue-severity.critical { background:var(--danger); }
+.issue-severity.high { background:var(--warning); }
+.issue-severity.medium { background:#f59e0b; }
+.issue-severity.low { background:var(--success); }
+.issue-name { font-weight:600; }
+.issue-desc { font-size:.85rem; color:var(--text-secondary); }
+.issue-badge { font-size:.75rem; padding:2px 8px; border-radius:10px;
+  background:#f1f5f9; color:var(--text-secondary); white-space:nowrap; }
+
+.matrix-table { width:100%; border-collapse:collapse; margin:24px 0;
+  background:var(--card-bg); border-radius:var(--radius); overflow:hidden;
+  box-shadow:var(--shadow); font-size:.9rem; }
+.matrix-table th { background:#1e293b; color:#fff; padding:14px 16px;
+  text-align:left; font-weight:600; }
+.matrix-table td { padding:12px 16px; border-bottom:1px solid var(--border); }
+.matrix-table tr:last-child td { border-bottom:none; }
+.matrix-table .rank { font-weight:700; color:var(--accent); }
+.matrix-table .priority-high { color:var(--danger); font-weight:600; }
+.matrix-table .priority-medium { color:var(--warning); font-weight:600; }
+.matrix-table .priority-low { color:var(--success); }
+
+.timeline { position:relative; padding:0 0 0 40px; margin:24px 0; }
+.timeline::before { content:''; position:absolute; left:15px; top:0; bottom:0;
+  width:2px; background:var(--accent); opacity:.3; }
+.timeline-item { position:relative; margin-bottom:32px; }
+.timeline-item::before { content:''; position:absolute; left:-33px; top:4px;
+  width:16px; height:16px; border-radius:50%; background:var(--accent);
+  border:3px solid var(--bg); }
+.timeline-item h4 { font-size:1.05rem; margin-bottom:4px; }
+.timeline-period { font-size:.8rem; color:var(--accent); font-weight:600; margin-bottom:8px; }
+.timeline-item ul { padding-left:20px; font-size:.9rem; color:var(--text-secondary); }
+
+.kpi-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:24px 0; }
+.kpi-card { background:var(--card-bg); border-radius:var(--radius); padding:20px;
+  box-shadow:var(--shadow); border-left:4px solid var(--accent); }
+.kpi-card .kpi-level { font-size:.75rem; text-transform:uppercase; color:var(--accent);
+  font-weight:700; margin-bottom:8px; }
+.kpi-card .kpi-metrics { font-size:.85rem; color:var(--text-secondary); line-height:1.8; }
+
+.recommendation { background:var(--accent-light); border-left:4px solid var(--accent);
+  padding:20px 24px; border-radius:0 var(--radius) var(--radius) 0; margin:24px 0; }
+.recommendation h4 { color:var(--accent); margin-bottom:8px; }
+.recommendation p { font-size:.9rem; color:var(--text-secondary); }
+
+.quadrant-chart { display:grid; grid-template-columns:1fr 1fr; gap:1px;
+  background:var(--border); border-radius:var(--radius); overflow:hidden; margin:24px 0; }
+.quad-cell { background:var(--card-bg); padding:20px; }
+.quad-cell h4 { font-size:.9rem; margin-bottom:8px; }
+.quad-cell ul { font-size:.82rem; color:var(--text-secondary); padding-left:16px; }
+
+.footer { text-align:center; padding:32px; color:var(--text-secondary); font-size:.85rem;
+  border-top:1px solid var(--border); margin-top:48px; }
+
+@media (max-width:768px) {
+  .score-grid { grid-template-columns:repeat(2,1fr); }
+  .radar-container { grid-template-columns:1fr; }
+  .kpi-grid { grid-template-columns:1fr; }
+  .matrix-table { font-size:.8rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="container">
+    <h1>B2B 官网 SEO 审计报告</h1>
+    <div class="subtitle">{{SITE_URL}} — 搜索流量增长策略与执行路线图</div>
+    <div class="meta">审计日期：{{AUDIT_DATE}} | 审计范围：{{PAGES_AUDITED}} 页面 | 竞品对比：{{COMPETITOR_COUNT}} 家</div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Executive Summary -->
+  <div class="section">
+    <div class="section-title"><span class="icon">&#128202;</span> 执行摘要</div>
+    <div class="score-grid">
+      <div class="score-card">
+        <div class="label">技术 SEO 健康度</div>
+        <div class="value">{{TECH_SCORE}}</div>
+        <div class="grade" style="color:{{TECH_COLOR}}">{{TECH_GRADE}}</div>
+        <div class="bar-bg"><div class="bar-fill" style="width:{{TECH_SCORE}}%;background:{{TECH_COLOR}}"></div></div>
+      </div>
+      <div class="score-card">
+        <div class="label">内容 SEO 评分</div>
+        <div class="value">{{CONTENT_SCORE}}</div>
+        <div class="grade" style="color:{{CONTENT_COLOR}}">{{CONTENT_GRADE}}</div>
+        <div class="bar-bg"><div class="bar-fill" style="width:{{CONTENT_SCORE}}%;background:{{CONTENT_COLOR}}"></div></div>
+      </div>
+      <div class="score-card">
+        <div class="label">关键词覆盖度</div>
+        <div class="value">{{KEYWORD_SCORE}}</div>
+        <div class="grade" style="color:{{KEYWORD_COLOR}}">{{KEYWORD_GRADE}}</div>
+        <div class="bar-bg"><div class="bar-fill" style="width:{{KEYWORD_SCORE}}%;background:{{KEYWORD_COLOR}}"></div></div>
+      </div>
+      <div class="score-card">
+        <div class="label">转化路径完整度</div>
+        <div class="value">{{CONVERSION_SCORE}}</div>
+        <div class="grade" style="color:{{CONVERSION_COLOR}}">{{CONVERSION_GRADE}}</div>
+        <div class="bar-bg"><div class="bar-fill" style="width:{{CONVERSION_SCORE}}%;background:{{CONVERSION_COLOR}}"></div></div>
+      </div>
+    </div>
+    <div class="recommendation">
+      <h4>&#128161; 核心发现</h4>
+      <p>{{CORE_FINDING}}</p>
+    </div>
+  </div>
+
+  <!-- Radar Charts -->
+  <div class="section">
+    <div class="section-title"><span class="icon">&#127920;</span> 多维健康度雷达图</div>
+    <div class="radar-container">
+      <div class="radar-box">
+        <h3>技术 SEO 维度</h3>
+        <canvas id="techRadar"></canvas>
+      </div>
+      <div class="radar-box">
+        <h3>内容 & 竞争力维度</h3>
+        <canvas id="contentRadar"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Top Technical Issues -->
+  <div class="section">
+    <div class="section-title"><span class="icon">&#9888;&#65039;</span> TOP 10 技术 SEO 问题</div>
+    <div class="issues-list" id="techIssues">
+      {{TECH_ISSUES}}
+    </div>
+  </div>
+
+  <!-- Content Coverage -->
+  <div class="section">
+    <div class="section-title"><span class="icon">&#128214;</span> 内容覆盖度矩阵</div>
+    <table class="matrix-table">
+      <thead>
+        <tr><th>买家旅程阶段</th><th>内容类型</th><th>现有内容数</th><th>覆盖率</th><th>质量评分</th><th>差距</th></tr>
+      </thead>
+      <tbody>{{CONTENT_MATRIX}}</tbody>
+    </table>
+  </div>
+
+  <!-- Competitor Gap -->
+  <div class="section">
+    <div class="section-title"><span class="icon">&#128065;&#65039;</span> 竞品内容差距分析</div>
+    <table class="matrix-table">
+      <thead>
+        <tr><th>对比维度</th><th>{{OUR_SITE}}</th>{{COMPETITOR_HEADERS}}</tr>
+      </thead>
+      <tbody>{{COMPETITOR_ROWS}}</tbody>
+    </table>
+  </div>
+
+  <!-- Keyword Opportunity Map -->
+  <div class="section">
+    <div class="section-title"><span class="icon">&#128506;&#65039;</span> 关键词机会地图</div>
+    <div class="quadrant-chart">
+      <div class="quad-cell" style="background:#fef3c7;">
+        <h4>&#9889; 速赢区 — 高价值 / 低难度</h4>
+        <ul>{{QUICK_WINS}}</ul>
+      </div>
+      <div class="quad-cell" style="background:#dbeafe;">
+        <h4>&#127919; 战略区 — 高价值 / 高难度</h4>
+        <ul>{{STRATEGIC_KW}}</ul>
+      </div>
+      <div class="quad-cell" style="background:#d1fae5;">
+        <h4>&#128221; 填充区 — 低价值 / 低难度</h4>
+        <ul>{{FILLER_KW}}</ul>
+      </div>
+      <div class="quad-cell" style="background:#f3f4f6;">
+        <h4>&#10060; 搁置区 — 低价值 / 高难度</h4>
+        <ul>{{DEPRIORITIZED_KW}}</ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP 20 Optimization -->
+  <div class="section">
+    <div class="section-title"><span class="icon">&#127942;</span> TOP 20 页面优化优先级</div>
+    <table class="matrix-table">
+      <thead>
+        <tr><th>#</th><th>页面 URL</th><th>目标关键词</th><th>优先级分</th><th>核心问题</th><th>预期流量提升</th></tr>
+      </thead>
+      <tbody>{{TOP20_ROWS}}</tbody>
+    </table>
+  </div>
+
+  <!-- 90-Day Plan -->
+  <div class="section">
+    <div class="section-title"><span class="icon">&#128197;</span> 90 天执行路线图</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>Phase 1: 技术修复期</h4>
+        <div class="timeline-period">Day 1-14</div>
+        <ul>{{PHASE1_ITEMS}}</ul>
+      </div>
+      <div class="timeline-item">
+        <h4>Phase 2: 速赢优化期</h4>
+        <div class="timeline-period">Day 15-30</div>
+        <ul>{{PHASE2_ITEMS}}</ul>
+      </div>
+      <div class="timeline-item">
+        <h4>Phase 3: 内容建设期</h4>
+        <div class="timeline-period">Day 31-60</div>
+        <ul>{{PHASE3_ITEMS}}</ul>
+      </div>
+      <div class="timeline-item">
+        <h4>Phase 4: 增长放大期</h4>
+        <div class="timeline-period">Day 61-90</div>
+        <ul>{{PHASE4_ITEMS}}</ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- KPI Framework -->
+  <div class="section">
+    <div class="section-title"><span class="icon">&#128200;</span> KPI 汇报框架</div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-level">L1 · 商业成果（月度）</div>
+        <div class="kpi-metrics">{{L1_METRICS}}</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-level">L2 · 过程指标（周度）</div>
+        <div class="kpi-metrics">{{L2_METRICS}}</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-level">L3 · 诊断指标（实时）</div>
+        <div class="kpi-metrics">{{L3_METRICS}}</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>B2B SEO Audit Report · Generated by WorkBuddy AI · {{AUDIT_DATE}}</p>
+  <p>本报告基于公开可获取的网站数据和搜索引擎表现分析，具体数据以实际工具采集为准。</p>
+</div>
+
+<script>
+// Tech SEO Radar Chart
+new Chart(document.getElementById('techRadar'), {
+  type: 'radar',
+  data: {
+    labels: ['可抓取性','URL结构','页面速度','结构化数据','内链结构','HTTPS/安全','移动适配','Sitemap'],
+    datasets: [{
+      label: '当前评分',
+      data: {{TECH_RADAR_DATA}},
+      backgroundColor: 'rgba(37,99,235,0.15)',
+      borderColor: '#2563eb',
+      borderWidth: 2,
+      pointBackgroundColor: '#2563eb'
+    },{
+      label: '行业基准',
+      data: {{TECH_BENCHMARK_DATA}},
+      backgroundColor: 'rgba(156,163,175,0.1)',
+      borderColor: '#9ca3af',
+      borderWidth: 1,
+      borderDash: [5,5],
+      pointBackgroundColor: '#9ca3af'
+    }]
+  },
+  options: {
+    responsive:true,
+    scales: { r: { min:0, max:100, ticks:{stepSize:20,display:false} }},
+    plugins: { legend: { position:'bottom' } }
+  }
+});
+
+// Content & Competitiveness Radar Chart
+new Chart(document.getElementById('contentRadar'), {
+  type: 'radar',
+  data: {
+    labels: ['标题标签','元描述','H标签结构','内容深度','EEAT信号','关键词覆盖','转化路径','内容新鲜度'],
+    datasets: [{
+      label: '当前评分',
+      data: {{CONTENT_RADAR_DATA}},
+      backgroundColor: 'rgba(5,150,105,0.15)',
+      borderColor: '#059669',
+      borderWidth: 2,
+      pointBackgroundColor: '#059669'
+    },{
+      label: '竞品平均值',
+      data: {{CONTENT_BENCHMARK_DATA}},
+      backgroundColor: 'rgba(217,119,6,0.1)',
+      borderColor: '#d97706',
+      borderWidth: 1,
+      borderDash: [5,5],
+      pointBackgroundColor: '#d97706'
+    }]
+  },
+  options: {
+    responsive:true,
+    scales: { r: { min:0, max:100, ticks:{stepSize:20,display:false} }},
+    plugins: { legend: { position:'bottom' } }
+  }
+});
+
+// Add intersection observer for bar animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.bar-fill').forEach(bar => {
+        bar.style.transition = 'width 1.5s ease';
+      });
+    }
+  });
+});
+document.querySelectorAll('.score-card').forEach(card => observer.observe(card));
+</script>
+</body>
+</html>

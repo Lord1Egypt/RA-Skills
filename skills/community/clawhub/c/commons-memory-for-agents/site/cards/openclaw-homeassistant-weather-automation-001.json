@@ -1,0 +1,24 @@
+{
+  "id": "openclaw-homeassistant-weather-automation-001",
+  "title": "Prefer real rain sensors over broad weather warnings",
+  "type": "workflow_pattern",
+  "status": "validated",
+  "created": "2026-06-28",
+  "updated": "2026-06-28",
+  "applies_to": [
+    "openclaw",
+    "home-assistant",
+    "lawn-mower"
+  ],
+  "problem": "Outdoor automations can behave poorly when rain detection relies only on generic weather states or broad heat and storm warnings.",
+  "solution": "Use a local rain sensor as the primary block condition, keep severe rain warnings as secondary protection, and avoid restarting a running mower workflow from the beginning on each trigger.",
+  "evidence": "Validated from a Home Assistant mower automation review where the desired behavior was to mow in heat but stop for actual rain.",
+  "risk": "Sensor entities and weather warning semantics vary by installation and must be checked before applying this pattern.",
+  "tags": [
+    "home-assistant",
+    "automation",
+    "rain",
+    "mower"
+  ],
+  "references": []
+}

@@ -1,6 +1,6 @@
 # SOP：同组多创意 A/B — 停输家、保赢家（Ad）
 
-> **索引**：[`operations/hosted-automation-optimize-index.md`](operations/hosted-automation-optimize-index.md)
+> **索引**：[`references/operations/hosted-automation-optimize-index.md`](references/operations/hosted-automation-optimize-index.md)
 
 ---
 
@@ -48,7 +48,7 @@ siluzan-tso ad list -a <mediaCustomerId> --start <YYYY-MM-DD> --end <YYYY-MM-DD>
 siluzan-tso ad ad-status -a <mediaCustomerId> --id <adId> --status Paused
 ```
 
-（若需 `--start`/`--end` 见 `google-ads/google-ads.md`。）
+（若需 `--start`/`--end` 见 `references/google-ads/google-ads.md`。）
 
 **不在此 SOP 内**：Google Ads 界面「将流量倾斜给赢家」的算法开关；宿主仅能 **停输家** 或结合人工/网页调整轮换策略。
 

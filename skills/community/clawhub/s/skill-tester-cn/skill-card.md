@@ -1,5 +1,5 @@
 ## Description: <br>
-Skill Tester CN helps Claude Code evaluate other skills by analyzing skill definitions, generating test cases, running or simulating functional checks, scoring results, and producing a Markdown test report. <br>
+Claude Code skill testing framework that analyzes skill definitions, generates test cases, executes functional tests, and produces scored Markdown reports. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -7,35 +7,37 @@ This skill is ready for commercial/non-commercial use. <br>
 [zhouchang1988](https://clawhub.ai/user/zhouchang1988) <br>
 
 ### License/Terms of Use: <br>
-MIT-0 <br>
+MIT <br>
 
 
 ## Use Case: <br>
-Developers and skill maintainers use this skill to evaluate whether Claude Code skills trigger correctly, perform documented functions, handle edge cases, and produce a scored test report. <br>
+Developers and skill maintainers use this skill to evaluate Claude Code skills by locating a target skill, parsing its definition, generating trigger, functional, and resource tests, and producing a scored test report. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Testing another skill may exercise real behavior, including scripts or actions with side effects. <br>
-Mitigation: Use simulated or dry-run testing unless real execution is explicitly approved. <br>
-Risk: Running tests against high-impact skills could delete files, spend money, publish content, or access sensitive accounts. <br>
-Mitigation: Avoid using this tester on high-impact skills unless the environment is isolated and the actions are reviewed first. <br>
+Risk: Active testing can run target-skill behavior against unknown skill content. <br>
+Mitigation: Use simulated or static-only testing first for untrusted skills, and run active tests only in a controlled workspace. <br>
+Risk: The skill can inspect other local skill definitions and bundled assets. <br>
+Mitigation: Point it only at skills intended for review, and avoid directories that contain unrelated sensitive material. <br>
+Risk: The skill can write timestamped Markdown reports to the current working directory. <br>
+Mitigation: Confirm the report destination before testing, and review generated reports before sharing them. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/zhouchang1988/skill-tester-cn) <br>
+- [README](README.md) <br>
 - [Test report template](assets/test-report-template.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Guidance] <br>
-**Output Format:** [Markdown test report with scored tables and recommendations] <br>
+**Output Type(s):** [text, markdown, shell commands, guidance] <br>
+**Output Format:** [Markdown test report with scored tables, findings, and recommendations] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save a timestamped Markdown report in the current working directory.] <br>
+**Other Properties Related to Output:** [May write a timestamped report file in the current working directory when active testing is performed.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: server release metadata) <br>
+1.0.1 (source: ClawHub release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

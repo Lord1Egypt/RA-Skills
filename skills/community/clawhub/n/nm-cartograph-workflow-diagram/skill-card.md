@@ -11,31 +11,29 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill to inspect selected code or documentation and turn workflows, CI/CD pipelines, lifecycle processes, or state machines into Mermaid flowcharts with a short explanation. <br>
+Developers and engineers use this skill to turn CI/CD pipelines, deployment workflows, lifecycle processes, and state machines into concise Mermaid flowcharts. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may expose selected project structure and generated Mermaid content to the configured Mermaid Chart MCP renderer. <br>
-Mitigation: Use it only with a trusted renderer and avoid sensitive code paths unless the diagram content is acceptable to share with that renderer. <br>
-Risk: Generated workflow diagrams can omit or simplify process steps, decisions, or state transitions. <br>
-Mitigation: Review the Mermaid diagram and short explanation against the source workflow before relying on it for documentation or operational decisions. <br>
+Risk: Generated Mermaid content may expose private workflow or implementation details when rendered through an MCP service. <br>
+Mitigation: Review generated diagrams before rendering or sharing, especially when the source workflow contains private implementation details. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-cartograph-workflow-diagram) <br>
-- [Cartograph source homepage](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-cartograph-workflow-diagram) <br>
+- [Cartograph plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with Mermaid code and a brief prose summary] <br>
+**Output Format:** [Markdown with Mermaid code blocks and a brief workflow description] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The workflow asks the agent to render Mermaid through the configured Mermaid Chart MCP tool when available.] <br>
+**Other Properties Related to Output:** [Limits workflow diagrams to 20 nodes and retries Mermaid rendering failures up to two times.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata; artifact frontmatter says 1.9.8) <br>
+1.9.13 (source: server release metadata; artifact frontmatter states 1.9.8) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

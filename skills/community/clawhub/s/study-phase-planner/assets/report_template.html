@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{PLAN_TITLE}}</title>
+<style>
+  :root {
+    --primary: #4F46E5;
+    --primary-light: #EEF2FF;
+    --foundation: #10B981;
+    --foundation-light: #ECFDF5;
+    --reinforcement: #F59E0B;
+    --reinforcement-light: #FFFBEB;
+    --sprint: #EF4444;
+    --sprint-light: #FEF2F2;
+    --bg: #F9FAFB;
+    --card: #FFFFFF;
+    --text: #111827;
+    --text-secondary: #6B7280;
+    --border: #E5E7EB;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 20px;
+  }
+  .container { max-width: 900px; margin: 0 auto; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--primary), #7C3AED);
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 32px 36px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 150px; height: 150px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 50%;
+  }
+  .header .stage-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 4px 16px;
+    font-size: 14px;
+    margin-bottom: 12px;
+    backdrop-filter: blur(4px);
+  }
+  .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+  .header .meta {
+    display: flex; gap: 24px; flex-wrap: wrap;
+    font-size: 14px; opacity: 0.9;
+  }
+  .header .meta span { display: flex; align-items: center; gap: 6px; }
+
+  /* Summary Cards */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .summary-card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+  .summary-card .label { font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; }
+  .summary-card .value { font-size: 24px; font-weight: 700; color: var(--primary); }
+  .summary-card .sub { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+
+  /* Progress Bar */
+  .progress-section {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    box-shadow: var(--shadow);
+    margin-bottom: 24px;
+  }
+  .progress-section h3 { font-size: 16px; margin-bottom: 16px; color: var(--text); }
+  .phase-bar-container { display: flex; height: 12px; border-radius: 6px; overflow: hidden; margin-bottom: 16px; }
+  .phase-bar-container .bar-foundation { background: var(--foundation); }
+  .phase-bar-container .bar-reinforcement { background: var(--reinforcement); }
+  .phase-bar-container .bar-sprint { background: var(--sprint); }
+  .phase-bar-legend {
+    display: flex; gap: 24px; flex-wrap: wrap;
+    font-size: 13px; color: var(--text-secondary);
+  }
+  .phase-bar-legend .dot {
+    display: inline-block; width: 10px; height: 10px;
+    border-radius: 50%; margin-right: 6px; vertical-align: -1px;
+  }
+  .dot-foundation { background: var(--foundation); }
+  .dot-reinforcement { background: var(--reinforcement); }
+  .dot-sprint { background: var(--sprint); }
+
+  /* Timeline */
+  .timeline-section { margin-bottom: 24px; }
+  .timeline-section h2 { font-size: 20px; margin-bottom: 16px; }
+  .timeline {
+    display: flex; gap: 0;
+    background: var(--card); border-radius: var(--radius);
+    box-shadow: var(--shadow); overflow: hidden;
+  }
+  .timeline-phase {
+    flex: 1; padding: 24px 20px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .timeline-phase:hover { filter: brightness(0.97); }
+  .timeline-phase.foundation { background: var(--foundation-light); border-right: 1px solid var(--border); }
+  .timeline-phase.reinforcement { background: var(--reinforcement-light); border-right: 1px solid var(--border); }
+  .timeline-phase.sprint { background: var(--sprint-light); }
+  .timeline-phase .phase-icon { font-size: 28px; margin-bottom: 8px; }
+  .timeline-phase .phase-name { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+  .timeline-phase .phase-date { font-size: 12px; color: var(--text-secondary); margin-bottom: 8px; }
+  .timeline-phase .phase-tag {
+    display: inline-block; padding: 2px 10px; border-radius: 12px;
+    font-size: 11px; font-weight: 600;
+  }
+  .timeline-phase.foundation .phase-tag { background: var(--foundation); color: #fff; }
+  .timeline-phase.reinforcement .phase-tag { background: var(--reinforcement); color: #fff; }
+  .timeline-phase.sprint .phase-tag { background: var(--sprint); color: #fff; }
+
+  /* Phase Detail */
+  .phase-detail {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .phase-detail .phase-header {
+    padding: 20px 24px;
+    display: flex; align-items: center; gap: 16px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .phase-detail .phase-header .expand-icon {
+    font-size: 12px; transition: transform 0.2s;
+    color: var(--text-secondary);
+  }
+  .phase-detail.open .phase-header .expand-icon { transform: rotate(90deg); }
+  .phase-detail .phase-header .phase-number {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 16px; color: #fff;
+    flex-shrink: 0;
+  }
+  .phase-detail.foundation .phase-number { background: var(--foundation); }
+  .phase-detail.reinforcement .phase-number { background: var(--reinforcement); }
+  .phase-detail.sprint .phase-number { background: var(--sprint); }
+  .phase-detail .phase-header .phase-info { flex: 1; }
+  .phase-detail .phase-header .phase-title { font-size: 17px; font-weight: 600; }
+  .phase-detail .phase-header .phase-subtitle { font-size: 13px; color: var(--text-secondary); }
+  .phase-detail .phase-body { padding: 0 24px 20px; display: none; }
+  .phase-detail.open .phase-body { display: block; }
+
+  .phase-detail .tasks { margin-bottom: 16px; }
+  .phase-detail .task-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 8px 0; border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .phase-detail .task-item:last-child { border-bottom: none; }
+  .phase-detail .task-check {
+    width: 20px; height: 20px; border-radius: 50%;
+    border: 2px solid var(--border); flex-shrink: 0; margin-top: 1px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: transparent; transition: all 0.2s;
+  }
+
+  /* Milestones */
+  .milestones { margin-bottom: 24px; }
+  .milestones h2 { font-size: 20px; margin-bottom: 16px; }
+  .milestone-list { display: flex; flex-direction: column; gap: 12px; }
+  .milestone-card {
+    background: var(--card); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 16px 20px;
+    display: flex; align-items: flex-start; gap: 14px;
+    border-left: 4px solid var(--border);
+    transition: border-color 0.2s;
+  }
+  .milestone-card.priority-must { border-left-color: var(--sprint); }
+  .milestone-card.priority-should { border-left-color: var(--reinforcement); }
+  .milestone-card.priority-could { border-left-color: var(--foundation); }
+  .milestone-card .ms-icon {
+    font-size: 22px; flex-shrink: 0; margin-top: 2px;
+  }
+  .milestone-card .ms-content { flex: 1; }
+  .milestone-card .ms-title { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+  .milestone-card .ms-desc { font-size: 13px; color: var(--text-secondary); }
+  .milestone-card .ms-meta {
+    display: flex; gap: 12px; flex-wrap: wrap;
+    margin-top: 6px; font-size: 12px; color: var(--text-secondary);
+  }
+  .milestone-card .ms-priority {
+    display: inline-block; padding: 1px 8px; border-radius: 10px;
+    font-size: 11px; font-weight: 600;
+  }
+  .milestone-card.priority-must .ms-priority { background: var(--sprint-light); color: var(--sprint); }
+  .milestone-card.priority-should .ms-priority { background: var(--reinforcement-light); color: var(--reinforcement); }
+  .milestone-card.priority-could .ms-priority { background: var(--foundation-light); color: var(--foundation); }
+
+  /* Checkpoint Table */
+  .checkpoints { margin-bottom: 24px; }
+  .checkpoints h2 { font-size: 20px; margin-bottom: 16px; }
+  .checkpoint-table {
+    width: 100%; border-collapse: separate; border-spacing: 0;
+    background: var(--card); border-radius: var(--radius);
+    box-shadow: var(--shadow); overflow: hidden;
+  }
+  .checkpoint-table thead th {
+    background: var(--primary-light); color: var(--primary);
+    font-weight: 600; font-size: 13px; padding: 12px 16px;
+    text-align: left;
+  }
+  .checkpoint-table tbody td {
+    padding: 12px 16px; font-size: 14px;
+    border-top: 1px solid var(--border);
+  }
+  .checkpoint-table .status-badge {
+    display: inline-block; padding: 2px 10px; border-radius: 10px;
+    font-size: 11px; font-weight: 600;
+  }
+  .status-pending { background: #F3F4F6; color: #6B7280; }
+  .status-active { background: #DBEAFE; color: #2563EB; }
+  .status-done { background: #D1FAE5; color: #059669; }
+  .status-warning { background: #FEF3C7; color: #D97706; }
+
+  /* Tips Section */
+  .tips-section {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+  .tips-section h3 { font-size: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .tips-list { display: flex; flex-direction: column; gap: 8px; }
+  .tip-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 14px; color: var(--text-secondary);
+  }
+  .tip-item .tip-num {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: var(--primary-light); color: var(--primary);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; flex-shrink: 0;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center; padding: 20px;
+    font-size: 12px; color: var(--text-secondary);
+  }
+
+  /* Print */
+  @media print {
+    body { background: #fff; padding: 0; }
+    .header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .phase-detail .phase-body { display: block !important; }
+    .timeline-phase:hover { filter: none; }
+  }
+
+  /* Responsive */
+  @media (max-width: 640px) {
+    .header { padding: 20px; }
+    .header h1 { font-size: 22px; }
+    .timeline { flex-direction: column; }
+    .summary-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="stage-badge">{{STAGE_BADGE}}</div>
+    <h1>{{PLAN_TITLE}}</h1>
+    <div class="meta">
+      <span>📅 {{DATE_RANGE}}</span>
+      <span>⏱ {{TOTAL_DAYS}}天</span>
+      <span>📋 {{SUBJECT}}</span>
+    </div>
+  </div>
+
+  <!-- Summary -->
+  <div class="summary-grid">
+    <div class="summary-card">
+      <div class="label">总天数</div>
+      <div class="value">{{TOTAL_DAYS}}</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">基础阶段</div>
+      <div class="value" style="color: var(--foundation)">{{FOUNDATION_DAYS}}天</div>
+      <div class="sub">{{FOUNDATION_PCT}}%</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">强化阶段</div>
+      <div class="value" style="color: var(--reinforcement)">{{REINFORCEMENT_DAYS}}天</div>
+      <div class="sub">{{REINFORCEMENT_PCT}}%</div>
+    </div>
+    <div class="summary-card">
+      <div class="label">冲刺阶段</div>
+      <div class="value" style="color: var(--sprint)">{{SPRINT_DAYS}}天</div>
+      <div class="sub">{{SPRINT_PCT}}%</div>
+    </div>
+  </div>
+
+  <!-- Progress Overview -->
+  <div class="progress-section">
+    <h3>📊 三阶段时间分配</h3>
+    <div class="phase-bar-container">
+      <div class="bar-foundation" style="width:{{FOUNDATION_PCT}}%"></div>
+      <div class="bar-reinforcement" style="width:{{REINFORCEMENT_PCT}}%"></div>
+      <div class="bar-sprint" style="width:{{SPRINT_PCT}}%"></div>
+    </div>
+    <div class="phase-bar-legend">
+      <span><span class="dot dot-foundation"></span>基础: {{FOUNDATION_DATE_RANGE}}（{{FOUNDATION_DAYS}}天）</span>
+      <span><span class="dot dot-reinforcement"></span>强化: {{REINFORCEMENT_DATE_RANGE}}（{{REINFORCEMENT_DAYS}}天）</span>
+      <span><span class="dot dot-sprint"></span>冲刺: {{SPRINT_DATE_RANGE}}（{{SPRINT_DAYS}}天）</span>
+    </div>
+  </div>
+
+  <!-- Timeline -->
+  <div class="timeline-section">
+    <h2>📅 阶段时间线</h2>
+    <div class="timeline">
+      <div class="timeline-phase foundation">
+        <div class="phase-icon">🌱</div>
+        <div class="phase-name">基础阶段</div>
+        <div class="phase-date">{{FOUNDATION_DATE_RANGE}}</div>
+        <span class="phase-tag">{{FOUNDATION_DAYS}}天</span>
+      </div>
+      <div class="timeline-phase reinforcement">
+        <div class="phase-icon">💪</div>
+        <div class="phase-name">强化阶段</div>
+        <div class="phase-date">{{REINFORCEMENT_DATE_RANGE}}</div>
+        <span class="phase-tag">{{REINFORCEMENT_DAYS}}天</span>
+      </div>
+      <div class="timeline-phase sprint">
+        <div class="phase-icon">🚀</div>
+        <div class="phase-name">冲刺阶段</div>
+        <div class="phase-date">{{SPRINT_DATE_RANGE}}</div>
+        <span class="phase-tag">{{SPRINT_DAYS}}天</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase Details -->
+  <h2 style="font-size:20px;margin-bottom:16px;">📝 分阶段详细计划</h2>
+
+  {{PHASE_DETAILS}}
+
+  <!-- Milestones -->
+  <div class="milestones">
+    <h2>🎯 里程碑检查点</h2>
+    <div class="milestone-list">
+      {{MILESTONE_CARDS}}
+    </div>
+  </div>
+
+  <!-- Checkpoint Table -->
+  <div class="checkpoints">
+    <h2>✅ 检查点追踪表</h2>
+    <table class="checkpoint-table">
+      <thead>
+        <tr>
+          <th>序号</th>
+          <th>检查点</th>
+          <th>截止日期</th>
+          <th>所属阶段</th>
+          <th>状态</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{CHECKPOINT_ROWS}}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Tips -->
+  <div class="tips-section">
+    <h3>💡 学习建议</h3>
+    <div class="tips-list">
+      {{TIPS_ITEMS}}
+    </div>
+  </div>
+
+  <div class="footer">
+    📚 学习阶段计划 · 生成于 {{GENERATED_DATE}}
+  </div>
+
+</div>
+
+<script>
+  // Toggle phase details
+  document.querySelectorAll('.phase-detail .phase-header').forEach(header => {
+    header.addEventListener('click', () => {
+      header.parentElement.classList.toggle('open');
+    });
+  });
+
+  // Check milestone checkboxes
+  document.querySelectorAll('.task-check').forEach(check => {
+    check.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (check.classList.contains('checked')) {
+        check.classList.remove('checked');
+        check.style.background = '#fff';
+        check.style.color = 'transparent';
+        check.style.borderColor = 'var(--border)';
+      } else {
+        check.classList.add('checked');
+        check.style.background = '#10B981';
+        check.style.color = '#fff';
+        check.style.borderColor = '#10B981';
+        check.textContent = '✓';
+      }
+    });
+  });
+</script>
+</body>
+</html>

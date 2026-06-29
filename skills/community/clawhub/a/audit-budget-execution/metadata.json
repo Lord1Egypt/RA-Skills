@@ -1,0 +1,29 @@
+{
+  "name": "预算执行审计工作流",
+  "slug": "audit-budget-execution",
+  "version": "1.0.0",
+  "description": "部门预算执行审计：预算概况→收支分析→进度分析→三公经费→项目支出→报告",
+  "tags": [
+    "审计",
+    "预算执行",
+    "部门预算",
+    "工作流",
+    "政府审计"
+  ],
+  "category": "审计业务",
+  "author": "融策审计",
+  "license": "MIT",
+  "files": [
+    "workflow.yaml",
+    "SKILL.md"
+  ],
+  "dependencies": {
+    "scripts": [
+      "audit_workflow.py",
+      "audit_router.py",
+      "pipeline_engine.py"
+    ],
+    "python": ">=3.10"
+  },
+  "published_at": "2026-06-20T11:03:25.292457"
+}

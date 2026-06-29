@@ -1,0 +1,7 @@
+interface:
+  display_name: "Nano Banana Image Workflow Helper"
+  short_description: "Build prompt packs, retry plans, and QA checks for AI image workflows."
+  default_prompt: "Use $work-productivity-nano-banana-workflow-helper to turn my image generation goal into prompts, reference constraints, QA checks, and a retry plan."
+
+policy:
+  allow_implicit_invocation: true

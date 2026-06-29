@@ -1,0 +1,101 @@
+# 部门预算执行情况审计工作流模板
+
+name: 部门预算执行情况审计
+type_id: budget_execution
+description: 对部门预算编制、批复、执行、调整、决算全过程的审计
+version: "1.0"
+
+context_prompt: |
+  被审计单位：{unit_name}
+  预算年度：{year}
+  预算金额：{budget_amount}
+
+steps:
+  - id: budget_overview
+    name: 了解预算情况
+    action: knowledge_query
+    description: 了解预算编制和批复情况
+    prompt: |
+      了解"{unit_name}"的预算安排：
+      1. 预算编制口径和原则
+      2. 预算批复情况
+      3. 预算结构和主要项目
+      4. 近三年预算变化趋势
+    checkpoint: false
+    output_key: budget_overview
+
+  - id: revenue_expenditure_analysis
+    name: 预算收支总体分析
+    action: data_analysis
+    description: 预算收支总体情况分析
+    prompt: |
+      分析"{unit_name}"预算收支：
+      1. 预算收入执行率
+      2. 预算支出执行率
+      3. 收支总量和结构变化
+      4. 预算调整情况
+    skills: [data-analyst-cn]
+    depends_on: [budget_overview]
+    checkpoint: false
+    output_key: budget_analysis
+
+  - id: execution_progress
+    name: 执行进度分析
+    action: data_analysis
+    description: 预算执行率、结转结余分析
+    prompt: |
+      分析"{unit_name}"预算执行进度：
+      1. 序时进度偏差分析
+      2. 重点项目执行率
+      3. 结转结余资金规模和成因
+      4. 结余资金处置合规性
+    skills: [data-analyst-cn]
+    depends_on: [revenue_expenditure_analysis]
+    checkpoint: false
+    output_key: progress_findings
+
+  - id: public_expenses
+    name: 三公经费核查
+    action: data_analysis
+    description: 三公经费专项分析
+    prompt: |
+      核查"{unit_name}"三公经费：
+      1. 因公出国（境）经费合规性
+      2. 公务用车购置和运行费
+      3. 公务接待费标准和频次
+      4. 会议费和培训费分析
+      5. 同比增减和超预算情况
+    skills: [data-analyst-cn, financial-fraud-detection]
+    depends_on: [revenue_expenditure_analysis]
+    checkpoint: false
+    output_key: public_expense_findings
+
+  - id: project_management
+    name: 项目支出核查
+    action: data_analysis
+    description: 项目支出合规和绩效分析
+    prompt: |
+      核查"{unit_name}"的项目支出：
+      1. 项目支出预算执行率
+      2. 项目资金使用合规性
+      3. 项目政府采购执行情况
+      4. 项目绩效目标完成度
+    skills: [data-analyst-cn, procurement-audit-models]
+    depends_on: [execution_progress]
+    checkpoint: false
+    output_key: project_findings
+
+  - id: generate_report
+    name: 编制预算执行审计报告
+    action: invoke_skill
+    description: 预算执行审计报告
+    prompt: |
+      编制"{unit_name}"预算执行审计报告：
+      1. 审计基本情况
+      2. 预算执行总体情况
+      3. 审计发现的问题
+      4. 审计评价和建议
+    skills: [gov-audit-report-writer, gov-doc-formatting]
+    depends_on: [execution_progress, public_expenses, project_management]
+    checkpoint: true
+    output_key: final_report

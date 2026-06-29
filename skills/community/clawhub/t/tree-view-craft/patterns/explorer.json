@@ -1,0 +1,10 @@
+{
+  "name": "explorer",
+  "label": "文件资源管理器",
+  "description": "类似 VS Code 的资源管理器风格，可折叠树形结构",
+  "layout": "tree",
+  "features": ["collapse", "expand_all", "file_icons", "hover_preview"],
+  "icon_style": "css-only",
+  "sort_order": "default",
+  "show_hidden": false
+}

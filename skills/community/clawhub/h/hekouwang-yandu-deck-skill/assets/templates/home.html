@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>演读 DECK · 会勇禾口王的AI笔记 — 把复杂的 AI,读成一场演示</title>
+<meta name="description" content="演读 DECK 是一款沉浸式阅读产品:一屏一镜、可翻页、能自动播放,把复杂的 AI 主题做成一场安静的演示。会勇禾口王的AI笔记出品。在读:算力账本、偷师 AI 大佬。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="演读 DECK · 会勇禾口王的AI笔记">
+<meta property="og:description" content="介于长文和视频之间的第三种读法 —— 把复杂的 AI,读成一场可翻页的演示。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23161514'/%3E%3Cpath d='M13 5 6 18h6l-1 9 9-13h-6z' fill='none' stroke='%23e08a5f' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.loli.net">
+<link rel="preconnect" href="https://gstatic.loli.net" crossorigin>
+<link href="https://fonts.loli.net/css2?family=Noto+Sans+SC:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'Anthropic Sans';src:url('/fonts/anthropicSans.woff2') format('woff2');font-weight:300 800;font-style:normal;font-display:swap;font-feature-settings:'dlig' 0}
+  @font-face{font-family:'Anthropic Mono';src:url('/fonts/anthropicMono.woff2') format('woff2');font-weight:300 800;font-style:normal;font-display:swap}
+  :root{
+    --bg:#161514;--surface:#221f1d;--surface2:#1b1917;
+    --line:rgba(244,242,235,.09);--line2:rgba(244,242,235,.16);--line3:rgba(244,242,235,.26);
+    --text:#f4f2eb;--read:#cdc8bd;--text2:#aea99f;--text3:#948e84;--text4:#5f5a52;
+    --hot:#e08a5f;--hot2:#efb79b;--hl0:#f6e1d1;--cool:#8fa6bd;--cool2:#aec2d4;
+    --font:'Anthropic Sans','Noto Sans SC','PingFang SC',system-ui,sans-serif;
+    --mono:'Anthropic Mono','PingFang SC',ui-monospace,monospace;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;background:var(--bg);color:var(--text);font-family:var(--font)}
+  body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden;
+    background:radial-gradient(1100px 700px at 80% -8%,rgba(224,138,95,.13),transparent 60%),
+      radial-gradient(900px 800px at -8% 30%,rgba(143,166,189,.06),transparent 55%),var(--bg)}
+  ::selection{background:rgba(224,138,95,.3);color:#fff}
+
+  .grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px}
+  .mesh{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+    background-image:linear-gradient(rgba(244,242,235,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(244,242,235,.022) 1px,transparent 1px);
+    background-size:64px 64px;mask:radial-gradient(circle at 50% 14%,#000,transparent 78%)}
+  .frame{position:fixed;inset:18px;z-index:1;pointer-events:none}
+  .frame i{position:absolute;width:22px;height:22px;border:1.5px solid var(--line3)}
+  .frame i:nth-child(1){top:0;left:0;border-right:0;border-bottom:0}
+  .frame i:nth-child(2){top:0;right:0;border-left:0;border-bottom:0}
+  .frame i:nth-child(3){bottom:0;left:0;border-right:0;border-top:0}
+  .frame i:nth-child(4){bottom:0;right:0;border-left:0;border-top:0}
+
+  .wrap{position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:0 clamp(1.5rem,5vw,3rem)}
+
+  /* masthead */
+  .masthead{display:flex;justify-content:space-between;align-items:center;
+    padding:1.6rem 0 1.1rem;border-bottom:1px solid var(--line)}
+  .mark{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:var(--text)}
+  .mark .dot{width:7px;height:7px;border-radius:50%;background:var(--hot);box-shadow:0 0 0 0 rgba(224,138,95,.5);animation:pulse 2.6s infinite}
+  .mark b{font-weight:800;font-size:.98rem;letter-spacing:.01em}
+  .mark .prod{display:inline-flex;align-items:baseline;gap:.4rem;border-left:1px solid var(--line2);padding-left:.75rem;margin-left:.15rem}
+  .mark .prod .cn{font-weight:700;font-size:.9rem;letter-spacing:.06em;color:var(--read)}
+  .mark .prod .en{font-family:var(--mono);font-weight:700;font-size:.7rem;letter-spacing:.2em;color:var(--hot2);text-shadow:0 0 12px rgba(224,138,95,.4)}
+  @media(max-width:600px){.mark .prod{display:none}}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(224,138,95,.45)}70%{box-shadow:0 0 0 7px rgba(224,138,95,0)}100%{box-shadow:0 0 0 0 rgba(224,138,95,0)}}
+  .nav{display:flex;gap:1.6rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase}
+  .nav a{color:var(--text3);text-decoration:none;transition:color .2s}
+  .nav a:hover{color:var(--hot2)}
+  @media(max-width:600px){.nav{display:none}}
+
+  /* hero */
+  .hero{padding:clamp(3.2rem,8vw,5.8rem) 0 clamp(2rem,5vw,3rem)}
+  .kicker{font-family:var(--mono);font-size:.74rem;font-weight:500;letter-spacing:.32em;color:var(--cool2);text-transform:uppercase;display:flex;align-items:center;gap:.9rem;margin-bottom:1.9rem}
+  .kicker span{width:3rem;height:1px;background:linear-gradient(90deg,var(--cool),transparent)}
+  .hero h1{font-family:var(--font);font-weight:900;font-size:clamp(3.1rem,9.2vw,6.7rem);line-height:1.0;letter-spacing:-.04em;margin-bottom:1.5rem}
+  .hero h1 em{font-style:normal;background:linear-gradient(96deg,var(--hl0),var(--hot2) 45%,var(--hot));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero .lede{font-size:clamp(1.08rem,2.3vw,1.34rem);color:var(--read);max-width:40rem;line-height:1.85}
+  .hero .lede b{color:var(--text);font-weight:700}
+
+  .credit{margin-top:1.7rem;display:inline-flex;align-items:center;gap:.8rem;
+    border:1px solid var(--line2);border-radius:9999px;padding:.5rem 1.15rem;background:rgba(34,31,29,.5)}
+  .credit .tri{color:var(--hot);font-size:.7rem}
+  .credit b{font-weight:800;font-size:.9rem;color:var(--read)}
+  .credit s{text-decoration:none;font-size:.86rem;color:var(--text3)}
+
+  .cta-row{margin-top:2.2rem;display:flex;flex-wrap:wrap;gap:.9rem;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:.6rem;text-decoration:none;font-weight:700;font-size:.96rem;
+    padding:.85rem 1.5rem;border-radius:9999px;transition:transform .18s ease,box-shadow .2s ease,border-color .2s,background .2s}
+  .btn.primary{color:#231a14;background:linear-gradient(120deg,var(--hot2),var(--hot));box-shadow:0 12px 30px -10px rgba(224,138,95,.6)}
+  .btn.primary:hover{transform:translateY(-2px);box-shadow:0 18px 38px -12px rgba(224,138,95,.7)}
+  .btn.ghost{color:var(--read);border:1px solid var(--line2);background:rgba(34,31,29,.4)}
+  .btn.ghost:hover{transform:translateY(-2px);border-color:rgba(224,138,95,.5);color:var(--text)}
+
+  /* proof — product attributes */
+  .proof{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);
+    border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-top:clamp(2.4rem,6vw,3.6rem)}
+  .proof .it{background:var(--surface2);padding:1.4rem 1.5rem}
+  .proof .n{font-size:1.18rem;font-weight:800;color:var(--hot2);letter-spacing:.01em;margin-bottom:.4rem}
+  .proof .d{font-size:.9rem;color:var(--text2);line-height:1.6}
+  @media(max-width:680px){.proof{grid-template-columns:1fr}}
+
+  /* section heading */
+  .sec{padding:clamp(2.8rem,7vw,4.5rem) 0 0}
+  .sec-bar{display:flex;align-items:baseline;justify-content:space-between;gap:1rem;margin-bottom:1.6rem;
+    padding-bottom:1rem;border-bottom:1px solid var(--line)}
+  .sec-bar .en{font-family:var(--mono);font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--cool2)}
+  .sec-bar h2{font-size:clamp(1.5rem,3.6vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  .sec-bar .dek{color:var(--text3);font-size:.92rem;max-width:24rem;text-align:right;line-height:1.6}
+  @media(max-width:600px){.sec-bar{flex-direction:column;gap:.5rem}.sec-bar .dek{text-align:left}}
+
+  .room-intro{margin:-.4rem 0 1.7rem;color:var(--text2);font-size:1.02rem;line-height:1.8;max-width:44rem}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.1rem}
+  .card{position:relative;display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);
+    border-radius:18px;padding:1.7rem 1.8rem;text-decoration:none;color:inherit;overflow:hidden;isolation:isolate;
+    box-shadow:0 1px 2px rgba(0,0,0,.25),0 16px 38px rgba(0,0,0,.28);
+    transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+  .card::before{content:'';position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;
+    background:linear-gradient(158deg,rgba(244,242,235,.05),transparent 40%)}
+  .card .idx{position:absolute;top:1.2rem;right:1.4rem;font-family:var(--mono);font-weight:800;font-size:2.4rem;color:var(--line2);line-height:1;z-index:-1}
+  .card:hover{transform:translateY(-4px);border-color:rgba(224,138,95,.5);box-shadow:0 18px 42px -16px rgba(224,138,95,.4)}
+  .card-top{display:flex;align-items:center;gap:.7rem;margin-bottom:1.05rem}
+  .badge{font-family:var(--mono);font-size:.72rem;font-weight:700;color:#231a14;background:var(--hot);padding:.25rem .65rem;border-radius:999px;letter-spacing:.04em}
+  .cat{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text3)}
+  .card h3{font-size:1.3rem;font-weight:800;line-height:1.32;margin-bottom:.6rem;letter-spacing:-.01em;text-wrap:balance}
+  .card p{color:var(--text2);font-size:.94rem;line-height:1.7;flex:1}
+  .card-foot{display:flex;justify-content:space-between;align-items:center;margin-top:1.3rem;padding-top:1rem;border-top:1px solid var(--line)}
+  .screens{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--text4)}
+  .go{font-family:var(--mono);font-size:.78rem;font-weight:700;color:var(--hot2);letter-spacing:.02em}
+
+  /* about / maker */
+  .about{margin-top:clamp(2.8rem,7vw,4.5rem);display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(1.5rem,4vw,3rem);align-items:start}
+  @media(max-width:760px){.about{grid-template-columns:1fr}}
+  .about-en{font-family:var(--mono);font-size:.7rem;letter-spacing:.26em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem}
+  .about-id{font-family:var(--font);font-size:clamp(1.3rem,2.8vw,1.7rem);font-weight:800;color:var(--text);line-height:1.5;letter-spacing:-.01em;margin-bottom:1.1rem;text-wrap:balance}
+  .about-id b{color:var(--hot2)}
+  .about-line{color:var(--text2);font-size:1.02rem;line-height:1.9}
+  .about-line b{color:var(--read);font-weight:700}
+  .pillars{display:flex;flex-direction:column;gap:.8rem}
+  .pillar{background:var(--surface2);border:1px solid var(--line);border-radius:14px;padding:1rem 1.2rem}
+  .pillar .h{font-weight:800;font-size:.96rem;color:var(--text);margin-bottom:.3rem}
+  .pillar .s{font-size:.86rem;color:var(--text3);line-height:1.55}
+
+  /* subscribe / conversion */
+  .sub{margin-top:clamp(3rem,7vw,5rem);position:relative;border:1px solid rgba(224,138,95,.3);border-radius:24px;overflow:hidden;
+    background:linear-gradient(150deg,rgba(224,138,95,.12),rgba(34,31,29,.6) 55%);padding:clamp(2rem,5vw,3.3rem)}
+  .sub::before{content:'';position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(600px 320px at 88% 0%,rgba(224,138,95,.18),transparent 60%)}
+  .sub .inner{position:relative}
+  .sub .en{font-family:var(--mono);font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--hot2);margin-bottom:1rem}
+  .sub h2{font-family:var(--font);font-size:clamp(1.7rem,4vw,2.4rem);font-weight:900;line-height:1.3;letter-spacing:-.02em;margin-bottom:.8rem;text-wrap:balance}
+  .sub .dek{color:var(--read);font-size:1.04rem;line-height:1.8;max-width:34rem;margin-bottom:1.8rem}
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;margin-bottom:1.8rem}
+  @media(max-width:680px){.steps{grid-template-columns:1fr}}
+  .step{background:rgba(22,21,20,.55);border:1px solid var(--line2);border-radius:14px;padding:1.1rem 1.2rem}
+  .step .num{font-family:var(--mono);font-size:.72rem;font-weight:700;color:var(--hot);letter-spacing:.1em;margin-bottom:.5rem}
+  .step .t{font-size:.96rem;color:var(--text);line-height:1.55}
+  .step .t b{color:var(--hot2);font-weight:800}
+  .sub-note{font-family:var(--mono);font-size:.74rem;color:var(--text3);letter-spacing:.04em}
+
+  footer{margin-top:clamp(2.6rem,6vw,4rem);padding:2.6rem 0 3.5rem;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;align-items:center}
+  footer .brand{font-family:var(--font);font-size:1.05rem;font-weight:800;color:var(--text)}
+  footer .meta{font-family:var(--mono);font-size:.74rem;color:var(--text3);letter-spacing:.05em}
+
+  .pre{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+  .pre.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.pre{opacity:1;transform:none;transition:none}}
+  @media(max-width:520px){.grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="mesh"></div>
+<div class="frame"><i></i><i></i><i></i><i></i></div>
+
+<div class="wrap">
+  <div class="masthead">
+    <a class="mark" href="#top">
+      <span class="dot"></span>
+      <b>会勇禾口王的AI笔记</b>
+      <span class="prod"><span class="cn">演读</span><span class="en">⟨DECK⟩</span></span>
+    </a>
+    <nav class="nav">
+      <a href="#room">在读</a>
+      <a href="#about">出品方</a>
+      <a href="#subscribe">订阅</a>
+    </nav>
+  </div>
+
+  <header class="hero" id="top">
+    <div class="kicker pre"><span></span>演读 ⟨DECK⟩ · 沉浸式阅读产品</div>
+    <h1 class="pre">把复杂的 AI,<br>读成一场<em>演示</em>。</h1>
+    <p class="lede pre">介于长文和视频之间的<b>第三种读法</b> —— 一屏一镜、可翻页、能自动播放。<br>把一个复杂主题,安安静静、完整地讲给你看。</p>
+    <div class="credit pre">
+      <span class="tri">▶</span><b>会勇禾口王的AI笔记</b><s>出品 · 真会用 AI 的程序员</s>
+    </div>
+    <div class="cta-row pre">
+      <a class="btn primary" href="#room">开始阅读 ↓</a>
+      <a class="btn ghost" href="#subscribe">订阅更新 →</a>
+    </div>
+  </header>
+
+  <section class="proof pre">
+    <div class="it"><div class="n">第三种读法</div><div class="d">不是长文,不是短视频 —— 一屏一镜,介于两者之间的节奏。</div></div>
+    <div class="it"><div class="n">翻页 / 自动播放</div><div class="d">方向键、空格、点击自由翻,也能交给它自动播,像看一支安静的片子。</div></div>
+    <div class="it"><div class="n">读完就懂</div><div class="d">把一个硬核主题拆成一组画面,零基础也能从头跟到结论。</div></div>
+  </section>
+
+  <section class="sec" id="room">
+    <div class="sec-bar pre">
+      <div><div class="en">COMPUTE LEDGER</div><h2>算力账本</h2></div>
+      <p class="dek">用记账的方式,把 AI 背后的算力与 Token 经济学讲清楚。</p>
+    </div>
+    <p class="room-intro pre">点开任意一期,即可进入全屏沉浸式阅读 —— <b style="color:var(--read)">方向键 / 空格 / 点击</b> 翻页,右下角可 <b style="color:var(--read)">自动播放</b>。</p>
+    <div class="grid">
+      <a class="card pre" href="suanli/ep01">
+        <span class="idx">01</span>
+        <div class="card-top"><span class="badge">EP01</span><span class="cat">入门 · BASICS</span></div>
+        <h3>算力、Token,到底是什么?</h3>
+        <p>把算力当成“电”、Token 当成“电表度数”,零基础也能跟上的第一课。</p>
+        <div class="card-foot"><span class="screens">18 屏</span><span class="go">进入阅读 →</span></div>
+      </a>
+      <a class="card pre" href="suanli/ep02">
+        <span class="idx">02</span>
+        <div class="card-top"><span class="badge">EP02</span><span class="cat">Token 经济学 · TOKEN</span></div>
+        <h3>AI 越用越便宜,算力为什么反而不够用?</h3>
+        <p>价格越低、总需求越疯——一笔算力供需的反直觉账。</p>
+        <div class="card-foot"><span class="screens">24 屏</span><span class="go">进入阅读 →</span></div>
+      </a>
+      <a class="card pre" href="suanli/ep03">
+        <span class="idx">03</span>
+        <div class="card-top"><span class="badge">EP03</span><span class="cat">算力租赁经济学 · LEASING</span></div>
+        <h3>一张几十万的卡,多久能租回本?</h3>
+        <p>算力租赁的回本账,一笔笔拆给你看。</p>
+        <div class="card-foot"><span class="screens">19 屏</span><span class="go">进入阅读 →</span></div>
+      </a>
+      <a class="card pre" href="suanli/ep35">
+        <span class="idx">3.5</span>
+        <div class="card-top"><span class="badge">EP3.5</span><span class="cat">能耗账 · ENERGY</span></div>
+        <h3>一度电,能吐多少 Token?</h3>
+        <p>从瓦特到 Token,把 AI 的能耗账算明白。</p>
+        <div class="card-foot"><span class="screens">22 屏</span><span class="go">进入阅读 →</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-bar pre">
+      <div><div class="en">STEAL THE PLAYBOOK</div><h2>偷师AI大佬</h2></div>
+      <p class="dek">从 AI 大佬身上,偷一个普通人明天就能用的方法。</p>
+    </div>
+    <div class="grid">
+      <a class="card pre" href="toushi/ep01">
+        <span class="idx">01</span>
+        <div class="card-top"><span class="badge">EP01</span><span class="cat">管理 · DARIO</span></div>
+        <h3>只管一个人的 CEO</h3>
+        <p>Dario 只有 1 个直接下属——把执行委托出去,把判断收回自己。</p>
+        <div class="card-foot"><span class="screens">10 屏</span><span class="go">进入阅读 →</span></div>
+      </a>
+      <a class="card pre" href="toushi/ep02">
+        <span class="idx">02</span>
+        <div class="card-top"><span class="badge">EP02</span><span class="cat">编程 · KARPATHY</span></div>
+        <h3>把代码交给 AI 的教父</h3>
+        <p>Karpathy 自宣 99% 不写代码——从亲手做,到编排 + 监督。</p>
+        <div class="card-foot"><span class="screens">18 屏</span><span class="go">进入阅读 →</span></div>
+      </a>
+      <a class="card pre" href="toushi/ep03">
+        <span class="idx">03</span>
+        <div class="card-top"><span class="badge">EP03</span><span class="cat">品味 · DEMIS</span></div>
+        <h3>诺奖得主说:真正稀缺的是品味</h3>
+        <p>执行交给 AI 之后,判断和品味怎么练。</p>
+        <div class="card-foot"><span class="screens">13 屏</span><span class="go">进入阅读 →</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="sec about" id="about">
+    <div class="pre">
+      <div class="about-en">ABOUT · 出品方</div>
+      <p class="about-id">「禾口王」拼起来是个「程」字 —— <b>真会用 AI 的程序员</b>。</p>
+      <p class="about-line">不聊 AI 会不会取代你,只聊<b>先用 AI 的人怎么取代你</b>。一个人 = 一支团队,怎么做到?编程、做图、写文、跑流程——<b>我先跑通,再演给你看</b>。你正在用的「演读 DECK」,本身就是这套流水线顺手产出的东西之一。</p>
+    </div>
+    <div class="pillars pre">
+      <div class="pillar"><div class="h">硬核</div><div class="s">讲到能上手的颗粒度,不停在“AI 很厉害”。</div></div>
+      <div class="pillar"><div class="h">具体</div><div class="s">真机录屏 + 时间账,每个结论都有过程兜底。</div></div>
+      <div class="pillar"><div class="h">可复制</div><div class="s">手册、模板、工作流——拿走就能照着跑。</div></div>
+    </div>
+  </section>
+
+  <section class="sub" id="subscribe">
+    <div class="inner">
+      <div class="en pre">SUBSCRIBE · 订阅 / 领取</div>
+      <h2 class="pre">订阅更新,顺手领一份<br>《AI 内容流水线手册》。</h2>
+      <p class="dek pre">新一期上线第一时间读到;手册把“一个人干完一支团队”的每个环节、工具、提示词都写明白。免费领。</p>
+      <div class="steps pre">
+        <div class="step"><div class="num">STEP 01</div><div class="t">微信搜 <b>会勇禾口王的AI笔记</b></div></div>
+        <div class="step"><div class="num">STEP 02</div><div class="t">关注后回复 <b>工厂</b></div></div>
+        <div class="step"><div class="num">STEP 03</div><div class="t">领《<b>AI 内容流水线手册</b>》+ 追更新</div></div>
+      </div>
+      <div class="sub-note pre">微信公众号 · 搜一搜「会勇禾口王的AI笔记」 → 回复「工厂」自动发送</div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="brand">演读 DECK</span>
+    <span class="meta">会勇禾口王的AI笔记 出品 · @huiyonghkw · 把复杂的 AI,读成一场演示</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var motionOK=!window.matchMedia||window.matchMedia('(prefers-reduced-motion: no-preference)').matches;
+  var els=[].slice.call(document.querySelectorAll('.pre'));
+  if(!motionOK||!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{rootMargin:'0px 0px -8% 0px',threshold:.06});
+  els.forEach(function(e){io.observe(e)});
+  setTimeout(function(){els.forEach(function(e){e.classList.add('in')});},1500);
+})();
+</script>
+</body>
+</html>

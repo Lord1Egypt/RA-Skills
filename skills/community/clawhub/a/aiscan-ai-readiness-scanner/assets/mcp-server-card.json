@@ -1,0 +1,27 @@
+{
+  "name": "aiscan",
+  "version": "1.0.0",
+  "description": "AIScan MCP server — audit any website for AI agent readiness. Returns 0–100 score, letter grade, and plain-English fix instructions for failing checks.",
+  "homepage": "https://aiscan.site",
+  "endpoint": "https://aiscan.site/api/mcp",
+  "transport": "streamable-http",
+  "protocol_version": "2025-06-18",
+  "auth": "none",
+  "tools": [
+    {
+      "name": "scan_website",
+      "description": "Run a full AI-readiness scan on a website. Returns the complete ScanResult JSON.",
+      "input_schema": { "type": "object", "properties": { "url": { "type": "string" } }, "required": ["url"] }
+    },
+    {
+      "name": "get_fixes",
+      "description": "Return only the failing/partial checks with remediation text and ordered fix steps.",
+      "input_schema": { "type": "object", "properties": { "url": { "type": "string" } }, "required": ["url"] }
+    },
+    {
+      "name": "get_grade",
+      "description": "Return only the overall score and letter grade for a URL.",
+      "input_schema": { "type": "object", "properties": { "url": { "type": "string" } }, "required": ["url"] }
+    }
+  ]
+}

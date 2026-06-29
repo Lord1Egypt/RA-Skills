@@ -1,0 +1,13 @@
+{
+  "timezone": "UTC",
+  "plan": "max5x",
+  "monthly_credit_usd": null,
+  "warn_pct": 80,
+  "critical_pct": 95,
+  "reminder_enabled": true,
+  "anchor": "08:00",
+  "reminder_text": "Your Claude 5-hour interactive window resets to your day when you send your first prompt. Open Claude Code / Cowork and send one now to align it.",
+  "alert_command": null,
+  "ccusage_cmd": ["npx", "-y", "ccusage@latest"],
+  "currency_symbol": "$"
+}

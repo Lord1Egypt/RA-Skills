@@ -1,0 +1,28 @@
+{
+  "name": "mainctrl",
+  "version": "1.1.0",
+  "description": "Runtime tool-access guard for OpenClaw agents. Intercepts destructive tool calls before they execute, redirecting controlled agents to delegate via sub-agents.",
+  "type": "module",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iFeel-is-a-mouse/mainctrl.git"
+  },
+  "author": "iFeel",
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "openclaw.plugin.json"
+  ],
+  "openclaw": {
+    "extensions": [
+      "./index.js"
+    ],
+    "compat": {
+      "pluginApi": ">=2026.6.6"
+    },
+    "build": {
+      "openclawVersion": "2026.6.6"
+    }
+  }
+}

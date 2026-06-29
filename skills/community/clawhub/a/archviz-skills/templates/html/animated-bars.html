@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Animated Chart</title></head>
+<body style="margin:0;background:#f5f0eb;font-family:system-ui">
+<!-- Animated Bar Chart — archviz-skills -->
+<!-- Use for: presentation, storytelling, progressive reveal -->
+<canvas id="c" width="600" height="350"></canvas>
+<script>
+const data = [{l:"Phase 1",v:6},{l:"Phase 2",v:9},{l:"Phase 3",v:4},{l:"Phase 4",v:7},{l:"Phase 5",v:5}];
+const ctx=document.getElementById("c").getContext("2d");
+const max=Math.max(...data.map(d=>d.v));
+const barW=70,gap=25,startX=80,baseY=300,targetH=data.map(d=>(d/max)*240);
+let progress=0;
+
+function draw(){
+  ctx.clearRect(0,0,600,350);
+  // Grid
+  for(let i=0;i<=4;i++){
+    const y=baseY-i*60;
+    ctx.beginPath();ctx.moveTo(60,y);ctx.lineTo(560,y);
+    ctx.strokeStyle="#e8e4e0";ctx.lineWidth=1;ctx.stroke();
+    ctx.fillStyle="#a8a29e";ctx.font="11px system-ui";ctx.textAlign="right";
+    ctx.fillText(Math.round(max*i/4),55,y+4);
+  }
+  // Bars
+  data.forEach((d,i)=>{
+    const x=startX+i*(barW+gap);
+    const h=targetH[i]*Math.min(progress,1);
+    const alpha=Math.min(progress*2,1);
+    ctx.fillStyle=`rgba(0,47,167,${alpha*0.8})`;
+    ctx.fillRect(x,baseY-h,barW,h-2);
+    // Label
+    ctx.fillStyle=`rgba(68,64,60,${alpha})`;
+    ctx.font="12px system-ui";ctx.textAlign="center";
+    ctx.fillText(d.l,x+barW/2,baseY+18);
+    // Value
+    if(progress>0.5){
+      ctx.fillStyle=`rgba(27,54,93,${Math.min((progress-0.5)*4,1)})`;
+      ctx.font="bold 14px system-ui";
+      ctx.fillText(d.v,x+barW/2,baseY-h-8);
+    }
+  });
+  if(progress<1.5){
+    progress+=0.02;
+    requestAnimationFrame(draw);
+  }
+}
+draw();
+</script>
+</body></html>

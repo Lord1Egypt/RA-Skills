@@ -1,0 +1,33 @@
+# Minimal user input for nationwide adaptive gaokao志愿 analysis
+student:
+  province: ""
+  year: 2026
+  category: ""      # 物理类/历史类/理科/文科/综合改革
+  score: null
+  rank: null        # strongly recommended
+  selected_subjects: []  # e.g. [物理, 地理, 生物] or [物理, 化学, 生物]
+  batch: "本科批"
+
+preferences:
+  preferred_fields: []
+  avoid_fields: []
+  preferred_regions: []
+  accept_private_college: null
+  accept_vocational_university: null
+  accept_high_fee: null
+  accept_sino_foreign: null
+  accept_out_of_province: null
+  max_tuition_per_year: null
+  consider_major_transfer: false
+
+files:
+  application_table: null  # optional uploaded志愿表
+  additional_notes: null
+
+auto_retrieval:
+  retrieve_current_score_lines: true
+  retrieve_historical_score_lines: true
+  retrieve_cutoffs: true
+  retrieve_enrollment_plan: true
+  retrieve_subject_requirements: true
+  retrieve_tuition: true

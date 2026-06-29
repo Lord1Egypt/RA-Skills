@@ -1,0 +1,4 @@
+interface:
+  display_name: "Huoshan Qifu Doc Knowledge Router"
+  short_description: "Route knowledge through the Huoshan-Qifu Feishu INDEX"
+  default_prompt: "Use $huoshan-qifu-doc-knowledge-router to find relevant Feishu learning documents from the default INDEX."

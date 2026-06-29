@@ -1,0 +1,83 @@
+{
+  "description": "Task templates for moving checklist categories.",
+  "version": "1.0.0",
+  "admin_tasks": {
+    "general": [
+      "Notify landlord of move-out (check contract notice period)",
+      "Review deposit recovery conditions",
+      "Schedule utility disconnection",
+      "Arrange internet transfer",
+      "Update address: bank, credit card, insurance",
+      "Update address on delivery apps and subscriptions",
+      "Update social security / welfare address",
+      "Submit change of address for ID card / residence permit"
+    ],
+    "inter_city_extra": [
+      "Arrange long-distance shipping",
+      "Research moving company for cross-city route",
+      "Update residence permit for new city",
+      "Research new city utility setup"
+    ],
+    "international_extra": [
+      "Handle customs documentation",
+      "Arrange international moving company",
+      "Update visa / residence status",
+      "Arrange pet quarantine paperwork"
+    ]
+  },
+  "packing_tasks": {
+    "declutter": [
+      "Sell unwanted items on Xianyu / second-hand platforms",
+      "Donate usable items to charity",
+      "Discard broken/unwanted items responsibly",
+      "Create inventory of items being moved"
+    ],
+    "supplies": [
+      "Small boxes (books, heavy items): 5-10",
+      "Medium boxes (kitchen, clothes): 10-15",
+      "Large boxes (light items, bedding): 5-10",
+      "Wardrobe boxes (hanging clothes): 2-3",
+      "Bubble wrap / packing paper: 2 rolls",
+      "Packing tape: 3-5 rolls",
+      "Markers and labels: 3-5"
+    ],
+    "order": [
+      "Pack off-season clothes first",
+      "Pack books, rarely used items",
+      "Pack decorations and collectibles",
+      "Pack kitchen items (wrap fragile items)",
+      "Pack bathroom and daily items last"
+    ]
+  },
+  "logistics_tasks": {
+    "mover_options": [
+      "货拉拉 (HuoLala) — DIY loading, affordable",
+      "快狗打车 (Kuaigou) — similar to HuoLala",
+      "Traditional moving company — full service",
+      "Mini-mover — for small loads"
+    ],
+    "box_count_by_size": {
+      "solo_1BR": "15-20 boxes",
+      "couple_2BR": "25-35 boxes",
+      "family_3BR": "40-55 boxes"
+    }
+  },
+  "cleaning_tasks": {
+    "move_out": [
+      "Clean kitchen: degrease stove, oven, range hood",
+      "Clean bathroom: mold removal, toilet, shower",
+      "Clean floors: sweep, mop all rooms",
+      "Clean windows and window tracks",
+      "Patch wall holes from nails/screws",
+      "Wipe all cabinets and shelves"
+    ],
+    "move_in": [
+      "Sanitize kitchen counters and cabinets",
+      "Sanitize bathroom (toilet, shower, sink)",
+      "Check for pests (cockroaches, ants, mice)",
+      "Test all appliances (AC, water heater, stove)",
+      "Check water pressure and drainage",
+      "Clean floors before unpacking"
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm-deploy-helper"
+version = "1.0.0"
+description = "CLI tool for local LLM deployment with Docker/GPU detection and config generation"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "llm-deploy-helper contributors"}
+]
+keywords = ["llm", "deployment", "docker", "gpu", "ollama", "vllm", "llama.cpp"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: System :: Systems Administration",
+    "Topic :: Utilities",
+]
+
+dependencies = [
+    "click>=8.0",
+    "rich>=13.0",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+full = ["psutil>=5.9"]
+
+[project.scripts]
+llm-deploy-helper = "llm_deploy_helper.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["llm_deploy_helper*"]
+
+[tool.setuptools.package-data]
+llm_deploy_helper = ["py.typed"]

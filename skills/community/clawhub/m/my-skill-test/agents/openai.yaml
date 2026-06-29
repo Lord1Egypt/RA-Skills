@@ -1,0 +1,4 @@
+interface:
+  display_name: "ZingAPI 创意列表查询"
+  short_description: "按行业、地区、渠道、关键词和素材类型查询 ZingAPI 广告创意。"
+  default_prompt: "使用 ZingAPI 创意列表查询接口，检索近期广告创意，并按地区、渠道、素材类型、关键词、排序方式和 AI 标签等条件返回摘要结果。"

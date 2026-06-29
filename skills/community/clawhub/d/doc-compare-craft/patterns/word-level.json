@@ -1,0 +1,11 @@
+{
+  "name": "word-level",
+  "label": "词级精细对比",
+  "description": "逐词对比，适合代码审查和精确文本比对",
+  "layout": "side-by-side",
+  "diff_level": "word",
+  "show_line_numbers": true,
+  "features": ["word_highlight", "char_diff", "whitespace_visible"],
+  "color_scheme": "diff-word",
+  "max_col_width": "50%"
+}

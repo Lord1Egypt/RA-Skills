@@ -1,11 +1,9 @@
 #!/usr/bin/env node
 'use strict';
 
-const { spawnSync } = require('child_process');
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
-const path = require('path');
 const {
   batchIdFromPath,
   budgetedItems,
@@ -23,7 +21,7 @@ const {
   responseList,
   responseTotal
 } = require('./lib/compact-output');
-const { writeJsonFile } = require('./lib/okki-api');
+const { authHeaders, writeJsonFile } = require('./lib/okki-api');
 const {
   readLatestBatchPointer,
   writeSelectionHandle,
@@ -39,8 +37,6 @@ const {
 } = require('./lib/company-search-display');
 
 const BASE_URL = process.env.OKKIGO_BASE_URL || 'https://go.okki.ai';
-const SKILL_VERSION = process.env.OKKIGO_SKILL_VERSION || '1.3.2';
-const SKILL_RUNTIME = process.env.OKKIGO_SKILL_RUNTIME || 'unknown';
 const TRANSIENT_RETRY_DELAY_MS = 300;
 
 function usage() {
@@ -128,58 +124,6 @@ function normalizePayload(input) {
   return normalizeCompanySearchPayload(input);
 }
 
-function resolveApiKey() {
-  const resolver = path.join(__dirname, 'resolve-api-key.sh');
-  const result = spawnSync('bash', [resolver, '--print'], {
-    encoding: 'utf8',
-    stdio: ['ignore', 'pipe', 'pipe']
-  });
-
-  if (result.status !== 0) {
-    throw new Error(`API key resolver failed: ${(result.stderr || result.stdout || '').trim()}`);
-  }
-
-  const key = String(result.stdout || '').trim().split(/\r?\n/)[0];
-  if (!key || !key.startsWith('sk-')) {
-    throw new Error('No OKKI Go API key resolved.');
-  }
-  return key;
-}
-
-function resolveInstallId() {
-  const fromEnv = process.env.OKKIGO_INSTALL_ID || process.env.OKKI_GO_INSTALL_ID;
-  if (fromEnv) return firstLine(fromEnv);
-
-  const manifestPath = path.join(__dirname, '..', '.okki-go-manifest.json');
-  const manifestId = readJsonInstallId(manifestPath);
-  if (manifestId) return manifestId;
-
-  const configHome = process.env.XDG_CONFIG_HOME || path.join(process.env.HOME || '', '.config');
-  if (configHome) {
-    const installIdPath = path.join(configHome, 'okki-go', 'install-id');
-    if (fs.existsSync(installIdPath)) {
-      return firstLine(fs.readFileSync(installIdPath, 'utf8'));
-    }
-  }
-
-  return '';
-}
-
-function readJsonInstallId(filePath) {
-  if (!fs.existsSync(filePath)) return '';
-  try {
-    const data = JSON.parse(fs.readFileSync(filePath, 'utf8'));
-    const id = data.installId || data.install_id;
-    return typeof id === 'string' ? firstLine(id) : '';
-  } catch (_) {
-    return '';
-  }
-}
-
-function firstLine(value) {
-  return String(value || '').trim().split(/\r?\n/)[0];
-}
-
 function postJson(urlString, headers, payload) {
   return new Promise((resolve, reject) => {
     const url = new URL(urlString);
@@ -243,15 +187,7 @@ async function main() {
     console.error(`Search guardrail warning: ${warning}`);
   }
 
-  const apiKey = resolveApiKey();
-  const installId = resolveInstallId();
-  const headers = {
-    Authorization: `ApiKey ${apiKey}`,
-    'Content-Type': 'application/json',
-    'X-Okki-Skill-Version': SKILL_VERSION,
-    'X-Okki-Skill-Runtime': SKILL_RUNTIME
-  };
-  if (installId) headers['X-Okki-Install-Id'] = installId;
+  const headers = authHeaders();
 
   const responses = [];
   for (const searchPayload of searchPayloads) {

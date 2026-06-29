@@ -1,0 +1,99 @@
+{
+  "cache_patterns": [
+    {
+      "app": "WeChat",
+      "app_cn": "微信",
+      "paths": [
+        "~/Library/Containers/com.tencent.xinWeChat/Data/Library/Caches",
+        "~/Library/Containers/com.tencent.xinWeChat/Data/Library/Application Support/com.tencent.xinWeChat"
+      ],
+      "safety": "CAUTION",
+      "description": "WeChat chat cache including images, videos, and documents",
+      "typical_size_gb": "5-50"
+    },
+    {
+      "app": "DingTalk",
+      "app_cn": "钉钉",
+      "paths": [
+        "~/Library/Containers/com.dingtalk.mac/Data/Library/Caches",
+        "~/Library/Application Support/com.dingtalk.mac"
+      ],
+      "safety": "CAUTION",
+      "description": "DingTalk cache files and attachments",
+      "typical_size_gb": "2-20"
+    },
+    {
+      "app": "QQ",
+      "paths": [
+        "~/Library/Containers/com.tencent.qq/Data/Library/Caches"
+      ],
+      "safety": "CAUTION",
+      "description": "QQ cache including images and chat files",
+      "typical_size_gb": "3-30"
+    },
+    {
+      "app": "Baidu Netdisk",
+      "app_cn": "百度网盘",
+      "paths": [
+        "~/Library/Application Support/com.baidu.BaiduNetdisk-mac"
+      ],
+      "safety": "SAFE",
+      "description": "Baidu Netdisk temporary download cache",
+      "typical_size_gb": "1-10"
+    },
+    {
+      "app": "WPS Office",
+      "paths": [
+        "~/Library/Containers/com.kingsoft.wpsoffice.mac/Data/Library/Caches"
+      ],
+      "safety": "CAUTION",
+      "description": "WPS office cache and temporary files",
+      "typical_size_gb": "1-5"
+    },
+    {
+      "app": "Netease Music",
+      "app_cn": "网易云音乐",
+      "paths": [
+        "~/Library/Containers/com.netease.163music/Data/Library/Caches"
+      ],
+      "safety": "SAFE",
+      "description": "Music streaming cache (re-downloadable)",
+      "typical_size_gb": "1-10"
+    },
+    {
+      "app": "Xcode",
+      "paths": [
+        "~/Library/Developer/Xcode/DerivedData",
+        "~/Library/Developer/Xcode/Archives",
+        "~/Library/Developer/Xcode/iOS DeviceSupport",
+        "~/Library/Developer/CoreSimulator"
+      ],
+      "safety": "CLEANABLE",
+      "description": "Xcode build artifacts and simulators",
+      "typical_size_gb": "5-50"
+    },
+    {
+      "app": "Docker",
+      "paths": [
+        "~/Library/Containers/com.docker.docker/Data/vms"
+      ],
+      "safety": "CLEANABLE",
+      "description": "Docker VM disk images",
+      "typical_size_gb": "5-30"
+    },
+    {
+      "app": "npm",
+      "paths": ["~/.npm/_cacache"],
+      "safety": "SAFE",
+      "description": "npm package cache",
+      "typical_size_gb": "1-5"
+    },
+    {
+      "app": "Homebrew",
+      "paths": ["~/Library/Caches/Homebrew"],
+      "safety": "SAFE",
+      "description": "Homebrew download cache",
+      "typical_size_gb": "1-3"
+    }
+  ]
+}

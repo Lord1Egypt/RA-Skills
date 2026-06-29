@@ -1,0 +1,9 @@
+{
+  "name": "comparison",
+  "label": "对比视图",
+  "description": "选中多行并排对比，适合产品/方案/选项对比",
+  "layout": "comparison",
+  "features": ["row_select", "comparison_panel", "diff_highlight", "common_fields", "unique_fields"],
+  "max_compare": 5,
+  "compare_fields": "all"
+}

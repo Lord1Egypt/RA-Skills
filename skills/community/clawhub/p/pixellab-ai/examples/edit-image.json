@@ -1,0 +1,16 @@
+{
+  "image": {
+    "type": "base64",
+    "format": "png",
+    "base64": "REPLACE_WITH_BASE64_SOURCE_IMAGE"
+  },
+  "image_size": {
+    "width": 64,
+    "height": 64
+  },
+  "description": "replace the sword with a glowing blue staff, preserve pose, silhouette, palette, and transparent background",
+  "width": 64,
+  "height": 64,
+  "no_background": true,
+  "seed": 0
+}

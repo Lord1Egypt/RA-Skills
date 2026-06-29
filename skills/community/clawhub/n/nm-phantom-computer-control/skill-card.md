@@ -11,33 +11,33 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and automation engineers use this skill to run opt-in computer-use workflows that inspect GUI state through screenshots and drive mouse or keyboard actions for desktop and browser tasks. <br>
+Developers and engineers use this skill to automate visual desktop workflows, test web applications through GUI interaction, fill forms, navigate menus, and verify actions from screenshots when CLI or API paths are not sufficient. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Screenshot capture can expose private information visible on the desktop. <br>
-Mitigation: Run the workflow in a sandbox, VM, or controlled display session and close sensitive applications before use. <br>
-Risk: Synthesized mouse and keyboard actions can change application state or trigger real-world effects. <br>
-Mitigation: Keep the skill opt-in, use human approval for consequential actions, and prefer dry-run or confirmation steps where available. <br>
-Risk: Long-running computer-use loops can consume API budget or continue acting after a task becomes ambiguous. <br>
-Mitigation: Set iteration caps and review progress between steps, especially for workflows involving credentials, package installs, or production systems. <br>
+Risk: The skill can expose desktop contents through screenshots and control the keyboard and mouse. <br>
+Mitigation: Install only when intentional, run it in an isolated VM, container, or display session, and close private applications before use. <br>
+Risk: Automated GUI actions can affect sensitive accounts or produce real-world consequences. <br>
+Mitigation: Avoid banking or other sensitive services and require human confirmation before consequential actions. <br>
+Risk: Long-running agent loops can continue taking actions or incur API cost. <br>
+Mitigation: Use iteration caps and monitor runs during desktop automation. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-phantom-computer-control) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-phantom-computer-control) <br>
 - [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/phantom) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell and Python code blocks] <br>
+**Output Type(s):** [Guidance, Shell commands, Code, Configuration] <br>
+**Output Format:** [Markdown with inline bash and Python code blocks] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include screenshot-informed action plans, environment checks, and confirmation guidance.] <br>
+**Other Properties Related to Output:** [May include safety guidance for sandboxing, iteration limits, and human confirmation before consequential GUI actions.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata) <br>
+1.9.13 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

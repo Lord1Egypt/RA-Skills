@@ -1,6 +1,6 @@
 ---
 name: FTShare-market-data
-description: 非凸科技金融数据技能集。覆盖 A 股股票列表、行情、IPO、大宗交易、融资融券、单股行情估值、可转债、ETF、基金、指数（含分页指数描述、下载描述 PDF、权重汇总/成份明细、下载权重 xlsx、详情/K 线/分时）、宏观经济，以及港股公司介绍/估值分析/基础视图/K线等接口（market.ft.tech / ftai.chat）。用户询问 A 股或港股的代码、行情、估值、K线、指数权重/描述、新闻与宏观数据时使用。
+description: 非凸科技金融数据技能集。覆盖 A 股股票列表、行情、IPO、大宗交易、融资融券、单股行情估值、可转债、ETF、基金、指数（含分页指数描述、下载描述 PDF、权重汇总/成份明细、下载权重 xlsx、详情/K 线/分时）、宏观经济，以及港股公司介绍/估值分析/基础视图/K线、东财美股列表/历史K线/最新行情、native 美股基础信息/利润表/现金流量表/资产负债表、港股财报三表(利润/现金流/资产负债)/东财港股指数日K线等接口（market.ft.tech / ftai.chat）。用户询问 A 股、港股、美股的代码、行情、估值、K线、指数权重/描述、新闻与宏观数据时使用。
 ---
 
 # FT AI Market Data Skills
@@ -40,6 +40,7 @@ python <RUN_PY> fund-nav-single-fund-paginated --institution-code 000001 --page 
 python <RUN_PY> fund-overview-all-funds-paginated --page 1 --page-size 20
 python <RUN_PY> fund-support-symbols-all-funds-paginated --page 1 --page-size 20
 python <RUN_PY> get-nth-trade-date --n 5
+python <RUN_PY> financial-calendar --start-date 2026-05-01 --end-date 2026-05-07
 python <RUN_PY> company-hk --trade_code 00700.HK
 python <RUN_PY> hk-valuatnanalyd --trade_code 00700.HK --page 1 --page_size 20
 python <RUN_PY> hk-view --hk_code 00700.HK
@@ -62,10 +63,58 @@ python <RUN_PY> 10jqk-board-list --module concept
 python <RUN_PY> 10jqk-board-list --search 人工智能
 python <RUN_PY> 10jqk-board-kline --board-code 885311 --page 1 --page-size 20
 python <RUN_PY> 10jqk-board-all-kline --start-date 2026-05-20 --end-date 2026-05-25
+python <RUN_PY> stock-rank-xueqiu --rank-group follow --period 7d --page 1 --page-size 20
+python <RUN_PY> stock-rank-eastmoney --rank-group hot --market A
+python <RUN_PY> stock-comment-index
+python <RUN_PY> stock-comment-score --symbol 000001
+python <RUN_PY> stock-comment-org-participate --symbol 000001
+python <RUN_PY> stock-comment-desire --symbol 000001
+python <RUN_PY> stock-comment-focus --symbol 000001
 python <RUN_PY> limit-up-pool
 python <RUN_PY> limit-up-pool-yesterday
 python <RUN_PY> limit-up-break-pool
 python <RUN_PY> limit-down-pool
+python <RUN_PY> shareholder-meeting
+python <RUN_PY> shareholder-meeting --page 1 --page_size 50
+python <RUN_PY> stock-unlock-by-stock --stock_code 000001
+python <RUN_PY> stock-unlock-by-date --start_date 2026-06-01 --end_date 2026-06-30
+python <RUN_PY> major-contract-by-date --start_date 20260526 --end_date 20260526
+python <RUN_PY> major-contract-by-symbol --symbol 601668
+python <RUN_PY> major-contract-summary
+python <RUN_PY> eastmoney-stock-valuation --symbol 000001 --page 1 --page_size 10
+python <RUN_PY> eastmoney-stock-valuation --symbol 000001 --start_date 2026-06-01 --end_date 2026-06-09
+python <RUN_PY> eastmoney-stock-valuation --start_date 2026-06-01 --end_date 2026-06-09 --all
+python <RUN_PY> eastmoney-market-valuation --market_code 000300 --page 1 --page_size 10
+python <RUN_PY> eastmoney-market-valuation --market_code 000001 --start_date 2026-06-01 --end_date 2026-06-09
+python <RUN_PY> eastmoney-market-valuation --start_date 2026-06-01 --end_date 2026-06-09 --all
+python <RUN_PY> eastmoney-us-stock-list
+python <RUN_PY> eastmoney-us-stock-list --page 1 --page_size 50
+python <RUN_PY> eastmoney-us-stock-list --all
+python <RUN_PY> eastmoney-us-stock-daily-ohlc --stock_code AAPL --page 1 --page_size 50
+python <RUN_PY> eastmoney-us-stock-daily-ohlc --stock_code AAPL --start_date 2026-01-01 --end_date 2026-06-10
+python <RUN_PY> eastmoney-us-stock-daily-ohlc --stock_code AAPL --start_date 2026-01-01 --end_date 2026-06-10 --all
+python <RUN_PY> eastmoney-us-stock-latest-ohlc --stock_code AAPL --page 1 --page_size 20
+python <RUN_PY> eastmoney-us-stock-latest-ohlc --page 1 --page_size 50
+python <RUN_PY> eastmoney-us-stock-latest-ohlc --all
+python <RUN_PY> stock-capital-flows --page 1 --page-size 50
+python <RUN_PY> stock-capital-flows --date 20260616 --time 1530 --page 1 --page-size 50
+python <RUN_PY> stock-capital-flows --date 20260616 --all
+python <RUN_PY> stock-capital-flows --date 20260616 --symbol 601138.SH
+python <RUN_PY> stock-capital-flows --symbol 601138.SH
+python <RUN_PY> us-basic --stock_code NVDA
+python <RUN_PY> us-basic --page 1 --page_size 50
+python <RUN_PY> us-income --stock_code NVDA --period 2024 --report_type Q4
+python <RUN_PY> us-cashflow --stock_code AAPL --period 2024 --report_type Q4
+python <RUN_PY> us-balance --stock_code NVDA --period 2024 --report_type Q4
+python <RUN_PY> hk-income --trade_code 00700.HK --year 2024 --report_type annual
+python <RUN_PY> hk-income --trade_code 2388 --company_type bank
+python <RUN_PY> hk-cashflow --stock_code 00700.HK --year 2024 --report_type annual
+python <RUN_PY> hk-balance --trade_code 00700.HK --year 2024 --report_type annual
+python <RUN_PY> eastmoney-hk-index-daily-kline --index_code HSI --page 1 --page_size 5
+python <RUN_PY> eastmoney-hk-index-daily-kline --index_code HSCEI --start_date 2026-06-01 --end_date 2026-06-15
+python <RUN_PY> hsi-daily-weight --index_slug HSI --page 1 --page_size 200
+python <RUN_PY> hsi-daily-weight --trade_date 20260529 --index_slug HSCEI
+python <RUN_PY> hsi-daily-weight --stock_code 0700
 ```
 
 > `run.py` 内部通过 `__file__` 自定位，无论安装在何处都能正确找到各子 skill 的脚本。
@@ -76,7 +125,11 @@ python <RUN_PY> limit-down-pool
 
 ### 0. 交易日工具
 
-- **`get-nth-trade-date`**：获取当前日期的前 N 个交易日。必填：`--n`（≥1）。用户查「近 N 天」K 线时先调本接口得到 `nth_trade_date`，再按东八区转为毫秒时间戳用于 stock-ohlcs / etf-ohlcs / index-ohlcs / cb-candlesticks 等。
+- **`get-nth-trade-date`**：获取当前日期的前 N 个交易日。必填：`--n`（≥1）。用户查「近 N 天」K 线时先调本接口得到 `nth_trade_date`（YYYYMMDD），可直接作为 stock-ohlcs / etf-ohlcs / index-ohlcs 的 `--since`（cb-candlesticks 仍需转为毫秒时间戳）。
+
+### 0.5. 财经日历
+
+- **`financial-calendar`**：按日期范围查询财经日历（华尔街见闻 + 百度财经），涵盖宏观数据公布、IPO 日程、财报时间、交易提醒等。必填：`--start-date`、`--end-date`（格式 `YYYY-MM-DD`）。**注意：多日范围可能因响应过大导致服务端截断，建议每次仅查询单日，多日需逐日调用后合并。**
 
 ### 1. 股票数据（A 股）
 
@@ -139,6 +192,72 @@ python <RUN_PY> limit-down-pool
 - **`limit-up-break-pool`**：当日炸板股池（涨停后又打开的股票）。无需参数。
 - **`limit-down-pool`**：当日跌停股池（标的代码、跌停价、翘板次数、封单资金）。无需参数。
 
+### 8. 股票热度排行榜
+
+- **`stock-rank-xueqiu`**：查询雪球平台股票排行榜（关注/讨论/交易）。可选：`--rank-group`（follow/tweet/deal）、`--period`（7d/total）、`--trade-date`（YYYY-MM-DD）、`--page`、`--page-size`（最大 100）。
+- **`stock-rank-eastmoney`**：查询东方财富股票排行榜（人气榜/飙升榜），支持 A 股/港股/美股。可选：`--rank-group`（hot/up）、`--market`（A/HK/US）、`--trade-date`（YYYY-MM-DD）。
+
+### 9. 公司行动（股东大会 / 限售解禁 / 重大合同）
+
+#### 股东大会
+
+- **`shareholder-meeting`**：查询 A 股上市公司股东大会信息（会议日期、股权登记日、投票日期、提案内容等），支持分页。可选：`--page`、`--page_size`。
+
+#### 限售解禁
+
+- **`stock-unlock-by-stock`**：按证券代码查询限售解禁批次及股东明细（解禁日期、解禁市值、占总股本比例、股东明细等），支持分页。必填：`--stock_code`（6 位代码）；可选 `--page`、`--page_size`。
+- **`stock-unlock-by-date`**：按解禁日期范围查询限售解禁批次及股东明细，支持分页。必填：`--start_date`、`--end_date`（格式 YYYY-MM-DD）；可选 `--page`、`--page_size`。
+
+#### 重大合同
+
+- **`major-contract-by-date`**：按公告日期范围查询 A 股重大合同（签约方、合同金额、合同类型、占营收比例等）。必填：`--start_date`、`--end_date`（格式 YYYYMMDD）。
+- **`major-contract-by-symbol`**：按股票代码查询重大合同历史，按公告日期降序，支持分页。必填：`--symbol`（6 位代码）；可选 `--page`、`--page_size`。
+- **`major-contract-summary`**：近一年个股重大合同汇总排名（合同数量、合同总额、占营收比），按合同总额降序，支持分页。可选：`--page`、`--page_size`。
+
+### 10. 千股千评
+
+- **`stock-comment-index`**：查询东方财富千股千评综合诊断主表，含收盘价、涨跌幅、换手率、市盈率、主力成本、机构参与度、综合评分、排名、关注指数。无参数，返回全量（约 5000+ 条）。
+- **`stock-comment-score`**：查询指定股票的历史综合评分走势。必填：`--symbol`（6 位代码）。
+- **`stock-comment-org-participate`**：查询指定股票的历史机构参与度走势。必填：`--symbol`（6 位代码）。
+- **`stock-comment-desire`**：查询指定股票的市场参与意愿及 5 日均值变化。必填：`--symbol`（6 位代码）。
+- **`stock-comment-focus`**：查询指定股票的市场热度用户关注指数、排名及变动。必填：`--symbol`（6 位代码）。
+
+### 11. 估值分析数据
+
+- **`eastmoney-stock-valuation`**：查询东财个股日估值数据（PE TTM/LYR、PB、市现率、市销率、PEG、总市值、流通市值、收盘价等）。可选：`--symbol`、`--trade_date`、`--start_date`、`--end_date`、`--page`、`--page_size`；支持 `--all` 自动翻页。**推荐使用区间查询**（`--start_date` + `--end_date`），当前单日查询可能返回空。
+- **`eastmoney-market-valuation`**：查询东财市场日估值数据（上证指数/沪深300/深证成指/创业板指/科创50/北证50 的 PE、总市值、流通市值、收盘点位等）。可选：`--market_code`、`--trade_date`、`--start_date`、`--end_date`、`--page`、`--page_size`；支持 `--all` 自动翻页。**推荐使用区间查询**。
+
+### 12. 东财美股数据
+
+- **`eastmoney-us-stock-list`**：获取东财美股全量列表（~5700+ 只），含代码、名称、市值、最新价、涨跌幅、市盈率等，支持服务端分页（500 条/页）。可选：`--page`、`--page_size`；`--all` 返回全量。**注意**：不覆盖苹果等美股大盘蓝筹，以东财中小盘和中概股为主。
+- **`eastmoney-us-stock-daily-ohlc`**：查询东财美股历史日 K 线（开高低收、成交量、成交额、振幅）。有日期范围时按 3 天窗口分批请求避免服务端 500，无日期范围时全量拉取。必填：`--stock_code`（东财美股代码如 `AAL`）；可选：`--start_date`、`--end_date`（YYYY-MM-DD 或 YYYYMMDD）、`--page`、`--page_size`；支持 `--all`。**注意**：全部数值字段按字符串返回。
+- **`eastmoney-us-stock-latest-ohlc`**：查询东财美股最新一根日 K 线行情，支持分页与单票过滤。可选：`--stock_code`（不传返回全部美股）、`--page`、`--page_size`；支持 `--all` 自动翻页。**注意**：价格字段为字符串，成交量/振幅为数值。
+
+### 13. 资金流向（15 分钟切片）
+
+- **`stock-capital-flows`**：查询 A 股股票资金流向（主力净流入，15 分钟级别）。**凡问"分钟级 / 15 分钟级 / 分时资金流"一律用本 skill。**不传 `--date` 返回当前实时快照；传入 `--date`（YYYYMMDD）返回该日指定 15 分钟切片快照，默认 `--time 1530`（日终），`--time` 分钟须为 00/15/30/45。可选 `--page`、`--page-size`；支持 `--all` 自动翻页；支持 `--symbol 601138.SH` 单股定位（逐页扫描，返回全市场排名 + 单条记录，可叠加 `--date`/`--time` 查某只票某切片）。仅 A 股（不含 ETF/指数），按主力净流入降序；金额字段以字符串返回，单位元。
+
+### 14. 美股基础信息与财报（native）
+
+> 与 `eastmoney-us-stock-list`（东财**行情**：最新价/市值/PE）区别：本节为 native **基础信息 + 财报三表**。
+
+- **`us-basic`**：查询美股基础信息（代码、中英文名、上市/退市日期），~5315 只。可选 `--stock_code`（纯代码如 `NVDA`，传则精确查单股）、`--page`、`--page_size`；支持 `--all`。查"美股有哪些/代码/名称/上市日期"用本接口。
+- **`us-income`**：查询美股利润表（长表 EAV）。必填 `--stock_code`；可选 `--period`（财年）、`--report_type`（`Q1/Q2/Q3/Q4/H1`）、`--start_date`/`--end_date`（YYYYMMDD）、`--page`/`--page_size`；支持 `--all`。
+- **`us-cashflow`**：查询美股现金流量表（长表 EAV），参数同 `us-income`。
+- **`us-balance`**：查询美股资产负债表（长表 EAV，时点数据），参数同 `us-income`。
+- 财报三表共用要点：**长表 EAV**（每行一科目）、**按报告期分页**（`page_size` 限报告期数，`items` 行数可能 ≫ `page_size`，`total_items` 是报告期数）、**Q4/Q3 返回累计+单季两套**、**美股财年非自然年**（`period` 匹配 `stmt_year`）、数值为字符串、只输出非 0 科目。
+
+### 15. 港股财报与港股指数（native + 东财）
+
+> 与 §4 港股（公司介绍/估值/视图/K线）互补：本节为**港股财报三表**与**东财港股指数日K线**。
+
+- **`hk-income`**：查询港股利润表（宽表）。按公司类型分子接口：`--company_type gene`(一般企业,默认)/`bank`(银行)/`insur`(保险)。可选 `--trade_code`（`00700.HK` 或 `700`）、`--year`+`--report_type`（`annual`/`semi`，须成对，仅最近 3 年）、`--start_date`/`--end_date`（YYYYMMDD）、`--page`/`--page_size`；支持 `--all`。**至少一个过滤条件**，否则 400。
+- **`hk-cashflow`**：查询港股现金流量表（宽表，111 字段）。参数同上，但**股票代码用 `--stock_code`（非 `trade_code`）**。
+- **`hk-balance`**：查询港股资产负债表（宽表，时点数据）。按公司类型分子接口（`--company_type gene/bank/insur`），参数同 `hk-income`。
+- **`eastmoney-hk-index-daily-kline`**：查询东财港股指数（恒生 HSI / 国企 HSCEI / 恒生科技 HSTECH 等）日 K 线（开高低收、量额、振幅、涨跌幅/涨跌额、换手率）。可选 `--index_code`、`--trade_date`（YYYY-MM-DD）、`--start_date`+`--end_date`（YYYY-MM-DD）、`--page`/`--page_size`；支持 `--all`。**响应信封不同：数据在 `data.records`，非 `items`**。
+- **`hsi-daily-weight`**：查询恒生系列指数**成份股权重**（HSI 恒生 / HSCEI 国企 / HSAIT）。可选 `--trade_date`（YYYYMMDD，与 start/end 互斥）、`--start_date`+`--end_date`（YYYYMMDD）、`--index_slug`、`--stock_code`（4 位如 `0700`）、`--page`/`--page_size`；支持 `--all`。**⚠️ HSAIT 的"恒生科技"映射存疑**（实测返回 40 只且含中国移动，与官方 HSTECH 的 30 只/8% 上限/不含中国移动不符）——HSI/HSCEI 可用，**HSAIT 勿当恒生科技用**。响应信封 `data.records`，`weight_pct` 为字符串百分数（未缩放）。
+- 港股财报三表要点：**宽表**（一行一个报告期，科目为列，非 EAV）、`report_type` 仅 `annual`/`semi`、`year` 限最近 3 年且须与 `report_type` 成对、金额字段为 Decimal 字符串或 null、单位依 `currency`（常为千元/百万元口径）。
+
 ---
 
 ## 使用流程
@@ -178,6 +297,7 @@ python <RUN_PY> limit-down-pool
 | 「ETF PCF 列表」「申购赎回清单」「指定日期 PCF」 | `etf-pcfs` |
 | 「下载 PCF 文件」「PCF XML 内容」 | `etf-pcf-download` |
 | 「前 N 个交易日」「近 N 天交易日」「往前推 N 个交易日」（查近几天 K 线时先调再转时间戳） | `get-nth-trade-date` |
+| 「财经日历」「本周有哪些经济事件」「宏观经济数据公布时间」「IPO 日程」「财报时间」「交易提醒」「分红送转提醒」 | `financial-calendar` |
 | 「某只 ETF 成份股」「ETF 持仓」「510300 成份」「沪深300ETF 成份列表」 | `etf-component` |
 | 「某只 ETF 盘前」「ETF 申购赎回单位」「净值/现金差额」「510300 盘前」 | `etf-pre-single` |
 | 「基金基本信息」「某只基金详情」「基金管理人/基金经理」「基金类型/投资目标」 | `fund-basicinfo-single-fund` |
@@ -203,6 +323,41 @@ python <RUN_PY> limit-down-pool
 | 「昨天涨停」「昨日涨停股」 | `limit-up-pool-yesterday` |
 | 「炸板」「涨停炸板」「打开涨停」 | `limit-up-break-pool` |
 | 「今天跌停」「跌停板」「跌停股池」 | `limit-down-pool` |
+| 「雪球热搜」「雪球关注榜」「雪球讨论榜」「雪球交易榜」 | `stock-rank-xueqiu` |
+| 「东财人气榜」「东方财富热搜」「股票热度」「人气飙升榜」 | `stock-rank-eastmoney` |
+| 「股东会」「股东大会」「近期股东大会」「股权登记日」「投票日期」 | `shareholder-meeting` |
+| 「某股票限售解禁」「解禁日期」「解禁市值」 | `stock-unlock-by-stock` |
+| 「近期解禁」「本月解禁」「解禁日历」 | `stock-unlock-by-date` |
+| 「重大合同」「今天签了哪些大单」「合同金额」 | `major-contract-by-date` |
+| 「某公司签了哪些重大合同」「某股票合同历史」 | `major-contract-by-symbol` |
+| 「重大合同排行榜」「哪些公司合同金额最大」「合同总额排名」 | `major-contract-summary` |
+| 「千股千评」「股票综合诊断」「股票评分排名」 | `stock-comment-index` |
+| 「某股票历史评分」「综合评分走势」 | `stock-comment-score` |
+| 「机构参与度」「机构关注度」 | `stock-comment-org-participate` |
+| 「市场参与意愿」「散户参与度」 | `stock-comment-desire` |
+| 「用户关注指数」「市场关注度排名」 | `stock-comment-focus` |
+| 「股票估值」「个股市盈率」「市净率」「PEG」 | `eastmoney-stock-valuation` |
+| 「某只股票估值走势」「历史PE/PB」 | `eastmoney-stock-valuation` |
+| 「全市场股票估值」「某日全市场市盈率」 | `eastmoney-stock-valuation` |
+| 「市场估值」「上证指数PE」「沪深300市盈率」 | `eastmoney-market-valuation` |
+| 「指数估值」「市场市盈率走势」「科创50估值」 | `eastmoney-market-valuation` |
+| 「创业板估值」「深证成指PE」「北证50估值」 | `eastmoney-market-valuation` |
+| 「美股列表」「东财美股」「美股代码有哪些」 | `eastmoney-us-stock-list` |
+| 「美股K线」「美股日线」「美股历史行情」「美股OHLC」 | `eastmoney-us-stock-daily-ohlc` |
+| 「美股最新行情」「美股最新价」「某只美股最新 K 线」 | `eastmoney-us-stock-latest-ohlc` |
+| 「资金流向」「主力净流入」「个股资金流」「资金流排名」 | `stock-capital-flows` |
+| 「15分钟资金流」「分钟级资金流」「分时资金流」「某日某时刻资金流切片」「日终资金流」 | `stock-capital-flows` |
+| 「某只票资金流」「工业富联资金流」「601138 主力净流入」 | `stock-capital-flows --symbol <代码>` |
+| 「美股有哪些」「全部美股」「美股代码列表」「美股上市日期」「某美股中英文名」 | `us-basic` |
+| 「美股最新价」「美股市值」「美股涨跌幅」「美股PE」「东财美股」 | `eastmoney-us-stock-list` |
+| 「美股利润表」「美股营收/净利润/EPS」「某美股财报」 | `us-income` |
+| 「美股现金流量表」「美股经营/投资/筹资现金流」「美股资本支出」 | `us-cashflow` |
+| 「美股资产负债表」「美股资产/负债/所有者权益」 | `us-balance` |
+| 「港股利润表」「港股营收/净利润/EPS」「某港股财报」 | `hk-income` |
+| 「港股现金流量表」「港股经营/投资/融资现金流」 | `hk-cashflow`（用 `--stock_code`） |
+| 「港股资产负债表」「港股资产/负债/所有者权益」 | `hk-balance` |
+| 「港股指数K线」「恒生指数走势」「国企指数/恒生科技日线」 | `eastmoney-hk-index-daily-kline` |
+| 「港股指数权重」「恒生指数成份股权重」「国企指数权重」「某股在恒指权重」 | `hsi-daily-weight`（HSAIT 存疑，见说明） |
 
 # FT A-share 公告与研报数据 Skills
 
@@ -479,7 +634,7 @@ python <RUN_PY> stock-balance-all-stocks-specific-period --year 2025 --report-ty
 python <RUN_PY> etf-detail --etf 510050.XSHG
 python <RUN_PY> etf-description-all
 python <RUN_PY> etf-list-paginated --order_by "change_rate desc" --page_size 20 --page_no 1
-python <RUN_PY> etf-ohlcs --etf 510050.XSHG --span DAY1 --limit 50
+python <RUN_PY> etf-ohlcs --etf 510050.XSHG --since 20240101 --until 20240131
 python <RUN_PY> etf-prices --etf 510050.XSHG --since TODAY
 ```
 
@@ -494,7 +649,7 @@ python <RUN_PY> etf-prices --etf 510050.XSHG --since TODAY
 | 某只 **ETF 详情**、**510050 行情**、**上证50ETF** 涨跌幅、ETF **跟踪指数/市值**、某只 ETF 名称/盘口 | `etf-detail` |
 | **全部 ETF 基础信息**、**ETF 代码与名称映射**、**按名称找 ETF 代码**、ETF **symbol 对照表** | `etf-description-all` |
 | **ETF 列表**、**全市场 ETF**、**按涨跌幅排序的 ETF**、**筛选某类 ETF** | `etf-list-paginated` |
-| 某只 ETF 的 **K 线**、**510050 日线/周线/月线/年线**、ETF **开高低收**、**MA5/MA10/MA20** | `etf-ohlcs` |
+| 某只 ETF 的 **K 线**、**510050 日线/周线/月线**、ETF **开高低收**、**前/后复权** | `etf-ohlcs` |
 | 某只 ETF **分时**、**510050 当日分时**、ETF **一分钟行情**、**多日分时走势** | `etf-prices` |
 
 ---
@@ -504,7 +659,7 @@ python <RUN_PY> etf-prices --etf 510050.XSHG --since TODAY
 - **`etf-detail`**：查询单只 ETF 详情（名称、行情、盘口、市值、涨跌幅、跟踪指数、投资类型等）。必填：`--etf`；可选 `--masks`。
 - **`etf-description-all`**：查询全部 ETF 基础信息（symbol/name/asset_class 等）。无参数。用户仅给名称时，先用本接口将名称映射到唯一 `symbol` 再查详情/指标。
 - **`etf-list-paginated`**：ETF 分页列表，支持分页、排序、筛选。可选：`--order_by`/`--ob`、`--filter`、`--masks`、`--page_size`、`--page_no`、`--filter_index`。
-- **`etf-ohlcs`**：查询单只 ETF OHLC K 线（开高低收、成交量、成交额），附带 MA5/MA10/MA20。必填：`--etf`、`--span`（DAY1/WEEK1/MONTH1/YEAR1）；可选 `--limit`、`--until_ts_ms`。
+- **`etf-ohlcs`**：查询单只 ETF OHLC K 线（开高低收、成交量、成交额，daec 日期区间）。必填：`--etf`、`--since`（YYYYMMDD）；可选 `--until`（YYYYMMDD，默认今天）、`--interval`（Day/Week/Month，默认 Day）、`--adjust`（Forward/Backward）。无年线、无 MA。
 - **`etf-prices`**：查询单只 ETF 分钟级分时价格。必填：`--etf`；时间范围二选一：`--since`（TODAY、FIVE_DAYS_AGO、TRADE_DAYS_AGO(n)）或 `--since_ts_ms`。
 
 ---
@@ -545,7 +700,7 @@ python <RUN_PY> index-weight-list --index-code 000300 --date 20250320 --page 1 -
 python <RUN_PY> index-weight-download --url-hash <url_hash> --output ./index-weights.xlsx
 python <RUN_PY> index-detail --index 000001.XSHG
 python <RUN_PY> index-list-paginated --order_by "change_rate desc" --page_size 20 --page_no 1
-python <RUN_PY> index-ohlcs --index 000001.XSHG --span DAY1 --limit 50
+python <RUN_PY> index-ohlcs --index 000001.XSHG --since 20240101 --until 20240131
 python <RUN_PY> index-prices --index 000001.XSHG --since TODAY
 python <RUN_PY> get-nth-trade-date --n 5
 ```
@@ -566,7 +721,7 @@ python <RUN_PY> get-nth-trade-date --n 5
 | **下载指数权重**、**权重 xlsx**、**成份权重 Excel**（需先有 url_hash） | `index-weight-download` |
 | 某只 **指数详情**、**上证指数行情**、**沪深300** 点位/涨跌幅、指数名称/成交 | `index-detail` |
 | **指数列表**、**全市场指数**、**按涨跌幅排序的指数**、**筛选某类指数** | `index-list-paginated` |
-| 某只指数的 **K 线**、**上证指数日线/周线/月线/年线**、指数 **开高低收**、**MA5/MA10/MA20** | `index-ohlcs` |
+| 某只指数的 **K 线**、**上证指数日线/周线/月线**、指数 **开高低收**、**前/后复权** | `index-ohlcs` |
 | 某只指数 **分时**、**上证指数当日分时**、指数 **一分钟行情**、**多日分时走势** | `index-prices` |
 | **前 N 个交易日**、**近 N 天交易日**、**往前推 N 个交易日**（查近几天 K 线时先调此接口再转时间戳） | `get-nth-trade-date` |
 
@@ -574,16 +729,16 @@ python <RUN_PY> get-nth-trade-date --n 5
 
 ## 能力总览
 
-- **`get-nth-trade-date`**：获取当前日期的前 N 个交易日。必填：`--n`（≥1）。查「近 N 天」K 线时先调本接口得到 `nth_trade_date`，再按东八区转为毫秒时间戳用于 index-ohlcs 等。
-- **`index-description-all`**：查询全部指数基础信息（symbol、全称、简称、pb、pe_ttm）。无需参数；`GET /data/api/v1/market/data/index-description-all`。
-- **`index-description-paginated`**（描述链 ①）：分页查询指数描述列表（`index_code`、`index_name`、`index_intro`、`url_hash` 等）。可选：`--page`（默认 1）、`--page-size`（默认 20，最大 100）；`GET /data/api/v1/market/data/index/index_description`。
-- **`index-description-download`**（描述链 ②）：按 `url_hash` 下载指数描述 PDF。必填：`--url-hash`；可选：`--output`（须在当前工作目录下）；`GET /data/api/v1/market/data/index/index_description/{url_hash}`。**须先用 `index-description-paginated` 取得 `url_hash`**。
-- **`index-weight-summary`**（权重链 ①）：分页查询指数权重汇总（按 `index_code` 列出各期 `date` 与 `url_hash`）。可选：`--page`、`--page-size`（默认 20，最大 100）；`GET /data/api/v1/market/data/index/index_weight_summary`。
-- **`index-weight-list`**（权重链 ②）：分页查询指数成份权重明细。必填：`--index-code`；可选：`--date`（YYYYMMDD）、`--page`、`--page-size`（默认 20，最大 100）；`GET /data/api/v1/market/data/index/index_weight`。可先通过 `index-weight-summary` 确认期数与日期。
-- **`index-weight-download`**（权重链 ③）：按 `url_hash` 下载指数权重 xlsx。必填：`--url-hash`；可选：`--output`（须在当前工作目录下）；`GET /data/api/v1/market/data/index/index_weight/{url_hash}`。**须先用 `index-weight-list` 或 `index-weight-summary` 取得 `url_hash`**。
+- **`get-nth-trade-date`**：获取当前日期的前 N 个交易日。必填：`--n`（≥1）。查「近 N 天」K 线时先调本接口得到 `nth_trade_date`（YYYYMMDD），可直接作为 index-ohlcs 的 `--since`。
+- **`index-description-all`**：查询全部指数基础信息（symbol、全称、简称、pb、pe_ttm）。无需参数；`GET /gateway/api/v1/market/data/index-description-all`。
+- **`index-description-paginated`**（描述链 ①）：分页查询指数描述列表（`index_code`、`index_name`、`index_intro`、`url_hash` 等）。可选：`--page`（默认 1）、`--page-size`（默认 20，最大 100）；`GET /gateway/api/v1/market/data/index/index_description`。
+- **`index-description-download`**（描述链 ②）：按 `url_hash` 下载指数描述 PDF。必填：`--url-hash`；可选：`--output`（须在当前工作目录下）；`GET /gateway/api/v1/market/data/index/index_description/{url_hash}`。**须先用 `index-description-paginated` 取得 `url_hash`**。
+- **`index-weight-summary`**（权重链 ①）：分页查询指数权重汇总（按 `index_code` 列出各期 `date` 与 `url_hash`）。可选：`--page`、`--page-size`（默认 20，最大 100）；`GET /gateway/api/v1/market/data/index/index_weight_summary`。
+- **`index-weight-list`**（权重链 ②）：分页查询指数成份权重明细。必填：`--index-code`；可选：`--date`（YYYYMMDD）、`--page`、`--page-size`（默认 20，最大 100）；`GET /gateway/api/v1/market/data/index/index_weight`。可先通过 `index-weight-summary` 确认期数与日期。
+- **`index-weight-download`**（权重链 ③）：按 `url_hash` 下载指数权重 xlsx。必填：`--url-hash`；可选：`--output`（须在当前工作目录下）；`GET /gateway/api/v1/market/data/index/index_weight/{url_hash}`。**须先用 `index-weight-list` 或 `index-weight-summary` 取得 `url_hash`**。
 - **`index-detail`**：查询单只指数详情（名称、行情点位、成交、涨跌幅、多周期涨跌幅等）。必填：`--index`；可选 `--masks`。若用户仅给名称，先通过 `index-description-all` 或 `index-list-paginated` 确认代码再查。
 - **`index-list-paginated`**：指数分页列表，支持分页、排序、筛选。可选：`--order_by`/`--ob`、`--filter`、`--masks`、`--page_size`、`--page_no`。
-- **`index-ohlcs`**：查询单只指数 OHLC K 线（开高低收、成交量、成交额），附带 MA5/MA10/MA20。必填：`--index`、`--span`（DAY1/WEEK1/MONTH1/YEAR1）；可选 `--limit`、`--until_ts_ms`。建议先完成名称到代码映射后再调用。
+- **`index-ohlcs`**：查询单只指数 OHLC K 线（开高低收、成交量、成交额，daec 日期区间）。必填：`--index`、`--since`（YYYYMMDD）；可选 `--until`（YYYYMMDD，默认今天）、`--interval`（Day/Week/Month，默认 Day）、`--adjust`（Forward/Backward）。无年线、无 MA。建议先完成名称到代码映射后再调用。
 - **`index-prices`**：查询单只指数分钟级分时价格。必填：`--index`；时间范围二选一：`--since`（TODAY、FIVE_DAYS_AGO、TRADE_DAYS_AGO(n)）或 `--since_ts_ms`。建议先完成名称到代码映射后再调用。
 
 ---
@@ -652,8 +807,8 @@ index-weight-summary  ──取 index_code/date/url_hash──▸  index-weight-
 
 ```bash
 # 示例（<RUN_PY> 为实际绝对路径）
-python <RUN_PY> stock-ohlcs --stock 688295.XSHG --span DAY1 --limit 50
-python <RUN_PY> stock-ohlcs --stock 000001.SZ --span WEEK1
+python <RUN_PY> stock-ohlcs --stock 688295.XSHG --since 20240101 --until 20240131
+python <RUN_PY> stock-ohlcs --stock 000001.SZ --since 20240101 --until 20260628 --interval Week
 python <RUN_PY> stock-prices --stock 000001.XSHG --since TODAY
 ```
 
@@ -665,11 +820,11 @@ python <RUN_PY> stock-prices --stock 000001.XSHG --since TODAY
 
 ### 1. 单只股票 OHLC K 线
 
-- **`stock-ohlcs`**：查询单只 A 股股票在指定周期、时间范围内的 K 线数据，含开高低收、成交量、成交额，以及 MA5/MA10/MA20 均线。必填参数：`--stock`（如 `688295.XSHG`）、`--span`（DAY1/WEEK1/MONTH1/YEAR1）；可选参数：`--limit`（返回条数上限）、`--until_ts_ms`（截止时间戳毫秒）。
+- **`stock-ohlcs`**：查询单只 A 股股票在指定日期区间的 K 线（开高低收、成交量、成交额，daec 日期区间）。必填：`--stock`、`--since`（YYYYMMDD）；可选 `--until`（YYYYMMDD，默认今天）、`--interval`（Day/Week/Month，默认 Day）、`--adjust`（Forward/Backward）。无年线、无 MA。
 
 ### 2. 单只股票分时价格（一分钟级别）
 
-- **`stock-prices`**：查询单只 A 股股票在指定时间范围内的分时数据（一分钟一根），用于分时图、当日/多日走势；含该分钟价格、成交量、成交额、均价、时间戳；响应含昨收与当前交易日。必填参数：`--stock`；时间起点二选一：`--since`（TODAY / FIVE_DAYS_AGO / TRADE_DAYS_AGO(n)）或 `--since_ts_ms`（毫秒时间戳）。
+- **`stock-prices`**：查询单只 A 股股票在指定时间范围内的分时数据（一分钟一根），用于分时图、当日/多日走势；含该分钟价格、成交量、成交额、均价、时间戳。必填参数：`--stock`；时间起点二选一：`--since`（TODAY / FIVE_DAYS_AGO / TRADE_DAYS_AGO(n)）或 `--since_ts_ms`（毫秒时间戳）。
 
 ---
 
@@ -687,15 +842,14 @@ python <RUN_PY> stock-prices --stock 000001.XSHG --since TODAY
 
 | 用户问法示例 | 子 skill 名 |
 |---|---|
-| 「688295.XSHG 最近 50 根日线是什么？」 | `stock-ohlcs` |
+| 「688295.XSHG 某日期区间的日线」 | `stock-ohlcs` |
 | 「查看某只股票的历史 K 线数据」 | `stock-ohlcs` |
 | 「某股票的开盘价、最高价、最低价、收盘价」 | `stock-ohlcs` |
 | 「某股票的周线 K 线」 | `stock-ohlcs` |
 | 「某股票的月线走势」 | `stock-ohlcs` |
-| 「某股票的年线数据」 | `stock-ohlcs` |
 | 「某股票最近成交量和成交额是多少？」 | `stock-ohlcs` |
-| 「某股票的 MA5/MA10/MA20 均线」 | `stock-ohlcs` |
-| 「查询某股票截止某时间点前的 K 线」 | `stock-ohlcs` |
+| 「某股票前复权/后复权的 K 线」 | `stock-ohlcs` |
+| 「查询某股票截止某日期前的 K 线（--until YYYYMMDD）」 | `stock-ohlcs` |
 | 「某股票今天/当日分时」 | `stock-prices` |
 | 「某股票分钟级分时、分时图数据」 | `stock-prices` |
 | 「某股票从五日前起的分时」 | `stock-prices` |

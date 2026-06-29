@@ -1,3 +1,14 @@
+---
+name: cross-device-sync
+description: "通过GitHub私有仓库自动同步OpenClaw记忆文件，实现多设备间数据的双向更新与冲突处理。"
+source: ClawHub
+version: 1.0.0
+tags: []
+compatible: [claude-code, openai-agents, hermes-agent, any-llm]
+---
+
+# 帮助其他OpenClaw实例通过GitHub仓库实现记忆同步
+
 # Cross-Device Sync Skill
 
 通过GitHub仓库实现OpenClaw跨设备记忆同步的技能。

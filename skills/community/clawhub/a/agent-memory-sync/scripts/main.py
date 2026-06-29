@@ -10,6 +10,7 @@ import os
 import re
 import shutil
 import sqlite3
+import socket
 import subprocess
 import sys
 import time
@@ -252,7 +253,6 @@ HIGH_VALUE_PATTERNS = [
     r"\binstall(?:ed)?\b",
     r"\bmodel\b",
     r"\bonnx\b",
-    r"\bsupertonic\b",
     r"\bgithub trending cron\b",
     r"\bgh cli\b",
     r"\btavily\b",
@@ -572,7 +572,6 @@ PROFILE_LABEL_BLOCKLIST = GENERIC_WORDS | BROAD_MATCH_KEYWORDS | {
 
 PROJECT_HINT_KEYWORDS = {
     "memory-sync",
-    "autotestplatform",
     "openclaw",
     "obsidian",
     "codex",
@@ -748,16 +747,35 @@ def env_bool(name: str, default: bool) -> bool:
     return value.strip().lower() in {"1", "true", "yes", "on"}
 
 
+def normalize_device_id(value: str | None) -> str:
+    raw = str(value or "").strip().lower()
+    raw = re.sub(r"[^a-z0-9_.-]+", "-", raw)
+    raw = raw.strip(".-_")
+    return raw[:64] or "device"
+
+
+def default_device_id() -> str:
+    return normalize_device_id(
+        os.environ.get("MEMORY_SYNC_DEVICE_ID")
+        or socket.gethostname()
+    )
+
+
 CONFIG = {
     "OPENCLAW_WORKSPACE": os.environ.get("OPENCLAW_WORKSPACE", "~/.openclaw/workspace"),
     "VAULT_PATH": os.environ.get("OBSIDIAN_VAULT_PATH", "~/Documents/obsidian/vault"),
+    "DEVICE_ID": default_device_id(),
+    "CONTRIBUTE_ENABLED": env_bool("MEMORY_SYNC_CONTRIBUTE_ENABLED", True),
+    "PUBLISH_ENABLED": env_bool("MEMORY_SYNC_PUBLISH_ENABLED", True),
+    "TRACK_MACHINE_STATE": env_bool("MEMORY_SYNC_TRACK_MACHINE_STATE", False),
     "HIT_COOLDOWN_HOURS": env_int("HIT_COOLDOWN_HOURS", 24),
     "S1_TTL_MIN_DAYS": env_int("S1_TTL_MIN_DAYS", 3),
     "S1_TTL_MAX_DAYS": env_int("S1_TTL_MAX_DAYS", 10),
     "NOISE_MIN_HITS": env_int("NOISE_MIN_HITS", 5),
     "NOISE_DOMINANCE_RATIO": env_float("NOISE_DOMINANCE_RATIO", 0.8),
     "GIT_SYNC_ENABLED": env_bool("GIT_SYNC_ENABLED", False),
-    "GIT_PUSH_ENABLED": env_bool("GIT_PUSH_ENABLED", True),
+    "GIT_PUSH_ENABLED": env_bool("GIT_PUSH_ENABLED", False),
+    "CLEANUP_MODE": os.environ.get("MEMORY_SYNC_CLEANUP_MODE", "trash").strip().lower() or "trash",
     "GIT_REMOTE": os.environ.get("GIT_REMOTE", "origin"),
     "GIT_BRANCH": os.environ.get("GIT_BRANCH", ""),
     "OPENCLAW_IMPORT_DISTILLED": env_bool("OPENCLAW_IMPORT_DISTILLED", True),
@@ -864,7 +882,7 @@ SKILL_ROUTING_CATEGORIES = [
         "intro_en": "Use for implementing, changing, diagnosing, or fixing code. First decide whether the task is platform-specific, language/framework-specific, test-platform work, or general debugging.",
         "priority": "平台专用 > 语言或框架专用 > 通用调试 > 通用开发",
         "priority_en": "Platform-specific > language/framework-specific > general debugging > general development",
-        "skills": {"node-inspect-debugger", "python-debugpy", "vue-expert", "opencli-autofix", "opencli-explorer", "opencli-oneshot", "auto-test-platform"},
+        "skills": {"node-inspect-debugger", "python-debugpy", "vue-expert", "opencli-autofix", "opencli-explorer", "opencli-oneshot"},
         "keywords": ("debug", "fix", "code", "python", "node", "vue", "test", "测试", "调试", "修复", "代码"),
     },
     {
@@ -1358,11 +1376,13 @@ def is_derived_output_source(value: str | None) -> bool:
     }
 
 
-def openclaw_daily_source(value: str | None) -> str | None:
+def openclaw_daily_source(value: str | None, device_id: str | None = None) -> str | None:
     source = str(value or "").replace("\\", "/")
     match = re.fullmatch(r"memory/(\d{4}-\d{2}-\d{2}\.md)", source)
     if not match:
         return None
+    if device_id:
+        return f"{VAULT_DAILY_DIR}/{normalize_device_id(device_id)}/{match.group(1)}"
     return f"{VAULT_DAILY_DIR}/{match.group(1)}"
 
 
@@ -2262,8 +2282,61 @@ class MemorySync:
                 return path
         return self.vault_path / (candidates[0] if candidates else normalize_rel_path(rel))
 
+    def cleanup_mode(self) -> str:
+        mode = str(CONFIG["CLEANUP_MODE"]).strip().lower()
+        if mode in {"delete", "hard-delete", "hard_delete", "remove"}:
+            return "delete"
+        return "trash"
+
+    def trash_target_for(self, path: Path) -> Path:
+        rel = self.vault_rel(path)
+        if rel.startswith("..") or Path(rel).is_absolute():
+            rel = path.name
+        target = self.vault_path / MACHINE_DIR / "trash" / rel
+        if not target.exists():
+            return target
+        stamp = datetime.now().strftime("%Y%m%d%H%M%S%f")
+        return target.with_name(f"{target.name}.{stamp}")
+
+    def cleanup_vault_path(self, path: Path, reason: str) -> bool:
+        if not path.exists():
+            return False
+        rel = self.vault_rel(path)
+        if self.cleanup_mode() == "delete":
+            if path.is_dir():
+                shutil.rmtree(path)
+            else:
+                path.unlink()
+            self.log(f"DELETED vault path reason={reason}: {rel}")
+            return True
+        target = self.trash_target_for(path)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.move(str(path), str(target))
+        self.log(f"MOVED vault path to trash reason={reason}: {rel} -> {self.vault_rel(target)}")
+        return True
+
+    def device_id(self) -> str:
+        return str(CONFIG["DEVICE_ID"])
+
+    def device_source_dir(self, agent: str, lane: str) -> Path:
+        return self.agent_dir(agent) / lane / self.device_id()
+
+    def local_path_hint(self, source: Path) -> str:
+        try:
+            rel = source.relative_to(self.openclaw_path).as_posix()
+            return "${OPENCLAW_WORKSPACE}/" + rel
+        except ValueError:
+            return "${LOCAL_PATH}/" + source.name
+
+    def source_uri(self, agent: str, source: Path) -> str:
+        try:
+            rel = source.relative_to(self.openclaw_path).as_posix()
+        except ValueError:
+            rel = source.name
+        return f"{agent}://{self.device_id()}/{rel}"
+
     def vault_daily_path(self, original_path: Path) -> Path:
-        return self.vault_path / VAULT_DAILY_DIR / original_path.name
+        return self.vault_path / VAULT_DAILY_DIR / self.device_id() / original_path.name
 
     def sync_daily_copy(self, original_path: Path, text: str) -> Path:
         copy_path = self.vault_daily_path(original_path)
@@ -2423,7 +2496,7 @@ class MemorySync:
         if not base.exists():
             return candidates, processed_files, skipped, coverage
 
-        for path in sorted(base.glob("*/conversations/*/*.md")):
+        for path in sorted(base.glob("*/conversations/**/*.md")):
             rel = self.vault_rel(path)
             parts = rel.split("/")
             if len(parts) < 5:
@@ -2676,7 +2749,7 @@ class MemorySync:
         if not decisions_path.exists():
             raise ValueError(f"decisions file not found: {decisions_path}")
         try:
-            payload = json.loads(decisions_path.read_text(encoding="utf-8"))
+            payload = json.loads(decisions_path.read_text(encoding="utf-8-sig"))
         except json.JSONDecodeError as exc:
             raise ValueError(f"decisions file is invalid JSON: {decisions_path} ({exc})") from exc
         decisions = payload.get("decisions") if isinstance(payload, dict) else payload
@@ -3155,7 +3228,7 @@ class MemorySync:
         return memory_id, "added"
 
     def ensure_vault_copy_for_source(self, source: str) -> str | None:
-        vault_source = openclaw_daily_source(source)
+        vault_source = openclaw_daily_source(source, self.device_id())
         if not vault_source:
             return None
         original = self.openclaw_path / source
@@ -3359,7 +3432,6 @@ class MemorySync:
         if classify_process_memory(body):
             return True
         topic_markers = [
-            "supertonic",
             "contexttoken",
             "volcengine",
             "npmjs",
@@ -3466,7 +3538,7 @@ class MemorySync:
         return extract_excerpt("\n".join(pieces), limit=limit)
 
     def write_curated_session_evidence(self, day: str, uid: str, body: str, evidence: str) -> tuple[str, str]:
-        path = self.agent_dir("openclaw") / "evidence" / f"{day}.md"
+        path = self.device_source_dir("openclaw", "evidence") / f"{day}.md"
         path.parent.mkdir(parents=True, exist_ok=True)
         marker = f"<!-- memory-sync-session-candidate:{uid} -->"
         title = first_title(body)
@@ -3676,13 +3748,14 @@ class MemorySync:
             rel = self.vault_rel(path)
             if rel in indexed_refs:
                 continue
-            if path.exists():
-                path.unlink()
+            if self.cleanup_vault_path(path, "no_index_relationship"):
                 changed = True
-            self.log(f"REMOVED unrelated vault daily copy reason=no_index_relationship: {rel}")
         return changed
 
     def clean_unindexed_source_archives(self) -> bool:
+        if not CONFIG["PUBLISH_ENABLED"]:
+            self.log("SKIP source archive cleanup; MEMORY_SYNC_PUBLISH_ENABLED=false")
+            return False
         if self.review_pack_path().exists():
             self.log("SKIP source archive cleanup while review pack is pending")
             return False
@@ -3699,9 +3772,8 @@ class MemorySync:
             rel = self.vault_rel(path)
             if rel in indexed_refs:
                 continue
-            path.unlink()
-            changed = True
-            self.log(f"REMOVED unindexed source archive: {rel}")
+            if self.cleanup_vault_path(path, "unindexed_source_archive"):
+                changed = True
         for path in sorted([item for item in source_root.rglob("*") if item.is_dir()], key=lambda item: len(item.parts), reverse=True):
             try:
                 path.rmdir()
@@ -4149,7 +4221,7 @@ class MemorySync:
         if page_dir.exists():
             for path in page_dir.glob("memory_*.md"):
                 if path.resolve() not in expected:
-                    path.unlink()
+                    self.cleanup_vault_path(path, "stale_memory_page")
 
     def write_memory_dashboard(self, profile: dict[str, Any] | None = None, context: dict[str, Any] | None = None) -> None:
         memories = self.store.memories()
@@ -4222,7 +4294,7 @@ class MemorySync:
                 and ("目录入口页" in text or "directory entry page" in text)
             )
             if generated_by_memory_sync:
-                path.unlink()
+                self.cleanup_vault_path(path, "generated_directory_readme")
 
     def write_memory_directory(self) -> None:
         language = self.preferred_language()
@@ -4248,9 +4320,9 @@ class MemorySync:
             ]
             personal_rows = [
                 (AGENT_SKILLS_MD_FILE, "Personal/Agent Knowledge/Agent Skills.md", "个人视角的 Agent Skill 总清单。", True),
-                (f"{PERSONAL_KNOWLEDGE_DIR}/openclaw/USER.md", "Personal/Agent Knowledge/openclaw/USER.md", "OpenClaw 用户画像源文件。", True),
-                (f"{PERSONAL_KNOWLEDGE_DIR}/openclaw/AGENTS.md", "Personal/Agent Knowledge/openclaw/AGENTS.md", "OpenClaw 行为规则源文件。", True),
-                (f"{PERSONAL_KNOWLEDGE_DIR}/openclaw/MEMORY.md", "Personal/Agent Knowledge/openclaw/MEMORY.md", "OpenClaw 长期记忆源文件。", True),
+                (f"{PERSONAL_KNOWLEDGE_DIR}/openclaw/{self.device_id()}/USER.md", f"Personal/Agent Knowledge/openclaw/{self.device_id()}/USER.md", "OpenClaw 用户画像源文件。", True),
+                (f"{PERSONAL_KNOWLEDGE_DIR}/openclaw/{self.device_id()}/AGENTS.md", f"Personal/Agent Knowledge/openclaw/{self.device_id()}/AGENTS.md", "OpenClaw 行为规则源文件。", True),
+                (f"{PERSONAL_KNOWLEDGE_DIR}/openclaw/{self.device_id()}/MEMORY.md", f"Personal/Agent Knowledge/openclaw/{self.device_id()}/MEMORY.md", "OpenClaw 长期记忆源文件。", True),
             ]
         else:
             title = "Memory Directory"
@@ -4273,9 +4345,9 @@ class MemorySync:
             ]
             personal_rows = [
                 (AGENT_SKILLS_MD_FILE, "Personal/Agent Knowledge/Agent Skills.md", "Personal Agent Skill index.", True),
-                (f"{PERSONAL_KNOWLEDGE_DIR}/openclaw/USER.md", "Personal/Agent Knowledge/openclaw/USER.md", "OpenClaw user profile source.", True),
-                (f"{PERSONAL_KNOWLEDGE_DIR}/openclaw/AGENTS.md", "Personal/Agent Knowledge/openclaw/AGENTS.md", "OpenClaw behavior rules source.", True),
-                (f"{PERSONAL_KNOWLEDGE_DIR}/openclaw/MEMORY.md", "Personal/Agent Knowledge/openclaw/MEMORY.md", "OpenClaw long-term memory source.", True),
+                (f"{PERSONAL_KNOWLEDGE_DIR}/openclaw/{self.device_id()}/USER.md", f"Personal/Agent Knowledge/openclaw/{self.device_id()}/USER.md", "OpenClaw user profile source.", True),
+                (f"{PERSONAL_KNOWLEDGE_DIR}/openclaw/{self.device_id()}/AGENTS.md", f"Personal/Agent Knowledge/openclaw/{self.device_id()}/AGENTS.md", "OpenClaw behavior rules source.", True),
+                (f"{PERSONAL_KNOWLEDGE_DIR}/openclaw/{self.device_id()}/MEMORY.md", f"Personal/Agent Knowledge/openclaw/{self.device_id()}/MEMORY.md", "OpenClaw long-term memory source.", True),
             ]
 
         def file_link(rel: str, label: str) -> str:
@@ -4313,7 +4385,7 @@ class MemorySync:
         for rel in RETIRED_DASHBOARD_FILES:
             path = self.vault_path / rel
             if path.exists() and path.is_file():
-                path.unlink()
+                self.cleanup_vault_path(path, "retired_dashboard_page")
 
     def cleanup_retired_layout_dirs(self) -> None:
         vault_root = self.vault_path.resolve()
@@ -4330,10 +4402,8 @@ class MemorySync:
                 raise RuntimeError(f"Refusing to clean path outside vault: {target}") from exc
             if target == vault_root:
                 raise RuntimeError(f"Refusing to clean vault root: {target}")
-            if path.is_dir():
-                shutil.rmtree(path)
-            elif path.is_file():
-                path.unlink()
+            if path.is_dir() or path.is_file():
+                self.cleanup_vault_path(path, "retired_layout")
 
     def write_obsidian_surfaces(self, profile: dict[str, Any] | None = None, context: dict[str, Any] | None = None) -> None:
         self.write_obsidian_index()
@@ -5019,15 +5089,17 @@ class MemorySync:
             source = Path(item["path"])
             if not source.exists() or not source.is_file():
                 continue
-            target = self.vault_path / PERSONAL_KNOWLEDGE_DIR / agent / self.agent_knowledge_target_name(item)
+            target = self.vault_path / PERSONAL_KNOWLEDGE_DIR / agent / self.device_id() / self.agent_knowledge_target_name(item)
             body = source.read_text(encoding="utf-8", errors="replace")
             content = "\n".join(
                 [
                     "---",
                     "type: agent_knowledge_source",
                     f"agent: {agent}",
+                    f"device_id: {self.device_id()}",
                     f"source_label: {item.get('label', '')}",
-                    f"source_path: {source.as_posix()}",
+                    f"source_uri: {self.source_uri(agent, source)}",
+                    f"local_path_hint: {self.local_path_hint(source)}",
                     f"generated_at: {now_iso()}",
                     "---",
                     "",
@@ -5097,13 +5169,17 @@ class MemorySync:
         if self.store.loaded_from_legacy_index:
             self.store.save()
 
-    def git_run(self, args: list[str], check: bool = False) -> subprocess.CompletedProcess[str]:
+    def git_run(self, args: list[str], check: bool = False, env: dict[str, str] | None = None) -> subprocess.CompletedProcess[str]:
+        run_env = os.environ.copy()
+        if env:
+            run_env.update(env)
         return subprocess.run(
             ["git", "-C", str(self.vault_path), *args],
             text=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             check=check,
+            env=run_env,
         )
 
     def run_in_dir(self, cwd: Path, args: list[str]) -> subprocess.CompletedProcess[str]:
@@ -5115,26 +5191,64 @@ class MemorySync:
             stderr=subprocess.PIPE,
         )
 
-    def git_paths(self) -> list[str]:
+    def existing_git_paths(self, candidates: list[str]) -> list[str]:
+        return [path for path in candidates if (self.vault_path / path).exists()]
+
+    def contribution_git_paths(self) -> list[str]:
+        paths: list[str] = []
+        source_root = self.vault_path / SOURCES_DIR
+        if source_root.exists():
+            for path in sorted(source_root.glob(f"*/*/{self.device_id()}")):
+                if path.exists():
+                    paths.append(self.vault_rel(path))
+        personal_root = self.vault_path / PERSONAL_KNOWLEDGE_DIR
+        if personal_root.exists():
+            for path in sorted(personal_root.glob(f"*/{self.device_id()}")):
+                if path.exists():
+                    paths.append(self.vault_rel(path))
+        return paths
+
+    def publisher_git_paths(self) -> list[str]:
         candidates = [
-            f"{STATE_INDEX_DIR}/{INDEX_NAME}",
-            f"{STATE_INDEX_DIR}/{PROFILE_NAME}",
             OBSIDIAN_INDEX_FILE,
             PROFILE_MD_FILE,
             MEMORY_DASHBOARD_FILE,
+            MEMORY_DIRECTORY_FILE,
             MEMORY_PAGES_DIR,
             REFERENCE_AGENT_SKILLS_MD_FILE,
-            VAULT_DAILY_DIR,
-            PERMANENT_DIR,
-            AGENTS_DIR,
-            SHARED_DIR,
             SHARED_CONTEXT_DIR,
-            PATH_MAP_FILE,
-            PERSONAL_KNOWLEDGE_DIR,
+            AGENT_SKILLS_MD_FILE,
         ]
+        personal_root = self.vault_path / PERSONAL_KNOWLEDGE_DIR
+        if personal_root.exists():
+            for path in sorted(personal_root.glob("*/Agent Skills.md")):
+                candidates.append(self.vault_rel(path))
         if CONFIG["LEGACY_CONTEXT_ENABLED"]:
             candidates.append(CONTEXT_DIR)
-        return [path for path in candidates if (self.vault_path / path).exists()]
+        return self.existing_git_paths(candidates)
+
+    def machine_state_git_paths(self) -> list[str]:
+        candidates = [
+            STATE_INDEX_DIR,
+            STATE_AGENTS_DIR,
+            STATE_SHARED_DIR,
+            PATH_MAP_FILE,
+        ]
+        return self.existing_git_paths(candidates)
+
+    def git_paths(self) -> list[str]:
+        paths: list[str] = []
+        if CONFIG["CONTRIBUTE_ENABLED"]:
+            paths.extend(self.contribution_git_paths())
+        if CONFIG["PUBLISH_ENABLED"]:
+            paths.extend(self.publisher_git_paths())
+        if CONFIG["TRACK_MACHINE_STATE"]:
+            paths.extend(self.machine_state_git_paths())
+        deduped: list[str] = []
+        for path in paths:
+            if path not in deduped:
+                deduped.append(path)
+        return deduped
 
     def current_git_branch(self) -> str:
         configured = str(CONFIG["GIT_BRANCH"]).strip()
@@ -5173,7 +5287,15 @@ class MemorySync:
 
         self.log(commit.stdout.strip())
         if CONFIG["GIT_PUSH_ENABLED"]:
-            push = self.git_run(["push", str(CONFIG["GIT_REMOTE"]), self.current_git_branch()])
+            proxy_env = {}
+            for key in ("HTTP_PROXY", "HTTPS_PROXY", "http_proxy", "https_proxy", "ALL_PROXY"):
+                val = os.environ.get(key)
+                if val:
+                    proxy_env[key] = val
+            push = self.git_run(
+                ["push", str(CONFIG["GIT_REMOTE"]), self.current_git_branch()],
+                env=proxy_env or None,
+            )
             if push.returncode != 0:
                 self.log(push.stdout.strip())
                 self.log(push.stderr.strip())
@@ -5207,6 +5329,14 @@ class MemorySync:
     def cmd_status(self) -> int:
         memories = self.store.memories()
         counts = Counter(memory.get("stage", "S1") for memory in memories.values())
+        self.log(f"Device: {self.device_id()}")
+        self.log(
+            "Mode: "
+            f"contribute={'on' if CONFIG['CONTRIBUTE_ENABLED'] else 'off'}, "
+            f"publish={'on' if CONFIG['PUBLISH_ENABLED'] else 'off'}, "
+            f"track_machine_state={'on' if CONFIG['TRACK_MACHINE_STATE'] else 'off'}, "
+            f"cleanup={self.cleanup_mode()}"
+        )
         self.log(f"Index: {self.store.index_path}")
         self.log(f"Memories: {len(memories)}")
         for stage in STAGES:
@@ -5332,9 +5462,7 @@ class MemorySync:
             ("risk_preference", "do_not_exfiltrate", ["private", "隐私", "exfiltrate", "nothing goes external", "外部"], "Treat private data and external actions carefully."),
             ("workflows", "git_versioned_memory", ["git", "github", "版本", "version", "push", "commit"], "Use Git/GitHub for versioned memory assets."),
             ("workflows", "obsidian_memory_surface", ["obsidian", "vault", "知识库"], "Use Obsidian as the readable memory surface."),
-            ("workflows", "automation_testing_platform", ["autotestplatform", "自动化测试", "fastapi", "vue", "pytest"], "Automation testing platform is an important recurring project."),
             ("active_projects", "memory-sync", ["memory-sync", "openclaw memory", "agent context", "user_profile", "agent_context"], "Memory-sync is the current context portability project."),
-            ("active_projects", "autotestplatform", ["autotestplatform", "自动化测试平台"], "AutoTestPlatform is a recurring implementation project."),
             ("tool_preferences", "powershell_python_js", ["powershell", "python", "javascript", "pytest"], "Comfortable with PowerShell, Python, JavaScript, and pytest workflows."),
             ("tool_preferences", "multi_agent_context", ["codex", "claude", "openclaw", "opencode", "hermes", "qoder"], "Needs low-cost switching across multiple agents."),
             ("prompt_preferences", "action_oriented", ["多做事", "主动", "proactive", "解决", "执行"], "Prefer action-oriented agents that inspect, implement, and verify."),
@@ -5643,6 +5771,8 @@ class MemorySync:
         lines = [f"# {title}", "", f"Generated: {context['_meta']['generated_at']}", "", "## User Brief", "", context.get("profile_brief", ""), ""]
         retrieval = context.get("memory_retrieval_contract", {})
         entrypoints = retrieval.get("rule_entrypoints", {}).get(adapter, [])
+        default_command_template = 'python <memory-sync>/scripts/main.py search "<keyword phrase>"'
+        command_template = retrieval.get("command_template") or default_command_template
         if adapter in ADAPTER_NAMES:
             lines.extend([
                 "## Memory Retrieval Contract",
@@ -5651,7 +5781,7 @@ class MemorySync:
                 "- Trigger words are activation signals; they do not make memory-sync run unless the agent rule explicitly calls it.",
                 "- Search with the user's actual keyword phrase, not the full transcript.",
                 "- If the agent has built-in memory/context search, combine it with memory-sync search before answering.",
-                f"- Command template: `{retrieval.get('command_template', 'python <memory-sync>/scripts/main.py search \"<keyword phrase>\"')}`",
+                f"- Command template: `{command_template}`",
                 "",
             ])
         if adapter == "hermes-agent":
@@ -6805,7 +6935,7 @@ class MemorySync:
         conversations: dict[tuple[str, str], dict[str, Any]],
         source_count: int,
     ) -> int:
-        base = self.agent_dir(agent) / "conversations"
+        base = self.device_source_dir(agent, "conversations")
         state_base = self.agent_state_dir(agent) / "conversations"
         state_base.mkdir(parents=True, exist_ok=True)
         written: list[dict[str, Any]] = []
@@ -6815,7 +6945,7 @@ class MemorySync:
             path = day_dir / f"{session_id}.md"
             self.write_text_atomic(path, self.agent_conversation_markdown(agent, conversation))
             rel = self.vault_rel(path)
-            summary_dir = self.agent_dir(agent) / "conversation-summaries" / day
+            summary_dir = self.device_source_dir(agent, "conversation-summaries") / day
             summary_dir.mkdir(parents=True, exist_ok=True)
             summary_path = summary_dir / f"{session_id}.md"
             self.write_text_atomic(summary_path, self.agent_conversation_summary_markdown(agent, conversation))
@@ -7020,7 +7150,7 @@ class MemorySync:
         now = datetime.now()
         day = now.date().isoformat()
         base = self.agent_dir(agent)
-        daily_dir = base / "handoffs"
+        daily_dir = base / "handoffs" / self.device_id()
         daily_dir.mkdir(parents=True, exist_ok=True)
         daily_path = daily_dir / f"{day}.md"
         summary = extract_summary(text, limit=360)
@@ -7132,8 +7262,8 @@ class MemorySync:
         for rel in ("AGENTS.md", "USER.md"):
             if not (self.openclaw_path / rel).exists():
                 issues.append(f"missing OpenClaw rule/profile source: {rel}")
-        if not (self.vault_path / PERSONAL_KNOWLEDGE_DIR / "openclaw" / "MEMORY.md").exists():
-            issues.append("missing Personal Agent Knowledge copy of OpenClaw MEMORY.md")
+        if not (self.vault_path / PERSONAL_KNOWLEDGE_DIR / "openclaw" / self.device_id() / "MEMORY.md").exists():
+            issues.append(f"missing Personal Agent Knowledge copy of OpenClaw MEMORY.md for device {self.device_id()}")
         existing_rule_agents = {
             str(item["agent"])
             for item in self.agent_knowledge_sources()

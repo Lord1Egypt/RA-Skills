@@ -11,35 +11,36 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers use this skill to run manifest-defined work items through intake, build, quality, and shipping stages. It coordinates specialist skills, local state files, branches, pull request work, retries, budget checks, and resumable autonomous execution. <br>
+Developers and engineering agents use this skill to process manifest work items through intake, build, quality, and ship stages. It is intended for autonomous repository workflows that need stateful retries, budget handling, and resumable pipeline execution. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can continue autonomous development work without asking for clarification. <br>
-Mitigation: Run it only for work items that are actionable, review the manifest and decision logs, and prefer bounded mode for normal releases. <br>
-Risk: The skill may create or switch git branches, use worktrees, prepare pull requests, and merge when auto_merge is enabled. <br>
-Mitigation: Review .egregore configuration before launch, keep auto_merge disabled unless automated merging is intended, and inspect pull requests before merging. <br>
-Risk: The skill may read GitHub issue comments and local .egregore state while orchestrating work. <br>
-Mitigation: Use it only in repositories where that access is acceptable and avoid placing secrets or sensitive data in issue text or orchestration state files. <br>
-Risk: Indefinite mode and scheduled resume prompts can keep work running longer than expected. <br>
-Mitigation: Use bounded mode by default and cancel scheduled resume prompts or watchdogs when the run should stop. <br>
+Risk: The skill can take broad, persistent control over repository work. <br>
+Mitigation: Install it only when autonomous repository orchestration is intended, review `.egregore` configuration before running, and prefer bounded mode for controlled runs. <br>
+Risk: The workflow can resume itself through scheduled heartbeat or cooldown recovery prompts. <br>
+Mitigation: Confirm scheduled prompts can be monitored and cancelled before use, and disable or remove the heartbeat when autonomous operation should stop. <br>
+Risk: Pull requests may be merged with limited human checkpoints when auto-merge is enabled. <br>
+Mitigation: Disable or tightly gate auto-merge, require human PR review, and use least-privilege GitHub credentials in a clean repository or worktree. <br>
+Risk: The orchestrator proceeds through ambiguity instead of waiting for human input. <br>
+Mitigation: Review the decision log and PR body before accepting changes, especially when requirements are incomplete or scope is unclear. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-egregore-summon) <br>
-- [OpenClaw homepage](https://github.com/athola/claude-night-market/tree/master/plugins/egregore) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-egregore-summon) <br>
+- [ClawHub publisher profile](https://clawhub.ai/user/athola) <br>
+- [Project homepage from ClawHub metadata](https://github.com/athola/claude-night-market/tree/master/plugins/egregore) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code blocks, shell commands, and configuration examples] <br>
+**Output Format:** [Markdown guidance with inline commands, configuration snippets, and skill invocation instructions.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May create or update local .egregore state files, git branches, worktrees, pull requests, and scheduled resume prompts when executed by an agent.] <br>
+**Other Properties Related to Output:** [Outputs may include repository workflow actions, manifest updates, branch and PR operations, scheduled resume prompts, and decision logs.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release evidence; artifact frontmatter says 1.9.8) <br>
+1.9.13 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

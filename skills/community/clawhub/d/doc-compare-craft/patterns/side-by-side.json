@@ -1,0 +1,11 @@
+{
+  "name": "side-by-side",
+  "label": "并排对比",
+  "description": "左右对照显示新旧版本差异",
+  "layout": "two-columns",
+  "diff_level": "line",
+  "show_line_numbers": true,
+  "features": ["sync_scroll", "highlight_diffs", "line_numbers"],
+  "color_scheme": "diff-default",
+  "max_col_width": "50%"
+}

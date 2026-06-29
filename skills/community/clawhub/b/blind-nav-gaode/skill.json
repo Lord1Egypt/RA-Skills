@@ -1,0 +1,43 @@
+{
+  "name": "blind-nav-gaode",
+  "version": "1.0.0",
+  "displayName": "盲人出行导航助手",
+  "displayNameEn": "BlindNav Assistant",
+  "description": "基于高德地图开放平台的 AI 盲人无障碍出行 Skill，支持语音导航、周边搜索、公交规划与紧急求助，所有输出均面向 TTS 语音播报优化。",
+  "author": "悟空码字",
+  "license": "MIT",
+  "tags": [
+    "navigation",
+    "accessibility",
+    "blind",
+    "gaode",
+    "outdoor"
+  ],
+  "runtime": "python3",
+  "entry": "SKILL.md",
+  "env": {
+    "GAODE_API_KEY": {
+      "description": "高德开放平台 Web 服务 API Key",
+      "required": true
+    }
+  },
+  "permissions": [
+    "location",
+    "network"
+  ],
+  "dependencies": {
+    "python": [
+      "requests>=2.28.0"
+    ]
+  },
+  "metadata": {
+    "accessible": true,
+    "voiceFirst": true,
+    "targetUsers": ["blind", "lowVision", "elderly"],
+    "platform": "gaode",
+    "clawhub": {
+      "category": "accessibility",
+      "featured": false
+    }
+  }
+}

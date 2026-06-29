@@ -6,7 +6,7 @@
 
 - 基础地址：由 smyx_common 配置统一管理
 - 认证方式：API Key 鉴权
-- 请求格式：multipart/form-data 支持文件上传
+- 请求格式：支持文件上传
 - 响应格式：JSON
 
 ## 主要接口

@@ -1,0 +1,27 @@
+/* xhs-post — 小红书 3:4 九宫格 */
+.tpl-xhs-post{
+  --bg:#fef7f3;--bg-soft:#fff1ea;--surface:#ffffff;--surface-2:#fff5ef;
+  --border:rgba(90,40,30,.12);--border-strong:rgba(90,40,30,.24);
+  --text-1:#3a1f18;--text-2:#6f4a3e;--text-3:#a68676;
+  --accent:#ff6b8b;--accent-2:#ffa94d;--accent-3:#ffd166;
+  --grad:linear-gradient(135deg,#ffd3e0,#ffe5c7 50%,#d6f0ff);
+  --good:#7bc67b;--warn:#ffb547;--bad:#ff6b6b;
+  --radius:24px;--radius-lg:32px;
+  --shadow:0 14px 36px rgba(90,40,30,.08);
+  font-family:'Inter','Noto Sans SC','PingFang SC',sans-serif;
+}
+.tpl-xhs-post{background:#f0eae2;display:flex;align-items:center;justify-content:center;min-height:100vh}
+.tpl-xhs-post .deck{width:810px;height:1080px;position:relative;background:transparent}
+.tpl-xhs-post .slide{
+  position:absolute;inset:0;width:810px;height:1080px;aspect-ratio:3/4;
+  padding:70px 64px;border-radius:28px;overflow:hidden;
+  background:var(--bg);
+}
+.tpl-xhs-post .h1{font-size:72px;line-height:1.1;font-weight:900;letter-spacing:-.02em;color:var(--text-1)}
+.tpl-xhs-post .h2{font-size:54px;line-height:1.15;font-weight:800;letter-spacing:-.015em;color:var(--text-1)}
+.tpl-xhs-post .page-dot{position:absolute;top:40px;right:48px;background:var(--text-1);color:#fff;border-radius:999px;padding:6px 14px;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:700;z-index:2}
+.tpl-xhs-post .sticker{position:absolute;padding:10px 18px;background:#fff;border:2.5px dashed var(--text-1);border-radius:18px;font-weight:800;font-size:18px;color:var(--text-1);box-shadow:4px 4px 0 var(--text-1)}
+.tpl-xhs-post .hand-box{background:#fff;border:2.5px solid var(--text-1);border-radius:22px;padding:24px 28px;box-shadow:5px 5px 0 var(--text-1)}
+.tpl-xhs-post .lede{color:var(--text-2);font-size:26px;line-height:1.55}
+.tpl-xhs-post .bottom-bar{position:absolute;bottom:40px;left:64px;right:64px;display:flex;justify-content:space-between;align-items:center;font-size:15px;color:var(--text-3);font-family:'JetBrains Mono',monospace;z-index:2}
+.tpl-xhs-post .avatar{width:54px;height:54px;border-radius:50%;background:var(--grad);border:2.5px solid var(--text-1);display:inline-flex;align-items:center;justify-content:center;font-weight:900;font-size:20px;color:var(--text-1)}

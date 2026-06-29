@@ -1,0 +1,16 @@
+{
+  "name": "cron-edit-safe",
+  "version": "1.0.0",
+  "description": "安全编辑 OpenClaw cron 任务的 wrapper 脚本（自动备份 + dry-run + edit + 验证 + rollback）",
+  "author": "码虫 coding-advisor",
+  "keywords": [
+    "openclaw",
+    "cron",
+    "edit",
+    "backup",
+    "dry-run",
+    "rollback",
+    "safety",
+    "rule-20260628-001"
+  ]
+}

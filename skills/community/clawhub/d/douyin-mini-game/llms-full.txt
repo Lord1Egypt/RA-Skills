@@ -1,0 +1,607 @@
+# 抖音小游戏开发文档 (llms-full)
+
+> 基于官方文档 https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/
+> 生成时间: 2026-06-24
+> 涵盖: 指南、框架、JavaScript API（不含服务端 OpenAPI、开发工具）
+
+---
+
+# 一、开发指南
+
+## 1.1 概述
+
+抖音小游戏是一种开放能力，允许开发者基于给定 API 编写游戏代码，生成可在接入小游戏功能的各产品 App 上运行的程序。
+
+### 快速上手
+
+**安装开发工具**: 前往开发者工具下载页面，根据操作系统下载对应安装包。
+
+**小游戏文件结构**:
+```
+├── game.js               => 小游戏入口文件
+├── game.json             => 小游戏配置文件
+└── project.config.json   => 工程配置文件
+```
+
+以上三个文件为小游戏的三个必要文件。开发者可在根目录下自由建立 `js`, `audio`, `images` 等目录。
+
+### 配置文件
+
+**game.json** - 小游戏配置文件，示例:
+```json
+{
+  "deviceOrientation": "portrait"
+}
+```
+
+**project.config.json** - 工程配置文件，示例:
+```json
+{
+  "description": "项目描述",
+  "setting": {
+    "es6": true
+  }
+}
+```
+
+## 1.2 平台能力 (tt API)
+
+小游戏运行环境是一个绑定了一些方法的 JavaScript VM。不同于浏览器，没有 `BOM` 和 `DOM` API，只有 `tt` 系列 API。
+
+### 创建 Canvas
+```javascript
+var canvas = tt.createCanvas();
+```
+第一次调用获取到上屏 Canvas，已显示在屏幕上且与屏幕等宽等高。小游戏运行期间有且仅有一个上屏 Canvas。
+
+### 绘制
+```javascript
+var context = canvas.getContext("2d");
+context.fillStyle = "#ff00ff";
+context.fillRect(0, 0, 100, 100);
+```
+
+### 触摸事件
+- `tt.onTouchStart()` / `tt.onTouchMove()` / `tt.onTouchEnd()` / `tt.onTouchCancel()`
+
+### 动画能力
+- `setTimeout` / `setInterval` / `requestAnimationFrame` / `clearTimeout` / `clearInterval` / `cancelAnimationFrame`
+
+### 全局对象 GameGlobal
+小游戏运行环境没有 `window` 对象。提供了全局对象 `GameGlobal`，所有全局定义的变量都是 GameGlobal 的属性。
+```javascript
+setTimeout === GameGlobal.setTimeout; // true
+GameGlobal.GameGlobal === GameGlobal; // true
+```
+
+## 1.3 进阶指南
+
+### JavaScript/TypeScript 开发
+- 小游戏可视为仅有全屏 Canvas 的页面，无 DOM 与 CSS，仅能执行 JS
+- 代码从 game.js 入口启动，基于 Canvas 渲染结合抖音小游戏 API 实现
+- 推荐使用游戏引擎: Cocos Creator、LayaAir
+- 像 PixiJS 和 ThreeJS 等引擎，引入 tt-adapter 并做适配调整也能发布到小游戏
+
+### C# / Unity 开发
+- 已有 Unity 游戏可直接适配转换为抖音小游戏
+- 参考 Unity 引擎适配文档和 C# API
+
+## 1.4 代码包限制
+
+- **普通小游戏**: 总大小上限 20MB
+- **分包小游戏**: 整体包 ≤20MB，单个主包 ≤4MB，单个分包 ≤20MB
+- **开放数据域**: ≤4MB
+- IDE 包大小计算不包含: unix dot 隐藏文件、node_modules、js.map 文件
+
+### 支持的文件类型
+png, jpg, jpeg, gif, svg, json, cer, mp3, aac, m4a, mp4, wav, flac, ape, ogg, wma, midi, ogv, webm, mkv, ttc, ttf, woff, otf, obj, dae, fbx, mtl, stl, 3ds, pvr, plist, fnt, gz, ccz, bmp, atlas, swf, ani, part, proto, bin, sk, mipmaps, txt, zip, tt, map, silk, dbbin, dbmv, etc, lmat, lm, ls, lh, lani, lav, lsani, ltc, xml, pkm, scene, csv, prefab, mesh, astc, wasm, br, heic, ico, cur, wasm.br, dat, dds, glb, gltf, ktx, lmani, lml, skel
+
+---
+
+# 二、框架
+
+## 2.1 基础功能
+
+### tt 全局对象
+小游戏 API 全局对象，用于承载小游戏能力相关 API。
+
+### console
+提供控制台输出能力，支持 console.log、console.warn、console.error 等方法。
+
+### TTWebAssembly (基础库 ≥ 3.7.0)
+在 JS 线程和 Worker 线程中提供全局 `TTWebAssembly` 对象，支持加载包内经过 brotli 压缩的 wasm 文件（*.wasm.br）。
+
+```javascript
+// 编译 WebAssembly 模块
+TTWebAssembly.compile(path)        // → Promise<TTWebAssembly.Module>
+
+// 创建 WebAssembly 实例
+TTWebAssembly.instantiate(path, importObject)  // → Promise<{module, instance}>
+```
+
+核心类: TTWebAssembly.Module, TTWebAssembly.Global, TTWebAssembly.Table, TTWebAssembly.Memory, TTWebAssembly.Instance
+
+iOS 平台目前不支持 SIMD 等 WebAssembly 提案特性。
+
+### 定时器
+- `setTimeout(callback, delay, ...args)` - 设置定时器
+- `setInterval(callback, delay, ...args)` - 设置间隔定时器
+- `clearTimeout(id)` / `clearInterval(id)` - 清除定时器
+
+## 2.2 小游戏配置 (game.json)
+
+| 属性 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| deviceOrientation | String | 否 | 'landscape' | 屏幕方向: portrait(竖屏) / landscape(横屏) |
+| showStatusBar | Boolean | 否 | false | 是否显示状态栏 |
+| networkTimeout | Object | 否 | - | 网络请求超时时间(毫秒) |
+| workers | String | 否 | - | Worker 代码目录 |
+| openDataContext | String | 否 | - | 开放数据域目录 |
+| subPackages | Object | 否 | - | 分包结构配置 |
+| menuButtonStyle | String | 否 | - | 更多面板深浅色: light / dark |
+| enableIOSHighPerformanceMode | Boolean | 否 | false | iOS 高性能模式 |
+| plugins | Object | 否 | - | 插件配置 |
+| ttNavigateToMiniGameAppIdList | String[] | 否 | - | 跳转小游戏列表(已废弃) |
+
+### networkTimeout 子属性
+| 属性 | 类型 | 默认值 | 说明 |
+|------|------|--------|------|
+| request | Number | 60000 | tt.request 超时(ms) |
+| connectSocket | Number | 60000 | tt.connectSocket 超时(ms) |
+| uploadFile | Number | 60000 | tt.uploadFile 超时(ms) |
+| downloadFile | Number | 60000 | tt.downloadFile 超时(ms) |
+
+### plugins 配置示例
+```json
+{
+  "plugins": {
+    "cocos": {
+      "provider": "ttxxxxxxx",
+      "version": "1.0.0"
+    }
+  }
+}
+```
+
+## 2.3 运行时
+
+### 运行环境
+抖音小游戏运行在 JavaScript VM 中，不同终端设备的 JS 执行环境存在平台差异性。
+
+### JS 支持情况
+
+**安全限制**:
+- 禁止使用 `eval()` 函数
+- 禁止通过 `new Function()` 构造函数动态创建函数
+
+**ECMAScript 支持**:
+- 平台基础库集成 core-js 补丁库，自动填充缺失的标准 API
+- 语法差异无法通过 Polyfill 解决，需配合代码编译工具转译
+- `Proxy` 对象全版本不可用
+
+**Promise 执行时序** (iOS 15 及以下):
+- 使用 setTimeout 模拟 Promise，回调变为宏任务
+- iOS 16+ 已修复
+
+### 运行机制
+
+**运行状态**:
+- 前台运行: 游戏启动后界面呈现给用户
+- 后台挂起: 用户点击关闭按钮或按 Home 键，仍可短时间运行
+- 进程终止: 长时间未返回或系统资源不足时
+
+**启动类型**:
+- 冷启动: 首次打开或进程被终止后重新启动，需完整加载资源
+- 热启动: 短时间重新打开已运行的游戏，从后台恢复前台，无需重新加载
+
+**进程终止机制**:
+- 后台超时: 超过维持时限（通常几分钟）
+- 资源限制: 内存过高或系统资源紧张
+- iOS: 连续收到内存警告时主动终止，建议用 `tt.onMemoryWarning` 监听
+
+### 更新机制
+小游戏支持热更新。当开发者发布新版本后，用户在下次冷启动时会自动获取最新版本。
+
+## 2.4 模块化
+
+### require(path)
+引入模块，返回模块通过 module.exports 或 exports 暴露的接口。
+- path: 相对路径（不支持绝对路径）
+```javascript
+// common.js
+function sayHello(name) { console.log(`Hello ${name} !`); }
+module.exports.sayHello = sayHello;
+exports.sayGoodbye = function(name) { console.log(`Goodbye ${name} !`); };
+
+// game.js
+var common = require("./common/common.js");
+common.sayGoodbye("test goodbye");
+```
+
+### module
+模块对象，通过 module.exports 暴露接口。
+
+### exports
+module.exports 的引用，可直接添加导出属性。
+
+## 2.5 场景值
+小游戏启动场景的标识，可通过 `tt.getLaunchOptionsSync()` 获取。不同场景值对应不同的启动来源（如: 搜索、分享、推荐流等）。
+
+## 2.6 API 类型声明
+提供 TypeScript 类型声明文件，可在项目中引入获得 API 的类型提示和校验。
+
+---
+
+# 三、JavaScript API 参考
+
+## 3.1 API 概览
+
+### 基础 (Foundation)
+| API | 说明 |
+|-----|------|
+| tt.canIUse | 判断 API 是否可用 |
+
+### 更新 (Update)
+| API | 说明 |
+|-----|------|
+| tt.getUpdateManager | 获取更新管理器 |
+| UpdateManager.onCheckForUpdate | 监听版本更新检查 |
+| UpdateManager.onUpdateReady | 监听新版本就绪 |
+| UpdateManager.onUpdateFailed | 监听更新失败 |
+| UpdateManager.applyUpdate | 应用新版本并重启 |
+
+### 系统 (System)
+
+**生命周期**:
+| API | 说明 |
+|-----|------|
+| tt.restartMiniProgramSync | 重启小游戏 |
+| tt.exitMiniProgram | 退出小游戏 |
+| tt.getLaunchOptionsSync | 获取启动参数（含场景值） |
+| tt.onShow | 监听前台显示 |
+| tt.onHide | 监听后台隐藏 |
+| tt.offShow | 取消监听前台显示 |
+| tt.offHide | 取消监听后台隐藏 |
+
+**系统信息**:
+| API | 说明 |
+|-----|------|
+| tt.getSystemInfoSync | 同步获取系统信息 |
+| tt.getSystemInfo | 异步获取系统信息 |
+| tt.getEnvInfoSync | 同步获取环境信息 |
+
+**触摸事件**:
+| API | 说明 |
+|-----|------|
+| tt.onTouchStart | 监听触摸开始 |
+| tt.onTouchMove | 监听触摸移动 |
+| tt.onTouchEnd | 监听触摸结束 |
+| tt.onTouchCancel | 监听触摸取消 |
+| tt.offTouchStart/Move/End/Cancel | 取消触摸监听 |
+| Touch | 触摸事件对象 |
+
+**应用级事件**:
+| API | 说明 |
+|-----|------|
+| tt.onError | 监听全局错误 |
+
+**分包加载**:
+| API | 说明 |
+|-----|------|
+| tt.loadSubpackage | 加载分包 |
+| LoadSubpackageTask | 分包加载任务对象 |
+
+**性能**:
+| API | 说明 |
+|-----|------|
+| tt.getPerformance | 获取性能数据 |
+| tt.onMemoryWarning | 监听内存警告 |
+| tt.triggerGC | 触发垃圾回收 |
+
+**调试**:
+| API | 说明 |
+|-----|------|
+| tt.getRealtimeLogManager | 获取实时日志管理器 |
+| tt.getLogManager | 获取日志管理器 |
+
+### 渲染 (Rendering)
+
+**Canvas**:
+| API | 说明 |
+|-----|------|
+| tt.createCanvas | 创建 Canvas（上屏 Canvas 仅一个） |
+| Canvas.getContext | 获取渲染上下文 |
+| Canvas.toTempFilePath | 导出为临时图片 |
+
+**字体**:
+| API | 说明 |
+|-----|------|
+| tt.loadFont | 加载自定义字体 |
+
+**帧率**:
+| API | 说明 |
+|-----|------|
+| tt.setPreferredFramesPerSecond | 设置期望帧率 |
+| requestAnimationFrame | 请求动画帧 |
+| cancelAnimationFrame | 取消动画帧 |
+
+**资源压缩**:
+| API | 说明 |
+|-----|------|
+| tt.createBuffer | 创建 Buffer |
+| tt.inflate | 解压资源 |
+
+**鼠标样式**:
+| API | 说明 |
+|-----|------|
+| tt.setCursor | 设置鼠标样式 |
+| tt.isPointerLocked | 是否锁定指针 |
+| tt.requestPointerLock | 请求指针锁定 |
+| tt.exitPointerLock | 退出指针锁定 |
+
+### 设备 (Device)
+
+**加速度计**:
+| API | 说明 |
+|-----|------|
+| tt.startAccelerometer | 开始监听加速度 |
+| tt.stopAccelerometer | 停止监听加速度 |
+| tt.onAccelerometerChange | 监听加速度变化 |
+| tt.offAccelerometerChange | 取消监听 |
+
+**剪贴板**:
+| API | 说明 |
+|-----|------|
+| tt.getClipboardData | 获取剪贴板 |
+| tt.setClipboardData | 设置剪贴板 |
+
+**罗盘**:
+| API | 说明 |
+|-----|------|
+| tt.startCompass / tt.stopCompass | 罗盘监听 |
+| tt.onCompassChange / tt.offCompassChange | 罗盘变化事件 |
+
+**网络状态**:
+| API | 说明 |
+|-----|------|
+| tt.getNetworkType | 获取网络类型 |
+| tt.onNetworkStatusChange | 监听网络状态变化 |
+| tt.offNetworkStatusChange | 取消监听 |
+
+**屏幕**:
+| API | 说明 |
+|-----|------|
+| tt.setKeepScreenOn | 保持屏幕常亮 |
+| tt.getScreenBrightness | 获取屏幕亮度 |
+| tt.setScreenBrightness | 设置屏幕亮度 |
+
+**振动**:
+| API | 说明 |
+|-----|------|
+| tt.vibrateLong | 长振动 |
+| tt.vibrateShort | 短振动 |
+
+**扫码**:
+| API | 说明 |
+|-----|------|
+| tt.scanCode | 扫码 |
+
+**陀螺仪**:
+| API | 说明 |
+|-----|------|
+| tt.startGyroscope / tt.stopGyroscope | 陀螺仪监听 |
+| tt.onGyroscopeChange / tt.offGyroscopeChange | 陀螺仪变化事件 |
+
+**设备方向**:
+| API | 说明 |
+|-----|------|
+| tt.startDeviceMotionListening | 开始监听设备方向 |
+| tt.stopDeviceMotionListening | 停止监听 |
+| tt.onDeviceMotionChange | 监听设备方向变化 |
+| tt.offDeviceMotionChange | 取消监听 |
+
+**键盘**:
+| API | 说明 |
+|-----|------|
+| tt.onKeyUp / tt.onKeyDown | 键盘事件 |
+| tt.offKeyUp / tt.offKeyDown | 取消键盘事件 |
+
+**滚轮**:
+| API | 说明 |
+|-----|------|
+| tt.onWheel / tt.offWheel | 滚轮事件 |
+
+**日历**:
+| API | 说明 |
+|-----|------|
+| tt.addPhoneCalendar | 添加日历事件 |
+
+### 网络 (Network)
+
+**发起请求**:
+| API | 说明 |
+|-----|------|
+| tt.request | 发起 HTTP 请求 |
+| tt.uploadFile | 上传文件 |
+| tt.downloadFile | 下载文件 |
+
+**WebSocket**:
+| API | 说明 |
+|-----|------|
+| tt.connectSocket | 连接 WebSocket |
+| SocketTask | WebSocket 任务对象 |
+
+### 数据缓存 (Storage)
+
+| API | 说明 |
+|-----|------|
+| tt.setStorageSync / tt.setStorage | 存储数据 |
+| tt.getStorageSync / tt.getStorage | 获取数据 |
+| tt.removeStorageSync / tt.removeStorage | 删除数据 |
+| tt.clearStorageSync / tt.clearStorage | 清除所有数据 |
+| tt.getStorageInfoSync / tt.getStorageInfo | 获取存储信息 |
+
+### 文件 (File)
+
+| API | 说明 |
+|-----|------|
+| tt.getFileSystemManager | 获取文件系统管理器 |
+| FileSystemManager | 文件系统管理器对象 |
+
+### 位置 (Location)
+
+| API | 说明 |
+|-----|------|
+| tt.getLocation | 获取当前位置 |
+| tt.openLocation | 打开地图 |
+
+### 媒体 (Media)
+
+图片、音频、视频的录制与播放等。
+
+### Worker
+
+| API | 说明 |
+|-----|------|
+| Worker | 多线程 Worker |
+| tt.createWorker | 创建 Worker 实例 |
+
+### 开放能力 (Open Capabilities)
+
+**登录**:
+| API | 说明 |
+|-----|------|
+| tt.login | 登录 |
+| tt.checkSession | 检查登录状态 |
+
+**侧边栏能力**:
+| API | 说明 |
+|-----|------|
+| tt.navigateToScene | 跳转到场景 |
+| tt.checkScene | 检查场景 |
+
+**设置/授权**:
+| API | 说明 |
+|-----|------|
+| tt.getSetting | 获取当前设置 |
+| tt.openSetting | 打开设置页面 |
+| tt.authorize | 请求授权 |
+| tt.showDouyinOpenAuth | 显示抖音授权面板 |
+| AuthSetting | 授权设置对象 |
+
+**添加到桌面**:
+| API | 说明 |
+|-----|------|
+| tt.addShortcut | 添加到桌面 |
+| tt.checkShortcut | 检查是否已添加 |
+
+**游戏排行榜**:
+| API | 说明 |
+|-----|------|
+| tt.setImRankData | 设置排行数据 |
+| tt.getImRankList | 获取排行榜列表 |
+| tt.getImRankData | 获取排行数据 |
+| tt.setImRankDataInOpenContext | 在开放域设置排行数据 |
+
+**订阅消息**:
+| API | 说明 |
+|-----|------|
+| tt.requestSubscribeMessage | 请求订阅消息 |
+
+**开放数据域**:
+| API | 说明 |
+|-----|------|
+| tt.getOpenDataContext | 获取开放数据域上下文 |
+| tt.onMessage | 监听主域消息 |
+
+**开放数据**:
+| API | 说明 |
+|-----|------|
+| tt.getCloudStorageByRelation | 获取关系链云存储 |
+| tt.setUserCloudStorage | 设置用户云存储 |
+| tt.getUserCloudStorage | 获取用户云存储 |
+| tt.removeUserCloudStorage | 删除用户云存储 |
+| tt.getSharedCanvas | 获取共享 Canvas |
+| KVData | 键值数据对象 |
+
+**客服消息**:
+| API | 说明 |
+|-----|------|
+| tt.openCustomerServiceConversation | 打开客服会话 |
+| tt.createContactButton | 创建客服按钮 |
+| ContactButton | 客服按钮对象 |
+
+**直播能力**:
+| API | 说明 |
+|-----|------|
+| tt.getLiveManager | 获取直播管理器 |
+| LiveManager.getLiveStatus | 获取直播状态 |
+| LiveManager.checkRoomIsValid | 检查直播间有效性 |
+| LiveManager.navigateToLive | 跳转到直播间 |
+| LiveManager.onXScreenSizeChange | 异形屏尺寸变化 |
+
+**推荐流直出游戏**:
+| API | 说明 |
+|-----|------|
+| tt.requestFeedSubscribe | 请求推荐流订阅 |
+| tt.checkFeedSubscribeStatus | 检查订阅状态 |
+| tt.onFeedStatusChange | 监听推荐流状态变化 |
+| tt.offFeedStatusChange | 取消监听 |
+
+**公会群能力**:
+| API | 说明 |
+|-----|------|
+| tt.getUnionGroupInfo | 获取公会群信息 |
+| tt.bindUnionGroup | 绑定公会群 |
+| tt.unbindUnionGroup | 解绑公会群 |
+| tt.joinUnionGroup | 加入公会群 |
+
+**收藏**:
+| API | 说明 |
+|-----|------|
+| tt.showFavoriteGuide | 显示收藏引导 |
+| tt.onFavoriteStateChange | 监听收藏状态变化 |
+| tt.showRevisitGuide | 显示复访引导 |
+
+**群聊**:
+| API | 说明 |
+|-----|------|
+| tt.joinGroup | 加入群聊 |
+| tt.checkGroupInfo | 检查群信息 |
+
+**关注**:
+| API | 说明 |
+|-----|------|
+| tt.checkFollowAwemeState | 检查抖音号关注状态 |
+| tt.openAwemeUserProfile | 打开抖音号主页 |
+| tt.createFollowButton | 创建关注按钮 |
+| tt.checkFollowState | 检查关注状态 |
+| FollowButton | 关注按钮对象 |
+
+**数据分析**:
+| API | 说明 |
+|-----|------|
+| tt.reportAnalytics | 上报数据分析 |
+| tt.reportScene | 上报场景数据 |
+
+### 支付 (Payment)
+小游戏内虚拟支付相关 API。
+
+### 广告 (Ads)
+小游戏广告组件相关 API。
+
+---
+
+# 四、关键概念
+
+## 4.1 无网兼容
+平台支持缓存小游戏后在无网条件下再打开，建议游戏逻辑根据网络条件做好兼容。
+
+## 4.2 关系链数据使用
+通过开放数据域实现。参考开放数据域的基础能力文档。
+
+## 4.3 分包加载
+分包用于减少小游戏加载耗时，提供额外的扩展包大小。通过 game.json 的 subPackages 配置，使用 tt.loadSubpackage 加载。
+
+## 4.4 Adapter
+小游戏运行环境不同于浏览器，没有 BOM/DOM API。游戏引擎导出的版本一般已包含 adapter 适配了 window 对象。tt-adapter 提供了 Web 标准 API 到 tt API 的适配层。

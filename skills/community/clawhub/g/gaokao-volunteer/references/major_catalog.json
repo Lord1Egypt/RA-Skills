@@ -1,0 +1,237 @@
+{
+  "_description": "本科专业目录（主要门类和热门专业）",
+  "_updated": "2026-06-11",
+  "categories": {
+    "computer": {
+      "name": "计算机类",
+      "code": "0809",
+      "majors": [
+        {"code": "080901", "name": "计算机科学与技术", "discipline_eval_tier": null},
+        {"code": "080902", "name": "软件工程", "discipline_eval_tier": null},
+        {"code": "080903", "name": "网络工程", "discipline_eval_tier": null},
+        {"code": "080904", "name": "信息安全", "discipline_eval_tier": null},
+        {"code": "080905", "name": "物联网工程", "discipline_eval_tier": null},
+        {"code": "080906", "name": "数字媒体技术", "discipline_eval_tier": null},
+        {"code": "080907", "name": "智能科学与技术", "discipline_eval_tier": null},
+        {"code": "080908", "name": "空间信息与数字技术", "discipline_eval_tier": null},
+        {"code": "080909", "name": "电子与计算机工程", "discipline_eval_tier": null},
+        {"code": "080910", "name": "数据科学与大数据技术", "discipline_eval_tier": null},
+        {"code": "080911", "name": "网络空间安全", "discipline_eval_tier": null},
+        {"code": "080912", "name": "新媒体技术", "discipline_eval_tier": null},
+        {"code": "080917", "name": "人工智能", "discipline_eval_tier": null}
+      ],
+      "typical_select_subjects": ["物理", "化学"],
+      "employment_hot": true,
+      "description": "涵盖计算机软硬件、人工智能、大数据等方向，就业前景广阔"
+    },
+    "electronic": {
+      "name": "电子信息类",
+      "code": "0807",
+      "majors": [
+        {"code": "080701", "name": "电子信息工程"},
+        {"code": "080702", "name": "电子科学与技术"},
+        {"code": "080703", "name": "通信工程"},
+        {"code": "080704", "name": "微电子科学与工程"},
+        {"code": "080705", "name": "光电信息科学与工程"},
+        {"code": "080706", "name": "信息工程"},
+        {"code": "080710", "name": "集成电路设计与集成系统"},
+        {"code": "080714", "name": "电子信息科学与技术"},
+        {"code": "080716", "name": "应用电子技术教育"},
+        {"code": "080717", "name": "人工智能"}
+      ],
+      "typical_select_subjects": ["物理", "化学"],
+      "employment_hot": true
+    },
+    "automation": {
+      "name": "自动化类",
+      "code": "0808",
+      "majors": [
+        {"code": "080801", "name": "自动化"},
+        {"code": "080802", "name": "轨道交通信号与控制"},
+        {"code": "080803", "name": "机器人工程"},
+        {"code": "080804", "name": "邮政工程"},
+        {"code": "080805", "name": "核电技术与控制工程"},
+        {"code": "080806", "name": "智能装备与系统"},
+        {"code": "080807", "name": "工业智能"}
+      ],
+      "typical_select_subjects": ["物理", "化学"],
+      "employment_hot": true
+    },
+    "mechanical": {
+      "name": "机械类",
+      "code": "0802",
+      "majors": [
+        {"code": "080201", "name": "机械工程"},
+        {"code": "080202", "name": "机械设计制造及其自动化"},
+        {"code": "080204", "name": "机械电子工程"},
+        {"code": "080205", "name": "工业设计"},
+        {"code": "080207", "name": "车辆工程"},
+        {"code": "080213", "name": "智能制造工程"}
+      ],
+      "typical_select_subjects": ["物理", "化学"]
+    },
+    "civil": {
+      "name": "土木类",
+      "code": "0810",
+      "majors": [
+        {"code": "081001", "name": "土木工程"},
+        {"code": "081002", "name": "建筑环境与能源应用工程"},
+        {"code": "081003", "name": "给排水科学与工程"},
+        {"code": "081004", "name": "建筑电气与智能化"}
+      ],
+      "typical_select_subjects": ["物理"]
+    },
+    "medicine": {
+      "name": "临床医学类",
+      "code": "1002",
+      "majors": [
+        {"code": "100201", "name": "临床医学"},
+        {"code": "100202", "name": "麻醉学"},
+        {"code": "100203", "name": "医学影像学"},
+        {"code": "100204", "name": "眼视光医学"},
+        {"code": "100205", "name": "精神医学"},
+        {"code": "100206", "name": "放射医学"},
+        {"code": "100207", "name": "儿科学"}
+      ],
+      "typical_select_subjects": ["物理", "化学", "生物"],
+      "employment_hot": true,
+      "note": "5年制，考研率极高"
+    },
+    "finance": {
+      "name": "金融学类",
+      "code": "0203",
+      "majors": [
+        {"code": "020301", "name": "金融学"},
+        {"code": "020302", "name": "金融工程"},
+        {"code": "020303", "name": "保险学"},
+        {"code": "020304", "name": "投资学"},
+        {"code": "020308", "name": "精算学"},
+        {"code": "020309", "name": "互联网金融"},
+        {"code": "020310", "name": "金融科技"}
+      ],
+      "typical_select_subjects": ["不限"],
+      "employment_hot": true
+    },
+    "economics": {
+      "name": "经济学类",
+      "code": "0201",
+      "majors": [
+        {"code": "020101", "name": "经济学"},
+        {"code": "020102", "name": "经济统计学"},
+        {"code": "020103", "name": "国民经济管理"},
+        {"code": "020105", "name": "商务经济学"},
+        {"code": "020109", "name": "数字经济"}
+      ],
+      "typical_select_subjects": ["不限"]
+    },
+    "management": {
+      "name": "工商管理类",
+      "code": "1202",
+      "majors": [
+        {"code": "120201", "name": "工商管理"},
+        {"code": "120202", "name": "市场营销"},
+        {"code": "120203", "name": "会计学"},
+        {"code": "120204", "name": "财务管理"},
+        {"code": "120206", "name": "人力资源管理"},
+        {"code": "120207", "name": "审计学"}
+      ],
+      "typical_select_subjects": ["不限"]
+    },
+    "law": {
+      "name": "法学类",
+      "code": "0301",
+      "majors": [
+        {"code": "030101", "name": "法学"},
+        {"code": "030102", "name": "知识产权"},
+        {"code": "030104", "name": "信用风险管理与法律防控"},
+        {"code": "030105", "name": "国际经贸规则"}
+      ],
+      "typical_select_subjects": ["不限"],
+      "note": "需通过法考才能执业"
+    },
+    "math": {
+      "name": "数学类",
+      "code": "0701",
+      "majors": [
+        {"code": "070101", "name": "数学与应用数学"},
+        {"code": "070102", "name": "信息与计算科学"},
+        {"code": "070103", "name": "数理基础科学"},
+        {"code": "070104", "name": "数据计算及应用"}
+      ],
+      "typical_select_subjects": ["物理"]
+    },
+    "physics": {
+      "name": "物理学类",
+      "code": "0702",
+      "majors": [
+        {"code": "070201", "name": "物理学"},
+        {"code": "070202", "name": "应用物理学"},
+        {"code": "070203", "name": "核物理"},
+        {"code": "070204", "name": "声学"}
+      ],
+      "typical_select_subjects": ["物理"]
+    },
+    "language": {
+      "name": "外国语言文学类",
+      "code": "0502",
+      "majors": [
+        {"code": "050201", "name": "英语"},
+        {"code": "050207", "name": "日语"},
+        {"code": "050209", "name": "朝鲜语"},
+        {"code": "050220", "name": "商务英语"},
+        {"code": "050261", "name": "翻译"}
+      ],
+      "typical_select_subjects": ["不限"]
+    },
+    "new_energy": {
+      "name": "能源动力类",
+      "code": "0805",
+      "majors": [
+        {"code": "080501", "name": "能源与动力工程"},
+        {"code": "080503", "name": "新能源科学与工程"},
+        {"code": "080504", "name": "储能科学与工程"}
+      ],
+      "typical_select_subjects": ["物理", "化学"],
+      "employment_hot": true
+    }
+  },
+  "interest_keywords_mapping": {
+    "计算机": "computer",
+    "电脑": "computer",
+    "编程": "computer",
+    "软件": "computer",
+    "人工智能": "computer",
+    "AI": "computer",
+    "大数据": "computer",
+    "电子信息": "electronic",
+    "通信": "electronic",
+    "电子": "electronic",
+    "芯片": "electronic",
+    "集成电路": "electronic",
+    "自动化": "automation",
+    "机器人": "automation",
+    "机械": "mechanical",
+    "车辆": "mechanical",
+    "智能制造": "mechanical",
+    "土木": "civil",
+    "建筑": "civil",
+    "医学": "medicine",
+    "临床": "medicine",
+    "医生": "medicine",
+    "金融": "finance",
+    "经济": "economics",
+    "会计": "management",
+    "管理": "management",
+    "工商": "management",
+    "法学": "law",
+    "法律": "law",
+    "律师": "law",
+    "数学": "math",
+    "物理": "physics",
+    "英语": "language",
+    "日语": "language",
+    "翻译": "language",
+    "新能源": "new_energy",
+    "能源": "new_energy"
+  }
+}

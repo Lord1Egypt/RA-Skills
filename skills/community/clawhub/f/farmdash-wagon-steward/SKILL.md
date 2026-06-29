@@ -3,7 +3,7 @@ name: FarmDash Wagon Steward
 description: "Read-only DeFi portfolio aggregation skill for OpenClaw agents. Returns wallet balances across EVM chains, scores capital efficiency, surfaces idle stablecoins, tracks position drift versus a target allocation, and produces rebalancing proposals as research output. Strict read-only surface: every tool is a GET endpoint that returns analysis. The user's separately-installed execution skill is responsible for any on-chain action under its own ClawScan-reviewed contract."
 tags: ["defi", "ai-agent", "autonomous-agent", "openclaw", "clawhub", "mcp", "crypto", "web3", "onchain", "portfolio", "wallet", "wallet-analytics", "position-tracker", "capital-efficiency", "rebalancing", "yield-farming", "airdrop", "evm", "multi-chain", "read-only", "zero-custody", "farmdash", "wagon-steward"]
 author: FarmDash Pioneers (@Parmasanandgarlic)
-homepage: https://www.farmdash.one
+homepage: https://www.farmdash.one/agents
 version: "0.6.1"
 icon: 🪵
 env:
@@ -61,7 +61,7 @@ No other fields are collected by skill logic.
 |---|---|---|---|
 | **Scout** | Free | 5 req / 24h | Public FarmDash discovery only; wallet portfolio endpoints require Pioneer because they consume portfolio API credits |
 | **Pioneer** | $39.99/mo | 500 req / day | Wallet balances, portfolio summary, idle capital, token prices, position/performance health |
-| **Syndicate** | $199/mo | 50k req / day | Higher-rate portfolio loops; webhook delivery is handled by the Signal Architect `/v1/agent/webhooks` endpoint |
+| **Syndicate** | $199/mo | 50k req / day | Higher-rate portfolio loops, webhooks through Signal Architect, unrestricted CORS, and advanced session/control tooling for teams and serious agents |
 
 ---
 
@@ -464,10 +464,9 @@ Decision rules:
 - **FarmDash Signal Architect** — zero-custody EIP-191 swap routing
 - **FarmDash Futures Strategist** — zero-custody EIP-712 perps execution
 
-**Dashboard:** `https://www.farmdash.one`
-**Agent Hub:** `https://www.farmdash.one/agents`
-**MCP Config:** `https://www.farmdash.one/.well-known/mcp.json`
-**OpenAPI Spec:** `https://www.farmdash.one/agents/openapi.yaml`
+**Agent Hub:** [FarmDash Agentic OS](https://www.farmdash.one/agents)
+**OpenAPI Spec:** [FarmDash API Schema](https://www.farmdash.one/agents/openapi.yaml)
+**MCP Config:** [FarmDash MCP Server](https://www.farmdash.one/.well-known/mcp.json)
 
 ---
 

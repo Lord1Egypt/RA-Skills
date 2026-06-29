@@ -21,7 +21,7 @@ def safe_urlopen(req_or_url):
         sys.exit(1)
     return SAFE_URLOPENER.open(req_or_url)
 
-ENDPOINT = "/data/api/v1/market/data/southbound"
+ENDPOINT = "/gateway/api/v1/market/data/southbound"
 
 
 def fetch(date: str) -> dict:

@@ -1,0 +1,4 @@
+interface:
+  display_name: "UNIHIKER K10 PlatformIO"
+  short_description: "K10 PlatformIO builds and offline setup"
+  default_prompt: "Use $unihiker-k10-platformio to create, build, upload, or prepare an offline workshop bundle for a UNIHIKER K10 PlatformIO project."

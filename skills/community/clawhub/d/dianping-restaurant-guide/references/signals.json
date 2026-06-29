@@ -1,0 +1,135 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Fake Review Detection Signals",
+  "description": "Multi-dimensional signal definitions for fake review detection",
+  "version": "1.0.0",
+  "signals": [
+    {
+      "id": "time_cluster",
+      "name": "Time Cluster",
+      "description": "Multiple reviews posted within a short time window",
+      "severity": "high",
+      "weight": 25,
+      "threshold": {
+        "max_reviews_in_30min": 5,
+        "max_reviews_in_1hour": 8
+      },
+      "pattern": "≥5 reviews within 30 min or ≥8 within 1 hour",
+      "score_func": "count * 5"
+    },
+    {
+      "id": "reviewer_age",
+      "name": "Reviewer Account Age",
+      "description": "Accounts created very recently posting reviews",
+      "severity": "high",
+      "weight": 20,
+      "threshold": {
+        "min_age_days": 7,
+        "suspicious_days": 30
+      },
+      "pattern": "Account <7 days old (high risk), 7-30 days (medium)",
+      "score_func": "max(0, 20 - age_days) if age_days < 7 else 10 if age_days < 30 else 0"
+    },
+    {
+      "id": "review_frequency",
+      "name": "Review Frequency",
+      "description": "Abnormally high review posting rate across restaurants",
+      "severity": "medium",
+      "weight": 15,
+      "threshold": {
+        "max_daily_rate": 10,
+        "suspicious_rate": 5
+      },
+      "pattern": ">10 reviews/day across restaurants (high), >5/day (medium)",
+      "score_func": "count * 2"
+    },
+    {
+      "id": "text_similarity",
+      "name": "Text Similarity",
+      "description": "High textual similarity with other reviews for the same restaurant",
+      "severity": "high",
+      "weight": 20,
+      "threshold": {
+        "cosine_similarity": 0.7,
+        "max_identical": 3
+      },
+      "pattern": "Cosine similarity >0.7 with multiple other reviews",
+      "score_func": "matches * 7"
+    },
+    {
+      "id": "photo_exif",
+      "name": "Photo EXIF Analysis",
+      "description": "Identical camera/settings across supposedly different users' photos",
+      "severity": "medium",
+      "weight": 10,
+      "threshold": {
+        "max_identical_cameras": 3
+      },
+      "pattern": "≥3 reviews with photos from same camera model/settings",
+      "score_func": "matches * 5"
+    },
+    {
+      "id": "generic_language",
+      "name": "Generic Language",
+      "description": "Vague, template-like language without specific details",
+      "severity": "low",
+      "weight": 5,
+      "threshold": {
+        "min_specific_chars": 30,
+        "max_generic_ratio": 0.6
+      },
+      "pattern": "Uses only generic phrases without dish names or specific descriptions",
+      "score_func": "1 if is_generic else 0"
+    },
+    {
+      "id": "rating_pattern",
+      "name": "Rating Pattern",
+      "description": "All 5-star reviews with no critical feedback",
+      "severity": "low",
+      "weight": 5,
+      "threshold": {
+        "all_5star_count": 3,
+        "min_words_for_detail": 20
+      },
+      "pattern": "Multiple 5-star reviews with <20 words and no specific detail",
+      "score_func": "count * 2"
+    },
+    {
+      "id": "reviewer_history",
+      "name": "Reviewer History",
+      "description": "Reviewer only posts positive reviews, never critical",
+      "severity": "medium",
+      "weight": 10,
+      "threshold": {
+        "max_negative_ratio": 0.05,
+        "min_reviews_for_pattern": 5
+      },
+      "pattern": "Reviewer has ≥5 reviews, all 4-5 stars, no critical feedback",
+      "score_func": "1 if pattern_matches else 0"
+    }
+  ],
+  "scoring": {
+    "max_total_score": 100,
+    "thresholds": {
+      "trustworthy": { "min": 80, "label": "Trustworthy - most reviews appear genuine" },
+      "some_concerns": { "min": 60, "label": "Some concerns - minor suspicious patterns" },
+      "suspicious": { "min": 40, "label": "Suspicious - significant fake review indicators" },
+      "high_risk": { "min": 0, "label": "High risk - likely extensive fake review activity" }
+    },
+    "per_review_tags": {
+      "genuine": "Review appears authentic",
+      "suspicious": "Some suspicious signals detected",
+      "likely_fake": "Strong indicators of inauthentic review"
+    },
+    "global_flags": {
+      "flag_restaurant_at_pct": 40,
+      "flag_message": "Over 40% of reviews appear fake — strong warning"
+    }
+  },
+  "generic_phrases": [
+    "环境不错", "味道很好", "服务态度好", "性价比高",
+    "还会再来", "推荐", "不错", "好吃", "一般般",
+    "挺好的", "还行吧", "值得推荐", "价格实惠",
+    "位置好找", "交通方便", "装修不错", "分量足"
+  ]
+}

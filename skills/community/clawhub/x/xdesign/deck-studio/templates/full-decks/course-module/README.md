@@ -1,3 +1,13 @@
+---
+name: course-module · 教学模块
+mode: deck
+scenario: education
+surface: slides
+recommended: 60
+tags: ["education", "course", "learning", "academic", "textbook"]
+example_id: sample-course-module
+example_format: markdown
+---
 # course-module · 教学模块
 
 7-slide teaching module: cover (title + meta), objectives, core concept, worked example, exercise, check-your-understanding (MCQ), summary.

@@ -29,6 +29,13 @@ from urllib.parse import urlparse
 from webhook_center import SEVERITY_RANK, send_markdown_message
 
 try:
+    from bt_client import build_panel_registry  # noqa: F401  (lazy use)
+    from log_reader import make_log_reader
+except ImportError:  # pragma: no cover  - bt_client / log_reader are optional siblings
+    build_panel_registry = None  # type: ignore[assignment]
+    make_log_reader = None  # type: ignore[assignment]
+
+try:
     from zoneinfo import ZoneInfo
 except ImportError:  # pragma: no cover
     ZoneInfo = None
@@ -161,8 +168,10 @@ DEFAULT_CONFIG = {
             "enabled": True,
             "access_log": "./access.log",
             "error_log": "./error.log",
+            "panel_id": "",
         }
     ],
+    "remote_panels": {},
     "thresholds": {
         "summary_window_minutes": 10,
         "slow_ms": 2000.0,
@@ -345,6 +354,17 @@ CREATE TABLE IF NOT EXISTS metric_rollups (
     avg_memory_pct REAL,
     max_memory_pct REAL,
     min_disk_free_bytes INTEGER,
+    avg_cpu_iowait_pct REAL,
+    avg_swap_used_pct REAL,
+    avg_net_rx_mbps REAL,
+    avg_net_tx_mbps REAL,
+    avg_disk_read_iops REAL,
+    avg_disk_write_iops REAL,
+    max_process_count INTEGER,
+    max_zombie_count INTEGER,
+    min_inode_free_pct REAL,
+    avg_tcp_established INTEGER,
+    max_tcp_timewait INTEGER,
     created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
     UNIQUE(host_id, site, bucket_start, bucket_minutes)
@@ -556,13 +576,68 @@ def normalize_site_entry(
         access_log_value = fallback_access_log
     if not error_log_value and fallback_error_log is not None:
         error_log_value = fallback_error_log
+
+    panel_id = str(site_data.get("panel_id") or "").strip()
+    if panel_id:
+        # Remote site: access_log/error_log are absolute paths on the remote host.
+        # Do NOT rewrite them through resolve_config_path (that would prefix with
+        # the local worktree base_dir, producing a meaningless path).
+        access_log_resolved = str(access_log_value or "").strip()
+        error_log_resolved = str(error_log_value or "").strip()
+    else:
+        access_log_resolved = str(
+            resolve_config_path(base_dir, access_log_value or f"./site-{index}.access.log")
+        )
+        error_log_resolved = str(
+            resolve_config_path(base_dir, error_log_value or f"./site-{index}.error.log")
+        )
+
     return {
         "domain": domain or f"site-{index}",
         "site_host": site_host or domain or f"site-{index}",
         "enabled": bool(site_data.get("enabled", True)),
-        "access_log": str(resolve_config_path(base_dir, access_log_value or f"./site-{index}.access.log")),
-        "error_log": str(resolve_config_path(base_dir, error_log_value or f"./site-{index}.error.log")),
+        "access_log": access_log_resolved,
+        "error_log": error_log_resolved,
+        "panel_id": panel_id,
     }
+
+
+def normalize_remote_panels(config: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    """Normalize the global remote_panels mapping.
+
+    Each panel entry is keyed by panel_id. api_key may come from api_key_env (preferred)
+    or be embedded as plaintext (discouraged). Missing keys are kept so the agent can
+    skip remote sites cleanly with a logged error rather than crashing on startup.
+    """
+    raw = config.get("remote_panels")
+    panels: dict[str, dict[str, Any]] = {}
+    if not isinstance(raw, dict):
+        config["remote_panels"] = panels
+        return panels
+
+    for raw_id, raw_entry in raw.items():
+        panel_id = str(raw_id or "").strip()
+        if not panel_id or not isinstance(raw_entry, dict):
+            continue
+        url = str(raw_entry.get("url") or "").strip().rstrip("/")
+        api_key_env = str(raw_entry.get("api_key_env") or "").strip()
+        api_key = str(raw_entry.get("api_key") or "").strip()
+        if api_key_env:
+            env_value = os.environ.get(api_key_env, "").strip()
+            if env_value:
+                api_key = env_value
+        panels[panel_id] = {
+            "panel_id": panel_id,
+            "url": url,
+            "api_key": api_key,
+            "api_key_env": api_key_env,
+            "timeout_seconds": max(int(raw_entry.get("timeout_seconds", 15)), 1),
+            "retries": max(int(raw_entry.get("retries", 2)), 0),
+            "chunk_bytes": max(int(raw_entry.get("chunk_bytes", 524288)), 4096),
+            "verify_tls": bool(raw_entry.get("verify_tls", True)),
+        }
+    config["remote_panels"] = panels
+    return panels
 
 
 def normalize_sites_config(config: dict[str, Any], base_dir: Path) -> list[dict[str, Any]]:
@@ -649,6 +724,7 @@ def build_site_runtime_config(config: dict[str, Any], site: dict[str, Any]) -> d
     runtime_config["agent"]["site_host"] = str(
         site.get("site_host") or runtime_config["agent"]["site"]
     )
+    runtime_config["agent"]["panel_id"] = str(site.get("panel_id") or "").strip()
     runtime_config["logs"]["access_log"] = str(site.get("access_log") or runtime_config["logs"].get("access_log") or "")
     runtime_config["logs"]["error_log"] = str(site.get("error_log") or runtime_config["logs"].get("error_log") or "")
     return runtime_config
@@ -700,6 +776,24 @@ def normalize_config(config: dict[str, Any], config_path: Path) -> dict[str, Any
     system_metrics["collect_network_io"] = bool(
         system_metrics.get("collect_network_io", True)
     )
+    system_metrics["collect_processes"] = bool(
+        system_metrics.get("collect_processes", True)
+    )
+    system_metrics["collect_tcp_states"] = bool(
+        system_metrics.get("collect_tcp_states", True)
+    )
+    # service_probes: list of systemd unit names to check (e.g. ["nginx", "php8.1-fpm"])
+    raw_probes = system_metrics.get("service_probes")
+    system_metrics["service_probes"] = (
+        [str(s).strip() for s in raw_probes if str(s).strip()]
+        if isinstance(raw_probes, list) else []
+    )
+    # extra_disk_partitions: additional mount points to monitor (e.g. ["/data", "/home"])
+    raw_parts = system_metrics.get("extra_disk_partitions")
+    system_metrics["extra_disk_partitions"] = (
+        [str(p).strip() for p in raw_parts if str(p).strip()]
+        if isinstance(raw_parts, list) else []
+    )
 
     raw_auth_log = str(logs.get("auth_log") or "").strip()
     if raw_auth_log:
@@ -707,6 +801,7 @@ def normalize_config(config: dict[str, Any], config_path: Path) -> dict[str, Any
     else:
         logs["auth_log"] = detect_default_auth_log_path()
 
+    normalize_remote_panels(config)
     normalize_sites_config(config, base_dir)
 
     thresholds["summary_window_minutes"] = max(
@@ -746,6 +841,16 @@ def normalize_config(config: dict[str, Any], config_path: Path) -> dict[str, Any
         int(thresholds.get("ssh_bruteforce_failures", 10)),
         1,
     )
+    # Layer 1: iowait, swap, memory (absolute), network errors, disk IOPS
+    thresholds["iowait_pct"]             = float(thresholds.get("iowait_pct", 30.0))
+    thresholds["swap_pct"]              = float(thresholds.get("swap_pct", 60.0))
+    thresholds["memory_min_available_mb"] = max(int(thresholds.get("memory_min_available_mb", 200)), 1)
+    thresholds["net_error_count"]        = max(int(thresholds.get("net_error_count", 100)), 1)
+    thresholds["disk_write_iops"]        = float(thresholds.get("disk_write_iops", 5000.0))
+    # Layer 3: inode
+    thresholds["inode_used_pct"]         = float(thresholds.get("inode_used_pct", 90.0))
+    # Layer 4: TCP, services
+    thresholds["tcp_timewait_count"]     = max(int(thresholds.get("tcp_timewait_count", 5000)), 1)
 
     rollup_minutes = storage.get("rollup_minutes", [10, 60])
     if not isinstance(rollup_minutes, list) or not rollup_minutes:
@@ -972,6 +1077,15 @@ def normalize_config(config: dict[str, Any], config_path: Path) -> dict[str, Any
         ]
     ) + 10
     agent["retention_minutes"] = max(agent["retention_minutes"], minimum_retention)
+
+    # Normalize diagnostics configuration
+    diag = config.setdefault("diagnostics", {})
+    diag["enabled"] = bool(diag.get("enabled", True))
+    diag["timeout_seconds"] = max(int(diag.get("timeout_seconds", 5)), 1)
+    diag["max_lines_per_command"] = max(int(diag.get("max_lines_per_command", 20)), 1)
+    diag["recovery_notification"] = bool(diag.get("recovery_notification", True))
+    diag["recovery_min_duration_seconds"] = max(int(diag.get("recovery_min_duration_seconds", 30)), 0)
+
     return config
 
 
@@ -1168,7 +1282,37 @@ def init_database(path: Path) -> sqlite3.Connection:
         );
         """
     )
+    migrate_schema(connection)
     return connection
+
+
+def migrate_schema(connection: sqlite3.Connection) -> None:
+    """Idempotently add new columns to existing metric_rollups tables.
+
+    This allows upgrading an existing database without data loss.
+    SQLite does not support IF NOT EXISTS for ALTER TABLE, so we check
+    PRAGMA table_info first.
+    """
+    existing = {row[1] for row in connection.execute("PRAGMA table_info(metric_rollups)")}
+    new_columns = [
+        ("avg_cpu_iowait_pct",  "REAL"),
+        ("avg_swap_used_pct",   "REAL"),
+        ("avg_net_rx_mbps",     "REAL"),
+        ("avg_net_tx_mbps",     "REAL"),
+        ("avg_disk_read_iops",  "REAL"),
+        ("avg_disk_write_iops", "REAL"),
+        ("max_process_count",   "INTEGER"),
+        ("max_zombie_count",    "INTEGER"),
+        ("min_inode_free_pct",  "REAL"),
+        ("avg_tcp_established", "INTEGER"),
+        ("max_tcp_timewait",    "INTEGER"),
+    ]
+    for col_name, col_type in new_columns:
+        if col_name not in existing:
+            connection.execute(
+                f"ALTER TABLE metric_rollups ADD COLUMN {col_name} {col_type}"
+            )
+    connection.commit()
 
 
 def get_timezone(config: dict[str, Any]) -> dt.tzinfo:
@@ -1950,38 +2094,68 @@ def summarize_system_snapshots_window(
         return {
             "window_start": window_start.isoformat(),
             "window_end": window_end.isoformat(),
-            "avg_cpu_pct": None,
-            "max_cpu_pct": None,
-            "avg_memory_pct": None,
-            "max_memory_pct": None,
+            "avg_cpu_pct": None, "max_cpu_pct": None,
+            "avg_memory_pct": None, "max_memory_pct": None,
             "min_disk_free_bytes": None,
+            "avg_cpu_iowait_pct": None, "avg_swap_used_pct": None,
+            "avg_net_rx_mbps": None, "avg_net_tx_mbps": None,
+            "avg_disk_read_iops": None, "avg_disk_write_iops": None,
+            "max_process_count": None, "max_zombie_count": None,
+            "min_inode_free_pct": None,
+            "avg_tcp_established": None, "max_tcp_timewait": None,
         }
 
-    cpu_values = [
-        float(snapshot["cpu_pct"])
-        for snapshot in window_snapshots
-        if snapshot.get("cpu_pct") is not None
-    ]
-    memory_values = [
-        float(snapshot["memory_pct"])
-        for snapshot in window_snapshots
-        if snapshot.get("memory_pct") is not None
-    ]
-    disk_values = [
-        int(snapshot["disk_free_bytes"])
-        for snapshot in window_snapshots
-        if snapshot.get("disk_free_bytes") is not None
-    ]
+    def _fv(key: str) -> list[float]:
+        return [float(s[key]) for s in window_snapshots if s.get(key) is not None]
+
+    def _avg(vals: list[float]) -> float | None:
+        return round(statistics.mean(vals), 2) if vals else None
+
+    def _max_f(vals: list[float]) -> float | None:
+        return round(max(vals), 2) if vals else None
+
+    def _min_f(vals: list[float]) -> float | None:
+        return round(min(vals), 2) if vals else None
+
+    def _max_i(key: str) -> int | None:
+        vals = [int(s[key]) for s in window_snapshots if s.get(key) is not None]
+        return int(max(vals)) if vals else None
+
+    def _avg_i(key: str) -> int | None:
+        vals = [int(s[key]) for s in window_snapshots if s.get(key) is not None]
+        return int(round(statistics.mean(vals))) if vals else None
+
+    cpu_values  = _fv("cpu_pct")
+    mem_values  = _fv("memory_pct")
+    disk_values = [int(s["disk_free_bytes"]) for s in window_snapshots if s.get("disk_free_bytes") is not None]
+    inode_vals  = _fv("disk_inode_used_pct")   # used%, so min free = 100 - max used
 
     return {
         "window_start": window_start.isoformat(),
-        "window_end": window_end.isoformat(),
-        "avg_cpu_pct": round(statistics.mean(cpu_values), 2) if cpu_values else None,
-        "max_cpu_pct": round(max(cpu_values), 2) if cpu_values else None,
-        "avg_memory_pct": round(statistics.mean(memory_values), 2) if memory_values else None,
-        "max_memory_pct": round(max(memory_values), 2) if memory_values else None,
+        "window_end":   window_end.isoformat(),
+        # baseline
+        "avg_cpu_pct":        _avg(cpu_values),
+        "max_cpu_pct":        _max_f(cpu_values),
+        "avg_memory_pct":     _avg(mem_values),
+        "max_memory_pct":     _max_f(mem_values),
         "min_disk_free_bytes": min(disk_values) if disk_values else None,
+        # Layer 1
+        "avg_cpu_iowait_pct":  _avg(_fv("cpu_iowait_pct")),
+        "avg_swap_used_pct":   _avg(_fv("swap_used_pct")),
+        "avg_net_rx_mbps":     _avg(_fv("net_rx_mbps")),
+        "avg_net_tx_mbps":     _avg(_fv("net_tx_mbps")),
+        "avg_disk_read_iops":  _avg(_fv("disk_read_iops")),
+        "avg_disk_write_iops": _avg(_fv("disk_write_iops")),
+        # Layer 2
+        "max_process_count": _max_i("process_count"),
+        "max_zombie_count":  _max_i("process_zombie"),
+        # Layer 3: inode — report worst (lowest free) across snapshots
+        "min_inode_free_pct": round(100.0 - max(inode_vals), 2) if inode_vals else None,
+        # Layer 4
+        "avg_tcp_established": _avg_i("tcp_established"),
+        "max_tcp_timewait":    _max_i("tcp_time_wait"),
     }
+
 
 
 def collect_system_snapshot(
@@ -1989,8 +2163,25 @@ def collect_system_snapshot(
     host_id: str,
     site: str,
     collect_network_io: bool = True,
+    extra_disk_partitions: list[str] | None = None,
+    collect_processes: bool = True,
+    collect_tcp_states: bool = True,
+    service_probes: list[str] | None = None,
+    _io_state: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
-    snapshot = {
+    """Collect a comprehensive system snapshot.
+
+    Layer 1 – CPU detail, memory/swap, disk IOPS delta, network rate/errors/drops.
+    Layer 2 – Process count, zombie processes, top-5 CPU/memory procs.
+    Layer 3 – Root-disk inode usage; optional extra partitions.
+    Layer 4 – TCP connection states; systemd service health probes.
+
+    ``_io_state`` is a mutable dict that persists between calls (stored in agent
+    state). It holds previous I/O counter values so per-cycle delta metrics
+    (IOPS, Mbps) can be computed.  Pass ``None`` on the first call; subsequent
+    calls should reuse the same dict object.
+    """
+    snapshot: dict[str, Any] = {
         "event_type": "system_snapshot",
         "host_id": host_id,
         "site": site,
@@ -2001,36 +2192,201 @@ def collect_system_snapshot(
         snapshot["warning"] = "psutil is not installed; system metrics are unavailable."
         return snapshot
 
+    now_ts = utcnow().timestamp()
+    prev_ts: float | None = _io_state.get("prev_ts") if _io_state is not None else None
+    elapsed: float | None = (now_ts - prev_ts) if (prev_ts and now_ts > prev_ts) else None
+
+    # ── Layer 1: CPU ─────────────────────────────────────────────────────
     cpu_pct = psutil.cpu_percent(interval=0.1)
+    snapshot["cpu_pct"] = round(cpu_pct, 2)
+    snapshot["cpu_count"] = int(psutil.cpu_count(logical=True) or 1)
+    try:
+        ct = psutil.cpu_times_percent(interval=0)
+        snapshot["cpu_user_pct"]   = round(float(ct.user), 2)
+        snapshot["cpu_system_pct"] = round(float(ct.system), 2)
+        snapshot["cpu_iowait_pct"] = round(float(getattr(ct, "iowait", 0.0)), 2)
+    except Exception:
+        snapshot["cpu_user_pct"] = snapshot["cpu_system_pct"] = snapshot["cpu_iowait_pct"] = None
+
+    # ── Layer 1: Memory & Swap ────────────────────────────────────────────
     memory = psutil.virtual_memory()
+    snapshot["memory_pct"]             = round(memory.percent, 2)
+    snapshot["memory_used_bytes"]      = int(memory.used)
+    snapshot["memory_available_bytes"] = int(memory.available)
+    try:
+        swap = psutil.swap_memory()
+        snapshot["swap_used_pct"]   = round(swap.percent, 2)
+        snapshot["swap_used_bytes"] = int(swap.used)
+    except Exception:
+        snapshot["swap_used_pct"] = snapshot["swap_used_bytes"] = None
+
+    # ── Layer 1+3: Disk root + inode ──────────────────────────────────────
     disk = psutil.disk_usage(disk_root)
-    snapshot.update(
-        {
-            "cpu_pct": round(cpu_pct, 2),
-            "memory_pct": round(memory.percent, 2),
-            "disk_used_pct": round(disk.percent, 2),
-            "disk_free_bytes": int(disk.free),
-        }
-    )
-    if collect_network_io:
-        net = psutil.net_io_counters()
-        snapshot.update(
-            {
-                "net_rx_bytes": int(net.bytes_recv),
-                "net_tx_bytes": int(net.bytes_sent),
-            }
+    snapshot["disk_used_pct"]   = round(disk.percent, 2)
+    snapshot["disk_free_bytes"] = int(disk.free)
+    try:
+        import os as _os
+        vfs = _os.statvfs(disk_root)
+        snapshot["disk_inode_used_pct"] = (
+            round(100.0 * (vfs.f_files - vfs.f_ffree) / vfs.f_files, 2)
+            if vfs.f_files > 0 else None
         )
+    except (AttributeError, OSError):
+        snapshot["disk_inode_used_pct"] = None
+
+    # ── Layer 3: Extra partitions ─────────────────────────────────────────
+    if extra_disk_partitions:
+        parts: list[dict[str, Any]] = []
+        for mount in extra_disk_partitions:
+            try:
+                usage = psutil.disk_usage(mount)
+                try:
+                    import os as _os2
+                    vfs2 = _os2.statvfs(mount)
+                    inode_pct: float | None = (
+                        round(100.0 * (vfs2.f_files - vfs2.f_ffree) / vfs2.f_files, 2)
+                        if vfs2.f_files > 0 else None
+                    )
+                except (AttributeError, OSError):
+                    inode_pct = None
+                parts.append({
+                    "mount": mount,
+                    "used_pct": round(usage.percent, 2),
+                    "free_bytes": int(usage.free),
+                    "inode_used_pct": inode_pct,
+                })
+            except (OSError, PermissionError):
+                pass
+        snapshot["extra_partitions"] = parts
+
+    # ── Layer 1: Disk I/O delta ───────────────────────────────────────────
+    try:
+        dio = psutil.disk_io_counters()
+        if dio is not None:
+            if elapsed and _io_state is not None:
+                rc_delta = dio.read_count  - _io_state.get("prev_disk_rc", dio.read_count)
+                wc_delta = dio.write_count - _io_state.get("prev_disk_wc", dio.write_count)
+                snapshot["disk_read_iops"]        = round(max(rc_delta, 0) / elapsed, 2)
+                snapshot["disk_write_iops"]       = round(max(wc_delta, 0) / elapsed, 2)
+                snapshot["disk_read_bytes_delta"] = int(max(
+                    dio.read_bytes  - _io_state.get("prev_disk_rb", dio.read_bytes), 0
+                ))
+                snapshot["disk_write_bytes_delta"] = int(max(
+                    dio.write_bytes - _io_state.get("prev_disk_wb", dio.write_bytes), 0
+                ))
+            if _io_state is not None:
+                _io_state["prev_disk_rc"] = dio.read_count
+                _io_state["prev_disk_wc"] = dio.write_count
+                _io_state["prev_disk_rb"] = dio.read_bytes
+                _io_state["prev_disk_wb"] = dio.write_bytes
+    except (AttributeError, OSError):
+        pass
+
+    # ── Layer 1: Network I/O ──────────────────────────────────────────────
+    if collect_network_io:
+        try:
+            net = psutil.net_io_counters()
+            snapshot["net_rx_bytes"] = int(net.bytes_recv)
+            snapshot["net_tx_bytes"] = int(net.bytes_sent)
+            snapshot["net_rx_errs"] = int(net.errin)
+            snapshot["net_tx_errs"] = int(net.errout)
+            snapshot["net_rx_drop"] = int(getattr(net, "dropin",  0))
+            snapshot["net_tx_drop"] = int(getattr(net, "dropout", 0))
+            if elapsed and _io_state is not None:
+                rx_d = net.bytes_recv - _io_state.get("prev_net_rx", net.bytes_recv)
+                tx_d = net.bytes_sent - _io_state.get("prev_net_tx", net.bytes_sent)
+                snapshot["net_rx_mbps"] = round(max(rx_d, 0) * 8 / elapsed / 1_000_000, 4)
+                snapshot["net_tx_mbps"] = round(max(tx_d, 0) * 8 / elapsed / 1_000_000, 4)
+            if _io_state is not None:
+                _io_state["prev_net_rx"] = net.bytes_recv
+                _io_state["prev_net_tx"] = net.bytes_sent
+        except (AttributeError, OSError):
+            pass
+
+    # Update delta timestamp
+    if _io_state is not None:
+        _io_state["prev_ts"] = now_ts
+
+    # ── Load average ──────────────────────────────────────────────────────
     try:
         load_1m, load_5m, load_15m = psutil.getloadavg()
     except (AttributeError, OSError):
         load_1m = load_5m = load_15m = None
-    snapshot.update(
-        {
-            "load_1m": load_1m,
-            "load_5m": load_5m,
-            "load_15m": load_15m,
-        }
-    )
+    snapshot["load_1m"] = load_1m
+    snapshot["load_5m"] = load_5m
+    snapshot["load_15m"] = load_15m
+
+    # ── Layer 2: Processes ────────────────────────────────────────────────
+    if collect_processes:
+        try:
+            status_counts: dict[str, int] = {"running": 0, "sleeping": 0, "zombie": 0, "other": 0}
+            top_cpu_list: list[tuple[float, int, str]] = []
+            top_mem_list: list[tuple[float, int, str]] = []
+            for proc in psutil.process_iter(["pid", "name", "status", "cpu_percent", "memory_percent"]):
+                try:
+                    info = proc.info
+                    st = str(info.get("status") or "").lower()
+                    if "zombie" in st:
+                        status_counts["zombie"] += 1
+                    elif "run" in st:
+                        status_counts["running"] += 1
+                    elif "sleep" in st:
+                        status_counts["sleeping"] += 1
+                    else:
+                        status_counts["other"] += 1
+                    cp = float(info.get("cpu_percent") or 0.0)
+                    mp = float(info.get("memory_percent") or 0.0)
+                    top_cpu_list.append((cp, int(info["pid"]), str(info.get("name") or "")))
+                    top_mem_list.append((mp, int(info["pid"]), str(info.get("name") or "")))
+                except (psutil.NoSuchProcess, psutil.AccessDenied):
+                    pass
+            snapshot["process_count"]    = sum(status_counts.values())
+            snapshot["process_running"]  = status_counts["running"]
+            snapshot["process_sleeping"] = status_counts["sleeping"]
+            snapshot["process_zombie"]   = status_counts["zombie"]
+            top_cpu_list.sort(reverse=True)
+            top_mem_list.sort(reverse=True)
+            snapshot["top_cpu_procs"] = [
+                {"pid": pid, "name": name, "cpu_pct": cpu}
+                for cpu, pid, name in top_cpu_list[:5]
+            ]
+            snapshot["top_mem_procs"] = [
+                {"pid": pid, "name": name, "mem_pct": mem}
+                for mem, pid, name in top_mem_list[:5]
+            ]
+        except Exception:
+            pass
+
+    # ── Layer 4: TCP connection states ────────────────────────────────────
+    if collect_tcp_states:
+        try:
+            tcp_states: dict[str, int] = {}
+            for conn in psutil.net_connections(kind="tcp"):
+                key = str(conn.status or "UNKNOWN")
+                tcp_states[key] = tcp_states.get(key, 0) + 1
+            snapshot["tcp_established"] = tcp_states.get("ESTABLISHED", 0)
+            snapshot["tcp_time_wait"]   = tcp_states.get("TIME_WAIT",   0)
+            snapshot["tcp_close_wait"]  = tcp_states.get("CLOSE_WAIT",  0)
+        except (AttributeError, OSError, PermissionError, RuntimeError):
+            pass
+
+    # ── Layer 4: systemd service health probes ────────────────────────────
+    if service_probes:
+        import subprocess as _sp
+        failed_units: list[str] = []
+        for svc in service_probes:
+            try:
+                result = _sp.run(
+                    ["systemctl", "is-active", "--quiet", svc],
+                    timeout=3,
+                    capture_output=True,
+                )
+                if result.returncode != 0:
+                    failed_units.append(svc)
+            except Exception:
+                pass
+        snapshot["service_failed_units"] = failed_units
+
     return snapshot
 
 
@@ -2042,11 +2398,12 @@ def evaluate_alerts(
 ) -> list[dict[str, Any]]:
     alerts: list[dict[str, Any]] = []
 
-    cpu_pct = system_snapshot.get("cpu_pct")
-    memory_pct = system_snapshot.get("memory_pct")
+    cpu_pct         = system_snapshot.get("cpu_pct")
+    memory_pct      = system_snapshot.get("memory_pct")
     disk_free_bytes = system_snapshot.get("disk_free_bytes")
-    disk_used_pct = system_snapshot.get("disk_used_pct")
+    disk_used_pct   = system_snapshot.get("disk_used_pct")
 
+    # ── Baseline alerts ───────────────────────────────────────────────────
     if isinstance(cpu_pct, (int, float)) and cpu_pct > thresholds["cpu_pct"]:
         alerts.append({"kind": "cpu_high", "severity": "warning", "value": cpu_pct})
     if isinstance(memory_pct, (int, float)) and memory_pct > thresholds["memory_pct"]:
@@ -2054,7 +2411,7 @@ def evaluate_alerts(
     if (
         isinstance(disk_free_bytes, int)
         and isinstance(disk_used_pct, (int, float))
-        and (1.0 - (float(disk_used_pct) / 100.0)) < thresholds["disk_free_ratio"]
+        and (1.0 - float(disk_used_pct) / 100.0) < thresholds["disk_free_ratio"]
     ):
         alerts.append({"kind": "disk_low", "severity": "critical", "value": disk_free_bytes})
 
@@ -2095,6 +2452,81 @@ def evaluate_alerts(
 
     if error_summary.get("categories", {}).get("primary_script_unknown"):
         alerts.append({"kind": "php_entrypoint_error", "severity": "warning"})
+
+    # ── Layer 1: CPU iowait ───────────────────────────────────────────────
+    iowait_pct = system_snapshot.get("cpu_iowait_pct")
+    if isinstance(iowait_pct, (int, float)) and iowait_pct > thresholds["iowait_pct"]:
+        alerts.append({"kind": "iowait_high", "severity": "warning", "value": iowait_pct})
+
+    # ── Layer 1: Swap ─────────────────────────────────────────────────────
+    swap_used_pct = system_snapshot.get("swap_used_pct")
+    if isinstance(swap_used_pct, (int, float)) and swap_used_pct > thresholds["swap_pct"]:
+        alerts.append({"kind": "swap_high", "severity": "warning", "value": swap_used_pct})
+
+    # ── Layer 1: Memory critically low (absolute) ─────────────────────────
+    mem_avail = system_snapshot.get("memory_available_bytes")
+    mem_avail_threshold = thresholds["memory_min_available_mb"] * 1024 * 1024
+    if isinstance(mem_avail, int) and mem_avail < mem_avail_threshold:
+        alerts.append(
+            {"kind": "memory_critical", "severity": "critical",
+             "available_bytes": mem_avail}
+        )
+
+    # ── Layer 1: Network errors / drops ──────────────────────────────────
+    net_errs = (system_snapshot.get("net_rx_errs") or 0) + (system_snapshot.get("net_tx_errs") or 0)
+    net_drop = (system_snapshot.get("net_rx_drop") or 0) + (system_snapshot.get("net_tx_drop") or 0)
+    net_err_threshold = thresholds["net_error_count"]
+    if net_errs + net_drop > net_err_threshold:
+        alerts.append(
+            {"kind": "net_errors", "severity": "warning",
+             "err_count": net_errs, "drop_count": net_drop}
+        )
+
+    # ── Layer 1: Disk high IOPS ────────────────────────────────────────────
+    write_iops = system_snapshot.get("disk_write_iops")
+    if isinstance(write_iops, (int, float)) and write_iops > thresholds["disk_write_iops"]:
+        alerts.append(
+            {"kind": "high_iops", "severity": "warning", "write_iops": round(write_iops, 1)}
+        )
+
+    # ── Layer 2: Zombie processes ─────────────────────────────────────────
+    zombie_count = system_snapshot.get("process_zombie")
+    if isinstance(zombie_count, int) and zombie_count > 0:
+        alerts.append(
+            {"kind": "zombie_process", "severity": "warning", "count": zombie_count}
+        )
+
+    # ── Layer 3: Inode exhaustion (root disk) ─────────────────────────────
+    inode_used_pct = system_snapshot.get("disk_inode_used_pct")
+    if isinstance(inode_used_pct, (int, float)) and inode_used_pct > thresholds["inode_used_pct"]:
+        alerts.append(
+            {"kind": "inode_low", "severity": "critical",
+             "inode_used_pct": inode_used_pct}
+        )
+
+    # ── Layer 3: Extra partitions low disk ───────────────────────────────
+    for part in system_snapshot.get("extra_partitions", []):
+        if part.get("used_pct") is not None:
+            free_ratio = 1.0 - float(part["used_pct"]) / 100.0
+            if free_ratio < thresholds["disk_free_ratio"]:
+                alerts.append(
+                    {"kind": "disk_multi_low", "severity": "warning",
+                     "mount": part["mount"], "free_bytes": part.get("free_bytes")}
+                )
+
+    # ── Layer 4: TCP TIME_WAIT ────────────────────────────────────────────
+    tcp_tw = system_snapshot.get("tcp_time_wait")
+    if isinstance(tcp_tw, int) and tcp_tw > thresholds["tcp_timewait_count"]:
+        alerts.append(
+            {"kind": "tcp_timewait_high", "severity": "warning", "count": tcp_tw}
+        )
+
+    # ── Layer 4: Failed systemd services ─────────────────────────────────
+    failed_units = system_snapshot.get("service_failed_units", [])
+    if failed_units:
+        alerts.append(
+            {"kind": "service_down", "severity": "critical", "units": failed_units}
+        )
 
     return alerts
 
@@ -2321,14 +2753,24 @@ def build_alert_ai_diagnosis(
 
 def alert_label(alert: dict[str, Any]) -> str:
     labels = {
-        "cpu_high": "CPU 使用率过高",
-        "memory_high": "内存使用率过高",
-        "disk_low": "磁盘剩余空间不足",
-        "server_error_burst": "5xx 错误突增",
-        "suspicious_ip_burst": "疑似高频攻击",
-        "ssh_brute_force": "SSH 暴力破解",
+        "cpu_high":             "CPU 使用率过高",
+        "memory_high":          "内存使用率过高",
+        "memory_critical":      "内存严重不足",
+        "disk_low":             "磁盘剩余空间不足",
+        "disk_multi_low":       "分区磁盘空间不足",
+        "iowait_high":          "磁盘 I/O 等待过高",
+        "swap_high":            "Swap 使用率过高",
+        "high_iops":            "磁盘 IOPS 异常",
+        "inode_low":            "Inode 耗尽风险",
+        "net_errors":           "网络错误/丢包异常",
+        "zombie_process":       "僵尸进程存在",
+        "tcp_timewait_high":    "TCP TIME_WAIT 过多",
+        "service_down":         "系统服务已停止",
+        "server_error_burst":   "5xx 错误突增",
+        "suspicious_ip_burst":  "疑似高频攻击",
+        "ssh_brute_force":      "SSH 暴力破解",
         "scan_or_route_breakage": "404 扫描或路由异常",
-        "latency_degradation": "接口性能劣化",
+        "latency_degradation":  "接口性能劣化",
         "php_entrypoint_error": "PHP 入口脚本异常",
     }
     return labels.get(str(alert.get("kind")), str(alert.get("kind") or "unknown_alert"))
@@ -2336,14 +2778,24 @@ def alert_label(alert: dict[str, Any]) -> str:
 
 def alert_suggestion(alert: dict[str, Any]) -> str:
     suggestions = {
-        "cpu_high": "检查高负载进程、慢 SQL 或异常爬虫流量。",
-        "memory_high": "检查 PHP-FPM、数据库缓存或大对象泄漏情况。",
-        "disk_low": "清理日志/备份目录，并确认是否需要扩容。",
-        "server_error_burst": "优先检查 Nginx upstream、PHP-FPM 与最近发布变更。",
-        "suspicious_ip_burst": "确认是否为 CC/扫描流量，必要时执行临时封禁。",
-        "ssh_brute_force": "优先核对来源 IP 是否可信，并关闭密码登录或启用自动封禁。",
+        "cpu_high":             "检查高负载进程、慢 SQL 或异常爬虫流量。",
+        "memory_high":          "检查 PHP-FPM、数据库缓存或大对象泄漏情况。",
+        "memory_critical":      "立即释放内存：重启泄漏服务、清理缓存，必要时扩容 RAM。",
+        "disk_low":             "清理日志/备份目录，并确认是否需要扩容。",
+        "disk_multi_low":       "检查对应挂载点日志或数据文件，清理或扩容该分区。",
+        "iowait_high":          "检查磁盘读写热点进程（iostat -x 1），排查慢查询或大量写入。",
+        "swap_high":            "内存压力过大，检查高内存进程并考虑增加物理内存或调优 vm.swappiness。",
+        "high_iops":            "查找高写入进程（iotop），排查日志膨胀、数据库 checkpoint 或异常写入。",
+        "inode_low":            "清理小文件堆积目录（临时文件、session 文件、日志碎片），inode 耗尽将无法创建新文件。",
+        "net_errors":           "检查网卡驱动、交换机端口错误，以及是否存在网络风暴或配置错误。",
+        "zombie_process":       "检查父进程是否正常回收子进程（wait/waitpid），或重启父服务以清除僵尸。",
+        "tcp_timewait_high":    "调整内核参数 net.ipv4.tcp_tw_reuse=1 或检查连接池配置是否合理。",
+        "service_down":         "立即检查失败服务日志（journalctl -u <service>），并尝试重启。",
+        "server_error_burst":   "优先检查 Nginx upstream、PHP-FPM 与最近发布变更。",
+        "suspicious_ip_burst":  "确认是否为 CC/扫描流量，必要时执行临时封禁。",
+        "ssh_brute_force":      "优先核对来源 IP 是否可信，并关闭密码登录或启用自动封禁。",
         "scan_or_route_breakage": "检查最近路由变更、静态资源发布或扫描器访问。",
-        "latency_degradation": "查看慢请求 URI、上游依赖与数据库响应时间。",
+        "latency_degradation":  "查看慢请求 URI、上游依赖与数据库响应时间。",
         "php_entrypoint_error": "检查站点根目录、伪静态与 PHP 文件权限。",
     }
     return suggestions.get(str(alert.get("kind")), "请结合最近日志与服务状态继续排查。")
@@ -2375,12 +2827,44 @@ def render_alert_markdown(
     detail_lines = []
     if alert["kind"] == "cpu_high":
         detail_lines.append(f"- CPU: {system_snapshot.get('cpu_pct')}%")
+        if system_snapshot.get("cpu_iowait_pct") is not None:
+            detail_lines.append(f"- IO等待: {system_snapshot.get('cpu_iowait_pct')}%")
     elif alert["kind"] == "memory_high":
         detail_lines.append(f"- 内存: {system_snapshot.get('memory_pct')}%")
+        if system_snapshot.get("swap_used_pct") is not None:
+            detail_lines.append(f"- Swap: {system_snapshot.get('swap_used_pct')}%")
+    elif alert["kind"] == "memory_critical":
+        detail_lines.append(f"- 可用内存: {format_human_bytes(alert.get('available_bytes'))}")
     elif alert["kind"] == "disk_low":
         detail_lines.append(
             f"- 剩余磁盘: {format_human_bytes(system_snapshot.get('disk_free_bytes'))}"
         )
+        if system_snapshot.get("disk_inode_used_pct") is not None:
+            detail_lines.append(f"- Inode 使用: {system_snapshot.get('disk_inode_used_pct')}%")
+    elif alert["kind"] == "disk_multi_low":
+        detail_lines.append(f"- 分区: `{alert.get('mount')}`")
+        detail_lines.append(f"- 剩余: {format_human_bytes(alert.get('free_bytes'))}")
+    elif alert["kind"] == "iowait_high":
+        detail_lines.append(f"- IO等待: {alert.get('value')}%")
+        if system_snapshot.get("disk_write_iops") is not None:
+            detail_lines.append(f"- 写 IOPS: {system_snapshot.get('disk_write_iops')}/s")
+    elif alert["kind"] == "swap_high":
+        detail_lines.append(f"- Swap 使用率: {alert.get('value')}%")
+        detail_lines.append(f"- Swap 已用: {format_human_bytes(system_snapshot.get('swap_used_bytes'))}")
+    elif alert["kind"] == "high_iops":
+        detail_lines.append(f"- 写 IOPS: {alert.get('write_iops')}/s")
+    elif alert["kind"] == "inode_low":
+        detail_lines.append(f"- Inode 使用率: {alert.get('inode_used_pct')}%")
+    elif alert["kind"] == "net_errors":
+        detail_lines.append(f"- 网卡错误包: {alert.get('err_count', 0)}")
+        detail_lines.append(f"- 网卡丢包: {alert.get('drop_count', 0)}")
+    elif alert["kind"] == "zombie_process":
+        detail_lines.append(f"- 僵尸进程数: {alert.get('count', 0)}")
+    elif alert["kind"] == "tcp_timewait_high":
+        detail_lines.append(f"- TIME_WAIT 连接数: {alert.get('count', 0)}")
+    elif alert["kind"] == "service_down":
+        units_str = ", ".join(f"`{u}`" for u in (alert.get("units") or []))
+        detail_lines.append(f"- 故障服务: {units_str}")
     elif alert["kind"] == "server_error_burst":
         detail_lines.append(f"- 近窗口 5xx 次数: {alert.get('count', 0)}")
     elif alert["kind"] == "suspicious_ip_burst":
@@ -2395,9 +2879,7 @@ def render_alert_markdown(
     elif alert["kind"] == "scan_or_route_breakage":
         detail_lines.append(f"- 404 次数: {alert.get('count', 0)}")
     elif alert["kind"] == "latency_degradation":
-        detail_lines.append(
-            f"- 平均响应: {alert.get('avg_response_ms')} ms"
-        )
+        detail_lines.append(f"- 平均响应: {alert.get('avg_response_ms')} ms")
 
     if top_uri and top_uri != "-":
         detail_lines.append(f"- 热点 URI: `{top_uri}`")
@@ -2405,6 +2887,15 @@ def render_alert_markdown(
         detail_lines.append(f"- 主要错误指纹: `{top_error}`")
     detail_lines.append(f"- 建议动作: {alert_suggestion(alert)}")
 
+    # Host-level alert kinds (hardware/system) always receive an empty access_summary,
+    # so showing "当前窗口请求数: 0" is misleading.  Only emit those lines for
+    # site-traffic alert kinds where the values are genuinely meaningful.
+    _HOST_LEVEL_KINDS = {
+        "cpu_high", "memory_high", "memory_critical", "disk_low", "disk_multi_low",
+        "iowait_high", "swap_high", "high_iops", "inode_low", "net_errors",
+        "zombie_process", "tcp_timewait_high", "service_down",
+    }
+    alert_kind = str(alert.get("kind") or "")
     lines = [
         f"# Server-Mate 告警 | {alert_label(alert)}",
         "",
@@ -2412,20 +2903,350 @@ def render_alert_markdown(
         f"- 主机: `{host_id}`",
         f"- 站点: `{site}`",
         f"- 触发时间: {timestamp_local}",
-        f"- 当前窗口请求数: {access_summary.get('total_requests', 0)}",
-        f"- 当前窗口错误数: {error_summary.get('total_errors', 0)}",
     ]
+    if alert_kind not in _HOST_LEVEL_KINDS:
+        lines.append(f"- 当前窗口请求数: {access_summary.get('total_requests', 0)}")
+        lines.append(f"- 当前窗口错误数: {error_summary.get('total_errors', 0)}")
     lines.extend(detail_lines)
     if ai_diagnosis and (ai_diagnosis.get("analysis") or ai_diagnosis.get("suggestion")):
+        # Indicate when the diagnosis came from the local fallback rather than a real LLM.
+        ai_source = ai_diagnosis.get("source", "")
+        ai_badge = " \u3010AI: 本地兜底\u3011" if ai_source == "simulated" else ""
         lines.extend(
             [
                 "",
-                "## 💡 AI 智能诊断",
+                f"## \U0001f4a1 AI 智能诊断{ai_badge}",
                 f"- 原因分析: {ai_diagnosis.get('analysis') or 'N/A'}",
                 f"- 行动建议: {ai_diagnosis.get('suggestion') or alert_suggestion(alert)}",
             ]
         )
     return "\n".join(lines)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Post-Alert Deep Diagnostics
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _run_cmd_safe(
+    cmd: str,
+    timeout: int = 5,
+    max_lines: int = 20,
+    max_chars: int = 2000,
+) -> str:
+    """Run a shell command, return stdout capped at max_lines / max_chars.
+
+    Never raises — exceptions are caught and returned as an error string.
+    """
+    try:
+        result = subprocess.run(
+            cmd,
+            shell=True,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+        )
+        out = (result.stdout or "").strip()
+        if not out and result.stderr:
+            out = result.stderr.strip()
+        lines = out.splitlines()
+        if len(lines) > max_lines:
+            out = "\n".join(lines[:max_lines]) + f"\n…(+{len(lines) - max_lines} lines)"
+        if len(out) > max_chars:
+            out = out[:max_chars] + "…"
+        return out or "(empty output)"
+    except subprocess.TimeoutExpired:
+        return "(command timed out)"
+    except Exception as exc:
+        return f"(error: {exc})"
+
+
+# Diagnostic command sets per alert kind.
+# Each entry is (label, command_template).
+# {unit} is substituted for service_down alerts.
+_DIAG_COMMANDS: dict[str, list[tuple[str, str]]] = {
+    "cpu_high": [
+        ("TOP CPU 进程", "ps aux --sort=-%cpu --no-headers | head -8"),
+        ("负载均值",     "uptime"),
+        ("连接数",       "ss -s 2>/dev/null || netstat -s 2>/dev/null | head -5"),
+    ],
+    "iowait_high": [
+        ("I/O 等待进程", "ps aux --sort=-%cpu --no-headers | head -8"),
+        ("磁盘 I/O 统计", "iostat -xz 1 2 2>/dev/null | tail -20 || cat /proc/diskstats | head -10"),
+        ("I/O 热点",      "iotop -b -n 1 --delay=1 2>/dev/null | head -10 || echo 'iotop not available'"),
+    ],
+    "high_iops": [
+        ("磁盘 I/O 统计", "iostat -xz 1 2 2>/dev/null | tail -20 || cat /proc/diskstats | head -10"),
+        ("高写入进程",    "ps aux --sort=-%cpu --no-headers | head -8"),
+    ],
+    "memory_high": [
+        ("内存使用",      "free -h"),
+        ("TOP 内存进程",  "ps aux --sort=-%mem --no-headers | head -8"),
+    ],
+    "memory_critical": [
+        ("内存使用",      "free -h"),
+        ("TOP 内存进程",  "ps aux --sort=-%mem --no-headers | head -10"),
+        ("OOM 日志",      "dmesg --ctime 2>/dev/null | grep -i 'oom\\|killed' | tail -5 || journalctl -k --no-pager -n 5 2>/dev/null | grep -i oom || echo 'no oom log'"),
+    ],
+    "swap_high": [
+        ("Swap 统计",     "free -h"),
+        ("高内存进程",    "ps aux --sort=-%mem --no-headers | head -8"),
+        ("Swap 配置",     "swapon --show 2>/dev/null || cat /proc/swaps"),
+    ],
+    "disk_low": [
+        ("磁盘用量",      "df -hT"),
+        ("大目录扫描",    "du -sh /* 2>/dev/null | sort -rh | head -8"),
+    ],
+    "disk_multi_low": [
+        ("磁盘用量",      "df -hT"),
+        ("大目录扫描",    "du -sh /* 2>/dev/null | sort -rh | head -8"),
+    ],
+    "inode_low": [
+        ("Inode 用量",    "df -i"),
+        ("小文件堆积",    "find /tmp /var/tmp /var/log -maxdepth 3 -type f 2>/dev/null | wc -l"),
+    ],
+    "net_errors": [
+        ("网卡统计",      "ip -s link 2>/dev/null || netstat -i"),
+        ("网卡详情",      "cat /proc/net/dev"),
+    ],
+    "zombie_process": [
+        ("僵尸进程列表",  "ps aux | awk '$8==\"Z\" {print}' | head -10"),
+        ("父进程信息",    "ps aux | awk '$8==\"Z\" {print $3}' | sort -u | xargs -I{} ps -p {} --no-headers 2>/dev/null | head -5 || echo 'n/a'"),
+    ],
+    "tcp_timewait_high": [
+        ("TCP 状态汇总",  "ss -s"),
+        ("TIME_WAIT 数",  "ss -tn state time-wait 2>/dev/null | wc -l || netstat -an | grep TIME_WAIT | wc -l"),
+    ],
+    "service_down": [
+        ("服务状态",      "systemctl status {unit} --no-pager -l 2>/dev/null | tail -20 || echo 'systemctl unavailable'"),
+        ("近期日志",      "journalctl -u {unit} --no-pager -n 20 2>/dev/null || echo 'journalctl unavailable'"),
+    ],
+    # site-traffic kinds — pull from access/error summary, no shell needed
+    "server_error_burst":    [],
+    "suspicious_ip_burst":   [],
+    "scan_or_route_breakage":[],
+    "latency_degradation":   [],
+    "php_entrypoint_error":  [],
+}
+
+
+def run_alert_diagnostics(
+    alert: dict[str, Any],
+    config: dict[str, Any],
+    panel_id: str = "",
+    panel_registry: dict[str, Any] | None = None,
+) -> str:
+    """Execute lightweight diagnostic commands for the given alert kind.
+
+    For local hosts, commands run via subprocess.
+    For BT-Panel remote hosts, commands are issued via exec_shell.
+    Returns a markdown-formatted string to append to the alert message,
+    or an empty string when diagnostics are disabled or unavailable.
+    """
+    diag_cfg = config.get("diagnostics", {})
+    if not diag_cfg.get("enabled", True):
+        return ""
+
+    kind = str(alert.get("kind") or "")
+    commands = _DIAG_COMMANDS.get(kind, [])
+    if not commands:
+        return ""
+
+    timeout   = max(int(diag_cfg.get("timeout_seconds", 5)), 1)
+    max_lines = max(int(diag_cfg.get("max_lines_per_command", 20)), 1)
+
+    # Substitute {unit} for service_down alerts
+    failed_units = alert.get("units") or []
+    unit_str = failed_units[0] if failed_units else "unknown.service"
+
+    lines: list[str] = ["", "## 🔍 自动诊断结果（触发时刻）", ""]
+
+    if panel_id and panel_registry:
+        # Remote BT-Panel path
+        client = (panel_registry or {}).get(panel_id)
+        if client is None:
+            lines.append("_（远程面板客户端不可用，跳过自动诊断）_")
+            return "\n".join(lines)
+        for label, cmd_template in commands:
+            cmd = cmd_template.replace("{unit}", unit_str)
+            try:
+                stdout = client.exec_shell(cmd)
+                out = (stdout or "").strip()
+                if not out:
+                    out = "(empty output)"
+                out_lines = out.splitlines()
+                if len(out_lines) > max_lines:
+                    out = "\n".join(out_lines[:max_lines]) + f"\n…(+{len(out_lines) - max_lines} lines)"
+            except Exception as exc:
+                out = f"(error: {exc})"
+            lines.append(f"**{label}**")
+            lines.append(f"```\n{out}\n```")
+    else:
+        # Local subprocess path
+        for label, cmd_template in commands:
+            cmd = cmd_template.replace("{unit}", unit_str)
+            out = _run_cmd_safe(cmd, timeout=timeout, max_lines=max_lines)
+            lines.append(f"**{label}**")
+            lines.append(f"```\n{out}\n```")
+
+    return "\n".join(lines)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Alert Recovery Tracking
+# ─────────────────────────────────────────────────────────────────────────────
+
+def _alert_state_key(alert: dict[str, Any], site: str) -> str:
+    """Stable key for alert_active_states dict: '<kind>::<site>'."""
+    return f"{alert.get('kind', 'unknown')}::{site}"
+
+
+def track_alert_recovery(
+    state: dict[str, Any],
+    current_alerts: list[dict[str, Any]],
+    site: str,
+    now: dt.datetime,
+    min_duration_seconds: int = 30,
+) -> list[dict[str, Any]]:
+    """Update alert_active_states and return a list of recovery alert dicts.
+
+    Call this *after* evaluate_alerts() each cycle:
+    1. Upsert every currently-firing alert into ``alert_active_states``.
+    2. For every previously-active alert that is no longer firing,
+       emit a recovery dict and remove it from active state.
+
+    A recovery is only emitted when the alert was active for at least
+    ``min_duration_seconds`` — avoids noise from single-cycle spikes.
+    """
+    active_states: dict[str, Any] = state.setdefault("alert_active_states", {})
+    current_keys = {_alert_state_key(a, site) for a in current_alerts}
+
+    # 1. Upsert currently-firing alerts
+    for alert in current_alerts:
+        key = _alert_state_key(alert, site)
+        if key not in active_states:
+            active_states[key] = {
+                "kind":      alert.get("kind"),
+                "site":      site,
+                "severity":  alert.get("severity", "warning"),
+                "fired_at":  now.isoformat(),
+                "peak_value": alert.get("value") or alert.get("count"),
+                "notified":  False,
+            }
+        else:
+            # Update peak value
+            new_val = alert.get("value") or alert.get("count")
+            if new_val is not None:
+                old_val = active_states[key].get("peak_value")
+                if old_val is None or (isinstance(new_val, (int, float)) and new_val > old_val):
+                    active_states[key]["peak_value"] = new_val
+
+    # 2. Detect recovered alerts
+    recoveries: list[dict[str, Any]] = []
+    recovered_keys: list[str] = []
+    for key, entry in active_states.items():
+        if key in current_keys:
+            continue  # still firing
+        fired_at = parse_iso_ts(entry.get("fired_at"))
+        if fired_at is None:
+            recovered_keys.append(key)
+            continue
+        duration_s = (now - fired_at).total_seconds()
+        if duration_s < min_duration_seconds:
+            # Too short — drop silently (transient spike)
+            recovered_keys.append(key)
+            continue
+        recoveries.append({
+            "kind":      entry.get("kind"),
+            "site":      entry.get("site"),
+            "severity":  entry.get("severity", "warning"),
+            "fired_at":  entry.get("fired_at"),
+            "recovered_at": now.isoformat(),
+            "duration_seconds": int(duration_s),
+            "peak_value": entry.get("peak_value"),
+            "is_recovery": True,
+        })
+        recovered_keys.append(key)
+
+    for key in recovered_keys:
+        active_states.pop(key, None)
+
+    return recoveries
+
+
+def _fmt_duration(seconds: int) -> str:
+    """Format integer seconds as human-readable '2 分 34 秒' string."""
+    if seconds < 60:
+        return f"{seconds} 秒"
+    m, s = divmod(seconds, 60)
+    if m < 60:
+        return f"{m} 分 {s} 秒" if s else f"{m} 分钟"
+    h, m = divmod(m, 60)
+    return f"{h} 小时 {m} 分钟"
+
+
+def render_recovery_markdown(
+    config: dict[str, Any],
+    recovery: dict[str, Any],
+    generated_at: dt.datetime,
+) -> str:
+    """Build a ✅ recovery notification markdown string."""
+    site      = alert_display_site(config)
+    host_id   = config["agent"]["host_id"]
+    timezone  = get_timezone(config)
+    ts_local  = generated_at.astimezone(timezone).isoformat()
+    fired_ts  = parse_iso_ts(recovery.get("fired_at"))
+    fired_local = fired_ts.astimezone(timezone).isoformat() if fired_ts else "unknown"
+    duration  = _fmt_duration(int(recovery.get("duration_seconds") or 0))
+    kind      = recovery.get("kind", "unknown")
+    label     = alert_label({"kind": kind})  # reuse existing label map
+    peak      = recovery.get("peak_value")
+    peak_str  = f"{peak}" if peak is not None else "—"
+
+    lines = [
+        f"# ✅ Server-Mate 已恢复 | {site} | {label}",
+        "",
+        f"- 恢复时间: {ts_local}",
+        f"- 告警触发: {fired_local}",
+        f"- 持续时长: 约 {duration}",
+        f"- 主机: `{host_id}`",
+        f"- 站点: `{site}`",
+        f"- 峰值: {peak_str}",
+        "",
+        f"> 该告警已自动解除，当前指标恢复正常。",
+    ]
+    return "\n".join(lines)
+
+
+def deliver_recovery_alerts(
+    config: dict[str, Any],
+    state: dict[str, Any],
+    generated_at: dt.datetime,
+    recoveries: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    """Push recovery notifications through the same webhook channels as alerts."""
+    alerts_config = config.get("notifications", {}).get("alerts", {})
+    if not alerts_config.get("enabled", True):
+        return []
+    if not config.get("diagnostics", {}).get("recovery_notification", True):
+        return []
+
+    channels = alerts_config.get("channels", [])
+    results: list[dict[str, Any]] = []
+
+    for recovery in recoveries:
+        kind  = str(recovery.get("kind") or "unknown")
+        label = alert_label({"kind": kind})
+        title = f"✅ Server-Mate 已恢复 | {alert_display_site(config)} | {label}"
+        markdown = render_recovery_markdown(config, recovery, generated_at)
+        channel_results = send_markdown_message(config, title, markdown, channels)
+        success = any(r.get("success") for r in channel_results)
+        results.append({
+            "kind":     kind,
+            "is_recovery": True,
+            "success":  success,
+            "channels": channel_results,
+        })
+    return results
 
 
 def deliver_alerts(
@@ -2436,6 +3257,7 @@ def deliver_alerts(
     system_snapshot: dict[str, Any],
     access_summary: dict[str, Any],
     error_summary: dict[str, Any],
+    panel_registry: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
     alerts_config = config.get("notifications", {}).get("alerts", {})
     if not alerts_config.get("enabled", True):
@@ -2485,6 +3307,13 @@ def deliver_alerts(
             error_summary,
             ai_diagnosis,
         )
+
+        # Run auto-diagnostics
+        panel_id = config.get("agent", {}).get("panel_id", "")
+        diag_output = run_alert_diagnostics(alert, config, panel_id=panel_id, panel_registry=panel_registry)
+        if diag_output:
+            markdown += diag_output
+
         channel_results = send_markdown_message(config, title, markdown, channels)
         success = any(result.get("success") for result in channel_results)
         if success:
@@ -3363,11 +4192,15 @@ def empty_error_summary() -> dict[str, Any]:
 
 def empty_system_summary() -> dict[str, Any]:
     return {
-        "avg_cpu_pct": None,
-        "max_cpu_pct": None,
-        "avg_memory_pct": None,
-        "max_memory_pct": None,
+        "avg_cpu_pct": None, "max_cpu_pct": None,
+        "avg_memory_pct": None, "max_memory_pct": None,
         "min_disk_free_bytes": None,
+        "avg_cpu_iowait_pct": None, "avg_swap_used_pct": None,
+        "avg_net_rx_mbps": None, "avg_net_tx_mbps": None,
+        "avg_disk_read_iops": None, "avg_disk_write_iops": None,
+        "max_process_count": None, "max_zombie_count": None,
+        "min_inode_free_pct": None,
+        "avg_tcp_established": None, "max_tcp_timewait": None,
     }
 
 
@@ -3385,72 +4218,81 @@ def upsert_metric_rollup(
     connection.execute(
         """
         INSERT INTO metric_rollups (
-            host_id,
-            site,
-            bucket_start,
-            bucket_end,
-            bucket_minutes,
-            request_count,
-            pv,
-            uv,
-            unique_ips,
-            active_users,
-            qps,
-            avg_response_ms,
-            slow_request_count,
-            bandwidth_out_bytes,
-            bandwidth_in_bytes,
-            total_errors,
-            avg_cpu_pct,
-            max_cpu_pct,
-            avg_memory_pct,
-            max_memory_pct,
-            min_disk_free_bytes,
+            host_id, site, bucket_start, bucket_end, bucket_minutes,
+            request_count, pv, uv, unique_ips, active_users,
+            qps, avg_response_ms, slow_request_count,
+            bandwidth_out_bytes, bandwidth_in_bytes, total_errors,
+            avg_cpu_pct, max_cpu_pct, avg_memory_pct, max_memory_pct, min_disk_free_bytes,
+            avg_cpu_iowait_pct, avg_swap_used_pct,
+            avg_net_rx_mbps, avg_net_tx_mbps,
+            avg_disk_read_iops, avg_disk_write_iops,
+            max_process_count, max_zombie_count,
+            min_inode_free_pct,
+            avg_tcp_established, max_tcp_timewait,
             updated_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, CURRENT_TIMESTAMP)
+        ) VALUES (
+            ?, ?, ?, ?, ?,
+            ?, ?, ?, ?, ?,
+            ?, ?, ?,
+            ?, ?, ?,
+            ?, ?, ?, ?, ?,
+            ?, ?,
+            ?, ?,
+            ?, ?,
+            ?, ?,
+            ?,
+            ?, ?,
+            CURRENT_TIMESTAMP
+        )
         ON CONFLICT(host_id, site, bucket_start, bucket_minutes)
         DO UPDATE SET
             bucket_end = excluded.bucket_end,
             request_count = excluded.request_count,
-            pv = excluded.pv,
-            uv = excluded.uv,
-            unique_ips = excluded.unique_ips,
-            active_users = excluded.active_users,
-            qps = excluded.qps,
-            avg_response_ms = excluded.avg_response_ms,
+            pv = excluded.pv, uv = excluded.uv,
+            unique_ips = excluded.unique_ips, active_users = excluded.active_users,
+            qps = excluded.qps, avg_response_ms = excluded.avg_response_ms,
             slow_request_count = excluded.slow_request_count,
             bandwidth_out_bytes = excluded.bandwidth_out_bytes,
             bandwidth_in_bytes = excluded.bandwidth_in_bytes,
             total_errors = excluded.total_errors,
-            avg_cpu_pct = excluded.avg_cpu_pct,
-            max_cpu_pct = excluded.max_cpu_pct,
-            avg_memory_pct = excluded.avg_memory_pct,
-            max_memory_pct = excluded.max_memory_pct,
+            avg_cpu_pct = excluded.avg_cpu_pct, max_cpu_pct = excluded.max_cpu_pct,
+            avg_memory_pct = excluded.avg_memory_pct, max_memory_pct = excluded.max_memory_pct,
             min_disk_free_bytes = excluded.min_disk_free_bytes,
+            avg_cpu_iowait_pct = excluded.avg_cpu_iowait_pct,
+            avg_swap_used_pct = excluded.avg_swap_used_pct,
+            avg_net_rx_mbps = excluded.avg_net_rx_mbps,
+            avg_net_tx_mbps = excluded.avg_net_tx_mbps,
+            avg_disk_read_iops = excluded.avg_disk_read_iops,
+            avg_disk_write_iops = excluded.avg_disk_write_iops,
+            max_process_count = excluded.max_process_count,
+            max_zombie_count = excluded.max_zombie_count,
+            min_inode_free_pct = excluded.min_inode_free_pct,
+            avg_tcp_established = excluded.avg_tcp_established,
+            max_tcp_timewait = excluded.max_tcp_timewait,
             updated_at = CURRENT_TIMESTAMP
         """,
         (
-            host_id,
-            site,
-            bucket_start_local,
-            bucket_end_local,
-            bucket_minutes,
-            access_summary["total_requests"],
-            access_summary["pv"],
-            access_summary["uv"],
-            access_summary["unique_ips"],
-            access_summary["active_users_10m"],
-            access_summary["qps"],
-            access_summary["avg_response_ms"],
+            host_id, site, bucket_start_local, bucket_end_local, bucket_minutes,
+            access_summary["total_requests"], access_summary["pv"], access_summary["uv"],
+            access_summary["unique_ips"], access_summary["active_users_10m"],
+            access_summary["qps"], access_summary["avg_response_ms"],
             access_summary["slow_request_count"],
-            access_summary["bandwidth_out_bytes"],
-            access_summary["bandwidth_in_bytes"],
+            access_summary["bandwidth_out_bytes"], access_summary["bandwidth_in_bytes"],
             error_summary["total_errors"],
-            system_summary["avg_cpu_pct"],
-            system_summary["max_cpu_pct"],
-            system_summary["avg_memory_pct"],
-            system_summary["max_memory_pct"],
+            system_summary["avg_cpu_pct"], system_summary["max_cpu_pct"],
+            system_summary["avg_memory_pct"], system_summary["max_memory_pct"],
             system_summary["min_disk_free_bytes"],
+            system_summary.get("avg_cpu_iowait_pct"),
+            system_summary.get("avg_swap_used_pct"),
+            system_summary.get("avg_net_rx_mbps"),
+            system_summary.get("avg_net_tx_mbps"),
+            system_summary.get("avg_disk_read_iops"),
+            system_summary.get("avg_disk_write_iops"),
+            system_summary.get("max_process_count"),
+            system_summary.get("max_zombie_count"),
+            system_summary.get("min_inode_free_pct"),
+            system_summary.get("avg_tcp_established"),
+            system_summary.get("max_tcp_timewait"),
         ),
     )
     row = connection.execute(
@@ -3622,6 +4464,23 @@ def run_cycle(
     sites = resolve_sites(config)
     expired_unbans = release_expired_bans(connection, config, now)
 
+    # Build BT panel clients once per cycle so multi-site, same-panel layouts
+    # share TCP/TLS sessions and a single auth signature window.
+    panel_registry: dict[str, Any] = {}
+    if build_panel_registry is not None:
+        panel_registry = build_panel_registry(config.get("remote_panels") or {})
+
+    # ------------------------------------------------------------------ #
+    # Host-local system metrics.                                         #
+    # psutil only sees THIS box. Sites that route via panel_id still     #
+    # share these CPU/mem/disk numbers — that is intentional for v1.     #
+    # FUTURE: to surface per-remote-host metrics, add a `host_metrics`   #
+    # collector that shells out via BTPanelClient.exec_shell (e.g.       #
+    # `top -bn1`, `df -PT`, `cat /proc/meminfo`) and emit one snapshot   #
+    # per panel_id. Wire it in here, alongside the local snapshot, and   #
+    # tag events with `host_id = panel_id` so downstream rollups stay    #
+    # disambiguated. Phase 1 deliberately leaves this as a no-op.        #
+    # ------------------------------------------------------------------ #
     system_metrics = config.get("system_metrics", {})
     if system_metrics.get("enabled", True):
         system_snapshot = collect_system_snapshot(
@@ -3629,6 +4488,11 @@ def run_cycle(
             host_id,
             HOST_METRIC_SITE,
             bool(system_metrics.get("collect_network_io", True)),
+            extra_disk_partitions=system_metrics.get("extra_disk_partitions") or [],
+            collect_processes=bool(system_metrics.get("collect_processes", True)),
+            collect_tcp_states=bool(system_metrics.get("collect_tcp_states", True)),
+            service_probes=system_metrics.get("service_probes") or [],
+            _io_state=state.setdefault("io_counters", {}),
         )
     else:
         system_snapshot = {
@@ -3681,21 +4545,70 @@ def run_cycle(
         domain = str(site.get("domain") or "default")
         site_config = build_site_runtime_config(config, site)
         site_state = ensure_site_state(state, domain)
-        access_path = Path(site_config["logs"]["access_log"])
-        error_path = Path(site_config["logs"]["error_log"])
+        access_path_raw = site_config["logs"]["access_log"]
+        error_path_raw = site_config["logs"]["error_log"]
+        access_path = Path(access_path_raw) if access_path_raw else Path("")
+        error_path = Path(error_path_raw) if error_path_raw else Path("")
+        panel_id = str(site.get("panel_id") or "").strip()
 
-        access_lines, access_cursor = read_incremental_lines(
-            access_path,
-            site_state["cursors"].get("access_log"),
-            config["agent"]["startup_mode"],
-            config["agent"]["bootstrap_tail_lines"],
-        )
-        error_lines, error_cursor = read_incremental_lines(
-            error_path,
-            site_state["cursors"].get("error_log"),
-            config["agent"]["startup_mode"],
-            config["agent"]["bootstrap_tail_lines"],
-        )
+        # Pick the right reader per log per site. Wrapping the entire fetch in
+        # try/except is the contract for Stage 5: ONE flaky remote panel must
+        # never bubble up and crash the cron tick or starve the other sites.
+        try:
+            if make_log_reader is None:
+                # Defensive: log_reader module not importable for some reason.
+                # Fall back to the original local-only path so we never silently
+                # stop collecting on local sites.
+                access_lines, access_cursor = read_incremental_lines(
+                    access_path,
+                    site_state["cursors"].get("access_log"),
+                    config["agent"]["startup_mode"],
+                    config["agent"]["bootstrap_tail_lines"],
+                )
+                error_lines, error_cursor = read_incremental_lines(
+                    error_path,
+                    site_state["cursors"].get("error_log"),
+                    config["agent"]["startup_mode"],
+                    config["agent"]["bootstrap_tail_lines"],
+                )
+            else:
+                access_reader = make_log_reader(
+                    str(access_path_raw or ""),
+                    panel_id,
+                    panel_registry,
+                    config["agent"]["startup_mode"],
+                    config["agent"]["bootstrap_tail_lines"],
+                )
+                error_reader = make_log_reader(
+                    str(error_path_raw or ""),
+                    panel_id,
+                    panel_registry,
+                    config["agent"]["startup_mode"],
+                    config["agent"]["bootstrap_tail_lines"],
+                )
+                access_lines, access_cursor = access_reader.read_incremental(
+                    site_state["cursors"].get("access_log")
+                )
+                error_lines, error_cursor = error_reader.read_incremental(
+                    site_state["cursors"].get("error_log")
+                )
+        except Exception as exc:  # pragma: no cover - defensive net for Stage 5
+            # Last-resort guard: a reader subclass should NEVER raise, but if it
+            # does, the agent must keep running. Drain to empty for this cycle
+            # and stamp the cursor so the failure is visible in state.json.
+            print(
+                f"[server_mate] site={domain} log read failed: {exc}",
+                file=sys.stderr,
+            )
+            access_lines = []
+            error_lines = []
+            access_cursor = dict(site_state["cursors"].get("access_log") or {})
+            error_cursor = dict(site_state["cursors"].get("error_log") or {})
+            access_cursor["status"] = "reader_exception"
+            error_cursor["status"] = "reader_exception"
+            access_cursor["last_error"] = str(exc)[:500]
+            error_cursor["last_error"] = str(exc)[:500]
+
         site_state["cursors"]["access_log"] = access_cursor
         site_state["cursors"]["error_log"] = error_cursor
 
@@ -3732,8 +4645,10 @@ def run_cycle(
         site_results[domain] = {
             "site": domain,
             "site_host": str(site.get("site_host") or domain),
-            "access_log": str(access_path),
-            "error_log": str(error_path),
+            "access_log": str(access_path_raw or access_path),
+            "error_log": str(error_path_raw or error_path),
+            "panel_id": panel_id,
+            "log_source": "bt_remote" if panel_id else "local",
             "parser_stats": {
                 "access_lines_read": len(access_lines),
                 "access_lines_dropped": dropped_access,
@@ -3780,6 +4695,12 @@ def run_cycle(
         host_access_summary,
         host_error_summary,
     )
+    # Track host-level alert recoveries
+    diag_cfg = config.get("diagnostics", {})
+    min_dur = diag_cfg.get("recovery_min_duration_seconds", 30)
+    host_recoveries = track_alert_recovery(state, host_alerts, HOST_METRIC_SITE, now, min_duration_seconds=min_dur)
+    host_recovery_deliveries = deliver_recovery_alerts(host_security_config, state, now, host_recoveries)
+    host_alert_deliveries.extend(host_recovery_deliveries)
     host_automation_actions = run_guarded_automation(
         connection,
         host_security_config,
@@ -3814,7 +4735,14 @@ def run_cycle(
             system_snapshot,
             access_summary,
             error_summary,
+            panel_registry=panel_registry,
         )
+        # Track site-level alert recoveries
+        diag_cfg = config.get("diagnostics", {})
+        min_dur = diag_cfg.get("recovery_min_duration_seconds", 30)
+        recoveries = track_alert_recovery(state, alerts, domain, now, min_duration_seconds=min_dur)
+        recovery_deliveries = deliver_recovery_alerts(site_config, state, now, recoveries)
+        alert_deliveries.extend(recovery_deliveries)
         site_result["traffic"] = access_summary
         site_result["errors"] = error_summary
         site_result["alerts"] = alerts

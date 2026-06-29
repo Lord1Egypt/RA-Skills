@@ -1,0 +1,232 @@
+{
+  "execution_path_log": {
+    "selected_route": "brief-to-team",
+    "delivery": "package",
+    "execution_path": "direct-skill",
+    "meta_team_first_done": false,
+    "source_status": "present",
+    "target_runtime": "codex",
+    "current_run_fanout_status": "direct-skill-not-requested",
+    "target_subagent_fanout_supported": "runtime-dependent",
+    "execution_mode": "direct_skill",
+    "fallback_declaration": "not_applicable_direct_skill",
+    "synthesis_owner": "Skill2Team direct skill",
+    "model_invocation_policy": "OpenAI Codex default; do not call direct model APIs unless explicitly labeled API-run role simulation"
+  },
+  "architecture_pattern": "coordinator_specialists",
+  "agent_count_rationale": "Default 5-6 top-level agents: source mapping, architecture design, workflow orchestration, production, review, and runtime adaptation are distinct accountabilities.",
+  "architecture": {
+    "summary": "Entry Coordinator routes work; Source Mapper extracts assets/workflow; Architecture Designer owns topology and skill allocation; Workflow Orchestrator owns runtime flow; Acceptance Reviewer owns the gate; Runtime Adapter owns packaging."
+  },
+  "workflow": {
+    "summary": "Intake -> source mapping -> architecture design -> workflow orchestration -> review -> package when requested.",
+    "nodes": [
+      {
+        "node_id": "intake",
+        "type": "task",
+        "owner": "entry",
+        "outputs": ["run_context"]
+      },
+      {
+        "node_id": "source_mapping",
+        "type": "task",
+        "owner": "source_mapper",
+        "outputs": ["source_inventory", "original_workflow_extraction"]
+      },
+      {
+        "node_id": "workflow_design",
+        "type": "task",
+        "owner": "workflow_orchestrator",
+        "outputs": ["workflow_orchestration_map", "flow_control_contract", "workflow_preservation_gate"]
+      },
+      {
+        "node_id": "review_gate",
+        "type": "gate",
+        "owner": "acceptance_reviewer",
+        "outputs": ["design_quality_gate_result"]
+      },
+      {
+        "node_id": "package",
+        "type": "task",
+        "owner": "runtime_adapter",
+        "outputs": ["codex_package"]
+      }
+    ],
+    "edges": [
+      {"from": "intake", "to": "source_mapping", "type": "ordered"},
+      {"from": "source_mapping", "to": "workflow_design", "type": "ordered"},
+      {"from": "workflow_design", "to": "review_gate", "type": "gate"},
+      {"from": "review_gate", "to": "package", "type": "conditional", "condition": "gate_passed"}
+    ],
+    "stage_mappings": [
+      {"source_stage": "intake", "target_owner": "entry", "action": "keep"},
+      {"source_stage": "source mapping", "target_owner": "source_mapper", "action": "split"},
+      {"source_stage": "workflow orchestration", "target_owner": "workflow_orchestrator", "action": "gate"}
+    ],
+    "stage_internal_deliverables": [
+      {
+        "stage": "source_mapping",
+        "deliverables": ["source_inventory", "original_workflow_extraction"],
+        "preservation_rule": "Do not replace source extraction with a summary."
+      },
+      {
+        "stage": "workflow_design",
+        "deliverables": ["workflow_nodes", "workflow_edges", "human_intervention_points", "stage_internal_deliverables"],
+        "preservation_rule": "Record embedded stage duties before any public handoff or gate."
+      }
+    ],
+    "human_intervention_inventory_status": "reviewed",
+    "human_intervention_points": [
+      {
+        "id": "package_approval",
+        "source_stage": "review_gate",
+        "question": "Should the package proceed after design review?",
+        "default_action": "preserve_as_human_wait",
+        "allowed_choices": ["preserve_as_human_wait", "auto_advance_with_audit"]
+      }
+    ],
+    "human_intervention_policy": {
+      "initial_user_choice_required": true,
+      "selected_execution_mode": "preserve_source_human_interaction_steps",
+      "default": "preserve_all_source_mandated_human_waits_and_choices",
+      "ask_user_before_auto_advancing": true,
+      "allowed_choices": ["preserve_as_human_wait", "convert_to_reviewer_gate", "auto_advance_with_audit", "remove_as_redundant"],
+      "user_overrides": []
+    },
+    "user_input_nodes": [
+      {
+        "id": "initial_conversion_settings",
+        "source_stage": "intake",
+        "required_inputs": ["route", "delivery", "execution_path", "target_runtime", "source_material"],
+        "default_action": "ask_or_block_before_source_mapping"
+      },
+      {
+        "id": "human_interaction_mode_choice",
+        "source_stage": "intake",
+        "required_inputs": ["preserve_source_human_interaction_steps", "selective_human_intervention_retention", "fully_automated_with_audit"],
+        "default_action": "preserve_source_human_interaction_steps"
+      }
+    ],
+    "checkpoint_resume_points": [
+      {"id": "after_source_mapping", "required_records": ["source_inventory", "original_workflow_extraction"]},
+      {"id": "after_review_gate", "required_records": ["gate_result", "stale_artifacts"]}
+    ],
+    "gate_points": [
+      {"id": "design_quality_gate", "owner": "acceptance_reviewer", "can_block": true}
+    ]
+  },
+  "agents": [
+    {
+      "agent_id": "entry",
+      "display_name": "Entry Coordinator / Orchestrator",
+      "mission": "Intake, route selection, state management, and final synthesis.",
+      "owned_skills": [
+        "intake",
+        "state-management",
+        "routing"
+      ],
+      "tools_policy": {
+        "allow": [
+          "read",
+          "write"
+        ],
+        "deny": []
+      },
+      "entry_agent": true
+    },
+    {
+      "agent_id": "source_mapper",
+      "display_name": "Source Mapper",
+      "mission": "Inventory source assets and extract the original workflow.",
+      "owned_skills": [
+        "asset-inventory",
+        "workflow-extraction",
+        "local-resource-allocation"
+      ],
+      "tools_policy": {
+        "allow": [
+          "read",
+          "write"
+        ],
+        "deny": [
+          "destructive-write"
+        ]
+      }
+    },
+    {
+      "agent_id": "architecture_designer",
+      "display_name": "Architecture Designer",
+      "mission": "Produce the Agent Architecture Map, role boundaries, skill allocation, and agent-count rationale.",
+      "owned_skills": [
+        "agent-architecture",
+        "role-boundaries",
+        "skill-allocation"
+      ],
+      "tools_policy": {
+        "allow": [
+          "read",
+          "write"
+        ],
+        "deny": [
+          "exec"
+        ]
+      }
+    },
+    {
+      "agent_id": "workflow_orchestrator",
+      "display_name": "Workflow Orchestrator / Producer",
+      "mission": "Produce the Workflow Orchestration Map, control-flow/resume contract, and primary deliverable draft.",
+      "owned_skills": [
+        "workflow-orchestration",
+        "control-flow",
+        "composition"
+      ],
+      "tools_policy": {
+        "allow": [
+          "read",
+          "write"
+        ],
+        "deny": []
+      }
+    },
+    {
+      "agent_id": "acceptance_reviewer",
+      "display_name": "Independent Acceptance Reviewer",
+      "mission": "Check facts, risks, architecture/workflow separation, and final acceptance.",
+      "owned_skills": [
+        "review",
+        "risk-check",
+        "acceptance"
+      ],
+      "tools_policy": {
+        "allow": [
+          "read"
+        ],
+        "deny": [
+          "write",
+          "edit",
+          "apply_patch",
+          "exec"
+        ]
+      }
+    },
+    {
+      "agent_id": "runtime_adapter",
+      "display_name": "Runtime Adapter",
+      "mission": "Generate Codex package artifacts, registry/readiness manifests, usage guide, prompt-rewrite rules, and design-continuation and package-end prompt templates.",
+      "owned_skills": [
+        "runtime-adaptation",
+        "package-generation",
+        "prompt-rewrite",
+        "design-continuation-guidance"
+      ],
+      "tools_policy": {
+        "allow": [
+          "read",
+          "write"
+        ],
+        "deny": []
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "productionBranch": "main",
+  "developBranch": "develop",
+  "previewBranchPrefixes": ["feature/", "agent/"],
+  "github": {
+    "repository": "owner/repo"
+  },
+  "supabase": {
+    "parentProjectRef": "your-production-supabase-project-ref",
+    "developBranchName": "develop",
+    "developBranchRef": "your-persistent-develop-supabase-branch-ref",
+    "schemaBranchCreateSource": "production-default",
+    "developHydrationSource": "production-default",
+    "previewHydrationSource": "develop"
+  },
+  "vercel": {
+    "projectName": "your-vercel-project-name",
+    "projectId": "your-vercel-project-id",
+    "scope": "your-vercel-team-or-user-scope"
+  },
+  "persistentPreviews": [],
+  "envKeys": {
+    "supabaseUrl": "NEXT_PUBLIC_SUPABASE_URL",
+    "supabaseAnonKey": "NEXT_PUBLIC_SUPABASE_ANON_KEY",
+    "supabaseServiceRoleKey": "SUPABASE_SERVICE_ROLE_KEY"
+  },
+  "preview": {
+    "namePrefix": "preview-",
+    "redirectWildcard": "https://*.vercel.app/**",
+    "syncAuthConfig": false,
+    "hydrateFromDevelop": true,
+    "copyAuthUsers": false,
+    "copyPublicData": false,
+    "includePublicTables": [],
+    "excludePublicTables": [],
+    "storageBuckets": [],
+    "copyStorageBuckets": []
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "name": "apitweet-cli",
+  "version": "0.1.6",
+  "description": "Command-line client for apitweet APIs with saved app auth and profiles",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://apitweet.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aliraza948/apitweet.git"
+  },
+  "bugs": {
+    "url": "https://apitweet.com"
+  },
+  "keywords": [
+    "apitweet",
+    "twitter",
+    "x",
+    "cli",
+    "api"
+  ],
+  "files": [
+    "bin/",
+    "src/",
+    "README.md"
+  ],
+  "bin": {
+    "apitweet": "bin/apitweet.js"
+  },
+  "scripts": {
+    "check": "node ./bin/apitweet.js --help",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

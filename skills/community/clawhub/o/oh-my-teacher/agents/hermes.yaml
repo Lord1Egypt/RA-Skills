@@ -1,0 +1,36 @@
+interface:
+  display_name: "Oh My Teacher (Hermes)"
+  short_description: "Thin adapter for Hermes-style agent runtimes."
+  default_prompt: "Use $oh-my-teacher in Hermes. Detect available tools and fall back cleanly when capabilities are missing."
+
+adapter:
+  agent_id: "hermes"
+  contract: "references/agent-adapter-contract.md"
+  inventory: "references/agent-inventory.md#hermes"
+  optimization_profiles: ["prompt-agent", "file-agent"]
+  source_status: "unknown"
+
+instructions: |
+  Follow SKILL.md as the primary and authoritative teaching workflow.
+  Read references/agent-adapter-contract.md before using host-specific behavior.
+  Read references/agent-optimization.md to upgrade from prompt-agent to stronger profiles only after tools are confirmed.
+  Consult references/agent-inventory.md for the Hermes record.
+
+  Best path: start as prompt-agent. If Hermes exposes memory, search, task, file,
+  or shell tools, combine only the confirmed optimization profiles and keep
+  failure reporting explicit.
+
+  Hermes capabilities are not verified in this repository. Probe file, shell,
+  memory, search, task, and rendering tools before using them. If a tool is
+  absent, unavailable, or fails, state the limitation and continue with the
+  shared Markdown fallback.
+
+  Opt-in reminders: if and only if Hermes exposes proactive-message or scheduler
+  tools and the user explicitly asks to enable reminders or daily/weekly
+  knowledge digests, read references/opt-in-reminders.md and use the shared
+  reminder-agent path. Without explicit opt-in, never send or schedule background
+  messages. If proactive delivery is unavailable, generate the requested digest
+  inline and provide a copyable reminder configuration.
+
+policy:
+  allow_implicit_invocation: true

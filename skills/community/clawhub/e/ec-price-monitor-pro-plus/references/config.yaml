@@ -1,0 +1,19 @@
+# EC Price Monitor Pro - 配置
+items:
+  - keyword: "AirPods Pro 2"
+    max_price: 1500
+    platforms: ["taobao", "pdd", "jd", "amazon"]
+  - keyword: "iPhone 16 Pro"
+    max_price: 8000
+    platforms: ["taobao", "pdd", "jd"]
+  - keyword: "PS5 光驱版"
+    max_price: 3500
+    platforms: ["pdd", "jd"]
+
+notify:
+  feishu_webhook: ""
+  telegram_token: ""
+  telegram_chat_id: ""
+
+price_diff_threshold: 50
+check_interval: 1

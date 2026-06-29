@@ -11,33 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and agent operators use this skill to label implementation tasks by risk, decide which verification gates apply, and route higher-risk work to stronger review before completion. <br>
+Developers and agent orchestrators use this skill to classify coding tasks by risk tier before execution, assign verification gates, and decide when review, reversibility scoring, or human approval is needed. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Generic trigger words such as risk, safety, and verification may activate the skill more often than needed. <br>
-Mitigation: Use the skill when classifying code or configuration changes, and treat unrelated or purely exploratory work as out of scope. <br>
-Risk: High-risk task labels may be wrong if heuristic file patterns miss context or overstate impact. <br>
-Mitigation: Use the documented RED and CRITICAL gates, including reversibility scoring, full tests, review, and human approval for critical work. <br>
-Risk: The full upstream workflow references companion skills and configuration that may not be installed. <br>
-Mitigation: Confirm the required companion skills and the night-market.error-patterns configuration are available before relying on the complete workflow. <br>
+Risk: The skill may trigger broadly in conversations about risk, safety, or verification. <br>
+Mitigation: Review the tier rules before deployment and enable the skill only where its checklist matches the team's workflow. <br>
+Risk: Pattern-based classification can miss context that is not visible from file paths or file counts. <br>
+Mitigation: Use the documented escalation rules, reversibility scoring for RED and CRITICAL tasks, and human approval for CRITICAL tasks. <br>
+Risk: Task plans could rely on an incorrect risk tier if defaults are accepted without review. <br>
+Mitigation: Require risk reasons in task metadata and verify that the assigned tier's gates pass before marking work complete. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-leyline-risk-classification) <br>
-- [OpenClaw metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-risk-classification) <br>
+- [ClawHub publisher profile](https://clawhub.ai/user/athola) <br>
+- [Night Market leyline homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
+- [Readiness levels module](modules/readiness-levels.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, configuration] <br>
-**Output Format:** [Markdown guidance with task metadata examples and tiered verification checklists] <br>
+**Output Type(s):** [text, markdown, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with risk-tier labels, checklists, and task metadata examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces risk tiers, risk reasons, readiness levels, verification gates, and parallel execution guidance; it does not execute commands or access external services.] <br>
+**Other Properties Related to Output:** [May include GREEN/YELLOW/RED/CRITICAL labels, readiness levels, verification gates, and human-approval recommendations.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: ClawHub release metadata) <br>
+1.9.13 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

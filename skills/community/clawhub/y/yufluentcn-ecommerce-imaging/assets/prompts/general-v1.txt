@@ -1,0 +1,11 @@
+# 通用电商 Prompt 模板
+# 当产品不在特定类目中时使用
+
+## 白底主图
+A {product}, pure white background, studio lighting, professional e-commerce product photography, sharp focus, 8K, no text, no watermark, no logo
+
+## 生活方式
+A {product} in a natural lifestyle setting, soft daylight, minimalist aesthetic, commercial photography style, high resolution, no text, no watermark
+
+## 创意展示
+A {product}, creative product photography, colored gradient background, artistic composition, soft shadows, 8K, high-end commercial style, no text, no watermark

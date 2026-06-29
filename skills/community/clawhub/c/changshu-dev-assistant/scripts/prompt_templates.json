@@ -1,0 +1,48 @@
+{
+  "name": "prompt_templates",
+  "version": "1.0.0",
+  "description": "Prompt模板库",
+  "author": "Hermes Agent",
+  "templates": {
+    "database": {
+      "code_review": {
+        "template": "请审查以下达梦数据库存储过程代码，识别潜在问题并提供修复建议：\n\n{code}\n\n请按照以下格式输出审查结果：\n1. 问题描述\n2. 问题位置\n3. 修复建议\n4. 修复后的代码",
+        "description": "达梦数据库代码审查模板"
+      },
+      "performance_optimization": {
+        "template": "请分析以下SQL查询语句的性能问题并提供优化建议：\n\n{query}\n\n请按照以下格式输出：\n1. 性能问题分析\n2. 优化建议\n3. 优化后的SQL语句",
+        "description": "SQL性能优化模板"
+      }
+    },
+    "system": {
+      "log_analysis": {
+        "template": "请分析以下系统日志并识别潜在问题：\n\n{log}\n\n请按照以下格式输出分析结果：\n1. 问题类型\n2. 问题描述\n3. 解决方案",
+        "description": "系统日志分析模板"
+      },
+      "command_optimization": {
+        "template": "请优化以下Linux命令或脚本：\n\n{command}\n\n请按照以下格式输出：\n1. 问题识别\n2. 优化建议\n3. 优化后的命令",
+        "description": "系统命令优化模板"
+      }
+    },
+    "code": {
+      "code_review": {
+        "template": "请审查以下代码并提供改进建议：\n\n{code}\n\n请按照以下格式输出：\n1. 代码问题\n2. 改进建议\n3. 优化后的代码",
+        "description": "代码审查模板"
+      },
+      "debugging": {
+        "template": "请帮助调试以下代码中的错误：\n\n{code}\n\n请按照以下格式输出：\n1. 错误定位\n2. 错误原因\n3. 修复建议",
+        "description": "代码调试模板"
+      }
+    },
+    "ai": {
+      "general": {
+        "template": "你是一个AI开发专家助手，请根据以下要求提供帮助：\n\n{query}\n\n请按照以下格式输出：\n1. 问题分析\n2. 解决方案\n3. 实现步骤",
+        "description": "通用AI开发模板"
+      },
+      "prompt_optimization": {
+        "template": "请优化以下Prompt以提高AI模型的响应质量：\n\n{prompt}\n\n请按照以下格式输出：\n1. 问题分析\n2. 优化建议\n3. 优化后的Prompt",
+        "description": "Prompt优化模板"
+      }
+    }
+  }
+}

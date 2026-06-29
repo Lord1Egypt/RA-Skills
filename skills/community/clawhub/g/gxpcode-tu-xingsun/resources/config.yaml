@@ -1,0 +1,52 @@
+enterprise_type: []
+focus_areas: []
+# product_types 用于 Step 5 报告中的"适用企业"匹配
+# label 为报告展示名，keywords 为标题/摘要中匹配关键词
+product_types:
+  - keywords:
+      - 化药
+      - 化学药品
+      - 化学仿制药
+      - 仿制药
+      - 参比制剂
+      - 注射剂
+      - 固体制剂
+      - 口服
+      - 包材
+      - 缺陷情形
+    label: 化药
+  - keywords:
+      - 生物制品
+      - 生物类似药
+      - 类似药
+      - mRNA
+      - 疫苗
+      - 重组蛋白
+      - 抗体
+      - 胰岛素
+      - 预防用
+      - 治疗用蛋白
+    label: 生物制品
+  - keywords:
+      - 中药
+      - 中成药
+      - 饮片
+      - 经典名方
+    label: 中药
+  - keywords:
+      - 原料药
+    label: 原料药
+  - keywords:
+      - 辅料
+    label: 辅料包材
+  - keywords:
+      - 临床评价
+      - 临床试验申请
+      - 上市申请
+      - 临床研发
+      - 新生儿
+      - 儿童
+      - 低龄儿
+      - 儿科
+      - 附条件
+    label: 化药; 中药; 生物制品

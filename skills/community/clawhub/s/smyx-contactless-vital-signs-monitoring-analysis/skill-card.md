@@ -1,5 +1,5 @@
 ## Description: <br>
-Enables agents to run non-contact vital signs analysis from camera video, estimating heart rate, respiration rate, blood oxygen, and heart rate variability through cloud API analysis. <br>
+Analyzes camera video or image input through a cloud service to estimate heart rate, respiration, blood oxygen, and heart rate variability without wearable devices. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and agents use this skill to submit local or public video for non-contact health screening and to retrieve historical vital-sign reports. Results are for health reference and should not replace professional medical measurement or diagnosis. <br>
+External users and developers use this skill to submit face video or image inputs for non-contact vital-sign analysis and to retrieve historical monitoring reports from the vendor cloud account. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Face video and health-related analysis requests are sent to the Life Emergence cloud service. <br>
-Mitigation: Use the skill only with informed consent, avoid uploading sensitive videos when cloud processing is not acceptable, and treat outputs as health-reference information. <br>
-Risk: Reports are linked to a persistent identifier such as a username or phone number. <br>
-Mitigation: Use only the intended user's identifier, do not use another person's identifier, and confirm that report lookup is appropriate before querying history. <br>
-Risk: Account tokens may be cached in local workspace data. <br>
-Mitigation: Review and delete local workspace database or configuration data after use when token persistence is not desired. <br>
+Risk: Face video and health-related results are processed by the vendor cloud service. <br>
+Mitigation: Use only with appropriate consent and avoid sensitive videos unless the publisher provides clear privacy, retention, and account-control documentation. <br>
+Risk: The skill silently creates or reuses an internal identity and stores tokens for report access. <br>
+Mitigation: Run in a controlled environment, restrict access to local token storage, and review account lifecycle and credential-rotation controls before deployment. <br>
+Risk: Vital-sign estimates may be mistaken for clinical measurements or diagnosis. <br>
+Mitigation: Present results as health reference information only and direct users to professional medical care for abnormal or concerning findings. <br>
 
 
 ## Reference(s): <br>
-- [API Interface Documentation](references/api_doc.md) <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/smyx-contactless-vital-signs-monitoring-analysis) <br>
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-contactless-vital-signs-monitoring-analysis) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
+- [API interface documentation](references/api_doc.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON text from API responses, with optional saved output files.] <br>
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
+**Output Format:** [Markdown or JSON analysis report with status text, health metrics, recommendations, and report links.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include links to exported report images for historical reports.] <br>
+**Other Properties Related to Output:** [May save the returned report content to a user-specified output file.] <br>
 
 ## Skill Version(s): <br>
-1.0.6 (source: server-resolved release metadata; artifact frontmatter lists 1.0.3) <br>
+1.0.7 (source: server release metadata; artifact frontmatter reports 1.0.5) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,0 +1,5 @@
+{
+  "agents": [],
+  "_schema": "1.0",
+  "_description": "active agents registry, written by harness-engine.py on spawn and cleaned up on teardown"
+}

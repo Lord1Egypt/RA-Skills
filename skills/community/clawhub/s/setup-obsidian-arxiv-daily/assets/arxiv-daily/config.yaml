@@ -1,0 +1,17 @@
+retention_days: 90
+per_field_limit: 10
+lookback_days: 7
+sort_by: submittedDate
+sort_order: descending
+summary_enabled: true
+summary_provider: deepseek
+deepseek_model: deepseek-v4-pro
+deepseek_base_url: https://api.deepseek.com
+request_timeout_seconds: 60
+fields:
+  - name: LLM Agent
+    query: '"large language model" AND agent'
+  - name: RAG
+    query: 'retrieval augmented generation OR RAG'
+  - name: AI Safety
+    query: 'AI safety OR alignment'

@@ -1,5 +1,5 @@
 ## Description: <br>
-Provides Chanlun-style technical analysis for A-share market study, including fractals, strokes, line segments, central hubs, divergence, multi-timeframe analysis, and buy/sell point identification. <br>
+Chanlun Analysis Pro helps agents produce Chanlun-style technical analysis for A-share indexes, individual stocks, and sectors, including fractals, strokes, line segments, central hubs, divergence, multi-timeframe structure, and buy/sell point research. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,30 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users, market-analysis researchers, and developers use this skill to produce educational Chanlun technical-analysis reports for A-share indexes, individual stocks, and sectors. It supports structured analysis templates, Python-oriented algorithm examples, and practical trading-study guidance. <br>
+Developers, analysts, and market-research agents use this skill to draft Chanlun technical-analysis reports, algorithm notes, Python examples, and trading-plan templates for educational research. Generated signals should not be treated as personalized financial advice, and market data should be independently verified before trading. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can produce specific buy/sell and position-sizing suggestions that may be mistaken for personalized financial advice. <br>
-Mitigation: Treat outputs as educational technical-analysis material, verify market data independently, and do not rely on the skill as personalized financial advice. <br>
-Risk: Technical indicators, examples, and case studies may be stale or inaccurate for current market conditions. <br>
-Mitigation: Check current market data, source assumptions, and regulatory context before using any analysis in a trading workflow. <br>
-
+Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
+Mitigation: Review and scan skill before deployment. <br>
 
 ## Reference(s): <br>
-- [README](README.md) <br>
-- [Chanlun Algorithm Python](references/chanlun_algorithm_python.md) <br>
-- [Chanlun Analysis Templates](references/chanlun_analysis_templates.md) <br>
-- [Chanlun Practice Guide](references/chanlun_practice_guide.md) <br>
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/chanlun-analysis-pro) <br>
+- [Chanlun algorithm Python reference](references/chanlun_algorithm_python.md) <br>
+- [Chanlun analysis templates](references/chanlun_analysis_templates.md) <br>
+- [Chanlun practice guide](references/chanlun_practice_guide.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown reports with tables, checklists, code snippets, and command examples] <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown reports with Python snippets, shell commands, checklists, and structured trading-analysis templates] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include specific buy/sell point, stop-loss, and position-sizing suggestions that require independent review.] <br>
+**Other Properties Related to Output:** [Financial-risk guidance applies: treat generated buy/sell points, price zones, stop-losses, and position sizes as educational research rather than personalized investment advice.] <br>
 
 ## Skill Version(s): <br>
-5.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+5.2.1 (source: server release and SKILL.md frontmatter) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

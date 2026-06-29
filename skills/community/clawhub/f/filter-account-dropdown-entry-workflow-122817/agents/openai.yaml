@@ -1,0 +1,7 @@
+interface:
+  display_name: "Filter Account Dropdown Entry Workflow"
+  short_description: "Helps with [Enhancement] Filter Account Dropdown in New Entry..."
+  default_prompt: "Use $filter-account-dropdown-entry-workflow to help me [Enhancement] Filter Account Dropdown in New Entry Form Based on Selected Payment Method."
+
+policy:
+  allow_implicit_invocation: true

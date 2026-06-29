@@ -1,0 +1,29 @@
+{
+  "name": "Global E-commerce Platform Selection Guide",
+  "slug": "cb-platform-selection-guide",
+  "version": "1.0.1",
+  "description": "Choose the right ecommerce platform for any overseas market in minutes. Compare marketplaces, DTC, social commerce, and wholesale channels by margin, category fit, operational readiness, and policy risk — install and get your platform strategy in under 30 seconds.",
+  "author": "Pearl-led OpenClaw team",
+  "tags": [
+    "cross-border",
+    "overseas",
+    "global-expansion",
+    "social-media",
+    "channel-strategy"
+  ],
+  "trigger_keywords": [
+    "which marketplace overseas",
+    "Amazon Shopee Lazada selection",
+    "global ecommerce platform",
+    "DTC vs marketplace abroad",
+    "international sales channel choice"
+  ],
+  "language": "en",
+  "type": "descriptive",
+  "category": "cross-border-expansion",
+  "requires_api": false,
+  "requires_code_execution": false,
+  "outputs": "structured descriptive framework",
+  "readiness": "stable",
+  "safety": "Platform policies, fees, and eligibility rules change frequently and must be verified directly before launch."
+}

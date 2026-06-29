@@ -1,6 +1,6 @@
 # SOP：高转化广告 — 提预算 / 上调目标 CPA 扩量（Campaign / Ad Group）
 
-> **索引**：[`operations/hosted-automation-optimize-index.md`](operations/hosted-automation-optimize-index.md)
+> **索引**：[`references/operations/hosted-automation-optimize-index.md`](references/operations/hosted-automation-optimize-index.md)
 
 ---
 

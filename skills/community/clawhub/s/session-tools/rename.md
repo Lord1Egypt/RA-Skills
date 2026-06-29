@@ -1,74 +1,82 @@
 # Session Rename
 
-Assigns a custom title to a session or checks the current name.
+Suggests and applies a name to a session.
 
-## Mechanism
+## Procedure
 
-Claude Code stores custom titles by appending the following record to the session JSONL file:
+### 0. Check Whether a Name Was Specified
+
+- If the user specified a name directly → **skip to step 2** (skip suggestions)
+- If no name was specified (e.g. `/session rename`, `/session name`, `suggest a name`) → **start from step 1**
+
+> ⚠️ A topic alias such as the literal word `name` in `/session name` is **not** a title — treat it as "no name specified" and start from step 1.
+
+### 1. Generate Name Candidates
+
+Analyze the conversation content and generate 2–4 name candidates.
+
+**Naming rules:**
+- **Length**: 20–40 characters recommended
+- **Format**: `<topic> + <key action>` (e.g. `feat/76-auth-history + SSO deployment validation`)
+- **Language**: English preferred; technical terms in English
+- **Avoid**: dates, unnecessary words like "session" or "task"
+
+### 2. Apply the Name
+
+**Current session** → Output as copyable list only (NO AskUserQuestion):
+
+```
+Session name suggestions:
+
+1. `/rename Candidate 1`
+2. `/rename Candidate 2`
+3. `/rename Candidate 3`
+```
+
+`/rename` is a Claude Code built-in command — cannot be invoked via Bash or Skill tool.
+The user copies and pastes the desired `/rename ...` line.
+
+| # | Don't | Do |
+|---|-------|-----|
+| 1 | Call `rename-session.sh <current-id> "title"` for the current session | Output the copyable `/rename` list and let the user apply it |
+| 2 | Trust the SessionStart hint (`To rename this session: bash ...rename-session.sh`) as the current-session method | The hook hint is for **other**-session tooling. Current session = `/rename` built-in only |
+| 3 | Pick and apply a title yourself for the current session | Suggest 2–4 candidates; the user chooses via `/rename` |
+
+The script (`rename-session.sh`) appends `custom-title`/`agent-name` records, which is correct only for a **different** session's JSONL — for the live current session, the built-in `/rename` is the supported path.
+
+**Other session** (session ID specified) → AskUserQuestion to select, then apply via script:
+
+```
+AskUserQuestion {
+  question: "Select a session name",
+  header: "Session Name",
+  options: [
+    { label: "Candidate 1" },
+    { label: "Candidate 2" },
+    { label: "Candidate 3" }
+  ]
+}
+```
+
+Then rename via script:
+
+```bash
+scripts/rename-session.sh <session_id> "<selected name>"
+
+# Check current title
+scripts/rename-session.sh --show <session_id>
+
+# List named sessions
+scripts/rename-session.sh --list
+```
+
+## Storage Format
+
+Both records are appended together at the end of the session JSONL:
 
 ```json
 {"type":"custom-title","customTitle":"<title>","sessionId":"<uuid>"}
+{"type":"agent-name","agentName":"<title>","sessionId":"<uuid>"}
 ```
 
-## Script Usage
-
-> ⚠️ **Full UUID required** — Short 8-character IDs (`99f1f311`) do not work. Always use the full UUID (`99f1f311-8c3d-43ba-b212-e3184965fed4`).
-
-```bash
-SCRIPT=~/.claude/skills/session/scripts/rename-session.sh
-
-# Assign a name to a specific session
-bash "$SCRIPT" 99f1f311-8c3d-43ba-b212-e3184965fed4 "Authentik SSO OIDC Integration"
-
-# Assign a name to the latest session in the current project
-bash "$SCRIPT" "session name"
-
-# Check current title
-bash "$SCRIPT" --show 99f1f311-8c3d-43ba-b212-e3184965fed4
-
-# List named sessions in the current project
-bash "$SCRIPT" --list
-```
-
-## Running Directly from Claude Code
-
-Procedure for Claude to identify session content via AI and assign an appropriate name:
-
-1. Extract user messages from the session file to understand the content
-2. Generate a short title summarizing the key tasks
-3. Append a custom-title record to the JSONL using `rename-session.sh`
-
-### Python Priority When Parsing JSONL
-
-When parsing JSONL to understand session content, try in the following order:
-
-```bash
-# 1st priority: python3
-head -c 3000 <session.jsonl> | python3 -c "..."
-
-# 2nd priority: python
-head -c 3000 <session.jsonl> | python -c "..."
-
-# 3rd priority: uv (when both python/python3 are unavailable)
-head -c 3000 <session.jsonl> | uvx python -c "..."
-
-# 4th priority: node (when uv is also unavailable)
-head -c 3000 <session.jsonl> | node -e "..."
-```
-
-On Windows, python3/python may not be available, so fall back in the order: uv → node.
-
-## Naming Guide
-
-- **Length**: 20–40 characters recommended
-- **Format**: `<topic> - <key task>` (e.g., `Authentik SSO OIDC Integration - dt login/logout`)
-- **Language**: English preferred; technical terms in English
-- **Avoid**: Dates, and unnecessary words like "session" or "task"
-
-## Quick Naming (Claude Instruction)
-
-```
-/session <session_id> assign an appropriate name to this session
-```
-
-Claude will read the session content and automatically suggest and apply a name.
+`custom-title` is displayed as the GUI title, and `agent-name` is displayed as the agent name in the session list.

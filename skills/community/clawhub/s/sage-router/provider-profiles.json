@@ -1,0 +1,273 @@
+{
+  "_schema": "sage-router-provider-profiles-v1",
+  "_description": "Copy providers you want into your openclaw.json models.providers section",
+  "openai": {
+    "baseUrl": "https://api.openai.com/v1",
+    "apiKey": "${OPENAI_API_KEY}",
+    "api": "openai-completions",
+    "models": [
+      {
+        "id": "gpt-5.5",
+        "name": "GPT-5.5"
+      },
+      {
+        "id": "gpt-5",
+        "name": "GPT-5"
+      },
+      {
+        "id": "gpt-5-mini",
+        "name": "GPT-5 Mini"
+      },
+      {
+        "id": "gpt-4o",
+        "name": "GPT-4o"
+      },
+      {
+        "id": "gpt-4o-mini",
+        "name": "GPT-4o Mini"
+      },
+      {
+        "id": "o3-mini",
+        "name": "o3 Mini"
+      }
+    ]
+  },
+  "anthropic": {
+    "baseUrl": "https://api.anthropic.com",
+    "apiKey": "${ANTHROPIC_API_KEY}",
+    "api": "anthropic-messages",
+    "models": [
+      {
+        "id": "claude-opus-4",
+        "name": "Claude Opus 4"
+      },
+      {
+        "id": "claude-sonnet-4",
+        "name": "Claude Sonnet 4"
+      },
+      {
+        "id": "claude-haiku-4",
+        "name": "Claude Haiku 4"
+      }
+    ],
+    "_note": "Or use Dario proxy at http://127.0.0.1:3456 with apiKey 'local' to use Claude subscription"
+  },
+  "xai": {
+    "baseUrl": "https://api.x.ai/v1",
+    "apiKey": "${XAI_API_KEY}",
+    "api": "openai-completions",
+    "models": [
+      {
+        "id": "grok-3",
+        "name": "Grok 3"
+      },
+      {
+        "id": "grok-3-mini",
+        "name": "Grok 3 Mini"
+      },
+      {
+        "id": "grok-2",
+        "name": "Grok 2"
+      },
+      {
+        "id": "grok-2-vision",
+        "name": "Grok 2 Vision"
+      }
+    ]
+  },
+  "perplexity": {
+    "baseUrl": "https://api.perplexity.ai",
+    "apiKey": "${PERPLEXITY_API_KEY}",
+    "api": "openai-completions",
+    "models": [
+      {
+        "id": "sonar-pro",
+        "name": "Sonar Pro"
+      },
+      {
+        "id": "sonar",
+        "name": "Sonar"
+      },
+      {
+        "id": "sonar-reasoning-pro",
+        "name": "Sonar Reasoning Pro"
+      },
+      {
+        "id": "sonar-reasoning",
+        "name": "Sonar Reasoning"
+      }
+    ]
+  },
+  "groq": {
+    "baseUrl": "https://api.groq.com/openai/v1",
+    "apiKey": "${GROQ_API_KEY}",
+    "api": "openai-completions",
+    "models": "auto-discover",
+    "_note": "Fast inference for open-source models. Auto-discovery recommended."
+  },
+  "together": {
+    "baseUrl": "https://api.together.xyz/v1",
+    "apiKey": "${TOGETHER_API_KEY}",
+    "api": "openai-completions",
+    "models": "auto-discover",
+    "_note": "Large model zoo with pay-per-token pricing. Auto-discovery recommended."
+  },
+  "fireworks": {
+    "baseUrl": "https://api.fireworks.ai/inference/v1",
+    "apiKey": "${FIREWORKS_API_KEY}",
+    "api": "openai-completions",
+    "models": "auto-discover"
+  },
+  "mistral": {
+    "baseUrl": "https://api.mistral.ai/v1",
+    "apiKey": "${MISTRAL_API_KEY}",
+    "api": "openai-completions",
+    "models": [
+      {
+        "id": "mistral-large-latest",
+        "name": "Mistral Large"
+      },
+      {
+        "id": "mistral-medium-latest",
+        "name": "Mistral Medium"
+      },
+      {
+        "id": "codestral-latest",
+        "name": "Codestral"
+      }
+    ]
+  },
+  "cohere": {
+    "baseUrl": "https://api.cohere.com/v1",
+    "apiKey": "${COHERE_API_KEY}",
+    "api": "openai-completions",
+    "models": [
+      {
+        "id": "command-r-plus",
+        "name": "Command R Plus"
+      },
+      {
+        "id": "command-r",
+        "name": "Command R"
+      }
+    ]
+  },
+  "azure-openai": {
+    "baseUrl": "https://YOUR_RESOURCE.openai.azure.com/openai/deployments",
+    "apiKey": "${AZURE_OPENAI_KEY}",
+    "api": "openai-completions",
+    "models": [
+      {
+        "id": "gpt-4o",
+        "name": "GPT-4o Azure"
+      },
+      {
+        "id": "gpt-4",
+        "name": "GPT-4 Azure"
+      }
+    ],
+    "_note": "Replace YOUR_RESOURCE with your Azure OpenAI resource name"
+  },
+  "github-copilot": {
+    "baseUrl": "https://api.individual.githubcopilot.com",
+    "apiKey": "${GITHUB_COPILOT_TOKEN}",
+    "api": "openai-completions",
+    "models": [
+      {
+        "id": "gpt-4o",
+        "name": "Copilot GPT-4o",
+        "supportsTools": true,
+        "supportsStreaming": true
+      },
+      {
+        "id": "gpt-4.1",
+        "name": "Copilot GPT-4.1",
+        "supportsTools": true,
+        "supportsStreaming": true
+      }
+    ],
+    "_note": "Requires GitHub Copilot OAuth token. Runtime base URL matches OpenClaw native provider."
+  },
+  "deepseek": {
+    "baseUrl": "https://api.deepseek.com/v1",
+    "apiKey": "${DEEPSEEK_API_KEY}",
+    "api": "openai-completions",
+    "models": [
+      {
+        "id": "deepseek-chat",
+        "name": "DeepSeek Chat"
+      },
+      {
+        "id": "deepseek-reasoner",
+        "name": "DeepSeek Reasoner"
+      }
+    ]
+  },
+  "darkbloom": {
+    "baseUrl": "https://api.darkbloom.dev",
+    "apiKey": "${DARKBLOOM_API_KEY}",
+    "api": "openai-completions",
+    "models": "auto-discover",
+    "_note": "OpenAI-compatible Darkbloom API. Supports /v1/chat/completions, /v1/responses, and /v1/models. API key can live in ~/.openclaw/.env or the skill-local .env as DARKBLOOM_API_KEY."
+  },
+  "ollama": {
+    "baseUrl": "https://ollama.com",
+    "apiKey": "${OLLAMA_API_KEY}",
+    "api": "ollama",
+    "models": [
+      {
+        "id": "minimax-m2.7:cloud",
+        "name": "MiniMax M2.7 Cloud",
+        "reasoning": true,
+        "contextWindow": 256000,
+        "maxTokens": 128000,
+        "input": [
+          "text"
+        ]
+      },
+      {
+        "id": "kimi-k2.5:cloud",
+        "name": "Kimi K2.5 Cloud",
+        "reasoning": true,
+        "contextWindow": 256000,
+        "maxTokens": 128000,
+        "input": [
+          "text"
+        ]
+      },
+      {
+        "id": "kimi-k2.6:cloud",
+        "name": "Kimi K2.6 Cloud",
+        "reasoning": true,
+        "contextWindow": 256000,
+        "maxTokens": 128000,
+        "input": [
+          "text"
+        ]
+      },
+      {
+        "id": "glm-5:cloud",
+        "name": "GLM 5 Cloud",
+        "reasoning": true,
+        "contextWindow": 202752,
+        "maxTokens": 131072,
+        "input": [
+          "text"
+        ]
+      }
+    ],
+    "_note": "Hosted premium Ollama Cloud profile for public/open-beta deployments. Requires OLLAMA_API_KEY."
+  },
+  "openrouter": {
+    "baseUrl": "https://openrouter.ai/api/v1",
+    "apiKey": "${OPENROUTER_API_KEY}",
+    "api": "openai-completions",
+    "models": "auto-discover",
+    "_note": "Meta-provider - only use if you specifically need OR models. Prefer direct providers."
+  },
+  "_local": {
+    "disabledModels": [
+      "gpt-oss"
+    ]
+  }
+}

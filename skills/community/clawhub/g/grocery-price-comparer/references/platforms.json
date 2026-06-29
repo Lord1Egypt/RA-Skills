@@ -1,0 +1,54 @@
+{
+  "description": "Platform reference data for grocery price comparison.",
+  "version": "1.0.0",
+  "platforms": [
+    {
+      "id": "hema",
+      "name": "盒马 (Hema)",
+      "coverage": ["上海", "北京", "深圳", "杭州", "广州", "成都", "重庆", "武汉", "西安", "南京"],
+      "delivery_fee_policy": "Free above 49 CNY (or 39 with membership); otherwise 6 CNY",
+      "delivery_eta": "30-60 min",
+      "features": ["Member prices", "Daily fresh", "X-membership"],
+      "rating": 4.5
+    },
+    {
+      "id": "dingdong",
+      "name": "叮咚买菜 (Dingdong Maicai)",
+      "coverage": ["上海", "北京", "深圳", "杭州", "广州", "苏州", "南京", "宁波", "重庆", "成都", "武汉", "西安", "合肥", "无锡", "常州"],
+      "delivery_fee_policy": "Free above 39 CNY (or 29 during off-peak); otherwise 5 CNY",
+      "delivery_eta": "29 min - 1 hour",
+      "features": ["Green card VIP", "Direct sourcing"],
+      "rating": 4.3
+    },
+    {
+      "id": "meituan",
+      "name": "美团买菜 (Meituan Maicai)",
+      "coverage": ["上海", "北京", "深圳", "广州", "杭州", "成都", "武汉", "重庆", "苏州", "南京", "西安", "天津", "福州", "厦门"],
+      "delivery_fee_policy": "Free above 29 CNY; otherwise 3 CNY",
+      "delivery_eta": "30 min - 1 hour",
+      "features": ["Member discounts", "Volume pricing"],
+      "rating": 4.2
+    },
+    {
+      "id": "pupu",
+      "name": "朴朴超市 (Pupu Supermarket)",
+      "coverage": ["福州", "厦门", "深圳", "广州", "武汉", "成都", "重庆", "上海", "杭州", "南京"],
+      "delivery_fee_policy": "Free above 18 CNY; some items free regardless",
+      "delivery_eta": "30 min",
+      "features": ["Wide selection", "No minimum order"],
+      "rating": 4.4
+    }
+  ],
+  "unit_conversion_map": {
+    "1 斤 (jin)": "500 g",
+    "1 公斤 (kg)": "1000 g",
+    "1 份 (serving)": "varies; check description",
+    "1 盒 (box)": "varies; check description",
+    "1 袋 (bag)": "varies; check description"
+  },
+  "city_tier_multiplier": {
+    "Tier 1": 1.0,
+    "Tier 2": 0.9,
+    "Tier 3": 0.8
+  }
+}

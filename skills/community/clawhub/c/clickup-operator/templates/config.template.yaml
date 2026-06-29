@@ -1,0 +1,29 @@
+workspace:
+  workspace_id: "YOUR_WORKSPACE_ID"
+  workspace_name: "Your Workspace"
+  default_space_name: "Your Space"
+
+lists:
+  general_todo_list_id: "YOUR_GENERAL_TODO_LIST_ID"
+  general_todo_list_name: "General To-Do List"
+  ideas_list_id: "YOUR_IDEAS_LIST_ID"
+  ideas_list_name: "[Ideas]"
+
+assignees:
+  default_assignee_id: "YOUR_DEFAULT_ASSIGNEE_ID"
+  default_assignee_name: "Your Name"
+
+reads:
+  active_statuses:
+    - "ideation"
+    - "to do"
+    - "in progress"
+    - "review"
+  include_completed_by_default: false
+
+policy:
+  default_general_todo_due_date: "today"
+  ideas_auto_assign: false
+  project_items_auto_assign: false
+  project_items_auto_due_date: false
+  create_new_project_lists_without_confirmation: false

@@ -1,0 +1,4 @@
+interface:
+  display_name: "PRD 严谨补全"
+  short_description: "精炼梳理完整业务流程、对象/数据流与可开发 PRD"
+  default_prompt: "Use $prd-rigorous-completion to clarify the complete business flow and turn this rough requirement into an implementation-ready PRD."

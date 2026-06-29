@@ -1,0 +1,4 @@
+interface:
+  display_name: "CI Cadastre Vertices"
+  short_description: "Extract parcel vertices from Ivorian cadastre"
+  default_prompt: "Use $ci-cadastre-vertices to find current WGS84 vertex coordinates for a Cote d'Ivoire mining cadastre parcel."

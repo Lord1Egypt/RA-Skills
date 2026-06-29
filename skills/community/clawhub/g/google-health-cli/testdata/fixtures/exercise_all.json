@@ -1,0 +1,374 @@
+{
+  "dataPoints": [
+    {
+      "dataSource": {
+        "device": {
+          "displayName": "Google Pixel Watch 4 (45mm)",
+          "formFactor": "WATCH"
+        },
+        "platform": "FITBIT",
+        "recordingMethod": "PASSIVELY_MEASURED"
+      },
+      "exercise": {
+        "activeDuration": "934s",
+        "createTime": "2026-06-02T21:35:44.343470Z",
+        "displayName": "Activity",
+        "exerciseMetadata": {},
+        "exerciseType": "CARDIO_WORKOUT",
+        "interval": {
+          "endTime": "2026-06-02T20:42:25Z",
+          "endUtcOffset": "-18000s",
+          "startTime": "2026-06-02T20:26:51Z",
+          "startUtcOffset": "-18000s"
+        },
+        "metricsSummary": {
+          "activeZoneMinutes": "21",
+          "averageHeartRateBeatsPerMinute": "134",
+          "caloriesKcal": 122,
+          "heartRateZoneDurations": {
+            "lightTime": "120s",
+            "moderateTime": "600s",
+            "peakTime": "0s",
+            "vigorousTime": "240s"
+          }
+        },
+        "updateTime": "2026-06-02T21:35:44.343470Z"
+      },
+      "name": "users/me/dataTypes/exercise/dataPoints/1"
+    },
+    {
+      "dataSource": {
+        "device": {
+          "displayName": "Google Pixel Watch 4 (45mm)",
+          "formFactor": "WATCH"
+        },
+        "platform": "FITBIT",
+        "recordingMethod": "PASSIVELY_MEASURED"
+      },
+      "exercise": {
+        "activeDuration": "946s",
+        "createTime": "2026-05-24T16:10:40.101788Z",
+        "displayName": "Activity",
+        "exerciseMetadata": {},
+        "exerciseType": "CARDIO_WORKOUT",
+        "interval": {
+          "endTime": "2026-05-24T15:47:58Z",
+          "endUtcOffset": "-18000s",
+          "startTime": "2026-05-24T15:32:12Z",
+          "startUtcOffset": "-18000s"
+        },
+        "metricsSummary": {
+          "activeZoneMinutes": "15",
+          "averageHeartRateBeatsPerMinute": "128",
+          "caloriesKcal": 87,
+          "heartRateZoneDurations": {
+            "lightTime": "0s",
+            "moderateTime": "900s",
+            "peakTime": "0s",
+            "vigorousTime": "0s"
+          }
+        },
+        "updateTime": "2026-05-24T16:10:40.101788Z"
+      },
+      "name": "users/me/dataTypes/exercise/dataPoints/2"
+    },
+    {
+      "dataSource": {
+        "device": {
+          "displayName": "Google Pixel Watch 4 (45mm)",
+          "formFactor": "WATCH"
+        },
+        "platform": "FITBIT",
+        "recordingMethod": "ACTIVELY_MEASURED"
+      },
+      "exercise": {
+        "activeDuration": "2114s",
+        "createTime": "2026-06-16T21:07:41.735291Z",
+        "displayName": "Elliptical",
+        "exerciseEvents": [
+          {
+            "eventTime": "2026-06-16T20:33:51Z",
+            "eventUtcOffset": "-18000s",
+            "exerciseEventType": "START"
+          },
+          {
+            "eventTime": "2026-06-16T21:09:05Z",
+            "eventUtcOffset": "-18000s",
+            "exerciseEventType": "STOP"
+          }
+        ],
+        "exerciseMetadata": {},
+        "exerciseType": "ELLIPTICAL",
+        "interval": {
+          "endTime": "2026-06-16T21:09:05Z",
+          "endUtcOffset": "-18000s",
+          "startTime": "2026-06-16T20:33:51Z",
+          "startUtcOffset": "-18000s"
+        },
+        "metricsSummary": {
+          "activeZoneMinutes": "55",
+          "averageHeartRateBeatsPerMinute": "130",
+          "caloriesKcal": 236,
+          "heartRateZoneDurations": {
+            "lightTime": "360s",
+            "moderateTime": "1500s",
+            "peakTime": "0s",
+            "vigorousTime": "300s"
+          }
+        },
+        "updateTime": "2026-06-16T21:09:09.920177Z"
+      },
+      "name": "users/me/dataTypes/exercise/dataPoints/3"
+    },
+    {
+      "dataSource": {
+        "device": {
+          "displayName": "Google Pixel Watch 4 (45mm)",
+          "formFactor": "WATCH"
+        },
+        "platform": "FITBIT",
+        "recordingMethod": "ACTIVELY_MEASURED"
+      },
+      "exercise": {
+        "activeDuration": "2523s",
+        "createTime": "2026-06-15T20:15:05.187374Z",
+        "displayName": "Strength training",
+        "exerciseEvents": [
+          {
+            "eventTime": "2026-06-15T20:08:26Z",
+            "eventUtcOffset": "-18000s",
+            "exerciseEventType": "START"
+          },
+          {
+            "eventTime": "2026-06-15T20:50:29Z",
+            "eventUtcOffset": "-18000s",
+            "exerciseEventType": "STOP"
+          }
+        ],
+        "exerciseMetadata": {},
+        "exerciseType": "STRENGTH_TRAINING",
+        "interval": {
+          "endTime": "2026-06-15T20:50:29Z",
+          "endUtcOffset": "-18000s",
+          "startTime": "2026-06-15T20:08:26Z",
+          "startUtcOffset": "-18000s"
+        },
+        "metricsSummary": {
+          "activeZoneMinutes": "19",
+          "averageHeartRateBeatsPerMinute": "107",
+          "caloriesKcal": 90,
+          "heartRateZoneDurations": {
+            "lightTime": "2160s",
+            "moderateTime": "360s",
+            "peakTime": "0s",
+            "vigorousTime": "0s"
+          }
+        },
+        "updateTime": "2026-06-15T20:50:33.274710Z"
+      },
+      "name": "users/me/dataTypes/exercise/dataPoints/4"
+    },
+    {
+      "dataSource": {
+        "application": { "packageName": "com.speediance.speediance_mobile" },
+        "device": {},
+        "platform": "HEALTH_CONNECT",
+        "recordingMethod": "PASSIVELY_MEASURED"
+      },
+      "exercise": {
+        "activeDuration": "2345s",
+        "createTime": "2026-06-16T19:13:22.558824Z",
+        "displayName": "Strength training",
+        "exerciseMetadata": {},
+        "exerciseType": "STRENGTH_TRAINING",
+        "interval": {
+          "endTime": "2026-06-15T20:47:27Z",
+          "endUtcOffset": "-18000s",
+          "startTime": "2026-06-15T20:08:22Z",
+          "startUtcOffset": "-18000s"
+        },
+        "metricsSummary": { "activeZoneMinutes": "0", "caloriesKcal": 0 },
+        "updateTime": "2026-06-16T19:13:22.558824Z"
+      },
+      "name": "users/me/dataTypes/exercise/dataPoints/5"
+    },
+    {
+      "dataSource": {
+        "device": {
+          "displayName": "Google Pixel Watch 4 (45mm)",
+          "formFactor": "WATCH"
+        },
+        "platform": "FITBIT",
+        "recordingMethod": "ACTIVELY_MEASURED"
+      },
+      "exercise": {
+        "activeDuration": "1270s",
+        "createTime": "2026-06-02T20:58:52.885084Z",
+        "displayName": "Elliptical",
+        "exerciseEvents": [
+          {
+            "eventTime": "2026-06-02T20:45:00Z",
+            "eventUtcOffset": "-18000s",
+            "exerciseEventType": "START"
+          },
+          {
+            "eventTime": "2026-06-02T21:06:10Z",
+            "eventUtcOffset": "-18000s",
+            "exerciseEventType": "STOP"
+          }
+        ],
+        "exerciseMetadata": {},
+        "exerciseType": "ELLIPTICAL",
+        "interval": {
+          "endTime": "2026-06-02T21:06:10Z",
+          "endUtcOffset": "-18000s",
+          "startTime": "2026-06-02T20:45:00Z",
+          "startUtcOffset": "-18000s"
+        },
+        "metricsSummary": {
+          "activeZoneMinutes": "42",
+          "averageHeartRateBeatsPerMinute": "145",
+          "caloriesKcal": 189,
+          "heartRateZoneDurations": {
+            "lightTime": "0s",
+            "moderateTime": "240s",
+            "peakTime": "0s",
+            "vigorousTime": "1080s"
+          }
+        },
+        "updateTime": "2026-06-02T21:06:17.314208Z"
+      },
+      "name": "users/me/dataTypes/exercise/dataPoints/6"
+    },
+    {
+      "dataSource": {
+        "application": { "packageName": "com.speediance.speediance_mobile" },
+        "device": {},
+        "platform": "HEALTH_CONNECT",
+        "recordingMethod": "PASSIVELY_MEASURED"
+      },
+      "exercise": {
+        "activeDuration": "158s",
+        "createTime": "2026-06-16T19:13:22.589832Z",
+        "displayName": "Strength training",
+        "exerciseMetadata": {},
+        "exerciseType": "STRENGTH_TRAINING",
+        "interval": {
+          "endTime": "2026-05-30T21:47:08Z",
+          "endUtcOffset": "-18000s",
+          "startTime": "2026-05-30T21:44:30Z",
+          "startUtcOffset": "-18000s"
+        },
+        "metricsSummary": { "activeZoneMinutes": "0", "caloriesKcal": 0 },
+        "updateTime": "2026-06-16T19:13:22.589832Z"
+      },
+      "name": "users/me/dataTypes/exercise/dataPoints/7"
+    },
+    {
+      "dataSource": {
+        "device": {
+          "displayName": "Google Pixel Watch 4 (45mm)",
+          "formFactor": "WATCH"
+        },
+        "platform": "FITBIT",
+        "recordingMethod": "ACTIVELY_MEASURED"
+      },
+      "exercise": {
+        "activeDuration": "2019s",
+        "createTime": "2026-05-19T20:39:56.931904Z",
+        "displayName": "Elliptical",
+        "exerciseEvents": [
+          {
+            "eventTime": "2026-05-19T20:37:45Z",
+            "eventUtcOffset": "-18000s",
+            "exerciseEventType": "START"
+          },
+          {
+            "eventTime": "2026-05-19T21:11:24Z",
+            "eventUtcOffset": "-18000s",
+            "exerciseEventType": "STOP"
+          },
+          {
+            "eventTime": "2026-05-19T21:11:25Z",
+            "eventUtcOffset": "-18000s",
+            "exerciseEventType": "PAUSE"
+          },
+          {
+            "eventTime": "2026-05-19T21:11:25Z",
+            "eventUtcOffset": "-18000s",
+            "exerciseEventType": "STOP"
+          }
+        ],
+        "exerciseMetadata": {},
+        "exerciseType": "ELLIPTICAL",
+        "interval": {
+          "endTime": "2026-05-19T21:11:24Z",
+          "endUtcOffset": "-18000s",
+          "startTime": "2026-05-19T20:37:45Z",
+          "startUtcOffset": "-18000s"
+        },
+        "metricsSummary": {
+          "activeZoneMinutes": "50",
+          "averageHeartRateBeatsPerMinute": "138",
+          "caloriesKcal": 277,
+          "heartRateZoneDurations": {
+            "lightTime": "60s",
+            "moderateTime": "900s",
+            "peakTime": "0s",
+            "vigorousTime": "1080s"
+          }
+        },
+        "updateTime": "2026-05-19T21:11:27.508314Z"
+      },
+      "name": "users/me/dataTypes/exercise/dataPoints/8"
+    },
+    {
+      "dataSource": {
+        "device": {
+          "displayName": "Google Pixel Watch 4 (45mm)",
+          "formFactor": "WATCH"
+        },
+        "platform": "FITBIT",
+        "recordingMethod": "ACTIVELY_MEASURED"
+      },
+      "exercise": {
+        "activeDuration": "2771s",
+        "createTime": "2026-05-18T20:05:30.343864Z",
+        "displayName": "Elliptical",
+        "exerciseEvents": [
+          {
+            "eventTime": "2026-05-18T19:46:53Z",
+            "eventUtcOffset": "-18000s",
+            "exerciseEventType": "START"
+          },
+          {
+            "eventTime": "2026-05-18T20:33:04Z",
+            "eventUtcOffset": "-18000s",
+            "exerciseEventType": "STOP"
+          }
+        ],
+        "exerciseMetadata": {},
+        "exerciseType": "ELLIPTICAL",
+        "interval": {
+          "endTime": "2026-05-18T20:33:04Z",
+          "endUtcOffset": "-18000s",
+          "startTime": "2026-05-18T19:46:53Z",
+          "startUtcOffset": "-18000s"
+        },
+        "metricsSummary": {
+          "activeZoneMinutes": "83",
+          "averageHeartRateBeatsPerMinute": "142",
+          "caloriesKcal": 412,
+          "heartRateZoneDurations": {
+            "lightTime": "60s",
+            "moderateTime": "600s",
+            "peakTime": "0s",
+            "vigorousTime": "2160s"
+          }
+        },
+        "updateTime": "2026-05-18T20:52:23.430079Z"
+      },
+      "name": "users/me/dataTypes/exercise/dataPoints/9"
+    }
+  ]
+}

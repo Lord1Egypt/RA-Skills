@@ -1,0 +1,7 @@
+requests
+python-dotenv
+pymupdf
+python-docx
+openpyxl
+xlrd
+python-pptx

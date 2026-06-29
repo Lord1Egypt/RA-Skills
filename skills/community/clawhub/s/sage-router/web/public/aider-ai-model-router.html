@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Aider AI model router for Sage Router: point Aider at one OpenAI-compatible endpoint with hosted sk_sage keys, local port 8790, Tailnet routing, local Ollama fallback, 429 failover, multimodal routing, and BYOK custody." />
+  <link rel="canonical" href="https://sagerouter.dev/aider-ai-model-router" />
+  <meta property="og:title" content="Aider AI model router | Sage Router" />
+  <meta property="og:description" content="Use Sage Router as an Aider model-routing layer for hosted, local, or Tailnet coding sessions with 429 failover, provider health, and capability-aware route selection." />
+  <meta property="og:url" content="https://sagerouter.dev/aider-ai-model-router" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Aider AI model router | Sage Router</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07100d;--panel:rgba(13,29,24,.84);--soft:rgba(255,255,255,.045);--border:rgba(166,255,207,.16);--muted:#a9c5b8;--text:#edfdf5;--brand:#8df0b2;--amber:#f7d57a}*{box-sizing:border-box}body{margin:0;min-width:320px;background:linear-gradient(180deg,#07100d 0%,#0b1518 54%,#07100d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}a{color:inherit}.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;color:var(--muted)}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;color:var(--text);text-decoration:none}.brandMark{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(141,240,178,.42);border-radius:8px;color:#062016;background:linear-gradient(135deg,var(--brand),var(--amber))}.navLinks{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;font-weight:750}.navLinks a{text-decoration:none}.navLinks a:hover,footer a:hover{color:var(--text)}header{padding:72px 0 38px}.eyebrow{color:var(--brand);font-weight:900;letter-spacing:.16em;text-transform:uppercase;font-size:12px;margin:0 0 16px}h1{font-size:clamp(44px,7vw,82px);line-height:.94;margin:0 0 22px;max-width:980px}h2{font-size:clamp(28px,4vw,44px);line-height:1.05;margin:0 0 16px}h3{font-size:21px;margin:0 0 8px}.lead{font-size:clamp(20px,2.2vw,26px);line-height:1.36;color:#d2eadf;max-width:900px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.button{min-height:46px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:0 20px;font-weight:900;text-decoration:none}.primary{background:var(--brand);color:#06160d}.secondary{border:1px solid var(--border);background:rgba(255,255,255,.05);color:var(--text)}main{padding:24px 0 68px}.stack{display:grid;gap:22px}.panel{border:1px solid var(--border);border-radius:8px;background:var(--panel);padding:28px}.panel.soft{background:var(--soft)}.panel p,.panel li,.muted{color:var(--muted)}.panel p{margin:0 0 14px}.panel p:last-child{margin-bottom:0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.two{display:grid;grid-template-columns:minmax(0,.95fr) minmax(330px,.65fr);gap:18px;align-items:start}.list{display:grid;gap:10px;margin:0;padding-left:22px}.codebox{white-space:pre-wrap;overflow:auto;border:1px solid var(--border);border-radius:8px;background:rgba(0,0,0,.28);color:#d9e6ff;padding:18px;font-size:.92rem}.copyRow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px}.copyButton{border:0;border-radius:999px;background:var(--brand);color:#04150d;cursor:pointer;font-weight:900;min-height:42px;padding:0 18px}.copyStatus{color:var(--muted);font-size:14px;min-height:22px}code{color:#d9e6ff}.callout{border-color:rgba(247,213,122,.32);background:rgba(247,213,122,.07)}.callout strong{color:var(--amber)}footer{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:.9rem;padding:34px 0 54px;border-top:1px solid rgba(166,255,207,.1)}footer span{margin-right:auto}@media(max-width:900px){.grid,.two{grid-template-columns:1fr}.nav{align-items:flex-start;flex-direction:column}.button{width:100%}}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Sage Router Aider AI model router",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Linux, macOS, Windows, Docker",
+    "url": "https://sagerouter.dev/aider-ai-model-router",
+    "description": "Aider model router with OpenAI-compatible setup, hosted Sage Router generated keys, local port 8790, Tailnet routing, local Ollama fallback, BYOK custody, 429 failover, and multimodal routing."
+  }
+  </script>
+</head>
+<body>
+  <nav class="nav wrap" aria-label="Main navigation">
+    <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+    <div class="navLinks">
+      <a href="/quickstart">Quickstart</a>
+      <a href="/integrations">Integrations</a>
+      <a href="/coding-agent-model-router">Coding agents</a>
+      <a href="/codex-cli-router">Codex CLI</a>
+      <a href="/pricing">Pricing</a>
+      <a href="https://app.sagerouter.dev/account.html">Account</a>
+    </div>
+  </nav>
+
+  <header class="wrap">
+    <p class="eyebrow">Aider model routing</p>
+    <h1>Aider AI model router for local-first coding sessions</h1>
+    <p class="lead">Point Aider at one Sage Router endpoint for hosted, local, or Tailnet coding sessions. Sage Router can route edits across authorized OpenAI-compatible providers, Anthropic, Gemini, NVIDIA NIM, Ollama, and Ollama Cloud while preserving BYOK custody and failover policy.</p>
+    <div class="actions">
+      <a class="button primary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key" data-aider-event="content_article_key_activation_clicked" data-aider-button="create-api-key">Create API key</a>
+      <a class="button secondary" href="https://github.com/earlvanze/sage-router/blob/master/docs/integrations/aider.md" data-aider-event="content_article_quickstart_clicked" data-aider-button="aider-guide">Aider guide</a>
+      <a class="button secondary" href="/coding-agent-model-router" data-aider-event="content_article_compare_clicked" data-aider-button="coding-agent-router">Coding-agent routes</a>
+      <a class="button secondary" href="/models" data-aider-event="content_article_compare_clicked" data-aider-button="models">Browse models</a>
+    </div>
+  </header>
+
+  <main class="wrap stack">
+    <section class="grid">
+      <article class="panel">
+        <h2>OpenAI-compatible setup</h2>
+        <p>Aider can use <code>OPENAI_API_BASE=https://api.sagerouter.dev/v1</code> with a hosted generated <code>sk_sage_*</code> key, or <code>OPENAI_API_BASE=http://127.0.0.1:8790/v1</code> for local routing.</p>
+      </article>
+      <article class="panel">
+        <h2>Local Ollama fallback</h2>
+        <p>Keep coding-strong local models first, then fail over to authorized cloud routes for larger edits, long context, or degraded local capacity.</p>
+      </article>
+      <article class="panel">
+        <h2>429 failover</h2>
+        <p>When an Aider route, provider key, or upstream model rate-limits, Sage Router can choose the next healthy eligible route instead of making Aider own provider failover.</p>
+      </article>
+    </section>
+
+    <section class="two">
+      <article class="panel">
+        <h2>60-second Aider setup</h2>
+        <pre id="aider-router-start-code" class="codebox">export OPENAI_API_BASE=https://api.sagerouter.dev/v1
+export OPENAI_API_KEY=sk_sage_your_generated_key
+
+# Let Sage Router select by policy.
+aider --model openai/auto
+
+# Or point at a local Sage Router on port 8790:
+# export OPENAI_API_BASE=http://127.0.0.1:8790/v1
+# export OPENAI_API_KEY=local-router
+# aider --model openai/auto</pre>
+        <div class="copyRow">
+          <button id="aider-router-copy-start" class="copyButton" type="button">Copy 60-second Aider setup</button>
+          <span id="aider-router-copy-status" class="copyStatus" role="status" aria-live="polite"></span>
+        </div>
+      </article>
+      <aside class="panel soft">
+        <h2>Why Aider teams use it</h2>
+        <ul class="list">
+          <li>Route edits by local-first, balanced, or best-quality policy without changing the Aider command each time.</li>
+          <li>Use multiple authorized provider keys and subscription paths with health-aware failover.</li>
+          <li>Keep local/Tailnet credentials on the router host while still exposing one Aider-compatible endpoint.</li>
+          <li>Route multimodal and document-heavy requests only to capable models, with served modalities recorded for future routing.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="grid">
+      <article class="panel soft">
+        <h3>Repository-scale edits</h3>
+        <p>Escalate from local coder models to stronger cloud routes when refactors need more context, quality, or reliability.</p>
+      </article>
+      <article class="panel soft">
+        <h3>Credential load balancing</h3>
+        <p>Authorized credential pools can load balance and fail over on rate limits, provider health, latency, and policy.</p>
+      </article>
+      <article class="panel soft">
+        <h3>Provider boundary</h3>
+        <p>Sage Router does not grant unauthorized OpenAI, Anthropic, Gemini, NVIDIA, Ollama Cloud, or other provider access. Customers bring authorized credentials or use hosted routing for Sage Router account control.</p>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>Aider without provider-specific rewiring</h2>
+      <p>Aider is built for fast code edits. Sage Router keeps the Aider-side interface stable while moving provider choice, fallback, local/cloud preference, and telemetry into one routing layer.</p>
+    </section>
+
+    <section class="panel callout">
+      <h2><strong>Next steps</strong></h2>
+      <p><a href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key" data-aider-event="content_article_key_activation_clicked" data-aider-button="next-create-api-key">Create an API key</a>, <a href="https://github.com/earlvanze/sage-router/blob/master/docs/integrations/aider.md" data-aider-event="content_article_quickstart_clicked" data-aider-button="next-aider-guide">open the Aider guide</a>, <a href="/quickstart" data-aider-event="content_article_quickstart_clicked" data-aider-button="next-quickstart">copy the hosted quickstart</a>, or <a href="/model-routing-calculator" data-aider-event="content_article_compare_clicked" data-aider-button="calculator">estimate routing fit</a>.</p>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <span>Sage Router</span>
+    <a href="/quickstart">Quickstart</a>
+    <a href="/integrations">Integrations</a>
+    <a href="/coding-agent-model-router">Coding Agents</a>
+    <a href="/codex-cli-router">Codex CLI</a>
+    <a href="/models">Models</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/security">Security</a>
+  </footer>
+  <script>
+    function trackAiderRouterEvent(event, data = {}) {
+      const params = new URLSearchParams(window.location.search);
+      let referrerHost = null;
+      try {
+        const referrer = document.referrer ? new URL(document.referrer) : null;
+        referrerHost = referrer && referrer.host !== window.location.host ? referrer.host : null;
+      } catch {}
+      const payload = JSON.stringify({
+        event,
+        plan: data.plan || null,
+        sourcePage: window.location.href,
+        target: data.target || null,
+        metadata: {
+          source: 'article',
+          button: data.button || null,
+          state: 'aider-ai-model-router',
+          utmSource: params.get('utm_source') || params.get('utmSource') || null,
+          utmMedium: params.get('utm_medium') || params.get('utmMedium') || null,
+          utmCampaign: params.get('utm_campaign') || params.get('utmCampaign') || null,
+          referrerHost,
+          landingPath: window.location.pathname,
+          snippet: data.snippet || null
+        }
+      });
+      try {
+        if (navigator.sendBeacon) {
+          const blob = new Blob([payload], { type: 'application/json' });
+          if (navigator.sendBeacon('/api/funnel-event', blob)) return;
+        }
+      } catch {}
+      fetch('/api/funnel-event', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: payload,
+        keepalive: true,
+        credentials: 'omit'
+      }).catch(() => {});
+    }
+
+    function aiderRouterStartText() {
+      return `${document.getElementById('aider-router-start-code')?.textContent.trim() || ''}
+
+# Create a hosted generated key:
+# https://app.sagerouter.dev/account.html?plan=pro&start=create_key
+# Full Aider setup guide:
+# https://github.com/earlvanze/sage-router/blob/master/docs/integrations/aider.md`;
+    }
+
+    async function writeClipboardText(text) {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      textarea.remove();
+    }
+
+    async function copyAiderRouterStart() {
+      const status = document.getElementById('aider-router-copy-status');
+      try {
+        await writeClipboardText(aiderRouterStartText());
+        trackAiderRouterEvent('quickstart_snippet_copied', {
+          button: 'copy_aider_router_start',
+          snippet: 'aider-router-start'
+        });
+        if (status) status.textContent = 'Copied Aider setup.';
+      } catch {
+        if (status) status.textContent = 'Copy failed. Select the command block manually.';
+      }
+    }
+
+    trackAiderRouterEvent('content_article_viewed', { button: 'page-view' });
+    document.getElementById('aider-router-copy-start')?.addEventListener('click', copyAiderRouterStart);
+    document.querySelectorAll('[data-aider-event]').forEach((link) => {
+      link.addEventListener('click', () => {
+        const href = link.getAttribute('href') || '';
+        const planMatch = href.match(/plan=(lite|pro|max)\b/);
+        trackAiderRouterEvent(link.dataset.aiderEvent, {
+          plan: planMatch ? planMatch[1] : null,
+          target: href,
+          button: link.dataset.aiderButton || link.textContent.trim().slice(0, 60)
+        });
+      });
+    });
+  </script>
+  <script src="/article-activation-dock.js" defer></script>
+</body>
+</html>

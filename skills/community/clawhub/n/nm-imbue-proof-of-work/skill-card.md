@@ -1,5 +1,5 @@
 ## Description: <br>
-Enforces validation and evidence before agents claim work complete, including before implementation sign-off, PR creation, or deliverable submission. <br>
+Enforces validation and evidence before claiming work complete. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,34 +11,32 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineering agents use this skill to require reproducible validation, test evidence, acceptance criteria, and documented blockers before claiming that work is complete. <br>
+Developers and engineering agents use this skill before declaring implementation, configuration, review, or delivery work complete. It guides them to reproduce the problem, test the solution in the current environment, capture evidence, and document blockers or acceptance criteria. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may activate on broad trigger words such as validation, testing, proof, or acceptance criteria. <br>
-Mitigation: Review whether the proof-of-work workflow is relevant before applying it to a task. <br>
-Risk: Evidence logs can include sensitive task context or command output. <br>
-Mitigation: Avoid recording secrets or sensitive data in evidence, and redact sensitive output before sharing. <br>
-Risk: Completion claims can still be wrong if captured evidence is incomplete or misunderstood. <br>
-Mitigation: Review the commands, outputs, acceptance criteria, and blocker notes before relying on the result. <br>
+Risk: Broad activation can add validation overhead outside proof-of-work or pre-PR checks. <br>
+Mitigation: Invoke the skill only for completion claims, pre-PR checks, and other workflows where evidence capture is required. <br>
+Risk: Evidence logs can accidentally include environment variables, API keys, tokens, credentials, or authentication output. <br>
+Mitigation: Redact or mask secrets before adding command output, logs, tickets, or citations to evidence records. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-imbue-proof-of-work) <br>
-- [OpenClaw homepage](https://github.com/athola/claude-night-market/tree/master/plugins/imbue) <br>
-- [Atlassian definition of done guidance](https://www.atlassian.com/agile/project-management/definition-of-done) <br>
+- [ClawHub Skill Page](https://clawhub.ai/athola/skills/nm-imbue-proof-of-work) <br>
+- [OpenClaw metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/imbue) <br>
+- [Acceptance criteria reference](https://www.atlassian.com/agile/project-management/definition-of-done) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Shell commands, Configuration] <br>
-**Output Format:** [Markdown guidance with checklists, evidence logs, and inline shell command examples] <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with checklists, YAML-style output contracts, and shell command examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May require captured command output, timestamps, acceptance criteria, and blocker notes.] <br>
+**Other Properties Related to Output:** [Evidence-oriented output may include command snippets, acceptance criteria, validation status, and reproducibility notes.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata) <br>
+1.9.13 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

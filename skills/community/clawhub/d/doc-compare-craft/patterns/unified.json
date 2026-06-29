@@ -1,0 +1,11 @@
+{
+  "name": "unified",
+  "label": "合并视图",
+  "description": "统一上下文逐行显示差异",
+  "layout": "unified",
+  "diff_level": "line",
+  "show_line_numbers": true,
+  "features": ["context_lines", "change_chunks", "diff_stats"],
+  "color_scheme": "diff-default",
+  "context_lines": 3
+}

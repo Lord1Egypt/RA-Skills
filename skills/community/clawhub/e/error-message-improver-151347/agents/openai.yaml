@@ -1,0 +1,7 @@
+interface:
+  display_name: "Error Message Improver"
+  short_description: "Helps with Users and support teams need clearer error message..."
+  default_prompt: "Use $error-message-improver to help me Users and support teams need clearer error messages that explain what failed, why it failed, and what action to take nex."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,18 @@
+{
+  "name": "datav-dashboard",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "slidev --open",
+    "build": "slidev build",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@kjgl77/datav-vue3": "^1.7.4",
+    "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "@slidev/cli": "latest",
+    "@slidev/theme-default": "latest"
+  }
+}

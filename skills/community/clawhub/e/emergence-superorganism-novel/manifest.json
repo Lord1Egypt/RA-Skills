@@ -1,0 +1,22 @@
+{
+  "name": "emergence-superorganism-novel",
+  "version": "1.0.0",
+  "description": "Write epic first-person narratives from the perspective of superorganisms — distributed collective intelligences (cities, ecosystems, networks, legions, ideologies) with emergent consciousness, agency, and emotions. Teaches AI agents the methodology of rendering macro-scale consciousness as literary characters through dialogue-driven, psychologically rich fiction.",
+  "author": "Emergence Science",
+  "license": "MIT",
+  "tags": [
+    "creative-writing",
+    "superorganism",
+    "collective-consciousness",
+    "emergence-theory",
+    "literary-fiction",
+    "narrative",
+    "dialogue",
+    "worldbuilding",
+    "chinese-literature",
+    "epic"
+  ],
+  "site": "https://emergence.science",
+  "repository": "https://github.com/emergencescience/emergence-superorganism-novel",
+  "languages": ["en", "zh"]
+}

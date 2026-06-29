@@ -1,0 +1,201 @@
+{
+  "code": 1000,
+  "data": [
+    {
+      "page_data": {
+        "detail_fields_list": [
+          {
+            "abstract": "汇款汇出",
+            "amountCredited": 0.0,
+            "amountDebited": 1080.0,
+            "balance": 202510.86,
+            "counterpartyAccount": "1001755809100162416",
+            "counterpartyName": "上海旺德佛国际贸易有限公司",
+            "tradeDate": "2023-12-01"
+          },
+          {
+            "abstract": "汇款汇出",
+            "amountCredited": 0.0,
+            "amountDebited": 650.0,
+            "balance": 201860.86,
+            "counterpartyAccount": "2100150360105250375",
+            "counterpartyName": "沈阳创世榆力液压设备有限公司",
+            "tradeDate": "2023-12-02"
+          },
+          {
+            "abstract": "汇款汇出",
+            "amountCredited": 0.0,
+            "amountDebited": 2159.0,
+            "balance": 199701.86,
+            "counterpartyAccount": "2100150360105250375",
+            "counterpartyName": "沈阳创世榆力液压设备有限公司",
+            "tradeDate": "2023-12-04"
+          },
+          {
+            "abstract": "汇款汇出",
+            "amountCredited": 0.0,
+            "amountDebited": 1100.0,
+            "balance": 198601.86,
+            "counterpartyAccount": "1001703709300280141",
+            "counterpartyName": "上海意托机电设备有限公司",
+            "tradeDate": "2023-12-04"
+          },
+          {
+            "abstract": "汇款汇入",
+            "amountCredited": 495.0,
+            "amountDebited": 0.0,
+            "balance": 199096.86,
+            "counterpartyAccount": "3210840171010000042",
+            "counterpartyName": "江苏中聚机电设备有限公司",
+            "tradeDate": "2023-12-05"
+          },
+          {
+            "abstract": "汇款汇出",
+            "amountCredited": 0.0,
+            "amountDebited": 156235.0,
+            "balance": 42861.86,
+            "counterpartyAccount": "3202003709201040651",
+            "counterpartyName": "湖北八方聚能科技有限公司",
+            "tradeDate": "2023-12-07"
+          },
+          {
+            "abstract": "汇款汇出",
+            "amountCredited": 0.0,
+            "amountDebited": 330.0,
+            "balance": 42531.86,
+            "counterpartyAccount": "16369101040018310",
+            "counterpartyName": "安阳派菲克电磁科技有限公司",
+            "tradeDate": "2023-12-07"
+          },
+          {
+            "abstract": "汇款汇出",
+            "amountCredited": 0.0,
+            "amountDebited": 2016.0,
+            "balance": 40515.86,
+            "counterpartyAccount": "2100150360105250375",
+            "counterpartyName": "沈阳创世榆力液压设备有限公司",
+            "tradeDate": "2023-12-08"
+          },
+          {
+            "abstract": "财税库行联网划缴税款",
+            "amountCredited": 0.0,
+            "amountDebited": 1371.5,
+            "balance": 39144.36,
+            "counterpartyAccount": "411010100100000135",
+            "counterpartyName": "统一版财税库行待结算财政款项账户",
+            "tradeDate": "2023-12-08"
+          },
+          {
+            "abstract": "汇款汇出",
+            "amountCredited": 0.0,
+            "amountDebited": 11000.0,
+            "balance": 28144.36,
+            "counterpartyAccount": "3225019862620000004",
+            "counterpartyName": "苏州铼洛威液压泵有限公司",
+            "tradeDate": "2023-12-09"
+          },
+          {
+            "abstract": "汇款汇出",
+            "amountCredited": 0.0,
+            "amountDebited": 2030.0,
+            "balance": 26114.36,
+            "counterpartyAccount": "16369101040018310",
+            "counterpartyName": "安阳派菲克电磁科技有限公司",
+            "tradeDate": "2023-12-11"
+          },
+          {
+            "abstract": "汇款汇入",
+            "amountCredited": 16500.0,
+            "amountDebited": 0.0,
+            "balance": 42614.36,
+            "counterpartyAccount": "1001143109000009157",
+            "counterpartyName": "上海逵达海洋技术有限公司",
+            "tradeDate": "2023-12-12"
+          },
+          {
+            "abstract": "汇款汇出",
+            "amountCredited": 0.0,
+            "amountDebited": 600.0,
+            "balance": 42014.36,
+            "counterpartyAccount": "159101201090103429",
+            "counterpartyName": "思耐达（天津）液压机电设备有限公司",
+            "tradeDate": "2023-12-12"
+          },
+          {
+            "abstract": "汇款汇出",
+            "amountCredited": 0.0,
+            "amountDebited": 60.0,
+            "balance": 41954.36,
+            "counterpartyAccount": "159101201090103429",
+            "counterpartyName": "思耐达（天津）液压机电设备有限公司",
+            "tradeDate": "2023-12-15"
+          },
+          {
+            "abstract": "汇款汇出",
+            "amountCredited": 0.0,
+            "amountDebited": 470.0,
+            "balance": 41484.36,
+            "counterpartyAccount": "2100150360105250375",
+            "counterpartyName": "沈阳创世榆力液压设备有限公司",
+            "tradeDate": "2023-12-15"
+          },
+          {
+            "abstract": "汇款汇出",
+            "amountCredited": 0.0,
+            "amountDebited": 600.0,
+            "balance": 40884.36,
+            "counterpartyAccount": "121945921810409",
+            "counterpartyName": "上海商蔚机械科技有限公司",
+            "tradeDate": "2023-12-20"
+          },
+          {
+            "abstract": "存款利息",
+            "amountCredited": 57.33,
+            "amountDebited": 0.0,
+            "balance": 40941.69,
+            "counterpartyAccount": "",
+            "counterpartyName": "",
+            "tradeDate": "2023-12-21"
+          },
+          {
+            "abstract": "汇款汇出",
+            "amountCredited": 0.0,
+            "amountDebited": 1320.0,
+            "balance": 39621.69,
+            "counterpartyAccount": "50535701040002781",
+            "counterpartyName": "保定德恒液压机械制造有限公司",
+            "tradeDate": "2023-12-25"
+          },
+          {
+            "abstract": "汇款汇出",
+            "amountCredited": 0.0,
+            "amountDebited": 5300.0,
+            "balance": 34321.69,
+            "counterpartyAccount": "1001755809100162416",
+            "counterpartyName": "上海旺德佛国际贸易有限公司",
+            "tradeDate": "2023-12-26"
+          },
+          {
+            "abstract": "汇款汇入",
+            "amountCredited": 12000.0,
+            "amountDebited": 0.0,
+            "balance": 46321.69,
+            "counterpartyAccount": "1001243009003515596",
+            "counterpartyName": "上海深蒂液压设备有限公司",
+            "tradeDate": "2023-12-26"
+          }
+        ],
+        "global_fields": {
+          "accountName": "武汉恒新恒液压气动设备有限公司",
+          "bankName": "兴业银行",
+          "curName": "人民币",
+          "totalCreditAmount": 29052.33,
+          "totalDebitAmount": 186321.5,
+          "transAccount": "416150100100246135"
+        }
+      },
+      "page_index": 1
+    }
+  ],
+  "msg": "success"
+}

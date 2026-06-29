@@ -1,0 +1,70 @@
+{
+  "name": "keep-me-update",
+  "version": "1.0.0",
+  "author": "Nemocccc",
+  "license": "MIT",
+  "description": "Daily tech/AI/geek news digest powered by RSS + web search. 基于 RSS 和网络搜索的每日科技/AI/极客新闻摘要。",
+  "homepage": "https://github.com/Nemocccc/KeepMeUpdate",
+  "openclaw": {
+    "compat": {
+      "pluginApi": "1.0",
+      "skillFormat": "hermes"
+    }
+  },
+  "config": {
+    "fields": [
+      {
+        "name": "language",
+        "type": "string",
+        "enum": ["zh", "en"],
+        "default": "zh",
+        "description": "Output language: zh (Chinese) or en (English)"
+      },
+      {
+        "name": "timezone",
+        "type": "string",
+        "default": "Asia/Shanghai",
+        "description": "IANA timezone (e.g. Asia/Shanghai, America/New_York, Europe/London)"
+      },
+      {
+        "name": "output_mode",
+        "type": "string",
+        "enum": ["terminal", "file"],
+        "default": "terminal",
+        "description": "Output method: terminal (print to stdout) or file (write Markdown)"
+      },
+      {
+        "name": "output_dir",
+        "type": "string",
+        "default": "~/DailyENews/",
+        "description": "Output directory for file mode"
+      },
+      {
+        "name": "retention_days",
+        "type": "number",
+        "default": 7,
+        "minimum": 1,
+        "maximum": 365,
+        "description": "Days to keep old digest files (file mode only)"
+      },
+      {
+        "name": "arxiv_retry",
+        "type": "boolean",
+        "default": true,
+        "description": "Re-fetch if arXiv returns empty (known RSS delay)"
+      }
+    ]
+  },
+  "dependencies": {
+    "python": ">=3.9",
+    "toolsets": ["web_search"],
+    "optional_toolsets": [],
+    "external_scripts": []
+  },
+  "requirements": {
+    "api_keys": [],
+    "environment_variables": [],
+    "system_packages": [],
+    "pip_packages": []
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "广东省政务服务和数据管理局公文格式标准（试行）",
+  "output": {
+    "dir": "official-docs/output",
+    "$comment": "Word 默认输出目录，相对路径基于 Skill 安装目录解析（与调用时 cwd 无关）。--output 仅传文件名时写入此目录；传绝对路径时优先使用 --output。"
+  },
+  "page": {
+    "paper": "A4",
+    "width_mm": 210,
+    "height_mm": 297,
+    "margin_top_mm": 37,
+    "margin_bottom_mm": 33,
+    "margin_left_mm": 28,
+    "margin_right_mm": 26,
+    "$comment": "页面：A4；页边距按规范（上37mm 下33mm 左28mm 右26mm）"
+  },
+  "title": {
+    "font": "方正小标宋简体",
+    "size_pt": 22,
+    "line_spacing_pt": 33,
+    "alignment": "center",
+    "$comment": "标题：二号字，居中，固定行距33磅"
+  },
+  "body": {
+    "font": "仿宋_GB2312",
+    "latin_font": "Times New Roman",
+    "size_pt": 16,
+    "line_spacing_pt": 28,
+    "first_line_indent_chars": 2,
+    "alignment": "justify",
+    "space_before_pt": 0,
+    "space_after_pt": 0,
+    "$comment": "正文：三号字，首行缩进2字符，两端对齐，行距28磅，段前段后0；数字和字母使用 Times New Roman"
+  },
+  "heading1": {
+    "font": "黑体",
+    "size_pt": 16,
+    "first_line_indent_chars": 2,
+    "pattern": "^[一二三四五六七八九十]+、",
+    "$comment": "一级标题：三号字，首行缩进2字符"
+  },
+  "heading2": {
+    "font": "楷体_GB2312",
+    "size_pt": 16,
+    "first_line_indent_chars": 2,
+    "pattern": "^（[一二三四五六七八九十]+）",
+    "$comment": "二级标题：三号字，首行缩进2字符"
+  },
+  "heading3": {
+    "font": "仿宋_GB2312",
+    "size_pt": 16,
+    "bold": true,
+    "first_line_indent_chars": 2,
+    "pattern": "^\\d+[\\.\\、]",
+    "$comment": "三级标题：仿宋加黑，三号字，首行缩进2字符"
+  },
+  "attachment": {
+    "font": "仿宋_GB2312",
+    "size_pt": 16,
+    "first_line_indent": false,
+    "$comment": "附件：三号字，无缩进"
+  },
+  "attachment_section": {
+    "font": "黑体",
+    "size_pt": 16,
+    "alignment": "left",
+    "$comment": "附件页标识：黑体，三号，左对齐"
+  },
+  "attachment_title": {
+    "font": "方正小标宋简体",
+    "size_pt": 22,
+    "line_spacing_pt": 33,
+    "alignment": "center",
+    "$comment": "附件标题：二号字，居中"
+  },
+  "signing_entity": {
+    "font": "仿宋_GB2312",
+    "size_pt": 16,
+    "alignment": "right",
+    "$comment": "落款单位：三号字，右对齐"
+  },
+  "contact_info": {
+    "font": "仿宋_GB2312",
+    "size_pt": 16,
+    "alignment": "right",
+    "$comment": "联系信息：三号字，右对齐"
+  },
+  "date": {
+    "font": "仿宋_GB2312",
+    "size_pt": 16,
+    "alignment": "right",
+    "$comment": "日期：三号字，右对齐"
+  },
+  "recipient": {
+    "font": "仿宋_GB2312",
+    "size_pt": 16,
+    "first_line_indent": false,
+    "$comment": "主送机关：三号字，无缩进"
+  }
+}

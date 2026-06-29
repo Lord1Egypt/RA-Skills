@@ -1,0 +1,4 @@
+interface:
+  display_name: "Issue Writer"
+  short_description: "Draft evidence-based GitHub issues by type"
+  default_prompt: "Use $issue-writer to turn these findings into a structured GitHub issue with evidence, impact, recommendations, and acceptance criteria."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Self Learning Coach v0.1.12"
+  short_description: "规划业务学习路径，生成 HTML 学习页并做复述批改。"
+  default_prompt: "Use $self-learning-coach-v0-1：我想学习一个业务，请帮我规划学习路径，并生成第一节 HTML 学习页。"

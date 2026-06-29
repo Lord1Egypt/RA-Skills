@@ -1,0 +1,73 @@
+{
+  "baseUrl": "https://api.justserpapi.com",
+  "description": "Call GET /api/v1/google/maps/places for Google SERP Maps Places through Just Serp API.",
+  "displayName": "Google SERP Maps Places",
+  "endpointPath": "maps/places",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Google maps Place Details data, including contact details and business information, for enrich business directories, look up place details, and sync local app data.",
+      "method": "GET",
+      "operationId": "mapsPlaces",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "The unique Google Place ID. Obtainable via the Google Maps Search API. Use this or 'data_id'.",
+          "enumValues": [],
+          "location": "query",
+          "name": "place_id",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique Google Maps location data ID. Use this or 'place_id'.",
+          "enumValues": [],
+          "location": "query",
+          "name": "data_id",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the target country code (e.g., 'us', 'uk') to localize results. See <a href=\"/reference/google-countries\">Google Countries</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "country",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/v1/google/maps/places",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        },
+        {
+          "description": "Authentication failed: API Key is invalid or missing",
+          "statusCode": "401"
+        },
+        {
+          "description": "Access denied: Insufficient credits or quota exceeded",
+          "statusCode": "403"
+        },
+        {
+          "description": "Internal server error or upstream service exception",
+          "statusCode": "500"
+        }
+      ],
+      "summary": "Place Details",
+      "tags": [
+        "Google Maps"
+      ]
+    }
+  ],
+  "platformKey": "google",
+  "primaryTag": "Google SERP",
+  "skillName": "justserpapi_google_maps_places",
+  "skillType": "interface",
+  "slug": "justserpapi-google-maps-places",
+  "sourceTitle": "API Shop Documentation"
+}

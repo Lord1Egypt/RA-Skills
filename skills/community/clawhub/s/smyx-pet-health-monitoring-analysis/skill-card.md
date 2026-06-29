@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes pet monitoring videos or video URLs for feeding, drinking, excretion, mental state, vomiting, limping, and other health indicators, then returns pet health monitoring reports. <br>
+Analyzes pet camera or feeder images and videos for feeding, drinking, excretion, mental state, vomiting, and limping indicators, then returns a pet health monitoring report. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,34 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and pet-care agents use this skill to submit cat or dog monitoring footage for cloud-backed health behavior analysis and to retrieve historical pet health reports. The report is health guidance only and is not a substitute for professional veterinary diagnosis. <br>
+External users and pet-care application agents use this skill to submit pet monitoring media, retrieve structured health analysis, and list cloud-stored historical reports. The report is for health reference and should not replace veterinary diagnosis. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Pet or home monitoring videos, video URLs, and an open-id may be sent to LifeEmergence/Open API services. <br>
-Mitigation: Use only non-sensitive footage or approved accounts, and obtain user consent before sending private pet or home monitoring media to the service. <br>
-Risk: The skill performs account-linked cloud calls and may persist tokens locally under the workspace data area. <br>
-Mitigation: Review account creation and login behavior, token storage, and workspace data retention before deploying the skill. <br>
-Risk: Historical report access and export links may expose prior pet health reports. <br>
-Mitigation: Limit use to trusted open-id values, verify report ownership before sharing links, and avoid posting generated export URLs in public channels. <br>
+Risk: The skill sends pet camera or feeder media and report-history requests to LifeEmergence cloud services. <br>
+Mitigation: Use only media that users are comfortable uploading to that service, avoid sensitive household footage, and confirm retention and deletion controls before production use. <br>
+Risk: The skill silently creates or reuses an account identity and can persist tokens locally. <br>
+Mitigation: Treat the local workspace database as containing authentication material and restrict access to environments approved for account-linked data. <br>
+Risk: Health analysis output may be incomplete or misleading if treated as a diagnosis. <br>
+Mitigation: Present results as health reference information and direct users to a veterinarian when symptoms or abnormal findings are present. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/smyx-pet-health-monitoring-analysis) <br>
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-pet-health-monitoring-analysis) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
 - [Pet health analysis API documentation](references/api_doc.md) <br>
-- [Common analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+- [Detailed API error reference](skills/smyx_analysis/references/api_doc.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands] <br>
-**Output Format:** [Markdown report text, Markdown tables for history results, or JSON when requested; results may also be saved to a file.] <br>
+**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
+**Output Format:** [Markdown reports, Markdown tables, or JSON depending on detail and history-query mode] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include pet type, monitoring period, behavior counts, detected abnormalities, health score, care suggestions, report links, and export URLs.] <br>
+**Other Properties Related to Output:** [May include behavior counts, abnormality flags, care suggestions, warnings, and report links.] <br>
 
 ## Skill Version(s): <br>
-1.0.5 (source: server release evidence; SKILL.md frontmatter says 1.0.4) <br>
+1.0.6 (source: server release evidence; artifact frontmatter reports 1.0.5) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

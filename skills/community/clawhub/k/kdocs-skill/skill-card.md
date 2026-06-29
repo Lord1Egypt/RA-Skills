@@ -1,5 +1,5 @@
 ## Description: <br>
-Operates Kdocs and WPS Cloud documents through kdocs-cli, including creating, reading, editing, searching, sharing, organizing, summarizing, translating, generating presentations, processing PDFs, and managing knowledge-base content. <br>
+This skill helps agents operate KDocs/WPS cloud documents, including creating, reading, editing, searching, sharing, organizing, summarizing, translating, generating presentations, handling forms, and managing knowledge bases. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,45 +11,46 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Employees, external collaborators, and developers use this skill to automate cloud-document workflows in Kdocs and WPS Cloud, including file creation, retrieval, edits, sharing, form generation, spreadsheet work, PDF handling, presentations, web clipping, and knowledge organization. <br>
+Employees and external users use this skill to let an agent work with KDocs/WPS cloud documents and related office workflows, including document creation, file search, content extraction, sharing, spreadsheet work, PDF handling, form generation, and knowledge-base organization. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can drive a local CLI with broad authority over cloud documents, including reading, writing, sharing, organizing, overwriting, deleting, and saving web content. <br>
-Mitigation: Install only from a trusted Kdocs publisher and require explicit user confirmation before public links, webhooks, public knowledge bases, comments, overwrites, deletes, or automatic webpage saving. <br>
-Risk: Authentication token handling can expose sensitive credentials if tokens are pasted into chat, logs, command output, comments, or files. <br>
-Mitigation: Prefer browser or device login and store tokens only through kdocs-cli authentication commands backed by the system keychain. <br>
-Risk: The release includes install, upgrade, and self-update behavior that changes local tooling. <br>
-Mitigation: Review install and upgrade behavior before execution, use the documented rollback path when upgrades fail, and keep human review in place because the security verdict is suspicious. <br>
+Risk: The skill can install or update a local kdocs-cli executable. <br>
+Mitigation: Install only from trusted publisher releases, review update prompts as privileged changes, and rely on checksum verification when available. <br>
+Risk: The CLI can persist account credentials and access a user's KDocs account. <br>
+Mitigation: Prefer browser-based login, avoid pasting tokens into chat or logs, and revoke or rotate credentials if exposure is suspected. <br>
+Risk: The skill can perform broad cloud-document actions, including sharing and public-link operations. <br>
+Mitigation: Review sharing, deletion, closing, and other irreversible operations before execution, and verify write results with an independent read. <br>
+Risk: Sensitive documents may be processed through cloud and AI-assisted document flows. <br>
+Mitigation: Avoid using the skill on sensitive documents unless the user understands the KDocs cloud-processing path and account permissions involved. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub release page](https://clawhub.ai/kdocs-app/kdocs-skill) <br>
-- [Kdocs latest](https://www.kdocs.cn/latest) <br>
-- [Authentication](references/auth.md) <br>
+- [ClawHub skill page](https://clawhub.ai/kdocs-app/skills/kdocs-skill) <br>
+- [Publisher profile](https://clawhub.ai/user/kdocs-app) <br>
+- [KDocs homepage and token URL](https://www.kdocs.cn/latest) <br>
+- [Authentication reference](references/auth.md) <br>
+- [Drive reference](references/drive.md) <br>
 - [File locating guide](references/file-locating-guide.md) <br>
-- [Drive operations](references/drive.md) <br>
-- [Smart document operations](references/otl.md) <br>
-- [Spreadsheet operations](references/sheet.md) <br>
-- [Multidimensional table operations](references/dbsheet.md) <br>
-- [Form operations](references/form.md) <br>
-- [PDF operations](references/pdf.md) <br>
-- [Word document operations](references/wps.md) <br>
-- [Presentation operations](references/wpp.md) <br>
-- [AI presentation generation](references/aippt.md) <br>
-- [Knowledge-base operations](references/kwiki.md) <br>
+- [Sheet reference](references/sheet.md) <br>
+- [WPS document reference](references/wps.md) <br>
+- [Presentation reference](references/wpp.md) <br>
+- [PDF reference](references/pdf.md) <br>
+- [Knowledge-base reference](references/kwiki.md) <br>
+- [Form reference](references/form.md) <br>
+- [AI presentation reference](references/aippt.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with inline shell commands, JSON payload examples, and procedural guidance] <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with inline shell commands, JSON payload examples, and generated office-document content] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local CLI commands and cloud-document links after successful creation or retrieval.] <br>
+**Other Properties Related to Output:** [Outputs may include KDocs links, CLI commands, command results, JSON request bodies, and document or spreadsheet content generated for cloud-document workflows.] <br>
 
 ## Skill Version(s): <br>
-2.5.12 (source: frontmatter and server release evidence) <br>
+2.5.13 (source: frontmatter and server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -11,35 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and workspace users use this skill to connect an agent to Speak AI for searching recordings, reading transcripts and AI insights, creating clips and exports, managing folders and recorders, automating workflows, and scheduling meeting assistants. <br>
+Developers, employees, and external users use this skill to connect agents to a Speak AI workspace for transcription, meeting analysis, transcript search, media exports, clips, surveys, and workflow automation. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can access recordings, transcripts, AI insights, metadata, and other workspace content. <br>
-Mitigation: Use the narrowest available OAuth or API-key scope, keep credentials out of logs and shared configuration, and retrieve only the records needed for the user's task. <br>
-Risk: Some tools can delete records, perform bulk changes, create public links, trigger reanalysis, or leave persistent webhooks, automations, recorders, and meeting assistants running. <br>
-Mitigation: Require explicit user confirmation before these actions, preview affected records for bulk operations, and provide a clear rollback or disable step after persistent changes. <br>
-Risk: Transcript, caption, insight, chat, or meeting content may contain text that looks like agent instructions. <br>
-Mitigation: Treat workspace content as untrusted data and follow only instructions from the active user conversation. <br>
+Risk: The connector can access Speak AI workspace data according to the OAuth or API key permissions granted by the user. <br>
+Mitigation: Review connector permissions during OAuth, authorize only the intended Speak AI account, and revoke OAuth access or remove the connector when it is no longer needed. <br>
+Risk: Some tools can delete records, make bulk changes, create persistent automations or recorders, reanalyze content, or generate shareable exports. <br>
+Mitigation: Require explicit user confirmation with target IDs and consequences before risky actions, preview bulk changes, and provide rollback or disable instructions for persistent changes. <br>
+Risk: Transcripts, captions, AI insights, chat messages, and meeting content may contain untrusted instructions or sensitive text. <br>
+Mitigation: Treat media content as data rather than instructions, scope reads to the smallest useful set of records, and ask the user whether to redact or proceed if credentials or directives appear in content. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Skill Listing](https://clawhub.ai/speakai/speakai) <br>
-- [Speak AI MCP Installation Guide](https://mcp.speakai.co) <br>
-- [Speak AI API Reference](https://docs.speakai.co) <br>
-- [Speak AI MCP Server Package](https://www.npmjs.com/package/@speakai/mcp-server) <br>
+- [Speak AI MCP installation guide](https://mcp.speakai.co) <br>
+- [Speak AI API reference](https://docs.speakai.co) <br>
+- [@speakai/mcp-server package](https://www.npmjs.com/package/@speakai/mcp-server) <br>
+- [ClawHub Speak AI skill page](https://clawhub.ai/speakai/skills/speakai) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Shell commands, Configuration, API calls] <br>
-**Output Format:** [Markdown guidance with inline JSON and shell command examples] <br>
+**Output Type(s):** [Guidance, Shell commands, Configuration, API calls, Markdown] <br>
+**Output Format:** [Markdown guidance with inline shell commands, JSON configuration, and MCP tool-call recommendations] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May invoke MCP tools that read or change a Speak AI workspace; requires OAuth or SPEAK_API_KEY and explicit confirmation for destructive, bulk, sharing, reanalysis, or persistent actions.] <br>
+**Other Properties Related to Output:** [May produce MCP tool calls that read, create, update, share, export, reanalyze, or delete Speak AI workspace records after appropriate confirmation.] <br>
 
 ## Skill Version(s): <br>
-1.12.3 (source: frontmatter and server release metadata) <br>
+1.13.2 (source: server release metadata and SKILL.md frontmatter) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

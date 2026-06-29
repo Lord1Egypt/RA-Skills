@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 800px; height: 1200px; overflow: hidden;
+    font-family: 'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', sans-serif;
+    background: #060d13;
+    position: relative;
+  }
+
+  /* ── Deep ocean gradient layers ── */
+  .bg-ocean {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 30% at 45% 12%, #142028 0%, transparent 55%),
+      radial-gradient(ellipse 50% 20% at 25% 55%, #0e1a20 0%, transparent 50%),
+      radial-gradient(ellipse 55% 22% at 70% 45%, #101c24 0%, transparent 48%),
+      radial-gradient(ellipse 40% 35% at 50% 92%, #0a141a 0%, transparent 60%),
+      linear-gradient(175deg, #080e15 0%, #060d13 25%, #050a0f 55%, #070e15 100%);
+  }
+
+  /* ── Ink wash clouds ── */
+  .ink-wash { position: absolute; pointer-events: none; }
+  .ink-1 {
+    width: 280px; height: 180px; top: 2%; left: -5%;
+    background: radial-gradient(ellipse at 30% 40%, rgba(20,34,44,0.55) 0%, transparent 70%);
+    filter: blur(25px);
+  }
+  .ink-2 {
+    width: 220px; height: 250px; top: 45%; right: -8%;
+    background: radial-gradient(ellipse at 60% 50%, rgba(16,28,38,0.45) 0%, transparent 70%);
+    filter: blur(30px);
+  }
+  .ink-3 {
+    width: 350px; height: 160px; bottom: 8%; left: 10%;
+    background: radial-gradient(ellipse at 50% 30%, rgba(18,30,40,0.4) 0%, transparent 70%);
+    filter: blur(28px);
+  }
+
+  /* ── Water ripple rings ── */
+  .ripple {
+    position: absolute; border-radius: 50%;
+    border: 0.5px solid rgba(180,155,115,0.06);
+    pointer-events: none;
+  }
+  .r1 { width: 520px; height: 520px; top: 330px; left: 140px; }
+  .r2 { width: 400px; height: 400px; top: 390px; left: 200px; }
+  .r3 { width: 280px; height: 280px; top: 450px; left: 260px; }
+
+  /* ── Vertical fishing line ── */
+  .line {
+    position: absolute; top: 65px; right: 95px;
+    width: 1px; height: 250px;
+    background: linear-gradient(180deg,
+      rgba(180,155,115,0.05) 0%,
+      rgba(180,155,115,0.30) 40%,
+      rgba(180,155,115,0.42) 55%,
+      rgba(180,155,115,0.18) 80%,
+      rgba(180,155,115,0.03) 100%
+    );
+  }
+  .line::after {
+    content: '';
+    position: absolute; bottom: -4px; left: -3px;
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #d4a853;
+    box-shadow: 0 0 12px 4px rgba(212,168,83,0.35), 0 0 24px 8px rgba(212,168,83,0.15);
+  }
+
+  /* ── Fish-scale amber glints (static) ── */
+  .glint {
+    position: absolute; border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,168,83,0.7) 0%, rgba(212,168,83,0) 70%);
+    pointer-events: none;
+  }
+  .g1 { width: 18px; height: 18px; top: 315px; right: 86px; opacity: 0.55; }
+  .g2 { width: 12px; height: 12px; top: 460px; left: 195px; opacity: 0.4; }
+  .g3 { width: 10px; height: 10px; top: 590px; right: 260px; opacity: 0.35; }
+  .g4 { width: 14px; height: 14px; top: 720px; left: 340px; opacity: 0.3; }
+  .g5 { width: 8px; height: 8px; top: 390px; left: 520px; opacity: 0.45; }
+
+  /* ── Brush-stroke decorative mark (top-right) ── */
+  .brush-mark {
+    position: absolute; top: 45px; right: 60px;
+    width: 70px; height: 70px; opacity: 0.09;
+    border-top: 2px solid #8ab4d8;
+    border-right: 2px solid #8ab4d8;
+    border-radius: 0 6px 0 30px;
+  }
+
+  /* ── Content ── */
+  .content {
+    position: relative; z-index: 10;
+    width: 100%; height: 100%;
+    padding: 58px 72px 50px 72px;
+    display: flex; flex-direction: column;
+  }
+
+  /* ── Brand marker ── */
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 32px;
+    opacity: 0.45;
+  }
+  .brand-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #d4a853;
+    box-shadow: 0 0 8px 3px rgba(212,168,83,0.25);
+  }
+  .brand-label {
+    font-size: 12px; font-weight: 400; letter-spacing: 6px;
+    color: #908878;
+  }
+
+  /* ── Main title ── */
+  .title-zone { margin-bottom: 30px; }
+  .main-title {
+    font-family: 'STKaiti', 'KaiTi', 'SimSun', 'Noto Serif SC', serif;
+    font-size: 56px; font-weight: 700; line-height: 1.25;
+    color: #e6dac8;
+    letter-spacing: 5px;
+    text-shadow: 0 1px 16px rgba(180,155,120,0.12);
+  }
+  .main-title .hi {
+    color: #d4a853;
+    text-shadow: 0 1px 20px rgba(212,168,83,0.2);
+  }
+  .sub {
+    margin-top: 14px;
+    font-family: 'Microsoft YaHei', sans-serif;
+    font-size: 14px; font-weight: 400; letter-spacing: 7px;
+    color: #706858;
+  }
+
+  /* ── Amber divider ── */
+  .div {
+    width: 80px; height: 1.5px;
+    background: linear-gradient(90deg, rgba(212,168,83,0.7), rgba(212,168,83,0));
+    margin: 0 0 28px 0;
+  }
+
+  /* ── Golden phrases ── */
+  .phrases {
+    display: flex; flex-direction: column; gap: 16px;
+    margin-bottom: 36px;
+    padding-left: 18px;
+    border-left: 1.5px solid rgba(212,168,83,0.18);
+  }
+  .phrase {
+    font-size: 16px; font-weight: 400; line-height: 1.55;
+    color: #b0a388;
+    padding-left: 16px; position: relative;
+  }
+  .phrase::before {
+    content: '';
+    position: absolute; left: 0; top: 7px;
+    width: 5px; height: 5px;
+    background: rgba(212,168,83,0.35);
+    border-radius: 50%;
+  }
+
+  /* ── Four steps ── */
+  .steps {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 42px;
+    padding: 22px 16px;
+    background: rgba(255,255,255,0.015);
+    border: 0.5px solid rgba(255,255,255,0.035);
+  }
+  .step {
+    text-align: center; flex: 1;
+    font-size: 14px; font-weight: 600; letter-spacing: 2px;
+    color: #d4a853;
+  }
+  .arr {
+    flex: 0 0 24px; text-align: center;
+    font-size: 16px; color: rgba(180,155,115,0.15);
+    font-weight: 300;
+  }
+
+  /* ── Three iron rules ── */
+  .rules {
+    display: flex; justify-content: center; gap: 36px;
+    margin-bottom: 40px;
+    padding: 14px 0;
+    border-top: 0.5px solid rgba(255,255,255,0.03);
+    border-bottom: 0.5px solid rgba(255,255,255,0.03);
+  }
+  .rule {
+    font-size: 11px; font-weight: 300; letter-spacing: 2px;
+    color: #585048;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    margin-top: auto;
+    display: flex; align-items: center; gap: 8px;
+    opacity: 0.35;
+  }
+  .footer-anchor {
+    font-size: 18px; color: #d4a853;
+  }
+  .footer-text {
+    font-size: 11px; font-weight: 300; letter-spacing: 4px;
+    color: #706858;
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-ocean"></div>
+<div class="ink-wash ink-1"></div>
+<div class="ink-wash ink-2"></div>
+<div class="ink-wash ink-3"></div>
+<div class="ripple r1"></div>
+<div class="ripple r2"></div>
+<div class="ripple r3"></div>
+<div class="line"></div>
+<div class="glint g1"></div>
+<div class="glint g2"></div>
+<div class="glint g3"></div>
+<div class="glint g4"></div>
+<div class="glint g5"></div>
+<div class="brush-mark"></div>
+
+<div class="content">
+  <div class="brand">
+    <div class="brand-dot"></div>
+    <span class="brand-label">创作锚</span>
+  </div>
+
+  <div class="title-zone">
+    <div class="main-title">在正确的<span class="hi">鱼塘</span><br>死磕最肥的<span class="hi">鱼</span></div>
+    <div class="sub">方向锚 · 引擎锚 · 路径锚 · 护栏锚</div>
+  </div>
+
+  <div class="div"></div>
+
+  <div class="phrases">
+    <div class="phrase">鱼少人多时，蛮干不如智取。选对塘、用好饵、死守点。</div>
+    <div class="phrase">钓鱼的勤奋，不是在岸边来回跑，而是在一个点上持续打窝。</div>
+    <div class="phrase">哪怕一千次抛竿都没鱼，第一千零一次有鱼，前面的等待就叫复利。</div>
+  </div>
+
+  <div class="steps">
+    <span class="step">找鱼道</span>
+    <span class="arr">→</span>
+    <span class="step">借竿抛远</span>
+    <span class="arr">→</span>
+    <span class="step">死磕打窝</span>
+    <span class="arr">→</span>
+    <span class="step">稳坐钓鱼台</span>
+  </div>
+
+  <div class="rules">
+    <span class="rule">绝不电鱼炸鱼</span>
+    <span class="rule">绝不频繁换窝</span>
+    <span class="rule">绝不信一夜爆护</span>
+  </div>
+
+  <div class="footer">
+    <span class="footer-anchor">⚓</span>
+    <span class="footer-text">四维锚点创作法 · 沉锚墨迹</span>
+  </div>
+</div>
+
+</body>
+</html>

@@ -4,18 +4,12 @@
 
 ## 使用前提
 
-CLI 从 `~/.openclaw/qclaw/user-info.json` 读取 `accessToken`，请求 API 时使用：
-
-```http
-Authorization: Bearer <accessToken>
-```
-
-请确保该文件存在且 `accessToken` 有效。
+CLI 已内置在技能目录 `./cli/`，通过 FClaw 注入的 `FCLAW_OIDC_TOKEN_URL` 与 `FCLAW_OIDC_TOKEN_SECRET` 从本地 OIDC token 端点获取 access_token。请在 FClaw 中登录，并在技能根目录下执行命令（工作目录须包含 `cli/index.js`）。
 
 ## 命令格式
 
 ```bash
-feihuo ship-resolve-local --query <港口名称或代码>
+node ./cli/index.js ship-resolve-local --query <港口名称或代码>
 ```
 
 ## 参数
@@ -29,19 +23,19 @@ feihuo ship-resolve-local --query <港口名称或代码>
 模糊搜索琶洲港：
 
 ```bash
-feihuo ship-resolve-local --query "琶洲"
+node ./cli/index.js ship-resolve-local --query "琶洲"
 ```
 
 搜索香港港口：
 
 ```bash
-feihuo ship-resolve-local --query "香港"
+node ./cli/index.js ship-resolve-local --query "香港"
 ```
 
 查看帮助：
 
 ```bash
-feihuo ship-resolve-local --help
+node ./cli/index.js ship-resolve-local --help
 ```
 
 ## 输出

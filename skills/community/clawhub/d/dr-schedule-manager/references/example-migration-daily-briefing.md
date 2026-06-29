@@ -24,7 +24,7 @@ Example brittle pattern:
 
 ```json
 {
-  "model": "openai/gpt-5.2",
+  "model": "old-hardcoded-model-example",
   "session": "isolated",
   "wake": "now",
   "to": "channel:1476754066481877155",

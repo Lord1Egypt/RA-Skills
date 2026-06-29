@@ -1,0 +1,112 @@
+{
+  "manifest_version": "1.0",
+  "name": "Platform Monitor",
+  "version": "3.0.0",
+  "description": "AI平台状态监控工具，支持HTTP检测、关键词匹配、响应时间分析、智能建议",
+  "author": "大侠",
+  "homepage": "https://github.com/daxia/platform-monitor",
+  "tools": [
+    {
+      "name": "check_platform",
+      "description": "检测单个或多个平台的可用性状态",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "platforms": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "支付宝A2A",
+                "支付宝AI付",
+                "扣子Bot商店",
+                "百度文心",
+                "闲鱼",
+                "豆包",
+                "Kimi",
+                "通义千问",
+                "天工AI",
+                "智谱AI"
+              ]
+            },
+            "description": "要检测的平台列表，不传则检测全部"
+          },
+          "custom_url": {
+            "type": "string",
+            "description": "自定义监控URL（可选）"
+          }
+        }
+      },
+      "output": {
+        "type": "object",
+        "properties": {
+          "platforms": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "status": { "type": "string", "enum": ["UP", "DOWN", "DEGRADED"] },
+                "responseTimeMs": { "type": "number" },
+                "error": { "type": "string" }
+              }
+            }
+          },
+          "alerts": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "summary": { "type": "string" }
+        }
+      }
+    },
+    {
+      "name": "get_suggestions",
+      "description": "获取平台监控的智能建议",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "platform": {
+            "type": "string",
+            "description": "平台名称"
+          }
+        },
+        "required": ["platform"]
+      }
+    },
+    {
+      "name": "generate_report",
+      "description": "生成每日或每周监控报告",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["daily", "weekly"],
+            "description": "报告类型"
+          },
+          "date": {
+            "type": "string",
+            "description": "指定日期（YYYY-MM-DD），可选"
+          }
+        },
+        "required": ["type"]
+      }
+    },
+    {
+      "name": "export_data",
+      "description": "导出监控历史或趋势分析",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["history", "trends"],
+            "description": "导出类型"
+          }
+        },
+        "required": ["type"]
+      }
+    }
+  ]
+}

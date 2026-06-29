@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openclaw/skills/bilibili-digest/input.schema.json",
+  "title": "Bilibili Digest Input",
+  "description": "Input parameters for bilibili-digest skill",
+  "type": "object",
+  "properties": {
+    "url": {
+      "type": "string",
+      "description": "Single Bilibili video/column URL (supports b23.tv short links)"
+    },
+    "urls": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Multiple Bilibili URLs for batch processing"
+    },
+    "summary_mode": {
+      "type": "string",
+      "enum": ["minimal", "overview", "detailed", "mindmap"],
+      "default": "detailed",
+      "description": "Summary detail level"
+    },
+    "include_transcript": {
+      "type": "boolean",
+      "default": false,
+      "description": "Include full transcript text in output"
+    },
+    "include_danmaku": {
+      "type": "boolean",
+      "default": false,
+      "description": "Include danmaku sentiment analysis"
+    },
+    "export_format": {
+      "type": "string",
+      "enum": ["markdown", "json", "obsidian", "notion", "feishu"],
+      "default": "markdown",
+      "description": "Output format"
+    },
+    "output_dir": {
+      "type": "string",
+      "default": "./bilibili-notes/",
+      "description": "Output directory path"
+    },
+    "cross_video_merge": {
+      "type": "boolean",
+      "default": false,
+      "description": "Merge insights across multiple videos"
+    },
+    "language": {
+      "type": "string",
+      "enum": ["zh-CN", "en-US"],
+      "default": "zh-CN",
+      "description": "Output language"
+    }
+  },
+  "anyOf": [
+    { "required": ["url"] },
+    { "required": ["urls"] }
+  ]
+}

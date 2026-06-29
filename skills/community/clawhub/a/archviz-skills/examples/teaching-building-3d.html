@@ -1,0 +1,293 @@
+<!--
+  案例：云南艺术学院设计学院教学楼结构可视化
+  数据关系：建筑结构 + 楼层功能分布
+  环境：浏览器直接打开 / PPT 嵌入 iframe
+  Brief: 4层教学楼，1F门厅+值班，2F教室，3F办公，4F屋顶
+  Dials: COMPLEXITY=5  DENSITY=4  RESTRAINT=7
+  Stack: Three.js + animejs + OrbitControls (all CDN)
+-->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>设计学院教学楼 · 结构可视化</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f5f5f4; font-family: -apple-system, 'Helvetica Neue', sans-serif; overflow: hidden; }
+  #canvas { width: 100vw; height: 100vh; display: block; }
+  #ui {
+    position: fixed; top: 20px; left: 20px; z-index: 10;
+    display: flex; gap: 6px; flex-direction: column;
+  }
+  .btn {
+    background: #e8e4e0; border: 1px solid #a8a29e; color: #1B365D;
+    padding: 8px 14px; font-size: 13px; cursor: pointer;
+    font-weight: 500; text-align: left;
+    transition: all 0.2s;
+  }
+  .btn:hover { background: #d6d3d1; }
+  .btn.active { background: #002FA7; color: #f5f5f4; border-color: #002FA7; }
+  #info {
+    position: fixed; bottom: 20px; left: 20px; z-index: 10;
+    color: #78716c; font-size: 11px; line-height: 1.6;
+    max-width: 280px;
+  }
+  #floor-label {
+    position: fixed; top: 20px; right: 24px; z-index: 10;
+    font-size: 56px; font-weight: 200; color: #a8a29e;
+    letter-spacing: -0.03em; line-height: 1;
+  }
+  #floor-desc {
+    position: fixed; top: 80px; right: 24px; z-index: 10;
+    font-size: 14px; font-weight: 300; color: #78716c;
+    text-align: right; max-width: 200px;
+  }
+</style>
+</head>
+<body>
+<div id="ui">
+  <button class="btn" onclick="goFloor(3)">4F · 屋顶平台</button>
+  <button class="btn" onclick="goFloor(2)">3F · 办公区</button>
+  <button class="btn" onclick="goFloor(1)">2F · 教学区</button>
+  <button class="btn active" onclick="goFloor(0)">1F · 门厅</button>
+  <button class="btn" onclick="showAll()">全部楼层</button>
+  <button class="btn" onclick="toggleExplode()">分解视图</button>
+</div>
+<div id="floor-label">1F</div>
+<div id="floor-desc">门厅 · 值班室 · 设备间</div>
+<div id="info">
+  设计学院教学楼 · 4层 · 结构可视化<br>
+  鼠标拖拽旋转 · 滚轮缩放 · 点击楼层切换
+</div>
+<canvas id="canvas"></canvas>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
+    "animejs": "https://cdn.jsdelivr.net/npm/animejs@4.4.1/dist/bundles/anime.esm.js"
+  }
+}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { animate } from 'animejs';
+
+// animejs v4 helper
+function tween(target, props) { return animate(target, props); }
+
+// Tokens
+const C = {
+  wall: 0xa8a29e, floor: 0xe8e4e0, accent: 0x002FA7,
+  room: 0xd6d3d1, wood: 0xb8a090, glass: 0xb0c4de,
+  bg: 0xf5f5f4, ground: 0xd6d3d1,
+};
+
+// Scene
+const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), antialias: true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.shadowMap.enabled = true;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(C.bg);
+scene.fog = new THREE.Fog(C.bg, 40, 90);
+
+const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+camera.position.set(18, 14, 20);
+
+const ctrl = new OrbitControls(camera, renderer.domElement);
+ctrl.enableDamping = true;
+ctrl.dampingFactor = 0.05;
+ctrl.minDistance = 5;
+ctrl.maxDistance = 55;
+ctrl.maxPolarAngle = Math.PI / 2 + 0.05;
+ctrl.target.set(0, 4, 0);
+
+// Lights
+scene.add(new THREE.HemisphereLight(C.bg, C.ground, 0.6));
+const sun = new THREE.DirectionalLight(0xfff5e6, 1.0);
+sun.position.set(12, 18, 8);
+sun.castShadow = true;
+sun.shadow.mapSize.set(1024, 1024);
+sun.shadow.camera.near = 0.5;
+sun.shadow.camera.far = 50;
+sun.shadow.camera.left = -18; sun.shadow.camera.right = 18;
+sun.shadow.camera.top = 18; sun.shadow.camera.bottom = -18;
+scene.add(sun);
+scene.add(new THREE.AmbientLight(0xffffff, 0.15));
+
+// Ground
+const gMesh = new THREE.Mesh(
+  new THREE.PlaneGeometry(50, 50),
+  new THREE.MeshStandardMaterial({ color: C.ground, roughness: 1 })
+);
+gMesh.rotation.x = -Math.PI / 2; gMesh.receiveShadow = true;
+scene.add(gMesh);
+const grid = new THREE.GridHelper(50, 50, 0xa8a29e, 0xd6d3d1);
+grid.material.transparent = true; grid.material.opacity = 0.35;
+scene.add(grid);
+
+// Floor plans
+const FH = 3.2, WW = 14, DD = 10, WH = 2.8, WT = 0.15;
+const plans = [
+  { label: '1F', desc: '门厅 · 值班室 · 设备间',
+    rooms: [
+      { x: -5, z: -3, w: 10, d: 6, name: '门厅', c: 0xe8e4e0 },
+      { x: -5, z: 3, w: 4, d: 4, name: '值班室', c: 0xd6d3d1 },
+      { x: -1, z: 3, w: 4, d: 4, name: '设备间', c: 0xc8c4c0 },
+      { x: 3, z: 3, w: 4, d: 4, name: '楼梯', c: 0xb8b4b0 },
+    ]},
+  { label: '2F', desc: '教室 A · 教室 B · 准备室',
+    rooms: [
+      { x: -5, z: -3, w: 6, d: 6, name: '教室 A', c: 0xe4e8f0 },
+      { x: 1, z: -3, w: 6, d: 6, name: '教室 B', c: 0xe4e8f0 },
+      { x: -5, z: 3, w: 4, d: 4, name: '走廊', c: 0xd6d3d1 },
+      { x: -1, z: 3, w: 4, d: 4, name: '准备室', c: 0xd6d3d1 },
+      { x: 3, z: 3, w: 4, d: 4, name: '楼梯', c: 0xb8b4b0 },
+    ]},
+  { label: '3F', desc: '办公室 · 会议室 · 茶水间',
+    rooms: [
+      { x: -5, z: -3, w: 5, d: 6, name: '办公室 A', c: 0xf0f4e0 },
+      { x: 0, z: -3, w: 5, d: 6, name: '办公室 B', c: 0xf0f4e0 },
+      { x: -5, z: 3, w: 3, d: 4, name: '会议室', c: 0xe8e4e0 },
+      { x: -2, z: 3, w: 3, d: 4, name: '茶水间', c: 0xd6d3d1 },
+      { x: 1, z: 3, w: 3, d: 4, name: '走廊', c: 0xd6d3d1 },
+      { x: 4, z: 3, w: 3, d: 4, name: '楼梯', c: 0xb8b4b0 },
+    ]},
+  { label: '4F', desc: '屋顶平台 · 机房',
+    rooms: [
+      { x: -5, z: -3, w: 10, d: 6, name: '屋顶平台', c: 0xd6d3d1 },
+      { x: -5, z: 3, w: 4, d: 4, name: '机房', c: 0xc8c4c0 },
+      { x: 3, z: 3, w: 4, d: 4, name: '楼梯', c: 0xb8b4b0 },
+    ]},
+];
+
+// Build
+const floorGroups = [];
+const wallMat = new THREE.MeshStandardMaterial({ color: C.wall, roughness: 0.8 });
+
+plans.forEach((plan, fi) => {
+  const grp = new THREE.Group();
+  grp.position.y = fi * FH;
+
+  // Slab
+  const slab = new THREE.Mesh(
+    new THREE.BoxGeometry(WW, 0.2, DD),
+    new THREE.MeshStandardMaterial({ color: C.floor, roughness: 0.9 })
+  );
+  slab.receiveShadow = true;
+  grp.add(slab);
+
+  plan.rooms.forEach(r => {
+    // Room floor
+    const rf = new THREE.Mesh(
+      new THREE.BoxGeometry(r.w, 0.05, r.d),
+      new THREE.MeshStandardMaterial({ color: r.c, roughness: 0.95 })
+    );
+    rf.position.set(r.x, 0.12, r.z); rf.receiveShadow = true;
+    grp.add(rf);
+
+    // Walls
+    [[r.w, WH, WT, r.x, WH/2+0.2, r.z - r.d/2],
+     [r.w, WH, WT, r.x, WH/2+0.2, r.z + r.d/2],
+     [WT, WH, r.d, r.x - r.w/2, WH/2+0.2, r.z],
+     [WT, WH, r.d, r.x + r.w/2, WH/2+0.2, r.z]
+    ].forEach(([w,h,d,x,y,z]) => {
+      const wall = new THREE.Mesh(new THREE.BoxGeometry(w,h,d), wallMat);
+      wall.position.set(x,y,z); wall.castShadow = true;
+      grp.add(wall);
+    });
+  });
+
+  scene.add(grp);
+  floorGroups.push(grp);
+});
+
+// Labels
+function mkLabel(text, pos) {
+  const cv = document.createElement('canvas');
+  cv.width = 256; cv.height = 64;
+  const ctx = cv.getContext('2d');
+  ctx.font = '22px -apple-system, sans-serif';
+  ctx.fillStyle = '#1B365D';
+  ctx.textAlign = 'center';
+  ctx.fillText(text, 128, 40);
+  const tex = new THREE.CanvasTexture(cv);
+  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, opacity: 0.75 }));
+  sp.position.copy(pos); sp.scale.set(3, 0.75, 1);
+  return sp;
+}
+plans.forEach((p, fi) => p.rooms.forEach(r => {
+  scene.add(mkLabel(r.name, new THREE.Vector3(r.x, fi * FH + 1.5, r.z)));
+}));
+
+// Navigation
+let curFloor = 0, exploded = false;
+const lbl = document.getElementById('floor-label');
+const desc = document.getElementById('floor-desc');
+
+function updateBtns(idx) {
+  document.querySelectorAll('.btn').forEach((b, i) => {
+    b.classList.toggle('active', i === idx);
+  });
+}
+
+window.goFloor = function(i) {
+  curFloor = i;
+  updateBtns(i);
+  floorGroups.forEach((g, gi) => {
+    g.traverse(c => {
+      if (c.isMesh && c.material) {
+        c.material.transparent = true;
+        tween(c.material, { opacity: gi === i ? 1 : 0.08, duration: 500, easing: 'easeInOutCubic' });
+      }
+    });
+  });
+  const ty = i * FH + 5;
+  tween(camera.position, { x: 15, y: ty + 8, z: 15, duration: 800, easing: 'easeInOutCubic' });
+  tween(ctrl.target, { x: 0, y: ty - 3, z: 0, duration: 800, easing: 'easeInOutCubic' });
+  lbl.textContent = plans[i].label;
+  desc.textContent = plans[i].desc;
+};
+
+window.showAll = function() {
+  updateBtns(4);
+  floorGroups.forEach(g => {
+    g.traverse(c => {
+      if (c.isMesh && c.material) {
+        tween(c.material, { opacity: 1, duration: 500, easing: 'easeInOutCubic' });
+        c.material.transparent = false;
+      }
+    });
+  });
+  tween(camera.position, { x: 18, y: 14, z: 20, duration: 800, easing: 'easeInOutCubic' });
+  tween(ctrl.target, { x: 0, y: 4, z: 0, duration: 800, easing: 'easeInOutCubic' });
+  lbl.textContent = 'ALL';
+  desc.textContent = '全部楼层';
+};
+
+window.toggleExplode = function() {
+  exploded = !exploded;
+  floorGroups.forEach((g, i) => {
+    tween(g.position, { y: exploded ? i * FH * 2 : i * FH, duration: 800, easing: 'easeInOutCubic' });
+  });
+};
+
+// Responsive
+window.addEventListener('resize', () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
+// Render
+(function loop() { requestAnimationFrame(loop); ctrl.update(); renderer.render(scene, camera); })();
+</script>
+</body>
+</html>

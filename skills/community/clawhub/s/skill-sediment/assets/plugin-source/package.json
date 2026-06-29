@@ -1,0 +1,15 @@
+{
+  "name": "@openclaw/skill-sediment",
+  "version": "0.1.0",
+  "private": true,
+  "description": "OpenClaw skill sedimentation plugin — agent-managed skill creation, editing, and security scanning",
+  "type": "module",
+  "dependencies": {
+    "@sinclair/typebox": "0.34.48"
+  },
+  "openclaw": {
+    "extensions": [
+      "./index.ts"
+    ]
+  }
+}

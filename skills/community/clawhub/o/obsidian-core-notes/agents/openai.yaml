@@ -1,0 +1,4 @@
+interface:
+  display_name: "Obsidian Core Notes"
+  short_description: "Maintain core notes, topic synthesis, and Obsidian graph links."
+  default_prompt: "Use $obsidian-core-notes to scan this vault, identify topic-synthesis candidates, and update core notes and indexes."

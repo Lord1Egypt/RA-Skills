@@ -1,0 +1,36 @@
+{
+  "name": "pomelli-marketing-skill",
+  "displayName": "Pomelli AI Brand Marketing Companion",
+  "version": "1.0.0",
+  "description": "Brand marketing companion for turning product context into campaign briefs, brand-book inputs, photoshoot directions, and AI image or video generation prompts.",
+  "triggerKeywords": [
+    "pomelli",
+    "brand marketing",
+    "ai marketing",
+    "brand book",
+    "product photoshoot",
+    "ai video generator",
+    "ai image generator"
+  ],
+  "tags": [
+    "marketing",
+    "brand strategy",
+    "ai video",
+    "ai image",
+    "campaign planning"
+  ],
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "homepage": "https://pomelli.page/",
+  "productPages": [
+    {"name": "Pomelli", "url": "https://pomelli.page/"},
+    {"name": "Photoshoot", "url": "https://pomelli.page/photoshoot"},
+    {"name": "Brand Book", "url": "https://pomelli.page/brand-book"},
+    {"name": "Free Video Generator", "url": "https://pomelli.page/ai/free-video-generator"},
+    {"name": "Free Image Generator", "url": "https://pomelli.page/ai/free-image-generator"},
+    {"name": "GitHub Resources", "url": "https://github.com/eavemma5-tech/pomelli-resources"},
+    {"name": "GitHub Pages", "url": "https://eavemma5-tech.github.io/pomelli-resources/"}
+  ]
+}

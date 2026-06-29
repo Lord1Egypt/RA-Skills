@@ -1,0 +1,19 @@
+# ASCII Gantt Example (for terminal / README, no Mermaid render)
+
+# Project Roadmap - ASCII variant
+# Follows DESIGN.md Gantt patterns: time header, bars with = for duration, | for milestones, aligned columns, legend.
+
+2026-01          2026-02
+Task A    |==========|
+M1        |    *
+Task B             |====|
+Task C                  |===|
+M2                           *
+
+# Legend:
+# |===| = duration bar (proportional to time)
+# *     = milestone
+# Align columns for time scale (use fixed-width font)
+# Categories can use different chars or colors if terminal supports (e.g., [===] for Phase1)
+
+# For complex: combine with mermaid-arc-skills gantt.mmd for editable version.

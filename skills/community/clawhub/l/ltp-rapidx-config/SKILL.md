@@ -1,6 +1,6 @@
 ---
 name: ltp-rapidx-config
-version: 1.0.14
+version: 1.0.15
 description: Use when an agent needs to install or configure RapidX CLI/MCP access, set production LTP credentials, locate the agent workspace MCP config, review integration, discover tools, or run read-only self-checks.
 ---
 

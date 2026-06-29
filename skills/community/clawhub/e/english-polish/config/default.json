@@ -1,0 +1,42 @@
+{
+  "_meta": {
+    "name": "english-polish default configuration",
+    "version": "1.0.0",
+    "note": "Copy this file to user.json and override/add your own rules. User rules are merged on top of defaults."
+  },
+
+  "_version": "1.0.0",
+
+  "detector": {
+    "user_patterns_path": "config/user.json",
+    "scoring": {
+      "native_threshold": 4.5,
+      "acceptable_threshold": 3.5,
+      "low_threshold": 1.5
+    },
+    "severity_bands": {
+      "native": "Native-level",
+      "acceptable": "Minor polish",
+      "polish_needed": "Full polish needed",
+      "rewrite": "Heavy rewrite required"
+    }
+  },
+
+  "polisher": {
+    "user_rules_path": "config/user.json",
+    "phases": {
+      "phase1_enabled": true,
+      "phase2_enabled": true,
+      "phase3_enabled": true
+    }
+  },
+
+  "report": {
+    "diff_max_lines": 80,
+    "include_patterns_before": true,
+    "include_patterns_after": false
+  },
+
+  "user_custom_patterns": [],
+  "user_custom_replacements": []
+}

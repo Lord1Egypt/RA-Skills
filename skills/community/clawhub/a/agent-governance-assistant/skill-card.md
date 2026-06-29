@@ -1,5 +1,5 @@
 ## Description: <br>
-Agent Governance Assistant helps IT risk managers, compliance officers, and enterprise AI leaders inventory AI agents, classify risk, design governance policies, detect shadow AI, and prepare governance reports. <br>
+Helps IT risk managers, compliance officers, and enterprise AI leaders audit AI agent behavior, define governance policies, detect shadow AI, and produce compliance-oriented governance reports. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,30 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-IT risk managers, compliance officers, and enterprise AI leaders use this skill to structure AI agent inventories, compliance gap analysis, shadow AI findings, policy recommendations, and regulatory-style governance reports. <br>
+Enterprise IT, risk, and compliance teams use this skill to structure AI agent inventories, risk classifications, policy gap analysis, shadow AI findings, and governance reports for regulated environments such as financial institutions. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may process sensitive enterprise compliance data such as inventories, logs, endpoint details, or findings. <br>
-Mitigation: Only provide data the user is authorized to process, and avoid including unnecessary sensitive details in prompts or outputs. <br>
-Risk: Generated governance reports or regulatory-style filings may be incomplete or outdated for a specific jurisdiction or institution. <br>
-Mitigation: Treat outputs as advisory drafts and verify current regulatory requirements with official sources or counsel before relying on them. <br>
+Risk: Users may share sensitive enterprise governance details such as agent inventories, data access levels, endpoints, and compliance gaps while using the skill. <br>
+Mitigation: Limit shared inputs to the minimum necessary information, remove secrets and sensitive identifiers where possible, and handle generated reports under the organization's normal data classification rules. <br>
+Risk: Generated regulatory or policy guidance may become inaccurate as governance requirements change. <br>
+Mitigation: Verify regulatory claims against official sources and qualified counsel before relying on outputs for legal, regulatory, or external filing purposes. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/agent-governance-assistant) <br>
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/agent-governance-assistant) <br>
+- [Publisher profile](https://clawhub.ai/user/gechengling) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Configuration, Guidance] <br>
-**Output Format:** [Markdown reports, tables, policy templates, and governance recommendations] <br>
+**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
+**Output Format:** [Markdown reports, policy tables, compliance checklists, and recommended governance controls] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory governance output; users should verify regulatory requirements with official sources or counsel before relying on reports or filings.] <br>
+**Other Properties Related to Output:** [Documentation-only guidance; no executable behavior or hidden data access was identified in security evidence.] <br>
 
 ## Skill Version(s): <br>
-4.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+5.0.0 (source: artifact frontmatter and server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

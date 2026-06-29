@@ -1,0 +1,29 @@
+{
+  "name": "招投标审计工作流",
+  "slug": "audit-bidding-detection",
+  "version": "1.0.0",
+  "description": "围标串标检测全流程：投标人梳理→关联分析→报价分析→时间窗口→文件相似度→资质核查→风险定级→报告",
+  "tags": [
+    "审计",
+    "招投标",
+    "围标串标",
+    "工作流",
+    "采购审计"
+  ],
+  "category": "审计业务",
+  "author": "融策审计",
+  "license": "MIT",
+  "files": [
+    "workflow.yaml",
+    "SKILL.md"
+  ],
+  "dependencies": {
+    "scripts": [
+      "audit_workflow.py",
+      "audit_router.py",
+      "pipeline_engine.py"
+    ],
+    "python": ">=3.10"
+  },
+  "published_at": "2026-06-20T11:03:25.284718"
+}

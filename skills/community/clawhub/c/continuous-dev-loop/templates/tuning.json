@@ -1,0 +1,7 @@
+{
+  "maxRetries": 2,
+  "notifyOnAdvisory": true,
+  "precisionMode": "advisory",
+  "reviewOnHighFinding": true,
+  "allowHooks": false
+}

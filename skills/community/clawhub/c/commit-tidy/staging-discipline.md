@@ -61,3 +61,42 @@ See the user-local `~/.claude/skills/cleanup/data/failed-attempts.md` HOT entry 
 - `soft-reset-amend` — when multiple wrong commits need a soft-reset re-stage cycle
 - `security-scan` — pre-commit secret scan for PUBLIC repos (runs AFTER staging-discipline gate passes)
 - `message-discipline` — commit-message conventions once the staged set is verified
+
+---
+
+## Branch state check before starting a new commit (HARD STOP)
+
+**Before committing a new change (or presenting commit options via AskUserQuestion), always check whether the current branch has uncommitted changes from other tasks.** If other-task changes are mixed on a shared branch (main/master/develop), the commit may conflict with the other task's intent, or the push may cause conflict/rollback. When detected, **split into a worktree or create a new branch first**.
+
+### Don't / Do
+
+| # | Don't | Do |
+|---|-------|-----|
+| 1 | Right after Edit, present commit-method AskUserQuestion (PR branch / push to master / hold) immediately | **Before** presenting commit options, run `git status` — if other-task changes are detected, include a worktree-split option |
+| 2 | Current branch is main/master/develop yet ignore unstaged/staged other changes and run `git add <new-file>` | Use `git status` to check other changes → if they belong to another task, `/git-repo` worktree-split → commit inside the new worktree |
+| 3 | Assume "only my staged changes matter, other changes are unrelated" | The same push may carry other unpushed commits, and working-directory changes from another task may unintentionally affect the next task |
+| 4 | Omit "worktree split" from the AskUserQuestion commit options list | If the branch is main/master/develop and ≥1 change exists, the "worktree split" option is mandatory in the list |
+| 5 | Push the new commit while leaving the other task's unstaged changes in place | Check the other task's intent (report to user) → split via worktree or as a separate task |
+| 6 | **Place "create new worktree" as option #1 / Recommended in the worktree-split option list** (when reusable candidates exist) | **If 1+ inactive worktree candidates exist, place "rename and reuse" as option #1 / Recommended**. New creation goes to option #2 or lower. See `/git-repo` "Recommended placement rule" table |
+
+### Self-check (every time before presenting commit options)
+
+1. `git -C <repo> status --short` to list changed files
+2. `git -C <repo> branch --show-current` to identify current branch
+3. Current branch is main/master/develop AND changes ≥ 2 (mine + other) → **worktree split is mandatory**
+4. Only my single change AND branch is PR/feature → commit directly is OK
+5. If there are unpushed commits, check `git log @{u}..HEAD --oneline` — if they include another task's commits, plan a separate push strategy
+
+### Worktree-split decision tree
+
+```text
+git status (change list)
+  ├─ Only my single change, branch = PR/feature → commit directly
+  ├─ Mine + other-task, branch = main/master/develop → /git-repo worktree split mandatory
+  ├─ Only mine, branch = main/master/develop → present both "create PR branch" and "split into worktree + create PR branch"
+  └─ Another task in progress on a PR branch → leave it alone. Return to main and create a new worktree
+```
+
+### Failure case
+
+See `~/.claude/skills/cleanup/data/failed-attempts.md` HOT entry for "worktree split option missing in commit-method ask" (Makefile environment targets case, AskUserQuestion presented commit options without a worktree-split option and without pre-commit `git status` check).

@@ -1,0 +1,16 @@
+{
+  "name": "time-guru",
+  "version": "1.0.0",
+  "description": "Natural language time tracking with smart activity classification, multi-dimensional reports, productivity analytics, and billing. Use when tracking work hours, analyzing time usage, generating productivity reports, or calculating billable time.",
+  "keywords": [
+    "time-tracking",
+    "productivity",
+    "time-management",
+    "billing",
+    "analytics",
+    "natural-language",
+    "report"
+  ],
+  "author": "Haidong + AI Agents",
+  "license": "MIT-0"
+}

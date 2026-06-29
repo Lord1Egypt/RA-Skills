@@ -1,5 +1,5 @@
 ## Description: <br>
-Identifies limb tremors, convulsions, stiffness, and gait abnormalities in video to support home risk monitoring for people with Parkinson's disease or epilepsy. <br>
+Identifies abnormal behaviors such as limb tremors, convulsions, stiffness, and gait abnormalities through video recognition to support home risk monitoring for patients with chronic conditions. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,32 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and care teams use this skill to submit home-monitoring video or image inputs for Parkinson's and epilepsy behavior analysis and to retrieve historical behavior-recognition reports. Results are assistive monitoring outputs and do not replace professional medical diagnosis or clinician judgment. <br>
+External users and care-support workflows use this skill to submit monitoring videos, images, or media URLs for cloud analysis of tremors, convulsions, stiffness, gait abnormalities, and related report history. Results are auxiliary monitoring information and do not replace professional medical diagnosis or clinical judgment. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Sensitive patient or household video and a user identifier may be sent to the publisher's cloud service. <br>
-Mitigation: Use only with clear consent from people in the footage, submit the minimum necessary media, and install only if the publisher cloud service is acceptable for the data. <br>
-Risk: The security review flags under-disclosed account, token, and report-history behavior. <br>
-Mitigation: Review bundled configuration before deployment, remove or replace shared api-key or open-id values, and use dedicated credentials for production use. <br>
-Risk: Health-oriented analysis output may be mistaken for clinical diagnosis. <br>
-Mitigation: Treat results as assistive monitoring information and require professional medical review for diagnosis, treatment changes, or urgent care decisions. <br>
+Risk: The skill sends patient videos, video URLs, identifiers, and report queries to the lifeemergence cloud service. <br>
+Mitigation: Use only with patient consent, a clear privacy and retention agreement, and media that is appropriate to disclose to the service provider. <br>
+Risk: The skill may create or reuse a local identity database containing authentication tokens. <br>
+Mitigation: Run it in a controlled workspace, restrict access to local storage, and review token lifecycle and cleanup expectations before installation. <br>
+Risk: The security verdict is suspicious because sensitive health media and identity binding are handled automatically with limited user-facing consent or control. <br>
+Mitigation: Review the security summary and guidance before installing, and avoid identifiable health footage unless the deployment has explicit consent and compliance controls. <br>
 
 
 ## Reference(s): <br>
-- [Parkinson's and Epilepsy Behavior Recognition API Documentation](references/api_doc.md) <br>
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-parkinson-epilepsy-behavior-recognition-analysis) <br>
+- [API documentation](references/api_doc.md) <br>
+- [Analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, configuration] <br>
-**Output Format:** [Markdown or JSON text containing structured behavior-recognition reports, historical report lists, and command examples.] <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown summaries and tables, JSON-style analysis responses, report links, and shell commands for analysis or report-history queries.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Supports local file or public URL inputs, requires an open-id for analysis and history queries, and supports optional file output.] <br>
+**Other Properties Related to Output:** [Accepts local image or video paths and public media URLs; documented media formats include jpg, jpeg, png, mp4, avi, and mov with a 10 MB maximum.] <br>
 
 ## Skill Version(s): <br>
-1.0.4 (source: SKILL.md frontmatter and server release metadata) <br>
+1.0.5 (source: server release evidence; artifact frontmatter reports 1.0.6) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

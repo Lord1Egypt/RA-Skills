@@ -1,0 +1,37 @@
+{
+  "slug": "xiaohongshu-booster",
+  "name": "Xiaohongshu Note Booster (小红书爆款笔记生成器)",
+  "version": "1.0.0",
+  "author": "ClawHub Community",
+  "category": "content-creation",
+  "description": "Generate viral Xiaohongshu (Little Red Book) notes from a product, scene, or topic — get titles, body copy, hashtags, and cover-image suggestions, all optimized for the Chinese social commerce platform.",
+  "license": "MIT-0",
+  "model": "agent",
+  "tags": [
+    "xiaohongshu",
+    "little-red-book",
+    "content-creation",
+    "copywriting",
+    "social-media",
+    "viral-content",
+    "chinese-marketing",
+    "种草",
+    "小红书",
+    "文案生成"
+  ],
+  "homepage": "https://clawhub.ai/skills/xiaohongshu-booster",
+  "created": "2026-06-16",
+  "updated": "2026-06-16",
+  "icon": "📕",
+  "keywords": [
+    "xiaohongshu copy",
+    "xhs title generator",
+    "xiaohongshu note",
+    "viral xhs post",
+    "little red book content",
+    "小红书文案",
+    "小红书标题生成",
+    "小红书笔记生成",
+    "小红书爆款"
+  ]
+}

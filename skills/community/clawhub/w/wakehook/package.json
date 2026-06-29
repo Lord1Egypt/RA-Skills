@@ -1,0 +1,66 @@
+{
+  "name": "wakehook",
+  "version": "1.1.0",
+  "description": "A self-hosted webhook that fires when you wake up. Your sleep data in, a signed user.awake event out.",
+  "type": "module",
+  "module": "src/index.ts",
+  "license": "MIT",
+  "author": "Robbe Verhelst",
+  "homepage": "https://github.com/robbeverhelst/wakehook#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robbeverhelst/wakehook.git"
+  },
+  "bugs": {
+    "url": "https://github.com/robbeverhelst/wakehook/issues"
+  },
+  "keywords": [
+    "webhook",
+    "sleep",
+    "wake",
+    "google-health",
+    "fitbit",
+    "home-automation",
+    "self-hosted",
+    "bun",
+    "hono",
+    "openclaw"
+  ],
+  "engines": {
+    "bun": ">=1.3"
+  },
+  "bin": {
+    "wakehook": "./src/index.ts",
+    "wakehook-auth": "./src/cli/auth.ts"
+  },
+  "files": [
+    "src",
+    "config.example.json",
+    ".env.example",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "start": "bun src/index.ts",
+    "auth": "bun src/cli/auth.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "hono": "^4.6.14"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^7.0.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/npm": "^13.1.0",
+    "@types/bun": "latest",
+    "semantic-release": "^25.0.5",
+    "typescript": "^6.0.0"
+  }
+}

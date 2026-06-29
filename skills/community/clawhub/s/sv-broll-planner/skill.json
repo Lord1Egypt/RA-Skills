@@ -1,0 +1,27 @@
+{
+  "slug": "sv-broll-planner",
+  "name": "Short Video B-Roll & Cutaway Planner",
+  "description": "Plans supplementary footage (B-roll) and cutaway shots to enhance visual interest, cover edits, and strengthen storytelling in short videos.",
+  "type": "descriptive",
+  "requires_api": false,
+  "readiness": "stable",
+  "tags": [
+    "video",
+    "b-roll",
+    "cutaway",
+    "editing",
+    "visual",
+    "descriptive"
+  ],
+  "trigger_keywords": [
+    "b-roll",
+    "cutaway",
+    "supplementary footage",
+    "cover cuts",
+    "b-roll shot list",
+    "visual variety"
+  ],
+  "max_files": 4,
+  "language": "en",
+  "safety": "document-only informational guidance"
+}

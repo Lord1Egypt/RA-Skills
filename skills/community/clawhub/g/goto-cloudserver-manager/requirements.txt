@@ -1,0 +1,42 @@
+# 阿里云 SDK
+alibabacloud-ecs20140526>=4.0.0
+alibabacloud-tea-openapi>=0.3.0
+
+# 腾讯云 SDK
+tencentcloud-sdk-python-cvm>=3.0.0
+tencentcloud-sdk-python-tat>=3.0.0
+tencentcloud-sdk-python-vpc>=3.0.0
+
+# 华为云 SDK
+huaweicloudsdkcore>=3.1.0
+huaweicloudsdkecs>=3.1.0
+huaweicloudsdkvpc>=3.1.0
+
+# SSH 执行器
+paramiko>=3.4.0
+
+# WinRM 执行器
+pywinrm>=0.4.3
+requests-ntlm>=1.2.0
+
+# 配置与序列化
+pyyaml>=6.0.1
+python-dotenv>=1.0.0
+pydantic>=2.5.0
+
+# 模板引擎
+jinja2>=3.1.2
+
+# 安全/凭证
+cryptography>=41.0.0
+
+# 日志
+structlog>=23.0.0
+
+# 开发与测试
+pytest>=7.4.0
+pytest-asyncio>=0.23.0
+pytest-mock>=3.12.0
+black>=23.0.0
+ruff>=0.1.0
+mypy>=1.7.0

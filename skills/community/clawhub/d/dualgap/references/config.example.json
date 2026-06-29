@@ -1,0 +1,5 @@
+{
+  "base_url": "https://example.com/compatible-mode/v1",
+  "api_key": "put-your-api-key-here",
+  "model": "your_model_name"
+}

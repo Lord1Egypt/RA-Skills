@@ -36,7 +36,7 @@ def main():
         print("错误：n 必须大于等于 1", file=sys.stderr)
         sys.exit(1)
 
-    url = BASE_URL + "/data/api/v1/market/data/time/get-nth-trade-date?" + urllib.parse.urlencode({"n": args.n})
+    url = BASE_URL + "/gateway/api/v1/market/data/time/get-nth-trade-date?" + urllib.parse.urlencode({"n": args.n})
     req = urllib.request.Request(url, method="GET")
 
     try:

@@ -1,0 +1,67 @@
+{
+  "description": "Topic recommendation templates by domain and content type.",
+  "version": "1.0.0",
+  "content_types": [
+    {
+      "id": "tutorial",
+      "label": "教程 (Tutorial)",
+      "difficulty": "Moderate",
+      "effort": "3-6 hours",
+      "structure": "Step-by-step guide with code/screenshots",
+      "best_for": ["tech", "AI", "design"]
+    },
+    {
+      "id": "experience",
+      "label": "经验分享 (Experience)",
+      "difficulty": "Easy",
+      "effort": "1-2 hours",
+      "structure": "Personal narrative with actionable takeaways",
+      "best_for": ["career", "psychology", "finance"]
+    },
+    {
+      "id": "analysis",
+      "label": "深度分析 (Deep Analysis)",
+      "difficulty": "Hard",
+      "effort": "1-2 days",
+      "structure": "Data-driven with multiple perspectives",
+      "best_for": ["finance", "tech", "AI"]
+    },
+    {
+      "id": "comparison",
+      "label": "对比评测 (Comparison)",
+      "difficulty": "Moderate",
+      "effort": "4-8 hours",
+      "structure": "Side-by-side with criteria and scores",
+      "best_for": ["tech", "AI", "finance"]
+    },
+    {
+      "id": "hot_take",
+      "label": "热点评论 (Hot Take)",
+      "difficulty": "Easy",
+      "effort": "1-3 hours",
+      "structure": "Quick publish on trending topics",
+      "best_for": ["career", "psychology", "finance"]
+    }
+  ],
+  "cold_start_roadmap": {
+    "phase_1": {
+      "name": "Quick Wins",
+      "count": 3,
+      "strategy": "Pick low-competition, high-emotion topics. Write experience-style (1-2 hours each).",
+      "goal": "Build first 100 followers"
+    },
+    "phase_2": {
+      "name": "Authority Builders",
+      "count": 4,
+      "strategy": "Data-driven deep dives on medium-gap topics. Include citations and personal data.",
+      "goal": "Cross 500 followers"
+    },
+    "phase_3": {
+      "name": "Traffic Magnets",
+      "count": 3,
+      "strategy": "Ride hot list trends with unique angles. Speed to publish within 6 hours of trend onset.",
+      "goal": "Single answer 1K+ upvotes"
+    }
+  },
+  "topic_generation_prompt": "Given domain {domain} and current Zhihu hot list, generate 10 topic ideas. For each: question title, suggested angle, content type, competition level, estimated effort."
+}

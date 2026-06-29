@@ -1,0 +1,123 @@
+#!/usr/bin/env node
+// agentmetal — thin CLI over the AgentMetal API.
+//
+//   agentmetal up --plan nano --days 7 [--ssh "ssh-ed25519 …"]
+//   agentmetal status <id>
+//   agentmetal extend <id> --days 7
+//   agentmetal down <id>
+//
+// Paid verbs (up, extend) sign USDC over x402 v2 when WALLET_PRIVATE_KEY is set:
+//   WALLET_PRIVATE_KEY  0x… EVM key holding USDC on Base
+//   AGENTMETAL_BASE_URL default https://api.agentmetal.dev
+//   AGENTMETAL_NETWORK  default eip155:8453
+//   AGENTMETAL_MAX_USDC default 50  (per-request spend cap)
+//   AGENTMETAL_API_KEY  am_live_… (required for `down`)
+//
+// Deps: @x402/fetch, @x402/evm, viem (declared by the skill package).
+
+const BASE = (process.env.AGENTMETAL_BASE_URL || 'https://api.agentmetal.dev').replace(/\/+$/, '');
+const NETWORK = process.env.AGENTMETAL_NETWORK || 'eip155:8453';
+const MAX_USDC = Number(process.env.AGENTMETAL_MAX_USDC || '50');
+
+function parseFlags(argv) {
+  const out = { _: [] };
+  for (let i = 0; i < argv.length; i++) {
+    const a = argv[i];
+    if (a.startsWith('--')) out[a.slice(2)] = argv[++i];
+    else out._.push(a);
+  }
+  return out;
+}
+
+async function payFetch() {
+  const pk = process.env.WALLET_PRIVATE_KEY;
+  if (!pk) return globalThis.fetch;
+  const { wrapFetchWithPaymentFromConfig } = await import('@x402/fetch');
+  const { ExactEvmScheme } = await import('@x402/evm');
+  const { privateKeyToAccount } = await import('viem/accounts');
+  const account = privateKeyToAccount(pk);
+  const maxAtomic = BigInt(Math.round(MAX_USDC * 1e6));
+  const selectWithinCap = (_v, accepts) => {
+    const a = accepts.find((r) => BigInt(r.amount) <= maxAtomic) || accepts[0];
+    if (!a) throw new Error('the 402 offered no payment requirements');
+    if (BigInt(a.amount) > maxAtomic) throw new Error(`payment ${a.amount} exceeds the ${MAX_USDC} USDC cap`);
+    return a;
+  };
+  return wrapFetchWithPaymentFromConfig(globalThis.fetch, {
+    schemes: [{ network: NETWORK, client: new ExactEvmScheme(account) }],
+    paymentRequirementsSelector: selectWithinCap,
+  });
+}
+
+function authHeaders() {
+  const h = { 'content-type': 'application/json' };
+  if (process.env.AGENTMETAL_API_KEY) h.authorization = `Bearer ${process.env.AGENTMETAL_API_KEY}`;
+  return h;
+}
+
+async function readBody(res) {
+  const t = await res.text();
+  try { return JSON.parse(t); } catch { return t; }
+}
+
+async function up(flags) {
+  const plan = flags.plan || 'nano';
+  const days = Number(flags.days || '7');
+  const body = { plan, days };
+  if (flags.ssh) body.ssh_key = flags.ssh;
+  body.via = 'clawhub-cli';
+  const fetch = await payFetch();
+  const res = await fetch(`${BASE}/v1/servers`, { method: 'POST', headers: authHeaders(), body: JSON.stringify(body) });
+  const data = await readBody(res);
+  if (res.status === 402) throw new Error('payment required — set WALLET_PRIVATE_KEY with USDC on Base');
+  if (!res.ok) throw new Error(`provision failed (HTTP ${res.status}): ${data.message || JSON.stringify(data)}`);
+  console.log(`✓ ${data.id} → ${data.ipv4}  ssh: ${data.ssh}  expires ${data.expires_at}`);
+}
+
+async function status(flags) {
+  const id = flags._[0];
+  if (!id) throw new Error('usage: agentmetal status <id>');
+  const res = await globalThis.fetch(`${BASE}/v1/servers/${encodeURIComponent(id)}`, { headers: authHeaders() });
+  const data = await readBody(res);
+  if (!res.ok) throw new Error(`status failed (HTTP ${res.status}): ${data.message || JSON.stringify(data)}`);
+  console.log(JSON.stringify(data, null, 2));
+}
+
+async function extend(flags) {
+  const id = flags._[0];
+  const days = Number(flags.days || '7');
+  if (!id) throw new Error('usage: agentmetal extend <id> --days 7');
+  const fetch = await payFetch();
+  const res = await fetch(`${BASE}/v1/servers/${encodeURIComponent(id)}/extend`, { method: 'POST', headers: authHeaders(), body: JSON.stringify({ days }) });
+  const data = await readBody(res);
+  if (res.status === 402) throw new Error('payment required — set WALLET_PRIVATE_KEY with USDC on Base');
+  if (!res.ok) throw new Error(`extend failed (HTTP ${res.status}): ${data.message || JSON.stringify(data)}`);
+  console.log(`✓ ${data.id} extended → expires ${data.expires_at}`);
+}
+
+async function down(flags) {
+  const id = flags._[0];
+  if (!id) throw new Error('usage: agentmetal down <id>');
+  if (!process.env.AGENTMETAL_API_KEY) throw new Error('down requires an account key: set AGENTMETAL_API_KEY (am_live_…)');
+  const res = await globalThis.fetch(`${BASE}/v1/servers/${encodeURIComponent(id)}`, { method: 'DELETE', headers: authHeaders() });
+  const data = await readBody(res);
+  if (!res.ok) throw new Error(`down failed (HTTP ${res.status}): ${data.message || JSON.stringify(data)}`);
+  console.log(`✓ ${data.id} ${data.status}`);
+}
+
+const VERBS = { up, status, extend, down };
+
+async function main() {
+  const [verb, ...rest] = process.argv.slice(2);
+  const fn = VERBS[verb];
+  if (!fn) {
+    console.error('usage: agentmetal <up|status|extend|down> [args]');
+    process.exit(2);
+  }
+  await fn(parseFlags(rest));
+}
+
+main().catch((err) => {
+  console.error(`✗ ${err.message}`);
+  process.exit(1);
+});

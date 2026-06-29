@@ -58,10 +58,11 @@ class Dao(BaseDao):
     def get_db_path(self, db_path):
         import os
 
-        cwd = os.getcwd()
-        workspace = os.path.dirname(cwd)
-        workspace = os.path.dirname(workspace)
-        workspace = os.environ.get('OPENCLAW_WORKSPACE', workspace)
+        workspace = os.environ.get('OPENCLAW_WORKSPACE')
+        if not workspace:
+            # dao.py 位于: <workspace>/skills/smyx_common/scripts/dao.py
+            # 不再依赖 os.getcwd()，避免不同启动目录写入不同的 smyx-common-claw.db。
+            workspace = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
         parent_dir = os.path.join(workspace, "data")
         FileUtil.mkdir(parent_dir)
         db_path = os.path.join(parent_dir, db_path)
@@ -132,9 +133,19 @@ class Dao(BaseDao):
             )
 
         except Exception as e:
-            return self.update(
+            updated = self.update(
                 model
             )
+            if updated:
+                return updated
+
+            username = getattr(model, "username", None)
+            if username:
+                column_names = self.__model__.__table__.columns.keys()
+                update_data = {key: getattr(model, key) for key in column_names if key != "username"}
+                return self.update_by_username(username, **update_data)
+
+            return None
 
     def add(self, model) -> T:
         """
@@ -362,6 +373,28 @@ class UserDao(Dao):
     """用户Dao，继承BaseDao即可拥有所有基础CRUD功能"""
     __model__ = User
     __tablename__ = "users"
+
+    def get_first_default_user(self, prefix: str = "User_", username_length: int = 11) -> Optional[User]:
+        """查询第一个系统自动分配的默认用户。
+
+        默认用户名规则：以 ``User_`` 开头且总长度为 11，例如 ``User_ab12cd``。
+        优先复用最早创建的未删除记录，保证未显式传入 open-id 时始终使用同一个缺省用户。
+        """
+        session = self.get_session()
+        try:
+            return session.query(self.__model__).filter(
+                self.__model__.username.like(f"{prefix}%"),
+                func.length(self.__model__.username) == username_length,
+                or_(
+                    self.__model__.del_flag == 0,
+                    self.__model__.del_flag.is_(None)
+                )
+            ).order_by(
+                self.__model__.create_time.asc(),
+                self.__model__.id.asc()
+            ).first()
+        finally:
+            session.close()
 
 
 if __name__ == "__main__":

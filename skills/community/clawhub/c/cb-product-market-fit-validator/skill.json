@@ -1,0 +1,30 @@
+{
+  "name": "Cross-border Product-Market Fit Validator",
+  "slug": "cb-product-market-fit-validator",
+  "version": "1.0.1",
+  "description": "Validate product demand in any foreign market before investing in localization, hiring, or launch. Get assumption maps, low-cost experiments, evidence scorecards, and go/no-go decisions — install and run your first PMF test in under 30 seconds.",
+  "author": "Pearl-led OpenClaw team",
+  "tags": [
+    "cross-border",
+    "overseas",
+    "global-expansion",
+    "experimentation",
+    "pmf",
+    "go-to-market"
+  ],
+  "trigger_keywords": [
+    "product market fit overseas",
+    "validate foreign market demand",
+    "international PMF test",
+    "overseas MVP validation",
+    "market demand experiment"
+  ],
+  "language": "en",
+  "type": "descriptive",
+  "category": "cross-border-expansion",
+  "requires_api": false,
+  "requires_code_execution": false,
+  "outputs": "structured descriptive framework",
+  "readiness": "stable",
+  "safety": "Validation frameworks reduce uncertainty but cannot guarantee product success or investment outcomes."
+}

@@ -171,6 +171,8 @@ Default inference rules:
 
 ## 2. Trigger Modes and Lifecycle
 
+When Profile updates come from files, websites, web research, spreadsheets, PDFs, or another skill, first create a `profile_update_digest` with source-labeled candidate fields, rejected fields, and save scope. `agent_inferred`, `external_observed`, and imported values require explicit save confirmation before `okki-state.js` writes them as reusable defaults.
+
 ### Mode 1: Lite Onboarding
 
 Run Lite Onboarding only when the user asks to save or set up reusable Merchant Profile defaults, or when they explicitly want guided profile setup. The user must already have passed the normal API key setup flow before API calls are attempted; onboarding itself does not bypass authentication.

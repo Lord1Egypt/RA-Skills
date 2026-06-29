@@ -1,0 +1,4 @@
+interface:
+  display_name: "DESIGN.md UI Designer"
+  short_description: "High-end DESIGN.md landings, CRO media, SEO hubs, and UI gates"
+  default_prompt: "Use $design-md-ui-designer to create or apply a high-end DESIGN.md-backed Cloudflare Pages marketing landing system, define traffic source/share moment/trust receipts, create unique gpt-image-2-2026-04-21 raster assets when useful, verify responsive UI/SEO/policy pages, and block final delivery on the critic score gate."

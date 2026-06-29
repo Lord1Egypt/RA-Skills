@@ -28,6 +28,8 @@ REQUIRED_PROMPT_ISSUES = {
     "source_order_under_version_drift",
     "delivery_window_not_trigger",
     "secret_redaction_under_prompt",
+    "execution_authorization_gate",
+    "platform_scan_check",
 }
 
 

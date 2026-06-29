@@ -1,0 +1,7 @@
+interface:
+  display_name: "Word DOCX Formatting Repair"
+  short_description: "Repair Word styles, numbering, sections, comments, and OOXML issues."
+  default_prompt: "Use $word-docx-formatting-repair-helper to diagnose and repair this DOCX formatting problem."
+
+policy:
+  allow_implicit_invocation: true

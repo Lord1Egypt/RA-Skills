@@ -1,0 +1,68 @@
+{
+  "id": "fec-web-video-presentation",
+  "name": "网页视频演示",
+  "category": "design-ui",
+  "tags": [
+    "web-video",
+    "presentation",
+    "recording",
+    "script-outline",
+    "react",
+    "vite"
+  ],
+  "summary": "Turn articles, scripts, lessons, and product demos into recordable 16:9 step-driven web presentations with theme tokens and recording guidance.",
+  "version": "2.7.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "design-ui",
+    "web-video",
+    "presentation",
+    "recording",
+    "script-outline",
+    "react",
+    "vite"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when turning an article, talk script, lesson, product demo, or narrated explanation into a recordable 16:9 web presentation with step-driven scenes, optional narration alignment, theme tokens, and screen-recording guidance; Chinese triggers include 网页视频, 动态演示, 口播稿转视频, 可录屏演示, 16:9 演示.",
+  "source": "skills/fec-web-video-presentation",
+  "references": [
+    "data/starter-themes.json",
+    "references/chapter-craft.md",
+    "references/content-plan.md",
+    "references/recording-and-audio.md",
+    "references/theme-system.md",
+    "scripts/create-video-presentation.mjs"
+  ],
+  "relations": {
+    "relatedSkills": [
+      "fec-ui-design",
+      "fec-image-generation",
+      "fec-motion-interaction",
+      "fec-responsive-layout",
+      "fec-accessibility-check"
+    ],
+    "boundaryWorkflows": [
+      "Use a UI design workflow for product-specific visual direction, asset strategy, anti-generic design, and visual QA of scenes.",
+      "Use image generation when the presentation needs custom raster assets, diagrams, storyboard frames, or generated visual references.",
+      "Use motion and responsive layout workflows when scene transitions, reduced-motion behavior, viewport scaling, or recording stability need deeper treatment."
+    ],
+    "capabilityTags": [
+      "web-video",
+      "presentation",
+      "recording",
+      "script-outline",
+      "step-driven-stage"
+    ]
+  }
+}

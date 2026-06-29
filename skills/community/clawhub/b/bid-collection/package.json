@@ -1,0 +1,56 @@
+{
+  "name": "bid-collection",
+  "version": "1.0.0",
+<<<<<<< HEAD
+  "description": "招投标商机采集Skill — 7×24自动监控全网招投标公开信息，智能筛选适配公司业务的高价值商机线索",
+=======
+  "description": "Tender & Procurement Lead Collection Skill — 24/7 automated monitoring of public tender/procurement notices, intelligently filtering high-value leads matching your business",
+>>>>>>> 5210fda (Initial release: bid-collection v1.0.0 — Tender & Procurement Lead Collection Skill for Claude Code)
+  "keywords": [
+    "claude-code",
+    "claude-code-skill",
+    "bid",
+<<<<<<< HEAD
+    "procurement",
+    "招投标",
+    "采购",
+    "商机",
+    "线索采集",
+    "tender"
+  ],
+  "license": "MIT",
+=======
+    "tender",
+    "procurement",
+    "lead-collection",
+    "business-intelligence",
+    "government-procurement",
+    "SOE-procurement"
+  ],
+  "homepage": "https://github.com/Cryptocxf/bid-collection#readme",
+  "bugs": {
+    "url": "https://github.com/Cryptocxf/bid-collection/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Cryptocxf/bid-collection.git"
+  },
+  "license": "MIT",
+  "author": "Cryptocxf",
+>>>>>>> 5210fda (Initial release: bid-collection v1.0.0 — Tender & Procurement Lead Collection Skill for Claude Code)
+  "files": [
+    "SKILL.md",
+    ".claude-plugin/plugin.json",
+    "references/*.md"
+  ],
+  "claude-code": {
+    "skill": true,
+    "name": "bid-collection",
+<<<<<<< HEAD
+    "title": "招投标商机采集",
+=======
+    "title": "Tender & Procurement Lead Collection",
+>>>>>>> 5210fda (Initial release: bid-collection v1.0.0 — Tender & Procurement Lead Collection Skill for Claude Code)
+    "icon": "🎯"
+  }
+}

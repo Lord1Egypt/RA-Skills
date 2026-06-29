@@ -1,0 +1,11 @@
+{
+  "name": "inline",
+  "label": "内联高亮",
+  "description": "在新版文档中直接标注增删改",
+  "layout": "single",
+  "diff_level": "word",
+  "show_line_numbers": true,
+  "features": ["inline_highlight", "strikethrough_removed", "underline_added"],
+  "color_scheme": "diff-default",
+  "version_label": "新版"
+}

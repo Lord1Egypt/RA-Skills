@@ -1,0 +1,19 @@
+{
+  "markdown": {
+    "extension": ".md",
+    "include_frontmatter": true,
+    "include_timestamps": true,
+    "include_attribution": true
+  },
+  "obsidian": {
+    "extension": ".md",
+    "wikilinks": true,
+    "tags": ["bilibili/digest"],
+    "template": "default"
+  },
+  "json": {
+    "extension": ".json",
+    "indent": 2,
+    "ensure_ascii": false
+  }
+}

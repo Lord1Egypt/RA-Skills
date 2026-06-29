@@ -58,7 +58,7 @@ Maton proxies requests to `googleads.googleapis.com` and automatically injects O
 
 **NPM:**
 ```bash
-npm install -g @maton-ai/cli
+npm install -g @maton/cli
 ```
 
 **Homebrew:**

@@ -11,36 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and agents use this skill to operate the Clipcat CLI for TikTok Shop market research, viral video replication, product video generation, image generation, video analysis, downloads, and asynchronous task tracking. <br>
+Developers, operators, and e-commerce marketers use this skill to operate the Clipcat CLI for TikTok Shop research, AI video and image generation, viral-video replication, breakdown analysis, downloads, and async task tracking. <br>
 
 ### Deployment Geography for Use: <br>
-Global <br>
+Global, subject to Clipcat service availability and supported marketplace region flags. <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill downloads and runs a third-party Clipcat CLI binary. <br>
-Mitigation: Install only when the user trusts Clipcat as the provider and the versioned download source shown in the metadata is acceptable. <br>
-Risk: The CLI requires a Clipcat API key and uses it for authenticated requests. <br>
-Mitigation: Configure only the intended API key, keep it out of prompts and logs, and rotate it if exposure is suspected. <br>
-Risk: Some video generation and social-video replication commands can consume paid credits. <br>
-Mitigation: Review parameters and obtain confirmation before running commands that consume credits, especially social URL replication that may add a download credit. <br>
-Risk: Async task IDs are stored locally for resume behavior. <br>
-Mitigation: Treat local task history as user data and avoid sharing task IDs or generated signed URLs outside the intended workflow. <br>
-
+Risk: Review before execution as proposals could introduce incorrect or misleading guidance into skills. <br>
+Mitigation: Review and scan skill before deployment. <br>
 
 ## Reference(s): <br>
+- [ClawHub skill page](https://clawhub.ai/a2888409/skills/clipcat) <br>
 - [Clipcat homepage](https://clipcat.ai) <br>
 - [Clipcat API key settings](https://clipcat.ai/workspace?modal=settings&tab=apikeys) <br>
-- [ClawHub skill page](https://clawhub.ai/a2888409/clipcat) <br>
+- [Clipcat CLI macOS Apple Silicon installer](https://static.clipcat.ai/public/cli/v1.0.18/clipcat_darwin_arm64.tar.gz) <br>
+- [Clipcat CLI macOS Intel installer](https://static.clipcat.ai/public/cli/v1.0.18/clipcat_darwin_amd64.tar.gz) <br>
+- [Clipcat CLI Linux x86_64 installer](https://static.clipcat.ai/public/cli/v1.0.18/clipcat_linux_amd64.tar.gz) <br>
+- [Clipcat CLI Linux arm64 installer](https://static.clipcat.ai/public/cli/v1.0.18/clipcat_linux_arm64.tar.gz) <br>
+- [Clipcat CLI Windows x86_64 installer](https://static.clipcat.ai/public/cli/v1.0.18/clipcat_windows_amd64.zip) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Shell commands, Configuration, JSON, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands and JSON-oriented CLI output] <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with CLI commands and JSON-oriented command output.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May submit asynchronous video or image tasks and return task IDs, signed URLs, or JSON results through the Clipcat CLI.] <br>
+**Other Properties Related to Output:** [Requires CLIPCAT_API_KEY. Commands may consume Clipcat credits and may return task IDs, generated media links, or signed output URLs that should be treated as sensitive access links.] <br>
 
 ## Skill Version(s): <br>
-1.0.13 (source: server release metadata and OpenClaw install URLs) <br>
+1.0.14 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

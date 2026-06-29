@@ -1,0 +1,9 @@
+# Manifest — axiom-markdown-link-auditor (public, clean)
+# Edition: Capafy voice (zero cluster jargon)
+# Generated: 2026-06-14T20:45:38Z
+
+14d7852767f91e0daa3bc270784b272adf8be2b02d03b6e95fb5ea8135197f57  LICENSE  (45 bytes)
+023b7d33dd5b7c390310cf77dab0e18f04abc9215c9e6f5923fc125fccf1da86  README.md  (993 bytes)
+da37ad5147a4a85459c76c6b3e2e1cda6268f80f1e2276f2b88cdff492a8b5e5  SKILL.md  (477 bytes)
+60c2861e89240226f56498030b21d7615ef5650515325da76f7f15b02902d397  axiom_markdown_link_auditor.py  (6092 bytes)
+adec323b1209df4ac5e99f993308803b0e72d8a7711bf4330752c95910398fd3  test_axiom_markdown_link_auditor.py  (2608 bytes)

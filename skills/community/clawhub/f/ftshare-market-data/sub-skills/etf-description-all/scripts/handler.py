@@ -23,7 +23,7 @@ def safe_urlopen(req_or_url):
 
 
 def main():
-    url = BASE_URL + "/data/api/v1/market/data/etf-description-all"
+    url = BASE_URL + "/gateway/api/v1/market/data/etf-description-all"
     req = urllib.request.Request(url, method="GET")
     req.add_header("Content-Type", "application/json")
 

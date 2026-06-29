@@ -1,0 +1,94 @@
+# 昌叔专属软件开发助手配置文件模板
+# 敏感信息(API Key等)请通过环境变量设置，不要在此明文填写
+
+assistant:
+  name: "昌叔助手"
+  personality: "专业、高效、贴心"
+  language: "zh-CN"
+
+features:
+  system: true
+  code: true
+  database: true
+  ai: true
+  knowledge: true
+
+integrations:
+  claude_code:
+    enabled: true
+    path: "/usr/local/bin/claude"
+
+preferences:
+  output_format: "structured"   # structured, detailed, concise
+  code_style: "pep8"           # pep8, google, custom
+  db_type: "dameng"            # dameng, mysql, postgresql
+  ai_provider: ""              # 留空则从ai.provider读取
+  timezone: "Asia/Shanghai"
+  work_hours: "non-work"       # work, non-work, all
+
+database:
+  dameng:
+    default_port: 5236
+    charset: "UTF-8"
+    optimization_hints: true
+
+system:
+  monitor_interval: 60
+  log_retention_days: 30
+  alert_threshold:
+    cpu: 80
+    memory: 85
+    disk: 90
+
+# AI大模型配置
+# 优先级: 环境变量 > 此文件配置
+# 环境变量:
+#   LLM_PROVIDER   - API格式(openai/anthropic/custom)
+#   LLM_API_KEY    - API密钥
+#   LLM_API_BASE   - API基础URL
+#   LLM_MODEL_NAME - 模型名称
+ai:
+  temperature: 0.7
+  max_tokens: 2000
+  context_window: 4000
+  provider: ""      # openai(兼容格式,默认)/anthropic/custom
+  api_key: ""       # 通过环境变量LLM_API_KEY设置，勿明文填写
+  api_base: ""      # 通过环境变量LLM_API_BASE设置
+  model_name: ""    # 通过环境变量LLM_MODEL_NAME设置
+  timeout: 120
+
+knowledge:
+  auto_index: true
+  search_depth: 3
+  relevance_threshold: 0.7
+
+# 性能监控配置
+performance:
+  monitoring:
+    enabled: true
+    interval: 30
+  thresholds:
+    cpu: 80
+    memory: 85
+    disk: 90
+
+# 错误诊断配置
+error_diagnosis:
+  patterns:
+    database:
+      - "ORA-"
+      - "DM-"
+      - "SQL syntax"
+    system:
+      - "Segmentation fault"
+      - "Memory leak"
+      - "Permission denied"
+  solutions:
+    auto_generate: true
+    save_to_knowledge: true
+
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  file: "changshu-assistant.log"
+  max_size: "10MB"
+  backup_count: 5

@@ -11,31 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and Claude Code users use this skill to write persistent local Hookify rules that warn on or block matching commands, file edits, prompts, or session-stop events. <br>
+Developers and agent users use this skill to write local Hookify markdown rules that warn on or block unsafe commands, file edits, prompts, or stop conditions in Claude Code sessions. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Persistent local Hookify rules can affect future sessions by warning on or blocking matching commands and edits. <br>
-Mitigation: Review generated .claude/hookify.*.local.md rules before keeping them, and prefer warning rules before blocking rules when testing a new pattern. <br>
-Risk: Overbroad or invalid regex patterns can match unintended actions or fail to match the intended text. <br>
-Mitigation: Test regex patterns with a small Python check and scope rules to the relevant event fields before relying on them. <br>
+Risk: Enabled block rules can affect later agent sessions until they are disabled or deleted. <br>
+Mitigation: Review each generated .claude/hookify.*.local.md rule before relying on it, and disable or delete rules that are too broad. <br>
+Risk: Regular expression patterns can overmatch safe activity or miss the intended command or file content. <br>
+Mitigation: Test patterns before enabling rules, start with warn actions when practical, and keep rule messages clear about the intended guardrail. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-hookify-writing-rules) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-hookify-writing-rules) <br>
 - [Hookify homepage](https://github.com/athola/claude-night-market/tree/master/plugins/hookify) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, shell commands, guidance] <br>
-**Output Format:** [Markdown guidance with YAML rule examples and shell command snippets] <br>
+**Output Type(s):** [markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown with YAML frontmatter examples and inline shell commands] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May guide creation of local .claude/hookify.*.local.md rule files.] <br>
+**Other Properties Related to Output:** [Produces local Hookify rule guidance and examples for .claude/hookify.*.local.md files.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release evidence) <br>
+1.9.13 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

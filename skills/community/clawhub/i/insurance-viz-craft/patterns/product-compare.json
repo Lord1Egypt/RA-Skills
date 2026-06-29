@@ -1,0 +1,10 @@
+{
+  "name": "product-compare",
+  "label": "产品对比视图",
+  "description": "多产品并排对比保障项、价格、免责",
+  "layout": "comparison",
+  "features": ["side_by_side", "diff_highlight", "best_match_badge", "price_comparison", "recommendation"],
+  "max_products": 4,
+  "compare_fields": ["保费", "保额", "保障期限", "等待期", "免赔额", "保障项目", "免责条款", "理赔条件"],
+  "highlight_best": true
+}

@@ -1,0 +1,17 @@
+{
+  "image_size": {
+    "width": 64,
+    "height": 64
+  },
+  "description": "side-view knight sprite, blue cloak, silver armor, transparent background",
+  "action": "idle breathing loop, subtle cloak movement, feet stay planted",
+  "reference_image": {
+    "type": "base64",
+    "format": "png",
+    "base64": "REPLACE_WITH_BASE64_REFERENCE_IMAGE"
+  },
+  "n_frames": 8,
+  "view": "side",
+  "direction": "east",
+  "seed": 0
+}

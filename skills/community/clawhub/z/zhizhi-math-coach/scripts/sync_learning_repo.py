@@ -20,6 +20,7 @@ from learning_workspace_config import (  # noqa: E402
     load_config,
     scope_has_sensitive_paths,
 )
+from run_log import Timer, append_run_log, new_run_id  # noqa: E402
 
 
 def run(args: list[str], cwd: Path) -> subprocess.CompletedProcess[str]:
@@ -132,6 +133,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--message", default="Update learning data", help="Commit message for after-task sync.")
     parser.add_argument("--remote", help="Override configured remote.")
     parser.add_argument("--branch", help="Override configured branch.")
+    parser.add_argument("--task-kind", choices=["general", "grading", "worksheet", "publish", "review"], default="general")
+    parser.add_argument("--run-id", default="", help="Optional run id for .zhizhi-math-coach/run-log.jsonl.")
+    parser.add_argument("--no-log", action="store_true", help="Do not append run-log.jsonl.")
     parser.add_argument("--force", action="store_true", help="Run even when git_sync.enabled is false.")
     parser.add_argument("--no-pull", action="store_true", help="Skip pull/rebase.")
     parser.add_argument("--no-push", action="store_true", help="Commit but do not push.")
@@ -140,53 +144,100 @@ def parse_args() -> argparse.Namespace:
 
 def main() -> int:
     args = parse_args()
+    timer = Timer()
     workspace = args.workspace.resolve()
-    config = load_config(workspace)
-    if not config:
-        print("skipped: .zhizhi-math-coach/config.json not found; automatic sync is not configured")
-        return 0
+    run_id = args.run_id or new_run_id()
+    ok = False
+    skipped = ""
+    committed = False
+    pushed = False
+    deferred_push = False
+    try:
+        config = load_config(workspace)
+        if not config:
+            skipped = "missing-config"
+            print("skipped: .zhizhi-math-coach/config.json not found; automatic sync is not configured")
+            ok = True
+            return 0
 
-    git_sync = config.get("git_sync", {})
-    if not args.force and not git_sync.get("enabled"):
-        print("skipped: git_sync.enabled is false")
-        return 0
+        git_sync = config.get("git_sync", {})
+        if not args.force and not git_sync.get("enabled"):
+            skipped = "git-sync-disabled"
+            print("skipped: git_sync.enabled is false")
+            ok = True
+            return 0
 
-    ensure_git_repo(workspace)
-    remote = args.remote or configured_remote(config)
-    branch = args.branch or configured_branch(config, workspace)
+        ensure_git_repo(workspace)
+        remote = args.remote or configured_remote(config)
+        branch = args.branch or configured_branch(config, workspace)
 
-    if args.mode == "before-task":
+        if args.mode == "before-task":
+            if not args.no_pull and (args.force or git_sync.get("auto_pull_before_task")):
+                pull_rebase_autostash(workspace, remote, branch)
+            else:
+                skipped = "auto-pull-disabled"
+                print("skipped: auto_pull_before_task is false")
+            ok = True
+            return 0
+
         if not args.no_pull and (args.force or git_sync.get("auto_pull_before_task")):
             pull_rebase_autostash(workspace, remote, branch)
-        else:
-            print("skipped: auto_pull_before_task is false")
+
+        scope = [str(item) for item in git_sync.get("commit_scope", [])]
+        if scope_has_sensitive_paths(scope) and not git_sync.get("sync_full_learning_data"):
+            fail("commit_scope includes learning records, but git_sync.sync_full_learning_data is false")
+        if scope_has_sensitive_paths(scope) and not git_sync.get("public_repository_accepted"):
+            fail("commit_scope includes learning records; set public_repository_accepted true or narrow commit_scope to site-only files")
+
+        if not (args.force or git_sync.get("auto_commit_after_task")):
+            skipped = "auto-commit-disabled"
+            print("skipped: auto_commit_after_task is false")
+            ok = True
+            return 0
+
+        stage_scope(workspace, scope)
+        committed = commit_if_needed(workspace, args.message)
+
+        if args.no_push:
+            skipped = "no-push-arg"
+            print("ok: --no-push set; skipping push")
+            ok = True
+            return 0
+
+        if args.task_kind == "grading" and git_sync.get("defer_push_after_grading"):
+            deferred_push = True
+            if committed:
+                print("ok: defer_push_after_grading is true; grading commit remains local for later sync")
+            else:
+                print("ok: defer_push_after_grading is true; no push needed because nothing was committed")
+            ok = True
+            return 0
+
+        if args.force or git_sync.get("auto_push_after_task"):
+            push_with_retry(workspace, remote, branch)
+            pushed = True
+        elif committed:
+            skipped = "auto-push-disabled"
+            print("skipped: auto_push_after_task is false; commit remains local")
+        ok = True
         return 0
-
-    if not args.no_pull and (args.force or git_sync.get("auto_pull_before_task")):
-        pull_rebase_autostash(workspace, remote, branch)
-
-    scope = [str(item) for item in git_sync.get("commit_scope", [])]
-    if scope_has_sensitive_paths(scope) and not git_sync.get("sync_full_learning_data"):
-        fail("commit_scope includes learning records, but git_sync.sync_full_learning_data is false")
-    if scope_has_sensitive_paths(scope) and not git_sync.get("public_repository_accepted"):
-        fail("commit_scope includes learning records; set public_repository_accepted true or narrow commit_scope to site-only files")
-
-    if not (args.force or git_sync.get("auto_commit_after_task")):
-        print("skipped: auto_commit_after_task is false")
-        return 0
-
-    stage_scope(workspace, scope)
-    committed = commit_if_needed(workspace, args.message)
-
-    if args.no_push:
-        print("ok: --no-push set; skipping push")
-        return 0
-
-    if args.force or git_sync.get("auto_push_after_task"):
-        push_with_retry(workspace, remote, branch)
-    elif committed:
-        print("skipped: auto_push_after_task is false; commit remains local")
-    return 0
+    finally:
+        if not args.no_log:
+            append_run_log(
+                workspace,
+                {
+                    "run_id": run_id,
+                    "script": "sync_learning_repo.py",
+                    "mode": args.mode,
+                    "task_kind": args.task_kind,
+                    "ok": ok,
+                    "skipped": skipped,
+                    "committed": committed,
+                    "pushed": pushed,
+                    "deferred_push": deferred_push,
+                    "duration_ms": timer.elapsed_ms(),
+                },
+            )
 
 
 if __name__ == "__main__":

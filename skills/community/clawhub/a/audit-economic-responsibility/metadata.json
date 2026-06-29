@@ -1,0 +1,29 @@
+{
+  "name": "经济责任审计工作流",
+  "slug": "audit-economic-responsibility",
+  "version": "1.0.0",
+  "description": "领导干部经责审计全流程：了解情况→制定方案→财务分析→重大决策核查→内控测试→疑点汇总→取证定性→编制底稿→形成报告→报告复核",
+  "tags": [
+    "审计",
+    "经责审计",
+    "经济责任",
+    "工作流",
+    "政府审计"
+  ],
+  "category": "审计业务",
+  "author": "融策审计",
+  "license": "MIT",
+  "files": [
+    "workflow.yaml",
+    "SKILL.md"
+  ],
+  "dependencies": {
+    "scripts": [
+      "audit_workflow.py",
+      "audit_router.py",
+      "pipeline_engine.py"
+    ],
+    "python": ">=3.10"
+  },
+  "published_at": "2026-06-20T11:03:25.278782"
+}

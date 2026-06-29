@@ -18,9 +18,10 @@ Set `WORKSPACE=${WORKSPACE:-~/.openclaw/workspace}` and run these from that dire
 4. `python3 ./skills/dr-context-pipeline/scripts/validate_pipeline.py --context-root context_pipeline`
    - Runs integrity checks (hash comparison, schema parse, golden test sanity).
    - Paste the PASS/FAIL block. On failure, stop and report `NOT EXECUTED: <error>`.
-5. `python3 ./skills/dr-context-pipeline/scripts/memory_watchdog.py --freshness-minutes 240 --min-bytes 200`
+5. `python3 ./skills/dr-context-pipeline/scripts/memory_watchdog.py --freshness-minutes 240 --min-bytes 200 --require-semantic --probe-query "context pipeline embeddings semantic retrieval" --min-search-results 1`
    - Ensures today’s `memory/YYYY-MM-DD*.md` exists, is non-empty, and was updated recently.
-   - Paste the JSON output. If status ≠ OK, stop immediately and reply `NOT EXECUTED: memory gap`.
+   - Verifies OpenClaw embeddings, vector store, semantic vectors, index cleanliness, and a semantic search probe.
+   - Paste the JSON output. If status ≠ OK, stop immediately and reply `NOT EXECUTED: memory/embedding gap`.
 6. `git status -sb context_pipeline AGENTS.md`
    - Confirms the final state.
 7. `echo "CONTEXT PIPELINE APPLY COMPLETE"`
@@ -32,3 +33,5 @@ Set `WORKSPACE=${WORKSPACE:-~/.openclaw/workspace}` and run these from that dire
 
 ## Failure contract
 If any command fails or the validator/watchdog reports an error, reply `NOT EXECUTED: <reason>` and wait for further instructions. Do **not** claim success without receipts.
+
+The watchdog may emit a dry-run notification payload, but live alert delivery is a separate approval gate covering schedule, target, cooldown, and message text.

@@ -12,13 +12,13 @@
 
 | #   | 门禁                  | 命令 / 动作                                                                                                                     |
 | --- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | Read 当次必读         | `core/agent-conventions.md`、`analytics/account-analytics.md`、`google-period-report.md`（本文）                                |
+| 1   | Read 当次必读         | `references/core/agent-conventions.md`、`references/analytics/account-analytics.md`、`google-period-report.md`（本文）                                |
 | 2   | **账户 ID 核验**      | `siluzan-tso list-accounts -m Google -k <用户给的 mediaCustomerId> --json-out ./snap-p4`                                        |
 | 3   | 确认 `currencyCode`   | 来自步骤 2 落盘 JSON 的 `items[].ma.currencyCode`（或表格列「币种」）                                                           |
 | 4   | **拉数**              | `google-analysis -a <已核验的 mediaCustomerId> --start … --end … --sections … --json-out <dir>`                                 |
 | 5   | **先 outline 后脚本** | 对本次 `--sections` 涉及的**每一个**维度，Read 同目录 `<section>-<accountId>_*.outline.txt`（或 stdout 摘要里的 `outlineFile`） |
 | 6   | 写脚本                | 字段名**只**来自 outline 最后一行 TS 类型；业务 JSON **仅**在脚本内 `readFileSync` / `require`                                  |
-| 7   | 交付前审阅            | 按 `core/agent-conventions.md` §七 自检；xlsx 无法 Read 时须贴自检表 + 脚本 stdout 摘要                                         |
+| 7   | 交付前审阅            | 按 `references/core/agent-conventions.md` §七 自检；xlsx 无法 Read 时须贴自检表 + 脚本 stdout 摘要                                         |
 
 ---
 
@@ -109,7 +109,7 @@ siluzan-tso google-analysis -a <id> --start <S> --end <E> --json-out ./snap-p4 \
 
 ## 交付前自检（P4 Excel 专用）
 
-对照 `core/agent-conventions.md` §七 表 A/B/C，并额外确认：
+对照 `references/core/agent-conventions.md` §七 表 A/B/C，并额外确认：
 
 - [ ] `google-analysis` 的 `accountId`（stdout 摘要）= 用户要求的 `mediaCustomerId`
 - [ ] 每个 Sheet 列均能在对应 `*.outline.txt` 中找到字段源

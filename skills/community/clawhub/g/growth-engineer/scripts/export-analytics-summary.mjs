@@ -71,8 +71,37 @@ function parseArgs(argv) {
     }
     return args;
 }
+function decodeJwtPayload(token) {
+    const parts = String(token || '').split('.');
+    if (parts.length < 2)
+        return null;
+    try {
+        const normalized = parts[1].replace(/-/g, '+').replace(/_/g, '/');
+        const padded = normalized.padEnd(normalized.length + ((4 - (normalized.length % 4)) % 4), '=');
+        return JSON.parse(Buffer.from(padded, 'base64').toString('utf8'));
+    }
+    catch {
+        return null;
+    }
+}
+function validateOpenClawAnalyticsToken(token) {
+    if (!token)
+        return;
+    const payload = decodeJwtPayload(token);
+    if (!payload)
+        return;
+    const scopes = Array.isArray(payload.scopes) ? payload.scopes.map((scope) => String(scope)) : [];
+    const hasReadonlyOnly = scopes.length === 1 && scopes[0] === 'read:queries';
+    if (!hasReadonlyOnly) {
+        throw new Error('ANALYTICSCLI_ACCESS_TOKEN is not a readonly CLI token. OpenClaw needs a non-expiring Dashboard -> API Keys readonly token with only read:queries scope; do not use dashboard session/admin tokens.');
+    }
+    if (typeof payload.exp === 'number') {
+        throw new Error('ANALYTICSCLI_ACCESS_TOKEN is an expiring legacy token. Create a new non-expiring readonly CLI token in Dashboard -> API Keys and update the OpenClaw secrets file.');
+    }
+}
 function runJsonCommand(command, commandArgs) {
     const token = String(process.env.ANALYTICSCLI_ACCESS_TOKEN || process.env.ANALYTICSCLI_READONLY_TOKEN || '').trim();
+    validateOpenClawAnalyticsToken(token);
     return new Promise((resolve, reject) => {
         const child = spawn(command, commandArgs, {
             stdio: ['ignore', 'pipe', 'pipe'],

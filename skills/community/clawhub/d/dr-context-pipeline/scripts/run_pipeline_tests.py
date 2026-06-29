@@ -427,16 +427,25 @@ def build_receipt_ledger(case: dict, artifact_paths: dict[str, str]) -> dict:
 
 def make_transcript(case: dict, artifact_paths: dict[str, str], receipt_ledger: dict | None) -> dict:
     lint_result = case["lint_result"]
-    transcript = {
-        "mode": case["mode"],
+    footer_metadata = {
         "task_type": case["expected_task_type"],
         "snippet_ids": case["expected_snippet_ids"],
         "compression_status": "fallback" if lint_result.get("fallback_used") else "succeeded",
+        "model_used": "fixture-model",
+        "files_read": ["fixture"],
+        "files_updated": [],
+    }
+    transcript = {
+        "mode": case["mode"],
+        "footer_metadata": footer_metadata,
         "answer_stub": "Fixture answer omitted; harness validates pipeline behavior, not reasoning quality.",
     }
     if case["mode"] in {"debug", "audit"}:
         transcript.update(
             {
+                "task_type": case["expected_task_type"],
+                "snippet_ids": case["expected_snippet_ids"],
+                "compression_status": footer_metadata["compression_status"],
                 "artifact_paths": artifact_paths,
                 "retrieval_bundle": case["retrieval_bundle"],
                 "context_pack": case["context_pack"],
@@ -504,8 +513,20 @@ def assert_transcript_claims(
     errors: list[str],
 ) -> None:
     case_id = case["id"]
+    footer_metadata = transcript.get("footer_metadata")
+    if not isinstance(footer_metadata, dict):
+        fail(errors, case_id, "transcript missing footer_metadata")
+    else:
+        required_footer_keys = {"task_type", "snippet_ids", "compression_status", "model_used", "files_read", "files_updated"}
+        missing_footer_keys = required_footer_keys - set(footer_metadata)
+        if missing_footer_keys:
+            fail(errors, case_id, "footer_metadata missing keys: " + ", ".join(sorted(missing_footer_keys)))
     if case["mode"] == "normal" and "artifact_paths" in transcript:
         fail(errors, case_id, "normal mode transcript claimed artifact paths")
+    if case["mode"] == "normal":
+        for key in ["task_type", "snippet_ids", "compression_status"]:
+            if key in transcript:
+                fail(errors, case_id, f"normal mode exposed {key} outside footer_metadata")
 
     transcript_artifact_paths = transcript.get("artifact_paths")
     if transcript_artifact_paths is not None and transcript_artifact_paths != artifact_paths:

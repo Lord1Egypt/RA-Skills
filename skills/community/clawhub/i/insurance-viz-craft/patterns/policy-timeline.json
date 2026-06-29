@@ -1,0 +1,18 @@
+{
+  "name": "policy-timeline",
+  "label": "保单时间轴",
+  "description": "保单生命周期时间轴展示",
+  "layout": "timeline",
+  "features": ["timeline_axis", "event_nodes", "duration_bars", "status_labels", "alert_periods"],
+  "event_types": ["投保", "缴费", "等待期结束", "保障期开始", "续保", "理赔", "满期", "终止"],
+  "colors": {
+    "投保": "#3b82f6",
+    "缴费": "#f59e0b",
+    "等待期": "#ef4444",
+    "保障期": "#22c55e",
+    "续保": "#8b5cf6",
+    "理赔": "#f97316",
+    "满期": "#6b7280"
+  },
+  "show_remaining": true
+}

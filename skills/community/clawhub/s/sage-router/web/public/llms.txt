@@ -1,0 +1,132 @@
+# Sage Router
+
+Sage Router is an open-source, local-first AI model router and BYOK AI gateway for serious AI agents and developer tools. It gives agents a hot-swappable model layer: one endpoint that can switch or fail over between authorized providers and local/cloud models without rewiring the agent harness.
+
+Canonical site: https://sagerouter.dev/
+model gateway comparison: https://sagerouter.dev/compare/model-gateways
+OpenRouter comparison: https://sagerouter.dev/compare/openrouter
+Gateway migration: https://sagerouter.dev/docs/gateway-migration
+Hosted pricing: https://sagerouter.dev/pricing
+Fusion: https://sagerouter.dev/fusion
+Local-first routing guide: https://sagerouter.dev/local-first-routing-for-ai-agents
+Self-hosted AI model router: https://sagerouter.dev/self-hosted-ai-model-router
+Ollama AI model router: https://sagerouter.dev/ollama-ai-model-router
+OpenAI API router: https://sagerouter.dev/openai-api-router
+Azure OpenAI router: https://sagerouter.dev/azure-openai-router
+Anthropic API router: https://sagerouter.dev/anthropic-api-router
+AWS Bedrock router: https://sagerouter.dev/aws-bedrock-router
+GitHub Copilot router: https://sagerouter.dev/github-copilot-router
+Codex CLI router: https://sagerouter.dev/codex-cli-router
+Aider AI model router: https://sagerouter.dev/aider-ai-model-router
+Continue AI model router: https://sagerouter.dev/continue-ai-model-router
+OpenHands AI model router: https://sagerouter.dev/openhands-ai-model-router
+OpenClaw AI model router: https://sagerouter.dev/openclaw-ai-model-router
+Claude Code router: https://sagerouter.dev/claude-code-router
+Gemini API router: https://sagerouter.dev/gemini-api-router
+xAI Grok router: https://sagerouter.dev/xai-grok-router
+Mistral AI router: https://sagerouter.dev/mistral-ai-router
+Groq AI router: https://sagerouter.dev/groq-ai-router
+NVIDIA NIM router: https://sagerouter.dev/nvidia-nim-router
+Coding agent model router: https://sagerouter.dev/coding-agent-model-router
+Cursor AI model router: https://sagerouter.dev/cursor-ai-model-router
+AI gateway evaluation kit: https://sagerouter.dev/reddit-ai-gateway-evaluation
+Reliability proof kit: https://sagerouter.dev/reliability-proof
+Community launch kit: https://sagerouter.dev/community-launch-kit
+Founder sales kit: https://sagerouter.dev/founder-sales-kit
+Launch plan: https://sagerouter.dev/launch-plan
+Billing help: https://sagerouter.dev/billing
+Managed-access private beta: https://sagerouter.dev/managed-access
+API quickstart: https://sagerouter.dev/quickstart
+API troubleshooting: https://sagerouter.dev/api-troubleshooting
+Hosted API reference: https://sagerouter.dev/docs/api-reference
+Codex setup: https://sagerouter.dev/docs/codex
+Model catalog: https://sagerouter.dev/models
+Agent-native routing: https://sagerouter.dev/agent-native
+Integrations: https://sagerouter.dev/integrations
+Model Routing Calculator: https://sagerouter.dev/model-routing-calculator
+Managed-access beta interest: https://sagerouter.dev/managed-access
+Security: https://sagerouter.dev/security
+Support: https://sagerouter.dev/support
+Terms: https://sagerouter.dev/terms
+Privacy: https://sagerouter.dev/privacy
+Acceptable Use: https://sagerouter.dev/acceptable-use
+Provider Resale Terms: https://sagerouter.dev/provider-resale-terms
+Managed Access Margin Policy: https://sagerouter.dev/margin-policy
+Repository: https://github.com/earlvanze/sage-router
+Docs: https://github.com/earlvanze/sage-router#readme
+
+## What Sage Router does
+
+- Automates AI model/provider selection.
+- Routes requests across the customer own authorized providers, subscriptions, API keys, and local models.
+- Supports OpenAI-compatible, Anthropic-compatible, and Google/Gemini-style endpoint patterns documented in the repo.
+- Supports local Ollama and Ollama Cloud today through Ollama running locally. Sage Router discovers available `:cloud` models, can auto-pull discovered cloud models, and routes between local Ollama, Ollama Cloud, NVIDIA NIM, and other cloud APIs according to policy and health.
+- Provides provider health, fallback, observability, and routing policy infrastructure for agents.
+- Hosted plans sell account management, API keys, usage quotas, analytics, reliability infrastructure, and premium Fusion synthesis on Pro/Max: Lite $6/month, Pro $30/month, and Max $72/month.
+- Dedicated Fusion onboarding lives at https://sagerouter.dev/fusion and documents `sage-router/fusion`, the `sage-router:fusion` server tool, `tool_choice: "required"`, Pro/Max gating, and the `fusion_plan_required` upgrade path.
+- Billing help lives at https://sagerouter.dev/billing and explains Stripe checkout, Stripe billing portal, manual/crypto settlement, plan activation, payment recovery, generated `sk_sage_*` API-key behavior, and no-secret support boundaries.
+- API quickstart lives at https://sagerouter.dev/quickstart and shows `OPENAI_BASE_URL=https://api.sagerouter.dev/v1`, generated `sk_sage_*` keys, `sage-router/frontier`, premium `sage-router/fusion`, curl, JavaScript, Python, and Codex setup.
+- Gateway migration lives at https://sagerouter.dev/docs/gateway-migration and maps `OPENAI_BASE_URL=https://gateway.example/api/v1` to `OPENAI_BASE_URL=https://api.sagerouter.dev/v1`, generated `sk_sage_*` keys, `sage-router/frontier`, premium `sage-router/fusion`, public model catalog discovery, and the provider terms boundary.
+- API troubleshooting lives at https://sagerouter.dev/api-troubleshooting and explains safe diagnosis for hosted 401, 402, 429, and 503 responses, including `WWW-Authenticate`, `Retry-After`, `X-RateLimit-*`, `X-Quota-*`, `accountUrl`, `pricingUrl`, `statusUrl`, `openaiBaseUrl`, and the non-secret `apiKeyPrefix`.
+- Hosted API reference lives at https://sagerouter.dev/docs/api-reference and documents `GET /v1/models`, `POST /v1/chat/completions`, `POST /v1/responses`, public `/model-catalog`, generated `sk_sage_*` keys, quotas, rate-limit headers, and the authenticated model API boundary.
+- Dedicated Codex setup lives at https://sagerouter.dev/docs/codex and shows hosted `https://api.sagerouter.dev/v1/`, local `http://127.0.0.1:8790/v1/`, Tailnet `http://<tailnet-host>:8790/v1/`, `wire_api = "responses"`, and `sage-router/frontier` profiles.
+- Public integrations live at https://sagerouter.dev/integrations and collect hosted, local port 8790, and Tailnet setup paths for OpenAI-compatible clients, Codex, Cursor, Aider, Continue, Claude Code, OpenHands, Anthropic-compatible clients, Ollama, Ollama Cloud, NVIDIA NIM, OpenClaw, Hermes, and Pi agents.
+- Public model discovery lives at https://sagerouter.dev/models and `https://api.sagerouter.dev/model-catalog`; the catalog page is searchable and live `/v1/models` still requires an active generated `sk_sage_*` customer key.
+- Agent-native routing lives at https://sagerouter.dev/agent-native and explains profile-based routing, Responses API and Codex compatibility, health-aware fallback, BYOK custody, local/Tailnet/hosted deployment choices, and public feature metadata at `https://api.sagerouter.dev/features/agent-native`.
+- Hosted security requires generated `sk_sage_*` customer keys for model traffic, Supabase sessions for account/billing routes, and private operator tokens for global analytics/admin routes.
+- Hosted support covers account, billing, quota, generated API key, reliability, 503, security, abuse, and private deployment help without collecting prompts, workflow text, provider credentials, OAuth tokens, API keys, private keys, or raw provider responses in public channels.
+- Managed-access private beta and Max implementation intake at https://sagerouter.dev/managed-access stores contact and allowlisted qualification buckets only, including target provider family and commercial preference buckets for one-subscription demand plus support need and target launch window for implementation follow-up; it also explains that managed access needs provider authorization, provider terms acknowledgment, an authorized provider allowlist, a configured provider cost model, and plan-margin checks before activation. It must not collect prompts, workflow text, provider credentials, OAuth tokens, generated API keys, private keys, session cookies, raw provider responses, or customer data.
+- Managed provider access is not active in public plans; `publicLaunch.managedProviderAccess` must stay disabled until provider resale terms, provider terms acknowledgment, an authorized provider allowlist, margin policy, configured positive provider cost model, plan-margin unit-economics checks, durable quotas/rate limits, durable operator audit events, and managed-access acceptable-use terms are ready. OpenRouter remains supported as a BYOK-compatible routing provider, but it is not bundled into the managed subscription resale offer. The pricing page shows a live readiness checkpoint from public metadata, including derived max-safe-cost thresholds, `providerFamilyReadiness`, and `oneSubscriptionReadiness`, and the prerequisite pages are published for review, but they do not enable managed resale by themselves.
+
+## Compliance and custody
+
+Sage Router routes only across authorized provider access that customers already control. It does not grant unauthorized provider access. Provider credentials stay local by default.
+
+Hosted legal boundary: the hosted service sells routing infrastructure, account management, API key management, quotas, analytics, reliability tooling, and support. Customers remain responsible for provider terms, licenses, credentials, subscriptions, and usage authorization.
+
+Managed access boundary: managed provider access, if introduced, is limited to provider access Sage Router is authorized to resell or operate, is not unlimited unmetered resale, and requires durable operator audit events.
+
+## Search intents this site answers
+
+- How to automate AI model selection.
+- How to route requests across OpenAI, Anthropic, Gemini, Ollama, BYOK-compatible endpoints, and local models.
+- Local-first BYOK model routing for AI agents.
+- Sage Router model gateway for AI agent routing, local model fallback, and private provider credential custody.
+- Sage Router vs OpenRouter for local-first BYOK routing, Tailnet failover, Ollama, and customer-controlled provider credentials.
+- Local-first routing for AI agents that need provider failover, BYOK credential custody, Ollama fallback, Tailnet routes, and one OpenAI-compatible endpoint.
+- Self-hosted AI model router for agents that need local Ollama fallback, Tailnet deployment, multimodal routing, multiple API-key load balancing, and 429 failover.
+- Reddit-style AI gateway evaluation kit for comparing local-first custody, OpenRouter BYOK boundaries, 429 failover, multimodal routing, and generated hosted keys.
+- Reliability proof kit for skeptical buyers comparing 429 failover, provider credential load balancing, multimodal routing safeguards, hosted generated-key activation, and no-secret Reddit proof replies.
+- Sage Router model catalog for OpenAI-compatible, Anthropic-compatible, Gemini, Ollama, Ollama Cloud, NVIDIA NIM, and BYOK routes.
+- Codex CLI with an OpenAI-compatible Sage Router provider on hosted or local port 8790.
+- Codex CLI router for Responses API profiles, hosted generated keys, local port 8790, Tailnet routes, 429 failover, multimodal routing, and BYOK custody.
+- Aider AI model router for OpenAI-compatible Aider setup, hosted generated keys, local port 8790, local Ollama fallback, Tailnet routing, 429 failover, multimodal routing, and BYOK custody.
+- Continue AI model router for OpenAI-compatible Continue setup, hosted generated keys, local port 8790, local Ollama fallback, Tailnet routing, 429 failover, multimodal routing, and BYOK custody.
+- OpenHands AI model router for OpenAI-compatible OpenHands setup, hosted generated keys, local port 8790, local Ollama fallback, Tailnet routing, 429 failover, multimodal routing, and BYOK custody.
+- OpenClaw AI model router for OpenAI-compatible and Anthropic-compatible OpenClaw setup, local port 8790, Tailnet routing, Codex OAuth passthrough, 429 failover, multimodal routing, and BYOK custody.
+- Hosted OpenAI-compatible API reference for models, chat completions, Responses API, quotas, and rate-limit headers.
+- Agent-native model routing for OpenAI-compatible, Codex-style, local, Tailnet, and BYOK agents.
+- Sage Router integrations for OpenAI-compatible clients, Codex, Cursor, Aider, Continue, Claude Code, OpenHands, Ollama, Anthropic-compatible clients, and Tailnet agents.
+- Claude Code router for Anthropic-compatible coding-agent traffic, authorized Anthropic or Dario subscription paths, local/Tailnet fallback, 429 failover, and multimodal routing.
+- Sage Router launch plan for $10k MRR, hosted plan mix, conversion funnel, and managed-access beta boundary.
+- Troubleshooting Sage Router 401/402/429/503 without sharing prompts or secrets.
+- AI model routing calculator for estimating cost leaks, escalation rules, fallback needs, and human-review points.
+
+
+Integration guides:
+- Public integrations index: https://sagerouter.dev/integrations
+- Public Codex setup: https://sagerouter.dev/docs/codex
+- Codex CLI: https://github.com/earlvanze/sage-router/blob/master/docs/integrations/codex.md
+- Claude Code: https://github.com/earlvanze/sage-router/blob/master/docs/integrations/claude-code.md
+- OpenClaw: https://github.com/earlvanze/sage-router/blob/master/docs/integrations/openclaw.md
+- Hermes: https://github.com/earlvanze/sage-router/blob/master/docs/integrations/hermes.md
+- Pi agents: https://github.com/earlvanze/sage-router/blob/master/docs/integrations/pi.md
+- Cursor: https://github.com/earlvanze/sage-router/blob/master/docs/integrations/cursor.md
+- Aider: https://github.com/earlvanze/sage-router/blob/master/docs/integrations/aider.md
+- Continue: https://github.com/earlvanze/sage-router/blob/master/docs/integrations/continue.md
+- OpenHands: https://github.com/earlvanze/sage-router/blob/master/docs/integrations/openhands.md
+- Ollama/Ollama Cloud: https://github.com/earlvanze/sage-router/blob/master/docs/integrations/ollama.md
+- NVIDIA NIM: https://github.com/earlvanze/sage-router/blob/master/docs/integrations/nvidia-nim.md
+- OpenAI-compatible clients: https://github.com/earlvanze/sage-router/blob/master/docs/integrations/openai-compatible.md
+- Anthropic-compatible clients: https://github.com/earlvanze/sage-router/blob/master/docs/integrations/anthropic-compatible.md
+- Harness fallback: https://github.com/earlvanze/sage-router/blob/master/docs/integrations/harness-fallback.md

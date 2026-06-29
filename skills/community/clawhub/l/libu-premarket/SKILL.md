@@ -121,6 +121,12 @@ AI Agent 将基于生成的数据为你撰写如下结构的报告：
 - 更新 finance 数据保持最新
 - 同步最新 pre_market.py 代码与 config.json
 
+### v14.0.7 (2026-06-27) — 每周数据焕新版
+- 更新 basic 数据至 2026-06-26（latest trading day）
+- 更新 finance 数据保持最新（2026Q1 + 2025年报）
+- 同步最新 pre_market.py 代码与 config.json
+- initial_data.zip 重新打包（4.1MB）
+
 ### v14.0.3 (2026-05-30) — 每周数据焕新版
 - 更新 basic 数据至 2026-05-29（latest trading day）
 - 更新 finance 数据保持最新

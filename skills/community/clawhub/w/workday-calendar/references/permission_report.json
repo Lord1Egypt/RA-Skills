@@ -1,0 +1,21 @@
+{
+  "skill_dir": "C:\\Users\\sm001\\.workbuddy\\skills\\workday-calendar",
+  "risk_level": "low",
+  "permission_weight": 0.0,
+  "stats": {
+    "files_scanned": 1,
+    "lines_scanned": 1348,
+    "sensitive_access": 0,
+    "critical_write": 0,
+    "network_access": 0,
+    "file_delete": 0,
+    "subprocess_call": 0
+  },
+  "issues": [],
+  "summary": {
+    "total_issues": 0,
+    "high_severity": 0,
+    "error_severity": 0,
+    "recommendation": "风险较低，建议保持当前设计。"
+  }
+}

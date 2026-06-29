@@ -1,0 +1,96 @@
+name: Release
+
+# Prepare a DRAFT GitHub Release whenever a vX.Y.Z tag is pushed.
+#
+# Review gate: the release is created as a DRAFT, never auto-published. You
+# review (and edit, if needed) the generated notes on the Releases page and
+# click "Publish release" to actually roll it out. Nothing goes public on a
+# tag push alone.
+#
+# Release ritual (per published skill build):
+#   1. Bump skills version (src/version.ts + package.json) and update CHANGELOG.md
+#      — move the new entries out of [Unreleased] into a new ## [X.Y.Z] section.
+#   2. Commit + push to main (the tag must point at a commit that contains this
+#      workflow file, i.e. a commit on main from here on).
+#   3. git tag vX.Y.Z && git push origin vX.Y.Z
+#   -> this workflow drafts the Release; you review it, then click Publish.
+#
+# The notes are generated automatically from the tag: the matching CHANGELOG
+# section (the human summary) followed by the commit list since the previous
+# tag (so it works even though this repo takes direct commits, not PRs).
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build release notes
+        id: notes
+        run: |
+          set -euo pipefail
+          TAG="${GITHUB_REF_NAME}"
+          VERSION="${TAG#v}"
+
+          # 1. Human summary — the matching section from CHANGELOG.md.
+          awk -v ver="$VERSION" '
+            $0 ~ "^## \\[" ver "\\]" { flag=1; next }
+            /^## \[/ { if (flag) exit }
+            /^\[[^]]+\]: http/ { if (flag) exit }
+            flag { print }
+          ' CHANGELOG.md > section.md || true
+          # strip leading/trailing blank lines
+          sed -i -e '/./,$!d' section.md
+
+          # 2. Auto part — commits since the previous tag.
+          PREV="$(git describe --tags --abbrev=0 "${TAG}^" 2>/dev/null || true)"
+          if [ -n "$PREV" ]; then
+            RANGE="${PREV}..${TAG}"
+            COMPARE="https://github.com/${GITHUB_REPOSITORY}/compare/${PREV}...${TAG}"
+          else
+            RANGE="${TAG}"
+            COMPARE="https://github.com/${GITHUB_REPOSITORY}/commits/${TAG}"
+          fi
+          git log --no-merges --pretty='- %s (%h)' "$RANGE" > commits.md || true
+
+          {
+            if [ -s section.md ]; then cat section.md; echo; fi
+            echo "### Commits"
+            if [ -s commits.md ]; then cat commits.md; else echo "- (no commits)"; fi
+            echo
+            echo "**Full changelog:** ${COMPARE}"
+          } > body.md
+
+          echo "Generated release body for ${TAG}:"
+          cat body.md
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="${GITHUB_REF_NAME}"
+          # Always a DRAFT — a human reviews + publishes it.
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            # Already exists. If it was already published, leave it alone (never
+            # silently un-publish); only refresh the notes while it's still a draft.
+            IS_DRAFT="$(gh release view "$TAG" --json isDraft -q .isDraft)"
+            if [ "$IS_DRAFT" = "true" ]; then
+              gh release edit "$TAG" --title "$TAG" --notes-file body.md --draft
+              echo "Refreshed existing draft ${TAG}."
+            else
+              echo "Release ${TAG} is already published — leaving it untouched."
+            fi
+          else
+            gh release create "$TAG" --title "$TAG" --notes-file body.md --draft
+            echo "Draft release ${TAG} ready for review: https://github.com/${GITHUB_REPOSITORY}/releases"
+          fi

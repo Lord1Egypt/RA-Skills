@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.1](https://github.com/es6kr/skills/compare/cc-plugin-v0.4.0...cc-plugin-v0.4.1) (2026-06-25)
+
+
+### Bug Fixes
+
+* apply PR [#62](https://github.com/es6kr/skills/issues/62) AI review findings (14) ([8132a2b](https://github.com/es6kr/skills/commit/8132a2b001fbd10e3db618decf989f8cf84b1b6b))
+* **fix:** split Step 2 medium by content type — case history to failed-attempts.md ([#62](https://github.com/es6kr/skills/issues/62)) ([747b3f9](https://github.com/es6kr/skills/commit/747b3f957ca0fefdbc5044eb08f66b8aafc1e26a))
+
 ## [0.4.0](https://github.com/es6kr/skills/compare/cc-plugin-v0.3.0...cc-plugin-v0.4.0) (2026-06-12)
 
 

@@ -52,6 +52,7 @@ Ask a short question only when no target-company keyword can be built. If produc
 - Treat importer/distributor/installer/employee/certification/decision-role hints as local display or recovery clues unless they are the chosen primary field.
 - Do not pack product + role phrases into `companyTypeKeywords`; use `productKeywords` for products and one buyer role per company-type route.
 - `size` and `from` do not reduce ES query rewrite clauses; if a route is too broad, change the keyword structure instead of only lowering pagination.
+- Validation rejects compound company-type terms before API calls. Rewrite them into target-buyer profile keywords plus pure role terms; never replace them with copied seller product/SKU/model terms.
 
 Example:
 
@@ -71,6 +72,26 @@ Product plus role example:
   "productKeywords": ["汽车玻璃", "挡风玻璃"],
   "companyTypeKeywords": ["进口商"],
   "includeCountry": ["IN", "PK", "BD"],
+  "from": 0,
+  "size": 20
+}
+```
+
+Compound company-type rewrite examples:
+
+```json
+{
+  "companyTypeKeywords": ["控制系统工程商"]
+}
+```
+
+Rewrite as:
+
+```json
+{
+  "productKeywords": ["控制系统"],
+  "companyTypeKeywords": ["工程商"],
+  "includeCountry": ["IR"],
   "from": 0,
   "size": 20
 }

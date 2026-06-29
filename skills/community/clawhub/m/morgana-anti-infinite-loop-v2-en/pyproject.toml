@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "anti-loop"
+version = "2.0.0"
+description = "Lightweight anti-infinite-loop guard for LLM agents. Healing > Kill. Zero-dep core."
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Morgana (Axioma Stellaris)", email = "papa@kofna336.ai"}
+]
+keywords = ["ai", "llm", "agents", "anti-loop", "guard", "healing", "openclaw"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+# CORE: zero dep (stdlib only)
+dependencies = []
+
+# OPT-IN extras
+[project.optional-dependencies]
+embeddings = ["numpy>=1.20"]
+kan = ["torch>=2.0"]
+multi-agent = []
+all = ["numpy>=1.20", "torch>=2.0"]
+dev = ["pytest>=7.0", "pytest-cov", "black", "ruff"]
+
+[project.scripts]
+anti-loop = "anti_loop.cli:main"
+anti-loop-monitor = "anti_loop.cli:main"
+
+[project.urls]
+Homepage = "https://clawhub.ai/p/morgana-anti-infinite-loop-v2-en"
+Repository = "https://github.com/kofna336/anti-loop"
+Documentation = "https://clawhub.ai/p/morgana-anti-infinite-loop-v2-en"
+"Funding" = "https://kofna336.ai"
+
+[tool.setuptools]
+packages = ["anti_loop"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

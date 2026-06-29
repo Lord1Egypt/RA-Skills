@@ -1,5 +1,5 @@
 ## Description: <br>
-Generate pre-written answers and talking points for common customer questions during TikTok live shopping sessions to reduce hesitation and close faster. <br>
+Generate a tailored library of live-selling Q&A answers and objection-handling scripts so TikTok Live hosts respond instantly to buyer hesitations without losing momentum. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,30 +11,33 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-TikTok Shop sellers, live streaming hosts, and brand teams use this skill to prepare structured Q&A scripts for live commerce sessions, especially for product quality, pricing, sizing, shipping, returns, safety, and competitor comparison questions. <br>
+External commerce teams, creators, and TikTok Live hosts use this skill to prepare buyer-question answers, objection-handling scripts, and cue-card style talking points before live selling sessions. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Generated scripts may include inaccurate product claims, discounts, shipping timelines, return policies, or competitor comparisons if the provided inputs are wrong or out of date. <br>
-Mitigation: Review scripts against current store settings, product evidence, promotion terms, and compliance requirements before using them in a live session. <br>
-Risk: The skill produces pre-session reference material and does not monitor live comments in real time. <br>
-Mitigation: Use the output as prepared guidance for hosts, and adapt responses during the live session when viewer questions fall outside the generated script. <br>
+Risk: Generated live-commerce scripts may include outdated or inaccurate claims about pricing, shipping, returns, guarantees, or product performance. <br>
+Mitigation: Review scripts against current product, policy, and promotion details before each live session. <br>
+Risk: Persuasive objection-handling scripts can create compliance risk if used for sensitive products or unsubstantiated claims. <br>
+Mitigation: Remove banned claims, soften unsupported language, and confirm wording against platform and category rules before use. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub listing](https://clawhub.ai/leooooooow/live-qa-scripts) <br>
+- [Output Template](references/output-template.md) <br>
+- [Objection-Handling Playbook](references/objection-handling-playbook.md) <br>
+- [Live Host Delivery Guide](references/live-host-delivery-guide.md) <br>
+- [Live Q&A Script Quality Checklist](assets/live-qa-quality-checklist.md) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown Q&A script document organized by question category] <br>
+**Output Format:** [Markdown cue-card library with short and long Q&A script variants] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Typically 20 to 35 question-answer pairs with two-to-four sentence host-ready answers and optional visual demonstration cues.] <br>
+**Other Properties Related to Output:** [Organized by theme with proof points, compliant wording reminders, CTAs, rapid-fire answers, and host cues.] <br>
 
 ## Skill Version(s): <br>
-1.0.0 (source: ClawHub release metadata) <br>
+1.1.0 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

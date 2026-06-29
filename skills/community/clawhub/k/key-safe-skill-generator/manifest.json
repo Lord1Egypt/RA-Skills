@@ -1,0 +1,52 @@
+{
+  "id": "key_safe_skill_generator",
+  "version": "1.0.0",
+  "name": "Key‑Safe Skill Generator (Zero‑Exposure Edition)",
+  "description": "A documentation‑only meta‑skill that teaches AI agents how to generate secure, zero‑exposure skills using MGC Blackbox for credential management. Contains no executable code.",
+  "author": "MirginCipher Team",
+  "license": "MIT",
+  "category": "Developer Tools",
+  "tags": [
+    "zero-exposure",
+    "key-safe",
+    "mgc",
+    "security",
+    "credential-management",
+    "skill-generator",
+    "meta-skill"
+  ],
+  "platform_compatibility": ["windows", "macos", "linux"],
+  "source": "local",
+  "skills": [
+    {
+      "name": "skill_builder",
+      "description": "Provides conceptual guidance for generating zero-exposure skills using MGC Blackbox",
+      "parameters": {}
+    }
+  ],
+  "mcp_tools": ["mgc_save", "mgc_get", "mgc_list"],
+  "install": {
+    "pip": ["mgc-blackbox"],
+    "mcp": ["mgc"]
+  },
+  "security": {
+    "zero_exposure": true,
+    "no_plaintext": true,
+    "no_executable_code": true
+  },
+  "changelog": [
+    {
+      "version": "1.0.1",
+      "changes": [
+        "Updated to emphasize MCP tools over CLI",
+        "Added install and mcp_tools fields"
+      ]
+    },
+    {
+      "version": "1.0.0",
+      "changes": [
+        "Initial release with conceptual workflow and USK v3 structure"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Word Mail Merge Template Workflow"
+  short_description: "Build Word mail merge and DOCX template workflows without breaking formatting."
+  default_prompt: "Use $work-productivity-word-mail-workflow-helper to design this Word mail merge workflow."
+
+policy:
+  allow_implicit_invocation: true

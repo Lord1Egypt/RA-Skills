@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<title>多地址选址对比分析</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0"></script>
+<script src="https://webapi.amap.com/maps?v=2.0&key={{ amap_js_key }}"></script>
+
+<style>
+body {
+  margin: 0; padding: 0;
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+  background: #f0f2f5; color: #333;
+}
+.header {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff; padding: 30px 40px;
+}
+.header h1 { font-size: 26px; margin-bottom: 8px; }
+.header p { opacity: 0.85; font-size: 14px; }
+.container { max-width: 1400px; margin: 0 auto; padding: 30px 20px; }
+
+.section {
+  background: #fff; border-radius: 16px;
+  padding: 30px; margin-bottom: 30px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+.section h2 { font-size: 18px; margin-bottom: 20px; }
+
+#map { width: 100%; height: 500px; border-radius: 16px; margin-bottom: 30px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+.radar-item { text-align: center; }
+.radar-item h3 { font-size: 15px; margin-bottom: 10px; color: #555; }
+
+.bar { display: flex; align-items: center; margin-bottom: 16px; }
+.bar .label {
+  width: 200px; font-size: 14px; font-weight: 500;
+  text-align: right; padding-right: 16px;
+}
+.bar .wrap {
+  flex: 1; background: #eee;
+  border-radius: 8px; height: 28px; overflow: hidden;
+}
+.bar .fill {
+  height: 100%; border-radius: 8px;
+  display: flex; align-items: center; justify-content: flex-end;
+  padding-right: 10px; font-size: 13px; color: #fff; font-weight: bold;
+}
+.bar .score { width: 60px; padding-left: 12px; font-size: 14px; font-weight: bold; }
+
+table { width: 100%; border-collapse: collapse; }
+th {
+  background: #f8f9fa; padding: 12px 16px;
+  text-align: left; font-size: 13px; color: #666;
+  border-bottom: 2px solid #e9ecef;
+}
+td {
+  padding: 12px 16px; font-size: 14px;
+  border-bottom: 1px solid #f0f0f0;
+}
+tr:hover td { background: #fafbff; }
+
+.badge {
+  display: inline-block; padding: 2px 8px;
+  border-radius: 4px; font-size: 12px; font-weight: 500;
+}
+.bg-green { background: #d4edda; color: #155724; }
+.bg-yellow { background: #fff3cd; color: #856404; }
+.bg-red { background: #f8d7da; color: #721c24; }
+.best { background: #e8f5e9 !important; font-weight: bold; color: #2e7d32; }
+
+.rec {
+  background: linear-gradient(135deg, #11998e, #38ef7d);
+  color: #fff; border-radius: 16px;
+  padding: 30px; margin-bottom: 30px;
+}
+.rec h2 { font-size: 20px; margin-bottom: 15px; }
+.rec ul { list-style: none; padding: 0; }
+.rec li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.2); font-size: 15px; }
+.rec li:last-child { border: none; }
+
+.colors { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 10px; font-size: 13px; color: #666; }
+.citem { display: flex; align-items: center; gap: 6px; }
+cdot { width: 14px; height: 14px; border-radius: 50%; display: inline-block; }
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>📊 多地址选址对比分析</h1>
+  <p>基于高德开放平台 · 共 {{ addresses | length }} 个候选地址 · {{ timestamp }}</p>
+</div>
+
+<div class="container">
+
+  <!-- 推荐排名 -->
+  <div class="rec">
+    <h2>🏆 综合推荐排名</h2>
+    <ul>
+      {% for r in rankings %}
+      <li>
+        {% if loop.index0 == 0 %}🥇
+        {% elif loop.index0 == 1 %}🥈
+        {% else %}🥉{% endif %}
+        <strong>{{ r.name }}</strong> — {{ r.total_score }} 分
+        {% if loop.first %}<br><small style="opacity:.85;">💡 最推荐选址</small>{% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- 地图 -->
+  <div id="map"></div>
+  <div class="colors">
+    {% for a in addresses %}
+    <div class="citem"><cdot style="background:{{ colors_json[a.idx] }};"></cdot>{{ a.name }}</div>
+    {% endfor %}
+  </div>
+
+  <!-- 雷达图 -->
+  <div class="section">
+    <h2>📡 多维度雷达对比</h2>
+    <div class="grid">
+      {% for name, dataset in radar_charts.items() %}
+      <div class="radar-item">
+        <h3>{{ name }}</h3>
+        <canvas id="radar_{{ loop.index0 }}"></canvas>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- 柱状图 -->
+  <div class="section">
+    <h2>📈 综合评分排行</h2>
+    {% for b in score_bars %}
+    <div class="bar">
+      <div class="label">{{ b.name }}</div>
+      <div class="wrap">
+        <div class="fill" style="width:{{ b.percent }}%; background:{{ b.color }};">
+          {{ b.total_score }}
+        </div>
+      </div>
+      <div class="score">{{ b.total_score }}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- 数据表 -->
+  <div class="section">
+    <h2>📋 详细数据对比表</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>维度</th>
+          {% for a in addresses %}<th>{{ a.name }}</th>{% endfor %}
+          <th>✅ 最优</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>🔴 竞品数量</strong>（少好）</td>
+          {% for v in table_data.competitor_count %}<td>{{ v }}</td>{% endfor %}
+          <td class="best">{{ table_data.competitor_best }}</td>
+        </tr>
+        <tr>
+          <td><strong>🔵 配套设施</strong>（多好）</td>
+          {% for v in table_data.facility_count %}<td>{{ v }}</td>{% endfor %}
+          <td class="best">{{ table_data.facility_best }}</td>
+        </tr>
+        <tr>
+          <td><strong>🚇 地铁站</strong></td>
+          {% for v in table_data.metro_count %}<td>{{ v }}</td>{% endfor %}
+          <td class="best">{{ table_data.metro_best }}</td>
+        </tr>
+        <tr>
+          <td><strong>🏠 住宅小区</strong></td>
+          {% for v in table_data.residence_count %}<td>{{ v }}</td>{% endfor %}
+          <td class="best">{{ table_data.residence_best }}</td>
+        </tr>
+        <tr>
+          <td><strong>🏢 商场/写字楼</strong></td>
+          {% for v in table_data.commercial_count %}<td>{{ v }}</td>{% endfor %}
+          <td class="best">{{ table_data.commercial_best }}</td>
+        </tr>
+        <tr>
+          <td><strong>🚦 交通状态</strong></td>
+          {% for v in table_data.traffic_status %}<td>{{ v }}</td>{% endfor %}
+          <td class="best">{{ table_data.traffic_best }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<script>
+  const COLORS = {{ colors_json | tojson }};
+  const addresses = {{ addresses | tojson }};
+  const radarData = {{ radar_json | tojson }};
+  const dims = ["竞品密度","配套丰富度","交通便捷度","商业活跃度","居住潜力"];
+
+  // 地图
+  const map = new AMap.Map("map", { zoom: 11 });
+  const bounds = new AMap.Bounds();
+
+  addresses.forEach((a, i) => {
+    const [lng, lat] = a.location.split(",").map(Number);
+    bounds.extend([lng, lat]);
+
+    new AMap.Marker({
+      position: [lng, lat],
+      title: a.name,
+      icon: new AMap.Icon({
+        size: new AMap.Size(36, 36),
+        image: "https://webapi.amap.com/theme/v1.3/markers/n/mark_" +
+               ["r","b","g","o","p"][i] + ".png"
+      })
+    }).setMap(map);
+
+    new AMap.Circle({
+      center: [lng, lat], radius: a.radius || 1000,
+      strokeColor: COLORS[i], strokeOpacity: 0.6, strokeWeight: 2,
+      fillColor: COLORS[i], fillOpacity: 0.08
+    }).setMap(map);
+
+    (a.competitors || []).forEach(c => {
+      if (!c.location) return;
+      new AMap.CircleMarker({
+        center: c.location.split(",").map(Number),
+        radius: 4,
+        fillColor: COLORS[i], fillOpacity: 0.5,
+        strokeColor: COLORS[i], strokeOpacity: 0.3
+      }).setMap(map);
+    });
+  });
+  map.setFitView(bounds);
+
+  // 雷达图
+  const chartList = Object.entries(radarData);
+  chartList.forEach(([name, datasets], idx) => {
+    const ctx = document.getElementById("radar_" + idx).getContext("2d");
+    new Chart(ctx, {
+      type: "radar",
+      data: {
+        labels: dims,
+        datasets: Object.entries(datasets).map(([name, data], i) => ({
+          label: name,
+          data: data,
+          borderColor: COLORS[i],
+          backgroundColor: COLORS[i] + "22",
+          pointBackgroundColor: COLORS[i]
+        }))
+      },
+      options: {
+        responsive: true,
+        scales: { r: { beginAtZero: true, max: 100, ticks: { stepSize: 20 } } },
+        plugins: { legend: { position: "bottom", labels: { font: { size: 11 } } } }
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

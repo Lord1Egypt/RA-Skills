@@ -1,0 +1,11 @@
+[
+  {"id":"skill_package","name":"Skill package"},
+  {"id":"human_role","name":"Human role"},
+  {"id":"workflow_sop","name":"Workflow/SOP"},
+  {"id":"task_dag","name":"Task/DAG"},
+  {"id":"data_tool","name":"Data/tool"},
+  {"id":"quality_risk","name":"Quality risk"},
+  {"id":"dynamic_collaboration","name":"Dynamic collaboration"},
+  {"id":"skill_category","name":"Skill category"},
+  {"id":"runtime_target","name":"Runtime target"}
+]

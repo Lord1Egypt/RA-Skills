@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<title>{{姓名}} · {{岗位}}</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body { background:#e9e6df; font-family:'Inter','Noto Sans SC',sans-serif; color:#1a1a1a; padding:32px 0; -webkit-font-smoothing:antialiased; }
+  .page { width:210mm; min-height:297mm; margin:0 auto; background:#fff; padding:14mm 16mm 16mm; box-shadow:0 30px 60px -20px rgba(0,0,0,0.18); }
+  .accent { color:#1f4d8f; }
+  .accent-bar { display:inline-block; width:28px; height:0; border-bottom:2.5px solid #1f4d8f; vertical-align:middle; margin-right:10px; }
+  .section h2 { font-size:13px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:#1f4d8f; margin:0 0 10px; }
+  .role { display:flex; justify-content:space-between; align-items:baseline; gap:12px; }
+  .role .meta { font-size:12.5px; color:#6b6760; font-family:'Inter',sans-serif; white-space:nowrap; tabular-nums:auto; }
+  ul.bullets { list-style:none; padding:0; margin:6px 0 10px; }
+  ul.bullets li { position:relative; padding-left:14px; font-size:14px; line-height:1.6; color:#262421; margin-bottom:4px; }
+  ul.bullets li::before { content:"▪"; position:absolute; left:0; top:0; color:#1f4d8f; font-size:11px; line-height:1.6; }
+  .proj-bg { font-size:12.5px; color:#5a564e; line-height:1.6; margin:6px 0 8px; padding:6px 10px; background:#f8f7f4; border-left:3px solid #1f4d8f; border-radius:0 6px 6px 0; }
+  .perf { font-size:12.5px; color:#5a564e; line-height:1.6; margin:6px 0 0; padding:5px 10px; background:#f0f3f8; border-radius:6px; }
+  .perf .perf-label { font-weight:600; color:#1f4d8f; }
+  .powered-by { text-align:center; font-size:11px; color:#b5b1a8; margin-top:20px; padding-top:16px; border-top:1px solid #e7e5e0; }
+  @media print { body { background:#fff; padding:0; } .page { box-shadow:none; padding:14mm 18mm; } ul.bullets li::before { -webkit-print-color-adjust:exact; print-color-adjust:exact; } .proj-bg, .perf { -webkit-print-color-adjust:exact; print-color-adjust:exact; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="pb-5 mb-5" style="border-bottom:1.5px solid #e7e5e0">
+    <div class="flex justify-between items-start">
+      <div>
+        <div class="flex items-end gap-4 mb-3">
+          <h1 class="text-[44px] font-bold tracking-tight leading-none">{{姓名}}</h1>
+          <span class="text-[12.5px] text-[#5a564e] mb-1.5">微信号：{{微信号}}</span>
+        </div>
+        <div class="text-[13px] text-[#1f4d8f] font-semibold tracking-wide mb-3">求职意向：{{求职意向}}</div>
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-[12.5px] text-[#5a564e]">
+          <span>{{性别}} | {{年龄}}岁</span><span class="opacity-30">|</span>
+          <span>{{电话}}</span><span class="opacity-30">|</span>
+          <span>{{邮箱}}</span><span class="opacity-30">|</span>
+          <span>期望薪资：{{期望薪资}}</span><span class="opacity-30">|</span>
+          <span>期望城市：{{期望城市}}</span>
+        </div>
+      </div>
+      <img src="{{头像URL}}" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:2px solid #e7e5e0;flex-shrink:0;margin-top:4px;" alt="头像" />
+    </div>
+  </header>
+
+  <section class="section mb-6">
+    <h2><span class="accent-bar"></span>个人优势</h2>
+    <div class="text-[12.5px] leading-relaxed mb-3" style="color:#6b6760;">
+      {{个人优势总结}}
+    </div>
+    <ul class="bullets">
+      {{#each 个人优势}}
+      <li><span class="font-semibold accent">{{标题}}</span>：{{内容}}</li>
+      {{/each}}
+    </ul>
+  </section>
+
+  <section class="section mb-6">
+    <h2><span class="accent-bar"></span>工作经历</h2>
+
+    {{#each 工作经历}}
+    <div class="mb-5">
+      <div class="role">
+        <div><span class="font-semibold text-[16px]">{{公司}}</span> <span class="font-semibold text-[14px] accent">{{职位}}</span></div>
+        <div class="meta">{{时间}}</div>
+      </div>
+      <ul class="bullets">
+        {{#each 职责}}
+        <li>{{内容}}</li>
+        {{/each}}
+      </ul>
+      <div class="perf">
+        <span class="perf-label">业绩</span>：{{业绩}}
+      </div>
+    </div>
+    {{/each}}
+  </section>
+
+  <section class="section mb-6">
+    <h2><span class="accent-bar"></span>项目经历</h2>
+
+    {{#each 项目经历}}
+    <div class="mb-5">
+      <div class="role">
+        <div><span class="font-semibold text-[13.5px]">{{项目名}}</span> <span class="text-[#5a564e] text-[12.5px]">— {{角色}}</span></div>
+        <div class="meta">{{公司}} | {{时间}}</div>
+      </div>
+      {{#if 项目背景}}
+      <div class="proj-bg">
+        <span class="font-semibold accent">项目背景</span>：{{项目背景}}
+      </div>
+      {{/if}}
+      <ul class="bullets">
+        {{#each 职责}}
+        <li>{{内容}}</li>
+        {{/each}}
+      </ul>
+      <div class="perf">
+        <span class="perf-label">业绩</span>：{{业绩}}
+      </div>
+    </div>
+    {{/each}}
+  </section>
+
+  <section class="section mb-6">
+    <h2><span class="accent-bar"></span>教育经历</h2>
+    {{#each 教育经历}}
+    <div class="mb-3">
+      <div class="role">
+        <div><span class="font-semibold text-[14px]">{{学校}}</span> <span class="text-[#5a564e] text-[13px]">— {{学历}}</span></div>
+        <div class="meta">{{时间}}</div>
+      </div>
+      <div class="text-[13.5px] text-[#5a564e] mt-1">{{专业}}</div>
+    </div>
+    {{/each}}
+  </section>
+
+  {{#each 自定义补充}}
+  <section class="section mb-6">
+    <h2><span class="accent-bar"></span>{{标题}}</h2>
+    <div class="text-[12.5px] leading-relaxed" style="color:#262421;">
+      {{内容}}
+    </div>
+  </section>
+  {{/each}}
+
+  <div class="powered-by">Powered by Claude Code CLI & KIMI API</div>
+</div>
+</body>
+</html>

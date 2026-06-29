@@ -234,6 +234,40 @@ If all conditions met, evaluate the PR's commit history (`gh pr view NUMBER --co
 / ⏳ Actionable Items PENDING fix.]
 ```
 
+### Status column value spec — fix_plan tracking tags forbidden (HARD STOP)
+
+**The Findings table `Status` column must only carry values a GitHub PR comment reader can interpret immediately as the "current handling state".** Carrying over fix_plan.md's internal tracking tags (`[REVIEW_FEEDBACK]`, `[BLOCKED]`, `[DEFERRED]`, `[REJECTED]`, `[RALPH_TODO]`, etc.) verbatim is a **medium-separation violation** — fix_plan is an internal tracking index; a GitHub PR comment is an external reader-facing medium.
+
+**Allowed Status values** (aligned with the Summary body example):
+
+| Value | Meaning |
+|-------|---------|
+| `🔴 Fixed (commit <sha>)` | Fix applied in this PR or a follow-up commit — SHA citation mandatory (cross-link) |
+| `🔴 Pending` | Immediate fix required (typically Critical) — awaiting author/reviewer action |
+| `🟡 Deferred (author follow-up)` | Follow-up handling (separate PR/issue/post-merge backport etc.) — plain phrasing |
+| `🟢 Deferred (no action)` | Review concluded irrelevant/unnecessary — plain phrasing |
+| `⚪ Rejected — <one-line reason>` | Rejected + reason inline |
+| `🟢 Verified — <evidence>` | Verification passed + evidence (curl/test/grep result inline) |
+
+**The fix_plan tracking tags are for Step 7.6 deferred registration only (when writing entries inside fix_plan.md's Hold section)**. Carrying the same tag into the Summary body Status column leaves the GitHub reader with no meaning (zero readability).
+
+| # | Don't | Do |
+|---|-------|-----|
+| 1 | `\| Status \| ... \| [REVIEW_FEEDBACK] \|` — using a fix_plan tracking tag in the Summary Status column | `🟡 Deferred (author follow-up)` or `🔴 Pending` etc. — semantic value |
+| 2 | `\| Status \| [DEFERRED] \|` / `\| Status \| [BLOCKED] \|` — bracket-prefix tracking pattern | The bracket form itself is a fix_plan index signal. Summary uses emoji + plain phrasing |
+| 3 | "Same tag is convenient since it's registered in fix_plan anyway" reasoning | fix_plan deferred entry (Step 7.6) ≠ Summary Status (Step 7). Different medium → separate notation |
+| 4 | Mirroring the same tag in both Summary and fix_plan as a cross-link attempt | Cross-link by citing the fix_plan section URL / entry from the Summary body (when needed). Do not mirror the tag |
+| 5 | Realizing only after the user points out the readability issue that a fix_plan tag like "[REVIEW_FEEDBACK]" appeared in the response | Run the self-check below every time before drafting the Summary |
+
+**Self-check (every time before POSTing the Summary)**:
+
+1. Grep every cell in the Findings table Status column: `[REVIEW_FEEDBACK]|[BLOCKED]|[DEFERRED]|[REJECTED]|[RALPH_TODO]` — any single match is a violation
+2. On match, replace with the mapping from the "Allowed Status values" table above:
+   - `[REVIEW_FEEDBACK]` → `🟡 Deferred (author follow-up)` or `🔴 Pending` (depending on severity)
+   - `[BLOCKED]` → `🔴 Pending — <blocker reason>` or `🟡 Deferred — <reason>`
+   - `[DEFERRED]` → `🟢 Deferred (no action)` or `🟡 Deferred (author follow-up)`
+3. Re-grep after replacement — confirm zero matches before POST
+
 ### Conclusion line emoji rule (HARD STOP)
 
 | Conclusion state | Emoji | Forbidden |

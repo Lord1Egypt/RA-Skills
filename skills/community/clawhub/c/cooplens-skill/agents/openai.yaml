@@ -1,0 +1,4 @@
+interface:
+  display_name: "CoopLens 家长助手"
+  short_description: "Parent-facing cooperative-program analysis with live official-source checks, rank estimates, Markdown TOC and mobile static HTML reports"
+  default_prompt: "Use $cooplens-skill to analyze Chinese-foreign cooperative undergraduate programs for parents with runtime date acquisition, latest official admission-material searches, rank/rank-range estimation including new projects, anonymous public-discussion concern synthesis, non-neutral conclusions, Markdown reports with a table of contents, and mobile-first native HTML/CSS pages."

@@ -1,0 +1,15 @@
+{
+  "name": "ui-ux-pro-max-cn",
+  "version": "1.0.0",
+  "description": "中文UI/UX设计智能 — 50种风格、161配色、57字体搭配、22技术栈",
+  "author": "拾珍小栈",
+  "license": "Apache-2.0",
+  "language": "zh-CN",
+  "tags": ["ui", "ux", "design", "frontend", "chinese", "中文设计"],
+  "triggers": ["设计", "UI", "UX", "界面", "配色", "字体", "布局", "landing page", "dashboard", "组件库", "设计系统"],
+  "platforms": ["Claude Code", "OpenClaw", "Cursor", " Windsurf", "Codex", "Gemini CLI", "Qoder", "Kiro", "Trae"],
+  "pricing": {
+    "retail": 99,
+    "currency": "CNY"
+  }
+}

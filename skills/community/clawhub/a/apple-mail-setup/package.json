@@ -1,0 +1,49 @@
+{
+    "name":  "@jehadurre/openclaw-apple-mail-skill",
+    "version":  "1.0.1",
+    "description":  "OpenClaw skill for installing, configuring, and using the Apple Mail channel plugin",
+    "type":  "module",
+    "main":  "openclaw.skill.json",
+    "author":  {
+                   "name":  "Md. Jehadur Rahman (Emran)",
+                   "url":  "https://jehadurre.me"
+               },
+    "repository":  {
+                       "type":  "git",
+                       "url":  "git+https://github.com/JehadurRE/openclaw-apple-mail-skill.git"
+                   },
+    "bugs":  {
+                 "url":  "https://github.com/JehadurRE/openclaw-apple-mail-skill/issues"
+             },
+    "homepage":  "https://openclaw-apple-mail.jehadurre.me",
+    "license":  "MIT",
+    "keywords":  [
+                     "openclaw",
+                     "hermes",
+                     "skill",
+                     "apple-mail",
+                     "email",
+                     "channel",
+                     "setup",
+                     "configuration",
+                     "macos"
+                 ],
+    "engines":  {
+                    "node":  "\u003e=18.0.0"
+                },
+    "files":  [
+                  "openclaw.skill.json",
+                  "SKILL.md",
+                  "README.md",
+                  "LICENSE"
+              ],
+    "peerDependencies":  {
+                             "@jehadurre/openclaw-apple-mail":  "^1.0.0"
+                         },
+    "scripts":  {
+
+                },
+    "devDependencies":  {
+
+                        }
+}

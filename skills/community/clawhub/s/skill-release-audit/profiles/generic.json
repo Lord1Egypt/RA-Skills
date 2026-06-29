@@ -1,0 +1,16 @@
+{
+  "name": "generic",
+  "description": "Loosest common-denominator profile. Default when no --target is given.",
+  "frontmatter": {
+    "required": ["name", "description"],
+    "version_severity": "INFO"
+  },
+  "files": {
+    "require_readme": false,
+    "require_license": false
+  },
+  "slug_regex": "^[a-z0-9][a-z0-9-]*$",
+  "slug_max_len": null,
+  "bundle_limit_mb": null,
+  "declaration_vs_code": "WARN"
+}

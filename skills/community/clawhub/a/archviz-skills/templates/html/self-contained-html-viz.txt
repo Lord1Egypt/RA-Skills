@@ -1,0 +1,57 @@
+%% Self-contained HTML viz template for Obsidian/direct browse (per archviz-skills env control).
+%% Use for lightweight output in OB: inline Chart.js or SVG that renders without external deps.
+%% Follow DESIGN.md: restrained tokens (warm paper bg #f5f0eb, IKB #002FA7 accent), short labels, minimal ink.
+%% From research report: choose type from taxonomy (e.g., bar for ranking, line for temporal).
+%% Agent vibe: generate this HTML snippet, user pastes into OB HTML block or .html file for preview.
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ArchViz: [Brief Title]</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- For Chart.js; swap for pure SVG if needed -->
+  <style>
+    body { font-family: system-ui, sans-serif; background: #f5f0eb; color: #1B365D; margin: 0; padding: 20px; }
+    .chart-container { width: 100%; max-width: 800px; margin: 0 auto; }
+    canvas { background: white; border: 1px solid #a8a29e; width: 100% !important; max-width: 800px; }
+    .legend { font-size: 12px; color: #44403c; margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <div class="chart-container">
+    <h3>[Brief Title - restrained, e.g. "Project Timeline (Gantt)"]</h3>
+    <canvas id="vizChart" width="800" height="400" style="width:100%; max-width:800px;"></canvas>
+    <div class="legend">[Legend: e.g. V1.1 Env Setup | V1.2 Ledger etc. Single IKB accent.]</div>
+  </div>
+  <script>
+    // Agent fills data/config based on taxonomy + tokens.
+    // Example: Bar for ranking (from report). Use Chart.js for OB-friendly interactive.
+    const ctx = document.getElementById('vizChart');
+    new Chart(ctx, {
+      type: 'bar', // or 'line', 'scatter' etc. per type selection
+      data: {
+        labels: ['V1.1', 'V1.2', 'V1.3'], // Short codes per Gantt rule
+        datasets: [{
+          label: 'Duration (weeks)',
+          data: [6, 7, 4],
+          backgroundColor: '#002FA7', // IKB accent
+          borderColor: '#a8a29e',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: { y: { beginAtZero: true } },
+        plugins: { legend: { display: true } }
+      }
+    });
+  </script>
+</body>
+</html>
+
+%% Notes:
+%% - Self-contained: One file, works in OB (if HTML plugin) or browser.
+%% - Restrained: Warm paper bg, single accent, geometry focus, no junk.
+%% - For Python deliverables: Agent can later generate equivalent Plotly code that outputs similar interactive HTML.
+%% - Icons: Embed as Unicode or small SVG in labels if needed.
+%% - Pre-check: Env=Obsidian → this mode. Use report taxonomy for type.

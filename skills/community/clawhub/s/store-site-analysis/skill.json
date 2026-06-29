@@ -1,0 +1,23 @@
+{
+    "name": "store-site-analysis",
+    "version": "1.0.0",
+    "description": "基于高德开放平台的商铺选址分析 Skill，支持地址转坐标、周边竞品/配套 POI 搜索、逆地理编码、交通态势分析、交互式热力图可视化，以及多地址对比分析（雷达图+柱状图+评分排名），供 AI Agent 做门店选址评估",
+    "author": "悟空码字",
+    "license": "MIT",
+    "runtime": "python3",
+    "entry": "index.py",
+    "permissions": ["http", "env", "fs"],
+    "env": {
+      "AMAP_KEY": {
+        "description": "高德开放平台 Web 服务 API Key（必填）",
+        "required": true
+      },
+      "AMAP_JS_KEY": {
+        "description": "高德 JS API Key（用于前端热力图，可选，默认同 AMAP_KEY）",
+        "required": false
+      }
+    },
+    "tags": ["amap", "lbs", "site-analysis", "poi", "geocode", "heatmap", "visualization", "traffic", "compare", "radar-chart"],
+    "keywords": ["选址", "商铺", "高德", "POI", "热力图", "对比分析"],
+    "repository": "https://github.com/wukongmazi/store-site-analysis"
+  }

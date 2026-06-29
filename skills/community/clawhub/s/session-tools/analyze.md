@@ -28,7 +28,7 @@ Derive project folder name from current working directory:
 
 ### 3. Call analyze_session API
 
-Use the claude-code-sessions MCP tool:
+Use the claude-sessions-mcp MCP tool:
 
 ```
 mcp__claude-sessions-mcp__analyze_session({
@@ -138,6 +138,6 @@ mcp__serena__write_memory({
 
 ## Requirements
 
-- claude-code-sessions MCP server required
+- claude-sessions-mcp MCP server required
 - Session must exist in ~/.claude/projects/
 - When using --sync: Serena MCP server must be active with the project

@@ -1,0 +1,468 @@
+{
+  "topic": "privacy",
+  "snapshotAsOf": "2026-06-12",
+  "sourceCommit": "f96d144afbb9c07deef4469aa9c3b0e6b0c3b68c",
+  "canonicalBase": "https://openagreements.org/legal/privacy",
+  "license": "CC BY 4.0",
+  "jurisdictions": [
+    {
+      "jurisdiction": "Alabama",
+      "slug": "alabama",
+      "countryCode": "US",
+      "file": "content/alabama.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Alaska",
+      "slug": "alaska",
+      "countryCode": "US",
+      "file": "content/alaska.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Arizona",
+      "slug": "arizona",
+      "countryCode": "US",
+      "file": "content/arizona.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Arkansas",
+      "slug": "arkansas",
+      "countryCode": "US",
+      "file": "content/arkansas.md",
+      "lastReviewed": "2026-06-12",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "California",
+      "slug": "california",
+      "countryCode": "US",
+      "file": "content/california.md",
+      "lastReviewed": "2026-06-03",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Colorado",
+      "slug": "colorado",
+      "countryCode": "US",
+      "file": "content/colorado.md",
+      "lastReviewed": "2026-06-04",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Connecticut",
+      "slug": "connecticut",
+      "countryCode": "US",
+      "file": "content/connecticut.md",
+      "lastReviewed": "2026-06-04",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Delaware",
+      "slug": "delaware",
+      "countryCode": "US",
+      "file": "content/delaware.md",
+      "lastReviewed": "2026-06-06",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "District of Columbia",
+      "slug": "district-of-columbia",
+      "countryCode": "US",
+      "file": "content/district-of-columbia.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Florida",
+      "slug": "florida",
+      "countryCode": "US",
+      "file": "content/florida.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Georgia",
+      "slug": "georgia",
+      "countryCode": "US",
+      "file": "content/georgia.md",
+      "lastReviewed": "2026-06-12",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Hawaii",
+      "slug": "hawaii",
+      "countryCode": "US",
+      "file": "content/hawaii.md",
+      "lastReviewed": "2026-06-12",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Idaho",
+      "slug": "idaho",
+      "countryCode": "US",
+      "file": "content/idaho.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Illinois",
+      "slug": "illinois",
+      "countryCode": "US",
+      "file": "content/illinois.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Indiana",
+      "slug": "indiana",
+      "countryCode": "US",
+      "file": "content/indiana.md",
+      "lastReviewed": "2026-06-06",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Iowa",
+      "slug": "iowa",
+      "countryCode": "US",
+      "file": "content/iowa.md",
+      "lastReviewed": "2026-06-05",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Kansas",
+      "slug": "kansas",
+      "countryCode": "US",
+      "file": "content/kansas.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Kentucky",
+      "slug": "kentucky",
+      "countryCode": "US",
+      "file": "content/kentucky.md",
+      "lastReviewed": "2026-06-06",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Louisiana",
+      "slug": "louisiana",
+      "countryCode": "US",
+      "file": "content/louisiana.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Maine",
+      "slug": "maine",
+      "countryCode": "US",
+      "file": "content/maine.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Maryland",
+      "slug": "maryland",
+      "countryCode": "US",
+      "file": "content/maryland.md",
+      "lastReviewed": "2026-06-06",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Massachusetts",
+      "slug": "massachusetts",
+      "countryCode": "US",
+      "file": "content/massachusetts.md",
+      "lastReviewed": "2026-06-12",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Michigan",
+      "slug": "michigan",
+      "countryCode": "US",
+      "file": "content/michigan.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Minnesota",
+      "slug": "minnesota",
+      "countryCode": "US",
+      "file": "content/minnesota.md",
+      "lastReviewed": "2026-06-06",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Mississippi",
+      "slug": "mississippi",
+      "countryCode": "US",
+      "file": "content/mississippi.md",
+      "lastReviewed": "2026-06-12",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Missouri",
+      "slug": "missouri",
+      "countryCode": "US",
+      "file": "content/missouri.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Montana",
+      "slug": "montana",
+      "countryCode": "US",
+      "file": "content/montana.md",
+      "lastReviewed": "2026-06-05",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Nebraska",
+      "slug": "nebraska",
+      "countryCode": "US",
+      "file": "content/nebraska.md",
+      "lastReviewed": "2026-06-06",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Nevada",
+      "slug": "nevada",
+      "countryCode": "US",
+      "file": "content/nevada.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "New Hampshire",
+      "slug": "new-hampshire",
+      "countryCode": "US",
+      "file": "content/new-hampshire.md",
+      "lastReviewed": "2026-06-06",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "New Jersey",
+      "slug": "new-jersey",
+      "countryCode": "US",
+      "file": "content/new-jersey.md",
+      "lastReviewed": "2026-06-06",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "New Mexico",
+      "slug": "new-mexico",
+      "countryCode": "US",
+      "file": "content/new-mexico.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "New York",
+      "slug": "new-york",
+      "countryCode": "US",
+      "file": "content/new-york.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "North Carolina",
+      "slug": "north-carolina",
+      "countryCode": "US",
+      "file": "content/north-carolina.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "North Dakota",
+      "slug": "north-dakota",
+      "countryCode": "US",
+      "file": "content/north-dakota.md",
+      "lastReviewed": "2026-06-12",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Ohio",
+      "slug": "ohio",
+      "countryCode": "US",
+      "file": "content/ohio.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Oklahoma",
+      "slug": "oklahoma",
+      "countryCode": "US",
+      "file": "content/oklahoma.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Oregon",
+      "slug": "oregon",
+      "countryCode": "US",
+      "file": "content/oregon.md",
+      "lastReviewed": "2026-06-05",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Pennsylvania",
+      "slug": "pennsylvania",
+      "countryCode": "US",
+      "file": "content/pennsylvania.md",
+      "lastReviewed": "2026-06-07",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Rhode Island",
+      "slug": "rhode-island",
+      "countryCode": "US",
+      "file": "content/rhode-island.md",
+      "lastReviewed": "2026-06-06",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "South Carolina",
+      "slug": "south-carolina",
+      "countryCode": "US",
+      "file": "content/south-carolina.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "South Dakota",
+      "slug": "south-dakota",
+      "countryCode": "US",
+      "file": "content/south-dakota.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Tennessee",
+      "slug": "tennessee",
+      "countryCode": "US",
+      "file": "content/tennessee.md",
+      "lastReviewed": "2026-06-06",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Texas",
+      "slug": "texas",
+      "countryCode": "US",
+      "file": "content/texas.md",
+      "lastReviewed": "2026-06-04",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Utah",
+      "slug": "utah",
+      "countryCode": "US",
+      "file": "content/utah.md",
+      "lastReviewed": "2026-06-04",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Vermont",
+      "slug": "vermont",
+      "countryCode": "US",
+      "file": "content/vermont.md",
+      "lastReviewed": "2026-06-12",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Virginia",
+      "slug": "virginia",
+      "countryCode": "US",
+      "file": "content/virginia.md",
+      "lastReviewed": "2026-06-04",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Washington",
+      "slug": "washington",
+      "countryCode": "US",
+      "file": "content/washington.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "West Virginia",
+      "slug": "west-virginia",
+      "countryCode": "US",
+      "file": "content/west-virginia.md",
+      "lastReviewed": "2026-06-12",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Wisconsin",
+      "slug": "wisconsin",
+      "countryCode": "US",
+      "file": "content/wisconsin.md",
+      "lastReviewed": "2026-06-11",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    },
+    {
+      "jurisdiction": "Wyoming",
+      "slug": "wyoming",
+      "countryCode": "US",
+      "file": "content/wyoming.md",
+      "lastReviewed": "2026-06-12",
+      "snapshotAsOf": "2026-06-12",
+      "stale": false
+    }
+  ]
+}

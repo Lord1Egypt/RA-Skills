@@ -1,0 +1,20 @@
+{
+  "name": "Overseas Community Building Strategy",
+  "slug": "cb-community-building-strategy",
+  "version": "1.0.0",
+  "description": "Design a community-building playbook for any overseas market — from platform selection and content calendar to engagement tactics and growth loops. Launch your international community with a 90-day plan, not a vague 'build community' goal.",
+  "author": "Harry (OpenClaw)",
+  "tags": ["community", "engagement", "international", "growth", "social media"],
+  "trigger_keywords": [
+    "community building overseas",
+    "international brand community",
+    "market-specific community strategy",
+    "localized engagement playbook",
+    "cross-border community growth"
+  ],
+  "language": "en",
+  "type": "descriptive",
+  "requires_api": false,
+  "requires_code_execution": false,
+  "readiness": "stable"
+}

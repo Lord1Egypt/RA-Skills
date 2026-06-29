@@ -1,0 +1,88 @@
+<svg width="1280" height="640" viewBox="0 0 1280 640" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="hiapiOrange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#f97316"/>
+      <stop offset="100%" stop-color="#ea580c"/>
+    </linearGradient>
+    <linearGradient id="warmPanel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff7ed"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+    <linearGradient id="videoGlow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffedd5"/>
+      <stop offset="45%" stop-color="#fed7aa"/>
+      <stop offset="100%" stop-color="#fb923c"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="22" stdDeviation="24" flood-color="#9a3412" flood-opacity="0.14"/>
+    </filter>
+    <filter id="smallShadow" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#9a3412" flood-opacity="0.18"/>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="640" fill="#fffaf5"/>
+  <path d="M900 -120C1100 -80 1244 40 1320 210V640H760C700 490 720 320 815 185C850 134 880 40 900 -120Z" fill="#ffedd5"/>
+  <path d="M1010 0C1132 58 1210 160 1256 300C1200 272 1128 270 1054 308C980 346 922 418 887 524C850 430 850 314 902 206C936 136 978 74 1010 0Z" fill="#fed7aa" opacity="0.78"/>
+  <circle cx="1080" cy="164" r="210" fill="#f97316" opacity="0.08"/>
+  <circle cx="950" cy="545" r="150" fill="#ea580c" opacity="0.08"/>
+
+  <g transform="translate(72 56)">
+    <g filter="url(#smallShadow)">
+      <rect x="0" y="8" width="40" height="40" rx="8" fill="url(#hiapiOrange)" fill-opacity="0.4"/>
+      <rect x="10" y="-2" width="40" height="40" rx="8" fill="url(#hiapiOrange)" fill-opacity="0.7"/>
+      <rect x="20" y="-12" width="40" height="40" rx="8" fill="url(#hiapiOrange)"/>
+      <path d="M32 1H48M32 8H44M32 15H48" stroke="white" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <text x="82" y="26" font-family="SF Pro Display, Helvetica Neue, Arial, PingFang SC, Hiragino Sans GB, sans-serif" font-size="38" font-weight="800" letter-spacing="0">
+      <tspan fill="#18181b">Hi</tspan><tspan fill="#f97316">API</tspan>
+    </text>
+    <text x="82" y="58" font-family="SF Pro Display, Helvetica Neue, Arial, PingFang SC, Hiragino Sans GB, sans-serif" font-size="18" font-weight="600" fill="#78716c" letter-spacing="0">一个 API，所有 AI 模型</text>
+  </g>
+
+  <g transform="translate(72 150)">
+    <rect x="0" y="0" width="218" height="42" rx="21" fill="#ffffff" stroke="#fed7aa"/>
+    <circle cx="23" cy="21" r="8" fill="#22c55e"/>
+    <text x="44" y="27" font-family="SF Pro Display, Helvetica Neue, Arial, PingFang SC, Hiragino Sans GB, sans-serif" font-size="18" font-weight="700" fill="#9a3412" letter-spacing="0">HiAPI Agent Skill</text>
+  </g>
+
+  <g transform="translate(72 258)">
+    <text x="0" y="0" font-family="SF Pro Display, Helvetica Neue, Arial, PingFang SC, Hiragino Sans GB, sans-serif" font-size="64" font-weight="850" fill="#18181b" letter-spacing="0">HappyHorse 1.0</text>
+    <text x="0" y="78" font-family="PingFang SC, Hiragino Sans GB, SF Pro Display, Helvetica Neue, Arial, sans-serif" font-size="62" font-weight="850" fill="#18181b" letter-spacing="0">视频生成技能</text>
+    <text x="4" y="135" font-family="PingFang SC, Hiragino Sans GB, SF Pro Display, Helvetica Neue, Arial, sans-serif" font-size="27" font-weight="600" fill="#57534e" letter-spacing="0">一句话生成高清视频，适配主流 AI Agent</text>
+  </g>
+
+  <g transform="translate(72 442)" font-family="PingFang SC, Hiragino Sans GB, SF Pro Display, Helvetica Neue, Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="0">
+    <rect x="0" y="0" width="122" height="48" rx="24" fill="#18181b"/>
+    <text x="24" y="31" fill="#ffffff">文生视频</text>
+    <rect x="138" y="0" width="120" height="48" rx="24" fill="#ffffff" stroke="#fed7aa"/>
+    <text x="166" y="31" fill="#9a3412">3-15 秒</text>
+    <rect x="274" y="0" width="154" height="48" rx="24" fill="#ffffff" stroke="#fed7aa"/>
+    <text x="302" y="31" fill="#9a3412">720p/1080p</text>
+    <rect x="444" y="0" width="182" height="48" rx="24" fill="#ffffff" stroke="#fed7aa"/>
+    <text x="474" y="31" fill="#9a3412">横版/竖版/方形</text>
+  </g>
+
+  <g transform="translate(72 526)">
+    <rect x="0" y="0" width="410" height="54" rx="27" fill="url(#hiapiOrange)" filter="url(#smallShadow)"/>
+    <text x="28" y="35" font-family="PingFang SC, Hiragino Sans GB, SF Pro Display, Helvetica Neue, Arial, sans-serif" font-size="23" font-weight="800" fill="#ffffff" letter-spacing="0">获取 API Key：hiapi.ai/zh/register</text>
+  </g>
+
+  <g transform="translate(758 126)" filter="url(#softShadow)">
+    <rect x="0" y="0" width="424" height="350" rx="34" fill="#ffffff"/>
+    <rect x="24" y="24" width="376" height="212" rx="24" fill="url(#videoGlow)"/>
+    <path d="M88 204C128 154 162 139 205 151C242 162 266 132 302 92C322 70 352 61 376 70V236H24V220C44 230 64 230 88 204Z" fill="#9a3412" opacity="0.18"/>
+    <circle cx="202" cy="130" r="52" fill="#ffffff" fill-opacity="0.88"/>
+    <path d="M192 105L232 130L192 155V105Z" fill="#f97316"/>
+    <rect x="48" y="266" width="248" height="18" rx="9" fill="#fed7aa"/>
+    <rect x="48" y="298" width="328" height="16" rx="8" fill="#ffedd5"/>
+  </g>
+
+  <g transform="translate(814 494)" font-family="PingFang SC, Hiragino Sans GB, SF Pro Display, Helvetica Neue, Arial, sans-serif">
+    <rect x="0" y="0" width="312" height="70" rx="20" fill="#ffffff" stroke="#fed7aa"/>
+    <text x="24" y="30" font-size="20" font-weight="800" fill="#18181b" letter-spacing="0">输出到本地 outputs/</text>
+    <text x="24" y="54" font-size="16" font-weight="600" fill="#78716c" letter-spacing="0">或返回可直接访问的视频 URL</text>
+  </g>
+
+  <text x="1110" y="592" text-anchor="end" font-family="SF Pro Display, Helvetica Neue, Arial, PingFang SC, Hiragino Sans GB, sans-serif" font-size="20" font-weight="700" fill="#9a3412" letter-spacing="0">github.com/HiAPIAI</text>
+</svg>

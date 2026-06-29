@@ -1,0 +1,33 @@
+providers:
+  - name: xiaomi-mimo
+    base_url: https://api.xiaomimimo.com/v1
+    api_key: YOUR_MIMO_KEY
+    models:
+      - mimo-v2.5
+    priority: 1
+
+  - name: deepseek
+    base_url: https://api.deepseek.com/v1
+    api_key: YOUR_DEEPSEEK_KEY
+    models:
+      - deepseek-chat
+    priority: 2
+
+  - name: zhipu
+    base_url: https://open.bigmodel.cn/api/paas/v4
+    api_key: YOUR_ZHIPU_KEY
+    models:
+      - glm-4-flash
+    priority: 3
+
+  - name: aliyun
+    base_url: https://dashscope.aliyuncs.com/compatible-mode/v1
+    api_key: YOUR_ALIYUN_KEY
+    models:
+      - qwen-turbo
+    priority: 4
+
+routing:
+  strategy: priority
+  fallback: true
+  timeout: 30

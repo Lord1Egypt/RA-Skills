@@ -42,4 +42,4 @@
 | -------------------- | ---------------- |
 | `REPORT-WORKFLOW.md` | 六步报告流程总览 |
 
-章节细则另见 `references/core/playbooks.md`（P1–P9）与 `references/analytics/account-analytics.md`。
+章节细则另见 `references/core/playbooks.md`（P1–P9）、`references/core/intent-routing.md`（模糊话术消歧）与 `references/analytics/account-analytics.md`。

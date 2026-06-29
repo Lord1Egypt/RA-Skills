@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Grocery Price Comparer Output",
+  "description": "Output schema for the grocery price comparison result.",
+  "type": "object",
+  "required": ["version", "input", "parsed_items", "matrix", "totals", "strategy"],
+  "properties": {
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "input": {
+      "type": "object",
+      "properties": {
+        "shopping_list": { "type": "string" },
+        "platforms": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "parsed_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "spec", "quantity", "preferred_unit", "category"],
+        "properties": {
+          "name": { "type": "string" },
+          "spec": { "type": "string" },
+          "quantity": { "type": "number" },
+          "preferred_unit": { "type": "string" },
+          "category": { "type": "string" }
+        }
+      }
+    },
+    "matrix": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["item", "spec", "quantity", "prices", "best"],
+        "properties": {
+          "item": { "type": "string" },
+          "spec": { "type": "string" },
+          "quantity": { "type": "number" },
+          "prices": {
+            "type": "object",
+            "additionalProperties": {
+              "oneOf": [
+                { "type": "null" },
+                {
+                  "type": "object",
+                  "properties": {
+                    "price": { "type": "number" },
+                    "display": { "type": "string" },
+                    "spec": { "type": "string" },
+                    "delivery": { "type": "number" }
+                  }
+                }
+              ]
+            }
+          },
+          "best": { "type": "string" }
+        }
+      }
+    },
+    "totals": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "subtotal": { "type": "number" },
+          "delivery": { "type": "number" },
+          "total": { "type": "number" }
+        }
+      }
+    },
+    "strategy": {
+      "type": "object",
+      "required": ["cheapest_single", "recommendation_label"],
+      "properties": {
+        "cheapest_single": {
+          "type": "object",
+          "properties": {
+            "platform": { "type": "string" },
+            "platform_name": { "type": "string" },
+            "total": { "type": "number" }
+          }
+        },
+        "split_plan": { "type": ["object", "null"] },
+        "split_total": { "type": "number" },
+        "savings_vs_single": { "type": "number" },
+        "recommendation_label": { "type": "string" }
+      }
+    },
+    "procurement_plan": {
+      "type": "object",
+      "description": "Ready-to-shop plan organized by platform."
+    },
+    "alerts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "item": { "type": "string" },
+          "target_price": { "type": "number" },
+          "platform": { "type": "string" },
+          "status": { "type": "string", "enum": ["active", "triggered"] }
+        }
+      }
+    },
+    "warnings": { "type": "array", "items": { "type": "string" } }
+  }
+}

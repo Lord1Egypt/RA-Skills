@@ -1,0 +1,14 @@
+{
+  "name": "javis-brainstorming",
+  "version": "0.4.0",
+  "description": "Turn a brainstorm-worthy voice/keyboard unit into a generic to-do card whose ready-to-paste prompt hands off to Claude's content-brainstorming skill (with javis_mcp pulling the source transcript). Runs on demand and is auto-run by the javis-server session dispatcher (no approve-to-run card); the card is written PENDING, a markdown digest of it is pushed to your iOS Agent Chat, and the human gate is Confirm/Discard in the iOS Calendar tab. Triggers: 'brainstorm this', '整理成簡報', '帮我腦力激盪'.",
+  "keywords": ["brainstorm", "brainstorm this", "整理成簡報", "帮我腦力激盪", "todo-card", "content-brainstorming"],
+  "license": "MIT",
+  "scripts": {
+    "register": "node scripts/register.js",
+    "fetch": "node scripts/brainstorming.js",
+    "push": "node scripts/brainstorming.js",
+    "test": "node --test"
+  },
+  "engines": { "node": ">=18" }
+}

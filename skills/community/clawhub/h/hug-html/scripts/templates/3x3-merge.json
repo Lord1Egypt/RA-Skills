@@ -1,0 +1,96 @@
+{
+  "name": "3×3网格合并演示",
+  "desc": "3行3列网格，展示单元格合并效果",
+  "card_style": {
+    "max_width": "600px",
+    "width": "100%",
+    "bg": "#ffffff",
+    "border_radius": "24px",
+    "shadow": "0 10px 30px rgba(0,0,0,0.1)",
+    "padding": "20px",
+    "border": "1px solid #e8eef5"
+  },
+  "grid": {
+    "rows": 3,
+    "cols": 3,
+    "gap": "8px"
+  },
+  "cells": [
+    {
+      "id": "A1",
+      "row": 0,
+      "col": 0,
+      "style": {
+        "background": "#6C63FF",
+        "color": "white",
+        "padding": "24px",
+        "border-radius": "12px",
+        "text-align": "center",
+        "font-weight": "bold",
+        "display": "flex",
+        "align-items": "center",
+        "justify-content": "center"
+      },
+      "html": "<div data-field=\"cell-A1\">A1<br><small>标准格</small></div>"
+    },
+    {
+      "id": "B1-C1",
+      "row": 0,
+      "col": 1,
+      "colspan": 2,
+      "rowspan": 2,
+      "style": {
+        "background": "#00B894",
+        "color": "white",
+        "padding": "24px",
+        "border-radius": "12px",
+        "text-align": "center",
+        "font-weight": "bold",
+        "display": "flex",
+        "align-items": "center",
+        "justify-content": "center"
+      },
+      "html": "<div data-field=\"cell-B1\">B1+C1<br><small>合并2列2行</small></div>"
+    },
+    {
+      "id": "A2",
+      "row": 1,
+      "col": 0,
+      "style": {
+        "background": "#FF6584",
+        "color": "white",
+        "padding": "24px",
+        "border-radius": "12px",
+        "text-align": "center"
+      },
+      "html": "<div data-field=\"cell-A2\">A2<br><small>标准格</small></div>"
+    },
+    {
+      "id": "A3-B3",
+      "row": 2,
+      "col": 0,
+      "colspan": 2,
+      "style": {
+        "background": "#E17055",
+        "color": "white",
+        "padding": "24px",
+        "border-radius": "12px",
+        "text-align": "center"
+      },
+      "html": "<div data-field=\"cell-A3\">A3+B3<br><small>合并2列</small></div>"
+    },
+    {
+      "id": "C3",
+      "row": 2,
+      "col": 2,
+      "style": {
+        "background": "#6C63FF",
+        "color": "white",
+        "padding": "24px",
+        "border-radius": "12px",
+        "text-align": "center"
+      },
+      "html": "<div data-field=\"cell-C3\">C3<br><small>标准格</small></div>"
+    }
+  ]
+}

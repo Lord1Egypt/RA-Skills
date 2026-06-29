@@ -1,0 +1,9 @@
+{
+  "name": "filter-dashboard",
+  "label": "多维度筛选面板",
+  "description": "多维度联动筛选，适合数据探索式分析",
+  "layout": "dashboard",
+  "features": ["dimension_filters", "faceted_search", "active_filter_tags", "result_count", "dynamic_charts"],
+  "filter_style": "sidebar",
+  "show_summary": true
+}

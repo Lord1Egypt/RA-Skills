@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="OpenClaw AI model router for Sage Router: route OpenClaw agents through one local, Tailnet, or hosted endpoint with port 8790, OpenAI-compatible and Anthropic-compatible setup, Codex OAuth passthrough, 429 failover, multimodal routing, and BYOK custody." />
+  <link rel="canonical" href="https://sagerouter.dev/openclaw-ai-model-router" />
+  <meta property="og:title" content="OpenClaw AI model router | Sage Router" />
+  <meta property="og:description" content="Use Sage Router as an OpenClaw model-routing layer for serious agent workflows with local/Tailnet routing, Codex OAuth passthrough, provider failover, and capability-aware route selection." />
+  <meta property="og:url" content="https://sagerouter.dev/openclaw-ai-model-router" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>OpenClaw AI model router | Sage Router</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07100d;--panel:rgba(13,29,24,.84);--soft:rgba(255,255,255,.045);--border:rgba(166,255,207,.16);--muted:#a9c5b8;--text:#edfdf5;--brand:#8df0b2;--amber:#f7d57a}*{box-sizing:border-box}body{margin:0;min-width:320px;background:linear-gradient(180deg,#07100d 0%,#0b1518 54%,#07100d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}a{color:inherit}.wrap{max-width:1120px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;color:var(--muted)}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;color:var(--text);text-decoration:none}.brandMark{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(141,240,178,.42);border-radius:8px;color:#062016;background:linear-gradient(135deg,var(--brand),var(--amber))}.navLinks{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;font-weight:750}.navLinks a{text-decoration:none}.navLinks a:hover,footer a:hover{color:var(--text)}header{padding:72px 0 38px}.eyebrow{color:var(--brand);font-weight:900;letter-spacing:.16em;text-transform:uppercase;font-size:12px;margin:0 0 16px}h1{font-size:clamp(44px,7vw,82px);line-height:.94;margin:0 0 22px;max-width:980px}h2{font-size:clamp(28px,4vw,44px);line-height:1.05;margin:0 0 16px}h3{font-size:21px;margin:0 0 8px}.lead{font-size:clamp(20px,2.2vw,26px);line-height:1.36;color:#d2eadf;max-width:900px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.button{min-height:46px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:0 20px;font-weight:900;text-decoration:none}.primary{background:var(--brand);color:#06160d}.secondary{border:1px solid var(--border);background:rgba(255,255,255,.05);color:var(--text)}main{padding:24px 0 68px}.stack{display:grid;gap:22px}.panel{border:1px solid var(--border);border-radius:8px;background:var(--panel);padding:28px}.panel.soft{background:var(--soft)}.panel p,.panel li,.muted{color:var(--muted)}.panel p{margin:0 0 14px}.panel p:last-child{margin-bottom:0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.two{display:grid;grid-template-columns:minmax(0,.95fr) minmax(330px,.65fr);gap:18px;align-items:start}.list{display:grid;gap:10px;margin:0;padding-left:22px}.codebox{white-space:pre-wrap;overflow:auto;border:1px solid var(--border);border-radius:8px;background:rgba(0,0,0,.28);color:#d9e6ff;padding:18px;font-size:.92rem}.copyRow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:12px}.copyButton{border:0;border-radius:999px;background:var(--brand);color:#04150d;cursor:pointer;font-weight:900;min-height:42px;padding:0 18px}.copyStatus{color:var(--muted);font-size:14px;min-height:22px}code{color:#d9e6ff}.callout{border-color:rgba(247,213,122,.32);background:rgba(247,213,122,.07)}.callout strong{color:var(--amber)}footer{display:flex;gap:18px;flex-wrap:wrap;color:var(--muted);font-size:.9rem;padding:34px 0 54px;border-top:1px solid rgba(166,255,207,.1)}footer span{margin-right:auto}@media(max-width:900px){.grid,.two{grid-template-columns:1fr}.nav{align-items:flex-start;flex-direction:column}.button{width:100%}}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Sage Router OpenClaw AI model router",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Linux, macOS, Windows, Docker",
+    "url": "https://sagerouter.dev/openclaw-ai-model-router",
+    "description": "OpenClaw model router with OpenAI-compatible and Anthropic-compatible setup, local port 8790, Tailnet routing, Codex OAuth passthrough, BYOK custody, 429 failover, and multimodal routing."
+  }
+  </script>
+</head>
+<body>
+  <nav class="nav wrap" aria-label="Main navigation">
+    <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+    <div class="navLinks">
+      <a href="/quickstart">Quickstart</a>
+      <a href="/integrations">Integrations</a>
+      <a href="/coding-agent-model-router">Coding agents</a>
+      <a href="/self-hosted-ai-model-router">Self-hosted</a>
+      <a href="/pricing">Pricing</a>
+      <a href="https://app.sagerouter.dev/account.html">Account</a>
+    </div>
+  </nav>
+
+  <header class="wrap">
+    <p class="eyebrow">OpenClaw model routing</p>
+    <h1>OpenClaw AI model router for serious agent workflows</h1>
+    <p class="lead">Run Sage Router behind OpenClaw so agents use one stable local, Tailnet, or hosted endpoint while model choice moves into policy. Route OpenAI-compatible tools, Anthropic-compatible tools, Codex OAuth-backed routes, Ollama, NVIDIA NIM, Gemini, and authorized provider APIs without rewriting every agent.</p>
+    <div class="actions">
+      <a class="button primary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key" data-openclaw-event="content_article_key_activation_clicked" data-openclaw-button="create-api-key">Create API key</a>
+      <a class="button secondary" href="https://github.com/earlvanze/sage-router/blob/master/docs/integrations/openclaw.md" data-openclaw-event="content_article_quickstart_clicked" data-openclaw-button="openclaw-guide">OpenClaw guide</a>
+      <a class="button secondary" href="/coding-agent-model-router" data-openclaw-event="content_article_compare_clicked" data-openclaw-button="coding-agent-router">Coding-agent routes</a>
+      <a class="button secondary" href="/self-hosted-ai-model-router" data-openclaw-event="content_article_compare_clicked" data-openclaw-button="self-hosted">Self-hosted routing</a>
+    </div>
+  </header>
+
+  <main class="wrap stack">
+    <section class="grid">
+      <article class="panel">
+        <h2>OpenClaw skill setup</h2>
+        <p>Install the Sage Router skill with <code>openclaw skill add sage-router --from clawhub</code>, configure it, then run the router on local port <code>8790</code> or a Tailnet host.</p>
+      </article>
+      <article class="panel">
+        <h2>OpenAI and Anthropic endpoints</h2>
+        <p>OpenClaw tools can use <code>OPENAI_BASE_URL=http://localhost:8790/v1</code> and <code>ANTHROPIC_BASE_URL=http://localhost:8790</code> while credentials remain on the router host.</p>
+      </article>
+      <article class="panel">
+        <h2>Codex OAuth passthrough</h2>
+        <p>OpenClaw-managed Codex tokens can be passed through from the auth profile store or environment. Sage Router does not implement its own Codex device-login route.</p>
+      </article>
+    </section>
+
+    <section class="two">
+      <article class="panel">
+        <h2>60-second OpenClaw setup</h2>
+        <pre id="openclaw-router-start-code" class="codebox">openclaw skill add sage-router --from clawhub
+openclaw skill configure sage-router
+python3 router.py --port 8790
+
+export OPENAI_BASE_URL=http://localhost:8790/v1
+export OPENAI_API_KEY=local-router
+export ANTHROPIC_BASE_URL=http://localhost:8790
+export ANTHROPIC_API_KEY=local-router</pre>
+        <div class="copyRow">
+          <button id="openclaw-router-copy-start" class="copyButton" type="button">Copy 60-second OpenClaw setup</button>
+          <span id="openclaw-router-copy-status" class="copyStatus" role="status" aria-live="polite"></span>
+        </div>
+      </article>
+      <aside class="panel soft">
+        <h2>Why OpenClaw teams use it</h2>
+        <ul class="list">
+          <li>Keep one routing layer for OpenAI-compatible, Anthropic-compatible, local, and Codex-backed agent traffic.</li>
+          <li>Use provider-qualified models such as <code>ollama/qwen2.5-coder:latest</code>, <code>openai/gpt-4.1</code>, or <code>anthropic/claude-sonnet-4-6</code>.</li>
+          <li>Fail over on 429s, outages, local-model saturation, and unhealthy provider credentials.</li>
+          <li>Route multimodal and document-heavy requests only to capable models, with served modalities recorded for future routing.</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="grid">
+      <article class="panel soft">
+        <h3>Local-first agents</h3>
+        <p>Keep local Ollama and Tailnet routes first, then escalate to authorized cloud providers when quality, latency, or context requires it.</p>
+      </article>
+      <article class="panel soft">
+        <h3>Credential load balancing</h3>
+        <p>Authorized credential pools can load balance and fail over on rate limits, provider health, latency, and policy.</p>
+      </article>
+      <article class="panel soft">
+        <h3>Provider boundary</h3>
+        <p>Sage Router does not grant unauthorized OpenAI, Codex, Anthropic, Gemini, NVIDIA, Ollama Cloud, or other provider access. Customers bring authorized credentials or use hosted routing for Sage Router account control.</p>
+      </article>
+    </section>
+
+    <section class="panel">
+      <h2>OpenClaw without fragile model configuration sprawl</h2>
+      <p>Serious OpenClaw work often spans local tools, cloud APIs, coding models, multimodal inputs, and Codex-style routes. Sage Router centralizes selection, failover, credential health, and route telemetry behind one OpenClaw-friendly endpoint.</p>
+    </section>
+
+    <section class="panel callout">
+      <h2><strong>Next steps</strong></h2>
+      <p><a href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key" data-openclaw-event="content_article_key_activation_clicked" data-openclaw-button="next-create-api-key">Create an API key</a>, <a href="https://github.com/earlvanze/sage-router/blob/master/docs/integrations/openclaw.md" data-openclaw-event="content_article_quickstart_clicked" data-openclaw-button="next-openclaw-guide">open the OpenClaw guide</a>, <a href="/quickstart" data-openclaw-event="content_article_quickstart_clicked" data-openclaw-button="next-quickstart">copy the hosted quickstart</a>, or <a href="/model-routing-calculator" data-openclaw-event="content_article_compare_clicked" data-openclaw-button="calculator">estimate routing fit</a>.</p>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <span>Sage Router</span>
+    <a href="/quickstart">Quickstart</a>
+    <a href="/integrations">Integrations</a>
+    <a href="/coding-agent-model-router">Coding Agents</a>
+    <a href="/self-hosted-ai-model-router">Self-hosted</a>
+    <a href="/models">Models</a>
+    <a href="/pricing">Pricing</a>
+    <a href="/security">Security</a>
+  </footer>
+  <script>
+    function trackOpenClawRouterEvent(event, data = {}) {
+      const params = new URLSearchParams(window.location.search);
+      let referrerHost = null;
+      try {
+        const referrer = document.referrer ? new URL(document.referrer) : null;
+        referrerHost = referrer && referrer.host !== window.location.host ? referrer.host : null;
+      } catch {}
+      const payload = JSON.stringify({
+        event,
+        plan: data.plan || null,
+        sourcePage: window.location.href,
+        target: data.target || null,
+        metadata: {
+          source: 'article',
+          button: data.button || null,
+          state: 'openclaw-ai-model-router',
+          utmSource: params.get('utm_source') || params.get('utmSource') || null,
+          utmMedium: params.get('utm_medium') || params.get('utmMedium') || null,
+          utmCampaign: params.get('utm_campaign') || params.get('utmCampaign') || null,
+          referrerHost,
+          landingPath: window.location.pathname,
+          snippet: data.snippet || null
+        }
+      });
+      try {
+        if (navigator.sendBeacon) {
+          const blob = new Blob([payload], { type: 'application/json' });
+          if (navigator.sendBeacon('/api/funnel-event', blob)) return;
+        }
+      } catch {}
+      fetch('/api/funnel-event', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: payload,
+        keepalive: true,
+        credentials: 'omit'
+      }).catch(() => {});
+    }
+
+    function openClawRouterStartText() {
+      return `${document.getElementById('openclaw-router-start-code')?.textContent.trim() || ''}
+
+# Create a hosted generated key:
+# https://app.sagerouter.dev/account.html?plan=pro&start=create_key
+# Full OpenClaw setup guide:
+# https://github.com/earlvanze/sage-router/blob/master/docs/integrations/openclaw.md`;
+    }
+
+    async function writeClipboardText(text) {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      textarea.remove();
+    }
+
+    async function copyOpenClawRouterStart() {
+      const status = document.getElementById('openclaw-router-copy-status');
+      try {
+        await writeClipboardText(openClawRouterStartText());
+        trackOpenClawRouterEvent('quickstart_snippet_copied', {
+          button: 'copy_openclaw_router_start',
+          snippet: 'openclaw-router-start'
+        });
+        if (status) status.textContent = 'Copied OpenClaw setup.';
+      } catch {
+        if (status) status.textContent = 'Copy failed. Select the command block manually.';
+      }
+    }
+
+    trackOpenClawRouterEvent('content_article_viewed', { button: 'page-view' });
+    document.getElementById('openclaw-router-copy-start')?.addEventListener('click', copyOpenClawRouterStart);
+    document.querySelectorAll('[data-openclaw-event]').forEach((link) => {
+      link.addEventListener('click', () => {
+        const href = link.getAttribute('href') || '';
+        const planMatch = href.match(/plan=(lite|pro|max)\b/);
+        trackOpenClawRouterEvent(link.dataset.openclawEvent, {
+          plan: planMatch ? planMatch[1] : null,
+          target: href,
+          button: link.dataset.openclawButton || link.textContent.trim().slice(0, 60)
+        });
+      });
+    });
+  </script>
+  <script src="/article-activation-dock.js" defer></script>
+</body>
+</html>

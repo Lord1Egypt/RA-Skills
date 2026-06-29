@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openclaw/skills/time-guru/output.schema.json",
+  "title": "Time Guru Output",
+  "description": "Structured output from time-guru skill",
+  "type": "object",
+  "properties": {
+    "action": { "type": "string" },
+    "period": { "type": "string" },
+    "total_hours": { "type": "number" },
+    "billable_hours": { "type": "number" },
+    "billable_amount": { "type": "number" },
+    "categories": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "hours": { "type": "number" },
+          "percentage": { "type": "number" }
+        }
+      }
+    },
+    "activities": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "start": { "type": "string" },
+          "end": { "type": "string" },
+          "duration_minutes": { "type": "integer" },
+          "description": { "type": "string" },
+          "category": { "type": "string" },
+          "project": { "type": "string" }
+        }
+      }
+    },
+    "peak_hours": { "type": "string" },
+    "deep_work_hours": { "type": "number" },
+    "task_switches_per_day": { "type": "number" },
+    "recommendations": { "type": "array", "items": { "type": "string" } },
+    "goals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "category": { "type": "string" },
+          "target": { "type": "string" },
+          "actual": { "type": "number" },
+          "status": { "type": "string", "enum": ["on_track", "behind", "exceeded"] }
+        }
+      }
+    }
+  }
+}

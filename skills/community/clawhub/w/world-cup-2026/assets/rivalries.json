@@ -1,0 +1,90 @@
+{
+  "_meta": {
+    "purpose": "Rivalry/derby pairs for hype bonus in intensity score. Each entry adds +10 to match intensity.",
+    "types": {
+      "historic": "Long-running rivalry (Argentina-England, Germany-Netherlands, etc.)",
+      "recent_final": "Played in a recent WC final or semifinal (Argentina-France, France-Croatia)",
+      "regional": "Same confederation neighbors (Mexico-USA, South Korea-Japan)",
+      "political": "Politically charged (Iran-USA, England-Scotland)",
+      "star_duel": "Iconic player face-off (Argentina-France = Messi vs Mbappé)"
+    },
+    "schema": "pair: [homeKey, awayKey] (alphabetical by key, not name)"
+  },
+  "rivalries": [
+    { "pair": ["argentina", "brazil"],   "name": "Superclásico de las Américas", "type": "historic" },
+    { "pair": ["argentina", "england"],  "name": "Hand of God / 1998 rematch",   "type": "historic" },
+    { "pair": ["argentina", "france"],   "name": "2022 Final Replay",            "type": "recent_final" },
+    { "pair": ["argentina", "germany"],  "name": "2014 Final Rematch",           "type": "historic" },
+    { "pair": ["argentina", "netherlands"], "name": "2014 SF / 1998 QF nightmare", "type": "historic" },
+
+    { "pair": ["brazil", "france"],      "name": "2006 QF / 2022 QF revenge",   "type": "historic" },
+    { "pair": ["brazil", "germany"],     "name": "7-1 / 2002 Final",            "type": "historic" },
+    { "pair": ["brazil", "uruguay"],     "name": "1950 Maracanazo",             "type": "historic" },
+
+    { "pair": ["england", "france"],     "name": "Channel derby",               "type": "historic" },
+    { "pair": ["england", "germany"],    "name": "Historic Wembley nemesis",    "type": "historic" },
+    { "pair": ["england", "scotland"],   "name": "Auld Alliance",              "type": "regional" },
+    { "pair": ["england", "croatia"],    "name": "2018 SF revenge",            "type": "recent_final" },
+
+    { "pair": ["france", "germany"],     "name": "1986 SF / 2014 QF",          "type": "historic" },
+    { "pair": ["france", "italy"],       "name": "2006 Final (Zidane headbutt)","type": "historic" },
+    { "pair": ["france", "croatia"],     "name": "2018 Final / 2022 SF",       "type": "recent_final" },
+    { "pair": ["france", "morocco"],     "name": "2022 SF",                    "type": "recent_final" },
+    { "pair": ["france", "netherlands"], "name": "Euro 2024 / 1974 / 1978",    "type": "historic" },
+
+    { "pair": ["germany", "netherlands"], "name": "Der Klassiker",             "type": "historic" },
+    { "pair": ["germany", "turkey"],     "name": "2006 semifinal drama",      "type": "recent_final" },
+    { "pair": ["germany", "spain"],      "name": "2010 Final rematch",         "type": "recent_final" },
+    { "pair": ["germany", "sweden"],     "name": "2006 R16",                  "type": "recent_final" },
+
+    { "pair": ["netherlands", "spain"],  "name": "2010 Final",                "type": "recent_final" },
+    { "pair": ["netherlands", "argentina"], "name": "2014 SF / 1998 QF",       "type": "historic" },
+
+    { "pair": ["portugal", "spain"],     "name": "Iberian derby",              "type": "regional" },
+    { "pair": ["portugal", "france"],    "name": "Euro 2024 QF",              "type": "recent_final" },
+
+    { "pair": ["italy", "spain"],        "name": "Euro 2012 Final",           "type": "historic" },
+    { "pair": ["italy", "croatia"],      "name": "Euro 2012 / 2006 group",    "type": "historic" },
+
+    { "pair": ["mexico", "usa"],         "name": "CONCACAF Clásico",          "type": "regional" },
+    { "pair": ["iran", "usa"],           "name": "Political derby",            "type": "political" },
+    { "pair": ["south_korea", "japan"],  "name": "East Asian derby",          "type": "regional" },
+    { "pair": ["south_korea", "germany"], "name": "2002 Semifinal",           "type": "historic" },
+    { "pair": ["saudi_arabia", "japan"], "name": "Asian derby",               "type": "regional" },
+    { "pair": ["australia", "japan"],    "name": "Asian rivalry",            "type": "regional" },
+
+    { "pair": ["croatia", "serbia_not_in_2026"], "name": "Yugoslav derby",        "type": "historic" },
+    { "pair": ["senegal", "france"],     "name": "2002 group / colonial history", "type": "historic" },
+    { "pair": ["morocco", "spain"],      "name": "2022 R16 (penalties)",      "type": "recent_final" },
+    { "pair": ["morocco", "portugal"],   "name": "2022 QF",                   "type": "recent_final" },
+    { "pair": ["ghana", "uruguay"],      "name": "2010 QF (Suárez handball)", "type": "historic" },
+    { "pair": ["ghana", "south_korea"],  "name": "2022 group drama",          "type": "recent_final" },
+    { "pair": ["england", "ghana"],      "name": "2010 group (Ghana's debut)", "type": "recent_final" },
+    { "pair": ["belgium", "egypt"],      "name": "2018 R32 (3-0 Belgium)",    "type": "recent_final" },
+    { "pair": ["belgium", "iran"],       "name": "2014 + 2022 group stage",  "type": "recent_final" },
+    { "pair": ["uruguay", "spain"],      "name": "2018 R16",                  "type": "recent_final" },
+    { "pair": ["france", "norway"],      "name": "1994 group + 1998 group (Haaland sr.)", "type": "historic" },
+    { "pair": ["colombia", "portugal"],  "name": "2016 group stage",          "type": "recent_final" },
+    { "pair": ["brazil", "scotland"],    "name": "1990 group (Dunga's debut)", "type": "historic" },
+    { "pair": ["mexico", "argentina"],   "name": "2006 R16 (Maxi Rodríguez)", "type": "historic" },
+    { "pair": ["mexico", "germany"],     "name": "2018 group (Löw escape)",   "type": "recent_final" },
+    { "pair": ["japan", "turkey"],       "name": "2002 group stage",          "type": "historic" },
+    { "pair": ["usa", "turkey"],         "name": "2014 group stage (Howard saves)", "type": "recent_final" },
+    { "pair": ["south_korea", "germany"], "name": "2002 SF (controversy)",    "type": "historic" }
+  ],
+  "star_attractions": {
+    "_note": "Optional star-power boost (e.g. Haaland vs Messi would draw a casual crowd).",
+    "boost": 5,
+    "trios": [
+      { "tag": "Messi farewell",         "team": "argentina",     "weight": 8 },
+      { "tag": "Ronaldo farewell",       "team": "portugal",      "weight": 6 },
+      { "tag": "Mbappé Golden Boot hunt","team": "france",        "weight": 5 },
+      { "tag": "Haaland Golden Boot",    "team": "norway",        "weight": 7 },
+      { "tag": "Yamal & Pedri showtime", "team": "spain",         "weight": 5 },
+      { "tag": "Bellingham + Saka",      "team": "england",       "weight": 5 },
+      { "tag": "Vinicius Jr. magic",     "team": "brazil",        "weight": 5 },
+      { "tag": "Musiala + Wirtz",        "team": "germany",       "weight": 4 },
+      { "tag": "Salah & co.",            "team": "egypt",         "weight": 3 }
+    ]
+  }
+}

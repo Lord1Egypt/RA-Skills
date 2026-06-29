@@ -11,33 +11,29 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and architects use this skill for guidance on when and how to apply event-driven architecture, including event modeling, broker selection, failure handling, observability, and operational deliverables. <br>
+Developers and software architects use this skill to assess when event-driven architecture is appropriate and to plan adoption steps for asynchronous, loosely coupled systems. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Broad architecture triggers may surface this skill for tasks that are not specifically about event-driven design. <br>
-Mitigation: Confirm the task involves asynchronous messaging, pub/sub, brokers, event streams, or loose coupling before applying its recommendations. <br>
-Risk: Event-driven systems can create hidden coupling through undocumented event semantics or fields. <br>
-Mitigation: Maintain an event catalog or schema registry and validate event contracts before implementation. <br>
-Risk: Asynchronous pipelines can be difficult to diagnose when failures or stuck consumers are not observable. <br>
-Mitigation: Define dead-letter queues, retries, idempotency, tracing, and operational dashboards as part of the architecture review. <br>
+Risk: The skill may activate during unrelated architecture conversations and provide event-driven architecture guidance where it is not relevant. <br>
+Mitigation: Disable the skill or narrow its triggers if it activates outside event-driven architecture decision work. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-archetypes-architecture-paradigm-event-driven) <br>
-- [Metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-event-driven) <br>
+- [Homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown prose, checklists, and architecture recommendations] <br>
+**Output Type(s):** [text, markdown, guidance] <br>
+**Output Format:** [Markdown guidance] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Instruction-only; no tools, commands, API keys, or runtime dependencies detected.] <br>
+**Other Properties Related to Output:** [Guidance-only content for event-driven architecture decisions; no executable code, persistence, credential handling, or automatic actions are present in the artifact.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: ClawHub release evidence) <br>
+1.9.13 (source: ClawHub release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -11,36 +11,32 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers, writers, and product teams use this skill to audit, rewrite, proofread, and tune prose so it reads naturally. It is especially suited for copy, documentation, blog posts, emails, changelogs, and PR or MR descriptions. <br>
+Developers, technical writers, and reviewers use ia-writing to audit or rewrite prose, PR descriptions, READMEs, docs, emails, and copy so it reads direct, human, and concrete. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may strongly reshape tone and style when asked to rewrite or edit prose. <br>
-Mitigation: Review the rewritten output against the source text before publishing or sending it. <br>
-Risk: File-edit mode can change files the user may not intend to alter. <br>
-Mitigation: Use file-edit mode only on files the user is comfortable changing, then inspect the diff before accepting the result. <br>
+Risk: The skill applies strict prose rules and may make strong rewrites that change voice, nuance, or intent. <br>
+Mitigation: Review edited output against the source text and keep domain-specific wording, brand voice, or required terminology when it is intentional. <br>
 
 
 ## Reference(s): <br>
-- [Skill instructions](SKILL.md) <br>
-- [Skill specification](SPEC.md) <br>
-- [Two-phase audit workflow](references/audit-workflow.md) <br>
-- [Before/after examples](references/examples.md) <br>
-- [Extended phrase reference](references/phrases.md) <br>
-- [PR and MR description style](references/pr-descriptions.md) <br>
-- [ClawHub skill page](https://clawhub.ai/iliaal/compound-eng-writing) <br>
+- [ClawHub skill page](https://clawhub.ai/iliaal/skills/compound-eng-writing) <br>
+- [Two-Phase Audit Workflow](references/audit-workflow.md) <br>
+- [Before/After Examples](references/examples.md) <br>
+- [Extended Phrase Reference](references/phrases.md) <br>
+- [PR and MR Description Style](references/pr-descriptions.md) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or plain text prose with optional audit findings and changelog sections] <br>
+**Output Format:** [Plain text or Markdown with audit findings, corrected prose, and concise change summaries when requested] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May provide rewritten text, prose audit findings, style guidance, and PR or MR descriptions.] <br>
+**Other Properties Related to Output:** [May use AUDIT, CORRECTED TEXT, and CHANGELOG sections for long-form editing workflows.] <br>
 
 ## Skill Version(s): <br>
-4.0.3 (source: server release evidence) <br>
+4.1.5 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

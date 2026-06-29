@@ -1,0 +1,9 @@
+{
+  "name": "chart-embed",
+  "label": "内嵌迷你图表",
+  "description": "表格列中内嵌迷你柱状图/折线图",
+  "layout": "table",
+  "features": ["sparkline", "mini_bar", "data_bars", "color_scale", "icon_set"],
+  "max_data_points": 50,
+  "chart_types": ["sparkline", "mini_bar", "progress_bar"]
+}

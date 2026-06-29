@@ -1,0 +1,46 @@
+{
+  "schema_version": "s2t-question-bank-v1.9.2",
+  "core_questions": [
+    "What source material are we restructuring?",
+    "What currently exists: one skill, multiple skills, agents, tools, scripts, docs, workflow notes, generated package, or registry manifest?",
+    "What problem should restructuring solve?",
+    "Which responsibilities must remain separate for accountability?",
+    "Which parts are agent architecture concerns: supervision, routing, handoff, shared state, review authority, skill ownership, or context boundaries?",
+    "Which parts are workflow concerns: sequence, branch, loop, fan-out/fan-in, gate, required user input node, human wait, checkpoint, resume, or terminal boundary?",
+    "Which stage-internal deliverables must be preserved: named artifacts, candidate sets, prompt packages, registries, matrices, audit records, checkpoints, or closing handoff prompts?",
+    "Before source conversion starts, should the target team preserve source human-interaction steps, selectively preserve/convert them, or run fully automated with audit? Default to preserving source human-interaction steps.",
+    "Which source nodes require user input, settings, choices, approvals, or terminal/new-request decisions before the workflow can continue?",
+    "For each human intervention point, should the target team preserve it as a human wait, convert it to a reviewer gate, auto-advance with audit, or remove it as redundant?",
+    "How serious is a wrong output?",
+    "How important are facts, numbers, and sources?",
+    "Where does information come from, and can sources conflict?",
+    "How often are unknowns discovered mid-task?",
+    "How many revision or rerun rounds are normal?",
+    "Is independent checking or blocking acceptance needed?",
+    "How many professional knowledge areas are needed?",
+    "Can the target team fit in 5-6 top-level agents? If not, what strong requirement justifies fewer or more?",
+    "Confirm that Codex is the target runtime, remind that model execution defaults to OpenAI Codex rather than direct API calls, and collect optional Codex project-root context only for design-continuation or Codex package-end guidance.",
+    "If meta-team-first is selected with Target runtime codex, can the active runtime actually register/activate the fixed six-agent s2t-meta team and verify real handoffs? If not, Skill2Team must block with a reason instead of using a fallback run."
+  ],
+  "delivery_choices": [
+    "design",
+    "package"
+  ],
+  "agent_count_default": "5-6 top-level agents for nontrivial teams",
+  "design_continuation_choices": [
+    "Codex registration/start guidance with OpenAI Codex model service",
+    "API-service runner construction from the framework-neutral agent relationship graph",
+    "API-run role simulation",
+    "Hermes profile conversion with OpenAI Codex model service",
+    "Hermes profile conversion with API model service, OpenClaw profile conversion with OpenAI Codex service, OpenClaw profile conversion with API model service",
+    "OpenClaw profile conversion with OpenAI Codex model service",
+    "OpenClaw profile conversion with API model service",
+    "Design to Codex package",
+    "Hermes profile conversion with API model service"
+  ],
+  "package_end_followup_choices": [
+    "Codex register/start prompt with OpenAI Codex model service",
+    "Registered entry-agent use prompt after Codex smoke tests",
+    "Current-session target-team fan-out prompt when registered target-agent types are unavailable"
+  ]
+}

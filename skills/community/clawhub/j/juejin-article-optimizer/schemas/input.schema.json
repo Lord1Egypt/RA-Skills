@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Juejin Article Optimizer Input",
+  "description": "Input schema for the Juejin article optimization workflow.",
+  "type": "object",
+  "required": ["title", "task"],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Article title to optimize.",
+      "examples": ["Go并发编程入门", "微服务监控踩坑实录"]
+    },
+    "task": {
+      "type": "string",
+      "enum": ["diagnose", "title", "tags", "seo", "publish", "full"],
+      "description": "Optimization task to execute.",
+      "default": "diagnose"
+    },
+    "tags": {
+      "type": "string",
+      "description": "Comma-separated tags for SEO and discoverability.",
+      "examples": ["后端,Kubernetes", "前端,React"]
+    },
+    "article_text": {
+      "type": "string",
+      "description": "Full article markdown text (for content optimization)."
+    },
+    "goal": {
+      "type": "string",
+      "enum": ["optimize-new", "rescue-existing", "translate-adapt"],
+      "description": "Optimization goal.",
+      "default": "optimize-new"
+    },
+    "audience_level": {
+      "type": "string",
+      "enum": ["beginner", "intermediate", "advanced"],
+      "description": "Target audience level.",
+      "default": "intermediate"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "PowerPoint PPTX Layout Export"
+  short_description: "Repair PPTX layouts, placeholders, charts, images, notes, and exports."
+  default_prompt: "Use $powerpoint-pptx-layout-export-helper to repair or generate this PowerPoint deck."
+
+policy:
+  allow_implicit_invocation: true

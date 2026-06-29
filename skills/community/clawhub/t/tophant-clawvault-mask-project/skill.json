@@ -1,0 +1,27 @@
+{
+  "name": "tophant-clawvault-mask-project",
+  "version": "0.1.0",
+  "description": "Mask company names, project amounts, and contextual person names in local project documents before analysis.",
+  "author": "Tophant SPAI Lab",
+  "homepage": "https://github.com/tophant-ai/ClawVault",
+  "repository": "https://github.com/tophant-ai/ClawVault",
+  "main": "mask_project.py",
+  "permissions": ["read_files", "write_files"],
+  "permissions_rationale": {
+    "read_files": "Reads only the user-specified local document to produce sanitized content",
+    "write_files": "Writes optional sanitized output files and optional saved policy JSON files"
+  },
+  "tags": ["security", "privacy", "masking", "documents", "clawvault"],
+  "requirements": [],
+  "python_version": ">=3.10",
+  "commands": {
+    "generate-policy": {
+      "description": "Generate the default company-project masking policy.",
+      "usage": "generate-policy [--save-policy <policy_path>]"
+    },
+    "mask-file": {
+      "description": "Mask a local project document and return sanitized content as JSON.",
+      "usage": "mask-file <path> [--output <output_path>] [--save-policy <policy_path>] [--policy <policy_path>]"
+    }
+  }
+}

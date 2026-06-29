@@ -1,0 +1,21 @@
+{
+  "name": "learning-memory",
+  "version": "1.0.7",
+  "description": "An OpenClaw skill to enable autonomous long-term memory updates (MEMORY.md) and self-evolving skill synthesis.",
+  "main": "install.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 0",
+    "postinstall": "node install.js"
+  },
+  "keywords": [
+    "openclaw",
+    "skill",
+    "memory",
+    "self-evolving",
+    "agents",
+    "learning",
+    "secondbrain"
+  ],
+  "author": "tuanminhhole (Kent)",
+  "license": "MIT"
+}

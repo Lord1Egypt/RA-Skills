@@ -1,0 +1,8 @@
+# PostgreSQL Skill 配置文件
+
+db:
+  host: localhost          # 数据库地址
+  port: 5432               # 端口（PostgreSQL 默认 5432）
+  dbname: your_dbname      # ← 替换为你的数据库名
+  user: dbuser             # ← 替换为数据库用户名
+  password: your-password  # ← 替换为数据库密码

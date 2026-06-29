@@ -43,6 +43,36 @@
         "数字滚动动效用 requestAnimationFrame + easing 实现,2 秒内完成",
         "30 分钟内完成,产出 diff 摘要告诉用户改了什么"
       ]
+    },
+    {
+      "id": 4,
+      "prompt": "can you extract the brand colors and font from https://linear.app and save it as a DESIGN.md so I can build a matching landing page? Then use that DESIGN.md to create a landing page with hero section + 3 feature blocks + CTA.",
+      "expected_output": "XDesign 路由到 URL-to-brand 模式,先提取 linear.app 的 DESIGN.md(品牌色/字体/圆角/间距),保存至 deck-studio/design-systems/linear.md,然后基于提取的令牌产出单文件 landing page HTML。",
+      "files": [
+        "deck-studio/design-systems/linear.md"
+      ],
+      "expectations": [
+        "Skill 先提取 URL 品牌 tokens 生成 DESIGN.md,不直接猜测品牌色",
+        "如果 WebFetch linear.app 失败,应走 fallback 策略(读 references/design-system-catalog.md)",
+        "DESIGN.md 格式符合 references/schemas.md 的 CSS Design Token 合同",
+        "落地页使用提取的 tokens 作为 CSS 变量,不是分开的样式",
+        "响应式:桌面 3 列 grid → 平板 2 列 → 移动 1 列"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "帮我做一个产品发布会的 key visual 动效视频,大概 15 秒,要那种 logo morphing + particle burst + 文字 reveal 的感觉,我们的品牌名是 'Nova',主色是电光蓝 #4F46E5,要能直接播放在浏览器里。",
+      "expected_output": "XDesign 路由到 Mode 3 (Animation/Video),先问 2-3 个澄清问题(logo 形状/动画风格/帧率),然后用 Canvas CSS + requestAnimationFrame 实现 logo morphing + particle burst + text reveal,不含外部库。",
+      "files": [],
+      "expectations": [
+        "Skill 先问澄清问题(logo 形状/是否要音频/交付格式),不直接生成",
+        "路由到 Mode 3(Animation),不使用 deck-studio 路径",
+        "使用原生 Canvas + CSS animation + requestAnimationFrame,无外部依赖",
+        "实现 3 阶段动画:logo morphing → particle burst → text reveal,顺序执行",
+        "提供交互控制(重播/暂停),方便用户预览不同阶段",
+        "16:9 宽屏,自动全屏或居中对齐",
+        "品牌色使用 #4F46E5 作为主色,派生渐变/发光效果"
+      ]
     }
   ]
 }

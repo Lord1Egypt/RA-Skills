@@ -32,7 +32,7 @@ def main():
     )
     args = parser.parse_args()
 
-    path = "/data/api/v1/market/data/cb/cb-base-data"
+    path = "/gateway/api/v1/market/data/cb/cb-base-data"
     url = BASE_URL + path + "?" + urllib.parse.urlencode({"symbol_code": args.symbol_code})
 
     req = urllib.request.Request(url, method="GET")

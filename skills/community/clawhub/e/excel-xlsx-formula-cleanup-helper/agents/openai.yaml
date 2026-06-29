@@ -1,0 +1,7 @@
+interface:
+  display_name: "Excel XLSX Formula Cleanup"
+  short_description: "Fix Excel formulas, ranges, Power Query, pivots, VBA, and cleanup issues."
+  default_prompt: "Use $excel-xlsx-formula-cleanup-helper to inspect and fix this Excel workbook issue."
+
+policy:
+  allow_implicit_invocation: true

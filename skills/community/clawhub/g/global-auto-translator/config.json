@@ -1,0 +1,12 @@
+{
+  "target_language": "zh",
+  "poll_interval": 2,
+  "min_text_length": 3,
+  "translation_service": "mymemory",
+  "sound_alert": true,
+  "copy_to_clipboard": true,
+  "excluded_apps": [],
+  "trade_terms_enabled": true,
+  "preserve_formatting": true,
+  "prompt_cooldown": 30
+}

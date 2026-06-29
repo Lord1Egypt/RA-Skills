@@ -1,5 +1,5 @@
 ## Description: <br>
-A Chinese-language travel assistant for visitors to China that helps with entry and visa planning, payments, transport, city guides, customs, etiquette, emergency contacts, and trip checklists. <br>
+China Travel helps agents provide inbound China travel guidance for visas, payments, transport, destinations, etiquette, emergency contacts, and itinerary planning using bundled reference material. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,40 +11,42 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External travelers, overseas Chinese visitors, and business travelers use this skill to plan China trips and answer practical questions about entry requirements, payments, transport, destinations, etiquette, and emergency preparation. <br>
+External travelers, overseas Chinese visitors, business travelers, and their assisting agents use this skill to plan China trips and answer practical questions about entry rules, payments, transportation, city selection, etiquette, and emergency preparation. <br>
 
 ### Deployment Geography for Use: <br>
-Global <br>
+Global, for travel planning related to China. <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Visa, entry, customs, VPN, payment, emergency, and transport details can change and may affect legal travel decisions. <br>
-Mitigation: Treat the skill's guidance as planning support and verify requirements with official Chinese immigration, consular, airline, visa-center, and transport sources before booking or travel. <br>
+Risk: Travel, immigration, payment, emergency, and VPN/legal guidance may be outdated, jurisdiction-specific, or dependent on the traveler's nationality and destination. <br>
+Mitigation: Treat the skill as a travel-planning reference and verify visa rules, emergency contacts, embassy details, payment requirements, and VPN legality with official sources before relying on the guidance. <br>
+Risk: Users may mistake static travel guidance for official legal, immigration, medical, or emergency authority. <br>
+Mitigation: Present outputs as practical planning assistance and direct users to official authorities for final decisions involving entry, safety, health, payments, or emergencies. <br>
 
 
 ## Reference(s): <br>
-- [China Travel ClawHub Page](https://clawhub.ai/maxsu9527-svg/pandamate-china-travel) <br>
-- [Entry and Visa Guide](references/entry-visa.md) <br>
-- [Payment and Transport Guide](references/payment-transport.md) <br>
-- [Destination Guide](references/destinations.md) <br>
-- [Culture and Etiquette Guide](references/culture-etiquette.md) <br>
-- [Travel Checklists](references/checklists.md) <br>
-- [PandaMate Pre-Flight Checklist](https://www.pandamate.wiki/blog/china-pre-flight-checklist-foreigners-2026.html) <br>
-- [PandaMate Cultural Experiences Guide](https://www.pandamate.wiki/blog/china-cultural-experiences-foreigners-2026.html) <br>
-- [PandaMate Translation Apps Guide](https://www.pandamate.wiki/blog/china-translation-apps-2026.html) <br>
+- [ClawHub skill page](https://clawhub.ai/maxsu9527-svg/skills/pandamate-china-travel) <br>
+- [Skill definition](artifact/SKILL.md) <br>
+- [China visa and entry guide](artifact/references/entry-visa.md) <br>
+- [China payment and transport guide](artifact/references/payment-transport.md) <br>
+- [China destination guide](artifact/references/destinations.md) <br>
+- [Culture, etiquette, and emergency guide](artifact/references/culture-etiquette.md) <br>
+- [Travel preparation checklists](artifact/references/checklists.md) <br>
 - [China Visa Application Service Center](https://www.visaforchina.cn) <br>
 - [National Immigration Administration](https://www.nia.gov.cn) <br>
-- [12306 China Railway](https://www.12306.cn) <br>
-- [Trip.com](https://www.trip.com) <br>
+- [Ministry of Foreign Affairs consular services](https://cs.mfa.gov.cn) <br>
+- [China Railway 12306](https://www.12306.cn) <br>
+- [PandaMate China pre-flight checklist](https://www.pandamate.wiki/blog/china-pre-flight-checklist-foreigners-2026.html) <br>
+- [PandaMate essential apps guide](https://www.pandamate.wiki/blog/china-essential-apps-foreign-tourists-2026.html) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown travel guidance with checklists, summaries, practical links, and next-step recommendations.] <br>
+**Output Format:** [Markdown travel guidance, checklists, summaries, links, and next-step recommendations] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Markdown responses may include Chinese-language travel checklists, itinerary planning notes, and official-source links.] <br>
+**Other Properties Related to Output:** [Static reference content; no executable code, persistence, credential handling, or hidden agent-control behavior reported by security evidence.] <br>
 
 ## Skill Version(s): <br>
-1.0.5 (source: server release metadata) <br>
+1.0.6 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

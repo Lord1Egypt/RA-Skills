@@ -1,0 +1,29 @@
+{
+  "name": "report",
+  "version": "1.0.0",
+  "description": "技术报告模板（含目录、多级标题、风险评估、列表）",
+  "type": "builtin",
+  "styles": {
+    "title_font_cmd": "\\timu",
+    "body_font_cmd": "\\dw",
+    "section_font_cmd": "\\erjitimu",
+    "sub_section_font_cmd": "\\sanjitimu",
+    "has_toc": true
+  },
+  "body_template": "% --- 标题 ---\n\\title{\\timu{__TITLE__}}\n\\author{__AUTHOR__}\n\\date{\\today}\n\n\\maketitle\n\\thispagestyle{empty}\n\\newpage\n\n% --- 目录 ---\n\\tableofcontents\n\\newpage\n\n__CONTENT__\n",
+  "body_skeleton": "% --- 标题 ---\n\\title{\\timu{__TITLE__}}\n\\author{__AUTHOR__}\n\\date{\\today}\n\n\\maketitle\n\\thispagestyle{empty}\n\\newpage\n\n% --- 目录（需编译两次才能生成） ---\n\\tableofcontents\n\\newpage\n\n% ============================================================\n% 可用字体命令:\n%   \\timu{...}         — 一级标题字体\n%   \\yijitimu{...}     — 二级标题字体\n%   \\erjitimu{...}     — 三级标题字体\n%   \\zz{...}           — 正文强调\n%   \\dw{...}           — 正文引用\n%   \\seeref{...}       — 参见引用（带 ▶ 符号）\n%\n% 可用环境:\n%   \\begin{mylist}...\\end{mylist}       — 多级智能列表\n%   \\begin{mycolumns}[n]...\\end{mycolumns} — n 栏分栏\n%\n% 表格与图片:\n%   \\begin{tabularx}{\\linewidth}{|c|X|}... — 自适应表格\n%   \\begin{figure}[H] \\includegraphics[...]{...} — 图片插入\n% ============================================================\n\n\\section{项目概述}\n\n\\subsection{背景}\n\n% 说明项目背景、目标和范围。\n\n\\subsection{核心需求}\n\n% 在此处列出核心需求：\n%\n% \\begin{mylist}\n%   \\item 需求一\n%   \\item 需求二\n%   \\item 需求三\n% \\end{mylist}\n\n\\section{技术方案}\n\n\\subsection{架构设计}\n\n% 描述系统架构。\n\n% 下表展示技术选型：\n\n\\begin{table}[H]\n\\centering\n\\caption{技术选型}\n\\begin{tabularx}{\\linewidth}{|l|X|}\n\\hline\n\\textbf{组件} & \\textbf{选型} \\\\ \\hline\n后端框架 & Spring Boot / FastAPI \\\\ \\hline\n数据库 & PostgreSQL \\\\ \\hline\n消息队列 & Kafka \\\\ \\hline\n\\end{tabularx}\n\\end{table}\n\n\\subsection{实施计划}\n\n% 可按阶段划分：\n%\n% \\begin{mylist}\n%   \\item 阶段一（第1-4周）：基础设施搭建\n%   \\item 阶段二（第5-12周）：核心功能开发\n%   \\item 阶段三（第13-16周）：测试部署\n% \\end{mylist}\n\n\\section{风险评估}\n\n\\begin{table}[H]\n\\centering\n\\caption{风险登记表}\n\\begin{tabularx}{\\linewidth}{|c|X|c|X|}\n\\hline\n\\textbf{等级} & \\textbf{风险描述} & \\textbf{概率} & \\textbf{应对措施} \\\\ \\hline\n高 & 技术栈学习成本 & 中 & 提前培训 \\\\ \\hline\n中 & 需求变更 & 高 & 敏捷迭代 \\\\ \\hline\n低 & 人员变动 & 低 & 文档沉淀 \\\\ \\hline\n\\end{tabularx}\n\\end{table}\n\n\\section{总结}\n\n% 总结报告的结论和建议。\n",
+  "sample_sections": [
+    {
+      "heading": "项目概述",
+      "content": "本报告旨在对\\zz{关键技术方案}进行全面评估。报告涵盖了需求分析、方案设计、实施计划和风险评估四个主要部分。\n\n\\subsection{背景与目标}\n\n随着业务的快速发展，现有系统在性能和可维护性方面面临挑战。本项目的核心目标是：\n\n\\begin{mylist}\n  \\item 提升系统吞吐量至现有水平的 3 倍\n  \\item 降低运维复杂度，实现自动化部署\n  \\item 建立标准化开发流程，提高团队效率\n\\end{mylist}"
+    },
+    {
+      "heading": "技术方案",
+      "content": "\\subsection{架构设计}\n\n本方案采用\\erjitimu{微服务架构}，将系统拆分为多个独立服务。\n\n\\subsection{关键技术选型}\n\n\\begin{mylist}\n  \\item 后端框架：Spring Boot / FastAPI\n  \\item 前端框架：React / Vue.js\n  \\item 数据库：PostgreSQL + Redis\n\\end{mylist}"
+    },
+    {
+      "heading": "风险评估",
+      "content": "以下为本项目的主要风险及应对措施：\n\n\\noindent\\erjitimu{技术风险：}新技术栈的学习曲线。\n\\noindent\\erjitimu{管理风险：}跨团队协作需要有效沟通。\n\\noindent\\erjitimu{进度风险：}需求变更是主要延期因素。"
+    }
+  ]
+}

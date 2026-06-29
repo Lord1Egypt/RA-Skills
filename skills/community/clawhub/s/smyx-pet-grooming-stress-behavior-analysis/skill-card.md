@@ -1,5 +1,5 @@
 ## Description: <br>
-This skill analyzes pet grooming video URLs or local video files through server-side APIs to identify stress behaviors such as struggling, panting, and tail tucking, then returns stress-level grading and behavior observations for groomers, veterinary clinics, and pet care services. <br>
+Analyzes pet grooming images, videos, or URLs with server-side APIs to recognize stress behaviors such as struggling, panting, tail tucking, and grooming-stage stress levels. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,34 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External pet groomers, veterinary clinic staff, pet care service teams, and agent developers use this skill to submit grooming-session videos for structured stress-behavior analysis and report lookup. The skill is intended to support behavioral observation and timely grooming workflow intervention, not veterinary diagnosis or behavior-correction advice. <br>
+External groomers, veterinary clinics, and pet-care services use this skill to submit grooming-session media for structured stress-behavior analysis, report links, and cloud-backed historical report lookup. The results are intended for behavior observation and workflow triage, not disease diagnosis or treatment planning. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may upload grooming videos to external services. <br>
-Mitigation: Review the skill before installing and use it only when the user is comfortable with that data handling. <br>
-Risk: The skill may query cloud report history and create or reuse an identity. <br>
-Mitigation: Use a dedicated open-id rather than a personal phone number or shared workspace secret. <br>
-Risk: The skill handles remote login or registration and local token storage in ways users are not clearly told about. <br>
-Mitigation: Confirm account and token handling expectations before deployment and limit use to appropriate test or operational identities. <br>
+Risk: The skill sends grooming images, videos, or media URLs to the LifeEmergence service for analysis. <br>
+Mitigation: Use only with appropriate consent for the media being analyzed, and avoid submitting sensitive or unnecessary footage. <br>
+Risk: The security scan reports that the skill can create or reuse a persistent account identity, store local account tokens, and retrieve cloud report history. <br>
+Mitigation: Review or clear the workspace data directory when account-linked history should not persist, and avoid shared workspaces unless all affected users consent. <br>
+Risk: The skill provides behavioral stress observations that could be mistaken for medical or behavior-correction advice. <br>
+Mitigation: Treat outputs as advisory observations and have qualified staff or veterinary professionals review severe stress, injury, or health concerns. <br>
 
 
 ## Reference(s): <br>
 - [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-pet-grooming-stress-behavior-analysis) <br>
-- [API interface documentation](references/api_doc.md) <br>
-- [Analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+- [Pet grooming stress API documentation](references/api_doc.md) <br>
+- [Shared analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, JSON, Files, Shell commands, Configuration instructions] <br>
-**Output Format:** [Markdown and JSON-like structured text, with optional saved output files] <br>
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
+**Output Format:** [Markdown or JSON analysis reports with report links and optional shell command examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include stress-behavior observations, stress-level grading, history report lists, and report export links.] <br>
+**Other Properties Related to Output:** [Outputs may include structured stress indicators, report-image export links, and historical report tables retrieved from the cloud API.] <br>
 
 ## Skill Version(s): <br>
-1.0.2 (source: frontmatter and server release metadata) <br>
+1.0.3 (source: server release metadata and SKILL.md frontmatter) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

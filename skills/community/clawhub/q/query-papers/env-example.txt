@@ -1,0 +1,11 @@
+# paper-kb / query_papers 环境配置
+# 复制本文件为 .env 并填入真实值
+
+# Gitea 服务器地址（末尾不要带斜杠）
+GITEA_URL=http://43.134.182.170:3000
+
+# 机器人账号 Token（须为站点管理员）
+GITEA_ADMIN_TOKEN=在这里填入token
+
+# 机器人账号用户名
+GITEA_BOT_USERNAME=AIFusionBot

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ArchViz: Heatmap (restrained, from report distribution/correlation)</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #f5f0eb; color: #1B365D; margin: 0; padding: 20px; }
+    .chart-container { max-width: 600px; margin: 0 auto; }
+    canvas { background: white; border: 1px solid #a8a29e; }
+  </style>
+</head>
+<body>
+  <div class="chart-container">
+    <h3>Matrix: Types vs Restraint (heatmap)</h3>
+    <canvas id="heatChart" width="600" height="400"></canvas>
+    <div style="font-size:12px; color:#44403c;">Env: OB | Type: from report | Icons: minimal</div>
+  </div>
+  <script>
+    const ctx = document.getElementById('heatChart');
+    // Simple matrix data for demo (ranking/distribution from report)
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Bar', 'Line', 'Scatter', 'Heatmap'],
+        datasets: [{
+          label: 'Restraint Score',
+          data: [9,8,7,9],
+          backgroundColor: ['#002FA7', '#a8a29e', '#e8e4e0', '#002FA7']
+        }]
+      },
+      options: { indexAxis: 'y', responsive: true }
+    });
+  </script>
+</body>
+</html>

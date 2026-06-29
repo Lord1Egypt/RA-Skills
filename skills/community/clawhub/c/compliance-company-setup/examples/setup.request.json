@@ -1,0 +1,8 @@
+{
+  "targetMarket": "US-WY",
+  "monthlyRevenue": 40000,
+  "salesChannels": ["Amazon", "Shopify"],
+  "productCategory": "电子产品",
+  "hasBrand": true,
+  "existingCompliances": []
+}

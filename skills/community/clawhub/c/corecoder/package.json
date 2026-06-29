@@ -1,0 +1,5 @@
+{
+  "name": "corecoder",
+  "version": "1.0.0",
+  "description": "基于 CoreCoder 架构的编码代理，实现 Claude Code 的 7 个核心架构模式。"
+}

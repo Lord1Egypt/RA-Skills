@@ -34,6 +34,8 @@ After cross-checking, explicitly mark the **scope label** in the finding classif
 | 3 | Autonomously judging "this finding naturally belongs in a separate PR" | Scope is a user decision. For findings inside the diff, include "immediate fix" as the default option candidate |
 | 4 | Automatically deferring when Severity is Minor | Severity and scope are separate dimensions. Minor + In diff = immediate fix possible. Only Minor + Outside diff defaults to deferred |
 | 5 | Deferring because "this file seems unrelated to the PR" | "Seems" is not a judgment. Measure with `gh pr view --json files` |
+| 6 | Using `git diff <base>..HEAD --name-only` (two-dot, bidirectional) as the PR scope source | Two-dot includes files that `<base>` has but `HEAD` does not (i.e., main's later changes that PR did not absorb). Use `gh pr view --json files` (PR-touched only) or `git diff <merge-base>...HEAD` (three-dot, single-direction) |
+| 7 | Asserting "PR modifies file X" because `git diff <base>..HEAD` lists X | Cross-check: `git log <base>..HEAD -- <file>` — if empty, PR has zero commits touching the file (the two-dot diff is showing main's later change in reverse). The finding's "regression introduced by PR" claim is false; squash merge preserves main's change because PR's change set is empty for that file |
 
 #### Self-check (before every classification)
 
@@ -41,6 +43,7 @@ After cross-checking, explicitly mark the **scope label** in the finding classif
 2. Did you cross-check each finding's file path against the diff file list?
 3. Did you add a **scope label** column (In diff / Outside diff) to the classification report table?
 4. For items classified as deferred, did you review **In diff** items for promotion to immediate fix candidates?
+5. **Two-source cross-check (HARD STOP)** — for any finding that claims "PR modified file X", verify BOTH: (a) `gh pr view --json files` lists X, AND (b) `git log <base>..HEAD -- <file>` returns 1+ commits. If (a)=yes and (b)=empty, or (a)=no and (b)=any, the finding is suspect — the file is most likely main's change PR did not absorb. The squash merge preserves main's state for files PR did not touch (commit count 0 in (b)) — "pre-merge rebase required" claims must be backed by (b) ≥ 1.
 
 ### Step 4-B: Option grouping guide (MANDATORY — before constructing Step 5/Step 8 options)
 

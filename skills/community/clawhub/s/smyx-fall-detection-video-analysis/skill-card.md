@@ -1,5 +1,5 @@
 ## Description: <br>
-Detects fall events in short videos or public video URLs and returns structured report information for home or care-facility safety monitoring. <br>
+Detects fall events in target areas from video streams for home safety monitoring. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Caregivers, care-facility operators, and safety-monitoring agents use this skill to analyze fall-detection videos, trigger alert-oriented reporting, and query prior cloud-hosted detection reports. Results are intended as safety-warning support and should be confirmed by a responsible person when an alert is raised. <br>
+External users and developers use this skill to analyze local video files or video URLs for fall-detection scenarios, retrieve structured reports, and review cloud-hosted historical analysis results. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Sensitive home or care-facility videos and identifiers such as username, phone number, or open-id may be sent to the Life Emergence cloud service. <br>
-Mitigation: Confirm backend ownership, data retention, deletion, consent, and access-control policies before deployment, and avoid sending videos that exceed the intended monitoring purpose. <br>
-Risk: Report-history and export workflows may expose personal fall-detection reports if user identifiers or report links are mishandled. <br>
-Mitigation: Restrict report access by user, protect open-id values, and review generated report links before sharing outputs outside the care workflow. <br>
-Risk: The evidence notes a bundled hardcoded api-key and local token database as deployment concerns. <br>
-Mitigation: Replace bundled credentials with environment-managed secrets, rotate keys before production use, and review local token storage against organizational policy. <br>
+Risk: Home-safety videos or video URLs may be processed by configured lifeemergence.com cloud services. <br>
+Mitigation: Test first with non-sensitive footage and confirm privacy, retention, and account-deletion terms with the publisher before using sensitive video. <br>
+Risk: Cloud report history is tied to an automatically selected identity. <br>
+Mitigation: Avoid exposing identity values to users and verify how report association, retention, and deletion are handled before deployment. <br>
+Risk: The skill stores user or token data locally in the workspace. <br>
+Mitigation: Run in an isolated workspace, restrict access to local state, and clear stored credentials or user data when the skill is no longer needed. <br>
 
 
 ## Reference(s): <br>
-- [Fall Detection Video Analysis API Documentation](references/api_doc.md) <br>
-- [ClawHub Skill Release Page](https://clawhub.ai/18072937735/smyx-fall-detection-video-analysis) <br>
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-fall-detection-video-analysis) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
+- [Fall detection video API documentation](artifact/references/api_doc.md) <br>
+- [Common analysis API documentation](artifact/skills/smyx_analysis/references/api_doc.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown text with shell command examples and JSON-style structured analysis or report lists.] <br>
+**Output Type(s):** [text, markdown, JSON, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown and JSON analysis reports with report links and command-line output] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an open-id and accepts either a local video path or a public video URL; historical reports are queried from cloud APIs.] <br>
+**Other Properties Related to Output:** [May include structured detection results, risk prompts, recommendations, saved output files, and historical report tables.] <br>
 
 ## Skill Version(s): <br>
-1.0.5 (source: server release metadata; SKILL.md frontmatter states 1.0.3) <br>
+1.0.6 (source: server release metadata; artifact frontmatter lists 1.0.4) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

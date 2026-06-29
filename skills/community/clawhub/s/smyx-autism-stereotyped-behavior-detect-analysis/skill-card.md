@@ -1,5 +1,5 @@
 ## Description: <br>
-Using a fixed camera in rehabilitation centers or homes, this skill analyzes children's behavior videos with pose estimation and temporal action detection to recognize repetitive stereotyped behaviors such as spinning, hand flapping, and body rocking. <br>
+Analyzes fixed-camera child behavior videos to identify repetitive stereotyped behaviors such as spinning, hand flapping, and body rocking, then produces objective behavior statistics and reports for therapists and guardians. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,36 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users, therapists, caregivers, and developers use this skill to submit fixed-camera child behavior videos or URLs to a cloud analysis service and receive objective stereotyped-behavior event counts, durations, trends, and report links. The skill is intended to support review by qualified professionals and caregivers, not to diagnose autism or prescribe interventions. <br>
+External therapists, special-education staff, and guardians use this skill to analyze child behavior videos for event-level stereotyped behavior counts, duration summaries, trends, and report links. Results are descriptive behavior observations for professional review, not autism diagnosis or treatment prescriptions. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The security review says the skill handles sensitive children's videos and identity-linked history through cloud workflows that are not clearly scoped. <br>
-Mitigation: Use only with explicit guardian consent, confirmed retention and deletion rules, and a clear access-control model for reports and history. <br>
-Risk: The security guidance flags bundled API key handling, account registration, and local token database behavior. <br>
-Mitigation: Before deployment, verify that credentials are intentionally included, rotate or replace shared keys, and confirm that local token storage is encrypted and access-limited. <br>
-Risk: The security guidance notes broad generic CRUD methods and unrelated health or pet artifacts in the bundle. <br>
-Mitigation: Restrict runtime permissions and allowed endpoints to the behavior-analysis and report-query flows required for this release. <br>
-Risk: The security verdict is suspicious. <br>
-Mitigation: Install only after trusting the publisher and completing independent operational review for privacy, cloud data transfer, and report access. <br>
+Risk: Sensitive child behavior videos or video URLs may be sent to an external service. <br>
+Mitigation: Use only with guardian consent, avoid unnecessary sensitive footage, and review the publisher's retention, deletion, and privacy controls before deployment. <br>
+Risk: Analysis results may be linked to an automatically managed account and local identity or token data. <br>
+Mitigation: Run the skill only in an approved environment, restrict local file access, and review token storage and cleanup controls before use. <br>
+Risk: Automated behavior detection may be incorrect or misleading in complex scenes. <br>
+Mitigation: Require qualified professional review of outputs and do not use the skill as a substitute for clinical diagnosis, standardized assessment, or treatment planning. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/smyx-autism-stereotyped-behavior-detect-analysis) <br>
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-autism-stereotyped-behavior-detect-analysis) <br>
 - [API interface documentation](references/api_doc.md) <br>
-- [Shared analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+- [Analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [Text, Markdown, JSON, Files] <br>
-**Output Format:** [Markdown and JSON-formatted text, with optional saved result files] <br>
+**Output Format:** [Markdown or JSON analysis report with report links; optional saved output file] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs can include event-level behavior records, summary metrics, trend comparisons, report messages, history lists, and report export links.] <br>
+**Other Properties Related to Output:** [Outputs visual behavior statistics and descriptive guidance; does not provide diagnosis or treatment prescriptions.] <br>
 
 ## Skill Version(s): <br>
-1.0.1 (source: server release metadata and SKILL.md frontmatter) <br>
+1.0.2 (source: SKILL.md frontmatter and server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

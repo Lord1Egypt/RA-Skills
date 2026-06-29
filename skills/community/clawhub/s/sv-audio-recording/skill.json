@@ -1,0 +1,27 @@
+{
+  "slug": "sv-audio-recording",
+  "name": "Short Video Audio Recording Guide",
+  "description": "Covers microphone selection, recording environment optimization, level setting, and audio troubleshooting for short video production.",
+  "type": "descriptive",
+  "requires_api": false,
+  "readiness": "stable",
+  "tags": [
+    "video",
+    "audio",
+    "microphone",
+    "recording",
+    "sound",
+    "descriptive"
+  ],
+  "trigger_keywords": [
+    "audio recording",
+    "microphone guide",
+    "video sound",
+    "recording setup",
+    "audio quality",
+    "voice recording"
+  ],
+  "max_files": 4,
+  "language": "en",
+  "safety": "document-only informational guidance"
+}

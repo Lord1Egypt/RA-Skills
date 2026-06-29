@@ -84,4 +84,4 @@ siluzan-tso account-history -m Google
 | `open-account google`           | 非交互提交 |
 | `account-history -m Google`     | 审核进度   |
 
-完整参数见 `accounts/accounts.md` → **open-account**。
+完整参数见 `references/accounts/accounts.md` → **open-account**。

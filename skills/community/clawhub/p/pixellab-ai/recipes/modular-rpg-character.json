@@ -1,0 +1,172 @@
+{
+  "name": "modular-rpg-character",
+  "description": "Layered character workflow for base body, outfit, hair/equipment, and animation frame-grid contracts.",
+  "defaults": {
+    "style": "clean readable RPG pixel art, stable outline weight, transparent background, consistent palette, no antialiasing",
+    "palette": "forest green, clear blue, warm leather, cream highlights, dark outline",
+    "sprite_size": 64,
+    "direction": "south facing camera",
+    "view": "low top-down",
+    "frame_count": 8,
+    "seed": 0
+  },
+  "references": [
+    "references/sprite-animation-layering.md",
+    "references/community-discord-workflows.md"
+  ],
+  "sprite_contract": {
+    "canvas": "64x64",
+    "pivot": "bottom-center x=32 y=56",
+    "direction_order": [
+      "south",
+      "west",
+      "east",
+      "north"
+    ],
+    "frames_per_direction": 8,
+    "layers": [
+      "shadow",
+      "base",
+      "outfit",
+      "hair",
+      "equipment",
+      "vfx"
+    ],
+    "background": "transparent"
+  },
+  "qa": [
+    "Base body animation is the timing source.",
+    "Every layer must preserve frame count, frame order, canvas size, and pivot.",
+    "Outfit-only layers must not include body or skin pixels.",
+    "Composite at least one base frame plus each layer before approval."
+  ],
+  "assets": [
+    {
+      "id": "neutral-base-character",
+      "asset_type": "sprite",
+      "label": "Neutral base body character",
+      "endpoint": "/v2/create-character-v3",
+      "credit_risk": "medium",
+      "prompt": "Body: neutral unclothed base character for {{brief}}, simple readable anatomy, no hair, no outfit, no accessories, stable face marker only. Pose: idle, {{direction}}. Style: {{style}}. Palette: minimal skin/base colors plus transparent background.",
+      "payload": {
+        "description": "{{prompt}}",
+        "image_size": {
+          "width": "{{sprite_size}}",
+          "height": "{{sprite_size}}"
+        },
+        "view": "{{view}}",
+        "name": "{{project_slug}}-neutral-base",
+        "no_background": true,
+        "enhance_prompt": true,
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "characters/base"
+    },
+    {
+      "id": "base-walk-animation",
+      "asset_type": "animation",
+      "label": "Base walk animation from selected first frame",
+      "endpoint": "/v2/animate-with-text-v3",
+      "depends_on": [
+        "neutral-base-character"
+      ],
+      "seed_offset": 1,
+      "credit_risk": "high",
+      "prompt": "walk loop, stable face, consistent anatomy, no clothing, no camera movement, feet planted on a consistent ground line, {{frame_count}} frames",
+      "payload": {
+        "first_frame": {
+          "type": "base64",
+          "format": "png",
+          "base64": "REPLACE_WITH_BASE64_FIRST_FRAME_FROM_NEUTRAL_BASE"
+        },
+        "action": "{{prompt}}",
+        "frame_count": "{{frame_count}}",
+        "no_background": true,
+        "enhance_prompt": true,
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "characters/base/walk"
+    },
+    {
+      "id": "guard-outfit-transfer",
+      "asset_type": "animation_layer",
+      "label": "Guard outfit applied to base walk frames",
+      "endpoint": "/v2/transfer-outfit-v2",
+      "depends_on": [
+        "base-walk-animation"
+      ],
+      "seed_offset": 2,
+      "credit_risk": "high",
+      "prompt": "Apply only the guard outfit to the character. Preserve pose, silhouette, frame timing, facing direction, canvas alignment, and transparent background. Outfit: forest guard tunic, belt, small shoulder cape, {{palette}}, {{style}}",
+      "payload": {
+        "reference_image": {
+          "image": {
+            "type": "base64",
+            "format": "png",
+            "base64": "REPLACE_WITH_BASE64_OUTFIT_REFERENCE"
+          },
+          "size": {
+            "width": "{{sprite_size}}",
+            "height": "{{sprite_size}}"
+          }
+        },
+        "frames": [
+          {
+            "image": {
+              "type": "base64",
+              "format": "png",
+              "base64": "REPLACE_WITH_BASE64_BASE_WALK_FRAME_00"
+            },
+            "size": {
+              "width": "{{sprite_size}}",
+              "height": "{{sprite_size}}"
+            }
+          }
+        ],
+        "image_size": {
+          "width": "{{sprite_size}}",
+          "height": "{{sprite_size}}"
+        },
+        "additional_instructions": "{{prompt}}",
+        "no_background": true,
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "characters/outfits/guard/merged"
+    },
+    {
+      "id": "guard-outfit-only-layer",
+      "asset_type": "animation_layer",
+      "label": "Outfit-only layer cleanup",
+      "endpoint": "/v2/edit-animation-v2",
+      "depends_on": [
+        "guard-outfit-transfer"
+      ],
+      "seed_offset": 3,
+      "credit_risk": "medium",
+      "prompt": "Remove the character body and skin pixels. Leave only the outfit layer, preserving exact clothing motion, frame alignment, transparent background, and empty pixels where the body was removed.",
+      "payload": {
+        "description": "{{prompt}}",
+        "frames": [
+          {
+            "image": {
+              "type": "base64",
+              "format": "png",
+              "base64": "REPLACE_WITH_BASE64_DRESSED_FRAME_00"
+            },
+            "size": {
+              "width": "{{sprite_size}}",
+              "height": "{{sprite_size}}"
+            }
+          }
+        ],
+        "image_size": {
+          "width": "{{sprite_size}}",
+          "height": "{{sprite_size}}"
+        },
+        "no_background": true,
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "characters/outfits/guard/layer"
+    }
+  ]
+}

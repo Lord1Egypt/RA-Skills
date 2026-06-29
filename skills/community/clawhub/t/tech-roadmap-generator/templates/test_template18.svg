@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="750" height="919" viewBox="0 0 750 919">
+<defs>
+  <style>
+    text { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+  </style>
+</defs>
+<!-- 背景 -->
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<rect x="4.0" y="17.0" width="47.0" height="123.0" rx="5" fill="#90CAF9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="27.5" y="78.5" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#222222" text-anchor="middle" font-weight="bold">绪论</text>
+<rect x="67.0" y="12.0" width="668.0" height="133.0" fill="none" stroke="#F5F7FA" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="371.0" y="22.0" width="60.0" height="30.0" rx="4" fill="#5B7F9A" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="401.0" y="43.0" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#222222" text-anchor="middle" font-weight="bold">绪论</text>
+<rect x="77.0" y="60.0" width="318.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="236.0" y="82.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">企业数字化转研
+究背景</text>
+<rect x="401.0" y="60.0" width="318.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="560.0" y="82.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">研究目的与意义</text>
+<line x1="401.0" y1="145.0" x2="401.0" y2="151.0" stroke="#2C3E50" stroke-width="2.5"/><polygon points="401.0,161.0 396.0,151.0 406.0,151.0" fill="#2C3E50"/>
+<rect x="4.0" y="170.0" width="47.0" height="159.0" rx="5" fill="#90CAF9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="27.5" y="249.5" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#222222" text-anchor="middle" font-weight="bold">现状分析</text>
+<rect x="67.0" y="165.0" width="668.0" height="169.0" fill="none" stroke="#F5F7FA" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="326.0" y="175.0" width="150.0" height="30.0" rx="4" fill="#5B7F9A" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="401.0" y="196.0" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#222222" text-anchor="middle" font-weight="bold">企业数字化转现状</text>
+<rect x="365.0" y="213.0" width="72.0" height="26.0" rx="3" fill="#81C784" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="401.0" y="230.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#222222" text-anchor="middle" font-weight="bold">发现现状</text>
+<rect x="263.5" y="244.0" width="89.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="308.0" y="266.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">表现1</text>
+<rect x="356.5" y="244.0" width="89.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="401.0" y="266.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">表现2</text>
+<rect x="449.5" y="244.0" width="89.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="494.0" y="266.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">表现3</text>
+<line x1="401.0" y1="334.0" x2="401.0" y2="340.0" stroke="#2C3E50" stroke-width="2.5"/><polygon points="401.0,350.0 396.0,340.0 406.0,340.0" fill="#2C3E50"/>
+<rect x="4.0" y="359.0" width="47.0" height="237.0" rx="5" fill="#90CAF9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="27.5" y="477.5" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#222222" text-anchor="middle" font-weight="bold">理论研究</text>
+<rect x="67.0" y="354.0" width="668.0" height="247.0" fill="none" stroke="#F5F7FA" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="356.0" y="364.0" width="90.0" height="30.0" rx="4" fill="#5B7F9A" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="401.0" y="385.0" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#222222" text-anchor="middle" font-weight="bold">理论研究</text>
+<rect x="365.0" y="402.0" width="72.0" height="26.0" rx="3" fill="#81C784" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="401.0" y="419.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#222222" text-anchor="middle" font-weight="bold">原因分析</text>
+<rect x="263.5" y="433.0" width="89.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="308.0" y="455.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">因素一</text>
+<rect x="356.5" y="433.0" width="89.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="401.0" y="455.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">因素二</text>
+<rect x="449.5" y="433.0" width="89.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="494.0" y="455.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">因素三</text>
+<rect x="365.0" y="481.0" width="72.0" height="26.0" rx="3" fill="#81C784" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="401.0" y="498.0" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#222222" text-anchor="middle" font-weight="bold">逻辑关系</text>
+<rect x="263.5" y="512.0" width="89.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="308.0" y="534.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">逻辑1</text>
+<rect x="356.5" y="512.0" width="89.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="401.0" y="534.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">逻辑2</text>
+<rect x="449.5" y="512.0" width="89.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="494.0" y="534.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">逻辑3</text>
+<line x1="401.0" y1="601.0" x2="401.0" y2="607.0" stroke="#2C3E50" stroke-width="2.5"/><polygon points="401.0,617.0 396.0,607.0 406.0,607.0" fill="#2C3E50"/>
+<rect x="4.0" y="626.0" width="47.0" height="123.0" rx="5" fill="#90CAF9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="27.5" y="687.5" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#222222" text-anchor="middle" font-weight="bold">技术路径</text>
+<rect x="67.0" y="621.0" width="668.0" height="133.0" fill="none" stroke="#F5F7FA" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="356.0" y="631.0" width="90.0" height="30.0" rx="4" fill="#5B7F9A" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="401.0" y="652.0" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#222222" text-anchor="middle" font-weight="bold">技术路径</text>
+<rect x="77.0" y="669.0" width="102.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="128.0" y="691.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">路径一企业数字
+化转</text>
+<rect x="185.0" y="669.0" width="102.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="236.0" y="691.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">路径二企业数字
+化转</text>
+<rect x="293.0" y="669.0" width="102.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="344.0" y="691.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">路径三企业数字
+化转</text>
+<rect x="401.0" y="669.0" width="102.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="452.0" y="691.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">路径四企业数字
+化转</text>
+<rect x="509.0" y="669.0" width="102.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="560.0" y="691.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">路径五企业数字
+化转</text>
+<rect x="617.0" y="669.0" width="102.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="668.0" y="691.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">路径六企业数字
+化转</text>
+<line x1="401.0" y1="754.0" x2="401.0" y2="760.0" stroke="#2C3E50" stroke-width="2.5"/><polygon points="401.0,770.0 396.0,760.0 406.0,760.0" fill="#2C3E50"/>
+<rect x="4.0" y="779.0" width="47.0" height="123.0" rx="5" fill="#90CAF9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="27.5" y="840.5" font-family="Microsoft YaHei, sans-serif" font-size="11" fill="#222222" text-anchor="middle" font-weight="bold">结论</text>
+<rect x="67.0" y="774.0" width="668.0" height="133.0" fill="none" stroke="#F5F7FA" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="371.0" y="784.0" width="60.0" height="30.0" rx="4" fill="#5B7F9A" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="401.0" y="805.0" font-family="Microsoft YaHei, sans-serif" font-size="13" fill="#222222" text-anchor="middle" font-weight="bold">结论</text>
+<rect x="77.0" y="822.0" width="210.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="182.0" y="844.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">主要结论1</text>
+<rect x="293.0" y="822.0" width="210.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="398.0" y="844.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">主要结论2</text>
+<rect x="509.0" y="822.0" width="210.0" height="36.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="614.0" y="844.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">主要结论3</text>
+</svg>

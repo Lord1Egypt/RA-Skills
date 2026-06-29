@@ -1,0 +1,29 @@
+{
+  "name": "预算绩效管理工作流",
+  "slug": "audit-budget-performance",
+  "version": "1.0.0",
+  "description": "预算绩效管理全流程：目标审核→数据收集→完成率分析→资金效率→满意度统计→综合评分→绩效报告",
+  "tags": [
+    "审计",
+    "绩效评价",
+    "预算绩效",
+    "工作流",
+    "政府审计"
+  ],
+  "category": "审计业务",
+  "author": "融策审计",
+  "license": "MIT",
+  "files": [
+    "workflow.yaml",
+    "SKILL.md"
+  ],
+  "dependencies": {
+    "scripts": [
+      "audit_workflow.py",
+      "audit_router.py",
+      "pipeline_engine.py"
+    ],
+    "python": ">=3.10"
+  },
+  "published_at": "2026-06-20T11:03:25.281613"
+}

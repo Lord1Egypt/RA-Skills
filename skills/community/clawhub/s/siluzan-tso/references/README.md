@@ -1,65 +1,66 @@
 # References 索引
 
-> Agent 按 `SKILL.md` 路由表（意图 → 工作流 → 必读文档）定位：分析/报告类线性步骤在 `core/playbooks.md`（P1–P9），操作/管理类在 `core/workflows.md`（W1–W12），命令参数在各域 reference。
+> Agent 按 `SKILL.md` 路由表（意图 → 工作流 → 必读文档）定位：分析/报告类线性步骤在 `references/core/playbooks.md`（P1–P9），操作/管理类在 `references/core/workflows.md`（W1–W12），命令参数在各域 reference。
 
 ## 基础与纪律
 
 | 文件                             | 用途                                                                                        |
 | -------------------------------- | ------------------------------------------------------------------------------------------- |
-| `core/setup.md`                  | 安装、登录（手机验证码优先）、配置、更新                                                    |
-| `core/agent-conventions.md`      | **Agent 必读 · 唯一规则真相源**：加载纪律、数据处理协议、硬规范、时间/币种/批量、交付前自检 |
-| `core/tips.md`                   | `--json-out` 脚本食谱（node -e 示例、文件命名、分页）                                       |
-| `core/playbooks.md`              | **工作流目录 · 分析/报告类**（P1–P9，统一卡片：触发/必读/步骤/交付）                        |
-| `core/workflows.md`              | **工作流目录 · 操作/管理类**（W1–W12，同卡片格式）                                          |
-| `core/subagent-orchestration.md` | **可选**：主 Agent 自主决定是否委派 subagent（P5/P6/P7）                                    |
+| `references/core/setup.md`                  | 安装、登录（手机验证码优先）、配置、更新                                                    |
+| `references/core/agent-conventions.md`      | **Agent 必读 · 唯一规则真相源**：加载纪律、数据处理协议、硬规范、时间/币种/批量、交付前自检 |
+| `references/core/intent-routing.md`         | **报告 / 分析类统一消歧**：P1–P9 与 W3/W7 同义词、信号优先级、一次追问模板                  |
+| `references/core/tips.md`                   | `--json-out` 脚本食谱（node -e 示例、文件命名、分页）                                       |
+| `references/core/playbooks.md`              | **工作流目录 · 分析/报告类**（P1–P9，统一卡片：触发/必读/步骤/交付）                        |
+| `references/core/workflows.md`              | **工作流目录 · 操作/管理类**（W1–W12，同卡片格式）                                          |
+| `references/core/subagent-orchestration.md` | **可选**：主 Agent 自主决定是否委派 subagent（P5/P6/P7）                                    |
 
 ## 账户与财务
 
 | 文件                                 | 用途                                                             |
 | ------------------------------------ | ---------------------------------------------------------------- |
-| `accounts/accounts.md`               | 列表、余额、消耗、分享、MCC/BC/BM、balance-scan、accounts-digest |
-| `accounts/currency.md`               | CNY/USD 字段来源、符号、跨币种禁止求和                           |
-| `accounts/open-account-by-media.md`  | 各媒体开户命令与参数                                             |
-| `accounts/open-account-google-ui.md` | Google 开户字段与 Agent 流程                                     |
-| `accounts/finance.md`                | 转账、开票、充值                                                 |
-| `accounts/write-audit-restore.md`    | 写审计、`--commit`、restore                                      |
+| `references/accounts/accounts.md`               | 列表、余额、消耗、分享、MCC/BC/BM、balance-scan、accounts-digest |
+| `references/accounts/currency.md`               | CNY/USD 字段来源、符号、跨币种禁止求和                           |
+| `references/accounts/open-account-by-media.md`  | 各媒体开户命令与参数                                             |
+| `references/accounts/open-account-google-ui.md` | Google 开户字段与 Agent 流程                                     |
+| `references/accounts/finance.md`                | 转账、开票、充值                                                 |
+| `references/accounts/write-audit-restore.md`    | 写审计、`--commit`、restore                                      |
 
 ## Google 广告
 
 | 文件                                     | 用途                                 |
 | ---------------------------------------- | ------------------------------------ |
-| `google-ads/google-ads.md`               | Google Ads CRUD、batch、拒审字段     |
-| `google-ads/google-ads-campaign-plan.md` | 搜索系列 7 步流水线、validate/create |
-| `google-ads/pmax-api.md`                 | PMax 网关路径、金额口径              |
-| `analytics/keyword-planner-workflows.md` | keyword / google-analysis 拓词       |
-| `google-ads/rules/README.md`             | 优化/合规 SOP 索引                   |
+| `references/google-ads/google-ads.md`               | Google Ads CRUD、batch、拒审字段     |
+| `references/google-ads/google-ads-campaign-plan.md` | 搜索系列 7 步流水线、validate/create |
+| `references/google-ads/pmax-api.md`                 | PMax 网关路径、金额口径              |
+| `references/analytics/keyword-planner-workflows.md` | keyword / google-analysis 拓词       |
+| `references/google-ads/rules/README.md`             | 优化/合规 SOP 索引                   |
 
 ## 分析与报告
 
 | 文件                                   | 用途                                        |
 | -------------------------------------- | ------------------------------------------- |
-| `analytics/account-analytics.md`       | 拉数、数据时效性、诊断模板                  |
-| `analytics/website-diagnosis-guide.md` | 网站诊断 CLI、6 模块规则、对齐 tso_agent    |
-| `analytics/market-analysis-guide.md`   | 战略市场分析 CLI、Agent 调研流程            |
+| `references/analytics/account-analytics.md`       | 拉数、数据时效性、诊断模板                  |
+| `references/analytics/website-diagnosis-guide.md` | 网站诊断 CLI、6 模块规则、对齐 tso_agent    |
+| `references/analytics/market-analysis-guide.md`   | 战略市场分析 CLI、Agent 调研流程            |
 | `assets/market-analysis-rules.md`      | 市场分析报告章节与 HTML 版式（Agent 必读）  |
-| `analytics/facebook-analysis-guide.md` | Facebook 字段、与 Google 报告对照、撰写清单 |
-| `analytics/google-analysis-batch.md`   | 多账户批处理 run/resume/status              |
-| `analytics/reporting.md`               | TSO 优化报告生成与推送                      |
-| `analytics/rag.md`                     | 知识库 list/query                           |
-| `analytics/geo-continents.json`        | 国家→大洲映射（询盘分析）                   |
+| `references/analytics/facebook-analysis-guide.md` | Facebook 字段、与 Google 报告对照、撰写清单 |
+| `references/analytics/google-analysis-batch.md`   | 多账户批处理 run/resume/status              |
+| `references/analytics/reporting.md`               | TSO 优化报告生成与推送                      |
+| `references/analytics/rag.md`                     | 知识库 list/query                           |
+| `references/analytics/geo-continents.json`        | 国家→大洲映射（询盘分析）                   |
 
 ## 运营工具
 
 | 文件                                              | 用途                   |
 | ------------------------------------------------- | ---------------------- |
-| `operations/optimize.md`                          | AI 优化建议记录        |
-| `operations/forewarning.md`                       | 智能预警               |
-| `operations/clue.md`                              | TikTok / Meta 线索表单 |
-| `operations/hosted-automation-user-catalog.md`    | 高阶自动化能力目录     |
-| `operations/hosted-automation-self-control.md`    | 预算/CPA/空耗自控 SOP  |
-| `operations/hosted-automation-monitoring-json.md` | 异常监控 JSON 键名     |
-| `operations/hosted-automation-optimize-index.md`  | 自动优化 SOP 索引      |
-| `operations/hosted-automation-scenarios.md`       | 宿主编排场景索引       |
+| `references/operations/optimize.md`                          | AI 优化建议记录        |
+| `references/operations/forewarning.md`                       | 智能预警               |
+| `references/operations/clue.md`                              | TikTok / Meta 线索表单 |
+| `references/operations/hosted-automation-user-catalog.md`    | 高阶自动化能力目录     |
+| `references/operations/hosted-automation-self-control.md`    | 预算/CPA/空耗自控 SOP  |
+| `references/operations/hosted-automation-monitoring-json.md` | 异常监控 JSON 键名     |
+| `references/operations/hosted-automation-optimize-index.md`  | 自动优化 SOP 索引      |
+| `references/operations/hosted-automation-scenarios.md`       | 宿主编排场景索引       |
 
 ## Assets 模板（`../assets/`）
 

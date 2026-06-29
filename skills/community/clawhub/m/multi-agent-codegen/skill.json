@@ -1,0 +1,13 @@
+{
+  "name": "multi-agent-codegen",
+  "version": "2.0.0",
+  "description": "\u7528 4 Agent \u534a\u4e32\u884c\u534f\u4f5c\u6d41\u6c34\u7ebf\uff08Plan/Write/Test/Refine\uff09\u628a\u8001\u677f\u7684\u4e00\u53e5\u8bdd\u9700\u6c42\u53d8\u6210\u53ef\u7528\u7684 Python \u8f6f\u4ef6",
+  "author": "\u7801\u866b coding-advisor",
+  "keywords": [
+    "multi-agent",
+    "code-generation",
+    "software-engineering",
+    "plan-write-test-refine",
+    "\u7528\u4ee3\u7801\u89e3\u653e\u53cc\u624b"
+  ]
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Waterfall Chart</title></head>
+<body style="margin:0;background:#f5f0eb;font-family:system-ui">
+<!-- Waterfall Chart — archviz-skills -->
+<!-- Use for: cumulative effect of sequential changes (revenue breakdown, budget flow) -->
+<canvas id="c" width="700" height="400"></canvas>
+<script>
+const items = [
+  {label:"Start",value:100,type:"base"},
+  {label:"Revenue",value:45,type:"pos"},
+  {label:"Costs",value:-30,type:"neg"},
+  {label:"Tax",value:-12,type:"neg"},
+  {label:"Invest",value:20,type:"pos"},
+  {label:"Other",value:-8,type:"neg"},
+  {label:"End",value:115,type:"base"}
+];
+const ctx=document.getElementById("c").getContext("2d");
+const startX=80, baseY=340, barW=60, gap=20, scale=2.5;
+let cum=0;
+items.forEach((d,i)=>{
+  const x=startX+i*(barW+gap);
+  let y,h;
+  if(d.type==="base"){y=baseY-d.value*scale;h=d.value*scale;cum=d.value;}
+  else{const prev=cum;cum+=d.value;y=baseY-Math.max(prev,cum)*scale;h=Math.abs(d.value)*scale;if(d.value<0)y=baseY-prev*scale;}
+  ctx.fillStyle=d.type==="pos"?"#002FA7":d.type==="neg"?"#94a3b8":"#a8a29e";
+  ctx.fillRect(x,y,barW,h-2);
+  ctx.fillStyle="#44403c"; ctx.font="12px system-ui"; ctx.textAlign="center";
+  ctx.fillText((d.value>0&&d.type!=="base"?"+":"")+d.value,x+barW/2,y-6);
+  ctx.fillText(d.label,x+barW/2,baseY+18);
+});
+ctx.beginPath();ctx.moveTo(60,baseY);ctx.lineTo(680,baseY);ctx.strokeStyle="#a8a29e";ctx.stroke();
+</script>
+</body></html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>ArchViz: Line Chart (restrained, from report temporal type)</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: system-ui, sans-serif; background: #f5f0eb; color: #1B365D; margin: 0; padding: 20px; }
+    .chart-container { max-width: 800px; margin: 0 auto; }
+    canvas { background: white; border: 1px solid #a8a29e; }
+  </style>
+</head>
+<body>
+  <div class="chart-container">
+    <h3>Project Timeline (V1) - restrained line</h3>
+    <canvas id="lineChart" width="800" height="400"></canvas>
+    <div style="font-size:12px; color:#44403c; margin-top:10px;">Env: OB lightweight HTML | Type: temporal | Tokens: warm paper + IKB | Icons: minimal if needed</div>
+  </div>
+  <script>
+    const ctx = document.getElementById('lineChart');
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Week1', 'Week2', 'Week3', 'Week4', 'Week5', 'Week6', 'Week7'],
+        datasets: [{
+          label: 'Progress',
+          data: [10, 25, 40, 60, 75, 85, 100],
+          borderColor: '#002FA7',
+          backgroundColor: 'rgba(0,47,167,0.1)',
+          borderWidth: 2,
+          tension: 0.4
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: { y: { beginAtZero: true } },
+        plugins: { legend: { display: true } }
+      }
+    });
+  </script>
+</body>
+</html>

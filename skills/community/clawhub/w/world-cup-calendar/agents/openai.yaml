@@ -1,0 +1,3 @@
+display_name: 世界杯日历同步
+short_description: 将世界杯赛程按北京时间同步到私密飞书日历
+default_prompt: 帮我把 2026 世界杯赛程同步到飞书日历，普通比赛不提醒，关注球队提前一天提醒。

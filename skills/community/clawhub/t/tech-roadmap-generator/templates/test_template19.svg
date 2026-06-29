@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="704" viewBox="0 0 1050 704">
+<defs>
+  <style>
+    text { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+  </style>
+</defs>
+<!-- 背景 -->
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<rect x="65.0" y="15.0" width="915.0" height="70.0" fill="none" stroke="#F0F4F8" stroke-width="1.2" stroke-dasharray="6,4"/>
+<rect x="3.0" y="25.0" width="44.0" height="50.0" rx="4" fill="#90CAF9" stroke="#999999" stroke-width="1.2"/>
+<text x="28.0" y="45.0" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#333333" text-anchor="middle" font-weight="bold">提出问题</text>
+<rect x="83.0" y="25.0" width="211.2" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="188.6" y="48.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">公共危机治理背景
+与意义</text>
+<rect x="304.2" y="25.0" width="211.2" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="409.9" y="48.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">研究现状综述</text>
+<rect x="525.5" y="25.0" width="211.2" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="631.1" y="48.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">研究对象</text>
+<rect x="746.8" y="25.0" width="211.2" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="852.4" y="48.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">研究方法</text>
+<line x1="522.5" y1="85.0" x2="522.5" y2="91.0" stroke="#444444" stroke-width="2.5"/><polygon points="522.5,103.0 516.5,91.0 528.5,91.0" fill="#444444"/>
+<rect x="65.0" y="107.0" width="915.0" height="70.0" fill="none" stroke="#F0F4F8" stroke-width="1.2" stroke-dasharray="6,4"/>
+<rect x="3.0" y="117.0" width="44.0" height="50.0" rx="4" fill="#90CAF9" stroke="#999999" stroke-width="1.2"/>
+<text x="28.0" y="137.0" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#333333" text-anchor="middle" font-weight="bold">研究基础</text>
+<rect x="83.0" y="117.0" width="285.0" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="225.5" y="140.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">公共危机治理概念
+界定</text>
+<rect x="378.0" y="117.0" width="285.0" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="520.5" y="140.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">公共危机治理理论
+基础</text>
+<rect x="673.0" y="117.0" width="285.0" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="815.5" y="140.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">公共危机治理框架
+构建</text>
+<line x1="522.5" y1="177.0" x2="522.5" y2="183.0" stroke="#444444" stroke-width="2.5"/><polygon points="522.5,195.0 516.5,183.0 528.5,183.0" fill="#444444"/>
+<rect x="65.0" y="199.0" width="915.0" height="267.0" fill="none" stroke="#F0F4F8" stroke-width="1.2" stroke-dasharray="6,4"/>
+<rect x="3.0" y="307.5" width="44.0" height="50.0" rx="4" fill="#90CAF9" stroke="#999999" stroke-width="1.2"/>
+<text x="28.0" y="327.5" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#333333" text-anchor="middle" font-weight="bold">公共危机治理特征与问题分析</text>
+<rect x="454.5" y="209.0" width="136.0" height="28.0" rx="3" fill="#7B9CB8" stroke="#999999" stroke-width="1.2"/>
+<text x="522.5" y="228.0" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#333333" text-anchor="middle" font-weight="bold">公共危机治理情况</text>
+<rect x="68.5" y="242.0" width="221.0" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="179.0" y="264.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">基础1</text>
+<rect x="297.5" y="242.0" width="221.0" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="408.0" y="264.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">基础2</text>
+<rect x="526.5" y="242.0" width="221.0" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="637.0" y="264.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">基础3</text>
+<rect x="755.5" y="242.0" width="221.0" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="866.0" y="264.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">基础4</text>
+<rect x="454.5" y="290.0" width="136.0" height="28.0" rx="3" fill="#7B9CB8" stroke="#999999" stroke-width="1.2"/>
+<text x="522.5" y="309.0" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#333333" text-anchor="middle" font-weight="bold">公共危机治理分析</text>
+<rect x="-160.5" y="323.0" width="221.0" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="-50.0" y="345.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">基础1</text>
+<rect x="68.5" y="323.0" width="221.0" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="179.0" y="345.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">基础2</text>
+<rect x="297.5" y="323.0" width="221.0" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="408.0" y="345.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">基础3</text>
+<rect x="526.5" y="323.0" width="221.0" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="637.0" y="345.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">基础4</text>
+<rect x="755.5" y="323.0" width="221.0" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="866.0" y="345.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">基础5</text>
+<rect x="984.5" y="323.0" width="221.0" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="1095.0" y="345.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">基础6</text>
+<rect x="440.5" y="371.0" width="164.0" height="28.0" rx="3" fill="#7B9CB8" stroke="#999999" stroke-width="1.2"/>
+<text x="522.5" y="390.0" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#333333" text-anchor="middle" font-weight="bold">公共危机治理关键问题</text>
+<rect x="183.0" y="404.0" width="221.0" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="293.5" y="426.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">基础1</text>
+<rect x="412.0" y="404.0" width="221.0" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="522.5" y="426.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">基础2</text>
+<rect x="641.0" y="404.0" width="221.0" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="751.5" y="426.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">基础3</text>
+<line x1="522.5" y1="466.0" x2="522.5" y2="472.0" stroke="#444444" stroke-width="2.5"/><polygon points="522.5,484.0 516.5,472.0 528.5,472.0" fill="#444444"/>
+<rect x="65.0" y="488.0" width="915.0" height="150.0" fill="none" stroke="#F0F4F8" stroke-width="1.2" stroke-dasharray="6,4"/>
+<rect x="3.0" y="538.0" width="44.0" height="50.0" rx="4" fill="#90CAF9" stroke="#999999" stroke-width="1.2"/>
+<text x="28.0" y="558.0" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#333333" text-anchor="middle" font-weight="bold">解决策略</text>
+<rect x="83.0" y="498.0" width="211.2" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="188.6" y="521.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">环境层面</text>
+<rect x="304.2" y="498.0" width="211.2" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="409.9" y="521.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">机制层面</text>
+<rect x="525.5" y="498.0" width="211.2" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="631.1" y="521.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">操作层面</text>
+<rect x="746.8" y="498.0" width="211.2" height="36.0" rx="4" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="852.4" y="521.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#333333" text-anchor="middle" font-weight="normal">评价层面</text>
+<rect x="107.6" y="547.0" width="52.0" height="32.0" rx="2" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="133.6" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">策1</text>
+<line x1="188.6" y1="537.0" x2="133.6" y2="547.0" stroke="#444444" stroke-width="1"/>
+<rect x="162.6" y="547.0" width="52.0" height="32.0" rx="2" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="188.6" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">策2</text>
+<line x1="188.6" y1="537.0" x2="188.6" y2="547.0" stroke="#444444" stroke-width="1"/>
+<rect x="217.6" y="547.0" width="52.0" height="32.0" rx="2" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="243.6" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">策3</text>
+<line x1="188.6" y1="537.0" x2="243.6" y2="547.0" stroke="#444444" stroke-width="1"/>
+<rect x="201.1" y="547.0" width="207.2" height="32.0" rx="2" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="304.8" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">策1</text>
+<line x1="409.9" y1="537.0" x2="304.8" y2="547.0" stroke="#444444" stroke-width="1"/>
+<rect x="411.4" y="547.0" width="207.2" height="32.0" rx="2" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="515.0" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">策2</text>
+<line x1="409.9" y1="537.0" x2="515.0" y2="547.0" stroke="#444444" stroke-width="1"/>
+<rect x="522.6" y="547.0" width="52.0" height="32.0" rx="2" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="548.6" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">策1</text>
+<line x1="631.1" y1="537.0" x2="548.6" y2="547.0" stroke="#444444" stroke-width="1"/>
+<rect x="577.6" y="547.0" width="52.0" height="32.0" rx="2" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="603.6" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">策2</text>
+<line x1="631.1" y1="537.0" x2="603.6" y2="547.0" stroke="#444444" stroke-width="1"/>
+<rect x="632.6" y="547.0" width="52.0" height="32.0" rx="2" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="658.6" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">策3</text>
+<line x1="631.1" y1="537.0" x2="658.6" y2="547.0" stroke="#444444" stroke-width="1"/>
+<rect x="687.6" y="547.0" width="52.0" height="32.0" rx="2" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="713.6" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">策4</text>
+<line x1="631.1" y1="537.0" x2="713.6" y2="547.0" stroke="#444444" stroke-width="1"/>
+<rect x="771.4" y="547.0" width="52.0" height="32.0" rx="2" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="797.4" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">策1</text>
+<line x1="852.4" y1="537.0" x2="797.4" y2="547.0" stroke="#444444" stroke-width="1"/>
+<rect x="826.4" y="547.0" width="52.0" height="32.0" rx="2" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="852.4" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">策2</text>
+<line x1="852.4" y1="537.0" x2="852.4" y2="547.0" stroke="#444444" stroke-width="1"/>
+<rect x="881.4" y="547.0" width="52.0" height="32.0" rx="2" fill="#E0E0E0" stroke="#999999" stroke-width="1.2"/>
+<text x="907.4" y="568.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#333333" text-anchor="middle" font-weight="normal">策3</text>
+<line x1="852.4" y1="537.0" x2="907.4" y2="547.0" stroke="#444444" stroke-width="1"/>
+<rect x="447.5" y="643.0" width="150.0" height="36.0" rx="4" fill="#90CAF9" stroke="#999999" stroke-width="1.2"/>
+<text x="522.5" y="666.0" font-family="Microsoft YaHei, sans-serif" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold">结论与展望</text>
+</svg>

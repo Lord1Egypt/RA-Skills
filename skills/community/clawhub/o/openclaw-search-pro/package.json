@@ -1,0 +1,32 @@
+{
+  "name": "openclaw-search-pro",
+  "version": "1.1.0",
+  "description": "OpenClaw 搜索增强工具，多引擎聚合搜索，无需API Key，无需Python",
+  "main": "scripts/multi-search.js",
+  "bin": {
+    "search-pro": "./scripts/multi-search.js",
+    "extract": "./scripts/extract.js"
+  },
+  "scripts": {
+    "install": "echo ✅ Search Pro 安装完成！无需配置API Key，直接使用即可",
+    "test": "node scripts/multi-search.js \"OpenClaw 技能\" --max-results 3"
+  },
+  "keywords": [
+    "openclaw",
+    "search",
+    "web-crawler",
+    "bing",
+    "sogou",
+    "360-search",
+    "no-python"
+  ],
+  "author": "OpenClaw Community",
+  "license": "MIT-0",
+  "dependencies": {
+    "axios": "^1.6.7",
+    "cheerio": "^1.0.0-rc.12"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

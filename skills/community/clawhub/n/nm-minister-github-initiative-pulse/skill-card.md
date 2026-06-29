@@ -11,32 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers, maintainers, and project leads use this skill to turn tracker data and GitHub project metadata into initiative status summaries, GitHub comments, and CSV exports for stakeholder updates. <br>
+Developers, maintainers, and project leads use this skill to turn tracker data and GitHub board metadata into initiative status digests, scorecards, blocker summaries, PR watchlists, and CSV-style exports for GitHub issues, pull requests, or Discussions. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can be activated for GitHub reporting tasks where broad repository or project access would expose more data than needed. <br>
-Mitigation: Confirm the reporting scope before use and limit GitHub access to the repositories, projects, milestones, or issues needed for the requested report. <br>
-Risk: Generated status digests can be misleading when tracker data or GitHub board metadata is stale or incomplete. <br>
-Mitigation: Refresh or verify source data, review metrics and linked risks, and check rendered Markdown before posting updates to GitHub threads. <br>
+Risk: Broad trigger words such as github, projects, reporting, status, and dashboards may invoke the skill unexpectedly. <br>
+Mitigation: Confirm the requested task is GitHub initiative reporting before using the generated templates or summaries. <br>
+Risk: Generated digests may summarize project, stakeholder, or issue details that should not be posted broadly. <br>
+Mitigation: Review and edit reports before pasting them into GitHub issues, pull requests, or Discussions. <br>
+Risk: Outdated tracker or GitHub Projects data can produce misleading completion, blocker, or ETA summaries. <br>
+Mitigation: Refresh tracker and GitHub data before generating stakeholder-facing status updates. <br>
 
 
 ## Reference(s): <br>
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/minister) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-minister-github-initiative-pulse) <br>
+- [claude-night-market minister plugin](https://github.com/athola/claude-night-market/tree/master/plugins/minister) <br>
 - [GitHub Comment Snippets](modules/github-comment-snippets.md) <br>
 - [Status Digest Blueprint](modules/status-digest.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, CSV, guidance] <br>
-**Output Format:** [Markdown digests, GitHub comment snippets, and CSV exports] <br>
+**Output Type(s):** [Markdown, Code, Shell commands, Guidance] <br>
+**Output Format:** [Markdown with tables, checklists, GitHub comment snippets, and CSV export guidance] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Outputs may include issue, pull request, project, milestone, owner, lane, and risk-query references supplied by the user or tracker data.] <br>
+**Other Properties Related to Output:** [Outputs should be reviewed before posting because they may summarize project or stakeholder information.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: ClawHub release evidence; artifact frontmatter lists 1.9.8) <br>
+1.9.13 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

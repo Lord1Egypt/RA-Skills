@@ -1,0 +1,4 @@
+interface:
+  display_name: "Markdown to Rich HTML"
+  short_description: "Convert Markdown into polished HTML"
+  default_prompt: "Use $md-to-rich-html to turn this Markdown file or folder into a polished self-contained HTML page."

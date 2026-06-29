@@ -1,0 +1,15 @@
+{
+  "name": "retro",
+  "label": "复盘回顾型",
+  "description": "结构化复盘模板，用于项目回顾和事后分析",
+  "sections": [
+    {"id": "header", "title": "复盘信息", "fields": ["项目名称", "复盘日期", "周期", "参与人"]},
+    {"id": "good", "title": "做得好（Keep）", "type": "list", "color": "success"},
+    {"id": "improve", "title": "待改进（Problem）", "type": "list", "color": "warning"},
+    {"id": "try", "title": "改进方案（Try）", "type": "list", "color": "primary"},
+    {"id": "metrics", "title": "数据指标", "type": "table", "columns": ["指标", "本期值", "上期值", "变化"]},
+    {"id": "actions", "title": "改进行动", "type": "table", "columns": ["行动项", "责任人", "截止日期", "衡量标准"]}
+  ],
+  "layout": "three-columns",
+  "retro_pattern": "keep-problem-try"
+}

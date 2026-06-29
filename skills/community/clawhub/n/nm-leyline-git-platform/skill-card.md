@@ -11,32 +11,32 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineering agents use this skill to detect whether a repository is hosted on GitHub, GitLab, or Bitbucket and choose platform-appropriate CLI or API commands for issues, pull requests, merge requests, discussions, and CI configuration. <br>
+Developers and agents use this skill to identify whether a project is hosted on GitHub, GitLab, or Bitbucket and choose platform-appropriate commands for issues, pull requests or merge requests, discussions, and CI workflows. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The referenced forge commands can create, close, merge, approve, or comment on remote issues, pull requests, merge requests, and discussions. <br>
-Mitigation: Require explicit confirmation before running remote-changing examples, and verify both the target repository and the authenticated account. <br>
-Risk: Using the wrong platform mapping can produce incorrect commands or terminology for GitHub, GitLab, or Bitbucket workflows. <br>
-Mitigation: Confirm the detected git platform and available CLI before applying a mapped command. <br>
+Risk: Suggested gh, glab, curl, or API commands can mutate hosted repositories or public project content. <br>
+Mitigation: Confirm the target repository, platform, authentication context, and intended action before running any generated command. <br>
+Risk: Platform-specific command mappings may be inappropriate when the repository host is unknown or the expected CLI is unavailable. <br>
+Mitigation: Check the git remote, platform markers, and CLI availability first, then fall back to the documented REST API or web interface path when needed. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-leyline-git-platform) <br>
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
-- [Command mapping module](modules/command-mapping.md) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-leyline-git-platform) <br>
+- [Clawdis homepage](https://github.com/athola/claude-night-market/tree/master/plugins/leyline) <br>
+- [Complete Command Mapping](modules/command-mapping.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Guidance, Shell commands, Configuration] <br>
-**Output Format:** [Markdown with inline shell and API command examples] <br>
+**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown guidance with inline shell command examples and command mapping tables] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable files are included in the artifact; outputs are reference text for agent workflows.] <br>
+**Other Properties Related to Output:** [Includes platform-specific terminology and command equivalents for GitHub, GitLab, and Bitbucket.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: ClawHub release evidence) <br>
+1.9.13 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

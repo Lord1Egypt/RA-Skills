@@ -1,5 +1,5 @@
 ## Description: <br>
-Verifies workspace state and staged changes as a read-only preflight before commits or PRs. <br>
+Verifies workspace state and staged changes as a read-only preflight for commits, pull requests, and release preparation. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,32 +11,32 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineering agents use this skill before commit, pull request, or release-note workflows to inspect repository status, staged changes, diff statistics, and detailed diffs. <br>
+Developers and engineers use this skill before commits, pull requests, or release notes to inspect repository state, staged changes, and relevant diffs. It helps confirm that the intended work is staged and that code quality checks have been considered. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill is described as read-only but includes workflow steps that can format files or change staged state. <br>
-Mitigation: Treat mutating actions as proposed commands and require explicit confirmation before formatting, staging, unstaging, or aborting merges. <br>
-Risk: A review can be misleading if status or diffs are collected from the wrong repository, branch, or staging state. <br>
-Mitigation: Confirm the working directory, branch, upstream, and staged versus unstaged changes before relying on the review. <br>
+Risk: The skill is described as read-only but can lead an agent to stage or unstage files and run formatting fixes. <br>
+Mitigation: Require explicit confirmation before staging, unstaging, formatting, or applying fixes, and review git status and diffs before continuing. <br>
+Risk: Project-defined formatting and lint commands may modify files or execute repository-specific tooling. <br>
+Mitigation: Run the skill only in trusted repositories or an isolated workspace, and inspect the relevant build scripts before allowing automated commands. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-sanctum-git-workspace-review) <br>
-- [ClawHub publisher profile](https://clawhub.ai/user/athola) <br>
-- [Project homepage from ClawHub metadata](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-sanctum-git-workspace-review) <br>
+- [ClawHub metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
+- [Git commands reference](modules/git-commands.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, markdown] <br>
-**Output Format:** [Markdown guidance with inline shell commands and review checkpoints] <br>
+**Output Type(s):** [Analysis, Shell commands, Guidance] <br>
+**Output Format:** [Markdown guidance with inline shell commands and a progress checklist] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [The skill can lead an agent to run formatters and adjust staged files; require approval before mutating commands.] <br>
+**Other Properties Related to Output:** [May involve git status, diff, staging, formatting, and lint commands depending on agent execution policy.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: ClawHub release evidence) <br>
+1.9.13 (source: server release metadata; artifact frontmatter lists 1.9.8) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

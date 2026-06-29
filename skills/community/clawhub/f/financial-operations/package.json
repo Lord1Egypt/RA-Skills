@@ -1,0 +1,5 @@
+{
+    "name":  "financial-operations",
+    "version":  "1.0.0",
+    "description":  "Operational workflows: KYC document parsing and rules-grid evaluation"
+}

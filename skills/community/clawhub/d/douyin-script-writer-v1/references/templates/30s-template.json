@@ -1,0 +1,29 @@
+{
+  "templateName": "30-second Douyin Script Template",
+  "structure": [
+    {
+      "timeRange": "0-3s",
+      "section": "钩子 (Hook)",
+      "description": "前3秒抓住注意力",
+      "duration": 3
+    },
+    {
+      "timeRange": "3-12s",
+      "section": "展开 (Development)",
+      "description": "展开内容，3个要点或场景",
+      "duration": 9
+    },
+    {
+      "timeRange": "12-22s",
+      "section": "高潮 (Climax)",
+      "description": "核心信息/解决方案/高潮情节",
+      "duration": 10
+    },
+    {
+      "timeRange": "22-30s",
+      "section": "结尾 (CTA)",
+      "description": "行动号召、关注引导",
+      "duration": 8
+    }
+  ]
+}

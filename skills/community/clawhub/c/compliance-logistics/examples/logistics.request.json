@@ -1,0 +1,7 @@
+{
+  "productCategory": "电子产品",
+  "destinationCountry": "GB",
+  "hasBrand": true,
+  "existingCompliances": ["CE", "FCC"],
+  "productValue": 150
+}

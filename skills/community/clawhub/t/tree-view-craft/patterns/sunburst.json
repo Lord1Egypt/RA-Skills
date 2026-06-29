@@ -1,0 +1,10 @@
+{
+  "name": "sunburst",
+  "label": "旭日图",
+  "description": "展示各目录文件大小和数量占比",
+  "layout": "sunburst",
+  "features": ["size_visualization", "hover_tooltip", "click_drilldown", "legend"],
+  "icon_style": "none",
+  "sort_order": "size-desc",
+  "show_percentage": true
+}

@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "create-rustchain-agent"
+version = "0.1.0"
+description = "60-second onboarding for a RustChain-participating agent: wallet + agent.py + MCP wiring + First-Light bounty."
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Elyan Labs", email = "scott@elyanlabs.ai" }]
+requires-python = ">=3.8"
+dependencies = ["cryptography>=41.0"]
+keywords = ["rustchain", "ai-agent", "scaffold", "mcp", "rtc", "proof-of-antiquity"]
+
+[project.urls]
+Homepage = "https://rustchain.org"
+Repository = "https://github.com/Scottcjn/create-rustchain-agent"
+
+[project.scripts]
+create-rustchain-agent = "create_rustchain_agent.__main__:main"
+
+[tool.setuptools]
+packages = ["create_rustchain_agent"]

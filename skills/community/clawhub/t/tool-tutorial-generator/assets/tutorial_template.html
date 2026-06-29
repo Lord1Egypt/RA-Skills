@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{TOOL_NAME}} 完整教程报告</title>
+<style>
+  :root {
+    --primary: #2563eb;
+    --primary-light: #eff6ff;
+    --primary-dark: #1d4ed8;
+    --secondary: #7c3aed;
+    --bg: #f8fafc;
+    --card-bg: #ffffff;
+    --text: #1e293b;
+    --text-secondary: #64748b;
+    --border: #e2e8f0;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --radius: 12px;
+    --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+    --shadow-lg: 0 10px 40px rgba(0,0,0,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    display: flex;
+    min-height: 100vh;
+  }
+
+  /* 左侧导航 */
+  .toc {
+    width: 260px;
+    min-width: 260px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    background: var(--card-bg);
+    border-right: 1px solid var(--border);
+    padding: 24px 20px;
+    overflow-y: auto;
+    z-index: 100;
+  }
+  .toc-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    padding-left: 8px;
+  }
+  .toc-list { list-style: none; }
+  .toc-list li { margin-bottom: 2px; }
+  .toc-list a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s;
+    border-left: 2px solid transparent;
+  }
+  .toc-list a:hover { background: var(--primary-light); color: var(--primary); }
+  .toc-list a.active {
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 600;
+    border-left-color: var(--primary);
+  }
+  .toc-list a .toc-icon { margin-right: 6px; font-size: 13px; }
+
+  /* 主内容区 */
+  .main {
+    flex: 1;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Hero */
+  .hero {
+    padding: 60px 0 40px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+  }
+  .hero-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    background: var(--primary-light);
+    color: var(--primary);
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero .subtitle {
+    font-size: 17px;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 20px;
+  }
+  .hero .tags {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero .tag {
+    padding: 4px 12px;
+    border-radius: 6px;
+    background: #f1f5f9;
+    color: var(--text-secondary);
+    font-size: 13px;
+  }
+  .hero .meta-row {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .hero .meta-item {
+    text-align: center;
+  }
+  .hero .meta-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary);
+  }
+  .hero .meta-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  /* 板块卡片 */
+  .section {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 36px 40px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+  }
+  .section h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section .section-desc {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 24px 0 12px;
+    padding-left: 12px;
+    border-left: 3px solid var(--primary);
+  }
+  .section p { margin-bottom: 12px; }
+  .section ul, .section ol { margin: 8px 0 16px 20px; }
+  .section li { margin-bottom: 6px; }
+
+  /* 信息卡片 */
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .info-card {
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .info-card .info-icon { font-size: 28px; margin-bottom: 8px; }
+  .info-card .info-title { font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; }
+  .info-card .info-value { font-size: 15px; font-weight: 600; }
+
+  /* 代码块 */
+  .code-block {
+    background: #1e293b;
+    color: #e2e8f0;
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin: 12px 0;
+    overflow-x: auto;
+    font-family: "Fira Code", "Cascadia Code", "JetBrains Mono", "Consolas", monospace;
+    font-size: 14px;
+    line-height: 1.7;
+    position: relative;
+  }
+  .code-block .lang-tag {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 11px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .code-block .comment { color: #94a3b8; }
+  .code-block .keyword { color: #c084fc; }
+  .code-block .string { color: #34d399; }
+  .code-block .function { color: #60a5fa; }
+  .code-block .number { color: #fbbf24; }
+  .inline-code {
+    background: #f1f5f9;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: "Fira Code", "Cascadia Code", monospace;
+    font-size: 13px;
+    color: var(--secondary);
+  }
+
+  /* 步骤列表 */
+  .step-list { counter-reset: step; list-style: none; margin: 16px 0; }
+  .step-list li {
+    counter-increment: step;
+    position: relative;
+    padding: 16px 16px 16px 52px;
+    margin-bottom: 12px;
+    background: #f8fafc;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+  }
+  .step-list li::before {
+    content: counter(step);
+    position: absolute;
+    left: 12px;
+    top: 14px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    font-size: 13px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step-list li strong { display: block; margin-bottom: 4px; }
+
+  /* FAQ */
+  .faq-item {
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .faq-q {
+    padding: 16px 20px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8fafc;
+    transition: background 0.2s;
+    font-size: 15px;
+  }
+  .faq-q:hover { background: var(--primary-light); }
+  .faq-q .arrow { transition: transform 0.3s; font-size: 12px; }
+  .faq-item.open .faq-q .arrow { transform: rotate(180deg); }
+  .faq-a {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    color: var(--text-secondary);
+    font-size: 14px;
+  }
+  .faq-item.open .faq-a { padding: 0 20px 16px; max-height: 500px; }
+
+  /* 路线图 */
+  .roadmap { display: flex; gap: 0; margin: 20px 0; overflow-x: auto; padding-bottom: 12px; }
+  .roadmap-stage {
+    flex: 1;
+    min-width: 140px;
+    text-align: center;
+    position: relative;
+    padding: 20px 12px;
+    background: var(--primary-light);
+    border-radius: 10px;
+    margin-right: 32px;
+  }
+  .roadmap-stage::after {
+    content: "→";
+    position: absolute;
+    right: -24px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+    color: var(--primary);
+    font-weight: 700;
+  }
+  .roadmap-stage:last-child::after { display: none; }
+  .roadmap-stage .stage-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+  .roadmap-stage .stage-title { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+  .roadmap-stage .stage-time { font-size: 12px; color: var(--text-secondary); }
+
+  /* 资源链接 */
+  .resource-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin: 16px 0;
+  }
+  .resource-card {
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    transition: all 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .resource-card:hover {
+    border-color: var(--primary);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+  .resource-card .rc-type {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--primary);
+    margin-bottom: 8px;
+  }
+  .resource-card .rc-title {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 4px;
+  }
+  .resource-card .rc-desc {
+    font-size: 13px;
+    color: var(--text-secondary);
+  }
+
+  /* 难度评级 */
+  .difficulty {
+    display: inline-flex;
+    gap: 4px;
+  }
+  .difficulty .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+  .difficulty .dot.filled { background: var(--primary); }
+
+  /* 提示框 */
+  .tip {
+    padding: 16px 20px 16px 48px;
+    border-radius: 10px;
+    margin: 16px 0;
+    position: relative;
+    font-size: 14px;
+  }
+  .tip::before {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    font-size: 18px;
+  }
+  .tip.info {
+    background: #eff6ff;
+    color: #1e40af;
+    border: 1px solid #bfdbfe;
+  }
+  .tip.info::before { content: "💡"; }
+  .tip.warning {
+    background: #fffbeb;
+    color: #92400e;
+    border: 1px solid #fde68a;
+  }
+  .tip.warning::before { content: "⚠️"; }
+  .tip.success {
+    background: #f0fdf4;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+  }
+  .tip.success::before { content: "✅"; }
+
+  /* 返回顶部 */
+  .back-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: var(--shadow-lg);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s;
+    pointer-events: none;
+    z-index: 200;
+  }
+  .back-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  .back-top:hover { background: var(--primary-dark); transform: translateY(-2px); }
+
+  /* 打印 */
+  @media print {
+    .toc, .back-top { display: none; }
+    .main { max-width: 100%; }
+    .section { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+  }
+
+  /* 移动端 */
+  @media (max-width: 768px) {
+    .toc { display: none; }
+    .main { padding: 0 16px; max-width: 100%; }
+    .hero h1 { font-size: 28px; }
+    .section { padding: 24px 20px; }
+    .hero .meta-row { gap: 16px; }
+    .roadmap { flex-direction: column; }
+    .roadmap-stage { margin-right: 0; margin-bottom: 12px; }
+    .roadmap-stage::after { display: none; }
+    .info-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 左侧目录 -->
+<nav class="toc">
+  <div class="toc-title">📑 目录导航</div>
+  <ul class="toc-list">
+    <li><a href="#overview"><span class="toc-icon">📋</span>工具概览</a></li>
+    <li><a href="#install"><span class="toc-icon">🔧</span>安装配置</a></li>
+    <li><a href="#basics"><span class="toc-icon">🎯</span>基础入门</a></li>
+    <li><a href="#advanced"><span class="toc-icon">🚀</span>进阶技巧</a></li>
+    <li><a href="#faq"><span class="toc-icon">❓</span>常见问题</a></li>
+    <li><a href="#roadmap"><span class="toc-icon">🗺️</span>学习路线图</a></li>
+    <li><a href="#resources"><span class="toc-icon">📚</span>资源汇总</a></li>
+  </ul>
+</nav>
+
+<!-- 主内容 -->
+<main class="main">
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-badge">📖 完整教程报告</div>
+  <h1>{{TOOL_NAME}}</h1>
+  <p class="subtitle">{{TOOL_DESC}}</p>
+  <div class="tags">
+    {{TOOL_TAGS}}
+  </div>
+  <div class="meta-row">
+    <div class="meta-item">
+      <div class="meta-value">{{DIFFICULTY_LABEL}}</div>
+      <div class="meta-label">学习难度</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-value">{{EST_TIME}}</div>
+      <div class="meta-label">预计学时</div>
+    </div>
+    <div class="meta-item">
+      <div class="meta-value">{{TOTAL_WORDS}}</div>
+      <div class="meta-label">报告字数</div>
+    </div>
+  </div>
+</section>
+
+<!-- 板块: 工具概览 -->
+<section class="section" id="overview">
+  <h2>📋 工具概览</h2>
+  <p class="section-desc">快速了解 {{TOOL_NAME}} 是什么、适合谁、以及学习它的价值。</p>
+
+  <h3>一句话介绍</h3>
+  <p>{{OVERVIEW_INTRO}}</p>
+
+  <h3>基本信息</h3>
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-icon">🏢</div>
+      <div class="info-title">开发者</div>
+      <div class="info-value">{{DEVELOPER}}</div>
+    </div>
+    <div class="info-card">
+      <div class="info-icon">💰</div>
+      <div class="info-title">价格模式</div>
+      <div class="info-value">{{PRICE_MODEL}}</div>
+    </div>
+    <div class="info-card">
+      <div class="info-icon">🖥️</div>
+      <div class="info-title">支持平台</div>
+      <div class="info-value">{{PLATFORMS}}</div>
+    </div>
+    <div class="info-card">
+      <div class="info-icon">👥</div>
+      <div class="info-title">适合人群</div>
+      <div class="info-value">{{TARGET_USERS}}</div>
+    </div>
+  </div>
+
+  <h3>学习难度</h3>
+  <p>
+    <span class="difficulty">
+      {{DIFFICULTY_DOTS}}
+    </span>
+    <span style="margin-left: 12px; color: var(--text-secondary); font-size: 14px;">{{DIFFICULTY_DESC}}</span>
+  </p>
+</section>
+
+<!-- 板块: 安装配置 -->
+<section class="section" id="install">
+  <h2>🔧 安装配置</h2>
+  <p class="section-desc">手把手带你完成 {{TOOL_NAME}} 的安装和初始配置，覆盖主流操作系统。</p>
+
+  {{INSTALL_CONTENT}}
+</section>
+
+<!-- 板块: 基础入门 -->
+<section class="section" id="basics">
+  <h2>🎯 基础入门</h2>
+  <p class="section-desc">掌握 {{TOOL_NAME}} 的核心概念和基本操作，快速上手。</p>
+
+  {{BASICS_CONTENT}}
+</section>
+
+<!-- 板块: 进阶技巧 -->
+<section class="section" id="advanced">
+  <h2>🚀 进阶技巧</h2>
+  <p class="section-desc">从会用 → 用好，掌握效率翻倍的进阶操作和工作流优化。</p>
+
+  {{ADVANCED_CONTENT}}
+</section>
+
+<!-- 板块: 常见问题 -->
+<section class="section" id="faq">
+  <h2>❓ 常见问题</h2>
+  <p class="section-desc">新手最容易遇到的 5-8 个问题及解决方案。</p>
+
+  {{FAQ_CONTENT}}
+</section>
+
+<!-- 板块: 学习路线图 -->
+<section class="section" id="roadmap">
+  <h2>🗺️ 学习路线图</h2>
+  <p class="section-desc">从入门到精通的分阶段学习路径，每个阶段都有明确的目标和里程碑。</p>
+
+  {{ROADMAP_CONTENT}}
+</section>
+
+<!-- 板块: 资源汇总 -->
+<section class="section" id="resources">
+  <h2>📚 资源汇总</h2>
+  <p class="section-desc">精选优质学习资源，按类型分类。</p>
+
+  {{RESOURCES_CONTENT}}
+</section>
+
+</main>
+
+<!-- 返回顶部按钮 -->
+<button class="back-top" id="backTop" title="返回顶部">↑</button>
+
+<script>
+(function() {
+  // 目录高亮
+  const sections = document.querySelectorAll('.section');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(link => link.classList.remove('active'));
+        const id = entry.target.id;
+        const active = document.querySelector(`.toc-list a[href="#${id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+
+  // FAQ 折叠
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      q.parentElement.classList.toggle('open');
+    });
+  });
+
+  // 返回顶部
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('visible', window.scrollY > 400);
+  });
+  backTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // 平滑滚动
+  tocLinks.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // 默认展开第一个 FAQ
+  const firstFaq = document.querySelector('.faq-item');
+  if (firstFaq) firstFaq.classList.add('open');
+})();
+</script>
+</body>
+</html>

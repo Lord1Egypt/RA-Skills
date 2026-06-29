@@ -1,0 +1,10 @@
+{
+  "name": "resource",
+  "label": "资源分配视图",
+  "description": "按负责人着色查看各人工作量",
+  "layout": "horizontal",
+  "features": ["owner_colors", "workload_chart", "assignment_filter", "timeline"],
+  "time_unit": "auto",
+  "color_by": "owner",
+  "show_workload_summary": true
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "WeChat Article Extract"
+  short_description: "Extract public WeChat articles to Markdown or JSON."
+  default_prompt: "Use $wechat-article-extract to extract this public WeChat Official Account article into Markdown with metadata."

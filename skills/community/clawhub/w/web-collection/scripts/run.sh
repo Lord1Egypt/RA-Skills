@@ -674,6 +674,58 @@ resolve_cloud_loop_script() {
   printf '%s\n' "$SKILL_DIR/scripts/cloud_dispatch_loop.sh"
 }
 
+resolve_auth_helper_script() {
+  printf '%s\n' "$SKILL_DIR/scripts/ensure_connector_auth.sh"
+}
+
+ensure_cloud_authorization() {
+  if [[ "$CONNECTION_MODE" != "cloud" ]]; then
+    return 0
+  fi
+
+  local auth_script output status
+  auth_script="$(resolve_auth_helper_script)"
+  require_helper_script "$auth_script" "connector auth helper"
+
+  set +e
+  output="$(
+    bash "$auth_script" \
+      --bridge-url "$BRIDGE_URL" \
+      --cloud-base-url "$CLOUD_BASE_URL" \
+      --device-id "$CLOUD_DEVICE_ID" \
+      --token "$CLOUD_TOKEN" \
+      --format shell
+  )"
+  status=$?
+  set -e
+
+  if [[ "$status" == "0" ]]; then
+    eval "$output"
+    CLOUD_BASE_URL="${WEB_COLLECTION_CLOUD_BASE_URL:-$CLOUD_BASE_URL}"
+    CLOUD_DEVICE_ID="${WEB_COLLECTION_CLOUD_DEVICE_ID:-$CLOUD_DEVICE_ID}"
+    CLOUD_TOKEN="${WEB_COLLECTION_CLOUD_TOKEN:-$CLOUD_TOKEN}"
+    export WEB_COLLECTION_CLOUD_BASE_URL="$CLOUD_BASE_URL"
+    export WEB_COLLECTION_CLOUD_DEVICE_ID="$CLOUD_DEVICE_ID"
+    export WEB_COLLECTION_CLOUD_TOKEN="$CLOUD_TOKEN"
+    if [[ -n "${WEB_COLLECTION_AUTH_SOURCE:-}" ]]; then
+      echo "[web-collection] connector auth source=$WEB_COLLECTION_AUTH_SOURCE" >&2
+    fi
+    return 0
+  fi
+
+  if [[ "$status" == "2" ]]; then
+    eval "$output"
+    cat >&2 <<EOF
+[web-collection] 需要确认连接器授权。
+[web-collection] 请打开下面的网页登录确认链接，完成登录/授权后回到 Agent 继续或重新运行采集：
+$WEB_COLLECTION_LOGIN_URL
+EOF
+    exit 2
+  fi
+
+  die "connector authorization check failed"
+}
+
 if [[ -z "$BRIDGE_CMD" ]]; then
   BRIDGE_CMD="$(default_bridge_cmd || true)"
 fi
@@ -682,6 +734,7 @@ apply_stored_preferences
 [[ -n "$DEDUPLICATION" ]] || DEDUPLICATION="true"
 [[ -n "$DEDUPLICATION_STRATEGY" ]] || DEDUPLICATION_STRATEGY="keepOld"
 CONNECTION_MODE="$(normalize_connection_mode "$CONNECTION_MODE")"
+ensure_cloud_authorization
 run_preflight_check
 
 if [[ -n "$EXPORT_TARGET" ]]; then

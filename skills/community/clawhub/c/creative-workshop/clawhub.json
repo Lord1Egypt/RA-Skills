@@ -1,0 +1,35 @@
+{
+  "name": "creative-workshop",
+  "displayName": "OPC创意造物局",
+  "version": "1.0.0",
+  "description": "OPC创意造物局 - 五阶段创意孵化Agent，从灵感发现到完整方案包输出。赋能个体创业者实现一人公司模式，输出创新方案、商业可行性报告和IP布局策略。",
+  "author": "golngod",
+  "license": "MIT",
+  "pricing": {
+    "model": "free"
+  },
+  "tags": [
+    "创意孵化",
+    "创业",
+    "商业模式",
+    "TRIZ",
+    "知识产权",
+    "一人公司",
+    "OPC-SPARK"
+  ],
+  "minOpenClawVersion": "1.2.0",
+  "repository": "https://github.com/golngod/creative-workshop",
+  "homepage": "https://www.opc-spark.com",
+  "keywords": [
+    "creative",
+    "startup",
+    "business-model",
+    "IP-protection",
+    "innovation",
+    "one-person-company"
+  ],
+  "compatibility": {
+    "platforms": ["coze", "claw"],
+    "cozeVersion": ">=1.0.0"
+  }
+}

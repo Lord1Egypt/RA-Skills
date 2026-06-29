@@ -1,0 +1,11 @@
+﻿{
+    "domain":  "",
+    "subdomain":  "",
+    "python_exe":  "",
+    "skill_dir":  "",
+    "output_dir":  "./translation-output",
+    "paddleocr_token":  "",
+    "configured":  false,
+    "dict_path":  "Gxpcode-dict.csv",
+    "_comment":  "Gxpcode-translator configuration"
+}

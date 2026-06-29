@@ -1,0 +1,8 @@
+{
+  "mode": "v3",
+  "animation_description": "glowing crystal pulses brighter then returns to idle, no movement across the canvas",
+  "display_name": "crystal-pulse",
+  "frame_count": 8,
+  "replace_existing": false,
+  "enhance_prompt": true
+}

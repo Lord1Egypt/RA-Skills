@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>导演审查台 — __PROJECT_NAME__</title>
+<style>
+* { box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+       background: #0f0f0f; color: #e0e0e0; margin: 0; padding: 20px; }
+h1 { color: #ffd700; border-bottom: 2px solid #333; padding-bottom: 10px; font-size: 22px; }
+.summary { background: #1a1a1a; padding: 12px 16px; border-radius: 8px;
+           margin-bottom: 16px; font-size: 14px; display: flex; gap: 20px; flex-wrap: wrap; }
+.summary span { display: inline-flex; align-items: center; gap: 4px; }
+.toolbar { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+.toolbar button { padding: 8px 16px; border: none; border-radius: 6px;
+                  cursor: pointer; font-size: 13px; font-weight: 600; }
+.btn-export { background: #ffd700; color: #000; }
+.btn-all-pass { background: #2d7d2d; color: #fff; }
+
+/* Shot card */
+.shot-card { background: #1a1a1a; border-radius: 10px; margin-bottom: 12px;
+             overflow: hidden; border: 2px solid #333; transition: border-color .2s; }
+.shot-card.all-pass { border-color: #2d7d2d; }
+.shot-card.has-fix { border-color: #c0392b; }
+.shot-card.has-review { border-color: #e67e22; }
+.shot-card.deleted { opacity: 0.35; border-style: dashed; }
+
+.shot-header { display: flex; align-items: center; gap: 10px;
+               padding: 10px 14px; background: #252525; font-size: 14px; flex-wrap: wrap; }
+.shot-id { background: #ffd700; color: #000; padding: 2px 8px; border-radius: 4px; font-weight: bold; font-size: 12px; }
+.shot-title { font-weight: 600; flex: 1; min-width: 80px; }
+.shot-title input { background: #333; color: #fff; border: 1px solid #555; border-radius: 4px;
+                     padding: 2px 6px; font-size: 13px; width: 120px; }
+.shot-time { color: #aaa; font-size: 12px; }
+.shot-del { background: #553; color: #faa; border: 1px solid #775; border-radius: 4px;
+            padding: 2px 8px; cursor: pointer; font-size: 12px; }
+.shot-del:hover { background: #c0392b; color: #fff; border-color: #c0392b; }
+.shot-undo { display: none; background: #2d5; color: #000; border: none; border-radius: 4px;
+             padding: 2px 8px; cursor: pointer; font-size: 12px; }
+.shot-card.deleted .shot-del { display: none; }
+.shot-card.deleted .shot-undo { display: inline-block; }
+
+/* Three panels */
+.panels { display: flex; gap: 10px; padding: 12px 14px; flex-wrap: wrap; }
+.panel { flex: 1; min-width: 300px; max-width: 420px; background: #222; border-radius: 8px; overflow: hidden; }
+.panel-header { padding: 6px 10px; font-size: 13px; font-weight: 600; display: flex;
+                align-items: center; justify-content: space-between; }
+.panel-video .panel-header { background: #1a3a1a; color: #6fae6f; }
+.panel-audio .panel-header { background: #3a2a1a; color: #ae8f6f; }
+.panel-subtitle .panel-header { background: #2a2a3a; color: #8f8fae; }
+
+.panel-body { padding: 10px; }
+.panel-body video { width: 100%; border-radius: 6px; max-height: 200px; }
+.panel-body audio { width: 100%; }
+.panel-body img { width: 100%; border-radius: 6px; cursor: pointer; }
+.panel-body .sub-text { font-size: 14px; line-height: 1.7; white-space: pre-line;
+                         background: #1a1a1a; padding: 8px; border-radius: 6px; min-height: 40px; }
+
+/* Component status toggle */
+.comp-toggle { display: flex; gap: 6px; margin-top: 8px; }
+.comp-toggle button { flex: 1; padding: 5px 0; border: 1px solid #444; border-radius: 5px;
+                       cursor: pointer; font-size: 12px; background: #333; color: #aaa; }
+.comp-toggle button.active-pass { background: #2d7d2d; color: #fff; border-color: #2d7d2d; }
+.comp-toggle button.active-fix { background: #c0392b; color: #fff; border-color: #c0392b; }
+
+/* Fix form (shown when component needs fix) */
+.fix-form { display: none; margin-top: 8px; padding: 10px; background: #1a1a1a;
+            border-radius: 6px; border-left: 3px solid #c0392b; }
+.fix-form.active { display: block; }
+.fix-form label { display: block; font-size: 12px; color: #aaa; margin-bottom: 4px; margin-top: 8px; }
+.fix-form label:first-child { margin-top: 0; }
+.fix-form textarea, .fix-form input[type=text], .fix-form select {
+  width: 100%; background: #252525; color: #e0e0e0; border: 1px solid #444;
+  border-radius: 5px; padding: 6px 8px; font-size: 13px; resize: vertical;
+}
+.fix-form textarea { min-height: 50px; }
+.fix-form .prompt-preview { background: #1a2a1a; border: 1px solid #3a5a3a; font-size: 12px;
+                            color: #8fae8f; padding: 8px; border-radius: 5px;
+                            white-space: pre-wrap; margin-top: 4px; max-height: 120px; overflow-y: auto; }
+.fix-form .hint { font-size: 11px; color: #777; margin-top: 4px; }
+
+/* Insert between shots */
+.insert-zone { text-align: center; padding: 6px; }
+.insert-btn { background: #1a1a1a; border: 1px dashed #555; color: #888;
+              padding: 6px 20px; border-radius: 20px; cursor: pointer; font-size: 13px; }
+.insert-btn:hover { border-color: #ffd700; color: #ffd700; background: #222; }
+
+/* Lightbox */
+#lightbox { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 9999; justify-content: center;
+            align-items: center; cursor: zoom-out; }
+#lightbox.active { display: flex; }
+#lightbox img { max-width: 92%; max-height: 92%; border-radius: 8px; }
+
+/* Export area */
+#export-area { margin-top: 20px; display: none; }
+#export-area .export-box { background: #1a1a1a; padding: 14px; border-radius: 8px;
+                           white-space: pre-wrap; font-size: 12px; max-height: 400px; overflow-y: auto;
+                           border: 1px solid #444; }
+.footer-note { text-align: center; color: #555; font-size: 11px; margin-top: 24px; padding: 12px; }
+</style>
+</head>
+<body>
+<h1>🎬 导演审查台 — __PROJECT_NAME__</h1>
+<div class="summary">
+  <span>⏱ 总时长：<strong id="total-dur">—</strong></span>
+  <span>🎞 镜头数：<strong id="total-shots">—</strong></span>
+  <span>✅ 全通过：<strong id="cnt-pass">0</strong></span>
+  <span>⚠️ 待定：<strong id="cnt-review">0</strong></span>
+  <span>❌ 需重制：<strong id="cnt-fix">0</strong></span>
+  <span>🗑 已删除：<strong id="cnt-deleted">0</strong></span>
+</div>
+<div class="toolbar">
+  <button class="btn-export" onclick="exportFixList()">📋 导出修改包</button>
+  <button class="btn-all-pass" onclick="setAllComp('pass')">全部通过</button>
+</div>
+<div id="shot-list"></div>
+<div class="footer-note">导演审查台 v4 · 画面/音频/字幕独立审查 · 支持增删镜头 · 自包含页面</div>
+
+<div id="lightbox" onclick="closeLightbox()"><img id="lightbox-img" /></div>
+<div id="export-area">
+  <div class="export-box" id="export-content"></div>
+</div>
+
+<script>
+const MANIFEST = __MANIFEST_DATA__;
+const VOICES = [
+  { id: "zh-CN-XiaoxiaoNeural", name: "晓晓（女·温柔）" },
+  { id: "zh-CN-YunjianNeural", name: "云建（男·沉稳）" },
+  { id: "zh-CN-YunxiNeural", name: "云希（男·年轻）" },
+  { id: "zh-CN-YunyangNeural", name: "云扬（男·新闻）" },
+  { id: "zh-CN-XiaoyiNeural", name: "晓伊（女·活泼）" },
+];
+const TOOLS = [
+  { id: "flow-img2video", name: "Flow Omni Flash 图生视频（推荐）" },
+  { id: "flow-text2video", name: "Flow Omni Flash 文生视频" },
+  { id: "flow-nano", name: "Flow Nano Banana 2 文生图" },
+  { id: "fallback", name: "PIL+FFmpeg 兜底" },
+];
+const PROBLEM_TYPES = {
+  video: [
+    "角色不一致", "时代错误", "军服不准确", "画面质量差",
+    "背景错误", "情绪不对", "动作不自然", "其他画面问题"
+  ],
+  audio: [
+    "语速不合适", "音色不匹配", "发音有误", "音量异常", "其他音频问题"
+  ],
+  subtitle: [
+    "文字有误", "时间不同步", "断句不合理", "其他字幕问题"
+  ]
+};
+const SUGGESTIONS = {
+  "角色不一致": "在提示词中强化角色外貌描述（圆脸、短发、大眼睛），启用参考图 standard-portrait-v2.jpg",
+  "时代错误": "检查服装/武器/建筑是否符合时代，加入负面提示词排除错误时代元素",
+  "军服不准确": "确保灰色棉布军装、两粒扣布帽、红领巾、现代步枪；排除日式军帽/徽章",
+  "画面质量差": "提高画面分辨率描述，增加 cinematic、film grain 等关键词",
+  "背景错误": "明确描述背景场景（时间、地点、天气），排除不相关元素",
+  "情绪不对": "调整 mood 关键词，如 dramatic、peaceful、tragic 等",
+  "动作不自然": "描述具体动作和姿态，避免模糊表述",
+  "语速不合适": "调整 edge-tts rate 参数，-10%（慢）到 +15%（快）",
+  "音色不匹配": "更换 edge-tts 语音角色",
+  "发音有误": "检查 narration 文本是否有多音字或生僻字",
+  "音量异常": "检查 aresample 和音量混合参数",
+  "文字有误": "直接修改字幕文本",
+  "时间不同步": "确保 ASS 与音频使用同一 rate 生成",
+  "断句不合理": "调整 \\n 换行位置"
+};
+
+// State
+let shots = JSON.parse(JSON.stringify(MANIFEST));
+let deletedShots = {};
+
+function pad2(n) { return String(n).padStart(2, '0'); }
+
+function render() {
+  const container = document.getElementById('shot-list');
+  container.innerHTML = '';
+
+  shots.forEach((shot, idx) => {
+    const isDeleted = !!deletedShots[shot.uid];
+    const card = document.createElement('div');
+    card.className = 'shot-card';
+    card.dataset.uid = shot.uid;
+
+    // Determine card status
+    const vStatus = shot.comp_status?.video || 'review';
+    const aStatus = shot.comp_status?.audio || 'review';
+    const sStatus = shot.comp_status?.subtitle || 'review';
+    const allPass = vStatus === 'pass' && aStatus === 'pass' && sStatus === 'pass';
+    const anyFix = vStatus === 'fix' || aStatus === 'fix' || sStatus === 'fix';
+    if (isDeleted) card.classList.add('deleted');
+    else if (allPass) card.classList.add('all-pass');
+    else if (anyFix) card.classList.add('has-fix');
+    else card.classList.add('has-review');
+
+    // Header
+    const header = document.createElement('div');
+    header.className = 'shot-header';
+    const idLabel = shot.is_new ? '🆕' : '#' + pad2(shot.id);
+    header.innerHTML =
+      '<span class="shot-id">' + idLabel + '</span>' +
+      '<span class="shot-title"><input type="text" value="' + escAttr(shot.title) + '" ' +
+        'onchange="updateTitle(\'' + shot.uid + '\', this.value)" placeholder="镜头标题"></span>' +
+      '<span class="shot-time">' + (shot.start_ts || 0).toFixed(1) + 's — ' + (shot.end_ts || 0).toFixed(1) + 's' +
+        ' (' + ((shot.end_ts || 0) - (shot.start_ts || 0)).toFixed(1) + 's)</span>' +
+      '<button class="shot-del" onclick="deleteShot(\'' + shot.uid + '\')">🗑 删除</button>' +
+      '<button class="shot-undo" onclick="undoDelete(\'' + shot.uid + '\')">↩ 恢复</button>';
+    card.appendChild(header);
+
+    if (!isDeleted) {
+      const panels = document.createElement('div');
+      panels.className = 'panels';
+      panels.appendChild(buildVideoPanel(shot));
+      panels.appendChild(buildAudioPanel(shot));
+      panels.appendChild(buildSubtitlePanel(shot));
+      card.appendChild(panels);
+    }
+
+    container.appendChild(card);
+
+    // Insert zone (except after last)
+    if (idx < shots.length - 1) {
+      const zone = document.createElement('div');
+      zone.className = 'insert-zone';
+      zone.innerHTML = '<button class="insert-btn" onclick="insertShot(' + (idx + 1) + ')">➕ 在此插入新镜头</button>';
+      container.appendChild(zone);
+    }
+  });
+
+  // Insert zone at the end
+  const endZone = document.createElement('div');
+  endZone.className = 'insert-zone';
+  endZone.innerHTML = '<button class="insert-btn" onclick="insertShot(' + shots.length + ')">➕ 在末尾添加镜头</button>';
+  container.appendChild(endZone);
+
+  updateCounts();
+}
+
+function buildVideoPanel(shot) {
+  const st = shot.comp_status?.video || 'review';
+  const panel = document.createElement('div');
+  panel.className = 'panel panel-video';
+  panel.innerHTML =
+    '<div class="panel-header"><span>🎬 画面</span></div>' +
+    '<div class="panel-body">' +
+      (shot.clip_path
+        ? '<video controls preload="metadata" src="' + shot.clip_path + '"></video>' +
+          '<img src="' + (shot.frame_path || '') + '" alt="frame" onclick="openLightbox(this.src)" style="margin-top:6px" />'
+        : '<div style="color:#666;text-align:center;padding:20px">新镜头<br>尚无画面</div>') +
+      buildToggle('video', shot.uid, st) +
+      buildFixForm('video', shot) +
+    '</div>';
+  return panel;
+}
+
+function buildAudioPanel(shot) {
+  const st = shot.comp_status?.audio || 'review';
+  const panel = document.createElement('div');
+  panel.className = 'panel panel-audio';
+  panel.innerHTML =
+    '<div class="panel-header"><span>🔊 音频</span></div>' +
+    '<div class="panel-body">' +
+      (shot.audio_path
+        ? '<audio controls preload="none" src="' + shot.audio_path + '"></audio>'
+        : '<div style="color:#666;text-align:center;padding:20px">新镜头<br>尚无音频</div>') +
+      buildToggle('audio', shot.uid, st) +
+      buildFixForm('audio', shot) +
+    '</div>';
+  return panel;
+}
+
+function buildSubtitlePanel(shot) {
+  const st = shot.comp_status?.subtitle || 'review';
+  const panel = document.createElement('div');
+  panel.className = 'panel panel-subtitle';
+  panel.innerHTML =
+    '<div class="panel-header"><span>📝 字幕</span></div>' +
+    '<div class="panel-body">' +
+      '<div class="sub-text">' + escHtml(shot.subtitle_text || shot.narration || '') + '</div>' +
+      buildToggle('subtitle', shot.uid, st) +
+      buildFixForm('subtitle', shot) +
+    '</div>';
+  return panel;
+}
+
+function buildToggle(comp, uid, currentStatus) {
+  let html = '<div class="comp-toggle">';
+  html += '<button class="' + (currentStatus === 'pass' ? 'active-pass' : '') +
+    '" onclick="setComp(\'' + uid + '\',\'' + comp + '\',\'pass\')">✅ 通过</button>';
+  html += '<button class="' + (currentStatus === 'review' ? 'active-fix' : '') +
+    '" onclick="setComp(\'' + uid + '\',\'' + comp + '\',\'review\')">⚠️ 待定</button>';
+  html += '<button class="' + (currentStatus === 'fix' ? 'active-fix' : '') +
+    '" onclick="setComp(\'' + uid + '\',\'' + comp + '\',\'fix\')">❌ 重制</button>';
+  html += '</div>';
+  return html;
+}
+
+function buildFixForm(comp, shot) {
+  const st = shot.comp_status?.[comp] || 'review';
+  const active = st === 'fix' ? 'active' : '';
+  const uid = shot.uid;
+
+  if (comp === 'video') {
+    const probType = shot.fix?.video?.problem_type || '';
+    const directorNote = shot.fix?.video?.director_note || '';
+    const promptPreview = shot.fix?.video?.prompt || shot.prompt || '';
+    const tool = shot.fix?.video?.tool || 'flow-img2video';
+    const useRef = shot.fix?.video?.use_ref !== false;
+
+    let html = '<div class="fix-form ' + active + '" id="fix-video-' + uid + '">';
+    html += '<label>问题类型</label>';
+    html += '<select onchange="onVideoProblem(\'' + uid + '\', this.value)">';
+    html += '<option value="">— 选择问题 —</option>';
+    PROBLEM_TYPES.video.forEach(t => {
+      html += '<option value="' + t + '"' + (probType === t ? ' selected' : '') + '>' + t + '</option>';
+    });
+    html += '</select>';
+    html += '<label>导演修改意见</label>';
+    html += '<textarea rows="2" placeholder="描述画面需要怎么改..." onchange="updateFix(\'' + uid + '\',\'video\',\'director_note\',this.value)">' + escHtml(directorNote) + '</textarea>';
+    html += '<label>生成的视频提示词</label>';
+    html += '<div class="prompt-preview" id="prompt-preview-' + uid + '">' + escHtml(promptPreview) + '</div>';
+    html += '<label>重制工具</label>';
+    html += '<select onchange="updateFix(\'' + uid + '\',\'video\',\'tool\',this.value)">';
+    TOOLS.forEach(t => {
+      html += '<option value="' + t.id + '"' + (tool === t.id ? ' selected' : '') + '>' + t.name + '</option>';
+    });
+    html += '</select>';
+    html += '<label><input type="checkbox" ' + (useRef ? 'checked' : '') +
+      ' onchange="updateFix(\'' + uid + '\',\'video\',\'use_ref\',this.checked)" style="width:auto;display:inline"> 使用参考图 (standard-portrait)</label>';
+    html += '</div>';
+    return html;
+  }
+
+  if (comp === 'audio') {
+    const directorNote = shot.fix?.audio?.director_note || '';
+    const narrationOverride = shot.fix?.audio?.narration || shot.narration || '';
+    const voice = shot.fix?.audio?.voice || 'zh-CN-XiaoxiaoNeural';
+    const rate = shot.fix?.audio?.rate || '+0%';
+
+    let html = '<div class="fix-form ' + active + '" id="fix-audio-' + uid + '">';
+    html += '<label>导演修改意见</label>';
+    html += '<textarea rows="2" placeholder="描述音频需要怎么改..." onchange="updateFix(\'' + uid + '\',\'audio\',\'director_note\',this.value)">' + escHtml(directorNote) + '</textarea>';
+    html += '<label>旁白文本</label>';
+    html += '<textarea rows="2" onchange="updateFix(\'' + uid + '\',\'audio\',\'narration\',this.value)">' + escHtml(narrationOverride) + '</textarea>';
+    html += '<label>语音角色</label>';
+    html += '<select onchange="updateFix(\'' + uid + '\',\'audio\',\'voice\',this.value)">';
+    VOICES.forEach(v => {
+      html += '<option value="' + v.id + '"' + (voice === v.id ? ' selected' : '') + '>' + v.name + '</option>';
+    });
+    html += '</select>';
+    html += '<label>语速</label>';
+    html += '<select onchange="updateFix(\'' + uid + '\',\'audio\',\'rate\',this.value)">';
+    ['-10%', '-5%', '+0%', '+5%', '+10%', '+15%'].forEach(r => {
+      html += '<option value="' + r + '"' + (rate === r ? ' selected' : '') + '>' + r + '</option>';
+    });
+    html += '</select>';
+    html += '</div>';
+    return html;
+  }
+
+  // subtitle
+  const directorNote = shot.fix?.subtitle?.director_note || '';
+  const textOverride = shot.fix?.subtitle?.text || shot.subtitle_text || '';
+
+  let html = '<div class="fix-form ' + active + '" id="fix-subtitle-' + uid + '">';
+  html += '<label>导演修改意见</label>';
+  html += '<textarea rows="2" placeholder="描述字幕需要怎么改..." onchange="updateFix(\'' + uid + '\',\'subtitle\',\'director_note\',this.value)">' + escHtml(directorNote) + '</textarea>';
+  html += '<label>字幕文本（用 \\n 换行）</label>';
+  html += '<textarea rows="3" onchange="updateFix(\'' + uid + '\',\'subtitle\',\'text\',this.value)">' + escHtml(textOverride) + '</textarea>';
+  html += '</div>';
+  return html;
+}
+
+// === Actions ===
+
+function setComp(uid, comp, status) {
+  const shot = shots.find(s => s.uid === uid);
+  if (!shot) return;
+  if (!shot.comp_status) shot.comp_status = {};
+  shot.comp_status[comp] = status;
+  render();
+}
+
+function setAllComp(status) {
+  shots.forEach(shot => {
+    if (deletedShots[shot.uid]) return;
+    if (!shot.comp_status) shot.comp_status = {};
+    shot.comp_status.video = status;
+    shot.comp_status.audio = status;
+    shot.comp_status.subtitle = status;
+  });
+  render();
+}
+
+function updateFix(uid, comp, field, value) {
+  const shot = shots.find(s => s.uid === uid);
+  if (!shot) return;
+  if (!shot.fix) shot.fix = {};
+  if (!shot.fix[comp]) shot.fix[comp] = {};
+  shot.fix[comp][field] = value;
+}
+
+function onVideoProblem(uid, problemType) {
+  updateFix(uid, 'video', 'problem_type', problemType);
+  const shot = shots.find(s => s.uid === uid);
+  if (!shot) return;
+  const suggestion = SUGGESTIONS[problemType] || '';
+  const basePrompt = shot.prompt || '';
+  // Auto-generate enhanced prompt
+  let enhanced = basePrompt;
+  if (suggestion) enhanced += '\n\n[导演修改要求] ' + suggestion;
+  const directorNote = shot.fix?.video?.director_note || '';
+  if (directorNote) enhanced += '\n[具体意见] ' + directorNote;
+  shot.fix = shot.fix || {};
+  shot.fix.video = shot.fix.video || {};
+  shot.fix.video.prompt = enhanced;
+  // Update the preview element directly
+  const preview = document.getElementById('prompt-preview-' + uid);
+  if (preview) preview.textContent = enhanced;
+}
+
+function deleteShot(uid) {
+  deletedShots[uid] = true;
+  render();
+}
+
+function undoDelete(uid) {
+  delete deletedShots[uid];
+  render();
+}
+
+function insertShot(afterIndex) {
+  const newId = Math.max(...shots.map(s => s.id || 0), 0) + 1;
+  const newShot = {
+    uid: 'new-' + Date.now(),
+    id: newId,
+    title: '新镜头',
+    is_new: true,
+    start_ts: 0,
+    end_ts: 0,
+    duration: 0,
+    narration: '',
+    subtitle_text: '',
+    prompt: '',
+    clip_path: '',
+    audio_path: '',
+    frame_path: '',
+    comp_status: { video: 'fix', audio: 'fix', subtitle: 'fix' },
+    fix: {
+      video: { tool: 'flow-img2video', use_ref: false },
+      audio: { voice: 'zh-CN-XiaoxiaoNeural', rate: '+0%' }
+    }
+  };
+  shots.splice(afterIndex, 0, newShot);
+  render();
+  // Scroll to the new shot
+  setTimeout(() => {
+    const card = document.querySelector('[data-uid="' + newShot.uid + '"]');
+    if (card) card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 100);
+}
+
+function updateTitle(uid, value) {
+  const shot = shots.find(s => s.uid === uid);
+  if (shot) shot.title = value;
+}
+
+// === Export ===
+
+function exportFixList() {
+  const fixList = [];
+  const insertList = [];
+  const deleteList = [];
+
+  shots.forEach((shot, idx) => {
+    const uid = shot.uid;
+    if (deletedShots[uid]) {
+      deleteList.push({ uid: uid, id: shot.id, title: shot.title });
+      return;
+    }
+
+    const cs = shot.comp_status || {};
+    const fix = shot.fix || {};
+
+    if (shot.is_new) {
+      // New shot: needs all components
+      insertList.push({
+        uid: uid,
+        title: shot.title,
+        position: idx,
+        narration: fix.audio?.narration || shot.narration || '',
+        subtitle_text: fix.subtitle?.text || shot.subtitle_text || '',
+        video_prompt: fix.video?.prompt || shot.prompt || '',
+        video_tool: fix.video?.tool || 'flow-img2video',
+        use_ref: fix.video?.use_ref !== false,
+        voice: fix.audio?.voice || 'zh-CN-XiaoxiaoNeural',
+        rate: fix.audio?.rate || '+0%',
+        director_notes: {
+          video: fix.video?.director_note || '',
+          audio: fix.audio?.director_note || '',
+          subtitle: fix.subtitle?.director_note || ''
+        }
+      });
+      return;
+    }
+
+    // Existing shot: check each component
+    ['video', 'audio', 'subtitle'].forEach(comp => {
+      if (cs[comp] === 'fix') {
+        const entry = {
+          uid: uid,
+          shot_id: shot.id,
+          title: shot.title,
+          component: comp,
+          director_note: fix[comp]?.director_note || '',
+          start_ts: shot.start_ts,
+          end_ts: shot.end_ts
+        };
+
+        if (comp === 'video') {
+          entry.prompt = fix.video?.prompt || shot.prompt || '';
+          entry.tool = fix.video?.tool || 'flow-img2video';
+          entry.use_ref = fix.video?.use_ref !== false;
+          entry.problem_type = fix.video?.problem_type || '';
+          entry.execution_cmd = buildVideoCmd(shot, fix.video);
+        } else if (comp === 'audio') {
+          entry.narration = fix.audio?.narration || shot.narration || '';
+          entry.voice = fix.audio?.voice || 'zh-CN-XiaoxiaoNeural';
+          entry.rate = fix.audio?.rate || '+0%';
+          entry.execution_cmd = buildAudioCmd(shot, fix.audio);
+        } else {
+          entry.subtitle_text = fix.subtitle?.text || shot.subtitle_text || '';
+          entry.execution_cmd = buildSubtitleCmd(shot, fix.subtitle);
+        }
+
+        fixList.push(entry);
+      }
+    });
+  });
+
+  const result = {
+    project: '__PROJECT_NAME__',
+    export_time: new Date().toISOString(),
+    summary: {
+      total_shots: shots.filter(s => !deletedShots[s.uid]).length,
+      fix_items: fixList.length,
+      new_shots: insertList.length,
+      deleted_shots: deleteList.length
+    },
+    fix_list: fixList,
+    insert_list: insertList,
+    delete_list: deleteList
+  };
+
+  // Download JSON
+  const blob = new Blob([JSON.stringify(result, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'director-fix-pack.json';
+  a.click();
+  URL.revokeObjectURL(url);
+
+  // Show summary in page
+  const area = document.getElementById('export-area');
+  const content = document.getElementById('export-content');
+  let summary = '═══ 导演修改包导出完成 ═══\n\n';
+  summary += '📊 汇总:\n';
+  summary += '  需重制项: ' + fixList.length + ' 条\n';
+  summary += '  新增镜头: ' + insertList.length + ' 个\n';
+  summary += '  删除镜头: ' + deleteList.length + ' 个\n\n';
+
+  if (fixList.length > 0) {
+    summary += '🔧 重制清单:\n';
+    fixList.forEach((f, i) => {
+      summary += '  ' + (i + 1) + '. [镜头#' + pad2(f.shot_id) + ' ' + f.title + '] ' +
+        f.component + (f.problem_type ? ' (' + f.problem_type + ')' : '') + '\n';
+      if (f.director_note) summary += '     导演意见: ' + f.director_note + '\n';
+      if (f.execution_cmd) summary += '     执行命令: ' + f.execution_cmd.substring(0, 80) + '...\n';
+    });
+  }
+
+  if (insertList.length > 0) {
+    summary += '\n➕ 新增镜头:\n';
+    insertList.forEach((s, i) => {
+      summary += '  ' + (i + 1) + '. [位置' + s.position + '] ' + s.title + '\n';
+      if (s.narration) summary += '     旁白: ' + s.narration.substring(0, 40) + '\n';
+    });
+  }
+
+  if (deleteList.length > 0) {
+    summary += '\n🗑 删除镜头:\n';
+    deleteList.forEach(d => {
+      summary += '  镜头#' + pad2(d.id) + ' ' + d.title + '\n';
+    });
+  }
+
+  content.textContent = summary;
+  area.style.display = 'block';
+  area.scrollIntoView({ behavior: 'smooth' });
+}
+
+function buildVideoCmd(shot, fixVideo) {
+  const tool = fixVideo?.tool || 'flow-img2video';
+  const prompt = (fixVideo?.prompt || shot.prompt || '').replace(/'/g, "\\'");
+  const useRef = fixVideo?.use_ref !== false;
+  const safeTitle = (shot.title || 'shot').replace(/\s+/g, '_');
+  const idPrefix = pad2(shot.id) + '-' + safeTitle;
+  const shortPrompt = prompt.substring(0, 60) + "...'";
+
+  if (tool === 'flow-img2video') {
+    const imagePath = useRef ? 'standard-portrait-v2.jpg' : 'images/' + idPrefix + '.jpg';
+    return "node generate-img2video.js --image " + imagePath + " --prompt '" + shortPrompt + " --duration x2 --output videos/" + idPrefix + ".mp4";
+  } else if (tool === 'flow-text2video') {
+    return "node generate-one.js --prompt 'Video of " + shortPrompt + " --duration x2 --output videos/" + idPrefix + ".mp4";
+  } else if (tool === 'flow-nano') {
+    return "node generate-image.js --prompt '" + shortPrompt + " --aspect 16:9 --count x2 --output images/" + idPrefix + ".jpg";
+  } else {
+    return "python3 generate-fallback.py --prompt '" + shortPrompt + " --ref standard-portrait-v2.jpg --output videos/" + idPrefix + ".mp4";
+  }
+}
+
+function buildAudioCmd(shot, fixAudio) {
+  const narration = (fixAudio?.narration || shot.narration || '').replace(/'/g, "\\'");
+  const voice = fixAudio?.voice || 'zh-CN-XiaoxiaoNeural';
+  const rate = fixAudio?.rate || '+0%';
+  return "edge-tts --voice " + voice + " --rate " + rate + " --text '" + narration.substring(0, 50) + "...' --write-media audio/narration_" + pad2(shot.id) + ".mp3";
+}
+
+function buildSubtitleCmd(shot, fixSub) {
+  const text = (fixSub?.text || shot.subtitle_text || '').replace(/'/g, "\\'");
+  return "python3 generate-subtitle.py --shot-id " + pad2(shot.id) + " --text '" + text.substring(0, 50) + "...'";
+}
+
+// === Utils ===
+
+function updateCounts() {
+  let pass = 0, review = 0, fix = 0, deleted = 0;
+  let totalDur = 0;
+  let activeShots = 0;
+
+  shots.forEach(shot => {
+    if (deletedShots[shot.uid]) { deleted++; return; }
+    activeShots++;
+    totalDur += (shot.end_ts || 0) - (shot.start_ts || 0);
+
+    const cs = shot.comp_status || {};
+    const v = cs.video || 'review';
+    const a = cs.audio || 'review';
+    const s = cs.subtitle || 'review';
+
+    if (v === 'pass' && a === 'pass' && s === 'pass') pass++;
+    else if (v === 'fix' || a === 'fix' || s === 'fix') fix++;
+    else review++;
+  });
+
+  document.getElementById('cnt-pass').textContent = pass;
+  document.getElementById('cnt-review').textContent = review;
+  document.getElementById('cnt-fix').textContent = fix;
+  document.getElementById('cnt-deleted').textContent = deleted;
+  document.getElementById('total-shots').textContent = activeShots;
+  document.getElementById('total-dur').textContent = totalDur.toFixed(1) + 's';
+}
+
+function openLightbox(src) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('active');
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('active');
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox();
+});
+
+function escHtml(s) {
+  const d = document.createElement('div');
+  d.textContent = s || '';
+  return d.innerHTML;
+}
+
+function escAttr(s) {
+  return (s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// Initialize comp_status and fix objects
+shots.forEach(shot => {
+  if (!shot.uid) shot.uid = 'shot-' + shot.id;
+  if (!shot.comp_status) shot.comp_status = { video: 'review', audio: 'review', subtitle: 'review' };
+  if (!shot.fix) shot.fix = {};
+});
+
+render();
+</script>
+</body>
+</html>

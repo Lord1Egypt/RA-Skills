@@ -1,21 +1,10 @@
 #!/bin/bash
-# Extension Host 재시작 스크립트
+# Extension Host restart script
+# Restart must be done through UI interaction (CLI has no command execution flag).
 
-# 방법 1: VSCode CLI 명령어 (권장)
-if command -v code &> /dev/null; then
-    echo "VSCode CLI로 Extension Host 재시작 중..."
-    code --command "workbench.action.restartExtensionHost" 2>/dev/null && exit 0
-fi
-
-# 방법 2: Cursor CLI
-if command -v cursor &> /dev/null; then
-    echo "Cursor CLI로 Extension Host 재시작 중..."
-    cursor --command "workbench.action.restartExtensionHost" 2>/dev/null && exit 0
-fi
-
-# 방법 3: AppleScript (macOS fallback)
+# Method 1: AppleScript (macOS)
 if [ "$(uname)" = "Darwin" ]; then
-    echo "AppleScript로 Extension Host 재시작 시도 중..."
+    echo "Attempting Extension Host restart via AppleScript..."
     osascript -e '
     tell application "System Events"
         keystroke "p" using {command down, shift down}
@@ -27,6 +16,6 @@ if [ "$(uname)" = "Darwin" ]; then
     ' 2>/dev/null && exit 0
 fi
 
-echo "Extension Host 재시작을 위해 수동으로 실행하세요:"
+echo "Please restart Extension Host manually:"
 echo "  Cmd+Shift+P > 'Developer: Restart Extension Host'"
 exit 1

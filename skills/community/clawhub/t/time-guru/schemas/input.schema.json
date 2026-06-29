@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://openclaw/skills/time-guru/input.schema.json",
+  "title": "Time Guru Input",
+  "description": "Input parameters for time-guru skill",
+  "type": "object",
+  "required": ["action"],
+  "properties": {
+    "action": {
+      "type": "string",
+      "enum": ["log", "start", "stop", "report", "analyze", "goal", "project"]
+    },
+    "log_text": { "type": "string", "description": "Natural language activity description" },
+    "timer_label": { "type": "string" },
+    "project": { "type": "string" },
+    "period": {
+      "type": "string",
+      "enum": ["today", "yesterday", "this_week", "last_week", "this_month", "last_month", "custom"],
+      "default": "today"
+    },
+    "date_from": { "type": "string", "format": "date" },
+    "date_to": { "type": "string", "format": "date" },
+    "group_by": { "type": "string", "enum": ["category", "project", "day", "week"], "default": "category" },
+    "output_format": { "type": "string", "enum": ["text", "json", "csv", "markdown"], "default": "text" },
+    "billing": { "type": "boolean", "default": false },
+    "goal_action": { "type": "string", "enum": ["set", "check", "list"] },
+    "goal_category": { "type": "string" },
+    "goal_target": { "type": "string" },
+    "language": { "type": "string", "enum": ["zh-CN", "en-US"], "default": "zh-CN" }
+  }
+}

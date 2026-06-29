@@ -1,5 +1,5 @@
 ## Description: <br>
-Stock Realtime Brief generates China A-share portfolio, single-stock, multi-stock, smart-picking, price-watch, and trading-discipline briefs from public market data and configured portfolio or watchlist inputs. <br>
+Stock Realtime Brief helps agents produce China A-share market analysis, portfolio briefings, single-stock deep dives, multi-stock comparisons, valuation checks, alerts, and backtest summaries. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,36 +11,37 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and agents use this skill to prepare informational China A-share market briefs, compare stocks, monitor watchlist triggers, and apply rule-based trading discipline checks. Outputs are analysis aids and must not be treated as investment, financial, or trading advice. <br>
+External users and developers use this skill to generate rule-based China A-share analysis from stock codes, watchlists, or portfolio files. It is intended to support market review, risk discipline, and briefing workflows, not to replace professional financial judgment. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can read local secrets and portfolio files. <br>
-Mitigation: Use environment-managed secrets, pass explicit portfolio paths, keep portfolio files outside shared workspaces, and review file access before installation. <br>
-Risk: Push and watch modes can send alerts or briefs to a QQ recipient. <br>
-Mitigation: Configure or remove the QQ recipient and enable background push/watch behavior only after confirming what data is sent and where. <br>
-Risk: Trading outputs may be mistaken for professional financial advice. <br>
-Mitigation: Treat all outputs as informational analysis aids, verify data independently, and consult qualified financial professionals before acting. <br>
+Risk: Portfolio or alert information may be sent through push or watch modes, including hard-coded QQ recipient behavior noted by the security evidence. <br>
+Mitigation: Review or disable push and watch modes before deployment, and remove or verify any hard-coded recipient. <br>
+Risk: The security evidence notes hard-coded local portfolio and TinyFish credential paths. <br>
+Mitigation: Replace hard-coded paths with approved per-user configuration and store credentials in managed secrets. <br>
+Risk: Third-party market and search lookups can expose query or portfolio context. <br>
+Mitigation: Use the skill only with approved data providers and avoid submitting sensitive portfolio details unless the deployment permits it. <br>
+Risk: Stock outputs may be mistaken for investment advice. <br>
+Mitigation: Treat outputs as analysis only and require qualified human review before any trading decision. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/michaelliugh/stock-realtime-brief) <br>
-- [README_EN.md](README_EN.md) <br>
-- [Methodology](docs/methodology.md) <br>
-- [Data Freshness Principle](docs/principles/data-freshness.md) <br>
-- [Disclaimer](DISCLAIMER.md) <br>
+- [ClawHub Skill Page](https://clawhub.ai/michaelliugh/skills/stock-realtime-brief) <br>
+- [README_EN.md](artifact/README_EN.md) <br>
+- [Methodology](artifact/docs/methodology.md) <br>
+- [Data Freshness Principle](artifact/docs/principles/data-freshness.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and CLI text with tables, stock rankings, action levels, alerts, and configuration examples] <br>
+**Output Type(s):** [Analysis, Markdown, Shell commands, Configuration, Guidance] <br>
+**Output Format:** [Markdown briefings with tables, ranked findings, trigger-based action guidance, and occasional shell commands or JSON snippets for setup.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include realtime market data, portfolio-derived risk summaries, QQ push/watch alerts, and non-advisory trading-discipline guidance.] <br>
+**Other Properties Related to Output:** [Focused on China A-share portfolio, single-stock, multi-stock, selection, alerting, valuation, financial parsing, and backtesting workflows.] <br>
 
 ## Skill Version(s): <br>
-4.2.0 (source: server release, frontmatter, pyproject.toml, CHANGELOG) <br>
+5.0.0 (source: frontmatter, pyproject.toml, changelog, server evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

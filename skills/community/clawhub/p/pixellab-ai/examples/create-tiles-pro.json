@@ -1,0 +1,9 @@
+{
+  "description": "grass path corner tile with worn dirt center, clean readable edges, seamless game tile, pixel art",
+  "tile_type": "square_topdown",
+  "tile_size": 32,
+  "tile_view": "top-down",
+  "tile_view_angle": 90,
+  "tile_depth_ratio": 0,
+  "seed": 0
+}

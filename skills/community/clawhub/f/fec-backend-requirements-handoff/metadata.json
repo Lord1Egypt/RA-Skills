@@ -1,0 +1,58 @@
+{
+  "id": "fec-backend-requirements-handoff",
+  "name": "前后端需求交接",
+  "category": "maintenance-docs",
+  "tags": [
+    "backend-requirements",
+    "api-collaboration",
+    "handoff",
+    "data-needs",
+    "frontend-backend"
+  ],
+  "summary": "Frontend-to-backend requirements handoff for describing UI data needs, user actions, states, permissions, business rules, uncertainties, and backend discussion points without dictating implementation.",
+  "version": "2.7.0",
+  "license": "MIT",
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "repository": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "maintenance-docs",
+    "backend-requirements",
+    "api-collaboration",
+    "handoff",
+    "data-needs",
+    "frontend-backend"
+  ],
+  "platforms": [
+    "skills-cli",
+    "skillreg",
+    "claude-code",
+    "codex",
+    "cursor",
+    "opencode",
+    "openclaw",
+    "generic-skill-runtime"
+  ],
+  "description": "Use when frontend work needs to communicate data, action, state, permission, validation, or business-rule needs to backend teams without dictating endpoint design, field names, database shape, or implementation details; Chinese triggers include 前后端需求交接, 后端需求, API 需求澄清, 数据需求说明.",
+  "source": "skills/fec-backend-requirements-handoff",
+  "references": [],
+  "relations": {
+    "relatedSkills": [
+      "fec-api-integration",
+      "fec-doc-sync",
+      "fec-source-driven-development",
+      "fec-testing-strategy",
+      "fec-route-protection"
+    ],
+    "boundaryWorkflows": [
+      "Use API integration when the contract shape, typed client, auth refresh, error mapping, upload, or realtime implementation is being designed.",
+      "Use documentation sync when backend decisions change public docs, API notes, route docs, or env/config documentation.",
+      "Use route protection when the handoff centers on auth redirects, RBAC, permission routes, or middleware behavior."
+    ],
+    "capabilityTags": [
+      "backend-requirements",
+      "handoff",
+      "api-collaboration",
+      "data-needs"
+    ]
+  }
+}

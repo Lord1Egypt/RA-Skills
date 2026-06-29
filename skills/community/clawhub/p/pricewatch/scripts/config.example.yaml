@@ -1,0 +1,44 @@
+# PriceWatch Configuration
+# ========================
+# Copy this file to config.yaml and fill in your settings.
+
+watchlist:
+  # Each product to monitor
+  - name: "Example Product - Nike Running Shoes"
+    platform: amazon        # Options: amazon, walmart, shopify, etsy
+    url: "https://www.amazon.com/dp/B08EXAMPLE"
+    target_price: 89.99     # Alert when price drops below this
+    currency: USD
+
+  - name: "Example Product - Yoga Mat"
+    platform: walmart
+    url: "https://www.walmart.com/ip/EXAMPLE123"
+    target_price: 29.99
+    currency: USD
+
+  - name: "Example Shopify Store Product"
+    platform: shopify
+    url: "https://example-store.myshopify.com/products/example-product"
+    target_price: 49.99
+    currency: USD
+
+alerts:
+  # Notification channels (at least one required for alerts)
+  slack_webhook: ""          # Optional: Slack Incoming Webhook URL
+  telegram_bot_token: ""     # Optional: Telegram bot token from @BotFather
+  telegram_chat_id: ""       # Optional: Your Telegram chat ID
+
+  # Alert settings
+  threshold_percent: 5.0     # Minimum % change to trigger alert (e.g., 5.0 = 5%)
+  cooldown_minutes: 30       # Minimum minutes between alerts for same product
+
+schedule:
+  # Scan settings
+  interval_minutes: 60       # How often to run scans (10-1440 minutes)
+
+# Advanced settings (optional)
+settings:
+  user_agent_rotation: true  # Rotate user agents to avoid blocking
+  request_timeout: 15        # HTTP request timeout in seconds
+  max_retries: 3             # Max retries on failed requests
+  log_level: info            # Options: debug, info, warning, error

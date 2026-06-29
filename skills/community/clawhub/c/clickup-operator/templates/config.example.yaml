@@ -1,0 +1,29 @@
+workspace:
+  workspace_id: "12345678"
+  workspace_name: "Acme Workspace"
+  default_space_name: "Operations"
+
+lists:
+  general_todo_list_id: "901000000001"
+  general_todo_list_name: "General To-Do List"
+  ideas_list_id: "901000000002"
+  ideas_list_name: "[Ideas]"
+
+assignees:
+  default_assignee_id: "10000001"
+  default_assignee_name: "Alex"
+
+reads:
+  active_statuses:
+    - "ideation"
+    - "to do"
+    - "in progress"
+    - "review"
+  include_completed_by_default: false
+
+policy:
+  default_general_todo_due_date: "today"
+  ideas_auto_assign: false
+  project_items_auto_assign: false
+  project_items_auto_due_date: false
+  create_new_project_lists_without_confirmation: false

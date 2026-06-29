@@ -1,0 +1,215 @@
+{
+  "name": "中国应标书标准结构",
+  "version": "1.0.0",
+  "description": "适用于工程、IT、货物采购、服务类投标的标准章节结构",
+
+  "cover": {
+    "required": true,
+    "fields": [
+      { "name": "项目名称", "type": "text" },
+      { "name": "项目编号", "type": "text" },
+      { "name": "投标人名称", "type": "text" },
+      { "name": "法定代表人或授权代表", "type": "text" },
+      { "name": "投标日期", "type": "date" }
+    ]
+  },
+
+  "chapters": [
+    {
+      "id": "toc",
+      "title": "目录",
+      "required": true,
+      "type": "auto-generated",
+      "description": "自动生成，与正文标题一致"
+    },
+    {
+      "id": "bid-letter",
+      "title": "投标函",
+      "required": true,
+      "type": "legal-document",
+      "content_requirements": [
+        "投标意愿表达",
+        "投标报价声明",
+        "投标有效期承诺",
+        "投标保证金承诺",
+        "法律责任承担声明",
+        "法定代表人签字/盖章位"
+      ]
+    },
+    {
+      "id": "legal-representative",
+      "title": "法定代表人身份证明及授权委托书",
+      "required": true,
+      "type": "legal-document",
+      "content_requirements": [
+        "法定代表人身份证明",
+        "授权委托书（如适用）",
+        "授权范围和期限",
+        "代理人身份信息"
+      ]
+    },
+    {
+      "id": "qualifications",
+      "title": "资质证明文件",
+      "required": true,
+      "type": "evidence-collection",
+      "content_requirements": [
+        "营业执照副本",
+        "企业资质证书",
+        "安全生产许可证（工程类）",
+        "项目经理/项目负责人资格证书",
+        "类似项目业绩证明（合同+验收报告）",
+        "财务状况证明",
+        "社保缴纳证明",
+        "纳税证明",
+        "信用中国查询记录"
+      ]
+    },
+    {
+      "id": "technical-response",
+      "title": "技术响应文件",
+      "required": true,
+      "type": "technical",
+      "subsections": [
+        {
+          "id": "tech-params-table",
+          "title": "技术参数响应表",
+          "required": true,
+          "format": "table",
+          "columns": ["序号", "招标要求", "投标响应", "偏离情况", "说明"]
+        },
+        {
+          "id": "tech-overview",
+          "title": "技术方案总体描述",
+          "required": true,
+          "format": "text"
+        }
+      ]
+    },
+    {
+      "id": "technical-proposal",
+      "title": "技术方案",
+      "required": true,
+      "type": "technical",
+      "is_core_chapter": true,
+      "scoring_weight": "最高分值章节",
+      "suggested_subsections": [
+        "项目理解与需求分析",
+        "总体技术方案/架构设计",
+        "关键技术方案（逐条对应）",
+        "产品/设备选型说明",
+        "技术指标响应保证"
+      ]
+    },
+    {
+      "id": "implementation-plan",
+      "title": "施工组织设计 / 实施方案",
+      "required": true,
+      "type": "technical",
+      "is_core_chapter": true,
+      "suggested_subsections": [
+        "项目组织架构",
+        "实施进度计划",
+        "关键实施步骤",
+        "人员配置计划",
+        "进度保障措施",
+        "风险控制措施"
+      ]
+    },
+    {
+      "id": "project-management",
+      "title": "项目管理机构及人员配置",
+      "required": false,
+      "type": "technical",
+      "suggested_subsections": [
+        "项目管理组织架构图",
+        "项目负责人简历",
+        "技术团队配置",
+        "项目管理制度"
+      ]
+    },
+    {
+      "id": "quality-assurance",
+      "title": "质量保证体系及措施",
+      "required": true,
+      "type": "technical",
+      "suggested_subsections": [
+        "质量管理体系认证",
+        "质量控制措施（事前/事中/事后）",
+        "质量检验计划",
+        "质量承诺及违约责任"
+      ]
+    },
+    {
+      "id": "schedule-plan",
+      "title": "进度计划及保障措施",
+      "required": false,
+      "type": "technical",
+      "suggested_subsections": [
+        "总体进度计划",
+        "里程碑节点",
+        "进度保障措施"
+      ]
+    },
+    {
+      "id": "safety-plan",
+      "title": "安全文明施工 / 运维保障方案",
+      "required": false,
+      "type": "technical",
+      "suggested_subsections": [
+        "安全管理体系",
+        "安全技术措施",
+        "应急预案",
+        "文明施工措施"
+      ]
+    },
+    {
+      "id": "after-sales",
+      "title": "售后服务方案 / 培训方案",
+      "required": true,
+      "type": "technical",
+      "suggested_subsections": [
+        "服务承诺（响应时间、到场时间）",
+        "服务体系",
+        "质保期服务内容",
+        "质保期后服务",
+        "备品备件供应",
+        "培训方案"
+      ]
+    },
+    {
+      "id": "price-proposal",
+      "title": "报价文件",
+      "required": true,
+      "type": "financial",
+      "content_requirements": [
+        "投标报价汇总表",
+        "分项报价明细表",
+        "报价说明"
+      ]
+    },
+    {
+      "id": "integrity-commitment",
+      "title": "诚信承诺函",
+      "required": true,
+      "type": "legal-document",
+      "content_requirements": [
+        "诚信投标承诺",
+        "无行贿犯罪记录承诺",
+        "材料真实性承诺"
+      ]
+    },
+    {
+      "id": "other-materials",
+      "title": "其他补充材料",
+      "required": false,
+      "type": "supplementary",
+      "description": "招标文件要求提供的其他材料"
+    }
+  ],
+
+  "appendix": {
+    "required": false,
+    "description": "附件（图纸、详细技术参数、证明材料复印件等）"
+  }
+}

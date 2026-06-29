@@ -1,0 +1,23 @@
+student:
+  province: 江苏
+  year: 2026
+  category: 物理类
+  score: 516
+  rank: 139499
+  selected_subjects: [物理, 地理, 生物]
+  batch: 普通本科批
+
+preferences:
+  preferred_fields: [工科, 智能制造, 电子信息, 自动化, 机器人]
+  avoid_fields: [旅游管理, 酒店管理, 学前教育, 小语种, 商务英语, 心理学, 市场营销]
+  preferred_regions: [江苏, 浙江, 上海, 安徽]
+  accept_private_college: true
+  accept_vocational_university: true
+  accept_high_fee: false
+  accept_sino_foreign: false
+  accept_out_of_province: true
+  max_tuition_per_year: 25000
+  consider_major_transfer: true
+
+files:
+  application_table: 志愿表.xlsx

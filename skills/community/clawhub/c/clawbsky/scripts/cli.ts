@@ -388,20 +388,70 @@ program
 
 program
   .command('cleanup')
-  .description('Find inactive followers (requires login)')
+  .description('Cleanup inactive followers (requires login)')
   .option('-d, --days <number>', 'Days of inactivity', '90')
+  .option('-l, --limit <number>', 'Limit of followers to cleanup at a time', '500')
   .action(async (options: any) => {
     try {
       const agent = await getAgent();
       const days = parseInt(options.days, 10) || 90;
-      console.log(`🔍 Scanning for followers inactive for more than ${days} days...`);
-      const inactive = await findInactiveFollowers(agent);
+      const limit = parseInt(options.limit, 10) || 500;
+      console.log(`🔍 Scanning for followers inactive for more than ${days} days (looking for up to ${limit} inactive ones)...`);
+      const inactive = await findInactiveFollowers(agent, days, limit);
+
       if (inactive.length === 0) {
         console.log('✨ No inactive followers found!');
-      } else {
-        console.log(`⚠️ Found ${inactive.length} inactive followers.`);
-        console.log('Use community management tools to clean them up.');
+        return;
       }
+
+      console.log(`⚠️ Found ${inactive.length} inactive followers.`);
+      const toClean = inactive.slice(0, limit);
+
+      console.log(`\n🚀 Starting cleanup of ${toClean.length} inactive followers...`);
+      let count = 0;
+      const myDid = agent.session!.did;
+
+      for (const did of toClean) {
+        try {
+          const profile = await agent.getProfile({ actor: did });
+          
+          // 1. Unfollow if we follow them
+          const followUri = profile.data.viewer?.following;
+          if (followUri) {
+            const rkey = followUri.split("/").pop();
+            if (rkey) {
+              await agent.app.bsky.graph.follow.delete({
+                repo: myDid,
+                rkey: rkey
+              });
+            }
+          }
+
+          // 2. Soft-block (block & unblock) to remove them from our followers list
+          const blockRes = await agent.app.bsky.graph.block.create(
+            { repo: myDid },
+            { subject: did, createdAt: new Date().toISOString() }
+          );
+          const blockRkey = blockRes.uri.split("/").pop();
+          if (blockRkey) {
+            await agent.app.bsky.graph.block.delete({
+              repo: myDid,
+              rkey: blockRkey
+            });
+          }
+
+          count++;
+          console.log(`[${count}/${toClean.length}] ✅ Cleaned up @${profile.data.handle}`);
+
+          if (count < toClean.length) {
+            await new Promise(r => setTimeout(r, 500));
+          }
+        } catch (err: any) {
+          console.warn(`\n❌ Failed to clean up ${did}: ${err.message}`);
+        }
+      }
+
+      console.log(`\nDone! Cleaned up ${count} inactive followers.`);
     } catch (error: any) {
       console.error('❌ Error:', error.message);
       process.exit(1);
@@ -411,19 +461,20 @@ program
 program
   .command('unfollow-non-mutuals')
   .description('Unfollow a specific number of non-mutuals')
-  .option('-n, --count <number>', 'Number of non-mutuals to unfollow', '10')
+  .option('-n, --count <number>', 'Number of non-mutuals to unfollow', '500')
   .option('--dry-run', 'Preview who would be unfollowed')
   .action(async (options: any) => {
     try {
       const agent = await getAgent();
       const myDid = agent.session!.did;
-      const targetLimit = parseInt(options.count, 10) || 10;
+      const targetLimit = parseInt(options.count, 10) || 500;
 
       console.log(`🔍 Identifying non-mutuals (limit: ${targetLimit})...`);
 
       let cursor: string | undefined;
       const nonMutuals: any[] = [];
       let totalFollowsChecked = 0;
+      let noMoreNonMutuals = false;
 
       // 1. Traverse follows to find non-mutuals
       while (nonMutuals.length < targetLimit) {
@@ -433,7 +484,10 @@ program
           limit: 100,
         });
 
-        if (!res.data.follows || res.data.follows.length === 0) break;
+        if (!res.data.follows || res.data.follows.length === 0) {
+          noMoreNonMutuals = true;
+          break;
+        }
 
         for (const follow of res.data.follows) {
           if (nonMutuals.length >= targetLimit) break;
@@ -446,7 +500,12 @@ program
 
         cursor = res.data.cursor;
         process.stdout.write(`\rScanned ${totalFollowsChecked} follows, found ${nonMutuals.length}/${targetLimit} non-mutuals...`);
-        if (!cursor) break;
+        if (!cursor) {
+          if (nonMutuals.length < targetLimit) {
+            noMoreNonMutuals = true;
+          }
+          break;
+        }
       }
       process.stdout.write("\n");
 
@@ -455,20 +514,13 @@ program
         return;
       }
 
+      if (noMoreNonMutuals) {
+        console.log("ℹ️ No more non-mutuals to unfollow (reached the end of your follows list).");
+      }
+
       console.log(`⚠️ Found ${nonMutuals.length} accounts that do not follow you back.`);
 
       const isDryRun = options.dryRun;
-
-      if (!isDryRun && nonMutuals.length > 100) {
-        const readline = await import('node:readline/promises');
-        const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
-        const answer = await rl.question(`⚠️  You are about to unfollow ${nonMutuals.length} users. Mass unfollowing can lead to account flags. Continue? (y/N): `);
-        rl.close();
-        if (answer.toLowerCase() !== "y") {
-          console.log("Aborted.");
-          return;
-        }
-      }
 
       if (isDryRun) {
         console.log("\n[DRY RUN] The following accounts would be unfollowed:");
@@ -521,7 +573,9 @@ program
   .action(async (handle: string) => {
     try {
       const agent = await getAgent();
-      await agent.follow(handle);
+      const profile = await agent.getProfile({ actor: handle });
+      const did = profile.data.did;
+      await agent.follow(did);
       console.log(`✅ Now following @${handle}`);
     } catch (error: any) {
       console.error('❌ Error:', error.message);
@@ -765,7 +819,7 @@ program
   .description('RSS feed automation')
   .argument('<action>', 'Action: add, list, process')
   .option('-n, --name <name>', 'Feed name')
-  .option('-u, --url <url>', 'Feed URL')
+  .option('--url <url>', 'Feed URL')
   .option('-s, --schedule <schedule>', 'Schedule: hourly, daily, weekly')
   .action(async (action: string, options: any) => {
     try {

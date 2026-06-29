@@ -11,31 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and architecture teams use this skill to decide when a microservices architecture fits their organizational and scaling needs, and to outline adoption steps, deliverables, technology choices, and operational risks. <br>
+Developers and architecture teams use this skill to assess when a microservices architecture is appropriate and to plan service boundaries, platform requirements, observability, resilience, governance, and delivery practices. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Broad triggers such as architecture or scalability may surface this skill in discussions where microservices are not the right framing. <br>
-Mitigation: Confirm that the task is specifically about microservices or distributed service architecture before applying its recommendations. <br>
-Risk: Architecture guidance can be misleading if copied into a system with low DevOps maturity, small-team needs, or strong transactional consistency requirements. <br>
-Mitigation: Review the skill's fit criteria and risk guidance against the target organization's operational maturity and consistency constraints before adoption. <br>
+Risk: Broad architecture triggers may cause the skill to be invoked for general scalability or architecture questions and bias advice toward microservices. <br>
+Mitigation: Check the skill's own "When NOT to Use" guidance and validate organizational maturity, team size, platform capacity, and consistency requirements before applying the pattern. <br>
+Risk: Microservices recommendations can add operational complexity, distributed data consistency challenges, and over-splitting risk. <br>
+Mitigation: Require architecture review, explicit bounded contexts, observability and incident-response readiness, contract testing, and a documented rollback or consolidation path. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-archetypes-architecture-paradigm-microservices) <br>
-- [OpenClaw homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-microservices) <br>
+- [OpenClaw homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, markdown] <br>
-**Output Format:** [Markdown guidance] <br>
+**Output Type(s):** [guidance, markdown, configuration] <br>
+**Output Format:** [Markdown guidance with architecture checklists and recommendations] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only architecture reference; no executable behavior or sensitive access is reported by security evidence.] <br>
+**Other Properties Related to Output:** [Text-only guidance; no executable tools, MCP servers, API keys, or shell commands are required by the artifact.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata; artifact frontmatter reports 1.9.8) <br>
+1.9.13 (source: server release metadata; artifact frontmatter reports 1.9.8) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

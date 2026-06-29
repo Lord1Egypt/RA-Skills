@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yeelight.com/schemas/skill-response.schema.json",
+  "title": "Yeelight SkillResponse",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["contractVersion", "requestId", "status", "userMessage"],
+  "properties": {
+    "contractVersion": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "requestId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "success",
+        "partial",
+        "clarification_required",
+        "confirmation_required",
+        "blocked",
+        "not_supported",
+        "auth_required",
+        "error"
+      ]
+    },
+    "userMessage": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000
+    },
+    "result": {
+      "type": ["object", "null"]
+    },
+    "clarification": {
+      "type": ["object", "null"]
+    },
+    "confirmation": {
+      "type": ["object", "null"]
+    },
+    "execution": {
+      "type": ["object", "null"]
+    },
+    "memory": {
+      "type": ["object", "null"]
+    },
+    "recommendation": {
+      "type": ["object", "null"]
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "traceId": {
+      "type": "string"
+    },
+    "metrics": {
+      "type": "object"
+    },
+    "error": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
+

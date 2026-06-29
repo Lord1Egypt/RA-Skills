@@ -1,0 +1,9 @@
+{
+  "description": "top-down cave room with stairs and treasure chest, pixel art, medium detail",
+  "image_size": {
+    "width": 128,
+    "height": 128
+  },
+  "no_background": false,
+  "seed": 0
+}

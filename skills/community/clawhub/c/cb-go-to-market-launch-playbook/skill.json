@@ -1,0 +1,30 @@
+{
+  "name": "Overseas Go-to-Market Launch Playbook",
+  "slug": "cb-go-to-market-launch-playbook",
+  "version": "1.0.1",
+  "description": "Launch in any overseas market with a complete GTM playbook — market assessment, channel strategy, launch timeline, pricing localization, and 90-day execution plan. Go from 'we should launch in X' to 'here's the exact plan, budget, and timeline.'",
+  "author": "Pearl-led OpenClaw team",
+  "tags": [
+    "cross-border",
+    "overseas",
+    "global-expansion",
+    "content-strategy",
+    "partnerships",
+    "go-to-market"
+  ],
+  "trigger_keywords": [
+    "overseas go to market",
+    "international launch plan",
+    "foreign market launch playbook",
+    "global GTM strategy",
+    "cross-border product launch"
+  ],
+  "language": "en",
+  "type": "descriptive",
+  "category": "cross-border-expansion",
+  "requires_api": false,
+  "requires_code_execution": false,
+  "outputs": "structured descriptive framework",
+  "readiness": "stable",
+  "safety": "Launch planning is strategic support only; legal, tax, employment, logistics, and regulated-market decisions need local expert review."
+}

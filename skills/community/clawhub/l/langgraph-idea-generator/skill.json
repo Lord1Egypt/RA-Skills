@@ -1,0 +1,13 @@
+{
+  "name": "langgraph-idea-generator",
+  "version": "1.2.0",
+  "description": "\u7528 LangGraph \u628a\u8001\u677f\u7684\u4e00\u53e5\u8bdd\u9700\u6c42\u53d8\u6210 3 \u884c\u53ef\u6267\u884c\u4ee3\u7801\u65b9\u6848\uff08\u5e26 tool \u53bb\u91cd\uff0c\u907f\u514d\u91cd\u590d\u9020\u8f6e\u5b50\uff09",
+  "author": "\u7801\u866b coding-advisor",
+  "keywords": [
+    "langgraph",
+    "code-generator",
+    "automation",
+    "idea",
+    "\u7528\u4ee3\u7801\u89e3\u653e\u53cc\u624b"
+  ]
+}

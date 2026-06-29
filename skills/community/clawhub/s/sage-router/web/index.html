@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Sage Router is a local-first AI model router and BYOK AI gateway for automating LLM provider routing, model selection, fallback, and observability across OpenAI-compatible, Anthropic-compatible, Gemini, NVIDIA NIM, Ollama, and local models." />
+    <meta name="keywords" content="AI model router, LLM router, provider routing, model selection automation, AI agent model routing, OpenAI-compatible router, Anthropic-compatible router, Ollama routing, BYOK AI gateway, local-first AI router" />
+    <link rel="canonical" href="https://sagerouter.dev/" />
+    <meta property="og:title" content="Sage Router | Local-first AI model router for serious agents" />
+    <meta property="og:description" content="Automate model/provider selection across your own OpenAI, Anthropic, Gemini, Ollama, local, and authorized BYOK providers." />
+    <meta property="og:url" content="https://sagerouter.dev/" />
+    <meta property="og:site_name" content="Sage Router" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Sage Router | Local-first AI model router" />
+    <meta name="twitter:description" content="BYOK model routing, provider fallback, health checks, and agent-focused LLM routing automation." />
+    <meta property="og:type" content="website" />
+    <title>Sage Router | AI Model Router, LLM Provider Routing, BYOK AI Gateway</title>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "SoftwareApplication",
+            "name": "Sage Router",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Linux, macOS, Windows, local servers",
+            "url": "https://sagerouter.dev/",
+            "codeRepository": "https://github.com/earlvanze/sage-router",
+            "description": "Local-first AI model router and BYOK AI gateway for automating LLM provider routing and model selection for AI agents.",
+            "keywords": "AI model router, LLM router, provider routing, model selection automation, AI agent model routing, BYOK AI gateway",
+            "offers": [
+              { "@type": "Offer", "name": "Free", "price": "0", "priceCurrency": "USD", "url": "https://github.com/earlvanze/sage-router" },
+              { "@type": "Offer", "name": "Lite", "price": "6", "priceCurrency": "USD", "url": "https://sagerouter.dev/pricing" },
+              { "@type": "Offer", "name": "Pro", "price": "30", "priceCurrency": "USD", "url": "https://sagerouter.dev/pricing" },
+              { "@type": "Offer", "name": "Max", "price": "72", "priceCurrency": "USD", "url": "https://sagerouter.dev/pricing" }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {"@type": "Question", "name": "What is an AI model router?", "acceptedAnswer": {"@type": "Answer", "text": "An AI model router is middleware that receives LLM requests and selects which model or provider should handle them based on policy, task type, availability, latency, capability, or fallback rules."}},
+              {"@type": "Question", "name": "How do I automate model/provider selection for AI agents?", "acceptedAnswer": {"@type": "Answer", "text": "Run Sage Router locally, configure authorized providers and local models, then point OpenAI-compatible or Anthropic-compatible tools at the Sage Router endpoint."}},
+              {"@type": "Question", "name": "Can Sage Router route across my own providers?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Sage Router routes across authorized provider accounts, API keys, subscriptions, local models, and approved BYOK endpoints while keeping provider credentials local by default."}}
+            ]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Software Data Github Interact Developer Helper"
+  short_description: "Helps with Agent users show strong demand for Github-style wo..."
+  default_prompt: "Use $software-data-github-interact-developer-helper to help me Agent users show strong demand for Github-style workflows on Clawhub. They need practical help fixing bugs, hardening se."
+
+policy:
+  allow_implicit_invocation: true

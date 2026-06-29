@@ -1,0 +1,26 @@
+{
+  "name": "todo-momentum",
+  "version": "0.2.0",
+  "displayName": "Todo Momentum - 3 分钟启动器",
+  "description": "3 分钟启动器：把拖延待办、卡住任务、模糊目标、项目/家务/习惯拆成下一步物理动作、3 分钟启动、5 分钟扩展、今日算赢标准和断了以后的回归脚本。",
+  "keywords": [
+    "todo",
+    "anti-procrastination",
+    "three-minute-start",
+    "3-minute-start",
+    "productivity",
+    "procrastination",
+    "execution",
+    "next-action",
+    "shame-free",
+    "micro-actions",
+    "habits",
+    "daily-planning",
+    "openclaw",
+    "hermes",
+    "codex",
+    "agent-skills"
+  ],
+  "author": "Haidong + AI Agents",
+  "license": "MIT-0"
+}

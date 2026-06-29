@@ -1,0 +1,76 @@
+{
+  "description": "Product category mappings for grocery item classification.",
+  "version": "1.0.0",
+  "categories": [
+    {
+      "id": "Meat",
+      "label": "Meat & Poultry",
+      "keywords": ["猪肉", "牛肉", "羊肉", "鸡肉", "鸭肉", "五花肉", "排骨", "牛腩", "鸡胸肉", "鸡腿", "鸡翅", "猪蹄", "香肠", "培根"],
+      "common_units": ["500g", "斤", "份", "g"],
+      "default_normalize": "per 500g"
+    },
+    {
+      "id": "Seafood",
+      "label": "Seafood",
+      "keywords": ["虾", "鱼", "蟹", "贝", "三文鱼", "基围虾", "带鱼", "鲈鱼", "龙利鱼", "虾仁", "鱿鱼", "蛤蜊", "生蚝"],
+      "common_units": ["500g", "份", "条", "只", "斤"],
+      "default_normalize": "per 500g"
+    },
+    {
+      "id": "Vegetable",
+      "label": "Vegetables",
+      "keywords": ["青菜", "白菜", "菠菜", "西兰花", "西红柿", "黄瓜", "土豆", "萝卜", "葱", "姜", "蒜", "辣椒", "茄子", "豆角", "生菜", "菌菇", "蘑菇", "香菇"],
+      "common_units": ["500g", "斤", "份", "个", "颗", "把", "根"],
+      "default_normalize": "per 500g"
+    },
+    {
+      "id": "Fruit",
+      "label": "Fruit",
+      "keywords": ["苹果", "香蕉", "橙子", "草莓", "葡萄", "西瓜", "芒果", "猕猴桃", "蓝莓", "车厘子", "荔枝", "火龙果", "梨", "桃"],
+      "common_units": ["500g", "斤", "份", "个", "盒", "kg", "颗"],
+      "default_normalize": "per 500g"
+    },
+    {
+      "id": "Dairy & Eggs",
+      "label": "Dairy & Eggs",
+      "keywords": ["鸡蛋", "鸭蛋", "牛奶", "酸奶", "奶酪", "黄油", "奶油", "芝士"],
+      "common_units": ["枚", "盒", "瓶", "L", "ml", "袋"],
+      "default_normalize": "per piece or per L"
+    },
+    {
+      "id": "Grains & Staples",
+      "label": "Grains & Staples",
+      "keywords": ["大米", "小米", "面粉", "面条", "挂面", "米粉", "面包", "馒头", "饺子", "馄饨"],
+      "common_units": ["kg", "500g", "斤", "袋", "包"],
+      "default_normalize": "per 500g"
+    },
+    {
+      "id": "Condiment",
+      "label": "Condiments",
+      "keywords": ["酱油", "醋", "盐", "糖", "料酒", "蚝油", "豆瓣酱", "番茄酱", "辣椒酱", "食用油"],
+      "common_units": ["瓶", "袋", "L", "ml", "g"],
+      "default_normalize": "per 100ml or 100g"
+    },
+    {
+      "id": "Beverage",
+      "label": "Beverages",
+      "keywords": ["水", "矿泉水", "饮料", "果汁", "可乐", "雪碧", "茶", "咖啡", "豆浆"],
+      "common_units": ["瓶", "罐", "箱", "L", "ml"],
+      "default_normalize": "per 1L"
+    },
+    {
+      "id": "Snack",
+      "label": "Snacks",
+      "keywords": ["薯片", "饼干", "巧克力", "糖果", "坚果", "瓜子", "肉干"],
+      "common_units": ["袋", "包", "盒", "g"],
+      "default_normalize": "per 100g"
+    },
+    {
+      "id": "Other",
+      "label": "Other",
+      "keywords": [],
+      "common_units": ["份", "个", "盒"],
+      "default_normalize": "per item"
+    }
+  ]
+}

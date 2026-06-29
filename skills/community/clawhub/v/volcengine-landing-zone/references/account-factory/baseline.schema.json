@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://volcengine.example/landing-zone/account-factory/baseline.schema.json",
+  "title": "Account Factory Baseline Definition",
+  "description": "Schema for account factory baseline definitions. Descriptions in this schema act as the inline guidance that the agent should follow when generating baseline files.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "modules"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Unique baseline name. This is the logical identity used in summaries and merge results."
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable purpose of the baseline."
+    },
+    "variables": {
+      "type": "object",
+      "description": "Variable declarations referenced by module inputs. Keys are variable names.",
+      "default": {},
+      "propertyNames": {
+        "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+      },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Explain what the variable controls."
+          },
+          "required": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether the variable must be collected before any enabled module can run."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "string",
+              "number",
+              "integer",
+              "boolean",
+              "array",
+              "object"
+            ],
+            "description": "Optional variable type hint for the agent or future validators."
+          },
+          "default": {
+            "description": "Optional default value used when the variable is omitted."
+          }
+        }
+      }
+    },
+    "modules": {
+      "type": "array",
+      "minItems": 1,
+      "description": "Ordered module declarations. When multiple baselines are merged, later selections override earlier declarations with the same module name.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "kind",
+          "source",
+          "enabled"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Unique module name within the merged baseline set."
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional summary shown to users before apply."
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "preset",
+              "custom"
+            ],
+            "description": "Preset modules come from workspace blueprints; custom modules come from workspace account-factory/custom-terraform."
+          },
+          "source": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Directory path relative to the workspace root. Preset modules should normally live under blueprints/account-factory/baseline-modules/. Custom modules should normally live under account-factory/custom-terraform/."
+          },
+          "enabled": {
+            "type": "boolean",
+            "description": "Only enabled modules participate in variable collection and execution planning."
+          },
+          "inputs": {
+            "type": "object",
+            "description": "Module input values. Variable references should use the exact string form {{ variable_name }}.",
+            "default": {},
+            "additionalProperties": true
+          }
+        }
+      }
+    }
+  }
+}

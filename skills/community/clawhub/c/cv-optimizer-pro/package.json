@@ -1,0 +1,9 @@
+{
+  "name": "resume-optimizer",
+  "version": "1.0.0",
+  "description": "简历优化与求职辅导工具",
+  "author": "ruifeng-agent",
+  "license": "MIT",
+  "keywords": ["resume", "cv", "job", "career", "interview"],
+  "main": "SKILL.md"
+}

@@ -353,14 +353,6 @@ const required = [
   "defaultFetchDetail",
   "defaultDetailSpeed",
 ];
-if (mode === "cloud") {
-  if (!(typeof data.defaultCloudDeviceId === "string" && data.defaultCloudDeviceId) && !envCloudDeviceId) {
-    required.push("defaultCloudDeviceId");
-  }
-  if (!(typeof data.defaultCloudToken === "string" && data.defaultCloudToken) && !envCloudToken) {
-    required.push("defaultCloudToken");
-  }
-}
 
 const missing = required.filter((key) => data[key] === undefined || data[key] === null || data[key] === "");
 const result = {

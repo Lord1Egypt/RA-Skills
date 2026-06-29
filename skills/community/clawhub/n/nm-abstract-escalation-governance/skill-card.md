@@ -1,5 +1,5 @@
 ## Description: <br>
-Assesses whether an agent should escalate to a higher-capability model after investigation. <br>
+Assess whether to escalate models. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,31 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and agent orchestrators use this skill to decide when model escalation is justified, document the reason and scope, and return to a lower-cost model after the deeper reasoning task is complete. <br>
+Developers and agent orchestrators use this skill to decide when model escalation is justified, document the reason for escalation, and return to a more efficient model after the higher-capability task is complete. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can influence model-escalation decisions in agent and orchestration workflows. <br>
-Mitigation: Keep activation focused on escalation governance use cases and require documented justification before changing model capability. <br>
-Risk: Version-specific model and effort-control guidance can become stale as provider behavior changes. <br>
-Mitigation: Verify current model availability and effort-control behavior before relying on those operational notes. <br>
+Risk: Escalation guidance can lead to unnecessary cost or latency if an agent changes models before investigating the root cause of a task failure. <br>
+Mitigation: Require the agent to document the capability gap, scope the escalated subtask, define success, and return to the efficient model promptly. <br>
+Risk: The artifact includes operational decision guidance that may be misapplied to high-stakes or security-sensitive work. <br>
+Mitigation: Review escalation decisions before acting on them and scan the skill before deployment, consistent with the clean security verdict and reviewer guidance. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-abstract-escalation-governance) <br>
-- [Homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/abstract) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-abstract-escalation-governance) <br>
+- [Abstract plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/abstract) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [Guidance, Markdown, Configuration] <br>
-**Output Format:** [Markdown guidance with tables and YAML examples] <br>
+**Output Format:** [Markdown guidance with YAML configuration examples and decision tables] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Advisory decision framework; no executable code or hidden access behavior was reported in the security evidence.] <br>
+**Other Properties Related to Output:** [Supports model-escalation decisions; no API keys or credential environment variables were detected in the submitted artifact.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: ClawHub release metadata) <br>
+1.9.13 (source: server release metadata; artifact frontmatter says 1.9.8) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

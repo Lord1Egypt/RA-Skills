@@ -1,0 +1,44 @@
+{
+  "reference_image": {
+    "image": {
+      "type": "base64",
+      "format": "png",
+      "base64": "REPLACE_WITH_BASE64_OUTFIT_REFERENCE"
+    },
+    "size": {
+      "width": 64,
+      "height": 64
+    }
+  },
+  "frames": [
+    {
+      "image": {
+        "type": "base64",
+        "format": "png",
+        "base64": "REPLACE_WITH_BASE64_FRAME_00"
+      },
+      "size": {
+        "width": 64,
+        "height": 64
+      }
+    },
+    {
+      "image": {
+        "type": "base64",
+        "format": "png",
+        "base64": "REPLACE_WITH_BASE64_FRAME_01"
+      },
+      "size": {
+        "width": 64,
+        "height": 64
+      }
+    }
+  ],
+  "image_size": {
+    "width": 64,
+    "height": 64
+  },
+  "additional_instructions": "Apply only the outfit to the character. Preserve pose, silhouette, frame timing, facing direction, canvas alignment, and transparent background.",
+  "no_background": true,
+  "seed": 0
+}

@@ -19,7 +19,7 @@ def main():
 
     params = {"board_code": args.board_code, "page": args.page, "page_size": args.page_size}
     qs = urllib.parse.urlencode(params)
-    url = f"{BASE_URL}/data/api/v1/market/data/ths-board-kline?{qs}"
+    url = f"{BASE_URL}/gateway/api/v1/market/data/ths-board-kline?{qs}"
 
     req = urllib.request.Request(url, method="GET")
     req.add_header("Accept", "application/json")

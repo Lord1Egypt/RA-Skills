@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Dashboard</title></head>
+<body style="margin:0;background:#f5f0eb;font-family:system-ui,sans-serif;padding:24px">
+<!-- Interactive Dashboard — archviz-skills -->
+<!-- Use for: multi-chart overview, KPI monitoring, data storytelling -->
+<div style="max-width:1200px;margin:0 auto">
+  <h1 style="color:#1B365D;font-weight:300;font-size:28px;margin:0 0 8px">Dashboard</h1>
+  <p style="color:#44403c;margin:0 0 24px">Overview metrics</p>
+  
+  <!-- KPI Cards -->
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px">
+    <div style="background:#fff;padding:20px;border-radius:8px;border:1px solid #d6d3d1">
+      <div style="color:#a8a29e;font-size:12px;text-transform:uppercase">Revenue</div>
+      <div style="color:#1B365D;font-size:32px;font-weight:600">¥128k</div>
+      <div style="color:#002FA7;font-size:13px">↑ 12%</div>
+    </div>
+    <div style="background:#fff;padding:20px;border-radius:8px;border:1px solid #d6d3d1">
+      <div style="color:#a8a29e;font-size:12px;text-transform:uppercase">Users</div>
+      <div style="color:#1B365D;font-size:32px;font-weight:600">2,847</div>
+      <div style="color:#002FA7;font-size:13px">↑ 8%</div>
+    </div>
+    <div style="background:#fff;padding:20px;border-radius:8px;border:1px solid #d6d3d1">
+      <div style="color:#a8a29e;font-size:12px;text-transform:uppercase">Retention</div>
+      <div style="color:#1B365D;font-size:32px;font-weight:600">67%</div>
+      <div style="color:#94a3b8;font-size:13px">→ 0%</div>
+    </div>
+    <div style="background:#fff;padding:20px;border-radius:8px;border:1px solid #d6d3d1">
+      <div style="color:#a8a29e;font-size:12px;text-transform:uppercase">NPS</div>
+      <div style="color:#1B365D;font-size:32px;font-weight:600">72</div>
+      <div style="color:#002FA7;font-size:13px">↑ 5</div>
+    </div>
+  </div>
+  
+  <!-- Charts Grid -->
+  <div style="display:grid;grid-template-columns:2fr 1fr;gap:16px">
+    <div style="background:#fff;padding:20px;border-radius:8px;border:1px solid #d6d3d1">
+      <canvas id="line" height="200"></canvas>
+    </div>
+    <div style="background:#fff;padding:20px;border-radius:8px;border:1px solid #d6d3d1">
+      <canvas id="donut" height="200"></canvas>
+    </div>
+  </div>
+</div>
+
+<script>
+// Line chart
+const lc=document.getElementById("line").getContext("2d");
+const data=[20,35,28,45,38,52,48,60,55,72,68,80];
+const months=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const max=Math.max(...data);
+lc.strokeStyle="#d6d3d1";lc.lineWidth=1;
+for(let i=0;i<=4;i++){const y=180-i*40;lc.beginPath();lc.moveTo(40,y);lc.lineTo(560,y);lc.stroke();}
+lc.beginPath();
+data.forEach((v,i)=>{
+  const x=40+i*47,y=180-(v/max)*160;
+  i===0?lc.moveTo(x,y):lc.lineTo(x,y);
+});
+lc.strokeStyle="#002FA7";lc.lineWidth=2;lc.stroke();
+data.forEach((v,i)=>{
+  const x=40+i*47,y=180-(v/max)*160;
+  lc.beginPath();lc.arc(x,y,3,0,Math.PI*2);lc.fillStyle="#002FA7";lc.fill();
+  lc.fillStyle="#a8a29e";lc.font="10px system-ui";lc.textAlign="center";
+  lc.fillText(months[i],x,195);
+});
+
+// Donut chart
+const dc=document.getElementById("donut").getContext("2d");
+const segs=[{v:45,c:"#002FA7"},{v:30,c:"#94a3b8"},{v:25,c:"#d6d3d1"}];
+let angle=-Math.PI/2;
+const cx=120,cy=100,r=70;
+segs.forEach(s=>{
+  const sweep=Math.PI*2*s.v/100;
+  dc.beginPath();dc.arc(cx,cy,r,angle,angle+sweep);dc.arc(cx,cy,40,angle+sweep,angle,true);dc.closePath();
+  dc.fillStyle=s.c;dc.fill();
+  angle+=sweep;
+});
+dc.fillStyle="#1B365D";dc.font="bold 18px system-ui";dc.textAlign="center";
+dc.fillText("100%",cx,cy+6);
+</script>
+</body></html>

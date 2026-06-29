@@ -1,0 +1,73 @@
+{
+  "baseUrl": "https://api.justserpapi.com",
+  "description": "Call GET /api/v1/google/scholar/profiles for Google SERP Scholar Profiles through Just Serp API with mauthors.",
+  "displayName": "Google SERP Scholar Profiles",
+  "endpointPath": "scholar/profiles",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Google scholar Profiles data, including profile search results, affiliation and citation counts, and pagination tokens, for researcher discovery and academic directory building.",
+      "method": "GET",
+      "operationId": "ScholarProfiles",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "The search query for author profiles (e.g., 'John Smith', 'Harvard University').",
+          "enumValues": [],
+          "location": "query",
+          "name": "mauthors",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Token used to retrieve the next page of author profiles.",
+          "enumValues": [],
+          "location": "query",
+          "name": "after_author",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Token used to retrieve the previous page of author profiles.",
+          "enumValues": [],
+          "location": "query",
+          "name": "before_author",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/v1/google/scholar/profiles",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "Authentication failed: API Key is invalid or missing",
+          "statusCode": "401"
+        },
+        {
+          "description": "Access denied: Insufficient credits or quota exceeded",
+          "statusCode": "403"
+        },
+        {
+          "description": "Internal server error or upstream service exception",
+          "statusCode": "500"
+        },
+        {
+          "description": "default response",
+          "statusCode": "default"
+        }
+      ],
+      "summary": "Scholar Profiles",
+      "tags": [
+        "Google"
+      ]
+    }
+  ],
+  "platformKey": "google",
+  "primaryTag": "Google SERP",
+  "skillName": "justserpapi_google_scholar_profiles",
+  "skillType": "interface",
+  "slug": "justserpapi-google-scholar-profiles",
+  "sourceTitle": "API Shop Documentation"
+}

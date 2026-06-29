@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" font-family="'PingFang SC', 'Microsoft YaHei', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0c29"/>
+      <stop offset="50%" style="stop-color:#302b63"/>
+      <stop offset="100%" style="stop-color:#24243e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="600" fill="url(#bg)"/>
+  
+  <!-- Title -->
+  <text x="500" y="45" text-anchor="middle" fill="#ffd700" font-size="28" font-weight="bold">🎭 AI CityWalk 剧本杀 · 五大主题</text>
+  <text x="500" y="72" text-anchor="middle" fill="#8892b0" font-size="14">每个主题都有真实城市 Demo · 覆盖 5 座城市 · 5 种体验</text>
+  
+  <!-- Card 1: 悬疑侦探 -->
+  <rect x="20" y="95" width="184" height="280" rx="12" fill="#1a1a2e" stroke="#e94560" stroke-width="1.5"/>
+  <rect x="20" y="95" width="184" height="60" rx="12" fill="#e94560"/>
+  <rect x="20" y="143" width="184" height="12" fill="#1a1a2e"/>
+  <text x="112" y="130" text-anchor="middle" fill="white" font-size="22" font-weight="bold">🔍 悬疑侦探</text>
+  <text x="112" y="185" text-anchor="middle" fill="#e94560" font-size="14" font-weight="bold">杭州 · 西湖迷踪</text>
+  <text x="112" y="210" text-anchor="middle" fill="#ccd6f6" font-size="11">一封跨越百年的密信</text>
+  <text x="112" y="230" text-anchor="middle" fill="#8892b0" font-size="10">纯真年代书吧 → 西泠印社</text>
+  <text x="112" y="248" text-anchor="middle" fill="#8892b0" font-size="10">→ 郭宅 → 张小泉剪刀店</text>
+  <line x1="50" y1="262" x2="174" y2="262" stroke="#302b63" stroke-width="1"/>
+  <text x="112" y="282" text-anchor="middle" fill="#8892b0" font-size="10">📏 8.4km · ⏱ 114分钟</text>
+  <text x="112" y="300" text-anchor="middle" fill="#8892b0" font-size="10">👥 2人 · 🏷️ 半天</text>
+  <text x="112" y="320" text-anchor="middle" fill="#ffd700" font-size="10">POI: 140100|140200|140600</text>
+  <text x="112" y="340" text-anchor="middle" fill="#5a6684" font-size="9">老建筑 · 博物馆 · 书店</text>
+  <text x="112" y="360" text-anchor="middle" fill="#5a6684" font-size="9">线索: 数字密码 · 文字谜语</text>
+  
+  <!-- Card 2: 历史穿越 -->
+  <rect x="216" y="95" width="184" height="280" rx="12" fill="#1a1a2e" stroke="#f59e0b" stroke-width="1.5"/>
+  <rect x="216" y="95" width="184" height="60" rx="12" fill="#f59e0b"/>
+  <rect x="216" y="143" width="184" height="12" fill="#1a1a2e"/>
+  <text x="308" y="130" text-anchor="middle" fill="white" font-size="22" font-weight="bold">🏛️ 历史穿越</text>
+  <text x="308" y="185" text-anchor="middle" fill="#f59e0b" font-size="14" font-weight="bold">北京 · 皇城秘史</text>
+  <text x="308" y="210" text-anchor="middle" fill="#ccd6f6" font-size="11">穿越六百年的紫禁密码</text>
+  <text x="308" y="230" text-anchor="middle" fill="#8892b0" font-size="10">雍和宫 → 国子监</text>
+  <text x="308" y="248" text-anchor="middle" fill="#8892b0" font-size="10">→ 什刹海 → 北海公园</text>
+  <line x1="246" y1="262" x2="370" y2="262" stroke="#302b63" stroke-width="1"/>
+  <text x="308" y="282" text-anchor="middle" fill="#8892b0" font-size="10">📏 6.1km · ⏱ 84分钟</text>
+  <text x="308" y="300" text-anchor="middle" fill="#8892b0" font-size="10">👥 2人 · 🏷️ 3小时</text>
+  <text x="308" y="320" text-anchor="middle" fill="#ffd700" font-size="10">POI: 110000|110100|140100</text>
+  <text x="308" y="340" text-anchor="middle" fill="#5a6684" font-size="9">古迹 · 寺庙 · 博物馆</text>
+  <text x="308" y="360" text-anchor="middle" fill="#5a6684" font-size="9">线索: 历史问答 · 年代推理</text>
+  
+  <!-- Card 3: 美食探索 -->
+  <rect x="412" y="95" width="184" height="280" rx="12" fill="#1a1a2e" stroke="#10b981" stroke-width="1.5"/>
+  <rect x="412" y="95" width="184" height="60" rx="12" fill="#10b981"/>
+  <rect x="412" y="143" width="184" height="12" fill="#1a1a2e"/>
+  <text x="504" y="130" text-anchor="middle" fill="white" font-size="22" font-weight="bold">🍜 美食探索</text>
+  <text x="504" y="185" text-anchor="middle" fill="#10b981" font-size="14" font-weight="bold">成都 · 蜀味寻踪</text>
+  <text x="504" y="210" text-anchor="middle" fill="#ccd6f6" font-size="11">一张老成都的美食密函</text>
+  <text x="504" y="230" text-anchor="middle" fill="#8892b0" font-size="10">谭豆花 → 鹤鸣茶社</text>
+  <text x="504" y="248" text-anchor="middle" fill="#8892b0" font-size="10">→ 叶婆婆钵钵鸡 → 翠孃孃</text>
+  <line x1="442" y1="262" x2="566" y2="262" stroke="#302b63" stroke-width="1"/>
+  <text x="504" y="282" text-anchor="middle" fill="#8892b0" font-size="10">📏 6.6km · ⏱ 89分钟</text>
+  <text x="504" y="300" text-anchor="middle" fill="#8892b0" font-size="10">👥 2人 · 🏷️ 3小时 · 💰202元</text>
+  <text x="504" y="320" text-anchor="middle" fill="#ffd700" font-size="10">POI: 050000|050100|050300</text>
+  <text x="504" y="340" text-anchor="middle" fill="#5a6684" font-size="9">小吃 · 老字号 · 网红餐厅</text>
+  <text x="504" y="360" text-anchor="middle" fill="#5a6684" font-size="9">线索: 味觉挑战 · 美食评分</text>
+  
+  <!-- Card 4: 浪漫爱情 -->
+  <rect x="608" y="95" width="184" height="280" rx="12" fill="#1a1a2e" stroke="#ec4899" stroke-width="1.5"/>
+  <rect x="608" y="95" width="184" height="60" rx="12" fill="#ec4899"/>
+  <rect x="608" y="143" width="184" height="12" fill="#1a1a2e"/>
+  <text x="700" y="130" text-anchor="middle" fill="white" font-size="22" font-weight="bold">💕 浪漫爱情</text>
+  <text x="700" y="185" text-anchor="middle" fill="#ec4899" font-size="14" font-weight="bold">上海 · 沪上情书</text>
+  <text x="700" y="210" text-anchor="middle" fill="#ccd6f6" font-size="11">一封藏在法租界的情书</text>
+  <text x="700" y="230" text-anchor="middle" fill="#8892b0" font-size="10">武康大楼 → 武康路名街</text>
+  <text x="700" y="248" text-anchor="middle" fill="#8892b0" font-size="10">→ 巴金故居 → 玫瑰咖啡厅</text>
+  <line x1="638" y1="262" x2="762" y2="262" stroke="#302b63" stroke-width="1"/>
+  <text x="700" y="282" text-anchor="middle" fill="#8892b0" font-size="10">📏 3.1km · ⏱ 43分钟</text>
+  <text x="700" y="300" text-anchor="middle" fill="#8892b0" font-size="10">👥 情侣 · 🏷️ 2小时</text>
+  <text x="700" y="320" text-anchor="middle" fill="#ffd700" font-size="10">POI: 050500|050600|140600</text>
+  <text x="700" y="340" text-anchor="middle" fill="#5a6684" font-size="9">花园 · 书店 · 咖啡馆</text>
+  <text x="700" y="360" text-anchor="middle" fill="#5a6684" font-size="9">线索: 情书追踪 · 甜蜜任务</text>
+  
+  <!-- Card 5: 文艺清新 -->
+  <rect x="804" y="95" width="176" height="280" rx="12" fill="#1a1a2e" stroke="#a78bfa" stroke-width="1.5"/>
+  <rect x="804" y="95" width="176" height="60" rx="12" fill="#a78bfa"/>
+  <rect x="804" y="143" width="176" height="12" fill="#1a1a2e"/>
+  <text x="892" y="130" text-anchor="middle" fill="white" font-size="22" font-weight="bold">🎨 文艺清新</text>
+  <text x="892" y="185" text-anchor="middle" fill="#a78bfa" font-size="14" font-weight="bold">广州 · 羊城手账</text>
+  <text x="892" y="210" text-anchor="middle" fill="#ccd6f6" font-size="11">一本城市文艺漫游指南</text>
+  <text x="892" y="230" text-anchor="middle" fill="#8892b0" font-size="10">方所书店 → 花城咖啡</text>
+  <text x="892" y="248" text-anchor="middle" fill="#8892b0" font-size="10">→ 花城广场 → T.I.T创意园</text>
+  <line x1="834" y1="262" x2="950" y2="262" stroke="#302b63" stroke-width="1"/>
+  <text x="892" y="282" text-anchor="middle" fill="#8892b0" font-size="10">📏 6.1km · ⏱ 82分钟</text>
+  <text x="892" y="300" text-anchor="middle" fill="#8892b0" font-size="10">👥 1-2人 · 🏷️ 半天</text>
+  <text x="892" y="320" text-anchor="middle" fill="#ffd700" font-size="10">POI: 140600|140300|060000</text>
+  <text x="892" y="340" text-anchor="middle" fill="#5a6684" font-size="9">书店 · 画廊 · 文创园区</text>
+  <text x="892" y="360" text-anchor="middle" fill="#5a6684" font-size="9">线索: 拍照打卡 · 手绘速写</text>
+  
+  <!-- Stats bar -->
+  <rect x="20" y="395" width="960" height="90" rx="12" fill="#1a1a2e" stroke="#302b63" stroke-width="1"/>
+  <text x="500" y="425" text-anchor="middle" fill="#ffd700" font-size="16" font-weight="bold">📊 项目数据总览</text>
+  
+  <text x="130" y="460" text-anchor="middle" fill="#e94560" font-size="24" font-weight="bold">5</text>
+  <text x="130" y="478" text-anchor="middle" fill="#8892b0" font-size="11">个完整 Demo</text>
+  
+  <text x="310" y="460" text-anchor="middle" fill="#f59e0b" font-size="24" font-weight="bold">5</text>
+  <text x="310" y="478" text-anchor="middle" fill="#8892b0" font-size="11">座城市覆盖</text>
+  
+  <text x="490" y="460" text-anchor="middle" fill="#10b981" font-size="24" font-weight="bold">4</text>
+  <text x="490" y="478" text-anchor="middle" fill="#8892b0" font-size="11">个高德 API</text>
+  
+  <text x="670" y="460" text-anchor="middle" fill="#ec4899" font-size="24" font-weight="bold">20</text>
+  <text x="670" y="478" text-anchor="middle" fill="#8892b0" font-size="11">个真实 POI 站点</text>
+  
+  <text x="850" y="460" text-anchor="middle" fill="#a78bfa" font-size="24" font-weight="bold">30.3</text>
+  <text x="850" y="478" text-anchor="middle" fill="#8892b0" font-size="11">km 总步行路线</text>
+  
+  <!-- API Badges -->
+  <rect x="120" y="510" width="140" height="32" rx="16" fill="#1a1a2e" stroke="#06b6d4" stroke-width="1"/>
+  <text x="190" y="531" text-anchor="middle" fill="#06b6d4" font-size="12">🔍 POI 搜索 API</text>
+  
+  <rect x="280" y="510" width="140" height="32" rx="16" fill="#1a1a2e" stroke="#10b981" stroke-width="1"/>
+  <text x="350" y="531" text-anchor="middle" fill="#10b981" font-size="12">🚶 路径规划 API</text>
+  
+  <rect x="440" y="510" width="140" height="32" rx="16" fill="#1a1a2e" stroke="#f59e0b" stroke-width="1"/>
+  <text x="510" y="531" text-anchor="middle" fill="#f59e0b" font-size="12">🌤️ 天气查询 API</text>
+  
+  <rect x="600" y="510" width="140" height="32" rx="16" fill="#1a1a2e" stroke="#a78bfa" stroke-width="1"/>
+  <text x="670" y="531" text-anchor="middle" fill="#a78bfa" font-size="12">🗺️ 地图可视化 API</text>
+  
+  <!-- Footer -->
+  <text x="500" y="575" text-anchor="middle" fill="#5a6684" font-size="11">高德开放平台「智图创想」Skill 创意征集赛 · amap-citywalk-mystery</text>
+</svg>

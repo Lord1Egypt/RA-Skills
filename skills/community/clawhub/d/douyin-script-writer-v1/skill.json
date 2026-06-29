@@ -1,0 +1,55 @@
+{
+  "slug": "douyin-script-writer-v1",
+  "name": "Douyin Short Video Script Writer",
+  "name_zh": "抖音短视频脚本助手",
+  "version": "1.0.0",
+  "author": "ClawHub Community",
+  "category": "content-creation",
+  "description": "Turn a topic into a Douyin-ready short video script with hook, storyboard, captions, and BGM suggestions.",
+  "description_zh": "输入一个主题，自动生成抖音短视频脚本、分镜、字幕和 BGM 建议。",
+  "model": "default",
+  "tags": [
+    "douyin",
+    "short-video",
+    "script-writing",
+    "storyboard",
+    "content-creation",
+    "tiktok",
+    "video-production"
+  ],
+  "license": "MIT-0",
+  "homepage": "https://github.com/clawhub/skills/douyin-script-writer",
+  "searchKeywords": {
+    "en": [
+      "douyin script",
+      "short video script",
+      "tiktok script writer",
+      "video storyboard",
+      "douyin content"
+    ],
+    "zh": [
+      "抖音脚本",
+      "短视频脚本",
+      "抖音文案",
+      "短视频分镜",
+      "抖音内容创作"
+    ]
+  },
+  "workflowSteps": [
+    "topic-input",
+    "hook-design",
+    "structure-split",
+    "voiceover-generation",
+    "storyboard-generation",
+    "packaging-suggestions"
+  ],
+  "durations": [
+    "15s",
+    "30s",
+    "60s"
+  ],
+  "firstSuccessPath": "douyin-script-writer --topic \"上海隐藏版葱油拌面\" --duration 15",
+  "entrypoints": {
+    "cli": "scripts/generate-script.sh"
+  }
+}

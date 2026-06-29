@@ -1,0 +1,7 @@
+interface:
+  display_name: "Bun Migration Advisor"
+  short_description: "Helps with Considerations about migrating away from bun."
+  default_prompt: "Use $bun-migration-advisor to help me Considerations about migrating away from bun."
+
+policy:
+  allow_implicit_invocation: true

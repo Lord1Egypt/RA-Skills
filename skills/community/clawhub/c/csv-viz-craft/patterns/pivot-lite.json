@@ -1,0 +1,9 @@
+{
+  "name": "pivot-lite",
+  "label": "简易透视表",
+  "description": "按维度分组汇总，支持计数、求和、均值",
+  "layout": "pivot",
+  "features": ["row_group", "column_group", "aggregation", "expand_collapse"],
+  "aggregations": ["count", "sum", "avg", "min", "max"],
+  "default_agg": "count"
+}

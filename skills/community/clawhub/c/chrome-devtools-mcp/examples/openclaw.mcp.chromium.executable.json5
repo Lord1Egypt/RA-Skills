@@ -1,0 +1,22 @@
+{
+  mcp: {
+    servers: {
+      "chrome-devtools": {
+        enabled: true,
+        transport: "stdio",
+        command: "npx",
+        args: [
+          "-y",
+          "chrome-devtools-mcp@latest",
+          "--executable-path=/usr/bin/chromium",
+          "--user-data-dir=/tmp/openclaw-chromium-profile",
+          "--no-usage-statistics",
+          "--no-performance-crux"
+        ],
+        connectTimeout: 20,
+        timeout: 120,
+        supportsParallelToolCalls: false
+      }
+    }
+  }
+}

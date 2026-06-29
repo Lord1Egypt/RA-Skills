@@ -11,31 +11,29 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill to trace request flows, understand data transformation pipelines, and document API call chains as Mermaid sequence diagrams. <br>
+Developers and engineers use this skill to trace request flows, data transformation pipelines, and API call chains in a codebase, then summarize the flow as a Mermaid sequence diagram. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may inspect code in the user-selected scope. <br>
-Mitigation: Use it only on repositories and scopes that are appropriate for agent-assisted analysis. <br>
-Risk: Generated Mermaid diagram content may be sent to a configured Mermaid Chart MCP for rendering. <br>
-Mitigation: Avoid including sensitive code details in diagram prompts unless that renderer is approved for the data. <br>
+Risk: Rendered diagrams may reveal repository structure or call flows to the configured Mermaid MCP. <br>
+Mitigation: Use narrow analysis scopes for private or sensitive projects and review generated diagrams before rendering or sharing them. <br>
 
 
 ## Reference(s): <br>
-- [Cartograph plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph) <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-cartograph-data-flow) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-cartograph-data-flow) <br>
+- [Cartograph homepage](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Guidance] <br>
-**Output Format:** [Markdown with Mermaid sequence diagram code blocks and brief prose] <br>
+**Output Type(s):** [text, markdown, code, guidance] <br>
+**Output Format:** [Markdown with Mermaid sequence diagram code and a brief prose description] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May validate and render generated Mermaid content with the configured Mermaid Chart MCP.] <br>
+**Other Properties Related to Output:** [May use the Mermaid Chart MCP to validate and render the sequence diagram.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: ClawHub release metadata; artifact frontmatter lists 1.9.8) <br>
+1.9.13 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

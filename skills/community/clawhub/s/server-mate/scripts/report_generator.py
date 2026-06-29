@@ -48,7 +48,7 @@ from server_agent import (
     load_config,
     resolve_sites,
 )
-from webhook_center import send_markdown_message
+from webhook_center import send_markdown_message, send_telegram_document_to_channels
 
 
 PDF_COLORS = {
@@ -1241,7 +1241,7 @@ def format_ssl_markdown_line(config: dict[str, Any], ssl_info: dict[str, Any]) -
     summary = format_ssl_summary_text(config, ssl_info)
     if status in {"warning", "expired"}:
         return f"⚠️ {label}: {summary}"
-    return f"�� {label}: {summary}"
+    return f"🔒 {label}: {summary}"
 
 
 def aggregate_status_families(status_codes: list[dict[str, Any]]) -> list[dict[str, Any]]:
@@ -2818,7 +2818,10 @@ def draw_daily_trend_chart(ax: Any, report: dict[str, Any], labels: dict[str, st
     ax.plot(x_positions, request_values, color=PDF_COLORS["green"], linewidth=2.0, label=labels["requests"], alpha=0.95, zorder=2)
     set_report_xticks(ax, [f"{hour:02d}:00" for hour in hours], 12, rotation=30)
     ax.margins(x=0.02)
-    ax.legend(frameon=False, loc="upper left", prop=pdf_font(10))
+    ax.legend(
+        frameon=True, loc="upper right", prop=pdf_font(10),
+        facecolor="white", edgecolor="none", framealpha=0.85,
+    )
 
 
 def draw_period_trend_chart(ax: Any, report: dict[str, Any], labels: dict[str, str]) -> None:
@@ -2934,7 +2937,7 @@ def render_pdf(report: dict[str, Any], config: dict[str, Any], output_path: Path
     generated_at = dt.datetime.now(get_timezone(config)).strftime("%Y-%m-%d %H:%M")
     with PdfPages(output_path) as pdf:
         dashboard = create_pdf_figure()
-        grid = dashboard.add_gridspec(3, 12, height_ratios=[1.5, 4.0, 4.5])
+        grid = dashboard.add_gridspec(3, 12, height_ratios=[1.5, 3.8, 4.2])
         draw_dashboard_header(
             dashboard.add_subplot(grid[0, :]),
             report,
@@ -2978,7 +2981,7 @@ def render_pdf(report: dict[str, Any], config: dict[str, Any], output_path: Path
 def create_pdf_figure() -> Any:
     fig = plt.figure(figsize=(8.27, 11.69), constrained_layout=False)
     fig.patch.set_facecolor(PDF_COLORS["bg"])
-    fig.subplots_adjust(left=0.055, right=0.97, top=0.985, bottom=0.045, wspace=0.32, hspace=0.42)
+    fig.subplots_adjust(left=0.055, right=0.97, top=0.985, bottom=0.06, wspace=0.32, hspace=0.62)
     return fig
 
 
@@ -3793,7 +3796,10 @@ def draw_baota_three_line_chart(ax: Any, demo: dict[str, Any]) -> None:
     ax.set_xlim(-0.3, 23.3)
     ax.set_xticks(range(0, 24, 2))
     ax.set_xticklabels([demo["hour_labels"][index] for index in range(0, 24, 2)], rotation=0, ha="center")
-    legend = ax.legend(loc="upper left", frameon=False, prop=pdf_font(7.6), ncol=3, handlelength=1.8)
+    legend = ax.legend(
+        loc="upper right", frameon=True, prop=pdf_font(7.6), ncol=3, handlelength=1.8,
+        facecolor="white", edgecolor="none", framealpha=0.85,
+    )
     for text in legend.get_texts():
         text.set_color("#666666")
 
@@ -3815,7 +3821,11 @@ def draw_baota_dual_axis_chart(ax: Any, title: str, x_labels: list[str], left_se
     apply_axis_tick_fonts(ax_right, 7.2)
     left_handles, left_labels = ax.get_legend_handles_labels()
     right_handles, right_labels = ax_right.get_legend_handles_labels()
-    legend = ax.legend(left_handles + right_handles, left_labels + right_labels, loc="upper left", frameon=False, prop=pdf_font(7.0))
+    legend = ax.legend(
+        left_handles + right_handles, left_labels + right_labels,
+        loc="upper right", frameon=True, prop=pdf_font(7.0),
+        facecolor="white", edgecolor="none", framealpha=0.85,
+    )
     for text in legend.get_texts():
         text.set_color("#666666")
 
@@ -4084,7 +4094,10 @@ def draw_baota_three_line_chart(ax: Any, demo: dict[str, Any]) -> None:
     ax.set_xlim(-0.3, 23.3)
     ax.set_xticks(range(0, 24, 2))
     ax.set_xticklabels([demo["hour_labels"][index] for index in range(0, 24, 2)], rotation=0, ha="center")
-    legend = ax.legend(loc="upper left", frameon=False, prop=pdf_font(7.6), ncol=3, handlelength=1.8)
+    legend = ax.legend(
+        loc="upper right", frameon=True, prop=pdf_font(7.6), ncol=3, handlelength=1.8,
+        facecolor="white", edgecolor="none", framealpha=0.85,
+    )
     for text in legend.get_texts():
         text.set_color("#666666")
 
@@ -4118,7 +4131,11 @@ def draw_baota_dual_axis_chart(
     apply_axis_tick_fonts(ax_right, 7.2)
     left_handles, left_labels = ax.get_legend_handles_labels()
     right_handles, right_labels = ax_right.get_legend_handles_labels()
-    legend = ax.legend(left_handles + right_handles, left_labels + right_labels, loc="upper left", frameon=False, prop=pdf_font(7.0))
+    legend = ax.legend(
+        left_handles + right_handles, left_labels + right_labels,
+        loc="upper right", frameon=True, prop=pdf_font(7.0),
+        facecolor="white", edgecolor="none", framealpha=0.85,
+    )
     for text in legend.get_texts():
         text.set_color("#666666")
 
@@ -8085,7 +8102,32 @@ def send_report_notice(
     else:
         lines.append(f"- {t(config, 'download_url')}: {t(config, 'local_only')}")
     lines.extend(["", f"> {t(config, 'report_note')}"])
-    return send_markdown_message(config, title, "\n".join(lines), selected_channels)
+
+    results: list[dict[str, Any]] = []
+
+    # For PDF reports: upload the file directly to Telegram via sendDocument so
+    # recipients receive the actual PDF instead of just a download link.
+    is_pdf = local_path.suffix.lower() == ".pdf" and local_path.exists()
+    if is_pdf:
+        pdf_caption = title[:1024]
+        tg_results = send_telegram_document_to_channels(
+            config,
+            file_path=str(local_path),
+            caption=pdf_caption,
+            channels=selected_channels,
+        )
+        results.extend(tg_results)
+
+    # Send the summary text notice to all channels (for PDF: skip telegram since
+    # it already received the document; for non-PDF: send to all channels).
+    if is_pdf:
+        non_tg_channels = [ch for ch in (selected_channels or []) if ch != "telegram"]
+        if non_tg_channels:
+            results.extend(send_markdown_message(config, title, "\n".join(lines), non_tg_channels))
+    else:
+        results.extend(send_markdown_message(config, title, "\n".join(lines), selected_channels))
+
+    return results
 
 
 def build_json_payload(report_kind: str, report: dict[str, Any], local_path: Path, exported_path: Path, public_url: str | None, delivery_results: list[dict[str, Any]] | None = None) -> dict[str, Any]:

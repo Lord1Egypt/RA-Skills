@@ -1,0 +1,26 @@
+# ASCII Icon System (plain text, no box-drawing chars)
+# Minimal line icons for categories/nodes/arrows/states
+
+# Shapes
+[x]     = regular node
+((x))   = important / core
+{x}     = decision
+<x>     = data / artifact
+o       = actor / external
+
+# Arrows
+-->     = primary flow
+--->    = secondary
+==>     = emphasized
+-->|    = terminal
+
+# States
+[ ]     = empty / pending
+[x]     = filled / done
+[!]     = alert / warning
+[?]     = unknown / question
+
+# Usage in diagrams:
+# [Auth] --> [Core API] --> [Database]
+# ((System Core)) --> [Module A]
+# {Decision} --> [Yes Path] / [No Path]

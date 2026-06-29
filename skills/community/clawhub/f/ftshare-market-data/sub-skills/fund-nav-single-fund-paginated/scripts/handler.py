@@ -35,7 +35,7 @@ def main():
         "page": args.page,
         "page_size": args.page_size,
     }
-    url = f"{BASE_URL}/data/api/v1/market/data/fund/fund-nav?" + urllib.parse.urlencode(params)
+    url = f"{BASE_URL}/gateway/api/v1/market/data/fund/fund-nav?" + urllib.parse.urlencode(params)
 
     try:
         with safe_urlopen(url) as resp:

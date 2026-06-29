@@ -1,5 +1,5 @@
 ## Description: <br>
-Provides Chinese-language macro strategy analysis for A-share and Hong Kong equity trends, monetary policy, sector structure, risk scanning, and asset allocation questions using the Zhang Yidong macro strategy framework. <br>
+基于张忆东宏观框架，分析A股/港股市场趋势、货币政策及资产配置，助力投资决策和风险管理。 <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,31 +11,28 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users, analysts, and investors use this skill to structure macro-market analysis for A-share and Hong Kong equity timing, sector positioning, monetary policy effects, and portfolio allocation questions. It is intended as decision-support guidance, not as a substitute for current market data or professional financial advice. <br>
+External users and analysts use this skill to structure macro and market-framework discussion for A-share and Hong Kong equity trends, monetary policy, allocation scenarios, and risk review. It is for educational scenario analysis, not personalized investment advice. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Users may over-rely on macro-market analysis for investment decisions. <br>
-Mitigation: Treat outputs as general analysis, verify current market data and claims independently, and consider personal risk tolerance and time horizon. <br>
-Risk: Financial guidance may be incomplete or unsuitable for a user's circumstances. <br>
-Mitigation: Consult a qualified financial professional before making investment decisions. <br>
+Risk: Finance analysis may be mistaken for personalized investment advice. <br>
+Mitigation: Use the skill for market-framework discussion and scenario analysis only; verify current market data, jurisdictional rules, risk tolerance, and suitability before making financial decisions. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/zhang-yidong-macro-analysis) <br>
-- [Publisher profile](https://clawhub.ai/user/gechengling) <br>
+- [ClawHub skill listing](https://clawhub.ai/gechengling/skills/zhang-yidong-macro-analysis) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Chinese-language Markdown analysis and recommendations] <br>
+**Output Format:** [Markdown narrative analysis] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No code execution, account access, or trade execution; users should verify current market data independently.] <br>
+**Other Properties Related to Output:** [Chinese-first prose with selected English finance terms; users should verify current market data and suitability before acting.] <br>
 
 ## Skill Version(s): <br>
-2.0.1 (source: server release evidence and SKILL.md frontmatter) <br>
+2.1.0 (source: server evidence and frontmatter) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

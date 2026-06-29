@@ -1,0 +1,40 @@
+groups:
+  - name: server_alerts
+    rules:
+      - alert: HighCPUUsage
+        expr: 100 - (avg by (instance) (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 90
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "{{ $labels.instance }} CPU 使用率过高"
+          description: "CPU 使用率 {{ $value | humanizePercentage }} 超过 90%，已持续 5 分钟"
+
+      - alert: HighMemoryUsage
+        expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100 > 90
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "{{ $labels.instance }} 内存使用率过高"
+          description: "内存使用率 {{ $value | humanizePercentage }} 超过 90%"
+
+      - alert: DiskSpaceLow
+        expr: (1 - (node_filesystem_free_bytes{fstype!="tmpfs"} / node_filesystem_size_bytes)) * 100 > 85
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "{{ $labels.instance }} 磁盘空间不足"
+          description: "{{ $labels.mountpoint }} 磁盘使用率 {{ $value | humanizePercentage }} 超过 85%"
+
+  - name: sqlserver_alerts
+    rules:
+      - alert: SQLServerDown
+        expr: windows_service_state{name="mssqlserver",state="running"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "{{ $labels.instance }} SQL Server 服务停止"
+          description: "SQL Server (MSSQLSERVER) 服务已停止"

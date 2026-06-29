@@ -1,6 +1,6 @@
 # Google Ads 优化与合规规则
 
-> 本目录为 **策略/SOP 文档**，非 CLI 参数表。命令与字段见 `references/google-ads/google-ads.md`；新建流程见 `google-ads/google-ads-campaign-plan.md`。
+> 本目录为 **策略/SOP 文档**，非 CLI 参数表。命令与字段见 `references/google-ads/google-ads.md`；新建流程见 `references/google-ads/google-ads-campaign-plan.md`。
 
 | 文件                                                | 何时 Read                                              |
 | --------------------------------------------------- | ------------------------------------------------------ |

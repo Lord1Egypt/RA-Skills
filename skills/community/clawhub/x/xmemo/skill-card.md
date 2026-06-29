@@ -1,5 +1,5 @@
 ## Description: <br>
-Persistent, user-owned memory for AI agents over hosted MCP. <br>
+Persistent, user-owned memory for AI agents over hosted MCP. Remember decisions, recall project context, manage TODOs, preserve handoff state, and govern memory lifecycle across sessions and tools. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,38 +11,35 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and developers use XMemo to let authorized agents recall and maintain durable project context, decisions, TODOs, and handoff state across sessions and tools. <br>
+Developers and AI-agent users use XMemo to recall and preserve decisions, project context, TODOs, and handoff state across sessions and tools. Actual memory operations require the XMemo runtime path through a native plugin, provider integration, or hosted MCP server. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Users or agents may store secrets, tokens, or sensitive personal or customer data in long-term memory. <br>
-Mitigation: Use scoped API keys or OAuth and do not store secrets or sensitive data unless there is an explicit need and appropriate privacy controls. <br>
-Risk: Authorized agents may recall visible user-owned memories written by other agents, exposing broader context than intended for a task. <br>
-Mitigation: Use narrower project, bucket, or scope filters when the user requests limited recall, and treat attribution fields as provenance rather than authorization proof. <br>
-Risk: Delete, forget, redact, overwrite, or broad cleanup actions can remove useful memory state. <br>
-Mitigation: Confirm the exact target before destructive memory operations. <br>
-Risk: Recalled memories can be stale or incomplete compared with current files or external service state. <br>
-Mitigation: Treat recalled memories as context and verify drift-prone facts when correctness matters. <br>
+Risk: The skill connects agent workflows to an external hosted memory service that may retain context across sessions. <br>
+Mitigation: Install only when persistent hosted memory is desired, confirm service policy and scopes before storing sensitive customer or personal data, and avoid saving secrets. <br>
+Risk: Setup commands configure credentialed XMemo integrations for supported clients. <br>
+Mitigation: Run setup from a trusted environment and never paste raw tokens or OAuth credentials into chat, repositories, screenshots, or logs. <br>
+Risk: The skill is workflow guidance unless XMemo memory tools are actually available. <br>
+Mitigation: Do not simulate successful memory operations; tell users when the runtime integration is missing and recommend the matching XMemo setup command. <br>
 
 
 ## Reference(s): <br>
-- [XMemo Skill on ClawHub](https://clawhub.ai/xmemo/skills/xmemo) <br>
-- [XMemo OpenClaw Memory Plugin](https://clawhub.ai/plugins/@xmemo/openclaw-memory) <br>
-- [XMemo MCP Server](https://xmemo.dev/mcp) <br>
+- [XMemo ClawHub Skill Page](https://clawhub.ai/xmemo/skills/xmemo) <br>
+- [XMemo Hosted MCP Endpoint](https://xmemo.dev/mcp) <br>
 - [XMemo Agent Discovery](https://xmemo.dev/.well-known/agent-discovery.json) <br>
-- [XMemo OpenClaw MCP Configuration](https://xmemo.dev/v1/mcp/config/openclaw) <br>
+- [XMemo OpenClaw Memory Plugin](https://clawhub.ai/plugins/@xmemo/openclaw-memory) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with MCP setup URLs and tool-use recommendations] <br>
+**Output Type(s):** [guidance, shell commands, configuration] <br>
+**Output Format:** [Markdown guidance with inline shell commands and URLs] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Actual memory operations require the XMemo MCP server and user authorization.] <br>
+**Other Properties Related to Output:** [Requires a configured XMemo runtime integration for real memory read and write operations.] <br>
 
 ## Skill Version(s): <br>
-1.0.3 (source: server release evidence) <br>
+1.0.4 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ECharts Chart Generator</title>
+    <script src="lib/echarts-5.6.min.js"></script>
+    <script src="lib/echarts-wordcloud-2.1.min.js"></script>
+    <link rel="stylesheet" href="static/styles.css">
+
+
+    <script src="lib/echarts-theme-dark.js"></script>
+    <script src="lib/echarts-theme-infographic.js"></script>
+    <script src="lib/echarts-theme-macarons.js"></script>
+    <script src="lib/echarts-theme-roma.js"></script>
+    <script src="lib/echarts-theme-shine.js"></script>
+    <script src="lib/echarts-theme-vintage.js"></script>
+    
+<script id="lang-en" type="application/json">
+{
+  "status": {
+    "idle": "Awaiting input",
+    "valid": "Config valid",
+    "error": "Config error",
+    "rendering": "Rendering...",
+    "done": "Chart rendered"
+  },
+  "error": {
+    "parse": "Parse error",
+    "parseDetail": "Parse error: ",
+    "empty": "Empty config",
+    "func": "Function parse error",
+    "funcDetail": "Function parse error: ",
+    "render": "Render error: ",
+    "renderFail": "Generation failed",
+    "noChart": "Error: Generate a chart first",
+    "export": "Export error: ",
+    "parseError": "Parse error: ",
+    "position": "Pos: line ",
+    "line": ", col ",
+    "col": ", near ",
+    "context": "Ctx: ",
+    "detail": "Details: "
+  },
+  "action": {
+    "formatted": "JSON formatted",
+    "formatError": "JSON format error: ",
+    "exported": "Exported as ",
+    "exportedConfig": "Config exported as JSON",
+    "funcOk": "Function OK, result: ",
+    "funcErr": "Function error: ",
+    "funcParseFail": "Function parse failed: "
+  }
+}
+
+</script>
+<script id="lang-zh" type="application/json">
+{
+  "status": {
+    "idle": "等待配置",
+    "valid": "配置有效",
+    "error": "配置错误",
+    "rendering": "图表生成中…",
+    "done": "图表生成完成"
+  },
+  "error": {
+    "parse": "转换配置错误",
+    "parseDetail": "转换配置错误：",
+    "empty": "配置为空",
+    "func": "转换函数错误",
+    "funcDetail": "转换函数错误：",
+    "render": "生成错误：",
+    "renderFail": "生成失败",
+    "noChart": "错误: 请先生成有效的图表",
+    "export": "导出错误: ",
+    "parseError": "解析错误: ",
+    "position": "错误位置: 第 ",
+    "line": " 行, 第 ",
+    "col": " 列, 即 ",
+    "context": "上下文: ",
+    "detail": "错误详情: "
+  },
+  "action": {
+    "formatted": "JSON已格式化",
+    "formatError": "JSON格式化错误: ",
+    "exported": "图表已导出为",
+    "exportedConfig": "配置已导出为JSON",
+    "funcOk": "变量赋值正确，函数返回结果：",
+    "funcErr": "变量赋值错误：",
+    "funcParseFail": "函数转换失败: "
+  }
+}
+
+</script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>ECharts Chart Generator v1</h1>
+            <div class="lang-switcher">
+                <button id="langBtn" class="btn-lang" onclick="switchLang()">中文</button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="config-section">
+                <div class="input-section">
+                    <h2 class="section-title">
+                        Basic Config
+                    </h2>
+
+                    <div class="config-grid">
+                        <div class="config-item">
+                            <label for="chartWidth">Chart Width</label>
+                            <input type="number" id="chartWidth" min="100" max="5000" step="100" value="800">
+                        </div>
+
+                        <div class="config-item">
+                            <label for="chartHeight">Chart Height</label>
+                            <input type="number" id="chartHeight" min="100" max="5000" step="100" value="600">
+                        </div>
+
+                        <div class="config-item">
+                            <label for="chartTheme">Chart Theme</label>
+                            <select id="chartTheme">
+                                <option value="default">Default</option>
+                                <option value="dark">Dark</option>
+                                <option value="infographic">Infographic</option>
+                                <option value="roma">Roma</option>
+                                <option value="vintage">Vintage</option>
+                                <option value="shine">Shine</option>
+                                <option value="macarons" selected>Macarons</option>
+                            </select>
+                        </div>
+
+                        <div class="config-item">
+                            <label for="transparentBg">
+                                Transparent BG
+                            </label>
+                            <input type="checkbox" id="transparentBg" style="margin-right:8px">
+                        </div>
+                    </div>
+
+                    <h2 class="section-title">
+                        Chart Options (with Data)
+                    </h2>
+
+
+
+                    <textarea id="optionInput" style="height:400px;" placeholder='Enter ECharts options (JSON format), e.g.:
+{
+  "title": { "text": "Sales Data" },
+  "tooltip": {},
+  "xAxis": { "data": ["Shirts", "Wool Sweaters", "Chiffon"] },
+  "yAxis": {},
+  "series": [{ "name": "Sales", "type": "bar" }]
+}'></textarea>
+
+                    <h2 class="section-title">Variable Assignment</h2>
+                    <textarea id="functionInput" placeholder='[Optional]
+Enter variables as pure JSON (no code execution):
+{"total": 100, "ratio": 0.5, "items": [10, 20, 30]}'></textarea>
+
+                    <div class="section-spacer"></div>
+
+                    <div class="controls">
+                        <button id="generateBtn" class="btn">
+                            Generate Chart
+                        </button>
+                        <button id="formatBtn" class="btn">
+                            Format JSON
+                        </button>
+                        <button id="clearBtn" class="btn">
+                            Clear
+                        </button>
+                    </div>
+                </div>
+
+                <div class="input-section">
+
+                    <h2 class="section-title">
+                        Chart Templates
+                    </h2>
+                    <div class="controls">
+                        <button id="barTemplate" class="btn">
+                            📊 Bar Chart
+                        </button>
+                        <button id="lineTemplate" class="btn">
+                            📈 Line Chart
+                        </button>
+                        <button id="pieTemplate" class="btn">
+                            🥧 Pie Chart
+                        </button>
+                        <button id="cloudTemplate" class="btn">
+                            ☁️ Word Cloud
+                        </button>
+                    </div>
+
+                    <h2 class="section-title">
+                        Export Options
+                    </h2>
+                    <div class="controls">
+                        <button id="exportPng" class="btn">
+                            Export PNG
+                        </button>
+                        <button id="exportJpg" class="btn">
+                            Export JPG
+                        </button>
+                        <button id="exportSvg" class="btn">
+                            Export SVG
+                        </button>
+                        <button id="exportJson" class="btn">
+                            Export Config
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="preview-section">
+                <h2 class="section-title">
+                    Chart Preview
+                </h2>
+                <span class="tooltip">
+                    <span class="status-indicator" id="statusIndicator"></span>
+                    <span id="statusText">Awaiting config</span>
+                </span>
+                <pre id="errorPanel" class="error-panel"></pre>
+                <div class="preview-container">
+                    <div id="chart"></div>
+                </div>
+
+                <h2 class="section-title">
+                    Instructions
+                </h2>
+                <div style="background: rgba(10, 20, 40, 0.5); padding: 15px; border-radius: 8px;">
+                    <p>1. Set <b>size</b> and <b>theme</b> in Basic Config;</p>
+                    <p>2. Enter chart <b>options</b> as pure JSON config (no code execution, no function strings);</p>
+                    <p>3. Use <b>Variable Assignment</b> to define variables as pure JSON; reference them in Options via ${publicVar.x} or ${publicVar.x * 2};</p>
+                    <p>4. Click <b>Generate Chart</b> to preview;</p>
+                    <p>5. Use <b>Export Options</b> to save chart or config;</p>
+                    <p>6. Use <b>Chart Templates</b> for ready-to-run examples (demo purpose, logic accuracy not guaranteed);</p>
+                    <br />
+                    <p>Tip:<br />Refer to examples to generate valid JSON.，The string is parsed from textarea by JSON.parse and passed to ECharts option. Two strict rules:
+                        1. No // comments or non-JSON syntax. Functions must be strings wrapped in double quotes.
+                        2. Proper indentation is required.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <span>Apache ECharts 5.6.0 + wordcloud 2.1</span>
+            <span>ECharts provides Line Chart、Bar Chart、Scatter Plot、Pie Chart、Candlestick，box plots for statistics, maps/heatmaps/lines for geo data, relation/treemap/sunburst for relational data, parallel coordinates for multi-dim data, and  BI funnel charts, gauges, and mixed chart composition.</span>
+        </div>
+
+    </div>
+
+    <script src="static/templates-en.js"></script>
+<script src="static/app.js"></script>
+</body>
+</html>

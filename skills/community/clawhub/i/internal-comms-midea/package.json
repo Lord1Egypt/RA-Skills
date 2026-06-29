@@ -1,0 +1,7 @@
+﻿{
+    "license":  "MIT",
+    "author":  "paudyyin",
+    "description":  "美的集团内部沟通文档模板。参考Anthropic官方internal-comms skill结构，支持3P周报、项目进展、事故报告、跨部门邮件、FAQ、通用沟通等场景。",
+    "name":  "internal-comms-midea",
+    "version":  "1.1.0"
+}

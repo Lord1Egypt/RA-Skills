@@ -1,0 +1,4 @@
+version: 1
+display_name: ClickUp Operator
+short_description: Route ClickUp tasks and ideas with clean operator defaults.
+default_prompt: Help me create, route, update, and read ClickUp work using operator-style defaults with minimal back-and-forth.

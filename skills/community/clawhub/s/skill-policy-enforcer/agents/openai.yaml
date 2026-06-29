@@ -1,0 +1,4 @@
+interface:
+  display_name: "Skill Policy Enforcer"
+  short_description: "Check skills against local policy."
+  default_prompt: "Use $skill-policy-enforcer to check this skill folder against my policy.yaml before installation or release."

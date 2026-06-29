@@ -1,0 +1,131 @@
+version: "0.1"
+purpose: "Source-family checklist for supplier discovery. Choose sources by target lane ecosystem; this is not a universal mandatory checklist."
+source_families:
+  - id: "b2b-platforms"
+    label: "B2B platforms and marketplaces"
+    search_api: mixed
+    search_api_note: "Some platforms expose public browse/search; others require login or paid tiers. Record access notes per entry instead of assuming platform-wide API status."
+    examples:
+      - "Alibaba"
+      - "Global Sources"
+      - "Made-in-China"
+      - "IndiaMART"
+      - "1688"
+      - "DHgate"
+      - "EC21"
+      - "TradeKey"
+    useful_for:
+      - "bulk supplier discovery and category-level browsing"
+      - "product listings, MOQ, and region filters"
+      - "cross-platform recall and comparison"
+      - "initial candidate pool expansion"
+    not_for:
+      - "individual supplier verification or trust scoring"
+      - "real-time inventory or pricing accuracy"
+      - "payment safety or fulfillment guarantees"
+      - "adoption or purchase recommendations"
+
+  - id: "trade-shows"
+    label: "Trade show exhibitor lists and trade fair directories"
+    search_api: mixed
+    search_api_note: "Exhibitor lists are often published as static PDFs or browse-only pages; some fairs provide searchable online directories."
+    examples:
+      - "Canton Fair exhibitor list"
+      - "Global Sources Exhibitions"
+      - "CES exhibitor directory"
+      - "Hannover Messe exhibitor search"
+      - "China Import and Export Fair"
+      - "Automechanika exhibitor list"
+      - "NAB Show directory"
+    useful_for:
+      - "discovering suppliers with demonstrated export or industry presence"
+      - "region and product-category clustering"
+      - "seasonal or event-based sourcing signals"
+      - "cross-checking B2B platform listings with event presence"
+    not_for:
+      - "current contact accuracy (lists may be outdated post-event)"
+      - "booth-level negotiation or live interaction"
+      - "supplier capability verification beyond exhibitor claims"
+      - "adoption or purchase recommendations"
+
+  - id: "associations"
+    label: "Industry and supplier associations"
+    search_api: mixed
+    search_api_note: "Association member directories vary: some are public browse, some require membership login."
+    examples:
+      - "China Chamber of Commerce for Import and Export of Light Industrial Products and Arts-Crafts"
+      - "Federation of Indian Export Organisations (FIEO)"
+      - "American Apparel and Footwear Association (AAFA)"
+      - "European Chemical Industry Council (Cefic)"
+      - "Taiwan External Trade Development Council (TAITRA)"
+      - "Vietnam Chamber of Commerce and Industry (VCCI)"
+    useful_for:
+      - "supplier directories with industry vetting signals"
+      - "region-specific ecosystem discovery"
+      - "cross-referencing membership claims with other sources"
+      - "industry terminology and category vocabulary"
+    not_for:
+      - "membership quality audit or due diligence"
+      - "real-time membership status verification"
+      - "adoption or purchase recommendations"
+
+  - id: "government-directories"
+    label: "Government supplier directories and public trade registries"
+    search_api: mixed
+    search_api_note: "Government surfaces vary by country: some offer public search, others require registration or are published as static lists."
+    examples:
+      - "SAM.gov (U.S. System for Award Management)"
+      - "China enterprise registration"
+      - "India MSME Udyam registration database"
+      - "EU TED (Tenders Electronic Daily) supplier notices"
+      - "UK Companies House"
+      - "Turkey Trade Registry Gazette"
+    useful_for:
+      - "legal-entity existence and registration signals"
+      - "public trade registration data"
+      - "cross-reference with commercial sources for entity verification"
+      - "regional supplier discovery where commercial platforms are sparse"
+    not_for:
+      - "supplier capability, quality, or financial health assessment"
+      - "real-time compliance or certification status"
+      - "adoption or purchase recommendations"
+
+  - id: "company-websites"
+    label: "Direct manufacturer and supplier websites"
+    search_api: none
+    search_api_note: "No unified search API; discovery relies on web search, directory links, or B2B platform cross-references."
+    examples:
+      - "Manufacturer corporate sites with product catalogs"
+      - "Factory direct sites with contact pages"
+      - "OEM/ODM service pages"
+      - "Company About / Products / Contact pages"
+    useful_for:
+      - "direct product and capability descriptions"
+      - "contact information and regional presence"
+      - "certification and capability claims (to be cross-checked, not taken as proof)"
+      - "supplier-specific terminology and branding"
+    not_for:
+      - "verifying claims without cross-source confirmation"
+      - "real-time operational status or availability"
+      - "adoption or purchase recommendations"
+
+  - id: "media-community"
+    label: "Public media, community forums, and sourcing communities"
+    search_api: mixed
+    search_api_note: "Community content is often indexed by general search engines; specialized sourcing forums may have their own search."
+    examples:
+      - "Reddit sourcing communities (e.g., r/entrepreneur, r/FulfillmentByAmazon)"
+      - "Quora supplier sourcing threads"
+      - "Industry-specific Facebook groups or public posts (public only)"
+      - "Sourcing blogs and newsletters"
+      - "Public Q&A and forum threads about supplier recommendations"
+    useful_for:
+      - "cold-start recall and anecdotal supplier names"
+      - "ecosystem vocabulary and adjacent terms"
+      - "recent growth pointers and trending mentions"
+      - "cross-checking commercial sources with community signals"
+    not_for:
+      - "quality or safety conclusions"
+      - "adoption or purchase recommendations"
+      - "treating community mentions as verified supplier evidence"
+      - "individual supplier verification without additional sources"

@@ -1,0 +1,26 @@
+{
+  "baseline": {
+    "metrics": {
+      "accuracy": 7,
+      "risk_control": 5,
+      "traceability": 4,
+      "completeness": 7,
+      "output_quality": 8,
+      "speed": 9,
+      "cost": 8,
+      "maintainability": 5
+    }
+  },
+  "team": {
+    "metrics": {
+      "accuracy": 8,
+      "risk_control": 9,
+      "traceability": 9,
+      "completeness": 8,
+      "output_quality": 7,
+      "speed": 6,
+      "cost": 6,
+      "maintainability": 8
+    }
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "name": "风险登记册",
+  "description": "项目风险识别、评估和应对措施的记录表格。结构固定，适合LLM填充。",
+  "version": "1.0",
+  "output_filename": "风险登记册_{project_name}.md",
+  "sections": [
+    {
+      "key": "header",
+      "title": "风险登记册",
+      "type": "fields",
+      "description": "文档头部信息",
+      "fields": [
+        {"key": "project_name", "label": "项目名称", "type": "text", "hint": ""},
+        {"key": "prepared_by", "label": "编制人", "type": "text", "hint": ""},
+        {"key": "date", "label": "编制日期", "type": "date", "hint": ""}
+      ]
+    },
+    {
+      "key": "register",
+      "title": "风险评估登记表",
+      "type": "table",
+      "description": "所有已识别风险的详细记录，包括评估等级和应对措施。",
+      "columns": [
+        "编号",
+        "风险描述",
+        "风险类别",
+        "发生概率（高/中/低）",
+        "影响程度（高/中/低）",
+        "风险等级",
+        "应对策略",
+        "应对措施",
+        "责任人",
+        "状态（待处理/处理中/已关闭）"
+      ],
+      "rows": 0,
+      "hint": "风险类别包括：技术风险、管理风险、资源风险、进度风险、成本风险、外部风险。风险等级=概率×影响。应对策略可选：规避/减轻/转移/接受。",
+      "reference_sources": ["wbs_work_packages", "cpm_result"]
+    },
+    {
+      "key": "ranking",
+      "title": "风险排序与优先级",
+      "type": "rich_text",
+      "description": "按风险等级排序，确定需要优先处理的高风险项。",
+      "reference_sources": ["register"],
+      "hint": "列出Top 5高风险项，说明为什么这些风险需要优先处理，以及触发条件"
+    },
+    {
+      "key": "response_plan",
+      "title": "风险应对计划",
+      "type": "rich_text",
+      "description": "针对高风险项目的详细应对方案，包括触发条件和应急计划。",
+      "reference_sources": ["register"],
+      "hint": "每个高风险项应包括：触发条件（什么信号表明风险发生了）、应急行动步骤、应急预案负责人、所需资源"
+    },
+    {
+      "key": "monitoring",
+      "title": "风险监控安排",
+      "type": "table",
+      "description": "风险跟踪的频率、方式和责任人。",
+      "columns": ["风险编号", "监控频率", "监控方式", "监控责任人", "下次评估日期"],
+      "rows": 5,
+      "hint": "高风险项建议每周跟踪，中风险每两周，低风险每月。监控方式包括：状态检查会、进度报告、专题评审"
+    }
+  ]
+}

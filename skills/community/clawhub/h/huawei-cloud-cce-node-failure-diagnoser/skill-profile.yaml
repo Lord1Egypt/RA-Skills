@@ -1,0 +1,30 @@
+﻿name: huawei-cloud-cce-node-failure-diagnoser
+level: L3
+domain: diagnosis-remediation
+description: Diagnose CCE node health, resource pressure, NPD events, and node security findings.
+tools:
+  - huawei_node_failure_diagnose
+  - huawei_get_kubernetes_nodes
+  - huawei_get_cce_events
+  - huawei_get_cce_pods
+  - huawei_get_cce_nodes
+  - huawei_list_cce_nodes
+  - huawei_get_cce_node_metrics
+  - huawei_get_cce_node_metrics_topN
+  - huawei_get_cce_pod_metrics_topN
+  - huawei_get_pod_logs
+  - huawei_node_diagnose
+  - huawei_node_batch_diagnose
+  - huawei_node_status_inspection
+  - huawei_node_resource_inspection
+  - huawei_node_vul_inspection
+  - huawei_list_security_groups
+  - huawei_list_vpc_acls
+  - huawei_hss_list_hosts
+  - huawei_hss_list_host_vuls_all
+references:
+  - references/workflow.md
+  - references/risk-rules.md
+  - references/output-schema.md
+guardrails:
+  max_auto_risk: R1

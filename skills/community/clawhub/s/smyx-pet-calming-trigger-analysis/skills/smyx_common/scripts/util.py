@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import json
 import os
+import secrets
 import traceback
 from json import JSONDecodeError
 
@@ -250,6 +251,99 @@ class CommonUtil(BaseUtil):
             return True
 
 
+class OpenIdUtil(BaseUtil):
+    """open-id 初始化与缺省用户分配工具。
+
+    规则：
+    1. 上游显式传入 open-id 时，直接沿用上游值；
+    2. 未传入 open-id 时，优先读取工作区 data/smyx-api-key.txt；
+    3. 该文件没有可用值时，复用本地 smyx-common-claw.db 中第一个
+       username 以 User_ 开头且总长度为 11 的 sys_user 记录；
+    4. 本地不存在时，生成 User_{6位小写随机哈希码} 并写入本地库，
+       后续未显式传入 open-id 时持续复用该缺省用户。
+    """
+
+    DEFAULT_PREFIX = "User_"
+    RANDOM_HEX_LENGTH = 6
+    DEFAULT_USERNAME_LENGTH = len(DEFAULT_PREFIX) + RANDOM_HEX_LENGTH
+
+    @classmethod
+    def is_default_open_id(cls, value):
+        return isinstance(value, str) and value.startswith(cls.DEFAULT_PREFIX) and len(
+            value) == cls.DEFAULT_USERNAME_LENGTH
+
+    @classmethod
+    def generate_default_open_id(cls):
+        return f"{cls.DEFAULT_PREFIX}{secrets.token_hex(3).lower()}"
+
+    @classmethod
+    def get_workspace_data_dir(cls):
+        workspace = os.environ.get('OPENCLAW_WORKSPACE')
+        if not workspace:
+            workspace = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+        return os.path.join(workspace, "data")
+
+    @classmethod
+    def get_api_key_file_open_id(cls):
+        """读取工作区 data/smyx-api-key.txt 中的内部身份值。"""
+        api_key_path = os.path.join(cls.get_workspace_data_dir(), "smyx-api-key.txt")
+        try:
+            if not os.path.exists(api_key_path):
+                return None
+            with open(api_key_path, "r", encoding="utf-8") as f:
+                value = f.read().strip()
+            return value or None
+        except Exception as e:
+            CommonUtil.trace_exception_stack(e)
+        return None
+
+    @classmethod
+    def get_or_create_default_open_id(cls):
+        from .dao import UserDao, User
+        import uuid
+
+        user_dao = UserDao()
+        user = user_dao.get_first_default_user(cls.DEFAULT_PREFIX, cls.DEFAULT_USERNAME_LENGTH)
+        if user and user.username:
+            return user.username
+
+        # 极低概率碰撞时重试，避免 username 唯一索引冲突。
+        for _ in range(10):
+            username = cls.generate_default_open_id()
+            if user_dao.get_by_username(username):
+                continue
+            now = datetime.now()
+            user = User(
+                id=uuid.uuid4().hex,
+                username=username,
+                realname=username,
+                source=ConstantEnum.APP__SOURCE,
+                del_flag=0,
+                create_time=now,
+                update_time=now
+            )
+            user_dao.add(user)
+            return username
+
+        raise RuntimeError("生成默认 open-id 失败：随机用户名连续冲突")
+
+    @classmethod
+    def resolve_current_open_id(cls, open_id=None, use_current=True):
+        """解析并初始化当前 open-id，返回最终使用值。"""
+        resolved_open_id = (open_id or "").strip() if isinstance(open_id, str) else open_id
+        if not resolved_open_id and use_current:
+            resolved_open_id = ConstantEnum.CURRENT__OPEN_ID or ConstantEnum.CURRENT__USER_NAME
+        if not resolved_open_id:
+            resolved_open_id = cls.get_api_key_file_open_id()
+        if not resolved_open_id:
+            resolved_open_id = cls.get_or_create_default_open_id()
+
+        ConstantEnum.CURRENT__OPEN_ID = resolved_open_id
+        if not ConstantEnum.CURRENT__USER_NAME:
+            ConstantEnum.CURRENT__USER_NAME = resolved_open_id
+        return resolved_open_id
+
+
 from datetime import date, datetime
 
 
@@ -317,6 +411,13 @@ class RequestUtil(BaseUtil):
         return cls.http_request("get", url, params=params, headers=headers, *args, **argss)
 
     @classmethod
+    def get_user_by_username(cls, username):
+        from .dao import UserDao, User
+        user_dao = UserDao()
+        user = user_dao.get_by_username(username)
+        return user
+
+    @classmethod
     def http_request(cls, method, url, data=None, params=None, headers=None, options=None, *args,
                      timeout=ApiEnum.DEFAULT__REQUEST_TIMEOUT, **argss):
         def _get_or_create_user(username):
@@ -345,6 +446,8 @@ class RequestUtil(BaseUtil):
                 url = cls.BASE_URL + url
             headers['App-Id'] = ConstantEnum.APP__ID
             # ConstantEnum.CURRENT__USER_NAME = ConstantEnum.CURRENT__OPEN_ID = "ou_86fdd8e0d5f116c18a9dd550abefe6d2"
+            if not (ApiEnum.API_SECRET_KEY or ConstantEnum.CURRENT__USER_NAME or ConstantEnum.CURRENT__OPEN_ID):
+                OpenIdUtil.resolve_current_open_id(use_current=False)
             current__user_name = ApiEnum.API_SECRET_KEY or ConstantEnum.CURRENT__USER_NAME or ConstantEnum.CURRENT__OPEN_ID
             found_user = None
             if (not ApiEnum.TOKEN or not ApiEnum.OPEN_TOKEN) and current__user_name:
@@ -355,6 +458,7 @@ class RequestUtil(BaseUtil):
                     if found_user:
                         ApiEnum.TOKEN = found_user.token
                         ApiEnum.OPEN_TOKEN = found_user.open_token
+                        current__user_name = found_user.username
                     if not ApiEnum.TOKEN or not ApiEnum.OPEN_TOKEN:
                         new_current_user = _get_or_create_user(current__user_name)
                         if new_current_user:
@@ -417,8 +521,6 @@ class RequestUtil(BaseUtil):
             response_text0 = response.text
             response_text = response_text0 if ConstantEnum.is_debug() else response
             status_code = response.status_code
-            if current__user_name == "13800000000":
-                status_code = 402
             if status_code == 401 and cls.authorization_retry_count < cls.AUTHORIZATION_RETRY_COUNT_MAX:
                 ApiEnum.TOKEN = ApiEnum.OPEN_TOKEN = None
                 if found_user:
@@ -436,8 +538,8 @@ class RequestUtil(BaseUtil):
                                                   "timeout",
                                                   timeout)  ## ARK_CLAW ##
                 return f'''⚠️ 因账户余额不足, 技能使用失败, 请按照如下步骤进行充值: 
-👉 1. 先输入命令 "安装支付技能 smyx-payment", 等待安装完成. (如果已经安装支付技能过则忽略此步骤)
-👉 2. 再输入命令 "技能账户充值", 然后跟随系统提示操作后即可继续使用技能.
+👉 1. 先输入命令 "安装生命涌现支付技能 smyx-payment", 等待安装完成. (如果已经安装支付技能过则忽略此步骤)
+👉 2. 再输入命令 "技能账户充值续费", 然后跟随系统提示操作后即可继续使用技能.
 {response_text0 or ""}
 '''
             elif status_code != 200:

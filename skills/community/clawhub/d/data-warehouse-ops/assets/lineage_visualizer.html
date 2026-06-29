@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据血缘可视化 — Data Lineage Visualizer</title>
+<script src="https://cdn.jsdelivr.net/npm/vis-network@9.1.6/dist/vis-network.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f2f5}
+.header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:16px 24px}
+.header h1{font-size:22px}.header .meta{font-size:12px;opacity:.7;margin-top:2px}
+.layout{display:flex;height:calc(100vh - 70px)}
+.sidebar{width:280px;background:#fff;padding:16px;overflow-y:auto;border-right:1px solid #e0e0e0}
+.main{flex:1;position:relative}
+#network{width:100%;height:100%}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px}
+.stat{background:#f8fafc;padding:8px;border-radius:6px;text-align:center}
+.stat .num{font-size:20px;font-weight:700;color:#1a1a2e}.stat .lbl{font-size:10px;color:#888}
+.legend{margin-top:14px;font-size:12px}
+.legend-item{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.legend-dot{width:10px;height:10px;border-radius:50%}
+.edge-legend{display:flex;align-items:center;gap:6px;margin-bottom:4px;font-size:11px}
+.edge-style{width:16px;border-bottom:2px solid #333}
+.filter{margin-bottom:12px}
+.filter input{width:100%;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:12px}
+table{width:100%;border-collapse:collapse;margin-top:12px;font-size:11px}
+th,td{padding:5px 6px;border-bottom:1px solid #eee;text-align:left}
+th{color:#888;font-weight:600}
+.highlight{background:#fef3c7}
+</style>
+</head>
+<body>
+<div class="header">
+<h1>🔗 数据血缘可视化</h1>
+<div class="meta" id="meta">--</div>
+</div>
+<div class="layout">
+<div class="sidebar">
+<div class="filter"><input type="text" id="searchInput" placeholder="🔍 搜索表名..." oninput="filterNodes()"></div>
+<div class="stats" id="statsArea"></div>
+<div class="legend">
+<h3 style="font-size:13px;margin-bottom:6px">图例</h3>
+<div class="legend-item"><div class="legend-dot" style="background:#4caf50"></div>源表</div>
+<div class="legend-item"><div class="legend-dot" style="background:#ff9800"></div>目标表</div>
+<div class="legend-item"><div class="legend-dot" style="background:#2196f3"></div>中转表</div>
+<div class="edge-legend"><div class="edge-style" style="border-color:#2e7d32"></div>INSERT</div>
+<div class="edge-legend"><div class="edge-style" style="border-style:dashed;border-color:#1565c0"></div>CTAS</div>
+<div class="edge-legend"><div class="edge-style" style="border-style:dotted;border-color:#6a1b9a"></div>VIEW</div>
+</div>
+<h3 style="font-size:13px;margin-top:14px">表引用排名</h3>
+<table id="topTable"><thead><tr><th>表名</th><th>引用</th></tr></thead><tbody></tbody></table>
+</div>
+<div class="main"><div id="network"></div></div>
+</div>
+<script>
+// Lineage data - injected by generation script
+const LINAGE_DATA = {
+  nodes: [], edges: [], summary: {}, generated_at: new Date().toISOString()
+};
+
+let network;
+
+function init() {
+  document.getElementById('meta').textContent = '生成时间: ' + new Date(LINAGE_DATA.generated_at).toLocaleString() + ' | 血缘级别: table';
+  
+  const s = LINAGE_DATA.summary;
+  document.getElementById('statsArea').innerHTML = `
+    <div class="stat"><div class="num">${s.total_tables||0}</div><div class="lbl">表总数</div></div>
+    <div class="stat"><div class="num">${s.total_edges||0}</div><div class="lbl">血缘关系</div></div>
+    <div class="stat"><div class="num">${s.source_tables||0}</div><div class="lbl">源表</div></div>
+    <div class="stat"><div class="num">${s.target_tables||0}</div><div class="lbl">目标表</div></div>
+  `;
+  
+  const nodes = new vis.DataSet(LINAGE_DATA.nodes.map(n => ({
+    id:n.id,label:n.label,
+    color:{background:n.group==='source'?'#c8e6c9':n.group==='target'?'#ffe0b2':'#bbdefb',
+           border:n.group==='source'?'#4caf50':n.group==='target'?'#ff9800':'#2196f3'},
+    font:{size:10},borderWidth:1,shape:'box',margin:8
+  })));
+  
+  const edges = new vis.DataSet(LINAGE_DATA.edges.map(e => ({
+    from:e.from,to:e.to,label:e.label,arrows:'to',
+    font:{size:9},color:{color:e.label==='INSERT'?'#2e7d32':e.label==='CTAS'?'#1565c0':e.label==='VIEW'?'#6a1b9a':'#333'},
+    dashes:e.label==='CTAS'||e.label==='VIEW',width:1
+  })));
+  
+  network = new vis.Network(document.getElementById('network'),{nodes,edges},{
+    layout:{hierarchical:{direction:'LR',sortMethod:'directed',nodeSpacing:150,levelSeparation:220}},
+    physics:{hierarchicalRepulsion:{nodeDistance:130},solver:'hierarchicalRepulsion'},
+    interaction:{hover:true,tooltipDelay:100,navigationButtons:true}
+  });
+  
+  // Top tables
+  const topTb = document.querySelector('#topTable tbody');
+  (LINAGE_DATA.summary.top_tables||[]).forEach(t => {
+    topTb.innerHTML += `<tr><td style="font-size:10px">${t.name}</td><td>${t.uses}</td></tr>`;
+  });
+}
+
+function filterNodes() {
+  const q = document.getElementById('searchInput').value.toLowerCase();
+  if (!network) return;
+  if (!q) {
+    LINAGE_DATA.nodes.forEach(n => network.body.data.nodes.update({id:n.id,hidden:false}));
+    return;
+  }
+  LINAGE_DATA.nodes.forEach(n => {
+    const match = n.label.toLowerCase().includes(q);
+    network.body.data.nodes.update({id:n.id,hidden:!match});
+  });
+}
+
+init();
+</script>
+</body>
+</html>

@@ -38,7 +38,7 @@
 | 模板         | 复制 `assets/pmax-create-template.json`，字段见 `assets/pmax-create-template.md`                                                                                                                        |
 | **素材转换** | `siluzan-tso ad pmax-image-convert --input ./banner.jpg --output-dir ./assets --prefix <name> [--update-config ./pmax.json]`                                                                            |
 | 地理 ID      | `siluzan-tso ad geo search -a <accountId> -q "<地区名>"`                                                                                                                                                |
-| 校验         | `siluzan-tso ad pmax-validate --config-file ./pmax.json [--json-out ./snap-pmax]`（图片规格 + 文案超长 `lengthViolations`；超长勿自动截断，见 `google-ads/google-ads-campaign-plan.md` § 超长人工确认） |
+| 校验         | `siluzan-tso ad pmax-validate --config-file ./pmax.json [--json-out ./snap-pmax]`（图片规格 + 文案超长 `lengthViolations`；超长勿自动截断，见 `references/google-ads/google-ads-campaign-plan.md` § 超长人工确认） |
 | 创建         | `siluzan-tso ad pmax-create --config-file ./pmax.json [--json-out ./snap-pmax]`                                                                                                                         |
 | 复核         | `siluzan-tso ad campaigns -a <accountId> --json-out ./snap` → `channelTypeV2` 为 `PERFORMANCE_MAX`                                                                                                      |
 
@@ -77,7 +77,7 @@
 
 ## 广告的编辑
 
-已上线系列勿用 `campaign-create` 覆盖；改方案/重建见 **`google-ads/google-ads-campaign-plan.md`** § 已上线后的修改；分步 CRUD 用下文 `ad *-edit` 等，写后读命令复核。
+已上线系列勿用 `campaign-create` 覆盖；改方案/重建见 **`references/google-ads/google-ads-campaign-plan.md`** § 已上线后的修改；分步 CRUD 用下文 `ad *-edit` 等，写后读命令复核。
 
 ### 广告新增
 
@@ -152,7 +152,7 @@ done
 
 **幂等性（Agent 侧）**：CLI 当前无 `--idempotent` 参数，请脚本侧先用 `ad groups --json-out ./snap` / `ad keywords --json-out ./snap` / `ad list --json-out ./snap` / `ad extension list --json-out ./snap` 取已有实体清单，按 `name + adgroupId` 等键过滤待创建项；HTTP 400 多半是重复创建，建议捕获并跳过。
 
-**字符上限**（Agent 侧校验）：标题 ≤30、描述 ≤90、CALLOUT ≤25、Sitelink Text ≤25。CJK 字符按 2 计（Google 规范），`google-ads/rules/google-ads-compliance.md` 有详细规则。
+**字符上限**（Agent 侧校验）：标题 ≤30、描述 ≤90、CALLOUT ≤25、Sitelink Text ≤25。CJK 字符按 2 计（Google 规范），`references/google-ads/rules/google-ads-compliance.md` 有详细规则。
 
 ---
 
@@ -320,7 +320,7 @@ siluzan-tso keyword geo-list [--country-code <US,CN,...>] [--name-contains <text
 
 不提交 API；创建系列前**建议**跑。命令、选项、与 create 共用校验逻辑见 **`references/google-ads/google-ads-campaign-plan.md`** § 校验与创建（后端/Google 硬约束，不含关键词分层占比）。
 
-**超长内容**：加 **`--json-out <dir>`**（推荐，与 create/batch 共用目录）或 `--json-out` 时响应含 `lengthViolations`（完整 `text` + JSON `path`）。Agent **勿自动截断**；须列出全部超长项与改写方案，用户确认后再改 JSON 并重跑 validate（流程见 `google-ads/google-ads-campaign-plan.md` § 超长人工确认）。
+**超长内容**：加 **`--json-out <dir>`**（推荐，与 create/batch 共用目录）或 `--json-out` 时响应含 `lengthViolations`（完整 `text` + JSON `path`）。Agent **勿自动截断**；须列出全部超长项与改写方案，用户确认后再改 JSON 并重跑 validate（流程见 `references/google-ads/google-ads-campaign-plan.md` § 超长人工确认）。
 
 ---
 

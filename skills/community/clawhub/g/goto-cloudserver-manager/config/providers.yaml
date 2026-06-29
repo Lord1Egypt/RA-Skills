@@ -1,0 +1,77 @@
+providers:
+  aliyun:
+    name: 阿里云
+    sdk: alibabacloud-ecs20140526
+    auth:
+      type: access_key
+      access_key_id: ${ALIYUN_ACCESS_KEY_ID}
+      access_key_secret: ${ALIYUN_ACCESS_KEY_SECRET}
+    regions:
+      - cn-hangzhou
+      - cn-shanghai
+      - cn-beijing
+      - cn-shenzhen
+    command_channel: cloud_assistant     # 主通道：阿里云云助手
+    command_fallback: winrm_or_ssh       # 备用通道
+    api_endpoint: ecs.aliyuncs.com
+    cloud_assistant_endpoint: ecs.{region}.aliyuncs.com
+    timeout_seconds: 300
+    poll_interval_seconds: 5
+    max_poll_attempts: 60
+
+  tencent:
+    name: 腾讯云
+    sdk: tencentcloud-sdk-python
+    auth:
+      type: secret_key
+      secret_id: ${TENCENT_SECRET_ID}
+      secret_key: ${TENCENT_SECRET_KEY}
+    regions:
+      - ap-guangzhou
+      - ap-shanghai
+      - ap-beijing
+      - ap-chengdu
+    command_channel: tat               # 主通道：腾讯云 TAT 自动化助手
+    command_fallback: winrm_or_ssh
+    api_endpoint: cvm.tencentcloudapi.com
+    tat_endpoint: tat.tencentcloudapi.com
+    timeout_seconds: 300
+    poll_interval_seconds: 5
+    max_poll_attempts: 60
+
+  tencent-lighthouse:
+    name: 腾讯云轻量应用服务器
+    sdk: tencentcloud-sdk-python-lighthouse
+    auth:
+      type: secret_key
+      secret_id: ${TENCENT_SECRET_ID}
+      secret_key: ${TENCENT_SECRET_KEY}
+    regions:
+      - ap-guangzhou
+      - ap-shanghai
+      - ap-beijing
+      - ap-chengdu
+    command_channel: tat               # 主通道：腾讯云 TAT 自动化助手（同时支持 CVM 与 Lighthouse 实例）
+    command_fallback: winrm_or_ssh
+    api_endpoint: lighthouse.tencentcloudapi.com
+    tat_endpoint: tat.tencentcloudapi.com
+    timeout_seconds: 300
+    poll_interval_seconds: 5
+    max_poll_attempts: 60
+
+  huawei:
+    name: 华为云
+    sdk: huaweicloudsdkecs
+    auth:
+      type: ak_sk
+      access_key_id: ${HUAWEI_ACCESS_KEY_ID}
+      secret_access_key: ${HUAWEI_SECRET_ACCESS_KEY}
+      project_id: ${HUAWEI_PROJECT_ID}
+    regions:
+      - cn-east-3
+      - cn-north-4
+      - cn-south-1
+    command_channel: ssh               # 华为云无统一云助手，优先走 SSH
+    command_fallback: winrm
+    api_endpoint: ecs.{region}.myhuaweicloud.com
+    timeout_seconds: 300

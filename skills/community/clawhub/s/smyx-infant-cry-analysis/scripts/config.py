@@ -7,7 +7,7 @@ from enum import Enum
 
 from skills.smyx_common.scripts.config import ConstantEnum as ConstantEnumBase
 
-from skills.face_analysis.scripts.config import ApiEnum as ApiEnumParent, ConstantEnum as ConstantEnumParent, \
+from skills.smyx_analysis.scripts.config import ApiEnum as ApiEnumParent, ConstantEnum as ConstantEnumParent, \
     ApiEnumCommonAiMixin
 
 SceneCodeEnum = ConstantEnumBase.SceneCodeEnum

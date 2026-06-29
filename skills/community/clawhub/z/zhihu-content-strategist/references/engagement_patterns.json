@@ -1,0 +1,63 @@
+{
+  "description": "Zhihu engagement pattern reference data.",
+  "version": "1.0.0",
+  "opening_hook_types": [
+    {
+      "type": "question_based",
+      "description": "Start with a rhetorical or provocative question",
+      "effectiveness": 0.85,
+      "example": "你有没有想过，为什么90%的人在这件事上都做错了？"
+    },
+    {
+      "type": "story_based",
+      "description": "Open with a personal anecdote",
+      "effectiveness": 0.82,
+      "example": "三年前我也面临同样的问题，直到我遇到了一个贵人……"
+    },
+    {
+      "type": "counter_intuitive",
+      "description": "Make a surprising claim that challenges common belief",
+      "effectiveness": 0.88,
+      "example": "你可能不相信，但努力工作的回报率其实在逐年下降"
+    },
+    {
+      "type": "data_drop",
+      "description": "Lead with a striking statistic or data point",
+      "effectiveness": 0.80,
+      "example": "我调研了500个案例，发现87%的人都忽略了这一点"
+    },
+    {
+      "type": "authority_based",
+      "description": "Establish credibility upfront",
+      "effectiveness": 0.75,
+      "example": "作为在这个领域工作了10年的从业者，我想说……"
+    }
+  ],
+  "structure_patterns": {
+    "problem_solution": {"frequency": 0.32, "best_for": ["技术教程", "职场建议"]},
+    "timeline_narrative": {"frequency": 0.25, "best_for": ["个人成长", "职业经历"]},
+    "listicle": {"frequency": 0.22, "best_for": ["知识清单", "工具推荐"]},
+    "deep_dive_analysis": {"frequency": 0.21, "best_for": ["行业分析", "趋势预测"]}
+  },
+  "emotional_tone": {
+    "empathic": {"frequency": 0.35, "top_domains": ["psychology", "career"]},
+    "authoritative": {"frequency": 0.30, "top_domains": ["tech", "finance"]},
+    "humorous": {"frequency": 0.20, "top_domains": ["lifestyle", "tech"]},
+    "contrarian": {"frequency": 0.15, "top_domains": ["career", "finance"]}
+  },
+  "engagement_metrics": {
+    "ideal_length_chars": {"min": 1200, "max": 3000, "sweet_spot": 2000},
+    "ideal_image_count": {"min": 0, "max": 5, "sweet_spot": 2},
+    "comment_to_upvote_ratio": 0.08,
+    "best_publish_time": {
+      "tech": "Tuesday 10:00 AM / Thursday 8:00 PM",
+      "career": "Monday 9:00 AM / Wednesday 12:00 PM",
+      "psychology": "Weekend 10:00 AM - 2:00 PM",
+      "finance": "Weekday 8:00 PM - 10:00 PM"
+    }
+  },
+  "seo_keywords": {
+    "recommended_density": "2-3%",
+    "placement": ["Title", "First 100 chars", "Section headers", "Last paragraph"]
+  }
+}

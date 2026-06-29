@@ -1,0 +1,10 @@
+{
+  "_comment": "Copy relevant fields into ~/.openclaw/openclaw.json — do not replace your whole config with this file",
+  "tools": {
+    "browser": { "enabled": false },
+    "imageGeneration": { "enabled": false }
+  },
+  "skills": {
+    "promptBudget": "minimal"
+  }
+}

@@ -5,7 +5,7 @@ Runtime artifacts make pipeline claims inspectable without forcing every normal 
 ## Scope
 Artifacts are required for `debug` and `audit` mode.
 
-`normal` mode may build the same objects internally but should expose only the compact evidence summary unless the user asks for more detail.
+`normal` mode may build the same objects internally but should expose pipeline evidence only in the reply footer/footnote unless the user asks for more detail.
 
 ## Run folder
 Use one folder per pipeline run:
@@ -63,6 +63,6 @@ NOT EXECUTED: <reason>
 In `debug` mode, if artifact persistence fails but the pipeline can still answer safely, report the artifact failure explicitly before answering. Do not pretend the artifact exists.
 
 ## Transcript behavior
-- `normal`: do not expose artifact paths unless asked.
+- `normal`: do not expose artifact paths unless asked; put task type, snippet IDs, compression/fallback status, model used, files read, and files updated in the footer/footnote.
 - `debug`: include artifact paths with full Retrieval Bundle and Context Pack output.
 - `audit`: include artifact paths, hashes, and Receipt Ledger.

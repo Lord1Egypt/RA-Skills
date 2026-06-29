@@ -1,0 +1,60 @@
+{
+  "complianceScore": 0,
+  "complianceStatus": "🔴 需重点关注",
+  "nationalRequirements": {
+    "certifications": [
+      {
+        "name": "CPSC 认证",
+        "isRequired": true,
+        "description": "消费品安全委员会，所有儿童产品必须"
+      },
+      {
+        "name": "CPC 证书",
+        "isRequired": true,
+        "description": "儿童产品证书，制造商/进口商必须出具"
+      }
+    ],
+    "tests": [
+      {
+        "name": "ASTM F963 测试",
+        "isRequired": true,
+        "description": "玩具安全标准测试"
+      },
+      {
+        "name": "铅含量测试",
+        "isRequired": false,
+        "condition": "条件",
+        "description": "总铅≤100ppm"
+      }
+    ]
+  },
+  "platformRequirements": [
+    {
+      "platform": "Amazon US",
+      "description": "必须在合规仪表板提交 CPC 证书和产品检测报告，否则将下架"
+    }
+  ],
+  "nextActions": [
+    {
+      "priority": "high",
+      "actionType": "APPLY_CERT",
+      "description": "联系 CPSC 认可实验室办理 CPSC 认证",
+      "status": "pending"
+    },
+    {
+      "priority": "high",
+      "actionType": "ISSUE_DOC",
+      "description": "提供测试报告后，制造商自行起草并出具 CPC 证书",
+      "status": "pending"
+    },
+    {
+      "priority": "medium",
+      "actionType": "BOOK_TESTING",
+      "description": "预定 ASTM F963 第三方实验室测试",
+      "status": "pending"
+    }
+  ],
+  "warnings": [
+    "在完成 CPSC + CPC 认证前，绝对不要发货入仓"
+  ]
+}

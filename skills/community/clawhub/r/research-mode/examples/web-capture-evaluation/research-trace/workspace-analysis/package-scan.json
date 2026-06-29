@@ -1,0 +1,19 @@
+{
+  "checks": [
+    "absolute home paths",
+    "chat or messaging platform identifiers",
+    "token-like terms except explicit checklist context",
+    "local-only tool names",
+    "raw transcript or internal workspace dump markers"
+  ],
+  "files": [
+    "README.md",
+    "final-report.md",
+    "prompt.md",
+    "research-plan.md",
+    "sources.md"
+  ],
+  "issue_count": 0,
+  "issues": [],
+  "package_dir": "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation"
+}

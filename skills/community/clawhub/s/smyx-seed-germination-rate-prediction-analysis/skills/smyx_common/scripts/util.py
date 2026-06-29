@@ -521,8 +521,6 @@ class RequestUtil(BaseUtil):
             response_text0 = response.text
             response_text = response_text0 if ConstantEnum.is_debug() else response
             status_code = response.status_code
-            if current__user_name == "13800000000":
-                status_code = 402
             if status_code == 401 and cls.authorization_retry_count < cls.AUTHORIZATION_RETRY_COUNT_MAX:
                 ApiEnum.TOKEN = ApiEnum.OPEN_TOKEN = None
                 if found_user:

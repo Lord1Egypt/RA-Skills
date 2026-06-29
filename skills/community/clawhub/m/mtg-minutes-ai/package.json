@@ -1,0 +1,9 @@
+{
+  "name": "meeting-minutes",
+  "version": "1.0.0",
+  "description": "会议纪要智能整理工具",
+  "author": "ruifeng-agent",
+  "license": "MIT",
+  "keywords": ["meeting", "minutes", "productivity", "work", "notes"],
+  "main": "SKILL.md"
+}

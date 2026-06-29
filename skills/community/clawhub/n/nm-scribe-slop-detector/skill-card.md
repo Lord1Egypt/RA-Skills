@@ -11,33 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers, documentation maintainers, and reviewers use this skill to audit prose, technical documentation, and repository text for dense AI-writing markers, identity leaks, hallucinated references, stubs, and weak evidence behind public claims. <br>
+Developers, documentation maintainers, and reviewers use this skill to audit prose, documentation, and repository text for AI-writing markers, identity leaks, hallucinated references, weak claims, stubs, and cleanup risks before publication or release. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can steer an agent toward broad repository audits, CI gates, network checks, and remediation workflows that exceed a passive prose review. <br>
-Mitigation: Invoke it on explicit target files or directories, review proposed checks before execution, and approve any CI or repository-wide changes separately. <br>
-Risk: Automated remediation could remove acceptable prose, domain-specific wording, or low-confidence findings without enough context. <br>
-Mitigation: Treat findings as review recommendations, require human approval for edits, and avoid auto-applying low-confidence changes. <br>
-Risk: The identity-linked fiction heuristic may be unsuitable for automated decisions. <br>
-Mitigation: Use that heuristic only as a manual review signal and do not make acceptance, rejection, or enforcement decisions from it alone. <br>
+Risk: Broad writing-related triggers may cause the skill to run during many documentation and repository-review workflows. <br>
+Mitigation: Review or narrow triggers before installation so the skill runs only in intended audit contexts. <br>
+Risk: Repository review and remediation behavior can affect more than passive prose detection. <br>
+Mitigation: Keep remediation and prevention-mode behavior disabled unless explicitly requested, and review proposed changes before applying them. <br>
+Risk: Style and demographic heuristics can overstate confidence or produce false positives. <br>
+Mitigation: Treat heuristic findings as advisory and require human review, especially for low-confidence findings. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-scribe-slop-detector) <br>
-- [ClawHub metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scribe) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-scribe-slop-detector) <br>
+- [Publisher profile](https://clawhub.ai/user/athola) <br>
+- [Homepage from ClawHub metadata](https://github.com/athola/claude-night-market/tree/master/plugins/scribe) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown reports with findings, scores, recommendations, and optional command or configuration snippets] <br>
+**Output Format:** [Markdown reports with structured findings and optional inline shell commands] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include line-anchored findings, severity labels, confidence levels, and remediation guidance.] <br>
+**Other Properties Related to Output:** [Findings may include file, line, category, severity, confidence, evidence, rationale, and suggested fix.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata) <br>
+1.9.13 (source: ClawHub release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

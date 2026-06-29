@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>易经商业决策分析报告</title>
+<style>
+  :root {
+    --bg: #fafaf8;
+    --card: #ffffff;
+    --text: #1a1a2e;
+    --text-secondary: #555;
+    --border: #e5e0d8;
+    --accent: #8b2500;
+    --accent-light: #f5efe8;
+    --yang: #1a1a2e;
+    --yin: #1a1a2e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 48px 24px;
+  }
+
+  /* Cover */
+  .cover {
+    text-align: center;
+    padding: 80px 0 64px;
+    page-break-after: always;
+  }
+  .cover .hexagram-svg { width: 160px; height: 200px; margin: 0 auto 32px; }
+  .cover .hexagram-svg svg { width: 100%; height: 100%; }
+  .cover h1 { font-size: 28px; font-weight: 700; letter-spacing: 2px; margin-bottom: 12px; }
+  .cover .subtitle { font-size: 16px; color: var(--text-secondary); margin-bottom: 48px; }
+  .cover .meta { font-size: 13px; color: #999; }
+  .cover .meta span { margin: 0 16px; }
+
+  /* Sections */
+  .section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 32px 36px;
+    margin-bottom: 24px;
+    page-break-inside: avoid;
+  }
+  .section h2 {
+    font-size: 18px;
+    border-left: 3px solid var(--accent);
+    padding-left: 12px;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+  .section h3 { font-size: 15px; margin: 16px 0 8px; color: var(--accent); }
+
+  /* Hexagram display */
+  .hex-inline {
+    display: flex; align-items: center; gap: 20px;
+    margin-bottom: 24px; padding: 20px;
+    background: var(--accent-light);
+    border-radius: 4px;
+  }
+  .hex-inline .svg-wrap { width: 80px; height: 100px; flex-shrink: 0; }
+  .hex-inline .svg-wrap svg { width: 100%; height: 100%; }
+  .hex-inline .info { font-size: 14px; }
+  .hex-inline .info strong { font-size: 18px; display: block; margin-bottom: 4px; }
+
+  /* Hexagram comparison row */
+  .hex-row {
+    display: flex; gap: 24px; justify-content: center;
+    margin: 24px 0; flex-wrap: wrap;
+  }
+  .hex-row .hex-item {
+    text-align: center;
+    width: 100px;
+  }
+  .hex-row .hex-item svg { width: 80px; height: 100px; }
+  .hex-row .hex-item .hlabel { font-size: 12px; color: var(--text-secondary); margin-top: 6px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { background: var(--accent-light); font-weight: 600; }
+
+  /* Lists */
+  ul, ol { padding-left: 20px; margin: 8px 0; }
+  li { margin-bottom: 6px; }
+
+  /* Stage diagram */
+  .stages {
+    display: flex; flex-direction: column; gap: 8px;
+    margin: 16px 0;
+  }
+  .stage {
+    display: flex; align-items: center; gap: 16px;
+    padding: 12px 16px;
+    background: var(--bg);
+    border-radius: 4px;
+    border-left: 3px solid transparent;
+  }
+  .stage.current { border-left-color: var(--accent); background: var(--accent-light); }
+  .stage .st-num {
+    width: 28px; height: 28px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700;
+    background: var(--text); color: #fff;
+  }
+  .stage.current .st-num { background: var(--accent); }
+  .stage .st-body { flex: 1; font-size: 13px; }
+  .stage .st-body strong { font-size: 14px; }
+
+  /* Warnings */
+  .warning {
+    background: #fff8f5;
+    border: 1px solid #f0d0c0;
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .warning strong { color: #c0392b; }
+
+  /* Footer */
+  .footer {
+    text-align: center; margin-top: 48px; padding-top: 24px;
+    border-top: 1px solid var(--border);
+    font-size: 12px; color: #bbb;
+  }
+
+  @media print {
+    body { padding: 0; }
+    .section { border: 1px solid #ddd; }
+    .cover { page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════ COVER ═══════ -->
+<div class="cover">
+  <div class="hexagram-svg">
+    <!-- HEXAGRAM_SVG_PLACEHOLDER -->
+  </div>
+  <h1>易经商业决策分析报告</h1>
+  <div class="subtitle">HEXAGRAM_NAME — BUSINESS_MODEL</div>
+  <div class="meta">
+    <span>CORE_QUESTION</span>
+  </div>
+  <div class="meta" style="margin-top:8px;">
+    <span>DATE</span>
+  </div>
+</div>
+
+<!-- ═══════ SECTION 1: 情境识别 ═══════ -->
+<div class="section">
+  <h2>一、情境识别</h2>
+  <div class="hex-inline">
+    <div class="svg-wrap"><!-- H_SVG_MAIN --></div>
+    <div class="info">
+      <strong>主卦：MAIN_HEXAGRAM</strong>
+      MATCH_REASON
+    </div>
+  </div>
+  <h3>西方模型类比</h3>
+  <p>WESTERN_ANALOGY</p>
+</div>
+
+<!-- ═══════ SECTION 2: 阶段判断 ═══════ -->
+<div class="section">
+  <h2>二、阶段判断</h2>
+  <p>CURRENT_STAGE_DESC</p>
+  <div class="stages">
+    <!-- STAGES_PLACEHOLDER -->
+  </div>
+</div>
+
+<!-- ═══════ SECTION 3: 核心矛盾 ═══════ -->
+<div class="section">
+  <h2>三、核心矛盾（阴阳分析）</h2>
+  <!-- YIN_YANG_PLACEHOLDER -->
+</div>
+
+<!-- ═══════ SECTION 4: 行动策略 ═══════ -->
+<div class="section">
+  <h2>四、行动策略</h2>
+  <!-- STRATEGIES_PLACEHOLDER -->
+</div>
+
+<!-- ═══════ SECTION 5: 风险警示 ═══════ -->
+<div class="section">
+  <h2>五、风险警示与格栅交叉</h2>
+  <div class="hex-row">
+    <!-- CROSS_HEXAGRAMS_PLACEHOLDER -->
+  </div>
+  <div class="warning">
+    <!-- WARNINGS_PLACEHOLDER -->
+  </div>
+</div>
+
+<!-- ═══════ SECTION 6: 演化预判 ═══════ -->
+<div class="section">
+  <h2>六、演化预判</h2>
+  <p>前卦（从哪来）：PREV_HEX</p>
+  <p>后卦（往哪去）：NEXT_HEX</p>
+  <p>EVOLUTION_ANALYSIS</p>
+</div>
+
+<!-- ═══════ SECTION 7: 双格栅验证 ═══════ -->
+<div class="section">
+  <h2>七、双格栅验证</h2>
+  <!-- DUAL_LATTICE_PLACEHOLDER -->
+</div>
+
+<!-- ═══════ FOOTER ═══════ -->
+<div class="footer">
+  易经商业决策模型 · 雄韬XTOCN · www.xtocn.com<br>
+  本报告由 AI 基于易经思维模型框架生成，仅供参考，不构成决策建议。
+</div>
+
+</body>
+</html>

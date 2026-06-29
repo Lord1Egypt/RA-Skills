@@ -1,0 +1,50 @@
+{
+  "score": 65,
+  "status": "🟡 需改进",
+  "nationalRequirements": {
+    "certifications": [
+      {
+        "name": "UKCA",
+        "isRequired": true,
+        "description": "英国强制，CE 不能替代（2023年起）"
+      }
+    ],
+    "labels": [
+      {
+        "name": "UKCA 标志",
+        "isRequired": true,
+        "description": "产品或包装上标注"
+      }
+    ]
+  },
+  "platformRequirements": [
+    {
+      "platform": "Amazon UK",
+      "description": "强制要求提供 UKCA 声明与产品图片验证"
+    }
+  ],
+  "deductedRequirements": [
+    {
+      "name": "EMC 测试",
+      "reason": "由于已有 CE 认证，可复用 EMC 测试报告，自动扣减该待办项"
+    },
+    {
+      "name": "LVD 测试",
+      "reason": "由于已有 CE 认证，可复用 LVD 测试报告，自动扣减该待办项"
+    }
+  ],
+  "nextActions": [
+    {
+      "priority": "high",
+      "actionType": "APPLY_UKCA",
+      "description": "利用现有 CE 测试报告转换为 UKCA DOC 声明",
+      "status": "pending"
+    },
+    {
+      "priority": "high",
+      "actionType": "UPDATE_LABEL",
+      "description": "设计并加贴 UKCA 标志至产品及包装",
+      "status": "pending"
+    }
+  ]
+}

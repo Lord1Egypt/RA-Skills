@@ -622,7 +622,7 @@ components:
           description: Expected output amount in wei
         feeBps:
           type: integer
-          description: Fee in basis points (e.g. 75 = 0.75%)
+          description: Fee in basis points (e.g. 45 = 0.45%)
         feeAmountUSD:
           type: string
           description: Fee amount in USD

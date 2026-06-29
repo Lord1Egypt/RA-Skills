@@ -1,0 +1,24 @@
+{
+  "id": "openclaw-telegram-chat-isolation-001",
+  "title": "Telegram chats must be scoped per chat",
+  "type": "operational_fix",
+  "status": "validated",
+  "created": "2026-06-28",
+  "updated": "2026-06-28",
+  "applies_to": [
+    "openclaw",
+    "telegram"
+  ],
+  "problem": "Multiple Telegram users or bots can leak context if sessions are keyed too broadly.",
+  "solution": "Scope sessions by channel, account, chat, and thread. Always answer in the same chat where the request originated.",
+  "evidence": "Validated on a multi-bot OpenClaw setup using isolated Telegram providers and per-channel peer session separation.",
+  "risk": "Existing shared sessions may need migration or cleanup before multi-user access is safe.",
+  "tags": [
+    "telegram",
+    "privacy",
+    "multi-user",
+    "openclaw"
+  ],
+  "references": []
+}
+

@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agent-native Model Routing | Sage Router</title>
+  <meta name="description" content="Agent-native model routing for Codex-style, OpenAI-compatible, and local/Tailnet agents using route profiles, health-aware fallback, BYOK custody, and Responses API wiring." />
+  <link rel="canonical" href="https://sagerouter.dev/agent-native" />
+  <meta property="og:title" content="Agent-native Model Routing | Sage Router" />
+  <meta property="og:description" content="One OpenAI-compatible endpoint for agents that need frontier profiles, tool-aware routing, fallback, and private provider credential custody." />
+  <meta property="og:url" content="https://sagerouter.dev/agent-native" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07100d;
+      --panel: rgba(13,29,24,.86);
+      --soft: rgba(255,255,255,.05);
+      --text: #edfdf5;
+      --muted: #a9c5b8;
+      --line: rgba(166,255,207,.16);
+      --accent: #8df0b2;
+      --blue: #8ab4ff;
+      --amber: #f7d57a;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: linear-gradient(180deg, #07100d 0%, #0b1518 54%, #07100d 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+    .nav { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 24px 0; color: var(--muted); }
+    .brand { display: inline-flex; align-items: center; gap: 12px; font-weight: 900; color: var(--text); }
+    .brandMark { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid rgba(141,240,178,.42); border-radius: 8px; color: #062016; background: linear-gradient(135deg,var(--accent),var(--amber)); }
+    .navLinks { display: flex; gap: 22px; flex-wrap: wrap; font-size: 14px; font-weight: 750; }
+    .navLinks a:hover, footer a:hover { color: var(--text); }
+    header { padding: 52px 32px 30px; }
+    .eyebrow { color: var(--accent); font-weight: 900; letter-spacing: .16em; text-transform: uppercase; font-size: 12px; }
+    h1 { font-size: clamp(3rem, 7vw, 5.5rem); line-height: .94; margin: 14px 0 18px; letter-spacing: 0; max-width: 980px; }
+    .sub { color: var(--muted); max-width: 840px; font-size: 1.22rem; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 26px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; border-radius: 999px; padding: 0 18px; font-weight: 850; border: 1px solid var(--line); }
+    .btn.primary { background: var(--accent); color: #062017; border-color: transparent; }
+    .btn.secondary { background: rgba(255,255,255,.07); color: var(--text); }
+
+    .emailStart { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; max-width: 760px; margin: 22px 0 0; padding: 16px; border: 1px solid rgba(141,240,178,.24); border-radius: 8px; background: rgba(255,255,255,.045); }
+    .emailStart label { flex: 1 1 100%; font-weight: 900; }
+    .emailStart input { flex: 1 1 280px; min-height: 44px; border: 1px solid var(--line); border-radius: 999px; background: rgba(5,15,11,.74); color: var(--text); padding: 0 16px; font: inherit; }
+    .emailStart input::placeholder { color: #789184; }
+    .emailStart .btn { border: 0; cursor: pointer; }
+    .emailStart .btn:disabled { opacity: .72; cursor: wait; }
+    .emailStartStatus { flex: 1 1 100%; margin: 0; color: var(--muted); font-size: .9rem; }
+    main { padding: 18px 0 58px; }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .panel { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 22px; }
+    .panel.soft { background: var(--soft); }
+    h2 { margin: 0 0 14px; font-size: 1.55rem; letter-spacing: 0; }
+    h3 { margin: 0 0 8px; font-size: 1.05rem; letter-spacing: 0; }
+    p { margin: 0; color: var(--muted); }
+    code { color: #d9e6ff; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .section { margin-top: 22px; }
+    .sectionHeader { max-width: 780px; margin-bottom: 16px; }
+    .two { display: grid; grid-template-columns: minmax(0, .88fr) minmax(330px, .62fr); gap: 18px; align-items: start; }
+    .steps { display: grid; gap: 12px; }
+    .step { display: grid; grid-template-columns: 34px 1fr; gap: 12px; align-items: start; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: rgba(255,255,255,.045); }
+    .num { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 8px; background: rgba(141,240,178,.16); color: var(--accent); font-weight: 900; }
+    .codebox { white-space: pre-wrap; overflow: auto; border: 1px solid var(--line); border-radius: 8px; background: rgba(0,0,0,.24); color: #d9e6ff; padding: 16px; font-size: .9rem; }
+    .callout { border-color: rgba(247,213,122,.32); background: rgba(247,213,122,.07); }
+    .callout strong { color: var(--amber); }
+    footer { display: flex; gap: 18px; flex-wrap: wrap; color: var(--muted); font-size: .9rem; padding: 34px 32px 54px; border-top: 1px solid rgba(166,255,207,.1); }
+    footer span { margin-right: auto; }
+    @media (max-width: 900px) {
+      .grid, .two { grid-template-columns: 1fr; }
+      .nav { align-items: flex-start; flex-direction: column; }
+      header { padding-top: 36px; }
+    }
+    @media (max-width: 560px) {
+      .wrap, header, footer { padding-left: 20px; padding-right: 20px; }
+      .actions .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav wrap" aria-label="Main navigation">
+    <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+    <div class="navLinks">
+      <a href="/pricing">Pricing</a>
+      <a href="/models">Models</a>
+      <a href="/quickstart">Quickstart</a>
+      <a href="/compare/model-gateways">Compare</a>
+      <a href="/status">Status</a>
+      <a href="https://app.sagerouter.dev/account.html">Account</a>
+    </div>
+  </nav>
+
+  <header class="wrap">
+    <div class="eyebrow">Agent-native routing</div>
+    <h1>Agent-native model routing</h1>
+    <p class="sub">Give Codex-style and OpenAI-compatible agents one endpoint that can choose frontier routes, use premium Fusion synthesis, respect tool-use needs, fail over across healthy authorized providers, and keep provider credential custody local or under your own control.</p>
+    <div class="actions">
+      <a class="btn primary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key">Create hosted API key</a>
+      <a class="btn secondary" href="/quickstart">Read quickstart</a>
+      <a class="btn secondary" href="/docs/codex">Configure Codex</a>
+    </div>
+    <form class="emailStart" id="agent-native-email-form" data-email-activation-form data-oauth-activation="github" data-event-prefix="agent_native" data-sent-event="agent_native_magic_link_sent" data-source="agent-native" data-status-id="agent-native-email-status">
+      <label for="agent-native-email">Email me the API key setup link for agent routing</label>
+      <input id="agent-native-email" type="email" name="email" autocomplete="email" placeholder="you@company.com" required />
+      <button class="btn primary" type="submit">Email API key setup link</button>
+      <p class="emailStartStatus" id="agent-native-email-status" role="status">No provider key or credit card required until your generated sk_sage key exists.</p>
+    </form>
+  </header>
+
+  <main class="wrap">
+    <section class="grid" aria-label="Core agent-native features">
+      <article class="panel">
+        <h2>Profiles agents can name</h2>
+        <p>Use stable aliases such as <code>sage-router/frontier</code>, <code>sage-router/balanced</code>, <code>sage-router/agentic</code>, and premium <code>sage-router/fusion</code> instead of hard-coding one vendor model into every harness.</p>
+      </article>
+      <article class="panel">
+        <h2>Responses API ready</h2>
+        <p>Hosted, local, and Tailnet setups support OpenAI-compatible chat completions and Responses API wiring, including Codex profiles with <code>wire_api = "responses"</code>.</p>
+      </article>
+      <article class="panel">
+        <h2>Health-aware fallback</h2>
+        <p>Each request can build an ordered fallback chain from authorized local, Tailnet, BYOK, and hosted routes without switching providers mid-stream.</p>
+      </article>
+    </section>
+
+    <section class="section two">
+      <div>
+        <div class="sectionHeader">
+          <h2>Built for agent harnesses, not just chat demos</h2>
+          <p>Sage Router looks at tool schemas, requested model profiles, prompt shape, provider health, quotas, and deployment context before choosing a route.</p>
+        </div>
+        <div class="steps">
+          <div class="step"><span class="num">1</span><div><h3>Route by intent</h3><p>Tool calls, code/debug language, long context, vision hints, and requested profiles can push traffic toward models that fit the task.</p></div></div>
+          <div class="step"><span class="num">2</span><div><h3>Keep custody clear</h3><p>By default, provider keys and OAuth profiles stay with the customer-controlled router. Hosted keys authorize Sage Router account access; they do not imply pooled provider resale.</p></div></div>
+          <div class="step"><span class="num">3</span><div><h3>Deploy where agents run</h3><p>Use <code>https://api.sagerouter.dev/v1</code> for hosted access, <code>http://127.0.0.1:8790/v1</code> for local agents, or <code>http://&lt;tailnet-host&gt;:8790/v1</code> for private Tailnet routing.</p></div></div>
+        </div>
+      </div>
+      <aside class="panel soft">
+        <h2>Codex profile</h2>
+        <pre class="codebox">[model_providers.sage-router]
+name = "Sage Router"
+base_url = "https://api.sagerouter.dev/v1/"
+env_key = "OPENAI_API_KEY"
+wire_api = "responses"
+
+[profiles.sage-router-frontier]
+model_provider = "sage-router"
+model = "sage-router/frontier"</pre>
+        <p>Local and Tailnet Codex profiles use the same model profile with port <code>8790</code> on the router host.</p>
+      </aside>
+    </section>
+
+    <section class="section grid" aria-label="Agent workflows">
+      <article class="panel soft">
+        <h2>Codex and code agents</h2>
+        <p>Point Codex, OpenClaw, Cursor-style tools, and OpenAI SDK clients at one endpoint while preserving tool-call and Responses API compatibility.</p>
+      </article>
+      <article class="panel soft">
+        <h2>Gateway migration</h2>
+        <p>Move from <code>https://gateway.example/api/v1</code> to <code>https://api.sagerouter.dev/v1</code>, keep OpenAI-compatible clients, and route with <code>sage-router/frontier</code> or premium <code>sage-router/fusion</code>.</p>
+      </article>
+      <article class="panel soft">
+        <h2>Local-first operations</h2>
+        <p>Use hosted account and API-key management where useful, while keeping production provider access on local servers, private Tailnet hosts, or your own cloud.</p>
+      </article>
+    </section>
+
+    <section class="section two">
+      <article class="panel callout">
+        <h2><strong>Public metadata</strong></h2>
+        <p>Agents and operators can inspect public feature metadata at <code>https://api.sagerouter.dev/features/agent-native</code>. Model traffic still requires active generated <code>sk_sage_*</code> customer API keys.</p>
+      </article>
+      <article class="panel">
+        <h2>Next setup paths</h2>
+        <p><a href="/quickstart">Start with the hosted API quickstart</a>, compare positioning on <a href="/compare/model-gateways">Sage Router model gateway</a>, or estimate workflow fit with the <a href="/model-routing-calculator">model routing calculator</a>.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <span>Sage Router</span>
+    <a href="/pricing">Pricing</a>
+    <a href="/models">Models</a>
+    <a href="/docs/api-reference">API Reference</a>
+    <a href="/security">Security</a>
+    <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+  </footer>
+  <script src="/marketing-email-activation.js"></script>
+</body>
+</html>

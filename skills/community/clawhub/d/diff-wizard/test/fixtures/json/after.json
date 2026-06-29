@@ -1,0 +1,30 @@
+{
+  "name": "MyApp",
+  "version": "1.1.0",
+  "database": {
+    "host": "prod-db.example.com",
+    "port": 5432,
+    "max_connections": 200,
+    "name": "myapp_prod",
+    "pool": {
+      "min": 2,
+      "max": 10,
+      "idle_timeout": 30000
+    }
+  },
+  "api": {
+    "base_url": "https://api.prod.example.com",
+    "timeout": 30000
+  },
+  "cache": {
+    "enabled": true,
+    "ttl_seconds": 300
+  },
+  "logging": {
+    "level": "info"
+  },
+  "features": {
+    "dark_mode": true,
+    "experimental": false
+  }
+}

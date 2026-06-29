@@ -1,0 +1,9 @@
+# Manifest — axiom-sql-formatter (public, clean)
+# Edition: Capafy voice (zero cluster jargon)
+# Generated: 2026-06-14T20:45:39Z
+
+14d7852767f91e0daa3bc270784b272adf8be2b02d03b6e95fb5ea8135197f57  LICENSE  (45 bytes)
+72ea6d382038de7652043fdc9de4e98ea9b8089772a37e415aea1409c4c18fb7  README.md  (923 bytes)
+173cd77917a32fbb5cc77a6ca0d130e72420ac9ea288eb38048e9b88fd13d7f7  SKILL.md  (433 bytes)
+0703b52bb23b181b9850b7a5fad0130633cce88c7c9e40e0c4db7ed6418edfe6  axiom_sql_formatter.py  (8051 bytes)
+3629aee7c1c6026d9d19fb69ec3d11ad2bc1ba56f598428fa9af924e55fb4254  test_axiom_sql_formatter.py  (2521 bytes)

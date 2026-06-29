@@ -3,7 +3,7 @@
 **Version:** 1.0.0
 **Base URL:** `https://go.okki.ai`
 **认证方式:** `Authorization: ApiKey sk-your-key-here`
-**Skill 归因 Headers:** `X-Okki-Install-Id`、`X-Okki-Skill-Version`、`X-Okki-Skill-Runtime`
+**Skill 归因 Headers:** `X-Okki-Install-Id`、`X-Okki-Skill-Version`、`X-Okki-Skill-Runtime`、`X-Okki-Source-*`
 **错误格式:** RFC 7807 Problem Details
 **速率限制:** 60 次/分钟（所有鉴权接口共享）
 
@@ -16,9 +16,17 @@
 ```http
 Authorization: ApiKey sk-your-key-here
 X-Okki-Install-Id: <anonymous install id>
-X-Okki-Skill-Version: 1.3.2
+X-Okki-Skill-Version: 1.3.3
 X-Okki-Skill-Runtime: <agent runtime>
+X-Okki-Source-Type: npm_wrapper
+X-Okki-Source-Package: @okki-global/okki-go-taroball
+X-Okki-Channel-Code: taroball
+X-Okki-Campaign-Id: op_taroball_default
+X-Okki-Agent: <optional agent name>
+X-Okki-Agent-Model: <optional model name>
 ```
+
+`X-Okki-Source-*` 只在 wrapper 渠道或显式渠道存在时发送。主包 organic 安装不会被强制标记为 `npm_wrapper`。运行时脚本会从当前进程环境、`${XDG_CONFIG_HOME:-$HOME/.config}/okki-go/install-attribution.json` 和已安装 `.okki-go-manifest.json` 读取这些非密钥字段；文件缺失或损坏时应 fail-open，不影响 API 请求。
 
 本地安装器会复用 `${XDG_CONFIG_HOME:-$HOME/.config}/okki-go/install-id`。设置 `OKKIGO_ANALYTICS_DISABLED=1` 可关闭安装器与本地 resolver 的 best-effort analytics。
 
@@ -144,6 +152,8 @@ At least one of `companyTypeKeywords`, `productKeywords`, or `industryKeywords` 
 ```
 
 > `domain` is an internal key owned by wrapper scripts and saved batch/raw files. Normal skill usage should rely on compact rows and opaque `selection_handle`/unlock plans; do not display `domain`, website, homepage, URL, or link fields in free company-search results.
+>
+> Free-search ID/raw `id` is not a `companyHashId`. Do not use free-search `id` for profile or profileEmails lookups.
 
 ---
 
@@ -196,7 +206,7 @@ At least one of `companyTypeKeywords`, `productKeywords`, or `industryKeywords` 
 - **404**: domain + countryCode 无匹配公司（不扣费）
 - **402**: 余额不足
 
-> `companyHashId` is required for all subsequent company queries. Always obtain it via this endpoint first.
+> `companyHashId` is required for all subsequent company queries. The only valid source for `companyHashId` is the `/companies/unlock` response. Do not use free-search `id`, raw `id`, domain, row number, or model memory as `companyHashId`.
 
 ---
 
@@ -251,7 +261,7 @@ At least one of `companyTypeKeywords`, `productKeywords`, or `industryKeywords` 
 
 | 参数 | 类型 | 必填 | 说明 |
 |------|------|------|------|
-| `companyHashId` | string | 是 | 公司唯一标识 |
+| `companyHashId` | string | 是 | 来自 `/companies/unlock` 响应的公司唯一标识；不要使用 free-search ID/raw `id` |
 
 ### 查询参数
 
@@ -692,7 +702,7 @@ At least one of `companyTypeKeywords`, `productKeywords`, or `industryKeywords` 
 | 401 | `unauthorized` | API Key 无效、未配置或已吊销 | 检查 `OKKIGO_API_KEY` |
 | 402 | `insufficient-credits` | 搜索积分或 EDM 配额不足 | 引导用户购买套餐/加购包 |
 | 403 | `forbidden` | Free 套餐无 EDM 发送权限 | 引导升级套餐 |
-| 404 | `not-found` | companyHashId 或资源不存在 | 确认 ID 来自搜索结果 |
+| 404 | `not-found` | companyHashId 或资源不存在 | 确认 `companyHashId` 来自 `/companies/unlock` 响应；不要使用 free-search ID/raw `id` |
 | 429 | `rate-limit` / `quota-exceeded` | 速率超限（60次/分钟）或月/日配额超限 | 等待后重试；配额超限需等下月重置或购买加购包 |
 | 502 | `upstream-error` | EDM 第三方服务异常 | 稍后重试，已扣配额自动退还 |
 

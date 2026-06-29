@@ -1,0 +1,87 @@
+#!/usr/bin/env node
+/*
+ * sensors — read Wyze sensor states: contact (door/window open/closed),
+ * motion (detected/clear), and temperature/humidity. Read-only.
+ * Wraps wyze-node, reusing the cached login token (shared with the wyze skill).
+ * Config via env: WYZE_NODE_DIR, WYZE_ENV, WYZE_TOKEN_DIR (see SKILL.md).
+ */
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
+const home = os.homedir();
+const exists = p => { try { fs.accessSync(p); return true; } catch { return false; } };
+function die(m) { console.error('error: ' + m); process.exit(1); }
+
+const NODE_DIR = process.env.WYZE_NODE_DIR || path.join(home, 'code', 'wyze-node');
+const ENV = process.env.WYZE_ENV || path.join(home, '.openclaw', 'secrets', 'wyze.env');
+const TOKEN_DIR = process.env.WYZE_TOKEN_DIR || (exists(NODE_DIR) ? NODE_DIR : path.join(home, '.openclaw', 'wyze'));
+const SKILL_DIR = path.join(__dirname, '..');
+
+if (exists(ENV)) {
+  for (const line of fs.readFileSync(ENV, 'utf8').split('\n')) {
+    const m = line.match(/^\s*([A-Z_]+)\s*=\s*(.*)\s*$/);
+    if (m && !process.env[m[1]]) process.env[m[1]] = m[2];
+  }
+}
+try { fs.mkdirSync(TOKEN_DIR, { recursive: true }); process.chdir(TOKEN_DIR); }
+catch { die('cannot use token dir ' + TOKEN_DIR); }
+
+let Wyze;
+for (const cand of ['wyze-node', path.join(SKILL_DIR, 'node_modules', 'wyze-node'), path.join(NODE_DIR, 'src', 'index.js')]) {
+  try { Wyze = require(cand); break; } catch {}
+}
+if (!Wyze) die('wyze-node not found — run: npm install --prefix "' + path.join(SKILL_DIR, 'scripts') + '" wyze-node');
+
+let _w;
+function client() { return _w || (_w = new Wyze({ username: process.env.WYZE_EMAIL, keyId: process.env.WYZE_KEY_ID, apiKey: process.env.WYZE_API_KEY })); }
+
+const SENSOR_TYPES = new Set(['ContactSensor', 'MotionSensor', 'TemperatureHumidity']);
+const kindLabel = { ContactSensor: 'contact', MotionSensor: 'motion', TemperatureHumidity: 'climate' };
+
+function reading(d) {
+  const p = d.device_params || {};
+  const low = p.is_low_battery ? ' ⚠ low battery' : '';
+  if (d.product_type === 'ContactSensor')
+    return (p.open_close_state === 1 ? 'OPEN' : 'closed') + low;
+  if (d.product_type === 'MotionSensor')
+    return (p.motion_state === 1 ? 'MOTION' : 'clear') + low;
+  if (d.product_type === 'TemperatureHumidity') {
+    const t = p.th_sensor_temperature != null ? `${Number(p.th_sensor_temperature).toFixed(1)}°F` : '?';
+    const h = p.th_sensor_humidity != null ? `${p.th_sensor_humidity}%` : '?';
+    return `${t}, ${h} humidity${low}`;
+  }
+  return '?';
+}
+
+async function sensors() { return (await client().getDeviceList()).filter(d => SENSOR_TYPES.has(d.product_type)); }
+
+(async () => {
+  const [cmd, ...rest] = process.argv.slice(2);
+
+  // optional kind filter: list contact|motion|climate
+  const list = await sensors();
+  if (!list.length) die('no contact/motion/climate sensors on this account');
+
+  if (cmd && cmd !== 'list' && cmd !== 'status') {
+    die('unknown command "' + cmd + '". Commands: list [contact|motion|climate], status <name>');
+  }
+
+  let pool = list;
+  const arg = rest[0];
+
+  if (cmd === 'status' && arg) {
+    const s = arg.toLowerCase().trim();
+    pool = list.filter(d => (d.nickname || '').toLowerCase().includes(s));
+    if (!pool.length) die('no sensor matching "' + arg + '". Try: list');
+  } else if (arg) {
+    // list <kind>
+    const want = arg.toLowerCase().replace(/s$/, '');
+    const byKind = { contact: 'ContactSensor', motion: 'MotionSensor', climate: 'TemperatureHumidity', temp: 'TemperatureHumidity', temperature: 'TemperatureHumidity', humidity: 'TemperatureHumidity' }[want];
+    if (byKind) pool = list.filter(d => d.product_type === byKind);
+  }
+
+  pool.sort((a, b) => a.product_type.localeCompare(b.product_type) || (a.nickname || '').localeCompare(b.nickname || ''));
+  pool.forEach(d => {
+    console.log(`${reading(d).padEnd(22)} ${(d.nickname || '').trim()}  [${kindLabel[d.product_type] || d.product_type}]`);
+  });
+})().catch(e => die((e && e.message) || String(e)));

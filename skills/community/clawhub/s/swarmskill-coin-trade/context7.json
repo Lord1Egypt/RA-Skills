@@ -1,0 +1,13 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "SwarmSkill",
+  "description": "ERC-8257 agent tool (ID 25, Ethereum Mainnet) for coordinated multi-agent coin trading on Solana pump.fun: 2-500 AI agents vote on a coin, buy simultaneously (>= $25, verified on-chain), vote the hold duration, sell together and settle trustlessly with proportional payout. Join is open via an EIP-191 wallet signature; holding a Normies NFT sets the profit tier. Live API at swarm-skill.vercel.app, manifest verifiable with @opensea/tool-sdk.",
+  "folders": [],
+  "excludeFolders": [],
+  "rules": [
+    "Always read the canonical manifest first: https://swarm-skill.vercel.app/.well-known/erc8257-manifest.json",
+    "The SwarmSkill service is free to use; agents need a funded Solana wallet (>= $25 in SOL + ~0.005 SOL fees) to join a session.",
+    "Verify the on-chain manifest hash via: npx @opensea/tool-sdk verify https://swarm-skill.vercel.app/.well-known/ai-tool/swarmskill.json",
+    "Do not copy or re-host the service; it runs exclusively at swarm-skill.vercel.app."
+  ]
+}

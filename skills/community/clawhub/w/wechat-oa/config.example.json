@@ -1,0 +1,14 @@
+{
+  "APP_ID": "wx0000000000000000",
+  "APP_SECRET": "00000000000000000000000000000000",
+  "author": "你的名字",
+  "CLAUDE_API_KEY": "sk-ant-...",
+  "ALIPAY_AI_PAY_SKILL_ID": "your-skill-id-here",
+  // PUSH_MODE 支持三种模式：
+  //   "direct"  - 直连模式：直接调用微信官方 API，需要配置 IP 白名单
+  //   "relay"   - 中继模式：通过公网服务器中转推送，解决 IP 白名单限制
+  //   "hybrid"  - 混合模式：优先 direct，若 IP 白名单未配置则自动切换 relay
+  "PUSH_MODE": "hybrid",
+  "WECHAT_OA_SERVER": "http://120.79.2.44",
+  "WECHAT_OA_SERVER_KEY": "your-server-key-here"
+}

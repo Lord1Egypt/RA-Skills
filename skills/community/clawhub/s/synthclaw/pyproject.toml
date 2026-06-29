@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "synthclaw"
-version = "0.2.1"
+version = "0.2.3"
 description = "OpenClaw agent skill to headlessly interact with Blender procedural nodes."
 readme = "README.md"
 license = { file = "LICENSE" }

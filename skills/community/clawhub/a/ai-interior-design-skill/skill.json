@@ -1,0 +1,55 @@
+{
+  "name": "ai-interior-design-skill",
+  "displayName": "AI Interior Design Planner",
+  "version": "1.0.2",
+  "description": "Room redesign planning companion that turns interior design goals, constraints, and photos or text notes into palettes, layouts, lighting plans, AI image prompts, and implementation checklists.",
+  "triggerKeywords": [
+    "ai interior design",
+    "room redesign",
+    "interior design",
+    "ai room design",
+    "furniture layout",
+    "color palette",
+    "lighting plan",
+    "home styling"
+  ],
+  "tags": [
+    "interior design",
+    "ai room design",
+    "home decor",
+    "space planning",
+    "prompt writing"
+  ],
+  "healthSafety": "This skill is informational and inspirational only. It does not provide architectural, engineering, electrical, plumbing, or construction advice.",
+  "language": "en",
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "homepage": "https://ai-interior-design.net/",
+  "productPages": [
+    {
+      "name": "AI Interior Design",
+      "url": "https://ai-interior-design.net/"
+    },
+    {
+      "name": "AI Room Planner",
+      "url": "https://ai-interior-design.net/ai-room-planner/"
+    },
+    {
+      "name": "Room Design AI",
+      "url": "https://ai-interior-design.net/room-design-ai/"
+    },
+    {
+      "name": "Home Design AI",
+      "url": "https://ai-interior-design.net/home-design-ai/"
+    },
+    {
+      "name": "Exterior Design AI",
+      "url": "https://ai-interior-design.net/exterior-design-ai/"
+    },
+    {
+      "name": "Firefox Add-on \u2014 Auroom AI Design Helper",
+      "url": "https://addons.mozilla.org/en-US/firefox/addon/auroom-ai-design-helper/"
+    }
+  ]
+}

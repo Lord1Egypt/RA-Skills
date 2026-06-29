@@ -1,0 +1,23 @@
+# bid-document-maker 依赖
+# 安装: pip install -r requirements.txt
+
+# PDF解析
+PyPDF2>=3.0.0
+pdfminer.six>=20221105      # 更强大的PDF解析，支持中文
+
+# Word文档解析与生成
+python-docx>=1.0.0
+
+# Markdown处理
+markdown>=3.5.0
+
+# 文档格式转换（可选）
+pandoc>=2.3                 # 需要系统安装pandoc
+
+# 中文文本处理（可选）
+jieba>=0.42.1               # 中文分词，用于字数统计
+opencc-python>=0.1.7        # 简繁体转换
+
+# OCR（可选，用于扫描版PDF）
+pytesseract>=0.3.10         # 需要安装Tesseract OCR引擎
+pdf2image>=1.16.3           # PDF转图片用于OCR

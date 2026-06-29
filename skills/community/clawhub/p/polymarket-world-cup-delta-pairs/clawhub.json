@@ -1,0 +1,55 @@
+{
+  "emoji": "🧩",
+  "primaryEnv": "SIMMER_API_KEY",
+  "requires": {
+    "env": ["SIMMER_API_KEY"],
+    "pip": ["simmer-sdk>=0.17.1"]
+  },
+  "envVars": [
+    {
+      "name": "SIMMER_API_KEY",
+      "required": true,
+      "description": "Simmer SDK API key"
+    }
+  ],
+  "cron": null,
+  "autostart": false,
+  "automaton": {
+    "managed": true,
+    "entrypoint": "world_cup_delta_pairs.py"
+  },
+  "tunables": [
+    {
+      "env": "SIMMER_WCDP_PER_LEG_USD",
+      "type": "number",
+      "default": 4,
+      "range": [1, 50],
+      "step": 1,
+      "label": "Per-leg position size (USD)"
+    },
+    {
+      "env": "SIMMER_WCDP_REPRICE_BOOST",
+      "type": "number",
+      "default": 0.1,
+      "range": [0.02, 0.3],
+      "step": 0.01,
+      "label": "Expected winner repricing boost"
+    },
+    {
+      "env": "SIMMER_WCDP_DAILY_BUDGET",
+      "type": "number",
+      "default": 30,
+      "range": [10, 500],
+      "step": 5,
+      "label": "Daily budget"
+    },
+    {
+      "env": "SIMMER_WCDP_MAX_PAIRS",
+      "type": "number",
+      "default": 2,
+      "range": [1, 20],
+      "step": 1,
+      "label": "Max pair entries per run"
+    }
+  ]
+}

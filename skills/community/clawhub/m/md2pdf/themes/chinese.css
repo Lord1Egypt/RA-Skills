@@ -1,0 +1,38 @@
+/* ============================================================
+   md2pdf — Chinese Layout Layer
+   中文排版增强层：叠加到任意主题上使用
+   不影响主题的视觉风格（颜色、字体、封面等）
+   ============================================================ */
+
+/* ── 中文排版优化 ── */
+body {
+    line-height: 2;
+    text-align: justify;
+    letter-spacing: 0.02em;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    line-break: strict;
+    hanging-punctuation: first allow-end;
+}
+
+/* ── 首行缩进 ── */
+p {
+    text-indent: 2em;
+    text-justify: inter-ideograph;
+}
+h1 + p, h2 + p, h3 + p, h4 + p, h5 + p, h6 + p,
+blockquote p, li p, td p, th p {
+    text-indent: 0;
+}
+
+/* ── 标题间距加大（中文排版需要更多留白） ── */
+h1 { margin-top: 28px; margin-bottom: 14px; }
+h2 { margin-top: 24px; margin-bottom: 10px; }
+h3 { margin-top: 20px; margin-bottom: 8px; }
+h4 { margin-top: 16px; margin-bottom: 6px; }
+
+/* ── 列表行距 ── */
+li { line-height: 1.8; }
+
+/* ── 引用块适配 ── */
+blockquote p { margin: 2px 0; }

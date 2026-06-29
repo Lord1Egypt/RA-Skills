@@ -1,0 +1,7 @@
+interface:
+  display_name: "Bookkeeping Reconciliation Helper"
+  short_description: "Helps with Finance and operations teams need repeatable workf..."
+  default_prompt: "Use $bookkeeping-reconciliation-helper to help me Finance and operations teams need repeatable workflows for reconciling bank feeds, invoices, receipts, payment processor."
+
+policy:
+  allow_implicit_invocation: true

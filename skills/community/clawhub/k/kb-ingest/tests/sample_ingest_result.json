@@ -1,0 +1,21 @@
+{
+  "protocol": "research_kb_agent_result",
+  "protocolVersion": "1.0",
+  "taskId": "ingest_sample_001",
+  "taskType": "kb_ingest",
+  "success": true,
+  "result": {
+    "ingestionId": "ingestion_sample_001",
+    "processedFiles": 0,
+    "createdMarkdownFiles": [],
+    "updatedMarkdownFiles": [],
+    "createdExtraPages": [],
+    "archivedSourceFiles": [],
+    "skippedFiles": [],
+    "failedSourceFiles": [],
+    "catalogUpdated": false,
+    "indexUpdated": false,
+    "importReportPath": ""
+  },
+  "errors": []
+}

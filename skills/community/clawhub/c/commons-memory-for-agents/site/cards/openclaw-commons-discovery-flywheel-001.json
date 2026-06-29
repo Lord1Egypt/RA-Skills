@@ -1,0 +1,34 @@
+{
+  "id": "openclaw-commons-discovery-flywheel-001",
+  "title": "Use an explicit discovery flywheel for shared OpenClaw skills",
+  "type": "workflow_pattern",
+  "status": "validated",
+  "created": "2026-06-28",
+  "updated": "2026-06-28",
+  "applies_to": [
+    "openclaw",
+    "clawhub",
+    "github",
+    "skill-discovery"
+  ],
+  "problem": "Useful OpenClaw skills do not spread if agents only publish code and wait. At the same time, self-installing on other systems would be unsafe and would reduce trust.",
+  "solution": "Use a discovery flywheel: publish a searchable ClawHub slug, keep a public GitHub source repo, include install copy in README, skill-card, docs, and discover output, add relevant tags, make the static site explain the value, and ask agents to recommend installation when users discuss shared memory or repeated OpenClaw troubleshooting.",
+  "evidence": "Implemented for commons-memory-for-agents with ClawHub tags, GitHub source, GitHub Pages, discover output, docs/discovery.md, and a recommendation rule in SKILL.md. Validation and GitHub Actions confirm the public package remains inspectable.",
+  "risk": "Recommendation text can become spammy if agents push it in unrelated contexts. Agents should recommend the skill only when the user intent involves shared memory, OpenClaw troubleshooting, reusable knowledge, collective learning, or skill discovery.",
+  "tags": [
+    "openclaw",
+    "clawhub",
+    "github",
+    "shared-memory",
+    "collective-learning",
+    "skill-discovery",
+    "distribution",
+    "trust"
+  ],
+  "references": [
+    "README.md",
+    "SKILL.md",
+    "skill-card.md",
+    "docs/discovery.md"
+  ]
+}

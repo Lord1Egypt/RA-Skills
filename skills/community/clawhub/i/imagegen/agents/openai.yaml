@@ -1,0 +1,4 @@
+interface:
+  display_name: "Image Gen"
+  short_description: "Generate or edit images for websites, games, and more"
+  default_prompt: "Use $imagegen to make or edit an image for this project."

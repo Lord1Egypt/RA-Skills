@@ -11,31 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and architects use this skill to evaluate when serverless and FaaS patterns fit event-driven workloads, then plan adoption steps, deliverables, and risk mitigations. <br>
+Developers and architects use this skill to evaluate serverless architecture for event-driven, bursty workloads and to plan function decomposition, state management, observability, security, and cost controls. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Broad architecture triggers may surface the skill during general architecture discussions. <br>
-Mitigation: Treat recommendations as contextual advice and review them before deploying or redesigning infrastructure. <br>
-Risk: Generic serverless guidance may miss workload-specific provider limits, latency, cost, or state-management constraints. <br>
-Mitigation: Validate proposed designs against the target cloud provider's quotas, IAM boundaries, observability needs, budgets, and workload latency requirements. <br>
+Risk: Broad architecture triggers may cause the skill to appear in conversations where serverless guidance is not desired. <br>
+Mitigation: Disable the skill or narrow routing if it becomes distracting. <br>
+Risk: Architecture recommendations may be applied without checking provider limits, cold-start tolerance, cost behavior, or state requirements. <br>
+Mitigation: Review proposed designs against workload requirements, platform quotas, observability needs, and cost controls before deployment. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-archetypes-architecture-paradigm-serverless) <br>
-- [Clawdis homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-serverless) <br>
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance, Configuration] <br>
-**Output Format:** [Markdown guidance with lists and architecture planning steps] <br>
+**Output Type(s):** [Guidance, Markdown, Configuration] <br>
+**Output Format:** [Markdown guidance with architecture steps, deliverables, and risk mitigations] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; no code execution or external access.] <br>
+**Other Properties Related to Output:** [Text-only skill; no executable code or hidden behavior identified by security evidence.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release evidence) <br>
+1.9.13 (source: server release metadata; artifact frontmatter says 1.9.8) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -1,0 +1,7 @@
+interface:
+  display_name: "人生岔路模拟栈"
+  short_description: "用事件冲击和三种结果，把如果当年问题复盘成可保存报告"
+  default_prompt: "Use $life-fork-simulation-stack 我想复盘一件事：如果当年去了北京，我会不会变成另一个人？我不想填表，先按材料有限版生成 HTML 用户报告，包含强判词、三种结果、事件冲击卡和 30 天验证实验。"
+
+policy:
+  allow_implicit_invocation: true

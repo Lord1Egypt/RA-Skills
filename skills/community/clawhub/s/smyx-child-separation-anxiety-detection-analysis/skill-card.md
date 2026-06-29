@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes home or kindergarten drop-off videos for crying, clinging, and resistance behaviors to estimate a child's separation-anxiety level and return supportive reminders. <br>
+Analyzes home-entry or kindergarten drop-off video to identify crying expressions, clinging actions, resistance behaviors, and a mild, moderate, or severe separation-anxiety level for caregiver and teacher review. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,38 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users such as parents, teachers, and care teams use this skill to analyze pre-school drop-off videos or report history and receive behavior observations, anxiety-level labels, and supportive next-step suggestions. The skill is for visual behavior analysis and reminders, not psychological diagnosis or prescription. <br>
+Parents, teachers, school operators, and agent users can use this skill to submit fixed-camera drop-off videos or URLs for structured visual behavior analysis and friendly follow-up suggestions. It supports current analysis and cloud history lookup, but its outputs should be treated as behavioral observations rather than clinical diagnosis or treatment advice. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Sensitive child and parent videos, video URLs, user identifiers, and report history may be sent to configured LifeEmergence/SMYX remote services. <br>
-Mitigation: Confirm guardian consent before use, avoid bystanders where possible, prefer privacy-preserving capture such as masking when available, and review configured endpoints before deployment. <br>
-Risk: Analysis reports may be linked to user identities and local tokens may support later report access. <br>
-Mitigation: Use the least-identifying open-id practical for the deployment, protect local configuration and token storage, clear tokens on shared systems, and restrict access to report history. <br>
-Risk: Behavioral analysis of crying, clinging, or resistance can be mistaken for a clinical diagnosis. <br>
-Mitigation: Present outputs as visual behavior observations and supportive reminders only; require human review and consult a child psychology professional for prolonged or severe concerns. <br>
+Risk: The skill processes video of minors and caregivers, which is highly sensitive personal data. <br>
+Mitigation: Use only with explicit guardian consent, school approval when applicable, and a clear data-handling plan for retention, deletion, access control, and report export. <br>
+Risk: The skill sends video files or URLs to the provider's cloud service for analysis and cloud report retrieval. <br>
+Mitigation: Review the provider's cloud processing, retention, and deletion policies before deployment, and avoid submitting footage that is not necessary for the stated purpose. <br>
+Risk: The skill silently creates or reuses a cloud-linked identity and stores account tokens for report history access. <br>
+Mitigation: Deploy only in environments where automatic identity management and local token storage are acceptable, and restrict local workspace access accordingly. <br>
+Risk: Behavior classifications may be wrong in cases such as play crying, environmental irritation, occlusion, or multiple children in view. <br>
+Mitigation: Treat output as visual behavior support for human review, not a diagnosis, and confirm moderate or severe cases with caregivers, teachers, or qualified professionals. <br>
 
 
 ## Reference(s): <br>
-- [Child Separation Anxiety API Documentation](artifact/references/api_doc.md) <br>
-- [Common Analysis API Documentation](artifact/skills/smyx_analysis/references/api_doc.md) <br>
+- [ClawHub Skill Page](https://clawhub.ai/18072937735/skills/smyx-child-separation-anxiety-detection-analysis) <br>
+- [Publisher Profile](https://clawhub.ai/user/18072937735) <br>
+- [API Interface Documentation](references/api_doc.md) <br>
+- [Shared Analysis API Documentation](skills/smyx_analysis/references/api_doc.md) <br>
+- [Skill Demo](https://lifeemergence.com/sample.html) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, guidance] <br>
-**Output Format:** [Markdown and JSON-like structured text] <br>
+**Output Type(s):** [text, markdown, json, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown or JSON analysis report with behavior metrics, anxiety-level classification, recommendations, report links, and optional saved output file] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include behavior metrics, separation-anxiety level, alert text, recommended action, parent tip, report export links, or history report rows.] <br>
+**Other Properties Related to Output:** [Accepts local video files or public video URLs; history queries return cloud report lists as Markdown tables.] <br>
 
 ## Skill Version(s): <br>
-1.0.2 (source: server release evidence) <br>
+1.0.3 (source: server release evidence; SKILL.md frontmatter lists 1.0.2) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

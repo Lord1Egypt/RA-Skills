@@ -1,0 +1,4 @@
+interface:
+  display_name: "简历评估"
+  short_description: "批量解析简历，进行通用体检和可选 JD/公司匹配，输出可审计报告"
+  default_prompt: "使用 $hr-resume-evaluation 批量评估招聘简历。"

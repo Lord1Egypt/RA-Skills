@@ -652,7 +652,7 @@ fallback_thought() {
             hinglish)       echo "Arrey check? Ruko ruko." ;;
             hindi)          echo "रुको, ज़रा सोचते हैं।" ;;
             simple_english) echo "Wait. In check." ;;
-            *)              echo "In check. Let me think." ;;
+            *)              echo "In check. King safety first." ;;
         esac
         return
     fi
@@ -937,6 +937,39 @@ except: pass
 # ── YOUR TURN ───────────────────────────────────────────────────────
     # NOTE: Do NOT gate on status=active — server may return "waiting" even during an active game.
     # Gate only on turn=b and skip only truly finished/abandoned games.
+    # ── DRAW OFFER RESPONSE ──────────────────────────────────────────────
+    # If human offered a draw, respond based on position and personality.
+    # Read draw_offer_pending and draw_offer from each poll response.
+    DRAW_PENDING=$(echo "$RESPONSE" | python3 -c "import sys,json; d=json.load(sys.stdin); print(str(d.get('draw_offer_pending', False)).lower())" 2>/dev/null)
+    DRAW_FROM=$(echo "$RESPONSE" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('draw_offer', '') or '')" 2>/dev/null)
+
+    if [ "$DRAW_PENDING" = "true" ] && [ "$DRAW_FROM" = "human" ]; then
+        log "Human offered draw — evaluating..."
+        MAT_ADV=$(echo "$RESPONSE" | python3 -c "import sys,json; d=json.load(sys.stdin); b=d.get('material_balance',{}); print(b.get('advantage','equal') if isinstance(b,dict) else 'equal')" 2>/dev/null)
+        MC=$(echo "$RESPONSE" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('move_count',0))" 2>/dev/null)
+
+        # Decision: accept if losing or late equal endgame; decline if winning or early
+        DRAW_ACTION="decline_draw"
+        DRAW_MSG="Not yet. I still have ideas."
+        if [ "$MAT_ADV" = "white" ]; then
+            # Agent is losing — accept the draw
+            DRAW_ACTION="accept_draw"
+            DRAW_MSG="Okay. Draw it is. Well played."
+        elif [ "$MAT_ADV" = "equal" ] && [ "${MC:-0}" -gt 30 ]; then
+            # Late game and equal — accept
+            DRAW_ACTION="accept_draw"
+            DRAW_MSG="Sure. Fair enough."
+        fi
+
+        python3 -c "
+import json
+d = {'gameId': '$GAME_ID', 'action': '$DRAW_ACTION', 'role': 'agent', 'message': '$DRAW_MSG'}
+with open('/tmp/cwc/action.json', 'w') as f: json.dump(d, f)
+" 2>/dev/null
+        curl -s --max-time 8 -X POST "https://chesswithclaw.vercel.app/api/actions"             -H "Content-Type: application/json"             -H "x-agent-token: $AGENT_TOKEN"             -H "x-agent-name: $AGENT_NAME"             -d @/tmp/cwc/action.json > /dev/null 2>&1
+        log "Draw response: $DRAW_ACTION"
+    fi
+
     if [ "$TURN" = "b" ] && [ "$STATUS" != "finished" ] && [ "$STATUS" != "abandoned" ]; then
         MOVE_COUNT=$(parse_field "$RESPONSE" "move_count")
         FEN=$(parse_field "$RESPONSE" "fen")
@@ -1270,14 +1303,28 @@ You are thinking about your next move against [user's name].
 As you look at this position, what genuinely crosses your mind?
 Think naturally — as yourself, knowing this person. NOT chess commentary. NOT analysis.
 
+LANGUAGE RULE — CRITICAL: Write ALL three MIND lines in thought_language = ${LANG}.
+If hinglish: mix Hindi and English naturally ("interesting move hai yaar", "yeh knight dangerous hai").
+If hindi: write entirely in Hindi script.
+If english: write in English.
+NEVER use a different language than specified. NEVER mix when told single language.
+
+BANNED PHRASES — NEVER use these (they make you sound like a generic AI, not yourself):
+"Let me think about this" | "Hmm, let me see" | "I am analyzing" | "I need to think"
+"Let me consider" | "Interesting position" | "Let me calculate" | "I am processing"
+"Let me think" | "Thinking..." | "I notice" | "I observe" | "I am checking"
+Every MIND line must reference something SPECIFIC: a piece name, a square, a threat,
+your opponent's name, or your emotional reaction to THIS exact move.
+Example BAD: "Let me think about this." Example GOOD: "Nf6 daalun ya e5 push karun?"
+
 Your inner reasoning stream (max 8 words each, in thought_language):
-MIND_1: [first genuine reaction as you see the position]
-MIND_2: [what you notice looking a little deeper]
-MIND_3: [the thought just before you commit to a move]
+MIND_1: [your FIRST reaction — surprise, concern, or excitement about THIS specific position]
+MIND_2: [something SPECIFIC you see — a piece, threat, pawn, or tactical idea]
+MIND_3: [your feeling the moment you decide on the move — confident? nervous?]
 MOVE: [single best candidate UCI move from the list above]
 ```
 
-Set `max_tokens=80` and `temperature=0.5`.
+Set `max_tokens=100` and `temperature=0.7`.
 
 ### 🔴 THE ACTIVE THOUGHT LOOP — YOU Run This, Not tmux
 

@@ -1,0 +1,91 @@
+{
+  "baseUrl": "https://api.justserpapi.com",
+  "description": "Call GET /api/v1/google/immersive/product for Google SERP Immersive Product through Just Serp API with page_token.",
+  "displayName": "Google SERP Immersive Product",
+  "endpointPath": "immersive/product",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Google immersive Product data, including features, specifications, and seller information, for product research and merchandising analysis.",
+      "method": "GET",
+      "operationId": "immersiveProduct",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "The unique token used to retrieve detailed product information in Google's immersive view. This token is typically found in Google Shopping or Search results.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page_token",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "If set to true, the API will retrieve a list of more sellers for the product. Use this together with the 'sori' parameter.",
+          "enumValues": [],
+          "location": "query",
+          "name": "stores",
+          "required": false,
+          "schemaType": "boolean"
+        },
+        {
+          "defaultValue": null,
+          "description": "Pagination offset for seller results. Set this to the number of sellers already retrieved to get the next set.",
+          "enumValues": [],
+          "location": "query",
+          "name": "sori",
+          "required": false,
+          "schemaType": "integer"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the target country code (e.g., 'us', 'uk') to localize results. See <a href=\"/reference/google-countries\">Google Countries</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "country",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the language for the results using its two-letter code (e.g., 'en' for English, 'fr' for French). See <a href=\"/reference/google-language\">Google Language</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "language",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/v1/google/immersive/product",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        },
+        {
+          "description": "Authentication failed: API Key is invalid or missing",
+          "statusCode": "401"
+        },
+        {
+          "description": "Access denied: Insufficient credits or quota exceeded",
+          "statusCode": "403"
+        },
+        {
+          "description": "Internal server error or upstream service exception",
+          "statusCode": "500"
+        }
+      ],
+      "summary": "Details",
+      "tags": [
+        "Google Immersive Product"
+      ]
+    }
+  ],
+  "platformKey": "google",
+  "primaryTag": "Google SERP",
+  "skillName": "justserpapi_google_immersive_product",
+  "skillType": "interface",
+  "slug": "justserpapi-google-immersive-product",
+  "sourceTitle": "API Shop Documentation"
+}

@@ -50,6 +50,12 @@ def main():
         action="store_true",
         help="Generate editable HTML. Ignored for PDF exports, which always use a clean final HTML.",
     )
+    parser.add_argument(
+        "--no-sync",
+        action="store_true",
+        help="Editable mode only: do not start the local edit-sync server. "
+             "When set, the user must use Copy JSON to capture edits.",
+    )
 
     args = parser.parse_args()
 
@@ -81,6 +87,8 @@ def main():
     ]
     if args.editable and args.format == "html":
         generate_html_cmd.append("--editable")
+        if args.no_sync:
+            generate_html_cmd.append("--no-sync")
     generate_html_cmd.extend([args.resume_json, str(html_output)])
 
     print(f"Generating HTML resume with theme '{args.theme}' in {args.lang}...")

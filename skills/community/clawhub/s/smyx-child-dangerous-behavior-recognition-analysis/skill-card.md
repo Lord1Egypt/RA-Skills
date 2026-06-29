@@ -1,5 +1,5 @@
 ## Description: <br>
-Detects climbing, playing with fire, touching power sources, and dangerous actions near windows, providing real-time alerts for child safety supervision in homes, kindergartens, and nurseries. <br>
+Detects child hazardous behaviors such as climbing, playing with fire, touching power sources, and dangerous actions near windows, then returns structured safety reports and alerts. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,34 +11,37 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Caregivers, safety operators, and developers use this skill to analyze child-monitoring video or video URLs for hazardous behavior alerts, behavior counts, and structured report history. It supports supervision workflows but requires human confirmation of any safety-critical alert. <br>
+External users, caregivers, school safety staff, and developers use this skill to analyze child-monitoring media for hazardous behaviors and to retrieve account-linked history reports. It is an assistance tool; alerts should be confirmed by a responsible adult before intervention decisions. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive child video, identifiers, account data, and report history with unclear service boundaries. <br>
-Mitigation: Use it only with videos and identifiers that are authorized for LifeEmergence/SMYX remote services, avoid phone numbers or real names as open-id values, and treat history or export links as sensitive. <br>
-Risk: Bundled or locally stored API credentials may expose access to remote services. <br>
-Mitigation: Rotate or remove bundled API keys, avoid local token storage, and confirm authentication configuration before installation. <br>
-Risk: Backend documentation is mismatched with the child-safety use case, which can obscure data handling, consent, and retention expectations. <br>
-Mitigation: Require a purpose-specific child-safety API contract, explicit consent and retention terms, and updated documentation before production deployment. <br>
+Risk: Child-monitoring videos or URLs are sent to the LifeEmergence cloud service for analysis. <br>
+Mitigation: Use only with appropriate consent and policy approval; clarify retention, deletion, and data-handling requirements before using real footage of minors. <br>
+Risk: The skill silently creates or reuses a local identity and retrieves account-linked history reports. <br>
+Mitigation: Review account scoping before installation and ensure report links or identity-linked outputs are shared only with authorized users. <br>
+Risk: Local workspace storage may contain tokens or identity data used for cloud API access. <br>
+Mitigation: Install only in workspaces with appropriate access controls and clear local credentials when the skill is no longer needed. <br>
+Risk: Behavior detection alerts can be incomplete or incorrect. <br>
+Mitigation: Treat outputs as child-safety supervision assistance and verify alerts directly before taking action. <br>
 
 
 ## Reference(s): <br>
-- [Skill API documentation](references/api_doc.md) <br>
-- [Analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/smyx-child-dangerous-behavior-recognition-analysis) <br>
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-child-dangerous-behavior-recognition-analysis) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
+- [API documentation](references/api_doc.md) <br>
+- [Shared analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown and JSON reports with command-line examples] <br>
+**Output Type(s):** [text, markdown, configuration, guidance] <br>
+**Output Format:** [Markdown and JSON analysis reports, with optional saved text output] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include local or remote alert summaries, dangerous-behavior counts, report history tables, and report links.] <br>
+**Other Properties Related to Output:** [Supports local video files or public video URLs, configurable alert threshold, basic/standard/json detail levels, and Markdown tables for history reports.] <br>
 
 ## Skill Version(s): <br>
-1.0.4 (source: server release metadata and skill frontmatter) <br>
+1.0.5 (source: evidence release and SKILL.md frontmatter) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

@@ -11,33 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill to evaluate Claude Code and OpenClaw hooks for security, performance, SDK compliance, reliability, and maintainability before installation or release. <br>
+Developers and engineers use this skill to audit Claude Code hooks for security, performance, compliance, reliability, and maintainability across plugin, project, and global scopes. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Example commands and SDK snippets may be mistaken for audited executable behavior. <br>
-Mitigation: Treat them as audit guidance and review any proposed hook changes before use. <br>
-Risk: The linked Claude Code or Night Market plugin may add commands or hooks outside this documentation-only skill. <br>
-Mitigation: Review and scan the separate plugin before installing it. <br>
+Risk: The skill discusses powerful hook capabilities and security checks that could affect agent behavior if implemented incorrectly. <br>
+Mitigation: Review hook configurations, commands, and any linked external plugin package before installing or executing related components. <br>
+Risk: The release evidence reports no server-resolved GitHub import provenance for this version. <br>
+Mitigation: Use the ClawHub release evidence and package hashes as the provenance source for this card, and avoid inferring provenance from artifact text. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-abstract-hooks-eval) <br>
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/abstract) <br>
-- [Hook evaluation criteria](modules/evaluation-criteria.md) <br>
-- [SDK hook types](modules/sdk-hook-types.md) <br>
+- [ClawHub Skill Page](https://clawhub.ai/athola/skills/nm-abstract-hooks-eval) <br>
+- [Clawdis Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/abstract) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, markdown, shell commands, configuration] <br>
-**Output Format:** [Markdown guidance with tables and inline code blocks] <br>
+**Output Type(s):** [guidance, markdown, shell commands] <br>
+**Output Format:** [Markdown with inline code blocks and evaluation rubrics] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only; does not install or run code by itself.] <br>
+**Other Properties Related to Output:** [Provides audit criteria, hook type references, command examples, and troubleshooting guidance.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata) <br>
+1.9.13 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

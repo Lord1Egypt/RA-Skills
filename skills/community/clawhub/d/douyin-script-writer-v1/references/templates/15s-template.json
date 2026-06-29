@@ -1,0 +1,29 @@
+{
+  "templateName": "15-second Douyin Script Template",
+  "structure": [
+    {
+      "timeRange": "0-3s",
+      "section": "钩子 (Hook)",
+      "description": "前3秒抓住注意力，设置悬念/冲突/利益点",
+      "duration": 3
+    },
+    {
+      "timeRange": "3-8s",
+      "section": "展开 (Development)",
+      "description": "展开内容，展示细节或讲述故事",
+      "duration": 5
+    },
+    {
+      "timeRange": "8-12s",
+      "section": "高潮 (Climax)",
+      "description": "内容高潮，情感或信息巅峰",
+      "duration": 4
+    },
+    {
+      "timeRange": "12-15s",
+      "section": "结尾 (CTA)",
+      "description": "行动号召、点赞关注、评论区互动",
+      "duration": 3
+    }
+  ]
+}

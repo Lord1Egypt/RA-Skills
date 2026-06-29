@@ -2,9 +2,19 @@
 name: synthclaw
 license: MIT
 metadata:
-  version: 0.2.1
+  version: 0.2.3
 description: Render Blender files with agent-controlled procedural parameters for synthetic data generation. A key capability of this skill is returning dynamic quality metrics (Naturalness and LPIPS) upon generation and measuring dataset-wide diversity (Shannon entropy), allowing agents to be guided by the metric results to iteratively optimize parameter ranges and improve synthetic data usefulness. Supports CYCLES (production) and EEVEE (fast testing) render engines.
 ---
+
+## Agent Rules & Guidelines (CRITICAL)
+
+> [!IMPORTANT]
+> To ensure correct execution and environment compatibility, any agent ingesting this skill MUST adhere to the following rules:
+> 1. **Strictly Use Provided Tools**: You MUST use the provided high-level python tools (`render_procedural_scene`, `render_procedural_dataset`, `analyze_blend`, `analyze_dataset`) for all Blender rendering and analysis tasks.
+> 2. **Prohibition of Custom Python Scripts**: Do NOT write custom Python scripts that import `bpy` (Blender Python API) or write manual file-writing rendering loops. The environment does not support direct `bpy` imports outside of the provided headless context wrapper.
+> 3. **Prohibition of Direct CLI Calls**: Do NOT execute raw `blender` commands directly in the shell (e.g. `blender -b -P ...`). Always use the designated tool calls.
+> 4. **Mandatory Discovery Phase**: You MUST call `analyze_blend` first before attempting to render any `.blend` file. This is required to discover the exact names of the available Value Nodes, materials, objects, and collections in the scene.
+> 5. **Handling Heavy Scenes & Timeouts**: For heavy scenes with complex compositing pipelines or large file sizes (e.g. over 200 MB), EEVEE may time out. If EEVEE runs exceed the 60-second limit, pass a custom, larger `timeout` argument to `render_procedural_scene` or run production Cycles rendering (which automatically configures Metal GPU on macOS and CUDA elsewhere).
 
 ## When to Use
 

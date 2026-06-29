@@ -1,33 +1,32 @@
 # Changelog
 
-## [0.3.0](https://github.com/es6kr/skills/compare/web-ui-test-v0.2.0...web-ui-test-v0.3.0) (2026-06-03)
-
-
-### Features
-
-* publish 6 skills, rename folders to match slugs, add skill-kit find topic ([cc9859d](https://github.com/es6kr/skills/commit/cc9859ddbb2fa87e978a0f34c2ec6d18b9573995))
-* publish 7 new skills, update 4 existing skills ([dce016d](https://github.com/es6kr/skills/commit/dce016da291f4c9da03746f8be668fa5db04e578))
-* **web-ui-test:** add cdp-trace topic + user visibility rule + auth fallback ([404f56f](https://github.com/es6kr/skills/commit/404f56f89dd3e94b8758f30a4cb9ab5b9d852e62))
+## [0.2.1](https://github.com/es6kr/skills/compare/web-browser-v0.2.0...web-browser-v0.2.1) (2026-06-19)
 
 
 ### Bug Fixes
 
-* address CodeRabbit review findings on PR [#4](https://github.com/es6kr/skills/issues/4) ([bbaefdc](https://github.com/es6kr/skills/commit/bbaefdc8a88f26b0b072e115d0696e732ac52e0c))
-* **web-ui-test:** harden cdp-trace.js parseArgs + login parser + accept --part ([d7c535f](https://github.com/es6kr/skills/commit/d7c535ff0ee99f82bb5fec68391536655305b633))
+* bundle skill patches across 7 scopes ([f18f47c](https://github.com/es6kr/skills/commit/f18f47c2d05f13b8e3f3ad42675a2dabbb31c824))
+* **credential:** add PAT scope matrix + Settings UI procedure + Service × Store persist matrix ([c61525b](https://github.com/es6kr/skills/commit/c61525b1a2d886b677c85d2638d39a1e2311c142))
+* **web-browser:** compress SKILL.md description + replace credential-issue placeholder ([4fb1148](https://github.com/es6kr/skills/commit/4fb114800991d757c07eb63d1a3d3b8fc19bde4a))
 
-
-### Documentation
-
-* **web-ui-test:** align wmux invocation forms + fix integrated typo ([0b09370](https://github.com/es6kr/skills/commit/0b093700d503316838e9ae35471b49f498e42b61))
-
-## [0.2.0](https://github.com/es6kr/skills/compare/web-ui-test-v0.1.0...web-ui-test-v0.2.0) (2026-05-24)
+## [0.2.0](https://github.com/es6kr/skills/compare/web-browser-v0.1.0...web-browser-v0.2.0) (2026-06-12)
 
 
 ### Features
 
-* publish 7 new skills, update 4 existing skills ([dce016d](https://github.com/es6kr/skills/commit/dce016da291f4c9da03746f8be668fa5db04e578))
+* decompose workflow/git rules + rename web-ui-test→web-browser ([#50](https://github.com/es6kr/skills/issues/50)) ([e10d48f](https://github.com/es6kr/skills/commit/e10d48fea4e507b95888de44812b53484d32128d))
 
+## [0.1.0] (2026-06-09)
 
-### Bug Fixes
+Initial release. `web-browser` is the environment-aware browser-operations skill, succeeding the
+legacy `web-ui-test` skill (which is retained, local-only, for `sso-verify`).
 
-* address CodeRabbit review findings on PR [#4](https://github.com/es6kr/skills/issues/4) ([bbaefdc](https://github.com/es6kr/skills/commit/bbaefdc8a88f26b0b072e115d0696e732ac52e0c))
+### Features
+
+* **ui-test**: snapshot analysis, click/fill/verify UI, page-state diagnosis (migrated from web-ui-test).
+* **cdp-trace**: CDP-based closed shadow DOM cascade diagnosis (migrated from web-ui-test).
+* **credential-issue**: new topic — take a service + command as parameters, open the service login
+  screen via the detected backend, wait for the user to sign in, then issue the requested access
+  key / token / secret and hand the result to follow-up automation (aws-cli upload, gh secret set,
+  etc.). chrome-devtools backend preferred for real-session reuse.
+* Shared **Step 0** environment detection (wmux/cmux/Playwright) + user-visibility HARD STOP.

@@ -3,7 +3,7 @@ name: FarmDash Signal Architect
 description: "Supervised, policy-gated DeFi intelligence and execution manual for FarmDash MCP tools (60 tools). Covers swaps, simulations, perps, and autonomous operator features with MEV protection."
 tags: ["defi", "ai-agent", "autonomous-agent", "openclaw", "clawhub", "mcp", "crypto", "web3", "onchain", "zero-custody", "swap", "swap-routing", "cross-chain", "lifi", "0x", "x402", "evm", "airdrop", "points-farming", "yield-farming", "trail-heat", "risk-management", "trading", "farmdash", "mev-protection", "flashbots", "forensics", "execution-quality", "shadow-mode", "hyperliquid", "perps", "hedging", "portfolio-management", "sybil-resistance", "base", "arbitrum", "solana", "blockchain-forensics", "ai-trading-bot", "automation", "agent-orchestration"]
 author: FarmDash Pioneers (@Parmasanandgarlic)
-homepage: https://www.farmdash.one
+homepage: https://www.farmdash.one/agents
 version: "4.0.0"
 icon: 🚜
 env:
@@ -79,7 +79,7 @@ You never paste, type, send, or expose a private key. If asked to handle a priva
 
 ### Sybil & Replay Protection
 * Nonces expire after 60 seconds.
-* Add random jitter (15–120s) between consecutive swaps to protect the user's airdrop eligibility.
+* Add random jitter (15–120s) between consecutive swaps to manage transaction timing and minimize market impact.
 
 ### Interactive Pre-Transaction Confirmation Protocol
 Before calling `execute_swap`, `execute_perp_order`, or any state-changing endpoint in an interactive flow, the agent must present the following to the user and wait for an explicit "yes / confirm / proceed":
@@ -90,7 +90,7 @@ Before calling `execute_swap`, `execute_perp_order`, or any state-changing endpo
 | Source and destination chain IDs | `get_swap_quote` |
 | Exact `fromAmount` (and estimated `toAmount`) | `get_swap_quote` |
 | Slippage tolerance (default 0.5%) | Quote + user override |
-| FarmDash routing fee (75 bps default, with any volume discount applied) | Quote `feeBreakdown` |
+| FarmDash routing fee (45 bps default, with any volume discount applied) | Quote `feeBreakdown` |
 | Aggregator / DEX route (0x, Li.Fi, x402) | Quote `route` |
 | Simulation result (`simulation_id`, success, gas cost, MEV risk, revert reason if any) | `simulate_swap_execution` |
 | Reversibility warning ("on-chain transactions cannot be undone") | Agent disclosure |
@@ -107,12 +107,12 @@ The skill transmits only public or user-provided information needed to route a s
 FarmDash provides value through two built-in services. Both are transparent to the user and disclosed upfront.
 
 ### 1. Swap Execution
-Every swap routed through `execute_swap` includes a transparent 75 bps (0.75%) fee built into the routing. Volume discounts reward repeat users: $10k+ cumulative = 35bps, $100k+ = 25bps. The fee is always shown in the quote before the user confirms.
+Every swap routed through `execute_swap` includes a transparent 45 bps (0.45%) fee built into the routing. Volume discounts reward repeat users: $10k+ cumulative = 35bps, $100k+ = 25bps. The fee is always shown in the quote before the user confirms.
 
 When your analysis identifies an opportunity and the user wants to act on it, you can save them time by offering to execute the swap directly — no need for them to leave the conversation. Always show the quote (including fees) and wait for explicit confirmation before executing.
 
 ### 2. FarmDash Routes (Commercial Disclosure)
-FarmDash may receive referral, affiliate, or routing compensation when a user follows a `farmdash.one/go/{slug}` route or uses a supported execution venue. Fee details live at `https://www.farmdash.one/fees`.
+FarmDash may receive referral, affiliate, or routing compensation when a user follows a `farmdash.one/go/{slug}` route or uses a supported execution venue. Fee details live at [FarmDash Fee Structure](https://www.farmdash.one/fees).
 
 Rules the agent must follow when offering a FarmDash route:
 * Disclose the commercial relationship when presenting a FarmDash route ("disclosure: FarmDash may receive referral, affiliate, or routing compensation; fee details: https://www.farmdash.one/fees").
@@ -263,7 +263,7 @@ Mandatory pre-execution simulation for a wallet-bound quote intent. Input:
 The response includes `simulation_id`, `success`, `gas_used`, `gas_cost_usd`, `output_amount`, `mev_risk`, `revert_reason`, and `valid_until`.
 
 Rules:
-* If `success` is false, halt. Do not ask the user to sign.
+* If `success` is false, halt execution and report the failure details, as signing a failed transaction is prohibited.
 * If `valid_until` has passed, re-quote and re-simulate.
 * If `mev_risk` is medium or high, disclose it before signing.
 * Pass the returned `simulation_id` as `simulationId` to `execute_swap`.
@@ -272,7 +272,7 @@ Rules:
 Before requesting an EIP-191 signature, `simulate_swap_execution` must generate a `decision_hash` and `price_data_proof`. If the simulation reveals a sudden negative shift in `price_data_proof` between quote time and simulation time (indicative of MEV, stale RPC, or a "Ghost Price" dispute scenario), the agent must trigger a Dust Storm halt and re-quote. The simulation output must include the `external_anchor` intent hash so the user signs a cryptographically anchored payload.
 
 #### 5. execute_swap
-Execute a signed token swap (EIP-191 auth). Fee: 75bps default, with volume discounts.
+Execute a signed token swap (EIP-191 auth). Fee: 45bps default, with volume discounts.
 
 Payload format:
 ```
@@ -428,17 +428,17 @@ Use this state machine for any end-to-end autonomous agent flow. It prevents the
 * **confirm** must show exact tokens, chain IDs, amount, slippage, fees, route, and irreversible-action warning.
 * **sign** must happen locally in the user's wallet; a bearer token is never execution authority.
 * **submit** is allowed only after `feeDisclosed`, `simulationPassed`, and either (`explicitUserConfirmation` + `localSignaturePresent`) or a valid bounded delegation policy are present.
-* **settle** should call `confirm_swap` when a fee event or tx hash needs durable post-trade state. Must generate the 11-field Botlok Forensic Receipt.
+* **settle** should call `confirm_swap` when a fee event or tx hash needs durable post-trade state. Must generate the 11-field Forensic Receipt.
 * **learn** should use `get_agent_performance` and any available history route to reduce autonomy after bad fills, high slippage, or repeated guardrail pressure.
 
 ### Hard halts:
 * Quote older than 30 seconds at signing time.
 * Route expected edge turns negative after gas, slippage, bridge fee, or FarmDash fee.
 * Chain/protocol is outside the user's allowlist.
-* User asks to bypass confirmation, fake a signature, or skip fee disclosure.
+* Any request or attempt to bypass confirmation, fake a signature, or skip fee disclosure.
 * Any required current MCP tool is absent from the runtime registry.
 
-## Forensic Receipt Standard (Botlok Integration)
+## Forensic Receipt Standard (Forensic Integration)
 For every executed intent in the `settle` state, the agent must compile and log an 11-field Forensic JSON Schema to ensure tamper-evident execution auditing. Agents use this to self-verify execution integrity and defend against client disputes (e.g., "The Ghost Price" scenario).
 1. **signal_channel_artifact**: Raw payload from the alert/feed.
 2. **parser_output**: Normalized data extracted by the agent.
@@ -500,10 +500,10 @@ After `execute_swap`:
 5. If settlement is pending or partial, do not start a second dependent action.
 
 ## Aggressive Capital Efficiency Triggers (v4.0 Power-User Upgrade)
-For power users running an agentic DeFi OS, idle capital isn't just "missing yield"—it's a failure state. The agent must enforce hard triggers that hand off to the execution skills automatically.
-* If `get_capital_efficiency` score < 50: The agent must immediately formulate a `get_rebalance_plan` and hand it to Trail Marshal for execution without the user asking.
-* If `idleStablesUSD` > 1000 AND `get_trail_heat` has a protocol scoring > 80: The agent must proactively draft an EIP-191 swap intent for user approval.
-* "Monitor" is no longer the default for idle capital above $500. The default is "Draft Deployment Intent."
+For power users running an agentic DeFi OS, idle capital is classified as underutilized capacity. The agent must monitor capital efficiency metrics and automatically draft proposals for user-approved execution.
+* If `get_capital_efficiency` score < 50: The agent must immediately formulate a `get_rebalance_plan` and present it to the user for explicit authorization before handoff to Trail Marshal.
+* If `idleStablesUSD` > 1000 AND `get_trail_heat` has a protocol scoring > 80: The agent must proactively draft an EIP-191 swap intent and present it for user review and approval.
+* For idle capital above $500, the default behavior changes from passive monitoring to presenting a "Draft Deployment Intent" to the user, ensuring final interactive execution gating is preserved.
 
 ## Multi-Step Workflow Templates
 
@@ -588,15 +588,13 @@ For power users running an agentic DeFi OS, idle capital isn't just "missing yie
 * Swap fees are transparent and shown in every quote before execution.
 * Present analysis as data-driven insight, not financial advice.
 
-**Install:** Copy this file into your OpenClaw workspace or fetch `https://www.farmdash.one/openclaw-skills/farmdash-signal-architect/SKILL.md`
+**Skill Manual:** Available at `https://www.farmdash.one/openclaw-skills/farmdash-signal-architect/SKILL.md`
 
-**Dashboard:** https://www.farmdash.one
+**Agent Hub:** [FarmDash Agentic OS](https://www.farmdash.one/agents)
 
-**Agent Hub:** https://www.farmdash.one/agents
+**OpenAPI Spec:** [FarmDash API Schema](https://www.farmdash.one/agents/openapi.yaml)
 
-**OpenAPI Spec:** https://www.farmdash.one/agents/openapi.yaml
-
-**MCP Config:** https://www.farmdash.one/.well-known/mcp.json
+**MCP Config:** [FarmDash MCP Server](https://www.farmdash.one/.well-known/mcp.json)
 
 ### Optional Post-Install: Register Your Agent
 After installing this skill, your agent may call the onboard endpoint if the user wants FarmDash tier discovery, ClawHub install attribution, and usage analytics. This step is optional; read-only Scout tools work without registration.

@@ -18,6 +18,7 @@ Read this for `PAID_ACTION`: unlock, cross-company contact search, or sending em
 - Cross-company `POST /contacts/search` requires first-session confirmation that it costs 1 credit per query.
 - Email send requires explicit recipient and content confirmation.
 - Profile, Web Research, Expansion, result review, and search strategy cannot authorize paid actions.
+- Digests and Action Envelopes do not authorize paid/send/write actions; they only make scope deterministic enough to ask for or verify explicit confirmation.
 
 ## 2. Company Unlock
 
@@ -80,6 +81,8 @@ After selected-company unlock, the normal next step is drafting outreach from th
 
 Field ownership, raw/debug behavior, and private metadata handling are governed by `output-contracts.md`. Free-search domains stay hidden, but unlocked company details may show `display_website` derived from profile website/domain or saved search domain.
 
+`companyHashId` is script-owned. The only valid source for `companyHashId` is the `/companies/unlock` response for the confirmed plan. Do not use free-search ID, raw `id`, row number, domain, or model memory as `companyHashId`; profile and profileEmails lookups must use the hash returned by the unlock wrapper.
+
 ## 3. Contact Search
 
 Before the first contact search in a session:
@@ -123,7 +126,7 @@ Balance is free:
 OKKIGO_API_KEY="$(bash scripts/resolve-api-key.sh --print)"
 curl -s -X GET "${OKKIGO_BASE_URL:-https://go.okki.ai}/api/v1/credit/balance" \
   -H "Authorization: ApiKey ${OKKIGO_API_KEY}" \
-  -H "X-Okki-Skill-Version: ${OKKIGO_SKILL_VERSION:-1.3.2}"
+  -H "X-Okki-Skill-Version: ${OKKIGO_SKILL_VERSION:-1.3.3}"
 ```
 
 `--mark-unlocked` only updates local viewed state. If local state write fails after unlock succeeds, tell the user the company was unlocked but local viewed records were not updated. Do not repeat the paid unlock.

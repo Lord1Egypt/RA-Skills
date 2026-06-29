@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "api-cost-compare"
+version = "1.0.0"
+description = "对比各大 LLM 提供商 API 定价的 CLI 工具"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+authors = [
+    {name = "minirr890112-byte"}
+]
+keywords = ["llm", "api", "pricing", "cost", "compare", "cli"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Utilities",
+]
+
+dependencies = [
+    "click>=8.0",
+    "rich>=13.0",
+]
+
+[project.scripts]
+api-cost-compare = "api_cost_compare.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/minirr890112-byte/api-cost-compare"
+Repository = "https://github.com/minirr890112-byte/api-cost-compare"
+
+[tool.setuptools.packages.find]
+include = ["api_cost_compare*"]

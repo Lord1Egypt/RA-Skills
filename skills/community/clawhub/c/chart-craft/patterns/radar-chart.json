@@ -1,0 +1,12 @@
+{
+  "name": "radar-chart",
+  "label": "雷达图",
+  "description": "多维度对比展示，适合能力评估和综合评分",
+  "chart_type": "radar",
+  "features": ["hover_tooltip", "legend_toggle", "fill_opacity", "grid_levels"],
+  "grid_levels": 5,
+  "fill_opacity": 0.2,
+  "animation": true,
+  "max_dimensions": 12,
+  "max_series": 6
+}

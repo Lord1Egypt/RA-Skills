@@ -1,0 +1,4 @@
+interface:
+  display_name: "WAPC Submission"
+  short_description: "Automate WAPC LoTW evidence collection and submission"
+  default_prompt: "Use this skill when preparing WAPC award applications on mulandxc.com using real LoTW confirmations, screenshot evidence, row uploads, backend field saving, and final applicant info submission."

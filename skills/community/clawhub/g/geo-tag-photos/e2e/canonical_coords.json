@@ -1,0 +1,10 @@
+{
+  "01_eiffel.jpg":    {"lat": 48.8584, "lon":   2.2945, "name": "Eiffel Tower",          "city": "Paris",          "country": "France"},
+  "02_liberty.jpg":   {"lat": 40.6892, "lon": -74.0445, "name": "Statue of Liberty",     "city": "New York",       "country": "USA"},
+  "03_opera.jpg":     {"lat":-33.8568, "lon": 151.2153, "name": "Sydney Opera House",    "city": "Sydney",         "country": "Australia"},
+  "04_greatwall.jpg": {"lat": 40.6800, "lon": 117.2326, "name": "Great Wall of China Jinshanling",   "city": "Beijing",        "country": "China"},
+  "05_tajmahal.jpg":  {"lat": 27.1751, "lon":  78.0421, "name": "Taj Mahal",             "city": "Agra",           "country": "India"},
+  "06_colosseum.jpg": {"lat": 41.8902, "lon":  12.4922, "name": "Colosseum",             "city": "Rome",           "country": "Italy"},
+  "07_christ.jpg":    {"lat":-22.9519, "lon": -43.2105, "name": "Christ the Redeemer",   "city": "Rio de Janeiro", "country": "Brazil"},
+  "08_bigben.jpg":    {"lat": 51.5007, "lon":  -0.1246, "name": "Elizabeth Tower",       "city": "London",         "country": "UK"}
+}

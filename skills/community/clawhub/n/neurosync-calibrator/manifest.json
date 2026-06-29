@@ -1,0 +1,37 @@
+{
+  "name": "NeuroSync_FPS_Sensitivity_Calibrator",
+  "version": "1.0.0",
+  "description": "輸入 12 筆 FPS 遊戲交叉參數實測角度，自動調用 NeuroSync 核心微積分觀測器，解調出 K_sys 與 K_accel 物理常數，並輸出真實世界公分、度數手感定量換算報告。",
+  "runtime": "python3.11",
+  "main": "kiwi_bridge.py",
+  "dependencies": [
+    "opencv-python",
+    "numpy",
+    "scipy"
+  ],
+  "input": {
+    "type": "object",
+    "properties": {
+      "real_angles": {
+        "type": "array",
+        "items": { "type": "number" },
+        "description": "長度為 12 的陣列，依序填入 3 部影片在 4 種靈敏度參數組合 (130/130, 130/65, 65/65, 65/130) 下實測的遊戲視角轉動度數。"
+      }
+    },
+    "required": ["real_angles"]
+  },
+  "output": {
+    "type": "object",
+    "properties": {
+      "K_sys": { "type": "number", "description": "解調出的底層低速線性映射常數" },
+      "K_accel": { "type": "number", "description": "解調出的底層高速加速度動態映射常數" },
+      "R_squared": { "type": "number", "description": "全域模型擬合優度 (R² 分數)" },
+      "deg_per_cm_slow": { "type": "number", "description": "低速平穩跟槍手感換算：手指滑動 1 公分畫面轉動角度" },
+      "deg_per_cm_fast": { "type": "number", "description": "高速暴力甩槍手感換算：手指甩動 1 公分畫面轉動角度" },
+      "granular_res_deg_per_px": { "type": "number", "description": "觸控層細緻靈敏度解析度 (度/像素)" },
+      "status": { "type": "string" },
+      "raw_report": { "type": "string", "description": "核心程式碼印出的毫秒級完整文字日誌與校準評估報告" }
+    }
+  },
+  "price": "0.01 USDC"
+}

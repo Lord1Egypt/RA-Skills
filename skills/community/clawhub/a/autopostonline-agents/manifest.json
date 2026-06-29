@@ -1,0 +1,37 @@
+{
+  "name": "autopostonline-agents",
+  "displayName": "AutoPostOnline Agents",
+  "slug": "autopostonline-agents",
+  "version": "1.0.2",
+  "owner": "AutoPostOnline",
+  "license": "MIT",
+  "description": "Autonomous social publishing infrastructure for AI agents. Requires an AutoPostOnline API key.",
+  "homepage": "https://autopostonline.com/agents/",
+  "docs": "https://autopostonline.com/docs/agents/",
+  "repository": "https://github.com/AutoPostOnline/autopostonline-agents",
+  "apiBaseUrl": "https://app.autopostonline.com/api",
+  "mcpEndpoint": "https://app.autopostonline.com/api/mcp",
+  "checkout": "https://buy.stripe.com/cNi7sL5pz0XkalC6nf24002",
+  "tags": [
+    "social-media",
+    "publishing",
+    "autonomous-agents",
+    "mcp",
+    "api",
+    "marketing-automation",
+    "postiz",
+    "scheduling",
+    "analytics",
+    "content-agents",
+    "openclaw"
+  ],
+  "env": {
+    "POSTIZ_API_URL": "https://app.autopostonline.com/api",
+    "POSTIZ_API_KEY": "your_api_key"
+  },
+  "pricing": {
+    "plan": "Agent Unlimited",
+    "price": "$9/month",
+    "checkout": "https://buy.stripe.com/cNi7sL5pz0XkalC6nf24002"
+  }
+}

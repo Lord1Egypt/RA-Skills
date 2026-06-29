@@ -1,0 +1,50 @@
+# Home Room Area
+
+Use this reference for homes, rooms, and areas.
+
+- Use `home.list` when the user asks for all homes, needs to choose the right home, or a later delete/member/transfer plan needs account-level home candidates with counts.
+- Use `home.search` when the user provides a partial home name and needs candidates before selecting, updating, deleting, joining, or managing members of a home.
+- Use `entity.list` or `entity.get` for read-only entities inside one selected home.
+- Use `home.detail.get` when the user asks for current home details beyond the home list.
+- Use `home.stat.get` when the user asks for home-level counts, organization statistics, or impact evidence before a home-wide plan.
+- Use `geo_area.children.list` when the user asks for selectable city/geographic area candidates or when a new or updated home needs an `areaCode` and no city name is known yet. It is account-level geographic lookup, not a home-space area query.
+- Use `geo_area.search` when the user provides a country, province, state, city, or area name and needs candidate `areaCode`/`areaName` values before `home.create` or `home.update`.
+- Use `home.member.list` when the user asks who is in the current home; Runtime returns only masked member evidence.
+- Use `home.member.current.get` only when the user provides or prior Runtime output supplies the member/user id; member contact fields are returned masked.
+- Use `home.member.invite` when the user explicitly asks to generate a home sharing invite. Runtime returns a pending plan, accepts expiry and normal/admin role only, and verifies with masked member-list evidence after commit.
+- Use `home.member.accept_share` when the user explicitly asks to accept a structured home sharing code. Pass only the returned or user-provided `shareId`, `createTime`, and optional expected `houseId`; Runtime derives the recipient from the current local account and verifies the accepted home through `home.summary`.
+- Use `home.member.configure` when the user explicitly asks to change a member between normal and admin. Runtime returns a pending plan, rejects owner/master transfer through this intent, and verifies the role through `home.member.list`.
+- Use `home.member.remove`, `home.member.transfer`, or `home.member.quit` only for explicit member removal, owner transfer, or leaving a shared home. These are R3 local-approval plans; show the Runtime returned impact preview and approval command, then commit only by `planId` after local approval succeeds.
+- Use `home.create` when the user explicitly asks to create a new home/family. Pass only semantic fields such as `name`, `description`/`desc`, `icon`, `areaCode`, and `areaName`; Runtime returns an account-scoped pending plan and verifies the created home by home list or created-house accessibility after `plan.commit`.
+- Use `home.update` when the user changes home profile fields such as name, description, icon, area code/name, building name/address, or floor name. Runtime must return a pending plan; home name is verified by home detail readback, while address/floor metadata relies on cloud write acknowledgement plus readable home detail.
+- Use `home.delete` only when the user explicitly asks to delete the current home. This is an R3 local-approval plan; do not treat chat confirmation as sufficient approval.
+- Use `home.sort.list` when the user asks to inspect the current home page or room organization order before changing it.
+- Use `room.list` when the user asks for rooms in the selected home or when a room-affecting plan needs room candidates and device counts.
+- Use `room.search` when the user gives a partial room name and needs candidates before moving devices, assigning areas, updating, or deleting rooms.
+- Use `room.detail.get` when the user asks for one room's detail or when a persistent room-affecting plan needs stronger preflight evidence for a known room id.
+- Use `area.detail.get` when the user asks for an area detail, associated rooms, parent area context, or when an area update plan needs stronger preflight evidence.
+- Use `room.create` or `area.create` for creating a persistent room or area; Runtime must return a pending plan before any change.
+- Use `room.rename` for room name changes. Runtime must return a pending plan and later verify the room name with `entity.list`.
+- Use `room.update` when the user changes room metadata such as name, icon/image, gateway binding fields, sequence, or room capability. Runtime must return a pending plan; name is verified through `entity.list`, while other submitted metadata is treated as a guarded cloud write acknowledgement.
+- Use `room.batch_create` or `room.batch_update` when the user explicitly asks to create or update multiple rooms in one operation. Keep every room item explicit; Runtime caps one plan at 20 rooms and verifies room names through `entity.list`.
+- Use `room.area.configure` when the user asks to add or remove a room from one or more areas. Runtime validates the room and area ids, returns a pending plan, and verifies by write acknowledgement plus room/area accessibility through `entity.list`.
+- Use `device.rename` for cloud device name changes and `device.move` for moving one device to another room. Runtime must return a pending plan and later verify the device name or `roomId` with `entity.list`.
+- Use `device.move_room.batch` when the user asks to move multiple devices into rooms in one operation. Keep the batch explicit as either `items: [{deviceId, roomId}]` or an equivalent device-to-room map; Runtime caps one plan at 20 items and verifies each device `roomId`.
+- Use `area.update` when the user changes an area's name, description, icon, parent area, or complete room association list. Runtime must return a pending plan and verify the area with `entity.list`.
+- Use `group.list` when the user asks for custom groups or needs group candidates with room membership before group update/delete.
+- Use `group.search` when the user gives a partial group name and needs candidates before changing or deleting a group.
+- Cross-house movement remains a guarded gap unless Runtime returns a pending plan.
+- Use `home.sort.configure` when the user explicitly asks to reorder items on the home page or within a home/room organization surface; Runtime must return a pending plan and later verify by reading the sort result.
+- Use `home.lock_all` or `home.unlock_all` only when the user explicitly asks to lock or unlock reset ability for all devices in the current home. Runtime returns a pending plan with whole-home impact preview and verifies by write acknowledgement plus home entity-list accessibility.
+- Use `favorite.list` when the user asks what is currently pinned, favorited, or shown in favorite shortcuts.
+- Use `favorite.plan` when the user asks for a non-persistent recommendation for how to organize favorites; it must not be described as an applied change.
+- Use `favorite.add` when the user asks to add a device, group, scene, room, or other supported resource to favorites.
+- Use `favorite.update` when the user asks to change an existing favorite's rank, enabled state, or resource mapping.
+- Use `favorite.batch_add` or `favorite.batch_update` when the user asks to organize multiple favorites in one request. Runtime must still return one pending plan and later verify every item through the favorites list.
+- Use `favorite.delete` when the user explicitly asks to remove one favorite shortcut. Use `favorite.batch_delete` when the user explicitly asks to remove multiple favorite shortcuts. Runtime resolves the target favorites first, caps one plan at 20 items, returns a pending plan, and verifies every removal through `favorite.list`.
+- For favorite and sort writes, pass Runtime-returned semantic evidence such as `entityType` plus `resId`/`entityId`; do not ask the user for internal `typeId` values.
+- Use `room.delete` or `area.delete` only when the user explicitly asks to delete one target. Runtime must return a pending plan, re-check the target, and verify removal after commit.
+- Use `room.batch_delete` or `area.batch_delete` only when the user explicitly asks to delete multiple rooms or areas. Runtime caps one plan at 20 targets, resolves each target by id or unique name, and verifies every target disappeared from `entity.list`.
+- Ask one smallest clarification question when the target home, room, or area is ambiguous.
+- Do not choose a home by guessing from a name collision.
+- Do not invent sorting ranks or favorite resource types. Pass the user's requested order and natural target names to Runtime when exact IDs are not available.

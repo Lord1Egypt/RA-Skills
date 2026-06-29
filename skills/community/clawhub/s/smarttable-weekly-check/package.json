@@ -1,0 +1,8 @@
+{
+  "name": "smarttable-weekly-check",
+  "version": "1.1.0",
+  "description": "企业微信智能表格周报检查工具",
+  "dependencies": {
+    "puppeteer": "^24.0.0"
+  }
+}

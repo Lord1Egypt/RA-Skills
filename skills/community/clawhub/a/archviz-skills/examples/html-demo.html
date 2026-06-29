@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>archviz-skills HTML Demo</title></head>
+<body style="margin:0;background:#f5f0eb;font-family:system-ui,sans-serif;padding:40px">
+<h2 style="color:#1B365D;font-weight:300">Project Phases</h2>
+<canvas id="chart" width="600" height="300"></canvas>
+<script>
+const data = [{l:"Setup",v:6},{l:"Core",v:7},{l:"Polish",v:4},{l:"Test",v:3},{l:"Ship",v:2}];
+const ctx = document.getElementById("chart").getContext("2d");
+const max = Math.max(...data.map(d=>d.v));
+const barW = 80, gap = 30, startX = 60, baseY = 260;
+data.forEach((d,i) => {
+  const x = startX + i*(barW+gap);
+  const h = (d.v/max)*200;
+  ctx.fillStyle = i===data.length-1 ? "#002FA7" : "#94a3b8";
+  ctx.fillRect(x, baseY-h, barW, h);
+  ctx.fillStyle = "#44403c";
+  ctx.font = "13px system-ui";
+  ctx.textAlign = "center";
+  ctx.fillText(d.l, x+barW/2, baseY+18);
+  ctx.fillText(d.v+"w", x+barW/2, baseY-h-8);
+});
+</script>
+</body></html>

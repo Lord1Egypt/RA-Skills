@@ -1,0 +1,241 @@
+/* ============================================================
+   md2pdf — Academic Theme
+   学术论文风格：暖白底色、衬线字体、经典排版
+   ============================================================ */
+
+/* ── 基础 ── */
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+    font-family: "Times New Roman", "STSong", "Noto Serif CJK SC", Georgia, serif;
+    font-size: 12pt;
+    line-height: 1.7;
+    color: #222;
+    background: #faf8f5;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 60px;
+    text-align: justify;
+    hyphens: auto;
+}
+
+/* ── 标题 ── */
+h1 {
+    font-size: 20pt;
+    font-weight: 700;
+    margin-top: 28pt;
+    margin-bottom: 14pt;
+    color: #1a1a1a;
+    letter-spacing: 0.5px;
+}
+h2 {
+    font-size: 16pt;
+    font-weight: 700;
+    margin-top: 24pt;
+    margin-bottom: 10pt;
+    color: #2a2a2a;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 4pt;
+}
+h3 {
+    font-size: 14pt;
+    font-weight: 600;
+    margin-top: 18pt;
+    margin-bottom: 8pt;
+    color: #333;
+    font-style: italic;
+}
+h4 {
+    font-size: 12pt;
+    font-weight: 600;
+    margin-top: 14pt;
+    margin-bottom: 6pt;
+    color: #444;
+}
+
+/* ── 段落 ── */
+p {
+    margin: 6pt 0;
+    text-indent: 2em;
+}
+h1 + p, h2 + p, h3 + p, h4 + p {
+    text-indent: 0;
+}
+
+/* ── 列表 ── */
+ul, ol { margin: 8pt 0; padding-left: 28pt; }
+li { margin: 4pt 0; line-height: 1.6; }
+
+/* ── 链接 ── */
+a { color: #1a56db; }
+
+/* ── 表格 ── */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 14pt 0;
+    font-size: 10pt;
+    background: #fff;
+}
+th, td {
+    border: 1px solid #999;
+    padding: 5pt 8pt;
+    text-align: left;
+}
+th {
+    background: #e8e4df;
+    color: #1a1a1a;
+    font-weight: 700;
+}
+}
+
+/* ── 代码 ── */
+code {
+    font-family: "Courier New", "Source Code Pro", monospace;
+    font-size: 10pt;
+    background: #f0ede8;
+    padding: 1pt 4pt;
+    border-radius: 2px;
+}
+pre {
+    background: #f0ede8;
+    padding: 12pt 16pt;
+    font-size: 9.5pt;
+    line-height: 1.4;
+    margin: 12pt 0;
+    border: 1px solid #d5d0c8;
+    border-radius: 2px;
+    overflow-x: auto;
+}
+
+/* ── 引用 ── */
+blockquote {
+    border-left: 3px solid #8b7355;
+    margin: 14pt 0;
+    padding: 6pt 16pt;
+    background: #f5f1eb;
+    font-style: italic;
+    color: #555;
+}
+
+/* ── 分割线 ── */
+hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 20pt 0;
+}
+
+/* ── 强调 ── */
+strong { font-weight: 700; }
+em { font-style: italic; }
+
+/* ── 图片 ── */
+img { max-width: 100%; height: auto; border: 1px solid #ddd; }
+
+/* ════════════════════════════════════════════════════════════
+   封面页 — 古典典雅风格
+   ════════════════════════════════════════════════════════════ */
+.md2pdf-cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+    padding: 80px 60px;
+    background: #f5f1eb;
+    page-break-after: always;
+}
+.md2pdf-cover h1 {
+    font-size: 30pt;
+    font-weight: 700;
+    margin: 0 0 12pt 0;
+    border: none;
+    padding: 0;
+    letter-spacing: 1px;
+    color: #1a1a1a;
+}
+.md2pdf-cover .subtitle {
+    font-size: 14pt;
+    color: #6b5e4e;
+    margin-bottom: 36pt;
+    font-style: italic;
+}
+.md2pdf-cover hr {
+    width: 80px;
+    margin: 24pt auto;
+    border-top: 2px solid #8b7355;
+}
+.md2pdf-cover .meta {
+    font-size: 11pt;
+    color: #6b5e4e;
+    margin: 3pt 0;
+}
+.md2pdf-cover .version {
+    font-size: 10pt;
+    color: #999;
+    margin-top: 20pt;
+    font-style: italic;
+}
+
+/* ════════════════════════════════════════════════════════════
+   目录页
+   ════════════════════════════════════════════════════════════ */
+nav#TOC {
+    padding: 20px 0;
+}
+nav#TOC h1,
+nav#TOC h2 {
+    font-size: 16pt;
+    font-weight: 700;
+    border: none;
+    margin-bottom: 16pt;
+    padding: 0;
+    letter-spacing: 1px;
+    text-align: center;
+}
+nav#TOC ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+nav#TOC ul ul {
+    padding-left: 24px;
+}
+nav#TOC li {
+    margin: 3pt 0;
+    line-height: 1.5;
+}
+nav#TOC a {
+    color: #333;
+    text-decoration: none;
+}
+nav#TOC a:hover {
+    text-decoration: underline;
+}
+nav#TOC a::after {
+    content: leader(".") target-counter(attr(href), page);
+}
+
+/* ════════════════════════════════════════════════════════════
+   @page 边距
+   ════════════════════════════════════════════════════════════ */
+@page {
+    margin-top: 25mm;
+    margin-bottom: 25mm;
+    margin-left: 30mm;
+    margin-right: 25mm;
+}
+
+/* ════════════════════════════════════════════════════════════
+   分页保护 — 防止内容被截断到两页
+   ════════════════════════════════════════════════════════════ */
+h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid;
+}
+pre, blockquote, img, svg, .mermaid {
+    page-break-inside: avoid;
+}
+table {
+    page-break-inside: auto;
+}
+/* 封面独占一页（page-break 在 HTML 内联样式中设置） */

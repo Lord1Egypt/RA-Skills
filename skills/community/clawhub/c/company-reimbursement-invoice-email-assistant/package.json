@@ -1,0 +1,37 @@
+{
+  "name": "company-reimbursement-invoice-email-assistant",
+  "version": "1.0.0",
+  "description": "公司报销发票邮箱管理助手：面向 Agent 的 IMAP 发票邮件下载、PDF 识别、台账生成和归档工具。",
+  "main": "run-all.js",
+  "scripts": {
+    "setup": "node scripts/configure-mailbox.js",
+    "doctor": "node scripts/doctor.js",
+    "check": "node scripts/check-syntax.js",
+    "classify": "node step2-classify-invoices.js",
+    "download": "node step2-download-pdf.js",
+    "extract": "node step3-extract-pdf.js",
+    "merge": "node step4-merge-data.js",
+    "ledger": "node step5-generate-ledger.js",
+    "archive": "node archive-invoices.js",
+    "run": "node run-all.js",
+    "test": "npm run check"
+  },
+  "keywords": [
+    "invoice",
+    "email",
+    "imap",
+    "codex-skill",
+    "发票"
+  ],
+  "author": "aigc猎手竹相左边",
+  "license": "MIT",
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "iconv-lite": "^0.6.3",
+    "imap": "^0.8.19",
+    "mailparser": "^3.9.9",
+    "node-fetch": "^2.7.0",
+    "pdf-parse": "^2.4.5",
+    "pdf2json": "^4.0.3"
+  }
+}

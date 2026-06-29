@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "countries": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["US", "GB", "DE", "EE", "SG", "JP", "AU", "HK", "FR", "IT", "ES"] }
+    },
+    "monthlyRevenue": { "type": "number", "minimum": 0 },
+    "salesChannels": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["Amazon", "Shopify", "eBay", "独立站", "Other"] }
+    },
+    "yearToDateRevenue": {
+      "type": "object",
+      "additionalProperties": { "type": "number" }
+    },
+    "hasBrand": { "type": "boolean" },
+    "existingCompliances": { "type": "array", "items": { "type": "string" } }
+  },
+  "required": ["countries"]
+}

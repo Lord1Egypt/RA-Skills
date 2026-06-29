@@ -1,0 +1,13 @@
+{
+  "character_id": "REPLACE_WITH_CHARACTER_ID",
+  "animation_name": "idle-breathing-south",
+  "description": "side-view character sprite with stable outfit and transparent background",
+  "action_description": "calm idle loop with subtle breathing, stable face, same outfit, no camera movement",
+  "mode": "v3",
+  "directions": [
+    "south"
+  ],
+  "frame_count": 8,
+  "enhance_prompt": true,
+  "seed": 0
+}

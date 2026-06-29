@@ -1,0 +1,24 @@
+{
+  "id": "nj-path-alerts",
+  "name": "NJ PATH Alerts",
+  "version": "0.1.0",
+  "description": "Real-time NJ PATH train alerts, service status, and arrival times",
+  "author": "Liam Sawyer",
+  "license": "MIT",
+  "main": "index.js",
+  "skills": ["skills/path-alerts"],
+  "configSchema": {
+    "type": "object",
+    "properties": {
+      "pollIntervalMs": {
+        "type": "number",
+        "default": 300000,
+        "description": "How often to poll for new alerts (milliseconds)"
+      },
+      "alertChannel": {
+        "type": "string",
+        "description": "Telegram channel ID to send alerts to (optional)"
+      }
+    }
+  }
+}

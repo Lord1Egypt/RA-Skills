@@ -221,7 +221,8 @@ XDesign 内置多语言设计指导：
 XDesign/
 ├── SKILL.md                          # 核心技能（Intent Router + Mode 1/2/3）
 ├── README.md                         # 本文件
-├── LICENSE
+├── LICENSE                           # XDesign 自身的 MIT 许可证
+├── THIRD_PARTY_NOTICES.md            # 第三方归属（html-ppt-skill 等）
 ├── assets/
 │   └── design-md/                    # 58 个品牌 DESIGN.md
 │       ├── stripe/
@@ -231,14 +232,25 @@ XDesign/
 │   ├── design-system-catalog.md      # 58 品牌索引
 │   ├── technical-specs.md            # 技术规范
 │   ├── workflow-guide.md             # 高手玩法
-│   ├── integration-guide.md          # 【新】融合架构 + 路由表 + 适配层
-│   └── deck-studio-catalog.md        # 【新】deck-studio 资源速查
+│   ├── integration-guide.md          # 融合架构 + 路由表 + 适配层
+│   ├── deck-studio-catalog.md        # deck-studio 资源速查
+│   ├── mode-2-prototype.md           # Mode 2/3 详细规则（PPAF、React+Babel、Starter Components）
+│   └── schemas.md                    # DESIGN.md / tokens / evals schema
 ├── evals/
-│   └── eval-plan.json
-└── deck-studio/                      # 【新】子模块（html-ppt-skill 完整克隆）
-    ├── SKILL.md
+│   ├── evals.json                    # 3 个可执行 evals
+│   ├── trigger-queries.json          # 20 个 trigger queries（12 触发 / 8 不触发）
+│   └── eval-plan.json                # 遗留：评估设计元数据
+├── scripts/
+│   ├── lint-skill.py                 # 技能规范检查
+│   ├── validate-themes.py            # deck-studio 主题引用校验
+│   ├── new-prototype.sh              # Mode 2 原型脚手架
+│   ├── add-brand.sh                  # 新品牌 DESIGN.md 脚手架
+│   ├── package-export.sh             # HTML → PDF / PPTX
+│   └── dist.sh                       # 清洁打包（排除 .git、临时文件）
+└── deck-studio/                      # 子模块（html-ppt-skill 完整克隆，MIT）
+    ├── SUBMODULE.md                  # 原 SKILL.md 重命名（避免双入口）
     ├── README.md / README.zh-CN.md
-    ├── LICENSE
+    ├── LICENSE                       # 原项目 MIT 许可证保留
     ├── assets/
     │   ├── base.css                  # 设计令牌 + 布局原语
     │   ├── fonts.css                 # webfont imports
@@ -261,4 +273,26 @@ XDesign/
 
 ---
 
+## Credits & Attribution
 
+XDesign 是原创工作流引擎（[references/integration-guide.md](./references/integration-guide.md) 详述架构与路由）。
+
+`deck-studio/` 子目录是 [html-ppt-skill](https://github.com/lewislulu/html-ppt-skill) 的快照克隆，原作者 © 2026 lewis，原项目使用 MIT 许可证。我们保留原 `LICENSE` 文件，并在 [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md) 中列明所有第三方代码、来源与许可证。
+
+如需重新同步上游或了解我们对 `deck-studio/` 做过的具体修改，参见 [references/integration-guide.md](./references/integration-guide.md) 的 *Upstream Sync Procedure* 章节。
+
+---
+
+## License
+
+XDesign 自身代码以 MIT 许可证发布 — 详见 [LICENSE](./LICENSE)。`deck-studio/` 内的代码、主题、模板、动画遵循原 html-ppt-skill 的 MIT 许可证 — 详见 [deck-studio/LICENSE](./deck-studio/LICENSE)。
+
+---
+
+## 加入群聊
+
+<div align="center">
+  <img src="https://qomob.ai/xskill.jpg" width="600" alt="XSkill">
+</div>
+
+---

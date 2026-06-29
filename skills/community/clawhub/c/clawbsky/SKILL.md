@@ -1,6 +1,6 @@
 ---
 name: clawbsky
-version: 2.0.4
+version: 2.0.13
 description: AI-powered Bluesky CLI with multi-user auth, smart content generation, post scheduling, analytics, RSS automation, and growth tools.
 homepage: https://github.com/jyothish12345/Clawbsky
 metadata:
@@ -15,7 +15,11 @@ metadata:
     primaryEnv: BLUESKY_APP_PASSWORD
 ---
 
-# 🦞 clawbsky v2.0.4
+# 🦞 clawbsky v2.0.13
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/jyothish12345/Clawbsky/main/icon.png" alt="Clawbsky Logo" width="400" />
+</p>
 
 **The ultimate AI-powered Bluesky CLI** for power users, creators, and automation enthusiasts.
 

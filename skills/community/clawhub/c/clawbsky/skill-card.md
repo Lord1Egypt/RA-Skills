@@ -1,5 +1,5 @@
 ## Description: <br>
-Clawbsky is an AI-powered Bluesky CLI for multi-user account management, content generation, post scheduling, analytics, RSS automation, and growth workflows. <br>
+AI-powered Bluesky CLI with multi-user auth, smart content generation, post scheduling, analytics, RSS automation, and growth tools. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,35 @@ MIT <br>
 
 
 ## Use Case: <br>
-External creators, social-media operators, and developers use Clawbsky to manage Bluesky accounts, draft AI-assisted content, schedule posts, analyze engagement, and run RSS or growth workflows from a CLI. <br>
+Creators, community managers, and developers use Clawbsky to manage Bluesky accounts, generate social posts and replies, schedule content, inspect timelines, review analytics, automate RSS-driven posts, and perform account maintenance tasks. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can perform live account-changing actions on a Bluesky account. <br>
-Mitigation: Use a dedicated Bluesky app password and start with a test or low-risk account; review scheduled and bulk actions before running them. <br>
-Risk: Reusable account sessions and local data stores may remain on disk. <br>
-Mitigation: Protect local session and data files, periodically delete them when no longer needed, and rotate app passwords if a workstation may be exposed. <br>
-Risk: AI features may process drafts, analytics, or account context through a configured LLM provider. <br>
-Mitigation: Avoid submitting sensitive drafts or private analytics to LLM features, or use a trusted local provider for sensitive workflows. <br>
+Risk: The skill can store Bluesky login sessions and use credentials to act on public accounts. <br>
+Mitigation: Use a dedicated Bluesky app password, start with a test account when possible, and clear saved sessions after use. <br>
+Risk: Automation features can post, schedule, follow, unfollow, block, mute, or otherwise change account state in bulk. <br>
+Mitigation: Review commands before running them, use dry-run modes where available, and avoid aggressive growth or cleanup automation. <br>
+Risk: Standalone growth and repost discovery scripts may include account or path assumptions that are not appropriate for every user. <br>
+Mitigation: Inspect and edit standalone scripts such as follow-growth and discover-repost before executing them. <br>
 
 
 ## Reference(s): <br>
-- [Clawbsky on ClawHub](https://clawhub.ai/jyothish12345/skills/clawbsky) <br>
+- [ClawHub Skill Page](https://clawhub.ai/jyothish12345/skills/clawbsky) <br>
+- [Publisher Profile](https://clawhub.ai/user/jyothish12345) <br>
 - [Bluesky App Passwords](https://bsky.app/settings/app-passwords) <br>
+- [Project Homepage](https://github.com/jyothish12345/Clawbsky) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Shell commands, Configuration, Guidance] <br>
-**Output Format:** [Markdown with CLI commands, configuration notes, and text output] <br>
+**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown, CLI text, JSON-capable command output, and shell command examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires Bluesky credentials through BLUESKY_HANDLE and BLUESKY_APP_PASSWORD; media workflows may require ffmpeg and ffprobe.] <br>
+**Other Properties Related to Output:** [May execute account-changing Bluesky actions when the user runs posting, scheduling, moderation, cleanup, RSS, or growth commands.] <br>
 
 ## Skill Version(s): <br>
-2.0.4 (source: server release, SKILL.md frontmatter, package.json) <br>
+2.0.13 (source: SKILL.md frontmatter, package.json, server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

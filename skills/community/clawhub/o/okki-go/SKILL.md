@@ -9,6 +9,12 @@ OKKI Go helps users find B2B prospect companies, unlock selected company details
 
 Default principle: run free company discovery quickly from target-company terms, show the script-rendered company table, and wait for explicit confirmation before any paid unlock, contact search, or email send.
 
+## Context Firewall
+
+Simple, self-contained OKKI requests stay on the existing fast path. When a request depends on files, spreadsheets, PDFs, websites, web research, another skill's output, long pasted text, long email drafts, imported lists, stale prior turns, or compound workflows, read `references/context-firewall.md` before building an OKKI action.
+
+Risky upstream context must become a small source-labeled digest, then a validated Action Envelope before it can affect paid/send/write scope or script payloads. Digests and envelopes never replace explicit paid unlock, contact-search, email-send, Profile-write, or local-state confirmation. After wrapper execution, the script-owned compact output remains the primary visible structure.
+
 ## OKKI Data Source Boundary
 
 For ordinary OKKI Go prospecting, do not use public web search to find or replace company results. This includes requests to find companies, buyers, importers, distributors, customers, target accounts, or prospects.
@@ -55,6 +61,20 @@ Apply this contract before every free company-search payload, including L0 searc
 5. Recall before precision: keep buyer route, employee size, certification, decision role, and importer/distributor hints as soft display or recovery clues unless they are the chosen primary field.
 6. Separate products from roles: Put product or offer terms in `productKeywords`; put buyer roles in `companyTypeKeywords`. Do not combine product and buyer-role terms inside `companyTypeKeywords`.
 7. No over-narrow first search: do not default to `crossFieldOperator: "AND"`, do not pack all three keyword fields, and do not use email-only unless requested.
+
+Compound company-type terms are invalid. Do not send:
+
+```json
+{"companyTypeKeywords": ["工业自动化系统集成商"]}
+```
+
+Split target-buyer profile terms into the right fields:
+
+```json
+{"industryKeywords": ["工业自动化系统"], "companyTypeKeywords": ["集成商"]}
+```
+
+Target-side first still applies: do not copy seller product, SKU, model, or service-list terms into any keyword field.
 
 Supported free company-search fields are only `companyTypeKeywords`, `productKeywords`, `industryKeywords`, `includeCountry`, `excludeCountry`, `withEmails`, `crossFieldOperator`, `from`, and `size`. `includeCountry` is only a filter and cannot be sent without a keyword field. Do not invent filters such as employee range, decision roles, website, homepage, contacts, or limit.
 
@@ -111,7 +131,7 @@ Balance:
 OKKIGO_API_KEY="$(bash scripts/resolve-api-key.sh --print)"
 curl -s -X GET "${OKKIGO_BASE_URL:-https://go.okki.ai}/api/v1/credit/balance" \
   -H "Authorization: ApiKey ${OKKIGO_API_KEY}" \
-  -H "X-Okki-Skill-Version: ${OKKIGO_SKILL_VERSION:-1.3.2}"
+  -H "X-Okki-Skill-Version: ${OKKIGO_SKILL_VERSION:-1.3.3}"
 ```
 
 Use compact wrappers for normal work. Do not call raw/non-compact output unless the user explicitly asks for raw, debug, export, or full detail.
@@ -135,6 +155,8 @@ These rules are non-bypassable.
 
 Unlock: prepare an internal unlock plan for selected rows or a processed final target set, then ask explicit credit confirmation before running the plan. A single confirmation can cover one selected batch of rows or one processed final target set; if the user changes targets before confirmation, prepare a new plan. See `references/paid-actions.md` for wording and boundaries. A row number, "find emails", "get contacts", Profile reuse, Expansion, Web Research, or Mentor recommendation is not confirmation. Local viewed-state write failure is warning-only after a successful unlock; never repeat a paid unlock just to repair local state.
 
+`companyHashId` is script-owned. The only valid source for `companyHashId` is the `/companies/unlock` response for a confirmed unlock plan. Do not use free-search ID, raw `id`, domain, row number, or model memory as `companyHashId` for profile/profileEmails lookups.
+
 Contact search: before the first `POST /contacts/search` in a session, state that contact search costs 1 credit per query and wait for confirmation. Subsequent same-session contact searches do not need re-confirmation unless the user refuses or scope materially changes.
 
 Email send: never send before explicit recipient and content confirmation. Drafting is free; sending consumes EDM quota. After sending, keep output compact and do not echo full bodies unless requested.
@@ -145,6 +167,7 @@ Read only the reference needed for the selected mode:
 
 | Reference | Read only when |
 |---|---|
+| `references/context-firewall.md` | Large files/text, spreadsheets, PDFs, websites, web research, another skill output, stale prior turns, ambiguous aliases, compound workflows, or risky paid/send/write scope from external context. |
 | `references/search-fast-path.md` | Building or paginating ordinary free company-search payloads beyond the quick command. |
 | `references/result-review.md` | Result prioritization, unlock advice, L1 review, or observe/not-recommended grouping over a visible batch. |
 | `references/search-strategy.md` | L2 guided strategy, low-yield diagnosis, supplier-vs-buyer correction, or search-route coaching. |

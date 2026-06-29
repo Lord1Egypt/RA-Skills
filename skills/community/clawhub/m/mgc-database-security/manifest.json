@@ -1,0 +1,40 @@
+{
+  "id": "mgc_database_security",
+  "version": "1.0.1",
+  "name": "Database Credential Security (Zero‑Exposure Edition)",
+  "description": "Secure database credential management using MGC Blackbox. Supports MySQL, PostgreSQL, SQLite, MariaDB and other databases. Store credentials locally in encrypted form, retrieve at runtime without exposing to AI models.",
+  "author": "MirginCipher Team",
+  "license": "MIT",
+  "category": "Developer Tools",
+  "tags": ["database", "mysql", "postgresql", "sqlite", "mariadb", "security", "credential-management", "zero-exposure", "mgc"],
+  "platform_compatibility": ["windows", "macos", "linux"],
+  "source": "local",
+  "skills": [
+    {
+      "name": "mysql_security",
+      "description": "Manage MySQL credentials securely using MGC Blackbox",
+      "parameters": {}
+    }
+  ],
+  "mcp_tools": ["mgc_save", "mgc_get"],
+  "install": {
+    "pip": ["mgc-blackbox"],
+    "mcp": ["mgc"]
+  },
+  "security": {
+    "storage": "MGC Blackbox (encrypted)",
+    "zero_exposure": true,
+    "no_plaintext": true,
+    "no_executable_code": true
+  },
+  "changelog": [
+    {
+      "version": "1.0.1",
+      "changes": ["Updated to emphasize MCP tools over CLI"]
+    },
+    {
+      "version": "1.0.0",
+      "changes": ["Initial release with MySQL zero-exposure pattern"]
+    }
+  ]
+}

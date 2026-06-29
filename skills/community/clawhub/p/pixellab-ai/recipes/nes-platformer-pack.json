@@ -1,0 +1,159 @@
+{
+  "name": "nes-platformer-pack",
+  "description": "Starter asset pack for a readable NES-style side-scrolling platformer.",
+  "defaults": {
+    "style": "authentic NES platformer pixel art, 4-color local ramps, black outline where helpful, no antialiasing, crisp 16-bit-clean silhouettes, readable at game size",
+    "palette": "deep green, clear sky blue, warm tan, brick red, dark navy, bright cream highlight",
+    "sprite_size": 64,
+    "tile_size": 16,
+    "seed": 0,
+    "view": "side",
+    "direction": "facing east in profile"
+  },
+  "references": [
+    "references/youtube-workflow-playbook.md",
+    "references/prompt-cheatsheet.md"
+  ],
+  "qa": [
+    "Check every sprite at 1x and 2x scale for readable silhouettes.",
+    "Keep backgrounds and tiles separate from character sprites.",
+    "Keep palette language consistent across every operation.",
+    "Do not call the pack final until contact-sheet review passes."
+  ],
+  "assets": [
+    {
+      "id": "hero-idle",
+      "label": "Playable hero idle sprite",
+      "asset_type": "sprite",
+      "endpoint": "/v2/create-image-bitforge",
+      "credit_risk": "low",
+      "prompt": "Body: friendly adventurous platformer hero, compact NES side-scroller proportions, readable boots and gloves. Clothing: practical jacket, simple cap, belt pouch, {{palette}}. Expression: confident and kind. Pose: idle platformer stance, knees slightly bent, hands visible. Accessories: small pack and map case. Style: {{style}}. Brief: {{brief}}",
+      "payload": {
+        "description": "{{prompt}}",
+        "image_size": {
+          "width": "{{sprite_size}}",
+          "height": "{{sprite_size}}"
+        },
+        "no_background": true,
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "characters/hero/base"
+    },
+    {
+      "id": "companion-idle",
+      "label": "Magical companion idle sprite",
+      "asset_type": "sprite",
+      "endpoint": "/v2/create-image-bitforge",
+      "seed_offset": 1,
+      "credit_risk": "low",
+      "prompt": "Body: magical companion creature, squat readable silhouette, expressive face. Clothing: tiny satchel and small charm, no oversized hat. Expression: clever and funny. Pose: side-scroller idle stance, facing east. Aura: small contained magic sparkle, not a full effect cloud. Palette: {{palette}}. Style: {{style}}. Brief: {{brief}}",
+      "payload": {
+        "description": "{{prompt}}",
+        "image_size": {
+          "width": "{{sprite_size}}",
+          "height": "{{sprite_size}}"
+        },
+        "no_background": true,
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "characters/companion/base"
+    },
+    {
+      "id": "ground-tileset",
+      "label": "Primary ground and edge tiles",
+      "asset_type": "tile",
+      "endpoint": "/v2/create-tileset-sidescroller",
+      "seed_offset": 2,
+      "credit_risk": "medium",
+      "prompt": "side-scroller platform tiles for {{brief}}, {{style}}, {{palette}}",
+      "payload": {
+        "lower_description": "solid dirt and old brick platform side, readable NES texture, {{palette}}",
+        "transition_description": "grassy magical stone edge trim, readable one-tile platform top, {{palette}}",
+        "tile_size": {
+          "width": "{{tile_size}}",
+          "height": "{{tile_size}}"
+        },
+        "transition_size": 0.25,
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "tilesets/ground"
+    },
+    {
+      "id": "forest-parallax-background",
+      "label": "Parallax background layer",
+      "asset_type": "background",
+      "endpoint": "/v2/create-image-pixen",
+      "seed_offset": 3,
+      "credit_risk": "medium",
+      "prompt": "wide NES platformer parallax background for {{brief}}, distant magical forest, ancient ruins, simple readable silhouettes, low contrast behind gameplay, {{palette}}, {{style}}",
+      "payload": {
+        "description": "{{prompt}}",
+        "image_size": {
+          "width": 256,
+          "height": 128
+        },
+        "no_background": false,
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "backgrounds/forest-parallax"
+    },
+    {
+      "id": "starter-enemy",
+      "label": "Starter enemy sprite",
+      "asset_type": "sprite",
+      "endpoint": "/v2/create-image-bitforge",
+      "seed_offset": 4,
+      "credit_risk": "low",
+      "prompt": "Body: small bumbling platformer enemy for {{brief}}, low squat silhouette, one clear weak point. Clothing: none, simple stone-like armor. Expression: goofy but hostile. Pose: side-scroller idle, facing west. Palette: {{palette}} with one warning-color accent. Style: {{style}}",
+      "payload": {
+        "description": "{{prompt}}",
+        "image_size": {
+          "width": "{{sprite_size}}",
+          "height": "{{sprite_size}}"
+        },
+        "no_background": true,
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "enemies/starter"
+    },
+    {
+      "id": "star-collectible",
+      "label": "Collectible star icon",
+      "asset_type": "sprite",
+      "endpoint": "/v2/create-image-bitforge",
+      "seed_offset": 5,
+      "credit_risk": "low",
+      "prompt": "single collectible magic star coin, centered game pickup, transparent background, high readability, {{palette}}, {{style}}",
+      "payload": {
+        "description": "{{prompt}}",
+        "image_size": {
+          "width": 64,
+          "height": 64
+        },
+        "no_background": true,
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "items/star-collectible"
+    },
+    {
+      "id": "hud-hearts-stars",
+      "label": "HUD heart and star counter UI",
+      "asset_type": "ui",
+      "endpoint": "/v2/generate-ui-v2",
+      "seed_offset": 6,
+      "credit_risk": "low",
+      "prompt": "NES platformer HUD strip with hearts, star counter, small magic meter, transparent background, readable at 256x64, {{palette}}, {{style}}",
+      "payload": {
+        "description": "{{prompt}}",
+        "image_size": {
+          "width": 256,
+          "height": 64
+        },
+        "no_background": true,
+        "color_palette": "{{palette}}",
+        "seed": "{{seed}}"
+      },
+      "output_subdir": "ui/hud"
+    }
+  ]
+}

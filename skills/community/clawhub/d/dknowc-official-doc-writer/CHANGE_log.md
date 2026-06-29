@@ -1,31 +1,32 @@
 # 更新日志
 
+## [3.0.20] - 2026-06-26
+
+### 修复
+
+- 修复普通 Word 默认文件名未使用正式标题的问题，同名文件继续自动追加 `_v1`、`_v2`。
+- 修复素材使用情况未稳定另起页、素材编号误排为三级标题、用途说明带内部箭头标记、来源字段重复等问题。
+- 优化知识专库链接展示，使用“标题（点击打开）”作为可点击文本，避免长 URL 直接铺满页面。
+- 清理生成文档基础元数据，写入文档标题和当前创建/修改时间，避免保留 `python-docx` 默认元数据。
+
 ## [3.0.19] - 2026-06-25
 
 ### 脚本路径与配置安全收口
 
-- 搜索接口统一固定为 `https://open.dknowc.cn/dependable/search/`，不同 Public 渠道仅保留各自注册链接用于获取 API Key。
-- `scripts/dkag_search.py` 固定读取 Skill 根目录下的 `config.ini`，不再从配置文件覆盖接口地址。
+- `scripts/dkag_search.py` 固定读取 Skill 根目录下的 `config.ini`，搜索接口固定为深知可信搜索生产接口，不再从配置文件覆盖接口地址。
 - 搜索结果统一写入 `official-docs/search-results/`，避免任意路径写入。
 - `scripts/merge_search_results.py` 只读取 Skill 工作目录内的 JSON，并将合并结果写回搜索结果目录。
 - `scripts/format_document.py` 只读取 `official-docs/input/`、`official-docs/output/`、`official-docs/search-results/` 内的正文文件，Word 输出限制在 `official-docs/output/`。
 - `scripts/template_generator.py` 只读取和写入 Skill 工作目录内的 `.docx` 文件。
+- 配置缺失、API Key 缺失等启动阶段异常改为结构化 JSON 输出，便于 Agent 稳定提示用户配置后重试。
 - 更新 `SKILL.md`、`reference/output_guide.md` 和 `README.md` 中的命令示例，统一使用 Skill 工作目录，避免继续引导 Agent 使用 `/tmp` 或 `/private/tmp`。
 
-## [3.0.18] - 2026-06-10
+## [3.0.18] - 2026-06-11
 
-### API Key 缺失提示稳定化
+### 版本与打包同步
 
-- 将配置文件缺失、API Key 为空等启动阶段异常改为结构化 JSON 输出，包含 `error`、`message`、`register_url` 和配置提示。
-- 避免首次使用未配置 Key 时暴露 Python traceback，提升 Agent 转述渠道注册链接和配置步骤的稳定性。
-
-## [3.0.17] - 2026-06-10
-
-### Public 版 API Key 引导增强
-
-- 在 Public 渠道版 Skill 规则中新增 API Key 前置引导：当任务需要政策、数据、案例或标准检索时，先确认是否已配置 `config.ini` 和有效 `api_key`。
-- 当未配置 API Key 时，要求 Agent 直接给出对应渠道注册链接和最短配置步骤，不再只依赖 README 说明。
-- 搜索脚本缺少 `config.ini` 或 `api_key` 时，错误信息会直接返回对应渠道注册链接，降低首次使用时的配置断点。
+- 同步当前交付版本号至 3.0.18，保持主版本、统一接口版本、合作方版本与各分发渠道版本一致。
+- 重新生成最新 full 分发包，便于 packages 目录仅保留最新版本。
 
 ## [3.0.16] - 2026-06-10
 

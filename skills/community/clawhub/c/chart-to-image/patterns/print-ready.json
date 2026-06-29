@@ -1,0 +1,11 @@
+{
+  "name": "print-ready",
+  "label": "打印高分辨率",
+  "description": "300 DPI 高分辨率图片，适合打印存档",
+  "format": "png",
+  "background": "#ffffff",
+  "features": ["high_dpi", "cmyk_preview", "margin_guides", "bleed"],
+  "default_dpi": 300,
+  "default_width": 2400,
+  "units": "pixels"
+}

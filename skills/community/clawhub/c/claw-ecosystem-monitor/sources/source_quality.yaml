@@ -1,0 +1,74 @@
+last_checked: "2026-05-05"
+policy:
+  storage: "metadata, short summary, hash, timestamp, source_url only"
+  redistribution: "link back to original source; do not mirror full docs, README files, issue bodies, or package tarballs"
+  pause_triggers:
+    - "HTTP 403"
+    - "HTTP 429"
+    - "robots disallow"
+    - "DMCA or abuse notice"
+    - "platform warning"
+sources:
+  github:
+    official_url: "https://docs.github.com/en/rest"
+    collection_url: "https://api.github.com"
+    robots_note: "github.com/robots.txt points crawlers to the official API and disallows many HTML paths."
+    rate_limit_note: "Unauthenticated REST API limit is 60 requests/hour; authenticated typical limit is 5,000 requests/hour."
+    allowed_fields:
+      - "repo name"
+      - "repo url"
+      - "stars"
+      - "forks"
+      - "open issue count"
+      - "release tag"
+      - "issue title"
+      - "issue labels"
+      - "updated_at"
+    prohibited_fields:
+      - "full README body"
+      - "full issue body"
+      - "private repo data"
+  clawhub:
+    official_url: "https://clawhub.ai/"
+    collection_url: "https://clawhub.ai/"
+    robots_note: "clawhub.ai/robots.txt allows all user agents as checked on 2026-05-05."
+    rate_limit_note: "No official public rate-limit doc found during E0.5. Keep low frequency and stop on 403/429."
+    allowed_fields:
+      - "listing url"
+      - "listing title"
+      - "metadata summary"
+      - "availability status"
+    prohibited_fields:
+      - "bulk HTML mirror"
+      - "private account data"
+  openclaw_docs:
+    official_url: "https://docs.openclaw.ai/"
+    collection_url: "https://docs.openclaw.ai/sitemap.xml"
+    robots_note: "docs.openclaw.ai/robots.txt allows page content but disallows /_next/ and /cdn-cgi/."
+    rate_limit_note: "No official public rate-limit doc found during E0.5. Use sitemap and low-frequency checks."
+    allowed_fields:
+      - "canonical url"
+      - "last seen hash"
+      - "short change summary"
+    prohibited_fields:
+      - "full docs page copy"
+      - "Next.js build assets"
+  npm_registry:
+    official_url: "https://docs.npmjs.com/policies/terms/"
+    collection_url: "https://registry.npmjs.org/-/v1/search"
+    robots_note: "Use registry API, not www.npmjs.com HTML pages."
+    rate_limit_note: "Use small search size and cache results. Stop on 429."
+    allowed_fields:
+      - "package name"
+      - "version"
+      - "description"
+      - "publisher"
+      - "maintainers count"
+      - "license"
+      - "date"
+      - "links"
+      - "download counts from search result"
+    prohibited_fields:
+      - "package tarball mirror"
+      - "full README copy"
+      - "private npm account data"

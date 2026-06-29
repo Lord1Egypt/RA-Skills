@@ -4,14 +4,14 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "stock-realtime-brief"
-version = "4.2.0"
-description = "A股实时分析与可执行操作建议生成器 - 三模式（持仓/单股/多股）+ 三档硬止损 + 公告检测"
+version = "5.0.0"
+description = "A股投研体系 v5.0 - 选股模型 + DCF 估值 + 北极星跟踪 + 实时警报 + 财报解析 + 历史回测 + 7 铁律 + 蓝军对垒"
 readme = "README.md"
 license = { file = "LICENSE" }
 authors = [
     { name = "Stock Realtime Brief Contributors" },
 ]
-keywords = ["stock", "a-share", "trading", "technical-analysis", "openclaw", "hermes-skill"]
+keywords = ["stock", "a-share", "trading", "technical-analysis", "openclaw", "hermes-skill", "dcf", "valuation", "backtest", "polaris", "alerts"]
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Financial and Insurance Industry",

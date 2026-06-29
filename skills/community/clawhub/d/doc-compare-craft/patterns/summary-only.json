@@ -1,0 +1,11 @@
+{
+  "name": "summary-only",
+  "label": "仅变更摘要",
+  "description": "仅输出变更统计和摘要列表，不显示全文对比",
+  "layout": "summary",
+  "diff_level": "auto",
+  "show_line_numbers": false,
+  "features": ["change_stats", "change_list", "category_group", "impact_analysis"],
+  "color_scheme": "diff-summary",
+  "sections": ["added", "removed", "modified", "unchanged"]
+}

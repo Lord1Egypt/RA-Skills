@@ -1,0 +1,14 @@
+{
+  "name": "standup",
+  "label": "每日站会型",
+  "description": "精简的站会记录模板，三件事概括",
+  "sections": [
+    {"id": "header", "title": "站会信息", "fields": ["项目", "日期", "团队"]},
+    {"id": "yesterday", "title": "昨日完成", "type": "list", "per_person": true},
+    {"id": "today", "title": "今日计划", "type": "list", "per_person": true},
+    {"id": "blockers", "title": "阻塞事项", "type": "list-em"},
+    {"id": "summary", "title": "整体进度", "type": "free"}
+  ],
+  "layout": "compact",
+  "per_person_sections": true
+}

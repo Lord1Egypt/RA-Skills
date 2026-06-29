@@ -1,0 +1,23 @@
+{
+  "name": "nba-analyst",
+  "version": "1.0.0",
+  "description": "NBA 全能数据分析助手 - 比分/排名/球员/球队/对比/报告/选秀",
+  "author": "bettermen",
+  "license": "MIT",
+  "skills": {
+    "nba-analyst": {
+      "entry": "SKILL.md",
+      "scripts": ["scripts/"]
+    }
+  },
+  "dependencies": {
+    "python": ">=3.10",
+    "pip": [
+      "nba_api>=1.2.0",
+      "pandas>=2.0.0",
+      "numpy>=1.24.0",
+      "matplotlib>=3.7.0",
+      "requests>=2.31.0"
+    ]
+  }
+}

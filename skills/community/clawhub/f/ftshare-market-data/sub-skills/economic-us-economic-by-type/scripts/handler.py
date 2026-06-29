@@ -55,7 +55,7 @@ def main():
     args = parser.parse_args()
 
     params = {"type": args.type}
-    url = f"{BASE_URL}/data/api/v1/market/data/economic/us-economic?" + urllib.parse.urlencode(params)
+    url = f"{BASE_URL}/gateway/api/v1/market/data/economic/us-economic?" + urllib.parse.urlencode(params)
 
     try:
         with safe_urlopen(url) as resp:

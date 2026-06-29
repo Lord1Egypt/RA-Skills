@@ -1,0 +1,12 @@
+{
+  "name": "structural",
+  "label": "结构变更对比",
+  "description": "检测章节结构变化：增删动",
+  "layout": "tree",
+  "diff_level": "structural",
+  "show_line_numbers": false,
+  "features": ["section_tree", "move_detection", "rename_detection", "depth_indicator"],
+  "color_scheme": "diff-structural",
+  "show_moves": true,
+  "detect_renames": true
+}

@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>存储清理报告 - storage-clean</title>
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif; background:#f5f7fa; color:#333; line-height:1.6; }
+        .container { max-width:1200px; margin:0 auto; padding:20px; }
+        h1 { color:#2c3e50; margin-bottom:4px; font-size:28px; }
+        .subtitle { color:#7f8c8d; margin-bottom:24px; font-size:13px; }
+
+        /* Warning banner */
+        .warn-banner { background:#fff3cd; border-left:4px solid #ffc107; padding:14px 18px; border-radius:8px; margin-bottom:20px; font-size:13px; }
+        .warn-banner strong { color:#856404; }
+        .warn-banner code { background:#f0e8c8; padding:2px 6px; border-radius:4px; font-size:12px; }
+
+        /* Usage tip */
+        .usage-tip { background:#e8f4fd; border-left:4px solid #007bff; padding:12px 16px; border-radius:8px; margin-bottom:20px; font-size:13px; color:#555; }
+        .usage-tip strong { color:#004085; }
+
+        .card { background:white; border-radius:12px; padding:24px; margin-bottom:20px; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
+
+        /* Summary cards */
+        .summary-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:16px; margin-bottom:24px; }
+        .summary-card { background:white; border-radius:12px; padding:20px; box-shadow:0 2px 8px rgba(0,0,0,0.08); text-align:center; }
+        .summary-card .value { font-size:28px; font-weight:700; margin:4px 0; }
+        .summary-card .label { font-size:13px; color:#7f8c8d; }
+        .summary-card.green { border-top:3px solid #28a745; }
+        .summary-card.green .value { color:#28a745; }
+        .summary-card.yellow { border-top:3px solid #f0ad4e; }
+        .summary-card.yellow .value { color:#f0ad4e; }
+        .summary-card.red { border-top:3px solid #dc3545; }
+        .summary-card.red .value { color:#dc3545; }
+        .summary-card.info { border-top:3px solid #007bff; }
+        .summary-card.info .value { color:#007bff; }
+
+        /* Disk */
+        .disk-overview { display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:20px; }
+        .disk-card { background:linear-gradient(135deg,#667eea 0%,#764ba2 100%); color:white; border-radius:12px; padding:20px; }
+        .disk-card.warning { background:linear-gradient(135deg,#f093fb 0%,#f5576c 100%); }
+        .disk-card h3 { font-size:16px; margin-bottom:12px; opacity:0.9; }
+        .progress-bar { background:rgba(255,255,255,0.3); height:20px; border-radius:10px; margin:10px 0; overflow:hidden; }
+        .progress-fill { height:100%; border-radius:10px; transition:width 0.8s ease; }
+        .stat-row { display:flex; justify-content:space-between; margin:6px 0; font-size:13px; opacity:0.9; }
+
+        /* Sections */
+        .section-title { font-size:20px; font-weight:700; margin:28px 0 16px; display:flex; align-items:center; gap:10px; color:#2c3e50; }
+        .section-subtitle { font-size:13px; color:#7f8c8d; margin-bottom:12px; font-weight:400; }
+
+        /* Item cards */
+        .item-card { border:1px solid #e8e8e8; border-radius:10px; padding:18px; margin-bottom:12px; transition:all 0.3s; background:white; }
+        .item-card:hover { box-shadow:0 4px 16px rgba(0,0,0,0.1); }
+        .item-card.green { border-left:4px solid #28a745; }
+        .item-card.yellow { border-left:4px solid #f0ad4e; }
+        .item-card.red { border-left:4px solid #dc3545; background:#fff5f5; }
+        .item-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:8px; }
+        .item-header strong { font-size:15px; color:#2c3e50; }
+        .item-path { color:#666; font-size:12px; word-break:break-all; margin:8px 0; font-family:'Consolas','Courier New',monospace; background:#f8f9fa; padding:6px 10px; border-radius:6px; }
+        .item-desc { color:#888; font-size:13px; margin-bottom:12px; }
+        .item-meta { display:flex; gap:16px; flex-wrap:wrap; font-size:12px; color:#888; margin-bottom:8px; }
+        .item-meta span { display:flex; align-items:center; gap:4px; }
+
+        /* Badge */
+        .badge { display:inline-block; padding:4px 12px; border-radius:20px; font-size:12px; font-weight:600; }
+        .badge-green { background:#d4edda; color:#155724; }
+        .badge-yellow { background:#fff3cd; color:#856404; }
+        .badge-red { background:#f8d7da; color:#721c24; }
+        .badge-info { background:#d1ecf1; color:#0c5460; }
+
+        /* Command */
+        .cmd-section { margin-top:10px; }
+        .cmd-row { display:flex; align-items:flex-start; gap:8px; margin-bottom:8px; flex-wrap:wrap; }
+        .cmd-tag { flex-shrink:0; padding:4px 10px; border-radius:12px; font-size:11px; font-weight:600; white-space:nowrap; }
+        .cmd-tag-green { background:#d4edda; color:#155724; }
+        .cmd-tag-red { background:#f8d7da; color:#721c24; }
+        .cmd-tag-blue { background:#d1ecf1; color:#0c5460; }
+        .cmd-box { flex:1; min-width:250px; background:#1e1e1e; color:#d4d4d4; padding:10px 14px; border-radius:8px; font-family:'Consolas','Courier New',monospace; font-size:12px; word-break:break-all; overflow-x:auto; white-space:pre-wrap; }
+        .cmd-box.tip { background:#2d3748; color:#a0aec0; font-style:italic; }
+
+        /* Buttons */
+        .btn { padding:8px 16px; border:none; border-radius:8px; cursor:pointer; font-size:13px; font-weight:600; transition:all 0.2s; }
+        .btn:active { transform:scale(0.97); }
+        .btn-copy { background:#6c757d; color:white; font-size:12px; padding:6px 14px; border-radius:6px; white-space:nowrap; }
+        .btn-copy:hover { background:#5a6268; }
+        .btn-copy.copied { background:#28a745; }
+        .btn-open { background:#007bff; color:white; }
+        .btn-open:hover { background:#0056b3; }
+
+        /* Clean-all */
+        .clean-all-bar { background:linear-gradient(135deg,#28a745,#218838); color:white; padding:18px 24px; border-radius:12px; display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; flex-wrap:wrap; gap:16px; }
+        .clean-all-bar .info { font-size:15px; }
+        .clean-all-bar .info strong { font-size:20px; }
+        .btn-clean-all { background:white; color:#28a745; padding:12px 24px; font-size:15px; font-weight:700; border-radius:8px; border:none; cursor:pointer; }
+        .btn-clean-all:hover { opacity:0.9; }
+
+        .clean-all-panel { display:none; background:#1e1e1e; border-radius:12px; padding:20px; margin-bottom:16px; }
+        .clean-all-panel.show { display:block; }
+        .clean-all-panel .panel-hint { color:#9cdcfe; font-size:13px; margin-bottom:10px; }
+        .clean-all-panel .all-cmds { color:#d4d4d4; font-family:'Consolas',monospace; font-size:12px; line-height:1.8; white-space:pre-wrap; word-break:break-all; }
+        .clean-all-panel .copy-all-row { display:flex; justify-content:flex-end; margin-top:14px; }
+
+        /* Copy feedback */
+        .copy-feedback { position:fixed; top:20px; left:50%; transform:translateX(-50%); background:#28a745; color:white; padding:12px 24px; border-radius:8px; font-size:14px; font-weight:600; opacity:0; transition:opacity 0.3s; z-index:9999; pointer-events:none; }
+        .copy-feedback.show { opacity:1; }
+
+        /* Tables */
+        .file-table { width:100%; border-collapse:collapse; font-size:13px; }
+        .file-table th { text-align:left; padding:10px 12px; background:#f0f2f5; color:#555; font-weight:600; border-bottom:2px solid #e0e0e0; }
+        .file-table td { padding:10px 12px; border-bottom:1px solid #f0f0f0; }
+        .file-table tr:hover { background:#fafafa; }
+        .file-table .path-cell { max-width:400px; word-break:break-all; font-family:'Consolas',monospace; font-size:11px; color:#666; }
+
+        /* Long-term tips */
+        .tips-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(350px,1fr)); gap:16px; }
+        .tip-card { background:white; border-radius:10px; padding:16px; border-left:3px solid #007bff; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+        .tip-card h4 { color:#2c3e50; margin-bottom:8px; font-size:14px; }
+        .tip-card p { font-size:13px; color:#666; }
+        .tip-card code { background:#f0f2f5; padding:2px 6px; border-radius:4px; font-size:12px; }
+
+        /* Empty state */
+        .empty-state { text-align:center; padding:40px; color:#999; font-size:14px; }
+
+        @media (max-width:768px) {
+            .container { padding:12px; }
+            .disk-overview,.summary-grid { grid-template-columns:1fr; }
+            .clean-all-bar { flex-direction:column; text-align:center; }
+            .cmd-row { flex-direction:column; }
+            .file-table { font-size:11px; }
+            .tips-grid { grid-template-columns:1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🧹 存储清理报告</h1>
+    <p class="subtitle">生成时间: {{GENERATED_AT}} | 系统: {{SYSTEM}} | 由 storage-clean v2 生成</p>
+
+    <div class="warn-banner">
+        <strong>⚠️ 安全声明：</strong>本报告<strong>仅提供扫描结果和清理命令</strong>，不会自动删除任何文件。
+        请<strong>复制命令</strong>，粘贴到终端执行。删除操作不可逆，执行前请仔细确认！
+    </div>
+
+    <div class="usage-tip">
+        <strong>💡 使用方式：</strong>找到想清理的项目 → 点击「📋 复制」按钮 → 粘贴到 <code>{{SYSTEM}} 终端</code> 执行。<br>
+        <strong>也可以告诉 Agent：「帮我执行这个清理命令」</strong>（Agent 会在执行前再次向你确认）
+    </div>
+
+    <div id="app"></div>
+</div>
+
+<div class="copy-feedback" id="copyFeedback">✅ 已复制到剪贴板</div>
+
+<script>
+    const reportData = {{REPORT_DATA}};
+    const shell = reportData.shell_type || 'bash';
+
+    // ============================================================
+    //  Helpers
+    // ============================================================
+    function formatSize(bytes) {
+        if (!bytes || bytes === 0) return '0 B';
+        const units = ['B','KB','MB','GB','TB'];
+        let i=0, size=bytes;
+        while(size>=1024&&i<units.length-1){size/=1024;i++;}
+        return size.toFixed(2)+' '+units[i];
+    }
+
+    function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+    function copyText(btn, text) {
+        navigator.clipboard.writeText(text).then(() => {
+            btn.textContent = '✅ 已复制';
+            btn.classList.add('copied');
+            showFeedback();
+            setTimeout(() => { btn.textContent = '📋 复制'; btn.classList.remove('copied'); }, 1800);
+        }).catch(() => {
+            const ta = document.createElement('textarea');
+            ta.value = text; document.body.appendChild(ta);
+            ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
+            btn.textContent = '✅ 已复制';
+            btn.classList.add('copied');
+            showFeedback();
+            setTimeout(() => { btn.textContent = '📋 复制'; btn.classList.remove('copied'); }, 1800);
+        });
+    }
+
+    function showFeedback() {
+        const el = document.getElementById('copyFeedback');
+        el.classList.add('show');
+        setTimeout(() => el.classList.remove('show'), 1500);
+    }
+
+    // ============================================================
+    //  Render: Summary
+    // ============================================================
+    function renderSummary() {
+        const greenSize = reportData.total_green_size || 0;
+        const yellowSize = reportData.total_yellow_size || 0;
+        const redCount = (reportData.red||[]).length;
+        const largeSize = reportData.total_large_file_size || 0;
+        const oldSize = reportData.total_old_file_size || 0;
+        const devSize = reportData.total_dev_artifact_size || 0;
+
+        return `<div class="section-title">📊 清理摘要</div>
+        <div class="summary-grid">
+            <div class="summary-card green">
+                <div class="value">${formatSize(greenSize)}</div>
+                <div class="label">🟢 可立即清理</div>
+            </div>
+            <div class="summary-card yellow">
+                <div class="value">${formatSize(yellowSize)}</div>
+                <div class="label">🟡 确认后可清</div>
+            </div>
+            <div class="summary-card red">
+                <div class="value">${redCount} 项</div>
+                <div class="label">🔴 保留/不可删</div>
+            </div>
+            <div class="summary-card info">
+                <div class="value">${formatSize(largeSize+oldSize+devSize)}</div>
+                <div class="label">📦 大文件+旧文件+构建产物</div>
+            </div>
+        </div>`;
+    }
+
+    // ============================================================
+    //  Render: Disks
+    // ============================================================
+    function renderDisks() {
+        if (!reportData.disks || reportData.disks.length===0) return '';
+        let html = '<div class="section-title">💾 磁盘总览</div><div class="disk-overview">';
+        reportData.disks.forEach(disk => {
+            const isWarning = disk.percent>80;
+            const fillColor = disk.percent>90?'#ff4757':disk.percent>70?'#ffa502':'white';
+            html += `<div class="disk-card ${isWarning?'warning':''}">`;
+            html += `<h3>${disk.device} (${disk.mountpoint})</h3>`;
+            html += `<div class="progress-bar"><div class="progress-fill" style="width:${disk.percent}%;background:${fillColor};"></div></div>`;
+            html += `<div class="stat-row"><span>已用</span><span><strong>${disk.used_fmt}</strong> (${disk.percent}%)</span></div>`;
+            html += `<div class="stat-row"><span>可用</span><span>${disk.free_fmt}</span></div>`;
+            html += `<div class="stat-row"><span>总计</span><span>${disk.total_fmt}</span></div>`;
+            html += `</div>`;
+        });
+        html += '</div>';
+        return html;
+    }
+
+    // ============================================================
+    //  Render: Green items
+    // ============================================================
+    function renderGreen() {
+        const items = reportData.green || [];
+        if (items.length===0) return '';
+        const total = reportData.total_green_size || 0;
+
+        let html = '<div class="section-title">🟢 立即清 — 缓存和临时文件</div>';
+        html += `<p class="section-subtitle">${items.length} 项，共 ${formatSize(total)}，删除后不影响系统正常运行</p>`;
+
+        // Batch clean panel
+        const allCmds = items.map(i => i.cmd_recycle || i.cmd_delete || '').filter(Boolean).join('\n');
+        if (allCmds) {
+            html += `<div class="clean-all-bar">`;
+            html += `<div class="info">一键复制所有 <strong>${formatSize(total)}</strong> 的清理命令</div>`;
+            html += `<button class="btn-clean-all" onclick="togglePanel()">📋 复制全部命令</button></div>`;
+            html += `<div class="clean-all-panel" id="batchPanel">`;
+            html += `<div class="panel-hint">📋 以下 ${shell} 命���（复制后粘贴到终端执行）：</div>`;
+            html += `<div class="all-cmds">${escHtml(allCmds)}</div>`;
+            html += `<div class="copy-all-row"><button class="btn-copy" onclick="copyText(this,${JSON.stringify(allCmds)})">📋 复制全部命令</button></div>`;
+            html += `</div>`;
+        }
+
+        // Individual items
+        items.forEach((item, idx) => {
+            html += `<div class="item-card green" id="green-${idx}">`;
+            html += `<div class="item-header">`;
+            html += `<strong>🟢 ${escHtml(item.label)}</strong>`;
+            html += `<span class="badge badge-green">${item.size_fmt} / ${item.count_fmt||''} 文件</span>`;
+            html += `</div>`;
+            if (item.path) html += `<div class="item-path">📁 ${escHtml(item.path)}</div>`;
+            html += `<div class="item-desc">${escHtml(item.desc)}</div>`;
+            html += `<div class="cmd-section">`;
+            if (item.cmd_recycle) {
+                html += `<div class="cmd-row"><span class="cmd-tag cmd-tag-green">${shell}</span><div class="cmd-box">${escHtml(item.cmd_recycle)}</div><button class="btn-copy" onclick="copyText(this,${JSON.stringify(item.cmd_recycle)})">📋 复制</button></div>`;
+            }
+            if (item.cmd_delete && item.cmd_delete !== item.cmd_recycle) {
+                html += `<div class="cmd-row"><span class="cmd-tag cmd-tag-red">彻底删除</span><div class="cmd-box">${escHtml(item.cmd_delete)}</div><button class="btn-copy" onclick="copyText(this,${JSON.stringify(item.cmd_delete)})">📋 复制</button></div>`;
+            }
+            html += `</div></div>`;
+        });
+        return html;
+    }
+
+    // ============================================================
+    //  Render: Yellow items
+    // ============================================================
+    function renderYellow() {
+        const items = reportData.yellow || [];
+        if (items.length===0) return '';
+
+        let html = '<div class="section-title">🟡 确认后清 — 需手动确认</div>';
+        html += `<p class="section-subtitle">${items.length} 项，可能包含重要文件，请确认后再执行删除</p>`;
+
+        items.forEach((item, idx) => {
+            html += `<div class="item-card yellow" id="yellow-${idx}">`;
+            html += `<div class="item-header">`;
+            html += `<strong>🟡 ${escHtml(item.label)}</strong>`;
+            html += `<span class="badge badge-yellow">${item.size_fmt}</span>`;
+            html += `</div>`;
+            if (item.path) html += `<div class="item-path">📁 ${escHtml(item.path)}</div>`;
+            html += `<div class="item-desc">⚠️ ${escHtml(item.desc)}</div>`;
+            html += `<div class="cmd-section">`;
+            if (item.cmd_open) {
+                html += `<div class="cmd-row"><span class="cmd-tag cmd-tag-blue">${shell}</span><div class="cmd-box">${escHtml(item.cmd_open)}</div><button class="btn-copy" onclick="copyText(this,${JSON.stringify(item.cmd_open)})">📋 复制</button></div>`;
+            }
+            html += `</div></div>`;
+        });
+        return html;
+    }
+
+    // ============================================================
+    //  Render: Red items
+    // ============================================================
+    function renderRed() {
+        const items = reportData.red || [];
+        if (items.length===0) return '';
+
+        let html = '<div class="section-title">🔴 保留 — 不可删除</div>';
+        html += `<p class="section-subtitle">${items.length} 项系统/应用核心文件，删除会导致严重问题</p>`;
+
+        items.forEach(item => {
+            html += `<div class="item-card red">`;
+            html += `<div class="item-header"><strong>🔴 ${escHtml(item.label)}</strong><span class="badge badge-red">${item.size_fmt}</span></div>`;
+            if (item.path) html += `<div class="item-path">📁 ${escHtml(item.path)}</div>`;
+            html += `<div class="item-desc">🛑 ${escHtml(item.desc)}</div>`;
+            html += `</div>`;
+        });
+        return html;
+    }
+
+    // ============================================================
+    //  Render: Large files
+    // ============================================================
+    function renderLargeFiles() {
+        const files = reportData.large_files || [];
+        if (files.length===0) return '';
+
+        let html = '<div class="section-title">📦 大文件 (>500MB)</div>';
+        html += `<p class="section-subtitle">找到 ${files.length} 个大文件，请手动确认后删除</p>`;
+        html += '<div class="card"><table class="file-table"><thead><tr><th>文件路径</th><th style="width:100px">大小</th><th style="width:80px">修改于</th><th style="width:80px">操作</th></tr></thead><tbody>';
+
+        files.forEach(f => {
+            const cmd = shell==='PowerShell' ? `Remove-Item "${f.path}" -Force` : `rm -f "${f.path}"`;
+            html += `<tr>`;
+            html += `<td class="path-cell">${escHtml(f.path)}</td>`;
+            html += `<td><strong>${f.size_fmt}</strong></td>`;
+            html += `<td>${f.age_days || '?'} 天前</td>`;
+            html += `<td><button class="btn-copy" onclick="copyText(this,${JSON.stringify(cmd)})">📋 复制删除命令</button></td>`;
+            html += `</tr>`;
+        });
+
+        html += '</tbody></table></div>';
+        return html;
+    }
+
+    // ============================================================
+    //  Render: Old files
+    // ============================================================
+    function renderOldFiles() {
+        const files = reportData.old_files || [];
+        if (files.length===0) return '';
+
+        let html = '<div class="section-title">📅 旧文件 (>90天未修改, >100MB)</div>';
+        html += `<p class="section-subtitle">找到 ${files.length} 个长期未使用的文件，可能已不需要</p>`;
+        html += '<div class="card"><table class="file-table"><thead><tr><th>文件路径</th><th style="width:100px">大小</th><th style="width:100px">最后修改</th><th style="width:80px">操作</th></tr></thead><tbody>';
+
+        files.forEach(f => {
+            const cmd = shell==='PowerShell' ? `Remove-Item "${f.path}" -Force` : `rm -f "${f.path}"`;
+            html += `<tr>`;
+            html += `<td class="path-cell">${escHtml(f.path)}</td>`;
+            html += `<td><strong>${f.size_fmt}</strong></td>`;
+            html += `<td>${f.last_modified || ''} (${f.age_days}天前)</td>`;
+            html += `<td><button class="btn-copy" onclick="copyText(this,${JSON.stringify(cmd)})">📋 复制删除命令</button></td>`;
+            html += `</tr>`;
+        });
+
+        html += '</tbody></table></div>';
+        return html;
+    }
+
+    // ============================================================
+    //  Render: Dev artifacts
+    // ============================================================
+    function renderDevArtifacts() {
+        const items = reportData.dev_artifacts || [];
+        if (items.length===0) return '';
+
+        let html = '<div class="section-title">🔨 开发项目构建产物</div>';
+        html += `<p class="section-subtitle">找到 ${items.length} 类构建产物，删除后需重新构建/安装</p>`;
+
+        items.forEach((item, idx) => {
+            const n = (item.paths||[]).length;
+            html += `<div class="item-card yellow" id="dev-${idx}">`;
+            html += `<div class="item-header">`;
+            html += `<strong>🔨 ${escHtml(item.label)}</strong>`;
+            html += `<span class="badge badge-yellow">${item.size_fmt}</span>`;
+            html += `</div>`;
+            html += `<div class="item-meta"><span>📂 ${n} 个目录</span><span>📄 ${item.count_fmt||''} 文件</span></div>`;
+            html += `<div class="item-desc">${escHtml(item.desc)}</div>`;
+
+            // Show path list + individual delete commands
+            const pathCmds = (item.paths||[]).map(p => {
+                const cmd = shell==='PowerShell' ? `Remove-Item "${p}" -Recurse -Force -ErrorAction SilentlyContinue` : `rm -rf "${p}"`;
+                return cmd;
+            });
+
+            if (pathCmds.length <= 5) {
+                pathCmds.forEach(cmd => {
+                    html += `<div class="cmd-row"><span class="cmd-tag cmd-tag-red">${shell}</span><div class="cmd-box">${escHtml(cmd)}</div><button class="btn-copy" onclick="copyText(this,${JSON.stringify(cmd)})">📋 复制</button></div>`;
+                });
+            } else {
+                const all = pathCmds.join('\n');
+                html += `<div class="cmd-row"><span class="cmd-tag cmd-tag-red">${shell}</span><div class="cmd-box">${n} 个目录的删除命令</div><button class="btn-copy" onclick="copyText(this,${JSON.stringify(all)})">📋 复制全部 (${n}条)</button></div>`;
+            }
+            html += `</div>`;
+        });
+        return html;
+    }
+
+    // ============================================================
+    //  Render: Docker
+    // ============================================================
+    function renderDocker() {
+        const items = reportData.docker || [];
+        if (items.length===0) return '';
+
+        let html = '<div class="section-title">🐳 Docker 磁盘占用</div>';
+        items.forEach(item => {
+            const cls = item.color==='green'?'green':'yellow';
+            html += `<div class="item-card ${cls}">`;
+            html += `<div class="item-header"><strong>🐳 ${escHtml(item.label)}</strong><span class="badge ${item.color==='green'?'badge-green':'badge-yellow'}">${item.size_fmt}</span></div>`;
+            html += `<div class="item-desc">${escHtml(item.desc)}</div>`;
+            if (item.cmd_delete) {
+                html += `<div class="cmd-row"><span class="cmd-tag cmd-tag-red">${shell}</span><div class="cmd-box">${escHtml(item.cmd_delete)}</div><button class="btn-copy" onclick="copyText(this,${JSON.stringify(item.cmd_delete)})">📋 复制</button></div>`;
+            }
+            html += `</div>`;
+        });
+        return html;
+    }
+
+    // ============================================================
+    //  Render: Long-term suggestions
+    // ============================================================
+    function renderTips() {
+        const sys = reportData.system || 'Unknown';
+        let tips = [];
+
+        if (sys === 'Windows') {
+            tips = [
+                {title:'开启存储感知',desc:'设置 → 系统 → 存储 → 开启"存储感知"，让系统自动清理临时文件'},
+                {title:'定期运行磁盘清理',desc:'在开始菜单搜索 <code>cleanmgr.exe</code> 并运行，可清理 Windows 更新缓存'},
+                {title:'卸载不常用程序',desc:'设置 → 应用 → 应用和功能 → 按大小排序，卸载不需要的程序'},
+                {title:'移动用户文件夹',desc:'将文档/图片/视频等文件夹移动到其他分区'},
+                {title:'清理项目构建产物',desc:'定期运行 <code>npx npkill</code> 或本工具扫描 node_modules'},
+                {title:'限制还原点空间',desc:'系统属性 → 系统保护 → 配置 → 限制磁盘空间使用量'},
+            ];
+        } else if (sys === 'Darwin') {
+            tips = [
+                {title:'系统自带存储管理',desc:'Apple 菜单 → 系统设置 → 通用 → 存储空间 → 查看建议'},
+                {title:'清理 Time Machine 本地快照',desc:'<code>sudo tmutil deletelocalsnapshots /</code> 可清理本地快照'},
+                {title:'清理 Xcode 缓存',desc:'定期清理 <code>~/Library/Developer/Xcode/DerivedData</code>'},
+                {title:'管理 iOS 备份',desc:'Finder → 位置 → 管理备份，删除旧设备备份'},
+                {title:'清理 Homebrew 缓存',desc:'<code>brew cleanup -s</code> 清理旧版本和缓存'},
+                {title:'检查大文件',desc:'<code>du -sh ~/* | sort -rh | head -20</code> 查看主目录下的空间占用'},
+            ];
+        } else {
+            tips = [
+                {title:'清理包管理器缓存',desc:'<code>sudo apt clean</code> (Debian) 或 <code>sudo dnf clean all</code> (Fedora)'},
+                {title:'删除旧内核',desc:'<code>dpkg --list | grep linux-image</code> 查看并清理旧内核'},
+                {title:'清理日志文件',desc:'<code>sudo journalctl --vacuum-size=200M</code> 限制日志大小'},
+                {title:'清理 Snap 旧版本',desc:'<code>sudo snap list --all | grep disabled</code> 然后清理旧版本'},
+                {title:'使用 ncdu 分析',desc:'<code>ncdu ~</code> 交互式查看磁盘占用'},
+                {title:'清理 Docker 占用',desc:'<code>docker system prune -a</code> 清理无用镜像/容器/卷'},
+            ];
+        }
+
+        let html = '<div class="section-title">🔧 长期优化建议</div><div class="tips-grid">';
+        tips.forEach(t => {
+            html += `<div class="tip-card"><h4>${t.title}</h4><p>${t.desc}</p></div>`;
+        });
+        html += '</div>';
+        return html;
+    }
+
+    // ============================================================
+    //  Actions
+    // ============================================================
+    function togglePanel() {
+        const p = document.getElementById('batchPanel');
+        p.classList.toggle('show');
+        if (p.classList.contains('show')) p.scrollIntoView({behavior:'smooth',block:'nearest'});
+    }
+
+    // ============================================================
+    //  Init
+    // ============================================================
+    function render() {
+        let html = '';
+        html += renderSummary();
+        html += renderDisks();
+        html += renderGreen();
+        html += renderYellow();
+        html += renderRed();
+        html += renderLargeFiles();
+        html += renderOldFiles();
+        html += renderDevArtifacts();
+        html += renderDocker();
+        html += renderTips();
+        document.getElementById('app').innerHTML = html;
+    }
+
+    render();
+</script>
+</body>
+</html>

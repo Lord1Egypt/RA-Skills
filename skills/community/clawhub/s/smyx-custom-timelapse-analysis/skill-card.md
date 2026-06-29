@@ -1,5 +1,5 @@
 ## Description: <br>
-Generates condensed album highlights by extracting video segments that match user-specified keywords or target subjects. <br>
+Generates condensed album highlights from long videos based on user-specified keywords or target subjects, returning structured analysis results and report links. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and agents use this skill to submit local or network video inputs, specify target people, pets, scenes, or events, and receive a condensed time-lapse album analysis or report history from the cloud service. <br>
+External users and developers use this skill to submit local or URL-based videos and request highlight extraction for people, pets, scenes, or events. It also supports cloud history report retrieval for prior custom time-lapse analyses. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Video inputs, URLs, report history, and account identifiers are sent to and may be stored by the configured cloud analysis service. <br>
-Mitigation: Use only non-sensitive footage and non-phone open-id values, and obtain explicit consent before uploading personal videos or querying stored reports. <br>
-Risk: The security review flags under-disclosed account login/registration, local token storage, and broad report/API access. <br>
-Mitigation: Review the skill before installation, document account and token handling, and prefer a release that removes unused mutation APIs. <br>
-Risk: The bundled shared code and references include confusing health-analysis behavior that may not match the time-lapse album purpose. <br>
-Mitigation: Limit use to the documented custom time-lapse analysis workflow and verify outputs before relying on them. <br>
+Risk: Videos, uploaded media, or video URLs may be sent to the publisher's cloud service for processing. <br>
+Mitigation: Install only if cloud media processing is acceptable, and use media that is appropriate to send to the publisher's service. <br>
+Risk: The skill may silently create or reuse an internal identity and store returned tokens in a local SQLite database. <br>
+Mitigation: Review identity and token storage expectations before installation, and prefer a version that explicitly documents token storage and identity handling. <br>
+Risk: History-report requests query prior cloud reports associated with the internal identity. <br>
+Mitigation: Use history retrieval only in workspaces where that cloud report access is expected, and review returned report links before sharing. <br>
 
 
 ## Reference(s): <br>
-- [Skill API documentation](references/api_doc.md) <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/smyx-custom-timelapse-analysis) <br>
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-custom-timelapse-analysis) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
+- [API interface documentation](references/api_doc.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON-style analysis results, including report-history tables with links when listing prior reports.] <br>
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
+**Output Format:** [Markdown text with JSON-formatted analysis or history-report records and report links] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires an open-id and sends video inputs or URLs to the configured cloud analysis service.] <br>
+**Other Properties Related to Output:** [Processes local video files or video URLs through the publisher's cloud API and can optionally write the returned report text to a local output file.] <br>
 
 ## Skill Version(s): <br>
-1.0.4 (source: server release metadata; artifact frontmatter reports 1.0.5) <br>
+1.0.5 (source: server release metadata; artifact frontmatter reports 1.0.6) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

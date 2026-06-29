@@ -11,34 +11,32 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill to review code for defects, document evidence with file and line references, prepare minimal fixes, and plan verification before releases, audits, or production issue investigations. <br>
+Developers and engineers use this skill to guide systematic bug review, defect documentation, fix preparation, and verification planning across common programming ecosystems. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Review bundles may be sent to configured external reviewer CLIs or use web search. <br>
-Mitigation: Use the skill only with repositories and data approved for the configured reviewer tools, and avoid external review paths for sensitive code. <br>
-Risk: One optional reviewer path may rely on prompt instructions rather than enforced read-only controls. <br>
-Mitigation: Prefer the default Codex path or engines with explicit read-only controls; manually review or harden the Droid engine before sensitive use. <br>
+Risk: Broad activation triggers may cause the bug-review workflow to run more often than intended. <br>
+Mitigation: Invoke it for explicit debugging, defect review, release readiness, security audit, or production-issue investigation tasks. <br>
+Risk: Generated findings, patches, or verification commands may be incomplete or incorrect. <br>
+Mitigation: Review proposed changes and run the relevant tests, linters, or reproduction commands before accepting fixes. <br>
+Risk: The artifact mentions an optional separate Claude Code plugin for the full experience. <br>
+Mitigation: Review the separate plugin and its installation behavior before installing it. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-pensive-bug-review) <br>
-- [Pensive source homepage](https://github.com/athola/claude-night-market/tree/master/plugins/pensive) <br>
-- [Language Detection](artifact/modules/language-detection.md) <br>
-- [Defect Documentation](artifact/modules/defect-documentation.md) <br>
-- [Fix Preparation](artifact/modules/fix-preparation.md) <br>
+- [Pensive plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/pensive) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Code, Shell commands, Guidance] <br>
-**Output Format:** [Markdown report with file references, code diffs, test updates, evidence, and shell command snippets] <br>
+**Output Type(s):** [text, markdown, code, shell commands, guidance] <br>
+**Output Format:** [Markdown with file references, defect summaries, proposed fixes, test updates, evidence notes, and inline shell commands] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include proposed fixes and verification commands; users should review changes before applying them.] <br>
+**Other Properties Related to Output:** [May propose code changes and verification commands for user review; no API keys or credential environment variables were detected.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release evidence; artifact frontmatter says 1.9.8) <br>
+1.9.13 (source: server release metadata; artifact frontmatter reports 1.9.8) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

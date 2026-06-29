@@ -1,0 +1,19 @@
+{
+  "slug": "language-practice-skill",
+  "name": "Language Practice Skill",
+  "version": "0.1.0",
+  "tags": [
+    "language",
+    "language-practice",
+    "openclaw",
+    "templates"
+  ],
+  "category": "Language Learning",
+  "changelog": [
+    {
+      "version": "0.1.0",
+      "date": "2026-06-09",
+      "notes": "Generated from local idea bank (no AI). Pending Telegram approval."
+    }
+  ]
+}

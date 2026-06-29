@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-accent="ikb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Swiss International — 3:4 Social Card</title>
+
+<!-- ── Google Fonts ── -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Noto+Sans+SC:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ================================================================
+   SWISS INTERNATIONAL — Seed Template
+   Canvas: 1080 × 1440 (3:4)
+
+   Hard Rules:
+   1. No serif fonts anywhere
+   2. No shadows on cards (hairline rules only)
+   3. No rounded corners (square only)
+   4. One accent color per package
+   5. The larger, the lighter — big text uses light weights
+   ================================================================ */
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ── 1. Custom Properties ─────────────────────────────────────── */
+:root {
+  --sans:    "Inter", "Noto Sans SC", sans-serif;
+  --sans-zh: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", sans-serif;
+  --mono:    "IBM Plex Mono", "JetBrains Mono", monospace;
+
+  --sp-3:  8px;
+  --sp-4:  12px;
+  --sp-5:  16px;
+  --sp-6:  24px;
+  --sp-7:  32px;
+  --sp-8:  40px;
+  --sp-9:  48px;
+  --sp-10: 64px;
+  --sp-11: 80px;
+  --sp-12: 120px;
+  --sp-13: 160px;
+
+  --paper:    #fafaf8;
+  --ink:      #0a0a0a;
+  --grey-1:   #f0f0ee;
+  --grey-2:   #d4d4d2;
+  --grey-3:   #737373;
+  --accent:   #002FA7;
+  --accent-on: #ffffff;
+}
+
+/* ── Accent Overrides ── */
+[data-accent="ikb"] { --accent:#002FA7; --accent-on:#ffffff; }
+[data-accent="lemon-yellow"] { --accent:#FFD500; --accent-on:#0a0a0a; }
+[data-accent="lemon-green"] { --accent:#C5E803; --accent-on:#0a0a0a; }
+[data-accent="safety-orange"] { --accent:#FF6B35; --accent-on:#ffffff; }
+
+/* ── 2. Type Scale ────────────────────────────────────────────── */
+
+.h-hero {
+  font-family: var(--sans);
+  font-size: 240px;
+  font-weight: 200;
+  line-height: .9;
+  letter-spacing: -.03em;
+  color: var(--ink);
+}
+
+.h-statement {
+  font-family: var(--sans);
+  font-size: 180px;
+  font-weight: 200;
+  line-height: .92;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+
+.h-xl {
+  font-family: var(--sans);
+  font-size: 128px;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.02em;
+  color: var(--ink);
+}
+
+.h-md {
+  font-family: var(--sans);
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: normal;
+  color: var(--ink);
+}
+
+.num-mega {
+  font-family: var(--sans);
+  font-size: 216px;
+  font-weight: 200;
+  line-height: .9;
+  letter-spacing: -.03em;
+  color: var(--accent);
+}
+
+.num-xl {
+  font-family: var(--sans);
+  font-size: 156px;
+  font-weight: 200;
+  line-height: .9;
+  letter-spacing: -.02em;
+  color: var(--accent);
+}
+
+.lead {
+  font-family: var(--sans-zh);
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: normal;
+  color: var(--ink);
+}
+
+.body {
+  font-family: var(--sans-zh);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.75;
+  letter-spacing: normal;
+  color: var(--ink);
+}
+
+.t-cat {
+  font-family: var(--sans);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--accent);
+}
+
+.t-meta {
+  font-family: var(--mono);
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--grey-3);
+}
+
+.swiss-img-caption {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  line-height: 1.4;
+  color: var(--grey-3);
+}
+
+/* ── 3. Layout Structure ──────────────────────────────────────── */
+
+.poster {
+  width: 1080px;
+  height: 1440px;
+  overflow: hidden;
+  position: relative;
+  background: var(--paper);
+}
+
+.poster.xhs {
+  width: 1080px;
+  height: 1440px;
+}
+
+.pad {
+  padding: 72px 64px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.foot {
+  margin-top: auto;
+}
+
+.chrome-min {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--sp-7);
+  border-bottom: 1px solid var(--grey-2);
+  margin-bottom: var(--sp-9);
+}
+
+/* ── 4. Image Containers ──────────────────────────────────────── */
+
+.frame-img {
+  overflow: hidden;
+  position: relative;
+}
+
+.frame-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── Ratio classes ── */
+.r-3x4{aspect-ratio:3/4} .r-1x1{aspect-ratio:1/1} .r-4x3{aspect-ratio:4/3}
+.r-3x2{aspect-ratio:3/2} .r-16x9{aspect-ratio:16/9} .r-16x10{aspect-ratio:16/10}
+.r-21x9{aspect-ratio:21/9}
+
+/* ── Screenshot container — Swiss defaults: corners-sq / shadow-none / bg-grey-1 / inset-sub ── */
+.frame-shot {
+  overflow: hidden;
+  position: relative;
+  border-radius: 0;
+  box-shadow: none;
+  background: var(--grey-1);
+  padding: 8px;
+}
+
+.frame-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* corners */
+.frame-shot.corners-sq  { border-radius: 0; }
+.frame-shot.corners-sm  { border-radius: 4px; }
+.frame-shot.corners-md  { border-radius: 12px; }
+
+/* shadow */
+.frame-shot.shadow-none { box-shadow: none; }
+.frame-shot.shadow-soft { box-shadow: 0 8px 32px rgba(0,0,0,.12); }
+.frame-shot.shadow-ed   { box-shadow: 4px 4px 0 rgba(0,0,0,.15); }
+
+/* background */
+.frame-shot.bg-paper  { background: var(--paper); }
+.frame-shot.bg-grid   {
+  background-image:
+    linear-gradient(var(--grey-2) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grey-2) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-color: var(--paper);
+}
+.frame-shot.bg-dot    {
+  background-image: radial-gradient(circle, var(--grey-2) 1px, transparent 1px);
+  background-size: 16px 16px;
+  background-color: var(--paper);
+}
+.frame-shot.bg-grey-1 { background: var(--grey-1); }
+.frame-shot.bg-ink    { background: var(--ink); }
+
+/* inset */
+.frame-shot.inset-none { padding: 0; }
+.frame-shot.inset-sub  { padding: 8px; }
+.frame-shot.inset-bal  { padding: 24px; }
+
+.fit-contain { object-fit: contain !important; }
+
+/* ── 5. Card Fills (mutually exclusive) ───────────────────────── */
+
+.card-ink {
+  background: var(--ink);
+  color: var(--paper);
+  padding: var(--sp-7);
+}
+
+.card-accent {
+  background: var(--accent);
+  color: var(--accent-on);
+  padding: var(--sp-7);
+}
+
+.card-fill {
+  background: var(--grey-1);
+  color: var(--ink);
+  padding: var(--sp-7);
+}
+
+.card-outlined {
+  background: transparent;
+  border: 1px solid var(--grey-2);
+  color: var(--ink);
+  padding: var(--sp-7);
+}
+
+/* ── 6. Grid System ───────────────────────────────────────────── */
+
+.grid-12 {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--sp-6);
+}
+
+.span-1{grid-column:span 1} .span-2{grid-column:span 2} .span-3{grid-column:span 3}
+.span-4{grid-column:span 4} .span-5{grid-column:span 5} .span-6{grid-column:span 6}
+.span-7{grid-column:span 7} .span-8{grid-column:span 8} .span-9{grid-column:span 9}
+.span-10{grid-column:span 10} .span-11{grid-column:span 11} .span-12{grid-column:span 12}
+
+/* ── 7. KPI Tower ─────────────────────────────────────────────── */
+
+.kpi-tower-row {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--sp-6);
+  height: 320px;
+  padding-top: var(--sp-8);
+}
+
+.bar-tower {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.bar-tower .bar {
+  width: 100%;
+  background: var(--accent);
+  min-height: 4px;
+}
+
+.bar-tower .bar-label {
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--grey-3);
+  margin-top: var(--sp-4);
+}
+
+.bar-tower .bar-value {
+  font-family: var(--sans);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--ink);
+  margin-top: var(--sp-3);
+}
+
+/* ── 8. Horizontal Bar Chart ──────────────────────────────────── */
+
+.h-bar-chart {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+.bar-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 60px;
+  align-items: center;
+  gap: var(--sp-5);
+}
+
+.bar-row .label {
+  font-family: var(--sans-zh);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--ink);
+  text-align: right;
+}
+
+.bar-fill {
+  height: 24px;
+  background: var(--accent);
+  min-width: 4px;
+}
+
+.bar-row .value {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: .04em;
+  color: var(--ink);
+}
+
+/* ── 9. Vertical Timeline ─────────────────────────────────────── */
+
+.timeline-v {
+  position: relative;
+  padding-left: var(--sp-8);
+}
+
+.tl-axis {
+  position: absolute;
+  left: 7px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--grey-2);
+}
+
+.tl-node {
+  position: relative;
+  padding-bottom: var(--sp-8);
+}
+
+.tl-node:last-child { padding-bottom: 0; }
+
+.tl-node .dot {
+  position: absolute;
+  left: calc(-1 * var(--sp-8) + 2px);
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+}
+
+.tl-node .dot.hollow {
+  background: var(--paper);
+  border: 2px solid var(--accent);
+}
+
+.tl-node .tl-date {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  color: var(--accent);
+  margin-bottom: var(--sp-3);
+}
+
+.tl-node .tl-desc {
+  font-family: var(--sans-zh);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+/* ── 10. Horizontal Timeline ──────────────────────────────────── */
+
+.timeline-h {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  padding-top: var(--sp-7);
+}
+
+.tl-h-axis {
+  position: absolute;
+  top: calc(var(--sp-7) + 5px);
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--grey-2);
+}
+
+.tl-h-node {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.tl-h-node .dot {
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  margin-bottom: var(--sp-5);
+}
+
+.tl-h-node .dot.hollow {
+  background: var(--paper);
+  border: 2px solid var(--accent);
+}
+
+.tl-h-node .tl-h-label {
+  font-family: var(--sans-zh);
+  font-size: 20px;
+  font-weight: 400;
+  text-align: center;
+  color: var(--ink);
+}
+
+/* ── 11. Dot Matrix / Hairline / Accent Block ─────────────────── */
+
+.dot-mat {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .12;
+  background-image: radial-gradient(circle, var(--ink) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+
+.hr-hairline {
+  border: none;
+  height: 1px;
+  background: var(--grey-2);
+  margin: 0;
+}
+
+.accent-block {
+  background: var(--accent);
+  color: var(--accent-on);
+  padding: var(--sp-7);
+}
+
+/* ── 12. Card Matrix ──────────────────────────────────────────── */
+
+.matrix-fill {
+  display: grid;
+  gap: var(--sp-5);
+}
+
+.matrix-fill.cols-2x2 { grid-template-columns: repeat(2, 1fr); }
+.matrix-fill.cols-2x3 { grid-template-columns: repeat(2, 1fr); }
+.matrix-fill.cols-3x2 { grid-template-columns: repeat(3, 1fr); }
+
+.matrix-cell {
+  padding: var(--sp-7);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+/* ── 13. Device Wrappers ──────────────────────────────────────── */
+
+.device-browser {
+  border-radius: 0;
+  overflow: hidden;
+  border: 1px solid var(--grey-2);
+  background: var(--paper);
+}
+
+.device-browser::before {
+  content: "";
+  display: block;
+  height: 40px;
+  background: var(--grey-1);
+  border-bottom: 1px solid var(--grey-2);
+  background-image:
+    radial-gradient(circle at 20px 20px, var(--grey-3) 4px, transparent 4px),
+    radial-gradient(circle at 40px 20px, var(--grey-3) 4px, transparent 4px),
+    radial-gradient(circle at 60px 20px, var(--grey-3) 4px, transparent 4px);
+  background-repeat: no-repeat;
+}
+
+.device-phone {
+  border-radius: 0;
+  overflow: hidden;
+  border: 3px solid var(--ink);
+  background: var(--paper);
+}
+
+.device-phone::before {
+  content: "";
+  display: block;
+  height: 28px;
+  background: var(--ink);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 55% 100%, 50% 60%, 45% 100%, 0 100%);
+}
+
+/* ── 14. Sheet Container ──────────────────────────────────────── */
+
+.sheet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  background: var(--grey-1);
+  padding: 0;
+}
+
+/* ── 15. Utilities ── */
+
+.c-accent{color:var(--accent)}.c-ink{color:var(--ink)}.c-grey-3{color:var(--grey-3)}.c-paper{color:var(--paper)}
+.bg-paper{background:var(--paper)}.bg-ink{background:var(--ink)}.bg-accent{background:var(--accent)}.bg-grey-1{background:var(--grey-1)}
+.mt-3{margin-top:var(--sp-3)}.mt-5{margin-top:var(--sp-5)}.mt-6{margin-top:var(--sp-6)}
+.mt-7{margin-top:var(--sp-7)}.mt-8{margin-top:var(--sp-8)}.mt-9{margin-top:var(--sp-9)}
+.mb-3{margin-bottom:var(--sp-3)}.mb-5{margin-bottom:var(--sp-5)}.mb-6{margin-bottom:var(--sp-6)}
+.mb-7{margin-bottom:var(--sp-7)}.mb-8{margin-bottom:var(--sp-8)}
+.gap-5{gap:var(--sp-5)}.gap-6{gap:var(--sp-6)}.gap-7{gap:var(--sp-7)}
+.flex{display:flex}.flex-col{flex-direction:column}.items-end{align-items:flex-end}.justify-between{justify-content:space-between}
+.w-full{width:100%}.text-right{text-align:right}.text-center{text-align:center}
+
+</style>
+</head>
+
+<body>
+
+<main class="sheet">
+
+<!-- POSTERS_HERE -->
+
+</main>
+
+</body>
+</html>

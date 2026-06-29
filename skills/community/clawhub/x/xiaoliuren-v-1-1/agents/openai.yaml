@@ -1,0 +1,6 @@
+interface:
+  display_name: "小六壬"
+  short_description: "道传小六壬教学式起卦、排盘与解卦助手"
+  default_prompt: "Use $xiaoliuren to 用小六壬为这件事起卦并解读。"
+policy:
+  allow_implicit_invocation: true

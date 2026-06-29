@@ -1,0 +1,4 @@
+interface:
+  display_name: "QQMail Organizer"
+  short_description: "Agent-safe QQ Mail triage with dry-runs and JSON plans"
+  default_prompt: "Use $qqmail-organizer to triage my QQ Mail inbox with a read-only JSON plan and dry-run cleanup proposal."

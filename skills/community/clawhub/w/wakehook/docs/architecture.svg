@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 420" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" role="img" aria-label="wakehook architecture: health APIs to wakehook to subscribers">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFC24B"/>
+      <stop offset="1" stop-color="#FF6F61"/>
+    </linearGradient>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0d1628"/>
+      <stop offset="1" stop-color="#0a1019"/>
+    </linearGradient>
+    <linearGradient id="hub" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b2742"/>
+      <stop offset="1" stop-color="#0f1830"/>
+    </linearGradient>
+    <marker id="arw" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#FF8A4B"/>
+    </marker>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#000000" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- backdrop -->
+  <rect x="3" y="3" width="1234" height="414" rx="26" fill="url(#bg)" stroke="#1e2a40" stroke-width="1.5"/>
+
+  <!-- header: sun + wordmark -->
+  <g transform="translate(46,60)">
+    <circle cx="0" cy="0" r="16" fill="url(#sky)"/>
+    <g stroke="url(#sky)" stroke-width="2.5" stroke-linecap="round">
+      <line x1="0" y1="-21" x2="0" y2="-27"/>
+      <line x1="14.8" y1="-14.8" x2="19.1" y2="-19.1"/>
+      <line x1="21" y1="0" x2="27" y2="0"/>
+      <line x1="14.8" y1="14.8" x2="19.1" y2="19.1"/>
+      <line x1="0" y1="21" x2="0" y2="27"/>
+      <line x1="-14.8" y1="14.8" x2="-19.1" y2="19.1"/>
+      <line x1="-21" y1="0" x2="-27" y2="0"/>
+      <line x1="-14.8" y1="-14.8" x2="-19.1" y2="-19.1"/>
+    </g>
+  </g>
+  <text x="82" y="58" font-size="44" font-weight="800" fill="url(#sky)" letter-spacing="0.5">wakehook</text>
+  <text x="84" y="88" font-size="16.5" fill="#9fb2cc">a webhook that fires when you wake up — vendor-neutral &amp; self-hosted</text>
+
+  <!-- column labels -->
+  <text x="196" y="150" font-size="12" font-weight="700" letter-spacing="2" fill="#6b82a3" text-anchor="middle">HEALTH APIs &amp; WEARABLES</text>
+  <text x="620" y="150" font-size="12" font-weight="700" letter-spacing="2" fill="#6b82a3" text-anchor="middle">THE BUS</text>
+  <text x="1083" y="150" font-size="12" font-weight="700" letter-spacing="2" fill="#6b82a3" text-anchor="middle">SUBSCRIBERS</text>
+
+  <!-- LEFT: sources -->
+  <g filter="url(#soft)">
+    <rect x="70" y="170" width="252" height="60" rx="14" fill="#10203a" stroke="#2b6c7a" stroke-width="1.5"/>
+  </g>
+  <text x="88" y="196" font-size="16" font-weight="700" fill="#eaf1fb">Google Health API</text>
+  <text x="88" y="216" font-size="12" fill="#8ea3c0">powers your Fitbit · live</text>
+  <circle cx="304" cy="186" r="5" fill="#38d39f"/>
+
+  <rect x="70" y="246" width="252" height="84" rx="14" fill="#0e1a30" stroke="#33425f" stroke-width="1.4" stroke-dasharray="5 5" opacity="0.72"/>
+  <text x="88" y="270" font-size="12.5" font-weight="700" fill="#9fb2cc" letter-spacing="1">ROADMAP SOURCES</text>
+  <text x="88" y="291" font-size="12.5" fill="#8095b3">Fitbit Web · Withings · Oura</text>
+  <text x="88" y="310" font-size="12.5" fill="#8095b3">Health Connect · Open Wearables</text>
+
+  <!-- arrow: sources -> hub -->
+  <text x="396" y="244" font-size="11" fill="#7990ad" text-anchor="middle">sleep data changed</text>
+  <line x1="322" y1="255" x2="464" y2="255" stroke="#FF8A4B" stroke-width="2.4" marker-end="url(#arw)"/>
+
+  <!-- MIDDLE: the bus -->
+  <g filter="url(#soft)">
+    <rect x="470" y="168" width="300" height="186" rx="20" fill="url(#hub)" stroke="#FFB257" stroke-width="1.8"/>
+  </g>
+  <text x="620" y="206" font-size="22" font-weight="800" fill="#FFB257" text-anchor="middle">wakehook</text>
+  <line x1="498" y1="220" x2="742" y2="220" stroke="#2c3c5a" stroke-width="1.2"/>
+  <text x="620" y="250" font-size="13.5" fill="#dbe6f5" text-anchor="middle">① infer the wake — never miss</text>
+  <text x="620" y="278" font-size="13.5" fill="#dbe6f5" text-anchor="middle">② dedup — once per morning</text>
+  <text x="620" y="306" font-size="13.5" fill="#dbe6f5" text-anchor="middle">③ sign &amp; fan out</text>
+  <text x="620" y="336" font-size="11" fill="#7990ad" text-anchor="middle">push or poll · provider-agnostic core</text>
+
+  <!-- bus -> signed event connector -->
+  <line x1="770" y1="261" x2="790" y2="261" stroke="#FF8A4B" stroke-width="2.4" marker-end="url(#arw)"/>
+
+  <!-- signed event pill (fan-out node) -->
+  <g filter="url(#soft)">
+    <rect x="792" y="246" width="120" height="30" rx="15" fill="#161f33" stroke="#FFB257" stroke-width="1.3"/>
+  </g>
+  <!-- tiny lock -->
+  <g transform="translate(804,251)" stroke="#FFB257" stroke-width="1.4" fill="none">
+    <rect x="0" y="6" width="11" height="8" rx="1.5" fill="#FFB257" stroke="none"/>
+    <path d="M2 6 V4 a3.5 3.5 0 0 1 7 0 V6"/>
+  </g>
+  <text x="864" y="266" font-size="12.5" font-weight="700" fill="#FFD9A0" text-anchor="middle">user.awake</text>
+
+  <!-- fan-out arrows: signed event -> subscribers -->
+  <line x1="912" y1="261" x2="946" y2="199" stroke="#FF8A4B" stroke-width="2.2" marker-end="url(#arw)"/>
+  <line x1="912" y1="261" x2="946" y2="267" stroke="#FF8A4B" stroke-width="2.2" marker-end="url(#arw)"/>
+  <line x1="912" y1="261" x2="946" y2="335" stroke="#FF8A4B" stroke-width="2.2" marker-end="url(#arw)"/>
+
+  <!-- RIGHT: subscribers -->
+  <g filter="url(#soft)">
+    <rect x="948" y="170" width="270" height="58" rx="14" fill="#161430" stroke="#8b6cf0" stroke-width="1.6"/>
+  </g>
+  <text x="966" y="194" font-size="16" font-weight="700" fill="#eaf1fb">OpenClaw</text>
+  <text x="966" y="214" font-size="12" fill="#9b8fd6">AI agent · runs your morning routine</text>
+
+  <rect x="948" y="238" width="270" height="58" rx="14" fill="#12243a" stroke="#3aa0c9" stroke-width="1.4"/>
+  <text x="966" y="262" font-size="16" font-weight="700" fill="#eaf1fb">Home Assistant</text>
+  <text x="966" y="282" font-size="12" fill="#8fbfd9">lights · blinds · coffee</text>
+
+  <rect x="948" y="306" width="270" height="58" rx="14" fill="#16261c" stroke="#43b581" stroke-width="1.4"/>
+  <text x="966" y="330" font-size="16" font-weight="700" fill="#eaf1fb">any URL / script</text>
+  <text x="966" y="350" font-size="12" fill="#86c8a6">your own automation · signed &amp; verifiable</text>
+</svg>

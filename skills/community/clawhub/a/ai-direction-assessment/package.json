@@ -1,0 +1,8 @@
+{
+  "name": "ai-direction-assessment",
+  "version": "1.0.0",
+  "description": "AI发展方向评估笔记 — SSM / JEPA / 主动推理 / 持续在线学习的2026年技术评估",
+  "main": "SKILL.md",
+  "author": "yuzengbaao",
+  "license": "MIT"
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "search-auto-routing-plan",
+  "name": "search-auto-routing-plan",
+  "displayName": "Search Auto-Routing Plan",
+  "version": "1.0.0",
+  "description": "Plan which search provider to use before multi-provider skills run — score query signals, pick Serper/Tavily/Exa/Brave/Firecrawl, define fallback chain, and document why.",
+  "triggerKeywords": [
+    "search auto routing",
+    "which search provider",
+    "route web search",
+    "serper vs tavily vs exa",
+    "search provider picker",
+    "web search routing plan",
+    "multi provider search plan",
+    "search routing rubric",
+    "pick search api",
+    "intelligent search routing"
+  ],
+  "tags": [
+    "auto-routing",
+    "web-search",
+    "exa",
+    "brave",
+    "tavily"
+  ],
+  "license": "MIT",
+  "language": "en",
+  "promptOnly": true,
+  "hasExecutableCode": false,
+  "requires_api": false,
+  "no_code_execution": true,
+  "execution": "noExec",
+  "no_network": true,
+  "no_credentials": true,
+  "contentType": "document-only",
+  "safety": "Routing planning only. Does not call search APIs or handle API keys. Complements auto-routing executor skills."
+}

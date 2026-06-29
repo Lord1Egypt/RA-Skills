@@ -135,18 +135,31 @@ python3 "$SKILL_DIR/scripts/export_resume.py" --format html --theme modern --lan
 2. Guide the user explicitly:
    - Hover near the top-right corner to reveal the pencil button.
    - Click it to enter edit mode.
-   - Edit text directly, add/remove bullet items where controls appear, then click the JSON copy button in the toolbar.
-3. The user edits content in-browser — all text fields, list items (add/remove with +/- buttons), and skill lists are editable.
-4. When done, the user clicks the JSON copy button in the toolbar to copy the updated resume JSON to clipboard.
-5. The user pastes the JSON back to you (or if you have Playwright access, you can extract it directly from the page).
-6. **Final review**: Check the updated content for grammar, spelling, consistency, formatting, and section separation quality. Suggest corrections if needed.
-7. Apply any corrections to `resume.json`.
-8. Generate the final, non-editable version for export (HTML or PDF) using the standard export command without `--editable`.
+   - Edit text directly, add/remove bullet items where controls appear.
+   - In body fields (summary, descriptions, achievement/responsibility list items, project achievements, honors), the user can select text and apply **B** / *I* / U / color from the toolbar. Title and short fields stay plain by design.
+   - When finished, click **Save** in the toolbar — this writes the edited resume back to `resume.json` on disk through a local sync server that the export step starts automatically.
+3. Once the user tells you they clicked Save, **re-read `resume.json` yourself** to pick up the changes. Do not ask the user to paste JSON.
+4. **Final review**: Check the updated content for grammar, spelling, consistency, formatting, and section separation quality. Suggest corrections if needed.
+5. Apply any corrections to `resume.json`.
+6. Generate the final, non-editable version for export (HTML or PDF) using the standard export command without `--editable`.
+
+**Rich-text markup.** Body fields support a small Markdown subset for emphasis. Both the agent (when authoring JSON) and the user (via the toolbar) use the same syntax, so they round-trip:
+
+| Syntax | Effect |
+|---|---|
+| `**text**` | bold |
+| `*text*` | italic |
+| `_text_` | underline |
+| `==text\|#rrggbb==` or `==text\|namedcolor==` | colored run |
+
+Example: `"Achieved **30%** growth with *custom* analytics."`. The renderer applies a strict whitelist — invalid color specs are left as literal text, and HTML/script tags are escaped. Title-like fields (`name`, `company`, `position`, `degree`, `institution`, `project-name`, `role`, `category-title`, `period`, `location`, `gpa`, `technologies`, skill items) render plain to keep layouts clean.
 
 **Notes:**
 - Edit UI is hidden during print/PDF export, so the visual output is unaffected.
-- The toolbar label and copy button text are localized with the selected output language; tell the user to use the top toolbar action that copies JSON.
-- If you have Playwright access, you can evaluate `JSON.stringify(window.extractToJson ? extractToJson() : 'N/A')` to read edits programmatically.
+- The toolbar labels are localized with the selected output language.
+- The local sync server binds to 127.0.0.1 only, validates the target path against the resume JSON it was started with, and requires a bearer token. Its PID/port are written next to the output HTML as `<output>.sync.json` for explicit cleanup.
+- If `--no-sync` is passed (or the server failed to start), the **Save** button is disabled and the user falls back to **Copy JSON**; in that case ask them to paste.
+- If you have Playwright access, you can evaluate `JSON.stringify(window.extractToJson ? extractToJson() : 'N/A')` to read edits programmatically without Save.
 
 ## Content Best Practices
 
@@ -165,3 +178,4 @@ python3 "$SKILL_DIR/scripts/export_resume.py" --format html --theme modern --lan
 | `scripts/export_resume.py` | Unified entrypoint for HTML/PDF export |
 | `scripts/create_theme.py` | Scaffold a reusable custom theme |
 | `scripts/validate_resume.py` | Validate a resume JSON against the canonical schema |
+| `scripts/_edit_sync_server.py` | Local-only HTTP server (background) that the editable toolbar POSTs edits to — writes them back to `resume.json`. Started automatically by `generate_html.py` when `--editable` is set and `--no-sync` is not. Not invoked directly. |

@@ -1,0 +1,47 @@
+# 简单测试工作流：搜索→总结→输出
+name: test-simple
+version: "1.0"
+description: "简单测试工作流：搜索→总结"
+author: 小狗
+tags: [test]
+
+inputs:
+  - name: topic
+    type: string
+    default: "Hermes Agent"
+
+steps:
+  - id: step1
+    name: "创建目录"
+    type: terminal
+    depends: []
+    config:
+      command: "mkdir -p /tmp/wf-test && echo '目录创建成功'"
+    output:
+      type: text
+      variable: "dir_result"
+
+  - id: step2
+    name: "写入文件"
+    type: terminal
+    depends: [step1]
+    config:
+      command: "echo 'Hello from workflow engine!' > /tmp/wf-test/hello.txt && cat /tmp/wf-test/hello.txt"
+    output:
+      type: text
+      variable: "file_content"
+
+  - id: step3
+    name: "验证文件"
+    type: terminal
+    depends: [step2]
+    config:
+      command: "ls -la /tmp/wf-test/ && wc -c /tmp/wf-test/hello.txt"
+    output:
+      type: text
+      variable: "verify_result"
+
+outputs:
+  - name: result
+    type: text
+    value: "全部完成！"

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/VKambulov/research-mode/schemas/delivery-intent.v1.schema.json",
+  "title": "Research Mode delivery intent v1",
+  "description": "Serializable handoff from Research Mode to a platform-specific delivery adapter.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["id", "status", "transition", "created_at", "notification_target", "update_text"],
+  "properties": {
+    "id": {"type": "string"},
+    "status": {"type": "string"},
+    "run_id": {"type": ["string", "null"]},
+    "transition": {"type": "string"},
+    "created_at": {"type": "string"},
+    "updated_at": {"type": ["string", "null"]},
+    "notification_target": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "channel": {"type": ["string", "null"]},
+        "chat_id": {"type": ["string", "null"]},
+        "thread_id": {"type": ["string", "null"]},
+        "topic_id": {"type": ["string", "null"]}
+      }
+    },
+    "update_text": {"type": ["string", "null"]},
+    "outputs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "required": ["id", "path", "role"],
+        "properties": {
+          "id": {"type": "string"},
+          "path": {"type": "string"},
+          "role": {"type": "string"},
+          "media_type": {"type": "string"},
+          "source_for": {"type": "string"},
+          "derived_from": {"type": "string"}
+        }
+      }
+    },
+    "primary_file": {"type": ["string", "null"]},
+    "attachments": {"type": "array", "items": {"type": "string"}},
+    "blocked_reason": {"type": ["string", "null"]},
+    "error": {"type": ["string", "null"]},
+    "error_code": {"type": ["string", "null"]},
+    "provider_target_shape": {
+      "type": ["object", "null"],
+      "additionalProperties": true,
+      "properties": {
+        "channel": {"type": ["string", "null"]},
+        "has_chat_id": {"type": "boolean"},
+        "has_thread_id": {"type": "boolean"},
+        "has_topic_id": {"type": "boolean"}
+      }
+    }
+  }
+}

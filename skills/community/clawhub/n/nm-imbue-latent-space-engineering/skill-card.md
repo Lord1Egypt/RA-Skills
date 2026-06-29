@@ -11,31 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and agent authors use this skill to structure prompts, skill instructions, style-transfer requests, and multi-agent review dispatches for clearer agent behavior. <br>
+Developers and agent authors use this skill to frame prompts, skill instructions, parallel reviews, and style-matched code or documentation so agents follow the intended tone and conventions. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Broad review-planning activation could produce reviewer instructions that drift from the intended scope or independence model. <br>
-Mitigation: Review generated reviewer instructions before use and confirm they preserve the intended scope, independence, and higher-priority system or developer constraints. <br>
-Risk: Prompt-structuring guidance can introduce incorrect or misleading review framing if applied mechanically. <br>
-Mitigation: Use the generated framing as guidance and have a human reviewer check it against the actual task, review goals, and constraints before deployment. <br>
+Risk: Broad activation wording may cause the skill to appear during unrelated documentation or development work. <br>
+Mitigation: Review when it triggers and disable or narrow the skill if it appears outside prompt-engineering, instruction-framing, style-transfer, or review workflows. <br>
+Risk: Prompt-framing guidance can affect review tone and incentives if copied without judgment. <br>
+Mitigation: Review proposed prompt or skill text before deployment, and keep competitive review framing evidence-backed and severity-prioritized. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-imbue-latent-space-engineering) <br>
-- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/imbue) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-imbue-latent-space-engineering) <br>
+- [OpenClaw homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/imbue) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Text] <br>
-**Output Format:** [Markdown guidance and prompt patterns] <br>
+**Output Type(s):** [Text, Markdown, Guidance] <br>
+**Output Format:** [Markdown guidance with prompt templates] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No shell execution, credential use, persistence, or destructive behavior indicated by security evidence.] <br>
+**Other Properties Related to Output:** [No external tools, credentials, or API calls are required by the skill.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata) <br>
+1.9.13 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

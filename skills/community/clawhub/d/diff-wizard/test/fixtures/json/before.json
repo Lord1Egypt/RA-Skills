@@ -1,0 +1,19 @@
+{
+  "name": "MyApp",
+  "version": "1.0.0",
+  "debug_mode": true,
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "max_connections": 100,
+    "name": "myapp_dev"
+  },
+  "api": {
+    "base_url": "http://localhost:3000",
+    "timeout": 30000
+  },
+  "features": {
+    "dark_mode": false,
+    "experimental": true
+  }
+}

@@ -32,6 +32,41 @@ Full comparison: [automation-decision-guide.md](./resources/automation-decision-
 
 ## Workflow
 
+### Step 0: Output-size routing (HARD STOP — before Step 1)
+
+**Before any large-output operation, decide: inline vs subagent vs script.** Parent context bloat from claudify itself reduces the budget available for the actual automation creation work.
+
+#### Routing decision matrix
+
+| Operation | Inline OK? | Dispatch to subagent? | Script? |
+|-----------|-----------|----------------------|---------|
+| Read 1 resource file (template/guide) | ✅ Inline | — | — |
+| Read 2+ large resource files (>200 lines each) | ❌ | ✅ general-purpose subagent | — |
+| Scan transcript for automation patterns (no target) | ❌ | ✅ Explore or general-purpose | — |
+| Enumerate `~/.claude/plugins/marketplaces/*/plugins/*/` | ❌ | — | ✅ `find` / `ls` 1-liner |
+| Create single agent/rule/command file (inputs known) | ✅ Inline | — | — |
+| Create multi-topic skill (writer + multiple topic files) | ❌ | ✅ skill-writer subagent | — |
+| Marketplace remote search (WebFetch + parsing) | ❌ | ✅ general-purpose subagent | — |
+
+#### Don't / Do table
+
+| # | Don't | Do |
+|---|-------|-----|
+| 1 | Read `resources/agent-templates.md` (358 lines) + `automation-decision-guide.md` + `askuserquestion-patterns.md` inline before creating one agent | Dispatch general-purpose subagent: "Read these 3 templates and create agent at `<path>` with name=X, tools=Y, description=Z. Return the created file path only." |
+| 2 | Inline scan transcript for candidates by Read-ing the full session JSONL | Dispatch Explore subagent: "Find verbose tool-output patterns (>500 tokens repeated 2+ times) in conversation. Return candidate list (label + 1-line description) under 200 words." |
+| 3 | Inline Glob + Read all marketplace plugin SKILL.md files | Bash 1-liner: `find ~/.claude/plugins/marketplaces/*/plugins/*/ -name SKILL.md -exec head -3 {} \;` returns names without body |
+| 4 | "Just one more Read" cumulative inline reading | Quantify: if next operation expected to add >2K tokens to parent context AND result is not the deliverable itself, dispatch subagent |
+| 5 | Dispatch subagent with vague prompt ("create the agent") | Subagent prompt must include: target file path, name, tools, model, description (single-line YAML), trigger keywords. Return only the file path |
+
+#### Self-check (before each Read/Glob/WebFetch in claudify workflow)
+
+1. Is the read result the deliverable, or intermediate context that the subagent's parent doesn't need?
+2. Will this Read + subsequent Reads cumulatively add >2K tokens to parent context?
+3. Is the operation parallelizable (multiple Reads, multiple files)?
+4. If 1=intermediate OR 2=yes OR 3=yes → dispatch subagent
+
+**Subagent return contract**: subagent returns only the deliverable path(s). No template dump, no intermediate analysis, no confirmation text.
+
 ### Step 1: Identify Candidates
 
 **If no target specified** ("agentify" alone):
@@ -94,7 +129,7 @@ Use the [automation-decision-guide.md](./resources/automation-decision-guide.md)
 
 ### Step 4: Create
 
-**CRITICAL**: Follow the creation method for each type
+**CRITICAL**: Follow the creation method for each type. **Apply Step 0 routing first** — multi-template Reads or transcript scans dispatch to subagent.
 
 **Skill with scripts** (If scripts are required, use skill directory structure):
 ```

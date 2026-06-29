@@ -1,0 +1,13 @@
+{
+  "id": "lesson-1781278494036-fca43c88",
+  "type": "correction",
+  "content": "这是一个测试教训的修正方案",
+  "context": "测试场景",
+  "trigger": "clarity",
+  "importance": 4,
+  "frequency": 3,
+  "createdAt": "2026-06-12T15:34:54.037Z",
+  "lastSeen": "2026-06-12T15:35:29.481Z",
+  "sessionId": null,
+  "retentionScore": 4
+}

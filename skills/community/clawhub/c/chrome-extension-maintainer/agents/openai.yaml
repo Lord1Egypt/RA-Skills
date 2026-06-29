@@ -1,0 +1,4 @@
+interface:
+  display_name: "Chrome Extension Maintainer"
+  short_description: "Maintain and ship Chrome extensions safely"
+  default_prompt: "Use $chrome-extension-maintainer to review a Chrome extension release candidate and produce a ship gate."

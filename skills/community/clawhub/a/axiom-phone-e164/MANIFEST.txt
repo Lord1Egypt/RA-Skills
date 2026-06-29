@@ -1,0 +1,9 @@
+# Manifest — axiom-phone-e164 (public, clean)
+# Edition: Capafy voice (zero cluster jargon)
+# Generated: 2026-06-14T20:45:38Z
+
+14d7852767f91e0daa3bc270784b272adf8be2b02d03b6e95fb5ea8135197f57  LICENSE  (45 bytes)
+d74f08d49c9570a1cbb0f6a8d99d2d16f68fd321aa6544fb5daa2d4265813516  README.md  (1038 bytes)
+40542f7051b2e7c8b90a74f4df5d1f66716c043e02a1100ca811d789a4be0d49  SKILL.md  (494 bytes)
+18fca21a9739fe28d280b3608d8d2326631c65f127eefa4d1fa8dbbef3a763a4  axiom_phone_e164.py  (10385 bytes)
+7ba94df7d05a819595cff8fbf4c68377a12dd03a13467adad6837ad4a78a5031  test_axiom_phone_e164.py  (2556 bytes)

@@ -1,0 +1,77 @@
+{
+  "name": "axiom-json-canonicalizer",
+  "version": "1.0.0",
+  "display_name": "JCS RFC 8785 JSON Canonicalization",
+  "description": "Canonicalize any JSON to deterministic, byte-to-byte form per JCS RFC 8785. Sort keys, NFC-normalize Unicode, strip whitespace, format numbers per ECMAScript. Use for OAuth/JWT signing, integrity hashing, and tamper-evident logs. Zero dependencies, no LLM, offline.",
+  "long_description": "Implements JSON Canonicalization Scheme (JCS) RFC 8785. Two equivalent JSON objects (whitespace, key order, Unicode form) produce exactly the same canonical bytes. Use as the first step before signing or hashing JSON payloads. Pure Python stdlib, ~210 LOC, byte-to-byte deterministic, handles edge cases (NaN/Infinity rejection, -0 normalization, surrogate pairs, NFC normalization).",
+
+  "category": "developer-tools",
+  "tags": ["json", "canonicalization", "jcs", "rfc8785", "deterministic", "byte-to-byte", "no-llm", "offline", "open-source", "signing", "hashing", "integrity"],
+
+  "author": {
+    "name": "Axioma (Kofna336)",
+    "url": "https://axioma.local",
+    "email": "papa@axioma.local"
+  },
+
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/axioma-stellaris/axiom-skills",
+  "repository": "https://github.com/axioma-stellaris/axiom-skills/tree/main/axiom-json-canonicalizer",
+
+  "platforms": ["claude-code", "codex", "openclaw", "hermes"],
+
+  "pricing": {
+    "model": "pay-per-use",
+    "price_per_use": 0.02,
+    "currency": "USD",
+    "free_tier": false
+  },
+
+  "execution": {
+    "type": "python",
+    "runtime": "python:3.11",
+    "memory_mb": 64,
+    "timeout_seconds": 5,
+    "entrypoint": "axiom_json_canonicalizer.py"
+  },
+
+  "interface": {
+    "input": {
+      "type": "json",
+      "format": "any-valid-json",
+      "examples": [
+        "{\"b\": 2, \"a\": 1}",
+        "[1, 2, {\"x\": 3}]",
+        "{\"unicode\": \"café\"}"
+      ]
+    },
+    "output": {
+      "type": "bytes",
+      "encoding": "utf-8",
+      "format": "jcs-rfc8785",
+      "description": "Canonical JSON bytes (sorted keys, no whitespace, NFC-normalized, ECMAScript numbers)"
+    },
+    "flags": [
+      {"name": "--file", "type": "string", "description": "Path to JSON file"},
+      {"name": "--stdin", "type": "boolean", "default": false, "description": "Read from stdin"},
+      {"name": "--hash", "type": "boolean", "default": false, "description": "Also output SHA-256 of canonical form"},
+      {"name": "--demo", "type": "boolean", "default": false, "description": "Run demo with sample cases"}
+    ]
+  },
+
+  "guarantees": {
+    "deterministic": true,
+    "no_llm": true,
+    "no_network": true,
+    "offline_capable": true,
+    "open_source": true,
+    "rfc_compliant": "RFC 8785 (JCS)"
+  },
+
+  "stats": {
+    "lines_of_code": 409,
+    "test_count": 81,
+    "perf_p95_ms": 50,
+    "size_kb": 14
+  }
+}

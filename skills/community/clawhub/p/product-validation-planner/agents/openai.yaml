@@ -1,0 +1,7 @@
+interface:
+  display_name: "Product Validation Planner"
+  short_description: "Plans lean experiments for testing product ideas before buildout."
+  default_prompt: "Use $product-validation-planner to turn my product idea into assumptions, validation experiments, and go/no-go criteria."
+
+policy:
+  allow_implicit_invocation: true

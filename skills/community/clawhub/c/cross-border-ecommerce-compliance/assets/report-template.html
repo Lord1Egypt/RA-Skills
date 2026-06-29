@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{PRODUCT}} — {{MARKET}} 出口合规报告 | 跨境合规速查</title>
+<style>
+:root {
+  --primary: #1a365d;
+  --primary-light: #2b6cb0;
+  --success: #38a169;
+  --warning: #ed8936;
+  --danger: #e53e3e;
+  --info: #3182ce;
+  --bg: #f7fafc;
+  --card-bg: #ffffff;
+  --text: #2d3748;
+  --text-secondary: #718096;
+  --border: #e2e8f0;
+  --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.06);
+  --radius: 8px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  padding-bottom: 3rem;
+}
+.container { max-width: 960px; margin: 0 auto; padding: 0 1rem; }
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: white;
+  padding: 2rem 0;
+}
+.header .container { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; }
+.header-icon { font-size: 2.5rem; }
+.header-info { flex: 1; }
+.header-info h1 { font-size: 1.5rem; margin-bottom: 0.25rem; }
+.header-info .subtitle { font-size: 0.9rem; opacity: 0.9; }
+.header-meta { font-size: 0.8rem; opacity: 0.75; text-align: right; }
+.risk-badge {
+  display: inline-block; padding: 0.25rem 0.75rem; border-radius: 20px;
+  font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+}
+.risk-high { background: var(--danger); }
+.risk-medium { background: var(--warning); }
+.risk-low { background: var(--success); }
+
+/* Dashboard Grid */
+.dashboard { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; margin: 1.5rem 0; }
+.dim-card {
+  background: var(--card-bg); border-radius: var(--radius); padding: 1rem;
+  box-shadow: var(--shadow); border-left: 4px solid var(--primary);
+  transition: transform 0.15s; cursor: pointer;
+}
+.dim-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.dim-card .dim-label { font-size: 0.75rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.25rem; }
+.dim-card .dim-value { font-size: 1.1rem; font-weight: 700; color: var(--primary); }
+.dim-card .dim-status { font-size: 0.7rem; margin-top: 0.3rem; }
+.status-mandatory { color: var(--danger); font-weight: 600; }
+.status-recommended { color: var(--warning); font-weight: 600; }
+.status-optional { color: var(--text-secondary); }
+
+/* Section */
+.section { background: var(--card-bg); border-radius: var(--radius); box-shadow: var(--shadow); margin: 1rem 0; overflow: hidden; }
+.section-header {
+  padding: 1rem 1.25rem; cursor: pointer; display: flex; align-items: center;
+  justify-content: space-between; border-bottom: 1px solid transparent;
+  user-select: none; transition: background 0.15s;
+}
+.section-header:hover { background: #f7fafc; }
+.section-header.active { border-bottom-color: var(--border); }
+.section-header h2 { font-size: 1.05rem; display: flex; align-items: center; gap: 0.5rem; }
+.section-header .icon { font-size: 1.3rem; }
+.section-header .arrow { transition: transform 0.2s; font-size: 0.7rem; color: var(--text-secondary); }
+.section-header.active .arrow { transform: rotate(180deg); }
+.section-body { display: none; padding: 1.25rem; }
+.section-body.open { display: block; }
+
+/* Tables */
+.compliance-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+.compliance-table th {
+  background: #edf2f7; text-align: left; padding: 0.6rem 0.75rem;
+  font-weight: 600; color: var(--primary); font-size: 0.78rem;
+  text-transform: uppercase; letter-spacing: 0.3px;
+}
+.compliance-table td {
+  padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--border);
+  vertical-align: top; line-height: 1.5;
+}
+.compliance-table tr:last-child td { border-bottom: none; }
+.compliance-table tr:hover td { background: #f7fafc; }
+
+/* Tags */
+.tag {
+  display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px;
+  font-size: 0.73rem; font-weight: 600; margin: 0.1rem 0.15rem;
+}
+.tag-red { background: #fff5f5; color: var(--danger); }
+.tag-orange { background: #fffaf0; color: var(--warning); }
+.tag-green { background: #f0fff4; color: var(--success); }
+.tag-blue { background: #ebf8ff; color: var(--info); }
+.tag-gray { background: #f7fafc; color: var(--text-secondary); }
+
+/* Checklist */
+.checklist { list-style: none; }
+.checklist li {
+  padding: 0.6rem 0; border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; gap: 0.5rem;
+}
+.checklist li:last-child { border-bottom: none; }
+.checklist .check-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+.checklist .priority { font-size: 0.7rem; font-weight: 700; padding: 0.1rem 0.4rem; border-radius: 3px; flex-shrink: 0; margin-right: 0.25rem; }
+.p0 { background: #fff5f5; color: var(--danger); }
+.p1 { background: #fffaf0; color: var(--warning); }
+.p2 { background: #ebf8ff; color: var(--info); }
+
+/* Certification Cards */
+.cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.75rem; }
+.cert-card {
+  background: #f7fafc; border-radius: var(--radius); padding: 1rem;
+  text-align: center; border: 1px solid var(--border);
+}
+.cert-card .cert-name { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+.cert-card .cert-desc { font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.3rem; }
+.cert-card .cert-type { font-size: 0.7rem; font-weight: 600; margin-top: 0.5rem; }
+.cert-card.mandatory { border-color: var(--danger); background: #fff5f5; }
+.cert-card.mandatory .cert-name { color: var(--danger); }
+
+/* Alert */
+.alert {
+  padding: 0.75rem 1rem; border-radius: var(--radius);
+  margin: 0.75rem 0; font-size: 0.88rem;
+}
+.alert-warning { background: #fffaf0; border-left: 4px solid var(--warning); color: #c05621; }
+.alert-info { background: #ebf8ff; border-left: 4px solid var(--info); color: #2c5282; }
+.alert-danger { background: #fff5f5; border-left: 4px solid var(--danger); color: #c53030; }
+.alert strong { display: block; margin-bottom: 0.15rem; }
+
+/* Comparison Tabs */
+.tabs { display: flex; gap: 0; margin: 1rem 0; border-bottom: 2px solid var(--border); overflow-x: auto; }
+.tab-btn {
+  padding: 0.6rem 1.25rem; background: none; border: none;
+  font-size: 0.88rem; cursor: pointer; color: var(--text-secondary);
+  transition: all 0.2s; white-space: nowrap; font-weight: 500;
+}
+.tab-btn:hover { color: var(--primary); }
+.tab-btn.active { color: var(--primary); border-bottom: 2px solid var(--primary); margin-bottom: -2px; font-weight: 700; }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* Footer */
+.footer { text-align: center; padding: 1.5rem 0; font-size: 0.78rem; color: var(--text-secondary); }
+.footer a { color: var(--primary-light); }
+
+/* Summary Banner */
+.summary-banner {
+  background: linear-gradient(135deg, #ebf8ff, #e6fffa);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin: 1rem 0;
+  display: flex; flex-wrap: wrap; gap: 1rem;
+}
+.summary-item { flex: 1; min-width: 140px; }
+.summary-item .label { font-size: 0.7rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; }
+.summary-item .value { font-size: 1rem; font-weight: 700; color: var(--primary); margin-top: 0.15rem; }
+
+/* Print */
+@media print {
+  .section-body { display: block !important; }
+  .section-header { cursor: default; }
+  .section-header .arrow { display: none; }
+  body { background: white; }
+  .section { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .header-info h1 { font-size: 1.2rem; }
+  .dashboard { grid-template-columns: repeat(2, 1fr); }
+  .compliance-table { font-size: 0.78rem; }
+  .compliance-table th, .compliance-table td { padding: 0.4rem 0.5rem; }
+  .cert-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== HEADER ==================== -->
+<div class="header">
+  <div class="container">
+    <div class="header-icon">{{ICON}}</div>
+    <div class="header-info">
+      <h1>{{PRODUCT}}</h1>
+      <div class="subtitle">{{MARKET}} — 出口合规报告</div>
+    </div>
+    <div class="header-meta">
+      <div>{{GEN_DATE}}</div>
+      <div style="margin-top:0.5rem"><span class="risk-badge {{RISK_CLASS}}">{{RISK_LEVEL}}</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ==================== SUMMARY BANNER ==================== -->
+<div class="summary-banner" id="summaryBanner">
+  <!-- DYNAMICALLY FILLED -->
+</div>
+
+<!-- ==================== CERTIFICATIONS ==================== -->
+<div class="section">
+  <div class="section-header active" onclick="toggleSection(this)">
+    <h2><span class="icon">📜</span> 强制认证与标志</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="section-body open" id="certBody">
+    <div class="cert-grid" id="certGrid">
+      <!-- DYNAMICALLY FILLED -->
+    </div>
+  </div>
+</div>
+
+<!-- ==================== DASHBOARD ==================== -->
+<div class="dashboard" id="dashboard">
+  <!-- DYNAMICALLY FILLED -->
+</div>
+
+<!-- ==================== LABELING ==================== -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="icon">🏷️</span> 标签要求</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="section-body" id="labelBody">
+    <!-- DYNAMICALLY FILLED -->
+  </div>
+</div>
+
+<!-- ==================== PACKAGING ==================== -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="icon">📦</span> 包装要求</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="section-body" id="packBody">
+    <!-- DYNAMICALLY FILLED -->
+  </div>
+</div>
+
+<!-- ==================== TESTING ==================== -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="icon">🔬</span> 测试标准</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="section-body" id="testBody">
+    <!-- DYNAMICALLY FILLED -->
+  </div>
+</div>
+
+<!-- ==================== RESTRICTED SUBSTANCES ==================== -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="icon">⚠️</span> 限制物质与禁用成分</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="section-body" id="substanceBody">
+    <!-- DYNAMICALLY FILLED -->
+  </div>
+</div>
+
+<!-- ==================== IMPORT DOCS ==================== -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="icon">📋</span> 进口文件清单</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="section-body" id="docsBody">
+    <!-- DYNAMICALLY FILLED -->
+  </div>
+</div>
+
+<!-- ==================== PLATFORM REQUIREMENTS ==================== -->
+<div class="section" id="platformSection" style="display:none;">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="icon">🛒</span> <span id="platformTitle">电商平台要求</span></h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="section-body" id="platformBody">
+    <!-- DYNAMICALLY FILLED -->
+  </div>
+</div>
+
+<!-- ==================== ACTION CHECKLIST ==================== -->
+<div class="section">
+  <div class="section-header active" onclick="toggleSection(this)">
+    <h2><span class="icon">✅</span> 行动检查清单</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="section-body open" id="checklistBody">
+    <ul class="checklist" id="checklist">
+      <!-- DYNAMICALLY FILLED -->
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== RISK ALERTS ==================== -->
+<div class="section">
+  <div class="section-header" onclick="toggleSection(this)">
+    <h2><span class="icon">🚨</span> 风险提示与常见坑点</h2>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="section-body" id="riskBody">
+    <!-- DYNAMICALLY FILLED -->
+  </div>
+</div>
+
+<!-- ==================== FOOTER ==================== -->
+<div class="footer">
+  <p>本报告由「跨境电商产品合规速查」技能自动生成 | 仅供参考，正式出口前请通过官方渠道确认</p>
+  <p>数据更新至 {{DATA_DATE}} | 法规持续更新，请关注各国监管机构最新通告</p>
+</div>
+
+</div>
+
+<script>
+// Section toggle
+function toggleSection(header) {
+  header.classList.toggle('active');
+  var body = header.nextElementSibling;
+  if (body) body.classList.toggle('open');
+}
+
+// Tab switching
+function switchTab(tabBtn, tabId) {
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+  tabBtn.classList.add('active');
+  var content = document.getElementById(tabId);
+  if (content) content.classList.add('active');
+}
+</script>
+
+</body>
+</html>

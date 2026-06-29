@@ -42,7 +42,7 @@
 | **P7 询盘**：`m1`/`m2`/`m3` 三月拉数            | **并行委派**          | 3× Task（`handoff-p7-inquiry.md` 子目录变体）          | 3× 主会话顺序跑          |
 | **P5** `google-analysis-batch run` 全量         | **主会话或单次 Bash** | **一次** batch；CLI 内置并发                           | per-account 子会话调 API |
 | **P5** batch **完成后** 按账户聚合              | **可选并行**          | N× Task，只读 `results/<accountId>/`                   | 子会话 `run` 新 batch    |
-| 读 `google-ads/rules/*` 全文做方案              | **委派**              | **Explore** + `readonly`                               | 主会话 Read 全文进上下文 |
+| 读 `references/google-ads/rules/*` 全文做方案              | **委派**              | **Explore** + `readonly`                               | 主会话 Read 全文进上下文 |
 | 用户仅闲聊 / 解释字段口径                       | **主会话**            | —                                                      | —                        |
 
 ---
@@ -102,16 +102,16 @@ summary: <1-3 句中文，无业务数字除非来自 manifest>
 
 ### P6 · OKKI 周报
 
-**必读**：`report-templates/okki-weekly-google-client.md`、`core/playbooks.md` P6。
+**必读**：`report-templates/okki-weekly-google-client.md`、`references/core/playbooks.md` P6。
 
 1. 主 Agent：确认账户与日期区间。
 2. **决策**：拉数阶段若日志长 → Bash/Task + `handoff-p6-okki.md` §拉数；否则主会话执行模板 §拉数命令。
-3. **决策**：写 xlsx 阶段 → Task handoff（只读 `snapDir`，先 outline 后 JSON，见 `core/tips.md`）；或主会话若上下文充足。
+3. **决策**：写 xlsx 阶段 → Task handoff（只读 `snapDir`，先 outline 后 JSON，见 `references/core/tips.md`）；或主会话若上下文充足。
 4. 主 Agent：合并交付话术 + 文件路径；金额与 ID 与 manifest 一致。
 
 ### P5 · 多账户多维度
 
-**必读**：`analytics/google-analysis-batch.md`、`core/playbooks.md` P5。
+**必读**：`references/analytics/google-analysis-batch.md`、`references/core/playbooks.md` P5。
 
 1. 主 Agent：确认区间与 `--sections`。
 2. **batch 本身**：主会话或**单次** Bash 执行 `google-analysis-batch run`（全量省略 `-a`）或 `resume` — **禁止** per-account 子会话调 API。
@@ -121,7 +121,7 @@ summary: <1-3 句中文，无业务数字除非来自 manifest>
 
 ### P7 · Google 询盘分析
 
-**必读**：`report-templates/google-inquiry-analysis.md`、`core/playbooks.md` P7。
+**必读**：`report-templates/google-inquiry-analysis.md`、`references/core/playbooks.md` P7。
 
 1. 主 Agent：询盘资料落盘或流程 B 反问。
 2. **决策**：主 snap 拉数 + **并行** 3× Task 跑 `m1`/`m2`/`m3`（`handoff-p7-inquiry.md`），或主会话顺序执行若客户端不支持并行。

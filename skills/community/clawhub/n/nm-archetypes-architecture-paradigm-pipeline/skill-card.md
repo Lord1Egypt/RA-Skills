@@ -11,31 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and architects use this skill to structure sequential data transformations such as ETL jobs, streaming analytics, and CI/CD pipelines with reusable filters and explicit pipes. <br>
+Developers and architecture reviewers use this skill to decide when a pipes-and-filters pipeline fits ETL, streaming analytics, CI/CD, or other sequential transformation work, and to identify adoption steps, deliverables, and risks. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Broad triggers such as architecture, pipeline, ETL, and streaming may activate the skill in conversations where pipeline architecture guidance is not relevant. <br>
-Mitigation: Confirm the conversation is about pipes-and-filters or sequential data transformation before following the skill's recommendations. <br>
-Risk: Architecture guidance can be applied incorrectly if treated as a complete implementation plan. <br>
-Mitigation: Review the proposed filters, schemas, back-pressure behavior, tests, and observability needs against the target system before adoption. <br>
+Risk: Broad architecture and pipeline triggers may activate the skill in discussions where pipes-and-filters is only one possible pattern. <br>
+Mitigation: Treat the guidance as advisory and compare it with other architecture patterns before adopting it. <br>
+Risk: The referenced full plugin was not part of the reviewed artifact. <br>
+Mitigation: Review and scan any separately installed plugin before relying on behavior outside this documentation-only skill. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-archetypes-architecture-paradigm-pipeline) <br>
-- [OpenClaw homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-archetypes-architecture-paradigm-pipeline) <br>
+- [OpenClaw homepage](https://github.com/athola/claude-night-market/tree/master/plugins/archetypes) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Guidance, Markdown, Configuration, Code] <br>
-**Output Format:** [Markdown guidance with architecture steps, deliverables, risks, and concrete component vocabulary] <br>
+**Output Type(s):** [guidance, markdown] <br>
+**Output Format:** [Markdown guidance for architecture discussions] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Documentation-only guidance; no tool use, code execution, or credential access is declared.] <br>
+**Other Properties Related to Output:** [Documentation-only guidance; no tools, API keys, or MCP servers are required.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release evidence) <br>
+1.9.13 (source: server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

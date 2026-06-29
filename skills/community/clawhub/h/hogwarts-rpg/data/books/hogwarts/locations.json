@@ -1,0 +1,251 @@
+{
+  "_doc": "Orts-Whitelist für die Sandkasten-Bewegung. NUR diese Schauplätze sind erlaubt — die Engine lehnt alles andere ab (Leitplanke ist die Welt). Jeder Ort liefert einen kindgerechten Kontext, den der GM beim freien Erzählen verwendet. 'access' steuert grobe Verfügbarkeit (immer/tagsueber). 'arc' kennzeichnet Prolog- vs. Schul-Orte.",
+  "setting": "Internat für junge Hexen und Zauberer (Schloss Hogwarts), altersgerechter Ton (~12, Niveau der HP-Buecher/Filme), spannend aber sicher",
+  "locations": [
+    {
+      "id": "haus_familie",
+      "name": "Haus deiner Familie",
+      "arc": "prolog",
+      "access": "immer",
+      "context": "Robins Zuhause in einem kleinen Dorf: warme Küche, Blick auf den Wald, Mama und Papa in der Nähe. Der sichere Hafen, an den sie in Gedanken zurückkehrt."
+    },
+    {
+      "id": "dorfstrasse",
+      "name": "Dorfstraße",
+      "arc": "prolog",
+      "access": "immer",
+      "context": "Die ruhige Dorfstraße vor dem Haus, wo der knallrote Fahrende Doppeldecker mit einem Knall auftaucht. Ort des Abschieds."
+    },
+    {
+      "id": "doppeldecker",
+      "name": "Fahrender Doppeldecker (Oberdeck)",
+      "arc": "prolog",
+      "access": "immer",
+      "context": "Das Oberdeck des magischen Busses, der in halsbrecherischen Sätzen durch die Nacht springt. Schaffner Barnabas erzählt von der Zauberwelt — aufregend, nie bedrohlich."
+    },
+    {
+      "id": "winkelgasse",
+      "name": "Winkelgasse",
+      "arc": "prolog",
+      "access": "tagsueber",
+      "context": "Die quirlige Zaubererstraße voller Lärm, Farben und schwebender Schilder. Mit Lily an der Seite ein Ort zum Staunen und Entdecken."
+    },
+    {
+      "id": "ollivanders",
+      "name": "Ollivanders Zauberstabladen",
+      "arc": "prolog",
+      "access": "tagsueber",
+      "context": "Ein staubiger Laden voller schmaler Schachteln. Hier sucht der Zauberstab die Hexe aus, nicht umgekehrt."
+    },
+    {
+      "id": "madam_malkins",
+      "name": "Madam Malkins Umhänge",
+      "arc": "prolog",
+      "access": "tagsueber",
+      "context": "Ein freundliches Schneidergeschäft, in dem die Schulumhänge angepasst werden."
+    },
+    {
+      "id": "flourish_blotts",
+      "name": "Flourish & Blotts",
+      "arc": "prolog",
+      "access": "tagsueber",
+      "context": "Die Buchhandlung mit Regalen bis zur Decke und Büchern, deren Bilder sich bewegen."
+    },
+    {
+      "id": "tierhandlung",
+      "name": "Zur Magischen Schnauze",
+      "arc": "prolog",
+      "access": "tagsueber",
+      "context": "Die Tierhandlung in der Winkelgasse, voller Eulen, Katzen und Kröten — und einem kleinen weißen Malteser namens Flocke."
+    },
+    {
+      "id": "gleis_neun_dreiviertel",
+      "name": "King's Cross, Gleis 9¾",
+      "arc": "prolog",
+      "access": "tagsueber",
+      "context": "Der verborgene Bahnsteig hinter der festen Mauer, wo der scharlachrote Hogwarts-Express dampft. Hier endet der Prolog und die Schulzeit beginnt."
+    },
+    {
+      "id": "grosse_halle",
+      "name": "Große Halle",
+      "access": "tagsueber",
+      "context": "Die riesige Halle mit den vier langen Haustischen und der verzauberten Sternendecke. Hier wird gegessen, geredet und gelacht. Es ist immer jemand da.",
+      "arc": "schule"
+    },
+    {
+      "id": "gryffindor_turm",
+      "name": "Gemeinschaftsraum (dein Haus)",
+      "access": "immer",
+      "context": "Der gemütliche Gemeinschaftsraum deines Hauses mit Kaminfeuer und weichen Sesseln — ein sicherer Rückzugsort. Je nach Haus ist das der Gryffindor-Turm, der Ravenclaw-Turm, der Hufflepuff-Keller oder der Slytherin-Kerker. Freunde aus anderen Häusern trifft man an gemeinsamen Orten (Bibliothek, Innenhof, Ländereien, Raum der Wünsche).",
+      "arc": "schule"
+    },
+    {
+      "id": "bibliothek",
+      "name": "Bibliothek",
+      "access": "tagsueber",
+      "context": "Hohe Regale voller Zauberbücher, Madam Pince wacht über die Stille. Perfekt zum Nachschlagen, Lernen oder für Begegnungen mit fleißigen Mitschülern wie Hermine.",
+      "arc": "schule"
+    },
+    {
+      "id": "innenhof",
+      "name": "Innenhof",
+      "access": "tagsueber",
+      "context": "Ein steinerner Innenhof mit Arkaden, wo sich Schüler in den Pausen treffen. Tauben, Geplapper, manchmal ein kleines Zauber-Missgeschick.",
+      "arc": "schule"
+    },
+    {
+      "id": "ländereien_see",
+      "name": "Ländereien am See",
+      "access": "tagsueber",
+      "context": "Die weite Wiese hinunter zum großen schwarzen See mit dem Riesenkraken, der harmlos seine Tentakel hebt. Frische Luft, Platz zum Toben.",
+      "arc": "schule"
+    },
+    {
+      "id": "hagrids_huette",
+      "name": "Hagrids Hütte",
+      "access": "tagsueber",
+      "context": "Die kleine Holzhütte am Waldrand, wo es nach Kakao und Hundefell riecht. Hagrid ist herzlich und erzählt gern von magischen Tieren — und passt gut auf.",
+      "arc": "schule"
+    },
+    {
+      "id": "gewaechshaeuser",
+      "name": "Gewächshäuser",
+      "access": "tagsueber",
+      "context": "Glasige Gewächshäuser voller zappelnder, summender Zauberpflanzen. Hier unterrichtet Professor Sprout Kräuterkunde — Erde unter den Fingernägeln inklusive.",
+      "arc": "schule"
+    },
+    {
+      "id": "treppenhaus",
+      "name": "Bewegliche Treppen",
+      "access": "immer",
+      "context": "Das große Treppenhaus, dessen Treppen sich gern verschieben, und die Porträts an den Wänden, die miteinander tratschen. Ein bisschen Verirren gehört dazu.",
+      "arc": "schule"
+    },
+    {
+      "id": "eulerei",
+      "name": "Eulerei",
+      "access": "immer",
+      "context": "Der zugige Turm voller Schuleulen, die Post in alle Welt tragen. Hier kann man einen Brief nach Hause schicken oder eine Lieblingseule besuchen.",
+      "arc": "schule"
+    },
+    {
+      "id": "klassenzimmer",
+      "name": "Klassenzimmer",
+      "access": "tagsueber",
+      "context": "Die verschiedenen Unterrichtsräume (Verwandlung, Zauberkunst, Zaubertränke). Lehrer und Mitschüler sind in der Nähe — Lernen, Üben, kleine Erfolge.",
+      "arc": "schule"
+    },
+    {
+      "id": "verwunschenes_klo",
+      "name": "Myrtes Waschraum",
+      "arc": "jahr2",
+      "access": "tagsueber",
+      "context": "Ein selten benutzter Mädchen-Waschraum im zweiten Stock, in dem das gutmütige Gespenst Myrte wohnt. Tropfende Hähne, Hall — geheimnisvoll, aber harmlos."
+    },
+    {
+      "id": "duellierclub",
+      "name": "Der Duellierclub",
+      "arc": "jahr2",
+      "access": "tagsueber",
+      "context": "Eine lange Bühne in der Großen Halle, auf der Schüler üben, Zauber höflich abzuwehren — mehr Show als Gefahr."
+    },
+    {
+      "id": "kammer_eingang",
+      "name": "Eingang zur Kammer",
+      "arc": "jahr2",
+      "access": "tagsueber",
+      "context": "Ein verborgener Zugang tief unter der Schule. Geheimnisvoll und ehrfurchtgebietend — aber die Lehrer wissen Bescheid und passen auf."
+    },
+    {
+      "id": "hogsmeade",
+      "name": "Dorf Hogsmeade",
+      "arc": "jahr3",
+      "access": "tagsueber",
+      "context": "Das verschneite Zaubererdorf mit dem Süßwarenladen Honigtopf und dem warmen Wirtshaus Zu den Drei Besen. Drittklässler dürfen mit Erlaubnis hierher — ein Riesenspaß."
+    },
+    {
+      "id": "wahrsageturm",
+      "name": "Wahrsage-Turm",
+      "arc": "jahr3",
+      "access": "tagsueber",
+      "context": "Ein stickiges, von Kerzen erleuchtetes Turmzimmer voller Teetassen und Kristallkugeln, in dem Professor Trelawney geheimnisvoll raunt — gruselig-gemütlich, nie wirklich bedrohlich."
+    },
+    {
+      "id": "krankenfluegel",
+      "name": "Krankenflügel",
+      "arc": "schule",
+      "access": "immer",
+      "context": "Der helle, ruhige Saal von Madam Pomfrey mit weißen Betten und Regalen voller Heiltränke. Hier wird man umsorgt und kriegt Schokolade gegen den Schreck."
+    },
+    {
+      "id": "pflege_gehege",
+      "name": "Gehege für magische Geschöpfe",
+      "arc": "jahr3",
+      "access": "tagsueber",
+      "context": "Eine eingezäunte Wiese am Waldrand, wo Hagrid als Lehrer wundersame Tiere vorstellt — allen voran den stolzen Hippogreif Seidenschnabel. Respekt und Höflichkeit sind hier das A und O."
+    },
+    {
+      "id": "turnier_arena",
+      "name": "Turnier-Arena",
+      "arc": "jahr4",
+      "access": "tagsueber",
+      "context": "Grosse Tribuenen rund um ein Spielfeld, wo Zauberwettbewerbe und Quidditch stattfinden. Hier wird gejubelt, geflaggt und mitgefiebert — sicher und festlich."
+    },
+    {
+      "id": "labyrinth",
+      "name": "Das Turnier-Labyrinth",
+      "arc": "jahr4",
+      "access": "tagsueber",
+      "context": "Ein riesiges Heckenlabyrinth voller kniffliger, aber fairer Raetsel und freundlicher Zauber-Hindernisse. Spannend wie eine Schatzsuche — Lehrer wachen am Rand und greifen ein, wenn noetig."
+    },
+    {
+      "id": "grimmauldplatz",
+      "name": "Hauptquartier des Ordens",
+      "arc": "jahr5",
+      "access": "immer",
+      "context": "Das geheime, alte und etwas dustere — aber sichere — Hauptquartier der Erwachsenen, die gegen die Finsternis kaempfen. Hier wird beraten, beschuetzt und zusammengehalten."
+    },
+    {
+      "id": "raum_der_wuensche",
+      "name": "Der Raum der Wuensche",
+      "arc": "jahr5",
+      "access": "immer",
+      "context": "Ein verborgener Raum im Schloss, der sich in genau das verwandelt, was man braucht. Hier uebt die geheime Verteidigungs-Gruppe (Dumbledores Armee) echte Zauber — ein Ort des Mutes und der Freundschaft."
+    },
+    {
+      "id": "mysteriumsabteilung",
+      "name": "Die Mysteriumsabteilung",
+      "arc": "jahr5",
+      "access": "tagsueber",
+      "context": "Die geheimnisvolle, hallende Abteilung tief im Zaubereiministerium mit der Halle der Prophezeiungen. Unheimlich und gefaehrlich — aber der Orden kommt den Kindern zu Hilfe."
+    },
+    {
+      "id": "schulleiterbuero",
+      "name": "Dumbledores Buero",
+      "arc": "schule",
+      "access": "tagsueber",
+      "context": "Das warme, vollgestopfte Buero des Schulleiters mit dem Phoenix Fawkes auf seiner Stange. Ein Ort der Wahrheit, des Rats und des Trostes."
+    },
+    {
+      "id": "astronomieturm",
+      "name": "Der Astronomieturm",
+      "arc": "jahr6",
+      "access": "immer",
+      "context": "Die hoechste Spitze des Schlosses unter dem Sternenhimmel — bei Tag ein Ort zum Lernen und Staunen, in dunklen Stunden ein Schauplatz schwerer Ereignisse. Die Lehrer wachen."
+    },
+    {
+      "id": "slug_club",
+      "name": "Slughorns Empfang",
+      "arc": "jahr6",
+      "access": "tagsueber",
+      "context": "Slughorns gemuetlich-ueberladenes Zimmer voller Kerzen, Leckereien und kandierter Ananas, wo er begabte Schueler zu kleinen Feiern einlaedt — gesellig und harmlos eitel."
+    },
+    {
+      "id": "schlacht_hof",
+      "name": "Der Innenhof in der Schlacht",
+      "arc": "jahr7",
+      "access": "immer",
+      "context": "Der grosse Schlosshof, in dem die Verteidiger Hogwarts beschuetzen — voller Mut, Zusammenhalt und Hoffnung; gefaehrlich, aber nie grausig dargestellt."
+    }
+  ]
+}

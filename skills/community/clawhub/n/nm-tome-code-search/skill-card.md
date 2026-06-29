@@ -11,32 +11,29 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill to search GitHub for existing implementations, libraries, examples, and prior art during research or code discovery. <br>
+Developers and engineers use this skill to find prior implementations, libraries, and GitHub code patterns during research or planning. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may require broad GitHub API authority through a GitHub token. <br>
-Mitigation: Use the narrowest token scopes and repository access possible. <br>
-Risk: Broad activation triggers may invoke the skill during ordinary GitHub, code, or search requests. <br>
-Mitigation: Require explicit confirmation before creating branches, opening or modifying pull requests or issues, touching CI/CD resources, or using privileged GitHub operations. <br>
-Risk: Search results and ranked findings may be incomplete or contextually wrong. <br>
-Mitigation: Review findings against the target repository and validate any reused implementation before applying it. <br>
+Risk: Broad trigger words may activate this skill more often than intended. <br>
+Mitigation: Use it for GitHub implementation research and narrow the trigger configuration when the deployment environment supports editing skill metadata. <br>
 
 
 ## Reference(s): <br>
-- [OpenClaw homepage](https://github.com/athola/claude-night-market/tree/master/plugins/tome) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-tome-code-search) <br>
+- [Project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/tome) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Guidance] <br>
-**Output Format:** [Markdown or structured text findings] <br>
+**Output Type(s):** [text, markdown, guidance] <br>
+**Output Format:** [Markdown or plain text search findings and implementation references] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include ranked GitHub search findings for agent review.] <br>
+**Other Properties Related to Output:** [May include GitHub result summaries, ranked findings, and optional richer metadata when available.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata; artifact frontmatter lists 1.9.8) <br>
+1.9.13 (source: ClawHub release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

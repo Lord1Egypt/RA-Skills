@@ -1,0 +1,18 @@
+{
+  "author": "tuobadaidai",
+  "description": "PPT风格分析与匹配工具。提取已有PPT的设计规范（配色/字体/布局/装饰元素），指导新页面或修改页保持风格统一。",
+  "detail_describe": "自动提取PPT的主色调/文字色/字体/字号层级\n分析布局结构（页边距/标题区/内容区/列数）\n识别装饰元素类型（竖条/卡片/编号/底栏）\n基于风格规范设计新页面内容结构\n与pptx-add-slides互补配合使用",
+  "display_description": "分析PPT设计规范，确保新页面风格统一",
+  "display_name": "PPT-Matcher",
+  "icon": "",
+  "name": "ppt-matcher",
+  "scope": ["main", "file-agent"],
+  "type": "办公学习",
+  "use_cases": [
+    "分析这个PPT的设计风格是什么",
+    "帮我修改第3-5页，让它们跟整体风格一致",
+    "提取这个PPT的配色和字体规范",
+    "新增的页面怎么设计才能跟原PPT风格统一"
+  ],
+  "version": "1.1.0"
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Riffusion AI Music Workflow",
+  "slug": "riffusion-ai-music-skill",
+  "version": "1.0.0",
+  "description": "A document-only skill for planning AI music generation workflows with Riffusion.",
+  "license": "MIT",
+  "tags": ["ai-music", "music-generation", "riffusion"],
+  "contentType": "document-only",
+  "hasExecutableCode": false,
+  "requiresApi": false,
+  "homepage": "https://riffusion.org",
+  "productPages": ["https://riffusion.org"]
+}

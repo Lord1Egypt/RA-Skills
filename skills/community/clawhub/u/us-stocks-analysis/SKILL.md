@@ -130,7 +130,7 @@ Before an earnings report, agents and users want to know: is the smart-money / s
 Which sectors are in greed, which in fear, and what stocks are driving each.
 
 **Synthesis pattern:**
-1. `GET /api/v2/market-mood` for composite market mood + sector breakdowns. `sectors` is a string-keyed dict (not an array) with overlapping GICS labels (`Technology` and `Information Technology`, `Healthcare` and `Health Care`, etc.); iterate the dict values and dedupe these overlaps before ranking top and bottom
+1. `GET /api/v2/market-mood` for composite market mood + sector breakdowns. The response is flat but the composite is nested under `market` (`market.currentScore`, `market.phase`, `market.weeklyChange`), NOT at the root. `sectors` is a string-keyed dict (not an array) with overlapping GICS labels (`Technology` and `Information Technology`, `Healthcare` and `Health Care`, etc.); iterate the dict values and dedupe these overlaps before ranking top and bottom
 2. For each sector with `weeklyChange > +5` or `< -5`: `GET /api/v1/insights/market` (no params), then client-side filter the returned `data[]` to insights whose `insightText` mentions tickers known to belong to that sector (cross-reference with `GET /api/v1/stocks/descriptions?tickers=A,B,C` if you need the sector mapping). The endpoint itself has no server-side sector filter.
 3. Report top 2 movers (positive) and bottom 2 (negative)
 
@@ -179,8 +179,10 @@ For the full schema, see https://sentisense.ai/skill.md.
 
 ## Agent Tips
 
-- **Wrap vs flat varies by endpoint.** Read FLAT (no `.data`): `price`, `prices`, `chart`, `popular`, `market-mood`, `stocks/{T}/profile`, `descriptions`, and `sentiment` (bare array). `institutional/quarters` is a bare array (`[0].reportDate` is latest). These ARE wrapped in `{ isPreview, previewReason, data }` (read `.data`): `insider/*`, `analyst/*`, `insights/*`, `politicians/*`, `institutional/holders`. When unsure, accept both: `Array.isArray(raw) ? raw : (raw?.data ?? raw)`.
+- **Wrap vs flat varies by endpoint.** Read FLAT (no `.data`): `price`, `prices`, `chart`, `popular`, `market-mood`, `stocks/{T}/profile`, `descriptions`, and `sentiment` (bare array). `institutional/quarters` is a bare array (`[0].reportDate` is latest). These ARE wrapped in `{ isPreview, previewReason, data }` (read `.data`): `insider/*`, `analyst/*`, `insights/*`, `politicians/*`, `institutional/holders`, `calendar/earnings` (here `data` is a dict: read `data.earnings[]`). When unsure, accept both: `Array.isArray(raw) ? raw : (raw?.data ?? raw)`.
 - **Sentiment is polarity.** The sentiment metric is a value in `[-1.0, 1.0]` where the sign is the direction (negative is bearish and real). Represent polarity; do not force it onto a 0-100 scale. The separate SentiSense Score metric is unbounded; report it as-is.
+- **Sentiment value path is nested.** The `sentiment` series is a bare array; the scalar float is at `series[i].metricValue.value.value`. Mind the nesting: `series[i].metricValue.value` is itself a dict (`{ valueType, value }`), so take its inner `.value`; there is no top-level `series[i].value` shortcut. Read the last element's `metricValue.value.value` for the latest reading, e.g. `float(series[-1]["metricValue"]["value"]["value"])`.
+- **Insider buy/sell field is `transactionType`.** `insider/trades` rows use `transactionType: "BUY" | "SELL"` (with `transactionCode` `P`/`S`). This differs from congress, which uses `PURCHASE`/`SALE` on `politicians/*`. Filter insider buys on `transactionType == "BUY"`, not `"PURCHASE"`.
 - **Always fetch quarters first** before `/institutional/*` calls. Never hardcode `reportDate`.
 - **Free tier is real.** A user without PRO still gets back `data` (just truncated). Synthesize from what you get; don't refuse the workflow.
 - **Don't hallucinate endpoints.** No options flow, no dark pool, no `/congress` (it's `/politicians`).

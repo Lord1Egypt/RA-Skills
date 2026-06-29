@@ -146,7 +146,7 @@ test('search-companies splits company type roles into one role per API call', as
   const { baseUrl, requests } = await createRecordingServer(t);
   const payload = {
     productKeywords: ['汽车玻璃', '挡风玻璃'],
-    companyTypeKeywords: ['进口商', '经销商', '供应商', '维修服务商'],
+    companyTypeKeywords: ['进口商', '经销商', '供应商', '服务商'],
     includeCountry: ['IN', 'PK', 'BD'],
     size: 20
   };
@@ -162,7 +162,7 @@ test('search-companies splits company type roles into one role per API call', as
     ['进口商'],
     ['经销商'],
     ['供应商'],
-    ['维修服务商']
+    ['服务商']
   ]);
   assert.ok(requests.every((request) => request.productKeywords.length === 2));
   assert.ok(requests.every((request) => request.includeCountry.length === 3));
@@ -171,10 +171,38 @@ test('search-companies splits company type roles into one role per API call', as
   assert.equal(output.split_query_count, 4);
 });
 
-test('search-companies does not semantically split one compound company type term', async (t) => {
+test('search-companies rejects compound company type terms before API calls', async (t) => {
+  const { baseUrl, requests } = await createRecordingServer(t);
+  const invalidTerms = [
+    '工业自动化系统集成商',
+    '控制系统工程商',
+    '汽车玻璃供应商',
+    'industrial automation system integrator'
+  ];
+
+  for (const term of invalidTerms) {
+    const result = await runScript('search-companies.js', [
+      '--json', JSON.stringify({
+        companyTypeKeywords: [term],
+        includeCountry: ['IN'],
+        size: 20
+      }),
+      '--compact'
+    ], { OKKIGO_BASE_URL: baseUrl });
+
+    assert.equal(result.status, 2, result.stderr || result.stdout);
+    assert.match(result.stderr, /compound `companyTypeKeywords` term/);
+    assert.match(result.stderr, /Target-side first/);
+    assert.match(result.stderr, /productKeywords` or `industryKeywords/);
+  }
+
+  assert.equal(requests.length, 0);
+});
+
+test('search-companies allows pure company type role terms', async (t) => {
   const { baseUrl, requests } = await createRecordingServer(t);
   const payload = {
-    companyTypeKeywords: ['汽车玻璃供应商'],
+    companyTypeKeywords: ['系统集成商', '工程商', '进口商', 'system integrator'],
     includeCountry: ['IN'],
     size: 20
   };
@@ -185,12 +213,12 @@ test('search-companies does not semantically split one compound company type ter
   ], { OKKIGO_BASE_URL: baseUrl });
 
   assert.equal(result.status, 0, result.stderr || result.stdout);
-  assert.equal(requests.length, 1);
-  assert.deepEqual(requests[0].companyTypeKeywords, ['汽车玻璃供应商']);
-  assert.equal(Object.hasOwn(requests[0], 'productKeywords'), false);
-
-  const output = JSON.parse(result.stdout);
-  assert.equal(Object.hasOwn(output, 'split_query_count'), false);
+  assert.deepEqual(requests.map((request) => request.companyTypeKeywords), [
+    ['系统集成商'],
+    ['工程商'],
+    ['进口商'],
+    ['system integrator']
+  ]);
 });
 
 test('discover-companies-batch splits each oversized keyword dimension and keeps countries intact', async (t) => {
@@ -236,7 +264,7 @@ test('discover-companies-batch splits company type roles into one role per API c
     target_count: 20,
     payloads: [{
       productKeywords: ['汽车玻璃', '挡风玻璃'],
-      companyTypeKeywords: ['进口商', '经销商', '供应商', '维修服务商'],
+      companyTypeKeywords: ['进口商', '经销商', '供应商', '服务商'],
       includeCountry: ['IN', 'PK', 'BD'],
       size: 10
     }]
@@ -254,7 +282,7 @@ test('discover-companies-batch splits company type roles into one role per API c
     ['进口商'],
     ['经销商'],
     ['供应商'],
-    ['维修服务商']
+    ['服务商']
   ]);
   assert.ok(requests.every((request) => request.productKeywords.length === 2));
   assert.ok(requests.every((request) => request.includeCountry.length === 3));
@@ -263,6 +291,32 @@ test('discover-companies-batch splits company type roles into one role per API c
   assert.equal(output.scanned_pages, 4);
   assert.equal(output.split_query_count, 4);
   assert.equal(fs.existsSync(batchPath), true);
+});
+
+test('discover-companies-batch rejects compound company type terms before API calls or state writes', async (t) => {
+  const { baseUrl, requests } = await createRecordingServer(t);
+  const tempDir = makeTempDir(t);
+  const batchPath = path.join(tempDir, 'invalid-compound-company-type.json');
+  const plan = {
+    request_summary: 'invalid compound company type',
+    target_count: 20,
+    payloads: [{
+      companyTypeKeywords: ['工业自动化系统集成商'],
+      includeCountry: ['IR'],
+      size: 10
+    }]
+  };
+
+  const result = await runScript('discover-companies-batch.js', [
+    '--json', JSON.stringify(plan),
+    '--save-batch', batchPath,
+    '--compact'
+  ], { OKKIGO_BASE_URL: baseUrl });
+
+  assert.equal(result.status, 2, result.stderr || result.stdout);
+  assert.match(result.stderr, /compound `companyTypeKeywords` term/);
+  assert.equal(requests.length, 0);
+  assert.equal(fs.existsSync(batchPath), false);
 });
 
 test('search-companies deduplicates compact results after splitting', async (t) => {

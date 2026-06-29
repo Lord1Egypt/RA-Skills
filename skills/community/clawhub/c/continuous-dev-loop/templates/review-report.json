@@ -1,0 +1,11 @@
+{
+  "roundId": "R001",
+  "scope": [],
+  "checks": [],
+  "findings": {
+    "high": [],
+    "medium": [],
+    "low": []
+  },
+  "recommendation": ""
+}

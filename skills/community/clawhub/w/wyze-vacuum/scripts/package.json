@@ -1,0 +1,8 @@
+{
+  "name": "wyze-vacuum-skill-deps",
+  "private": true,
+  "description": "Runtime dependency for the Wyze vacuum OpenClaw skill",
+  "dependencies": {
+    "wyze-node": "^2.12.2"
+  }
+}

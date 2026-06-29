@@ -1,0 +1,8 @@
+{
+  "name": "html-cn-render-fix",
+  "version": "1.0.0",
+  "description": "HTML/图片中文渲染解决方案",
+  "keywords": ["html", "chinese", "font", "matplotlib"],
+  "author": "ivan lee",
+  "license": "MIT"
+}

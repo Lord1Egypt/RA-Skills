@@ -1,0 +1,7 @@
+{
+  "_comment": "默认联盟配置 — 发布到 ClawHub 时 ID 留空或占位。本地自用请改 ~/.qclaw/affiliate-config.json",
+  "siliconflow": "",
+  "zhipu_referral": "",
+  "zhipu_ecosystem_form": "",
+  "volcengine": ""
+}

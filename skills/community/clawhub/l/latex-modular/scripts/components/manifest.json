@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "components": [
+    {"type": "preamble",   "name": "class-settings", "path": "preamble/class-settings.txt",   "category": "class",   "description": "文档类声明"},
+    {"type": "preamble",   "name": "packages",       "path": "preamble/packages.txt",         "category": "package", "description": "宏包引入"},
+    {"type": "environments","name": "mylist",        "path": "environments/mylist.txt",       "category": "list",    "description": "自定义列表环境"},
+    {"type": "environments","name": "mycolumns",     "path": "environments/mycolumns.txt",    "category": "column",  "description": "分栏环境"},
+    {"type": "environments","name": "abstract-env",  "path": "environments/abstract-env.txt", "category": "abstract","description": "摘要环境"},
+    {"type": "commands",   "name": "title-commands", "path": "commands/title-commands.txt",   "category": "command", "description": "标题命令"},
+    {"type": "commands",   "name": "background",     "path": "commands/background.txt",       "category": "command", "description": "背景命令"},
+    {"type": "styles",     "name": "section-style",  "path": "styles/section-style.txt",      "category": "style",   "description": "章节样式（ctexset）"},
+    {"type": "styles",     "name": "toc-style",      "path": "styles/toc-style.txt",          "category": "style",   "description": "目录样式"},
+    {"type": "styles",     "name": "header-footer",  "path": "styles/header-footer.txt",      "category": "header",  "description": "页眉页脚"},
+    {"type": "tables",     "name": "table-style",    "path": "tables/table-style.txt",        "category": "table",   "description": "表格样式"},
+    {"type": "graphics",   "name": "figure-insert",  "path": "graphics/figure-insert.txt",    "category": "graphic", "description": "图片插入"},
+    {"type": "body",      "name": "main-body",     "path": "body.txt",                        "category": "body",    "description": "正文"}
+  ],
+  "body_file": "body.txt"
+}

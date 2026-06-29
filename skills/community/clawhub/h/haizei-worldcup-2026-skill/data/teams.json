@@ -1,0 +1,91 @@
+{
+  "tournament": "2026年国际足联世界杯",
+  "tournamentEn": "2026 FIFA World Cup",
+  "season": 2026,
+  "hostCountries": ["美国", "加拿大", "墨西哥"],
+  "matchUrl": "https://tiyu.baidu.com/al/match?match=%E4%B8%96%E7%95%8C%E6%9D%AF",
+  "rankingsUrl": "https://tiyu.baidu.com/al/match?match=%E4%B8%96%E7%95%8C%E6%9D%AF&tab=%E6%8E%92%E5%90%8D",
+  "totalTeams": 48,
+  "totalGroups": 12,
+  "teamsPerGroup": 4,
+  "pot": {
+    "pot1": ["美国", "加拿大", "墨西哥", "西班牙", "阿根廷", "法国", "英格兰", "巴西", "葡萄牙", "荷兰", "比利时", "德国"],
+    "pot2": ["克罗地亚", "摩洛哥", "哥伦比亚", "乌拉圭", "瑞士", "日本", "塞内加尔", "伊朗", "韩国", "厄瓜多尔", "奥地利", "澳大利亚"],
+    "pot3": ["挪威", "巴拿马", "埃及", "阿尔及利亚", "苏格兰", "巴拉圭", "突尼斯", "科特迪瓦", "乌兹别克斯坦", "卡塔尔", "沙特阿拉伯", "南非"],
+    "pot4": ["约旦", "佛得角", "加纳", "库拉索", "海地", "新西兰", "波黑", "瑞典", "土耳其", "捷克", "民主刚果", "伊拉克"]
+  },
+  "groups": {
+    "A": [
+      { "position": 1, "teamName": "墨西哥", "teamId": "9c24b86859123a6a7218b5600e65680e", "pot": 1, "isHost": true, "qualifiedTop32": true },
+      { "position": 2, "teamName": "韩国", "teamId": "e350aa265bc58bf922eb6ec5d3b705f3", "pot": 2, "qualifiedTop32": true },
+      { "position": 3, "teamName": "捷克", "teamId": "bd0c6be1d4f081864fd88755b05c4f49", "pot": 4, "qualifiedTop32": false },
+      { "position": 4, "teamName": "南非", "teamId": "dc7f9fdc795728d06adc20867070e73b", "pot": 3, "qualifiedTop32": false }
+    ],
+    "B": [
+      { "position": 1, "teamName": "加拿大", "teamId": "35779c25e9dec553f154e9d6286925e6", "pot": 1, "isHost": true, "qualifiedTop32": true },
+      { "position": 2, "teamName": "波黑", "teamId": "ef7a8c508595fd9083ec6e7ee93820ba", "pot": 4, "qualifiedTop32": true },
+      { "position": 3, "teamName": "卡塔尔", "teamId": "1d55f57a5cdc344f0944d2fba5e82f0a", "pot": 3, "qualifiedTop32": false },
+      { "position": 4, "teamName": "瑞士", "teamId": "1692195abf8c7835f4212113975b49a6", "pot": 2, "qualifiedTop32": false }
+    ],
+    "C": [
+      { "position": 1, "teamName": "巴西", "teamId": "b92535372efd0c6bc7df7b84b9c7b577", "pot": 1, "qualifiedTop32": true },
+      { "position": 2, "teamName": "摩洛哥", "teamId": "b16a9fdf450c58c762b49202c4d13efe", "pot": 2, "qualifiedTop32": true },
+      { "position": 3, "teamName": "海地", "teamId": "a57cdc7e5410f79bf70d8636b03a3985", "pot": 4, "qualifiedTop32": false },
+      { "position": 4, "teamName": "苏格兰", "teamId": "bd630ae14342fe2fa1b7376b8c467a36", "pot": 3, "qualifiedTop32": false }
+    ],
+    "D": [
+      { "position": 1, "teamName": "美国", "teamId": "a09c0a1b5f939e899c2c90239c3061f2", "pot": 1, "isHost": true, "qualifiedTop32": true },
+      { "position": 2, "teamName": "巴拉圭", "teamId": "13aeb5d36078e7d9a8b2d8ea3c63cd84", "pot": 3, "qualifiedTop32": true },
+      { "position": 3, "teamName": "澳大利亚", "teamId": "ad002317be38a25026110feccea14ed1", "pot": 2, "qualifiedTop32": false },
+      { "position": 4, "teamName": "土耳其", "teamId": "11cf940dfd3e5766a4108da1968f8c65", "pot": 4, "qualifiedTop32": false }
+    ],
+    "E": [
+      { "position": 1, "teamName": "德国", "teamId": "d885ec68c7b46dbfd4a8f6e41d577ba0", "pot": 1, "qualifiedTop32": true },
+      { "position": 2, "teamName": "库拉索", "teamId": "f304b118f59fd0087bde4807de418c56", "pot": 4, "qualifiedTop32": true },
+      { "position": 3, "teamName": "科特迪瓦", "teamId": "122c4a5024a4a2395071b27ae3c96a9c", "pot": 3, "qualifiedTop32": false },
+      { "position": 4, "teamName": "厄瓜多尔", "teamId": "e03d262a641690d6021146f8a1960c55", "pot": 2, "qualifiedTop32": false }
+    ],
+    "F": [
+      { "position": 1, "teamName": "荷兰", "teamId": "e37f589321ffb8ced53d4fb4de96e5ff", "pot": 1, "qualifiedTop32": true },
+      { "position": 2, "teamName": "日本", "teamId": "017ebd53c335a35f3ff9c611be8cc5c8", "pot": 2, "qualifiedTop32": true },
+      { "position": 3, "teamName": "瑞典", "teamId": "b2eb99748b34be973dbd98415cb0a3c7", "pot": 4, "qualifiedTop32": false },
+      { "position": 4, "teamName": "突尼斯", "teamId": "18c8a8c7502910e966a80fb74b4274b5", "pot": 3, "qualifiedTop32": false }
+    ],
+    "G": [
+      { "position": 1, "teamName": "比利时", "teamId": "265243e3f2e8dd1261e98f372183240f", "pot": 1, "qualifiedTop32": true },
+      { "position": 2, "teamName": "埃及", "teamId": "5482e10c7389489cb9f4c912ff822c04", "pot": 3, "qualifiedTop32": true },
+      { "position": 3, "teamName": "伊朗", "teamId": "a57d0fd569253f6bfd9486dd6db9d484", "pot": 2, "qualifiedTop32": false },
+      { "position": 4, "teamName": "新西兰", "teamId": "606320b6c012a17a7a96eba0a95b8e79", "pot": 4, "qualifiedTop32": false }
+    ],
+    "H": [
+      { "position": 1, "teamName": "西班牙", "teamId": "ca0f779e8db617a828a1c886d6beb530", "pot": 1, "qualifiedTop32": true },
+      { "position": 2, "teamName": "佛得角", "teamId": "3cecc3c32bea4f6662753aaedd32cf90", "pot": 4, "qualifiedTop32": true },
+      { "position": 3, "teamName": "沙特阿拉伯", "teamId": "71193d502f1a0147c8d13f3f78eb1729", "pot": 3, "qualifiedTop32": false },
+      { "position": 4, "teamName": "乌拉圭", "teamId": "7582d690648eb69085503eb2a08b5b39", "pot": 2, "qualifiedTop32": false }
+    ],
+    "I": [
+      { "position": 1, "teamName": "法国", "teamId": "396c35d0620914f054cdb72e46a5f174", "pot": 1, "qualifiedTop32": true },
+      { "position": 2, "teamName": "塞内加尔", "teamId": "023fb7a8de59b54f288308c180e292fa", "pot": 2, "qualifiedTop32": true },
+      { "position": 3, "teamName": "伊拉克", "teamId": "e44c88e683e0aa9a3c500dc75033dad2", "pot": 4, "qualifiedTop32": false },
+      { "position": 4, "teamName": "挪威", "teamId": "71738605c250e55a12624947da9bd247", "pot": 3, "qualifiedTop32": false }
+    ],
+    "J": [
+      { "position": 1, "teamName": "阿根廷", "teamId": "3d9f26830ac65f2297cc3c1d20487154", "pot": 1, "qualifiedTop32": true },
+      { "position": 2, "teamName": "阿尔及利亚", "teamId": "36ad997d444aae1f0166dfdcb777493a", "pot": 3, "qualifiedTop32": true },
+      { "position": 3, "teamName": "奥地利", "teamId": "87d2f6f08a43085d31f09472e19edee6", "pot": 2, "qualifiedTop32": false },
+      { "position": 4, "teamName": "约旦", "teamId": "eb9a7c8d47d75b02bb4156c4f87f17a7", "pot": 4, "qualifiedTop32": false }
+    ],
+    "K": [
+      { "position": 1, "teamName": "葡萄牙", "teamId": "cd3b2deb45caa7373a08831e7de0f5ac", "pot": 1, "qualifiedTop32": true },
+      { "position": 2, "teamName": "刚果民主共和国", "teamId": "92a326ca035e2eb1a7af17e3e70ffafd", "pot": 4, "qualifiedTop32": true },
+      { "position": 3, "teamName": "乌兹别克斯坦", "teamId": "1291c7890d5108afd39df6db09c7d85a", "pot": 3, "qualifiedTop32": false },
+      { "position": 4, "teamName": "哥伦比亚", "teamId": "c1d483bf3bbaf3040980088edde8560f", "pot": 2, "qualifiedTop32": false }
+    ],
+    "L": [
+      { "position": 1, "teamName": "英格兰", "teamId": "b78be5f1faa30defec36cef442b11431", "pot": 1, "qualifiedTop32": true },
+      { "position": 2, "teamName": "克罗地亚", "teamId": "785dab5ff819d718c38cbb2a0b877a69", "pot": 2, "qualifiedTop32": true },
+      { "position": 3, "teamName": "加纳", "teamId": "e00c50535a28cf7807621db0085a8382", "pot": 4, "qualifiedTop32": false },
+      { "position": 4, "teamName": "巴拿马", "teamId": "90a5daeba664af01a6f9aeebe3491178", "pot": 3, "qualifiedTop32": false }
+    ]
+  }
+}

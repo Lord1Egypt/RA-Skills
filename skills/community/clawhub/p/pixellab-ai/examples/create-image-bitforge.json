@@ -1,0 +1,9 @@
+{
+  "description": "small slime enemy, glossy green body, simple face, side view, pixel art",
+  "image_size": {
+    "width": 64,
+    "height": 64
+  },
+  "no_background": true,
+  "seed": 0
+}

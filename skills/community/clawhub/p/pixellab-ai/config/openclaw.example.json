@@ -1,0 +1,1 @@
+{"skills":{"entries":{"pixellab-ai":{"enabled":true,"apiKey":{"source":"env","provider":"default","id":"PIXELLAB_API_KEY"},"env":{"PIXELLAB_API_BASE":"https://api.pixellab.ai","PIXELLAB_TIMEOUT_SEC":"180","PIXELLAB_POLL_INTERVAL_SEC":"5","PIXELLAB_MAX_POLLS":"360","PIXELLAB_MAX_DOWNLOAD_BYTES":"104857600"}}}}}

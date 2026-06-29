@@ -1,0 +1,4 @@
+interface:
+  display_name: "Todo Momentum - 3 分钟启动器"
+  short_description: "把拖延待办拆成下一步物理动作、3 分钟启动和今日算赢标准"
+  default_prompt: "Use $todo-momentum to turn my stuck todo into a 3-minute start and a tiny next action for today."

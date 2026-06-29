@@ -11,31 +11,30 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill to inspect staged Git changes and draft a conventional commit message with a concise subject, body, and optional footer. <br>
+Developers use this skill to inspect staged Git changes, classify the change type, and draft a human-readable conventional commit message. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill may inspect staged diffs on broad Git-related requests. <br>
-Mitigation: Confirm that commit-message drafting is intended before allowing the agent to read staged changes. <br>
-Risk: The skill writes a local commit_msg.txt draft that may not match the user's intent. <br>
-Mitigation: Review the generated subject, body, and footer before using the message in a commit. <br>
+Risk: The skill may read staged diffs that include private code or sensitive changes. <br>
+Mitigation: Run it only in repositories where the agent is allowed to inspect staged changes, and review the generated message before use. <br>
+Risk: The workflow may create or overwrite ./commit_msg.txt. <br>
+Mitigation: Check the file after generation and use a more specific invocation if the agent environment supports constraining file writes. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-sanctum-commit-messages) <br>
-- [OpenClaw homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
+- [Sanctum plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, files] <br>
-**Output Format:** [Markdown text with a local commit_msg.txt file] <br>
+**Output Type(s):** [Text, Markdown, Shell commands] <br>
+**Output Format:** [Markdown with inline shell commands and a conventional commit message draft.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Drafts conventional commit subject, body, and footer; previews the result for review.] <br>
+**Other Properties Related to Output:** [May write the drafted message to ./commit_msg.txt for review.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release evidence) <br>
+1.9.13 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

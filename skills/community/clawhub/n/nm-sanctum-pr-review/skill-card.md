@@ -1,5 +1,5 @@
 ## Description: <br>
-Reviews pull requests with scope validation, requirements compliance, version checks, PR hygiene checks, and line comments. <br>
+Reviews pull requests with scope validation, requirements compliance, and line comments. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,36 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineering teams use this skill to review GitHub or GitLab pull and merge requests for scope alignment, requirements coverage, version consistency, PR hygiene, and actionable findings before merge. <br>
+Developers and engineering teams use this skill to review GitHub or GitLab pull and merge requests against stated scope, requirements, version consistency, hygiene, and review quality expectations. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can use authenticated GitHub or GitLab tooling to create review comments or issues. <br>
-Mitigation: Review generated comments and issue text before posting, and run with credentials scoped to the target repository. <br>
-Risk: Review findings may be stored in a long-lived knowledge store. <br>
-Mitigation: Disable or require explicit confirmation for knowledge capture on private repositories or when findings include sensitive project details. <br>
-Risk: Selected findings may be published outside the pull request workflow, including GitHub Discussions. <br>
-Mitigation: Run the discussion-posting module only when the intended audience and content have been approved. <br>
+Risk: The skill can guide posting review comments, creating issues, publishing insights, and retaining review knowledge outside the local chat. <br>
+Mitigation: Require explicit approval before posting to PRs, creating issues, publishing insights, or retaining knowledge-capture entries. <br>
+Risk: The security scan flags under-scoped external posting and persistent knowledge-capture behavior for user review. <br>
+Mitigation: Disable broad triggers where possible and use --no-capture unless persistent knowledge capture is intended. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub package page](https://clawhub.ai/athola/nm-sanctum-pr-review) <br>
-- [OpenClaw homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-sanctum-pr-review) <br>
+- [OpenClaw metadata homepage](https://github.com/athola/claude-night-market/tree/master/plugins/sanctum) <br>
+- [Skill instructions](artifact/SKILL.md) <br>
+- [GitHub PR comment patterns](artifact/modules/github-comments.md) <br>
+- [Knowledge capture module](artifact/modules/knowledge-capture.md) <br>
+- [PR hygiene module](artifact/modules/pr-hygiene.md) <br>
+- [Version validation module](artifact/modules/version-validation.md) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown review report with inline shell commands and optional pull request comments or issue text] <br>
+**Output Type(s):** [text, markdown, shell commands, guidance] <br>
+**Output Format:** [Markdown review reports with inline shell command examples and optional PR or issue comments.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Can produce classified findings, educational explanations, backlog items, local review files, and knowledge-capture summaries depending on the selected workflow.] <br>
+**Other Properties Related to Output:** [May include classified findings, scope compliance checks, version validation results, backlog items, and knowledge-capture summaries.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata; artifact frontmatter reports 1.9.8) <br>
+1.9.13 (source: ClawHub release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

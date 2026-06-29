@@ -1,0 +1,7 @@
+interface:
+  display_name: "Excel Chart Report Developer"
+  short_description: "Build Excel chart reports, dashboards, print areas, and export workflows."
+  default_prompt: "Use $software-data-excel-chart-developer-helper to build or fix this Excel report workbook."
+
+policy:
+  allow_implicit_invocation: true

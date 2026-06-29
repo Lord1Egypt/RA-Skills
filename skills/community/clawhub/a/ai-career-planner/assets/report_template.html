@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI时代职业规划报告 - {{USER_NAME}}</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+:root {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #1e293b;
+  --text-secondary: #64748b;
+  --accent: #6366f1;
+  --accent-light: #eef2ff;
+  --green: #22c55e;
+  --green-bg: #f0fdf4;
+  --yellow: #eab308;
+  --yellow-bg: #fefce8;
+  --orange: #f97316;
+  --orange-bg: #fff7ed;
+  --red: #ef4444;
+  --red-bg: #fef2f2;
+  --border: #e2e8f0;
+  --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-lg: 0 10px 25px rgba(0,0,0,0.08);
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.container { max-width: 900px; margin: 0 auto; padding: 24px 16px 60px; }
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+  border-radius: var(--radius);
+  padding: 40px 32px;
+  color: white;
+  text-align: center;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-lg);
+}
+.header .emoji { font-size: 48px; margin-bottom: 8px; }
+.header h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+.header .subtitle { font-size: 14px; opacity: 0.85; }
+.header .meta { margin-top: 16px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; font-size: 13px; opacity: 0.9; }
+.header .meta span { background: rgba(255,255,255,0.15); padding: 4px 12px; border-radius: 20px; }
+
+/* Section */
+.section {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 28px;
+  margin-bottom: 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--accent-light);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Risk Gauge */
+.gauge-container {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.gauge-canvas-wrap {
+  flex: 0 0 260px;
+  height: 160px;
+  position: relative;
+}
+.gauge-canvas-wrap canvas { width: 100%; height: 100%; }
+.gauge-info { flex: 1; min-width: 200px; }
+.gauge-score { font-size: 56px; font-weight: 800; line-height: 1; }
+.gauge-score.low { color: var(--green); }
+.gauge-score.medium { color: var(--yellow); }
+.gauge-score.high { color: var(--orange); }
+.gauge-score.critical { color: var(--red); }
+.gauge-label { font-size: 16px; color: var(--text-secondary); margin-top: 4px; }
+.gauge-desc { margin-top: 12px; font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+.gauge-level-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+.gauge-level-badge.low { background: var(--green-bg); color: #15803d; }
+.gauge-level-badge.medium { background: var(--yellow-bg); color: #a16207; }
+.gauge-level-badge.high { background: var(--orange-bg); color: #c2410c; }
+.gauge-level-badge.critical { background: var(--red-bg); color: #dc2626; }
+
+/* Breakdown */
+.risk-breakdown { margin-top: 24px; }
+.risk-factor { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.risk-factor-label { width: 130px; font-size: 13px; color: var(--text-secondary); text-align: right; flex-shrink: 0; }
+.risk-factor-bar { flex: 1; height: 10px; background: #f1f5f9; border-radius: 5px; overflow: hidden; }
+.risk-factor-fill { height: 100%; border-radius: 5px; transition: width 0.6s ease; }
+.risk-factor-fill.low { background: var(--green); }
+.risk-factor-fill.medium { background: var(--yellow); }
+.risk-factor-fill.high { background: var(--orange); }
+.risk-factor-fill.critical { background: var(--red); }
+.risk-factor-score { width: 36px; font-size: 13px; font-weight: 600; text-align: center; }
+
+/* Task Analysis */
+.task-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+.task-table th { text-align: left; padding: 10px 12px; font-size: 12px; font-weight: 600; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; background: #f8fafc; border-bottom: 2px solid var(--border); }
+.task-table td { padding: 12px; font-size: 14px; border-bottom: 1px solid var(--border); }
+.task-table tr:last-child td { border-bottom: none; }
+.task-risk-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+.task-risk-dot.red { background: var(--red); }
+.task-risk-dot.yellow { background: var(--yellow); }
+.task-risk-dot.green { background: var(--green); }
+
+/* Radar Chart */
+.radar-wrap { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+.radar-canvas-wrap { flex: 0 0 320px; height: 320px; }
+.radar-canvas-wrap canvas { width: 100%; height: 100%; }
+.radar-info { flex: 1; min-width: 200px; }
+.radar-score { font-size: 48px; font-weight: 800; }
+.radar-score.low { color: var(--red); }
+.radar-score.medium { color: var(--orange); }
+.radar-score.good { color: #3b82f6; }
+.radar-score.ready { color: var(--green); }
+
+/* Competency Bars */
+.comp-bars { margin-top: 16px; }
+.comp-bar { margin-bottom: 14px; }
+.comp-bar-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+.comp-bar-name { font-size: 14px; font-weight: 600; }
+.comp-bar-score { font-size: 13px; color: var(--text-secondary); }
+.comp-bar-track { height: 8px; background: #f1f5f9; border-radius: 4px; overflow: hidden; }
+.comp-bar-fill { height: 100%; border-radius: 4px; transition: width 0.6s ease; }
+.comp-bar-fill.low { background: var(--red); }
+.comp-bar-fill.medium { background: var(--orange); }
+.comp-bar-fill.good { background: #3b82f6; }
+.comp-bar-fill.ready { background: var(--green); }
+
+/* Career Cards */
+.career-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; margin-top: 8px; }
+.career-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.career-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+.career-card.tier1 { border-left: 4px solid #3b82f6; }
+.career-card.tier2 { border-left: 4px solid var(--accent); }
+.career-card.tier3 { border-left: 4px solid #a855f7; }
+.career-tier-label {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+.tier1 .career-tier-label { background: #eff6ff; color: #1d4ed8; }
+.tier2 .career-tier-label { background: var(--accent-light); color: #4f46e5; }
+.tier3 .career-tier-label { background: #faf5ff; color: #7c3aed; }
+.career-card h4 { font-size: 16px; margin-bottom: 4px; }
+.career-card p { font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; }
+.career-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  background: #f1f5f9;
+  color: var(--text-secondary);
+}
+.tag.easy { background: var(--green-bg); color: #15803d; }
+.tag.medium-diff { background: var(--yellow-bg); color: #a16207; }
+.tag.hard { background: var(--red-bg); color: #dc2626; }
+.tag.up { background: var(--green-bg); color: #15803d; }
+.tag.stable { background: #f1f5f9; color: #475569; }
+
+/* Timeline */
+.timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 8px; }
+.timeline-quarter {
+  background: var(--accent-light);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  text-align: center;
+}
+.timeline-quarter h4 {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+.timeline-quarter ul { text-align: left; font-size: 12px; color: var(--text-secondary); list-style: none; padding: 0; }
+.timeline-quarter li { padding: 3px 0; padding-left: 16px; position: relative; }
+.timeline-quarter li::before { content: "•"; position: absolute; left: 0; color: var(--accent); }
+
+/* Resources */
+.resource-list { display: grid; gap: 10px; }
+.resource-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #f8fafc;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+.resource-icon { font-size: 24px; }
+.resource-name { font-size: 14px; font-weight: 600; }
+.resource-desc { font-size: 12px; color: var(--text-secondary); }
+
+/* Action CTA */
+.cta-box {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: var(--radius);
+  padding: 28px;
+  color: white;
+  text-align: center;
+}
+.cta-box h3 { font-size: 20px; margin-bottom: 8px; }
+.cta-box p { font-size: 14px; opacity: 0.9; margin-bottom: 4px; }
+.cta-action { font-size: 18px; font-weight: 700; margin-top: 8px; }
+
+/* Disclaimer */
+.disclaimer { text-align: center; font-size: 12px; color: var(--text-secondary); margin-top: 24px; padding: 16px; border-top: 1px solid var(--border); }
+
+@media (max-width: 640px) {
+  .gauge-container { flex-direction: column; align-items: center; }
+  .timeline { grid-template-columns: repeat(2, 1fr); }
+  .career-grid { grid-template-columns: 1fr; }
+  .radar-wrap { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- ===== HEADER ===== -->
+<div class="header">
+  <div class="emoji">🧭</div>
+  <h1>AI时代职业规划报告</h1>
+  <div class="subtitle">Personalized Career Strategy for the AI Era</div>
+  <div class="meta">
+    <span>{{CURRENT_ROLE}}</span>
+    <span>{{INDUSTRY}}</span>
+    <span>{{YEARS_EXP}}年经验</span>
+    <span>{{REPORT_DATE}}</span>
+  </div>
+</div>
+
+<!-- ===== SECTION 1: AI替代风险评估 ===== -->
+<div class="section">
+  <div class="section-title">📊 AI自动化风险评估</div>
+
+  <div class="gauge-container">
+    <div class="gauge-canvas-wrap">
+      <canvas id="riskGauge"></canvas>
+    </div>
+    <div class="gauge-info">
+      <div class="gauge-score {{RISK_LEVEL_CLASS}}">{{RISK_SCORE}}</div>
+      <div class="gauge-label">AI替代风险指数</div>
+      <span class="gauge-level-badge {{RISK_LEVEL_CLASS}}">{{RISK_LEVEL}}</span>
+      <div class="gauge-desc">
+        基于任务重复性、创造力需求、人际交互深度、非结构化决策、技能数字化程度和AI工具使用熟练度六大维度综合评估。
+      </div>
+    </div>
+  </div>
+
+  <div class="risk-breakdown">
+    {{RISK_BREAKDOWN}}
+  </div>
+</div>
+
+<!-- ===== SECTION 2: 任务级风险分析 ===== -->
+<div class="section">
+  <div class="section-title">🔍 核心任务分析</div>
+  <table class="task-table">
+    <thead>
+      <tr>
+        <th>核心任务</th>
+        <th>自动化风险</th>
+        <th>分析说明</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{TASK_ANALYSIS}}
+    </tbody>
+  </table>
+</div>
+
+<!-- ===== SECTION 3: AI时代能力评估 ===== -->
+<div class="section">
+  <div class="section-title">🎯 AI时代核心能力评估</div>
+
+  <div class="radar-wrap">
+    <div class="radar-canvas-wrap">
+      <canvas id="competencyRadar"></canvas>
+    </div>
+    <div class="radar-info">
+      <div class="radar-score {{AI_READY_CLASS}}">{{AI_READY_INDEX}}</div>
+      <div class="gauge-label">AI-Ready 指数</div>
+      <p style="font-size:13px;color:var(--text-secondary);margin-top:8px;">
+        基于AI协同时代、跨学科整合、审美判断力、原始创新力、情感领导力五大维度综合评分。
+      </p>
+    </div>
+  </div>
+
+  <div class="comp-bars" style="margin-top:20px;">
+    {{COMPETENCY_BARS}}
+  </div>
+</div>
+
+<!-- ===== SECTION 4: 职业方向推荐 ===== -->
+<div class="section">
+  <div class="section-title">🗺️ 职业方向推荐</div>
+
+  <h3 style="font-size:15px;font-weight:600;margin-bottom:12px;color:#3b82f6;">第一梯队 &mdash; 顺势升级</h3>
+  <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">在原岗位融入AI能力，实现价值升级，风险最低、见效最快</p>
+  <div class="career-grid">
+    {{TIER1_RECOMMENDATIONS}}
+  </div>
+
+  <h3 style="font-size:15px;font-weight:600;margin:24px 0 12px;color:var(--accent);">第二梯队 &mdash; 相近转型</h3>
+  <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">利用现有行业经验，转向AI相关新兴岗位</p>
+  <div class="career-grid">
+    {{TIER2_RECOMMENDATIONS}}
+  </div>
+
+  <h3 style="font-size:15px;font-weight:600;margin:24px 0 12px;color:#7c3aed;">第三梯队 &mdash; 全新赛道</h3>
+  <p style="font-size:13px;color:var(--text-secondary);margin-bottom:16px;">跳出当前赛道，拥抱AI时代全新职业可能</p>
+  <div class="career-grid">
+    {{TIER3_RECOMMENDATIONS}}
+  </div>
+</div>
+
+<!-- ===== SECTION 5: 12个月行动计划 ===== -->
+<div class="section">
+  <div class="section-title">📅 12个月转型行动计划</div>
+  <div class="timeline">
+    {{QUARTERLY_PLAN}}
+  </div>
+</div>
+
+<!-- ===== SECTION 6: 学习资源 ===== -->
+<div class="section">
+  <div class="section-title">📚 推荐学习资源</div>
+  <div class="resource-list">
+    {{LEARNING_RESOURCES}}
+  </div>
+</div>
+
+<!-- ===== SECTION 7: 本周行动 ===== -->
+<div class="cta-box">
+  <h3>🚀 本周行动</h3>
+  <p>不要等到准备好了再出发。从今天开始，迈出第一步。</p>
+  <div class="cta-action">{{WEEKLY_ACTION}}</div>
+</div>
+
+<!-- ===== DISCLAIMER ===== -->
+<div class="disclaimer">
+  <p><strong>免责声明</strong>：本报告基于AI模型对您自述信息的分析生成，仅供职业发展参考。风险评估结果基于统计模型和行业趋势分析，不构成确定性的预测。职业选择涉及个人价值观、家庭因素、市场机会等多维考量，最终决策权属于您本人。建议结合实际市场调研和专业人士咨询做出判断。</p>
+  <p style="margin-top:8px;">Generated by AI Career Planner &bull; {{REPORT_DATE}}</p>
+</div>
+
+</div><!-- /container -->
+
+<!-- ===== CHARTS ===== -->
+<script>
+// Risk Gauge
+{{SCORE_CHART_JS}}
+
+// Competency Radar
+{{COMPETENCY_RADAR_JS}}
+</script>
+
+</body>
+</html>

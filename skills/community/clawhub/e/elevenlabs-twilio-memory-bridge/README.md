@@ -70,6 +70,20 @@ cp .env.example .env
 # Edit .env with your actual values
 ```
 
+**Required secrets** (generate before first run):
+```bash
+# Phone hashing salt
+openssl rand -base64 32
+
+# Data encryption key (optional but recommended)
+python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+
+# Webhook secret (shared with ElevenLabs)
+openssl rand -hex 32
+```
+
+Add all three to your `.env` file. The app will refuse to start if `PHONE_HASH_SALT` or `WEBHOOK_SECRET` are missing.
+
 ### 3. Configure your ElevenLabs agent
 
 1. Go to the [ElevenLabs Agents dashboard](https://elevenlabs.io/app/agents)
@@ -82,7 +96,7 @@ cp .env.example .env
    - ✅ First message
 5. Under **Settings → Webhooks**, add your personalization webhook:
    - URL: `https://your-bridge.example.com/webhook/personalize`
-   - Add your `WEBHOOK_SECRET` as a header secret if desired
+   - Add your `WEBHOOK_SECRET` as a header secret (required — webhooks are rejected without it)
 
 ### 4. Import your Twilio number into ElevenLabs
 
@@ -209,10 +223,15 @@ elevenlabs-twilio-memory-bridge/
 ## Security
 
 - **Never commit `.env`** — it's git-ignored by default
-- **Hash all phone numbers** — only SHA-256 hashes are stored/logged
+- **Phone number hashing** — caller IDs are hashed with HMAC-SHA256 using a per-installation secret (`PHONE_HASH_SALT`). The same input always produces the same hash, enabling reliable session lookups while preventing reversal without the secret.
+- **Mandatory webhook verification** — `WEBHOOK_SECRET` is required. Webhooks are rejected with 401 if the secret is not configured (fail-closed).
+- **Rate limiting** — webhook endpoints limited to 60 requests/minute, admin endpoints to 30 requests/minute per IP.
+- **Encryption at rest** — memories and notes are encrypted with Fernet when `DATA_ENCRYPTION_KEY` is set. Data is stored as plain JSON when the key is not configured.
+- **File permissions** — data directory created with `0o700`, JSON files written with `0o600`.
+- **File locking** — POSIX advisory locks (`fcntl`) prevent race conditions on concurrent reads/writes.
+- **Startup validation** — the app refuses to start if `PHONE_HASH_SALT` or `WEBHOOK_SECRET` are not set.
 - **Use scoped API keys** — limit ElevenLabs and OpenClaw keys to minimum required permissions
 - **HTTPS only** — both OpenClaw and the bridge should be behind TLS in production
-- **Webhook verification** — set `WEBHOOK_SECRET` and configure it in ElevenLabs settings
 - **No secrets in source** — all configurable values come from environment variables
 - **Admin endpoint authentication** — set `ADMIN_API_KEY` to protect the `/api/memory/{phone_hash}` and `/api/notes` endpoints with Bearer token authentication. Admin endpoints are disabled if this key is not configured.
 - **CORS configuration** — CORS is disabled by default. Set `ALLOWED_ORIGINS` to a comma-separated list of origins if your deployment requires cross-origin browser access.
@@ -259,3 +278,7 @@ This skill is available on [ClawHub](https://clawhub.com). To install:
 ## License
 
 MIT
+
+## Download History
+
+[![Download History](https://skill-history.com/chart/britrik/elevenlabs-twilio-memory-bridge.svg)](https://skill-history.com/britrik/elevenlabs-twilio-memory-bridge)

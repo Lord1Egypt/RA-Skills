@@ -1,0 +1,76 @@
+{
+  "rubric_version": "2.0.0",
+  "framework": "TRACE+ TRF-SIE",
+  "skill_name": "example-skill",
+  "skill_path": "/path/to/example-skill",
+  "effectiveness_mode": "static_proxy",
+  "behavioral_eval": false,
+  "static_audit_version": "2.0.0",
+  "score_breakdown": {
+    "T_Trust": {
+      "T1_no_remote_exec": { "score": 2, "evidence": "无 curl|bash；static_audit 无 critical", "source": "static" },
+      "T2_credentials": { "score": 2, "evidence": "未读取 .env 或密钥", "source": "manual" },
+      "T3_no_obfuscation": { "score": 2, "evidence": "无 base64 eval 链", "source": "static" },
+      "T4_least_privilege": { "score": 2, "evidence": "无 sudo", "source": "manual" },
+      "T5_intent_match": { "score": 2, "evidence": "SKILL 与 scripts 目的一致", "source": "manual" },
+      "subtotal": 10
+    },
+    "R_Reliability": {
+      "R1_frontmatter": { "score": 2, "evidence": "yaml_valid=true, name+description", "source": "static" },
+      "R2_paths_exist": { "score": 2, "evidence": "missing_paths=[]", "source": "static" },
+      "R3_scripts_invokable": { "score": 2, "evidence": "scripts/ 有路径与用法", "source": "manual" },
+      "R4_dependencies": { "score": 2, "evidence": "依赖仅标准库或已声明", "source": "manual" },
+      "R5_no_blockers": { "score": 2, "evidence": "主流程无 TODO", "source": "manual" },
+      "subtotal": 10
+    },
+    "F_Findability": {
+      "F1_when_in_description": { "score": 2, "evidence": "has_use_when=true", "source": "static" },
+      "F2_trigger_phrases": { "score": 2, "evidence": "≥2 触发说法", "source": "manual" },
+      "F3_keywords": { "score": 2, "evidence": "领域词自然出现", "source": "manual" },
+      "F4_naming": { "score": 2, "evidence": "name 与目录一致", "source": "static" },
+      "F5_cso": { "score": 2, "evidence": "description 无完整 workflow", "source": "static" },
+      "subtotal": 10
+    },
+    "S_Structure": {
+      "S1_body_size": { "score": 2, "evidence": "body_lines≤500", "source": "static" },
+      "S2_progressive_disclosure": { "score": 2, "evidence": "references/ 已链接", "source": "static" },
+      "S3_resource_layers": { "score": 2, "evidence": "scripts/references 分工清晰", "source": "manual" },
+      "S4_no_clutter": { "score": 2, "evidence": "extraneous_files=[]", "source": "static" },
+      "S5_l1_length": { "score": 2, "evidence": "description_len≤500", "source": "static" },
+      "subtotal": 10
+    },
+    "I_Instruction": {
+      "I1_imperative": { "score": 2, "evidence": "无人类文档反模式", "source": "static" },
+      "I2_task_org": { "score": 2, "evidence": "按场景/步骤分节", "source": "manual" },
+      "I3_examples": { "score": 2, "evidence": "≥2 代码块且均有 lang tag", "source": "static" },
+      "I4_actionable": { "score": 2, "evidence": "有序步骤+验收", "source": "manual" },
+      "I5_rigid_flexible": { "score": 1, "evidence": "有 scripts 但未声明 Rigid/Flexible", "source": "manual" },
+      "subtotal": 9
+    },
+    "E_Effectiveness": {
+      "E1_closed_loop": { "score": 2, "evidence": "输入→处理→输出闭环", "source": "manual" },
+      "E2_output_format": { "score": 2, "evidence": "有 JSON/Markdown 模板", "source": "manual" },
+      "E3_gain_evidence": { "score": 1, "evidence": "static_proxy；无 skill-eval", "source": "manual" },
+      "E4_constraints": { "score": 2, "evidence": "硬约束/禁止项明确", "source": "manual" },
+      "E5_token_efficiency": { "score": 2, "evidence": "无大段常识说教", "source": "manual" },
+      "subtotal": 9
+    }
+  },
+  "scores": {
+    "T_Trust": 10,
+    "R_Reliability": 10,
+    "F_Findability": 10,
+    "S_Structure": 10,
+    "I_Instruction": 9,
+    "E_Effectiveness": 9
+  },
+  "composite_score": 96.7,
+  "rating": "S",
+  "verdict": "Pass",
+  "source_coverage": ["TRACE", "Extra08", "skill-reviewer", "skill-quality-audit", "skill-creator"],
+  "formula_check": "(10+10+10+10+9+9)*100/60=96.7 OK",
+  "trigger_tests": {
+    "should_trigger": ["用户说法 1", "用户说法 2", "用户说法 3"],
+    "should_not_trigger": ["边界说法 1", "边界说法 2", "边界说法 3"]
+  }
+}

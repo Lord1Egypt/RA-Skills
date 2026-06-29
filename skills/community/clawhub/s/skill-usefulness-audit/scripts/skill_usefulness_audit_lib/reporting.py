@@ -398,14 +398,18 @@ def _summary_group(title_key: str, items: list[dict[str, object]], limit: int, l
         lines.append(f"- {report_text(normalized_language, 'none')}")
         return lines
     sentence_end = "。" if normalized_language == "zh-CN" else "."
+    action_separator = "。" if normalized_language == "zh-CN" else ". "
     for item in items[:limit]:
-        lines.append(f"- {_item_display_name(item)}: `{_item_action(item)}`. {_summary_reason(item, normalized_language)}{sentence_end}")
+        lines.append(
+            f"- {_item_display_name(item)}: `{_item_action(item)}`"
+            f"{action_separator}{_summary_reason(item, normalized_language)}{sentence_end}"
+        )
     if len(items) > limit:
         lines.append(f"- {report_text(normalized_language, 'more').format(count=len(items) - limit)}")
     return lines
 
 
-def decision_summary(ranked: list[dict[str, object]], limit: int = 8, language: str = "en") -> list[str]:
+def decision_summary(ranked: list[dict[str, object]], limit: int = 5, language: str = "en") -> list[str]:
     normalized_language = normalize_report_language(language)
     useful = [item for item in ranked if _item_action(item) in KEEP_ACTIONS]
     observe = [item for item in ranked if _item_action(item) == "observe-30d"]

@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sage Router Fusion is a premium compound model route for multi-model panel answers and judge synthesis on high-stakes agent work." />
+  <link rel="canonical" href="https://sagerouter.dev/fusion" />
+  <meta property="og:title" content="Sage Router Fusion" />
+  <meta property="og:description" content="Run a panel of eligible models, then synthesize the strongest answer through one OpenAI-compatible Sage Router response." />
+  <meta property="og:url" content="https://sagerouter.dev/fusion" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Sage Router Fusion</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07100d;--panel:rgba(13,29,24,.82);--panel2:rgba(255,255,255,.045);--border:rgba(166,255,207,.16);--muted:#a9c5b8;--text:#edfdf5;--brand:#8df0b2;--blue:#8ab4ff;--amber:#f7d57a;--danger:#ff9c9c;--shadow:0 24px 80px rgba(0,0,0,.36)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-width:320px;background:linear-gradient(180deg,#07100d 0%,#0a1511 52%,#07100d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;color:var(--muted)}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;color:var(--text)}.brandMark{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(141,240,178,.42);border-radius:8px;color:#062016;background:linear-gradient(135deg,var(--brand),var(--amber))}.navLinks{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;font-weight:750}.navLinks a:hover{color:var(--text)}.hero{padding:74px 0 52px}.eyebrow{color:var(--brand);text-transform:uppercase;letter-spacing:.16em;font-weight:900;font-size:12px;margin:0 0 16px}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(44px,8vw,84px);line-height:.94;margin-bottom:24px;max-width:920px}h2{font-size:clamp(30px,4vw,50px);line-height:1;margin-bottom:18px}h3{font-size:21px;margin-bottom:10px}.lead{font-size:clamp(20px,2.2vw,27px);line-height:1.35;color:#d2eadf;max-width:950px}.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}.button{min-height:48px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:0 22px;font-weight:900}.primary{background:linear-gradient(135deg,var(--brand),#50d891);color:#04150d}.secondary{border:1px solid var(--border);background:rgba(255,255,255,.04)}.section{padding:58px 0}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.split{display:grid;grid-template-columns:.92fr 1.08fr;gap:28px;align-items:start}.card,.panel,.code{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:26px;box-shadow:0 18px 60px rgba(0,0,0,.18)}.card p,.muted,td{color:var(--muted)}.card strong{color:var(--text)}.step{background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:18px;min-height:170px}.step b{display:grid;place-items:center;width:34px;height:34px;border-radius:8px;background:rgba(141,240,178,.14);border:1px solid rgba(141,240,178,.28);color:var(--brand);margin-bottom:14px}.pill{display:inline-flex;width:max-content;border:1px solid rgba(138,180,255,.3);border-radius:999px;padding:6px 10px;color:var(--blue);font-weight:900;font-size:12px;text-transform:uppercase;letter-spacing:.08em}.pill.warn{border-color:rgba(247,213,122,.4);color:var(--amber)}.code{overflow:auto;padding:0}.code pre{margin:0;padding:22px;min-width:720px}.code code,code{color:#d9f8e6}.list{display:grid;gap:12px;margin:0;padding:0;list-style:none}.list li{border:1px solid var(--border);border-radius:8px;background:var(--panel2);padding:14px 16px;color:#d2eadf}.note{font-size:14px;color:var(--muted);max-width:900px}.callout{background:linear-gradient(180deg,rgba(26,67,50,.9),rgba(12,28,22,.86));border-color:rgba(141,240,178,.28)}footer{display:flex;gap:18px;flex-wrap:wrap;padding:34px 0 54px;color:var(--muted);border-top:1px solid rgba(166,255,207,.1)}footer span{margin-right:auto}@media(max-width:960px){.grid,.grid4,.split{grid-template-columns:1fr}.nav{align-items:flex-start;flex-direction:column}.button{width:100%}.step{min-height:auto}}@media(max-width:560px){.hero{padding-top:42px}.navLinks{gap:14px}}
+  </style>
+  <style>
+    .emailStart{display:flex;flex-wrap:wrap;gap:12px;align-items:center;max-width:760px;margin:22px 0 12px;padding:16px;border:1px solid rgba(141,240,178,.24);border-radius:8px;background:rgba(255,255,255,.045)}.emailStart label{flex:1 1 100%;font-weight:900}.emailStart input{flex:1 1 280px;min-height:48px;border:1px solid var(--border);border-radius:999px;background:rgba(5,15,11,.74);color:var(--text);padding:0 18px;font:inherit}.emailStart input::placeholder{color:#789184}.emailStart .button{border:0;cursor:pointer}.emailStart .oauthButton{background:linear-gradient(135deg,var(--brand),#50d891);color:#04150d}.emailStart .button:disabled{opacity:.72;cursor:wait}.emailStartStatus{flex:1 1 100%;margin:0;color:var(--muted);font-size:14px}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Sage Router Fusion",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web, Linux, macOS, Windows",
+    "description": "Premium compound model routing for multi-model panel answers and judge synthesis through Sage Router.",
+    "offers": [
+      {"@type": "Offer", "name": "Pro", "price": "30", "priceCurrency": "USD"},
+      {"@type": "Offer", "name": "Max", "price": "72", "priceCurrency": "USD"}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+      <div class="navLinks">
+        <a href="/">Home</a>
+        <a href="/quickstart">Quickstart</a>
+        <a href="/models">Models</a>
+        <a href="/pricing">Pricing</a>
+        <a href="/compare/model-gateways">Compare</a>
+        <a href="/docs/gateway-migration">Migration</a>
+        <a href="/status">Status</a>
+        <a href="https://app.sagerouter.dev/account.html">Account</a>
+        <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">Premium compound routing</p>
+        <h1>Sage Router Fusion</h1>
+        <p class="lead">Run multiple eligible models side by side, then synthesize consensus, contradictions, and the strongest final answer through one OpenAI-compatible response. Use <code>sage-router/fusion</code> or the compatible <code>sage-router:fusion</code> server tool.</p>
+        <div class="actions">
+          <a class="button primary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key">Start API key setup</a>
+          <a class="button secondary" href="https://app.sagerouter.dev/account.html?plan=max">Start Max</a>
+          <a class="button secondary" href="/quickstart">Quickstart</a>
+          <a class="button secondary" href="/docs/gateway-migration">Gateway migration</a>
+          <a class="button secondary" href="/models">Model catalog</a>
+        </div>
+        <form class="emailStart" id="fusion-email-form" data-email-activation-form data-event-prefix="fusion" data-sent-event="fusion_magic_link_sent" data-source="fusion" data-status-id="fusion-email-status">
+          <label for="fusion-email">Get an API key setup link for Fusion</label>
+          <button id="fusion-github-pro" class="button primary oauthButton" type="button">Continue with GitHub for Pro</button>
+          <input id="fusion-email" type="email" name="email" autocomplete="email" placeholder="you@company.com" required />
+          <button class="button primary" type="submit">Email API key setup link</button>
+          <p class="emailStartStatus" id="fusion-email-status" role="status">No provider key or credit card required until your generated sk_sage key exists.</p>
+        </form>
+        <p class="note">Fusion is available to Pro, Max, metered, manual, and operator-enabled customers. Lite/free generated keys receive <code>402 fusion_plan_required</code>.</p>
+      </section>
+
+      <section class="section grid4" aria-label="Fusion pipeline">
+        <article class="step">
+          <b>1</b>
+          <h3>Send one request</h3>
+          <p class="muted">Call the hosted edge with your generated <code>sk_sage_*</code> key and a high-stakes prompt that benefits from comparison, review, risk analysis, or research.</p>
+        </article>
+        <article class="step">
+          <b>2</b>
+          <h3>Run the panel</h3>
+          <p class="muted">Sage Router selects a small panel of eligible, authorized routes from the active profile and skips routes that are unavailable or disallowed.</p>
+        </article>
+        <article class="step">
+          <b>3</b>
+          <h3>Judge the answers</h3>
+          <p class="muted">A judge route compares panel outputs for agreement, gaps, contradictions, and useful details before producing the final answer.</p>
+        </article>
+        <article class="step">
+          <b>4</b>
+          <h3>Return one response</h3>
+          <p class="muted">The result is a normal OpenAI-compatible chat completion with bounded Fusion metadata and no prompt or panel-answer logging in route events.</p>
+        </article>
+      </section>
+
+      <section class="section split">
+        <div>
+          <p class="eyebrow">Direct model alias</p>
+          <h2>Use Fusion as a premium model.</h2>
+          <p class="muted">For new Sage Router clients, call <code>sage-router/fusion</code>. Sage Router returns the canonical Fusion response shape for premium synthesis requests.</p>
+        </div>
+        <div class="code">
+          <pre><code>curl "https://api.sagerouter.dev/v1/chat/completions" \
+  -H "Authorization: Bearer sk_sage_..." \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "sage-router/fusion",
+    "messages": [
+      {"role": "user", "content": "Compare the safest launch options and recommend one."}
+    ]
+  }'</code></pre>
+        </div>
+      </section>
+
+      <section class="section split">
+        <div>
+          <p class="eyebrow">Server tool compatibility</p>
+          <h2>Attach <code>sage-router:fusion</code> to agent requests.</h2>
+          <p class="muted">gateway-style clients can request the Fusion server tool without forwarding unknown tool markers downstream. Set <code>tool_choice</code> to <code>required</code> when you want deterministic invocation.</p>
+        </div>
+        <div class="code">
+          <pre><code>{
+  "model": "sage-router/frontier",
+  "messages": [
+    {"role": "user", "content": "Survey the strongest arguments for and against this launch."}
+  ],
+  "tools": [{"type": "sage-router:fusion"}],
+  "tool_choice": "required"
+}</code></pre>
+        </div>
+      </section>
+
+      <section class="section grid" aria-label="Fusion use cases">
+        <article class="card">
+          <span class="pill">Research</span>
+          <h3>When one model may miss the angle.</h3>
+          <p>Use Fusion for market scans, architecture reviews, launch sequencing, incident postmortems, and high-ambiguity analysis where a second or third perspective changes the answer quality.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Agents</span>
+          <h3>When harnesses need one final answer.</h3>
+          <p>Agents still receive one chat completion, while Sage Router performs the panel and judge work inside the route. Existing OpenAI-compatible clients do not need a new SDK.</p>
+        </article>
+        <article class="card">
+          <span class="pill warn">Boundary</span>
+          <h3>Only authorized routes participate.</h3>
+          <p>Fusion does not grant unauthorized provider access, pool customer accounts, or bypass provider terms. It routes only through providers and local models the deployment is allowed to use.</p>
+        </article>
+      </section>
+
+      <section class="section split">
+        <div class="panel callout">
+          <p class="eyebrow">Premium gate</p>
+          <h2>Fusion is a Pro/Max conversion feature.</h2>
+          <p class="muted">The route is designed as a paid synthesis budget, not a free unlimited model marketplace. Lite/free accounts get explicit upgrade guidance through <code>fusion_plan_required</code>.</p>
+        </div>
+        <ul class="list">
+          <li><strong>Pro:</strong> daily high-stakes agent work with premium Fusion synthesis and frontier routing profiles.</li>
+          <li><strong>Max:</strong> higher volume automation, priority fallback, and a larger Fusion budget for teams.</li>
+          <li><strong>Local/private:</strong> self-hosted deployments can keep provider credentials on the router host or Tailnet while using the same model names and server-tool shape.</li>
+          <li><strong>Telemetry:</strong> route events record status, elapsed time, selected route IDs, plan, and auth type, not prompts, panel answers, final answers, API keys, OAuth tokens, or provider credentials.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="actions">
+          <a class="button primary" href="https://app.sagerouter.dev/account.html?plan=pro&start=create_key">Create Pro API key</a>
+          <a class="button secondary" href="/pricing">Compare pricing</a>
+          <a class="button secondary" href="/quickstart">Copy first request</a>
+          <a class="button secondary" href="/docs/gateway-migration">Migrate from an existing gateway</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>&copy; Sage Router</span>
+      <a href="/">Home</a>
+      <a href="/quickstart">Quickstart</a>
+      <a href="/models">Models</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/compare/model-gateways">Compare</a>
+      <a href="/docs/gateway-migration">Migration</a>
+      <a href="/terms">Terms</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/acceptable-use">Acceptable Use</a>
+      <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+    </footer>
+  </div>
+  <script>
+    const FUSION_ACCOUNT_PAGE_URL = 'https://app.sagerouter.dev/account.html?plan=pro&start=create_key';
+    const FUSION_SUPABASE_URL = 'https://awtangrlqqsdpksarhwo.supabase.co';
+    const FUSION_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF3dGFuZ3JscXFzZHBrc2FyaHdvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwMTYzNzEsImV4cCI6MjA4ODU5MjM3MX0.U7TmEJMgYMH0rR8tTWFQ2tzReO5syRwnI3Ytg-BbDaw';
+
+    function loadFusionSupabaseClient() {
+      return new Promise((resolve, reject) => {
+        if (window.supabase?.createClient) {
+          resolve(window.supabase);
+          return;
+        }
+        const existing = document.querySelector('script[data-supabase-js]');
+        if (existing) {
+          existing.addEventListener('load', () => resolve(window.supabase), { once: true });
+          existing.addEventListener('error', reject, { once: true });
+          return;
+        }
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+        script.async = true;
+        script.defer = true;
+        script.dataset.supabaseJs = 'true';
+        script.addEventListener('load', () => resolve(window.supabase), { once: true });
+        script.addEventListener('error', reject, { once: true });
+        document.head.appendChild(script);
+      });
+    }
+
+    function trackFusionFunnelEvent(event, data = {}) {
+      const params = new URLSearchParams(window.location.search);
+      let referrerHost = null;
+      try {
+        const referrer = document.referrer ? new URL(document.referrer) : null;
+        referrerHost = referrer && referrer.host !== window.location.host ? referrer.host : null;
+      } catch {}
+      const payload = JSON.stringify({
+        event,
+        plan: data.plan || null,
+        sourcePage: window.location.href,
+        target: data.target || null,
+        metadata: {
+          source: 'fusion',
+          button: data.button || null,
+          utmSource: params.get('utm_source') || params.get('utmSource') || null,
+          utmMedium: params.get('utm_medium') || params.get('utmMedium') || null,
+          utmCampaign: params.get('utm_campaign') || params.get('utmCampaign') || null,
+          referrerHost,
+          landingPath: window.location.pathname
+        }
+      });
+      try {
+        if (navigator.sendBeacon) {
+          const blob = new Blob([payload], { type: 'application/json' });
+          if (navigator.sendBeacon('/api/funnel-event', blob)) return;
+        }
+      } catch {}
+      fetch('/api/funnel-event', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: payload,
+        keepalive: true,
+        credentials: 'omit'
+      }).catch(() => {});
+    }
+
+    trackFusionFunnelEvent('fusion_viewed', { state: 'page-view' });
+
+    document.getElementById('fusion-github-pro')?.addEventListener('click', async (event) => {
+      const button = event.currentTarget;
+      const original = button.textContent;
+      const status = document.getElementById('fusion-email-status');
+      button.disabled = true;
+      button.textContent = 'Opening GitHub...';
+      if (status) status.textContent = 'Opening GitHub sign-in for Pro.';
+      trackFusionFunnelEvent('fusion_oauth_clicked', {
+        plan: 'pro',
+        target: FUSION_ACCOUNT_PAGE_URL,
+        button: 'Continue with GitHub for Pro',
+        state: 'github'
+      });
+      try {
+        const api = await loadFusionSupabaseClient();
+        const client = api.createClient(FUSION_SUPABASE_URL, FUSION_SUPABASE_ANON_KEY);
+        const { error } = await client.auth.signInWithOAuth({
+          provider: 'github',
+          options: { redirectTo: FUSION_ACCOUNT_PAGE_URL }
+        });
+        if (error) throw error;
+      } catch (error) {
+        trackFusionFunnelEvent('fusion_oauth_failed', {
+          plan: 'pro',
+          target: FUSION_ACCOUNT_PAGE_URL,
+          button: 'Continue with GitHub for Pro',
+          state: 'github'
+        });
+        if (status) status.textContent = 'GitHub sign-in failed here. Opening account setup instead...';
+        setTimeout(() => { window.location.href = FUSION_ACCOUNT_PAGE_URL; }, 900);
+      } finally {
+        button.disabled = false;
+        button.textContent = original;
+      }
+    });
+
+    document.querySelectorAll('a[href]').forEach((link) => {
+      const href = link.getAttribute('href') || '';
+      const button = link.textContent.trim().slice(0, 60);
+      const planMatch = href.match(/\/account\.html\?plan=(lite|pro|max)\b/);
+      if (planMatch) {
+        const eventName = href.includes('start=create_key') ? 'fusion_key_activation_clicked' : 'fusion_checkout_clicked';
+        link.addEventListener('click', () => trackFusionFunnelEvent(eventName, {
+          plan: planMatch[1],
+          target: href,
+          button
+        }));
+      } else if (href === '/quickstart') {
+        link.addEventListener('click', () => trackFusionFunnelEvent('fusion_quickstart_clicked', { target: href, button }));
+      } else if (href === '/docs/gateway-migration') {
+        link.addEventListener('click', () => trackFusionFunnelEvent('fusion_gateway_migration_clicked', { target: href, button }));
+      } else if (href === '/pricing') {
+        link.addEventListener('click', () => trackFusionFunnelEvent('fusion_pricing_clicked', { target: href, button }));
+      } else if (href === '/models') {
+        link.addEventListener('click', () => trackFusionFunnelEvent('fusion_models_clicked', { target: href, button }));
+      }
+    });
+  </script>
+  <script src="/marketing-email-activation.js"></script>
+</body>
+</html>

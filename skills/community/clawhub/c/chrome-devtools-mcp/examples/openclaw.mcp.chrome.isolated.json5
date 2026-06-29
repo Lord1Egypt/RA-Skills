@@ -1,0 +1,21 @@
+{
+  mcp: {
+    servers: {
+      "chrome-devtools": {
+        enabled: true,
+        transport: "stdio",
+        command: "npx",
+        args: [
+          "-y",
+          "chrome-devtools-mcp@latest",
+          "--isolated",
+          "--no-usage-statistics",
+          "--no-performance-crux"
+        ],
+        connectTimeout: 20,
+        timeout: 120,
+        supportsParallelToolCalls: false
+      }
+    }
+  }
+}

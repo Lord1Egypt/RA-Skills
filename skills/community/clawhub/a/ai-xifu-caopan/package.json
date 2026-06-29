@@ -1,0 +1,63 @@
+{
+  "name": "媳妇智投全球通用版 EDU | Ai-Wife Global Investing EDU",
+  "version": "5.4.1",
+  "description": "📚 EDUCATIONAL REFERENCE FRAMEWORK generator for 52 countries. User provides own data. NOT financial advice. / 52国教育参考框架生成工具。用户自行提供数据。不构成投资建议。",
+  "author": "AI媳妇 | Ai-Wife",
+  "brand": "媳妇智投全球通用版 EDU | Ai-Wife Global Investing EDU",
+  "license": "SEE LICENSE FILE",
+  "private": true,
+  "keywords": [
+    "AI操盘",
+    "A股",
+    "ai-trading",
+    "bitcoin",
+    "btc",
+    "cross-market",
+    "crypto-trading",
+    "cryptocurrency",
+    "currency-pairs",
+    "forex",
+    "fx-trading",
+    "global-investing",
+    "global-stocks",
+    "stock-analysis",
+    "trading-plan",
+    "yahoo-finance",
+    "交易方案",
+    "全球股市",
+    "区块链",
+    "基金",
+    "外汇交易",
+    "媳妇智投",
+    "投资分析",
+    "日股",
+    "智能投顾",
+    "期货",
+    "比特币",
+    "汇率分析",
+    "港股",
+    "美股",
+    "英股",
+    "金融"
+  ],
+  "category": "finance",
+  "price": 0,
+  "currency": "CNY",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/openclaw/ai-xifu-caopan"
+  },
+  "engines": {
+    "openclaw": ">=1.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "features": [
+    "🌍 多语言输出 / Multi-language output (用户输入语言+市场语言)",
+    "🧠 大叔亲授·审题+质检机制 / Input language detection + market language matching",
+    "自动检测用户输入语言，输出动态双语方案 / Auto-detect input language, bilingual output",
+    "🇨🇳🇯🇵🇰🇷🇺🇸🇸🇦 28+种语言支持 / 28+ language support",
+    "A股/港股/台股/美股/日股/韩股/欧股/期货/外汇/加密货币",
+    "全部模板已集成语言检测模块 / All templates integrated with language detection"
+  ]
+}

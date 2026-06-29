@@ -1,0 +1,21 @@
+[
+  {"skill_name": "skill_0", "source_module": "distiller_0", "recovery_hint": "converse"},
+  {"skill_name": "skill_1", "source_module": "distiller_1", "recovery_hint": "store"},
+  {"skill_name": "skill_2", "source_module": "distiller_2", "recovery_hint": "recall"},
+  {"skill_name": "skill_3", "source_module": "distiller_3", "recovery_hint": "execute"},
+  {"skill_name": "skill_4", "source_module": "distiller_4", "recovery_hint": "converse"},
+  {"skill_name": "skill_5", "source_module": "distiller_5", "recovery_hint": "recall"},
+  {"skill_name": "skill_6", "source_module": "distiller_6", "recovery_hint": "store"},
+  {"skill_name": "skill_7", "source_module": "distiller_7", "recovery_hint": "converse"},
+  {"skill_name": "skill_8", "source_module": "distiller_8", "recovery_hint": "execute"},
+  {"skill_name": "skill_9", "source_module": "distiller_9", "recovery_hint": "store"},
+  {"skill_name": "skill_10", "source_module": "distiller_10", "recovery_hint": "recall"},
+  {"skill_name": "skill_11", "source_module": "distiller_11", "recovery_hint": "converse"},
+  {"skill_name": "skill_12", "source_module": "distiller_12", "recovery_hint": "execute"},
+  {"skill_name": "skill_13", "source_module": "distiller_13", "recovery_hint": "store"},
+  {"skill_name": "skill_14", "source_module": "distiller_14", "recovery_hint": "converse"},
+  {"skill_name": "skill_15", "source_module": "distiller_15", "recovery_hint": "recall"},
+  {"skill_name": "skill_16", "source_module": "distiller_16", "recovery_hint": "execute"},
+  {"skill_name": "skill_17", "source_module": "distiller_17", "recovery_hint": "converse"},
+  {"skill_name": "skill_18", "source_module": "distiller_18", "recovery_hint": "store"}
+]

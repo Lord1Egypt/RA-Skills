@@ -1,0 +1,7 @@
+interface:
+  display_name: "USA Business Migration Planner"
+  short_description: "Helps with get rich by emigrating to USA and starting a busin..."
+  default_prompt: "Use $usa-business-migration-planner to help me get rich by emigrating to USA and starting a business Q3 2026."
+
+policy:
+  allow_implicit_invocation: true

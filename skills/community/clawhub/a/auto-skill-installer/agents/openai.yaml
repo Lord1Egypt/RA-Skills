@@ -1,0 +1,4 @@
+interface:
+  display_name: "Auto Skill Installer"
+  short_description: "Finds and installs the right skills automatically"
+  default_prompt: "Use $auto-skill-installer to find and install the best skill for my task."

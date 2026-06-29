@@ -49,7 +49,7 @@ def main():
     if args.trade_code is not None and str(args.trade_code).strip() != "":
         params["trade_code"] = args.trade_code.strip()
 
-    path = "/data/api/v1/market/data/hk/hk-valuatnanalyd"
+    path = "/gateway/api/v1/market/data/hk/hk-valuatnanalyd"
     url = BASE_URL + path + "?" + urllib.parse.urlencode(params)
 
     req = urllib.request.Request(url, method="GET")

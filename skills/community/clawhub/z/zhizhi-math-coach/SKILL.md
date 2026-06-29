@@ -10,11 +10,11 @@ description: "Primary-school math coaching skill created to help my first-grade 
 Use a local evidence loop for every task:
 
 1. Read `.zhizhi-math-coach/config.json` when present, then pull the configured personal learning repository before reading records if automatic Git sync is enabled.
-2. Read local memory, curriculum, school calendar, progress, and relevant weak-point files before deciding.
+2. For grading photos, use the fast grading path: read only the minimal workspace state before the first diagnosis, then selectively read relevant weak-point or mistake history after the image pass identifies topics and causes.
 3. Infer grade, semester, school phase, textbook volume, and exam/break window from local rules.
 4. Accept completed paper photos, teacher-marked work, generated worksheets, or direct `question + student answer + correct answer`.
 5. Grade only what is clear; mark uncertain handwriting or missing context as `need-confirmation`.
-6. Compare mistakes with historical weak points before assigning causes.
+6. Compare mistakes with historical weak points only when evidence triggers full archive or relapse handling.
 7. Explain the correction in parent-friendly language, and include a shorter student-facing version when useful.
 8. Generate short validation practice for the cause, not just the surface topic.
 9. Update the mistake book, progress dashboard, weak-point records, memory, and next-practice suggestion only when evidence supports it.
@@ -26,6 +26,7 @@ Use these paths in the user's personal learning project unless they provide diff
 
 - `.zhizhi-math-coach/config.json`: machine-readable workspace role, Git sync, GitHub Pages publishing, and scheduled reminder settings. This file is the source of truth for whether the parent has already enabled automatic pull/commit/push, Pages publishing, and OpenClaw cron registration.
 - `memory/long-term.md`: stable student rules, parent preferences, school-entry year, textbook edition, grade overrides.
+- `memory/active-context.md`: compact current learning context for daily grading. Keep it small enough for every photo-grading task.
 - `memory/short-term.md`: current observations, active priorities, pending checks.
 - `memory/local-memory-rules.md`: read/write/promotion rules for memory.
 - `curriculum/profile.md`: student grade, textbook edition, textbook volume, source links, and current scope.
@@ -84,6 +85,14 @@ Recommended settings:
 - Fast/simple tasks: use lower reasoning for reminders, checklist updates, or formatting existing records.
 - Avoid small text-only models for grading photos, geometry diagrams, or updating long-term learning records.
 
+Performance target:
+
+- For one clear worksheet photo or a small wrong-question batch, produce the parent-facing grading summary before deep history consolidation.
+- Keep the initial read set small. Delay weak-point relapse comparison, reusable explanation-card updates, and long-term memory promotion until after the image evidence is understood.
+- Prefer compact JSON plus bundled scripts over generating long ad hoc Python or shell write scripts.
+- Default daily grading is one-turn fast grading plus light recording. Do not ask the parent to say "记录一下" after an ordinary photo unless the workspace is missing or the evidence is too unclear to record.
+- If evidence triggers full archive, upgrade automatically and keep history reads selective. Otherwise write the light record and avoid deep consolidation.
+
 ## Workspace Config And Automatic Sync
 
 At the start of every meaningful task in a personal learning workspace:
@@ -97,7 +106,7 @@ python3 {baseDir}/scripts/sync_learning_repo.py \
   --mode before-task
 ```
 
-3. Then read `memory/`, `curriculum/`, `records/`, `mistakes/`, `weak-points/`, and worksheet files from the updated workspace.
+3. Then read only the task-specific local files. Do not recursively read whole `memory/`, `records/`, `mistakes/`, `weak-points/`, or `worksheets/` directories. Use the fast grading path for photos and use filename/topic searches before opening history files.
 
 If `automation.enabled` and `automation.auto_register_when_supported` are true, and no scheduled jobs are recorded yet, run:
 
@@ -124,6 +133,7 @@ python3 {baseDir}/scripts/sync_learning_repo.py \
 ```
 
 - Do not ask the parent to confirm pull, commit, or push again when these config flags are already true. Treat the config as the durable consent and state for this personal learning repository.
+- For grading tasks, pass `--task-kind grading`; if `git_sync.defer_push_after_grading` is true, the sync script commits locally and skips push until a later explicit sync/review/publish task.
 - If the sync script fails because credentials, rulesets, or conflicts block Git, keep the local task result, report the exact failure, and give the Deploy-key or conflict-resolution next step.
 
 When a repository has been configured after Git authorization succeeds, persist the state with:
@@ -152,40 +162,11 @@ If `.zhizhi-math-coach/config.json` is missing, do not assume automatic sync fro
 
 This skill is triggered by the user's OpenClaw request, such as `$zhizhi-math-coach 批改...` or `$zhizhi-math-coach 出一张...`, while the working directory is the personal learning project.
 
-Explicit GitHub advanced-setup trigger phrases include:
+For GitHub sync, Pages, Deploy keys, public links, or cloud backup requests, read `references/github-sync-authorization.md` first, then `references/github-pages-publishing.md` only when Pages/public links are requested. Do not grade or generate a worksheet unless the user also asks for that. Return only SSH public keys, never private keys.
 
-- `进阶：配置 GitHub 云同步`
-- `进阶：开启 GitHub Pages 在线访问`
-- `生成 GitHub Deploy key`
-- `配置云端备份`
-- `返回 SSH 公钥`
-- `配置公开链接`
+For scheduled-task setup phrases such as `开启定时任务`, `配置每日提醒`, `配置每周复盘`, `开启自动复习提醒`, or `配置 OpenClaw cron`, read `references/automation-openclaw.md` and configure reminders with `setup_scheduled_tasks.py`. Scheduled tasks default to reminders and suggestions only; do not enable automatic worksheet generation or record writes unless the parent explicitly asks.
 
-Explicit scheduled-task setup trigger phrases include:
-
-- `开启定时任务`
-- `配置每日提醒`
-- `配置每周复盘`
-- `开启自动复习提醒`
-- `配置 OpenClaw cron`
-
-When these scheduled-task phrases appear, configure reminders with `setup_scheduled_tasks.py`. Scheduled tasks must default to reminders and suggestions only; do not enable automatic worksheet generation or record writes unless the parent explicitly asks for those behaviors.
-
-When these phrases appear, treat the request as advanced GitHub setup. Do not grade or generate a worksheet unless the user also asks for that. Run or suggest `prepare_github_deploy_key.py`, return only the SSH public key, and include this public guide URL:
-
-`https://github.com/linzi007/zhizhi-math-coach-openclaw/blob/main/docs/github-advanced-setup.zh-CN.md`
-
-The advanced setup reply must include:
-
-- SSH public key copied only from `public-key-start` to `public-key-end`;
-- guide URL above;
-- GitHub path: `Settings -> Deploy keys -> Add deploy key`;
-- permission instruction: enable `Allow write access`;
-- next step: after the parent replies `已添加`, run `check_git_sync.py --workspace . --check-push --write-config --auto-sync --sync-full-learning-data --public-repository-accepted`.
-
-If the GitHub owner or repository name is missing and cannot be inferred from `origin`, ask for both in plain Chinese:
-
-`请告诉我你的 GitHub 用户名和个人学习数据仓库名，例如 linzi007 / zhizhi-math-learning-data。`
+For first-use local setup checks, read `references/openclaw-quickstart.md`. Do not mention GitHub setup during ordinary grading or worksheet generation unless the parent asks for cloud sync, push, public links, Pages, or a publish preflight fails.
 
 Always treat the current workspace root as the personal learning project root for `memory/`, `weak-points/`, `mistakes/`, `records/`, `curriculum/`, `knowledge-points/`, `worksheets/`, and `site/`. The reusable skill repository only provides instructions, scripts, references, templates, and sanitized examples.
 
@@ -202,11 +183,9 @@ When publishing, rebuild `site/index.html` as the full worksheet list from `work
 
 PDF is the default worksheet delivery format. After worksheet generation, return or send `worksheet.pdf` first when it exists. If Chrome/Chromium is unavailable and PDF export was skipped, return the local `worksheet.html` path and mention that PDF export needs Chrome/Chromium.
 
-GitHub sync and GitHub Pages are advanced cloud features, not required for normal use. If GitHub sync is configured and enabled in `.zhizhi-math-coach/config.json`, sync generated learning data and worksheet artifacts automatically according to the config flags. If a worksheet is generated and `pages.enabled` plus `pages.auto_publish_worksheets` are true, publish to Pages after the PDF is available: run `publish_and_wait_pages.py`, wait for GitHub Actions deployment to finish, then reply with the PDF path/file, index URL, and worksheet URL. If the Actions run fails or times out, return the PDF/local paths, pushed commit if available, and Actions/setup guidance.
+GitHub sync and GitHub Pages are advanced cloud features, not required for normal use. If GitHub sync or Pages is configured and enabled in `.zhizhi-math-coach/config.json`, follow the config flags and the relevant sync/publishing reference.
 
 Do not run `git add`, `git commit`, or `git push` unless the parent explicitly asks to sync, publish, push, commit to GitHub, send a public link, or `.zhizhi-math-coach/config.json` enables automatic sync or automatic Pages publishing. When sync is requested or newly configured, read `references/github-sync-authorization.md` first and run the bundled preflight before committing or pushing. Do not require GitHub CLI or provider-level token configuration; a repository-scoped SSH deploy key is the preferred setup. If authorization is missing, return the PDF/local file paths and setup guidance instead of treating generation as failed. If the personal repository is public, warn before committing sensitive learning records or answer keys unless the parent has explicitly accepted full public learning-data sync in `.zhizhi-math-coach/config.json`.
-
-On the first meaningful reply in a personal learning workspace, use `references/openclaw-quickstart.md` for a short setup check focused on local workspace readiness and PDF delivery. Do not mention GitHub setup during ordinary grading or worksheet generation unless the parent asks for cloud sync, push, public links, Pages, or a publish preflight fails. When needed, explain that OpenClaw can generate a repository-specific public key, send it to the parent through Lark/Feishu when available, and the parent should add it in GitHub repository Settings -> Deploy keys with write access.
 
 Skill resources are relative to `{baseDir}`:
 
@@ -234,6 +213,11 @@ Skill resources are relative to `{baseDir}`:
 - `scripts/setup_github_pages_workflow.py`: create `.github/workflows/pages.yml` for publishing `site/` through GitHub Actions.
 - `scripts/setup_scheduled_tasks.py`: enable automation config and register OpenClaw cron reminder jobs when `openclaw cron` is available.
 - `scripts/sync_learning_repo.py`: pull, commit, and push configured learning-data changes without asking again when automatic sync is enabled.
+- `references/daily-grading-workflow.md`: fast grading, light recording, automatic full-archive upgrade, subagent boundary, validation, recording, and grading sync.
+- `scripts/build_grading_context.py`: build one compact grading context from config, active context, and curriculum profile.
+- `scripts/validate_diagnosis_payload.py`: validate diagnosis JSON before writing records.
+- `scripts/record_grading_diagnosis.py`: write diagnosis, mistake-book, progress, weak-point, and optional memory updates from one compact JSON payload.
+- `scripts/run_log.py`: shared helper for `.zhizhi-math-coach/run-log.jsonl`.
 - `scripts/init_learning_workspace.py`: initialize a personal learning repository after the skill is installed.
 - `scripts/validate_worksheet_spec.py`: validate worksheet JSON without writing outputs.
 - `scripts/publish_html_site.py`: publish child-facing worksheet HTML/PDF into a GitHub Pages `site/` directory.
@@ -243,19 +227,35 @@ Skill resources are relative to `{baseDir}`:
 
 ## Before Grading
 
-Read:
+Read `references/daily-grading-workflow.md`.
 
-1. `memory/local-memory-rules.md`
-2. `memory/long-term.md`
-3. `memory/short-term.md`
-4. `curriculum/school-calendar.md`
-5. `curriculum/profile.md`
-6. `curriculum/progress.md`
-7. `references/grading-diagnosis-rubric.md`
-8. `references/progress-tracking.md`
-9. `references/relapse-handling.md`
+Default daily grading is one-turn `fast_grade_light_record`: grade the photo or wrong-question batch, return the parent-facing summary, and write a light local record without asking the parent for another message. Use `fast_grade_only` only when the parent explicitly says not to record. Upgrade yourself to `full_archive` when the evidence justifies it; do not wait for the parent to say "完整归档".
 
-Then create or update one diagnosis record under `records/`. Add every wrong or uncertain item to the correct mistake book. Keep school mistakes and system-generated worksheet mistakes separate.
+Build compact context first:
+
+```bash
+python3 {baseDir}/scripts/build_grading_context.py \
+  --workspace . \
+  --format md
+```
+
+When an isolated subagent is available, delegate image/direct-question diagnosis to it with only the compact grading context and the requested JSON shape. The subagent must not write files, read broad history, sync Git, or publish. The main session validates, records, and syncs.
+
+Validate and record the JSON payload:
+
+```bash
+python3 {baseDir}/scripts/validate_diagnosis_payload.py \
+  --workspace . \
+  --mode fast_grade_light_record \
+  --input diagnosis-update.json
+
+python3 {baseDir}/scripts/record_grading_diagnosis.py \
+  --workspace . \
+  --mode fast_grade_light_record \
+  --input diagnosis-update.json
+```
+
+Use `--mode full_archive` for both commands after evidence-driven upgrade. If automatic Git sync is enabled after recording, call `sync_learning_repo.py --mode after-task --task-kind grading`.
 
 ## Before Explaining A Knowledge Point
 

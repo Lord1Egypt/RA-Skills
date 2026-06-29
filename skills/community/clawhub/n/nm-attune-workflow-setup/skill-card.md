@@ -11,28 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and maintainers use this skill to create or update GitHub Actions workflows for Python, Rust, or TypeScript projects, including testing, linting, build, release, and deployment workflows. <br>
+Developers and engineers use this skill to add or update GitHub Actions workflows for Python, Rust, or TypeScript projects, including testing, linting, type checking, build, release, and deployment pipelines. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Generated CI/CD workflow changes can affect testing, publishing, deployment, and repository secrets. <br>
-Mitigation: Review proposed workflow files before committing them, confirm triggers and secrets are intentional, and require explicit approval before broad automation prompts make CI/CD changes. <br>
+Risk: Generated workflow changes can affect deploy, publish, release, or secret-using jobs. <br>
+Mitigation: Review generated workflow files before committing them, especially jobs that use secrets or release/deploy permissions. <br>
+Risk: Inline shell scripts in workflows can mask command failures if pipeline exit codes are not handled correctly. <br>
+Mitigation: Use pipefail or explicit exit-code handling for complex workflow shell steps before integrating them. <br>
 
 
 ## Reference(s): <br>
 - [Attune plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/attune) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-attune-workflow-setup) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [guidance, shell commands, configuration, code] <br>
-**Output Format:** [Markdown with inline shell, Python, and YAML examples] <br>
+**Output Type(s):** [Text, Markdown, Code, Shell commands, Configuration] <br>
+**Output Format:** [Markdown guidance with inline YAML, Python, and shell examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May propose or modify GitHub Actions workflow files such as test.yml, lint.yml, build.yml, publish.yml, release.yml, and deploy.yml.] <br>
+**Other Properties Related to Output:** [May propose GitHub Actions workflow files and commands that should be reviewed before commit.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: ClawHub release evidence) <br>
+1.9.13 (source: server release evidence; artifact frontmatter says 1.9.8) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

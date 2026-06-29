@@ -4,18 +4,12 @@
 
 ## 使用前提
 
-CLI 从 `~/.openclaw/qclaw/user-info.json` 读取 `accessToken`，请求 API 时使用：
-
-```http
-Authorization: Bearer <accessToken>
-```
-
-请确保该文件存在且 `accessToken` 有效。
+CLI 已内置在技能目录 `./cli/`，通过 FClaw 注入的 `FCLAW_OIDC_TOKEN_URL` 与 `FCLAW_OIDC_TOKEN_SECRET` 从本地 OIDC token 端点获取 access_token。请在 FClaw 中登录，并在技能根目录下执行命令（工作目录须包含 `cli/index.js`）。
 
 ## 命令格式
 
 ```bash
-feihuo train-search --dep <出发地> --arr <目的地> --dep-date <出发日期> [--train-type <火车类型>] [--seat-type <座位类型>] [--sort-type <排序方式>] [--dep-hour-start <出发小时开始>] [--dep-hour-end <出发小时结束>] [--arr-hour-start <到达小时开始>] [--arr-hour-end <到达小时结束>] [--train-number <车次号>]
+node ./cli/index.js train-search --dep <出发地> --arr <目的地> --dep-date <出发日期> [--train-type <火车类型>] [--seat-type <座位类型>] [--sort-type <排序方式>] [--dep-hour-start <出发小时开始>] [--dep-hour-end <出发小时结束>] [--arr-hour-start <到达小时开始>] [--arr-hour-end <到达小时结束>] [--train-number <车次号>]
 ```
 
 ## 参数
@@ -81,7 +75,7 @@ feihuo train-search --dep <出发地> --arr <目的地> --dep-date <出发日期
 **示例**（用户：「明天上海到北京高铁，上午出发，二等座，按价格从低到高」）：
 
 ```bash
-feihuo train-search --dep "上海" --arr "北京" --dep-date 2026-06-13 --train-type high-speed --seat-type second-class --dep-hour-start 8 --dep-hour-end 12 --sort-type price-low-to-high
+node ./cli/index.js train-search --dep "上海" --arr "北京" --dep-date 2026-06-13 --train-type high-speed --seat-type second-class --dep-hour-start 8 --dep-hour-end 12 --sort-type price-low-to-high
 ```
 
 ## 示例
@@ -89,43 +83,43 @@ feihuo train-search --dep "上海" --arr "北京" --dep-date 2026-06-13 --train-
 搜索指定城市和日期：
 
 ```bash
-feihuo train-search --dep "上海" --arr "北京" --dep-date 2026-03-20
+node ./cli/index.js train-search --dep "上海" --arr "北京" --dep-date 2026-03-20
 ```
 
 筛选高铁/动车：
 
 ```bash
-feihuo train-search --dep "上海" --arr "北京" --dep-date 2026-03-20 --train-type high-speed
+node ./cli/index.js train-search --dep "上海" --arr "北京" --dep-date 2026-03-20 --train-type high-speed
 ```
 
 筛选二等座并按价格从低到高排序：
 
 ```bash
-feihuo train-search --dep "上海" --arr "北京" --dep-date 2026-03-20 --seat-type second-class --sort-type price-low-to-high
+node ./cli/index.js train-search --dep "上海" --arr "北京" --dep-date 2026-03-20 --seat-type second-class --sort-type price-low-to-high
 ```
 
 按出发小时筛选：
 
 ```bash
-feihuo train-search --dep "上海" --arr "北京" --dep-date 2026-03-20 --dep-hour-start 8 --dep-hour-end 12
+node ./cli/index.js train-search --dep "上海" --arr "北京" --dep-date 2026-03-20 --dep-hour-start 8 --dep-hour-end 12
 ```
 
 按到达小时筛选：
 
 ```bash
-feihuo train-search --dep "上海" --arr "北京" --dep-date 2026-03-20 --arr-hour-start 13 --arr-hour-end 18
+node ./cli/index.js train-search --dep "上海" --arr "北京" --dep-date 2026-03-20 --arr-hour-start 13 --arr-hour-end 18
 ```
 
 指定车次：
 
 ```bash
-feihuo train-search --dep "上海" --arr "北京" --dep-date 2026-03-20 --train-number G2
+node ./cli/index.js train-search --dep "上海" --arr "北京" --dep-date 2026-03-20 --train-number G2
 ```
 
 查看帮助：
 
 ```bash
-feihuo train-search --help
+node ./cli/index.js train-search --help
 ```
 
 ## 输出

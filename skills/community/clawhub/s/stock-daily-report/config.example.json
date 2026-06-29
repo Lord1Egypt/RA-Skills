@@ -1,0 +1,20 @@
+{
+  "stocks": [
+    {"code": "002973", "name": "侨银股份"},
+    {"code": "600095", "name": "湘财股份"},
+    {"code": "000973", "name": "佛塑科技"},
+    {"code": "513180", "name": "恒生科技 ETF"}
+  ],
+  "output_dir": "/tmp",
+  "report_prefix": "stock-report",
+  "output_format": "both",
+  "data_sources": {
+    "default": "sina",
+    "fallback": ["eastmoney", "txstock"],
+    "etf_source": "eastmoney"
+  },
+  "feishu": {
+    "enabled": true,
+    "target_user": "ou_xxx"
+  }
+}

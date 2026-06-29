@@ -73,8 +73,13 @@ TARGET="$(extract_target_path 2>/dev/null || true)"
 [ -z "$TARGET" ] && exit 0
 
 ROOT=$(project_root)
+# 绝对路径直接采用，相对路径才拼项目根。
+# Windows + Git Bash 下 Claude Code 可能传入盘符绝对路径（F:/work/... 或 F:\work\...）；
+# 只认 /* 会把它们当相对路径拼成 $ROOT/F:/work/...，找错 大纲/ 目录、误报细纲缺失（issue #184）。
+# [A-Za-z]:[/\\]* 命中盘符绝对路径，并把反斜杠统一成正斜杠（对齐 plugin.ts 的 isAbsolute + 反斜杠归一）。
 case "$TARGET" in
   /*) ABS="$TARGET" ;;
+  [A-Za-z]:[/\\]*) ABS="${TARGET//\\//}" ;;
   *)  ABS="$ROOT/$TARGET" ;;
 esac
 

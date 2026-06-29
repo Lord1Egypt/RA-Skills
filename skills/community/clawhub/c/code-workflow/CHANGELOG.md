@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.1](https://github.com/es6kr/skills/compare/code-workflow-v0.4.0...code-workflow-v0.4.1) (2026-06-25)
+
+
+### Bug Fixes
+
+* **code-workflow:** require plan frontmatter and progress checklist ([7d96194](https://github.com/es6kr/skills/commit/7d9619479b1e4823f2dba6e7c6ba5bd961610eef))
+* **fix:** split Step 2 medium by content type — case history to failed-attempts.md ([#62](https://github.com/es6kr/skills/issues/62)) ([747b3f9](https://github.com/es6kr/skills/commit/747b3f957ca0fefdbc5044eb08f66b8aafc1e26a))
+
 ## [0.4.0](https://github.com/es6kr/skills/compare/code-workflow-v0.3.0...code-workflow-v0.4.0) (2026-06-12)
 
 

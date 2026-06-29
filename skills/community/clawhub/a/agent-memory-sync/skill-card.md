@@ -11,34 +11,38 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and agent users use Memory Sync to preserve local agent conversations, memory signals, handoff summaries, profiles, and skill inventories into an Obsidian and Git-backed memory layer they control. <br>
+Developers and agent users use Memory Sync to preserve local agent memory, conversation archives, handoff summaries, and personal knowledge into an owned Obsidian and Git memory layer. It helps review candidate memories, rebuild indexes and profiles, export cross-agent context, and optionally sync versioned memory assets. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can collect broad local chat history, prompts, project details, local paths, and inferred profile data into a memory vault. <br>
-Mitigation: Install only when a local cross-agent memory vault is intended, review the vault path before use, and treat generated vault contents as sensitive. <br>
-Risk: Git sync can push sensitive memory assets to a remote repository. <br>
-Mitigation: Set GIT_PUSH_ENABLED=false unless pushing is intentional, review the Git remote, and avoid public remotes for memory vaults. <br>
-Risk: Conversation scanning can store more transcript data than expected. <br>
-Mitigation: Avoid scanning conversations or using --all until the user is comfortable storing those transcripts. <br>
-Risk: Vault cleanup behavior can delete generated vault content. <br>
-Mitigation: Review Memory Sync status and generated indexes before cleanup, and keep Git history or backups for sensitive vaults. <br>
+Risk: The skill can collect and persist broad local agent history, rule files, profile/config files, and skill inventories into an Obsidian vault and optionally Git. <br>
+Mitigation: Install only when a local memory system is intended, keep the vault and any Git remote private, and review archived sources and staged files before sharing or publishing. <br>
+Risk: Sensitive information can become durable memory if local conversations or configuration files include secrets, regulated data, or confidential material. <br>
+Mitigation: Do not store API keys, passwords, private keys, regulated data, or confidential customer material as durable memory; review candidate memories before promotion. <br>
+Risk: Git sync can publish memory artifacts beyond the local machine if push is enabled. <br>
+Mitigation: Leave Git push disabled unless staged files and remote visibility have been reviewed, and enable remote push only intentionally. <br>
+Risk: Cleanup can permanently delete generated Obsidian copies when hard-delete mode is enabled. <br>
+Mitigation: Use the default recoverable trash cleanup mode and enable permanent deletion only after confirming the cleanup scope. <br>
 
 
 ## Reference(s): <br>
-- [Project homepage](https://github.com/Wildprogrammer/memory-sync-skill) <br>
+- [ClawHub Skill Page](https://clawhub.ai/wildprogrammer/skills/agent-memory-sync) <br>
+- [Clawdis Homepage](https://github.com/Wildprogrammer/memory-sync-skill) <br>
+- [README.md](README.md) <br>
+- [SKILL.md](SKILL.md) <br>
+- [Configuration Files](config/) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown, JSON, and shell command guidance] <br>
+**Output Type(s):** [Markdown, JSON, Configuration, Shell commands, Guidance] <br>
+**Output Format:** [Markdown and JSON files with command-line workflow guidance] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces local Obsidian memory pages, machine-readable indexes, portable agent context, profile exports, skill inventories, and optional Git sync commands.] <br>
+**Other Properties Related to Output:** [Writes local Obsidian vault content, memory indexes, profile/context exports, source archives, skill inventories, and optional Git commits when configured.] <br>
 
 ## Skill Version(s): <br>
-1.0.2 (source: frontmatter and target metadata) <br>
+1.0.3 (source: frontmatter and server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

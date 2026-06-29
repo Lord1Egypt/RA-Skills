@@ -1,0 +1,7 @@
+interface:
+  display_name: "Ontology Typed Workflow Helper"
+  short_description: "Designs typed schemas, graph records, and validation rules for agent memory."
+  default_prompt: "Use $work-productivity-ontology-typed-workflow-helper to model my information as a typed ontology or knowledge graph."
+
+policy:
+  allow_implicit_invocation: true

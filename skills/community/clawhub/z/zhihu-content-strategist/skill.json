@@ -1,0 +1,39 @@
+{
+  "name": "Zhihu Content Strategist",
+  "slug": "zhihu-content-strategist",
+  "description": "Analyze Zhihu hot trends & community dynamics; generate high-engagement answer strategies and first drafts.",
+  "tags": ["zhihu", "content-strategy", "writing", "social-media", "chinese-platform", "creator"],
+  "license": "MIT-0",
+  "version": "1.0.0",
+  "scripts": {
+    "main": "scripts/strategist.py",
+    "usage": "python scripts/strategist.py --domain AI --task recommend",
+    "draft": "python scripts/strategist.py --domain AI --task draft --topic \"AI Agent 落地案例\""
+  },
+  "schemas": {
+    "input": "schemas/input.schema.json",
+    "output": "schemas/output.schema.json"
+  },
+  "references": {
+    "engagement_patterns": "references/engagement_patterns.json",
+    "topic_templates": "references/topic_templates.json"
+  },
+  "workflowSteps": [
+    { "step": 1, "name": "Define Target Domain", "input": "Domain or hot list URL", "output": "Domain definition with sub-topic taxonomy" },
+    { "step": 2, "name": "Scrape Hot List & Top Answers", "input": "Target domain", "output": "Trending questions + top-20 answers dataset" },
+    { "step": 3, "name": "Pattern Analysis", "input": "Top-20 answer dataset", "output": "Replicable pattern report" },
+    { "step": 4, "name": "Content Gap Detection", "input": "Question corpus + existing answers", "output": "Gap matrix sorted by opportunity" },
+    { "step": 5, "name": "Topic Recommendation", "input": "Gap matrix + user expertise", "output": "Top 5-10 topics with angles" },
+    { "step": 6, "name": "Answer Strategy Generation", "input": "Selected topics", "output": "Per-topic strategy brief" },
+    { "step": 7, "name": "Draft Generation", "input": "Strategy brief", "output": "Complete answer draft in markdown" },
+    { "step": 8, "name": "Publishing Optimization", "input": "Completed draft", "output": "Timing, tags, promotion hooks" }
+  ],
+  "firstSuccessPath": {
+    "steps": [
+      "Say: 帮我看一下知乎AI领域最近什么话题火，给我推荐3个选题",
+      "Review the gap matrix and pick one topic",
+      "Receive a complete answer draft with hooks and golden lines in <30 seconds"
+    ],
+    "cli": "python scripts/strategist.py --domain AI --task recommend"
+  }
+}

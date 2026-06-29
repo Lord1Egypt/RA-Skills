@@ -1,0 +1,30 @@
+{
+  "name": "hiapi-gpt-image-2-skill",
+  "version": "0.1.4",
+  "description": "HiAPI GPT Image 2 skill for agent image generation.",
+  "license": "MIT",
+  "type": "module",
+  "homepage": "https://github.com/HiAPIAI/hiapi-gpt-image-2-skill#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HiAPIAI/hiapi-gpt-image-2-skill.git"
+  },
+  "keywords": [
+    "hiapi",
+    "gpt-image-2",
+    "skill",
+    "agent",
+    "image-generation"
+  ],
+  "bin": {
+    "hiapi-gpt-image-2-skill": "./scripts/install.mjs",
+    "hiapi-gpt-image-2": "./scripts/hiapi-gpt-image-2.mjs",
+    "hiapi-gpt-image-2-check": "./scripts/check-config.mjs"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

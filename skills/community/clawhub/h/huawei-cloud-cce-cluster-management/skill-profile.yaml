@@ -1,0 +1,52 @@
+name: huawei-cloud-cce-cluster-management
+level: L3
+domain: cluster-management
+description: Manage Huawei Cloud CCE cluster lifecycle including cluster creation/deletion/hibernation/awakening, node pool management, node scheduling control, addon management, and cluster EIP binding/unbinding.
+tools:
+  - huawei_list_cce_clusters
+  - huawei_create_cce_cluster
+  - huawei_delete_cce_cluster
+  - huawei_hibernate_cce_cluster
+  - huawei_awake_cce_cluster
+  - huawei_get_cce_kubeconfig
+  - huawei_bind_cce_cluster_eip
+  - huawei_unbind_cce_cluster_eip
+  - huawei_list_cce_nodes
+  - huawei_get_cce_nodes
+  - huawei_create_cce_node
+  - huawei_delete_cce_node
+  - huawei_cce_node_cordon
+  - huawei_cce_node_uncordon
+  - huawei_cce_node_drain
+  - huawei_cce_node_status
+  - huawei_list_cce_nodepools
+  - huawei_create_cce_nodepool
+  - huawei_delete_cce_nodepool
+  - huawei_resize_cce_nodepool
+  - huawei_list_cce_addons
+  - huawei_get_cce_addon_detail
+  - huawei_install_cce_addon
+  - huawei_uninstall_cce_addon
+  - huawei_update_cce_addon
+  - huawei_list_vpc
+  - huawei_list_vpc_subnets
+references:
+  - references/task-cluster-management.md
+  - references/task-nodepool-management.md
+  - references/task-node-management.md
+  - references/iam-policies.md
+  - references/verification-method.md
+  - references/troubleshooting.md
+  - references/cce-api-guide.md
+  - references/cce-cluster-parameters.md
+guardrails:
+  max_auto_risk: R3
+  dangerous_operations:
+    - huawei_delete_cce_cluster
+    - huawei_hibernate_cce_cluster
+    - huawei_awake_cce_cluster
+    - huawei_delete_cce_nodepool
+    - huawei_delete_cce_node
+    - huawei_uninstall_cce_addon
+    - huawei_cce_node_drain
+  requires_confirmation: true

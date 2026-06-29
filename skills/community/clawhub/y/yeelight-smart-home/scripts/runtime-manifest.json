@@ -1,0 +1,39 @@
+{
+  "runtime": "yeelight-home",
+  "contractVersion": "1.0",
+  "publicRepository": "Yeelight/yeelight-home",
+  "command": ["yeelight-home", "invoke", "--stdin"],
+  "authCommand": ["yeelight-home", "auth", "login", "--qr"],
+  "statusCommand": ["yeelight-home", "auth", "status", "--json"],
+  "devSmokeCommand": ["yeelight-home", "api", "smoke", "--json", "--region", "dev"],
+  "storage": {
+    "preferences": "json-file",
+    "credentials": "system-credential-store-or-protected-local-fallback",
+    "sqlite": "optional-advanced-backend"
+  },
+  "hosts": {
+    "codex": {
+      "localCommandRequired": true,
+      "wrapper": "scripts/invoke.sh",
+      "smoke": "printf '{\"contractVersion\":\"1.0\",\"requestId\":\"host-smoke\",\"locale\":\"zh-CN\",\"utterance\":\"列出家庭\",\"intent\":\"entity.list\"}' | scripts/invoke.sh"
+    },
+    "openclaw": {
+      "localCommandRequired": true,
+      "wrapper": "scripts/invoke.sh",
+      "smoke": "printf '{\"contractVersion\":\"1.0\",\"requestId\":\"host-smoke\",\"locale\":\"zh-CN\",\"utterance\":\"列出家庭\",\"intent\":\"entity.list\"}' | scripts/invoke.sh"
+    },
+    "claude-code": {
+      "localCommandRequired": true,
+      "wrapper": "scripts/invoke.sh",
+      "smoke": "printf '{\"contractVersion\":\"1.0\",\"requestId\":\"host-smoke\",\"locale\":\"zh-CN\",\"utterance\":\"列出家庭\",\"intent\":\"entity.list\"}' | scripts/invoke.sh"
+    }
+  },
+  "supportedPlatforms": [
+    "darwin/arm64",
+    "darwin/amd64",
+    "linux/arm64",
+    "linux/amd64",
+    "windows/arm64",
+    "windows/amd64"
+  ]
+}

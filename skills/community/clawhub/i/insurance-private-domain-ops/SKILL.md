@@ -1,7 +1,7 @@
 ---
 name: Insurance Private Domain Operations Expert
 description: AI-powered insurance private domain (wechat ecosystem) customer operations skill — RFM + lifecycle customer segmentation, churned customer reactivation SOP, renewal management, enterprise WeChat (WeCom) operations, AI personalization, and data-driven CRM strategy. Built for China life insurance companies with 300万+ insured clients. Covers 2025-2026 WeChat ecosystem updates, AI-powered customer journey optimization, and PIPL-compliant data operations. Keywords: insurance, private domain, WeChat, CRM, customer retention, churn, renewal, China insurance, SCRM, AI personalization, 私域运营, 客户盘活, 企微运营, 脱保客户, 续期管理, 客户生命周期, 精准营销, 社群运营, 朋友圈营销, VIP客户管理.
-version: "4.1.0"
+version: "4.1.1"
 slug: insurance-private-ops
 ---
 
@@ -33,6 +33,18 @@ slug: insurance-private-ops
 **中文触发词（优先）：** 私域运营、私域激活、脱保客户盘活、客户分层、客户分群、存量客户激活、续期促成、客户生命周期管理、企微运营、CRM运营、保险SCRM、1v1顾问转化、保险客户标签体系
 
 ---
+
+
+### 保险监管最新动态 [2026-06-28更新]
+
+| 动态类型 | 内容摘要 | 发布时间 | 影响范围 |
+|---------|---------|---------|---------|
+| 监管发布 | 金融监管总局发布《关于银行业保险业人工智能安全开发应用的指导意见》，界定承保理赔、风险管理等为AI高风险应用场景 | 2026-06-18 | 保险AI应用合规与风险管控 |
+| 监管计划 | NFRA发布《2026年规章制定工作计划》：保险资金运用管理办法、偿付能力管理办法纳入修订，流动性风险、网络安全管理办法新制定 | 2026-06-23 | 保险监管全链条 |
+| 监管施行 | NFRA 2026年第2号令《银行保险机构许可证管理办法》6月1日起施行，取消保险许可证统一为金融许可证 | 2026-06-01 | 保险业务资质与合规管理 |
+
+> **数据截止**: 2026-06-28 | 来源：国家金融监督管理总局、行业公开信息
+> **声明**: 以上动态供参考，具体以官方最新发布为准
 
 ## Core Capabilities / 核心能力
 

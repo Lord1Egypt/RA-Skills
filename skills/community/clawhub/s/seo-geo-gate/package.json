@@ -1,0 +1,25 @@
+{
+  "name": "seo-audit",
+  "version": "1.1.0",
+  "description": "Audit and optimize any website's SEO + GEO (AI/LLM visibility) + Core Web Vitals with a portable zero-dependency hard-gate auditor + live-URL/GEO crawl, then fix what's broken — includes a measured LCP playbook (7.5s → 1.5s mobile).",
+  "homepage": "https://github.com/Cosmofang/seo-audit",
+  "keywords": [
+    "seo-audit", "seo", "geo", "ai-visibility", "llms.txt", "structured-data",
+    "json-ld", "robots.txt", "sitemap", "canonical", "lighthouse", "pagespeed",
+    "core-web-vitals", "lcp", "critical-css", "render-blocking", "font-loading",
+    "web-performance", "open-graph", "schema.org", "technical-seo",
+    "generative-engine-optimization", "ai-crawler", "indexnow", "hard-gates",
+    "SEO体检", "SEO优化", "网站SEO", "AI可见性", "结构化数据", "站点审计",
+    "上线前检查", "搜索引擎优化", "GEO优化", "爬虫策略", "LCP优化", "性能优化"
+  ],
+  "author": "zeze",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "audit": "node scripts/audit-seo.mjs",
+    "audit:strict": "node scripts/audit-seo.mjs --strict",
+    "audit:live": "node scripts/audit-live.mjs"
+  }
+}

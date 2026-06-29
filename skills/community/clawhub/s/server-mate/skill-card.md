@@ -1,5 +1,5 @@
 ## Description: <br>
-Build or extend a lightweight server monitoring and AI operations workflow for Linux hosts running Nginx or Apache. <br>
+Builds and extends a lightweight server monitoring and AI operations workflow for Linux hosts running Nginx or Apache, with optional centralized remote monitoring through the BT-Panel HTTP API. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,36 +11,40 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and operations engineers use Server Mate to build or extend Linux server monitoring workflows for Nginx or Apache hosts, including metric collection, log parsing, alerting, PDF reporting, natural-language operations answers, and guarded remediation plans. <br>
+Developers and operations engineers use this skill to add Linux web-server monitoring, log analysis, alerting, reporting, AI-assisted diagnosis, and guarded remediation workflows for Nginx or Apache environments. It can support local log collection or centralized agentless collection through BT-Panel when operators provide panel credentials. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill reads web server logs, authentication logs, and host metrics, then stores operational rollups and audit history locally. <br>
-Mitigation: Restrict access to config.yaml, metrics.db, logs, reports, and any exported report directory; review retention and exposure settings before using public report URLs. <br>
-Risk: Optional auto-ban and auto-heal features may run firewall or service restart commands when enabled. <br>
-Mitigation: Keep automation.dry_run=true and leave auto_ban and auto_heal disabled until command templates, allowlists, cooldowns, TTLs, audit destinations, and rollback plans have been reviewed. <br>
-Risk: Optional integrations can send data to configured webhooks, Telegram, OpenAI-compatible endpoints, and GeoIP download sources. <br>
-Mitigation: Enable only required integrations, keep webhook URLs and tokens out of committed files, prefer local MaxMind GeoIP.conf with geoipupdate, and review any public mirror fallback before allowing that network path. <br>
+Risk: The skill can read web-server logs, authentication logs, host metrics, and IP-related rollups. <br>
+Mitigation: Deploy it only where operators are authorized to process operational telemetry, and avoid exposing generated reports without authentication. <br>
+Risk: Alert diagnostics and guarded remediation can run shell commands or service/firewall actions on monitored hosts. <br>
+Mitigation: Keep automation disabled or in dry-run mode until command templates, allowlists, cooldowns, audit destinations, and operator approval are in place. <br>
+Risk: Webhook, Telegram, AI-analysis, MaxMind, and BT-Panel integrations can send data or credentials to external services. <br>
+Mitigation: Disable integrations that are not needed, store credentials only in environment variables or local secret files, and review webhook/report payloads before production use. <br>
+Risk: BT-Panel API keys can grant broad panel privileges. <br>
+Mitigation: Inject BT-Panel keys through environment variables, keep config files out of version control, restrict file permissions, and rotate keys if plaintext exposure occurs. <br>
 
 
 ## Reference(s): <br>
+- [Server Mate on ClawHub](https://clawhub.ai/tankeito/skills/server-mate) <br>
 - [Architecture](references/architecture.md) <br>
-- [Data contracts](references/data-contracts.md) <br>
-- [Ops playbook](references/ops-playbook.md) <br>
-- [SQLite schema](references/sqlite-schema.md) <br>
-- [Server Mate ClawHub listing](https://clawhub.ai/tankeito/server-mate) <br>
+- [Data Contracts](references/data-contracts.md) <br>
+- [Ops Playbook](references/ops-playbook.md) <br>
+- [SQLite Schema](references/sqlite-schema.md) <br>
+- [User Guide](user-guide.md) <br>
+- [Example Configuration](config.example.yaml) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown with inline JSON, YAML, Python, shell command, cron, and systemd examples] <br>
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
+**Output Format:** [Markdown guidance with code, shell command, and configuration snippets] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May produce local configuration paths, SQLite schema guidance, webhook payload designs, monitoring reports, and guarded automation recommendations.] <br>
+**Other Properties Related to Output:** [May generate or modify local configuration, SQLite-backed monitoring artifacts, logs, reports, webhook payloads, and Python monitoring scripts in the skill workspace.] <br>
 
 ## Skill Version(s): <br>
-1.3.3 (source: server release evidence and skill frontmatter) <br>
+1.5.1 (source: frontmatter and server release metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

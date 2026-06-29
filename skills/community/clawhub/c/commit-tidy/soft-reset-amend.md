@@ -151,3 +151,32 @@ Commit 3 (HEAD):   test: add user tests     -- tests/user.test.ts
 - Force push requires CI status verification per `git.md`
 - Always backup commit messages before `git reset --soft` -- they cannot be recovered after reset
 - If the reset range includes commits from other contributors, do NOT proceed -- use `interactive-amend` or AskUserQuestion
+
+## After Step 2-B: commit is final, no amend (HARD STOP)
+
+**`reset --soft` + new commit (Step 2-B) is already a rebase-equivalent operation.** Once a new commit is created in the loop, it is the **final state** of that commit. Recommending an additional `git commit --amend` on a just-created Step 2-B commit is **duplicate history rewriting** — the new commit already replaced the original.
+
+### Don't / Do
+
+| # | Don't | Do |
+|---|-------|-----|
+| 1 | After Step 2-B creates commit X, recommend `--amend` on X to "polish" the message or files | Step 2-B commit = final. If polish is needed, plan it as part of Step 2-B before commit, not after |
+| 2 | Mix commit-tidy (structure) with message-quality fixes during the loop | commit-tidy scope = squash/split structure. Message-quality polishing = separate concern (see `commit-check`). Do not bundle |
+| 3 | Treat user dissatisfaction with a commit message as "needs amend" mid-loop | Investigate: was the message agreed during planning? If yes, proceed; if no, restart Step 0 with the corrected plan |
+| 4 | Recommend amend on Step 2-B commit just because the user expressed annoyance | Annoyance ≠ amend trigger. Identify the specific concern (message lines, file partition, etc.) and decide if it warrants restarting Step 0 or just continuing the loop |
+
+### Self-check (before recommending `git commit --amend` during commit-tidy)
+
+1. Was the commit being amended created **in this commit-tidy loop's Step 2-B**? → If yes, **amend is forbidden** — it is duplicate history rewriting
+2. Is the concern about commit *structure* (which files belong where) or *message quality*? → If message, defer to `commit-check` after commit-tidy completes
+3. Are remaining Step 2-C iterations still pending? → If yes, **complete the loop first**, then evaluate amend separately
+
+### Scope separation
+
+| Concern | Skill |
+|---------|-------|
+| Squash / split / repartition / reorder | `commit-tidy` |
+| Message quality (length, promises, tone, sign-off) | `commit-check` |
+| Verification of behavior promised by message | `code-workflow` / `verify` skill |
+
+Bundling these = scope creep. Each commit-tidy iteration touches only structure.

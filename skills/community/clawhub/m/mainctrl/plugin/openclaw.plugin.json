@@ -1,0 +1,16 @@
+{
+  "id": "mainctrl",
+  "name": "MainCtrl",
+  "description": "Runtime tool-access guard for OpenClaw agents. Intercepts destructive tool calls (write, edit, exec, process, apply_patch) before they execute, redirecting controlled agents to delegate via sub-agents.",
+  "contracts": {
+    "hooks": ["before_tool_call"]
+  },
+  "activation": {
+    "onStartup": true
+  },
+  "configSchema": {
+    "type": "object",
+    "properties": {},
+    "additionalProperties": false
+  }
+}

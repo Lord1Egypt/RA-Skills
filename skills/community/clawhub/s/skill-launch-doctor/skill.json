@@ -1,0 +1,28 @@
+{
+  "name": "skill-launch-doctor",
+  "slug": "skill-launch-doctor",
+  "version": "0.1.0",
+  "summary": "Audit and improve agent skills for launch readiness.",
+  "description": "Audit, score, and improve AgentSkills-style skill folders for trigger quality, progressive disclosure, resource references, cross-agent compatibility, safety risks, install friction, marketplace positioning, and launch readiness.",
+  "keywords": [
+    "hermes",
+    "agent-skills",
+    "skill-audit",
+    "skill-launch",
+    "marketplace-readiness",
+    "compatibility",
+    "safety-review",
+    "publishing"
+  ],
+  "compatibility": {
+    "hermes": true,
+    "codex": true,
+    "claude_code": true,
+    "format": "AgentSkills SKILL.md"
+  },
+  "scripts": {
+    "main": "scripts/audit_skill.py",
+    "description": "Stdlib-only CLI for auditing a skill directory and producing a launch readiness report."
+  },
+  "license": "MIT"
+}

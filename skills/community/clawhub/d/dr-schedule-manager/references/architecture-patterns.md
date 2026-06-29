@@ -106,7 +106,7 @@ Use when the job should follow system model upgrades.
 {
   "modelPolicy": {
     "mode": "pin",
-    "model": "openai-codex/gpt-5.4"
+    "model": "replace-with-intentional-model"
   }
 }
 ```

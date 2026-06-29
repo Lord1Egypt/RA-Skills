@@ -1,0 +1,10 @@
+{
+  "name": "batch-export",
+  "label": "批量导出",
+  "description": "一次输入多个图表，统一配置批量输出",
+  "format": "mixed",
+  "features": ["queue_management", "uniform_config", "progress_indicator", "zip_download"],
+  "default_width": 800,
+  "default_quality": 0.92,
+  "batch_mode": true
+}

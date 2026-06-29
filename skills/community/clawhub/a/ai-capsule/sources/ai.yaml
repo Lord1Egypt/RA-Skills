@@ -1,0 +1,128 @@
+# AI industry data sources
+# type: rss      → fetched automatically by fetch.py
+# type: webfetch → agent fetches in daily Step 2 (WebFetch / curl / tavily_extract)
+# type: tavily   → agent searches in daily Step 2
+# type: twitter  → fetched automatically by fetch.py (twitter-cli + browser-cookie3)
+
+sources:
+  # ── RSS / API (auto-fetched by fetch.py) ─────────────────────────────────
+
+  - name: HuggingFace Papers
+    type: rss
+    url: https://huggingface.co/api/papers?limit=50
+    handler: huggingface
+    limit: 50
+
+  - name: OpenAI Blog
+    type: rss
+    url: https://openai.com/news/rss.xml
+    limit: 5
+
+  - name: Microsoft Research
+    type: rss
+    url: https://www.microsoft.com/en-us/research/feed/
+    limit: 5
+
+  - name: Ben's Bites
+    type: rss
+    url: https://www.bensbites.com/feed
+    limit: 2
+
+  - name: Hacker News
+    type: rss
+    url: https://hnrss.org/newest?q=AI&points=100
+    handler: hacker_news
+    limit: 5
+
+  # ── URL fetch (agent fetches in daily Step 2) ─────────────────────────────
+
+  - name: Anthropic Product Blog
+    type: webfetch
+    url: https://claude.com/blog
+    limit: 10
+    note: latest 10 posts, skip older than 3 days
+    link_pattern: "claude\\.com/blog/[^/]+$"
+
+  - name: Anthropic Engineering
+    type: webfetch
+    url: https://www.anthropic.com/engineering
+    limit: 5
+    link_pattern: "anthropic\\.com/engineering/[^/]+$"
+
+  - name: Anthropic News
+    type: webfetch
+    url: https://www.anthropic.com/news
+    limit: 5
+    note: model releases and major announcements
+    link_pattern: "anthropic\\.com/news/[^/]+$"
+
+  - name: Google DeepMind
+    type: webfetch
+    url: https://deepmind.google/blog/
+    limit: 5
+    link_pattern: "deepmind\\.google/blog/[^/]+/?$"
+
+  - name: Meta AI
+    type: webfetch
+    url: https://ai.meta.com/blog/
+    limit: 5
+    python_fetch: false
+
+  - name: Simon Willison
+    type: webfetch
+    url: https://simonwillison.net/
+    limit: 10
+    link_pattern: "simonwillison\\.net/\\d{4}/"
+
+  - name: Eugene Yan
+    type: webfetch
+    url: https://eugeneyan.com/
+    limit: 5
+    link_pattern: "eugeneyan\\.com/writing/[^/]+/?$"
+
+  - name: Chip Huyen
+    type: webfetch
+    url: https://huyenchip.com/blog/
+    limit: 5
+    link_pattern: "huyenchip\\.com/\\d{4}/"
+
+  - name: Product Hunt Daily
+    type: webfetch
+    url: https://www.producthunt.com/leaderboard/daily/YYYY/M/D
+    limit: 10
+    note: replace YYYY/M/D with yesterday's date at runtime
+    python_fetch: false
+
+  - name: GitHub Trending
+    type: webfetch
+    url: https://github.com/trending?since=daily&spoken_language_code=en
+    limit: 5
+    note: keep only AI/LLM/ML projects, max 5; set source field to "github"
+    python_fetch: false
+
+  # ── Twitter/X (agent fetches in daily Step 2) ──────────────────────────────
+  # Requires: pip3 install browser-cookie3 twitter-cli
+  # Privacy: browser-cookie3 reads Chrome's local SQLite cookie file.
+  #          Only x.com cookies are extracted. Cookies never leave the machine.
+  #          If cookies expire, agent will prompt user to re-login at x.com.
+
+  - name: X/Twitter
+    type: twitter
+    accounts:
+      - Zai_org
+      - dotey
+      - _akhaliq
+      - omarsar0
+      - karpathy
+    limit: 5
+    note: latest 5 posts per account; user can add/remove accounts in this list
+
+  # ── Tavily search (agent searches in daily Step 2) ────────────────────────
+
+  - name: Reddit LocalLLaMA
+    type: tavily
+    query: "LocalLLaMA LLM"
+    include_domains:
+      - reddit.com
+    time_range: day
+    limit: 5

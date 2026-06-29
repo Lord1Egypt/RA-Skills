@@ -1,0 +1,4 @@
+interface:
+  display_name: "EPUB Bilingual Processor"
+  short_description: "Convert EPUBs into bilingual EPUB packages"
+  default_prompt: "Use $epub-bilingual-converter-skill to turn this EPUB into a bilingual edition with summaries and a report."

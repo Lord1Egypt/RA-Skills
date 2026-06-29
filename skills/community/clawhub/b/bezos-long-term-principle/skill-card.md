@@ -1,5 +1,5 @@
 ## Description: <br>
-A Chinese-first strategic reflection skill that applies Jeff Bezos-inspired long-term thinking, customer obsession, Day 1 mindset, and regret minimization to business, career, and startup decisions. <br>
+基于贝索斯长期主义和客户至上理念，分析战略决策、创业取舍，助力形成可持续的长期价值与创新方案。 <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,29 +11,28 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-External users and agents use this skill to structure strategic reflection around long-term value, customer impact, invention, and irreversible decision tradeoffs. It is suitable for general business strategy, career choice, and startup decision analysis, not professional financial, legal, career, or business advice. <br>
+Developers, founders, product leaders, and business strategists use this Chinese-first skill to apply a Bezos/Amazon-style long-term strategy lens to customer value, entrepreneurship, career, and investment tradeoffs. Treat its dated market and AI commentary as framing prompts rather than verified current facts. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Users could over-rely on general strategic reflection for high-stakes business, career, legal, or financial decisions. <br>
-Mitigation: Treat outputs as a thinking framework and validate important decisions with qualified professionals and context-specific evidence. <br>
+Risk: Dated market and AI commentary may be mistaken for verified current facts. <br>
+Mitigation: Use the commentary as strategic framing and verify time-sensitive claims against authoritative current sources before relying on them. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/gechengling/bezos-long-term-principle) <br>
-- [Publisher profile](https://clawhub.ai/user/gechengling) <br>
+- [ClawHub skill page](https://clawhub.ai/gechengling/skills/bezos-long-term-principle) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Guidance, Analysis, Markdown] <br>
-**Output Format:** [Markdown text with structured decision-analysis steps] <br>
+**Output Type(s):** [text, markdown, guidance] <br>
+**Output Format:** [Markdown or structured text in Chinese with strategy analysis prompts.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Chinese-first prose with English key terms preserved where useful] <br>
+**Other Properties Related to Output:** [Prompt-only guidance; no code execution, data access, persistence, or hidden privileged behavior per security evidence.] <br>
 
 ## Skill Version(s): <br>
-2.0.1 (source: server release evidence) <br>
+2.1.1 (source: server release evidence and artifact metadata) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

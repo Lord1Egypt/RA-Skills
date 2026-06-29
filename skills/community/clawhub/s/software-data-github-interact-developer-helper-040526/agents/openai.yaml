@@ -1,0 +1,7 @@
+interface:
+  display_name: "GitHub Interaction Developer Helper"
+  short_description: "Build reliable GitHub issue, pull request, review, and automation workflows with safe API usage, clear repo..."
+  default_prompt: "Use $software-data-github-interact-developer-helper to summarize this PR and its unresolved comments."
+
+policy:
+  allow_implicit_invocation: true

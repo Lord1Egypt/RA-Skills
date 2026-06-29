@@ -88,6 +88,7 @@ def check_common(
     expected = scenario["expected"]
     decision = plan_payload.get("decision", {}) if isinstance(plan_payload.get("decision"), dict) else {}
     queries = plan_payload.get("queries", [])
+    adoption_gates = plan_payload.get("adoption_gates", [])
     serialized_plan = json.dumps(plan_payload, ensure_ascii=False)
     description_conditions = set(scenario.get("description_conditions", []))
 
@@ -110,6 +111,13 @@ def check_common(
             errors.append(f"{source} error_code mismatch")
     if len(queries) != expected["query_count"]:
         errors.append("query count mismatch")
+    if expected["should_run"]:
+        if not isinstance(adoption_gates, list) or not adoption_gates:
+            errors.append("positive plan must include adoption gates")
+        if "explicit user authorization" not in serialized_plan:
+            errors.append("positive plan must keep execution behind explicit user authorization")
+        if "security scan" not in serialized_plan:
+            errors.append("positive plan must mention platform safety or scan checks")
 
     query_tiers = [query.get("tier") for query in queries if isinstance(query, dict)]
     if expected["should_run"] and query_tiers:

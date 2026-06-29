@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>经期健康仪表盘</title>
+<style>
+:root {
+  --bg: #FAF7F5;
+  --bg-card: #FFFFFF;
+  --bg-dark: #1E1B2E;
+  --bg-card-dark: #2A2742;
+  --text: #2D2A3E;
+  --text-secondary: #6E6A82;
+  --text-dark: #E8E6F0;
+  --text-dark-secondary: #9B97B2;
+  --purple: #9B7EC4;
+  --purple-light: #EDE4F7;
+  --coral: #E8737A;
+  --coral-light: #FDE8EA;
+  --green: #7EC49B;
+  --green-light: #E4F5EB;
+  --gold: #C4A87E;
+  --gold-light: #F5EFE4;
+  --pink: #E89BB4;
+  --pink-light: #FBE8EF;
+  --amber: #F0A060;
+  --amber-light: #FDF0E4;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 2px 12px rgba(45,42,62,0.06);
+  --shadow-lg: 0 8px 32px rgba(45,42,62,0.10);
+  --transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+[data-theme="dark"] {
+  --bg: #1E1B2E;
+  --bg-card: #2A2742;
+  --text: #E8E6F0;
+  --text-secondary: #9B97B2;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body { 
+  font-family: var(--font);
+  background: var(--bg); color: var(--text);
+  line-height: 1.6; min-height: 100vh;
+  transition: var(--transition);
+}
+
+/* Header */
+.header {
+  background: var(--bg-card);
+  padding: 20px 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  box-shadow: var(--shadow);
+  position: sticky; top:0; z-index: 100;
+}
+.header-brand {
+  display: flex; align-items: center; gap: 12px;
+  font-size: 20px; font-weight: 600; letter-spacing: -0.3px;
+}
+.header-brand .icon { font-size: 28px; }
+.theme-toggle {
+  width: 44px; height: 44px; border-radius: 50%;
+  border: none; background: var(--purple-light);
+  cursor: pointer; font-size: 20px;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--transition);
+}
+.theme-toggle:hover { transform: scale(1.05); }
+
+/* Container */
+.container { max-width: 1280px; margin: 0 auto; padding: 28px 24px; }
+
+/* Stage Banner */
+.stage-banner {
+  background: linear-gradient(135deg, var(--purple-light), var(--pink-light));
+  border-radius: var(--radius); padding: 20px 28px;
+  margin-bottom: 24px; display: flex; align-items: center; gap: 16px;
+}
+[data-theme="dark"] .stage-banner {
+  background: linear-gradient(135deg, rgba(155,126,196,0.2), rgba(232,155,180,0.2));
+}
+.stage-badge {
+  background: var(--purple); color: white;
+  padding: 4px 14px; border-radius: 20px;
+  font-size: 13px; font-weight: 600;
+}
+.stage-info { flex:1; }
+.stage-title { font-size: 18px; font-weight: 600; margin-bottom: 2px; }
+.stage-subtitle { font-size: 13px; color: var(--text-secondary); }
+
+/* Summary Cards */
+.summary-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px; margin-bottom: 24px;
+}
+.summary-card {
+  background: var(--bg-card); border-radius: var(--radius);
+  padding: 20px; box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+.summary-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+.summary-card .label { font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.summary-card .value { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; }
+.summary-card .unit { font-size: 14px; font-weight: 400; color: var(--text-secondary); }
+.summary-card .sub { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
+.color-coral { color: var(--coral); }
+.color-purple { color: var(--purple); }
+.color-green { color: var(--green); }
+.color-amber { color: var(--amber); }
+.color-pink { color: var(--pink); }
+
+/* Main Grid */
+.main-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 20px; margin-bottom: 24px;
+}
+@media (max-width: 900px) { .main-grid { grid-template-columns: 1fr; } }
+
+/* Cards */
+.card {
+  background: var(--bg-card); border-radius: var(--radius);
+  padding: 24px; box-shadow: var(--shadow);
+  transition: var(--transition);
+}
+.card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 16px;
+}
+.card-title { font-size: 16px; font-weight: 600; }
+.card-badge {
+  font-size: 11px; padding: 3px 10px; border-radius: 12px;
+  font-weight: 500;
+}
+.badge-trend { background: var(--green-light); color: #3D7A5A; }
+.badge-alert { background: var(--coral-light); color: #B8545E; }
+.badge-info { background: var(--purple-light); color: #6B5490; }
+
+/* Chart Containers */
+.chart-container { position: relative; width: 100%; }
+.chart-container canvas { width: 100% !important; }
+
+/* Calendar Heatmap */
+.calendar-heatmap {
+  display: grid; grid-template-columns: repeat(7, 1fr);
+  gap: 3px; margin-top: 12px;
+}
+.calendar-header {
+  text-align: center; font-size: 11px; color: var(--text-secondary);
+  padding: 4px 0; font-weight: 500;
+}
+.calendar-day {
+  aspect-ratio: 1; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 500; cursor: pointer;
+  transition: var(--transition); position: relative;
+}
+.calendar-day:hover { transform: scale(1.1); z-index: 2; }
+.calendar-day.empty { background: transparent; cursor: default; }
+.calendar-day.empty:hover { transform: none; }
+.calendar-day.period { background: var(--coral); color: white; }
+.calendar-day.period-light { background: var(--coral-light); color: var(--coral); }
+.calendar-day.ovulation { background: var(--pink); color: white; }
+.calendar-day.fertile { background: var(--pink-light); color: #B07090; }
+.calendar-day.today { border: 2px solid var(--purple); font-weight: 700; }
+.calendar-day.other-month { opacity: 0.3; }
+
+/* Legend */
+.legend { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 12px; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--text-secondary); }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+/* Prediction Timeline */
+.prediction-timeline {
+  display: flex; align-items: center; gap: 0;
+  margin-top: 16px; position: relative;
+}
+.timeline-phase {
+  flex: 1; text-align: center; padding: 10px 4px;
+  border-radius: 8px; font-size: 11px; position: relative;
+}
+.timeline-phase .phase-day { font-size: 18px; font-weight: 700; }
+.timeline-phase .phase-label { font-size: 11px; margin-top: 2px; opacity: 0.8; }
+.phase-period { background: var(--coral-light); color: #B8545E; }
+.phase-follicular { background: var(--green-light); color: #3D7A5A; }
+.phase-ovulation { background: var(--pink-light); color: #B07090; }
+.phase-luteal { background: var(--gold-light); color: #8B6F4E; }
+.timeline-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  font-size: 20px; color: var(--purple);
+}
+
+/* Insight Cards */
+.insight-card {
+  background: linear-gradient(135deg, var(--bg-card), var(--purple-light));
+  border-radius: var(--radius); padding: 20px;
+  margin-bottom: 12px; border-left: 4px solid var(--purple);
+}
+.insight-card.alert { border-left-color: var(--coral); background: linear-gradient(135deg, var(--bg-card), var(--coral-light)); }
+.insight-card.tip { border-left-color: var(--green); background: linear-gradient(135deg, var(--bg-card), var(--green-light)); }
+.insight-title { font-weight: 600; font-size: 14px; margin-bottom: 6px; }
+.insight-text { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+/* Empty State */
+.empty-state {
+  text-align: center; padding: 48px 24px; color: var(--text-secondary);
+}
+.empty-state .empty-icon { font-size: 56px; margin-bottom: 16px; opacity: 0.6; }
+.empty-state .empty-title { font-size: 18px; font-weight: 600; margin-bottom: 8px; color: var(--text); }
+.empty-state .empty-desc { font-size: 14px; line-height: 1.6; max-width: 400px; margin: 0 auto; }
+
+/* Full Width */
+.full-width { grid-column: 1 / -1; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container { padding: 16px; }
+  .summary-grid { grid-template-columns: repeat(2, 1fr); }
+  .header { padding: 14px 16px; }
+  .header-brand { font-size: 17px; }
+  .card { padding: 16px; }
+  .summary-card .value { font-size: 26px; }
+}
+</style>
+</head>
+<body data-theme="light">
+
+<header class="header">
+  <div class="header-brand">
+    <span class="icon">🌙</span>
+    <span>经期健康仪表盘</span>
+  </div>
+  <button class="theme-toggle" onclick="toggleTheme()" title="切换主题">🌓</button>
+</header>
+
+<div class="container" id="dashboard">
+  <!-- Empty state - shown when no data -->
+  <div class="empty-state" id="emptyState">
+    <div class="empty-icon">📋</div>
+    <div class="empty-title">开始记录你的经期旅程</div>
+    <div class="empty-desc">
+      每一次记录都是对自己身体的一次倾听。<br>
+      记录3个周期后，你将看到专属于你的健康洞察。
+    </div>
+  </div>
+
+  <!-- Stage Banner -->
+  <div class="stage-banner" id="stageBanner" style="display:none;">
+    <span class="stage-badge" id="stageBadge">经期追踪</span>
+    <div class="stage-info">
+      <div class="stage-title" id="stageTitle"></div>
+      <div class="stage-subtitle" id="stageSubtitle"></div>
+    </div>
+  </div>
+
+  <!-- Summary Cards -->
+  <div class="summary-grid" id="summaryGrid" style="display:none;"></div>
+
+  <!-- Main Dashboard -->
+  <div class="main-grid" id="mainGrid" style="display:none;">
+    <!-- Calendar -->
+    <div class="card full-width">
+      <div class="card-header">
+        <span class="card-title">📅 经期日历</span>
+        <span class="card-badge badge-info" id="calendarMonth"></span>
+      </div>
+      <div id="calendarContainer"></div>
+    </div>
+
+    <!-- Cycle Trend Chart -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">📈 周期趋势</span>
+        <span class="card-badge badge-trend" id="trendBadge">规律</span>
+      </div>
+      <div class="chart-container"><canvas id="cycleTrendChart"></canvas></div>
+    </div>
+
+    <!-- Symptom Radar -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">🎯 症状分布</span>
+      </div>
+      <div class="chart-container"><canvas id="symptomRadarChart"></canvas></div>
+    </div>
+
+    <!-- Mood Curve -->
+    <div class="card full-width">
+      <div class="card-header">
+        <span class="card-title">💫 情绪波动曲线</span>
+      </div>
+      <div class="chart-container"><canvas id="moodChart"></canvas></div>
+    </div>
+
+    <!-- Prediction Timeline -->
+    <div class="card full-width">
+      <div class="card-header">
+        <span class="card-title">🔮 周期预测</span>
+      </div>
+      <div id="predictionTimeline"></div>
+    </div>
+
+    <!-- Insights -->
+    <div class="card full-width">
+      <div class="card-header">
+        <span class="card-title">💡 专属洞察</span>
+      </div>
+      <div id="insightsContainer"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Chart.js from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+<script>
+// ==================== THEME TOGGLE ====================
+function toggleTheme() {
+  const body = document.body;
+  const current = body.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  body.setAttribute('data-theme', next);
+  if (window.cycleChart) window.cycleChart.update();
+  if (window.radarChart) window.radarChart.update();
+  if (window.moodChart) window.moodChart.update();
+}
+
+// ==================== DATA LAYER ====================
+let appData = null;
+let charts = {};
+
+function getThemeColors() {
+  const isDark = document.body.getAttribute('data-theme') === 'dark';
+  return {
+    text: isDark ? '#E8E6F0' : '#2D2A3E',
+    textSecondary: isDark ? '#9B97B2' : '#6E6A82',
+    grid: isDark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.05)',
+    purple: '#9B7EC4',
+    coral: '#E8737A',
+    green: '#7EC49B',
+    gold: '#C4A87E',
+    pink: '#E89BB4',
+    amber: '#F0A060',
+    bgCard: isDark ? '#2A2742' : '#FFFFFF'
+  };
+}
+
+// ==================== LOAD DATA ====================
+function loadData(data, analysisResult, recommendations) {
+  appData = data;
+  window._analysis = analysisResult || null;
+  window._recommendations = recommendations || null;
+
+  if (!data || !data.cycles || data.cycles.length === 0) {
+    document.getElementById('emptyState').style.display = 'block';
+    document.getElementById('stageBanner').style.display = 'none';
+    document.getElementById('summaryGrid').style.display = 'none';
+    document.getElementById('mainGrid').style.display = 'none';
+    return;
+  }
+  
+  document.getElementById('emptyState').style.display = 'none';
+  document.getElementById('stageBanner').style.display = 'flex';
+  document.getElementById('summaryGrid').style.display = 'grid';
+  document.getElementById('mainGrid').style.display = 'grid';
+  
+  renderStageBanner(data);
+  renderSummaryCards(data, analysisResult);
+  renderCalendar(data, analysisResult);
+  renderCycleTrend(data, analysisResult);
+  renderSymptomRadar(data, analysisResult);
+  renderMoodChart(data);
+  renderPrediction(data, analysisResult);
+  renderInsights(data, analysisResult, recommendations);
+}
+
+// ==================== STAGE BANNER ====================
+function renderStageBanner(data) {
+  const stage = data.user_profile?.life_stage || 'menstruating';
+  const stageMap = {
+    'premenarche': { badge: '初潮前', title: '身体认知阶段', sub: '记录身体发育，为初潮做准备' },
+    'menstruating': { badge: '经期追踪', title: '周期同步生活', sub: '理解你的身体节奏，活出最佳状态' },
+    'ttc': { badge: '备孕期', title: '科学备孕 · 周期优化', sub: '精准识别排卵窗口，优化生育健康' },
+    'pregnant': { badge: '孕期', title: '孕育新生命', sub: '追踪孕期健康，安心度过每一天' },
+    'postpartum': { badge: '产后', title: '温柔恢复期', sub: '关注身心恢复，你做得很好' },
+    'perimenopause': { badge: '围绝经期', title: '优雅过渡', sub: '理解身体变化，维护生活质量' },
+    'postmenopause': { badge: '绝经后', title: '新阶段 · 新健康', sub: '关注整体健康，享受生命新篇章' }
+  };
+  const info = stageMap[stage] || stageMap['menstruating'];
+  document.getElementById('stageBadge').textContent = info.badge;
+  document.getElementById('stageTitle').textContent = info.title;
+  document.getElementById('stageSubtitle').textContent = info.sub;
+}
+
+// ==================== SUMMARY CARDS ====================
+function renderSummaryCards(data, analysis) {
+  const cycles = data.cycles;
+  // Use pre-computed analysis if available, else compute inline
+  const avgCycle = analysis && analysis.avg_cycle_length
+    ? analysis.avg_cycle_length
+    : (cycles.length >= 2
+        ? Math.round(cycles.slice(1).reduce((sum, c, i) => sum + dayDiff(cycles[i].start_date, c.start_date), 0) / (cycles.length - 1))
+        : '--');
+  const avgPeriod = analysis && analysis.avg_period_length
+    ? analysis.avg_period_length
+    : Math.round(cycles.reduce((sum, c) => sum + dayDiff(c.start_date, c.end_date) + 1, 0) / cycles.length);
+
+  const pred = analysis && analysis.prediction ? analysis.prediction : null;
+  const nextPrediction = pred ? pred.next_period_start
+    : (avgCycle !== '--' ? addDays(cycles[cycles.length-1].start_date, avgCycle) : null);
+  const daysUntil = pred ? pred.days_until_next
+    : (nextPrediction ? dayDiff(today(), nextPrediction) : null);
+
+  const regularity = analysis ? (analysis.regularity || '数据收集中') : '数据收集中';
+  const alerts = analysis ? (analysis.alerts || []) : [];
+  const alertFlag = alerts.length > 0 ? ' ⚠️' : '';
+
+  const cards = [
+    { label: '平均周期', value: avgCycle, unit: '天', sub: `${cycles.length}个周期记录`, color: 'color-purple' },
+    { label: '经期持续', value: avgPeriod, unit: '天', sub: '平均天数', color: 'color-coral' },
+    { label: '下次预测', value: nextPrediction ? formatDateShort(nextPrediction) : '--', unit: '', sub: daysUntil !== null ? (daysUntil > 0 ? `还有${daysUntil}天` : daysUntil === 0 ? '就是今天' : `已过${Math.abs(daysUntil)}天`) : '', color: 'color-pink' },
+    { label: '规律性', value: regularity + alertFlag, unit: '', sub: cycles.length >= 3 ? '基于周期变异系数' : '记录3个周期后显示', color: 'color-green' },
+  ];
+  
+  document.getElementById('summaryGrid').innerHTML = cards.map(c => `
+    <div class="summary-card">
+      <div class="label">${c.label}</div>
+      <div class="value ${c.color}">${c.value}<span class="unit"> ${c.unit}</span></div>
+      <div class="sub">${c.sub}</div>
+    </div>
+  `).join('');
+}
+
+// ==================== CALENDAR HEATMAP ====================
+function renderCalendar(data, analysis) {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth();
+  const firstDay = new Date(year, month, 1);
+  const lastDay = new Date(year, month + 1, 0);
+  const startDow = firstDay.getDay();
+  
+  const monthNames = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+  document.getElementById('calendarMonth').textContent = `${year}年${monthNames[month]}`;
+  
+  // Build period ranges
+  const periodDays = new Set();
+  const ovulationDays = new Set();
+  const fertileDays = new Set();
+  
+  data.cycles.forEach(cycle => {
+    let d = new Date(cycle.start_date);
+    const end = new Date(cycle.end_date);
+    while (d <= end) {
+      periodDays.add(formatDate(d));
+      d.setDate(d.getDate() + 1);
+    }
+  });
+  
+  // Use pre-computed prediction if available
+  const pred = analysis && analysis.prediction ? analysis.prediction : null;
+  if (pred) {
+    // Mark fertile window and ovulation from pre-computed analysis
+    [pred.fertile_start, pred.fertile_end].forEach(boundary => {
+      if (!boundary) return;
+    });
+    let d = new Date(pred.fertile_start);
+    const end = new Date(pred.fertile_end);
+    while (d <= end) {
+      const ds = formatDate(d);
+      if (ds === pred.ovulation_date) ovulationDays.add(ds);
+      else fertileDays.add(ds);
+      d.setDate(d.getDate() + 1);
+    }
+    ovulationDays.add(pred.ovulation_date);
+  } else if (data.cycles.length >= 2) {
+    const lastCycle = data.cycles[data.cycles.length - 1];
+    const avgCycleLen = Math.round(data.cycles.slice(1).reduce((sum, c, i) => sum + dayDiff(data.cycles[i].start_date, c.start_date), 0) / (data.cycles.length - 1));
+    const ovuDate = addDays(lastCycle.start_date, avgCycleLen - 14);
+    const fertileStart = addDays(ovuDate, -3);
+    const fertileEnd = addDays(ovuDate, 1);
+    let d = new Date(fertileStart);
+    const end = new Date(fertileEnd);
+    while (d <= end) {
+      if (formatDate(d) === formatDate(new Date(ovuDate))) {
+        ovulationDays.add(formatDate(d));
+      } else {
+        fertileDays.add(formatDate(d));
+      }
+      d.setDate(d.getDate() + 1);
+    }
+  }
+  
+  const dayNames = ['日','一','二','三','四','五','六'];
+  let html = '<div class="calendar-heatmap">';
+  dayNames.forEach(d => html += `<div class="calendar-header">${d}</div>`);
+  
+  // Empty cells before first day
+  for (let i = 0; i < startDow; i++) {
+    html += '<div class="calendar-day empty"></div>';
+  }
+  
+  const todayStr = formatDate(now);
+  
+  for (let d = 1; d <= lastDay.getDate(); d++) {
+    const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    let cls = 'calendar-day';
+    if (periodDays.has(dateStr)) cls += ' period';
+    else if (ovulationDays.has(dateStr)) cls += ' ovulation';
+    else if (fertileDays.has(dateStr)) cls += ' fertile';
+    if (dateStr === todayStr) cls += ' today';
+    html += `<div class="${cls}" title="${dateStr}">${d}</div>`;
+  }
+  
+  html += '</div>';
+  
+  html += `
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--coral)"></div> 经期</div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--pink)"></div> 排卵日</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#FBE8EF"></div> 易孕期</div>
+      <div class="legend-item"><div class="legend-dot" style="border:2px solid var(--purple)"></div> 今天</div>
+    </div>
+  `;
+  
+  document.getElementById('calendarContainer').innerHTML = html;
+}
+
+// ==================== CYCLE TREND CHART ====================
+function renderCycleTrend(data, analysis) {
+  const ctx = document.getElementById('cycleTrendChart').getContext('2d');
+  if (charts.cycle) charts.cycle.destroy();
+  
+  const colors = getThemeColors();
+  const cycles = data.cycles;
+  if (cycles.length < 2) return;
+  
+  const labels = cycles.slice(1).map((c, i) => `周期${i+2}`);
+  const lengths = cycles.slice(1).map((c, i) => dayDiff(cycles[i].start_date, c.start_date));
+  const avgLength = lengths.reduce((a,b) => a+b, 0) / lengths.length;
+  
+  charts.cycle = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '周期长度',
+        data: lengths,
+        borderColor: colors.purple,
+        backgroundColor: 'rgba(155,126,196,0.1)',
+        fill: true,
+        tension: 0.4,
+        pointBackgroundColor: colors.purple,
+        pointRadius: 5,
+        pointHoverRadius: 8,
+        borderWidth: 2.5
+      }, {
+        label: '平均',
+        data: Array(lengths.length).fill(avgLength),
+        borderColor: colors.textSecondary,
+        borderDash: [6, 4],
+        borderWidth: 1.5,
+        fill: false,
+        pointRadius: 0
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: { display: true, labels: { color: colors.text, usePointStyle: true, padding: 20, font: { size: 11 } } }
+      },
+      scales: {
+        x: { ticks: { color: colors.textSecondary }, grid: { color: colors.grid } },
+        y: { 
+          min: Math.max(15, Math.min(...lengths) - 5),
+          max: Math.min(45, Math.max(...lengths) + 5),
+          ticks: { color: colors.textSecondary, callback: v => v + '天' },
+          grid: { color: colors.grid }
+        }
+      }
+    }
+  });
+}
+
+// ==================== SYMPTOM RADAR ====================
+function renderSymptomRadar(data, analysis) {
+  const ctx = document.getElementById('symptomRadarChart').getContext('2d');
+  if (charts.radar) charts.radar.destroy();
+  const colors = getThemeColors();
+  // Use pre-computed symptom rates if available
+  const symptomRate = analysis && analysis.symptom_rate ? analysis.symptom_rate : {};
+  const cycles = data.cycles;
+  const n = cycles.length;
+  
+  const computedRate = {};
+  if (Object.keys(symptomRate).length === 0) {
+    cycles.forEach(c => {
+      if (c.symptoms) {
+        Object.keys(c.symptoms).forEach(s => {
+          const detail = c.symptoms[s];
+          const present = typeof detail === 'object' ? detail.present : !!detail;
+          if (present) computedRate[s] = (computedRate[s] || 0) + 1;
+        });
+      }
+    });
+    Object.keys(computedRate).forEach(s => { computedRate[s] = Math.round(computedRate[s] / n * 100); });
+  }
+  
+  const finalRate = Object.keys(symptomRate).length > 0 ? symptomRate : computedRate;
+  
+  const symptomNames = {
+    'cramps': '腹痛', 'back_pain': '腰酸', 'headache': '头痛',
+    'breast_tenderness': '乳胀', 'bloating': '腹胀', 'fatigue': '疲劳',
+    'nausea': '恶心', 'acne': '痤疮', 'insomnia': '失眠',
+    'irritability': '易怒', 'anxiety': '焦虑', 'low_mood': '情绪低落',
+    'mood_swings': '情绪波动', 'appetite_change': '食欲变化'
+  };
+  
+  const labels = Object.keys(finalRate).map(s => symptomNames[s] || s);
+  const values = Object.values(finalRate);
+  
+  charts.radar = new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: '出现频率 (%)',
+        data: values,
+        backgroundColor: 'rgba(155,126,196,0.2)',
+        borderColor: colors.purple,
+        borderWidth: 2,
+        pointBackgroundColor: colors.purple,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        r: {
+          min: 0, max: 100,
+          ticks: { display: false, stepSize: 20 },
+          pointLabels: { color: colors.text, font: { size: 10 } },
+          grid: { color: colors.grid }
+        }
+      }
+    }
+  });
+}
+
+// ==================== MOOD CHART ====================
+function renderMoodChart(data) {
+  const ctx = document.getElementById('moodChart').getContext('2d');
+  if (charts.mood) charts.mood.destroy();
+  
+  const colors = getThemeColors();
+  const cycles = data.cycles;
+  
+  // Average mood by cycle day
+  const moodByDay = {};
+  let countByDay = {};
+  
+  cycles.forEach(c => {
+    if (c.mood_score) {
+      const cycleDay = dayDiff(c.start_date, c.start_date) + 1;
+      moodByDay[cycleDay] = (moodByDay[cycleDay] || 0) + c.mood_score;
+      countByDay[cycleDay] = (countByDay[cycleDay] || 0) + 1;
+    }
+  });
+  
+  const days = Object.keys(moodByDay).map(Number).sort((a,b) => a-b);
+  const avgMood = days.map(d => Math.round(moodByDay[d] / countByDay[d] * 10) / 10);
+  
+  charts.mood = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: days.map(d => `第${d}天`),
+      datasets: [{
+        label: '情绪指数',
+        data: avgMood,
+        borderColor: colors.amber,
+        backgroundColor: 'rgba(240,160,96,0.1)',
+        fill: true,
+        tension: 0.4,
+        pointBackgroundColor: colors.amber,
+        pointRadius: 3,
+        borderWidth: 2
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: { legend: { display: false } },
+      scales: {
+        x: { ticks: { color: colors.textSecondary, maxTicksLimit: 14 }, grid: { color: colors.grid } },
+        y: { min: 0, max: 10, ticks: { color: colors.textSecondary }, grid: { color: colors.grid } }
+      }
+    }
+  });
+}
+
+// ==================== PREDICTION TIMELINE ====================
+function renderPrediction(data, analysis) {
+  const cycles = data.cycles;
+  if (cycles.length < 2) {
+    document.getElementById('predictionTimeline').innerHTML = '<p style="color:var(--text-secondary);font-size:13px;padding:8px 0;">记录至少2个周期后，将显示周期预测</p>';
+    return;
+  }
+  
+  const pred = analysis && analysis.prediction ? analysis.prediction : null;
+  const avgCycle = analysis && analysis.avg_cycle_length ? analysis.avg_cycle_length
+    : Math.round(cycles.slice(1).reduce((sum, c, i) => sum + dayDiff(cycles[i].start_date, c.start_date), 0) / (cycles.length - 1));
+  const avgPeriod = analysis && analysis.avg_period_length ? analysis.avg_period_length
+    : Math.round(cycles.reduce((sum, c) => sum + dayDiff(c.start_date, c.end_date) + 1, 0) / cycles.length);
+  
+  const nextPeriodStart = pred ? pred.next_period_start : addDays(cycles[cycles.length-1].start_date, avgCycle);
+  const ovulationDate   = pred ? pred.ovulation_date   : addDays(nextPeriodStart, avgCycle - 14);
+  const fertileStart    = pred ? pred.fertile_start    : addDays(ovulationDate, -3);
+  const fertileEnd      = pred ? pred.fertile_end      : addDays(ovulationDate, 1);
+  const daysUntil       = pred ? pred.days_until_next  : dayDiff(today(), nextPeriodStart);
+  
+  const daysText = daysUntil > 0 ? `还有 ${daysUntil} 天` : daysUntil === 0 ? '今天' : `已过 ${Math.abs(daysUntil)} 天`;
+  const follicularDays = Math.max(1, Math.round(avgCycle) - 14 - Math.round(avgPeriod));
+  
+  let html = `<div style="margin-bottom:12px;font-size:13px;color:var(--text-secondary);">
+    下次经期：<strong style="color:var(--coral)">${nextPeriodStart}</strong>（${daysText}）
+    &nbsp;·&nbsp; 预计排卵：<strong style="color:var(--pink)">${ovulationDate}</strong>
+    &nbsp;·&nbsp; 易孕期：${fertileStart} ~ ${fertileEnd}
+  </div>`;
+  
+  html += '<div class="prediction-timeline" style="flex-wrap:wrap;gap:4px;">';
+  html += `<div class="timeline-phase phase-period" style="flex:${Math.round(avgPeriod)}">
+    <div class="phase-day">${formatDateShort(nextPeriodStart)}</div>
+    <div class="phase-label">经期 ${Math.round(avgPeriod)}天</div>
+  </div>`;
+  html += `<div class="timeline-phase phase-follicular" style="flex:${follicularDays}">
+    <div class="phase-day">卵泡期</div>
+    <div class="phase-label">约${follicularDays}天</div>
+  </div>`;
+  html += `<div class="timeline-phase phase-ovulation" style="flex:3">
+    <div class="phase-day">${formatDateShort(ovulationDate)}</div>
+    <div class="phase-label">排卵日</div>
+  </div>`;
+  html += `<div class="timeline-phase phase-luteal" style="flex:14">
+    <div class="phase-day">黄体期</div>
+    <div class="phase-label">约14天</div>
+  </div>`;
+  html += '</div>';
+  
+  document.getElementById('predictionTimeline').innerHTML = html;
+}
+
+// ==================== INSIGHTS ====================
+function renderInsights(data, analysis, recommendations) {
+  const cycles = data.cycles;
+  const insights = [];
+  
+  // If recommendations were pre-computed by analyze.py, use them
+  if (recommendations && recommendations.length > 0) {
+    recommendations.forEach(r => {
+      const levelMap = { 'medical_referral': 'alert', 'tip': 'tip', 'lifestyle': 'tip', 'nutrition': 'tip', 'exercise': 'tip', 'mental': 'info' };
+      insights.push({ type: levelMap[r.type] || 'info', title: r.title, text: r.text });
+    });
+  } else {
+    // Fallback: generate inline
+    if (cycles.length >= 3) {
+      const lengths = cycles.slice(1).map((c, i) => dayDiff(cycles[i].start_date, c.start_date));
+      const mean = lengths.reduce((a,b) => a+b, 0) / lengths.length;
+      const variance = lengths.reduce((a,b) => a + (b-mean)**2, 0) / lengths.length;
+      const cv = Math.sqrt(variance) / mean;
+      if (cv < 0.08) {
+        insights.push({ type: 'tip', title: '你的周期非常规律 ✨', text: `周期变异系数仅${(cv*100).toFixed(1)}%，说明你的内分泌系统运作稳定。这种规律性是整体健康的好指标。` });
+      }
+      const trend = lengths[lengths.length-1] - lengths[0];
+      if (Math.abs(trend) >= 3) {
+        insights.push({ type: 'info', title: trend > 0 ? '周期有变长趋势' : '周期有变短趋势',
+          text: trend > 0
+            ? `近几个周期平均延长了${Math.abs(trend)}天。可能因素：压力、作息变化、体重变化。如果持续超过35天，建议关注。`
+            : `近几个周期平均缩短了${Math.abs(trend)}天。偶尔的周期缩短是正常的，但持续<21天建议咨询医生。`
+        });
+      }
+    }
+    if (cycles.length < 3) {
+      insights.push({ type: 'tip', title: '继续记录，解锁更多洞察', text: `你已经记录了${cycles.length}个周期。记录3个周期后，我会为你生成个性化健康分析和建议。` });
+    }
+    insights.push({ type: 'tip', title: '今日关怀 🌿', text: '记录基础体温是了解排卵规律最经济有效的方式。每天早上醒来后、起床前测量舌下温度，坚持3个周期你就能看到自己的双相体温曲线。' });
+  }
+  
+  // Alerts from analysis
+  if (analysis && analysis.alerts && analysis.alerts.length > 0) {
+    const alertTexts = {
+      'avg_cycle_short':  '平均周期 < 21 天，建议关注甲状腺和内分泌状态，可咨询妇科医生。',
+      'avg_cycle_long':   '平均周期 > 35 天，可能与排卵延迟或PCOS相关，建议妇科检查。',
+      'period_too_long':  '经期持续 > 8 天，可能有子宫问题，建议就诊排查。',
+      'period_too_short': '经期持续 < 2 天，可能内膜偏薄，备孕中尤需关注。',
+      'high_variability': '周期波动较大，建议优先稳定作息和减压，持续3个月观察。',
+    };
+    analysis.alerts.forEach(a => {
+      if (alertTexts[a] && !insights.find(i => i.type === 'alert')) {
+        insights.unshift({ type: 'alert', title: '⚠️ 健康提醒', text: alertTexts[a] });
+      }
+    });
+  }
+  
+  const iconMap = { alert: '⚠️', tip: '🌿', info: '💡' };
+  document.getElementById('insightsContainer').innerHTML = insights.map(i => `
+    <div class="insight-card ${i.type}">
+      <div class="insight-title">${iconMap[i.type] || '💡'} ${i.title}</div>
+      <div class="insight-text">${i.text}</div>
+    </div>
+  `).join('');
+}
+
+// ==================== UTILITY FUNCTIONS ====================
+function formatDate(d) {
+  if (typeof d === 'string') return d;
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function formatDateShort(d) {
+  if (typeof d === 'string') d = new Date(d);
+  return `${d.getMonth()+1}/${d.getDate()}`;
+}
+function today() { return formatDate(new Date()); }
+function dayDiff(d1, d2) {
+  if (typeof d1 === 'string') d1 = new Date(d1);
+  if (typeof d2 === 'string') d2 = new Date(d2);
+  return Math.round((d2 - d1) / (1000 * 60 * 60 * 24));
+}
+function addDays(d, days) {
+  if (typeof d === 'string') d = new Date(d);
+  const r = new Date(d);
+  r.setDate(r.getDate() + days);
+  return formatDate(r);
+}
+
+// ==================== EXPORT ====================
+window.menstrualDashboard = { loadData, getThemeColors, toggleTheme };</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "成本效益审计工作流",
+  "slug": "audit-cost-benefit",
+  "version": "1.0.0",
+  "description": "成本效益分析：成本归集→效益测算→对比分析→敏感性模拟→报告",
+  "tags": [
+    "审计",
+    "成本效益",
+    "效益审计",
+    "工作流"
+  ],
+  "category": "审计业务",
+  "author": "融策审计",
+  "license": "MIT",
+  "files": [
+    "workflow.yaml",
+    "SKILL.md"
+  ],
+  "dependencies": {
+    "scripts": [
+      "audit_workflow.py",
+      "audit_router.py",
+      "pipeline_engine.py"
+    ],
+    "python": ">=3.10"
+  },
+  "published_at": "2026-06-20T11:03:25.305440"
+}

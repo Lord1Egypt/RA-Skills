@@ -11,31 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill to review Makefiles before committing build, automation, CI/CD, or portability changes. It helps map Make-related files, analyze dependencies and duplicated recipes, identify portability issues, and summarize recommended follow-up actions. <br>
+Developers and engineers use this skill to review Makefile changes, build automation, CI/CD updates, and portability improvements before committing or releasing them. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill recommends command execution while reviewing Makefiles. <br>
-Mitigation: Inspect every suggested command before running it and limit use to deliberate Makefile auditing tasks. <br>
-Risk: The skill can lead to applied Makefile target generation or repository changes. <br>
-Mitigation: Use any --apply or generated-target workflow only in a clean git diff or sandbox after explicitly deciding that Makefile changes are intended. <br>
+Risk: Broad Makefile and build automation triggers may activate the skill outside an intended audit. <br>
+Mitigation: Use the skill only for explicit Makefile review requests or narrowly scoped build automation audits. <br>
+Risk: The artifact documents an apply mode that can modify executable build automation. <br>
+Mitigation: Inspect proposed diffs before applying changes and avoid apply mode unless the reviewer is comfortable changing Makefile behavior. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-pensive-makefile-review) <br>
-- [OpenClaw homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/pensive) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-pensive-makefile-review) <br>
+- [Pensive plugin homepage](https://github.com/athola/claude-night-market/tree/master/plugins/pensive) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Analysis, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown with review findings, file references, recommendations, and inline shell commands] <br>
+**Output Type(s):** [analysis, markdown, shell commands, configuration, guidance] <br>
+**Output Format:** [Markdown with findings, file references, command snippets, and approval recommendations] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May include suggested Makefile refactors or target-generation guidance that should be reviewed before use.] <br>
+**Other Properties Related to Output:** [Findings are organized by context, dependency analysis, duplication candidates, portability issues, missing targets, and recommendation.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: ClawHub release metadata) <br>
+1.9.13 (source: ClawHub release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

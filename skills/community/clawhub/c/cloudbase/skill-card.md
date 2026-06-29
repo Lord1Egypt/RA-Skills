@@ -1,5 +1,5 @@
 ## Description: <br>
-Cloudbase helps agents develop, design, deploy, debug, migrate, and troubleshoot CloudBase projects across web apps, WeChat Mini Programs, authentication, databases, cloud functions, CloudRun, storage, AI integrations, operations, and spec workflows. <br>
+Use this skill when developing, designing, building, deploying, debugging, migrating, or troubleshooting CloudBase projects across web apps, WeChat mini programs, native/mobile HTTP API integrations, authentication, databases, serverless functions, CloudRun, cloud storage, AI model use, operations, and specification workflows. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,37 +11,38 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill to plan and implement CloudBase and Tencent CloudBase applications, choose the right reference workflow, configure backend resources, generate application code, and produce deployment or troubleshooting commands. <br>
+Developers and engineers use this skill to route CloudBase tasks to the appropriate guidance for app development, authentication, data access, deployment, AI features, troubleshooting, and code review. It is intended for agents assisting with CloudBase project implementation and operations. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The security review reports agent-directed hidden comments and unsafe copy-paste deployment or security examples. <br>
-Mitigation: Review deployment, public access, CORS, and authentication examples before production use, and require explicit user approval before executing shell commands or changing cloud resources. <br>
-Risk: The skill can auto-activate for broad UI, AI, operations, and planning requests outside CloudBase work. <br>
-Mitigation: Install and use it only for CloudBase or Tencent CloudBase development tasks, and route unrelated requests to more specific skills. <br>
+Risk: The skill can guide agents toward high-impact CloudBase changes such as MCP or CLI operations, deployments, permission changes, billing changes, and public-access changes. <br>
+Mitigation: Require explicit user confirmation before those actions and review proposed changes before execution. <br>
+Risk: Some examples may use public access patterns or wildcard CORS that are too broad for production use. <br>
+Mitigation: Harden generated configurations with authenticated endpoints, specific allowed origins, and least-privilege data sharing. <br>
+Risk: Deletion commands and identity or JWT logging examples can cause data loss or expose sensitive identifiers if copied directly. <br>
+Mitigation: Avoid destructive commands without confirmation and backups, and redact sensitive identifiers from logs and examples. <br>
+Risk: The skill distinguishes CloudBase PostgreSQL paths from legacy API paths, and using the wrong path can create incorrect or unsafe implementations. <br>
+Mitigation: Confirm the target data platform before implementation and use the CloudBase PG guidance for PostgreSQL workflows. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub Cloudbase skill page](https://clawhub.ai/binggg/skills/cloudbase) <br>
-- [CloudBase main skill](artifact/SKILL.md) <br>
-- [MCP setup guidance](artifact/references/mcp-setup.md) <br>
-- [CloudBase CLI workflows](artifact/references/cloudbase-cli/SKILL.md) <br>
-- [Cloud functions guidance](artifact/references/cloud-functions/SKILL.md) <br>
-- [Web development guidance](artifact/references/web-development/SKILL.md) <br>
-- [CloudBase agent guidance](artifact/references/cloudbase-agent/SKILL.md) <br>
+- [Cloudbase skill page](https://clawhub.ai/binggg/skills/cloudbase) <br>
+- [CloudBase MCP setup reference](artifact/references/mcp-setup.md) <br>
+- [CloudBase activation map](artifact/references/activation-map.yaml) <br>
+- [CloudBase main entry](https://cnb.cool/tencent/cloud/cloudbase/cloudbase-skills/-/git/raw/main/skills/cloudbase/SKILL.md) <br>
 - [CloudBase pricing](https://cloud.tencent.com/document/product/876/75213) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, code, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown guidance with inline code, shell commands, and configuration snippets] <br>
+**Output Type(s):** [guidance, markdown, code, shell commands, configuration] <br>
+**Output Format:** [Markdown guidance with inline code, shell commands, configuration snippets, and implementation recommendations] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May direct the agent to inspect CloudBase MCP tools, read scenario-specific references, and review generated deployment or security examples before use.] <br>
+**Other Properties Related to Output:** [May direct an agent to inspect referenced skill files and CloudBase MCP schemas before acting.] <br>
 
 ## Skill Version(s): <br>
-1.92.7 (source: server release evidence) <br>
+1.92.9 (source: server release metadata; artifact frontmatter reports 2.23.5) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

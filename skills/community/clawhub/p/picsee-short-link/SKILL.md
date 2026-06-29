@@ -5,7 +5,7 @@ license: MIT
 compatibility: Requires an MCP-compatible client with Streamable HTTP transport (or a stdio bridge such as `mcp-remote`). Internet access to `api.picsee.io` and `public-api-oauth.picsee.io`.
 metadata:
   author: picsee
-  version: "3.0.0"
+  version: "3.0.2"
   emoji: "🔗"
   repository: https://github.com/PicSeeInc/picsee-short-link
   mcp_url: https://api.picsee.io/mcp
@@ -122,7 +122,7 @@ No params. Lists every short-link domain on the account: brand short domains (BS
 
 #### `get_my_tags`
 
-No params. Returns `{ id, name }` pairs. `name` values are what `tags` accepts on `create_short_link` / `edit_short_link`.
+No params. Returns `{ id, value }` pairs, where `value` is the tag name accepted by `tags` on `create_short_link` / `edit_short_link`.
 
 #### `get_my_tracking_tools`
 

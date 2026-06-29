@@ -3,10 +3,10 @@ name: xerg
 description: Find wasted AI spend in OpenClaw, Hermes, and Cursor.
 homepage: https://xerg.ai
 metadata:
-  openclaw:
+  xerg:
     homepage: https://xerg.ai
     links:
-      repository: https://github.com/xergai/xerg
+      skill: https://xerg.ai/skill.md
       documentation: https://xerg.ai/docs
     primaryEnv: XERG_API_KEY
     requires:
@@ -32,7 +32,7 @@ metadata:
     dependencies:
       - name: "@xerg/cli"
         type: npm
-        repository: https://github.com/xergai/xerg
+        url: https://www.npmjs.com/package/@xerg/cli
       - name: ssh
         type: other
         url: https://www.openssh.com/
@@ -78,6 +78,6 @@ Local audits need no account. Hosted sync and hosted MCP are optional workspace 
 ## Links
 
 - Docs: [xerg.ai/docs](https://xerg.ai/docs)
-- GitHub: [xergai/xerg](https://github.com/xergai/xerg)
+- Skill: [xerg.ai/skill.md](https://xerg.ai/skill.md)
 - npm: [@xerg/cli](https://www.npmjs.com/package/@xerg/cli)
 - Support: `query@xerg.ai`

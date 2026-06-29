@@ -86,13 +86,9 @@ For API calls, resolve the key immediately before `curl` and avoid printing it:
 
 ```bash
 OKKIGO_API_KEY="$(bash scripts/resolve-api-key.sh --print)" && \
-OKKIGO_INSTALL_ID="${OKKIGO_INSTALL_ID:-$(cat "${XDG_CONFIG_HOME:-$HOME/.config}/okki-go/install-id" 2>/dev/null || true)}" && \
-curl -s -X GET "${OKKIGO_BASE_URL:-https://go.okki.ai}/api/v1/credit/balance" \
+xargs -0 curl -s -X GET "${OKKIGO_BASE_URL:-https://go.okki.ai}/api/v1/credit/balance" \
   -H "Authorization: ApiKey $OKKIGO_API_KEY" \
-  ${OKKIGO_INSTALL_ID:+-H "X-Okki-Install-Id: $OKKIGO_INSTALL_ID"} \
-  -H "X-Okki-Skill-Version: ${OKKIGO_SKILL_VERSION:-1.3.2}" \
-  -H "X-Okki-Skill-Runtime: ${OKKIGO_SKILL_RUNTIME:-agent}" \
-  ${HOSTNAME:+-H "X-Hostname: $HOSTNAME"}
+  < <(node scripts/lib/runtime-attribution.js --curl-null)
 ```
 
 For configuration debugging only, use `bash scripts/resolve-api-key.sh --source`; it prints the source name, not the secret.
@@ -137,12 +133,7 @@ Do not treat vague replies such as "OK", "continue", "好的", "继续", or "发
 3. Send verification code:
 
 ```bash
-OKKIGO_INSTALL_ID="${OKKIGO_INSTALL_ID:-$(cat "${XDG_CONFIG_HOME:-$HOME/.config}/okki-go/install-id" 2>/dev/null || true)}" && \
-curl -s -X POST "${OKKIGO_BASE_URL:-https://go.okki.ai}/api/v1/auth/register-email" \
-  ${OKKIGO_INSTALL_ID:+-H "X-Okki-Install-Id: $OKKIGO_INSTALL_ID"} \
-  -H "X-Okki-Skill-Version: ${OKKIGO_SKILL_VERSION:-1.3.2}" \
-  -H "X-Okki-Skill-Runtime: ${OKKIGO_SKILL_RUNTIME:-agent}" \
-  ${HOSTNAME:+-H "X-Hostname: $HOSTNAME"} \
+xargs -0 curl -s -X POST "${OKKIGO_BASE_URL:-https://go.okki.ai}/api/v1/auth/register-email" \
   -H "Content-Type: application/json" \
   -d '{
     "email":"<user email>",
@@ -153,25 +144,21 @@ curl -s -X POST "${OKKIGO_BASE_URL:-https://go.okki.ai}/api/v1/auth/register-ema
       "termsUrl": "https://go.okki.ai/legal/terms",
       "privacyUrl": "https://go.okki.ai/legal/privacy",
       "channel": "agent",
-      "skillVersion": "1.3.2",
+      "skillVersion": "1.3.3",
       "locale": "en-US",
       "affirmationText": "I have read and agree to the Terms of Service and acknowledge the Privacy Policy."
     }
-  }' | jq '.'
+  }' < <(node scripts/lib/runtime-attribution.js --curl-null) | jq '.'
 ```
 
 4. Exchange the 6-digit code for an API key:
 
 ```bash
-OKKIGO_INSTALL_ID="${OKKIGO_INSTALL_ID:-$(cat "${XDG_CONFIG_HOME:-$HOME/.config}/okki-go/install-id" 2>/dev/null || true)}" && \
-curl -s -X POST "${OKKIGO_BASE_URL:-https://go.okki.ai}/api/v1/auth/verify-email" \
-  ${OKKIGO_INSTALL_ID:+-H "X-Okki-Install-Id: $OKKIGO_INSTALL_ID"} \
-  -H "X-Okki-Skill-Version: ${OKKIGO_SKILL_VERSION:-1.3.2}" \
-  -H "X-Okki-Skill-Runtime: ${OKKIGO_SKILL_RUNTIME:-agent}" \
-  ${HOSTNAME:+-H "X-Hostname: $HOSTNAME"} \
+xargs -0 curl -s -X POST "${OKKIGO_BASE_URL:-https://go.okki.ai}/api/v1/auth/verify-email" \
   -H "X-OpenClaw-Provision-Api-Key: true" \
   -H "Content-Type: application/json" \
-  -d '{"email":"<user_email>","code":"<6_digit_code>"}' | jq '.'
+  -d '{"email":"<user_email>","code":"<6_digit_code>"}' \
+  < <(node scripts/lib/runtime-attribution.js --curl-null) | jq '.'
 ```
 
 ## Save API Key

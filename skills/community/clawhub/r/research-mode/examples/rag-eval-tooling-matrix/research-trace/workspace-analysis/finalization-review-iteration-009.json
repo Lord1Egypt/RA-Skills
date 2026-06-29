@@ -1,0 +1,83 @@
+{
+  "reviewed_at": "2026-06-16T13:55:55.997452+00:00",
+  "package_dir": "workspace/outputs/rag-eval-tooling-matrix",
+  "actual_files": [
+    "README.md",
+    "final-report.md",
+    "rag-eval-tooling-matrix.xlsx",
+    "sources.md",
+    "validation-report.md"
+  ],
+  "expected_files": [
+    "README.md",
+    "final-report.md",
+    "rag-eval-tooling-matrix.xlsx",
+    "sources.md",
+    "validation-report.md"
+  ],
+  "missing_files": [],
+  "extra_files": [],
+  "markdown_public_safety_matches": {},
+  "markdown_link_counts": {
+    "README.md": 0,
+    "final-report.md": 0,
+    "sources.md": 30,
+    "validation-report.md": 0
+  },
+  "xlsx": {
+    "valid_zip": true,
+    "sheets": [
+      "Summary",
+      "Tool Matrix",
+      "Scoring",
+      "Evidence Sources",
+      "Exclusions Caveats",
+      "Methodology"
+    ],
+    "missing_sheets": [],
+    "tables": [
+      {
+        "sheet": "Summary",
+        "name": "SummaryTable",
+        "ref": "A3:D10"
+      },
+      {
+        "sheet": "Tool Matrix",
+        "name": "ToolMatrix",
+        "ref": "A1:S16"
+      },
+      {
+        "sheet": "Scoring",
+        "name": "WeightsTable",
+        "ref": "A1:D9"
+      },
+      {
+        "sheet": "Scoring",
+        "name": "ScaleTable",
+        "ref": "A11:C17"
+      },
+      {
+        "sheet": "Evidence Sources",
+        "name": "EvidenceSources",
+        "ref": "A1:E31"
+      },
+      {
+        "sheet": "Exclusions Caveats",
+        "name": "CaveatsTable",
+        "ref": "A1:C7"
+      },
+      {
+        "sheet": "Methodology",
+        "name": "MethodologyTable",
+        "ref": "A1:B9"
+      }
+    ],
+    "worksheet_auto_filters": [],
+    "table_filter_overlap_issues": [],
+    "formula_cells": 60,
+    "public_safety_matches": []
+  },
+  "blocking_defects": [],
+  "nonblocking_defects": [],
+  "passed": true
+}

@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes fixed-camera videos of an elderly person at rest to estimate respiratory rate and flag elevated tachypnea or dyspnea risk without providing a medical diagnosis. <br>
+Analyzes fixed-camera video of an elderly person at rest to estimate respiratory rate and return tachypnea or dyspnea risk alerts with structured report output. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,35 +11,34 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Caregivers, elder-care operators, and developers use this skill to submit resting chest or abdomen video for visual respiratory-rate analysis and to list prior cloud reports. It is an assistive monitoring workflow and should not be treated as a medical diagnosis. <br>
+Caregivers, home-care operators, and developers use this skill to analyze elderly resting chest or abdomen video for respiratory-rate estimates, risk flags, structured reports, and report-history lookup. It is an assistive monitoring workflow and should not be treated as a medical diagnosis. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Bedroom health video and identifiers are sent to a vendor cloud service. <br>
-Mitigation: Use the skill only with consent from the monitored person or legal caregiver, and avoid uploading unnecessary personal identifiers or footage. <br>
-Risk: Phone numbers or usernames used as open-id values can become account-linked data with cloud history retrieval. <br>
-Mitigation: Protect configuration files and open-id values, use the least-identifying account value available, and review account creation, retention, and deletion controls before deployment. <br>
-Risk: Respiratory-rate alerts could be mistaken for clinical diagnosis. <br>
-Mitigation: Present outputs as assistive visual measurements and require human or clinical follow-up for warning or critical results. <br>
-Risk: The security review notes broader or under-disclosed analysis behavior. <br>
-Mitigation: Review the API scope and documentation before installation, and prefer a narrowed release focused on respiratory-rate analysis. <br>
+Risk: The skill handles sensitive in-home health video and report history through a third-party cloud service. <br>
+Mitigation: Use only with explicit consent from the monitored person or authorized caregiver, avoid unrelated private media, and confirm the publisher's deletion and retention controls before deployment. <br>
+Risk: The skill automatically creates or reuses identity-linked local and cloud state. <br>
+Mitigation: Run it in a dedicated environment, review local token and identity storage, and revoke or delete credentials and reports when monitoring is no longer needed. <br>
+Risk: Respiratory alerts can be incomplete or misleading if video quality, posture, or scene conditions are poor. <br>
+Mitigation: Treat outputs as assistive signals, verify urgent alerts by human contact or clinical follow-up, and do not use the skill as a stand-alone diagnostic system. <br>
 
 
 ## Reference(s): <br>
 - [API documentation](references/api_doc.md) <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/smyx-elderly-tachypnea-detection-analysis) <br>
+- [Shared analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, configuration, guidance] <br>
-**Output Format:** [Markdown or JSON respiratory-rate report; history queries are formatted as Markdown tables.] <br>
+**Output Type(s):** [Text, Markdown, JSON, Shell commands, Guidance] <br>
+**Output Format:** [Markdown and JSON text with optional report links] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a user open-id plus a local video path or public video URL; cloud history queries return report links when available.] <br>
+**Other Properties Related to Output:** [Can write the analysis output to a user-specified file and can list cloud report history.] <br>
 
 ## Skill Version(s): <br>
-1.0.1 (source: SKILL.md frontmatter and server release evidence) <br>
+1.0.2 (source: SKILL.md frontmatter and server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

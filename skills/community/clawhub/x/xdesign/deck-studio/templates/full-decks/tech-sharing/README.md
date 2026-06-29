@@ -1,3 +1,13 @@
+---
+name: tech-sharing · 技术分享
+mode: deck
+scenario: engineering
+surface: slides
+recommended: 15
+tags: ["tech", "engineering", "conference", "talk", "sharing"]
+example_id: sample-tech-sharing
+example_format: markdown
+---
 # tech-sharing · 技术分享
 
 8-slide engineering talk deck: cover (topic + speaker), agenda, context, two deep-dive slides, a code example, takeaways, Q&A.

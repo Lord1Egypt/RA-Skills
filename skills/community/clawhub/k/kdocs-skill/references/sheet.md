@@ -128,6 +128,19 @@
 | [`sheet.add_row`](sheet/data.md) | 追加一行数据 | `file_id`, `worksheet_id` |
 | [`sheet.find_range_data`](sheet/data.md) | 遍历筛选记录（支持分页与条件） | `file_id`, `worksheet_id`, `range`, `filter` |
 | [`sheet.get_attachment_url`](sheet/data.md) | 上传附件到文件 | `file_id`, `filename`, `url`\|`file`, `Content-Type` |
+| [`sheet.add_chart`](sheet/data.md) | 在工作表中新增图表 | `file_id`, `worksheet_id`, `chartType`, `sourceAddress`, `rectAddress`, `title` |
+| [`sheet.range_auto_fill`](sheet/data.md) | 用源区域自动填充目标区域 | `file_id`, `worksheet_id`, `sourceAddress`, `targetAddress` |
+| [`sheet.get_chart_information`](sheet/data.md) | 获取工作表图表信息 | `file_id`, `worksheet_id` |
+| [`sheet.update_chart`](sheet/data.md) | 修改图表属性 | `file_id`, `worksheet_id`, `index`, `updateType` |
+| [`sheet.create_pivot_table`](sheet/data.md) | 创建数据透视表 | `file_id`, `worksheet_id`, `sourceAddress` |
+| [`sheet.merge_range`](sheet/data.md) | 合并单元格区域 | `file_id`, `worksheet_id`, `range` |
+| [`sheet.range_sort`](sheet/data.md) | 对区域进行原地排序 | `file_id`, `worksheet_id`, `range`, `key` |
+| [`sheet.update_pivot_table`](sheet/data.md) | 修改数据透视表属性或执行透视表操作 | `file_id`, `worksheet_id`, `tableName`, `updateType` |
+| [`sheet.update_pivot_field`](sheet/data.md) | 修改数据透视表字段属性或执行字段级操作 | `file_id`, `worksheet_id`, `tableName`, `fieldName`, `updateType` |
+| [`sheet.delete_pivot_table`](sheet/data.md) | 删除整个数据透视表 | `file_id`, `worksheet_id`, `tableName` |
+| [`sheet.get_pivot_tables`](sheet/data.md) | 获取数据透视表信息（支持透视表/字段/数据项三级下钻） | `file_id`, `worksheet_id` |
+| [`sheet.auto_fit`](sheet/data.md) | 自适应列宽或行高 | `file_id`, `worksheet_id`, `range` |
+| [`sheet.get_typed_value`](sheet/data.md) | 读取区域数据并保留单元格类型 | `file_id`, `worksheet_id`, `range` |
 | [`sheet.range_data_batch_update`](sheet/data.md) | 批量更新区域数据（下划线参数版本） | `file_id`, `worksheet_id`, `range_data` |
 
 ## 三、筛选

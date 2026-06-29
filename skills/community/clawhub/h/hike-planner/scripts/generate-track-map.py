@@ -369,6 +369,10 @@ body {{ display: flex; flex-direction: column; font-family: -apple-system, Blink
 地图：高德卫星图 + OpenStreetMap
 </div>
 
+<div style="padding:10px 20px;background:#fff3cd;border-top:1px solid #ffc107;font-size:12px;color:#856404;line-height:1.6">
+⚠️ <b>隐私提示</b>：此页面包含您的精确 GPS 轨迹数据。打开此页面时，浏览器将从第三方服务加载资源（unpkg.com 的 Leaflet 库、高德地图/OpenStreetMap 的瓦片地图），这些服务可能会记录您的 IP 地址和浏览的轨迹区域。建议仅在受信任的网络环境中查看此文件，不要公开分享包含精确坐标的 HTML 文件。
+</div>
+
 <script>
 // ── 轨迹数据 ──────────────────────────────────────
 var stats = {stats_json};
@@ -619,6 +623,10 @@ body {{ display: flex; flex-direction: column; font-family: -apple-system, Blink
 <div class="footer">
 由 <a href="https://github.com" target="_blank">Hike Planner</a> 生成 · 多轨迹对比模式 ·
 地图：高德卫星图 + OpenStreetMap
+</div>
+
+<div style="padding:10px 20px;background:#fff3cd;border-top:1px solid #ffc107;font-size:12px;color:#856404;line-height:1.6">
+⚠️ <b>隐私提示</b>：此页面包含多条轨迹的精确 GPS 数据。打开此页面时，浏览器将从第三方服务加载资源（unpkg.com 的 Leaflet 库、高德地图/OpenStreetMap 的瓦片地图），这些服务可能会记录您的 IP 地址和浏览的轨迹区域。建议仅在受信任的网络环境中查看此文件。
 </div>
 
 <script>

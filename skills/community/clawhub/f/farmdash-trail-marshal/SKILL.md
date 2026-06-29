@@ -3,7 +3,7 @@ name: FarmDash Trail Marshal
 description: "Guarded DeFi orchestration layer for OpenClaw agents. Lists named multi-skill workflow recipes, builds quality gates, creates session-scoped workflow run records, and reports workflow status. Trail Marshal holds no keys and performs no on-chain action — every state-changing step remains delegated to the user's separately-installed execution skill under that skill's own confirmation gate."
 tags: ["defi", "ai-agent", "autonomous-agent", "openclaw", "clawhub", "mcp", "crypto", "web3", "onchain", "orchestration", "workflow", "agent-workflows", "multi-agent", "quality-gates", "risk-management", "yield-farming", "airdrop", "read-only", "zero-custody", "farmdash", "trail-marshal"]
 author: FarmDash Pioneers (@Parmasanandgarlic)
-homepage: https://www.farmdash.one
+homepage: https://www.farmdash.one/agents
 version: "1.0.1"
 icon: 🪪
 env:
@@ -120,7 +120,7 @@ If the runtime catalog references a skill that is not installed in the user's en
 |---|---|---|---|
 | **Scout** | Free | 5 req / 24h | Returns the public workflow catalog |
 | **Pioneer** | $39.99/mo | 500 req / day | Adds higher-rate catalog use; filtering is via the `filter` search string |
-| **Syndicate** | $199/mo | 50k req / day | Higher-rate workflow orchestration and perps-heavy recipes |
+| **Syndicate** | $199/mo | 50k req / day | Teams, serious agents, high-volume orchestration, webhooks, unrestricted CORS, advanced session/control tooling |
 
 ## Composition patterns
 
@@ -188,7 +188,7 @@ For any recipe whose execution legs are owned by a separately-installed sub-skil
 
 ## Commercial disclosure (inherited from sub-skills)
 
-When a recipe surfaces a `https://www.farmdash.one/go/{slug}` partnership route, the standard FarmDash commercial disclosure must be included in the same message: FarmDash may receive referral, affiliate, or routing compensation, and fee details live at `https://www.farmdash.one/fees`. Trail Marshal does not introduce new partner routes of its own.
+When a recipe surfaces a `https://www.farmdash.one/go/{slug}` partnership route, the standard FarmDash commercial disclosure must be included in the same message: FarmDash may receive referral, affiliate, or routing compensation, and fee details live at [FarmDash Fee Structure](https://www.farmdash.one/fees). Trail Marshal does not introduce new partner routes of its own.
 
 ## Versioning
 
@@ -204,9 +204,9 @@ Workflow recipes are documentation, not financial advice. Any action performed b
 
 **Companion skills (separately installed by the user):** FarmDash Trail Intelligence (research), FarmDash Wagon Steward (read-only portfolio), FarmDash Signal Architect (spot routing), FarmDash Futures Strategist (perps), FarmDash Camp Guard (risk), FarmDash Supply Master (yield), FarmDash Hedge Warden (hedges), FarmDash Ledger Keeper (records), FarmDash Autonomous Operator (session context).
 
-**Dashboard:** `https://www.farmdash.one`
-**Agent Hub:** `https://www.farmdash.one/agents`
-**MCP Config:** `https://www.farmdash.one/.well-known/mcp.json`
+**Agent Hub:** [FarmDash Agentic OS](https://www.farmdash.one/agents)
+**OpenAPI Spec:** [FarmDash API Schema](https://www.farmdash.one/agents/openapi.yaml)
+**MCP Config:** [FarmDash MCP Server](https://www.farmdash.one/.well-known/mcp.json)
 
 ---
 

@@ -1,0 +1,16 @@
+{
+  "name": "decision-focus",
+  "label": "决策导向型",
+  "description": "重点突出决策过程和结论，适合方案评审和决策会议",
+  "sections": [
+    {"id": "header", "title": "会议信息", "fields": ["会议名称", "日期", "决策议题"]},
+    {"id": "background", "title": "决策背景", "type": "free"},
+    {"id": "options", "title": "方案分析", "type": "table", "columns": ["方案", "优点", "缺点", "可行性"]},
+    {"id": "decision", "title": "最终决策", "type": "highlight"},
+    {"id": "reasoning", "title": "决策依据", "type": "list"},
+    {"id": "risks", "title": "风险提示", "type": "list"},
+    {"id": "actions", "title": "后续行动", "type": "table", "columns": ["事项", "责任人", "截止日期"]}
+  ],
+  "layout": "vertical",
+  "decision_first": true
+}

@@ -3,7 +3,10 @@
 **Step 2 execution gate (HARD STOP)**:
 If Step 1 produced even one Why, Step 2 is **mandatory**. The deliverable depends on recurrence count and the 4-filter gate below:
 
-- **1st-2nd recurrence (default)**: append a **`feedback` memory** entry (1-3 lines) capturing the rule/why/how-to-apply. No rule-file Edit required. Memory is the default medium — it preserves the lesson without inflating always-on context.
+- **1st-2nd recurrence (default)**: record the lesson, **medium split by content type (HARD STOP — FA single-location rule)**:
+  - **Case history** (violation-case quote, date, Nth-recurrence count, "how to apply" tied to a specific incident) → **`~/.claude/skills/cleanup/data/failed-attempts.md` (HOT)** via `/cleanup retrospect`. Violation cases live ONLY in failed-attempts.md — **never in `memory/feedback_*.md`**. Writing a violation-case + date entry to a `feedback_*.md` file violates the FA single-location rule (`rules/failed-attempts.md`).
+  - **Pure user preference** (how-to-work guidance with NO violation-case quote, NO date, NO Nth-count) → a `feedback` memory entry is acceptable. The moment a date / violation-quote / recurrence-count appears, it is case history → route to failed-attempts.md instead.
+  - Neither requires a rule-file Edit. failed-attempts.md (HOT) costs 0 always-on tokens and is searchable via the `/cleanup retrospect` recurrence pre-check.
 - **3rd+ recurrence**: rule-file Edit is allowed **only if the 4-filter gate passes** (see below). If any filter fails → stay in memory + route to skill/hook/CLAUDE.md instead.
 - **4th+ recurrence with deterministic pattern**: hook implementation (script + settings.json registration + parse verification). Rule body minimizes to a pointer to the hook.
 - **AskUserQuestion mandatory before rule-file Edit (HARD STOP — every time)**: adding a new Don't/Do table OR a new self-check procedure section to a rule file requires explicit user ask first. Passing the 4-filter gate does NOT exempt the ask. The user must decide on the location (`~/.agents/rules/` vs `<repo>/.claude/rules/` vs inside a skill), the strength (HARD STOP vs note), the number of Don't/Do rows, and the length of the self-check procedure. Editing without ask = imposing always-on context cost without user consent. 1st-stage default = `feedback` memory OR a short skill cross-ref + failed-attempts entry (on-demand mediums). When rule strengthening is needed at 2nd+ stage, prefer hook → lazy-loaded skill invocation first to avoid the per-session always-on cost. See also: `rule-kit/add.md` same obligation.
@@ -68,6 +71,7 @@ When fixing:
 - **If the fix skill's own procedural defect is the cause**: fix/SKILL.md is also a target — do not grant itself an exception
 - Rule location must be confirmed via **AskUserQuestion**
 - failed-attempts.md recording is **only for cases not covered by higher-priority targets** — no duplicate recording if root cause is already reflected in a skill or prompt
+- **Profanity masking when recording to failed-attempts.md**: exclude or mask (`****`/`XX`) any user profanity/slurs in quoted text; preserve the anger context with a neutral term ("anger signal") instead of the raw word. Same rule as `cleanup/retrospect.md` Step 4-2 masking
 
 **Escalation on recurrence** (4-stage progressive — minimize always-on context):
 

@@ -1,0 +1,279 @@
+{
+  "tools": [
+    {
+      "name": "getShopInfo",
+      "description": "【必调】获取门店基本信息（名称、地址、营业时间、联系电话）。用户问门店/店名/地址/电话/营业时间时必须先调用此 Tool，禁止凭记忆回答。",
+      "executor": "function",
+      "handler": "./handlers/getShopInfo.js",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "shopId": { "type": "string" },
+          "saasId": { "type": "string" },
+          "tenantId": { "type": ["string", "integer"] }
+        },
+        "required": ["shopId", "saasId", "tenantId"]
+      }
+    },
+    {
+      "name": "getTables",
+      "description": "获取指定门店所有桌号列表。后台静默调用；禁止在回复中展示 [Skill 调用] 或 getTables 等过程，只向用户展示推荐桌位结果。",
+      "executor": "function",
+      "handler": "./handlers/getTables.js",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "shopId": { "type": "string" },
+          "saasId": { "type": "string" },
+          "tenantId": { "type": ["string", "integer"] }
+        },
+        "required": ["shopId", "saasId", "tenantId"]
+      }
+    },
+    {
+      "name": "getMenu",
+      "description": "【必调】获取门店菜单（id、name、price）。用户问菜单/菜品/有什么菜/价格时必须先调用；点餐/减餐前也须调用建立 goodsId→菜名映射。禁止凭记忆列菜单。",
+      "executor": "function",
+      "handler": "./handlers/getMenu.js",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "shopId": { "type": "string" },
+          "saasId": { "type": "string" },
+          "tenantId": { "type": ["string", "integer"] }
+        },
+        "required": ["shopId", "saasId", "tenantId"]
+      }
+    },
+    {
+      "name": "getMemberInfo",
+      "description": "查询会员信息。",
+      "executor": "function",
+      "handler": "./handlers/getMemberInfo.js",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "memberId": { "type": "string" },
+          "shopId": { "type": "string" },
+          "saasId": { "type": "string" },
+          "tenantId": { "type": ["string", "integer"] }
+        },
+        "required": ["memberId", "shopId", "saasId", "tenantId"]
+      }
+    },
+    {
+      "name": "getTransactions",
+      "description": "查询会员交易记录。",
+      "executor": "function",
+      "handler": "./handlers/getTransactions.js",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "memberId": { "type": "string" },
+          "shopId": { "type": "string" },
+          "saasId": { "type": "string" },
+          "tenantId": { "type": ["string", "integer"] }
+        },
+        "required": ["memberId", "shopId", "saasId", "tenantId"]
+      }
+    },
+    {
+      "name": "listMyAppointments",
+      "description": "按手机号查询有效预约，获取 reserveId。点餐/查单/减餐前先调用。",
+      "executor": "function",
+      "handler": "./handlers/listMyAppointments.js",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "saasId": { "type": "string" },
+          "linkPhone": { "type": "string" },
+          "bookingStatus": { "type": "string", "description": "active（默认）/ cancelled" }
+        },
+        "required": ["saasId", "linkPhone"]
+      }
+    },
+    {
+      "name": "bookTable",
+      "description": "新建预约订座。后台静默调用；禁止在回复中展示调用过程或 bookTable 函数名，只向用户展示预约成功业务摘要（用 chatHint 改写后）。",
+      "executor": "function",
+      "handler": "./handlers/bookTable.js",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "saasId": { "type": "string" },
+          "tenantId": { "type": ["string", "integer"] },
+          "shopId": { "type": "string" },
+          "linkNickname": { "type": "string" },
+          "linkPhone": { "type": "string" },
+          "dineDate": { "type": "string" },
+          "dineTime": { "type": "string" },
+          "tableCode": { "type": "string" },
+          "personNum": { "type": "integer" }
+        },
+        "required": ["saasId", "tenantId", "shopId", "linkNickname", "linkPhone", "dineDate", "dineTime", "tableCode", "personNum"]
+      }
+    },
+    {
+      "name": "changeAppointment",
+      "description": "变更已有预约。",
+      "executor": "function",
+      "handler": "./handlers/changeAppointment.js",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "saasId": { "type": "string" },
+          "tenantId": { "type": ["string", "integer"] },
+          "shopId": { "type": "string" },
+          "reserveId": { "type": "string" },
+          "linkNickname": { "type": "string" },
+          "linkPhone": { "type": "string" },
+          "dineDate": { "type": "string" },
+          "dineTime": { "type": "string" },
+          "tableCode": { "type": "string" },
+          "personNum": { "type": "integer" }
+        },
+        "required": ["saasId", "tenantId", "shopId", "reserveId", "linkNickname", "linkPhone", "dineDate", "dineTime", "tableCode", "personNum"]
+      }
+    },
+    {
+      "name": "cancelAppointment",
+      "description": "取消预约。",
+      "executor": "function",
+      "handler": "./handlers/cancelAppointment.js",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "saasId": { "type": "string" },
+          "tenantId": { "type": ["string", "integer"] },
+          "reserveId": { "type": "string" }
+        },
+        "required": ["saasId", "tenantId", "reserveId"]
+      }
+    },
+    {
+      "name": "placeOrder",
+      "description": "首次点餐下单（每道菜单独一单）。须 reserveId + goods(goodsId,bookingNum)。成功后按 SKILL 规范改写 chatHint 再回复用户（菜名、无单号）。",
+      "executor": "function",
+      "handler": "./handlers/placeOrder.js",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "saasId": { "type": "string" },
+          "tenantId": { "type": ["string", "integer"] },
+          "shopId": { "type": "string" },
+          "reserveId": { "type": "string" },
+          "goods": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "goodsId": { "type": "string" },
+                "bookingNum": { "type": "integer" }
+              },
+              "required": ["goodsId", "bookingNum"]
+            }
+          }
+        },
+        "required": ["saasId", "tenantId", "shopId", "reserveId", "goods"]
+      }
+    },
+    {
+      "name": "appendOrder",
+      "description": "向已有订单追加点餐。须 orderId + goods。",
+      "executor": "function",
+      "handler": "./handlers/appendOrder.js",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "saasId": { "type": "string" },
+          "tenantId": { "type": ["string", "integer"] },
+          "orderId": { "type": "string" },
+          "shopId": { "type": "string" },
+          "goods": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "goodsId": { "type": "string" },
+                "bookingNum": { "type": "integer" }
+              },
+              "required": ["goodsId", "bookingNum"]
+            }
+          }
+        },
+        "required": ["saasId", "tenantId", "orderId", "goods"]
+      }
+    },
+    {
+      "name": "reduceOrder",
+      "description": "减餐（撤销单道菜或减少数量）。用户说「不要XX了」「去掉汤」「减一份虾饺」等必须调用此接口，禁止说没有减餐功能。须 orderId + goods(要减的 goodsId 与 bookingNum)。",
+      "executor": "function",
+      "handler": "./handlers/reduceOrder.js",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "saasId": { "type": "string" },
+          "tenantId": { "type": ["string", "integer"] },
+          "orderId": { "type": "string", "description": "从 listOrders 获取，勿展示给用户" },
+          "goods": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "goodsId": { "type": "string" },
+                "bookingNum": { "type": "integer" }
+              },
+              "required": ["goodsId", "bookingNum"]
+            }
+          }
+        },
+        "required": ["saasId", "tenantId", "orderId", "goods"]
+      }
+    },
+    {
+      "name": "cancelOrder",
+      "description": "取消整单点餐。用户确认 orderId 后调用。",
+      "executor": "function",
+      "handler": "./handlers/cancelOrder.js",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "saasId": { "type": "string" },
+          "tenantId": { "type": ["string", "integer"] },
+          "orderId": { "type": "string" }
+        },
+        "required": ["saasId", "tenantId", "orderId"]
+      }
+    },
+    {
+      "name": "listOrders",
+      "description": "按 reserveId 查询有效点餐订单列表。查看点餐/减餐/取消前必须调用；返回含 orderId、goodsSummary（内部用，勿原样展示编号）。",
+      "executor": "function",
+      "handler": "./handlers/listOrders.js",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "saasId": { "type": "string" },
+          "tenantId": { "type": ["string", "integer"] },
+          "reserveId": { "type": "string" }
+        },
+        "required": ["saasId", "reserveId"]
+      }
+    },
+    {
+      "name": "getOrderDetail",
+      "description": "查询单笔点餐详情（内部用，获取 orderId 对应菜品）。",
+      "executor": "function",
+      "handler": "./handlers/getOrderDetail.js",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "saasId": { "type": "string" },
+          "tenantId": { "type": ["string", "integer"] },
+          "orderId": { "type": "string" }
+        },
+        "required": ["saasId", "tenantId", "orderId"]
+      }
+    }
+  ]
+}

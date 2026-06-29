@@ -1,0 +1,43 @@
+{
+  "name": "family-lovers-skill",
+  "version": "1.1.0",
+  "description": "❤️ 家庭关怀技能 · 走出原生家庭 — 觉察、疗愈、陪伴三位一体的 AI 原生家庭关怀 Skill",
+  "main": "src/router.js",
+  "scripts": {
+    "route": "node src/router.js"
+  },
+  "author": "phoenixlucky",
+  "license": "MIT",
+  "keywords": [
+    "family-lovers",
+    "family-lovers-skill",
+    "family-care",
+    "family-of-origin",
+    "原生家庭",
+    "家庭关怀",
+    "走出原生家庭",
+    "自我觉察",
+    "自我疗愈",
+    "内在小孩",
+    "inner-child",
+    "创伤疗愈",
+    "安全型依恋",
+    "secure-attachment",
+    "情绪觉察",
+    "边界建立",
+    "自我关怀",
+    "self-compassion",
+    "心理陪伴",
+    "情感支持",
+    "personal-growth",
+    "healing",
+    "skill",
+    "陪伴式成长",
+    "传统文化",
+    "历史人物",
+    "自动匹配",
+    "长孙皇后",
+    "诸葛亮",
+    "ai-assistant"
+  ]
+}

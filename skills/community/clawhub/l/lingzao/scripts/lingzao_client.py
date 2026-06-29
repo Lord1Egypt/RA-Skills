@@ -133,6 +133,7 @@ def main() -> int:
     )
     article_detail_parser.add_argument("--platform")
     article_detail_parser.add_argument("--url", required=True)
+    article_detail_parser.add_argument("--output", help="Optional path to write the full article Markdown file")
     article_detail_parser.add_argument("--format", choices=["markdown", "json"], default="markdown")
 
     article_stats_parser = subparsers.add_parser(
@@ -365,9 +366,12 @@ def main() -> int:
         return 1
 
     local_outputs: List[str] = []
+    local_article_output: Optional[str] = None
     try:
         if args.command == "generate-image" and getattr(args, "output", None):
             local_outputs = write_generated_images(payload, args.output)
+        elif args.command == "get-article-detail" and getattr(args, "output", None):
+            local_article_output = write_article_markdown(payload, args.output)
     except LingzaoError as error:
         print(str(error), file=sys.stderr)
         return 1
@@ -377,6 +381,8 @@ def main() -> int:
     else:
         if local_outputs:
             payload = {**payload, "_local_output": local_outputs[0], "_local_outputs": local_outputs}
+        if local_article_output:
+            payload = {**payload, "_local_article_output": local_article_output}
         print(to_markdown(args.command, payload))
     return 0
 
@@ -412,6 +418,12 @@ def validate_args(args: argparse.Namespace) -> Optional[str]:
                 "generate-image markdown output requires --output so generated images are saved. "
                 "Use --format json for raw image payloads."
             )
+
+    if args.command == "get-article-detail" and getattr(args, "output", None):
+        try:
+            preflight_article_output_path(args.output)
+        except LingzaoError as error:
+            return str(error)
 
     if args.command == "get-note-comments" and getattr(args, "sort", None) == "most_liked":
         platform = (getattr(args, "platform", None) or "").strip().lower()
@@ -907,6 +919,60 @@ def first_non_empty_str(*values: Any) -> Optional[str]:
 
 def compact(value: Dict[str, Any]) -> Dict[str, Any]:
     return {key: item for key, item in value.items() if item is not None}
+
+
+def preflight_article_output_path(output_path: str) -> None:
+    target = Path(output_path).expanduser()
+    try:
+        target.parent.mkdir(parents=True, exist_ok=True)
+    except OSError as error:
+        raise LingzaoError(f"Failed to prepare article output path: {target.parent}: {error}") from error
+
+    if target.exists() and target.is_dir():
+        raise LingzaoError(f"Article output path points to a directory: {target}")
+
+    try:
+        with target.open("ab"):
+            pass
+    except OSError as error:
+        raise LingzaoError(f"Article output path is not writable: {target}: {error}") from error
+
+
+def write_article_markdown(payload: dict, output_path: str) -> str:
+    document = article_markdown_document(payload)
+    target = Path(output_path).expanduser()
+    try:
+        target.parent.mkdir(parents=True, exist_ok=True)
+    except OSError as error:
+        raise LingzaoError(f"Failed to prepare article output path: {target.parent}: {error}") from error
+
+    try:
+        target.write_text(document, encoding="utf-8")
+    except OSError as error:
+        raise LingzaoError(f"Failed to write article output: {target}: {error}") from error
+    return str(target.resolve())
+
+
+def article_markdown_document(payload: dict) -> str:
+    data = as_dict(payload.get("data"))
+    article = as_dict(data.get("article"))
+    title = str(article.get("title") or "未命名文章")
+    content = str(article.get("content_text") or "").strip()
+    lines = [
+        f"# {title}",
+        "",
+        f"- 链接: {article.get('url') or '-'}",
+        f"- 公众号: {article.get('account_name') or '-'}",
+        f"- 作者: {article.get('author') or '-'}",
+        f"- 发布时间: {article.get('published_at') or '-'}",
+        f"- 封面: {article.get('cover_url') or '-'}",
+        f"- 摘要: {article.get('digest') or '-'}",
+        "",
+        "## 正文",
+        "",
+        content or "未返回正文文本。",
+    ]
+    return "\n".join(lines).strip() + "\n"
 
 
 def write_generated_images(payload: dict, output_path: str) -> List[str]:
@@ -1461,6 +1527,17 @@ def render_article_detail(payload: dict) -> str:
     data = as_dict(payload.get("data"))
     article = as_dict(data.get("article"))
     title = article.get("title") or "未命名文章"
+    local_article_output = payload.get("_local_article_output")
+    if isinstance(local_article_output, str) and local_article_output:
+        summary = article.get("digest") or article_text_preview(str(article.get("content_text") or ""), limit=240)
+        lines = [
+            f"# {platform_label(data)}文章：{title}",
+            "",
+            f"- 文件: {local_article_output}",
+            f"- 摘要: {summary or '-'}",
+        ]
+        return "\n".join(lines).strip()
+
     lines = [
         f"# {platform_label(data)}文章：{title}",
         "",

@@ -68,7 +68,7 @@ cp ~/.claude/plugins/marketplaces/<marketplace>/plugins/<name>/.mcp.json \
 
 **Symptom**:
 
-```
+```text
 Failed to refresh marketplace 'claude-plugins-official': Marketplace 'claude-plugins-official' has a
 corrupted installLocation (C:\Users\<USER>\.claude\plugins\marketplaces\claude-plugins-official)
 — expected a path inside /home/<user>/.claude/plugins/marketplaces.
@@ -217,7 +217,7 @@ errors, forcing routing to `troubleshoot.md`.
 
 ## Cache Structure Reference
 
-```
+```text
 ~/.claude/plugins/
 ├── marketplaces/          # Git clones (source of truth)
 │   └── <name>/

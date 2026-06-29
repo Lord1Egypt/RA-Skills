@@ -1,5 +1,5 @@
 ## Description: <br>
-Analyzes pet monitoring videos for anxiety, howling, loneliness, and related behaviors, then reports whether soothing actions such as calming audio or laser-toy activation should be triggered. <br>
+Analyzes pet monitoring videos or video URLs for anxiety, howling, and prolonged loneliness signals, then returns structured pet-soothing trigger analysis and report history. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
@@ -11,33 +11,36 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Pet owners and smart home developers use this skill to evaluate uploaded or URL-based pet monitoring videos, identify likely anxiety or isolation signals, and review analysis or historical soothing-trigger reports. <br>
+External users and pet-care application developers use this skill to submit pet camera footage for cloud analysis, review structured behavior results, and retrieve historical pet-soothing trigger reports. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill handles sensitive credentials and asks for an open-id that may be a phone number or user identifier. <br>
-Mitigation: Do not use an API key as the open-id, avoid providing a phone number unless the backend service is trusted, and prefer credentials that can be revoked. <br>
-Risk: Pet videos and report queries are sent to remote cloud endpoints for analysis and history retrieval. <br>
-Mitigation: Upload only videos and report data that are acceptable to share with the listed service, and review the service's account, storage, and retention behavior before production use. <br>
-Risk: Evidence reports suspicious identity handling, remote report access, and silent local token persistence. <br>
-Mitigation: Review the skill carefully before installing, use an isolated account for evaluation, and prefer a revised release that separates credentials from identity and clearly discloses token storage. <br>
+Risk: Pet-camera videos or video URLs may contain sensitive home footage and are sent to the configured cloud analysis service. <br>
+Mitigation: Request explicit user confirmation before upload or history lookup, avoid private or internal URLs, and avoid sensitive footage unless retention and deletion terms are clear. <br>
+Risk: Report history is tied to an automatically selected local identity and service tokens may be stored in a local SQLite database. <br>
+Mitigation: Run only in trusted workspaces, review local data retention, and rotate or remove stored tokens when the skill is no longer needed. <br>
+Risk: The release is advertised as an automatic soothing-device trigger, while the artifact behavior mainly returns analysis output and report links. <br>
+Mitigation: Treat output as decision support and verify any separate device-control integration before relying on automated pet-soothing actions. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/18072937735/smyx-pet-calming-trigger-analysis) <br>
-- [Pet calming trigger API reference](artifact/references/api_doc.md) <br>
+- [ClawHub skill page](https://clawhub.ai/18072937735/skills/smyx-pet-calming-trigger-analysis) <br>
+- [Publisher profile](https://clawhub.ai/user/18072937735) <br>
+- [API interface documentation](references/api_doc.md) <br>
+- [Shared analysis API documentation](skills/smyx_analysis/references/api_doc.md) <br>
+- [Skill demo](https://lifeemergence.com/sample.html) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, json, shell commands, guidance] <br>
-**Output Format:** [Markdown reports and tables with JSON analysis content and command-line invocation guidance] <br>
+**Output Type(s):** [text, markdown, JSON, shell commands, guidance] <br>
+**Output Format:** [Markdown or JSON text containing analysis results, report links, and report-history listings.] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires a local video path or public video URL plus an open-id/user identifier; may also use an API key, API URL, output path, and detail level.] <br>
+**Other Properties Related to Output:** [Results are produced from configured cloud analysis APIs; local video inputs are limited to mp4, avi, or mov files up to 10 MB.] <br>
 
 ## Skill Version(s): <br>
-1.0.6 (source: server-resolved release evidence) <br>
+1.0.8 (source: ClawHub release evidence; artifact frontmatter lists 1.0.6) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

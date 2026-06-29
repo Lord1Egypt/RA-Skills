@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Juejin Article Optimizer Output",
+  "description": "Output schema for the Juejin article optimization result.",
+  "type": "object",
+  "properties": {
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "original_title": { "type": "string" },
+    "scores": {
+      "type": "object",
+      "description": "Diagnostic scores (task=diagnose).",
+      "properties": {
+        "title_power": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "structure": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "code_text_balance": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "readability": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "seo": { "type": "integer", "minimum": 1, "maximum": 10 },
+        "engagement": { "type": "integer", "minimum": 1, "maximum": 10 }
+      }
+    },
+    "overall": { "type": "integer", "minimum": 1, "maximum": 10 },
+    "title_variants": {
+      "type": "array",
+      "description": "Optimized title variants (task=title).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "variant": { "type": "integer" },
+          "pattern": { "type": "string" },
+          "title": { "type": "string" },
+          "ctr_potential": { "type": "number", "minimum": 1, "maximum": 10 }
+        }
+      }
+    },
+    "tags": {
+      "type": "object",
+      "description": "Recommended tags and SEO (task=tags/seo).",
+      "properties": {
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "meta_description": { "type": "string" }
+      }
+    },
+    "publishing": {
+      "type": "object",
+      "description": "Publishing strategy (task=publish).",
+      "properties": {
+        "best_publish_time": {
+          "type": "object",
+          "properties": {
+            "day": { "type": "string" },
+            "time": { "type": "string" }
+          }
+        }
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "description": "Any warnings or flags.",
+      "items": { "type": "string" }
+    }
+  }
+}

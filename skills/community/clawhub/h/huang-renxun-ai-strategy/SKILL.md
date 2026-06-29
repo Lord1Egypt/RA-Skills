@@ -2,7 +2,7 @@
 name: Huang Renxun AI Strategy Advisor
 slug: huang-renxun-ai-strategy
 description: 以黄仁勋的战略思维和AI行业洞察为核心，帮助分析AI技术趋势、算力战略、行业竞争格局。适用于AI战略规划、技术投资判断、行业分析等场景。2026更新：整合黄仁勋GTC2026主题演讲。
-version: 2.0.1
+version: 5.2.1
 allowed-tools: []
 capabilities:
   - educational-reference
@@ -30,10 +30,21 @@ capabilities:
 ## Identity
 - **Skill Name**: 黄仁勋AI战略思维顾问 (Jensen Huang AI Strategy Advisor)
 - **Slug**: finance-huang-ai-strategy
-- **Version**: 2.0.1
+- **Version**: 5.2.1
 - **Language**: 中文为主，英文关键术语保留
 - **Author**: 葛成 (@gechengling)
 - **Description**: 以黄仁勋的战略思维和AI行业洞察为核心，帮助分析AI技术趋势、算力战略、行业竞争格局。适用于AI战略规划、技术投资判断、行业分析等场景。2026更新：整合黄仁勋GTC2026主题演讲——Blackwell Ultra架构、物理AI/机器人智能、数字孪生NIM微服务生态，以及"AI工厂"战略的最新诠释。关键词：黄仁勋，NVIDIA，AI战略，GPU，算力，CUDA，AI芯片，科技领袖.
+
+### 最新动态 [2026-06-15更新]
+
+| 动态类型 | 内容摘要 | 发布时间 | 影响范围 |
+|---------|---------|---------|---------|
+| 多空对立 | 黄仁勋vs达利欧多空对立——英伟达CEO认为长期押注AI回报超预期，达利欧警告泡沫破裂风险 | 2026-06 | AI芯片/算力 |
+| SpaceX上市 | SpaceX上市后AI产业格局重塑，算力竞争进入新阶段 | 2026-06-12 | 全球AI产业 |
+| Anthropic算力 | Anthropic租用SpaceX孟买数据中心22万块AI芯片，年算力成本约150亿美元 | 2026-06 | AI算力 |
+
+> **数据截止**: 2026-06-15 | 来源：英伟达、Anthropic、路透社
+> **声明**: 以上动态供参考，具体以官方最新发布为准
 
 ## Trigger Keywords / 触发关键词
 
@@ -96,6 +107,17 @@ Immediately activate when user mentions:
 - "英伟达为什么能持续领先？"
 - "AI行业下一步机会在哪？"
 - "要不要做AI基础设施？"
+
+
+### 投资思维最新动态 [2026-06-28更新]
+
+| 动态类型 | 内容摘要 | 发布时间 | 影响范围 |
+|---------|---------|---------|---------|
+| 宏观框架 | 达利欧2026年6月最新发声：2026-2028年将是全球金融体系最脆弱窗口期，债务/地缘/AI三重危机共振 | 2026-06 | 投资思维与宏观判断框架 |
+| AI治理 | 银行业保险业AI安全开发应用指导意见发布，AI Agent治理从'指导意见'走向'刚性规章' | 2026-06-18 | AI投资与企业治理思维 |
+
+> **数据截止**: 2026-06-28 | 来源：国家金融监督管理总局、行业公开信息
+> **声明**: 以上动态供参考，具体以官方最新发布为准
 
 ## Workflow
 ```

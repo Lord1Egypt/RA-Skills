@@ -11,29 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineers use this skill to trace how functions or entry points propagate through a codebase, review call-chain criticality, and produce Mermaid diagrams for inspection. <br>
+Developers and engineers use this skill to inspect how a function or entry point propagates through a codebase, visualize the call chain, and assess criticality factors such as file spread, security sensitivity, external calls, test gaps, and depth. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill is intended to read and analyze local repository code and may run a local graph_query.py helper when an existing gauntlet plugin is available. <br>
-Mitigation: Use it only in repositories where code inspection is acceptable, review proposed commands before execution, and avoid running it on sensitive codebases without approval. <br>
+Risk: The skill inspects local repository code and may use an existing gauntlet plugin from the user's Claude plugins directory. <br>
+Mitigation: Use it only in repositories the user is comfortable having analyzed by their coding agent, and review proposed commands before execution. <br>
+Risk: When gauntlet graph data is unavailable, static search fallback can produce incomplete or approximate call-chain analysis. <br>
+Mitigation: Treat fallback results as review aids and verify important call paths against source code before relying on them. <br>
 
 
 ## Reference(s): <br>
-- [Cartograph homepage](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph) <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-cartograph-call-chain) <br>
+- [ClawHub Skill Page](https://clawhub.ai/athola/skills/nm-cartograph-call-chain) <br>
+- [Cartograph Homepage](https://github.com/athola/claude-night-market/tree/master/plugins/cartograph) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, markdown, shell commands, guidance] <br>
-**Output Format:** [Markdown with indented call trees, Mermaid diagrams, and inline shell commands] <br>
+**Output Type(s):** [Analysis, Markdown, Shell commands, Code] <br>
+**Output Format:** [Markdown with shell command examples and Mermaid diagrams] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May use a local graph_query.py helper when the gauntlet plugin is installed; otherwise falls back to static code search.] <br>
+**Other Properties Related to Output:** [May use an existing gauntlet graph query helper when available, or static search fallback when graph data is unavailable.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release evidence and target metadata; artifact frontmatter lists 1.9.8) <br>
+1.9.13 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

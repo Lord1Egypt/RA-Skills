@@ -24,6 +24,14 @@ Default visible caps:
 
 ## Prospecting Wrappers
 
+Context Firewall preflight for large files, cross-skill output, stale prior state, or risky paid/send/write scope:
+
+```bash
+node scripts/okki-envelope.js validate --file /private/tmp/okki-go-context/envelope.json --compact
+```
+
+This command validates schema, action gates, confirmation scope, expiration, and supported fields. It never calls OKKI APIs and must run before high-risk action wrappers when an Action Envelope is used.
+
 Single-page company search:
 
 ```bash
@@ -54,7 +62,7 @@ The numeric values in examples are placeholders; scripts use the requested targe
 
 The batch script scans configured pages, deduplicates by domain then company name, saves private mapping, updates the latest batch pointer, creates a `selection_handle`, and emits compact rows plus scanned/deduped/returned counts.
 
-Free company search retries one transient busy/rate-limit/upstream failure before surfacing the error. Batch discovery defaults to serial requests so large or split searches do not spike the upstream portrait-recall flow-control resource. Search wrappers split `companyTypeKeywords` to one value per API request to reduce enhanced-recall ES rewrite pressure; this is mechanical only and does not semantically split compound phrases such as `汽车玻璃供应商`. Use `--concurrency` only for internal debugging or a known-safe environment.
+Free company search retries one transient busy/rate-limit/upstream failure before surfacing the error. Batch discovery defaults to serial requests so large or split searches do not spike the upstream portrait-recall flow-control resource. Search wrappers split `companyTypeKeywords` to one value per API request to reduce enhanced-recall ES rewrite pressure. They reject compound phrases such as `汽车玻璃供应商` before API calls and require the caller to rewrite product/industry/application words into target-buyer `productKeywords` or `industryKeywords` plus pure role `companyTypeKeywords`. Use `--concurrency` only for internal debugging or a known-safe environment.
 
 Prepare selected rows before asking for explicit credit confirmation:
 
@@ -88,7 +96,7 @@ node scripts/unlock-companies.js \
   --artifact-dir '<agent-visible-output-dir>'
 ```
 
-`prepare-unlock-plan.js` freezes row selections or a processed target set into an opaque `unlock_plan_id` without calling paid APIs. Normal output shows `selected_companies` and `max_credit_cost`; the plan id and target-set fingerprint are only under `debug_metadata` for the agent to use after confirmation. If the user changes the final targets before confirmation, prepare a new plan; active-plan state rejects the old one. `unlock-companies.js --plan` reads that frozen mapping, calls paid `/companies/unlock`, fetches profile/profileEmails/balance for successful rows, uses `mark-unlocked-batch` only for successful rows, and emits charge/balance/company summaries. Compact output hides `raw_path` unless `--debug-metadata` is explicit; it never prints `domain` or `companyHashId`. The skill workflow must still ask explicit paid confirmation before calling it.
+`prepare-unlock-plan.js` freezes row selections or a processed target set into an opaque `unlock_plan_id` without calling paid APIs. Normal output shows `selected_companies` and `max_credit_cost`; the plan id and target-set fingerprint are only under `debug_metadata` for the agent to use after confirmation. If the user changes the final targets before confirmation, prepare a new plan; active-plan state rejects the old one. `unlock-companies.js --plan` reads that frozen mapping, calls paid `/companies/unlock`, fetches profile/profileEmails/balance for successful rows, uses `mark-unlocked-batch` only for successful rows, and emits charge/balance/company summaries. Compact output hides `raw_path` unless `--debug-metadata` is explicit; it never prints `domain` or `companyHashId`. The only valid source for `companyHashId` is the `/companies/unlock` response; never use free-search ID/raw `id`, domain, row number, or model memory as `companyHashId`. The skill workflow must still ask explicit paid confirmation before calling it.
 
 After unlock, normal compact output uses script-rendered `unlock_details_markdown` plus compatibility `company_details`, not a model-built unlock-result table. The script shows at most the first 5 successful company details in stdout and writes all successful company details plus any failure/not-executed rows to a Markdown document at `details_markdown_path`. The top summary shows planned, success, failure, charge, and balance; failed or not-executed rows appear only when present. `next_action` is `draft_outreach` when at least one company succeeds. The Markdown document is the user-facing full-detail artifact; raw JSON remains for debug/recovery only. Unlocked details may show `display_website`, derived from profile website, profile domain, or the saved search domain.
 

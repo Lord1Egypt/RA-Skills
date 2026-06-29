@@ -1,0 +1,38 @@
+{
+  "bilibili": {
+    "default_ratio": "16:9",
+    "text_density": "medium-high",
+    "visual_priority": ["big headline", "human emotion", "contrast", "topic conflict"],
+    "risk": ["too many elements", "small text", "weak main subject"]
+  },
+  "youtube": {
+    "default_ratio": "16:9",
+    "text_density": "low",
+    "visual_priority": ["large subject", "extreme emotion", "high contrast", "few words"],
+    "risk": ["too much text", "small subject", "unclear hook"]
+  },
+  "xiaohongshu": {
+    "default_ratio": "3:4 or 4:5",
+    "text_density": "medium",
+    "visual_priority": ["clean layout", "benefit point", "lifestyle quality", "collectability"],
+    "risk": ["cheap marketing feel", "dirty colors", "too much decoration"]
+  },
+  "douyin": {
+    "default_ratio": "9:16",
+    "text_density": "low-medium",
+    "visual_priority": ["strong emotion", "large keyword", "portrait close-up", "fast comprehension"],
+    "risk": ["busy background", "title blocked by person", "unclear keyword"]
+  },
+  "wechat_channels": {
+    "default_ratio": "9:16",
+    "text_density": "low-medium",
+    "visual_priority": ["trust", "clear value", "portrait", "simple background"],
+    "risk": ["too clickbait", "low trust", "hard to read"]
+  },
+  "public_account": {
+    "default_ratio": "16:9 or article cover",
+    "text_density": "medium",
+    "visual_priority": ["professionalism", "brand consistency", "clear hierarchy"],
+    "risk": ["overly short-video style", "chaotic information", "cheap visual elements"]
+  }
+}

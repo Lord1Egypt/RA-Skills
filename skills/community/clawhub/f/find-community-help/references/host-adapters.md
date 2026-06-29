@@ -19,6 +19,7 @@ Use this file when a host needs a minimal adapter policy for `find-community-hel
 - Use `scripts/validate_suggestions.py` only for mechanical suggestion-block structure, not for judging the quality of community advice.
 - Keep redaction in scripts because accidental secret echo is a safety and output-hygiene problem, not a reasoning preference.
 - Keep `scripts/*test*.py` and `scripts/real_trigger_scenarios.py` as release verification harnesses.
+- Treat community output as advisory until the user authorizes any execution or code change. For repo, package, skill, plugin, or registry suggestions, surface available GitHub/ClawHub/SkillHub safety status before applying the suggestion.
 
 ## Script Audit
 

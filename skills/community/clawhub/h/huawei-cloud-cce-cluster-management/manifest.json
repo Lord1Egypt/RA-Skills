@@ -1,0 +1,1228 @@
+{
+  "version": "1.0.0",
+  "name": "huawei-cloud-cce-cluster-management",
+  "description": "Huawei Cloud CCE cluster management tools for cluster lifecycle, node pool, node, addon operations, and network prerequisites",
+  "tools": [
+    {
+      "name": "huawei_list_vpc",
+      "description": "List VPCs in the region. Returns human-readable attributes: name, cidr, status. Use to find VPC ID for cluster creation. If no VPC found, consider creating one first.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Number of results to return (default: 100)"
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Offset for pagination (default: 0)"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": ["region"]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_list_vpc_subnets",
+      "description": "List subnets in a VPC. Returns human-readable attributes: name, cidr, availability_zone. Use to find subnet ID for cluster/node creation. Query with vpc_id to filter.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "vpc_id": {
+            "type": "string",
+            "description": "VPC ID to filter subnets (optional, lists all subnets if not provided)"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Number of results to return (default: 100)"
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Offset for pagination (default: 0)"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": ["region"]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_list_cce_clusters",
+      "description": "List CCE (Cloud Container Engine) clusters with pagination",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Number of results to return (default: 100)"
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Offset for pagination (default: 0)"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_get_cce_nodes",
+      "description": "Get detailed information about nodes in a CCE cluster",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_get_cce_kubeconfig",
+      "description": "Get kubeconfig for a CCE cluster. Returns kubeconfig in JSON and YAML format with cluster endpoints information. The kubeconfig can be used with kubectl to manage the cluster.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID"
+          },
+          "duration": {
+            "type": "integer",
+            "description": "Certificate validity duration in days (default: 30)"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_create_cce_cluster",
+      "description": "Create a CCE cluster. Recommended: Turbo cluster (cluster_type=Turbo) with eni network for best performance. Naming format: '<env>-<app>-cluster' (e.g., 'prod-web-cluster'). Use huawei_list_vpc and huawei_list_vpc_subnets to find network resources.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_name": {
+            "type": "string",
+            "description": "Cluster name. Recommended format: '<env>-<app>-cluster'. Example: 'prod-web-cluster', 'dev-api-cluster'"
+          },
+          "cluster_version": {
+            "type": "string",
+            "description": "Kubernetes version (e.g., v1.28, v1.29, v1.30)"
+          },
+          "vpc_id": {
+            "type": "string",
+            "description": "VPC ID where the cluster will be created"
+          },
+          "subnet_id": {
+            "type": "string",
+            "description": "Subnet ID for the cluster network"
+          },
+          "cluster_type": {
+            "type": "string",
+            "description": "Cluster type. Recommended: 'Turbo' for ENI network (best performance). Options: VirtualMachine, Turbo"
+          },
+          "container_network_type": {
+            "type": "string",
+            "description": "Container network. Recommended: 'eni' for Turbo, 'overlay_l2' for Standard. Options: overlay_l2, vpc-router, eni"
+          },
+          "flavor_id": {
+            "type": "string",
+            "description": "Cluster flavor ID (e.g., cce.s1.small, cce.s1.medium, cce.s2.small)"
+          },
+          "description": {
+            "type": "string",
+            "description": "Cluster description (optional)"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_name",
+          "cluster_version",
+          "vpc_id",
+          "subnet_id"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_delete_cce_cluster",
+      "description": "Delete a CCE cluster. WARNING: This will delete the cluster and all its resources. User confirmation (confirm=true) is required before deletion.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID to delete"
+          },
+          "confirm": {
+            "type": "boolean",
+            "description": "REQUIRED: Set to true to confirm deletion. Without this, deletion will not proceed."
+          },
+          "delete_evs": {
+            "type": "boolean",
+            "description": "Whether to delete associated EVS volumes (default: false)"
+          },
+          "delete_net": {
+            "type": "boolean",
+            "description": "Whether to delete associated network resources (default: false)"
+          },
+          "delete_obs": {
+            "type": "boolean",
+            "description": "Whether to delete associated OBS buckets (default: false)"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id",
+          "confirm"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_hibernate_cce_cluster",
+      "description": "Hibernate (sleep) a CCE cluster to reduce costs. Cluster nodes will be stopped but control plane is preserved.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID to hibernate"
+          },
+          "confirm": {
+            "type": "boolean",
+            "description": "REQUIRED: Set to true to confirm hibernation. Without this, operation will not proceed."
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id",
+          "confirm"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_awake_cce_cluster",
+      "description": "Awaken (resume) a hibernated CCE cluster. Restarts cluster nodes from hibernation state.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID to awaken"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_bind_cce_cluster_eip",
+      "description": "Bind an EIP (Elastic IP) to a CCE cluster for public API server access.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID"
+          },
+          "eip_id": {
+            "type": "string",
+            "description": "EIP ID to bind to the cluster"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id",
+          "eip_id"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_unbind_cce_cluster_eip",
+      "description": "Unbind an EIP (Elastic IP) from a CCE cluster, disabling public API server access.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_list_cce_nodepools",
+      "description": "List node pools in a CCE cluster with pagination",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Number of results to return (default: 100)"
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Offset for pagination (default: 0)"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_resize_cce_nodepool",
+      "description": "Resize (scale up or down) a CCE node pool to a specific number of nodes. Use this to add or remove nodes in a node pool.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID"
+          },
+          "nodepool_id": {
+            "type": "string",
+            "description": "Node pool ID to resize"
+          },
+          "node_count": {
+            "type": "integer",
+            "description": "Target node count (desired number of nodes after resize)"
+          },
+          "scale_group_names": {
+            "type": "string",
+            "description": "Comma-separated list of scale group names to use (default: 'default')"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id",
+          "nodepool_id",
+          "node_count"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_list_cce_nodes",
+      "description": "List nodes in a CCE cluster with pagination",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Number of results to return (default: 100)"
+          },
+          "offset": {
+            "type": "integer",
+            "description": "Offset for pagination (default: 0)"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_delete_cce_node",
+      "description": "Delete a node from CCE cluster. WARNING: This will delete the node and all its pods. User confirmation (confirm=true) is required before deletion.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID"
+          },
+          "node_id": {
+            "type": "string",
+            "description": "Node ID to delete"
+          },
+          "confirm": {
+            "type": "boolean",
+            "description": "REQUIRED: Set to true to confirm deletion. Without this, deletion will not proceed."
+          },
+          "scale_down": {
+            "type": "boolean",
+            "description": "Whether to scale down pods before deleting (default: true)"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id",
+          "node_id",
+          "confirm"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_cce_node_cordon",
+      "description": "Cordon a node in CCE cluster. Marks the node as unschedulable, preventing new pods from being scheduled on it.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID"
+          },
+          "node_id": {
+            "type": "string",
+            "description": "Node ID to cordon"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id",
+          "node_id"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_cce_node_uncordon",
+      "description": "Uncordon a node in CCE cluster. Marks the node as schedulable, allowing new pods to be scheduled on it.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID"
+          },
+          "node_id": {
+            "type": "string",
+            "description": "Node ID to uncordon"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id",
+          "node_id"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_cce_node_drain",
+      "description": "Drain a node in CCE cluster. Evicts all pods from the node and marks it as unschedulable. Useful for node maintenance.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID"
+          },
+          "node_id": {
+            "type": "string",
+            "description": "Node ID to drain"
+          },
+          "grace_period": {
+            "type": "integer",
+            "description": "Grace period in seconds for pod termination (default: 30)"
+          },
+          "ignore_daemonsets": {
+            "type": "boolean",
+            "description": "Ignore DaemonSet pods during drain (default: true)"
+          },
+          "delete_emptydir_data": {
+            "type": "boolean",
+            "description": "Continue even if there are pods using emptyDir (default: false)"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id",
+          "node_id"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_cce_node_status",
+      "description": "Get detailed status information for a specific node in a CCE cluster, including conditions, allocatable resources, and health status.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID"
+          },
+          "node_id": {
+            "type": "string",
+            "description": "Node ID to get status for"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id",
+          "node_id"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_list_cce_addons",
+      "description": "List installed addons in a CCE cluster",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_get_cce_addon_detail",
+      "description": "Get detailed information about a specific addon in a CCE cluster, including version, status, and configuration.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID"
+          },
+          "addon_id": {
+            "type": "string",
+            "description": "Addon ID or addon template name (e.g., coredns, metrics-server)"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id",
+          "addon_id"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_create_cce_nodepool",
+      "description": "Create a node pool in CCE cluster. Recommended naming: '<env>-<role>-pool' (e.g., 'prod-worker-pool'). Start with initial_node_count=2 for HA, or 0 with autoscaling.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID"
+          },
+          "nodepool_name": {
+            "type": "string",
+            "description": "Node pool name. Recommended: '<env>-<role>-pool'. Example: 'prod-worker-pool', 'dev-gpu-pool'"
+          },
+          "flavor": {
+            "type": "string",
+            "description": "Node flavor ID (e.g., c6.large.2, s6.large.2)"
+          },
+          "availability_zone": {
+            "type": "string",
+            "description": "Availability zone for the node pool (e.g., cn-north-4a)"
+          },
+          "root_volume_size": {
+            "type": "integer",
+            "description": "Root volume size in GB (e.g., 40, 100)"
+          },
+          "root_volume_type": {
+            "type": "string",
+            "description": "Root volume type (e.g., SSD, GPSSD, SAS, SATA)"
+          },
+          "initial_node_count": {
+            "type": "integer",
+            "description": "Initial nodes. Recommended: 2 for HA, 0 with autoscaling_enabled=true"
+          },
+          "os_type": {
+            "type": "string",
+            "description": "Operating system type (e.g., EulerOS, CentOS, Ubuntu)"
+          },
+          "ssh_key": {
+            "type": "string",
+            "description": "SSH key pair name for node access"
+          },
+          "password": {
+            "type": "string",
+            "description": "Root password for node access (alternative to ssh_key)"
+          },
+          "data_volumes": {
+            "type": "string",
+            "description": "JSON array of data volume configurations (e.g., '[{\"size\":100,\"type\":\"SSD\"}]')"
+          },
+          "subnet_id": {
+            "type": "string",
+            "description": "Subnet ID for the node pool (uses cluster subnet if not specified)"
+          },
+          "autoscaling_enabled": {
+            "type": "boolean",
+            "description": "Enable autoscaling. Recommended: true for dynamic scaling. Default: false"
+          },
+          "min_node_count": {
+            "type": "integer",
+            "description": "Minimum node count for autoscaling (required if autoscaling_enabled=true)"
+          },
+          "max_node_count": {
+            "type": "integer",
+            "description": "Maximum node count for autoscaling (required if autoscaling_enabled=true)"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id",
+          "nodepool_name",
+          "flavor",
+          "availability_zone",
+          "root_volume_size",
+          "root_volume_type"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_delete_cce_nodepool",
+      "description": "Delete a node pool from CCE cluster. WARNING: This will delete all nodes in the node pool and their workloads. User confirmation (confirm=true) is required before deletion.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID"
+          },
+          "nodepool_id": {
+            "type": "string",
+            "description": "Node pool ID to delete"
+          },
+          "confirm": {
+            "type": "boolean",
+            "description": "REQUIRED: Set to true to confirm deletion. Without this, deletion will not proceed."
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id",
+          "nodepool_id",
+          "confirm"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_create_cce_node",
+      "description": "Create nodes directly in cluster (outside node pools). Prefer node pools for managed scaling. Recommended: node_count starts at 2 for HA.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID"
+          },
+          "flavor": {
+            "type": "string",
+            "description": "Node flavor ID (e.g., c6.large.2, s6.large.2)"
+          },
+          "availability_zone": {
+            "type": "string",
+            "description": "Availability zone for the node (e.g., cn-north-4a)"
+          },
+          "root_volume_size": {
+            "type": "integer",
+            "description": "Root volume size in GB (e.g., 40, 100)"
+          },
+          "root_volume_type": {
+            "type": "string",
+            "description": "Root volume type (e.g., SSD, GPSSD, SAS, SATA)"
+          },
+          "node_count": {
+            "type": "integer",
+            "description": "Number of nodes to create (default: 1)"
+          },
+          "os_type": {
+            "type": "string",
+            "description": "Operating system type (e.g., EulerOS, CentOS, Ubuntu)"
+          },
+          "ssh_key": {
+            "type": "string",
+            "description": "SSH key pair name for node access"
+          },
+          "password": {
+            "type": "string",
+            "description": "Root password for node access (alternative to ssh_key)"
+          },
+          "data_volumes": {
+            "type": "string",
+            "description": "JSON array of data volume configurations (e.g., '[{\"size\":100,\"type\":\"SSD\"}]')"
+          },
+          "subnet_id": {
+            "type": "string",
+            "description": "Subnet ID for the nodes (uses cluster subnet if not specified)"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id",
+          "flavor",
+          "availability_zone",
+          "root_volume_size",
+          "root_volume_type"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_install_cce_addon",
+      "description": "Install an addon in CCE cluster. Common addons: coredns (DNS), metrics-server (monitoring), everest (storage). Use addon_version from huawei_list_cce_addons to check available versions.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID"
+          },
+          "addon_template_name": {
+            "type": "string",
+            "description": "Addon template name (e.g., coredns, metrics-server, everest, nginx-ingress)"
+          },
+          "addon_version": {
+            "type": "string",
+            "description": "Addon version (uses latest compatible version if not specified)"
+          },
+          "values": {
+            "type": "string",
+            "description": "JSON string of addon configuration values"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id",
+          "addon_template_name"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_uninstall_cce_addon",
+      "description": "Uninstall an addon from CCE cluster. WARNING: This may affect cluster functionality depending on the addon. User confirmation (confirm=true) is required before uninstallation.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID"
+          },
+          "addon_id": {
+            "type": "string",
+            "description": "Addon ID or addon template name to uninstall"
+          },
+          "confirm": {
+            "type": "boolean",
+            "description": "REQUIRED: Set to true to confirm uninstallation. Without this, uninstallation will not proceed."
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id",
+          "addon_id",
+          "confirm"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    },
+    {
+      "name": "huawei_update_cce_addon",
+      "description": "Update an addon in CCE cluster. Allows upgrading addon version or modifying configuration values.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string",
+            "description": "Huawei Cloud region (e.g., cn-north-4)"
+          },
+          "cluster_id": {
+            "type": "string",
+            "description": "CCE cluster ID"
+          },
+          "addon_id": {
+            "type": "string",
+            "description": "Addon ID or addon template name to update"
+          },
+          "addon_version": {
+            "type": "string",
+            "description": "Target addon version for upgrade"
+          },
+          "values": {
+            "type": "string",
+            "description": "JSON string of addon configuration values to update"
+          },
+          "ak": {
+            "type": "string",
+            "description": "Access Key ID (optional if HUAWEI_AK env is set)"
+          },
+          "sk": {
+            "type": "string",
+            "description": "Secret Access Key (optional if HUAWEI_SK env is set)"
+          },
+          "project_id": {
+            "type": "string",
+            "description": "Project ID (optional if HUAWEI_PROJECT_ID env is set)"
+          }
+        },
+        "required": [
+          "region",
+          "cluster_id",
+          "addon_id"
+        ]
+      },
+      "script": "scripts/huawei-cloud.py"
+    }
+  ]
+}

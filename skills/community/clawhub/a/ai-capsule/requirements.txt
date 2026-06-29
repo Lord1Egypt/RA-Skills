@@ -1,0 +1,8 @@
+feedparser>=6.0,<7
+requests>=2.32.4,<3
+beautifulsoup4>=4.12,<5
+PyYAML>=6.0,<7
+scrapling>=0.2.99,<0.4
+trafilatura>=2.0,<3
+browser-cookie3>=0.19,<1
+twitter-cli>=0.7,<1

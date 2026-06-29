@@ -5,7 +5,7 @@ openapi: "3.1.0"
 info:
   title: "Subgraph Registry"
   description: "Agent-friendly subgraph discovery on The Graph Network. 14,700+ classified subgraphs with semantic search, reliability scoring, schema-evolution tracking, and x402 query URLs ($0.01 USDC on Base, no API key)."
-  version: "0.8.7"
+  version: "0.8.9"
   license:
     name: "MIT"
   contact:

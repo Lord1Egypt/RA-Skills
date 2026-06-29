@@ -26,7 +26,7 @@ description: 当请求依赖 AIOS、OpenClaw、Forguncy 等业务系统的实时
   - 请求体结构
   - 枚举值映射
   - 返回字段含义
-3. 只允许通过 `aios-apps-invoke-cli` 调用业务系统接口。
+3. 只允许通过 `aios-apps-invoke-cli` 调用业务系统接口；CLI 会通过本地 app invoke socket service 完成真实调用。
 4. 实时调用结果的优先级高于记忆、缓存、历史对话和猜测。
 5. 只有在拿到 CLI 返回结果后，才能继续做后续分析、汇总和结论输出。
 
@@ -41,27 +41,30 @@ description: 当请求依赖 AIOS、OpenClaw、Forguncy 等业务系统的实时
 5. 根据文档，确认 `provider`。
 6. 通过会话上下文的 `topic_id` ，确认 `SessionId`。
 7. 生成 `jsonBody`，并检查确认合法性。
-8. 生成并执行唯一一条 CLI 命令。
+8. 如果涉及到创建、修改、提交、审核、删除等动作，必须整理出包括每个参数、值和说明的表格，请用户确认后，方可执行。查询类动作需忽略这一步。
+9. 生成并执行唯一一条 CLI 命令。
 
 任一步缺失，都停止并说明缺口。
 
 ## 会话标识读取规则
 
-- `aios-apps-invoke-cli -s` 只接受当前会话的 `SessionId`，你只能从当前会话上下文中的 `topic_id` 读取到该值。
-- `SessionId` 以 `s-` 开头，后面跟30个数字，不要忽略开头的 `s-`。
+- `aios-apps-invoke-cli` 的 `-s` 参数，只接受当前会话上下文中的 `topic_id`。
+- `topic_id` 以 `s-` 开头，后面跟30个数字，不要忽略开头的 `s-`。
 - 如果当前上下文没有 `topic_id`，就视为运行时缺参，必须停止调用并明确说明缺口。
 
 ## 约束要求
 
-- `AIOS_ONTOLOGY_DIR` 视为当前事实源。
+- `AIOS_ONTOLOGY_DIR` （默认为 `/var/aios/kernel/ontology`）视为当前事实源。
 - 当前 CLI 只支持 `provider=hzg`，如果出现其他 provider，直接说明当前运行链路不支持，不要猜测替代方案。
-- 调用 CLI 时，`-s` 传入当前会话的 `SessionId` （上下文中的 `topic_id`）。
-  - 不能臆造，不能复用其他会话的 `SessionId` 。
-  - 不得使用提示词中的 `SessionId` 、 `chat_id` 、 `message_id` 或其他字段代替。
+- 调用 CLI 时，`-s` 传入当前会话的 `topic_id` 。
+  - 不能臆造，不能复用其他会话的 `topic_id` 。
+  - 不得使用提示词中的 `SessionId` 、 `topic_id` 、`chat_id` 、 `message_id` 或其他字段代替。
 - 不要臆造接口名、请求字段、枚举 ID 或 `provider`。
 - 不要绕过 CLI 自行编写 API 调用脚本。
+- 不要手动启动 `aios-apps-invoke-cli serve` ；运行环境应已提供常驻 app invoke service。
 - 只有拿到 CLI 结果后，才允许用 Python 做二次分析和计算。
 - 如果本体不完整、`provider` 未知或运行时上下文缺失，应明确说明阻塞点，不要猜测。
+- 禁止将调用结果存储到记忆、缓存或数据库中；禁止在后续对话中复用之前的调用结果。
 
 ## 降歧义规则
 

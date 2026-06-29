@@ -1,0 +1,11 @@
+interface:
+  display_name: "Go Get Uncle Matt's HAMMERRR"
+  short_description: "Explicit-invocation, read-only project-truth audit for claim-vs-runtime evidence checks."
+  default_prompt: >-
+    Use only after the user explicitly invokes $go-get-uncle-matts-hammerrr
+    or says "Go Get Uncle Matt's HAMMERRR" and asks for the HAMMERRR audit.
+    Before inspecting files, confirm the audit root and output path. Do not
+    activate for generic review, readiness, repo reality, or truth-audit wording
+    without that explicit HAMMERRR invocation.
+policy:
+  allow_implicit_invocation: false

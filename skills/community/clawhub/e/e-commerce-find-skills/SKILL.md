@@ -60,13 +60,13 @@ linkfoxskill install slug --workdir workspace
 
 例如：
 ```bash
-linkfoxskill install linkfoxlinkfox-aba-data-explorer --workdir ~.claude
+linkfoxskill install linkfoxlinkfox-aba-data-explorer --workdir ~/.claude
 ```
 
  确定你的工作空间目录，然后执行 install 命令：
 
-- 如果你是 Claude Code，工作空间目录是 `~.claude`
-- 如果你是 OpenClaw，工作空间目录是你当前的 workspace 路径，如 `~.openclawworkspace`
+- 如果你是 Claude Code，工作空间目录是 `~/.claude`
+- 如果你是 OpenClaw，工作空间目录是你当前的 workspace 路径，如 `~/.openclaw/workspace`
 - 如果你是其他 Agent，请找到你的 skillworkspace 目录
 
 安装完成后提示用户重启 Agent 以加载新技能。

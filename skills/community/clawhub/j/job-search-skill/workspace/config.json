@@ -1,0 +1,24 @@
+{
+  "search": {
+    "locations": ["Belgrade", "Serbia", "Remote"],
+    "linkedin_public_search": true,
+    "infostud_search": true,
+    "helloworld_search": true,
+    "max_results_per_source": 25,
+    "min_score_to_include": 5
+  },
+  "email": {
+    "enabled": false,
+    "smtp_host": "smtp.gmail.com",
+    "smtp_port": 587,
+    "smtp_user": "YOUR_GMAIL@gmail.com",
+    "smtp_pass": "YOUR_APP_PASSWORD",
+    "recipient": "YOUR_EMAIL@gmail.com",
+    "sender_name": "Job Scout"
+  },
+  "cron": {
+    "enabled": false,
+    "time": "09:00",
+    "timezone": "Europe/Belgrade"
+  }
+}

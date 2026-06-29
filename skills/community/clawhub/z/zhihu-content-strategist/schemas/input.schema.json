@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Zhihu Content Strategist Input",
+  "description": "Input schema for the Zhihu content strategy workflow.",
+  "type": "object",
+  "required": ["domain"],
+  "properties": {
+    "domain": {
+      "type": "string",
+      "description": "Target content domain on Zhihu.",
+      "examples": ["AI", "career", "psychology", "finance", "tech"]
+    },
+    "task": {
+      "type": "string",
+      "enum": ["define", "analyze", "gap", "recommend", "strategy", "draft", "publish"],
+      "description": "Workflow task to execute.",
+      "default": "recommend"
+    },
+    "topic": {
+      "type": "string",
+      "description": "Specific topic for strategy/draft generation.",
+      "examples": ["AI Agent 落地案例", "远程办公效率"]
+    },
+    "expertise_level": {
+      "type": "string",
+      "enum": ["beginner", "intermediate", "expert"],
+      "description": "User's expertise level in the domain.",
+      "default": "intermediate"
+    },
+    "top_answers_data": {
+      "type": "array",
+      "description": "Optional: scraped top-20 answers dataset for pattern analysis.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": { "type": "string" },
+          "content": { "type": "string" },
+          "upvotes": { "type": "integer" },
+          "comments": { "type": "integer" },
+          "author_followers": { "type": "integer" },
+          "publish_time": { "type": "string", "format": "date-time" }
+        }
+      }
+    },
+    "style_samples": {
+      "type": "array",
+      "description": "Optional: 3+ sample answers from a KOL for style mimic.",
+      "items": { "type": "string" },
+      "minItems": 3
+    }
+  },
+  "additionalProperties": false
+}

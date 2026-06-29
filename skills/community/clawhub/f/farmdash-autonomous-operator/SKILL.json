@@ -1,7 +1,7 @@
 {
   "name": "FarmDash Autonomous Operator",
-  "version": "1.0.1",
-  "description": "Session state and control-loop skill for OpenClaw DeFi agents. Manages persistent sessions, FarmingContext, event stream snapshots, heartbeats, delegation checks, and bounded autopilot coordination without holding private keys or bypassing user confirmations.",
+  "version": "2.0.0",
+  "description": "Session state and control-loop skill for OpenClaw. Manages sessions, FarmingContext, autopilot OODA control loops, circuit breakers, and Forensic receipts in zero-custody.",
   "tags": [
     "defi",
     "ai-agent",
@@ -23,10 +23,19 @@
     "risk-management",
     "zero-custody",
     "farmdash",
-    "autonomous-operator"
+    "autonomous-operator",
+    "ooda-loop",
+    "circuit-breaker",
+    "crash-recovery",
+    "forensics",
+    "shadow-mode",
+    "syndicate-tier",
+    "monetization",
+    "agent-orchestration",
+    "state-machine"
   ],
   "author": "FarmDash Pioneers (@Parmasanandgarlic)",
-  "homepage": "https://www.farmdash.one",
+  "homepage": "https://www.farmdash.one/agents",
   "icon": "operator",
   "tools": [
     {
@@ -37,21 +46,21 @@
         "properties": {}
       },
       "outputHints": [],
-      "category": "read"
+      "category": "write"
     },
     {
       "name": "session_heartbeat",
-      "description": "Extends the session expiry. Use it during active autonomous loops.",
+      "description": "Extends the session expiry. Use it during active autonomous loops. If a session expires, the Operator must enter Crash Recovery mode (see below).",
       "inputSchema": {
         "type": "object",
         "properties": {}
       },
       "outputHints": [],
-      "category": "read"
+      "category": "write"
     },
     {
       "name": "get_farming_context",
-      "description": "Reads shared context for the session:\n\n- objective.\n- portfolio scope.\n- risk settings.\n- workflow state.\n- ledger summary.\n- data freshness timestamps.",
+      "description": "Reads shared context for the session:\n* objective.\n* portfolio scope.\n* risk settings (including dynamically tuned `riskMultiplier`).\n* workflow state (ACTIVE, HALTED, RECOVERING).\n* ledger summary.\n* data freshness timestamps.",
       "inputSchema": {
         "type": "object",
         "properties": {}
@@ -61,7 +70,7 @@
     },
     {
       "name": "patch_farming_context",
-      "description": "Patches shared context. The server controls `sessionId`, `agentAddress`, `revision`, and `updatedAt`; do not try to override them.",
+      "description": "Patches shared context. The server controls `sessionId`, `agentAddress`, `revision`, and `updatedAt`; do not try to override them. Used for Dynamic Risk Autotuning and Circuit Breakers.",
       "inputSchema": {
         "type": "object",
         "properties": {}
@@ -91,23 +100,23 @@
     },
     {
       "name": "configure_autopilot",
-      "description": "Configure bounded autonomous cycles. Respect user allowlists, risk limits, and execution confirmations.",
+      "description": "Configure bounded autonomous cycles. Respect user allowlists, risk limits, and execution confirmations. (Syndicate tier required for activation).",
       "inputSchema": {
         "type": "object",
         "properties": {}
       },
       "outputHints": [],
-      "category": "read"
+      "category": "write"
     },
     {
       "name": "autopilot_cycle",
-      "description": "Run bounded autonomous cycles. Respect user allowlists, risk limits, and execution confirmations.",
+      "description": "Run bounded autonomous cycles. Respect user allowlists, risk limits, and execution confirmations. (Syndicate tier required).",
       "inputSchema": {
         "type": "object",
         "properties": {}
       },
       "outputHints": [],
-      "category": "read"
+      "category": "write"
     },
     {
       "name": "agent_onboard",
@@ -121,7 +130,7 @@
     },
     {
       "name": "get_agent_activity",
-      "description": "Reads the historical trace and execution logs of agent actions under this session.",
+      "description": "Reads the historical trace and execution logs of agent actions under this session. Includes Shadow-Mode drift metrics and forensic receipt IDs.",
       "inputSchema": {
         "type": "object",
         "properties": {}
@@ -131,7 +140,117 @@
     },
     {
       "name": "resolve_defi_intent",
-      "description": "Resolves a high-level natural language DeFi intent into structured parameters, which are then passed to a separately installed execution skill (like Signal Architect or Futures Strategist) for user confirmation and EIP-191/EIP-712 local signing. Autonomous Operator has no private keys and cannot sign transactions or perform direct on-chain execution.",
+      "description": "Resolves a high-level natural language DeFi intent into structured parameters, which are then passed to a separately installed execution skill (like Signal Architect or Futures Strategist) for user confirmation and EIP-191/EIP-191 local signing. Autonomous Operator has no private keys and cannot sign transactions or perform direct on-chain execution.\n\n**Intent Lifecycle — Plan → Approve → Execute → Observe**\nThe FarmDashIntent lifecycle enforces a strict pipeline. Every state-changing action must pass through policy, simulation, and approval gates before execution is allowed. These tools never hold private keys or broadcast transactions directly.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "create_intent",
+      "description": "Create a durable FarmDashIntent. This records what an agent wants to do — it never prepares, signs, broadcasts, or executes. The intent must include actor, action, chain, protocol, wallet, params, constraints, evidence, and `research_evidence_hash` (passed from Trail Intelligence).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "write"
+    },
+    {
+      "name": "policy_check_intent",
+      "description": "Run the explicit FarmDash policy gate for an intent. Execution remains blocked unless the latest policy check passes. Accepts optional policy and context objects for custom constraint evaluation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "simulate_intent",
+      "description": "Record a mandatory simulation result for an intent. Prepare and execute are blocked until a successful, unexpired simulation exists. This ensures every execution has been dry-run first.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "write"
+    },
+    {
+      "name": "request_approval_payload",
+      "description": "Build the EIP-712 IntentApproval payload that the human approver signs. This does not record approval or execute — it only constructs the typed data for the approver's wallet to sign.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "request_human_approval",
+      "description": "Compatibility wrapper for submitting a signed EIP-712 IntentApproval. Use `request_approval_payload` first to build the exact typed data, then submit the signature through this tool.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "execution"
+    },
+    {
+      "name": "submit_signed_approval",
+      "description": "Submit a signed EIP-712 IntentApproval payload to approve or reject an intent. This does not prepare or execute the intent — it only records the cryptographic approval decision.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "execution"
+    },
+    {
+      "name": "get_approval_status",
+      "description": "Inspect whether an intent is awaiting approval, has been approved, was rejected, or is already executed. Returns the current lifecycle status and approval metadata.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "read"
+    },
+    {
+      "name": "prepare_intent",
+      "description": "Validate typed adapter support and prepare an intent after policy, simulation, and approval gates pass. Registered adapters provide allowlisted validation. This does not broadcast a transaction.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "write"
+    },
+    {
+      "name": "execute_approved_intent",
+      "description": "Record the submitted, confirmed, failed, or rejected receipt for a prepared typed-adapter intent. Raw arbitrary calldata is rejected by the lifecycle API. Use this after the signing wallet has broadcast the transaction.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "execution"
+    },
+    {
+      "name": "confirm_execution",
+      "description": "Record a confirmed receipt for a prepared or signed intent with a transaction hash. Use `get_receipt` for follow-up observation after submission.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {}
+      },
+      "outputHints": [],
+      "category": "execution"
+    },
+    {
+      "name": "get_receipt",
+      "description": "Fetch one durable FarmDash receipt by receipt ID (`fdrcpt_*`). Receipts are immutable records of intent execution outcomes. v2.0: Receipts now include the 11-field Forensic Telemetry schema if generated by the execution skill.",
       "inputSchema": {
         "type": "object",
         "properties": {}
@@ -143,7 +262,7 @@
   "operatingRules": [],
   "requiredEnv": {
     "FARMDASH_API_KEY": {
-      "description": "Optional Bearer token for Pioneer or Syndicate tier. Scout session status checks work without any key or with the public fd_scout_free token.",
+      "description": "Optional Bearer token for Pioneer or Syndicate tier. Scout session status checks work without any key or with the public fd_scout_free token. Syndicate is $199/mo for teams, serious agents, 50k req/day, webhooks, unrestricted CORS, and advanced session/control tooling (including autonomous autopilot cycles).",
       "required": false
     }
   }

@@ -3,9 +3,12 @@ name: code-workflow
 metadata:
   author: es6kr
   version: "0.1.2"
-depends-on: [github-flow, tdd, web-browser]
+depends-on:
+  - github-flow
+  - tdd
+  - web-browser
 description: |
-  4-stage workflow for code changes: research → plan → user review → implement (TDD). Topics — steps (Step 0-3: resume check + research + plan + user review + branch), implement (Step 4: TDD cycle + test level + build verify + commit), pr (capture + PR creation with image/WebP/GIF/video). Applies to issue implementation, tracked task items, new feature additions. TDD default in implement (opt out --no-tdd). github-flow auto-companion for GitHub repos (plan-to-issue / dependencies / pr / merge). Use when: "coding workflow", "research plan implement", "write plan", "plan md", "user review", "code plan", "implementation process", "code changes", "PR with screenshots", "pull request", "capture and PR".
+  4-stage code-change workflow: research → plan → user review → implement (TDD). Topics — steps (Step 0-3: resume + research + plan + review + branch), implement (Step 4: TDD + build + commit), pr (capture + PR with image/GIF/video). For issue implementation, tracked tasks, new features. TDD default (opt out --no-tdd). github-flow auto-companion on GitHub repos. Use when: "coding workflow", "research plan implement", "write plan", "plan md", "user review", "code plan", "code changes", "PR with screenshots", "pull request", "capture and PR".
 ---
 
 # Coding Workflow

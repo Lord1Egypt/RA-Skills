@@ -1,0 +1,10 @@
+{
+  "name": "annotated",
+  "label": "带注释说明",
+  "description": "每个目录或文件可添加注释文字",
+  "layout": "tree",
+  "features": ["annotation_input", "inline_notes", "expandable_notes", "search"],
+  "icon_style": "css-only",
+  "sort_order": "default",
+  "annotations_visible": true
+}

@@ -1,3 +1,13 @@
+---
+name: product-launch
+mode: deck
+scenario: marketing
+surface: slides
+recommended: 25
+tags: ["product", "launch", "marketing", "event", "apple-style"]
+example_id: sample-product-launch
+example_format: markdown
+---
 # product-launch
 
 8-slide consumer product announcement deck: hero cover, "introducing" moment, three feature slides, how-it-works, pricing tiers, and a closing testimonial + pre-order CTA.

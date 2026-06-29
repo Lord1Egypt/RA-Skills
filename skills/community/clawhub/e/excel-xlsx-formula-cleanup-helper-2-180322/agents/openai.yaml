@@ -1,0 +1,7 @@
+interface:
+  display_name: "Office Open XML Automation Helper"
+  short_description: "Coordinate DOCX, XLSX, and PPTX automation with Open XML and Python."
+  default_prompt: "Use $excel-xlsx-formula-cleanup-helper-2 to design this Word, Excel, and PowerPoint automation pipeline."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,149 @@
+#!/usr/bin/env node
+/*
+ * wyze — control Wyze smart-home devices (lights, plugs, wall switches).
+ * Wraps wyze-node, reusing a cached login token (no password after `login`).
+ * Unofficial: uses Wyze developer API Key auth + reverse-engineered endpoints.
+ * Config via env: WYZE_NODE_DIR, WYZE_ENV, WYZE_TOKEN_DIR (see SKILL.md).
+ */
+const fs = require('fs');
+const os = require('os');
+const path = require('path');
+const home = os.homedir();
+const SKILL_DIR = path.join(__dirname, '..');
+const exists = p => { try { fs.accessSync(p); return true; } catch { return false; } };
+function die(m) { console.error('error: ' + m); process.exit(1); }
+
+const NODE_DIR = process.env.WYZE_NODE_DIR || path.join(home, 'code', 'wyze-node');
+const ENV = process.env.WYZE_ENV || path.join(home, '.openclaw', 'secrets', 'wyze.env');
+const TOKEN_DIR = process.env.WYZE_TOKEN_DIR || (exists(NODE_DIR) ? NODE_DIR : path.join(home, '.openclaw', 'wyze'));
+
+if (exists(ENV)) {
+  for (const line of fs.readFileSync(ENV, 'utf8').split('\n')) {
+    const m = line.match(/^\s*([A-Z_]+)\s*=\s*(.*)\s*$/);
+    if (m && !process.env[m[1]]) process.env[m[1]] = m[2];
+  }
+}
+try { fs.mkdirSync(TOKEN_DIR, { recursive: true }); process.chdir(TOKEN_DIR); }
+catch { die('cannot use token dir ' + TOKEN_DIR); }
+
+// resolve wyze-node: skill-local (scripts/node_modules, the default) → global → a clone
+let Wyze;
+for (const cand of ['wyze-node', path.join(SKILL_DIR, 'node_modules', 'wyze-node'), path.join(NODE_DIR, 'src', 'index.js')]) {
+  try { Wyze = require(cand); break; } catch {}
+}
+if (!Wyze) die('wyze-node not found — run: npm install --prefix "' + path.join(SKILL_DIR, 'scripts') + '" wyze-node');
+
+const LIGHT = new Set(['Light', 'MeshLight', 'LightStrip']);
+const PLUG = new Set(['Plug', 'OutdoorPlug']);
+const isSwitch = d => (d.product_model || '').toUpperCase() === 'LD_SS1';
+const kindOf = d => LIGHT.has(d.product_type) ? 'light' : PLUG.has(d.product_type) ? 'plug' : isSwitch(d) ? 'switch' : null;
+// normalize a kind arg ("lights"/"switches"/etc.) to a canonical kind; naive de-pluralizing breaks "switches"->"switche"
+const KIND_ALIAS = { light: 'light', lights: 'light', plug: 'plug', plugs: 'plug', switch: 'switch', switches: 'switch' };
+const normKind = s => KIND_ALIAS[String(s).toLowerCase().trim()] || String(s).toLowerCase().trim();
+const stateOf = d => { const p = d.device_params || {};
+  if (p.switch_state != null) return p.switch_state === 1 ? 'on' : 'off';
+  if (p.power_switch != null) return p.power_switch === 1 ? 'on' : 'off';
+  if (p.open_close_state != null) return p.open_close_state === 1 ? 'open' : 'closed';
+  return '?'; };
+
+let _w;
+function client() { return _w || (_w = new Wyze({ username: process.env.WYZE_EMAIL, keyId: process.env.WYZE_KEY_ID, apiKey: process.env.WYZE_API_KEY })); }
+async function devices() { return (await client().getDeviceList()).filter(d => kindOf(d)); }
+async function setPower(d, on) {
+  const k = kindOf(d), w = client();
+  if (k === 'light') return on ? w.turnOn(d) : w.turnOff(d);
+  if (k === 'plug') return on ? w.plugTurnOn(d) : w.plugTurnOff(d);
+  if (k === 'switch') return on ? w.wallSwitchPowerOn(d) : w.wallSwitchPowerOff(d);
+  throw new Error('not a controllable device');
+}
+function select(list, query, kindArg) {
+  if (!query) die('which device? (name or "all")');
+  let pool = list;
+  if (kindArg) { const k = normKind(kindArg); pool = list.filter(d => kindOf(d) === k); }
+  if (query.toLowerCase() === 'all') { if (!pool.length) die('no matching devices'); return pool; }
+  const s = query.toLowerCase().trim();
+  const hits = pool.filter(d => (d.nickname || '').toLowerCase().includes(s));
+  if (!hits.length) die('no device matching "' + query + '". Try: list');
+  return hits;
+}
+
+async function login() {
+  const readline = require('readline');
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  const ask = q => new Promise(r => rl.question(q, a => r(a.trim())));
+  const askHidden = q => new Promise(r => {
+    let shown = false; const orig = rl._writeToOutput.bind(rl);
+    rl._writeToOutput = () => { if (!shown) { rl.output.write(q); shown = true; } };
+    rl.question(q, v => { rl.output.write('\n'); rl._writeToOutput = orig; r(v); });
+  });
+  try {
+    const email = process.env.WYZE_EMAIL || await ask('Wyze email: ');
+    const password = await askHidden('Wyze password (hidden): ');
+    const keyId = process.env.WYZE_KEY_ID || await ask('Wyze Key ID: ');
+    const apiKey = process.env.WYZE_API_KEY || await ask('Wyze API Key: ');
+    if (!email || !password || !keyId || !apiKey)
+      throw new Error('email, password, Key ID and API Key are all required (https://developer-api-console.wyze.com/#/apikey/view)');
+    const w = new Wyze({ username: email, password, keyId, apiKey });
+    process.stdout.write('\nLogging in… ');
+    await w.login();
+    const devs = await w.getDeviceList();
+    console.log('OK ✅  ' + devs.length + ' device(s). Token cached in ' + TOKEN_DIR + '/scratch.');
+  } catch (e) {
+    const detail = (e && e.response && e.response.data) ? JSON.stringify(e.response.data) : (e && e.message) || String(e);
+    rl.close(); die('login failed: ' + detail);
+  }
+  rl.close();
+}
+
+(async () => {
+  const [cmd, ...rest] = process.argv.slice(2);
+  if (cmd === 'login') { await login(); return; }
+
+  if (!cmd || cmd === 'list') {
+    let ds = await devices();
+    if (rest[0]) { const k = normKind(rest[0]); ds = ds.filter(d => kindOf(d) === k); }
+    ds.sort((a, b) => kindOf(a).localeCompare(kindOf(b)) || (a.nickname || '').localeCompare(b.nickname || ''));
+    ds.forEach(d => console.log(`${stateOf(d).padEnd(4)} ${(d.nickname || '').trim()}  [${kindOf(d)}]`));
+    return;
+  }
+
+  const ds = await devices();
+
+  if (cmd === 'on' || cmd === 'off') {
+    const targets = select(ds, rest[0], rest[1]); const on = cmd === 'on'; let ok = 0;
+    for (const d of targets) {
+      try { await setPower(d, on); ok++; console.log(`${cmd}: ${(d.nickname || '').trim()} [${kindOf(d)}]`); }
+      catch (e) { console.log(`FAILED ${(d.nickname || '').trim()}: ${e.message}`); }
+    }
+    console.log(`— ${cmd} ${ok}/${targets.length} device(s)`); return;
+  }
+
+  const lightTargets = q => select(ds, q).filter(d => kindOf(d) === 'light');
+  if (cmd === 'brightness') {
+    const t = lightTargets(rest[0]); const p = parseInt(rest[1], 10);
+    if (isNaN(p) || p < 0 || p > 100) die('brightness 0-100');
+    if (!t.length) die('no light matching "' + rest[0] + '"');
+    for (const d of t) { try { await client().setBrightness(d, p); console.log(`brightness ${p}: ${(d.nickname || '').trim()}`); } catch (e) { console.log(`FAILED ${(d.nickname || '').trim()}: ${e.message}`); } }
+    return;
+  }
+  if (cmd === 'color') {
+    const t = lightTargets(rest[0]); const hex = (rest[1] || '').replace(/^#/, '');
+    if (!/^[0-9a-fA-F]{6}$/.test(hex)) die('color must be RRGGBB hex');
+    if (!t.length) die('no light matching "' + rest[0] + '"');
+    for (const d of t) { try { await client().setColor(d, hex); console.log(`color #${hex}: ${(d.nickname || '').trim()}`); } catch (e) { console.log(`FAILED ${(d.nickname || '').trim()}: ${e.message}`); } }
+    return;
+  }
+  if (cmd === 'temp') {
+    const t = lightTargets(rest[0]); const k = parseInt(rest[1], 10);
+    if (isNaN(k)) die('temp in kelvin, e.g. 2700');
+    if (!t.length) die('no light matching "' + rest[0] + '"');
+    for (const d of t) { try { await client().setColorTemp(d, k); console.log(`temp ${k}K: ${(d.nickname || '').trim()}`); } catch (e) { console.log(`FAILED ${(d.nickname || '').trim()}: ${e.message}`); } }
+    return;
+  }
+  if (cmd === 'status') {
+    const t = select(ds, rest[0]);
+    t.forEach(d => console.log(`${stateOf(d).padEnd(4)} ${(d.nickname || '').trim()}  [${kindOf(d)}]`));
+    return;
+  }
+  die('unknown command "' + cmd + '". Use: list | on | off | brightness | color | temp | status | login');
+})().catch(e => die(e.message));

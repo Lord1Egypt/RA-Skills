@@ -1,0 +1,33 @@
+📡 Fetching deep memory sample...
+   ✅ Got 5 points from pkm_memory
+
+🔄 Canonicalize (skill #2 v1.0.0) + hash (skill #1 v1.1.0)...
+ID                   Canonical (first 40)                       SHA-256 (16)      
+────────────────────────────────────────────────────────────────────────────────
+1                    {"episode_id":1,"test":"hello"}            646ff07e72c29dd5  
+000037bb-225d-4788   {"author":"morgana","authority_level":     b4cbc25c4388ef2c  
+00003cd5-5262-4bdd   {"agent":"Morgana","episode_id":"993bf     ab24768a89883bf7  
+00004a05-099a-4ed9   {"author":"morgana","authority_level":     ec658938a3535b41  
+00006e8d-8ce0-469b   {"agent":"Morgana","episode_id":"c480c     2f5fcd009d1ff107  
+
+🧪 Dogfood TEST 1: semantic equivalence
+   {'b':2,'a':1}  →  sha256=43258cff783fe7036d8a4303...
+   {'a':1,'b':2}  →  sha256=43258cff783fe7036d8a4303...
+   Match: ✅ YES
+
+🧪 Dogfood TEST 2: Unicode NFC normalization
+   {'café':1}     (NFC) →  sha256=4ba6f859a6604763e30e1afc...
+   {'cafe\\u0301':1} (NFD) →  sha256=4ba6f859a6604763e30e1afc...
+   Match: ✅ YES
+
+🧪 Dogfood TEST 3: whitespace input → same hash
+   Whitespace input → sha256=43258cff783fe7036d8a4303...
+   Tight input      → sha256=43258cff783fe7036d8a4303...
+   Match: ✅ YES
+
+🧪 Dogfood TEST 4: surrogate pair (4-byte UTF-8)
+   Canonical: {"emoji":"🔥🐺💜"}
+   SHA-256:   453da67c7df8f9cd17f2e1ae...
+
+✅ All dogfood tests pass — v1.0.0 + v1.1.0 combo opérationnel
+   Timestamp: 2026-06-14T15:20:38.536000

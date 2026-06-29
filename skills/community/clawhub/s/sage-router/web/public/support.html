@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Sage Router support and billing help for hosted accounts, generated API keys, quotas, checkout, reliability, and security reports." />
+  <link rel="canonical" href="https://sagerouter.dev/support" />
+  <meta property="og:title" content="Sage Router Support" />
+  <meta property="og:description" content="Support paths for hosted Sage Router billing, quota, API key, reliability, setup, and security issues." />
+  <meta property="og:url" content="https://sagerouter.dev/support" />
+  <meta property="og:type" content="website" />
+  <title>Sage Router Support</title>
+  <style>
+    :root{color-scheme:dark;--bg:#07100d;--panel:rgba(13,29,24,.84);--border:rgba(166,255,207,.16);--muted:#a9c5b8;--text:#edfdf5;--brand:#8df0b2;--amber:#f7d57a;--blue:#8ab4ff}*{box-sizing:border-box}body{margin:0;min-width:320px;background:linear-gradient(180deg,#07100d 0%,#0b1518 48%,#07100d 100%);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}.wrap{max-width:980px;margin:0 auto;padding:0 clamp(20px,5vw,72px)}a{color:inherit;text-decoration:none}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px 0;color:var(--muted)}.brand{display:inline-flex;align-items:center;gap:12px;font-weight:900;color:var(--text)}.brandMark{display:grid;place-items:center;width:36px;height:36px;border:1px solid rgba(141,240,178,.42);border-radius:8px;color:#062016;background:linear-gradient(135deg,var(--brand),var(--amber))}.navLinks,footer{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;font-weight:750}.navLinks a:hover,footer a:hover{color:var(--text)}main{padding:48px 0 64px}.eyebrow{color:var(--brand);text-transform:uppercase;letter-spacing:.16em;font-weight:900;font-size:12px;margin:0 0 16px}h1{font-size:clamp(42px,7vw,76px);line-height:.96;margin:0 0 20px}h2{font-size:clamp(24px,3vw,34px);line-height:1.08;margin:34px 0 10px}p,li{color:var(--muted)}.panel{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:26px;margin-top:24px}.note{border-color:rgba(141,240,178,.32);background:linear-gradient(180deg,rgba(26,67,50,.9),rgba(12,28,22,.86))}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:18px}.button{min-height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;padding:0 16px;font-weight:900;background:linear-gradient(135deg,var(--brand),#50d891);color:#04150d}.button.secondary{background:rgba(255,255,255,.04);color:var(--text);border:1px solid var(--border)}ul{padding-left:20px;display:grid;gap:8px}code{color:#d9f8e6}footer{padding:34px 0 54px;color:var(--muted);border-top:1px solid rgba(166,255,207,.1)}footer span{margin-right:auto}@media(max-width:760px){.nav{align-items:flex-start;flex-direction:column}.grid{grid-template-columns:1fr}.button{width:100%}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav" aria-label="Main navigation">
+      <a class="brand" href="/"><span class="brandMark">S</span><span>Sage Router</span></a>
+      <div class="navLinks">
+        <a href="/pricing">Pricing</a>
+        <a href="/billing">Billing</a>
+        <a href="/quickstart">Quickstart</a>
+        <a href="/docs/api-reference">API Reference</a>
+        <a href="/api-troubleshooting">Troubleshooting</a>
+        <a href="/status">Status</a>
+        <a href="https://app.sagerouter.dev/login.html?plan=pro&start=create_key&utm_source=support&utm_medium=recovery&utm_campaign=signup_to_key_recovery&auth=email" data-support-event="support_key_recovery_clicked" data-support-state="support-nav">Account</a>
+        <a href="/security">Security</a>
+      </div>
+    </nav>
+
+    <main>
+      <p class="eyebrow">Hosted support</p>
+      <h1>Sage Router Support</h1>
+      <p>Use this page to pick the right support path for hosted accounts, generated API keys, billing, quotas, setup, public edge reliability, abuse, and security reports.</p>
+
+      <section class="panel note">
+        <h2>Do Not Send Secrets</h2>
+        <p>Do not send prompts, workflow text, provider credentials, OAuth tokens, generated API keys, private keys, session cookies, raw provider responses, or customer data in public support channels. Share only account email, plan, timestamp, request id, HTTP status, safe error class, and the non-secret key prefix when needed.</p>
+      </section>
+
+      <section class="grid" aria-label="Support routes">
+        <article class="panel">
+          <h2>Account and Billing</h2>
+          <ul>
+            <li>Use the account page to sign in, choose Lite, Pro, or Max, generate keys, test <code>/v1/models</code>, and open the Stripe billing portal.</li>
+            <li>Use Stripe portal for payment methods, invoices, cancellation, and subscription changes when a Stripe customer is linked.</li>
+            <li>Use manual or crypto settlement only when Stripe is not available or a separate manual activation has been agreed.</li>
+          </ul>
+          <div class="actions">
+            <a class="button" href="https://app.sagerouter.dev/login.html?plan=pro&start=create_key&utm_source=support&utm_medium=recovery&utm_campaign=signup_to_key_recovery&auth=email" data-support-event="support_key_recovery_clicked" data-support-state="support-account-billing">Finish setup key</a>
+            <a class="button secondary" href="/pricing">Compare plans</a>
+            <a class="button secondary" href="/billing">Billing help</a>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Quota and API Keys</h2>
+          <ul>
+            <li>For <code>401</code>, confirm the key starts with <code>sk_sage_</code>, is active, and was copied from the account page when first shown.</li>
+            <li>For <code>402</code>, finish checkout or manual activation before expecting hosted model traffic to route.</li>
+            <li>For <code>429</code>, check current plan quota and request-per-minute limits before retrying at lower volume.</li>
+          </ul>
+          <div class="actions">
+            <a class="button" href="/quickstart">Read quickstart</a>
+            <a class="button secondary" href="/docs/api-reference">API reference</a>
+            <a class="button secondary" href="/api-troubleshooting">Troubleshoot errors</a>
+            <a class="button secondary" href="https://app.sagerouter.dev/login.html?plan=pro&start=create_key&utm_source=support&utm_medium=recovery&utm_campaign=signup_to_key_recovery&auth=email" data-support-event="support_key_recovery_clicked" data-support-state="support-quota-api-keys">Create or test API key</a>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Reliability and 503s</h2>
+          <ul>
+            <li>Check public edge status before changing client config. Sage Router routes to the lowest-latency healthy Tailnet or cloud installation.</li>
+            <li>For <code>503</code>, include timestamp, request id if present, route profile, safe model name, and whether the same request works against a local router.</li>
+            <li>Do not include prompt bodies, provider responses, bearer tokens, or local router secrets in a reliability report.</li>
+          </ul>
+          <div class="actions">
+            <a class="button" href="/status">View status</a>
+            <a class="button secondary" href="/models">Browse models</a>
+          </div>
+        </article>
+
+        <article class="panel">
+          <h2>Security and Abuse</h2>
+          <ul>
+            <li>Revoke exposed generated keys from the account page before filing a report.</li>
+            <li>Report abuse, account compromise, quota bypass attempts, or unsafe traffic with non-secret evidence only.</li>
+            <li>Use GitHub private security advisories for security reports that should not be public.</li>
+          </ul>
+          <div class="actions">
+            <a class="button" href="/security">Review security</a>
+            <a class="button secondary" href="/acceptable-use">Acceptable use</a>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <h2>Implementation Help</h2>
+        <p>For private deployment guidance, Tailnet routing, team onboarding, or managed-access beta interest, start from the account, pricing, quickstart, and public repository paths. The public launch remains local-first and customer-authorized by default; managed provider access is not active unless a separate written arrangement and runtime readiness checks are in place.</p>
+        <div class="actions">
+          <a class="button" href="https://github.com/earlvanze/sage-router/issues">Open a GitHub issue</a>
+          <a class="button secondary" href="/provider-resale-terms">Provider terms</a>
+          <a class="button secondary" href="/margin-policy">Margin policy</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <span>&copy; Sage Router</span>
+      <a href="https://app.sagerouter.dev/login.html?plan=pro&start=create_key&utm_source=support&utm_medium=recovery&utm_campaign=signup_to_key_recovery&auth=email" data-support-event="support_key_recovery_clicked" data-support-state="support-footer">Account</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/billing">Billing</a>
+      <a href="/quickstart">Quickstart</a>
+      <a href="/docs/api-reference">API Reference</a>
+      <a href="/api-troubleshooting">Troubleshooting</a>
+      <a href="/status">Status</a>
+      <a href="/security">Security</a>
+      <a href="/privacy">Privacy</a>
+      <a href="/terms">Terms</a>
+      <a href="https://github.com/earlvanze/sage-router">GitHub</a>
+    </footer>
+  </div>
+  <script>
+    function trackSupportFunnelEvent(event, data = {}) {
+      const params = new URLSearchParams(window.location.search);
+      const payload = JSON.stringify({
+        event,
+        sourcePage: window.location.href,
+        target: data.target || null,
+        metadata: {
+          source: 'support',
+          button: data.button || null,
+          state: data.state || null,
+          utmSource: params.get('utm_source') || params.get('utmSource') || null,
+          utmMedium: params.get('utm_medium') || params.get('utmMedium') || null,
+          utmCampaign: params.get('utm_campaign') || params.get('utmCampaign') || null,
+          landingPath: window.location.pathname
+        }
+      });
+      try {
+        if (navigator.sendBeacon) {
+          const blob = new Blob([payload], { type: 'application/json' });
+          if (navigator.sendBeacon('/api/funnel-event', blob)) return;
+        }
+      } catch {}
+      fetch('/api/funnel-event', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: payload,
+        keepalive: true,
+        credentials: 'omit'
+      }).catch(() => {});
+    }
+
+    document.querySelectorAll('[data-support-event]').forEach((link) => {
+      link.addEventListener('click', () => {
+        trackSupportFunnelEvent(link.dataset.supportEvent, {
+          target: link.getAttribute('href') || null,
+          button: link.textContent.trim().slice(0, 60),
+          state: link.dataset.supportState || null
+        });
+      });
+    });
+  </script>
+</body>
+</html>

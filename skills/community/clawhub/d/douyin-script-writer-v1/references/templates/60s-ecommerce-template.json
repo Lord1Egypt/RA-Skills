@@ -1,0 +1,35 @@
+{
+  "templateName": "60-second E-Commerce / Product Script Template",
+  "structure": [
+    {
+      "timeRange": "0-3s",
+      "section": "钩子 (Hook)",
+      "description": "对比/问题/痛点引起注意",
+      "duration": 3
+    },
+    {
+      "timeRange": "3-15s",
+      "section": "痛点 (Pain Point)",
+      "description": "描述用户痛点或使用场景",
+      "duration": 12
+    },
+    {
+      "timeRange": "15-35s",
+      "section": "产品介绍 (Product Intro)",
+      "description": "产品功能、卖点展示",
+      "duration": 20
+    },
+    {
+      "timeRange": "35-50s",
+      "section": "效果展示 (Results)",
+      "description": "使用效果对比或用户反馈",
+      "duration": 15
+    },
+    {
+      "timeRange": "50-60s",
+      "section": "促单 (Conversion)",
+      "description": "价格、优惠、限时、购买指引",
+      "duration": 10
+    }
+  ]
+}

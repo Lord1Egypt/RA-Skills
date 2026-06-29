@@ -1,0 +1,21 @@
+# AIScan.site
+
+> Platform-aware agent-readiness scanner. Audit how prepared any website is for AI agents.
+
+AIScan.site checks robots.txt, sitemaps, Markdown content negotiation, llms.txt, MCP server cards, OAuth discovery, Agent Skills, Web Bot Auth, and agentic commerce signals (UCP, x402). It detects the underlying platform (WordPress, Shopify, Lovable, Replit, Bolt, v0, Framer, Wix, Webflow) and applies the right rubric so content sites are not unfairly penalized for missing API surfaces.
+
+## Pages
+- [Scanner](/): Run an agent-readiness scan on any URL.
+- [How it works](/how-it-works): Methodology and scoring rubric.
+
+## For AI agents
+- [Programmatic scan API](/api/public/scan): POST `{url}` or GET `?url=` — returns full ScanResult JSON. Rate limit 5/min/IP.
+- [MCP server](/api/mcp): Streamable HTTP MCP endpoint exposing `scan_website`, `get_fixes`, `get_grade`.
+- [Agent Skill manifest](/aiscan-skill.json): Claude Agent Skills JSON describing trigger phrases and usage.
+- [Claude Code instructions](/CLAUDE.md): Plain-English skill doc for Claude Code and similar agent IDEs.
+- [MCP server card](/.well-known/mcp/server-card.json): MCP discovery metadata.
+
+## Example
+```
+curl https://aiscan.site/api/public/scan?url=https://example.com
+```

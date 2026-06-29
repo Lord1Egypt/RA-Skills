@@ -1,0 +1,44 @@
+{
+  "port": 8080,
+  "dbPath": "./wake.sqlite",
+  "source": "google-health",
+  "inference": {
+    "timezone": "Europe/Brussels",
+    "windowStart": "04:00",
+    "windowEnd": "11:00",
+    "minDurationMin": 180,
+    "supersedeGapMin": 45
+  },
+  "google": {
+    "clientId": "REPLACE_OR_USE_ENV",
+    "clientSecret": "REPLACE_OR_USE_ENV",
+    "redirectUri": "http://localhost:8080/oauth/callback",
+    "webhookAuthToken": "a-long-random-string-google-must-present",
+    "scopes": ["https://www.googleapis.com/auth/googlehealth.sleep.readonly"],
+    "apiBase": "https://health.googleapis.com/v4",
+    "mode": "poll",
+    "pollIntervalMs": 300000,
+    "pollLookbackMin": 720,
+    "pollWindowOnly": true,
+    "pollWindowMarginMin": 30
+  },
+  "subscribers": [
+    {
+      "id": "openclaw",
+      "url": "http://localhost:18789/hooks/wakehook",
+      "headers": { "Authorization": "Bearer your-openclaw-hooks-token" }
+    },
+    {
+      "id": "hermes",
+      "url": "http://localhost:8644/webhooks/wakehook",
+      "secret": "your-hermes-route-secret",
+      "signatureHeader": "X-Webhook-Signature",
+      "signatureFormat": "hex"
+    },
+    {
+      "id": "example-generic",
+      "url": "https://example.com/awake",
+      "secret": "per-subscriber-hmac-secret"
+    }
+  ]
+}

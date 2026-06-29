@@ -1,0 +1,6 @@
+{
+  "_comment": "Skill 来源记录。安装新 skill 后，通过 check.py 发现未知 skill，再用 reply.py 补充本文件。",
+  "_comment2": "source 可选值: skillhub | clawhub | custom | unknown",
+  "_comment3": "check_mode 可选: auto（自动检查版本）| manual（需手动查看）",
+  "_template": "首次使用前请根据实际安装的 skill 补全，或让 check.py 自动提示你补充"
+}

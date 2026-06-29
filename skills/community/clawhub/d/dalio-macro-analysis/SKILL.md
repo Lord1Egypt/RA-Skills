@@ -1,7 +1,7 @@
 ---
 name: dalio-macro-analysis
 slug: security-dalio-macro
-version: "5.0.0"
+version: "5.1.1"
 description: >
   This skill applies Ray Dalio's macro analysis framework to analyze global economic conditions, investment allocation, and geopolitical risks.
   Updated to 2026: covers Dalio's latest views on China-US great power competition, gold/BTC as reserve assets, US debt spiral risk, and deglobalization.
@@ -20,6 +20,26 @@ description: >
 | 市场动态 | 世界秩序已回到'1945年之前的强权即规则'格局，多极化不可逆转 | 五大力量框架分析需纳入最新地缘政治判断 |
 
 > **数据截止**: 2026-05-25 | 来源：国家金融监督管理总局、安永Q1分析、行业公开信息
+> **声明**: 以上动态供参考，具体以官方最新发布为准
+
+### 最新动态 [2026-06-15更新]
+
+| 动态类型 | 内容摘要 | 发布时间 | 影响范围 |
+|---------|---------|---------|---------|
+| AI泡沫警告 | 达利欧警告AI市场显现典型泡沫特征（估值高企、投机横行、虚假增长），类比2000年互联网泡沫和1929年大萧条；全美<20%企业真正落地AI，渗透率远低于资本市场定价预期 | 2026-06 | 全球宏观/AI投资 |
+
+> **数据截止**: 2026-06-15 | 来源：Bridgewater、路透社、AI行业研究报告
+> **声明**: 以上动态供参考，具体以官方最新发布为准
+
+
+### 投资思维最新动态 [2026-06-28更新]
+
+| 动态类型 | 内容摘要 | 发布时间 | 影响范围 |
+|---------|---------|---------|---------|
+| 宏观框架 | 达利欧2026年6月最新发声：2026-2028年将是全球金融体系最脆弱窗口期，债务/地缘/AI三重危机共振 | 2026-06 | 投资思维与宏观判断框架 |
+| AI治理 | 银行业保险业AI安全开发应用指导意见发布，AI Agent治理从'指导意见'走向'刚性规章' | 2026-06-18 | AI投资与企业治理思维 |
+
+> **数据截止**: 2026-06-28 | 来源：国家金融监督管理总局、行业公开信息
 > **声明**: 以上动态供参考，具体以官方最新发布为准
 
 ## Overview

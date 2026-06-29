@@ -11,32 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and engineering teams use this skill to turn completed specifications into architecture notes, task breakdowns, dependency ordering, acceptance criteria, estimates, sprint plans, and implementation risks. <br>
+Developers and engineering teams use this skill to turn completed specifications into architecture notes, task breakdowns, dependency ordering, acceptance criteria, estimates, and sprint plans. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The skill can automatically continue from planning into an execution phase without asking for confirmation. <br>
-Mitigation: Use `--standalone` or explicitly tell the agent to stop after creating `docs/implementation-plan.md` when only planning output is desired. <br>
-Risk: Generated plans may contain incorrect architecture assumptions, task dependencies, estimates, or acceptance criteria. <br>
-Mitigation: Review the implementation plan before execution and confirm dependencies, risk mitigations, and acceptance criteria against the original specification. <br>
+Risk: The skill can move from planning into execution without asking the user first. <br>
+Mitigation: Use the standalone option or explicitly ask the agent to stop after planning when only a plan is desired. <br>
+Risk: A generated implementation plan may contain incorrect task sequencing, estimates, or dependency assumptions. <br>
+Mitigation: Review the architecture, dependencies, acceptance criteria, risks, and sprint allocation before using the plan to guide code changes. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-attune-project-planning) <br>
-- [Publisher profile](https://clawhub.ai/user/athola) <br>
-- [OpenClaw homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/attune) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-attune-project-planning) <br>
+- [Attune homepage](https://github.com/athola/claude-night-market/tree/master/plugins/attune) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Markdown, Guidance, Configuration, Shell commands] <br>
-**Output Format:** [Markdown planning document with task lists, dependency notes, acceptance criteria, estimates, and inline command references] <br>
+**Output Type(s):** [text, markdown, guidance] <br>
+**Output Format:** [Markdown implementation plan with task breakdowns and planning guidance] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [May save an implementation plan to docs/implementation-plan.md and continue to an execution phase unless the user requests standalone planning or stops after planning.] <br>
+**Other Properties Related to Output:** [May save docs/implementation-plan.md and proceed toward an execution phase unless the user requests standalone planning or stops after planning.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata; artifact frontmatter reports 1.9.8) <br>
+1.9.13 (source: ClawHub release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

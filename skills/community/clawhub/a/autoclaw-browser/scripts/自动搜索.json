@@ -1,0 +1,62 @@
+{
+  "name": "自动搜索表单",
+  "description": "打开网页，输入关键词并提交搜索 - 使用智能工具",
+  "targetUrl": "https://www.wboke.com",
+  "params": {
+    "searchInput": "人工智能",
+    "inputSelector": "input[name='search']",
+    "buttonSelector": "button[type='submit']"
+  },
+  "steps": [
+    {
+      "action": "navigate",
+      "url": "https://www.wboke.com"
+    },
+    {
+      "action": "wait",
+      "ms": 2000
+    },
+    {
+      "action": "get_page_structure",
+      "includeInputs": true,
+      "includeButtons": true,
+      "maxItems": 20
+    },
+    {
+      "action": "wait_and_click",
+      "selector": "input[name='search']",
+      "timeout": 5000
+    },
+    {
+      "action": "type_text",
+      "text": "人工智能",
+      "delay": 50
+    },
+    {
+      "action": "wait",
+      "ms": 500
+    },
+    {
+      "action": "smart_click",
+      "text": "搜索",
+      "timeout": 3000
+    },
+    {
+      "action": "wait_for_navigation",
+      "timeout": 5000
+    },
+    {
+      "action": "take_screenshot",
+      "fullPage": true
+    },
+    {
+      "action": "find_elements",
+      "selector": "a[href]",
+      "limit": 10
+    }
+  ],
+  "retry": {
+    "maxRetries": 3,
+    "onFailure": "ask_human"
+  }
+}

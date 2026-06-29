@@ -1,0 +1,118 @@
+{
+  "baseUrl": "https://api.justserpapi.com",
+  "description": "Call GET /api/v1/google/maps/search for Google SERP Maps Search through Just Serp API with query.",
+  "displayName": "Google SERP Maps Search",
+  "endpointPath": "maps/search",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Google maps Search data, including business listings, ratings and contact data, and coordinate and location targeting, for local market research and lead discovery.",
+      "method": "GET",
+      "operationId": "mapsSearch",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "The search query for Google Maps (e.g., 'restaurants', 'hospitals in New York').",
+          "enumValues": [],
+          "location": "query",
+          "name": "query",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "GPS coordinates for the search origin. Format: '@<latitude>,<longitude>,<zoom>'. Required for precise localization and pagination.",
+          "enumValues": [],
+          "location": "query",
+          "name": "ll",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The Google domain to use for the search (e.g., 'google.com', 'google.co.uk'). See <a href=\"/reference/google-domains\">Google Domains</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "domain",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the language for the results using its two-letter code (e.g., 'en' for English, 'fr' for French). See <a href=\"/reference/google-language\">Google Language</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "language",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the target country code (e.g., 'us', 'uk') to localize results. See <a href=\"/reference/google-countries\">Google Countries</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "country",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Advanced Google Maps data parameter used for certain map/place-specific result filters and views. It can be copied from a Google Maps URL after applying filters, or constructed for specific place searches. This parameter is commonly used when type = \"place\". If you’re not familiar with it, you can leave it empty.",
+          "enumValues": [],
+          "location": "query",
+          "name": "data",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The unique Google Place ID to directly retrieve information for a specific location.",
+          "enumValues": [],
+          "location": "query",
+          "name": "place_id",
+          "required": false,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "The results pagination offset. Start at 0 and increment by 20 for each subsequent page.",
+          "enumValues": [],
+          "location": "query",
+          "name": "page",
+          "required": false,
+          "schemaType": "integer"
+        }
+      ],
+      "path": "/api/v1/google/maps/search",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        },
+        {
+          "description": "Authentication failed: API Key is invalid or missing",
+          "statusCode": "401"
+        },
+        {
+          "description": "Access denied: Insufficient credits or quota exceeded",
+          "statusCode": "403"
+        },
+        {
+          "description": "Internal server error or upstream service exception",
+          "statusCode": "500"
+        }
+      ],
+      "summary": "Search",
+      "tags": [
+        "Google Maps"
+      ]
+    }
+  ],
+  "platformKey": "google",
+  "primaryTag": "Google SERP",
+  "skillName": "justserpapi_google_maps_search",
+  "skillType": "interface",
+  "slug": "justserpapi-google-maps-search",
+  "sourceTitle": "API Shop Documentation"
+}

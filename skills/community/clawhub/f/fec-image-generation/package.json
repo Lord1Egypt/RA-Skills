@@ -1,0 +1,55 @@
+{
+  "name": "@bovinphang/fec-image-generation",
+  "version": "2.8.0",
+  "description": "Use when generating or editing diagrams, charts, visual assets, posters, UI mockups, product images, infographics, academic figures, comics, avatars, storyboards, brand boards, or image-edit workflows, especially when exported PNGs need visual QA and bounded self-repair. Prefer deterministic Mermaid/SVG/HTML/canvas sources for text-heavy diagrams; use HTML technical diagrams for browser-ready system blueprints, architecture, deployment topology, agent runtime, memory flow, before-after architecture, workflow, sequence, data-flow, lifecycle, runbook, PII/data-lineage, and state-machine diagrams. Do not use for ordinary UI polish without generated imagery.",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "Bovin Phang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/frontend-craft",
+    "directory": "skills/fec-image-generation"
+  },
+  "homepage": "https://github.com/bovinphang/frontend-craft",
+  "keywords": [
+    "agent-skill",
+    "frontend-craft",
+    "design-ui",
+    "image-generation",
+    "image-editing",
+    "diagram-generation",
+    "html-diagram",
+    "png-qa",
+    "visual-assets",
+    "infographic",
+    "mockup",
+    "autofix",
+    "er-diagram",
+    "uml",
+    "sequence-diagram",
+    "architecture-diagram",
+    "workflow-diagram",
+    "data-flow",
+    "lifecycle-diagram",
+    "state-machine",
+    "poster",
+    "storyboard",
+    "brand-board"
+  ],
+  "files": [
+    "SKILL.md",
+    "references",
+    "scripts",
+    "data",
+    "assets",
+    "metadata.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

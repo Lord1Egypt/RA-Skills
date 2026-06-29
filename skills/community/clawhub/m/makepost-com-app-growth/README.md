@@ -1,11 +1,13 @@
-# MakePost App Growth — OpenClaw Skill
+# MakePost — OpenClaw Skill
 
-Manage social media across 9 platforms, track App Store analytics, monitor ASO keywords, analyze competitors, and control subscription pricing — all through conversation with your AI agent.
+Run your social media on autopilot with AI agents. Schedule and publish across 9 platforms (TikTok, Instagram, Facebook, YouTube, X, LinkedIn, Threads, Pinterest, Bluesky), organize content into projects, generate captions, hashtags, post ideas, and AI images, set up recurring posting plans, and wire outbound webhooks — all through conversation with your AI agent.
+
+This skill now covers **38 MCP tools**, including AI text + image generation, outbound webhooks, and recurring/queue scheduling.
 
 ## Install
 
 ```
-openclaw skill add makepost/makepost-app-growth
+openclaw skills install @makepost/makepost-com-app-growth
 ```
 
 ## Setup

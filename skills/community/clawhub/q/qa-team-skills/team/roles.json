@@ -1,0 +1,80 @@
+{
+  "default": {
+    "roleA": "管理员",
+    "roleB": "普通用户",
+    "roleC": "访客"
+  },
+  "ERP": {
+    "roleA": "财务主管",
+    "roleB": "审计员",
+    "roleC": "业务员",
+    "roleD": "采购员"
+  },
+  "CRM": {
+    "roleA": "客服主管",
+    "roleB": "销售代表",
+    "roleC": "数据安全员",
+    "roleD": "市场专员"
+  },
+  "HRM": {
+    "roleA": "HR 经理",
+    "roleB": "薪酬专员",
+    "roleC": "员工",
+    "roleD": "部门主管"
+  },
+  "HIS": {
+    "_description": "医院信息系统",
+    "roleA": "系统管理员",
+    "roleB": "主任医师",
+    "roleC": "护士",
+    "roleD": "患者"
+  },
+  "SIEM": {
+    "_description": "安全信息与事件管理",
+    "roleA": "安全管理员",
+    "roleB": "审计员",
+    "roleC": "普通用户",
+    "roleD": "应急响应员"
+  },
+  "SOC": {
+    "_description": "安全运营中心",
+    "roleA": "安全分析师",
+    "roleB": "值班经理",
+    "roleC": "普通用户",
+    "roleD": "应急指挥"
+  },
+  "堡垒机": {
+    "_description": "运维审计系统",
+    "roleA": "系统管理员",
+    "roleB": "审计员",
+    "roleC": "运维人员",
+    "roleD": "普通用户"
+  },
+  "DLP": {
+    "_description": "数据防泄漏系统",
+    "roleA": "安全管理员",
+    "roleB": "数据Owner",
+    "roleC": "普通员工",
+    "roleD": "合规审计员"
+  },
+  "IAM": {
+    "_description": "身份认证与访问管理",
+    "roleA": "系统管理员",
+    "roleB": "应用管理员",
+    "roleC": "普通用户",
+    "roleD": "审计员"
+  },
+  "漏洞管理平台": {
+    "_description": "漏洞全生命周期管理",
+    "roleA": "安全管理员",
+    "roleB": "漏洞处理人",
+    "roleC": "资产Owner",
+    "roleD": "审计员"
+  },
+  "AI_Agent": {
+    "roleA": "平台管理员",
+    "roleB": "Agent 开发者",
+    "roleC": "终端用户",
+    "roleD": "安全审计员"
+  }
+}

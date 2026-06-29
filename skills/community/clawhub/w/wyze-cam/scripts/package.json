@@ -1,0 +1,9 @@
+{
+  "name": "wyze-cam-skill-deps",
+  "private": true,
+  "description": "Runtime dependency for the Wyze camera OpenClaw skill",
+  "dependencies": {
+    "wyze-node": "^2.12.2"
+  },
+  "comment": "Live `snapshot` also needs optional WebRTC deps: npm install werift ws ffmpeg-static"
+}

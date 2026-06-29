@@ -1,0 +1,4 @@
+MIT-0
+
+This skill package is licensed under the MIT No Attribution License (MIT-0).
+See LICENSE for the full license text.

@@ -1,6 +1,11 @@
 # 📊 Stock Realtime Brief
 
-> **A股实时分析与可执行操作建议生成器** — 把"凭感觉看盘"升级为"按规则执行"的纪律工具。
+> **A股投研体系 v5.0** — 选股 + 估值 + 跟踪 + 警报 + 复盘 全面闭环 / 散户级 Bloomberg
+> 🎉 **v5.0 重磅升级 (2026-06-28)**: 新增 **7 大投研工具** — DCF 内在价值计算 / 板块轮动 / 卖出信号 / 北极星监控 / 实时警报 / 财报解析 / 历史回测  
+> 📊 v2.1 选股模型 (5 维 100 分) + v5.0 蓝军对垒 + 北极星跟踪 = 散户级 Bloomberg 完整体系  
+> 🏆 5 个月实战 +105% 收益率验证
+
+
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)

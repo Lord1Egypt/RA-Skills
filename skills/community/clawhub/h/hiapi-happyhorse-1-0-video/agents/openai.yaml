@@ -1,0 +1,8 @@
+name: hiapi-happyhorse-1-0-video
+description: Generate HappyHorse 1.0 text-to-video through HiAPI.
+version: 0.1.0
+entrypoint: SKILL.md
+links:
+  website: https://www.hiapi.ai
+  api_key: https://www.hiapi.ai/en/register
+  pricing: https://www.hiapi.ai/en/pricing

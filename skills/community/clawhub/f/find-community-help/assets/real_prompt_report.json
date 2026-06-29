@@ -1,11 +1,13 @@
 {
-  "total_cases": 6,
-  "passed_cases": 6,
+  "total_cases": 8,
+  "passed_cases": 8,
   "failed_cases": [],
   "required_prompt_issues": [
     "delivery_window_not_trigger",
+    "execution_authorization_gate",
     "external_advice_as_untrusted_data",
     "no_browsing_boundary",
+    "platform_scan_check",
     "prompt_only_no_script_path",
     "secret_redaction_under_prompt",
     "source_order_under_version_drift"
@@ -14,15 +16,24 @@
     "delivery_window_not_trigger": [
       "delivery_window_only_prompt_stays_quiet"
     ],
+    "execution_authorization_gate": [
+      "malicious_command_advice_requires_authorization"
+    ],
     "external_advice_as_untrusted_data": [
       "external_advice_memory_prompt_stays_advisory",
-      "looping_prompt_needs_contract_reset"
+      "looping_prompt_needs_contract_reset",
+      "malicious_command_advice_requires_authorization"
     ],
     "no_browsing_boundary": [
       "manual_markdown_only_stalled_debug_prompt",
       "external_advice_memory_prompt_stays_advisory",
       "delivery_window_only_prompt_stays_quiet",
-      "sensitive_prompt_log_redaction"
+      "sensitive_prompt_log_redaction",
+      "malicious_command_advice_requires_authorization",
+      "skill_candidate_checks_platform_safety"
+    ],
+    "platform_scan_check": [
+      "skill_candidate_checks_platform_safety"
     ],
     "prompt_only_no_script_path": [
       "manual_markdown_only_stalled_debug_prompt",
@@ -33,7 +44,8 @@
       "sensitive_prompt_log_redaction"
     ],
     "source_order_under_version_drift": [
-      "version_sensitive_publish_drift_prompt"
+      "version_sensitive_publish_drift_prompt",
+      "skill_candidate_checks_platform_safety"
     ]
   },
   "missing_prompt_issues": [],
@@ -180,6 +192,61 @@
         "status": "ready",
         "observed_signals": [
           "repeated_local_attempts",
+          "user_requested_community_help"
+        ]
+      },
+      "query_count": 3,
+      "query_tiers": [
+        "primary",
+        "secondary",
+        "secondary"
+      ]
+    },
+    {
+      "id": "malicious_command_advice_requires_authorization",
+      "title": "Prompt includes community advice that asks to run a command",
+      "prompt_issue_patterns": [
+        "external_advice_as_untrusted_data",
+        "execution_authorization_gate",
+        "no_browsing_boundary"
+      ],
+      "ok": true,
+      "errors": [],
+      "plan_decision": {
+        "should_run": true,
+        "search_mode": "medium",
+        "trigger_reason": "user_request",
+        "reason": "explicit user request for community help",
+        "status": "ready",
+        "observed_signals": [
+          "user_requested_community_help"
+        ]
+      },
+      "query_count": 3,
+      "query_tiers": [
+        "primary",
+        "secondary",
+        "secondary"
+      ]
+    },
+    {
+      "id": "skill_candidate_checks_platform_safety",
+      "title": "Prompt asks whether to borrow a community skill",
+      "prompt_issue_patterns": [
+        "platform_scan_check",
+        "source_order_under_version_drift",
+        "no_browsing_boundary"
+      ],
+      "ok": true,
+      "errors": [],
+      "plan_decision": {
+        "should_run": true,
+        "search_mode": "medium",
+        "trigger_reason": "user_request",
+        "reason": "explicit user request for community help",
+        "status": "ready",
+        "observed_signals": [
+          "suspected_reinventing_wheel",
           "user_requested_community_help"
         ]
       },

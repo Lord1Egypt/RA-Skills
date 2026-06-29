@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/VKambulov/research-mode/schemas/finalization.v1.schema.json",
+  "title": "Research Mode finalization result v1",
+  "description": "Finalization validation result for review-ready candidate artifacts.",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["status"],
+  "properties": {
+    "status": {"type": "string"},
+    "primary_deliverable_kind": {
+      "description": "Legacy single-output deliverable kind. New tasks should prefer output_decision and output_contract.outputs.",
+      "type": ["string", "null"],
+      "enum": [
+        null,
+        "markdown_report",
+        "pdf_report",
+        "docx_report",
+        "html_report",
+        "xlsx",
+        "csv",
+        "package",
+        "unknown"
+      ]
+    },
+    "deliverable_decision": {
+      "description": "Legacy single-kind format decision. New structured output tasks should prefer output_decision.",
+      "type": ["object", "null"],
+      "additionalProperties": true,
+      "properties": {
+        "selected_kind": {"type": ["string", "null"]},
+        "desired_kind": {"type": ["string", "null"]},
+        "feasible_kind": {"type": ["string", "null"]},
+        "reason": {"type": ["string", "null"]},
+        "source": {"type": ["string", "null"]},
+        "alternatives_considered": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "output_decision": {
+      "type": ["object", "null"],
+      "additionalProperties": true,
+      "properties": {
+        "source": {"type": ["string", "null"]},
+        "selected_output_id": {"type": ["string", "null"]},
+        "primary_output_id": {"type": ["string", "null"]},
+        "required_output_ids": {"type": "array", "items": {"type": "string"}},
+        "reason": {"type": ["string", "null"]}
+      }
+    },
+    "candidate_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "id": {"type": "string"},
+          "path": {"type": "string"},
+          "role": {"type": "string"},
+          "visibility": {"type": "string"},
+          "media_type": {"type": "string"},
+          "source_for": {"type": "string"},
+          "derived_from": {"type": "string"}
+        }
+      }
+    },
+    "internal_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "id": {"type": "string"},
+          "path": {"type": "string"},
+          "role": {"type": "string"},
+          "visibility": {"type": "string"},
+          "media_type": {"type": "string"},
+          "source_for": {"type": "string"},
+          "derived_from": {"type": "string"}
+        }
+      }
+    },
+    "validation_evidence": {"type": "array"},
+    "blocking_defects": {"type": "array"},
+    "nonblocking_defects": {"type": "array"},
+    "last_validation_findings": {"type": "array"},
+    "last_validated_at": {"type": ["string", "null"]},
+    "revisions": {"type": "array"},
+    "inferred_user_need": {"type": ["string", "null"]},
+    "intended_recipient": {"type": ["string", "null"]}
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "name": "Cross-border Data Privacy Readiness Guide",
+  "slug": "cb-data-privacy-readiness-guide",
+  "version": "1.0.1",
+  "description": "Get a practical, step-by-step privacy compliance checklist for any market — GDPR, CCPA, LGPD, PIPL, and more. Skip the legal jargon and get an actionable readiness plan with templates for privacy policies, cookie banners, data-processing agreements, and DSAR workflows.",
+  "author": "Pearl-led OpenClaw team",
+  "tags": [
+    "cross-border",
+    "overseas",
+    "global-expansion",
+    "privacy-readiness"
+  ],
+  "trigger_keywords": [
+    "GDPR readiness",
+    "cross-border data privacy",
+    "international privacy checklist",
+    "overseas user data",
+    "privacy compliance preparation"
+  ],
+  "language": "en",
+  "type": "descriptive",
+  "category": "cross-border-expansion",
+  "requires_api": false,
+  "requires_code_execution": false,
+  "outputs": "structured descriptive framework",
+  "readiness": "stable",
+  "safety": "Privacy and data-transfer rules are legal matters; use qualified privacy counsel for compliance decisions."
+}

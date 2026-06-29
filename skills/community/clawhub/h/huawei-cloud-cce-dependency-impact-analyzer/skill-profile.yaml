@@ -1,0 +1,19 @@
+﻿name: huawei-cloud-cce-dependency-impact-analyzer
+level: L3
+domain: diagnosis-remediation
+description: Analyze CCE service topology blast radius and upstream/downstream dependency impact.
+tools:
+  - huawei_dependency_impact_analyze
+  - huawei_get_cce_pods
+  - huawei_get_cce_services
+  - huawei_get_cce_ingresses
+  - huawei_get_kubernetes_nodes
+  - huawei_workload_rollout_diagnose
+  - huawei_network_failure_diagnose
+  - huawei_change_impact_analyze
+references:
+  - references/workflow.md
+  - references/risk-rules.md
+  - references/output-schema.md
+guardrails:
+  max_auto_risk: R1

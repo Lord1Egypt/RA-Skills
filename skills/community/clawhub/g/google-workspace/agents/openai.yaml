@@ -1,0 +1,4 @@
+interface:
+  display_name: "Google Workspace"
+  short_description: "Plan and verify safe Google Workspace admin and migration work."
+  default_prompt: "Use $google-workspace to plan a Google Workspace admin change safely."

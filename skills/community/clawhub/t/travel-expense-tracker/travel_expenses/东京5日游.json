@@ -1,0 +1,46 @@
+{
+  "trip": "东京5日游",
+  "expenses": [
+    {
+      "id": 1,
+      "date": "2026-06-15",
+      "amount": 1500.0,
+      "currency": "JPY",
+      "amount_cny": 72.0,
+      "category": "餐饮",
+      "description": "寿司大套餐"
+    },
+    {
+      "id": 2,
+      "date": "2026-06-15",
+      "amount": 89.0,
+      "currency": "USD",
+      "amount_cny": 645.25,
+      "category": "住宿",
+      "description": "新宿酒店2晚"
+    },
+    {
+      "id": 3,
+      "date": "2026-06-16",
+      "amount": 2000.0,
+      "currency": "JPY",
+      "amount_cny": 96.0,
+      "category": "门票",
+      "description": "浅草寺+天空树"
+    },
+    {
+      "id": 4,
+      "date": "2026-06-14",
+      "amount": 35.0,
+      "currency": "CNY",
+      "amount_cny": 35.0,
+      "category": "其他",
+      "description": "Airalo日本eSIM"
+    }
+  ],
+  "budget": {
+    "total_budget": 5000.0,
+    "daily_budget": 800.0,
+    "days": 5
+  }
+}

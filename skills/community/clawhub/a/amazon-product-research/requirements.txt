@@ -1,0 +1,14 @@
+# Amazon Product Research - Python Dependencies
+
+# Core
+requests>=2.31.0
+
+# HTML parsing (for scraping if needed)
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+
+# Data processing
+pandas>=2.0.0
+
+# Optional: proxy support for anti-scraping
+# requests-proxies>=0.2.0

@@ -1,454 +1,286 @@
-# AI 全栈教学导师 — 完整课程大纲
+# 🌍 地球最权威 AI 全栈课程大纲（2026 行业版）
 
-## 模块依赖关系图
+> 9 大层级 · 60+ 细分章节 · 4 级分级路径 · 每个阶段有可交付项目产出
+
+---
+
+## 📐 模块依赖关系（教学顺序铁律）
 
 ```
-M0(Python 强化)
-    ├──→ M1(FastAPI 框架)
-    └──→ M2(传统机器学习)
-              └──→ M3(神经网络基础)
-                        └──→ M4(深度学习实战)
-                                  ├──→ M5(提示词工程)
-                                  │         └──→ M6(RAG 系统)
-                                  │                   └──→ M9(智能体开发)
-                                  ├──→ M7(大模型微调)
-                                  ├──→ M8(小模型训练)
-                                  └──→ M10(AI 工具落地)
+L1 编程基础 → L3 提示词工程
+    ↓              ↓
+L2 后端工程    L4 RAG检索增强
+    ↓              ↓
+L6 算法原理 → L5 模型微调 → L7 智能体开发
+                                ↓
+                          L8 项目实战落地
+                                ↓
+                          L9 行业前沿迭代
 ```
 
-**注：** M5（提示词工程）可从 L2 提前学习，不强依赖 M4；M10 可与其他模块并行。
+**关键依赖说明：**
+- L6（算法原理）是 L5（模型微调）的 **硬前置** — 必须先懂 ML/DL 才能微调
+- L4（RAG）和 L5（微调）可并行学习
+- L7（智能体开发）依赖 L3+L4+L5 的综合基础
+- L8（项目实战）建议学完 L2-L7 中至少 5 层后再进行
+- L9（行业前沿）在 L2 阶段以概览形式引入，L3-L4 深入展开
 
 ---
 
-## 推荐学习路径
+## 🟢 L1 零基础小白 — 标准学习路径（预计 8-12 周）
 
-### L1 入门探索者（建议 8-12 周）
-```
-M0(全部) → M1(M1.1-M1.3) → M2(M2.1-M2.3) → M5(M5.1-M5.2) → M10(M10.1)
-```
-里程碑：能用 FastAPI 搭建 AI 服务，能调用 LLM API，能理解机器学习基本流程
+### 阶段一：编程筑基（3-4 周）
 
-### L2 基础实践者（建议 6-10 周）
-```
-M1(M1.4-M1.5，选修) → M3(全部) → M4(M4.1-M4.4) → M5(全部) → M6(M6.1-M6.3) → M10
-```
-里程碑：能独立搭建 RAG 系统，理解 Transformer 架构，掌握高级 Prompt 技巧
+#### C1.1 Python 快速上手
+- 环境搭建详解（Python 3.10+ / VS Code / Jupyter / venv 虚拟环境）
+- 变量与数据类型：int/float/str/bool + type() 排查技巧
+- 运算符：算术/比较/逻辑/赋值/成员运算符
+- 输入输出：input() / print() + f-string 格式化
+- 实战项目：**命令行计算器**（支持 + - * / 四则运算）
 
-### L3 进阶开发者（建议 8-12 周）
-```
-M4(M4.4-M4.5，复习强化) → M5(M5.3-M5.4) → M6(全部) → M7(M7.1-M7.3) → M9(M9.1-M9.4) → M10(M10.2-M10.4)
-```
-里程碑：能微调开源大模型，能开发生产级 RAG 系统，能构建多工具 Agent
+#### C1.2 流程控制
+- 条件判断：if / elif / else 多层嵌套最佳实践
+- 循环结构：for in（range/列表/字典遍历）/ while + break/continue
+- 实战项目：**学生成绩管理系统**（输入→判断等级→输出统计）
 
-### L4 高阶工程师（建议 6-8 周，专精方向选择）
-```
-方向A（生产部署）：M6(深化) → M7(M7.4-M7.5) → M8 → M10(M10.3-M10.4)
-方向B（Agent 专精）：M9(全部) → M6(深化) → M10(工程化)
-方向C（从零训练）：M8(全部) → M7(全部) → M4(深化)
-```
+#### C1.3 数据结构精讲
+- 列表：增删改查/切片/列表推导式/排序
+- 元组：不可变特性/拆包/命名元组
+- 字典：键值操作/get()安全取值/字典推导式
+- 集合：去重/交并差集运算
+- 实战项目：**Todo 命令行工具**（增删改查 + 状态标记）
 
----
+#### C1.4 函数与模块化
+- 函数定义与调用、参数传递（位置/关键字/默认值/*args/**kwargs）
+- 返回值与作用域（local/global/nonlocal）
+- 文件读写：open()/with 上下文管理器/CSV 处理
+- 异常处理：try/except/else/finally 完整范式
+- 实战项目：**文件批量重命名工具**
 
-## M0：Python 语法强化（L1 必修，L2 选修复习）
+#### C1.5 面向对象编程
+- 类与对象、__init__ 构造方法、self 理解
+- 继承与多态（简单示例，不深入设计模式）
+- 模块与包、pip 使用
+- 实战项目：**简易图书管理系统**（OOP 设计）
 
-> **使用 show_widget 绘制**：Python 核心语法脑图（数据类型 → 控制流 → 函数 → OOP → 进阶特性 → 异步）
+#### C1.6 科学计算速通
+- NumPy：ndarray 创建/索引切片/数学运算/广播机制
+- Pandas：DataFrame 创建/筛选/分组聚合/合并
+- Matplotlib：折线图/柱状图/散点图/子图布局
+- 实战项目：**Kaggle Titanic 数据探索与可视化报告**
 
-### M0.1 Python 核心语法
-- 数据类型：str / list / dict / set / tuple，可变与不可变
-- 控制流：if-elif-else / for / while / 列表推导式 / 字典推导式
-- 函数：def、参数类型（位置/关键字/默认值）、*args/**kwargs、lambda
-- 异常处理：try/except/finally/raise，自定义异常类
-- 文件操作：with open、pathlib.Path、读写 JSON/CSV
-- **实战项目**：命令行 ToDo 应用（增删查改 + JSON 持久化）
+### 阶段二：AI 认知启蒙（2 周）
 
-### M0.2 面向对象编程
-- 类和对象：`__init__`、self、实例方法 vs 类方法 vs 静态方法
-- 继承与多态：`super()`、方法重写、鸭子类型
-- 魔术方法：`__str__`、`__repr__`、`__len__`、`__eq__`、`__hash__`
-- 数据类：`@dataclass`，简化 DTO 写法
-- **实战项目**：学生成绩管理系统（支持排序、统计、导出 CSV）
+#### C2.1 AI/ML 概念地图
+- 一张图讲清：AI ⊃ ML ⊃ DL ⊃ LLM 的包含关系
+- 监督学习 / 无监督学习 / 强化学习 — 三种范式的核心差异
+- 训练集/验证集/测试集 — 为什么要划分、划分比例经验值
+- 过拟合 vs 欠拟合 — 图解直观理解
+- 实战：**用 sklearn 跑第一个分类器**（鸢尾花数据集）
 
-### M0.3 Python 进阶特性
-- 迭代器与生成器（`yield`、`yield from`）
-- 装饰器：`@property`、`@staticmethod`、`@classmethod`、自定义装饰器
-- 上下文管理器：with 协议、`contextlib.contextmanager`
-- 类型注解：`typing` 模块（List、Dict、Optional、Union、TypeVar）
-- **实战项目**：带缓存装饰器 + 类型注解的 API 调用封装器
+#### C2.2 LLM 与 Prompt 入门
+- LLM 工作原理（直觉版：超大完形填空 → 对话助手）
+- 基础 Prompt 五段式：角色 + 任务 + 约束 + 格式 + 示例
+- Zero-Shot vs Few-Shot 对比体验
+- 实战：**设计一个「代码审查助手」Prompt**
 
-### M0.4 异步编程
-- asyncio 基础：`async/await`、事件循环、协程
-- 并发 vs 并行 vs 异步（图示区分三者模型）
-- `asyncio.gather` 并发执行多个协程
-- aiohttp 异步 HTTP 请求
-- **实战项目**：异步并发爬取多个 URL，对比同步耗时
+#### C2.3 AI 工具初体验
+- ChatGPT/Claude/Kimi/通义千问 的正确使用姿势
+- Cursor/Copilot 基础功能（代码补全/解释代码/重构）
+- 实战：**用 AI 工具辅助完成一个 Python 小项目**
 
-### M0.5 常用科学计算库
-- NumPy：数组创建、索引切片、广播规则、矩阵运算（用图示讲解广播）
-- Pandas：DataFrame CRUD、数据清洗（缺失值/重复值）、groupby、merge
-- Matplotlib / Seaborn：折线图、散点图、热力图、子图布局
-- **实战项目**：分析 MovieLens 数据集，输出可视化报告
+### 阶段三：能力进阶（3-4 周）
 
----
+#### C3.1 FastAPI 入门到部署
+- HTTP 基础概览（GET/POST/PUT/DELETE / 状态码）
+- FastAPI 第一个应用（uvicorn 启动）
+- 路由与路径参数、查询参数、请求体（Pydantic BaseModel）
+- 自动生成的 Swagger 文档
+- 实战项目：**CRUD 学生管理 API**
 
-## M1：FastAPI 框架（L1-L2，AI 后端服务基础）
+#### C3.2 传统 ML 全流程
+- 线性回归：最小二乘法直觉 → sklearn 实战（房价预测）
+- 逻辑回归：sigmoid 函数 → 二分类（客户流失预测）
+- 决策树与随机森林：可视化理解决策边界
+- 模型评估：Accuracy/Precision/Recall/F1/混淆矩阵/ROC-AUC
+- 实战项目：**完整的 ML 分类项目**（数据清洗→特征工程→训练→评估→可视化报告）
 
-> **使用 show_widget 绘制**：FastAPI 请求处理流程图（Request → 路由 → 依赖注入 → 业务逻辑 → Response）
-
-### M1.1 FastAPI 快速入门
-- 路由装饰器：GET / POST / PUT / DELETE / PATCH
-- 路径参数（Path）、查询参数（Query）、请求体（Body）
-- Pydantic 数据模型：字段验证、默认值、自定义 validator
-- 自动文档：Swagger UI（/docs）和 ReDoc（/redoc）
-- **实战项目**：用户信息 CRUD API（内存存储版）
-
-### M1.2 依赖注入与中间件
-- Depends 依赖注入系统：共享数据库连接、认证逻辑复用
-- JWT 认证中间件（使用 python-jose）
-- CORS 中间件配置
-- 全局异常处理：`@app.exception_handler`
-- **实战项目**：带 JWT 认证的 API 服务
-
-### M1.3 数据库集成
-- SQLAlchemy 2.0 ORM（异步版本）
-- Alembic 数据库迁移
-- Repository 模式封装数据访问层
-- **实战项目**：博客 API（文章 + 标签 + 用户，完整 CRUD）
-
-### M1.4 AI 模型服务化
-- 将 ML/DL 模型封装为 REST API（避免重复加载模型的最佳实践）
-- 异步推理请求处理（避免阻塞事件循环）
-- 流式响应：Server-Sent Events（SSE）实现打字机效果
-- WebSocket 实时双向通信
-- **实战项目**：封装 LLM 调用为流式 API 服务（OpenAI 兼容格式）
-
-### M1.5 部署与生产化
-- Uvicorn（开发）/ Gunicorn（生产）配置
-- Docker 容器化：多阶段构建优化镜像大小
-- 健康检查端点设计
-- 环境变量管理（python-dotenv / pydantic-settings）
-- **实战项目**：Docker 部署完整 AI API 服务（含 nginx 反代配置）
+#### C3.3 Prompt 工程进阶
+- 结构化 Prompt 设计模板 3 种范式
+- 输出格式控制：JSON Mode / Markdown / 代码块 / 表格
+- Function Calling 入门（让 LLM 决定调用什么工具）
+- 提示词优化方法论：迭代→评估→改进循环
+- 实战项目：**搭建个人 AI 写作/总结助手**
 
 ---
 
-## M2：传统机器学习（L1-L3）
+## 🔵 L2 入门进阶 — 补充路径（在 L1 基础上 +4-6 周）
 
-> **使用 show_widget 绘制**：机器学习完整流程图（数据收集 → 特征工程 → 模型选择 → 训练 → 评估 → 部署）
+### 阶段四：深度学习入门（3 周）
 
-### M2.1 机器学习概述
-- 监督学习 / 无监督学习 / 半监督学习 / 强化学习（四象限图示）
-- 训练集、验证集、测试集划分原则（为何不能用测试集调参）
-- 过拟合与欠拟合（学习曲线图示）
-- K 折交叉验证（图示讲解原理）
-- **实战项目**：波士顿房价预测（线性回归完整流程）
+#### C4.1 神经网络从零理解
+- 感知机 → 多层感知机（MLP）— 用 NumPy 手写一个
+- 激活函数全家桶：ReLU / Sigmoid / Tanh / GELU / Swish
+- 损失函数：MSE / Cross-Entropy / Binary Cross-Entropy
+- 反向传播（BP）— 先直觉理解，再手算一个简单网络
+- 实战：**手写数字识别（MNIST + PyTorch）**
 
-### M2.2 经典算法
-- 线性回归 & 逻辑回归（从公式到直觉理解）
-- 决策树（信息增益 / 基尼系数图示）
-- 随机森林（为何 Bagging 有效：方差 vs 偏差）
-- SVM（支持向量机，核技巧直觉理解）
-- KMeans 聚类（图示展示聚类过程）
-- **实战项目**：Iris 花卉数据集 — 5 种算法横向对比
+#### C4.2 训练技巧与调参
+- 优化器演进：SGD → Momentum → Adam → AdamW
+- 正则化全套：L1/L2/Dropout/BatchNorm/Data Augmentation
+- 过拟合诊断六步法（训练/验证 loss 曲线分析）
+- 学习率调度：StepLR / CosineAnnealing / ReduceLROnPlateau
+- 实战：**多分类图像识别 + 系统化调参实验**
 
-### M2.3 特征工程
-- 缺失值处理：删除 / 均值填充 / 中位数填充 / 模型预测填充
-- 特征缩放：标准化（StandardScaler）/ 归一化（MinMaxScaler）— 何时用哪个
-- 特征编码：One-Hot / Label Encoding / Target Encoding
-- 特征选择：相关性矩阵热力图、特征重要性
-- 降维：PCA 原理（用图示讲解"找最大方差方向"）
-- **实战项目**：Titanic 生存预测（完整特征工程流水线）
-
-### M2.4 模型评估与优化
-- 分类指标：Accuracy / Precision / Recall / F1 / ROC-AUC（混淆矩阵图示）
-- 回归指标：MSE / RMSE / MAE / R²
-- 超参数调优：GridSearchCV / RandomizedSearchCV / Optuna（贝叶斯优化）
-- **实战项目**：垃圾邮件分类器（TF-IDF + 多算法对比 + 超参数优化）
+#### C4.3 RAG 系统入门
+- RAG 是什么、解决什么问题（知识时效性/幻觉/私域知识）
+- 文档加载：PDF/Word/Markdown/TXT 解析
+- 分块策略：RecursiveCharacterTextSplitter + chunk_size + overlap
+- Embedding 概念：文本→向量的魔法
+- 向量数据库入门：Chroma 10 分钟上手
+- 实战项目：**搭建第一个「知识库问答机器人」**
 
 ---
 
-## M3：神经网络基础（L2-L3）
+## 🟡 L3 中级实战 — 补充路径（在 L2 基础上 +6-8 周）
 
-> **使用 show_widget 绘制**：多层感知机结构图（输入层 → 隐藏层 × N → 输出层，带权重和激活函数标注）
+### 阶段五：深度学习深化（4 周）
 
-### M3.1 感知机与前向传播
-- 神经元生物类比 → 数学模型（权重、偏置、激活函数）
-- 前向传播逐步计算（用具体数字示例演示）
-- 多层网络的表达能力（为何需要非线性激活）
-- **show_widget**：动态展示前向传播计算流程
+#### C5.1 CNN 与计算机视觉
+- 卷积层（Conv2d）：卷积核/步长/填充 可视化理解
+- 池化层（MaxPool/AvgPool）
+- 经典架构演进：LeNet → AlexNet → VGG → ResNet → EfficientNet
+- 迁移学习：冻结 backbone + 替换分类头
+- 实战项目：**自定义图像分类**（用 ResNet 迁移学习，30 行代码搞定）
 
-### M3.2 反向传播与梯度下降
-- 链式法则直觉理解（用计算图讲解，避免纯符号堆砌）
-- 梯度下降变体对比：SGD / Mini-batch GD / Adam / RMSprop / AdamW
-- 学习率的作用（过大 vs 过小的图示对比）
-- 学习率调度（Cosine Annealing、WarmUp）
-- **实战**：用 NumPy 手写一个两层神经网络，实现前向 + 反向传播
+#### C5.2 RNN/LSTM 与序列建模
+- RNN 原理与梯度消失（可视化梯度流动）
+- LSTM：遗忘门/输入门/输出门 逐门详解
+- GRU 简化版 — 参数更少，效果相当
+- Seq2Seq + Attention 机制（机器翻译的前身）
+- 实战项目：**中文情感分析**（LSTM + 预训练词向量）
 
-### M3.3 激活函数
-- Sigmoid（梯度消失问题图示）
-- Tanh（Sigmoid 的改进）
-- ReLU（死神经元问题）/ Leaky ReLU / ELU
-- GELU（Transformer 常用，与 ReLU 的区别）
-- 选择激活函数的实用指南
+#### C5.3 Transformer 深度解析（重点章节）
+- Self-Attention 逐步计算图解（Q·Kᵀ/√d_k → Softmax → ×V）
+- Multi-Head Attention — 为什么 8 个头比 1 个好
+- Position Encoding：正弦编码 vs 可学习编码
+- LayerNorm（Pre-Norm vs Post-Norm）
+- FFN（Feed-Forward Network）的作用
+- 实战项目：**从零实现 Mini Transformer**（200 行 PyTorch）
 
-### M3.4 正则化技术
-- Dropout（训练 vs 推理行为不同，图示说明）
-- Batch Normalization（原理 + 为什么有效）
-- L1 / L2 正则化（稀疏性 vs 权重缩小）
-- Early Stopping
-- **实战项目**：MNIST 手写数字识别 — 纯 NumPy 实现，对比有无正则化的效果
+### 阶段六：大模型工程化（4 周）
 
----
+#### C6.1 大模型底层认知
+- GPT 系列演进史：GPT-1 → GPT-2 → GPT-3 → GPT-4 核心技术变化
+- 预训练三阶段：Pre-training → SFT → Alignment (RLHF/DPO)
+- Tokenization 深度：BPE / WordPiece / SentencePiece
+- 解码策略对比：Greedy / Beam Search / Top-k / Top-p / Temperature
+- 实战：**Hugging Face Transformers 模型加载、推理、Pipeline**
 
-## M4：深度学习实战（L2-L4）
+#### C6.2 模型微调实战
+- LoRA 原理精讲：W + ΔW = W + B×A（低秩分解 + 合并推理）
+- QLoRA = 4-bit 量化 + LoRA，显存节省 75% 的魔法
+- LLaMA-Factory 框架全流程：数据准备→配置→训练→评估→导出
+- SFT 数据构造：ChatML 格式 / ShareGPT 格式 / 自建对话数据
+- 实战项目：**用 LLaMA-Factory 微调一个领域对话模型**
 
-> **使用 show_widget 绘制**：PyTorch 训练完整生命周期（Dataset → DataLoader → Model → Loss → Backward → Optimizer → 验证）
+#### C6.3 RAG 高阶优化
+- 高级分块：语义分块 / 父子文档 / 层次化索引
+- 检索优化：Hybrid Search（向量 + BM25）、Reranker（Cross-Encoder）
+- 查询增强：Query Rewriting / 子问题分解 / HyDE 假设文档
+- 多轮对话 RAG：上下文压缩 / 引用管理 / 会话状态
+- RAGAS 评估框架：Faithfulness / Answer Relevancy / Context Precision
+- 实战项目：**企业级多路召回 RAG 系统**
 
-### M4.1 PyTorch 核心
-- Tensor 创建与操作（与 NumPy 的互转）
-- 自动求导：`requires_grad`、`backward()`、`detach()`
-- Dataset / DataLoader（自定义 Dataset 类模板）
-- `nn.Module` 自定义模型（`__init__` + `forward`）
-- 标准训练循环（含验证、模型保存、断点续训）
-- **实战项目**：PyTorch 版 MNIST 分类器
+### 阶段七：智能体开发（3 周）
 
-### M4.2 卷积神经网络（CNN）
-- 卷积操作直觉（用动画图示讲解感受野、步长、填充）
-- 经典架构：LeNet → VGG → ResNet（残差连接解决梯度消失）
-- 迁移学习：为何有效 + 冻结层 vs 微调层策略
-- **实战项目**：猫狗分类（ResNet18 迁移学习 + 数据增强）
+#### C7.1 Agent 核心原理
+- Agent = LLM + Tools + Memory + Planning（四要素拆解）
+- ReAct 范式深度剖析：Thought→Action→Observation 循环
+- Function Calling 原理：Schema 定义→LLM 决策→代码执行→结果回传
+- 实战：**手写 ReAct Agent**（100 行 LangChain）
 
-### M4.3 序列模型
-- RNN 的梯度消失问题（时序图示）
-- LSTM：遗忘门/输入门/输出门（门控机制图示）
-- GRU：LSTM 的简化版本
-- **实战项目**：中文文本情感分类（LSTM 版本）
+#### C7.2 多智能体框架实战
+- LangGraph：StateGraph 状态图 → 条件路由 → 循环 → 人工审批
+- CrewAI：Role → Task → Tool → 协作输出
+- 框架对比与选型：LangGraph（灵活） vs CrewAI（简单） vs AutoGen（对话式）
+- 实战项目：**构建「代码审查 + 自动化测试 + 部署」Agent 团队**
 
-### M4.4 Transformer 架构（重点）
-
-> **使用 show_widget 绘制**：Transformer Encoder-Decoder 完整架构图，标注每个子模块
-
-- Self-Attention 机制：Q/K/V 计算步骤（逐步图解）
-- 缩放点积注意力：为何要除以 √d_k
-- Multi-Head Attention：多个注意力头并行的意义
-- Position Encoding：为何需要位置编码（自注意力无序性的问题）
-- Layer Normalization vs Batch Normalization（选择原因）
-- 前馈网络（FFN）在 Transformer 中的作用
-- **实战项目**：从零实现简单 Transformer（用于文本分类）
-
-### M4.5 预训练语言模型
-- BERT：Masked Language Model + NSP 预训练任务
-- GPT 系列：自回归语言建模，从 GPT-1 到 GPT-4 的架构演进
-- HuggingFace Transformers：`AutoModel`、`AutoTokenizer`、`pipeline`
-- 微调范式：全量微调 vs 特征提取
-- **实战项目**：用 BERT 做中文新闻文本分类
+#### C7.3 MCP 协议与 Agent 标准化
+- MCP 三大概念：Server（提供工具）/ Client（消费工具）/ Transport（通信）
+- MCP Server 开发：工具定义 → 资源暴露 → Prompt 模板
+- Claude Desktop + MCP 集成实战
+- A2A 协议前瞻：Agent 之间的标准通信
+- 实战项目：**构建一个文件系统 MCP Server**
 
 ---
 
-## M5：提示词工程（L2-L4）
+## 🟣 L4 高级深耕 — 专题路径（在 L3 基础上选 1-2 方向）
 
-> **使用 show_widget 绘制**：提示词工程技术层次图（基础 → 中级 → 高级 → 系统级）
+### 专题 A：模型训练大师
+- 分布式训练：DeepSpeed ZeRO 1/2/3、FSDP、张量并行/流水线并行
+- RLHF 全流程：Reward Model 训练 → PPO 强化学习 → 工程陷阱
+- DPO 深入：从 Bradley-Terry 模型到 DPO Loss 的数学推导
+- 模型量化：GPTQ → AWQ → GGUF 原理对比与选型
+- 推理引擎：vLLM PagedAttention → TensorRT-LLM → FlashAttention-3
+- 知识蒸馏与小模型训练（从头训练 TinyLLM）
+- 实战项目：**完整微调 + 量化部署一条 LLM 服务**
 
-### M5.1 提示词基础
-- 大模型工作原理：Token、BPE 分词、上下文窗口
-- 消息角色：System / User / Assistant（实际作用与最佳实践）
-- 温度（temperature）、top_p、frequency_penalty 参数调优指南
-- **实战**：设计 10 个不同场景的提示词，对比参数变化的影响
+### 专题 B：Agent 系统架构师
+- 复杂 Agent 系统 7 大设计模式（Router/Orchestrator/Evaluator-optimizer 等）
+- 记忆系统设计：短期记忆/长期记忆/语义记忆/情节记忆 四层架构
+- 工具生态：工具注册中心、动态工具发现、工具版本管理
+- Agent 安全：Guardrails 安全护栏、输入/输出过滤、越狱防御
+- 生产级 Agent 可观测性：LangSmith + 自定义 Metrics
+- 多 Agent 容错：超时处理/重试策略/降级方案/熔断机制
+- 实战项目：**企业级多 Agent 协同系统**（含安全护栏+监控）
 
-### M5.2 核心提示技巧
-- Zero-shot vs Few-shot Prompting（何时用哪种）
-- Chain-of-Thought（CoT）：标准 CoT vs 零样本 CoT（"Let's think step by step"）
-- Role Prompting：角色设定的真实效果与局限
-- 输出格式控制：强制 JSON、Markdown 表格输出
-- **实战项目**：用 CoT 构建一个数学推理解题器
+### 专题 C：AI 工程化专家
+- LLM 应用 12 种架构模式（详见 `references/arch_patterns.md`）
+- 模型网关：多模型路由/AB 测试/灰度发布/成本控制
+- 提示词 CI/CD：版本控制 → 自动化评测 → 回滚
+- LLM 缓存策略：精确匹配/语义缓存/预计算 — 成本可降 80%
+- 高性能推理：Continuous Batching/量化/并发优化/Streaming
+- 实战项目：**从零搭建企业级 LLM 推理平台**
 
-### M5.3 高级提示策略
-- Tree-of-Thought（ToT）：探索多条推理路径
-- ReAct 框架：推理 + 行动交替执行
-- Self-Consistency：多次采样投票提升稳定性
-- 提示词注入防御：常见攻击模式与防御策略
-- **实战项目**：构建多步骤推理的提示词链（用于复杂问题分解）
-
-### M5.4 结构化输出与工具调用
-- Function Calling / Tool Use：概念 + OpenAI API 调用示例
-- JSON Schema 约束输出：定义工具参数格式
-- 实战对接：OpenAI / 文心一言 / 通义千问 API
-- Prompt 模板管理：LangChain PromptTemplate
-- **实战项目**：搭建一个结构化信息提取系统（从非结构化文本提取 JSON）
-
----
-
-## M6：RAG 系统开发（L3-L4）
-
-> **使用 show_widget 绘制**：RAG 完整架构图（离线索引流程 + 在线检索生成流程）
-
-### M6.1 RAG 核心原理
-- 为什么需要 RAG：幻觉问题、知识截止日期、隐私数据处理
-- 朴素 RAG vs 高级 RAG vs 模块化 RAG 对比
-- RAG 与微调的选择决策树（图示）
-- **实战**：手绘 RAG 完整数据流图，理解每个环节的作用
-
-### M6.2 文档处理与分块
-- 文档加载器：PDF（pdfplumber）/ Markdown / Web（BeautifulSoup）/ Office 文档
-- 分块策略对比：
-  - 固定窗口分块（简单但破坏语义）
-  - 递归字符分块（LangChain 推荐）
-  - 语义分块（基于相似度）
-  - 层级分块（保留文档结构）
-- 分块大小与重叠设计的经验法则
-- **实战项目**：将技术文档 PDF 处理为高质量检索语料库
-
-### M6.3 向量嵌入
-- Embedding 模型选择指南：
-  - OpenAI text-embedding-3-small/large（在线）
-  - BGE（BAAI，开源中文优化版）
-  - Nomic-embed（开源高性价比）
-- 向量数据库对比：Chroma（本地开发）/ Faiss（高性能）/ Milvus（生产级）/ Pinecone（云托管）
-- 相似度搜索：余弦相似度 vs 欧氏距离 vs 内积（使用场景对比）
-- **实战项目**：构建本地技术文档知识库并实现语义搜索
-
-### M6.4 检索优化
-- 混合检索：稠密检索（向量）+ 稀疏检索（BM25）的融合策略
-- 重排序（Reranker）：BGE-reranker 使用方法
-- 查询改写与扩展（HyDE：假设文档嵌入）
-- 多查询检索：从不同角度生成多个查询
-- **实战项目**：对比 4 种检索策略在同一数据集上的准确率
-
-### M6.5 RAG 完整系统
-- LangChain LCEL 链式构建
-- 对话历史管理（ConversationBufferMemory vs 摘要记忆）
-- 引用溯源：返回检索到的原始段落
-- RAG 评估框架：RAGAS（Faithfulness / Answer Relevancy / Context Recall）
-- **项目**：基于私有文档的企业知识库问答系统（完整实现，含评估报告）
+### 专题 D：前沿 AI 研究员
+- 论文精读方法论：如何高效读顶会论文（NeurIPS/ICML/ICLR/ACL）
+- 世界模型：JEPA/Sora/视频预测 — 技术路线演进
+- 具身智能：感知→规划→控制 闭环
+- AI 安全前沿：Superalignment/可解释性/机械论可解释性
+- 多模态大模型：训练范式、对齐方法、评估基准
+- 实战项目：**复现一篇 NeurIPS 2025/2026 论文的核心方法**
 
 ---
 
-## M7：大模型微调（L3-L4）
+## 📊 各阶段实战项目产出总览
 
-> **使用 show_widget 绘制**：微调技术全景图（全量微调 → LoRA → QLoRA → Prefix Tuning，标注参数量和显存需求）
-
-### M7.1 微调决策框架
-- 微调 vs RAG vs Prompt 工程 — 三者如何选择（决策流程图）
-- 微调数据集质量标准：多样性、一致性、数量估算
-- 微调类型：全量微调（Full Fine-tuning）/ 参数高效微调（PEFT）
-
-### M7.2 PEFT 参数高效微调
-- LoRA 原理：低秩矩阵分解图示（W = W₀ + BA，B 和 A 的维度分析）
-- QLoRA：INT4 量化 + LoRA，单卡可跑 70B 模型的原理
-- Prefix Tuning / Prompt Tuning（轻量但效果有限）
-- PEFT 库使用：`get_peft_model`、`LoraConfig` 配置详解
-- **实战项目**：用 LoRA 微调 Qwen2-1.5B（本地可运行）
-
-### M7.3 监督微调（SFT）
-- 数据格式标准：Alpaca / ShareGPT / ChatML 格式对比
-- 数据清洗脚本（去重、质量过滤）
-- 训练框架对比：LLaMA-Factory（推荐）/ Axolotl / ms-swift
-- 关键超参数：batch_size、gradient_accumulation、learning_rate、epoch、warmup
-- 训练监控：Loss 曲线解读，判断训练是否正常
-- **实战项目**：用 1000 条对话数据微调一个专业领域客服模型
-
-### M7.4 RLHF 与对齐（概念 + 方向指引）
-- 奖励模型（Reward Model）训练流程
-- PPO 强化学习：为何在 LLM 微调中难以稳定
-- DPO（Direct Preference Optimization）：更简洁的偏好对齐
-- 实际落地建议：入门优先用 DPO，成本低效果好
-
-### M7.5 模型评估与部署
-- 评估指标：BLEU / ROUGE / 困惑度（Perplexity）/ 人工评估（Elo 评分）
-- 模型量化：GPTQ（INT4）/ AWQ / GGUF（llama.cpp 格式）
-- 部署方案：vLLM（高吞吐生产）/ Ollama（本地开发）/ TGI
-- **实战项目**：将微调模型量化为 GGUF，用 Ollama 本地部署并对比基准性能
+| 阶段 | 项目名称 | 技术栈 | 可写入简历 |
+|------|----------|--------|-----------|
+| C1.1-C1.6 | 命令行工具集（计算器/成绩管理/Todo/图书管理） | Python | 否（基础练习） |
+| C2.1 | 第一个 ML 分类器 + 数据可视化报告 | sklearn + Pandas + Matplotlib | 否 |
+| C2.3 | AI 辅助 Python 项目开发 | Python + Cursor | 否 |
+| C3.1 | FastAPI CRUD 学生管理 API | FastAPI + Pydantic | ✓ 入门项目 |
+| C3.2 | 完整 ML 分类项目（房价/客户流失预测） | sklearn + Pandas | ✓ 基础 ML |
+| C4.1 | MNIST 手写数字识别 | PyTorch | ✓ DL 入门 |
+| C4.3 | RAG 知识库问答系统 | LangChain + Chroma | ✓ 亮点项目 |
+| C5.1 | 自定义图像分类（迁移学习） | PyTorch + ResNet | ✓ CV 项目 |
+| C5.3 | 从零实现 Mini Transformer | PyTorch | ✓ 核心亮点 |
+| C6.2 | LLaMA-Factory 领域微调 | LLaMA-Factory + LoRA | ✓✓ 高价值 |
+| C6.3 | 企业级多路召回 RAG | LangChain + Milvus + Reranker | ✓✓ 高价值 |
+| C7.1-C7.2 | 多 Agent 代码审查团队 | LangGraph + CrewAI | ✓✓ 核心竞争力 |
+| C7.3 | MCP Server 文件系统工具 | MCP + Python | ✓ 新技术 |
+| L4-A | 全流程微调+量化部署 LLM 服务 | DeepSpeed + vLLM + GGUF | ✓✓✓ 顶级 |
+| L4-B | 企业级多 Agent 协同系统 | LangGraph + Guardrails + 监控 | ✓✓✓ 顶级 |
+| L4-C | 企业级 LLM 推理平台 | vLLM + 模型网关 + CI/CD | ✓✓✓ 顶级 |
 
 ---
 
-## M8：小模型训练（L3-L4）
+## 🗺️ L1-L4 分级推荐路径
 
-> **使用 show_widget 绘制**：从零训练 GPT 的完整流程图（数据 → 分词 → 预训练 → 评估）
-
-### M8.1 从零训练的时机判断
-- 何时从零训练 vs 微调（数据量 / 领域差异 / 成本三角决策）
-- 数据量需求估算：参数量 × 20 为经验下限（Chinchilla 定律）
-- 计算资源规划：FLOPs 估算、GPU 小时预算
-
-### M8.2 分词器训练
-- BPE（Byte Pair Encoding）算法图示
-- WordPiece / SentencePiece 对比
-- 使用 tokenizers 库训练自定义词表
-- **实战项目**：训练中文代码混合领域的自定义分词器
-
-### M8.3 从零实现 GPT
-- 用 PyTorch 实现 GPT-2 架构（Token Embedding + Position Embedding + N × Transformer Block + LM Head）
-- 预训练目标：因果语言建模（CLM）
-- 高效训练技巧：梯度累积、混合精度（AMP）、梯度裁剪
-- **实战项目**：训练一个小型 GPT（约 10M 参数）用于特定领域文本生成
-
-### M8.4 知识蒸馏
-- 软标签蒸馏：温度系数的作用（图示讲解软标签分布）
-- 特征蒸馏（中间层对齐）
-- TinyBERT / DistilBERT 架构与蒸馏训练方案
-- **实战项目**：将 BERT-base 蒸馏为 1/2 参数量的学生模型，对比性能损失
-
----
-
-## M9：智能体开发（L3-L4）
-
-> **使用 show_widget 绘制**：Agent 核心架构图（LLM 大脑 + 工具集 + 记忆系统 + 规划模块）
-
-### M9.1 Agent 核心概念
-- Agent = LLM（大脑）+ Tools（手）+ Memory（记忆）+ Planning（规划）
-- ReAct 框架：Reasoning（推理）→ Acting（行动）→ Observation（观察）循环
-- 工具调用（Function Calling）：从 JSON Schema 到实际调用
-- **实战项目**：设计一个天气查询 + 日程安排 Agent（纸上设计 → 代码实现）
-
-### M9.2 LangChain 框架实战
-- LCEL（LangChain Expression Language）：声明式构建 Chain
-- Agent 类型：OpenAI Functions Agent / ReAct Agent
-- Tools 生态：内置工具（搜索/计算器/Python REPL）+ 自定义工具
-- Memory 类型：ConversationBufferMemory / SummaryMemory / VectorStoreMemory
-- **实战项目**：构建一个能搜索网页 + 读取文件的研究员 Agent
-
-### M9.3 多智能体系统
-- 多 Agent 协作模式：主从模式 / 平等协作 / 流水线模式（图示）
-- AutoGen 框架：`AssistantAgent` + `UserProxyAgent` 基础用法
-- CrewAI：基于角色的团队协作
-- **实战项目**：代码编写 Agent + 代码审查 Agent + 测试 Agent 三方协作完成需求
-
-### M9.4 Agent 工具开发
-- 自定义工具规范：名称 / 描述（这是 LLM 选择工具的依据）/ 参数 Schema / 返回值
-- MCP 协议（Model Context Protocol）：工具的标准化协议，兼容 WorkBuddy 等平台
-- API 工具集成：REST API 封装为 Agent 工具的最佳实践
-- **实战项目**：为 Agent 开发 3 个实用工具（数据库查询 + 文件操作 + 外部 API）
-
-### M9.5 生产级 Agent
-- 错误处理与回退机制（工具调用失败的处理策略）
-- Agent 观测与调试：LangSmith Tracing 使用
-- 成本控制：Token 缓存（语义缓存 GPTCache）、Token 预算限制
-- **项目**：完整 AI 助手系统（具备搜索、知识库、代码执行、任务规划能力）
-
----
-
-## M10：AI 工具落地（L2-L4，可与其他模块并行）
-
-> **使用 show_widget 绘制**：AI 工具生态全景图（编码工具 / 工作流 / 向量数据库 / LLM 应用平台）
-
-### M10.1 AI 编程工具
-- Cursor 深度使用：`@codebase` / `@web`、Rules for AI、Composer 多文件编辑
-- GitHub Copilot 最佳实践：注释驱动代码生成、快捷键熟练
-- 提示词驱动开发（PDD）：先写需求注释，再让 AI 填充实现
-- 实战：用 AI 工具在 30 分钟内完成一个完整 FastAPI 接口（含测试）
-
-### M10.2 AI 工作流自动化
-- n8n：可视化工作流编排，Webhook + 节点连接
-- Dify：RAG + Agent 一体化应用开发平台
-- FastGPT：知识库问答系统快速搭建
-- 实战：搭建一个自动化新闻摘要 + 分发的工作流（Webhook 触发 → LLM 处理 → 推送）
-
-### M10.3 向量数据库工程化
-- 生产环境选型对比（Milvus / Weaviate / Pinecone / Qdrant）
-- 数据更新策略：增量更新 vs 全量重建
-- 性能优化：索引类型选择（HNSW / IVF）、批量写入
-
-### M10.4 LLM 应用工程化
-- 提示词版本管理：LangSmith Hub / PromptLayer
-- A/B 测试框架：不同提示词/模型的效果对比
-- 监控与告警：延迟、Token 消耗、错误率监控
-- 成本优化策略：Router 模型（简单问题用便宜模型）、语义缓存
-- **项目**：生产级 LLM 应用架构设计（完整 PRD + 架构图 + 成本估算）
+| 学员等级 | 必修阶段 | 推荐专题 | 预计总时长 |
+|----------|----------|----------|-----------|
+| L1 零基础 | 阶段一+二+三（C1.1→C3.3） | 无 | 8-12 周 |
+| L2 进阶 | 阶段三+四（C3.1→C4.3）| 选 C3.3 或 C4.3 重点突破 | 6-8 周 |
+| L3 实战 | 阶段五+六+七（C5.1→C7.3）| 根据兴趣选 RAG 或 Agent 方向 | 8-12 周 |
+| L4 深耕 | 自选 1-2 个专题 | A/B/C/D 任选 | 4-8 周/专题 |

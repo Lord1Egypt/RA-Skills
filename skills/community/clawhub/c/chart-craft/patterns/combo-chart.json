@@ -1,0 +1,11 @@
+{
+  "name": "combo-chart",
+  "label": "组合图",
+  "description": "柱状图+折线图组合，适合营收（柱）+增长率（折线）",
+  "chart_type": "combo",
+  "features": ["dual_axis", "bar_line_mix", "hover_tooltip", "legend_toggle"],
+  "left_axis": "bar",
+  "right_axis": "line",
+  "animation": true,
+  "max_categories": 30
+}

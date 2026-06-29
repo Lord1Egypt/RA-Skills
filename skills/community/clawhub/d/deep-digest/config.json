@@ -1,0 +1,28 @@
+{
+  "name": "deep-digest",
+  "version": "1.0.0",
+  "description": "深度内容萃取 — 从原始文本中提取模式、洞察和行动信号",
+  "author": "溯-Agent",
+  "tags": ["digest", "analysis", "patterns", "insights", "cognition"],
+  "type": "analysis",
+  "model": "default",
+  "temperature": 0.3,
+  "max_tokens": 4000,
+  "inputs": {
+    "text": {
+      "type": "string",
+      "description": "要分析的原始文本内容",
+      "required": true
+    },
+    "mode": {
+      "type": "string",
+      "description": "分析模式：full（完整三区）/ facts-only / patterns-only / signals-only",
+      "default": "full",
+      "enum": ["full", "facts-only", "patterns-only", "signals-only"]
+    }
+  },
+  "outputs": {
+    "format": "markdown",
+    "sections": ["facts", "patterns", "signals"]
+  }
+}

@@ -10,6 +10,7 @@
   "BLACKLIST_DB": "blacklist.db",
   "ALERT_LOG": "hids_alert.log",
   "PID_FILE": "mini_hids.pid",
+  "FIREWALL_BACKEND": "",
   "MAX_FAILURES": 5,
   "WINDOW_SECONDS": 300,
   "CHECK_INTERVAL": 1,

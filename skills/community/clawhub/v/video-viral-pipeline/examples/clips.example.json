@@ -1,0 +1,26 @@
+{
+  "source_video": "~/Downloads/某视频-中英双语.mp4",
+  "clean_video": "~/Downloads/某视频-无字幕.mp4",
+  "output_dir": "~/Downloads/某视频切片",
+  "series_tag": "频道名｜一句话定位",
+  "font": "",
+  "ffmpeg": "",
+  "clips": [
+    {
+      "name": "01_钩子名",
+      "start": "00:42:57,179",
+      "end": "00:43:41,880",
+      "hook": "片内顶部钩子大标题第一行\\n第二行",
+      "cover_title": "封面大标题第一行\\n第二行",
+      "cover_frac": 0.5
+    },
+    {
+      "name": "02_钩子名",
+      "start": "00:15:08,659",
+      "end": "00:16:07,100",
+      "hook": "停下就输\\n他狂奔了十年",
+      "cover_title": "停下就输\\n他狂奔了十年",
+      "cover_frac": 0.45
+    }
+  ]
+}

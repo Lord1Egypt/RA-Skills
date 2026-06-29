@@ -1,0 +1,234 @@
+{
+  "summary": "Finalized the review-ready five-file public example package for safe web-to-Markdown capture. Re-ran the verification helper, confirmed required files, source coverage, provider neutrality, safety workflow coverage, and no detected private identifiers or local-only terms.",
+  "next_angle": "Lifecycle completion; no further research is needed for this package unless a reviewer asks for a synthetic capture fixture.",
+  "meaningful_progress": true,
+  "code_used": true,
+  "phase": "finalize",
+  "open_questions": [],
+  "sources": [
+    {
+      "url": "https://datatracker.ietf.org/doc/html/rfc9309",
+      "title": "RFC 9309: Robots Exclusion Protocol",
+      "note": "Primary reference for robots.txt as crawler coordination and politeness guidance."
+    },
+    {
+      "url": "https://datatracker.ietf.org/doc/html/rfc9110",
+      "title": "RFC 9110: HTTP Semantics",
+      "note": "Primary reference for safe HTTP methods, redirect behavior, and user-agent semantics."
+    },
+    {
+      "url": "https://docs.python.org/3/library/urllib.parse.html",
+      "title": "Python urllib.parse documentation",
+      "note": "Official reference supporting defensive URL validation rather than relying on parser success."
+    },
+    {
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+      "title": "OWASP Server-Side Request Forgery Prevention Cheat Sheet",
+      "note": "Defensive reference for URL-controlled fetches, allowlists, parser issues, and network controls."
+    },
+    {
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html",
+      "title": "OWASP LLM Prompt Injection Prevention Cheat Sheet",
+      "note": "Defensive reference for treating external content as untrusted model input."
+    },
+    {
+      "url": "https://spec.commonmark.org/0.31.2/",
+      "title": "CommonMark Spec 0.31.2",
+      "note": "Primary reference for Markdown syntax and raw HTML constructs relevant to render-safety boundaries."
+    },
+    {
+      "url": "https://github.com/microsoft/markitdown",
+      "title": "Microsoft MarkItDown repository",
+      "note": "Illustrative converter reference only; the package remains converter-neutral."
+    }
+  ],
+  "findings": [
+    {
+      "kind": "fact",
+      "text": "The candidate package contains the requested README.md, prompt.md, research-plan.md, sources.md, and final-report.md files.",
+      "source_urls": []
+    },
+    {
+      "kind": "fact",
+      "text": "The package is written in English and is shaped for a public repository evaluator rather than as an internal workspace dump.",
+      "source_urls": []
+    },
+    {
+      "kind": "fact",
+      "text": "Automated verification passed for required files, public-safety scan, provider-neutral wording, seven source references, risk checklist coverage, workflow stages, and artifact checklist coverage.",
+      "source_urls": [
+        "https://datatracker.ietf.org/doc/html/rfc9309",
+        "https://datatracker.ietf.org/doc/html/rfc9110",
+        "https://docs.python.org/3/library/urllib.parse.html",
+        "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html",
+        "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html",
+        "https://spec.commonmark.org/0.31.2/",
+        "https://github.com/microsoft/markitdown"
+      ]
+    },
+    {
+      "kind": "synthesis",
+      "text": "The live capture transcript omission is an intentional publication-safety choice, documented as a limitation in the package rather than a blocker.",
+      "source_urls": []
+    }
+  ],
+  "analysis_artifacts": [
+    {
+      "path": "workspace/outputs/web-capture-evaluation/",
+      "kind": "artifact",
+      "note": "Review-ready five-file candidate package intended for examples/web-capture-evaluation/."
+    },
+    {
+      "path": "workspace/analysis/verify_package.py",
+      "kind": "script",
+      "note": "Verification helper re-run during finalization to check required files, public-safety markers, coverage terms, and source coverage."
+    },
+    {
+      "path": "workspace/analysis/verify-package-report.json",
+      "kind": "artifact",
+      "note": "Machine-readable verification report showing all checks passed and no privacy issues were detected."
+    }
+  ],
+  "packages_used": [],
+  "database_used": false,
+  "database_artifacts": [],
+  "database_summary": null,
+  "vision_used": false,
+  "vision_artifacts": [],
+  "vision_summary": null,
+  "adequacy": {
+    "status": "passed",
+    "goal_alignment": "The finalized candidate directly answers the goal by packaging a provider-neutral public example that explains risks, workflow gates, and review artifacts for safe web-to-Markdown capture in agent research workflows.",
+    "coverage_summary": "Covered the requested risk model, gated workflow, artifact checklist, source references, public-safety constraints, and final package shape. No blocking gaps remain.",
+    "covered_requirements": [
+      {
+        "requirement": "Prepare a public-safe repository example about safe web-to-Markdown capture.",
+        "evidence": "The package contains README.md, prompt.md, research-plan.md, sources.md, and final-report.md written for public repository evaluators."
+      },
+      {
+        "requirement": "Explain what risks matter.",
+        "evidence": "The report and prompt cover URL/network containment, request limits, robots/politeness, conversion safety, Markdown handling, and prompt-injection boundaries."
+      },
+      {
+        "requirement": "Explain the workflow an agent should follow.",
+        "evidence": "The research plan and final report use intake, preflight, fetch, convert, analyze, synthesize, and verify stage gates."
+      },
+      {
+        "requirement": "Explain what artifacts make the example useful for users evaluating the project.",
+        "evidence": "The package lists source logs, fetch metadata, converted Markdown, analysis notes, final report, and verification notes."
+      },
+      {
+        "requirement": "Use English and primary/official sources where possible.",
+        "evidence": "All candidate files are in English and cite RFCs, Python docs, OWASP guidance, CommonMark, and one illustrative converter reference."
+      },
+      {
+        "requirement": "Avoid private paths, chat identifiers, tokens, personal memories, and local-only tool names.",
+        "evidence": "The verification report found no privacy issues in the package."
+      }
+    ],
+    "coverage_gaps": [],
+    "evidence_risks": [
+      {
+        "risk": "The package intentionally does not include a live capture transcript; reviewers who need a full fixture may later add synthetic or explicitly licensed sample content.",
+        "severity": "minor"
+      }
+    ],
+    "contradictions": [],
+    "recommended_next_phase": "finalize",
+    "recommended_next_angle": "Complete the research lifecycle with the current package as the final candidate.",
+    "blocking_reasons": [],
+    "validation_evidence": [
+      {
+        "check": "goal_alignment",
+        "result": "passed",
+        "reason": "The package matches the requested public example topic and output shape."
+      },
+      {
+        "check": "explicit_constraints",
+        "result": "passed",
+        "reason": "No private identifiers or local-only names were detected by the verification helper."
+      },
+      {
+        "check": "requested_deliverable",
+        "result": "passed",
+        "reason": "The candidate contains exactly the requested five public example files."
+      },
+      {
+        "check": "source_diversity",
+        "result": "passed",
+        "reason": "The source set uses direct primary and official references for HTTP, robots, URL validation, SSRF, prompt injection, and Markdown behavior."
+      },
+      {
+        "check": "evidence_gaps",
+        "result": "passed",
+        "reason": "The only remaining limitation, no live capture transcript, is documented and does not block the requested workflow example."
+      }
+    ]
+  },
+  "notify_recommendation": "final",
+  "should_complete": true,
+  "final_report_markdown": "## Review Candidate\n\nThe final candidate is a five-file repository example for `examples/web-capture-evaluation/`:\n\n- `README.md`\n- `prompt.md`\n- `research-plan.md`\n- `sources.md`\n- `final-report.md`\n\nIt is written in English, provider-neutral, source-backed, and designed for public repository review. Verification passed for required files, safety workflow coverage, source references, and absence of detected private identifiers or local-only tool names.\n\nThe package intentionally omits a live capture transcript to avoid redistributing unknown page content; `final-report.md` documents that as a limitation and suggests a future synthetic or explicitly licensed fixture.",
+  "finalization": {
+    "status": "passed",
+    "max_attempts": 3,
+    "attempt_count": 1,
+    "inferred_user_need": "A public-safe, review-ready example package that demonstrates safe web-to-Markdown capture for Research Mode users and repository evaluators.",
+    "intended_recipient": "Public repository reviewer or evaluator",
+    "primary_deliverable_kind": "Multi-file repository example package",
+    "internal_artifacts": [
+      "workspace/analysis/package-scaffold.md",
+      "workspace/analysis/workflow-map.md",
+      "workspace/analysis/generate_example_package.py",
+      "workspace/analysis/verify_package.py",
+      "workspace/analysis/verify-package-report.json",
+      "workspace/analysis/package-scan.json"
+    ],
+    "candidate_artifacts": [
+      "workspace/outputs/web-capture-evaluation/README.md",
+      "workspace/outputs/web-capture-evaluation/prompt.md",
+      "workspace/outputs/web-capture-evaluation/research-plan.md",
+      "workspace/outputs/web-capture-evaluation/sources.md",
+      "workspace/outputs/web-capture-evaluation/final-report.md"
+    ],
+    "blocking_defects": [],
+    "nonblocking_defects": [
+      "No live capture transcript is included; this is intentional for publication safety and documented as a limitation."
+    ],
+    "revisions": [
+      "Re-ran the package verification helper during finalization; no file edits were required after the check passed."
+    ],
+    "validation_evidence": [
+      {
+        "check": "required_files",
+        "result": "passed",
+        "reason": "All five requested package files are present."
+      },
+      {
+        "check": "privacy_public_safety",
+        "result": "passed",
+        "reason": "The verification report lists no privacy issues."
+      },
+      {
+        "check": "coverage_terms",
+        "result": "passed",
+        "reason": "The verification report passed all risk, workflow, artifact, and provider-neutrality checks."
+      },
+      {
+        "check": "source_coverage",
+        "result": "passed",
+        "reason": "All seven recorded source references are present in the package."
+      },
+      {
+        "check": "recipient_inspection",
+        "result": "passed",
+        "reason": "Manual inspection of the package files found a coherent public-facing example rather than raw internal research state."
+      }
+    ],
+    "last_validation_findings": [
+      "Verification report passed.",
+      "No blocking defects found.",
+      "The documented live-capture omission is a nonblocking publication-safety limitation."
+    ],
+    "last_validated_at": "2026-06-16T12:56:06Z"
+  }
+}

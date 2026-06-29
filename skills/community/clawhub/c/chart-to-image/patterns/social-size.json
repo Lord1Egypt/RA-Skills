@@ -1,0 +1,14 @@
+{
+  "name": "social-size",
+  "label": "社交媒体尺寸",
+  "description": "适配微信/公众号/微博的图片尺寸",
+  "format": "png",
+  "background": "#ffffff",
+  "features": ["preset_sizes", "text_overlay", "brand_colors", "preview"],
+  "presets": {
+    "wechat_article": {"width": 1200, "height": 628},
+    "wechat_moment": {"width": 1080, "height": 1080},
+    "weibo": {"width": 1200, "height": 900}
+  },
+  "default_preset": "wechat_article"
+}

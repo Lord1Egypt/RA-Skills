@@ -1,0 +1,26 @@
+{
+  "version": "1.0",
+  "updated_at": "2026-06-22",
+  "sources": [
+    {
+      "id": "trae_forum",
+      "name": "TRAE AI 创造力大赛",
+      "url": "https://forum.trae.cn/t/topic/28826",
+      "type": "forum_post",
+      "category": "AI赛事",
+      "organizer": "TRAE（字节系）",
+      "enabled": true,
+      "notes": "社区公示帖，持续更新报名通过名单和晋级结果"
+    },
+    {
+      "id": "workbuddy_super_individual",
+      "name": "WorkBuddy 超级个体大赛",
+      "url": "https://www.codebuddy.cn/events/super-individual",
+      "type": "campaign_page",
+      "category": "AI赛事",
+      "organizer": "腾讯 WorkBuddy",
+      "enabled": true,
+      "notes": "官方赛事页面，晒使用故事赢奖金，无抓取解析器，手动维护"
+    }
+  ]
+}

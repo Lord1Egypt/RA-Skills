@@ -4,12 +4,12 @@ Portable spec for agents:
 
 1) Always include `always_on.md`.
 2) Route message → task_type using `router.yml`.
-3) Retrieve snippets from memory according to router policy; build Retrieval Bundle JSON.
+3) Retrieve snippets from memory according to router policy; build Retrieval Bundle JSON. When persistent memory is relevant, prefer semantic/hybrid memory search and record retrieval mode as `semantic`, `hybrid`, `file_fallback`, or `not_needed`.
 4) Compress Retrieval Bundle → Context Pack JSON using `compressor_prompt.txt`.
 5) Lint Context Pack; if it fails, fall back to raw snippets.
 6) Feed Always-on policy + Context Pack (+ optional raw snippets) + user message to the reasoning model.
 7) For `debug` and `audit`, persist runtime artifacts according to `RUNTIME_ARTIFACTS.md`.
-8) Emit evidence according to runtime mode: compact summary in `normal`, full artifacts in `debug`, full artifacts plus Receipt Ledger in `audit`.
+8) Emit evidence according to runtime mode: clean answer plus footer metadata in `normal`, full artifacts in `debug`, full artifacts plus Receipt Ledger in `audit`. Every reply should include retrieval mode, compression/fallback status, model used, files read, and files updated.
 
 Files:
 - `always_on.md` — tiny always-on policy + topic catalog (template).

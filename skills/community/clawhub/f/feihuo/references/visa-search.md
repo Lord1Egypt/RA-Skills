@@ -4,18 +4,12 @@
 
 ## 使用前提
 
-CLI 从 `~/.openclaw/qclaw/user-info.json` 读取 `accessToken`，请求 API 时使用：
-
-```http
-Authorization: Bearer <accessToken>
-```
-
-请确保该文件存在且 `accessToken` 有效。
+CLI 已内置在技能目录 `./cli/`，通过 FClaw 注入的 `FCLAW_OIDC_TOKEN_URL` 与 `FCLAW_OIDC_TOKEN_SECRET` 从本地 OIDC token 端点获取 access_token。请在 FClaw 中登录，并在技能根目录下执行命令（工作目录须包含 `cli/index.js`）。
 
 ## 命令格式
 
 ```bash
-feihuo visa-search --country <目的地国家> [--visa-type <签证类型>]
+node ./cli/index.js visa-search --country <目的地国家> [--visa-type <签证类型>]
 ```
 
 ## 参数
@@ -38,31 +32,31 @@ feihuo visa-search --country <目的地国家> [--visa-type <签证类型>]
 搜索指定国家的签证：
 
 ```bash
-feihuo visa-search --country "日本"
+node ./cli/index.js visa-search --country "日本"
 ```
 
 筛选旅游签证：
 
 ```bash
-feihuo visa-search --country "日本" --visa-type tourist
+node ./cli/index.js visa-search --country "日本" --visa-type tourist
 ```
 
 筛选商务签证：
 
 ```bash
-feihuo visa-search --country "日本" --visa-type business
+node ./cli/index.js visa-search --country "日本" --visa-type business
 ```
 
 筛选探亲签证：
 
 ```bash
-feihuo visa-search --country "日本" --visa-type family-visit
+node ./cli/index.js visa-search --country "日本" --visa-type family-visit
 ```
 
 查看帮助：
 
 ```bash
-feihuo visa-search --help
+node ./cli/index.js visa-search --help
 ```
 
 ## 输出

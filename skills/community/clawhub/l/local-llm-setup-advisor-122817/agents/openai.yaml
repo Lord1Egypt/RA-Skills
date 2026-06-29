@@ -1,0 +1,7 @@
+interface:
+  display_name: "Local LLM Setup Advisor"
+  short_description: "Helps with [Feature Request] Support for Remote llama.cpp Ser..."
+  default_prompt: "Use $local-llm-setup-advisor to help me [Feature Request] Support for Remote llama.cpp Server via URL Endpoint."
+
+policy:
+  allow_implicit_invocation: true

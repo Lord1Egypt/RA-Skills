@@ -1,0 +1,7 @@
+interface:
+  display_name: "Work Productivity Multi Search Workflow Helper"
+  short_description: "Helps with Agent users show strong demand for Multi Search En..."
+  default_prompt: "Use $work-productivity-multi-search-workflow-helper to help me Agent users show strong demand for Multi Search Engine-style workflows on Clawhub. They need practical help fixing bugs,."
+
+policy:
+  allow_implicit_invocation: true

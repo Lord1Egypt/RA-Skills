@@ -2,7 +2,7 @@
 
 命令族：`web`
 
-用途：观看页基础信息、菜单、分享、通用设置、观看页鉴权、观看页打赏。
+用途：观看页基础信息、菜单、分享、通用设置、观看页鉴权、观看页打赏，以及账号级通用图片资源上传。
 
 执行前必须先运行：
 
@@ -16,10 +16,19 @@ help 描述：Manage watch page configuration
 
 - `web auth`: Watch condition and authorization APIs
 - `web donate`: Watch page donate APIs
+- `web image-upload`: Upload common image assets
 - `web info`: Watch page basic info
 - `web menu`: Watch page menu APIs
 - `web setting`: Watch page common settings
 - `web share`: Watch page share APIs
+
+## 通用图片上传
+
+`web image-upload` 对应 `/live/v3/common/upload-image`，用于上传频道封面、直播引导图、播放器 logo、管理员/助教头像、授权二维码、暖场图、广告图、打赏图标、邀请卡、菜单图片等通用图片资源。旧入口 `web setting image-upload` 仅作为兼容别名保留，新任务优先使用 `web image-upload`。
+
+```bash
+<CLI> web image-upload --type logoImage --files /path/to/logo.png --force -o json
+```
 
 ## 使用规则
 

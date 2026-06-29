@@ -4,12 +4,28 @@ Detects and repairs structural issues in session JSONL files.
 
 ## Quick Start
 
+**Primary method — fully automated via `scripts/repair-session.py`** (backup → dedup → 400 error removal → orphan tool_result removal → chain repair → validation, all in one):
+
 ```bash
-/session repair                          # Select session, then validate and repair
+# Repair a specific session
+python3 ~/.claude/skills/claude-session/scripts/repair-session.py <session_file>
+
+# Preview without changes
+python3 ~/.claude/skills/claude-session/scripts/repair-session.py <session_file> --dry-run
+```
+
+The script uses `os.replace` for atomic file swap, bypassing macOS zsh `mv -i` alias prompts that would hang background bash calls. Use the script even when running checks manually — it is the source of truth for the repair pipeline.
+
+**Skill command invocation** (resolves session ID, then calls the script):
+
+```bash
+/session repair                          # Default: current session (uses SessionStart-hook-injected ID)
 /session repair <session_id>             # Repair a specific session
 /session repair --dry-run                # Preview only, no changes
 /session repair --check-only             # Validate only (no repair)
 ```
+
+**Manual fallback** (when the script is unavailable, or for surgical edits): jq/Python queries in the [Diagnostic Queries](#diagnostic-queries) and [jq Queries](#jq-queries) sections below. Avoid for routine repair — the manual flow has alias traps and surrogate-pair pitfalls (see §6 Invalid Surrogate Pair).
 
 ## Detectable Issues
 
@@ -45,13 +61,36 @@ Each tool_result block must have a corresponding tool_use block in the previous 
 
 **Causes**: Message ordering issues, missing intermediate messages, or sync errors
 
-### 3. Duplicate UUIDs
+### 3. Invalid Thinking Block Signature
+
+A `thinking` block inside an assistant message has a corrupted or invalid `signature` field.
+
+**Symptoms**: API Error 400
+```
+messages.N.content.0: Invalid `signature` in `thinking` block
+```
+
+**Causes**: Syncthing sync corruption, interrupted writes, or session file manipulation
+
+**Fix**: Remove all thinking blocks from message content arrays:
+```bash
+jq -c --slurp '
+  .[] |
+  if (.message.content | type == "array") then
+    .message.content = [.message.content[] | select(type != "object" or .type != "thinking")]
+  else . end
+' session.jsonl > session.tmp && mv session.tmp session.jsonl
+```
+
+**Important**: Removing thinking blocks alone does NOT remove existing `isApiErrorMessage: true` lines — those must be removed separately. Always run both steps together.
+
+### 4. Duplicate UUIDs
 
 Multiple messages with the same `uuid`.
 
 **Symptoms**: Chain tracking errors, unexpected branching
 
-### 4. Duplicate Messages (same message.id, different UUID)
+### 5. Duplicate Messages (same message.id, different UUID)
 
 The same API response recorded multiple times with different UUIDs due to **Syncthing sync conflicts**.
 
@@ -68,15 +107,78 @@ grep -o '"id":"msg_[^"]*"' session.jsonl | sort | uniq -c | sort -rn | head -10
 - `requestId` is often also identical
 - progress type entries can repeat thousands of times with identical content
 
+### 6. Invalid Surrogate Pair (Broken Unicode)
+
+A line contains a malformed `\uXXXX\uXXXX` UTF-16 surrogate pair (e.g., a high surrogate without a matching low surrogate). The session file itself becomes invalid JSON.
+
+**Symptoms**:
+- API Error 400: `The request body is not valid JSON: no low surrogate in string: line 1 column NNNNN`
+- `jq` aborts mid-file with `parse error: Invalid \uXXXX\uXXXX surrogate pair escape at line N, column M`
+- Manual `jq -c '...' session.jsonl > out` produces **silent truncation** — everything after the broken line is dropped without warning
+
+**Causes**: Streaming response cut mid-character (network error, crash during write), Syncthing sync mid-write, or session file manipulation that split a multi-byte character.
+
+**Why `jq` is dangerous here**: `jq -c` reads line-by-line but on parse error it aborts the entire stream. If the broken line is at position N of M, you lose lines N..M without any explicit error in the output file. The downstream procedure (mv tmp → session.jsonl) then silently truncates the session.
+
+**Detection**:
+```bash
+# 1. Locate the parse error line
+jq empty session.jsonl 2>&1 | head -3
+#   parse error: Invalid \uXXXX\uXXXX surrogate pair escape at line 4524, column 765
+
+# 2. Confirm via Python (json.loads gives a precise error position)
+python3 -c "
+import json, sys
+with open('session.jsonl', encoding='utf-8') as f:
+    for i, line in enumerate(f, 1):
+        try:
+            json.loads(line)
+        except json.JSONDecodeError as e:
+            print(f'L{i}: {e}')
+" | head -5
+```
+
+**Fix**: Drop the broken line. `scripts/repair-session.py` handles this automatically — broken lines parse to `data=None` and are passed through, then the validation step counts `invalid_json` to surface them. To drop instead of preserve:
+
+```bash
+# Python is preferred — drop lines that fail json.loads
+python3 -c "
+import json
+import sys
+import pathlib
+src = pathlib.Path(sys.argv[1])
+ok, dropped = [], 0
+for line in src.read_text(encoding='utf-8').splitlines():
+    if not line.strip():
+        continue
+    try:
+        json.loads(line)
+        ok.append(line)
+    except json.JSONDecodeError:
+        dropped += 1
+src.with_suffix('.jsonl.bak2').write_text('\n'.join(ok) + '\n', encoding='utf-8')
+print(f'dropped: {dropped}')
+" session.jsonl
+```
+
+Then `mv session.jsonl.bak2 session.jsonl` (or use `os.replace` via Python to bypass `mv -i` alias).
+
 ## Instructions
 
 ### 1. Determine Target Session
 
-If session ID is not provided:
+**Default (no session ID argument): repair the current session.** Use the `Current session ID: {uuid}` line that the SessionStart hook (`~/.claude/hooks/session-id-inject.sh`) injects into conversation context — this is the same fast path used by `id.md`. The current session is the most common repair target (self-repair after a crash or chain break).
+
+If session ID is provided as an argument:
+- Treat that UUID as the target. Skip the prompt.
+
+If no ID argument **and** the hook injection is missing (rare — hook misconfiguration or other environment):
 1. Call `mcp__claude-sessions-mcp__list_projects`
 2. Ask user to select a project
 3. Call `mcp__claude-sessions-mcp__list_sessions`
 4. Ask user to select a session
+
+**Self-repair caveat**: Repairing the current session while it is loaded by Claude Code may cause the IDE to read stale data. After repair, advise the user to reload the window (`Cmd-R`) or restart the Extension Host. The destroy topic (`/session destroy`) has a related but distinct purpose (delete + restart).
 
 ### 2. Session File Path
 
@@ -87,9 +189,13 @@ If session ID is not provided:
 ### 3. Detection Order (all must be run)
 
 1. **Detect duplicate message.id** (Syncthing conflict) — `grep -o '"id":"msg_[^"]*"' session.jsonl | sort | uniq -c | sort -rn | head -10`
-2. **Detect broken chains** — jq query
-3. **Detect orphan tool_results** — jq query
-4. **Detect duplicate UUIDs** — jq query
+2. **Detect API 400 error lines** — `grep -c '"isApiErrorMessage":true' session.jsonl`
+   - If found, check error message: `grep '"isApiErrorMessage":true' session.jsonl | jq -r '.message.content[0].text' | head -3`
+   - `Invalid signature in thinking block` → run thinking block removal first (see §3)
+   - `unexpected tool_use_id` → orphan tool_result issue
+3. **Detect broken chains** — jq query
+4. **Detect orphan tool_results** — jq query
+5. **Detect duplicate UUIDs** — jq query
 
 **Important**: If duplicate message.ids are found, **run dedup first** before the remaining checks. Other check results are unreliable while duplicates are present.
 
@@ -459,7 +565,7 @@ jq empty session.jsonl && echo "Valid JSON"
 
 ## Requirements
 
-- claude-code-sessions MCP server (for session list lookup)
+- claude-sessions-mcp MCP server (for session list lookup)
 - jq (for JSON parsing)
 - Write permission on session files
 

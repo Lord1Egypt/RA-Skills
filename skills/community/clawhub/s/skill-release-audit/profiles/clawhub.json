@@ -1,0 +1,16 @@
+{
+  "name": "clawhub",
+  "description": "ClawHub registry. name+description required, version optional, MIT-0 recommended, 50MB bundle, strict slug, declaration-vs-code enforced.",
+  "frontmatter": {
+    "required": ["name", "description"],
+    "version_severity": "INFO"
+  },
+  "files": {
+    "require_readme": false,
+    "require_license": false
+  },
+  "slug_regex": "^[a-z0-9][a-z0-9-]*$",
+  "slug_max_len": null,
+  "bundle_limit_mb": 50,
+  "declaration_vs_code": "WARN"
+}

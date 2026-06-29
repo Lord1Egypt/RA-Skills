@@ -1,0 +1,661 @@
+{
+  "pricing_models": {
+    "anthropic/claude-haiku-4.5": {
+      "pricing_type": "per_million_tokens",
+      "prompt_price": 0.545,
+      "completion_price": 5.0,
+      "note": "维护价：M/token in $0.545，M/token out $5.00",
+      "cache_write_price": 1.25,
+      "cache_read_price": 0.1,
+      "model_type": "文本"
+    },
+    "anthropic/claude-sonnet-4": {
+      "pricing_type": "per_million_tokens",
+      "prompt_price": 1.39,
+      "completion_price": 15.02,
+      "note": "维护价：M/token in $1.39，M/token out $15.02",
+      "cache_write_price": 3.75,
+      "cache_read_price": 0.3,
+      "model_type": "文本"
+    },
+    "claude-haiku-4-5-20251001": {
+      "pricing_type": "per_million_tokens",
+      "prompt_price": 0.545,
+      "completion_price": 5.0,
+      "note": "claude-haiku-4.5完整版本号，价格相同",
+      "model_type": "文本"
+    },
+    "gemini-3-flash-preview": {
+      "pricing_type": "per_million_tokens",
+      "note": "维护价：M/token in $0.36，M/token out $3.00",
+      "prompt_price": 0.36,
+      "completion_price": 3.0,
+      "model_type": "文本"
+    },
+    "gemini-3-pro-image-preview": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.15,
+      "image_price": {
+        "1024x1024": 0.14,
+        "2048x2048": 0.25,
+        "4096x4096": 0.15
+      },
+      "note": "维护价：1K $0.14、2K $0.25、默认档位 $0.15/张",
+      "model_type": "图片"
+    },
+    "gemini-3.1-flash-image-preview": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.08,
+      "image_price": {
+        "1024x1024": 0.08,
+        "2048x2048": 0.12,
+        "4096x4096": 0.16
+      },
+      "note": "维护价：1K $0.08、2K $0.12、4K $0.16/张",
+      "model_type": "图片"
+    },
+    "google/gemini-2.5-flash": {
+      "pricing_type": "per_million_tokens",
+      "note": "OpenRouter：M/token in $0.30，M/token out $2.50",
+      "prompt_price": 0.3,
+      "completion_price": 2.5,
+      "model_type": "文本"
+    },
+    "google/gemini-2.5-flash-lite": {
+      "pricing_type": "per_million_tokens",
+      "note": "维护价：M/token in $0.077，M/token out $0.399",
+      "prompt_price": 0.077,
+      "completion_price": 0.399,
+      "model_type": "文本"
+    },
+    "google/gemini-2.5-pro": {
+      "pricing_type": "per_million_tokens",
+      "note": "维护价：M/token in $1.05，M/token out $10.03",
+      "prompt_price": 1.05,
+      "completion_price": 10.03,
+      "model_type": "文本"
+    },
+    "google/gemini-3-flash-preview": {
+      "pricing_type": "per_million_tokens",
+      "note": "OpenRouter：M/token in $0.50，M/token out $3.00",
+      "prompt_price": 0.5,
+      "completion_price": 3.0,
+      "model_type": "文本"
+    },
+    "google/gemini-3-flash-preview-20251217": {
+      "pricing_type": "per_million_tokens",
+      "note": "gemini-3-flash-preview版本号，价格相同",
+      "prompt_price": 0.36,
+      "completion_price": 3.0,
+      "model_type": "文本"
+    },
+    "google/gemini-3.1-pro-preview": {
+      "pricing_type": "per_million_tokens",
+      "note": "维护价：M/token in $2.00，M/token out $12.00",
+      "prompt_price": 2.0,
+      "completion_price": 12.0,
+      "model_type": "文本"
+    },
+    "google/gemini-flash-1.5": {
+      "pricing_type": "per_million_tokens",
+      "note": "维护价：M/token in $0.075，M/token out $0.30",
+      "prompt_price": 0.075,
+      "completion_price": 0.3,
+      "model_type": "文本"
+    },
+    "openai/gpt-5.2": {
+      "pricing_type": "per_million_tokens",
+      "prompt_price": 1.75,
+      "completion_price": 14.0,
+      "note": "OpenRouter：M/token in $1.75，M/token out $14.00",
+      "model_type": "文本"
+    },
+    "minimax-m2.7": {
+      "pricing_type": "per_million_tokens",
+      "prompt_price": 0.3,
+      "completion_price": 1.2,
+      "note": "OpenRouter：M/token in $0.30，M/token out $1.20",
+      "model_type": "文本"
+    },
+    "minimax/minimax-m2.7": {
+      "pricing_type": "per_million_tokens",
+      "prompt_price": 0.147,
+      "completion_price": 1.29,
+      "note": "维护价：M/token in $0.147，M/token out $1.29",
+      "model_type": "文本"
+    },
+    "bytedance/seedance-2.0/fast/reference-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.12,
+      "quality_price": {
+        "480p": 0.05,
+        "720p": 0.12,
+        "1080p": 0.27
+      },
+      "note": "维护价：480p $0.05、720p $0.12、1080p $0.27/秒",
+      "model_type": "视频"
+    },
+    "bytedance/seedance-2.0/reference-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.3,
+      "note": "维护价：720p $0.30/秒",
+      "quality_price": {
+        "720p": 0.3
+      },
+      "model_type": "视频"
+    },
+    "doubao-seed-1-6-vision-250815": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.05,
+      "note": "维护价：$0.05/张",
+      "image_price": {
+        "default": 0.05
+      },
+      "model_type": "图片"
+    },
+    "fal-ai/gpt-image-1.5/edit": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.15,
+      "image_price": {
+        "low_quality": 0.01,
+        "medium_quality": 0.05,
+        "high_quality": 0.15
+      },
+      "note": "维护价：低/中/高质量分别为$0.01/$0.05/$0.15/张",
+      "model_type": "图片"
+    },
+    "fal-ai/kling-video/v2.6/pro/image-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.07,
+      "audio_price": {
+        "without_audio": 0.07,
+        "with_audio": 0.14
+      },
+      "note": "维护价：无声$0.07、有声$0.14/秒",
+      "model_type": "视频"
+    },
+    "fal-ai/kling-video/v3/pro/image-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.11,
+      "audio_price": {
+        "without_audio": 0.11,
+        "with_audio": 0.17
+      },
+      "note": "维护价：无声$0.11、有声$0.17/秒",
+      "model_type": "视频"
+    },
+    "fal-ai/nano-banana-2/edit": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.12,
+      "image_price": {
+        "default": 0.12
+      },
+      "note": "维护价：$0.12/张",
+      "model_type": "图片"
+    },
+    "fal-ai/qwen-image-edit-2511": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.12,
+      "image_price": {
+        "default": 0.12
+      },
+      "note": "维护价：$0.12/张",
+      "model_type": "图片"
+    },
+    "fal-ai/seedvr/upscale/image": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.01,
+      "image_price": {
+        "default": 0.01
+      },
+      "note": "维护价：$0.01/张",
+      "model_type": "图片"
+    },
+    "fal-ai/topaz/upscale/image": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.16,
+      "image_price": {
+        "default": 0.16
+      },
+      "note": "维护价：$0.16/张",
+      "model_type": "图片"
+    },
+    "fal-ai/wan-pro/text-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.1,
+      "quality_price": {
+        "720p": 0.1,
+        "1080p": 0.15
+      },
+      "note": "维护价：720p $0.10、1080p $0.15/秒",
+      "model_type": "视频"
+    },
+    "kling-2.6pro-image-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.07,
+      "audio_price": {
+        "without_audio": 0.07,
+        "with_audio": 0.14
+      },
+      "note": "维护价：无声$0.07、有声$0.14/秒",
+      "model_type": "视频"
+    },
+    "wan/v2.6/text-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.1,
+      "quality_price": {
+        "720p": 0.1,
+        "1080p": 0.15
+      },
+      "note": "维护价：720p $0.10、1080p $0.15/秒",
+      "model_type": "视频"
+    },
+    "wan/v2.6/image-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.1,
+      "quality_price": {
+        "720p": 0.1,
+        "1080p": 0.15
+      },
+      "note": "维护价：720p $0.10、1080p $0.15/秒",
+      "model_type": "视频"
+    },
+    "kling-video/v2.6/pro/text-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.07,
+      "audio_price": {
+        "without_audio": 0.07,
+        "with_audio": 0.14
+      },
+      "note": "维护价：无声$0.07、有声$0.14/秒",
+      "model_type": "视频"
+    },
+    "sora-2/image-to-video/pro": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.3,
+      "quality_price": {
+        "720p": 0.3,
+        "1080p": 0.5
+      },
+      "note": "维护价：720p $0.30、1080p $0.50/秒",
+      "model_type": "视频"
+    },
+    "sora-2/image-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.1,
+      "note": "维护价：720p $0.10/秒",
+      "quality_price": {
+        "720p": 0.1
+      },
+      "model_type": "视频"
+    },
+    "gpt-image-2/edit": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.16,
+      "prompt_price": 8.0,
+      "completion_price": 30.0,
+      "image_price": {
+        "medium_quality": 0.16,
+        "high_quality": 0.286
+      },
+      "note": "维护价：中质量$0.16、高质量$0.286/张；保留token价格供参考",
+      "model_type": "图片"
+    },
+    "gpt-image-2": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.16,
+      "prompt_price": 8.0,
+      "completion_price": 30.0,
+      "image_price": {
+        "medium_quality": 0.16,
+        "high_quality": 0.41
+      },
+      "note": "维护价：中质量$0.16、高质量$0.41/张；保留token价格供参考",
+      "model_type": "图片"
+    },
+    "openai/gpt-5.3": {
+      "pricing_type": "per_million_tokens",
+      "prompt_price": 1.75,
+      "completion_price": 14.0,
+      "note": "维护价：M/token in $1.75，M/token out $14.00",
+      "model_type": "文本"
+    },
+    "openai/gpt-5.4": {
+      "pricing_type": "per_million_tokens",
+      "prompt_price": 2.5,
+      "completion_price": 15.0,
+      "note": "维护价：M/token in $2.50，M/token out $15.00",
+      "model_type": "文本"
+    },
+    "kling-o1-text-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.12,
+      "note": "维护价：$0.12/秒",
+      "model_type": "视频"
+    },
+    "kling-o1-image-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.12,
+      "note": "维护价：$0.12/秒",
+      "model_type": "视频"
+    },
+    "kling-o1-reference-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.12,
+      "note": "维护价：$0.12/秒",
+      "model_type": "视频"
+    },
+    "kling-2.6pro-text-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.07,
+      "audio_price": {
+        "without_audio": 0.07,
+        "with_audio": 0.14
+      },
+      "note": "维护价：无声$0.07、有声$0.14/秒",
+      "model_type": "视频"
+    },
+    "sora2-text-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.1,
+      "note": "维护价：$0.10/秒",
+      "model_type": "视频"
+    },
+    "sora2-image-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.1,
+      "note": "维护价：$0.10/秒",
+      "model_type": "视频"
+    },
+    "sora2pro-text-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.3,
+      "quality_price": {
+        "720p": 0.3,
+        "1080p": 0.5
+      },
+      "note": "维护价：720p $0.30、1080p $0.50/秒",
+      "model_type": "视频"
+    },
+    "sora2pro-image-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.3,
+      "quality_price": {
+        "720p": 0.3,
+        "1080p": 0.5
+      },
+      "note": "维护价：720p $0.30、1080p $0.50/秒",
+      "model_type": "视频"
+    },
+    "veo3.1-text-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.2,
+      "audio_price": {
+        "without_audio": 0.2,
+        "with_audio": 0.4
+      },
+      "note": "维护价：无声$0.20、有声$0.40/秒",
+      "model_type": "视频"
+    },
+    "veo3.1-image-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.2,
+      "audio_price": {
+        "without_audio": 0.2,
+        "with_audio": 0.4
+      },
+      "note": "维护价：无声$0.20、有声$0.40/秒",
+      "model_type": "视频"
+    },
+    "veo3.1-fast-text-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.08,
+      "audio_price": {
+        "without_audio": 0.08,
+        "with_audio": 0.15
+      },
+      "note": "维护价：无声$0.08、有声$0.15/秒",
+      "model_type": "视频"
+    },
+    "veo3.1-fast-image-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.08,
+      "audio_price": {
+        "without_audio": 0.08,
+        "with_audio": 0.15
+      },
+      "note": "维护价：无声$0.08、有声$0.15/秒",
+      "model_type": "视频"
+    },
+    "text-embedding-3-small": {
+      "pricing_type": "per_million_tokens",
+      "prompt_price": 0.002,
+      "completion_price": 0.0,
+      "note": "OpenAI官方定价，embedding模型无completion，completion_price填0",
+      "model_type": "文本"
+    },
+    "kimi-k2.6": {
+      "pricing_type": "per_million_tokens",
+      "prompt_price": 0.86,
+      "completion_price": 3.6,
+      "note": "OpenRouter：M/token in $0.86，M/token out $3.60",
+      "model_type": "文本"
+    },
+    "z-ai/glm-5.1": {
+      "pricing_type": "per_million_tokens",
+      "prompt_price": 0.98,
+      "completion_price": 3.08,
+      "note": "OpenRouter：M/token in $0.98，M/token out $3.08",
+      "model_type": "文本"
+    },
+    "openai/gpt-5-mini": {
+      "pricing_type": "per_million_tokens",
+      "prompt_price": 0.25,
+      "completion_price": 2.0,
+      "note": "OpenRouter：M/token in $0.25，M/token out $2.00",
+      "model_type": "文本"
+    },
+    "wan/v2.6/text-to-image": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.1,
+      "note": "维护价：$0.10/张",
+      "image_price": {
+        "default": 0.1
+      },
+      "model_type": "图片"
+    },
+    "fal-ai/z-image/turbo": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.12,
+      "note": "维护价：$0.12/张",
+      "image_price": {
+        "default": 0.12
+      },
+      "model_type": "图片"
+    },
+    "kling-video/v3/standard/image-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.08,
+      "audio_price": {
+        "without_audio": 0.08,
+        "with_audio": 0.13
+      },
+      "note": "维护价：无声$0.08、有声$0.13/秒",
+      "model_type": "视频"
+    },
+    "z-ai/glm-5v-turbo": {
+      "pricing_type": "per_million_tokens",
+      "prompt_price": 1.2,
+      "completion_price": 4.0,
+      "note": "OpenRouter：M/token in $1.20，M/token out $4.00",
+      "model_type": "文本"
+    },
+    "doubao-seedance-2.0-fast": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.24,
+      "quality_price": {
+        "480p": 0.05,
+        "720p": 0.24,
+        "1080p": 0.27
+      },
+      "note": "维护价：480p $0.05、720p $0.24、1080p $0.27/秒",
+      "model_type": "视频"
+    },
+    "doubao-seedance-2.0": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.3,
+      "note": "维护价：720p $0.30/秒",
+      "quality_price": {
+        "720p": 0.3
+      },
+      "model_type": "视频"
+    },
+    "fal-ai/kling-video/o1/reference-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.11,
+      "note": "维护价：$0.11/秒",
+      "model_type": "视频"
+    },
+    "fal-ai/kling-video/o3/pro/reference-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.11,
+      "audio_price": {
+        "without_audio": 0.11,
+        "with_audio": 0.14
+      },
+      "note": "维护价：无声$0.11、有声$0.14/秒",
+      "model_type": "视频"
+    },
+    "fal-ai/kling-video/o3/standard/reference-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.084,
+      "audio_price": {
+        "without_audio": 0.084,
+        "with_audio": 0.112
+      },
+      "note": "维护价：无声$0.084、有声$0.112/秒",
+      "model_type": "视频"
+    },
+    "fal-ai/kling-video/o3/standard/image-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.08,
+      "audio_price": {
+        "without_audio": 0.08,
+        "with_audio": 0.11
+      },
+      "note": "维护价：无声$0.08、有声$0.11/秒",
+      "model_type": "视频"
+    },
+    "fal-ai/wan-pro/image-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.1,
+      "quality_price": {
+        "720p": 0.1,
+        "1080p": 0.15
+      },
+      "note": "维护价：720p $0.10、1080p $0.15/秒",
+      "model_type": "视频"
+    },
+    "fal-ai/doubao-seed-1-6-vision-250815": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.05,
+      "note": "维护价：$0.05/张",
+      "image_price": {
+        "default": 0.05
+      },
+      "model_type": "图片"
+    },
+    "fal-ai/seedance-2.0/reference-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.3,
+      "note": "维护价：720p $0.30/秒",
+      "quality_price": {
+        "720p": 0.3
+      },
+      "model_type": "视频"
+    },
+    "fal-ai/seedance-2.0/fast/reference-to-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.24,
+      "note": "维护价：720p $0.24/秒",
+      "quality_price": {
+        "720p": 0.24
+      },
+      "model_type": "视频"
+    },
+    "Google/Gemini 3 Pro Image": {
+      "pricing_type": "per_request",
+      "price_per_request": 2.0,
+      "note": "维护价：$2.00/张",
+      "model_type": "图片"
+    },
+    "z-ai/glm-4.6-20251208": {
+      "pricing_type": "per_million_tokens",
+      "prompt_price": 0.3,
+      "completion_price": 0.9,
+      "note": "OpenRouter：M/token in $0.30，M/token out $0.90",
+      "model_type": "文本"
+    },
+    "fal-ai/flux-pro": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.05,
+      "note": "Fal.ai flux-pro：$0.05/张",
+      "model_type": "图片"
+    },
+    "fal-ai/flux-2-pro/edit": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.03,
+      "note": "Fal.ai flux-2-pro/edit：$0.03/张",
+      "model_type": "图片"
+    },
+    "fal-ai/ffmpeg-api/merge-audio-video": {
+      "pricing_type": "per_request",
+      "price_per_request": 0.002,
+      "note": "Fal.ai ffmpeg-api merge-audio-video：$0.002/秒",
+      "model_type": "视频"
+    },
+    "gpt-3.5-turbo": {
+      "pricing_type": "per_million_tokens",
+      "prompt_price": 0.5,
+      "completion_price": 1.5,
+      "note": "OpenRouter：M/token in $0.50，M/token out $1.50",
+      "model_type": "文本"
+    },
+    "openai/gpt-4o": {
+      "pricing_type": "per_million_tokens",
+      "prompt_price": 2.5,
+      "completion_price": 10.0,
+      "note": "OpenRouter：M/token in $2.50，M/token out $10.00",
+      "model_type": "文本"
+    },
+    "openai/gpt-5.1": {
+      "pricing_type": "per_million_tokens",
+      "prompt_price": 1.25,
+      "completion_price": 10.0,
+      "note": "OpenRouter：M/token in $1.25，M/token out $10.00",
+      "model_type": "文本"
+    },
+    "openai/gpt-5.4-mini": {
+      "pricing_type": "per_million_tokens",
+      "prompt_price": 0.75,
+      "completion_price": 4.5,
+      "note": "OpenRouter：M/token in $0.75，M/token out $4.50",
+      "model_type": "文本"
+    }
+  },
+  "model_aliases": {
+    "openai/gpt-image-2/edit": "gpt-image-2/edit",
+    "fal-ai/veo3.1/image-to-video": "veo3.1-image-to-video",
+    "fal-ai/kling-video/o1/standard/reference-to-video": "kling-o1-reference-to-video",
+    "doubao-seedance-2.0": "doubao-seedance-2.0",
+    "gemini-3-flash": "gemini-3-flash-preview",
+    "fal-ai/kling-video/o1/reference-to-video": "fal-ai/kling-video/o1/reference-to-video",
+    "fal-ai/kling-video/o3/pro/reference-to-video": "fal-ai/kling-video/o3/pro/reference-to-video",
+    "fal-ai/kling-video/o3/standard/reference-to-video": "fal-ai/kling-video/o3/standard/reference-to-video",
+    "kling-video/v3/standard/image-to-video": "kling-video/v3/standard/image-to-video",
+    "doubao-seedance-2.0-fast": "doubao-seedance-2.0-fast",
+    "z-ai/glm-5v-turbo": "z-ai/glm-5v-turbo",
+    "z-ai/glm-5v-turbo-20260401": "z-ai/glm-5v-turbo",
+    "z-ai/glm-5.1-20260406": "z-ai/glm-5.1"
+  }
+}

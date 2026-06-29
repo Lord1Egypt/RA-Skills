@@ -1,0 +1,10 @@
+{
+  "title": "Size Guide",
+  "headers": ["Size", "Chest", "Waist", "Length"],
+  "rows": [
+    ["S", "86cm", "70cm", "68cm"],
+    ["M", "92cm", "76cm", "70cm"],
+    ["L", "98cm", "82cm", "72cm"]
+  ],
+  "note": "Measurements may vary ±1-2cm."
+}

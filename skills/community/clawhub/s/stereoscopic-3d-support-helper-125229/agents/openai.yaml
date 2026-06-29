@@ -1,0 +1,7 @@
+interface:
+  display_name: "Stereoscopic 3D Support Helper"
+  short_description: "Helps with stereoscopic 3d support."
+  default_prompt: "Use $stereoscopic-3d-support-helper to help me stereoscopic 3d support."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,6 @@
+{
+  "name": "bid-collection",
+  "description": "Tender & Procurement Lead Collection Skill — 24/7 automated monitoring of public tender/procurement notices, intelligently filtering high-value leads matching your business",
+  "version": "1.0.0",
+  "skills": ["bid-collection"]
+}

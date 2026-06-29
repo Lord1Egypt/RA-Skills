@@ -1,0 +1,8 @@
+{
+  "id": "neutral-ink",
+  "name": "Neutral Ink",
+  "description": "A restrained editorial look: warm off-white stage, near-black ink text, one terracotta accent, serif display over a clean sans body. Locale-neutral and topic-agnostic — a safe default to anchor any deck before you tune tokens.",
+  "mood": "calm, editorial, confident",
+  "bestFor": "explainers, talks, product walkthroughs, knowledge shorts",
+  "tokens": "tokens.css"
+}

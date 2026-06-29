@@ -1,0 +1,4 @@
+interface:
+  display_name: "Weekly Report Generator"
+  short_description: "自动过滤部署排障内容，整理生成可直接提交的中文研发周报"
+  default_prompt: "Use $weekly-report-generator to generate a polished Chinese R&D weekly report from these work logs."

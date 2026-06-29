@@ -1,0 +1,553 @@
+{
+  "version": 2,
+  "id": "example-web-capture-evaluation-20260616",
+  "title": "Example: safe web-to-Markdown capture",
+  "goal": "Prepare a public-safe repository example for Research Mode about safe web-to-Markdown capture in agent research workflows: what risks matter, what workflow should an agent follow, and what artifacts make the example useful for users evaluating the project.",
+  "status": "awaiting_review",
+  "phase": "finalize",
+  "created_at": "2026-06-16T11:56:27Z",
+  "updated_at": "2026-06-16T13:11:30Z",
+  "owner": {
+    "channel": null,
+    "chat_id": null,
+    "thread_id": null,
+    "topic_id": null,
+    "disabled_reason": "owner_disabled:explicit"
+  },
+  "job": {
+    "job_id": null,
+    "mode": null,
+    "tick_every_min": "5m",
+    "enabled": null,
+    "suspended_reason": null,
+    "suspended_at": null,
+    "schedule_template": {
+      "mode": "recurring",
+      "tick_every_min": "5m",
+      "name": "research-example-web-capture-20260616",
+      "thinking": "xhigh",
+      "agent": null,
+      "model": null,
+      "light_context": false,
+      "timeout_seconds": 600
+    },
+    "last_removed_job_id": "<uuid>",
+    "last_removed_payload": {
+      "redacted": true,
+      "reason": "Cron worker prompt omitted from the public example trace."
+    }
+  },
+  "budget": {
+    "depth": "M",
+    "max_iterations": 8,
+    "max_runtime_min": 180,
+    "max_sources": 18
+  },
+  "progress": {
+    "iteration_count": 7,
+    "meaningful_iterations": 7,
+    "last_attempt_at": "2026-06-16T13:03:28Z",
+    "last_iteration_at": "2026-06-16T13:07:09Z",
+    "last_meaningful_progress_at": "2026-06-16T13:07:09Z"
+  },
+  "analysis": {
+    "last_iteration_code_used": true,
+    "code_used_recently": true,
+    "last_code_run_at": "2026-06-16T13:07:09Z",
+    "last_packages_used": [],
+    "last_analysis_artifacts": [
+      {
+        "path": "workspace/analysis/verify_package.py",
+        "kind": "script",
+        "note": "Re-runnable package validation helper used for the finalization check."
+      },
+      {
+        "path": "workspace/analysis/verify-package-report.json",
+        "kind": "artifact",
+        "note": "Saved verification output showing required files, source coverage, safety-term coverage, and privacy scan results."
+      },
+      {
+        "path": "workspace/outputs/web-capture-evaluation",
+        "kind": "artifact",
+        "note": "Review-ready five-file public example package candidate."
+      }
+    ],
+    "analysis_artifacts_count": 3,
+    "last_iteration_database_used": false,
+    "database_used_recently": false,
+    "last_database_run_at": null,
+    "last_database_artifacts": [],
+    "last_database_summary": null,
+    "last_iteration_vision_used": false,
+    "vision_used_recently": false,
+    "last_vision_run_at": null,
+    "last_vision_artifacts": [],
+    "last_vision_summary": null
+  },
+  "lock": {
+    "status": "free",
+    "run_id": null,
+    "lease_token": null,
+    "started_at": null,
+    "iteration_index": null,
+    "stale_timeout_min": 30,
+    "recovered_count": 0,
+    "last_recovered_from_run": null
+  },
+  "working_memory": {
+    "summary": "Finalization pass completed for the public-safe web-capture example package. The package contains the required five files, uses English public-repository prose, cites primary/official sources, documents the no-live-capture limitation, and passed the saved verification helper with no missing files, privacy issues, source gaps, or coverage gaps.",
+    "next_angle": "Lifecycle completion; no further research is needed unless a reviewer requests a synthetic capture fixture.",
+    "open_questions": [
+      "Formal adequacy verification still needs to confirm that the generated package is sufficient for finalization.",
+      "The package intentionally omits a live capture transcript to avoid redistribution and unsanitized-capture concerns; this is documented as a limitation rather than a blocker for the requested five-file example."
+    ],
+    "constraints": [
+      "No private workspace paths, chat-system identifiers, personal memories, tokens, or local-only tool names in final example files.",
+      "Final deliverable must be a directory/package, not a raw internal workspace dump."
+    ],
+    "deliverable": "A review-ready multi-file example package suitable for copying into the public repo under examples/web-capture-evaluation/: README.md, prompt.md, research-plan.md, sources.md, final-report.md. Keep it provider-neutral and avoid private paths, real chat ids, tokens, or OpenClaw-local personal context.",
+    "contract": null,
+    "user_instructions": [
+      "Write all user-facing example materials in English for the public repository.",
+      "Prefer direct official docs and primary sources for claims about web capture, Markdown conversion, URL safety, redirects, robots/politeness, and prompt-injection handling."
+    ]
+  },
+  "corpus": {
+    "mode": "web",
+    "entries": [],
+    "updated_at": "2026-06-16T11:56:27Z"
+  },
+  "control": {
+    "pause_requested": false,
+    "stop_requested": false
+  },
+  "delivery": {
+    "update_policy": "milestone",
+    "milestone_every_iterations": 2,
+    "last_update_at": null,
+    "sent_updates": 0,
+    "primary_file": "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation/README.md",
+    "attachments": [
+      "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation/final-report.md",
+      "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation/prompt.md",
+      "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation/sources.md",
+      "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation/research-plan.md",
+      "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation/README.md"
+    ],
+    "summary_text": null,
+    "channel_strategy": null,
+    "review_ready": true,
+    "ready": false,
+    "package_path": "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation",
+    "notification_blocked": "notification_blocked:missing_owner"
+  },
+  "delivery_intents": [
+    {
+      "id": "<delivery-intent-id>",
+      "status": "blocked",
+      "run_id": "<run-id>",
+      "transition": "finish:finalize",
+      "created_at": "2026-06-16T12:57:23Z",
+      "updated_at": "2026-06-16T12:57:23Z",
+      "notification_target": {
+        "channel": null,
+        "chat_id": null,
+        "thread_id": null,
+        "topic_id": null
+      },
+      "update_text": null,
+      "primary_file": null,
+      "attachments": [],
+      "blocked_reason": "notification_blocked:missing_owner",
+      "error": null
+    },
+    {
+      "id": "<delivery-intent-id>",
+      "status": "blocked",
+      "run_id": "<run-id>",
+      "transition": "finish:awaiting_review",
+      "created_at": "2026-06-16T13:07:10Z",
+      "updated_at": "2026-06-16T13:07:10Z",
+      "notification_target": {
+        "channel": null,
+        "chat_id": null,
+        "thread_id": null,
+        "topic_id": null
+      },
+      "update_text": "Исследование «Example: safe web-to-Markdown capture» готово к ревью.\nИтог: Finalization pass completed for the public-safe web-capture example package. The package contains the required five files, uses English public-repository prose, cites primary/official sources, documents the no-live-capture limitation, and passed the saved verification helper with no missing files, privacy issues, source gaps, or coverage gaps.\nКлючевое:\n- The final package directly answers the goal: it explains web-to-Markdown capture risks, gives a staged agent workflow, and names the artifacts evaluators should expect.\n- The verification helper confirmed all required files are present, all seven expected source URLs appear in sources.md, and safety coverage terms for URL policy, fetch bounds, Markdown handling, prompt injection, workflow stages, artifacts, and provider neutrality are present.\n- The verification helper found no private workspace paths, owner identifiers, messaging identifiers, local-only tool names, secret-like literals, or Cyrillic text in the public-facing package files.",
+      "primary_file": "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation/README.md",
+      "attachments": [
+        "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation/final-report.md",
+        "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation/prompt.md",
+        "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation/sources.md",
+        "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation/research-plan.md",
+        "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation/README.md"
+      ],
+      "blocked_reason": "notification_blocked:missing_owner",
+      "error": null
+    }
+  ],
+  "queue": {
+    "status": "free",
+    "waiting_since": null,
+    "position": null,
+    "blocked_by_task_id": null,
+    "blocked_by_run_id": null,
+    "active_task_id": null,
+    "active_run_id": null,
+    "last_acquired_at": "2026-06-16T13:03:28Z",
+    "last_released_at": "2026-06-16T13:07:09Z"
+  },
+  "saturation": {
+    "consecutive_low_yield": 0,
+    "low_yield_threshold": 2,
+    "last_iteration_new_sources": 0,
+    "last_iteration_new_findings": 4,
+    "last_iteration_duplicate_sources": 7,
+    "last_iteration_duplicate_findings": 0,
+    "last_low_yield_at": null,
+    "topic_saturated": false
+  },
+  "adequacy": {
+    "status": "passed",
+    "max_attempts": 2,
+    "attempt_count": 1,
+    "last_checked_at": "2026-06-16T12:47:55Z",
+    "last_checked_by": "<run-id>",
+    "goal_alignment": "The accumulated research and generated package answer the goal: they define the risks that matter for safe web-to-Markdown capture, specify a bounded agent workflow, and list the artifacts that make the example reviewable for public repository evaluators.",
+    "coverage_summary": "Covered the requested five-file package, public-safety constraints, English-language user-facing materials, primary/official source preference, provider-neutrality, prompt-injection handling, URL/network safety, robots/politeness, Markdown conversion boundaries, and reviewer artifacts.",
+    "covered_requirements": [
+      {
+        "requirement": "Requested five-file package",
+        "evidence": "Verification found README.md, prompt.md, research-plan.md, sources.md, and final-report.md in the candidate package directory."
+      },
+      {
+        "requirement": "Public-safe content without private workspace paths, chat identifiers, personal context, tokens, or local-only tool names",
+        "evidence": "verify-package-report.json and package-scan.json both report zero privacy/public-safety issues after scanning the package files."
+      },
+      {
+        "requirement": "English public repository materials",
+        "evidence": "The generated files are in English and the verification script found no Cyrillic text."
+      },
+      {
+        "requirement": "Prefer direct official docs and primary sources",
+        "evidence": "sources.md includes RFC 9309, RFC 9110, Python urllib.parse docs, OWASP SSRF, OWASP LLM prompt injection, CommonMark, and an illustrative MarkItDown repository reference."
+      },
+      {
+        "requirement": "Provider-neutral workflow",
+        "evidence": "README.md and final-report.md explicitly describe the example as provider-neutral and converter-neutral; MarkItDown is framed only as illustrative."
+      },
+      {
+        "requirement": "Explain risks, workflow, and useful artifacts",
+        "evidence": "final-report.md contains risk and workflow checklists; research-plan.md contains stage gates; README.md and final-report.md list expected reviewer artifacts."
+      }
+    ],
+    "coverage_gaps": [],
+    "evidence_risks": [
+      {
+        "risk": "The package intentionally omits a live capture transcript to avoid redistribution and unsanitized-capture concerns; this is documented as a limitation rather than a blocker for the requested five-file example.",
+        "severity": "minor"
+      }
+    ],
+    "contradictions": [],
+    "recommended_next_phase": "finalize",
+    "recommended_next_angle": "Run the finalization phase to package the candidate directory as the human-reviewable deliverable.",
+    "blocking_reasons": [],
+    "validation_evidence": [
+      {
+        "check": "goal_alignment",
+        "result": "passed",
+        "reason": "The package directly addresses risks, workflow, and review artifacts for safe web-to-Markdown capture."
+      },
+      {
+        "check": "explicit_constraints",
+        "result": "passed",
+        "reason": "Automated scans found no private paths, personal context, chat identifiers, local-only tool names, or secrets."
+      },
+      {
+        "check": "requested_deliverable",
+        "result": "passed",
+        "reason": "All five requested Markdown files exist in the candidate package directory."
+      },
+      {
+        "check": "source_diversity",
+        "result": "passed",
+        "reason": "The package cites primary standards, official language docs, OWASP security guidance, CommonMark, and a converter reference."
+      },
+      {
+        "check": "evidence_gaps",
+        "result": "passed",
+        "reason": "No blocking evidence gaps remain; the omitted live transcript is intentional and documented."
+      },
+      {
+        "check": "contradictions",
+        "result": "passed",
+        "reason": "No contradictory findings were identified across the accumulated sources or generated package."
+      },
+      {
+        "check": "next_phase_decision",
+        "result": "passed",
+        "reason": "The appropriate next phase is finalization, not more search, analysis, or synthesis."
+      }
+    ],
+    "operator_next_action": null
+  },
+  "errors": {
+    "failure_count": 0,
+    "consecutive_failures": 0,
+    "failure_threshold": 3,
+    "last_error": null
+  },
+  "artifacts": {
+    "task_dir": "<research-root>/example-web-capture-evaluation-20260616",
+    "state_path": "<research-root>/example-web-capture-evaluation-20260616/state.json",
+    "sources_path": "<research-root>/example-web-capture-evaluation-20260616/sources.jsonl",
+    "findings_path": "<research-root>/example-web-capture-evaluation-20260616/findings.jsonl",
+    "iterations_dir": "<research-root>/example-web-capture-evaluation-20260616/iterations",
+    "input_dir": "<research-root>/example-web-capture-evaluation-20260616/input",
+    "corpus_dir": "<research-root>/example-web-capture-evaluation-20260616/input/corpus",
+    "corpus_manifest_path": "<research-root>/example-web-capture-evaluation-20260616/input/corpus-manifest.json",
+    "workspace_dir": "<research-root>/example-web-capture-evaluation-20260616/workspace",
+    "workspace_analysis_dir": "<research-root>/example-web-capture-evaluation-20260616/workspace/analysis",
+    "workspace_tools_dir": "<research-root>/example-web-capture-evaluation-20260616/workspace/tools",
+    "workspace_data_dir": "<research-root>/example-web-capture-evaluation-20260616/workspace/data",
+    "workspace_outputs_dir": "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs",
+    "workspace_tmp_dir": "<research-root>/example-web-capture-evaluation-20260616/workspace/tmp",
+    "workspace_screenshots_dir": "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/screenshots",
+    "workspace_vision_dir": "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/vision",
+    "sqlite_db_path": "<research-root>/example-web-capture-evaluation-20260616/workspace/data/analysis.sqlite",
+    "sqlite_schema_path": "<research-root>/example-web-capture-evaluation-20260616/workspace/analysis/schema.sql",
+    "sqlite_queries_dir": "<research-root>/example-web-capture-evaluation-20260616/workspace/analysis/queries",
+    "sqlite_imports_dir": "<research-root>/example-web-capture-evaluation-20260616/workspace/analysis/imports",
+    "runtime_dir": "<research-root>/example-web-capture-evaluation-20260616/.runtime",
+    "venv_dir": "<research-root>/example-web-capture-evaluation-20260616/.runtime/venv",
+    "runtime_meta_path": "<research-root>/example-web-capture-evaluation-20260616/.runtime/runtime.json",
+    "task_playbook_path": "<research-root>/example-web-capture-evaluation-20260616/task-playbook.md",
+    "runs_path": "<research-root>/example-web-capture-evaluation-20260616/runs.tsv",
+    "final_report_path": null
+  },
+  "history": {
+    "last_transition": "clear-bound-job",
+    "last_reason": "awaiting_review:passed-validation",
+    "last_terminal_reason": null,
+    "last_job_binding": {
+      "job_id": "<uuid>",
+      "mode": "recurring",
+      "tick_every_min": "5m",
+      "enabled": false,
+      "suspended_reason": "awaiting_review",
+      "suspended_at": "2026-06-16T13:07:09Z",
+      "schedule_template": {
+        "mode": "recurring",
+        "tick_every_min": "5m",
+        "name": "research-example-web-capture-20260616",
+        "thinking": "xhigh",
+        "agent": null,
+        "model": null,
+        "light_context": false,
+        "timeout_seconds": 600
+      }
+    }
+  },
+  "review": {
+    "status": "pending",
+    "revision_count": 0,
+    "last_feedback": null,
+    "last_feedback_at": null,
+    "history": [],
+    "last_reviewed_at": null,
+    "approved_artifact_path": null,
+    "review_gated": true
+  },
+  "finalization": {
+    "status": "passed",
+    "max_attempts": 3,
+    "attempt_count": 2,
+    "inferred_user_need": "A human-reviewable, public-safe repository example package that can be copied into examples/web-capture-evaluation/ to demonstrate safe web-to-Markdown capture in agent research workflows.",
+    "intended_recipient": "Repository maintainer or evaluator reviewing the Research Mode example package before public inclusion.",
+    "primary_deliverable_kind": "package",
+    "internal_artifacts": [
+      {
+        "path": "workspace/analysis/package-scaffold.md",
+        "kind": "analysis",
+        "note": "Earlier scaffold used to shape the package."
+      },
+      {
+        "path": "workspace/analysis/workflow-map.md",
+        "kind": "analysis",
+        "note": "Workflow mapping used to check stage coverage."
+      },
+      {
+        "path": "workspace/analysis/verify-package-report.json",
+        "kind": "verification_report",
+        "note": "Machine-readable validation results from the finalization check."
+      }
+    ],
+    "candidate_artifacts": [
+      {
+        "path": "workspace/outputs/web-capture-evaluation",
+        "kind": "final_package",
+        "note": "Review-ready five-file public repository example package."
+      }
+    ],
+    "blocking_defects": [],
+    "nonblocking_defects": [
+      {
+        "defect": "No synthetic capture fixture is included.",
+        "impact": "Reviewers can evaluate the workflow and acceptance checks, but not a concrete capture transcript; the limitation is documented."
+      }
+    ],
+    "revisions": [
+      {
+        "change": "Performed final human-read inspection of the five package files and re-ran the verification helper.",
+        "result": "No blocking defects found."
+      }
+    ],
+    "validation_evidence": [
+      {
+        "check": "Required files",
+        "result": "passed",
+        "evidence": "README.md, prompt.md, research-plan.md, sources.md, and final-report.md are present."
+      },
+      {
+        "check": "Privacy and public safety",
+        "result": "passed",
+        "evidence": "verify_package.py found no private paths, owner names, messaging identifiers, local-only tool names, secret-like literals, or Cyrillic text."
+      },
+      {
+        "check": "Source coverage",
+        "result": "passed",
+        "evidence": "sources.md contains all seven expected official/primary source URLs."
+      },
+      {
+        "check": "Workflow and risk coverage",
+        "result": "passed",
+        "evidence": "verify_package.py confirmed coverage terms for risk categories, workflow stages, expected artifacts, and provider/converter neutrality."
+      },
+      {
+        "check": "Recipient inspection",
+        "result": "passed",
+        "evidence": "The package reads as a public repository example rather than an internal workspace dump, and the no-live-capture limitation is explicit."
+      }
+    ],
+    "last_validation_findings": [
+      {
+        "check": "finalization_trace",
+        "passed": true,
+        "reasons": [],
+        "status": "passed",
+        "primary_deliverable_kind": "package",
+        "candidate_artifacts_count": 1,
+        "validation_evidence_count": 5,
+        "blocking_defects_count": 0
+      },
+      {
+        "check": "candidate_artifact_inspection",
+        "passed": true,
+        "reasons": [],
+        "artifacts": [
+          {
+            "path": "workspace/outputs/web-capture-evaluation",
+            "kind": "final_package",
+            "exists": true,
+            "inside_task": true,
+            "is_file": false,
+            "is_directory": true,
+            "package_path": "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation",
+            "entrypoint_path": "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation/README.md",
+            "attachments": [
+              "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation/final-report.md",
+              "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation/prompt.md",
+              "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation/sources.md",
+              "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation/research-plan.md",
+              "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation/README.md"
+            ],
+            "file_count": 5,
+            "format": "package",
+            "reasons": []
+          }
+        ],
+        "mode": "candidate_artifacts"
+      },
+      {
+        "check": "package_deliverable_quality",
+        "passed": true,
+        "reasons": []
+      },
+      {
+        "check": "draft_artifacts",
+        "passed": true,
+        "reasons": []
+      },
+      {
+        "check": "human_readiness",
+        "passed": true,
+        "reasons": []
+      },
+      {
+        "check": "naming_hygiene",
+        "passed": true,
+        "reasons": []
+      },
+      {
+        "check": "delivery_manifest",
+        "passed": true,
+        "reasons": []
+      },
+      {
+        "check": "deliverable_contract",
+        "passed": true,
+        "reasons": [],
+        "skipped": true
+      }
+    ],
+    "last_validated_at": "2026-06-16T13:07:09Z"
+  },
+  "transactions": {
+    "finish": {
+      "status": "committed",
+      "run_id": "<run-id>",
+      "iteration": 7,
+      "committed_at": "2026-06-16T13:07:09Z",
+      "outcome": "awaiting_review",
+      "normalized_reason": "awaiting_review:passed-validation"
+    }
+  },
+  "completion": {
+    "last_validation": {
+      "passed": true,
+      "reasons": [],
+      "triggered_by": "worker",
+      "phase": "finalize",
+      "report_bytes": 401,
+      "deliverable_present": true,
+      "deliverable_validation": {
+        "checks": [],
+        "reasons": [],
+        "report_metrics": {
+          "bullet_count": 0,
+          "pre_metadata_bullet_count": 0,
+          "heading_count": 0,
+          "comparison_signal_count": 0
+        }
+      },
+      "total_sources": 7,
+      "total_findings": 30,
+      "validated_at": "2026-06-16T13:07:09Z",
+      "candidate_status": "complete"
+    }
+  },
+  "revision_diff": {
+    "revision_from": 0,
+    "revision_to": 0,
+    "changes": [
+      "review_status:None->pending"
+    ],
+    "final_report_updated": false
+  },
+  "revision_snapshot": {
+    "final_report_path": null,
+    "package_path": "<research-root>/example-web-capture-evaluation-20260616/workspace/outputs/web-capture-evaluation",
+    "revision_count": 0
+  }
+}

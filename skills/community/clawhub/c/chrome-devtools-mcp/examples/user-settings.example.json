@@ -1,0 +1,26 @@
+{
+  "chromeDevtools": {
+    "mode": "isolated",
+    "browser": "chrome",
+    "executablePath": null,
+    "userDataDir": null,
+    "browserUrl": null,
+    "headless": false,
+    "isolated": true,
+    "allowedUrlPatterns": [],
+    "blockedUrlPatterns": [
+      "file://*"
+    ],
+    "allowExistingSession": false,
+    "allowReadingCookies": true,
+    "allowReadingStorage": true,
+    "allowDownloads": true,
+    "allowFormSubmit": true,
+    "allowDestructiveActions": false,
+    "requireConfirmationForSubmit": true,
+    "requireConfirmationForPayments": true,
+    "requireConfirmationForAccountChanges": true,
+    "disableUsageStatistics": true,
+    "disablePerformanceCrux": true
+  }
+}

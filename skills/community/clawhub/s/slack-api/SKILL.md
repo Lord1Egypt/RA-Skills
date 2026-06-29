@@ -55,7 +55,7 @@ Maton proxies requests to `slack.com` and automatically injects your OAuth token
 
 **NPM:**
 ```bash
-npm install -g @maton-ai/cli
+npm install -g @maton/cli
 ```
 
 **Homebrew:**

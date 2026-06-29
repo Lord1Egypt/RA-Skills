@@ -11,31 +11,30 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers, product builders, and problem solvers use this skill to reframe a difficult problem with TRIZ contradictions, adjacent-field analogies, and bridge mappings before choosing an implementation path. <br>
+Developers, engineers, and product teams use this skill when they are stuck on a problem and want to reframe contradictions, explore adjacent domains, and generate TRIZ-inspired solution ideas. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Broad trigger words may invoke the skill during general innovation or analogy discussions. <br>
-Mitigation: Use the skill when TRIZ-style cross-domain ideation is intended, and ask the agent to stay within the current problem scope. <br>
-Risk: Brainstormed analogies or proposed mappings may be incorrect or misleading. <br>
-Mitigation: Review generated ideas against domain evidence before using them in design, engineering, or business decisions. <br>
+Risk: TRIZ analogies can be speculative or poorly matched to the user's problem. <br>
+Mitigation: Treat outputs as ideation prompts and validate feasibility, domain fit, and supporting evidence before implementation. <br>
+Risk: Adjacent-field solution mappings are not substitutes for standard code search, literature review, or expert review. <br>
+Mitigation: Use conventional search, literature review, and domain experts for decisions that require factual completeness or safety-critical assurance. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-tome-triz) <br>
-- [OpenClaw homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/tome) <br>
+- [claude-night-market tome plugin](https://github.com/athola/claude-night-market/tree/master/plugins/tome) <br>
 
 
 ## Skill Output: <br>
 **Output Type(s):** [text, markdown, guidance] <br>
-**Output Format:** [Markdown analysis with structured TRIZ framing, analogies, and recommendations] <br>
+**Output Format:** [Markdown analysis with structured TRIZ steps] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [No executable code, persistence, credential access, or hidden side effects were identified in the ClawHub security evidence.] <br>
+**Other Properties Related to Output:** [May include contradiction framing, adjacent-field mappings, and rationale for analogical solution ideas.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: ClawHub release metadata; artifact frontmatter lists 1.9.8) <br>
+1.9.13 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

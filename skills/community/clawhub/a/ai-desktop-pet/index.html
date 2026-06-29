@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>桌面宠物 Desktop Pet</title>
+<style>
+:root { --bg:#1a1a2e; --panel:#16213e; --accent:#e94560; --accent2:#0f3460; --text:#eee; --text2:#aaa; --radius:12px; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);height:100vh;overflow:hidden;display:flex;user-select:none}
+#panel{width:370px;min-width:370px;background:var(--panel);padding:20px;display:flex;flex-direction:column;gap:14px;overflow-y:auto;border-right:1px solid rgba(255,255,255,0.08);z-index:10}
+#panel h1{font-size:1.5em;display:flex;align-items:center;gap:8px}
+.section{background:rgba(255,255,255,0.03);border-radius:var(--radius);padding:14px}
+.section h3{font-size:0.8em;text-transform:uppercase;color:var(--text2);margin-bottom:10px;letter-spacing:2px}
+.btn{padding:10px 16px;border:none;border-radius:8px;cursor:pointer;font-size:0.85em;font-weight:600;transition:all 0.2s;display:flex;align-items:center;gap:6px;justify-content:center}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 15px rgba(0,0,0,0.3)}
+.btn:active{transform:translateY(0)}
+.btn-primary{background:var(--accent);color:#fff;width:100%}
+.btn-secondary{background:var(--accent2);color:var(--text)}
+.pet-types{display:flex;gap:8px}
+.pet-types div{flex:1;padding:12px 8px;border:2px solid transparent;border-radius:var(--radius);cursor:pointer;text-align:center;background:rgba(255,255,255,0.04);transition:all 0.3s;font-size:0.9em}
+.pet-types div:hover{background:rgba(255,255,255,0.1)}
+.pet-types div.active{border-color:var(--accent);background:rgba(233,69,96,0.12)}
+.pet-types .icon{font-size:1.8em;display:block;margin-bottom:4px}
+.emotion-tags{display:flex;flex-wrap:wrap;gap:6px}
+.emotion-tag{padding:5px 12px;border-radius:16px;cursor:pointer;background:rgba(255,255,255,0.05);font-size:0.8em;border:1px solid transparent;transition:all 0.2s}
+.emotion-tag:hover{background:rgba(255,255,255,0.12);border-color:var(--accent)}
+.emotion-tag.active{background:rgba(233,69,96,0.18);border-color:var(--accent)}
+textarea.text-input{width:100%;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.04);color:var(--text);font-size:0.85em;resize:none;font-family:inherit}
+textarea.text-input:focus{outline:none;border-color:var(--accent)}
+.upload-zone{border:2px dashed rgba(255,255,255,0.15);border-radius:var(--radius);padding:24px;text-align:center;cursor:pointer;transition:all 0.3s}
+.upload-zone:hover{border-color:var(--accent);background:rgba(233,69,96,0.04)}
+.upload-zone .icon{font-size:2em;margin-bottom:6px}
+.upload-zone p{color:var(--text2);font-size:0.8em}
+.upload-zone img{max-width:100px;max-height:100px;border-radius:8px;margin-top:8px}
+.color-preview{display:flex;gap:6px;align-items:center;margin-top:8px}
+.color-dot{width:28px;height:28px;border-radius:50%;border:2px solid rgba(255,255,255,0.25)}
+.action-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.action-btn{padding:8px;border-radius:8px;cursor:pointer;text-align:center;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);transition:all 0.2s;font-size:0.8em}
+.action-btn:hover{background:rgba(255,255,255,0.1);border-color:var(--accent)}
+.action-btn .emoji{font-size:1.3em;display:block;margin-bottom:2px}
+#canvas-container{flex:1;position:relative;cursor:grab}
+#canvas-container:active{cursor:grabbing}
+.status-bar{position:absolute;bottom:16px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.65);padding:6px 18px;border-radius:20px;font-size:0.8em;display:flex;align-items:center;gap:6px;pointer-events:none}
+.status-dot{width:7px;height:7px;border-radius:50%;animation:pulse 2s infinite}
+.status-dot.happy{background:#ffd700}.status-dot.sad{background:#6495ed}
+.status-dot.anxious{background:#ff8c00}.status-dot.excited{background:#ff4500}
+.status-dot.calm{background:#4ecdc4}.status-dot.lonely{background:#9370db}
+.status-dot.frustrated{background:#dc143c}.status-dot.neutral{background:#aaa}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+#float-btn{position:absolute;top:14px;right:14px;z-index:100;padding:8px 14px;background:var(--accent);color:#fff;border:none;border-radius:20px;cursor:pointer;font-size:0.8em;font-weight:600;display:flex;align-items:center;gap:4px;transition:all 0.3s;box-shadow:0 4px 18px rgba(233,69,96,0.3)}
+#float-btn:hover{transform:translateY(-2px);box-shadow:0 6px 22px rgba(233,69,96,0.5)}
+@media(max-width:800px){body{flex-direction:column}#panel{width:100%;min-width:unset;max-height:38vh}}
+</style>
+</head>
+<body>
+
+<div id="panel">
+  <h1><span>🐾</span>桌面宠物</h1>
+
+  <div class="section">
+    <h3>选择宠物</h3>
+    <div class="pet-types">
+      <div class="active" data-type="dog" onclick="switchPet('dog')"><span class="icon">🐕</span>狗狗</div>
+      <div data-type="cat" onclick="switchPet('cat')"><span class="icon">🐈</span>猫咪</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>上传照片</h3>
+    <div class="upload-zone" id="uploadZone" onclick="document.getElementById('photoInput').click()">
+      <div class="icon">📷</div>
+      <p>点击上传狗狗/猫咪照片<br>自动提取毛色应用到3D宠物</p>
+      <img id="previewImg" style="display:none">
+    </div>
+    <input type="file" id="photoInput" accept="image/*" style="display:none" onchange="handlePhotoUpload(event)">
+    <div id="colorPreview" class="color-preview" style="display:none"></div>
+  </div>
+
+  <div class="section">
+    <h3>情绪识别</h3>
+    <textarea class="text-input" id="emotionInput" rows="2"
+      placeholder="输入你的感受... 今天好开心！/ 有点难过..."
+      oninput="detectEmotion()"></textarea>
+    <div class="emotion-tags" style="margin-top:8px" id="emotionTags">
+      <div class="emotion-tag" data-emotion="happy" onclick="triggerEmotion('happy')">😊开心</div>
+      <div class="emotion-tag" data-emotion="sad" onclick="triggerEmotion('sad')">😢伤心</div>
+      <div class="emotion-tag" data-emotion="anxious" onclick="triggerEmotion('anxious')">😰焦虑</div>
+      <div class="emotion-tag" data-emotion="excited" onclick="triggerEmotion('excited')">🎉兴奋</div>
+      <div class="emotion-tag" data-emotion="calm" onclick="triggerEmotion('calm')">🧘平静</div>
+      <div class="emotion-tag" data-emotion="lonely" onclick="triggerEmotion('lonely')">😴孤独</div>
+      <div class="emotion-tag" data-emotion="frustrated" onclick="triggerEmotion('frustrated')">😤沮丧</div>
+      <div class="emotion-tag" data-emotion="neutral" onclick="triggerEmotion('neutral')">😐中性</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3>宠物动作</h3>
+    <div class="action-grid" id="actionGrid">
+      <div class="action-btn" onclick="triggerAction('jump')"><span class="emoji">🦘</span>跳跃</div>
+      <div class="action-btn" onclick="triggerAction('spin')"><span class="emoji">🌀</span>转圈</div>
+      <div class="action-btn" onclick="triggerAction('wag')"><span class="emoji">🔄</span>摇尾巴</div>
+      <div class="action-btn" onclick="triggerAction('sit')"><span class="emoji">🧎</span>坐下</div>
+      <div class="action-btn" onclick="triggerAction('lie')"><span class="emoji">😴</span>趴下</div>
+      <div class="action-btn" onclick="triggerAction('dance')"><span class="emoji">💃</span>跳舞</div>
+      <div class="action-btn" onclick="triggerAction('nuzzle')"><span class="emoji">🤗</span>蹭蹭</div>
+      <div class="action-btn" onclick="triggerAction('play_dead')"><span class="emoji">💀</span>装死</div>
+      <div class="action-btn" onclick="triggerAction('backflip')"><span class="emoji">🤸</span>后空翻</div>
+      <div class="action-btn" onclick="triggerAction('pace')"><span class="emoji">🚶</span>踱步</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <button class="btn btn-primary" onclick="openFloatingPet()">🪟 弹出独立浮窗</button>
+    <button class="btn btn-secondary" style="margin-top:6px;width:100%" onclick="resetPet()">🔄 重置宠物</button>
+  </div>
+</div>
+
+<div id="canvas-container">
+  <div class="status-bar" id="statusBar">
+    <div class="status-dot neutral" id="statusDot"></div>
+    <span id="statusText">🐾 你好！我是你的桌面宠物~</span>
+  </div>
+  <button id="float-btn" onclick="openFloatingPet()">🪟 弹出浮窗</button>
+</div>
+
+<script type="importmap">
+{"imports":{"three":"https://unpkg.com/three@0.157.0/build/three.module.js","three/addons/":"https://unpkg.com/three@0.157.0/examples/jsm/"}}
+</script>
+
+<script type="module">
+import * as THREE from 'three';
+
+// ===== 全局状态 =====
+let currentPet='dog', currentEmotion='neutral', petGroup, bodyMesh, headGroup, tailGroup;
+let leftEar, rightEar, leftEye, rightEye, noseMesh;
+let frontLeftLeg, frontRightLeg, backLeftLeg, backRightLeg;
+let animPlayer, particleSystem, extractedColors=null;
+let idleTimer=0;
+
+// ===== Three.js 初始化 =====
+const container=document.getElementById('canvas-container');
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(45,1,0.1,100);
+camera.position.set(0,1.5,6);
+const renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+renderer.shadowMap.enabled=true;
+renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+container.appendChild(renderer.domElement);
+
+// 灯光
+scene.add(new THREE.AmbientLight(0xfff5e8,1.8));
+const sun=new THREE.DirectionalLight(0xfff8e7,4);
+sun.position.set(5,8,5);sun.castShadow=true;
+sun.shadow.mapSize.set(1024,1024);
+sun.shadow.camera.near=0.5;sun.shadow.camera.far=30;
+sun.shadow.camera.left=-10;sun.shadow.camera.right=10;
+sun.shadow.camera.top=10;sun.shadow.camera.bottom=-10;
+scene.add(sun);
+scene.add(new THREE.DirectionalLight(0x8888ff,1.5)).position.set(-3,1,-4);
+scene.add(new THREE.DirectionalLight(0xffccaa,1.2)).position.set(0,-0.5,2);
+
+// 地面阴影
+const shadowPlane=new THREE.Mesh(new THREE.PlaneGeometry(20,20),new THREE.ShadowMaterial({opacity:0.2}));
+shadowPlane.rotation.x=-Math.PI/2;shadowPlane.position.y=-3;shadowPlane.receiveShadow=true;scene.add(shadowPlane);
+
+// ===== 粒子系统 =====
+class ParticleSystem{
+  constructor(){
+    this.particles=[];
+    this.geo=new THREE.BufferGeometry();
+    this.mat=new THREE.PointsMaterial({size:0.07,vertexColors:true,blending:THREE.AdditiveBlending,depthWrite:false,transparent:true,opacity:0.8});
+    this.mesh=new THREE.Points(this.geo,this.mat);this.mesh.visible=false;scene.add(this.mesh);
+  }
+  emit(pos,count=25,type='heart'){
+    const p=[],c=[],v=[];
+    for(let i=0;i<count;i++){
+      const a=Math.PI*2*i/count+Math.random()*0.5,s=0.02+Math.random()*0.05;
+      p.push(pos.x,pos.y,pos.z);
+      v.push({vx:Math.cos(a)*s,vy:0.03+Math.random()*0.06,vz:Math.sin(a)*s,life:1});
+      if(type==='heart')c.push(1,0.3+Math.random()*0.3,0.4+Math.random()*0.25);
+      else if(type==='star')c.push(1,0.8+Math.random()*0.2,0.2+Math.random()*0.25);
+      else c.push(0.3+Math.random()*0.4,0.7+Math.random()*0.3,1);
+    }
+    this.particles.push({pos:[...p],vel:v,col:[...c],life:1});
+    this.geo.setAttribute('position',new THREE.Float32BufferAttribute(p,3));
+    this.geo.setAttribute('color',new THREE.Float32BufferAttribute(c,3));
+    this.mesh.visible=true;
+  }
+  update(){
+    if(!this.particles.length){this.mesh.visible=false;return}
+    const ap=[],ac=[],al=[];
+    for(const pt of this.particles){
+      pt.life-=0.015;if(pt.life<=0)continue;al.push(pt);
+      for(let i=0;i<pt.vel.length;i++){
+        pt.vel[i].vy+=0.0008;
+        const j=i*3;
+        pt.pos[j]+=pt.vel[i].vx;pt.pos[j+1]+=pt.vel[i].vy;pt.pos[j+2]+=pt.vel[i].vz;
+        ap.push(pt.pos[j],pt.pos[j+1],pt.pos[j+2]);
+        ac.push(pt.col[j]*pt.life,pt.col[j+1]*pt.life,pt.col[j+2]*pt.life);
+      }
+    }
+    this.particles=al;
+    if(!ap.length){this.mesh.visible=false;return}
+    this.geo.setAttribute('position',new THREE.Float32BufferAttribute(ap,3));
+    this.geo.setAttribute('color',new THREE.Float32BufferAttribute(ac,3));
+    this.mesh.visible=true;
+  }
+}
+
+// ===== 3D宠物材质 =====
+function petMats(){
+  const bc=extractedColors?.primary||(currentPet==='dog'?'#d4956b':'#a0a0a0');
+  const sc=extractedColors?.secondary||(currentPet==='dog'?'#f5deb3':'#d0d0d0');
+  const dc=extractedColors?.dark||'#4a3728';
+  return{
+    body:new THREE.MeshToonMaterial({color:new THREE.Color(bc)}),
+    belly:new THREE.MeshToonMaterial({color:new THREE.Color(sc)}),
+    dark:new THREE.MeshToonMaterial({color:new THREE.Color(dc)}),
+    eyeW:new THREE.MeshToonMaterial({color:0xffffff}),
+    eyeP:new THREE.MeshToonMaterial({color:0x1a1a1a}),
+    nose:new THREE.MeshToonMaterial({color:0x2a1a0a}),
+    innerEar:new THREE.MeshToonMaterial({color:0xf0a0a0}),
+  };
+}
+
+function disposeGroup(g){
+  g.traverse(c=>{
+    if(c.geometry)c.geometry.dispose();
+    if(c.material){if(Array.isArray(c.material))c.material.forEach(m=>m.dispose());else c.material.dispose();}
+  });
+}
+
+// ===== 构建狗狗 =====
+function buildDog(){
+  const m=petMats();const g=new THREE.Group();
+  const bGeo=new THREE.CapsuleGeometry(0.55,0.9,8,16);bGeo.scale(1,0.75,0.85);
+  bodyMesh=new THREE.Mesh(bGeo,m.body);bodyMesh.position.y=0.15;bodyMesh.castShadow=bodyMesh.receiveShadow=true;g.add(bodyMesh);
+  const belGeo=new THREE.SphereGeometry(0.42,16,12,0,Math.PI*2,0,Math.PI*0.6);
+  const bel=new THREE.Mesh(belGeo,m.belly);bel.position.set(0,-0.15,-0.15);bel.scale.set(1,0.6,0.7);bodyMesh.add(bel);
+  headGroup=new THREE.Group();headGroup.position.set(0,0.7,0.65);g.add(headGroup);
+  const hGeo=new THREE.SphereGeometry(0.48,24,24);hGeo.scale(1,0.9,0.85);
+  const h=new THREE.Mesh(hGeo,m.body);h.castShadow=true;headGroup.add(h);
+  const sGeo=new THREE.SphereGeometry(0.22,16,16);sGeo.scale(1,0.7,0.8);
+  const sn=new THREE.Mesh(sGeo,m.belly);sn.position.set(0,-0.12,0.35);headGroup.add(sn);
+  const nGeo=new THREE.SphereGeometry(0.1,12,12);nGeo.scale(1,0.7,0.8);
+  noseMesh=new THREE.Mesh(nGeo,m.nose);noseMesh.position.set(0,-0.05,0.52);headGroup.add(noseMesh);
+  const moGeo=new THREE.TorusGeometry(0.06,0.02,8,8,Math.PI);
+  const mo=new THREE.Mesh(moGeo,m.dark);mo.position.set(0,-0.18,0.38);mo.rotation.x=0.2;headGroup.add(mo);
+  const eGeo=new THREE.SphereGeometry(0.1,12,12),pGeo=new THREE.SphereGeometry(0.06,8,8);
+  leftEye=new THREE.Group();leftEye.position.set(-0.16,0.12,0.38);
+  leftEye.add(new THREE.Mesh(eGeo,m.eyeW));const lp=new THREE.Mesh(pGeo,m.eyeP);lp.position.z=0.07;leftEye.add(lp);headGroup.add(leftEye);
+  rightEye=new THREE.Group();rightEye.position.set(0.16,0.12,0.38);
+  rightEye.add(new THREE.Mesh(eGeo,m.eyeW));const rp=new THREE.Mesh(pGeo,m.eyeP);rp.position.z=0.07;rightEye.add(rp);headGroup.add(rightEye);
+  const earGeo=new THREE.CapsuleGeometry(0.1,0.35,6,8);
+  leftEar=new THREE.Mesh(earGeo,m.body);leftEar.position.set(-0.28,0.35,0.05);leftEar.rotation.z=0.6;leftEar.rotation.x=-0.3;headGroup.add(leftEar);
+  rightEar=new THREE.Mesh(earGeo,m.body);rightEar.position.set(0.28,0.35,0.05);rightEar.rotation.z=-0.6;rightEar.rotation.x=-0.3;headGroup.add(rightEar);
+  tailGroup=new THREE.Group();tailGroup.position.set(0,0.25,-0.75);g.add(tailGroup);
+  const tc=new THREE.CatmullRomCurve3([new THREE.Vector3(0,0,0),new THREE.Vector3(0,0.3,-0.15),new THREE.Vector3(0,0.55,-0.2),new THREE.Vector3(0,0.7,-0.05),new THREE.Vector3(0,0.75,0.15)]);
+  const tGeo=new THREE.TubeGeometry(tc,16,0.06,8,false);const tm=new THREE.Mesh(tGeo,m.body);tm.castShadow=true;tailGroup.add(tm);
+  const ttGeo=new THREE.SphereGeometry(0.08,8,8);const tt=new THREE.Mesh(ttGeo,m.belly);tt.position.set(0,0.75,0.15);tailGroup.add(tt);
+  const legGeo=new THREE.CapsuleGeometry(0.12,0.4,6,8),blegGeo=new THREE.CapsuleGeometry(0.13,0.45,6,8);
+  frontLeftLeg=new THREE.Mesh(legGeo,m.body);frontLeftLeg.position.set(-0.3,-0.45,0.35);frontLeftLeg.castShadow=true;g.add(frontLeftLeg);
+  frontRightLeg=new THREE.Mesh(legGeo,m.body);frontRightLeg.position.set(0.3,-0.45,0.35);frontRightLeg.castShadow=true;g.add(frontRightLeg);
+  backLeftLeg=new THREE.Mesh(blegGeo,m.body);backLeftLeg.position.set(-0.28,-0.45,-0.4);backLeftLeg.castShadow=true;g.add(backLeftLeg);
+  backRightLeg=new THREE.Mesh(blegGeo,m.body);backRightLeg.position.set(0.28,-0.45,-0.4);backRightLeg.castShadow=true;g.add(backRightLeg);
+  const pawGeo=new THREE.SphereGeometry(0.1,8,8);pawGeo.scale(1,0.4,1);
+  [[-0.3,-0.65,0.35],[0.3,-0.65,0.35],[-0.28,-0.68,-0.4],[0.28,-0.68,-0.4]].forEach(([x,y,z])=>{const p=new THREE.Mesh(pawGeo,m.dark);p.position.set(x,y,z);g.add(p);});
+  return g;
+}
+
+// ===== 构建猫咪 =====
+function buildCat(){
+  const m=petMats();const g=new THREE.Group();
+  const bGeo=new THREE.CapsuleGeometry(0.45,0.8,8,16);bGeo.scale(1,0.7,0.8);
+  bodyMesh=new THREE.Mesh(bGeo,m.body);bodyMesh.position.y=0.1;bodyMesh.castShadow=bodyMesh.receiveShadow=true;g.add(bodyMesh);
+  const belGeo=new THREE.SphereGeometry(0.35,16,12,0,Math.PI*2,0,Math.PI*0.6);
+  const bel=new THREE.Mesh(belGeo,m.belly);bel.position.set(0,-0.2,-0.12);bel.scale.set(1,0.55,0.65);bodyMesh.add(bel);
+  headGroup=new THREE.Group();headGroup.position.set(0,0.65,0.55);g.add(headGroup);
+  const hGeo=new THREE.SphereGeometry(0.42,24,24);
+  const h=new THREE.Mesh(hGeo,m.body);h.castShadow=true;headGroup.add(h);
+  const sGeo=new THREE.SphereGeometry(0.16,12,12);sGeo.scale(1,0.6,0.7);
+  const sn=new THREE.Mesh(sGeo,m.belly);sn.position.set(0,-0.15,0.32);headGroup.add(sn);
+  const nGeo=new THREE.SphereGeometry(0.07,8,8);nGeo.scale(1,0.6,0.7);
+  noseMesh=new THREE.Mesh(nGeo,m.nose);noseMesh.position.set(0,-0.08,0.46);headGroup.add(noseMesh);
+  const moGeo=new THREE.TorusGeometry(0.04,0.015,6,8,Math.PI);
+  const mo=new THREE.Mesh(moGeo,m.dark);mo.position.set(0,-0.2,0.34);headGroup.add(mo);
+  for(let s=-1;s<=1;s+=2)for(let i=-1;i<=1;i++){
+    const wGeo=new THREE.CylinderGeometry(0.008,0.008,0.5,4);
+    const w=new THREE.Mesh(wGeo,m.dark);w.position.set(s*0.16,-0.12+i*0.06,0.38);w.rotation.z=s*(0.3+i*0.15);w.rotation.y=s*0.4;headGroup.add(w);
+  }
+  const eGeo=new THREE.SphereGeometry(0.12,12,12);eGeo.scale(1,1.3,1);
+  const pGeo=new THREE.SphereGeometry(0.04,8,8);pGeo.scale(1,2.5,1);
+  leftEye=new THREE.Group();leftEye.position.set(-0.15,0.1,0.34);
+  leftEye.add(new THREE.Mesh(eGeo,m.eyeW));const lp=new THREE.Mesh(pGeo,m.eyeP);lp.position.z=0.08;leftEye.add(lp);headGroup.add(leftEye);
+  rightEye=new THREE.Group();rightEye.position.set(0.15,0.1,0.34);
+  rightEye.add(new THREE.Mesh(eGeo,m.eyeW));const rp=new THREE.Mesh(pGeo,m.eyeP);rp.position.z=0.08;rightEye.add(rp);headGroup.add(rightEye);
+  const earS=new THREE.Shape();earS.moveTo(0,0);earS.lineTo(0.18,0.5);earS.lineTo(-0.18,0.5);
+  const earGeo=new THREE.ExtrudeGeometry(earS,{steps:1,depth:0.15,bevelEnabled:true,bevelThickness:0.02,bevelSize:0.02,bevelSegments:2});earGeo.center();
+  leftEar=new THREE.Mesh(earGeo,m.body);leftEar.position.set(-0.22,0.38,-0.05);leftEar.rotation.x=-0.4;leftEar.rotation.z=0.2;headGroup.add(leftEar);
+  const inS=new THREE.Shape();inS.moveTo(0,0.02);inS.lineTo(0.12,0.38);inS.lineTo(-0.12,0.38);
+  const inGeo=new THREE.ExtrudeGeometry(inS,{steps:1,depth:0.08,bevelEnabled:false});inGeo.center();
+  const il=new THREE.Mesh(inGeo,m.innerEar);il.position.copy(leftEar.position);il.position.z+=0.04;il.rotation.copy(leftEar.rotation);headGroup.add(il);
+  rightEar=new THREE.Mesh(earGeo,m.body);rightEar.position.set(0.22,0.38,-0.05);rightEar.rotation.x=-0.4;rightEar.rotation.z=-0.2;headGroup.add(rightEar);
+  const ir=new THREE.Mesh(inGeo,m.innerEar);ir.position.copy(rightEar.position);ir.position.z+=0.04;ir.rotation.copy(rightEar.rotation);headGroup.add(ir);
+  tailGroup=new THREE.Group();tailGroup.position.set(0,0.2,-0.7);g.add(tailGroup);
+  const tc=new THREE.CatmullRomCurve3([new THREE.Vector3(0,0,0),new THREE.Vector3(0,0.5,-0.1),new THREE.Vector3(0,1.0,0),new THREE.Vector3(0,1.3,0.3),new THREE.Vector3(0.1,1.4,0.4)]);
+  const tGeo=new THREE.TubeGeometry(tc,20,0.05,8,false);const tm=new THREE.Mesh(tGeo,m.body);tm.castShadow=true;tailGroup.add(tm);
+  const legGeo=new THREE.CapsuleGeometry(0.1,0.38,6,8);
+  frontLeftLeg=new THREE.Mesh(legGeo,m.body);frontLeftLeg.position.set(-0.25,-0.45,0.3);frontLeftLeg.castShadow=true;g.add(frontLeftLeg);
+  frontRightLeg=new THREE.Mesh(legGeo,m.body);frontRightLeg.position.set(0.25,-0.45,0.3);frontRightLeg.castShadow=true;g.add(frontRightLeg);
+  backLeftLeg=new THREE.Mesh(legGeo,m.body);backLeftLeg.position.set(-0.22,-0.45,-0.35);backLeftLeg.castShadow=true;g.add(backLeftLeg);
+  backRightLeg=new THREE.Mesh(legGeo,m.body);backRightLeg.position.set(0.22,-0.45,-0.35);backRightLeg.castShadow=true;g.add(backRightLeg);
+  const pawGeo=new THREE.SphereGeometry(0.08,8,8);pawGeo.scale(1,0.35,1);
+  [[-0.25,-0.64,0.3],[0.25,-0.64,0.3],[-0.22,-0.64,-0.35],[0.22,-0.64,-0.35]].forEach(([x,y,z])=>{const p=new THREE.Mesh(pawGeo,m.dark);p.position.set(x,y,z);g.add(p);});
+  return g;
+}
+
+function buildPet(){
+  if(petGroup){scene.remove(petGroup);disposeGroup(petGroup);}
+  petGroup=currentPet==='dog'?buildDog():buildCat();
+  petGroup.position.y=0.3;scene.add(petGroup);
+}
+
+// ===== 动画播放器 =====
+class AnimPlayer{
+  constructor(){this.tweens=[];}
+  add(dur,upd,comp,easing='easeInOut'){
+    const t={start:performance.now()/1000,dur,upd,comp,easing,done:false};this.tweens.push(t);return t;
+  }
+  update(time){
+    this.tweens=this.tweens.filter(t=>!t.done);
+    for(const t of this.tweens){
+      let p=Math.min((time-t.start)/t.dur,1);
+      switch(t.easing){
+        case'easeOut':p=1-Math.pow(1-p,3);break;
+        case'easeIn':p=p*p*p;break;
+        case'easeInOut':p=p<0.5?4*p*p*p:1-Math.pow(-2*p+2,3)/2;break;
+        case'bounce':{
+          const n=7.5625,d=2.75;
+          if(p<1/d)p=n*p*p;else if(p<2/d){p-=1.5/d;p=n*p*p+0.75;}else if(p<2.5/d){p-=2.25/d;p=n*p*p+0.9375;}else{p-=2.625/d;p=n*p*p+0.984375;}
+          break;
+        }
+      }
+      t.upd(p);
+      if(p>=1){t.done=true;if(t.comp)t.comp();}
+    }
+  }
+  clear(){this.tweens=[];}
+  get active(){return this.tweens.some(t=>!t.done);}
+}
+
+// ===== 动画函数 =====
+function animJump(){
+  if(!petGroup)return;
+  animPlayer.add(0.3,p=>{petGroup.position.y=0.3-p*0.5;if(frontLeftLeg)frontLeftLeg.rotation.x=p*0.4;if(frontRightLeg)frontRightLeg.rotation.x=p*0.4;},()=>{
+    animPlayer.add(0.4,p=>{const b=1-Math.pow(1-p,2);petGroup.position.y=-0.2+b*2.5;petGroup.rotation.x=-p*0.3;if(frontLeftLeg)frontLeftLeg.rotation.x=-0.3;if(frontRightLeg)frontRightLeg.rotation.x=-0.3;if(backLeftLeg)backLeftLeg.rotation.x=-0.2;if(backRightLeg)backRightLeg.rotation.x=-0.2;},()=>{
+      animPlayer.add(0.3,p=>{const b=Math.sin(p*Math.PI)*0.2;petGroup.position.y=0.3-b;petGroup.rotation.x=0;if(frontLeftLeg)frontLeftLeg.rotation.x=0;if(frontRightLeg)frontRightLeg.rotation.x=0;if(backLeftLeg)backLeftLeg.rotation.x=0;if(backRightLeg)backRightLeg.rotation.x=0;if(bodyMesh)bodyMesh.scale.y=1-b*0.3;},()=>updateStatus('neutral','蹦跶了一下！🐾'),'bounce');
+    },'easeOut');
+  },'easeIn');
+}
+
+function animSpin(){
+  if(!petGroup)return;
+  animPlayer.add(0.9,p=>{petGroup.rotation.y=p*Math.PI*2;petGroup.position.y=0.3+Math.sin(p*Math.PI*2)*0.3;},()=>{petGroup.rotation.y=0;petGroup.position.y=0.3;updateStatus('excited','转圈圈~好开心！🌀');},'easeInOut');
+}
+
+function animWag(){
+  if(!tailGroup)return;
+  animPlayer.add(1.0,p=>{tailGroup.rotation.z=Math.sin(p*Math.PI*10)*0.6;},()=>{tailGroup.rotation.z=0;updateStatus('happy','尾巴摇摇！');},'easeInOut');
+}
+
+function animSit(){
+  if(!petGroup)return;const oy=petGroup.position.y;
+  animPlayer.add(0.5,p=>{petGroup.position.y=oy-p*0.5;if(backLeftLeg)backLeftLeg.rotation.x=-p*0.8;if(backRightLeg)backRightLeg.rotation.x=-p*0.8;if(headGroup)headGroup.rotation.x=p*0.2;},()=>{
+    updateStatus('calm','乖乖坐好了~');
+    animPlayer.add(0.5,p=>{petGroup.position.y=oy-0.5+p*0.5;if(backLeftLeg)backLeftLeg.rotation.x=-0.8+p*0.8;if(backRightLeg)backRightLeg.rotation.x=-0.8+p*0.8;if(headGroup)headGroup.rotation.x=0.2-p*0.2;},null,'easeOut');
+    animPlayer.tweens[animPlayer.tweens.length-1].start+=2;
+  },'easeOut');
+}
+
+function animLieDown(){
+  if(!petGroup)return;const oy=petGroup.position.y;
+  animPlayer.add(0.6,p=>{petGroup.position.y=oy-p*0.8;petGroup.rotation.z=p*0.6;if(frontLeftLeg)frontLeftLeg.rotation.z=-p*1.2;if(frontRightLeg)frontRightLeg.rotation.z=-p*1.2;if(backLeftLeg)backLeftLeg.rotation.z=-p*0.8;if(backRightLeg)backRightLeg.rotation.z=-p*0.8;if(tailGroup)tailGroup.rotation.x=-p*0.5;},()=>{
+    updateStatus('sad','趴下了...😢');
+    animPlayer.add(0.6,p=>{petGroup.position.y=oy-0.8+p*0.8;petGroup.rotation.z=0.6-p*0.6;if(frontLeftLeg)frontLeftLeg.rotation.z=-1.2+p*1.2;if(frontRightLeg)frontRightLeg.rotation.z=-1.2+p*1.2;if(backLeftLeg)backLeftLeg.rotation.z=-0.8+p*0.8;if(backRightLeg)backRightLeg.rotation.z=-0.8+p*0.8;if(tailGroup)tailGroup.rotation.x=-0.5+p*0.5;},null,'easeOut');
+    animPlayer.tweens[animPlayer.tweens.length-1].start+=3;
+  },'easeInOut');
+}
+
+function animDance(){
+  if(!petGroup)return;
+  animPlayer.add(2,p=>{petGroup.position.y=0.3+Math.abs(Math.sin(p*Math.PI*6))*0.6;petGroup.rotation.y=Math.sin(p*Math.PI*4)*0.3;petGroup.rotation.z=Math.sin(p*Math.PI*8)*0.15;if(headGroup)headGroup.rotation.z=Math.sin(p*Math.PI*4+1)*0.25;if(tailGroup)tailGroup.rotation.z=Math.sin(p*Math.PI*8)*0.5;},()=>{
+    petGroup.rotation.y=0;petGroup.rotation.z=0;petGroup.position.y=0.3;if(headGroup)headGroup.rotation.z=0;updateStatus('excited','跳完舞了！💃');
+  },'easeInOut');
+}
+
+function animNuzzle(){
+  if(!petGroup||!headGroup)return;
+  animPlayer.add(0.6,p=>{petGroup.position.z=-Math.sin(p*Math.PI)*0.5;if(headGroup)headGroup.rotation.x=-Math.sin(p*Math.PI)*0.4;},()=>{
+    petGroup.position.z=0;if(headGroup)headGroup.rotation.x=0;updateStatus('happy','蹭蹭你~好温暖🤗');particleSystem.emit(new THREE.Vector3(0,1.5,1),20,'heart');
+  },'easeInOut');
+}
+
+function animPlayDead(){
+  if(!petGroup)return;const oy=petGroup.position.y;
+  animPlayer.add(0.3,p=>{petGroup.rotation.z=p*Math.PI/2;petGroup.position.y=oy-p*0.6;},()=>{
+    animPlayer.add(0.5,p=>{petGroup.rotation.z=Math.PI/2+Math.sin(p*Math.PI*2)*0.05;if(frontLeftLeg)frontLeftLeg.rotation.z=-1.5+Math.sin(p*Math.PI*2)*0.1;},()=>{
+      animPlayer.add(0.4,p=>{petGroup.rotation.z=Math.PI/2-p*Math.PI/2;petGroup.position.y=oy-0.6+p*0.6;},()=>{
+        petGroup.rotation.z=0;petGroup.position.y=oy;if(frontLeftLeg)frontLeftLeg.rotation.z=0;updateStatus('excited','哈哈骗到你了吧！😜');
+      },'easeOut');
+    },'easeOut');
+    animPlayer.tweens[animPlayer.tweens.length-2].start+=1.5;
+  },'easeIn');
+}
+
+function animBackflip(){
+  if(!petGroup)return;const oy=petGroup.position.y;
+  animPlayer.add(0.6,p=>{petGroup.rotation.x=p*Math.PI*2;petGroup.position.y=oy+Math.sin(p*Math.PI)*1.5;},()=>{
+    petGroup.rotation.x=0;petGroup.position.y=oy;updateStatus('excited','后空翻！🤸');
+  },'easeInOut');
+}
+
+function animPace(){
+  if(!petGroup)return;const ox=petGroup.position.x;
+  animPlayer.add(1.5,p=>{petGroup.position.x=ox+Math.sin(p*Math.PI*3)*1.5;petGroup.rotation.y=Math.sin(p*Math.PI*3)*0.2;petGroup.position.y=0.3+Math.abs(Math.sin(p*Math.PI*6))*0.1;if(headGroup)headGroup.rotation.z=Math.sin(p*Math.PI*3)*0.15;},()=>{
+    petGroup.position.x=ox;petGroup.rotation.y=0;petGroup.position.y=0.3;updateStatus('anxious','走来走去...');
+  },'easeInOut');
+}
+
+function animHappyJump(){
+  if(!petGroup)return;let c=0;
+  const dj=()=>{if(c>=3){updateStatus('excited','太开心啦！🎉');return}const oy=petGroup.position.y;
+    animPlayer.add(0.22,p=>{petGroup.position.y=oy-p*0.25;},()=>{
+      animPlayer.add(0.22,p=>{petGroup.position.y=oy-0.25+Math.sin(p*Math.PI)*1.0;},()=>{petGroup.position.y=oy;if(tailGroup)tailGroup.rotation.z=0.5;c++;dj();},'easeOut');
+    },'easeIn');
+  };dj();
+}
+
+function animComfort(){
+  if(!petGroup||!headGroup)return;
+  animPlayer.add(1.5,p=>{petGroup.position.z=-Math.sin(p*Math.PI*0.5)*0.8;if(headGroup)headGroup.rotation.x=-Math.sin(p*Math.PI)*0.3;if(tailGroup)tailGroup.rotation.z=Math.sin(p*Math.PI*3)*0.2;petGroup.position.y=0.3-Math.sin(p*Math.PI)*0.15;},()=>{
+    petGroup.position.z=0;if(headGroup)headGroup.rotation.x=0;updateStatus('calm','别难过，我陪着你~💕');particleSystem.emit(new THREE.Vector3(0,1.5,0.5),25,'heart');
+  },'easeInOut');
+}
+
+function updateStatus(em,text){
+  currentEmotion=em;
+  const sb=document.getElementById('statusText'),sd=document.getElementById('statusDot');
+  if(sb)sb.textContent=text;if(sd)sd.className='status-dot '+em;
+  document.querySelectorAll('.emotion-tag').forEach(t=>t.classList.toggle('active',t.dataset.emotion===em));
+}
+
+const actionMap={jump:animJump,spin:animSpin,wag:animWag,sit:animSit,lie:animLieDown,dance:animDance,nuzzle:animNuzzle,play_dead:animPlayDead,backflip:animBackflip,pace:animPace,happy_jump:animHappyJump,comfort:animComfort};
+const emotionActions={happy:['jump','wag','spin','happy_jump'],sad:['lie','nuzzle','comfort'],anxious:['pace','sit'],excited:['happy_jump','dance','spin','backflip'],calm:['sit','wag','nuzzle'],lonely:['lie','pace','comfort'],frustrated:['pace','lie','sit'],neutral:['wag','sit','spin']};
+
+// ===== 情绪检测 =====
+const emotionKW={
+  happy:['开心','高兴','快乐','幸福','美好','太棒','哈哈','嘻嘻','好极了','真不错','爽','赞','喜欢','爱了','完美','顺利','成功','赢了'],
+  sad:['难过','伤心','哭','泪','悲伤','痛苦','失落','失望','绝望','心碎','难受','郁闷','低落','想哭','崩溃'],
+  anxious:['焦虑','紧张','担心','不安','压力','烦','烦躁','焦躁','急','慌','害怕','恐惧','怕','不知所措','头大','麻烦'],
+  excited:['兴奋','激动','惊喜','震撼','太酷了','哇','天哪','不可思议','牛逼','厉害','佩服','燃'],
+  calm:['平静','安宁','放松','舒适','惬意','悠闲','淡定','佛系','慢慢来','不急','静','祥和'],
+  lonely:['孤独','寂寞','一个人','没人陪','空虚','落寞','冷清','独自','无聊','没人'],
+  frustrated:['沮丧','无奈','烦死了','气死','讨厌','倒霉','放弃','算了吧','无语','糟糕','差劲','失败','搞砸'],
+};
+
+function detectEmotionText(text){
+  if(!text||!text.trim())return'neutral';
+  const scores={};
+  for(const[e,kws]of Object.entries(emotionKW)){scores[e]=0;for(const kw of kws)if(text.includes(kw))scores[e]+=kw.length>=2?2:1;}
+  const mx=Math.max(...Object.values(scores));if(mx===0)return'neutral';
+  const top=Object.entries(scores).filter(([,s])=>s===mx).map(([e])=>e);
+  return top[Math.floor(Math.random()*top.length)];
+}
+
+// ===== 全局函数 =====
+window.switchPet=function(t){
+  currentPet=t;
+  document.querySelectorAll('.pet-types div').forEach(b=>b.classList.toggle('active',b.dataset.type===t));
+  buildPet();updateStatus('neutral',t==='dog'?'🐕 汪！我是你的狗狗~':'🐈 喵~我是你的猫咪~');
+};
+
+window.detectEmotion=function(){
+  const text=document.getElementById('emotionInput').value,em=detectEmotionText(text);
+  if(em!=='neutral')triggerEmotion(em);
+};
+
+window.triggerEmotion=function(em){
+  currentEmotion=em;
+  const acts=emotionActions[em]||emotionActions.neutral,act=acts[Math.floor(Math.random()*acts.length)];
+  if(animPlayer.active)animPlayer.clear();
+  if(actionMap[act])actionMap[act]();
+  const labels={happy:'😊 感受到你的开心！',sad:'😢 别难过...',anxious:'😰 放松一点~',excited:'🎉好兴奋啊！',calm:'🧘 岁月静好',lonely:'💕 我陪着你',frustrated:'😤 深呼吸...',neutral:'😊 我在呢~'};
+  updateStatus(em,labels[em]||'');
+};
+
+window.triggerAction=function(a){if(animPlayer.active)animPlayer.clear();if(actionMap[a])actionMap[a]();};
+
+window.openFloatingPet=function(){
+  const w=480,h=480,l=screen.width-w-40,t=screen.height-h-60;
+  const win=window.open(window.location.href.split('?')[0]+'?mode=floating','desktop-pet',`width=${w},height=${h},left=${l},top=${t},frame=false`);
+  if(!win)alert('请允许弹出窗口以使用浮窗模式');
+};
+
+window.resetPet=function(){
+  extractedColors=null;
+  document.getElementById('previewImg').style.display='none';
+  document.getElementById('colorPreview').style.display='none';
+  document.getElementById('emotionInput').value='';
+  buildPet();if(animPlayer)animPlayer.clear();
+  if(petGroup){petGroup.position.set(0,0.3,0);petGroup.rotation.set(0,0,0);}
+  updateStatus('neutral','已重置！选一只宠物吧~');
+};
+
+// ===== 照片取色 =====
+window.handlePhotoUpload=function(e){
+  const file=e.target.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(ev){
+    const img=document.getElementById('previewImg');img.src=ev.target.result;img.style.display='block';
+    const cnv=document.createElement('canvas'),ctx=cnv.getContext('2d'),tmp=new Image();
+    tmp.onload=function(){
+      const s=50;cnv.width=s;cnv.height=s;ctx.drawImage(tmp,0,0,s,s);
+      const d=ctx.getImageData(0,0,s,s).data,buckets={};
+      for(let i=0;i<d.length;i+=4){
+        const r=Math.round(d[i]/32)*32,g=Math.round(d[i+1]/32)*32,b=Math.round(d[i+2]/32)*32;
+        buckets[`${r},${g},${b}`]=(buckets[`${r},${g},${b}`]||0)+1;
+      }
+      const sorted=Object.entries(buckets).sort((a,b)=>b[1]-a[1]).slice(0,3);
+      if(sorted.length>0){
+        const p1=sorted[0][0].split(',').map(Number),p2=sorted.length>1?sorted[1][0].split(',').map(Number):p1,p3=sorted.length>2?sorted[2][0].split(',').map(Number):p1.map(v=>Math.max(0,v-80));
+        extractedColors={primary:`rgb(${p1[0]},${p1[1]},${p1[2]})`,secondary:`rgb(${p2[0]},${p2[1]},${p2[2]})`,dark:`rgb(${p3[0]},${p3[1]},${p3[2]})`};
+        const cp=document.getElementById('colorPreview');cp.style.display='flex';
+        cp.innerHTML=`<span style="font-size:0.75em;color:#aaa">毛色:</span><div class="color-dot" style="background:${extractedColors.primary}"></div><div class="color-dot" style="background:${extractedColors.secondary}"></div><div class="color-dot" style="background:${extractedColors.dark}"></div>`;
+        buildPet();updateStatus('happy','毛色已更新！好看~✨');
+      }
+    };tmp.src=ev.target.result;
+  };reader.readAsDataURL(file);
+};
+
+// ===== 鼠标交互 =====
+let isDrag=false,ds={x:0,y:0},ca={th:0,ph:0.4},ta={th:0,ph:0.4};
+container.addEventListener('pointerdown',e=>{if(e.button===0){isDrag=true;ds.x=e.clientX;ds.y=e.clientY;}});
+container.addEventListener('pointermove',e=>{if(isDrag){const dx=e.clientX-ds.x,dy=e.clientY-ds.y;ta.th-=dx*0.005;ta.ph=Math.max(-1,Math.min(1,ta.ph-dy*0.005));ds.x=e.clientX;ds.y=e.clientY;}});
+container.addEventListener('pointerup',e=>{if(!isDrag)return;const dx=Math.abs(e.clientX-ds.x),dy=Math.abs(e.clientY-ds.y);isDrag=false;if(dx<5&&dy<5){const acts=['nuzzle','wag','spin'];const a=acts[Math.floor(Math.random()*acts.length)];if(animPlayer.active)animPlayer.clear();if(actionMap[a])actionMap[a]();particleSystem.emit(new THREE.Vector3(0,1.5,0.5),15,'heart');}});
+container.addEventListener('dblclick',()=>{triggerAction(currentPet==='dog'?'wag':'spin');particleSystem.emit(new THREE.Vector3(0,1.5,0.5),20,'star');});
+container.addEventListener('wheel',e=>{e.preventDefault();camera.position.z=Math.max(3,Math.min(10,camera.position.z+e.deltaY*0.01));});
+
+// ===== 渲染循环 =====
+const clock=new THREE.Clock();
+function lerp(a,b,t){return a+(b-a)*t;}
+function animate(){
+  requestAnimationFrame(animate);
+  const t=performance.now()/1000,dt=Math.min(clock.getDelta(),0.1);
+  animPlayer.update(t);
+  ca.th=lerp(ca.th,ta.th,0.1);ca.ph=lerp(ca.ph,ta.ph,0.1);
+  const r=6;
+  camera.position.x=Math.sin(ca.th)*Math.cos(ca.ph)*r;
+  camera.position.y=Math.sin(ca.ph)*r+0.5;
+  camera.position.z=Math.cos(ca.th)*Math.cos(ca.ph)*r;
+  camera.lookAt(0,0.3,0);
+  if(!animPlayer.active&&petGroup){
+    idleTimer+=dt;
+    const bs=1+Math.sin(t*2.5)*0.03;
+    if(bodyMesh)bodyMesh.scale.set(bs,1+(bs-1)*0.5,bs);
+    if(headGroup)headGroup.position.y=0.7+Math.sin(t*2.5)*0.02;
+    if(tailGroup){tailGroup.rotation.z=Math.sin(t*3)*0.3;tailGroup.rotation.x=Math.cos(t*2)*0.1;}
+    if(leftEar&&rightEar&&Math.sin(t*0.7)>0.95){
+      const et=Math.sin(t*15)*0.15;
+      if(currentPet==='dog'){leftEar.rotation.z=0.6+et;rightEar.rotation.z=-0.6-et;}
+    }
+    if(idleTimer>5+Math.random()*3){idleTimer=0;const ma=['wag','sit'];const m=ma[Math.floor(Math.random()*ma.length)];if(actionMap[m])actionMap[m]();}
+  }
+  particleSystem.update();
+  renderer.render(scene,camera);
+}
+
+function resize(){const rc=container.getBoundingClientRect();renderer.setSize(rc.width,rc.height);camera.aspect=rc.width/Math.max(rc.height,1);camera.updateProjectionMatrix();}
+window.addEventListener('resize',resize);
+
+// ===== 启动 =====
+function init(){
+  const params=new URLSearchParams(window.location.search),isFloat=params.get('mode')==='floating';
+  if(isFloat){document.getElementById('panel').style.display='none';document.getElementById('float-btn').style.display='none';document.getElementById('canvas-container').style.width='100%';}
+  particleSystem=new ParticleSystem();animPlayer=new AnimPlayer();
+  buildPet();resize();
+  const initEm=params.get('emotion');
+  if(initEm)setTimeout(()=>triggerEmotion(initEm),500);
+  else updateStatus('neutral',currentPet==='dog'?'🐕 汪！来陪我玩~':'🐈 喵~你好呀~');
+  animate();
+}
+window.init=init;init();
+
+window.petAPI={setEmotion:triggerEmotion,doAction:triggerAction,getStatus:()=>({emotion:currentEmotion,pet:currentPet}),setColors:c=>{extractedColors=c;buildPet();}};
+</script>
+</body>
+</html>

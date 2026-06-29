@@ -160,19 +160,21 @@ All viewer commands support the following output formats:
 
 Specify with `-o table` or `-o json` option.
 
-## Global Options
+## CLI-Level Options
 
-All viewer commands support these global options
+这些是根级选项，放在 CLI 前缀后、`viewer` 前，例如 `<CLI> --appId <id> --appSecret <secret> viewer list -o json`。
 
 | Option | Description |
 | ------ | ----------- |
 | `--appId <id>` | PolyV application ID |
 | `--appSecret <secret>` | PolyV application secret |
 | `--userId <id>` | PolyV user ID (optional) |
-| `-a, --account <name>` | Use specified account |
+| `-a, --account <name>` | Use existing account configuration |
 | `--verbose` | Show verbose output |
 | `--debug` | Enable debug mode |
 | `--timeout <ms>` | API timeout (default: 30000) |
+
+需要长期切换账号时，优先使用 `<CLI> use <account-name>` 或 `<CLI> account set-default <name>`；单次命令可用 `-a/--account` 指定已存在账号。
 
 ## Authentication
 
@@ -181,7 +183,7 @@ Before using viewer commands, ensure you authentication is configured:
 1. **Session account**: `<CLI> use <account-name>`
 2. **Environment variables**: `POLYV_APP_ID`, `POLYV_APP_SECRET`
 3. **Default account**: `<CLI> account set-default <name>`
-4. **Command-line options**: `--appId`, `--appSecret`, `--userId`
+4. **Root credential options**: `--appId`, `--appSecret`, `--userId`, `-a/--account`
 
 See [Authentication Guide](./authentication.md) for more details.
 

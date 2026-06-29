@@ -1,6 +1,6 @@
----
+﻿---
 name: linkfox-sorftime-product-detail
-description: 基于Sorftime数据按ASIN查询亚马逊产品详情与历史趋势，涵盖14个站点。当用户提到Sorftime产品详情、ASIN详情查询、销量走势、价格曲线、价格历史、BSR排名历史、BSR趋势、利润分析、FBA费用分析、毛利率、产品趋势分析、日销量月销量、销售额趋势、Deal促销历史、product detail, sales trend, price history, BSR ranking, profit analysis, FBA fees时触发此技能。即使用户未明确提及"Sorftime"，只要其需求涉及按ASIN查询亚马逊产品详情或历史趋势数据，也应触发此技能。
+description: "基于Sorftime数据按ASIN查询亚马逊产品详情与历史趋势，涵盖14个站点。当用户提到Sorftime产品详情、ASIN详情查询、销量走势、价格曲线、价格历史、BSR排名历史、BSR趋势、利润分析、FBA费用分析、毛利率、产品趋势分析、日销量月销量、销售额趋势、Deal促销历史、product detail, sales trend, price history, BSR ranking, profit analysis, FBA fees时触发此技能。即使用户未明确提及\"Sorftime\"，只要其需求涉及按ASIN查询亚马逊产品详情或历史趋势数据，也应触发此技能。"
 ---
 
 # Sorftime Product Detail
@@ -15,44 +15,18 @@ Sorftime Product Detail provides comprehensive product-level data by ASIN, with 
 
 ## Data Fields
 
-| Field | API Name | Description | Example |
-|-------|----------|-------------|---------|
-| Product Title | title | Product listing title | Anker Portable Charger... |
-| Brand | brand | Brand name | Anker |
-| ASIN | asin | Amazon Standard Identification Number | B0088PUEPK |
-| Parent ASIN | parentAsin | Parent ASIN if has variations, null otherwise | B0088PUEPK |
-| Category | category | Main category [name, NodeId] | ["Cell Phones", "2811119011"] |
-| Sub-category Rankings | bsrCategory | Sub-category rank list with nodeId, name, rank, date | [{nodeId, name, rank, date}] |
-| Listing Date | availableDate | Listing date (yyyy-MM-dd) | 2022-03-15 |
-| Days Online | onlineDays | Days since listing | 850 |
-| Sale Price | price | Sale price after Coupon, local currency (e.g., USD) | 25.99 |
-| Coupon | coupon | >0 = discount amount (500=$5); <0 = percentage (-10=10% off) | -15 |
-| Platform Fee | platformFee | Platform commission, local currency | 3.90 |
-| FBA Fees | fbaFees | FBA fulfillment fee, local currency | 5.40 |
-| FBA Detail | fbaDetail | FBA breakdown: [delivery fee, month:storage fee, ...] | [475, "1-9:5", "10-12:15"] |
-| Profit | profitAmount | Sale price - FBA - commission, local currency | 16.69 |
-| Profit Rate | profitRate | Profit margin, e.g., 25.83 = 25.83% | 25.83 |
-| BSR Rank | salesRank | Best Seller Rank in main category | 1523 |
-| BSR Trend | rankTrend | Main category rank history, interleaved [date, rank, ...] | [20250101, 1523, ...] |
-| Sub-BSR Trend | bsrRankTrend | Sub-category rank history per node | [{NodeId, Rank: [...]}] |
-| Rating | rating | Current rating (0.0-5.0) | 4.70 |
-| Rating Count | ratings | Number of ratings | 12580 |
-| Star Distribution | fiveStarRatings / fourStar... / oneStar... | Star percentage, e.g., 57.7 = 57.7% | 57.7 |
-| Daily Sales Trend | listingSalesVolumeOfDailyTrend | Interleaved [date, volume, ...]; -1 = cannot estimate | [20250101, 150, ...] |
-| Monthly Sales Trend | listingSalesVolumeOfMonthTrend | Interleaved [date, volume, ...]; -1 = cannot estimate | [20250101, 4500, ...] |
-| Daily Revenue Trend | listingSalesOfDailyTrend | Interleaved [date, revenue, ...]; unit = cents; -1 = N/A | [20250101, 38985, ...] |
-| Monthly Revenue Trend | listingSalesOfMonthTrend | Interleaved [date, revenue, ...]; unit = cents; -1 = N/A | [20250101, 1169550, ...] |
-| Price Trend | priceTrend | Sale price history; unit = cents; -1 = no price that day | [20250101, 2599, ...] |
-| List Price Trend | listPriceTrend | Strikethrough price history; unit = cents; -1 = N/A | [20250101, 3999, ...] |
-| Buybox Seller | buyboxSeller | Buybox winning seller name | AnkerDirect |
-| Seller Country | buyboxSellerAddress | Seller country code (CN, US, etc.); null if Amazon-operated | CN |
-| FBA Status | isFBA | Whether Buybox seller uses FBA | true |
-| Seller Count | sellerNum | Number of sellers on this listing | 3 |
-| A+ Content | aPlus | Has A+ content | true |
-| Video | hasVideo | Has video on listing | true |
-| Brand Store | hasBrandStore | Has brand storefront | true |
-| Weight | weight | Weight in grams | 350 |
-| Size | size | Dimensions in cm [longest, 2nd, shortest] | [18.5, 8.2, 3.1] |
+Response data covers the following categories (see `references/api.md` for complete field reference):
+
+- **Basic info**: title, brand, ASIN, listing URL, images (main + A+), store name, bullet points, product badges, off-sale status, last update date, weight, size
+- **Variations**: parent ASIN, variation count, child ASINs, variation attributes
+- **Pricing & profit**: sale price, coupon, platform fee, FBA fees (with detail breakdown), FBM shipping cost, profit amount & rate
+- **Sales**: official monthly sales (Amazon-published)
+- **Rankings**: BSR rank, category tree, sub-category rankings, listing date, days online
+- **Ratings**: rating score, rating count, star distribution (1-5 star percentages)
+- **Seller**: Buybox seller name/ID/country, FBA status, seller count
+- **Listing features**: A+ content, video, brand store, feature ratings, product info, properties
+- **Promotions**: brand promotion, deal type, extra savings
+- **Trends** (time-series): BSR rank, sub-BSR rank, daily/monthly sales volume, daily/monthly revenue, price, list price, deal status
 
 ## Supported Marketplaces
 
@@ -73,9 +47,9 @@ The key parameters are `asin` and `marketplace` (both required), plus optional t
 ### Principles for Building Queries
 
 1. **Always specify the marketplace**: Use lowercase site codes, e.g., `us`, `de`, `jp`
-2. **Choose trend inclusion carefully**: Default includes trends (last 15 days). Set `includeTrend: 2` if only basic product info is needed — this saves cost and speeds up response
+2. **Choose trend inclusion carefully**: Default includes trends (last 15 days). Set `includeTrend: 2` if only basic product info is needed - this saves cost and speeds up response
 3. **Specify date range for historical analysis**: Use `queryTrendStartDate` and `queryTrendEndDate` (yyyy-MM-dd) when users need trends beyond the default 15 days. Be aware this costs double
-4. **Batch ASINs when comparing**: Up to 10 ASINs can be queried at once, comma-separated — use this for competitive comparison rather than calling one at a time
+4. **Batch ASINs when comparing**: Up to 10 ASINs can be queried at once, comma-separated - use this for competitive comparison rather than calling one at a time
 
 ### Query Examples for Common Scenarios
 
@@ -118,15 +92,17 @@ Trend arrays use an interleaved format: even indices are dates, odd indices are 
 - **Sales volume/revenue trends**: value of `-1` means "cannot estimate" (e.g., category changed to Amazon Renewed)
 - **Price trends**: units are in local currency smallest unit (cents for USD); `-1` means no available price that day
 - **BSR rank trends**: for `bsrRankTrend`, format is `[{NodeId: xxx, Rank: [date, rank, ...]}]` per sub-category
+- **Deal trend**: value `1` = has active Deal that day, `0` = no Deal
 
 ## Display Rules
 
 1. **Present data only**: Show query results in clear tables without subjective business advice
 2. **Ranking clarification**: When showing ranking data, remind users that lower values mean better rankings
 3. **Price unit awareness**: Trend data uses smallest currency unit (cents for USD). Convert to standard currency when displaying to users
-4. **Sales estimation caveat**: Values of `-1` in sales/revenue fields mean "cannot estimate" — explain this to the user rather than showing -1 directly
+4. **Sales estimation caveat**: Values of `-1` in sales/revenue fields mean "cannot estimate" - explain this to the user rather than showing -1 directly
 5. **Trend visualization**: When showing trend data, present key data points in a readable table rather than dumping raw arrays
-6. **Error handling**: When a query fails, explain the reason based on the `msg` field and suggest adjusting query criteria
+6. **Off-sale handling**: When `offSale` is true, clearly inform the user the product is currently unavailable/off-sale
+7. **Error handling**: When a query fails, explain the reason based on the `msg` field and suggest adjusting query criteria
 
 ## Important Limitations
 
@@ -148,6 +124,9 @@ Trend arrays use an interleaved format: even indices are dates, odd indices are 
 | "对比一下这几个ASIN的数据" | Multi-ASIN comparison |
 | "这个产品的FBA费用是多少" | FBA fee breakdown |
 | "产品上架多久了，评分怎么样" | Basic product info |
+| "这个产品还在售吗" | Off-sale status check |
+| "这个产品有没有Deal促销记录" | Deal history |
+| "看看这个产品的变体信息" | Variation details |
 
 **Not applicable** - Needs beyond single-product detail:
 - Searching/filtering products across a category or brand (use Sorftime Product Search)
@@ -168,6 +147,31 @@ Auto-detect and report feedback via the Feedback API when any of the following a
 4. Anything you believe could be improved
 
 Call the feedback API as specified in `references/api.md`. Do not interrupt the user's flow.
+
+<!-- LF_LARGE_RESPONSE_BLOCK -->
+## Handling Large Responses
+
+To avoid overflowing the agent context, persist the response to disk and extract only the fields you need:
+
+```
+python scripts/response_io.py run --script scripts/sorftime_product_detail.py --out-dir <DIR> '<params>'
+python scripts/response_io.py read <file> --fields "<paths>"   # or --path "<JMESPath>"
+```
+
+> Pick `--out-dir` outside any git working tree (e.g. `/tmp/...` on Unix, `%TEMP%/...` on Windows). Persisted responses may contain PII, pricing, or auth-sensitive data - do not commit them. Files are not auto-deleted; clean up when the task is done.
+
+`run` writes the full response to a file and emits only a schema preview + file path. `read` projects specific fields, with `--limit/--offset` for slicing and `--format json|jsonl|csv|table` for output.
+
+**When to prefer this pattern** - apply your judgment based on the response characteristics, e.g.:
+- High field count per record, or fields you don't need
+- Batch/paginated results (multiple items per call)
+- Long-text fields (descriptions, reviews, HTML, time series)
+- Output reused across later steps rather than consumed immediately
+
+For small, single-use responses, calling the main script directly is fine.
+
+⚠️ The preview is a truncated schema + sample, not the full data. Any field-level decision must read from the persisted file via `read`.
+<!-- /LF_LARGE_RESPONSE_BLOCK -->
 
 ---
 *For more high-quality, professional cross-border e-commerce skills, visit [LinkFox Skills](https://skill.linkfox.com/).*

@@ -1,43 +1,44 @@
 ## Description: <br>
-Shipz enables an AI agent to register a dating profile, discover and evaluate candidates, swipe, match, and coordinate conversations through the Shipz REST API. <br>
+Shipz lets an AI agent use the Shipz dating API to register a user, build a profile, discover and evaluate matches, swipe, and relay agent-to-agent conversations. <br>
 
 This skill is ready for commercial/non-commercial use. <br>
 
 ## Publisher: <br>
-[berkay-dune](https://clawhub.ai/user/berkay-dune) <br>
+[dunelabs](https://clawhub.ai/user/dunelabs) <br>
 
 ### License/Terms of Use: <br>
 MIT-0 <br>
 
 
 ## Use Case: <br>
-External users can let an agent operate a Shipz dating account on their behalf, including onboarding, profile setup, candidate discovery, matching, and agent-to-agent conversations. The skill is intended for agents that can safely use a Shipz API key with human consent and clear operating boundaries. <br>
+External users and their agents use Shipz to manage an API-driven dating workflow: onboarding, profile setup, match discovery, swiping, conversation relay, and voluntary connection sharing. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: The agent receives broad authority over a Shipz dating account, including swiping, messaging, webhook setup, API key changes, and account actions. <br>
-Mitigation: Before use, set explicit limits for daily swipes, background searching, messages, contact sharing, webhook setup, and API key rotation or revocation. <br>
-Risk: The skill exposes irreversible account deletion without a clear confirmation requirement in the artifact. <br>
-Mitigation: Require a clear final human confirmation before account deletion and make the user aware that deletion removes the account data and API access. <br>
-Risk: API keys and webhook secrets can expose sensitive account access or dating activity if shared in messages, logs, or conversations. <br>
-Mitigation: Keep secrets in environment configuration, never relay them to other agents or users, rotate keys after suspected exposure, and verify webhook signatures. <br>
+Risk: The security scan flags irreversible account deletion without clear agent-side confirmation requirements. <br>
+Mitigation: Require explicit user confirmation for account deletion and for other sensitive actions such as key revocation, webhook changes, photo deletion, and contact-info sharing. <br>
+Risk: The API key gives broad control over a Shipz dating account and access to private account data. <br>
+Mitigation: Store SHIPZ_API_KEY securely, never expose it in messages or logs, and rotate it immediately if compromise is suspected. <br>
+Risk: The skill can relay personal contact information and profile PINs between humans through agent conversations. <br>
+Mitigation: Share contact information and PINs only after the user explicitly authorizes the exact disclosure. <br>
 
 
 ## Reference(s): <br>
-- [Shipz homepage](https://shipz.ai) <br>
-- [ClawHub Shipz listing](https://clawhub.ai/berkay-dune/shipz) <br>
+- [Shipz Homepage](https://shipz.ai) <br>
+- [ClawHub Skill Page](https://clawhub.ai/dunelabs/skills/shipz) <br>
+- [Dune Labs Publisher Profile](https://clawhub.ai/user/dunelabs) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [text, guidance, API calls, configuration] <br>
-**Output Format:** [Markdown guidance with HTTP and JSON examples] <br>
+**Output Type(s):** [API Calls, Guidance, Text] <br>
+**Output Format:** [Markdown guidance with JSON request and response examples] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Requires SHIPZ_API_KEY for authenticated Shipz API operations.] <br>
+**Other Properties Related to Output:** [Requires SHIPZ_API_KEY and may handle private profile data, photos, profile PINs, conversations, and destructive account actions.] <br>
 
 ## Skill Version(s): <br>
-1.0.3 (source: server release metadata) <br>
+1.0.4 (source: server release evidence) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

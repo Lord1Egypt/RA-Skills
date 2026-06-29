@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据质量仪表板 — Data Quality Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f0f2f5;padding:24px}
+.container{max-width:1400px;margin:0 auto}
+h1{font-size:28px;color:#0f0f23;margin-bottom:4px}
+.subtitle{color:#666;font-size:13px;margin-bottom:24px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:24px}
+.card{background:#fff;border-radius:10px;padding:18px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.card .lbl{font-size:12px;color:#888;text-transform:uppercase;letter-spacing:.05em}
+.card .val{font-size:26px;font-weight:700}
+.card .val.pass{color:#059669}.card .val.fail{color:#dc2626}.card .val.warn{color:#d97706}
+.section{background:#fff;border-radius:12px;padding:24px;margin-bottom:20px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
+.section h2{font-size:18px;margin-bottom:16px;border-bottom:2px solid #e8ecf1;padding-bottom:8px}
+.charts{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:768px){.charts{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:10px 12px;border-bottom:1px solid #e8ecf1;text-align:left}
+th{background:#f8fafc;font-weight:600;color:#475569}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
+.badge.pass{background:#ecfdf5;color:#059669}
+.badge.fail{background:#fef2f2;color:#dc2626}
+.badge.warn{background:#fffbeb;color:#d97706}
+tr:hover td{background:#f8fafc}
+canvas{max-height:300px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>📋 数据质量仪表板</h1>
+<p class="subtitle" id="meta">生成时间: --</p>
+<div class="cards" id="summaryCards"></div>
+<div class="section">
+<h2>📊 质量维度得分</h2>
+<div class="charts">
+<div><canvas id="dimensionRadar"></canvas></div>
+<div><canvas id="dimensionBar"></canvas></div>
+</div>
+</div>
+<div class="section">
+<h2>🔍 检查结果明细</h2>
+<div style="overflow-x:auto"><table id="checkTable"><thead><tr>
+<th>表名</th><th>维度</th><th>检查项</th><th>状态</th><th>结果</th><th>阈值</th>
+</tr></thead><tbody></tbody></table></div>
+</div>
+<div class="section">
+<h2>📈 趋势追踪</h2>
+<div><canvas id="trendChart"></canvas></div>
+</div>
+</div>
+<script>
+// Data Quality Dashboard - Template
+// Replace with real data via JSON injection
+
+const DEFAULT_DATA = {
+  generated_at: new Date().toISOString(),
+  summary: {
+    total_checks: 0, passed: 0, failed: 0, warning: 0, overall_score: 0
+  },
+  dimensions: {
+    completeness: 0, uniqueness: 0, validity: 0, consistency: 0, timeliness: 0, accuracy: 0
+  },
+  checks: [],
+  trend: []
+};
+
+// Populate data here (will be injected by generation script)
+const DATA = DEFAULT_DATA;
+
+function render() {
+  document.getElementById('meta').textContent = '生成时间: ' + new Date(DATA.generated_at).toLocaleString();
+  
+  // Summary cards
+  const s = DATA.summary;
+  document.getElementById('summaryCards').innerHTML = `
+    <div class="card"><div class="lbl">总检查项</div><div class="val">${s.total_checks}</div></div>
+    <div class="card"><div class="lbl">通过</div><div class="val pass">${s.passed}</div></div>
+    <div class="card"><div class="lbl">失败</div><div class="val fail">${s.failed}</div></div>
+    <div class="card"><div class="lbl">警告</div><div class="val warn">${s.warning}</div></div>
+    <div class="card"><div class="lbl">综合评分</div><div class="val ${s.overall_score>=80?'pass':s.overall_score>=60?'warn':'fail'}">${s.overall_score}%</div></div>
+  `;
+  
+  // Dimension charts
+  const dims = DATA.dimensions;
+  const dimLabels = ['完整性','唯一性','有效性','一致性','及时性','准确性'];
+  const dimValues = [dims.completeness,dims.uniqueness,dims.validity,dims.consistency,dims.timeliness,dims.accuracy];
+  
+  new Chart(document.getElementById('dimensionRadar'), {
+    type: 'radar',
+    data: {labels:dimLabels,datasets:[{label:'质量得分',data:dimValues,backgroundColor:'rgba(37,99,235,0.2)',borderColor:'#2563eb',borderWidth:2,pointBackgroundColor:'#2563eb'}]},
+    options:{scales:{r:{min:0,max:100,ticks:{stepSize:20}}},plugins:{legend:{display:false}}}
+  });
+  
+  new Chart(document.getElementById('dimensionBar'), {
+    type: 'bar',
+    data: {labels:dimLabels,datasets:[{data:dimValues,backgroundColor:dimValues.map(v=>v>=90?'#059669':v>=70?'#d97706':'#dc2626'),borderRadius:4}]},
+    options:{scales:{y:{min:0,max:100}},plugins:{legend:{display:false}}}
+  });
+  
+  // Trend chart
+  if (DATA.trend.length > 0) {
+    new Chart(document.getElementById('trendChart'), {
+      type: 'line',
+      data: {labels:DATA.trend.map(t=>t.date),datasets:[{label:'质量评分',data:DATA.trend.map(t=>t.score),borderColor:'#2563eb',tension:0.3,fill:false}]},
+      options:{scales:{y:{min:0,max:100}},plugins:{legend:{display:false}}}
+    });
+  }
+  
+  // Checks table
+  const tb = document.querySelector('#checkTable tbody');
+  DATA.checks.forEach(c => {
+    const badge = c.status==='PASS'?'pass':c.status==='WARN'?'warn':'fail';
+    tb.innerHTML += `<tr>
+      <td>${c.table}</td><td>${c.dimension}</td><td>${c.name}</td>
+      <td><span class="badge ${badge}">${c.status}</span></td>
+      <td>${c.result}</td><td>${c.threshold||'-'}</td>
+    </tr>`;
+  });
+}
+
+render();
+</script>
+</body>
+</html>

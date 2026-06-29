@@ -1,0 +1,237 @@
+{
+  "generatedAt": "deterministic",
+  "targetOpenClaw": {
+    "configuredPath": null,
+    "status": "disabled",
+    "compatRecords": [],
+    "compatRecordStatuses": {},
+    "hookNames": [],
+    "apiRegistrars": [],
+    "capturedRegistrars": [],
+    "sdkExports": [],
+    "reservedSdkExports": [],
+    "supportedFacadeSdkExports": [],
+    "publicPluginOwnedSdkExports": [],
+    "manifestFields": [],
+    "manifestContractFields": []
+  },
+  "status": "pass",
+  "summary": {
+    "breakageCount": 0,
+    "warningCount": 2,
+    "deprecationWarningCount": 0,
+    "issueCount": 2
+  },
+  "fixtures": [
+    {
+      "id": "openclaw-apple-mail-skill",
+      "name": "@jehadurre/openclaw-apple-mail-skill",
+      "priority": "high",
+      "seams": [
+        "plugin-metadata"
+      ],
+      "why": "local OpenClaw plugin root",
+      "status": "ok",
+      "hooks": [],
+      "hookDetails": [],
+      "registrations": [],
+      "registrationDetails": [],
+      "manifestContracts": [],
+      "manifestFiles": [],
+      "sourceFiles": [],
+      "pluginManifests": [],
+      "securityManifests": [],
+      "package": {
+        "path": "package.json",
+        "name": "@jehadurre/openclaw-apple-mail-skill",
+        "version": "1.0.1",
+        "type": "module",
+        "main": "openclaw.skill.json",
+        "npmPack": {
+          "advertised": false,
+          "private": false,
+          "filesMode": "allowlist",
+          "files": [
+            "openclaw.skill.json",
+            "SKILL.md",
+            "README.md",
+            "LICENSE"
+          ],
+          "invalidFileSpecs": []
+        },
+        "dependencies": [],
+        "peerDependencies": [
+          "@jehadurre/openclaw-apple-mail"
+        ],
+        "optionalDependencies": [],
+        "openclaw": {
+          "extensions": [],
+          "runtimeExtensions": [],
+          "setupEntry": null,
+          "compatPluginApi": null,
+          "buildOpenClawVersion": null,
+          "buildPluginSdkVersion": null,
+          "install": null,
+          "release": null,
+          "unsupportedMetadata": [],
+          "entrypoints": []
+        }
+      },
+      "packages": [
+        {
+          "path": "package.json",
+          "name": "@jehadurre/openclaw-apple-mail-skill",
+          "version": "1.0.1",
+          "type": "module",
+          "main": "openclaw.skill.json",
+          "npmPack": {
+            "advertised": false,
+            "private": false,
+            "filesMode": "allowlist",
+            "files": [
+              "openclaw.skill.json",
+              "SKILL.md",
+              "README.md",
+              "LICENSE"
+            ],
+            "invalidFileSpecs": []
+          },
+          "dependencies": [],
+          "peerDependencies": [
+            "@jehadurre/openclaw-apple-mail"
+          ],
+          "optionalDependencies": [],
+          "openclaw": {
+            "extensions": [],
+            "runtimeExtensions": [],
+            "setupEntry": null,
+            "compatPluginApi": null,
+            "buildOpenClawVersion": null,
+            "buildPluginSdkVersion": null,
+            "install": null,
+            "release": null,
+            "unsupportedMetadata": [],
+            "entrypoints": []
+          }
+        }
+      ],
+      "sdkImports": [],
+      "sdkImportDetails": []
+    }
+  ],
+  "issues": [
+    {
+      "id": "CRABPOT-8F9EA4BA",
+      "fixture": "openclaw-apple-mail-skill",
+      "severity": "P2",
+      "owner": "plugin",
+      "code": "package-openclaw-entry-missing",
+      "decision": "plugin-upstream-fix",
+      "status": "open",
+      "issueClass": "upstream-metadata",
+      "live": false,
+      "deprecated": false,
+      "compatStatus": "none",
+      "title": "openclaw-apple-mail-skill: OpenClaw package entrypoint metadata is missing",
+      "evidence": [
+        "package.json"
+      ],
+      "compatRecord": null,
+      "runtimeCoverage": null,
+      "authorRemediation": {
+        "summary": "Declare the plugin runtime entrypoint in package.json OpenClaw metadata.",
+        "docsUrl": "https://docs.openclaw.ai/clawhub/plugin-validation-fixes#package-openclaw-entry-missing"
+      }
+    },
+    {
+      "id": "CRABPOT-710E4A08",
+      "fixture": "openclaw-apple-mail-skill",
+      "severity": "P2",
+      "owner": "plugin",
+      "code": "package-plugin-api-compat-missing",
+      "decision": "plugin-upstream-fix",
+      "status": "open",
+      "issueClass": "upstream-metadata",
+      "live": false,
+      "deprecated": false,
+      "compatStatus": "none",
+      "title": "openclaw-apple-mail-skill: plugin API compatibility range is missing",
+      "evidence": [
+        "package.json"
+      ],
+      "compatRecord": null,
+      "runtimeCoverage": null,
+      "authorRemediation": {
+        "summary": "Declare the OpenClaw plugin API range this package supports.",
+        "docsUrl": "https://docs.openclaw.ai/clawhub/plugin-validation-fixes#package-plugin-api-compat-missing"
+      }
+    }
+  ],
+  "contractProbes": [
+    {
+      "id": "package.compat.plugin-api-range:openclaw-apple-mail-skill",
+      "fixture": "openclaw-apple-mail-skill",
+      "priority": "P2",
+      "target": "package-loader",
+      "contract": "Package metadata declares the OpenClaw plugin API range used by the plugin.",
+      "evidence": [
+        "package.json"
+      ]
+    },
+    {
+      "id": "package.entrypoint.openclaw-metadata:openclaw-apple-mail-skill",
+      "fixture": "openclaw-apple-mail-skill",
+      "priority": "P2",
+      "target": "package-loader",
+      "contract": "OpenClaw package metadata declares entrypoints for cold import and registration capture.",
+      "evidence": [
+        "package.json"
+      ]
+    }
+  ],
+  "logs": [
+    {
+      "fixture": "openclaw-apple-mail-skill",
+      "code": "seam-inventory",
+      "level": "log",
+      "message": "observed 0 hooks, 0 registrations, and 0 manifest contracts",
+      "evidence": []
+    },
+    {
+      "fixture": "openclaw-apple-mail-skill",
+      "code": "package-metadata",
+      "level": "log",
+      "message": "selected package metadata for plugin contract checks",
+      "evidence": [
+        "package.json",
+        "@jehadurre/openclaw-apple-mail-skill",
+        "version:1.0.1"
+      ]
+    },
+    {
+      "fixture": "openclaw",
+      "code": "target-openclaw-unavailable",
+      "level": "log",
+      "message": "target OpenClaw checkout was not available, so compat record coverage was not checked",
+      "evidence": [
+        "not configured"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "fixture": "openclaw-apple-mail-skill",
+      "decision": "plugin-upstream-fix",
+      "seam": "package-metadata",
+      "action": "Ask the plugin to declare the plugin API range it was built against.",
+      "evidence": "package.json"
+    },
+    {
+      "fixture": "openclaw-apple-mail-skill",
+      "decision": "plugin-upstream-fix",
+      "seam": "package-entrypoint",
+      "action": "Ask the plugin to declare openclaw.extensions or runtimeExtensions so cold import can target the correct entrypoint.",
+      "evidence": "package.json"
+    }
+  ]
+}

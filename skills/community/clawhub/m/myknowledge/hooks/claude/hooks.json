@@ -1,0 +1,13 @@
+{
+  "name": "myknowledge",
+  "version": "1.4.89",
+  "description": "MyKnowledge 自动检测 Hook。当用户发送消息时，自动分析任务复杂度，对复杂任务自动创建知识库和记录需求。",
+  "events": ["message:received"],
+  "enabled": false,
+  "handler": "handler.js",
+  "config": {
+    "keywords": ["分析", "统计", "挖掘", "开发", "设计", "调研", "整理", "清洗", "项目", "系统", "工具", "功能"],
+    "minKeywordCount": 2,
+    "excludePatterns": ["简单", "粗略", "快速", "大概", "随便", "帮我看看"]
+  }
+}

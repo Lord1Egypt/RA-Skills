@@ -9,6 +9,14 @@
 
 与「网站诊断」模式一致：**CLI 拉原料，Agent 写报告，CLI 渲染终稿**。
 
+> **常见入口（仅指定行业）**：用户说「帮我生成一份**电商行业**的行业分析报告」且未给公司名/官网时，**仍须走本流程**——不要改用 WebSearch 直接在聊天里写报告。
+>
+> ```bash
+> siluzan-tso market-analysis collect --industry "电商" --json-out ./snap-market
+> ```
+>
+> 缺目标市场/时间范围时用默认并在 HTML 中写明（全球 / 近12个月）；有客户名或官网时再补 `--customer-name` / `--website`。
+
 ---
 
 ## 与相近能力区分

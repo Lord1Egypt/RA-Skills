@@ -1,0 +1,8705 @@
+# API 概览与初始化
+
+> 基于官方文档: https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/api/c-api/api-overview
+> 生成时间: 2026-06-24
+
+> ⚠️ **【安全声明】**：
+> - **登录凭证**：`code` 为临时登录凭证，严禁打印到生产日志，已用 `#if UNITY_EDITOR || DEVELOPMENT_BUILD` 包裹
+> - **位置数据**：`GetLocation()` 返回的经纬度为敏感数据，生产环境禁止打印日志
+> - **GM 命令**：`RegisterCommandEvent` 注册的调试命令**必须**用条件编译包裹，生产包中严禁保留（已在本文件中修正）
+> - **AppId**：`GameAppId` 虽非凭证，但不应在生产日志中暴露应用内部标识
+
+## 一、SDK 初始化
+
+### 1.1 TT.InitSDK
+
+**说明**: 初始化抖音小游戏 SDK。所有 `TT.*` API 的前置调用，必须在游戏启动时首先执行。初始化完成后通过回调返回错误码和容器环境信息。
+
+**语法**:
+
+```csharp
+public static int InitSDK(OnTTContainerInitCallback callback = null)
+```
+
+**回调委托**:
+
+```csharp
+public delegate void OnTTContainerInitCallback(int code, ContainerEnv env);
+```
+
+**返回值（同步）**:
+
+| 错误码 | 说明 |
+|--------|------|
+| 0 | 无错误，SDK 初始化成功 |
+| 1 | SDK 版本不支持 |
+| 2 | Unity 版本不支持 |
+
+**回调参数（异步）**:
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| code | int | 同上错误码。0 表示成功，非 0 表示初始化失败 |
+| env | ContainerEnv | 容器环境信息对象，包含宿主、启动来源、版本类型等 |
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using TT;
+
+public class GameBootstrap : MonoBehaviour
+{
+    void Start()
+    {
+        // 同步返回错误码（立即返回，不阻塞）
+        int syncCode = TT.InitSDK((code, env) =>
+        {
+            if (code == 0)
+            {
+                // ⚠️ 安全：环境信息含 AppId，生产环境禁止打印
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log($"SDK 初始化成功");
+                Debug.Log($"宿主环境: {env.m_HostEnum}");
+                Debug.Log($"启动来源: {env.m_LaunchFromEnum}");
+                Debug.Log($"AppId: {env.GameAppId}");
+                Debug.Log($"版本类型: {env.GetVersionType()}");
+                #endif
+            }
+            else
+            {
+                Debug.LogError($"SDK 初始化失败: 错误码={code}");
+            }
+        });
+
+        Debug.Log($"InitSDK 同步返回值: {syncCode}");
+    }
+}
+```
+
+---
+
+### 1.2 TT.InContainerEnv
+
+**说明**: 判断当前是否在抖音小游戏真机容器环境中运行。在 Unity Editor 中运行时会返回 `false`，可借此实现 Editor Mock 逻辑。
+
+**语法**:
+
+```csharp
+public static bool InContainerEnv { get; }
+```
+
+**代码示例**:
+
+```csharp
+if (TT.InContainerEnv)
+{
+    // 真机容器环境
+    Debug.Log("运行在抖音小游戏容器中");
+    TT.Login(
+        (code, anonymousCode, isLogin) =>
+        {
+            // ⚠️ 安全：code 为敏感凭证，生产环境禁止打印
+            #if UNITY_EDITOR || DEVELOPMENT_BUILD
+            Debug.Log($"登录成功: code={code}");
+            #endif
+        },
+        (errMsg) =>
+        {
+            #if UNITY_EDITOR || DEVELOPMENT_BUILD
+            Debug.LogError($"登录失败: {errMsg}");
+            #endif
+        }
+    );
+}
+else
+{
+    // Unity Editor 环境，使用 Mock 数据
+    Debug.Log("运行在 Unity Editor 中，使用 Mock 逻辑");
+    MockLogin();
+}
+```
+
+---
+
+## 二、ContainerEnv 环境信息
+
+`ContainerEnv` 是 `TT.InitSDK` 回调中传入的环境信息对象，包含宿主 App、启动来源、版本类型等关键信息。
+
+### 2.1 属性
+
+| 属性 | 类型 | 说明 |
+|------|------|------|
+| GameAppId | string | 当前小游戏的 AppId |
+| m_HostEnum | HostEnum | 宿主 App 枚举值 |
+| m_LaunchFromEnum | LaunchFromEnum | 启动来源枚举值 |
+
+### 2.2 方法
+
+| 方法 | 返回类型 | 说明 |
+|------|---------|------|
+| GetContainerRuntime() | ContainerRuntime | 获取容器运行时类型 |
+| GetVersionType() | VersionType | 获取版本类型（预览/测试/正式） |
+| GetLaunchFromStr() | string | 获取启动来源的字符串描述 |
+| GetQueryFromScheme() | string | 获取 Scheme 拉起时的 query 参数 |
+| GetLocation() | LocationInfo | 获取宿主的地域信息 |
+| GetLaunchFrom() | LaunchFromEnum | 获取启动来源枚举 |
+| GetLaunchOptionsSync() | LaunchOption | 同步获取启动参数 |
+
+### 2.3 LocationInfo 属性
+
+| 属性 | 类型 | 说明 |
+|------|------|------|
+| Latitude | double | 纬度 |
+| Longitude | double | 经度 |
+| Speed | double | 速度 |
+| Accuracy | double | 精度 |
+| Altitude | double | 海拔 |
+| VerticalAccuracy | double | 垂直精度 |
+| HorizontalAccuracy | double | 水平精度 |
+
+### 2.4 代码示例
+
+```csharp
+TT.InitSDK((code, env) =>
+{
+    if (code != 0) return;
+
+    // ⚠️ 安全：环境信息含 AppId/地域等敏感数据，生产环境禁止打印
+    #if UNITY_EDITOR || DEVELOPMENT_BUILD
+    Debug.Log($"AppId: {env.GameAppId}");
+    Debug.Log($"宿主: {env.m_HostEnum}");                     // 抖音/抖音极速版/头条等
+    Debug.Log($"启动来源: {env.m_LaunchFromEnum}");            // 搜索/桌面/分享等
+    Debug.Log($"运行时: {env.GetContainerRuntime()}");          // Unity/Launcher/Standard
+    Debug.Log($"版本: {env.GetVersionType()}");                 // 预览/测试/正式
+    Debug.Log($"启动来源字符串: {env.GetLaunchFromStr()}");
+    Debug.Log($"Scheme Query: {env.GetQueryFromScheme()}");
+
+    // 地域信息
+    // ⚠️ 安全：位置信息为敏感数据，生产环境禁止打印
+    var location = env.GetLocation();
+    Debug.Log($"位置: 经度={location.Longitude}, 纬度={location.Latitude}");
+    #endif
+
+    // 启动参数
+    var launchOption = env.GetLaunchOptionsSync();
+    Debug.Log($"启动路径: {launchOption.Path}");
+    Debug.Log($"启动场景: {launchOption.Scene}");
+});
+```
+
+---
+
+## 三、枚举定义
+
+### 3.1 HostEnum 宿主 App 枚举
+
+标识当前运行在哪个字节跳动系 App 中。
+
+| 枚举值 | 数值 | 对应 App |
+|--------|------|---------|
+| None | 0 | 未知 |
+| Toutiao | 1 | 今日头条 |
+| Douyin | 2 | 抖音 |
+| ToutiaoLite | 3 | 今日头条极速版 |
+| DouyinLite | 4 | 抖音极速版 |
+| HuoShan | 5 | 火山小视频 |
+| HuoShanLite | 6 | 火山极速版 |
+| XiGua | 7 | 西瓜视频 |
+| Helo | 8 | Helo |
+| Tiktok | 9 | TikTok |
+| PiPiXia | 10 | 皮皮虾 |
+| MoMoYu | 11 | 摸摸鱼 |
+| DongCheDi | 12 | 懂车帝 |
+| Fanqie | 13 | 番茄小说 |
+
+**代码示例**:
+
+```csharp
+TT.InitSDK((code, env) =>
+{
+    switch (env.m_HostEnum)
+    {
+        case HostEnum.Douyin:
+        case HostEnum.DouyinLite:
+            Debug.Log("运行在抖音 App 中");
+            break;
+        case HostEnum.Toutiao:
+            Debug.Log("运行在今日头条中");
+            break;
+        default:
+            Debug.Log($"其他宿主: {env.m_HostEnum}");
+            break;
+    }
+});
+```
+
+---
+
+### 3.2 LaunchFromEnum 启动来源枚举
+
+标识用户从何种入口进入小游戏。
+
+| 枚举值 | 数值 | 说明 |
+|--------|------|------|
+| UnKnown | 0 | 未知来源 |
+| Search | 1 | 搜索 |
+| DeskTop | 2 | 桌面快捷方式 |
+| MP_List | 3 | 小程序列表 |
+| Scan | 4 | 扫码 |
+| Share | 5 | 分享 |
+| Video_Archor | 6 | 视频锚点 |
+| Feed | 7 | 信息流推荐 |
+| MiniApk | 8 | 桌面快捷方式（MiniApk） |
+
+---
+
+### 3.3 ContainerRuntime 运行时类型枚举
+
+| 枚举值 | 数值 | 说明 |
+|--------|------|------|
+| Unity | 0 | Unity WebGL 容器 |
+| Launcher | 1 | Launcher 容器 |
+| Standard | 2 | 标准容器 |
+
+---
+
+### 3.4 VersionType 版本类型枚举
+
+| 枚举值 | 数值 | 说明 |
+|--------|------|------|
+| None | 0 | 未指定 |
+| Perview | 1 | 预览版本 |
+| Test | 2 | 测试版本 |
+| Release | 3 | 正式版本 |
+
+**代码示例**:
+
+```csharp
+TT.InitSDK((code, env) =>
+{
+    var versionType = env.GetVersionType();
+    if (versionType == VersionType.Release)
+    {
+        Debug.Log("当前为正式版本，使用生产环境配置");
+    }
+    else
+    {
+        Debug.Log($"当前为非正式版本({versionType})，使用测试环境配置");
+    }
+
+    var runtime = env.GetContainerRuntime();
+    if (runtime == ContainerRuntime.Unity)
+    {
+        Debug.Log("Unity 容器，全功能可用");
+    }
+});
+```
+
+---
+
+## 四、LaunchOption 启动参数
+
+`LaunchOption` 封装了小游戏启动时的所有参数，通过 `env.GetLaunchOptionsSync()` 获取。
+
+### 4.1 属性
+
+| 属性 | 类型 | 说明 |
+|------|------|------|
+| Path | string | 启动路径，通常为入口页面路径 |
+| Query | Dictionary\<string, string\> | 启动参数（key-value 键值对） |
+| Scene | string | 场景值，标识进入小游戏的具体场景 |
+| SubScene | string | 子场景值 |
+| IsSticky | bool | 是否从桌面快捷方式进入 |
+| ShareTicket | string | 分享票据（群分享时返回） |
+| GroupId | string | 群 ID（通过群聊分享进入时返回） |
+| Extra | Dictionary\<string, string\> | 额外参数（平台预留） |
+| RefererInfo | Dictionary\<string, string\> | 来源信息（包含 appId、extraData 等） |
+
+### 4.2 代码示例
+
+```csharp
+TT.InitSDK((code, env) =>
+{
+    var launchOption = env.GetLaunchOptionsSync();
+
+    // 基础参数
+    Debug.Log($"启动路径: {launchOption.Path}");
+    Debug.Log($"场景值: {launchOption.Scene}");
+    Debug.Log($"桌面快捷方式: {launchOption.IsSticky}");
+
+    // Query 参数（如 Scheme 拉起时携带的参数）
+    // ⚠️ 安全：Query 可能包含邀请 token 等敏感数据，生产环境禁止打印
+    if (launchOption.Query != null)
+    {
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        foreach (var kv in launchOption.Query)
+        {
+            Debug.Log($"Query 参数: {kv.Key} = {kv.Value}");
+        }
+        #endif
+    }
+
+    // 分享相关
+    if (!string.IsNullOrEmpty(launchOption.ShareTicket))
+    {
+        // ⚠️ 安全：ShareTicket 为授权票据，GroupId 关联用户社交上下文，生产环境禁止打印
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log($"分享票据: {launchOption.ShareTicket}");
+        Debug.Log($"群 ID: {launchOption.GroupId}");
+        #endif
+    }
+
+    // 来源信息
+    if (launchOption.RefererInfo != null)
+    {
+        foreach (var kv in launchOption.RefererInfo)
+        {
+            Debug.Log($"来源: {kv.Key} = {kv.Value}");
+        }
+    }
+});
+```
+
+---
+
+## 五、基础工具
+
+### 5.1 TT.CanIUse
+
+**说明**: 判断指定 API 或组件在当前基础库版本中是否可用。用于版本兼容降级处理，避免低版本宿主调用新 API 导致报错。
+
+**语法**:
+
+```csharp
+public static bool CanIUse(string apiName)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| apiName | string | 是 | - | API 名称或组件名，格式如 `"requestGamePayment"` 或 `"requestGamePayment.object.goodType"` |
+
+**返回值**: `bool`，`true` 表示该 API/特性在当前版本可用。
+
+**代码示例**:
+
+```csharp
+// 基础 API 判断
+if (TT.CanIUse("requestGamePayment"))
+{
+    Debug.Log("当前版本支持支付 API");
+    // 安全调用支付
+}
+else
+{
+    Debug.LogWarning("当前版本不支持支付 API，隐藏支付入口");
+}
+
+// 特定功能判断（如道具直购）
+if (TT.CanIUse("requestGamePayment.object.goodType"))
+{
+    var param = new RequestGamePaymentParam
+    {
+        GoodType = 2,           // 道具直购模式
+        GoodName = "钻石礼包",
+        OrderAmount = 600,      // 单位：分
+        // ... 其他参数
+    };
+    TT.RequestGamePayment(param);
+}
+else
+{
+    Debug.Log("当前版本不支持道具直购，降级为游戏币支付");
+    // 使用普通游戏币支付模式
+}
+```
+
+---
+
+### 5.2 TT.EnableTTSDKDebugToast
+
+**说明**: 开启或关闭 TTSDK 的 Debug Toast 提示。开启后会在屏幕上显示 SDK 内部的调试信息，方便开发阶段排查问题。注意: 正式发布版本应关闭此开关。
+
+**语法**:
+
+```csharp
+public static void EnableTTSDKDebugToast(bool enable)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| enable | bool | 是 | - | true 开启 Debug Toast，false 关闭 |
+
+**代码示例**:
+
+```csharp
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+    TT.EnableTTSDKDebugToast(true);
+    Debug.Log("Debug Toast 已开启");
+#else
+    TT.EnableTTSDKDebugToast(false);
+#endif
+```
+
+---
+
+### 5.3 TT.RegisterCommandEvent
+
+**说明**: 注册宿主下发的自定义命令事件监听。宿主可通过特定通道向小游戏下发命令，游戏侧通过此方法注册监听以接收并处理命令。
+
+> ⚠️ **【安全警告 — 调试命令生产禁用】**：`RegisterCommandEvent` 用于注册开发者工具下发的自定义命令，**仅限开发调试阶段使用**。注册的 GM 指令**必须**用条件编译（`#if UNITY_EDITOR || DEVELOPMENT_BUILD`）包裹，生产包中**严禁**保留任何调试命令入口。`add_resource`、`jump_level` 等 GM 指令在生产环境中会直接导致经济系统崩溃和作弊泛滥。
+
+**语法**:
+
+```csharp
+public static void RegisterCommandEvent(Action<string> callback)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| callback | Action\<string\> | 是 | 命令回调，参数为宿主下发的命令字符串 |
+
+**代码示例**:
+
+```csharp
+void OnEnable()
+{
+    // ⚠️ 安全强制：调试命令仅在开发版本中注册，生产包中严禁保留
+    #if UNITY_EDITOR || DEVELOPMENT_BUILD
+    TT.RegisterCommandEvent(OnCommandReceived);
+    #else
+    Debug.Log("生产环境：调试命令已禁用");
+    #endif
+}
+
+void OnDisable()
+{
+    // 注意: 当前 API 不提供 UnregisterCommandEvent，此方法为文档性占位
+    // 生产环境中此回调不会触发，因为 RegisterCommandEvent 未被调用
+}
+
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+private void OnCommandReceived(string command)
+{
+    Debug.Log($"收到宿主命令: {command}");
+
+    // 解析并处理命令
+    try
+    {
+        var cmdData = JsonUtility.FromJson<CommandData>(command);
+        switch (cmdData.action)
+        {
+            case "pause":
+                PauseGame();
+                break;
+            case "resume":
+                ResumeGame();
+                break;
+            case "updateData":
+                RefreshGameData(cmdData.payload);
+                break;
+            default:
+                Debug.LogWarning($"未知命令: {cmdData.action}");
+                break;
+        }
+    }
+    catch (System.Exception e)
+    {
+        Debug.LogError($"命令解析失败: {e.Message}");
+    }
+}
+#endif
+```
+
+---
+
+## 六、初始化最佳实践
+
+```csharp
+using UnityEngine;
+using TT;
+
+/// <summary>
+/// 游戏入口: 统一管理 SDK 初始化、环境适配、生命周期
+/// </summary>
+public class GameEntry : MonoBehaviour
+{
+    private ContainerEnv m_Env;
+
+    void Start()
+    {
+        // 第一步: 判断运行环境
+        if (!TT.InContainerEnv)
+        {
+            Debug.Log("Unity Editor 环境，加载 Mock 数据");
+            InitMockGame();
+            return;
+        }
+
+        // 第二步: 初始化 SDK
+#if DEVELOPMENT_BUILD
+        TT.EnableTTSDKDebugToast(true);
+#endif
+
+        TT.InitSDK((code, env) =>
+        {
+            if (code != 0)
+            {
+                Debug.LogError($"SDK 初始化失败: code={code}");
+                // 降级处理: 显示错误提示或重试
+                return;
+            }
+
+            m_Env = env;
+
+            // 第三步: 根据环境信息做差异化配置
+            ConfigureByHost(env.m_HostEnum);
+
+            // 第四步: 注册生命周期
+            RegisterLifecycle();
+
+            // 第五步: 版本兼容检查
+            CheckApiCompatibility();
+
+            // 第六步: 启动游戏主逻辑
+            StartGame();
+        });
+    }
+
+    private void ConfigureByHost(HostEnum host)
+    {
+        switch (host)
+        {
+            case HostEnum.Douyin:
+            case HostEnum.DouyinLite:
+                // 抖音特有配置
+                break;
+            case HostEnum.Toutiao:
+                // 头条特有配置
+                break;
+        }
+    }
+
+    private void RegisterLifecycle()
+    {
+        var lifecycle = TT.GetAppLifeCycle();
+        lifecycle.OnShow += (param) =>
+        {
+            Debug.Log($"游戏进入前台, 场景: {param.Scene}");
+            ResumeGame();
+        };
+        lifecycle.OnHide += () =>
+        {
+            Debug.Log("游戏进入后台");
+            PauseGame();
+        };
+    }
+
+    private void CheckApiCompatibility()
+    {
+        Debug.Log($"支付 API 可用: {TT.CanIUse("requestGamePayment")}");
+        Debug.Log($"激励视频可用: {TT.CanIUse("createRewardedVideoAd")}");
+        Debug.Log($"道具直购可用: {TT.CanIUse("requestGamePayment.object.goodType")}");
+    }
+
+    private void InitMockGame() { /* Editor Mock 逻辑 */ }
+    private void StartGame() { /* 游戏主逻辑入口 */ }
+    private void PauseGame() { Time.timeScale = 0; }
+    private void ResumeGame() { Time.timeScale = 1; }
+}
+```
+# 账号与授权
+
+> 基于官方文档: https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/api/c-api/account
+> 生成时间: 2026-06-24
+
+> ⚠️ **【安全声明 — 敏感数据保护，已加固】**：
+> - `code`（临时登录凭证）、`session_key`、`openid`、`encryptedData`、`iv`、`cloudId` 均为敏感数据
+> - 所有含敏感数据的 `Debug.Log` 已用 `#if UNITY_EDITOR || DEVELOPMENT_BUILD` 条件编译包裹，复制示例时请保持守卫不变
+> - `code` 仅在获取后立即发送到服务端，客户端不做存储
+> - `session_key` 为服务端会话凭证，严禁客户端持久化存储（示例中的字段仅为演示）
+> - 用户信息（`nickName`、`avatarUrl`、`gender`、`city` 等）禁止打印到生产日志，展示前应确认用户已授权 `scope.userInfo`
+> - `GetUserInfo` 返回的 `encryptedData` 和 `iv` 仅发送到服务端解密，客户端不应解析或存储
+
+## 一、登录与会话
+
+### 1.1 TT.Login
+
+**说明**: 调用抖音客户端登录，获取临时登录凭证 `code`（有效期 5 分钟）。需要将 `code` 发送到开发者服务端，通过 `code2Session` 接口换取 `openid` 和 `session_key`。若用户已登录且 session 有效，部分场景可直接返回结果而不弹出授权框。
+
+**语法**:
+
+```csharp
+public void Login(
+    OnLoginSuccessCallback successCallback,
+    OnLoginFailedCallback failedCallback,
+    bool forceLogin = true
+)
+```
+
+**回调定义**:
+
+```csharp
+// 登录成功回调
+// code: 临时登录凭证，有效期 5 分钟
+// anonymousCode: 匿名登录凭证
+// isLogin: 是否已登录（true=已登录直接返回，false=首次登录）
+public delegate void OnLoginSuccessCallback(string code, string anonymousCode, bool isLogin);
+
+// 登录失败回调
+public delegate void OnLoginFailedCallback(string errMsg);
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| successCallback | OnLoginSuccessCallback | 是 | - | 登录成功回调 |
+| failedCallback | OnLoginFailedCallback | 是 | - | 登录失败回调 |
+| forceLogin | bool | 否 | true | 是否强制调起登录框。true=每次调起登录，false=已登录时直接返回不弹框 |
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using TT;
+
+public class LoginManager : MonoBehaviour
+{
+    void Start()
+    {
+        DoLogin();
+    }
+
+    /// <summary>
+    /// 执行登录流程
+    /// </summary>
+    public void DoLogin(bool force = true)
+    {
+        TT.Login(
+            successCallback: (code, anonymousCode, isLogin) =>
+            {
+                // ⚠️ 安全：code 为敏感凭证，生产环境禁止打印
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log($"登录成功: code={code}, isLogin={isLogin}");
+                #endif
+                // 将 code 发送到服务端换取 openid 和 session_key
+                SendCodeToServer(code, anonymousCode);
+            },
+            failedCallback: (errMsg) =>
+            {
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.LogError($"登录失败: {errMsg}");
+                #endif
+                // 提示用户登录失败，可重试或进入游客模式
+            },
+            forceLogin: force
+        );
+    }
+
+    private void SendCodeToServer(string code, string anonymousCode)
+    {
+        // 示例: 通过 HTTP 请求将 code 发送到服务端
+        StartCoroutine(ExchangeCodeOnServer(code, anonymousCode));
+    }
+
+    private System.Collections.IEnumerator ExchangeCodeOnServer(string code, string anonymousCode)
+    {
+        using (var request = UnityEngine.Networking.UnityWebRequest.Post(
+            "https://your-server.com/api/auth/login",
+            $"{{\"code\":\"{code}\",\"anonymousCode\":\"{anonymousCode}\"}}",
+            "application/json"))
+        {
+            yield return request.SendWebRequest();
+            if (request.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
+            {
+                Debug.Log("服务端登录验证成功");
+                // 服务端返回: { openid, session_key, unionid }
+            }
+            else
+            {
+                Debug.LogError($"服务端验证失败: {request.error}");
+            }
+        }
+    }
+}
+```
+
+---
+
+### 1.2 TT.CheckSession
+
+**说明**: 检查当前登录态（session_key）是否过期。通常在每个需要登录态的操作前调用，若 session 过期则引导用户重新登录。
+
+**语法**:
+
+```csharp
+public static void CheckSession(
+    TTAccount.OnCheckSessionSuccessCallback successCallback,
+    TTAccount.OnCheckSessionFailedCallback failedCallback
+)
+```
+
+**回调定义**:
+
+```csharp
+// session 有效
+public delegate void OnCheckSessionSuccessCallback();
+
+// session 过期或无效
+public delegate void OnCheckSessionFailedCallback(string errMsg);
+```
+
+**代码示例**:
+
+```csharp
+/// <summary>
+/// 在需要登录态的操作前校验 session
+/// </summary>
+public void EnsureValidSession(System.Action onSessionValid)
+{
+    TT.CheckSession(
+        successCallback: () =>
+        {
+            Debug.Log("Session 有效，可执行后续操作");
+            onSessionValid?.Invoke();
+        },
+        failedCallback: (errMsg) =>
+        {
+            Debug.LogWarning($"Session 已过期: {errMsg}");
+            // 引导用户重新登录
+            DoLogin(force: true);
+        }
+    );
+}
+
+// 使用示例: 支付前校验登录态
+public void PurchaseItem(int itemId)
+{
+    EnsureValidSession(() =>
+    {
+        // Session 有效，发起支付
+        var param = new RequestGamePaymentParam
+        {
+            Mode = "game",
+            Env = 0,
+            CurrencyType = "CNY",
+            Platform = "android",
+            BuyQuantity = 10,
+            CustomId = System.Guid.NewGuid().ToString(),
+            Success = (result) => Debug.Log("支付回调成功"),
+            Fail = (error) => Debug.LogError($"支付失败: {error.ErrorCode}")
+        };
+        TT.RequestGamePayment(param);
+    });
+}
+```
+
+---
+
+## 二、用户信息
+
+### 2.1 TT.GetUserInfo
+
+**说明**: 获取用户信息（头像、昵称、性别、地区等）。调用前需确保用户已授权 `scope.userInfo` 权限，否则返回的信息可能不完整。
+
+**语法**:
+
+```csharp
+public static void GetUserInfo(
+    OnGetUserInfoSuccessCallback successCallback,
+    OnGetUserInfoFailedCallback failedCallback
+)
+```
+
+**回调定义**:
+
+```csharp
+public delegate void OnGetUserInfoSuccessCallback(ref TTUserInfo userInfo);
+public delegate void OnGetUserInfoFailedCallback(string errMsg);
+```
+
+**TTUserInfo 属性**:
+
+| 属性 | 类型 | 说明 |
+|------|------|------|
+| avatarUrl | string | 用户头像 URL |
+| nickName | string | 用户昵称 |
+| gender | int | 性别: 0=未知, 1=男, 2=女 |
+| city | string | 城市 |
+| province | string | 省份 |
+| country | string | 国家 |
+| language | string | 语言 |
+| signature | string | 个性签名 |
+| encryptedData | string | 加密的用户数据（需服务端解密） |
+| iv | string | 加密算法的初始向量 |
+| cloudId | string | 敏感数据对应的云 ID（可通过云调用获取原始数据） |
+
+**代码示例**:
+
+```csharp
+public void FetchUserInfo()
+{
+    TT.GetUserInfo(
+        successCallback: (ref TTUserInfo userInfo) =>
+        {
+            // ⚠️ 安全：用户个人信息仅用于 UI 展示，禁止打印到生产日志
+            #if UNITY_EDITOR || DEVELOPMENT_BUILD
+            Debug.Log($"用户昵称: {userInfo.nickName}");
+            Debug.Log($"头像 URL: {userInfo.avatarUrl}");
+            Debug.Log($"性别: {GenderToString(userInfo.gender)}");
+            Debug.Log($"地区: {userInfo.country} {userInfo.province} {userInfo.city}");
+            #endif
+
+            // 更新 UI
+            UpdateUserProfileUI(userInfo);
+        },
+        failedCallback: (errMsg) =>
+        {
+            Debug.LogError($"获取用户信息失败: {errMsg}");
+            // 可能未授权，引导用户授权
+        }
+    );
+}
+
+private string GenderToString(int gender)
+{
+    switch (gender)
+    {
+        case 1: return "男";
+        case 2: return "女";
+        default: return "未知";
+    }
+}
+
+private void UpdateUserProfileUI(TTUserInfo userInfo)
+{
+    // 更新 UI: 头像、昵称等
+}
+```
+
+---
+
+### 2.2 TT.GetUserInfoAuth
+
+**说明**: 请求用户信息授权。当用户未授权 `scope.userInfo` 时，调用此方法弹出授权框让用户确认。与 `TT.GetUserInfo` 的区别: 本方法专门用于**请求授权**，不获取数据；获取数据仍需调用 `TT.GetUserInfo`。
+
+**语法**:
+
+```csharp
+public static void GetUserInfoAuth(
+    Action<string> successCallback,
+    Action<string> failedCallback
+)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| successCallback | Action\<string\> | 是 | 授权成功回调，参数为授权结果信息 |
+| failedCallback | Action\<string\> | 是 | 授权失败回调 |
+
+**代码示例**:
+
+```csharp
+/// <summary>
+/// 确保用户已授权信息，再获取用户数据
+/// </summary>
+public void GetUserInfoWithAuth()
+{
+    // 先请求授权
+    TT.GetUserInfoAuth(
+        successCallback: (result) =>
+        {
+            Debug.Log($"用户授权成功: {result}");
+            // 授权成功后获取用户信息
+            TT.GetUserInfo(
+                (ref TTUserInfo info) =>
+                {
+                    // ⚠️ 安全：用户昵称禁止打印到生产日志
+                    #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                    Debug.Log($"用户: {info.nickName}");
+                    #endif
+                    UpdateUserProfileUI(info);
+                },
+                (err) => Debug.LogError($"获取信息失败: {err}")
+            );
+        },
+        failedCallback: (errMsg) =>
+        {
+            Debug.LogWarning($"用户拒绝授权: {errMsg}");
+            // 降级处理: 使用默认头像和昵称
+            ShowDefaultProfile();
+        }
+    );
+}
+```
+
+---
+
+## 三、设置与授权
+
+### 3.1 TT.GetSetting
+
+**说明**: 获取用户当前的授权设置状态。返回各 scope 权限的授权状态，用于判断用户是否已授权特定权限。
+
+**语法**:
+
+```csharp
+public static void GetSetting(
+    Action<AuthSetting> successCallback,
+    Action<string> failedCallback
+)
+```
+
+**AuthSetting 属性**:
+
+| 属性 | 类型 | 说明 |
+|------|------|------|
+| UserInfo | bool | 是否授权用户信息（scope.userInfo） |
+| UserLocation | bool | 是否授权地理位置（scope.userLocation） |
+| Record | bool | 是否授权录音（scope.record） |
+| Album | bool | 是否授权相册（scope.album） |
+| Camera | bool | 是否授权摄像头（scope.camera） |
+| ScreenRecord | bool | 是否授权录屏（scope.screenRecord） |
+| Calendar | bool | 是否授权日历（scope.calendar） |
+
+**代码示例**:
+
+```csharp
+public void CheckAuthSettings()
+{
+    TT.GetSetting(
+        successCallback: (auth) =>
+        {
+            Debug.Log($"用户信息授权: {auth.UserInfo}");
+            Debug.Log($"地理位置授权: {auth.UserLocation}");
+            Debug.Log($"录音授权: {auth.Record}");
+            Debug.Log($"相册授权: {auth.Album}");
+
+            // 根据授权状态决定后续流程
+            if (auth.UserInfo)
+            {
+                // 已授权，可直接获取用户信息
+                FetchUserInfo();
+            }
+            else
+            {
+                // 未授权，引导用户授权
+                Debug.Log("用户信息未授权，需要请求授权");
+            }
+
+            if (!auth.UserLocation)
+            {
+                Debug.Log("地理位置未授权，可能影响定位相关功能");
+            }
+        },
+        failedCallback: (errMsg) =>
+        {
+            Debug.LogError($"获取设置失败: {errMsg}");
+        }
+    );
+}
+```
+
+---
+
+### 3.2 TT.OpenSetting
+
+**说明**: 打开小游戏设置页面，用户可在此页面中手动管理各项权限的授权状态。
+
+**语法**:
+
+```csharp
+public static void OpenSetting(
+    Action<AuthSetting> successCallback,
+    Action<string> failedCallback
+)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| successCallback | Action\<AuthSetting\> | 是 | 用户操作完成后的回调，返回最新的 AuthSetting |
+| failedCallback | Action\<string\> | 是 | 打开设置页面失败回调 |
+
+**代码示例**:
+
+```csharp
+/// <summary>
+/// 引导用户打开设置页管理权限
+/// </summary>
+public void GuideToSettings()
+{
+    TT.OpenSetting(
+        successCallback: (updatedAuth) =>
+        {
+            Debug.Log("用户已操作设置页");
+            // 检查用户是否开启了我们需要的权限
+            if (updatedAuth.UserInfo)
+            {
+                Debug.Log("用户在设置页开启了用户信息授权");
+                FetchUserInfo();
+            }
+            else
+            {
+                Debug.Log("用户仍未开启用户信息授权");
+            }
+        },
+        failedCallback: (errMsg) =>
+        {
+            Debug.LogError($"打开设置页失败: {errMsg}");
+        }
+    );
+}
+```
+
+---
+
+### 3.3 TT.OpenSettingsPanel
+
+**说明**: 打开系统设置面板。功能与 `TT.OpenSetting` 类似，但打开的是平台级别的设置面板，提供更丰富的选项。
+
+**语法**:
+
+```csharp
+public static void OpenSettingsPanel(
+    Action successCallback,
+    Action<string> failedCallback
+)
+```
+
+**代码示例**:
+
+```csharp
+public void OpenSystemSettings()
+{
+    TT.OpenSettingsPanel(
+        successCallback: () =>
+        {
+            Debug.Log("用户已操作系统设置面板");
+        },
+        failedCallback: (errMsg) =>
+        {
+            Debug.LogError($"打开设置面板失败: {errMsg}");
+        }
+    );
+}
+```
+
+---
+
+## 四、实名认证
+
+### 4.1 TT.SetRealNameAuthenticationCallback
+
+**说明**: 设置实名认证状态变化的回调监听。当用户的实名认证状态发生变化时（如通过认证、认证过期等），SDK 会回调此方法通知游戏。
+
+**语法**:
+
+```csharp
+public static void SetRealNameAuthenticationCallback(
+    Action<bool> callback
+)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| callback | Action\<bool\> | 是 | 实名认证状态回调，true=已认证，false=未认证 |
+
+**代码示例**:
+
+```csharp
+void Start()
+{
+    // 注册实名认证状态监听
+    TT.SetRealNameAuthenticationCallback((isAuthenticated) =>
+    {
+        if (isAuthenticated)
+        {
+            Debug.Log("用户已完成实名认证");
+            // 开启防沉迷相关限制
+            EnableFullGameFeatures();
+        }
+        else
+        {
+            Debug.Log("用户未完成实名认证或认证已过期");
+            // 限制游戏功能（如限制游戏时长、禁止支付等）
+            EnableRestrictedMode();
+        }
+    });
+}
+
+private void EnableFullGameFeatures()
+{
+    // 解除防沉迷限制
+}
+
+private void EnableRestrictedMode()
+{
+    // 启用受限模式
+}
+```
+
+---
+
+### 4.2 TT.AuthenticateRealName
+
+**说明**: 主动调起实名认证流程。调用后弹出实名认证界面，引导用户完成认证。通常在用户需要进行受限制操作时调用。
+
+**语法**:
+
+```csharp
+public static void AuthenticateRealName(
+    Action<bool> successCallback,
+    Action<string> failedCallback
+)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| successCallback | Action\<bool\> | 是 | 认证结果回调，true=认证成功 |
+| failedCallback | Action\<string\> | 是 | 认证失败回调（用户取消或网络错误等） |
+
+**代码示例**:
+
+```csharp
+/// <summary>
+/// 需要实名认证的操作前调用
+/// </summary>
+public void RequireRealNameAuth(System.Action onSuccess)
+{
+    TT.AuthenticateRealName(
+        successCallback: (result) =>
+        {
+            if (result)
+            {
+                Debug.Log("实名认证完成");
+                onSuccess?.Invoke();
+            }
+        },
+        failedCallback: (errMsg) =>
+        {
+            Debug.LogWarning($"实名认证未完成: {errMsg}");
+            // 提示用户需要实名认证才能继续操作
+        }
+    );
+}
+
+// 使用场景: 支付前校验实名
+public void PurchaseWithAuthCheck(int itemId)
+{
+    RequireRealNameAuth(() =>
+    {
+        // 实名认证通过，执行支付
+        Debug.Log("实名认证已通过，发起支付");
+        // ... 支付逻辑
+    });
+}
+```
+
+---
+
+## 五、抖音授权
+
+### 5.1 TT.ShowDouyinOpenAuth
+
+**说明**: 展示抖音授权面板，请求用户授权指定的 scope 列表。与 `TT.GetUserInfoAuth` 不同，本方法可一次性请求多个 scope 权限，适用于需要多个权限的业务场景。
+
+**语法**:
+
+```csharp
+public static void ShowDouyinOpenAuth(
+    Dictionary<string, DouyinPermissionScopeStatus> scopes,
+    Action<Dictionary<string, bool>> successCallback,
+    Action<string> failedCallback
+)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 说明 |
+|------|------|------|------|
+| scopes | Dictionary\<string, DouyinPermissionScopeStatus\> | 是 | 请求授权的 scope 列表，key 为 scope 名称，value 为该 scope 的状态 |
+| successCallback | Action\<Dictionary\<string, bool\>\> | 是 | 授权完成回调，返回各 scope 的最终授权结果 |
+| failedCallback | Action\<string\> | 是 | 授权失败回调 |
+
+**DouyinPermissionScopeStatus 枚举**:
+
+| 枚举值 | 数值 | 说明 |
+|--------|------|------|
+| Required | 0 | 必选，用户不可取消勾选 |
+| OptionalSelected | 1 | 可选，默认选中 |
+| OptionalUnselected | 2 | 可选，默认不选中 |
+
+**代码示例**:
+
+```csharp
+/// <summary>
+/// 批量请求多个权限
+/// </summary>
+public void RequestMultipleScopes()
+{
+    // 定义需要请求的 scope 列表
+    var scopes = new Dictionary<string, DouyinPermissionScopeStatus>
+    {
+        { "scope.userInfo", DouyinPermissionScopeStatus.Required },              // 用户信息（必选）
+        { "scope.userLocation", DouyinPermissionScopeStatus.OptionalSelected },  // 地理位置（可选-默认勾选）
+        { "scope.record", DouyinPermissionScopeStatus.OptionalUnselected }       // 录音（可选-默认不勾选）
+    };
+
+    TT.ShowDouyinOpenAuth(
+        scopes: scopes,
+        successCallback: (results) =>
+        {
+            Debug.Log("抖音授权完成:");
+            foreach (var kv in results)
+            {
+                Debug.Log($"  {kv.Key}: {(kv.Value ? "已授权" : "未授权")}");
+            }
+
+            // 判断关键权限
+            if (results.ContainsKey("scope.userInfo") && results["scope.userInfo"])
+            {
+                Debug.Log("用户信息已授权，获取用户数据");
+                FetchUserInfo();
+            }
+            else
+            {
+                Debug.LogWarning("用户拒绝用户信息授权");
+            }
+        },
+        failedCallback: (errMsg) =>
+        {
+            Debug.LogError($"抖音授权失败: {errMsg}");
+        }
+    );
+}
+```
+
+---
+
+## 六、完整登录流程示例
+
+```csharp
+using UnityEngine;
+using TT;
+
+/// <summary>
+/// 完整的账号流程管理器
+/// 涵盖: 初始化 -> 登录 -> Session校验 -> 获取用户信息 -> 权限管理 -> 实名认证
+/// </summary>
+public class AccountFlowManager : MonoBehaviour
+{
+    private ContainerEnv m_Env;
+    private string m_OpenId;
+    // ⚠️ 安全告警：session_key 是敏感凭证，严禁在客户端持久化存储。
+    // 以下字段仅为示例演示，生产环境中 session_key 应仅保存在服务端
+    private string m_SessionKey;
+
+    void Start()
+    {
+        // 必须在 InitSDK 回调中执行账号相关操作
+        if (!TT.InContainerEnv)
+        {
+            Debug.Log("Unity Editor 环境，跳过账号流程");
+            return;
+        }
+
+        TT.InitSDK((code, env) =>
+        {
+            if (code != 0)
+            {
+                Debug.LogError($"SDK 初始化失败: {code}");
+                return;
+            }
+
+            m_Env = env;
+            Debug.Log($"宿主: {env.m_HostEnum}, 版本: {env.GetVersionType()}");
+
+            // 第一步: 检查 Session
+            CheckAndLogin();
+        });
+    }
+
+    /// <summary>
+    /// 检查 Session 有效性，无效则重新登录
+    /// </summary>
+    private void CheckAndLogin()
+    {
+        TT.CheckSession(
+            successCallback: () =>
+            {
+                Debug.Log("Session 有效，直接进入游戏");
+                OnLoginSuccess();
+            },
+            failedCallback: (errMsg) =>
+            {
+                Debug.Log($"Session 过期: {errMsg}，重新登录");
+                DoLogin();
+            }
+        );
+    }
+
+    /// <summary>
+    /// 登录流程
+    /// </summary>
+    private void DoLogin()
+    {
+        TT.Login(
+            successCallback: (loginCode, anonymousCode, isLogin) =>
+            {
+                // ⚠️ 安全：code 为敏感凭证，生产环境禁止打印
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log($"登录成功: code={loginCode}, isLogin={isLogin}");
+                #endif
+                // 将 code 发送到服务端
+                SendCodeToServer(loginCode, anonymousCode);
+            },
+            failedCallback: (errMsg) =>
+            {
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.LogError($"登录失败: {errMsg}");
+                #endif
+                // 登录失败处理: 重试或进入游客模式
+            },
+            forceLogin: true
+        );
+    }
+
+    private void SendCodeToServer(string code, string anonymousCode)
+    {
+        // 服务端 code2Session 换取 openid 和 session_key
+        // POST https://developer.open-douyin.com/api/apps/v2/jscode2session
+        // 参数: { appid, secret, code, anonymous_code }
+        // 返回: { openid, session_key, unionid, anonymous_openid }
+
+        // 示例模拟
+        // ⚠️ 安全：code 为敏感凭证，生产环境禁止打印
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log($"发送 code 到服务端: {code}");
+        #endif
+        OnLoginSuccess();
+    }
+
+    private void OnLoginSuccess()
+    {
+        // 登录成功后: 检查权限 & 获取用户信息
+        CheckPermissionsAndFetchInfo();
+    }
+
+    /// <summary>
+    /// 检查权限并获取用户信息
+    /// </summary>
+    private void CheckPermissionsAndFetchInfo()
+    {
+        TT.GetSetting(
+            successCallback: (auth) =>
+            {
+                if (auth.UserInfo)
+                {
+                    // 已授权，直接获取用户信息
+                    FetchAndDisplayUserInfo();
+                }
+                else
+                {
+                    // 未授权，请求用户信息授权
+                    TT.GetUserInfoAuth(
+                        successCallback: (result) => FetchAndDisplayUserInfo(),
+                        failedCallback: (err) => Debug.Log("用户拒绝用户信息授权")
+                    );
+                }
+            },
+            failedCallback: (err) => Debug.LogError($"获取授权状态失败: {err}")
+        );
+    }
+
+    private void FetchAndDisplayUserInfo()
+    {
+        TT.GetUserInfo(
+            successCallback: (ref TTUserInfo info) =>
+            {
+                // ⚠️ 安全：用户个人信息仅用于 UI 展示，禁止打印到生产日志
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log($"欢迎 {info.nickName}!");
+                Debug.Log($"头像: {info.avatarUrl}");
+                Debug.Log($"地区: {info.country}/{info.province}/{info.city}");
+                #endif
+            },
+            failedCallback: (err) => Debug.LogError($"获取用户信息失败: {err}")
+        );
+    }
+
+    /// <summary>
+    /// 支付前的完整权限校验（示例）
+    /// </summary>
+    public void PayWithFullCheck(int itemId)
+    {
+        // 1. Session 校验
+        TT.CheckSession(
+            successCallback: () =>
+            {
+                // 2. 实名认证校验
+                TT.AuthenticateRealName(
+                    successCallback: (authenticated) =>
+                    {
+                        if (authenticated)
+                        {
+                            // 3. 所有校验通过，执行支付
+                            ExecutePayment(itemId);
+                        }
+                    },
+                    failedCallback: (err) => Debug.Log("实名认证失败，无法支付")
+                );
+            },
+            failedCallback: (err) =>
+            {
+                Debug.Log("Session 过期，重新登录");
+                DoLogin();
+            }
+        );
+    }
+
+    private void ExecutePayment(int itemId)
+    {
+        var param = new RequestGamePaymentParam
+        {
+            Mode = "game",
+            Env = 0,
+            CurrencyType = "CNY",
+            Platform = "android",
+            BuyQuantity = 10,
+            CustomId = System.Guid.NewGuid().ToString(),
+            Success = (result) => Debug.Log("支付成功"),
+            Fail = (error) => Debug.LogError($"支付失败: {error.ErrorCode}")
+        };
+        TT.RequestGamePayment(param);
+    }
+}
+```
+# 支付
+
+> 基于官方文档: 支付 API - 钻石支付、游戏币支付、道具直购、游戏金币(Lite)
+> 生成时间: 2026-06-24
+
+> ⚠️ **【安全警告 — 支付验签】**：本文件所有支付示例代码仅演示 API 调用方式。**客户端的 `Success` 回调仅表示收银台操作完成，不代表资金已到账**。在生产环境中：
+> - **严禁**在客户端回调中直接发放道具、金币或钻石
+> - **必须**等待服务端 `payment_callback` 接口收到支付通知并验证签名
+> - 奖励发放由**服务端验证通过后**下发指令，客户端仅做展示刷新
+> - 对于有延迟到账的场景（游戏币），建议实现**服务端驱动的余额同步**而非客户端轮询推测
+>
+> 服务端支付回调文档: https://developer.open-douyin.com/docs/resource/zh-CN/mini-game/develop/server/game-payment/payment-callback
+
+## 一、钻石支付（客服支付）
+
+### 1.1 TT.OpenAwemeCustomerService
+
+**说明**: 通过抖音号客服页面拉起钻石支付。用户在客服页面中选择支付金额完成钻石购买。适用于 PC 端支付场景，移动端也可使用。
+
+**语法**:
+
+```csharp
+public static void OpenAwemeCustomerService(OpenAwemeCustomerServiceParam param)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| param | OpenAwemeCustomerServiceParam | 是 | - | 支付参数对象 |
+
+---
+
+### 1.2 OpenAwemeCustomerServiceParam 参数类
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| BuyQuantity | int | 是 | - | 购买数量（钻石数量） |
+| CustomId | string | 是 | - | 开发者自定义唯一订单号，用于服务端回调关联 |
+| CurrencyType | string | 否 | "DIAMOND" | 货币类型，当前仅支持 "DIAMOND" |
+| ZoneId | string | 否 | "1" | 游戏服务区 ID |
+| ExtraInfo | string | 否 | "" | 额外透传信息（长度不超过 256 字符） |
+| GoodType | int | 否 | 0 | 商品类型：0=默认 |
+| OrderAmount | int | 否 | - | 订单金额（单位：分）。不填则使用 BuyQuantity 计算 |
+| GoodName | string | 否 | - | 商品名称（长度不超过 10 字符） |
+| GoodsId | string | 否 | - | 商品 ID |
+| Success | Action | 否 | null | 支付成功回调 |
+| Fail | Action\<ErrorInfo\> | 否 | null | 支付失败回调 |
+| Complete | Action | 否 | null | 支付流程完成回调（成功/失败均触发） |
+
+**代码示例**:
+
+```csharp
+// ⚠️ 安全警告：Success 回调仅表示收银台操作完成，不代表资金到账
+// 正确做法：等待服务端 payment_callback 验证签名后下发钻石
+var param = new OpenAwemeCustomerServiceParam
+{
+    BuyQuantity = 60,                       // 购买 60 钻石
+    CustomId = System.Guid.NewGuid().ToString(), // 唯一订单号
+    CurrencyType = "DIAMOND",
+    ZoneId = "1",
+    ExtraInfo = "{\"userId\":\"12345\",\"level\":10}",
+    GoodType = 0,
+    GoodName = "60钻石包",
+    GoodsId = "diamond_pack_60",
+    Success = () =>
+    {
+        // ⚠️ 此处仅记录收银台操作完成，不可直接发放钻石
+        // 钻石余额更新应由服务端支付回调驱动
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log("钻石支付收银台操作完成，等待服务端回调确认");
+        #endif
+    },
+    Fail = (error) =>
+    {
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log($"钻石支付失败: errCode={error.ErrorCode}, errMsg={error.ErrMsg}");
+        #endif
+        // 根据错误码处理不同失败场景
+    },
+    Complete = () =>
+    {
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log("钻石支付流程结束");
+        #endif
+    }
+};
+
+TT.OpenAwemeCustomerService(param);
+```
+
+---
+
+## 二、游戏币支付与道具直购
+
+### 2.1 TT.RequestGamePayment
+
+**说明**: 发起游戏币支付或道具直购支付。游戏币模式适用于购买虚拟货币（如金币），道具直购模式适用于直接购买特定道具。
+
+**语法**:
+
+```csharp
+public static void RequestGamePayment(RequestGamePaymentParam param)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| param | RequestGamePaymentParam | 是 | - | 支付参数对象 |
+
+---
+
+### 2.2 RequestGamePaymentParam 参数类
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| Mode | string | 是 | "game" | 支付类型，当前固定为 "game" |
+| Env | int | 否 | 0 | 环境：0=正式环境，1=沙盒测试环境 |
+| CurrencyType | string | 否 | "CNY" | 币种，当前仅支持 "CNY" |
+| Platform | string | 否 | "android" | 平台标识：android / windows / iOS |
+| BuyQuantity | int | 是(游戏币) | - | 购买数量。游戏币模式：金币数量乘以单价必须等于限定价格等级之一 |
+| CustomId | string | 是 | - | 开发者自定义唯一订单号（必填），用于服务端回调关联订单 |
+| ZoneId | string | 否 | "1" | 游戏服务区 ID |
+| ExtraInfo | string | 否 | "" | 额外透传信息（长度不超过 256 字符），建议 JSON 格式 |
+| GoodType | int | 否 | 0 | 商品类型：0=默认/游戏币，1=游戏币，2=道具直购 |
+| OrderAmount | int | 是(道具) | - | 道具现金价格（单位：分）。道具直购模式（GoodType=2）时必填 |
+| GoodName | string | 是(道具) | - | 道具名称（长度不超过 10 字符）。道具直购模式时必填 |
+| GoodsId | string | 否 | - | 商品 ID，用于标识具体商品 |
+| Success | Action | 否 | null | 支付成功回调（收银台拉起成功即回调，非最终到账确认） |
+| Fail | Action\<ErrorInfo\> | 否 | null | 支付失败回调 |
+| Complete | Action | 否 | null | 支付流程完成回调（成功/失败均触发） |
+
+**代码示例：游戏币支付**:
+
+```csharp
+// ⚠️ 安全警告：Success 回调仅表示收银台拉起成功，不代表金币到账
+// 游戏币到账以服务端 payment_callback 签名为准，切勿客户端自行加币
+// 游戏币支付场景
+// 购买 600 金币，假设单价为 1分/金币，则总金额为 600分 = 6元（符合限定价格等级）
+var gameCoinParam = new RequestGamePaymentParam
+{
+    Mode = "game",
+    Env = 0,
+    CurrencyType = "CNY",
+    Platform = "android",
+    BuyQuantity = 600,
+    CustomId = System.Guid.NewGuid().ToString(),
+    ZoneId = "1",
+    ExtraInfo = "{\"userId\":\"12345\",\"productId\":\"coin_pack_600\"}",
+    GoodType = 0,
+    GoodName = "600金币",
+    GoodsId = "coin_600",
+    Success = () =>
+    {
+        // ⚠️ 此处仅表示收银台拉起成功，不可直接加金币
+        // 正确做法：通知服务端记录待确认订单，等待 payment_callback
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log("游戏币支付收银台拉起成功，等待服务端回调确认到账");
+        #endif
+        NotifyServerPendingOrder("coin_600"); // 服务端记录待确认订单
+    },
+    Fail = (error) =>
+    {
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log($"游戏币支付失败: {error.ErrorCode} - {error.ErrMsg}");
+        #endif
+        HandlePaymentFailure(error.ErrorCode);
+    },
+    Complete = () =>
+    {
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log("游戏币支付流程结束");
+        #endif
+    }
+};
+
+TT.RequestGamePayment(gameCoinParam);
+```
+
+**代码示例：道具直购**:
+
+```csharp
+// ⚠️ 安全警告：Success 回调仅表示收银台拉起成功，不可在此发放道具
+// 道具发放必须由服务端 payment_callback 验证签名后执行
+// 道具直购场景（GoodType=2）
+// orderAmount 单位为分，10 = 0.10 元
+var itemParam = new RequestGamePaymentParam
+{
+    Mode = "game",
+    Env = 0,
+    CurrencyType = "CNY",
+    Platform = "android",
+    GoodType = 2,                   // 道具直购模式
+    OrderAmount = 10,               // 道具价格 0.10 元
+    GoodName = "皮肤礼包",           // 道具名称，不超过10字符
+    GoodsId = "skin_pack_001",
+    CustomId = System.Guid.NewGuid().ToString(),
+    ZoneId = "1",
+    ExtraInfo = "{\"userId\":\"12345\",\"skinId\":\"skin_fire_001\"}",
+    Success = () =>
+    {
+        // ⚠️ 此处仅记录收银台操作完成，不可直接发放道具
+        // 正确做法：等待服务端 payment_callback 后由服务端下发道具
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log("道具直购收银台操作完成，等待服务端回调确认");
+        #endif
+    },
+    Fail = (error) =>
+    {
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log($"道具购买失败: {error.ErrorCode} - {error.ErrMsg}");
+        #endif
+    },
+    Complete = () =>
+    {
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log("道具直购流程结束");
+        #endif
+    }
+};
+
+TT.RequestGamePayment(itemParam);
+```
+
+---
+
+## 三、支付错误码
+
+支付回调中的 `ErrorInfo.ErrorCode` 对应以下错误码：
+
+| errCode | 说明 |
+|---------|------|
+| -1 | 支付失败 / 内部错误 |
+| -2 | 用户取消支付 |
+| -15001 | 缺少必要参数 |
+| -15002 | 请求参数不合法 |
+| -15003 | 当前 App 不支持支付能力 |
+| -15006 | App 没有支付权限（需在开发者平台设置游戏币汇率） |
+| -15009 | 支付内部错误 |
+| -15098 | 用户未通过实名认证 |
+| -15099 | 累计支付金额超限（受未成年人保护限制） |
+| -15101 | customId 为空或不唯一（同一 customId 不可重复使用） |
+| -16000 | 用户未登录（需先调用 TT.Login 完成登录） |
+| -20002 | 交易存在风险（风控拦截） |
+| 2 | 重复支付（同一笔订单已处理） |
+| 3 | 拉起收银台失败 |
+| 4 | 网络异常 |
+| 5 | iOS 平台不支持当前支付方式 |
+| 6 | 其他未知错误 |
+| 21113 | 未成年人脸验证不通过 |
+
+---
+
+## 四、限定价格等级
+
+游戏币支付的最终金额必须是以下价格之一（`BuyQuantity`乘以单价计算后的结果）：
+
+| 价格（元） |
+|-----------|
+| 1 |
+| 3 |
+| 6 |
+| 8 |
+| 12 |
+| 18 |
+| 25 |
+| 30 |
+| 40 |
+| 45 |
+| 50 |
+| 60 |
+| 68 |
+| 73 |
+| 78 |
+| 88 |
+| 98 |
+| 108 |
+| 118 |
+| 128 |
+| 148 |
+| 168 |
+| 188 |
+| 198 |
+| 328 |
+| 648 |
+| 998 |
+| 1288 |
+| 1998 |
+| 2998 |
+
+> **计算方式**: 实际支付金额（元）= `BuyQuantity` * 单价（元/个）。结果必须落在上述价格等级中。例如：单价 0.01 元/金币，购买 600 金币 = 6 元，6 在价格等级表中，合法。
+
+---
+
+## 五、Lite 版游戏金币
+
+### 5.1 TT.RequestGoldOrder
+
+**说明**: Lite 版（极速版）游戏金币支付接口，适用于抖音 Lite 版本中的金币购买场景。
+
+**语法**:
+
+```csharp
+public static void RequestGoldOrder(RequestGoldOrderParam param)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| param | RequestGoldOrderParam | 是 | - | 金币订单参数对象 |
+
+**RequestGoldOrderParam 属性**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| BuyQuantity | int | 是 | - | 购买金币数量 |
+| CustomId | string | 是 | - | 开发者自定义唯一订单号 |
+| Env | int | 否 | 0 | 环境：0=正式 |
+| ExtraInfo | string | 否 | "" | 额外信息 |
+| Success | Action | 否 | null | 支付成功回调 |
+| Fail | Action\<ErrorInfo\> | 否 | null | 支付失败回调 |
+| Complete | Action | 否 | null | 支付完成回调 |
+
+**代码示例**:
+
+```csharp
+// ⚠️ 安全警告：与 RequestGamePayment 相同，Success 仅表示收银台操作完成
+// 金币余额刷新必须由服务端支付回调驱动
+var goldParam = new RequestGoldOrderParam
+{
+    BuyQuantity = 100,
+    CustomId = System.Guid.NewGuid().ToString(),
+    Env = 0,
+    ExtraInfo = "{\"userId\":\"12345\"}",
+    Success = () =>
+    {
+        // ⚠️ 不可在此刷新余额，等待服务端回调
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log("Lite 版金币支付收银台操作完成，等待服务端回调");
+        #endif
+    },
+    Fail = (error) =>
+    {
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log($"金币支付失败: {error.ErrorCode} - {error.ErrMsg}");
+        #endif
+    },
+    Complete = () =>
+    {
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log("金币支付流程结束");
+        #endif
+    }
+};
+
+TT.RequestGoldOrder(goldParam);
+```
+
+---
+
+## 六、支付完整流程示例
+
+以下示例展示一个完整的支付流程：登录校验 -> 构建支付参数 -> 调用支付 -> 处理回调 -> 等待服务端回调 -> 风控处理。
+
+> ⚠️ **安全说明**：此示例中支付成功后的余额同步改为**服务端驱动模式**——客户端发起支付后仅记录 `pendingOrderId`，实际金币/道具发放由服务端 `payment_callback` 验证签名后通过推送或轮询接口通知客户端。`PollServerOrderStatus` 方法演示了从服务端查询订单状态的正确模式，替代不安全的客户端本地推测。
+
+```csharp
+using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+
+public class PaymentManager : MonoBehaviour
+{
+    // 支付商品配置
+    [System.Serializable]
+    public class PaymentProduct
+    {
+        public string ProductId;
+        public string ProductName;
+        public int Price;       // 单位：分
+        public int CoinAmount;  // 对应金币数量
+        public int GoodType;    // 0=游戏币, 2=道具直购
+    }
+
+    public PaymentProduct[] Products;
+
+    // ⚠️ 安全：待确认订单集合，用于服务端回调到达后匹配
+    private HashSet<string> pendingOrderIds = new HashSet<string>();
+
+    void Start()
+    {
+        // 初始化 SDK 后检查登录态
+        if (TT.InContainerEnv)
+        {
+            CheckSessionAndReady();
+        }
+    }
+
+    /// <summary>
+    /// 支付前置：校验登录态
+    /// </summary>
+    private void CheckSessionAndReady()
+    {
+        TT.CheckSession(
+            success: () =>
+            {
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log("登录态有效，支付能力就绪");
+                #endif
+            },
+            fail: () =>
+            {
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log("登录态过期，重新登录");
+                #endif
+                TT.Login(
+                    success: (code, anonymousCode, isLogin) =>
+                    {
+                        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                        Debug.Log("重新登录成功");
+                        #endif
+                    },
+                    fail: (errMsg) => Debug.LogError($"重新登录失败: {errMsg}")
+                );
+            }
+        );
+    }
+
+    /// <summary>
+    /// 购买游戏币（安全加固版）
+    /// ⚠️ 关键变更：客户端不自行加币，等待服务端 payment_callback 后同步余额
+    /// </summary>
+    public void PurchaseGameCoin(string productId)
+    {
+        var product = FindProduct(productId);
+        if (product == null)
+        {
+            Debug.LogError($"商品不存在: {productId}");
+            return;
+        }
+
+        string orderId = GenerateOrderId();
+
+        // 1. 构建支付参数
+        var param = new RequestGamePaymentParam
+        {
+            Mode = "game",
+            Env = 0,
+            CurrencyType = "CNY",
+            Platform = GetCurrentPlatform(),
+            GoodType = product.GoodType,
+            BuyQuantity = product.CoinAmount,
+            CustomId = orderId,
+            ZoneId = GetCurrentZoneId(),
+            GoodName = TruncateString(product.ProductName, 10),
+            GoodsId = product.ProductId,
+            ExtraInfo = BuildExtraInfo(product),
+
+            // 2. 成功回调（收银台拉起成功，不代表到账）
+            Success = () =>
+            {
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log($"支付发起成功: {product.ProductName}, orderId={orderId}");
+                #endif
+                // ⚠️ 安全：记录待确认订单，不自行加币
+                pendingOrderIds.Add(orderId);
+                // 启动服务端订单状态轮询（正确做法）
+                StartCoroutine(PollServerOrderStatus(orderId, product));
+            },
+
+            // 3. 失败回调
+            Fail = (error) =>
+            {
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.LogError($"支付失败: [{error.ErrorCode}] {error.ErrMsg}");
+                #endif
+                HandlePaymentError(error.ErrorCode, product);
+            },
+
+            // 4. 完成回调
+            Complete = () =>
+            {
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log("支付流程结束");
+                #endif
+            }
+        };
+
+        // 5. 调用支付
+        TT.RequestGamePayment(param);
+    }
+
+    /// <summary>
+    /// 服务端订单状态轮询（安全模式）
+    /// ⚠️ 替代不安全的客户端余额推测，改为从服务端查询订单支付状态
+    /// </summary>
+    private IEnumerator PollServerOrderStatus(string orderId, PaymentProduct product)
+    {
+        int maxAttempts = 20;
+        float interval = 3f;
+
+        for (int i = 0; i < maxAttempts; i++)
+        {
+            yield return new WaitForSeconds(interval);
+
+            // 向服务端查询订单状态（服务端已通过 payment_callback 确认支付）
+            yield return StartCoroutine(CheckOrderStatusFromServer(orderId, (isPaid, coinBalance) =>
+            {
+                if (isPaid)
+                {
+                    #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                    Debug.Log($"服务端确认支付成功，当前余额: {coinBalance}");
+                    #endif
+                    pendingOrderIds.Remove(orderId);
+                    UpdateCoinDisplay(coinBalance);
+                }
+            }));
+
+            if (!pendingOrderIds.Contains(orderId))
+            {
+                yield break; // 订单已确认，停止轮询
+            }
+
+            #if UNITY_EDITOR || DEVELOPMENT_BUILD
+            Debug.Log($"第 {i + 1} 次查询服务端订单状态...");
+            #endif
+        }
+
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.LogWarning("轮询超时，请通过服务端主动推送或客服渠道确认订单状态");
+        #endif
+    }
+
+    /// <summary>
+    /// 向服务端查询订单支付状态
+    /// </summary>
+    private IEnumerator CheckOrderStatusFromServer(string orderId, System.Action<bool, int> callback)
+    {
+        using (var request = UnityEngine.Networking.UnityWebRequest.Get(
+            $"https://your-server.com/api/payment/order_status?orderId={orderId}"))
+        {
+            yield return request.SendWebRequest();
+            if (request.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
+            {
+                var response = MiniJSON.Json.Deserialize(request.downloadHandler.text) as Dictionary<string, object>;
+                bool isPaid = (bool)response["isPaid"];
+                int balance = Convert.ToInt32(response["coinBalance"]);
+                callback(isPaid, balance);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 支付错误处理
+    /// </summary>
+    private void HandlePaymentError(int errCode, PaymentProduct product)
+    {
+        switch (errCode)
+        {
+            case -2:
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log("用户取消支付，无需处理");
+                #endif
+                break;
+
+            case -15098:
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log("用户未通过实名认证，引导实名");
+                #endif
+                break;
+
+            case -16000:
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log("用户未登录，重新登录后重试");
+                #endif
+                TT.Login(
+                    success: (code, anonCode, isLogin) => PurchaseGameCoin(product.ProductId),
+                    fail: (err) => Debug.LogError("登录失败")
+                );
+                break;
+
+            case -20002:
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log("交易被风控拦截，提示用户稍后再试");
+                #endif
+                ShowRiskWarningDialog();
+                break;
+
+            case 21113:
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log("人脸验证不通过，疑似未成年人");
+                #endif
+                ShowUnderageWarningDialog();
+                break;
+
+            case 2:
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log("重复支付，忽略");
+                #endif
+                break;
+
+            default:
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.LogError($"未知支付错误: {errCode}");
+                #endif
+                break;
+        }
+    }
+
+    /// <summary>
+    /// 购买道具直购（安全加固版）
+    /// ⚠️ 关键变更：不在客户端直接 GrantItemImmediately，等待服务端回调
+    /// </summary>
+    public void PurchaseItem(string productId)
+    {
+        var product = FindProduct(productId);
+        if (product == null) return;
+
+        string orderId = GenerateOrderId();
+
+        var param = new RequestGamePaymentParam
+        {
+            Mode = "game",
+            Env = 0,
+            CurrencyType = "CNY",
+            Platform = GetCurrentPlatform(),
+            GoodType = 2,
+            OrderAmount = product.Price,
+            GoodName = TruncateString(product.ProductName, 10),
+            GoodsId = product.ProductId,
+            CustomId = orderId,
+            ZoneId = GetCurrentZoneId(),
+            ExtraInfo = BuildExtraInfo(product),
+            Success = () =>
+            {
+                // ⚠️ 安全：记录待确认订单，等待服务端 payment_callback 后下发道具
+                pendingOrderIds.Add(orderId);
+                StartCoroutine(PollServerOrderStatus(orderId, product));
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log($"道具直购收银台操作完成: {product.ProductName}, 等待服务端回调");
+                #endif
+            },
+            Fail = (error) =>
+            {
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.LogError($"道具购买失败: [{error.ErrorCode}] {error.ErrMsg}");
+                #endif
+                HandlePaymentError(error.ErrorCode, product);
+            },
+            Complete = () =>
+            {
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log("道具购买流程结束");
+                #endif
+            }
+        };
+
+        TT.RequestGamePayment(param);
+    }
+
+    /// <summary>
+    /// 购买钻石（安全加固版）
+    /// ⚠️ 关键变更：不在客户端直接 RefreshDiamondBalance，等待服务端回调
+    /// </summary>
+    public void PurchaseDiamond(int diamondAmount)
+    {
+        string orderId = GenerateOrderId();
+
+        var param = new OpenAwemeCustomerServiceParam
+        {
+            BuyQuantity = diamondAmount,
+            CustomId = orderId,
+            CurrencyType = "DIAMOND",
+            ZoneId = GetCurrentZoneId(),
+            ExtraInfo = BuildExtraInfo(null),
+            GoodType = 0,
+            GoodName = $"{diamondAmount}钻石",
+            GoodsId = $"diamond_{diamondAmount}",
+            Success = () =>
+            {
+                // ⚠️ 安全：记录待确认订单，等待服务端 callback
+                pendingOrderIds.Add(orderId);
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log($"钻石购买收银台完成: {diamondAmount}, 等待服务端回调");
+                #endif
+            },
+            Fail = (error) =>
+            {
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.LogError($"钻石购买失败: [{error.ErrorCode}] {error.ErrMsg}");
+                #endif
+                HandlePaymentError(error.ErrorCode, null);
+            },
+            Complete = () =>
+            {
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log("钻石支付流程结束");
+                #endif
+            }
+        };
+
+        TT.OpenAwemeCustomerService(param);
+    }
+
+    /// <summary>
+    /// 服务端回调驱动的余额同步入口
+    /// 由服务端推送或客户端定期调用，刷新所有已验证的余额数据
+    /// </summary>
+    public void SyncBalanceFromServer()
+    {
+        StartCoroutine(FetchServerBalance());
+    }
+
+    private IEnumerator FetchServerBalance()
+    {
+        using (var request = UnityEngine.Networking.UnityWebRequest.Get(
+            "https://your-server.com/api/user/balance"))
+        {
+            yield return request.SendWebRequest();
+            if (request.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
+            {
+                var response = MiniJSON.Json.Deserialize(request.downloadHandler.text) as Dictionary<string, object>;
+                int coinBalance = Convert.ToInt32(response["coinBalance"]);
+                int diamondBalance = Convert.ToInt32(response["diamondBalance"]);
+                UpdateCoinDisplay(coinBalance);
+                UpdateDiamondDisplay(diamondBalance);
+                // 清除所有已确认的待确认订单
+                pendingOrderIds.Clear();
+            }
+        }
+    }
+
+    // ---- 辅助方法 ----
+
+    private PaymentProduct FindProduct(string productId)
+    {
+        if (Products == null) return null;
+        foreach (var p in Products)
+        {
+            if (p.ProductId == productId) return p;
+        }
+        return null;
+    }
+
+    private string GenerateOrderId()
+    {
+        return $"ORDER_{System.DateTime.Now.Ticks}_{Random.Range(0, 9999)}";
+    }
+
+    private string GetCurrentPlatform()
+    {
+        #if UNITY_ANDROID
+            return "android";
+        #elif UNITY_IOS
+            return "iOS";
+        #elif UNITY_STANDALONE_WIN
+            return "windows";
+        #else
+            return "android";
+        #endif
+    }
+
+    private string GetCurrentZoneId()
+    {
+        return PlayerPrefs.GetString("current_zone", "1");
+    }
+
+    private string TruncateString(string input, int maxLength)
+    {
+        if (string.IsNullOrEmpty(input)) return "";
+        return input.Length <= maxLength ? input : input.Substring(0, maxLength);
+    }
+
+    private string BuildExtraInfo(PaymentProduct product)
+    {
+        var info = new Dictionary<string, object>
+        {
+            { "timestamp", System.DateTimeOffset.UtcNow.ToUnixTimeSeconds() },
+            { "version", Application.version }
+        };
+        if (product != null)
+        {
+            info["productId"] = product.ProductId;
+        }
+        return MiniJSON.Json.Serialize(info);
+    }
+
+    private void UpdateCoinDisplay(int balance) { /* 更新 UI */ }
+    private void UpdateDiamondDisplay(int balance) { /* 更新 UI */ }
+    private void ShowRiskWarningDialog() { /* 风控提示 */ }
+    private void ShowUnderageWarningDialog() { /* 未成年提示 */ }
+}
+```
+
+---
+
+## 七、支付注意事项
+
+1. **🔒 服务端回调验证（安全强制）**: **以服务端收到的 `payment_callback` 为准判断是否真正支付成功**。客户端 `Success` 回调仅为收银台操作结果，不代表资金已到账。**严禁在客户端回调中直接发放道具/金币/钻石**。服务端必须验证回调签名（`pay_sig` 字段），防止伪造支付通知。签名算法详见官方文档。
+2. **登录态校验**: 支付前必须调用 `TT.CheckSession` 确保用户登录态有效。登录态过期需重新 `TT.Login`。
+3. **customId 唯一性**: 每次支付请求的 `customId` 必须全局唯一，不可重复使用。建议使用 `GUID + 时间戳` 组合。
+4. **extraInfo 透传**: `extraInfo` 长度不超过 256 字符，会在服务端支付回调中返回。建议传入 JSON 格式字符串，包含 userId、产品 ID 等业务信息。注意不要传入敏感数据。
+5. **游戏币延迟到账**: 游戏币支付可能存在延迟到账的情况。建议通过服务端回调确认到账，而非客户端本地轮询推测。
+6. **PC 端限制**: PC 端仅支持钻石支付（`OpenAwemeCustomerService`），不支持 `RequestGamePayment`。
+7. **真机测试**: 真机环境支付为真实扣款，建议使用小额金额（如 1 元）进行测试。沙盒环境（`env=1`）可避免真实扣款。
+8. **未成年人保护**: 未实名认证用户无法支付（errCode=-15098），人脸验证不通过可能为未成年人（errCode=21113），累计支付金额超限（errCode=-15099）。
+9. **限频与风控**: 频繁发起支付可能触发风控拦截（errCode=-20002），建议添加支付间隔限制。
+10. **iOS 适配**: `Platform` 参数需根据实际平台传入，iOS 平台有特殊的支付限制（errCode=5）。
+11. **🔒 生产日志脱敏**: 支付相关日志不应打印 `CustomId`、`ExtraInfo` 等订单敏感信息到生产日志中，建议用 `#if UNITY_EDITOR || DEVELOPMENT_BUILD` 包裹调试输出。
+# 广告
+
+> 基于官方文档: 广告 API - 激励视频、Banner、插屏广告
+> 生成时间: 2026-06-24
+
+> ⚠️ **【安全声明】**：
+> - **奖励发放**：广告 `OnClose` 回调中的奖励发放应使用服务端验证的反作弊机制，避免客户端伪造观看完成状态
+> - **广告事件日志**：广告加载/展示/错误事件本身不含用户敏感数据，但建议统一用条件编译管理 Debug 日志输出
+
+广告模块提供三种广告形式：激励视频广告（RewardedVideoAd）、Banner 广告（BannerAd）、插屏广告（InterstitialAd）。所有广告组件均通过 `TT.*` 静态工厂方法创建，返回对应的广告实例对象，通过实例的事件委托和实例方法进行操作。
+
+## 一、激励视频广告
+
+激励视频广告是用户观看完整视频后获得游戏内奖励的全屏广告形式。**仅支持单实例**，创建一次后 `Load()` / `Show()` 复用即可，切换广告位需先 `Destroy()` 旧实例再重新创建。
+
+### 1.1 TT.CreateRewardedVideoAd
+
+**说明**：创建激励视频广告实例。返回 `TTRewardedVideoAd` 对象，通过该对象的事件和方法控制广告生命周期。
+
+**语法**：
+
+```csharp
+public static TTRewardedVideoAd CreateRewardedVideoAd(CreateRewardedVideoAdParam param)
+```
+
+**CreateRewardedVideoAdParam 参数类**：
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| AdUnitId | string | 是 | - | 广告位 ID，从抖音开放平台-流量主-广告管理获取 |
+| Multiton | bool | 否 | false | 是否开启"再得"模式，允许用户多次观看获取额外奖励 |
+| MultitonRewardMsg | List\<string\> | 否 | null | 再得奖励文案数组，每条 ≤7 字符，如 `new List<string>{"再得1次", "再得2次"}` |
+| MultitonRewardTimes | int | 否 | 0 | 额外观看次数，取值范围 1-4 |
+| ProgressTip | bool | 否 | false | 是否开启进度提醒，倒计时即将结束时提示用户 |
+
+**返回值**：`TTRewardedVideoAd` 实例。
+
+### 1.2 TTRewardedVideoAd 实例方法
+
+| 方法 | 说明 |
+|------|------|
+| `void Load()` | 预加载广告素材。提前调用可减少用户等待时间 |
+| `void Show()` | 展示广告。若未加载完成会先触发加载再展示 |
+| `void Destroy()` | 销毁广告实例，释放资源。切换广告位前必须调用 |
+
+### 1.3 TTRewardedVideoAd 事件
+
+| 事件 | 委托类型 | 说明 |
+|------|---------|------|
+| OnLoad | `Action` | 广告素材加载完成回调 |
+| OnError | `Action<int, string>` | 广告加载或展示出错回调。参数：`code` 错误码，`message` 错误信息 |
+| OnClose | `Action<bool, int>` | 广告关闭回调。参数：`isEnded` 是否完整观看（true 时发放奖励），`count` 再得模式下当前已观看次数 |
+
+### 1.4 完整代码示例
+
+```csharp
+using UnityEngine;
+
+public class RewardedAdManager : MonoBehaviour
+{
+    private TTRewardedVideoAd _rewardedVideoAd;
+    private bool _isAdLoaded = false;
+
+    void Start()
+    {
+        CreateAd();
+    }
+
+    /// <summary>
+    /// 创建激励视频广告实例
+    /// </summary>
+    void CreateAd()
+    {
+        var param = new CreateRewardedVideoAdParam
+        {
+            AdUnitId = "your_ad_unit_id_here",
+            Multiton = false,
+            ProgressTip = true
+        };
+
+        _rewardedVideoAd = TT.CreateRewardedVideoAd(param);
+
+        // 订阅事件
+        _rewardedVideoAd.OnLoad += OnAdLoaded;
+        _rewardedVideoAd.OnError += OnAdError;
+        _rewardedVideoAd.OnClose += OnAdClosed;
+
+        // 预加载广告
+        _rewardedVideoAd.Load();
+    }
+
+    /// <summary>
+    /// 广告加载完成
+    /// </summary>
+    void OnAdLoaded()
+    {
+        _isAdLoaded = true;
+        Debug.Log("激励视频广告加载完成");
+    }
+
+    /// <summary>
+    /// 广告错误回调
+    /// </summary>
+    void OnAdError(int code, string message)
+    {
+        _isAdLoaded = false;
+        Debug.LogError($"广告错误: code={code}, message={message}");
+
+        // 常见错误码：
+        // 1000: 广告位 ID 错误
+        // 1001: 广告请求失败/无广告填充
+        // 1002: 广告加载中
+        // 1003: 广告已展示过
+        // 1004: 广告位 ID 为空
+    }
+
+    /// <summary>
+    /// 广告关闭回调 —— ⚠️ 安全：严禁在此直接发放奖励
+    /// </summary>
+    /// <remarks>
+    /// ⚠️ 【安全强制】：客户端的 `isEnded` 信号可被伪造/重放。
+    /// 正确做法：OnClose 中仅记录广告事件并发送到服务端，
+    /// 由服务端验证广告回调签名后再下发奖励。
+    /// 以下示例展示安全模式 —— 客户端标记"待验证"，服务端验证后推送奖励。
+    /// </remarks>
+    void OnAdClosed(bool isEnded, int count)
+    {
+        if (isEnded)
+        {
+            // ⚠️ 安全：客户端仅标记"待验证"，不直接发放奖励
+            // 将广告完成事件上报服务端，由服务端验证后下发奖励
+            #if UNITY_EDITOR || DEVELOPMENT_BUILD
+            Debug.Log($"用户观看完成，第{count + 1}次观看，上报服务端验证");
+            #endif
+            RequestServerVerifyReward(count);
+        }
+        else
+        {
+            #if UNITY_EDITOR || DEVELOPMENT_BUILD
+            Debug.Log("用户提前关闭广告，不发放奖励");
+            #endif
+        }
+
+        // 关闭后重新加载，为下次展示做准备
+        _rewardedVideoAd.Load();
+    }
+
+    /// <summary>
+    /// 外部调用：展示广告
+    /// </summary>
+    public void ShowAd()
+    {
+        if (_rewardedVideoAd != null)
+        {
+            _rewardedVideoAd.Show();
+        }
+    }
+
+    /// <summary>
+    /// ⚠️ 安全：请求服务端验证广告完成事件并发放奖励
+    /// </summary>
+    /// <remarks>
+    /// 客户端绝不可根据 isEnded 直接发放奖励。
+    /// 正确流程：1) 上报广告事件到服务端 → 2) 服务端验证广告回调签名
+    /// → 3) 服务端通过长连接/轮询通知客户端发放奖励。
+    /// 支付模块已展示完整服务端验签模式，广告模块同理。
+    /// </remarks>
+    void RequestServerVerifyReward(int count)
+    {
+        // 将广告完成事件上报到服务端
+        // 服务端验证后通过长连接或轮询下发奖励指令
+        // 参考 unity-payment.md 中的服务端验签模式
+        StartCoroutine(ServerVerifyAdRewardCoroutine(count));
+    }
+
+    private System.Collections.IEnumerator ServerVerifyAdRewardCoroutine(int count)
+    {
+        // 发送广告验证请求到服务端
+        // POST /api/ad/verify { adUnitId, userId, watchCount, timestamp, signature }
+        // 轮询等待服务端验证结果
+        // 验证通过后服务端推送奖励 → 客户端执行 GrantReward()
+        yield return null;
+    }
+
+    /// <summary>
+    /// 发放奖励（仅由服务端验证通过后调用）
+    /// </summary>
+    void GrantReward()
+    {
+        // ⚠️ 安全：此方法仅在服务端验证通过后才被调用
+        // 示例：增加金币、复活次数等
+        // GameManager.Instance.AddCoin(100);
+    }
+
+    void OnDestroy()
+    {
+        // 取消订阅，释放广告实例
+        if (_rewardedVideoAd != null)
+        {
+            _rewardedVideoAd.OnLoad -= OnAdLoaded;
+            _rewardedVideoAd.OnError -= OnAdError;
+            _rewardedVideoAd.OnClose -= OnAdClosed;
+            _rewardedVideoAd.Destroy();
+            _rewardedVideoAd = null;
+        }
+    }
+}
+```
+
+### 1.5 再得模式（Multiton）
+
+再得模式允许用户在观看完第一次激励视频后，继续观看额外次数以获取递增奖励。
+
+**配置方式**：
+
+```csharp
+var param = new CreateRewardedVideoAdParam
+{
+    AdUnitId = "your_ad_unit_id",
+    Multiton = true,
+    MultitonRewardTimes = 3,  // 额外可观看 3 次，总计 4 次
+    MultitonRewardMsg = new List<string>
+    {
+        "再得100金币",
+        "再得200金币",
+        "再得500金币"
+    }
+};
+
+var videoAd = TT.CreateRewardedVideoAd(param);
+// ⚠️ 安全：多样本模式下同样需要服务端验证，不可根据客户端 isEnded 直接发奖
+videoAd.OnClose += (isEnded, count) =>
+{
+    if (isEnded)
+    {
+        // count 从 0 开始：0=首次，1=第1次再得，2=第2次再得...
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log($"第{count + 1}次观看完成，上报服务端验证");
+        #endif
+        // ⚠️ 安全：上报服务端验证，不可直接发放奖励
+        RequestServerVerifyMultitonReward(count);
+    }
+};
+```
+
+## 二、Banner 广告
+
+Banner 广告是悬浮在游戏画面顶部或底部的横幅广告，不影响游戏操作。
+
+### 2.1 TT.CreateBannerAd
+
+**说明**：创建 Banner 广告实例。Banner 广告创建后需调用 `Show()` 才会展示。
+
+**语法**：
+
+```csharp
+public static TTBannerAd CreateBannerAd(CreateBannerAdParam param)
+```
+
+**CreateBannerAdParam 参数类**：
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| AdUnitId | string | 是 | - | Banner 广告位 ID |
+| AdIntervals | int | 否 | 30 | 广告自动刷新间隔（秒），最小值 30 |
+| Style | BannerAdStyle | 否 | null | 广告样式配置，含位置和尺寸 |
+
+**BannerAdStyle 参数**：
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| Left | int | 否 | 0 | 广告左边距（px） |
+| Top | int | 否 | 0 | 广告上边距（px） |
+| Width | int | 否 | 300 | 广告宽度（px），按比例自动计算高度 |
+
+### 2.2 TTBannerAd 实例方法
+
+| 方法 | 说明 |
+|------|------|
+| `void Show()` | 展示 Banner 广告 |
+| `void Hide()` | 隐藏 Banner 广告（不销毁，可再次 Show） |
+| `void Destroy()` | 销毁 Banner 广告实例，释放资源 |
+
+### 2.3 TTBannerAd 事件
+
+| 事件 | 委托类型 | 说明 |
+|------|---------|------|
+| OnLoad | `Action` | Banner 广告加载完成 |
+| OnError | `Action<int, string>` | Banner 广告加载错误。参数：`code` 错误码，`message` 错误信息 |
+| OnResize | `Action<float, float>` | Banner 广告尺寸变化。参数：`width` 宽度，`height` 高度 |
+
+### 2.4 代码示例
+
+```csharp
+using UnityEngine;
+
+public class BannerAdManager : MonoBehaviour
+{
+    private TTBannerAd _bannerAd;
+
+    void Start()
+    {
+        CreateBannerAd();
+    }
+
+    void CreateBannerAd()
+    {
+        var param = new CreateBannerAdParam
+        {
+            AdUnitId = "your_banner_ad_unit_id",
+            AdIntervals = 30,
+            Style = new BannerAdStyle
+            {
+                Left = 0,
+                Top = 0,
+                Width = 300
+            }
+        };
+
+        _bannerAd = TT.CreateBannerAd(param);
+
+        _bannerAd.OnLoad += () =>
+        {
+            Debug.Log("Banner 广告加载完成");
+            _bannerAd.Show();
+        };
+
+        _bannerAd.OnError += (code, message) =>
+        {
+            Debug.LogError($"Banner 广告错误: code={code}, message={message}");
+        };
+
+        _bannerAd.OnResize += (width, height) =>
+        {
+            Debug.Log($"Banner 尺寸变化: {width}x{height}");
+        };
+    }
+
+    public void ShowBanner()
+    {
+        _bannerAd?.Show();
+    }
+
+    public void HideBanner()
+    {
+        _bannerAd?.Hide();
+    }
+
+    void OnDestroy()
+    {
+        if (_bannerAd != null)
+        {
+            _bannerAd.Destroy();
+            _bannerAd = null;
+        }
+    }
+}
+```
+
+## 三、插屏广告
+
+插屏广告是在游戏场景切换、关卡结束等自然中断节点展示的全屏弹窗广告。
+
+### 3.1 TT.CreateInterstitialAd
+
+**说明**：创建插屏广告实例。建议提前创建并预加载，在合适的时机调用 `Show()` 展示。
+
+**语法**：
+
+```csharp
+public static TTInterstitialAd CreateInterstitialAd(CreateInterstitialAdParam param)
+```
+
+**CreateInterstitialAdParam 参数类**：
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| AdUnitId | string | 是 | - | 插屏广告位 ID |
+
+### 3.2 TTInterstitialAd 实例方法
+
+| 方法 | 说明 |
+|------|------|
+| `void Load()` | 预加载广告素材 |
+| `void Show()` | 展示插屏广告 |
+| `void Destroy()` | 销毁插屏广告实例，释放资源 |
+
+### 3.3 TTInterstitialAd 事件
+
+| 事件 | 委托类型 | 说明 |
+|------|---------|------|
+| OnLoad | `Action` | 插屏广告加载完成 |
+| OnError | `Action<int, string>` | 插屏广告加载或展示错误。参数：`code` 错误码，`message` 错误信息 |
+| OnClose | `Action` | 插屏广告关闭回调，此时可恢复游戏逻辑 |
+
+### 3.4 代码示例
+
+```csharp
+using UnityEngine;
+
+public class InterstitialAdManager : MonoBehaviour
+{
+    private TTInterstitialAd _interstitialAd;
+    private bool _isAdShowing = false;
+
+    void Start()
+    {
+        CreateInterstitialAd();
+    }
+
+    void CreateInterstitialAd()
+    {
+        var param = new CreateInterstitialAdParam
+        {
+            AdUnitId = "your_interstitial_ad_unit_id"
+        };
+
+        _interstitialAd = TT.CreateInterstitialAd(param);
+
+        _interstitialAd.OnLoad += () =>
+        {
+            Debug.Log("插屏广告加载完成");
+        };
+
+        _interstitialAd.OnError += (code, message) =>
+        {
+            _isAdShowing = false;
+            Debug.LogError($"插屏广告错误: code={code}, message={message}");
+            // 加载失败时直接恢复游戏
+            ResumeGame();
+        };
+
+        _interstitialAd.OnClose += () =>
+        {
+            _isAdShowing = false;
+            Debug.Log("插屏广告关闭");
+            // 广告关闭后恢复游戏逻辑
+            ResumeGame();
+        };
+
+        // 预加载
+        _interstitialAd.Load();
+    }
+
+    /// <summary>
+    /// 在合适的场景节点调用：关卡结束、场景切换前等
+    /// </summary>
+    public void ShowInterstitialAd()
+    {
+        if (_interstitialAd != null && !_isAdShowing)
+        {
+            _isAdShowing = true;
+            PauseGame();  // 暂停游戏逻辑
+            _interstitialAd.Show();
+        }
+    }
+
+    void PauseGame()
+    {
+        Time.timeScale = 0f;
+        // 暂停音频、计时器等
+    }
+
+    void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        // 恢复音频、计时器等
+        // 预加载下一次广告
+        _interstitialAd?.Load();
+    }
+
+    void OnDestroy()
+    {
+        if (_interstitialAd != null)
+        {
+            _interstitialAd.Destroy();
+            _interstitialAd = null;
+        }
+    }
+}
+```
+
+## 四、广告最佳实践
+
+1. **广告位 ID 管理**：不同广告位使用不同的 AdUnitId，不要混用。测试阶段使用测试广告位 ID，上线前替换为正式 ID。
+
+2. **预加载策略**：激励视频和插屏广告应在游戏启动或上一轮广告关闭后立即调用 `Load()` 预加载，避免用户点击展示时等待加载。
+
+3. **环境判断**：Editor 环境下广告 API 可能不可用，使用 `TT.InContainerEnv` 判断真机环境后再创建广告实例。
+
+```csharp
+if (TT.InContainerEnv)
+{
+    CreateAd();
+}
+```
+
+4. **实例生命周期**：每个广告实例只创建一次，通过 `Load()`/`Show()` 复用。场景销毁时务必调用 `Destroy()` 释放资源，并取消所有事件订阅（`-=`）。
+
+5. **错误处理**：务必处理 `OnError` 回调，错误码常见值：
+   - `1000`：广告位 ID 错误或未配置
+   - `1001`：广告请求失败或无广告填充
+   - `1002`：广告正在加载中
+   - `1003`：广告已展示过（激励视频单实例限制）
+   - `1004`：广告位 ID 为空
+
+6. **奖励安全发放**：激励视频必须在 `OnClose` 中判断 `isEnded == true` 才发放奖励，防止用户提前关闭仍获得奖励。奖励逻辑应做服务端校验，避免客户端篡改。
+
+7. **游戏暂停与恢复**：插屏广告和激励视频展示期间应暂停游戏逻辑（`Time.timeScale = 0`），广告关闭后恢复。展示前保存游戏状态，防止意外中断导致进度丢失。
+
+8. **Banner 位置适配**：Banner 广告应根据设备屏幕尺寸和安全区域动态计算 `Left`/`Top`，避免遮挡游戏核心 UI 元素或进入刘海屏区域。
+
+9. **再得模式谨慎使用**：Multiton 奖励文案需简洁明了（≤7 字符），避免用户误解。每次再得的奖励应有梯度递增，给用户持续观看的动力。
+
+10. **避免频繁调用**：不要在同一帧内连续调用 `Load()` 或 `Show()`，间隔至少 1 秒。`Destroy()` 后如需重新创建，等待至少一个渲染帧。
+# 系统与生命周期
+
+> 基于官方文档: 系统 API - 生命周期、启动参数、系统信息、触摸事件、调试
+> 生成时间: 2026-06-24
+
+> ⚠️ **【安全声明】**：
+> - **系统信息**：`GetSystemInfo()` 返回的设备型号、系统版本可用于设备指纹识别，生产日志中应避免全量打印
+> - **启动参数**：`LaunchOption` 中的 `Query` 参数可能包含敏感数据（如邀请码、token），不应记录到生产日志
+> - **全局错误**：`OnError` 回调中的堆栈信息在生产环境应脱敏处理，避免泄露内部代码结构
+
+系统模块提供小游戏运行时的核心能力：生命周期监听、前后台切换、启动参数获取、系统信息查询、触摸事件处理以及退出/重启控制。所有 API 挂载在 `TT` 静态类下，PascalCase 命名风格对应 JavaScript `tt.*` camelCase 接口。
+
+## 一、生命周期
+
+生命周期管理是小游戏最基础的机制。游戏进入后台时应暂停渲染和逻辑以节省性能，回到前台时恢复。通过 `TTAppLifeCycle` 对象的事件订阅实现。
+
+### 1.1 TT.GetAppLifeCycle
+
+**说明**：获取应用生命周期管理器单例。通过订阅 `OnShow` 和 `OnHide` 事件监听游戏前后台切换。开发者应在游戏初始化阶段获取该实例并订阅事件，避免在每帧重复调用。
+
+**语法**：
+
+```csharp
+public static TTAppLifeCycle GetAppLifeCycle()
+```
+
+**返回值**：`TTAppLifeCycle` 单例实例。
+
+**TTAppLifeCycle 事件**：
+
+| 事件 | 委托类型 | 说明 |
+|------|---------|------|
+| OnShow | `event Action<Dictionary<string, object>>` | 游戏从后台进入前台。参数为启动参数字典，包含 `scene`（场景值）、`query`（query 参数）、`launch_from`（启动来源）等字段 |
+| OnHide | `event Action` | 游戏从前台进入后台（切到桌面、接听电话等） |
+
+**代码示例**：
+
+```csharp
+using UnityEngine;
+
+public class GameLifecycle : MonoBehaviour
+{
+    void Start()
+    {
+        // 仅在真机环境监听生命周期
+        if (TT.InContainerEnv)
+        {
+            var lifeCycle = TT.GetAppLifeCycle();
+            lifeCycle.OnShow += OnGameShow;
+            lifeCycle.OnHide += OnGameHide;
+        }
+    }
+
+    /// <summary>
+    /// 游戏进入前台
+    /// </summary>
+    void OnGameShow(Dictionary<string, object> param)
+    {
+        Debug.Log("游戏进入前台");
+
+        // 解析启动参数
+        // ⚠️ 安全：query 可能包含邀请 token/用户标识等敏感数据，生产环境禁止打印
+        if (param != null)
+        {
+            #if UNITY_EDITOR || DEVELOPMENT_BUILD
+            if (param.ContainsKey("scene"))
+                Debug.Log($"场景值: {param["scene"]}");
+            if (param.ContainsKey("query"))
+                Debug.Log($"启动参数: {param["query"]}");
+            #endif
+        }
+
+        // 恢复游戏逻辑
+        ResumeGame();
+    }
+
+    /// <summary>
+    /// 游戏进入后台
+    /// </summary>
+    void OnGameHide()
+    {
+        Debug.Log("游戏进入后台");
+
+        // 暂停游戏逻辑，释放临时资源
+        PauseGame();
+    }
+
+    void PauseGame()
+    {
+        Time.timeScale = 0f;
+        // 暂停音频播放
+        // AudioListener.pause = true;
+        // 保存游戏进度
+        // SaveManager.Instance.SaveProgress();
+    }
+
+    void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        // 恢复音频播放
+        // AudioListener.pause = false;
+    }
+
+    void OnDestroy()
+    {
+        if (TT.InContainerEnv)
+        {
+            var lifeCycle = TT.GetAppLifeCycle();
+            lifeCycle.OnShow -= OnGameShow;
+            lifeCycle.OnHide -= OnGameHide;
+        }
+    }
+}
+```
+
+### 1.2 TT.SetOnBeforeExitAppListener
+
+**说明**：设置游戏退出前的回调拦截。当用户通过系统返回键或手势退出小游戏时触发。若回调返回 `true`，表示开发者自行处理退出逻辑（如弹出挽留弹窗），需手动调用 `TT.ExitMiniProgram()` 执行实际退出；若返回 `false`，系统直接退出。
+
+**语法**：
+
+```csharp
+public static void SetOnBeforeExitAppListener(Func<bool> onBeforeExitApp)
+```
+
+**参数说明**：
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| onBeforeExitApp | Func\<bool\> | 是 | - | 退出前回调委托，返回 `true` 表示开发者自行处理，返回 `false` 表示系统直接退出 |
+
+**代码示例**：
+
+```csharp
+void Start()
+{
+    if (TT.InContainerEnv)
+    {
+        TT.SetOnBeforeExitAppListener(() =>
+        {
+            Debug.Log("用户尝试退出游戏");
+            // 返回 true 表示自行处理：弹出挽留弹窗
+            ShowExitConfirmDialog();
+            return true;
+        });
+    }
+}
+
+void ShowExitConfirmDialog()
+{
+    // 示例：展示挽留弹窗
+    // UIManager.Instance.ShowDialog(
+    //     title: "提示",
+    //     content: "确定要退出游戏吗？",
+    //     onConfirm: () => TT.ExitMiniProgram(),
+    //     onCancel: () => Debug.Log("用户取消退出")
+    // );
+}
+```
+
+## 二、退出与重启
+
+### 2.1 TT.RestartMiniProgramSync
+
+**说明**：同步重启小游戏。调用后立即触发冷启动流程，重新执行游戏入口场景。通常用于版本更新后强制重启或用户切换账号等场景。
+
+**语法**：
+
+```csharp
+public static void RestartMiniProgramSync()
+```
+
+**代码示例**：
+
+```csharp
+// 应用新版本后重启
+public void ApplyUpdateAndRestart()
+{
+    // 保存必要状态
+    // SaveManager.Instance.SaveAll();
+
+    TT.RestartMiniProgramSync();
+}
+```
+
+### 2.2 TT.ExitMiniProgram
+
+**说明**：退出小游戏，返回抖音客户端。需配合 `SetOnBeforeExitAppListener` 使用：当退出前回调返回 `true` 时，开发者需在适当时机（如用户确认退出后）手动调用此方法完成实际退出。
+
+**语法**：
+
+```csharp
+public static void ExitMiniProgram()
+```
+
+**代码示例**：
+
+```csharp
+// 配合 SetOnBeforeExitAppListener 的挽留弹窗使用
+void Start()
+{
+    if (TT.InContainerEnv)
+    {
+        TT.SetOnBeforeExitAppListener(() =>
+        {
+            // 弹出确认弹窗
+            ShowQuitConfirmDialog(
+                onConfirm: () =>
+                {
+                    // 保存数据后退出
+                    // SaveManager.Instance.SaveAll();
+                    TT.ExitMiniProgram();
+                }
+            );
+            return true; // 自行处理退出
+        });
+    }
+}
+
+void ShowQuitConfirmDialog(System.Action onConfirm)
+{
+    // 展示退出确认弹窗，用户确认后调用 onConfirm
+    // UIManager.Instance.ShowConfirm("确定退出？", onConfirm);
+}
+```
+
+## 三、启动参数
+
+### 3.1 TT.GetLaunchOptionsSync
+
+**说明**：同步获取小游戏启动参数。包括场景值、启动 query 参数、来源信息等。通常在游戏初始化阶段调用，用于判断启动来源并执行对应的业务逻辑（如从分享链接进入跳转特定关卡）。
+
+**语法**：
+
+```csharp
+public static LaunchOption GetLaunchOptionsSync()
+```
+
+**返回值**：`LaunchOption` 对象，包含以下字段：
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| Scene | string | 场景值，标识小游戏启动来源（如 1001=发现页，1007=单人聊天，1036=分享进入等） |
+| Query | Dictionary\<string, object\> | 启动时携带的 query 参数键值对 |
+| LaunchFrom | string | 启动来源标识 |
+| ReferrerInfo | object | 来源信息，包含 `appId`（来源小程序 ID）和 `extraData`（来源传递的数据） |
+
+**代码示例**：
+
+```csharp
+void Start()
+{
+    if (TT.InContainerEnv)
+    {
+        var launchOptions = TT.GetLaunchOptionsSync();
+
+        Debug.Log($"启动场景值: {launchOptions.Scene}");
+        Debug.Log($"启动来源: {launchOptions.LaunchFrom}");
+
+        // 解析 query 参数
+        // ⚠️ 安全：Query 可能包含邀请 token/用户标识，生产环境禁止打印
+        if (launchOptions.Query != null)
+        {
+            #if UNITY_EDITOR || DEVELOPMENT_BUILD
+            foreach (var kv in launchOptions.Query)
+            {
+                Debug.Log($"Query[{kv.Key}] = {kv.Value}");
+            }
+            #endif
+
+            // 示例：从分享链接进入，跳转指定关卡
+            if (launchOptions.Query.ContainsKey("level"))
+            {
+                int levelId = int.Parse(launchOptions.Query["level"].ToString());
+                // GameManager.Instance.LoadLevel(levelId);
+            }
+        }
+
+        // 解析来源小程序信息
+        if (launchOptions.ReferrerInfo != null)
+        {
+            // var fromAppId = launchOptions.ReferrerInfo.appId;
+        }
+    }
+}
+```
+
+## 四、版本号
+
+### 4.1 TT.TTSDKVersion
+
+**说明**：获取当前 TTSDK（抖音小游戏基础库）版本号字符串。
+
+**语法**：
+
+```csharp
+public static string TTSDKVersion { get; }
+```
+
+### 4.2 TT.GameVersion
+
+**说明**：获取小游戏代码包版本号（对应上传时填写的版本号）。
+
+**语法**：
+
+```csharp
+public static string GameVersion { get; }
+```
+
+### 4.3 TT.GamePublishVersion
+
+**说明**：获取小游戏已发布的线上的版本号。仅在审核通过并发布后有效。
+
+**语法**：
+
+```csharp
+public static string GamePublishVersion { get; }
+```
+
+### 4.4 TT.GetContainerVersion
+
+**说明**：获取宿主容器版本号（抖音 App 版本号）。
+
+**语法**：
+
+```csharp
+public static string GetContainerVersion()
+```
+
+**代码示例**：
+
+```csharp
+void LogVersionInfo()
+{
+    Debug.Log($"TTSDK 版本: {TT.TTSDKVersion}");
+    Debug.Log($"游戏版本: {TT.GameVersion}");
+    Debug.Log($"线上发布版本: {TT.GamePublishVersion}");
+    Debug.Log($"宿主版本: {TT.GetContainerVersion()}");
+
+    // 版本判断示例
+    // 注意：TTSDKVersion 为字符串，如 "6.0.0"，比较时需解析
+    // 如有 API 兼容需求，优先使用 TT.CanIUse() 判断
+}
+```
+
+## 五、系统信息
+
+### 5.1 TT.GetSystemInfo
+
+**说明**：异步获取设备系统信息，包括设备品牌、型号、操作系统版本、屏幕尺寸、像素比、安全区域等。回调参数为包含所有系统信息字段的字典。
+
+**语法**：
+
+```csharp
+public static void GetSystemInfo(Action<Dictionary<string, object>> success, Action<string> fail = null)
+```
+
+**参数说明**：
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| success | Action\<Dictionary\<string, object\>\> | 是 | - | 成功回调，参数字典包含所有系统信息字段 |
+| fail | Action\<string\> | 否 | null | 失败回调，参数为错误信息 |
+
+**success 回调字典常用字段**：
+
+| 字段 | 类型 | 说明 |
+|------|------|------|
+| brand | string | 设备品牌（如 "iPhone"、"Xiaomi"） |
+| model | string | 设备型号（如 "iPhone 14 Pro"） |
+| system | string | 操作系统版本（如 "iOS 17.0"） |
+| platform | string | 平台：`ios`、`android`、`windows`、`mac` |
+| screenWidth | float | 屏幕宽度（px） |
+| screenHeight | float | 屏幕高度（px） |
+| windowWidth | float | 可用窗口宽度（px） |
+| windowHeight | float | 可用窗口高度（px） |
+| pixelRatio | float | 设备像素比 |
+| SDKVersion | string | 基础库版本（如 "6.0.0"） |
+| version | string | 抖音 App 版本 |
+| language | string | 系统语言（如 "zh_CN"） |
+| statusBarHeight | float | 状态栏高度 |
+| safeArea | object | 安全区域 `{ left, right, top, bottom, width, height }` |
+| benchmarkLevel | int | 设备性能等级：-1=未知，1~50=低端，51~100=高端 |
+| fontSizeSetting | float | 用户字体大小设置 |
+| deviceOrientation | string | 设备方向：`portrait`、`landscape` |
+
+**代码示例**：
+
+```csharp
+void Start()
+{
+    if (TT.InContainerEnv)
+    {
+        TT.GetSystemInfo(
+            success: (info) =>
+            {
+                // 设备信息
+                // ⚠️ 安全：品牌/型号/系统版本组合可用于设备指纹，生产环境禁止全量打印
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log($"设备品牌: {info["brand"]}");
+                Debug.Log($"设备型号: {info["model"]}");
+                Debug.Log($"系统版本: {info["system"]}");
+                Debug.Log($"平台: {info["platform"]}");
+                #endif
+
+                // 屏幕信息
+                float screenW = Convert.ToSingle(info["screenWidth"]);
+                float screenH = Convert.ToSingle(info["screenHeight"]);
+                float pixelRatio = Convert.ToSingle(info["pixelRatio"]);
+                Debug.Log($"屏幕: {screenW}x{screenH}, 像素比: {pixelRatio}");
+
+                // 安全区域适配（刘海屏）
+                if (info.ContainsKey("safeArea") && info["safeArea"] != null)
+                {
+                    var safeArea = info["safeArea"] as Dictionary<string, object>;
+                    float safeTop = Convert.ToSingle(safeArea["top"]);
+                    float safeBottom = Convert.ToSingle(safeArea["bottom"]);
+                    // AdjustUILayout(safeTop, safeBottom);
+                }
+
+                // 设备性能分级，按需调整画质
+                int benchmark = Convert.ToInt32(info["benchmarkLevel"]);
+                if (benchmark <= 50)
+                {
+                    // 低端设备：降低画质、减少粒子效果
+                    // QualitySettings.SetQualityLevel(0);
+                    Debug.Log("检测到低端设备，启用低画质模式");
+                }
+            },
+            fail: (errMsg) =>
+            {
+                Debug.LogError($"获取系统信息失败: {errMsg}");
+            }
+        );
+    }
+}
+```
+
+## 六、触摸事件
+
+触摸事件提供原始触摸数据，从宿主层直接传递到 Unity。每个触摸事件回调接收 `TTTouch` 对象数组。
+
+### 6.1 TTTouch 触摸对象
+
+| 属性 | 类型 | 说明 |
+|------|------|------|
+| identifier | int | 触摸点唯一标识符，同一手指的 identifier 在整个触摸周期内保持不变 |
+| clientX | float | 触摸点相对于 Canvas 可绘制区域左侧的距离 |
+| clientY | float | 触摸点相对于 Canvas 可绘制区域顶部的距离 |
+| pageX | float | 触摸点相对于页面左侧的距离 |
+| pageY | float | 触摸点相对于页面顶部的距离 |
+| force | float | 按压力度（仅 iOS 支持 3D Touch，取值范围 0.0 ~ 1.0） |
+
+### 6.2 触摸事件 API
+
+**TT.OnTouchStart / TT.OffTouchStart**
+
+**说明**：监听/取消监听触摸开始事件。手指首次接触屏幕时触发。
+
+**语法**：
+
+```csharp
+public static void OnTouchStart(Action<TTTouch[]> callback)
+public static void OffTouchStart(Action<TTTouch[]> callback)
+```
+
+**TT.OnTouchMove / TT.OffTouchMove**
+
+**说明**：监听/取消监听触摸移动事件。手指在屏幕上滑动时持续触发。
+
+**语法**：
+
+```csharp
+public static void OnTouchMove(Action<TTTouch[]> callback)
+public static void OffTouchMove(Action<TTTouch[]> callback)
+```
+
+**TT.OnTouchEnd / TT.OffTouchEnd**
+
+**说明**：监听/取消监听触摸结束事件。手指离开屏幕时触发。
+
+**语法**：
+
+```csharp
+public static void OnTouchEnd(Action<TTTouch[]> callback)
+public static void OffTouchEnd(Action<TTTouch[]> callback)
+```
+
+**TT.OnTouchCancel / TT.OffTouchCancel**
+
+**说明**：监听/取消监听触摸取消事件。触摸被系统中断时触发（如来电、通知、手势冲突等）。
+
+**语法**：
+
+```csharp
+public static void OnTouchCancel(Action<TTTouch[]> callback)
+public static void OffTouchCancel(Action<TTTouch[]> callback)
+```
+
+### 6.3 代码示例
+
+```csharp
+using UnityEngine;
+
+public class TouchHandler : MonoBehaviour
+{
+    void Start()
+    {
+        if (TT.InContainerEnv)
+        {
+            TT.OnTouchStart += HandleTouchStart;
+            TT.OnTouchMove += HandleTouchMove;
+            TT.OnTouchEnd += HandleTouchEnd;
+            TT.OnTouchCancel += HandleTouchCancel;
+        }
+    }
+
+    void HandleTouchStart(TTTouch[] touches)
+    {
+        foreach (var touch in touches)
+        {
+            Debug.Log($"触摸开始: id={touch.identifier}, pos=({touch.clientX}, {touch.clientY})");
+
+            // 示例：记录拖拽起始点
+            // dragStartPos[touch.identifier] = new Vector2(touch.clientX, touch.clientY);
+        }
+    }
+
+    void HandleTouchMove(TTTouch[] touches)
+    {
+        foreach (var touch in touches)
+        {
+            // 示例：拖拽更新位置
+            // if (dragStartPos.ContainsKey(touch.identifier))
+            // {
+            //     var delta = new Vector2(touch.clientX, touch.clientY) - dragStartPos[touch.identifier];
+            //     UpdateObjectPosition(delta);
+            // }
+        }
+    }
+
+    void HandleTouchEnd(TTTouch[] touches)
+    {
+        foreach (var touch in touches)
+        {
+            Debug.Log($"触摸结束: id={touch.identifier}");
+
+            // 示例：清除拖拽状态
+            // dragStartPos.Remove(touch.identifier);
+        }
+    }
+
+    void HandleTouchCancel(TTTouch[] touches)
+    {
+        foreach (var touch in touches)
+        {
+            Debug.Log($"触摸取消: id={touch.identifier}");
+
+            // 清除所有触摸状态，恢复默认
+            // dragStartPos.Remove(touch.identifier);
+        }
+    }
+
+    void OnDestroy()
+    {
+        if (TT.InContainerEnv)
+        {
+            TT.OnTouchStart -= HandleTouchStart;
+            TT.OnTouchMove -= HandleTouchMove;
+            TT.OnTouchEnd -= HandleTouchEnd;
+            TT.OnTouchCancel -= HandleTouchCancel;
+        }
+    }
+}
+```
+
+## 七、调试与日志
+
+### 7.1 日志管理器
+
+```csharp
+// 日志管理器（写入本地文件）
+var logger = TT.GetLogManager();
+logger.Log("普通日志");
+logger.Info("信息日志");
+logger.Warn("警告日志");
+logger.Debug("调试日志");
+
+// 实时日志管理器（上传到抖音后台，用于线上问题排查）
+var rtLogger = TT.GetRealtimeLogManager();
+rtLogger.Info("实时信息");
+rtLogger.Warn("实时警告");
+rtLogger.Error("实时错误");
+rtLogger.SetFilterMsg("keyword_filter"); // 设置过滤关键词，方便后台检索
+```
+
+### 7.2 全局错误监听
+
+```csharp
+// 监听未捕获的全局异常
+// ⚠️ 安全：生产环境禁止打印完整堆栈，避免泄露代码结构/文件路径
+TT.OnError += (error) =>
+{
+    #if UNITY_EDITOR || DEVELOPMENT_BUILD
+    Debug.LogError($"全局错误: {error.Message}");
+    Debug.LogError($"错误堆栈: {error.Stack}");
+    #else
+    Debug.LogError($"全局错误: {error.Message}");  // 生产仅记录错误消息
+    #endif
+};
+```
+
+### 7.3 内存告警
+
+```csharp
+TT.OnMemoryWarning += (level) =>
+{
+    // level: 5 = 告警, 10 = 严重告警
+    if (level >= 10)
+    {
+        Debug.LogWarning("内存严重不足，紧急释放资源！");
+        // 释放纹理缓存
+        // Resources.UnloadUnusedAssets();
+        // 释放音频缓存
+        // AudioManager.Instance.ClearCache();
+        // 触发 GC
+        System.GC.Collect();
+    }
+};
+```
+
+### 7.4 API 可用性判断
+
+```csharp
+// 判断指定 API 在当前宿主版本是否可用
+if (TT.CanIUse("RequestGamePayment.object.goodType"))
+{
+    // 支持道具直购功能
+}
+
+if (TT.CanIUse("CreateRewardedVideoAd.object.Multiton"))
+{
+    // 支持再得广告模式
+}
+```
+# 设备能力
+
+> 基于官方文档: 设备 API - 加速度计、剪贴板、屏幕、震动、陀螺仪、设备方向、键盘、鼠标、滚轮、网络状态
+> 生成时间: 2026-06-24
+
+> ⚠️ **【安全声明】**：
+> - **剪贴板**：读写系统剪贴板前应获得用户明确同意，避免静默读取。读取到内容后做最小化处理，写入内容不得包含用户个人隐私信息（已在对应示例中标注）
+> - **传感器**：加速度计、陀螺仪、设备方向等传感器**无需 scope 授权**即可使用，但应遵循 OnEnable/OnDisable 生命周期管理，避免后台持续采集导致耗电（详见「十一、设备能力最佳实践」）。传感器原始数据本身不敏感，但持续高频的传感器日志可能用于行为指纹分析，建议高频日志用条件编译管理
+> - **位置**：位置 API（`GetLocation`）不在本文档覆盖范围内。如需使用，调用前必须做 `scope.userLocation` 授权检查，且经纬度数据为敏感信息，生产环境禁止打印日志
+> - **网络状态**：网络类型信息在客户端属于低风险数据，服务端采集时应在隐私政策中披露
+
+## 一、加速度计
+
+### 1.1 TT.StartAccelerometer
+
+**说明**: 开始监听加速度计数据。加速度计用于检测设备在 x、y、z 三轴上的线性加速度变化，适用于赛车倾斜操控、摇一摇检测、自由落体判断等场景。采样间隔可选三种模式，游戏场景推荐使用 `"game"`（20ms）以获得更灵敏的响应。
+
+**语法**:
+
+```csharp
+public static void StartAccelerometer(string interval = "game")
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| interval | string | 否 | "game" | 采样间隔。`"game"` = 20ms，`"ui"` = 60ms，`"normal"` = 200ms |
+
+---
+
+### 1.2 TT.StopAccelerometer
+
+**说明**: 停止监听加速度计数据。游戏暂停或切换到后台时可调用此方法释放传感器资源，降低功耗。
+
+**语法**:
+
+```csharp
+public static void StopAccelerometer()
+```
+
+---
+
+### 1.3 TT.OnAccelerometerChange / TT.OffAccelerometerChange
+
+**说明**: 注册/注销加速度计数据变化回调。每次采样周期到达时触发，返回三轴加速度值。
+
+**语法**:
+
+```csharp
+public static void OnAccelerometerChange(Action<float, float, float> callback)
+public static void OffAccelerometerChange(Action<float, float, float> callback)
+```
+
+**回调参数说明**:
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| x | float | X 轴加速度，单位 m/s²，范围 [-10, 10] |
+| y | float | Y 轴加速度，单位 m/s²，范围 [-10, 10] |
+| z | float | Z 轴加速度，单位 m/s²，范围 [-10, 10] |
+
+- 设备水平静置时: x ≈ 0, y ≈ 0, z ≈ -9.8（重力加速度）
+- 设备自由落体时: x ≈ 0, y ≈ 0, z ≈ 0
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using TT;
+
+public class AccelerometerController : MonoBehaviour
+{
+    private Action<float, float, float> m_AccelCallback;
+
+    void OnEnable()
+    {
+        m_AccelCallback = OnAccelDataChanged;
+        TT.OnAccelerometerChange(m_AccelCallback);
+        TT.StartAccelerometer("game"); // 游戏场景使用最高采样频率
+    }
+
+    void OnDisable()
+    {
+        TT.StopAccelerometer();
+        TT.OffAccelerometerChange(m_AccelCallback);
+    }
+
+    private void OnAccelDataChanged(float x, float y, float z)
+    {
+        // 示例: 根据倾斜角度控制角色移动
+        Vector3 tilt = new Vector3(x, y, z);
+        Debug.Log($"加速度: x={x:F2}, y={y:F2}, z={z:F2}");
+
+        // 摇一摇检测: 任意轴加速度超过阈值
+        if (Mathf.Abs(x) > 8.0f || Mathf.Abs(y) > 8.0f || Mathf.Abs(z) > 8.0f)
+        {
+            Debug.Log("检测到摇一摇！");
+            OnShakeDetected();
+        }
+    }
+
+    private void OnShakeDetected()
+    {
+        // 触发摇晃事件逻辑
+    }
+}
+```
+
+---
+
+## 二、剪贴板
+
+> ⚠️ **【隐私合规警告】**：剪贴板是用户隐私敏感数据通道。读取剪贴板前**必须获得用户明确同意**，禁止静默读取；写入剪贴板不得包含用户个人隐私信息（手机号、身份证、openid 等）。建议在生产环境中做如下限制：
+> - 读取前弹出确认弹窗说明用途
+> - 仅提取必要字段（如兑换码格式校验），丢弃无关内容
+> - 写入内容应脱敏处理
+
+### 2.1 TT.GetClipboardData
+
+**说明**: 获取系统剪贴板内容。异步操作，通过回调返回剪贴板文本。可用于实现"从剪贴板读取兑换码"等功能。**⚠️ 生产环境中必须获得用户明确同意后才可调用。**
+
+**语法**:
+
+```csharp
+public static void GetClipboardData(Action<string> callback)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| callback | Action\<string\> | 是 | - | 回调函数，参数为剪贴板文本内容 |
+
+---
+
+### 2.2 TT.SetClipboardData
+
+**说明**: 设置系统剪贴板内容。将文本写入剪贴板，用户可在其他 App 中粘贴使用。**⚠️ 生产环境中写入内容不得包含用户个人隐私信息，建议做脱敏处理。**
+
+**语法**:
+
+```csharp
+public static void SetClipboardData(string data)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| data | string | 是 | - | 要写入剪贴板的文本内容 |
+
+**代码示例**:
+
+```csharp
+// ⚠️ 安全：读取剪贴板前展示确认弹窗，获得用户同意
+public void ReadClipboardWithConsent()
+{
+    // 展示确认弹窗，说明用途
+    ShowConsentDialog("是否允许读取剪贴板中的兑换码？", () =>
+    {
+        TT.GetClipboardData((clipboardText) =>
+        {
+            if (!string.IsNullOrEmpty(clipboardText))
+            {
+                // ⚠️ 安全：仅提取符合条件的兑换码格式，丢弃无关内容（数据最小化）
+                if (clipboardText.StartsWith("REDEEM_"))
+                {
+                    #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                    Debug.Log("从剪贴板获取到兑换码");
+                    #endif
+                    RedeemCode(clipboardText);
+                }
+                // ⚠️ 不匹配的内容直接丢弃，不做任何存储或日志记录
+            }
+        });
+    });
+}
+
+// ⚠️ 安全：写入剪贴板的邀请码不包含用户个人信息
+public void CopyShareCode()
+{
+    // 生成不含用户隐私的纯业务分享码
+    string inviteCode = "INVITE_" + System.Guid.NewGuid().ToString("N").Substring(0, 8);
+    TT.SetClipboardData(inviteCode);
+    #if UNITY_EDITOR || DEVELOPMENT_BUILD
+    Debug.Log("邀请码已复制到剪贴板");
+    #endif
+}
+
+private void ShowConsentDialog(string message, System.Action onConsent)
+{
+    // 展示确认弹窗，用户同意后才执行 onConsent
+}
+
+private void RedeemCode(string code)
+{
+    // 兑换码验证逻辑
+}
+```
+
+---
+
+## 三、屏幕控制
+
+### 3.1 TT.SetKeepScreenOn
+
+**说明**: 设置是否保持屏幕常亮。游戏运行时通常需要保持屏幕常亮，避免因用户不操作而自动息屏。注意: 离开游戏后设置自动失效。
+
+**语法**:
+
+```csharp
+public static void SetKeepScreenOn(bool keepScreenOn)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| keepScreenOn | bool | 是 | - | `true` 保持屏幕常亮，`false` 允许自动息屏 |
+
+---
+
+### 3.2 TT.GetScreenBrightness
+
+**说明**: 获取当前屏幕亮度值。异步操作，通过回调返回 0~1 之间的浮点数。
+
+**语法**:
+
+```csharp
+public static void GetScreenBrightness(Action<float> callback)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| callback | Action\<float\> | 是 | - | 回调函数，参数为亮度值（0 = 最暗，1 = 最亮） |
+
+---
+
+### 3.3 TT.SetScreenBrightness
+
+**说明**: 设置屏幕亮度。取值范围 0~1，超出范围会被自动裁剪。部分设备可能不支持程序化调整亮度。
+
+**语法**:
+
+```csharp
+public static void SetScreenBrightness(float value)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| value | float | 是 | - | 亮度值，范围 [0, 1] |
+
+**代码示例**:
+
+```csharp
+// 游戏启动时保持屏幕常亮
+void Start()
+{
+    if (TT.InContainerEnv)
+    {
+        TT.SetKeepScreenOn(true);
+
+        // 读取并保存当前亮度
+        TT.GetScreenBrightness((brightness) =>
+        {
+            Debug.Log($"当前屏幕亮度: {brightness}");
+        });
+
+        // 适当调整亮度以优化游戏视觉
+        TT.SetScreenBrightness(0.8f);
+    }
+}
+
+// 暂停界面中的亮度滑块绑定
+public void OnBrightnessSliderChanged(float value)
+{
+    TT.SetScreenBrightness(value);
+}
+```
+
+---
+
+## 四、震动
+
+### 4.1 TT.Vibrate
+
+**说明**: 触发短震动效果（约 15ms）。用于游戏中的打击反馈、操作确认、提醒等场景。注意: iOS 设备需在用户交互事件中首次触发后才能正常使用震动。
+
+**语法**:
+
+```csharp
+public static void Vibrate()
+```
+
+**代码示例**:
+
+```csharp
+/// <summary>
+/// 触发长震动（通过连续短震动模拟，约 400ms）
+/// </summary>
+public void VibrateLong()
+{
+    StartCoroutine(VibrateLongCoroutine());
+}
+
+private System.Collections.IEnumerator VibrateLongCoroutine()
+{
+    // 通过多次短震动模拟长震动效果
+    for (int i = 0; i < 8; i++)
+    {
+        TT.Vibrate();
+        yield return new WaitForSeconds(0.05f);
+    }
+}
+
+// 使用示例: 按钮点击短震，Boss 击杀长震
+public void OnButtonClicked()
+{
+    TT.Vibrate(); // 短震动: 触觉反馈确认
+}
+
+public void OnBossKilled()
+{
+    VibrateLong(); // 长震动: 强烈的击杀反馈
+}
+```
+
+---
+
+## 五、陀螺仪
+
+### 5.1 TT.StartGyroscope
+
+**说明**: 开始监听陀螺仪数据。陀螺仪用于检测设备绕各轴的旋转角速度，适用于 FPS 视角控制、平衡球游戏、AR 场景等需要高精度旋转感知的场景。
+
+**语法**:
+
+```csharp
+public static void StartGyroscope(string interval = "game")
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| interval | string | 否 | "game" | 采样间隔。`"game"` = 20ms，`"ui"` = 60ms，`"normal"` = 200ms |
+
+---
+
+### 5.2 TT.StopGyroscope
+
+**说明**: 停止监听陀螺仪数据。与 StartGyroscope 配对使用，释放传感器资源。
+
+**语法**:
+
+```csharp
+public static void StopGyroscope()
+```
+
+---
+
+### 5.3 TT.OnGyroscopeChange / TT.OffGyroscopeChange
+
+**说明**: 注册/注销陀螺仪数据变化回调。返回三轴旋转角速度值。
+
+**语法**:
+
+```csharp
+public static void OnGyroscopeChange(Action<float, float, float> callback)
+public static void OffGyroscopeChange(Action<float, float, float> callback)
+```
+
+**回调参数说明**:
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| x | float | 绕 X 轴（pitch）角速度，单位 rad/s |
+| y | float | 绕 Y 轴（roll）角速度，单位 rad/s |
+| z | float | 绕 Z 轴（yaw）角速度，单位 rad/s |
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using TT;
+
+public class GyroscopeCamera : MonoBehaviour
+{
+    private Action<float, float, float> m_GyroCallback;
+    private float m_Sensitivity = 2.0f;
+
+    void OnEnable()
+    {
+        m_GyroCallback = OnGyroDataChanged;
+        TT.OnGyroscopeChange(m_GyroCallback);
+        TT.StartGyroscope("game");
+    }
+
+    void OnDisable()
+    {
+        TT.StopGyroscope();
+        TT.OffGyroscopeChange(m_GyroCallback);
+    }
+
+    private void OnGyroDataChanged(float x, float y, float z)
+    {
+        // 利用陀螺仪角速度旋转相机（第一人称视角控制）
+        float rotationX = y * m_Sensitivity * Time.deltaTime; // 左右旋转 (roll)
+        float rotationY = x * m_Sensitivity * Time.deltaTime; // 上下旋转 (pitch)
+
+        // 限制垂直角度防止翻转
+        Vector3 euler = transform.eulerAngles;
+        euler.x = Mathf.Clamp(euler.x - rotationY * Mathf.Rad2Deg, -80f, 80f);
+        euler.y += rotationX * Mathf.Rad2Deg;
+        transform.eulerAngles = euler;
+    }
+}
+```
+
+---
+
+## 六、设备方向
+
+### 6.1 TT.StartDeviceMotionListening
+
+**说明**: 开始监听设备方向（姿态）变化。返回设备在三维空间中的旋转角度（欧拉角），适用于指南针、水平仪、AR 方向感知等场景。与陀螺仪不同，此处返回的是绝对方向角而非角速度。
+
+**语法**:
+
+```csharp
+public static void StartDeviceMotionListening(string interval = "game")
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| interval | string | 否 | "game" | 采样间隔。`"game"` = 20ms，`"ui"` = 60ms，`"normal"` = 200ms |
+
+---
+
+### 6.2 TT.StopDeviceMotionListening
+
+**说明**: 停止监听设备方向变化。
+
+**语法**:
+
+```csharp
+public static void StopDeviceMotionListening()
+```
+
+---
+
+### 6.3 TT.OnDeviceMotionChange / TT.OffDeviceMotionChange
+
+**说明**: 注册/注销设备方向变化回调。返回 alpha、beta、gamma 三个方向角。
+
+**语法**:
+
+```csharp
+public static void OnDeviceMotionChange(Action<float, float, float> callback)
+public static void OffDeviceMotionChange(Action<float, float, float> callback)
+```
+
+**回调参数说明**:
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| alpha | float | 绕 Z 轴旋转角度，范围 [0, 360]，0° 表示正北方向 |
+| beta | float | 绕 X 轴旋转角度，范围 [-180, 180]，设备前后倾斜 |
+| gamma | float | 绕 Y 轴旋转角度，范围 [-90, 90]，设备左右倾斜 |
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using TT;
+
+public class DeviceOrientationController : MonoBehaviour
+{
+    private Action<float, float, float> m_MotionCallback;
+
+    void OnEnable()
+    {
+        m_MotionCallback = OnDeviceMotionChanged;
+        TT.OnDeviceMotionChange(m_MotionCallback);
+        TT.StartDeviceMotionListening("game");
+    }
+
+    void OnDisable()
+    {
+        TT.StopDeviceMotionListening();
+        TT.OffDeviceMotionChange(m_MotionCallback);
+    }
+
+    private void OnDeviceMotionChanged(float alpha, float beta, float gamma)
+    {
+        // alpha: 指南针方向（0=正北, 90=正东, 180=正南, 270=正西）
+        // beta: 前后倾斜（0=直立, 90=水平朝下, -90=水平朝上）
+        // gamma: 左右倾斜（0=水平, 正值=左侧抬起, 负值=右侧抬起）
+
+        Debug.Log($"方向: alpha={alpha:F1}°, beta={beta:F1}°, gamma={gamma:F1}°");
+
+        // 示例: 水平仪检测（设备是否水平放置）
+        bool isHorizontal = Mathf.Abs(beta) < 5f && Mathf.Abs(gamma) < 5f;
+        if (isHorizontal)
+        {
+            Debug.Log("设备处于水平状态");
+        }
+    }
+}
+```
+
+---
+
+## 七、键盘事件（PC 端）
+
+### 7.1 TT.OnKeyDown / TT.OffKeyDown
+
+**说明**: 注册/注销键盘按下事件监听。仅在 PC 端（Windows/Mac）有效，用于实现 PC 端游戏的键盘操作控制。
+
+**语法**:
+
+```csharp
+public static void OnKeyDown(Action<KeyEvent> callback)
+public static void OffKeyDown(Action<KeyEvent> callback)
+```
+
+**回调参数说明** (KeyEvent):
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| key | string | 按键值，如 `"a"`、`"Enter"`、`"ArrowLeft"` |
+| code | string | 物理键位码，如 `"KeyA"`、`"Enter"`、`"ArrowLeft"` |
+| keyCode | int | 按键码，如 `65`（A 键） |
+| ctrlKey | bool | Ctrl 键是否按下 |
+| altKey | bool | Alt 键是否按下 |
+| shiftKey | bool | Shift 键是否按下 |
+| metaKey | bool | Meta 键是否按下（Mac 为 Command，Windows 为 Win） |
+| repeat | bool | 是否为长按产生的重复事件 |
+
+---
+
+### 7.2 TT.OnKeyUp / TT.OffKeyUp
+
+**说明**: 注册/注销键盘释放事件监听。
+
+**语法**:
+
+```csharp
+public static void OnKeyUp(Action<KeyEvent> callback)
+public static void OffKeyUp(Action<KeyEvent> callback)
+```
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using TT;
+
+public class PCKeyboardInput : MonoBehaviour
+{
+    private Action<KeyEvent> m_KeyDownHandler;
+    private Action<KeyEvent> m_KeyUpHandler;
+    private HashSet<string> m_PressedKeys = new HashSet<string>();
+
+    void OnEnable()
+    {
+        // 仅在非真机环境（PC 开发调试）注册
+        if (!TT.InContainerEnv)
+        {
+            m_KeyDownHandler = OnKeyDown;
+            m_KeyUpHandler = OnKeyUp;
+            TT.OnKeyDown(m_KeyDownHandler);
+            TT.OnKeyUp(m_KeyUpHandler);
+        }
+    }
+
+    void OnDisable()
+    {
+        if (!TT.InContainerEnv)
+        {
+            TT.OffKeyDown(m_KeyDownHandler);
+            TT.OffKeyUp(m_KeyUpHandler);
+        }
+    }
+
+    private void OnKeyDown(KeyEvent e)
+    {
+        m_PressedKeys.Add(e.key);
+
+        // 组合键判断: Ctrl+S 保存
+        if (e.ctrlKey && e.key == "s")
+        {
+            Debug.Log("Ctrl+S: 保存游戏");
+            SaveGame();
+            return;
+        }
+
+        // 常规按键
+        switch (e.key)
+        {
+            case "ArrowUp":
+            case "w":
+                MovePlayer(Vector3.forward);
+                break;
+            case "ArrowDown":
+            case "s":
+                MovePlayer(Vector3.back);
+                break;
+            case "ArrowLeft":
+            case "a":
+                MovePlayer(Vector3.left);
+                break;
+            case "ArrowRight":
+            case "d":
+                MovePlayer(Vector3.right);
+                break;
+            case " ":
+                PlayerJump();
+                break;
+        }
+    }
+
+    private void OnKeyUp(KeyEvent e)
+    {
+        m_PressedKeys.Remove(e.key);
+    }
+
+    private void MovePlayer(Vector3 direction) { /* 移动逻辑 */ }
+    private void PlayerJump() { /* 跳跃逻辑 */ }
+    private void SaveGame() { /* 保存逻辑 */ }
+}
+```
+
+---
+
+## 八、鼠标事件（PC 端）
+
+### 8.1 TT.OnMouseDown / TT.OffMouseDown
+
+**说明**: 注册/注销鼠标按下事件监听。仅在 PC 端有效。
+
+**语法**:
+
+```csharp
+public static void OnMouseDown(Action<MouseEvent> callback)
+public static void OffMouseDown(Action<MouseEvent> callback)
+```
+
+---
+
+### 8.2 TT.OnMouseUp / TT.OffMouseUp
+
+**说明**: 注册/注销鼠标释放事件监听。仅在 PC 端有效。
+
+**语法**:
+
+```csharp
+public static void OnMouseUp(Action<MouseEvent> callback)
+public static void OffMouseUp(Action<MouseEvent> callback)
+```
+
+---
+
+### 8.3 TT.OnMouseMove / TT.OffMouseMove
+
+**说明**: 注册/注销鼠标移动事件监听。仅在 PC 端有效。
+
+**语法**:
+
+```csharp
+public static void OnMouseMove(Action<MouseEvent> callback)
+public static void OffMouseMove(Action<MouseEvent> callback)
+```
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using TT;
+
+public class PCMouseInput : MonoBehaviour
+{
+    private Action<MouseEvent> m_MouseDownHandler;
+    private Action<MouseEvent> m_MouseUpHandler;
+    private Action<MouseEvent> m_MouseMoveHandler;
+
+    void OnEnable()
+    {
+        if (!TT.InContainerEnv)
+        {
+            m_MouseDownHandler = OnMouseDown;
+            m_MouseUpHandler = OnMouseUp;
+            m_MouseMoveHandler = OnMouseMove;
+
+            TT.OnMouseDown(m_MouseDownHandler);
+            TT.OnMouseUp(m_MouseUpHandler);
+            TT.OnMouseMove(m_MouseMoveHandler);
+        }
+    }
+
+    void OnDisable()
+    {
+        if (!TT.InContainerEnv)
+        {
+            TT.OffMouseDown(m_MouseDownHandler);
+            TT.OffMouseUp(m_MouseUpHandler);
+            TT.OffMouseMove(m_MouseMoveHandler);
+        }
+    }
+
+    private void OnMouseDown(MouseEvent e)
+    {
+        Debug.Log($"鼠标按下: button={e.button}, pos=({e.x}, {e.y})");
+        // 将鼠标坐标映射到游戏世界
+        HandleMouseClick(new Vector2(e.x, e.y));
+    }
+
+    private void OnMouseUp(MouseEvent e)
+    {
+        Debug.Log($"鼠标释放: button={e.button}");
+    }
+
+    private void OnMouseMove(MouseEvent e)
+    {
+        // 鼠标移动时的持续处理，如拖动视角
+        HandleMouseDrag(new Vector2(e.x, e.y));
+    }
+
+    private void HandleMouseClick(Vector2 screenPos) { /* 点击逻辑 */ }
+    private void HandleMouseDrag(Vector2 screenPos) { /* 拖动逻辑 */ }
+}
+```
+
+---
+
+## 九、滚轮事件（PC 端）
+
+### 9.1 TT.OnWheel / TT.OffWheel
+
+**说明**: 注册/注销鼠标滚轮事件监听。用于 PC 端的缩放、滚动列表等操作。水平滚动（deltaX）通常由触控板横向滑动触发。
+
+**语法**:
+
+```csharp
+public static void OnWheel(Action<float, float> callback)
+public static void OffWheel(Action<float, float> callback)
+```
+
+**回调参数说明**:
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| deltaX | float | 水平滚动量，正值表示向右滚动 |
+| deltaY | float | 垂直滚动量，正值表示向下滚动 |
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using TT;
+
+public class PCWheelInput : MonoBehaviour
+{
+    public Camera m_Camera;
+    public float m_ZoomSpeed = 2.0f;
+    private Action<float, float> m_WheelHandler;
+
+    void OnEnable()
+    {
+        if (!TT.InContainerEnv)
+        {
+            m_WheelHandler = OnWheel;
+            TT.OnWheel(m_WheelHandler);
+        }
+    }
+
+    void OnDisable()
+    {
+        if (!TT.InContainerEnv)
+        {
+            TT.OffWheel(m_WheelHandler);
+        }
+    }
+
+    private void OnWheel(float deltaX, float deltaY)
+    {
+        Debug.Log($"滚轮: deltaX={deltaX}, deltaY={deltaY}");
+
+        // 相机缩放
+        if (m_Camera != null)
+        {
+            float zoomAmount = deltaY * m_ZoomSpeed;
+            m_Camera.fieldOfView = Mathf.Clamp(
+                m_Camera.fieldOfView - zoomAmount,
+                20f, 120f
+            );
+        }
+    }
+}
+```
+
+---
+
+## 十、网络状态
+
+### 10.1 TT.GetNetWorkType
+
+**说明**: 获取当前设备的网络连接类型。异步操作，通过回调返回网络类型字符串。游戏可根据网络类型动态调整画质、预加载策略和延迟容忍度。
+
+**语法**:
+
+```csharp
+public static void GetNetWorkType(Action<string> callback)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| callback | Action\<string\> | 是 | - | 回调函数，参数为网络类型字符串 |
+
+**返回值说明** (回调参数):
+
+| 返回值 | 说明 | 建议策略 |
+|--------|------|----------|
+| `"wifi"` | Wi-Fi 网络 | 高清画质，正常预加载 |
+| `"5g"` | 5G 移动网络 | 高清画质，正常预加载 |
+| `"4g"` | 4G 移动网络 | 中画质，适度预加载 |
+| `"3g"` | 3G 移动网络 | 低画质，减少预加载 |
+| `"2g"` | 2G 移动网络 | 最低画质，按需加载 |
+| `"unknown"` | 未知网络类型 | 保守策略 |
+| `"none"` | 无网络连接 | 离线模式 |
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using TT;
+
+public class NetworkQualityManager : MonoBehaviour
+{
+    private string m_CurrentNetworkType = "unknown";
+
+    void Start()
+    {
+        CheckNetworkStatus();
+    }
+
+    /// <summary>
+    /// 检查网络状态并调整游戏品质
+    /// </summary>
+    public void CheckNetworkStatus()
+    {
+        TT.GetNetWorkType((networkType) =>
+        {
+            m_CurrentNetworkType = networkType;
+            Debug.Log($"当前网络类型: {networkType}");
+
+            switch (networkType)
+            {
+                case "wifi":
+                case "5g":
+                    SetQualityLevel(QualityLevel.High);
+                    break;
+                case "4g":
+                    SetQualityLevel(QualityLevel.Medium);
+                    break;
+                case "3g":
+                case "2g":
+                    SetQualityLevel(QualityLevel.Low);
+                    break;
+                case "none":
+                    Debug.LogWarning("无网络连接，切换到离线模式");
+                    EnterOfflineMode();
+                    break;
+                default:
+                    SetQualityLevel(QualityLevel.Medium);
+                    break;
+            }
+        });
+    }
+
+    private enum QualityLevel { High, Medium, Low }
+
+    private void SetQualityLevel(QualityLevel level)
+    {
+        switch (level)
+        {
+            case QualityLevel.High:
+                QualitySettings.SetQualityLevel(2);
+                Application.targetFrameRate = 60;
+                break;
+            case QualityLevel.Medium:
+                QualitySettings.SetQualityLevel(1);
+                Application.targetFrameRate = 30;
+                break;
+            case QualityLevel.Low:
+                QualitySettings.SetQualityLevel(0);
+                Application.targetFrameRate = 30;
+                // 进一步降低纹理、阴影等
+                break;
+        }
+    }
+
+    private void EnterOfflineMode()
+    {
+        // 加载离线缓存数据，禁用网络相关功能
+    }
+}
+```
+
+---
+
+## 十一、设备能力最佳实践
+
+### 11.1 传感器生命周期管理
+
+传感器（加速度计、陀螺仪、设备方向）应在 `OnEnable` 中注册、`OnDisable` 中注销，避免场景切换时内存泄漏和后台持续耗电。
+
+```csharp
+public class SensorManager : MonoBehaviour
+{
+    private Action<float, float, float> m_AccelHandler;
+    private Action<float, float, float> m_GyroHandler;
+    private Action<float, float, float> m_MotionHandler;
+
+    void OnEnable()
+    {
+        m_AccelHandler = OnAccel;
+        m_GyroHandler = OnGyro;
+        m_MotionHandler = OnMotion;
+
+        TT.OnAccelerometerChange(m_AccelHandler);
+        TT.OnGyroscopeChange(m_GyroHandler);
+        TT.OnDeviceMotionChange(m_MotionHandler);
+
+        TT.StartAccelerometer("game");
+        TT.StartGyroscope("game");
+        TT.StartDeviceMotionListening("game");
+    }
+
+    void OnDisable()
+    {
+        TT.StopAccelerometer();
+        TT.StopGyroscope();
+        TT.StopDeviceMotionListening();
+
+        TT.OffAccelerometerChange(m_AccelHandler);
+        TT.OffGyroscopeChange(m_GyroHandler);
+        TT.OffDeviceMotionChange(m_MotionHandler);
+    }
+
+    private void OnAccel(float x, float y, float z) { }
+    private void OnGyro(float x, float y, float z) { }
+    private void OnMotion(float a, float b, float g) { }
+}
+```
+
+### 11.2 采样间隔选择
+
+| 场景 | 推荐 interval | 说明 |
+|------|--------------|------|
+| 赛车/动作游戏（倾斜操控） | `"game"` (20ms) | 需要高灵敏度实时响应 |
+| 平衡球/AR 场景 | `"game"` (20ms) | 需要高精度旋转数据 |
+| 摇一摇检测 | `"normal"` (200ms) | 低频检测即可，节省电量 |
+| UI 界面中的传感器展示 | `"ui"` (60ms) | 折中方案 |
+
+### 11.3 PC 端事件与 Editor 调试
+
+键盘、鼠标、滚轮事件仅在 PC 端有效。在 `TT.InContainerEnv == false`（Unity Editor 环境）下直接注册即可用于开发调试，真机运行时会自动忽略。
+
+```csharp
+// Editor 调试用的键盘控制
+#if UNITY_EDITOR
+void Start()
+{
+    TT.OnKeyDown(HandleEditorKey);
+    TT.OnMouseMove(HandleEditorMouse);
+}
+#endif
+```
+# 存储与文件
+
+> 基于官方文档: 存储 API - 数据缓存、PlayerPrefs、文件系统
+> 生成时间: 2026-06-24
+
+> ⚠️ **【安全声明】**：
+> - **玩家数据**：`Save`/`LoadSaving` 存储的玩家档案包含用户个人信息（昵称、游戏进度等），生产环境禁止打印完整 JSON
+> - **PlayerPrefs**：`PlayerPrefs.GetString` 获取的玩家名称等信息禁止打印到生产日志，已用 `#if UNITY_EDITOR || DEVELOPMENT_BUILD` 包裹
+> - **文件路径**：避免在生产日志中暴露应用沙盒目录结构
+
+## 一、数据缓存
+
+数据缓存提供轻量级的持久化键值对存储，适合保存游戏设置、玩家偏好、存档摘要等少量结构化数据。底层为异步写入，数据存储在宿主 App 为小游戏分配的专用存储空间中。
+
+### 1.1 TT.Save
+
+**说明**: 保存数据到缓存。以键值对形式持久化字符串数据，支持复杂对象的 JSON 序列化存储。单个 key 对应的 value 建议不超过 1MB。
+
+**语法**:
+
+```csharp
+public static void Save(string key, string value)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| key | string | 是 | - | 存储键名，用于后续读取和删除 |
+| value | string | 是 | - | 存储的字符串值。建议复杂对象先 JSON 序列化 |
+
+---
+
+### 1.2 TT.LoadSaving
+
+**说明**: 从缓存中读取指定 key 的数据。同步方法，直接返回字符串。若 key 不存在返回空字符串。
+
+**语法**:
+
+```csharp
+public static string LoadSaving(string key)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| key | string | 是 | - | 要读取的存储键名 |
+
+**返回值**: `string`，对应存储的值。key 不存在时返回 `""`。
+
+---
+
+### 1.3 TT.DeleteSaving
+
+**说明**: 删除指定 key 的缓存数据。
+
+**语法**:
+
+```csharp
+public static void DeleteSaving(string key)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| key | string | 是 | - | 要删除的存储键名 |
+
+---
+
+### 1.4 TT.ClearAllSaving
+
+**说明**: 清空当前小游戏的全部缓存数据。该操作不可逆，调用前应提示用户确认。
+
+**语法**:
+
+```csharp
+public static void ClearAllSaving()
+```
+
+---
+
+### 1.5 TT.GetSavingDiskSize
+
+**说明**: 获取当前缓存数据占用的磁盘空间大小。同步方法，返回字节数。
+
+**语法**:
+
+```csharp
+public static long GetSavingDiskSize()
+```
+
+**返回值**: `long`，缓存数据总字节数。
+
+---
+
+### 1.6 代码示例
+
+```csharp
+using UnityEngine;
+using TT;
+
+/// <summary>
+/// 基于数据缓存的存档管理器
+/// </summary>
+public class SaveManager : MonoBehaviour
+{
+    private const string SAVE_KEY_PROFILE = "player_profile";
+    private const string SAVE_KEY_SETTINGS = "game_settings";
+    private const string SAVE_KEY_LEVEL = "level_data";
+
+    /// <summary>
+    /// 保存玩家档案（对象序列化存储）
+    /// </summary>
+    public void SavePlayerProfile(PlayerProfile profile)
+    {
+        string json = JsonUtility.ToJson(profile);
+        TT.Save(SAVE_KEY_PROFILE, json);
+        // ⚠️ 安全：玩家档案包含个人信息，禁止打印完整 JSON 到生产日志
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log($"玩家档案已保存: {json}");
+        #else
+        Debug.Log("玩家档案已保存");
+        #endif
+    }
+
+    /// <summary>
+    /// 读取玩家档案
+    /// </summary>
+    public PlayerProfile LoadPlayerProfile()
+    {
+        string json = TT.LoadSaving(SAVE_KEY_PROFILE);
+        if (string.IsNullOrEmpty(json))
+        {
+            Debug.LogWarning("未找到玩家档案，使用默认值");
+            return new PlayerProfile { playerName = "新玩家", level = 1, coins = 100 };
+        }
+
+        try
+        {
+            return JsonUtility.FromJson<PlayerProfile>(json);
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError($"档案解析失败: {e.Message}");
+            return new PlayerProfile { playerName = "新玩家", level = 1, coins = 100 };
+        }
+    }
+
+    /// <summary>
+    /// 保存游戏设置
+    /// </summary>
+    public void SaveSettings(GameSettings settings)
+    {
+        string json = JsonUtility.ToJson(settings);
+        TT.Save(SAVE_KEY_SETTINGS, json);
+    }
+
+    /// <summary>
+    /// 删除单个存档
+    /// </summary>
+    public void DeleteSaveData(string key)
+    {
+        TT.DeleteSaving(key);
+        Debug.Log($"已删除存档: {key}");
+    }
+
+    /// <summary>
+    /// 清空所有存档（⚠️ 不可逆，必须用户确认后执行）
+    /// </summary>
+    public void ClearAllSaveData()
+    {
+        // ⚠️ 安全：不可逆操作，调用前必须弹窗获得用户明确确认
+        ShowConfirmDialog("确定要清空所有存档吗？此操作不可撤销！", () =>
+        {
+            TT.ClearAllSaving();
+            #if UNITY_EDITOR || DEVELOPMENT_BUILD
+            Debug.Log("全部存档已清空");
+            #endif
+        });
+    }
+
+    private void ShowConfirmDialog(string message, System.Action onConfirm)
+    {
+        // 展示确认弹窗，用户确认后才执行 onConfirm
+    }
+
+    /// <summary>
+    /// 获取缓存占用大小
+    /// </summary>
+    public string GetCacheSizeInfo()
+    {
+        long bytes = TT.GetSavingDiskSize();
+        if (bytes < 1024)
+            return $"{bytes} B";
+        else if (bytes < 1024 * 1024)
+            return $"{bytes / 1024f:F1} KB";
+        else
+            return $"{bytes / (1024f * 1024f):F1} MB";
+    }
+}
+
+[System.Serializable]
+public class PlayerProfile
+{
+    public string playerName;
+    public int level;
+    public int coins;
+    public long playTimeSeconds;
+}
+
+[System.Serializable]
+public class GameSettings
+{
+    public float musicVolume = 0.8f;
+    public float sfxVolume = 1.0f;
+    public bool vibrationEnabled = true;
+    public int qualityLevel = 1;
+}
+```
+
+---
+
+## 二、PlayerPrefs
+
+Unity 原生 `PlayerPrefs` 在 WebGL / 小游戏容器环境中不可用。抖音小游戏 Unity SDK 提供了 `TT.PlayerPrefs` 作为完全兼容的替代方案，接口与 Unity 原生 `PlayerPrefs` 一致，底层映射到宿主 App 提供的键值存储系统。
+
+### 2.1 SetInt / GetInt
+
+**说明**: 存储和读取整数类型数据。
+
+**语法**:
+
+```csharp
+public static void SetInt(string key, int value)
+public static int GetInt(string key, int defaultValue = 0)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| key | string | 是 | - | 存储键名 |
+| value | int | 是 | - | 要存储的整数值 |
+| defaultValue | int | 否 | 0 | 键不存在时返回的默认值 |
+
+---
+
+### 2.2 SetFloat / GetFloat
+
+**说明**: 存储和读取浮点数类型数据。
+
+**语法**:
+
+```csharp
+public static void SetFloat(string key, float value)
+public static float GetFloat(string key, float defaultValue = 0f)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| key | string | 是 | - | 存储键名 |
+| value | float | 是 | - | 要存储的浮点数值 |
+| defaultValue | float | 否 | 0f | 键不存在时返回的默认值 |
+
+---
+
+### 2.3 SetString / GetString
+
+**说明**: 存储和读取字符串类型数据。
+
+**语法**:
+
+```csharp
+public static void SetString(string key, string value)
+public static string GetString(string key, string defaultValue = "")
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| key | string | 是 | - | 存储键名 |
+| value | string | 是 | - | 要存储的字符串值 |
+| defaultValue | string | 否 | "" | 键不存在时返回的默认值 |
+
+---
+
+### 2.4 HasKey
+
+**说明**: 判断指定 key 是否存在。
+
+**语法**:
+
+```csharp
+public static bool HasKey(string key)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| key | string | 是 | - | 要检查的键名 |
+
+**返回值**: `bool`，`true` 表示该键存在。
+
+---
+
+### 2.5 DeleteKey
+
+**说明**: 删除指定 key 的数据。
+
+**语法**:
+
+```csharp
+public static void DeleteKey(string key)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| key | string | 是 | - | 要删除的键名 |
+
+---
+
+### 2.6 DeleteAll
+
+**说明**: 删除所有 PlayerPrefs 数据。不可逆操作，调用前应提示用户。
+
+**语法**:
+
+```csharp
+public static void DeleteAll()
+```
+
+---
+
+### 2.7 Save
+
+**说明**: 将修改写入磁盘。Unity 原生 PlayerPrefs 默认在游戏退出时自动保存，但在 WebGL 环境下需显式调用 `Save()` 以确保数据落盘。抖音小游戏环境中同样建议在关键数据修改后手动调用此方法。
+
+**语法**:
+
+```csharp
+public static void Save()
+```
+
+---
+
+### 2.8 代码示例
+
+```csharp
+using UnityEngine;
+using TT;
+
+/// <summary>
+/// PlayerPrefs 完整使用示例: 游戏设置管理
+/// </summary>
+public class GameSettingsManager : MonoBehaviour
+{
+    private const string KEY_MUSIC_VOLUME = "MusicVolume";
+    private const string KEY_SFX_VOLUME = "SfxVolume";
+    private const string KEY_HIGH_SCORE = "HighScore";
+    private const string KEY_PLAYER_NAME = "PlayerName";
+    private const string KEY_FIRST_RUN = "FirstRun";
+
+    void Start()
+    {
+        // 检查是否首次运行
+        if (!TT.PlayerPrefs.HasKey(KEY_FIRST_RUN))
+        {
+            InitDefaultSettings();
+            TT.PlayerPrefs.SetInt(KEY_FIRST_RUN, 1);
+            TT.PlayerPrefs.Save();
+            Debug.Log("首次运行，已初始化默认设置");
+        }
+        else
+        {
+            LoadSettings();
+        }
+    }
+
+    /// <summary>
+    /// 初始化默认设置
+    /// </summary>
+    private void InitDefaultSettings()
+    {
+        TT.PlayerPrefs.SetFloat(KEY_MUSIC_VOLUME, 0.8f);
+        TT.PlayerPrefs.SetFloat(KEY_SFX_VOLUME, 1.0f);
+        TT.PlayerPrefs.SetInt(KEY_HIGH_SCORE, 0);
+        TT.PlayerPrefs.SetString(KEY_PLAYER_NAME, "新玩家");
+    }
+
+    /// <summary>
+    /// 加载所有设置
+    /// </summary>
+    private void LoadSettings()
+    {
+        float musicVolume = TT.PlayerPrefs.GetFloat(KEY_MUSIC_VOLUME, 0.8f);
+        float sfxVolume = TT.PlayerPrefs.GetFloat(KEY_SFX_VOLUME, 1.0f);
+        int highScore = TT.PlayerPrefs.GetInt(KEY_HIGH_SCORE, 0);
+        string playerName = TT.PlayerPrefs.GetString(KEY_PLAYER_NAME, "新玩家");
+
+        // ⚠️ 安全：玩家名称为个人信息，生产环境禁止打印
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log($"设置加载完成: 音乐={musicVolume}, 音效={sfxVolume}, " +
+                  $"最高分={highScore}, 玩家名={playerName}");
+        #else
+        Debug.Log($"设置加载完成: 音乐={musicVolume}, 音效={sfxVolume}, 最高分={highScore}");
+        #endif
+
+        ApplySettings(musicVolume, sfxVolume);
+    }
+
+    /// <summary>
+    /// 更新并持久化最高分
+    /// </summary>
+    public void UpdateHighScore(int newScore)
+    {
+        int currentHigh = TT.PlayerPrefs.GetInt(KEY_HIGH_SCORE, 0);
+        if (newScore > currentHigh)
+        {
+            TT.PlayerPrefs.SetInt(KEY_HIGH_SCORE, newScore);
+            TT.PlayerPrefs.Save();
+            Debug.Log($"刷新最高分: {newScore}");
+        }
+    }
+
+    /// <summary>
+    /// 更新音乐音量
+    /// </summary>
+    public void SetMusicVolume(float volume)
+    {
+        volume = Mathf.Clamp01(volume);
+        TT.PlayerPrefs.SetFloat(KEY_MUSIC_VOLUME, volume);
+        TT.PlayerPrefs.Save();
+    }
+
+    /// <summary>
+    /// 重置所有设置（⚠️ 不可逆，必须用户确认后执行）
+    /// </summary>
+    public void ResetAllSettings()
+    {
+        // ⚠️ 安全：DeleteAll 不可逆，调用前必须弹窗获得用户明确确认
+        ShowConfirmDialog("确定要重置所有设置吗？此操作不可撤销！", () =>
+        {
+            TT.PlayerPrefs.DeleteAll();
+            #if UNITY_EDITOR || DEVELOPMENT_BUILD
+            Debug.Log("所有设置已重置");
+            #endif
+        });
+    }
+
+    private void ApplySettings(float musicVol, float sfxVol)
+    {
+        // 应用到音频系统
+        AudioListener.volume = musicVol;
+    }
+}
+```
+
+---
+
+## 三、文件系统
+
+抖音小游戏提供了完整的文件系统 API，支持文件的读写、目录管理、文件信息查询等操作。文件系统操作分为**同步**（方法名以 `Sync` 结尾）和**异步**两种模式。同步方法建议在主线程中限制使用，大文件操作推荐用异步方法。
+
+### 3.1 TT.GetFileSystemManager
+
+**说明**: 获取全局唯一的文件系统管理器实例。所有文件操作均通过此实例进行。
+
+**语法**:
+
+```csharp
+public static TTFileSystemManager GetFileSystemManager()
+```
+
+**返回值**: `TTFileSystemManager`，全局单例文件管理器。
+
+**代码示例**:
+
+```csharp
+TTFileSystemManager fs = TT.GetFileSystemManager();
+```
+
+---
+
+### 3.2 Access / AccessSync
+
+**说明**: 检查文件或目录是否存在。异步版本通过回调返回结果，同步版本直接返回 `bool`。
+
+**语法**:
+
+```csharp
+// 异步
+public void Access(string path, Action<bool> callback)
+
+// 同步
+public bool AccessSync(string path)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| path | string | 是 | - | 要检查的文件或目录路径 |
+| callback | Action\<bool\> | 是 | - | 异步回调，`true` 表示存在 |
+
+---
+
+### 3.3 CopyFile / CopyFileSync
+
+**说明**: 复制文件。源路径和目标路径的父目录必须已存在。
+
+**语法**:
+
+```csharp
+// 异步
+public void CopyFile(string srcPath, string destPath, Action<bool> callback = null)
+
+// 同步
+public bool CopyFileSync(string srcPath, string destPath)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| srcPath | string | 是 | - | 源文件路径 |
+| destPath | string | 是 | - | 目标文件路径 |
+| callback | Action\<bool\> | 否 | null | 异步回调，`true` 表示复制成功 |
+
+---
+
+### 3.4 Mkdir / MkdirSync
+
+**说明**: 创建目录。
+
+**语法**:
+
+```csharp
+// 异步
+public void Mkdir(string dirPath, bool recursive = false, Action<bool> callback = null)
+
+// 同步
+public bool MkdirSync(string dirPath, bool recursive = false)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| dirPath | string | 是 | - | 要创建的目录路径 |
+| recursive | bool | 否 | false | 是否递归创建父级目录。`true` 时自动创建路径中所有不存在的父目录 |
+| callback | Action\<bool\> | 否 | null | 异步回调，`true` 表示创建成功 |
+
+---
+
+### 3.5 Readdir / ReaddirSync
+
+**说明**: 读取目录内容，返回目录下的文件列表。
+
+**语法**:
+
+```csharp
+// 异步
+public void Readdir(string dirPath, Action<string[]> callback)
+
+// 同步
+public string[] ReaddirSync(string dirPath)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| dirPath | string | 是 | - | 目录路径 |
+| callback | Action\<string[]\> | 是 | - | 异步回调，参数为文件名数组 |
+
+---
+
+### 3.6 ReadFile / ReadFileSync
+
+**说明**: 读取文件内容。支持 utf8、base64、binary 三种编码格式。
+
+**语法**:
+
+```csharp
+// 异步
+public void ReadFile(string filePath, string encoding, Action<string> callback)
+
+// 同步
+public string ReadFileSync(string filePath, string encoding = "utf8")
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| filePath | string | 是 | - | 文件路径 |
+| encoding | string | 是 | "utf8" | 编码格式: `"utf8"`、`"base64"`、`"binary"` |
+| callback | Action\<string\> | 是 | - | 异步回调，参数为文件内容字符串 |
+
+---
+
+### 3.7 WriteFile / WriteFileSync
+
+**说明**: 写入文件内容（覆盖模式）。若文件不存在则创建，存在则覆盖原内容。
+
+**语法**:
+
+```csharp
+// 异步
+public void WriteFile(string filePath, string data, string encoding, Action<bool> callback = null)
+
+// 同步
+public bool WriteFileSync(string filePath, string data, string encoding = "utf8")
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| filePath | string | 是 | - | 文件路径 |
+| data | string | 是 | - | 要写入的数据 |
+| encoding | string | 是 | "utf8" | 编码格式: `"utf8"`、`"base64"`、`"binary"` |
+| callback | Action\<bool\> | 否 | null | 异步回调，`true` 表示写入成功 |
+
+---
+
+### 3.8 AppendFile / AppendFileSync
+
+**说明**: 向文件追加内容。若文件不存在则创建。
+
+**语法**:
+
+```csharp
+// 异步
+public void AppendFile(string filePath, string data, string encoding, Action<bool> callback = null)
+
+// 同步
+public bool AppendFileSync(string filePath, string data, string encoding = "utf8")
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| filePath | string | 是 | - | 文件路径 |
+| data | string | 是 | - | 要追加的内容 |
+| encoding | string | 是 | "utf8" | 编码格式 |
+| callback | Action\<bool\> | 否 | null | 异步回调，`true` 表示追加成功 |
+
+---
+
+### 3.9 Rename / RenameSync
+
+**说明**: 重命名文件或目录。
+
+**语法**:
+
+```csharp
+// 异步
+public void Rename(string oldPath, string newPath, Action<bool> callback = null)
+
+// 同步
+public bool RenameSync(string oldPath, string newPath)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| oldPath | string | 是 | - | 原始路径 |
+| newPath | string | 是 | - | 新路径 |
+| callback | Action\<bool\> | 否 | null | 异步回调，`true` 表示重命名成功 |
+
+---
+
+### 3.10 Rmdir / RmdirSync
+
+**说明**: 删除目录。
+
+**语法**:
+
+```csharp
+// 异步
+public void Rmdir(string dirPath, bool recursive = false, Action<bool> callback = null)
+
+// 同步
+public bool RmdirSync(string dirPath, bool recursive = false)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| dirPath | string | 是 | - | 要删除的目录路径 |
+| recursive | bool | 否 | false | 是否递归删除。`false` 时目录非空会删除失败 |
+| callback | Action\<bool\> | 否 | null | 异步回调，`true` 表示删除成功 |
+
+---
+
+### 3.11 Unlink / UnlinkSync
+
+**说明**: 删除单个文件。
+
+**语法**:
+
+```csharp
+// 异步
+public void Unlink(string filePath, Action<bool> callback = null)
+
+// 同步
+public bool UnlinkSync(string filePath)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| filePath | string | 是 | - | 要删除的文件路径 |
+| callback | Action\<bool\> | 否 | null | 异步回调，`true` 表示删除成功 |
+
+---
+
+### 3.12 Stat / StatSync
+
+**说明**: 获取文件或目录的详细信息。
+
+**语法**:
+
+```csharp
+// 异步
+public void Stat(string path, bool recursive = false, Action<Stats> callback = null)
+
+// 同步
+public Stats StatSync(string path, bool recursive = false)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| path | string | 是 | - | 文件或目录路径 |
+| recursive | bool | 否 | false | 是否递归获取子目录信息 |
+| callback | Action\<Stats\> | 否 | null | 异步回调，参数为 Stats 对象 |
+
+**Stats 对象说明**:
+
+| 属性/方法 | 类型 | 说明 |
+|-----------|------|------|
+| size | long | 文件大小（字节） |
+| isFile() | bool | 是否为文件 |
+| isDirectory() | bool | 是否为目录 |
+| lastModifiedTime | long | 最后修改时间戳 |
+
+---
+
+### 3.13 Open / OpenSync
+
+**说明**: 打开文件并返回文件描述符（fd）。后续可对 fd 进行读写、截断等操作。操作完成后必须调用 `Close` 释放资源。
+
+**语法**:
+
+```csharp
+// 异步
+public void Open(string filePath, string flag, Action<int> callback)
+
+// 同步
+public int OpenSync(string filePath, string flag)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| filePath | string | 是 | - | 文件路径 |
+| flag | string | 是 | - | 打开模式: `"r"` 只读、`"w"` 只写（覆盖）、`"a"` 追加写 |
+
+**返回值**: `int`，文件描述符。失败时返回负值。
+
+---
+
+### 3.14 Close / CloseSync
+
+**说明**: 关闭文件描述符，释放文件句柄资源。
+
+**语法**:
+
+```csharp
+// 异步
+public void Close(int fd, Action<bool> callback = null)
+
+// 同步
+public bool CloseSync(int fd)
+```
+
+---
+
+### 3.15 Write / WriteSync（fd 模式）
+
+**说明**: 向已打开的文件描述符写入数据。
+
+**语法**:
+
+```csharp
+// 异步
+public void Write(int fd, string data, string encoding, Action<bool> callback = null)
+
+// 同步
+public bool WriteSync(int fd, string data, string encoding = "utf8")
+```
+
+---
+
+### 3.16 Read / ReadSync（fd 模式）
+
+**说明**: 从文件描述符读取数据。
+
+**语法**:
+
+```csharp
+// 异步
+public void Read(int fd, string encoding, Action<string> callback)
+
+// 同步
+public string ReadSync(int fd, string encoding = "utf8")
+```
+
+---
+
+### 3.17 Fstat / FstatSync
+
+**说明**: 获取文件描述符对应文件的信息。
+
+**语法**:
+
+```csharp
+// 异步
+public void Fstat(int fd, Action<Stats> callback)
+
+// 同步
+public Stats FstatSync(int fd)
+```
+
+---
+
+### 3.18 Ftruncate / FtruncateSync
+
+**说明**: 对文件描述符执行截断操作。
+
+**语法**:
+
+```csharp
+// 异步
+public void Ftruncate(int fd, long length, Action<bool> callback = null)
+
+// 同步
+public bool FtruncateSync(int fd, long length)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| fd | int | 是 | - | 文件描述符 |
+| length | long | 是 | - | 截断后文件长度（字节） |
+
+---
+
+### 3.19 Truncate / TruncateSync
+
+**说明**: 对文件路径执行截断操作。
+
+**语法**:
+
+```csharp
+// 异步
+public void Truncate(string filePath, long length, Action<bool> callback = null)
+
+// 同步
+public bool TruncateSync(string filePath, long length)
+```
+
+---
+
+### 3.20 ReadDir / ReadDirSync
+
+**说明**: 读取目录内容（与 Readdir 类似的另一个版本）。
+
+**语法**:
+
+```csharp
+// 异步
+public void ReadDir(string dirPath, Action<string[]> callback)
+
+// 同步
+public string[] ReadDirSync(string dirPath)
+```
+
+---
+
+### 3.21 异步特有方法
+
+以下方法仅有异步版本，无对应的 Sync 同步版本。
+
+**ReadCompressedFile**: 读取压缩文件内容。
+
+```csharp
+public void ReadCompressedFile(string filePath, string compressionType, Action<string> callback)
+```
+
+**GetSavedFileList**: 获取已保存的文件列表。
+
+```csharp
+public void GetSavedFileList(Action<SavedFileInfo[]> callback)
+```
+
+**GetFileInfo**: 获取文件详细信息。
+
+```csharp
+public void GetFileInfo(string filePath, Action<FileInfo> callback)
+```
+
+---
+
+### 3.22 文件读写完整代码示例
+
+```csharp
+using UnityEngine;
+using TT;
+
+/// <summary>
+/// 文件系统管理器: 存档文件的完整读写流程
+/// </summary>
+public class FileSystemSaveManager : MonoBehaviour
+{
+    private TTFileSystemManager m_Fs;
+    private string m_DataDir;
+
+    void Start()
+    {
+        if (TT.InContainerEnv)
+        {
+            m_Fs = TT.GetFileSystemManager();
+            // 用户数据目录通过环境变量获取
+            m_DataDir = GetUserDataPath();
+            InitDirectory();
+        }
+    }
+
+    /// <summary>
+    /// 获取用户可读写的目录路径
+    /// </summary>
+    private string GetUserDataPath()
+    {
+        // 用户数据目录路径，此处通过 Unity 持久化路径拼接
+        string path = Application.persistentDataPath + "/game_data";
+        return path;
+    }
+
+    /// <summary>
+    /// 初始化目录结构
+    /// </summary>
+    private void InitDirectory()
+    {
+        if (m_Fs == null) return;
+
+        // 创建必要的子目录（递归创建，忽略已存在的情况）
+        m_Fs.MkdirSync(m_DataDir, true);
+        m_Fs.MkdirSync(m_DataDir + "/saves", true);
+        m_Fs.MkdirSync(m_DataDir + "/config", true);
+        m_Fs.MkdirSync(m_DataDir + "/logs", true);
+
+        Debug.Log($"数据目录初始化完成: {m_DataDir}");
+    }
+
+    /// <summary>
+    /// 保存游戏存档（JSON 文件）
+    /// </summary>
+    public void SaveGameData(string slotName, GameSaveData data)
+    {
+        if (m_Fs == null) return;
+
+        string json = JsonUtility.ToJson(data);
+        string filePath = $"{m_DataDir}/saves/{slotName}.json";
+
+        // 异步写入，避免主线程卡顿
+        m_Fs.WriteFile(filePath, json, "utf8", (success) =>
+        {
+            if (success)
+            {
+                Debug.Log($"存档 {slotName} 已保存: {filePath}");
+            }
+            else
+            {
+                Debug.LogError($"存档 {slotName} 保存失败");
+            }
+        });
+    }
+
+    /// <summary>
+    /// 加载游戏存档
+    /// </summary>
+    public void LoadGameData(string slotName, System.Action<GameSaveData> onLoaded)
+    {
+        if (m_Fs == null)
+        {
+            onLoaded?.Invoke(null);
+            return;
+        }
+
+        string filePath = $"{m_DataDir}/saves/{slotName}.json";
+
+        // 先检查文件是否存在
+        if (!m_Fs.AccessSync(filePath))
+        {
+            Debug.LogWarning($"存档 {slotName} 不存在");
+            onLoaded?.Invoke(null);
+            return;
+        }
+
+        m_Fs.ReadFile(filePath, "utf8", (content) =>
+        {
+            try
+            {
+                GameSaveData data = JsonUtility.FromJson<GameSaveData>(content);
+                Debug.Log($"存档 {slotName} 已加载");
+                onLoaded?.Invoke(data);
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"存档解析失败: {e.Message}");
+                onLoaded?.Invoke(null);
+            }
+        });
+    }
+
+    /// <summary>
+    /// 获取所有存档列表
+    /// </summary>
+    public string[] GetSaveSlots()
+    {
+        if (m_Fs == null) return new string[0];
+
+        string savesPath = $"{m_DataDir}/saves";
+        if (!m_Fs.AccessSync(savesPath)) return new string[0];
+
+        string[] files = m_Fs.ReaddirSync(savesPath);
+        return files;
+    }
+
+    /// <summary>
+    /// 删除指定存档
+    /// </summary>
+    public void DeleteSaveSlot(string slotName)
+    {
+        if (m_Fs == null) return;
+
+        string filePath = $"{m_DataDir}/saves/{slotName}.json";
+        m_Fs.Unlink(filePath, (success) =>
+        {
+            Debug.Log(success ? $"存档 {slotName} 已删除" : $"存档 {slotName} 删除失败");
+        });
+    }
+
+    /// <summary>
+    /// 追加日志（使用文件描述符模式，性能更高）
+    /// </summary>
+    public void AppendLog(string message)
+    {
+        if (m_Fs == null) return;
+
+        string logPath = $"{m_DataDir}/logs/game.log";
+        string logLine = $"[{System.DateTime.Now:yyyy-MM-dd HH:mm:ss}] {message}\n";
+
+        // 使用 Append 方式追加，效率高于读写整个文件
+        m_Fs.AppendFile(logPath, logLine, "utf8");
+    }
+
+    /// <summary>
+    /// 获取存档文件大小信息
+    /// </summary>
+    public string GetSaveFileInfo(string slotName)
+    {
+        if (m_Fs == null) return "未知";
+
+        string filePath = $"{m_DataDir}/saves/{slotName}.json";
+        if (!m_Fs.AccessSync(filePath)) return "不存在";
+
+        var stat = m_Fs.StatSync(filePath);
+        return $"大小: {stat.size} 字节, 修改时间: {stat.lastModifiedTime}";
+    }
+
+    /// <summary>
+    /// 清理所有数据（⚠️ 极度危险：递归删除全部文件，不可逆，必须用户确认后执行）
+    /// </summary>
+    public void ClearAllData()
+    {
+        // ⚠️ 安全：递归删除全部数据不可逆，调用前必须弹窗获得用户明确确认
+        ShowConfirmDialog("确定要清理所有数据吗？此操作将删除全部存档、配置和日志，不可撤销！", () =>
+        {
+            if (m_Fs == null) return;
+
+            if (m_Fs.AccessSync(m_DataDir))
+            {
+                m_Fs.RmdirSync(m_DataDir, true);
+            }
+            InitDirectory();
+            #if UNITY_EDITOR || DEVELOPMENT_BUILD
+            Debug.Log("全部数据已清理并重新初始化");
+            #endif
+        });
+    }
+}
+
+[System.Serializable]
+public class GameSaveData
+{
+    public string saveTime;
+    public int level;
+    public int score;
+    public int coins;
+    public float playTime;
+}
+```
+
+---
+
+## 四、用户数据目录
+
+### 4.1 可读写路径
+
+用户数据目录是小游戏唯一的可自由读写区域。其他路径（如代码包内文件）均为只读。
+
+```csharp
+// 方式一: 通过环境变量获取（推荐）
+string userPath = TTEnv.UserDataPath;
+
+// 方式二: 通过 Application.persistentDataPath
+string persistentPath = Application.persistentDataPath;
+```
+
+### 4.2 路径规范
+
+| 路径类型 | 前缀 | 权限 | 说明 |
+|----------|------|------|------|
+| 用户数据目录 | `ttfile://` 或系统路径 | 读写 | 持久化数据存储区域，唯一的可读写位置 |
+| 代码包内文件 | `/` | 只读 | 随代码包分发的资源文件 |
+| 临时目录 | 系统临时路径 | 读写 | 临时文件，可能被系统回收 |
+
+```csharp
+// 路径使用规范示例
+public class PathHelper
+{
+    private string m_UserDataPath;
+
+    public PathHelper()
+    {
+        m_UserDataPath = TTEnv.UserDataPath;
+    }
+
+    // 获取存档目录
+    public string GetSavePath()
+    {
+        return $"{m_UserDataPath}/saves";
+    }
+
+    // 获取配置文件路径
+    public string GetConfigPath(string configName)
+    {
+        return $"{m_UserDataPath}/config/{configName}.json";
+    }
+
+    // 获取日志目录
+    public string GetLogPath()
+    {
+        return $"{m_UserDataPath}/logs";
+    }
+
+    // 构建用户数据下的完整路径
+    public string BuildPath(params string[] segments)
+    {
+        return string.Join("/", segments);
+    }
+}
+```
+
+---
+
+## 五、存储最佳实践
+
+### 5.1 存储方案选型
+
+| 场景 | 推荐方案 | 原因 |
+|------|---------|------|
+| 少量设置项（音量、开关、玩家名） | `TT.PlayerPrefs` | 接口简单，与 Unity 原生一致，自动管理 |
+| 存档数据（关卡进度、道具列表） | 数据缓存 + JSON（`TT.Save`/`TT.LoadSaving`） | 键值对存储，支持对象序列化，上限约 10MB |
+| 大型存档、日志文件 | 文件系统（`TTFileSystemManager`） | 支持目录管理、追加写入、文件描述符操作 |
+| 临时数据 | 文件系统临时目录 | 无需持久化，系统自动回收 |
+
+### 5.2 同步 vs 异步方法选择
+
+| 场景 | 推荐 | 说明 |
+|------|------|------|
+| 启动初始化、目录检查 | 同步（Sync） | 必须在游戏逻辑启动前完成 |
+| 读存档（小文件 <100KB） | 同步（Sync） | 加载时间可忽略，简化逻辑 |
+| 写存档（大文件 >100KB） | 异步 | 避免主线程卡顿 |
+| 日志追加 | 异步 | 不影响游戏帧率 |
+| 文件列表/状态检查 | 同步（Sync） | 数据量小，即时返回 |
+
+### 5.3 序列化方式
+
+```csharp
+// JSON 序列化: 推荐用于存档数据（可读性好、跨版本兼容）
+string json = JsonUtility.ToJson(saveData);
+TT.Save("save_slot_1", json);
+
+// 读取加防御: 处理版本升级导致的字段缺失
+var data = JsonUtility.FromJson<GameSaveData>(TT.LoadSaving("save_slot_1"));
+if (data == null) data = GetDefaultSaveData();
+
+// 二进制序列化: 适用于大型二进制数据（截图、序列化后的 AssetBundle）
+byte[] bytes = ProtoBufSerialize(saveData);   // 或使用 BinaryFormatter
+string base64 = System.Convert.ToBase64String(bytes);
+m_Fs.WriteFileSync(savePath, base64, "base64");
+```
+
+### 5.4 路径规范
+
+```csharp
+// 使用 Path.Combine 构建路径，避免硬编码分隔符
+string savePath = System.IO.Path.Combine(m_UserDataPath, "saves", "slot_1.json");
+
+// 不要使用绝对路径，始终基于用户数据目录
+// 错误: "/Users/xxx/save.json"
+// 正确: TTEnv.UserDataPath + "/saves/slot_1.json"
+
+// 目录操作前确保父目录存在
+string dir = System.IO.Path.GetDirectoryName(filePath);
+if (!m_Fs.AccessSync(dir))
+{
+    m_Fs.MkdirSync(dir, true);
+}
+```
+
+### 5.5 错误处理
+
+```csharp
+/// <summary>
+/// 安全的文件读取，包含完整的错误处理和降级逻辑
+/// </summary>
+public static T SafeReadJson<T>(TTFileSystemManager fs, string filePath, T defaultValue) where T : class
+{
+    try
+    {
+        // 检查文件是否存在
+        if (fs == null || !fs.AccessSync(filePath))
+        {
+            Debug.LogWarning($"文件不存在: {filePath}，使用默认值");
+            return defaultValue;
+        }
+
+        string content = fs.ReadFileSync(filePath, "utf8");
+        if (string.IsNullOrEmpty(content))
+        {
+            Debug.LogWarning($"文件为空: {filePath}");
+            return defaultValue;
+        }
+
+        return JsonUtility.FromJson<T>(content) ?? defaultValue;
+    }
+    catch (System.Exception e)
+    {
+        Debug.LogError($"文件读取失败 [{filePath}]: {e.Message}");
+        return defaultValue;
+    }
+}
+```
+
+### 5.6 存储限制
+
+| 限制项 | 上限 | 说明 |
+|--------|------|------|
+| 数据缓存总大小 | 约 10MB | 所有 `TT.Save` 数据的总和 |
+| 单 key 数据大小 | 建议不超过 1MB | 过大数据建议使用文件系统 |
+| PlayerPrefs 总大小 | 约 10MB | 与数据缓存共享配额 |
+| 用户数据目录总大小 | 约 200MB | 依赖宿主 App 分配，可能动态变化 |
+| 文件路径最大长度 | 1024 字符 | 超过可能导致操作失败 |
+
+### 5.7 完整存储架构示例
+
+```csharp
+using UnityEngine;
+using TT;
+
+/// <summary>
+/// 统一存储层: 根据需要自动选择最合适的存储方案
+/// </summary>
+public class UnifiedStorageManager : MonoBehaviour
+{
+    private TTFileSystemManager m_Fs;
+    private string m_UserDataPath;
+
+    void Awake()
+    {
+        m_UserDataPath = TTEnv.UserDataPath;
+        m_Fs = TT.GetFileSystemManager();
+
+        // 确保目录结构存在
+        EnsureDirectoryExists(m_UserDataPath + "/saves");
+        EnsureDirectoryExists(m_UserDataPath + "/config");
+    }
+
+    /// <summary>
+    /// 小而频繁的数据: 使用 PlayerPrefs
+    /// </summary>
+    public void SaveSmallSetting(string key, string value)
+    {
+        TT.PlayerPrefs.SetString(key, value);
+        TT.PlayerPrefs.Save();
+    }
+
+    /// <summary>
+    /// 中等大小的对象数据: 使用数据缓存
+    /// </summary>
+    public void SaveObjectData<T>(string key, T data)
+    {
+        string json = JsonUtility.ToJson(data);
+        TT.Save(key, json);
+    }
+
+    public T LoadObjectData<T>(string key, T defaultValue = default)
+    {
+        string json = TT.LoadSaving(key);
+        if (string.IsNullOrEmpty(json)) return defaultValue;
+        try
+        {
+            return JsonUtility.FromJson<T>(json);
+        }
+        catch
+        {
+            return defaultValue;
+        }
+    }
+
+    /// <summary>
+    /// 大文件或日志: 使用文件系统
+    /// </summary>
+    public void SaveLargeFile(string relativePath, string content)
+    {
+        string fullPath = m_UserDataPath + "/" + relativePath;
+        EnsureDirectoryExists(System.IO.Path.GetDirectoryName(fullPath));
+        m_Fs.WriteFile(fullPath, content, "utf8", (success) =>
+        {
+            Debug.Log(success ? $"文件已保存: {fullPath}" : $"文件保存失败: {fullPath}");
+        });
+    }
+
+    private void EnsureDirectoryExists(string dirPath)
+    {
+        if (!m_Fs.AccessSync(dirPath))
+        {
+            m_Fs.MkdirSync(dirPath, true);
+        }
+    }
+}
+```
+# 媒体
+
+> 基于官方文档: 媒体 API - 录屏管理、游戏分享、邀请模块
+> 生成时间: 2026-06-24
+
+> ⚠️ **【隐私与安全声明 — 已加固】**：
+> - **录屏**：代码示例已内置 `scope.screenRecord` 授权检查，首次录屏时会验证用户授权状态。录制的视频不得在未经用户同意的情况下自动上传。
+> - **分享**：分享参数（Title、Query）中不得包含用户敏感信息（手机号、身份证号、openid、session_key 等）。Query 参数中如需传递用户标识，应使用加密的临时 token 而非明文 ID。
+> - **邀请**：`inviterId` 等用户标识已用 `#if UNITY_EDITOR || DEVELOPMENT_BUILD` 条件编译包裹，生产日志仅记录邀请事件维度信息。
+
+## 一、录屏管理
+
+录屏管理器 `TTGameRecorderManager` 提供完整的录屏生命周期管理：启用/禁用录屏、启动/停止录制、获取录制时长与状态、设置背景音乐、控制视频分享等。通过 `TT.GetGameRecorderManager()` 获取单例实例。
+
+### 1.1 TT.GetGameRecorderManager
+
+**说明**: 获取游戏录屏管理器单例。录屏管理器的所有功能均通过该实例调用。在调用任何录屏方法之前必须先获取此实例，且应确保已调用 `TT.InitSDK` 完成初始化。
+
+**语法**:
+
+```csharp
+public static TTGameRecorderManager GetGameRecorderManager()
+```
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using TT;
+
+public class RecorderDemo : MonoBehaviour
+{
+    private TTGameRecorderManager _recorder;
+
+    void Start()
+    {
+        _recorder = TT.GetGameRecorderManager();
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log("录屏管理器已获取");
+        #endif
+    }
+}
+```
+
+---
+
+### 1.2 IsShowVideoShareToast
+
+**说明**: 是否在视频录制完成后显示视频分享 Toast 提示。设为 `true` 时，录屏停止后会自动弹出分享入口；设为 `false` 则静默保存。
+
+**语法**:
+
+```csharp
+public bool IsShowVideoShareToast { get; set; }
+```
+
+---
+
+### 1.3 SetEnabled
+
+**说明**: 启用或禁用录屏功能。禁用后无法启动录制，但已录制的内容不会丢失。通常根据关卡解锁状态或用户隐私设置动态控制。
+
+**语法**:
+
+```csharp
+public void SetEnabled(bool enabled)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| enabled | bool | 是 | -- | true 启用录屏；false 禁用录屏 |
+
+---
+
+### 1.4 GetEnabled
+
+**说明**: 获取当前录屏功能是否处于启用状态。可用于 UI 按钮的灰度控制。
+
+**语法**:
+
+```csharp
+public bool GetEnabled()
+```
+
+---
+
+### 1.5 SetCustomKeyFrameInterval
+
+**说明**: 设置自定义关键帧间隔（毫秒）。关键帧间隔影响视频编码的清晰度和文件大小——间隔越短视频越清晰但文件越大。默认值由宿主环境决定。
+
+**语法**:
+
+```csharp
+public void SetCustomKeyFrameInterval(int interval)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| interval | int | 是 | -- | 关键帧间隔，单位毫秒。典型值 1000~5000 |
+
+---
+
+### 1.6 Start
+
+**说明**: 开始录屏。调用前需确保已通过 `TT.GetSetting()` 检查 `scope.screenRecord` 授权状态、已启用录屏（`SetEnabled(true)`），且当前不在录制中。重复调用不会产生叠加录制。完整的授权检查模式参见下方「1.12 录屏完整流程示例」及「四、录屏分享最佳实践」。
+
+**语法**:
+
+```csharp
+public void Start()
+```
+
+---
+
+### 1.7 Stop
+
+**说明**: 停止录屏。停止后视频文件将写入宿主文件系统，并触发 `IsShowVideoShareToast` 对应的分享入口逻辑。
+
+**语法**:
+
+```csharp
+public void Stop()
+```
+
+---
+
+### 1.8 GetRecordDuration
+
+**说明**: 获取当前已录制时长，单位毫秒。仅在录制进行中返回有意义的值，停止后重置。
+
+**语法**:
+
+```csharp
+public long GetRecordDuration()
+```
+
+---
+
+### 1.9 GetVideoRecordState
+
+**说明**: 获取当前录屏状态码。通过状态码判断录制是否正在进行、已暂停或已停止。
+
+**语法**:
+
+```csharp
+public int GetVideoRecordState()
+```
+
+**返回值**:
+
+| 状态码 | 含义 |
+|--------|------|
+| 0 | 未开始录制 |
+| 1 | 录制中 |
+| 2 | 录制已暂停 |
+| 3 | 录制已停止 |
+
+---
+
+### 1.10 SetDefaultBgm
+
+**说明**: 设置录屏时默认的背景音乐路径。传入本地文件路径即可为录制视频添加 BGM。支持 mp3、aac 等常见音频格式。
+
+**语法**:
+
+```csharp
+public void SetDefaultBgm(string bgmPath)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| bgmPath | string | 是 | -- | 本地背景音乐文件路径 |
+
+---
+
+### 1.11 GetVideoShareState
+
+**说明**: 获取视频分享状态。用于判断当前是否有待分享的视频、分享是否完成。
+
+**语法**:
+
+```csharp
+public int GetVideoShareState()
+```
+
+**返回值**:
+
+| 状态码 | 含义 |
+|--------|------|
+| 0 | 无可分享的视频 |
+| 1 | 有待分享的视频 |
+
+---
+
+### 1.12 录屏完整流程示例
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using UnityEngine.UI;
+using TT;
+
+public class GameRecorderFlow : MonoBehaviour
+{
+    [SerializeField] private Button _startRecordBtn;
+    [SerializeField] private Button _stopRecordBtn;
+    [SerializeField] private Button _shareVideoBtn;
+    [SerializeField] private Text _durationText;
+
+    private TTGameRecorderManager _recorder;
+    private bool _isRecording = false;
+
+    void Start()
+    {
+        _recorder = TT.GetGameRecorderManager();
+
+        // 启用录屏并显示分享 Toast
+        _recorder.SetEnabled(true);
+        _recorder.IsShowVideoShareToast = true;
+
+        // 设置关键帧间隔为 2 秒
+        _recorder.SetCustomKeyFrameInterval(2000);
+
+        // 可选：设置背景音乐
+        // _recorder.SetDefaultBgm(Application.streamingAssetsPath + "/bgm.mp3");
+
+        // 绑定 UI
+        _startRecordBtn.onClick.AddListener(StartRecording);
+        _stopRecordBtn.onClick.AddListener(StopRecording);
+        _shareVideoBtn.onClick.AddListener(OnShareVideo);
+    }
+
+    void Update()
+    {
+        if (_isRecording)
+        {
+            long duration = _recorder.GetRecordDuration();
+            _durationText.text = $"已录制: {duration / 1000f:F1} 秒";
+        }
+    }
+
+    void StartRecording()
+    {
+        // ⚠️ 安全：录屏前必须检查 scope.screenRecord 授权状态
+        // 首次录屏时应展示隐私说明并征得用户明确同意
+        TT.GetSetting(
+            successCallback: (auth) =>
+            {
+                if (!auth.ScreenRecord)
+                {
+                    Debug.LogWarning("录屏权限未授权，请引导用户在设置中开启");
+                    return;
+                }
+
+                if (_recorder.GetEnabled() && _recorder.GetVideoRecordState() != 1)
+                {
+                    _recorder.Start();
+                    _isRecording = true;
+                    #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                    Debug.Log("开始录屏");
+                    #endif
+                }
+                else
+                {
+                    Debug.LogWarning("录屏未启用或已在录制中");
+                }
+            },
+            failedCallback: (err) =>
+            {
+                Debug.LogWarning($"获取录屏授权状态失败: {err}");
+            }
+        );
+    }
+
+    void StopRecording()
+    {
+        if (_isRecording)
+        {
+            _recorder.Stop();
+            _isRecording = false;
+            #if UNITY_EDITOR || DEVELOPMENT_BUILD
+            Debug.Log($"录屏已停止，总时长: {_recorder.GetRecordDuration()}ms");
+            #endif
+
+            // 检查是否有待分享的视频
+            if (_recorder.GetVideoShareState() == 1)
+            {
+                _shareVideoBtn.interactable = true;
+            }
+        }
+    }
+
+    void OnShareVideo()
+    {
+        // 分享视频的入口由 IsShowVideoShareToast 控制
+        // 此处可引导用户进行分享操作
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log("用户点击了分享视频按钮");
+        #endif
+    }
+
+    void OnDestroy()
+    {
+        if (_isRecording)
+        {
+            _recorder.Stop();
+        }
+    }
+}
+```
+
+---
+
+## 二、游戏分享
+
+游戏分享模块提供标题、图片、查询参数、附加信息的自定义能力。分享分为两种模式：
+- **被动分享**：用户点击右上角菜单的分享按钮，触发 `OnShareAppMessage` 回调动态设置分享内容。
+- **主动分享**：调用 `TT.ShareAppMessage` 直接拉起分享面板。
+
+### 2.1 ShareParam 参数类
+
+**说明**: 分享内容参数对象，用于设置分享标题、图片、查询参数和额外信息。
+
+**定义**:
+
+```csharp
+public class ShareParam
+{
+    public string Title;
+    public string ImageUrl;
+    public string Query;
+    public string Extra;
+}
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| Title | string | 否 | "" | 分享标题，显示在分享卡片上 |
+| ImageUrl | string | 否 | "" | 分享图片 URL，建议 5:4 比例 |
+| Query | string | 否 | "" | 分享查询参数，接收方可通过启动参数获取（如 `key1=val1&key2=val2`） |
+| Extra | string | 否 | "" | 额外信息，可用于埋点或自定义逻辑 |
+
+---
+
+### 2.2 TT.ShareAppMessage
+
+**说明**: 主动拉起分享面板，直接调起抖音分享浮层。适用于游戏内"邀请好友"、"炫耀战绩"等场景。
+
+**语法**:
+
+```csharp
+public static void ShareAppMessage(ShareParam param)
+```
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using TT;
+
+public class ShareDemo : MonoBehaviour
+{
+    public void ShareScore()
+    {
+        // ⚠️ 安全：分享参数中不得包含用户敏感信息（手机号、身份证、openid 等）
+        var param = new ShareParam
+        {
+            Title = "我的分数: 99999，快来挑战！",
+            ImageUrl = "https://example.com/share_icon.png",
+            // ⚠️ 安全：如需传递用户标识，应使用临时 token 而非明文 ID
+            Query = "scene=invite&token=encrypted_share_token",
+            Extra = "share_from_score_page"
+        };
+
+        TT.ShareAppMessage(param);
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log("分享面板已拉起");
+        #endif
+    }
+
+    public void ShareLevel()
+    {
+        var param = new ShareParam
+        {
+            Title = "我通关了第 10 关！",
+            ImageUrl = "https://example.com/level10_thumbnail.png",
+            Query = "scene=challenge&level=10",
+            Extra = ""
+        };
+
+        TT.ShareAppMessage(param);
+    }
+}
+```
+
+---
+
+### 2.3 TT.ShowShareMenu
+
+**说明**: 设置是否显示右上角菜单中的分享按钮。在某些场景（如新手引导或敏感页面）可能需要隐藏分享入口。
+
+**语法**:
+
+```csharp
+public static void ShowShareMenu(bool show)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| show | bool | 是 | -- | true 显示分享按钮；false 隐藏 |
+
+---
+
+### 2.4 TT.OnShareAppMessage / TT.OffShareAppMessage
+
+**说明**: 监听用户点击右上角分享按钮的事件。回调中可通过 `ref` 参数动态修改分享内容（标题、图片、查询参数等）。必须在用户触发分享前注册监听，否则使用的将是默认分享内容。取消监听使用 `OffShareAppMessage` 防止内存泄漏。
+
+**语法**:
+
+```csharp
+public static void OnShareAppMessage(Action<ShareParam> callback)
+public static void OffShareAppMessage(Action<ShareParam> callback)
+```
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using TT;
+
+public class CustomShareHandler : MonoBehaviour
+{
+    private int _currentLevel = 1;
+    private int _currentScore = 0;
+
+    void Start()
+    {
+        // 注册分享回调
+        TT.OnShareAppMessage(OnShareCallback);
+    }
+
+    void OnDestroy()
+    {
+        // 取消注册，防止内存泄漏
+        TT.OffShareAppMessage(OnShareCallback);
+    }
+
+    private void OnShareCallback(ShareParam param)
+    {
+        // 在回调中通过 ref 修改分享内容
+        param.Title = $"我在第 {_currentLevel} 关，得分 {_currentScore}！快来超越我吧！";
+        param.ImageUrl = $"https://example.com/level_{_currentLevel}_thumb.png";
+        param.Query = $"scene=invite&level={_currentLevel}&score={_currentScore}";
+        param.Extra = "custom_share_callback";
+
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log($"自定义分享标题: {param.Title}");
+        Debug.Log($"自定义分享 Query: {param.Query}");
+        #endif
+    }
+
+    public void UpdateLevelAndScore(int level, int score)
+    {
+        _currentLevel = level;
+        _currentScore = score;
+    }
+}
+```
+
+---
+
+### 2.5 TT.NavigateToVideoView
+
+**说明**: 跳转到视频详情页。传入视频 ID 即可直接打开抖音视频播放页面。
+
+**语法**:
+
+```csharp
+public static void NavigateToVideoView(string videoId)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| videoId | string | 是 | -- | 目标视频的 ID |
+
+---
+
+## 三、邀请模块
+
+邀请模块提供创建邀请面板和监听邀请状态变化的能力，适用于需要社交传播的游戏场景。
+
+### 3.1 TT.CreateInvitePanel
+
+**说明**: 创建并显示邀请面板。用户可以通过面板选择好友发送游戏邀请，面板样式由宿主 App 控制。
+
+**语法**:
+
+```csharp
+public static void CreateInvitePanel(InvitePanelParam param)
+```
+
+**InvitePanelParam 参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| roomType | string | 否 | "" | 房间类型标识 |
+| isGroupMode | bool | 否 | false | 是否群模式邀请 |
+| bgm | string | 否 | "" | 背景音乐路径 |
+| blockList | string[] | 否 | null | 需要屏蔽的用户 ID 列表 |
+| multiplayerExtra | string | 否 | "" | 多人游戏额外参数 |
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using UnityEngine.UI;
+using TT;
+
+public class InvitePanelDemo : MonoBehaviour
+{
+    [SerializeField] private Button _inviteBtn;
+
+    void Start()
+    {
+        _inviteBtn.onClick.AddListener(OnClickInvite);
+    }
+
+    void OnClickInvite()
+    {
+        var param = new InvitePanelParam
+        {
+            roomType = "normal_room",
+            isGroupMode = false,
+            bgm = "",
+            blockList = null,
+            multiplayerExtra = "gameMode=ranked"
+        };
+
+        TT.CreateInvitePanel(param);
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log("邀请面板已创建");
+        #endif
+    }
+}
+```
+
+---
+
+### 3.2 TT.OnInviteStateChanged / TT.OffInviteStateChanged
+
+**说明**: 监听邀请状态变化。当好友接受或拒绝邀请时触发回调，可用于更新房间状态、跳转游戏场景等。取消监听使用 `OffInviteStateChanged` 防止内存泄漏。
+
+**语法**:
+
+```csharp
+public static void OnInviteStateChanged(Action<InviteStateInfo> callback)
+public static void OffInviteStateChanged(Action<InviteStateInfo> callback)
+```
+
+**InviteStateInfo 属性**:
+
+| 属性 | 类型 | 说明 |
+|------|------|------|
+| state | string | 邀请状态："accept" 接受 / "refuse" 拒绝 |
+| inviterId | string | 邀请者用户 ID |
+| inviterNickName | string | 邀请者昵称 |
+| query | string | 邀请时携带的查询参数 |
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using TT;
+
+public class InviteStateListener : MonoBehaviour
+{
+    void Start()
+    {
+        TT.OnInviteStateChanged(OnInviteStateChanged);
+    }
+
+    void OnDestroy()
+    {
+        TT.OffInviteStateChanged(OnInviteStateChanged);
+    }
+
+    private void OnInviteStateChanged(InviteStateInfo info)
+    {
+        // ⚠️ 安全：inviterNickName 为用户昵称，生产环境禁止打印
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log($"邀请状态变化: {info.state}, 来自: {info.inviterNickName}");
+        #else
+        Debug.Log($"邀请状态变化: {info.state}");
+        #endif
+
+        switch (info.state)
+        {
+            case "accept":
+                OnInviteAccepted(info);
+                break;
+            case "refuse":
+                OnInviteRefused(info);
+                break;
+        }
+    }
+
+    private void OnInviteAccepted(InviteStateInfo info)
+    {
+        // ⚠️ 安全：inviterId 为永久用户标识，生产环境禁止打印
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log($"邀请者 {info.inviterNickName}(id:{info.inviterId}) 接受了邀请");
+        Debug.Log($"携带参数: {info.query}");
+        #else
+        Debug.Log("邀请已被接受");
+        #endif
+
+        // 解析 query 参数并进入相应游戏场景
+        // 例如: "gameMode=ranked&roomId=abc123"
+    }
+
+    private void OnInviteRefused(InviteStateInfo info)
+    {
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log($"邀请者 {info.inviterNickName}(id:{info.inviterId}) 拒绝了邀请");
+        #else
+        Debug.Log("邀请已被拒绝");
+        #endif
+        // 可选：显示 Toast 提示
+    }
+}
+```
+
+---
+
+## 四、录屏分享最佳实践
+
+将录屏与分享功能结合使用，实现"录制精彩时刻 + 分享到抖音"的完整闭环。
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using UnityEngine.UI;
+using TT;
+
+/// <summary>
+/// 录屏分享最佳实践：录制精彩时刻后引导用户分享
+/// </summary>
+public class RecordAndShare : MonoBehaviour
+{
+    [SerializeField] private Button _recordBtn;
+    [SerializeField] private Button _stopRecordBtn;
+    [SerializeField] private Text _statusText;
+
+    private TTGameRecorderManager _recorder;
+
+    void Start()
+    {
+        // 初始化 SDK
+        TT.InitSDK((code, env) =>
+        {
+            if (code == 0)
+            {
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log("SDK 初始化成功，准备录屏功能");
+                #endif
+                InitRecorder();
+            }
+        });
+    }
+
+    void InitRecorder()
+    {
+        _recorder = TT.GetGameRecorderManager();
+
+        // ⚠️ 安全：启用录屏前必须检查 scope.screenRecord 授权状态
+        TT.GetSetting(
+            successCallback: (auth) =>
+            {
+                if (!auth.ScreenRecord)
+                {
+                    Debug.LogWarning("录屏权限未授权，请引导用户在设置中开启");
+                    return;
+                }
+
+                _recorder.SetEnabled(true);
+                _recorder.IsShowVideoShareToast = true; // 录制完成后自动弹出分享入口
+                _recorder.SetCustomKeyFrameInterval(2000);
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                Debug.Log("录屏已启用");
+                #endif
+            },
+            failedCallback: (err) =>
+            {
+                Debug.LogWarning($"获取录屏授权状态失败: {err}");
+            }
+        );
+
+        _recordBtn.onClick.AddListener(() =>
+        {
+            _recorder.Start();
+            _statusText.text = "录制中...";
+            _recordBtn.interactable = false;
+            _stopRecordBtn.interactable = true;
+        });
+
+        _stopRecordBtn.onClick.AddListener(() =>
+        {
+            _recorder.Stop();
+            _statusText.text = $"录制完成，时长 {_recorder.GetRecordDuration() / 1000f:F1} 秒";
+            _recordBtn.interactable = true;
+            _stopRecordBtn.interactable = false;
+
+            // IsShowVideoShareToast = true 时系统会自动弹出分享入口
+            // 也可通过 GetVideoShareState() 手动检查
+        });
+    }
+
+    void OnDestroy()
+    {
+        if (_recorder != null)
+        {
+            _recorder.Stop();
+        }
+    }
+}
+```
+# 界面与渲染
+
+> 基于官方文档: 界面 API - 键盘输入、敏感词检测、鼠标光标、帧率控制、系统字体
+> 生成时间: 2026-06-24
+
+## 一、键盘输入
+
+键盘输入模块提供唤起/隐藏系统键盘、更新键盘参数以及监听键盘输入事件的能力。适用于登录表单、聊天输入、搜索框等文本输入场景。键盘事件采用 On/Off 配对监听模式，务必在合适时机取消监听防止内存泄漏。
+
+### 1.1 TT.ShowKeyboard
+
+**说明**: 显示系统键盘，唤起文本输入。适用于需要用户输入文字的场景（昵称设置、聊天消息、搜索等）。调用后系统弹出原生键盘，输入结果通过键盘事件回调获取。
+
+**语法**:
+
+```csharp
+public static void ShowKeyboard(ShowKeyboardParam param)
+```
+
+#### ShowKeyboardParam 参数类
+
+**说明**: 键盘显示配置参数。
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| DefaultValue | string | 否 | "" | 默认输入内容，键盘弹出时预填充 |
+| MaxLength | int | 否 | 100 | 最大输入长度，超出后不可继续输入 |
+| Multiple | bool | 否 | false | 是否多行输入。true 时键盘支持换行 |
+| ConfirmHold | bool | 否 | false | 是否保持键盘。true 时点击确认按钮不会自动收起键盘 |
+| ConfirmType | string | 否 | "done" | 确认按钮类型。可选值: "done"(完成) / "send"(发送) / "search"(搜索) / "next"(下一步) / "go"(前往) |
+
+---
+
+### 1.2 TT.HideKeyboard
+
+**说明**: 隐藏系统键盘。强制收起当前弹出的键盘，输入内容保留在最后一次状态。
+
+**语法**:
+
+```csharp
+public static void HideKeyboard()
+```
+
+---
+
+### 1.3 TT.UpdateKeyboard
+
+**说明**: 更新已弹出键盘的参数。无需收起再弹出即可动态修改键盘的默认值、长度限制等属性。
+
+**语法**:
+
+```csharp
+public static void UpdateKeyboard(ShowKeyboardParam param)
+```
+
+---
+
+### 1.4 TT.OnKeyboardComplete / TT.OffKeyboardComplete
+
+**说明**: 监听键盘输入完成事件。用户点击键盘的确认按钮后触发。与 `OnKeyboardConfirm` 的区别在于：此事件仅当键盘收起时触发，内部已包含确认逻辑。取消监听使用 `OffKeyboardComplete` 防止内存泄漏。
+
+**语法**:
+
+```csharp
+public static void OnKeyboardComplete(Action<string> callback)
+public static void OffKeyboardComplete(Action<string> callback)
+```
+
+**回调参数**:
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| value | string | 输入完成时的最终文本值 |
+
+---
+
+### 1.5 TT.OnKeyboardConfirm / TT.OffKeyboardConfirm
+
+**说明**: 监听键盘确认按钮点击事件。用户点击确认按钮时立即触发，此时键盘可能尚未收起（取决于 `ConfirmHold` 参数）。取消监听使用 `OffKeyboardConfirm`。
+
+**语法**:
+
+```csharp
+public static void OnKeyboardConfirm(Action<string> callback)
+public static void OffKeyboardConfirm(Action<string> callback)
+```
+
+**回调参数**:
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| value | string | 点击确认按钮时的文本值 |
+
+---
+
+### 1.6 TT.OnKeyboardInput / TT.OffKeyboardInput
+
+**说明**: 监听键盘每次输入变化事件。用户每次按键（增删字符）都会触发，适合实现实时字数统计、搜索建议等场景。取消监听使用 `OffKeyboardInput`。
+
+**语法**:
+
+```csharp
+public static void OnKeyboardInput(Action<string> callback)
+public static void OffKeyboardInput(Action<string> callback)
+```
+
+**回调参数**:
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| value | string | 当前输入框中的文本值 |
+
+---
+
+### 1.7 键盘输入完整流程示例
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using UnityEngine.UI;
+using TT;
+
+public class KeyboardFlowDemo : MonoBehaviour
+{
+    [SerializeField] private InputField _inputField;
+    [SerializeField] private Button _showKeyboardBtn;
+    [SerializeField] private Button _hideKeyboardBtn;
+    [SerializeField] private Text _charCountText;
+    [SerializeField] private Text _resultText;
+
+    private int _maxLength = 20;
+
+    void Start()
+    {
+        _showKeyboardBtn.onClick.AddListener(OnShowKeyboard);
+        _hideKeyboardBtn.onClick.AddListener(OnHideKeyboard);
+
+        // 注册键盘事件监听
+        TT.OnKeyboardInput(OnKeyboardInput);
+        TT.OnKeyboardConfirm(OnKeyboardConfirm);
+        TT.OnKeyboardComplete(OnKeyboardComplete);
+    }
+
+    void OnDestroy()
+    {
+        // 取消所有键盘事件监听，防止内存泄漏
+        TT.OffKeyboardInput(OnKeyboardInput);
+        TT.OffKeyboardConfirm(OnKeyboardConfirm);
+        TT.OffKeyboardComplete(OnKeyboardComplete);
+    }
+
+    void OnShowKeyboard()
+    {
+        var param = new ShowKeyboardParam
+        {
+            DefaultValue = _inputField.text,
+            MaxLength = _maxLength,
+            Multiple = false,
+            ConfirmHold = false,
+            ConfirmType = "done"
+        };
+
+        TT.ShowKeyboard(param);
+        Debug.Log("系统键盘已弹出");
+    }
+
+    void OnHideKeyboard()
+    {
+        TT.HideKeyboard();
+    }
+
+    // 每次输入变化时触发：实时更新字数统计
+    private void OnKeyboardInput(string value)
+    {
+        _charCountText.text = $"{value.Length}/{_maxLength}";
+        _inputField.text = value;
+    }
+
+    // 点击确认按钮时触发
+    private void OnKeyboardConfirm(string value)
+    {
+        // ⚠️ 安全：用户输入内容禁止打印到生产日志
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log($"用户确认输入: {value}");
+        #else
+        Debug.Log("用户确认输入");
+        #endif
+    }
+
+    // 键盘收起且输入完成时触发
+    private void OnKeyboardComplete(string value)
+    {
+        _resultText.text = $"输入结果: {value}";
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log($"键盘输入完成，最终值: {value}");
+        #else
+        Debug.Log($"键盘输入完成，长度: {value?.Length ?? 0} 字符");
+        #endif
+
+        // 在 Complete 后再调用 UpdateKeyboard 可以动态修改参数
+        // 例如限制最大长度
+    }
+
+    // 动态限制最大长度的方法
+    public void SetMaxLength(int maxLength)
+    {
+        _maxLength = maxLength;
+        var param = new ShowKeyboardParam
+        {
+            MaxLength = _maxLength
+        };
+        TT.UpdateKeyboard(param);
+    }
+}
+```
+
+---
+
+## 二、敏感词检测
+
+敏感词检测模块用于过滤用户生成内容（UGC）中的违规文本，保障游戏内容的合规性。提供两种模式：布尔检测（判断是否含敏感词）和替换检测（将敏感词替换为指定字符）。
+
+### 2.1 TT.SensitiveWordCheck
+
+**说明**: 异步检查文本是否包含敏感词。检测结果通过回调返回布尔值，`true` 表示包含敏感词需要拦截，`false` 表示文本合规。适用于发布前预检场景。
+
+**语法**:
+
+```csharp
+public static void SensitiveWordCheck(string text, Action<bool> callback)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| text | string | 是 | -- | 待检测的文本内容 |
+| callback | Action\<bool\> | 是 | -- | 检测结果回调。true = 含敏感词，false = 不含 |
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using UnityEngine.UI;
+using TT;
+
+public class SensitiveWordDemo : MonoBehaviour
+{
+    [SerializeField] private InputField _inputField;
+    [SerializeField] private Button _checkBtn;
+    [SerializeField] private Text _resultText;
+
+    void Start()
+    {
+        _checkBtn.onClick.AddListener(OnCheckSensitive);
+    }
+
+    void OnCheckSensitive()
+    {
+        string userInput = _inputField.text;
+
+        if (string.IsNullOrEmpty(userInput))
+        {
+            _resultText.text = "请输入文本后再检测";
+            return;
+        }
+
+        TT.SensitiveWordCheck(userInput, (hasSensitive) =>
+        {
+            if (hasSensitive)
+            {
+                _resultText.text = "检测结果: 包含敏感词，请修改后重新提交";
+                Debug.LogWarning("文本包含敏感词，已拦截");
+            }
+            else
+            {
+                _resultText.text = "检测结果: 通过，文本合规";
+                Debug.Log("文本检测通过");
+            }
+        });
+    }
+}
+```
+
+---
+
+### 2.2 TT.ReplaceSensitiveWords
+
+**说明**: 同步替换文本中的敏感词为指定字符。检测与替换过程在本地完成，返回替换后的安全文本。适用于实时预览、聊天消息过滤等场景。
+
+**语法**:
+
+```csharp
+public static string ReplaceSensitiveWords(string text, string replacement = "*")
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| text | string | 是 | -- | 待过滤的原始文本 |
+| replacement | string | 否 | "*" | 替换敏感词的字符，默认为星号 |
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using UnityEngine.UI;
+using TT;
+
+public class ReplaceSensitiveDemo : MonoBehaviour
+{
+    [SerializeField] private InputField _inputField;
+    [SerializeField] private Text _previewText;
+
+    public void OnUserInputChanged(string input)
+    {
+        if (string.IsNullOrEmpty(input))
+        {
+            _previewText.text = "";
+            return;
+        }
+
+        // 同步替换敏感词，用 "#" 替代默认的 "*"
+        string filteredText = TT.ReplaceSensitiveWords(input, "#");
+        _previewText.text = filteredText;
+
+        if (filteredText != input)
+        {
+            Debug.Log("检测到敏感词并已替换");
+        }
+    }
+
+    // 结合异步检查的完整流程
+    public void SubmitUserContent(string content)
+    {
+        // 步骤1: 先同步替换敏感词作为兜底
+        string safeContent = TT.ReplaceSensitiveWords(content, "*");
+
+        // 步骤2: 异步精确检测
+        TT.SensitiveWordCheck(safeContent, (hasSensitive) =>
+        {
+            if (hasSensitive)
+            {
+                Debug.LogWarning("替换后仍含未覆盖的敏感词，需进一步处理");
+                // 提示用户修改内容
+            }
+            else
+            {
+                Debug.Log("内容合规，可以提交");
+                // 执行提交逻辑
+                SubmitToServer(safeContent);
+            }
+        });
+    }
+
+    private void SubmitToServer(string content)
+    {
+        // ⚠️ 安全：用户生成内容禁止打印到生产日志
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log($"提交内容到服务器: {content}");
+        #else
+        Debug.Log("内容已提交到服务器");
+        #endif
+    }
+}
+```
+
+---
+
+## 三、光标样式（PC 端）
+
+PC 端宿主环境下可自定义鼠标光标样式和指针锁定状态。`Cursor` 为引擎内置静态类，`TT` 提供指针锁定相关 API。主要用于 FPS 游戏的视角控制、策略游戏的拖拽操作等场景。
+
+### 3.1 Cursor.SetCursor
+
+**说明**: 设置鼠标光标样式。传入预定义的光标类型字符串即可切换，适用于 PC 端的 UI 交互反馈。
+
+**语法**:
+
+```csharp
+public static void SetCursor(string cursorType)
+```
+
+**支持的光标类型**:
+
+| 值 | 说明 | 适用场景 |
+|------|------|------|
+| "default" | 默认箭头 | 通用场景 |
+| "pointer" | 手型指针 | 可点击元素的悬停 |
+| "text" | 文本输入 I 型 | 文本输入区域 |
+| "crosshair" | 十字准星 | 瞄准、精确点击 |
+| "move" | 移动十字 | 拖拽移动 |
+| "not-allowed" | 禁止标识 | 不可交互区域 |
+| "grab" | 抓手 | 可拖拽抓取 |
+| "grabbing" | 抓取中 | 拖拽进行中 |
+| "wait" | 等待沙漏 | 加载中 |
+| "help" | 帮助问号 | 帮助信息提示 |
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using UnityEngine.EventSystems;
+using TT;
+
+public class CursorStyleDemo : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+{
+    void Start()
+    {
+        // 初始设置默认光标
+        SetCursor("default");
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        // 鼠标进入按钮区域 — 切换为手型
+        SetCursor("pointer");
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        // 鼠标离开 — 恢复默认
+        SetCursor("default");
+    }
+
+    // 瞄准模式
+    public void EnterAimMode()
+    {
+        SetCursor("crosshair");
+    }
+
+    // 加载状态
+    public void ShowLoading()
+    {
+        SetCursor("wait");
+    }
+
+    // 禁用交互
+    public void DisableInteraction()
+    {
+        SetCursor("not-allowed");
+    }
+}
+```
+
+---
+
+### 3.2 TT.RequestPointerLock
+
+**说明**: 请求锁定鼠标指针。锁定后鼠标光标隐藏，移动事件转为旋转增量，典型用于 FPS 游戏的视角控制。调用后需要等待用户交互（点击）完成锁定。
+
+**语法**:
+
+```csharp
+public static void RequestPointerLock()
+```
+
+---
+
+### 3.3 TT.IsPointerLocked
+
+**说明**: 判断鼠标指针当前是否处于锁定状态。
+
+**语法**:
+
+```csharp
+public static bool IsPointerLocked()
+```
+
+---
+
+### 3.4 TT.ExitPointerLock
+
+**说明**: 退出鼠标指针锁定，恢复显示光标和正常移动。
+
+**语法**:
+
+```csharp
+public static void ExitPointerLock()
+```
+
+---
+
+### 3.5 指针锁定完整流程（FPS 游戏视角控制）
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using UnityEngine.UI;
+using TT;
+
+/// <summary>
+/// FPS 游戏鼠标指针锁定示例
+/// </summary>
+public class MouseLookFPSCamera : MonoBehaviour
+{
+    [SerializeField] private float _mouseSensitivity = 2.0f;
+    [SerializeField] private Text _lockStatusText;
+
+    private float _rotationX = 0f;
+    private bool _isLocked = false;
+
+    void Start()
+    {
+        // 游戏开始时请求锁定指针
+        LockPointer();
+    }
+
+    void Update()
+    {
+        // 按 ESC 退出锁定
+        if (Input.GetKeyDown(KeyCode.Escape) && _isLocked)
+        {
+            UnlockPointer();
+        }
+
+        // 点击鼠标左键重新锁定
+        if (Input.GetMouseButtonDown(0) && !TT.IsPointerLocked())
+        {
+            LockPointer();
+        }
+
+        // 检测锁定状态变化
+        _isLocked = TT.IsPointerLocked();
+        _lockStatusText.text = _isLocked ? "指针已锁定 (ESC 退出)" : "指针已解锁 (点击屏幕锁定)";
+
+        // 锁定状态下处理视角旋转
+        if (_isLocked)
+        {
+            float mouseX = Input.GetAxis("Mouse X") * _mouseSensitivity;
+            float mouseY = Input.GetAxis("Mouse Y") * _mouseSensitivity;
+
+            // 水平旋转（Y 轴）：旋转玩家角色
+            transform.Rotate(Vector3.up * mouseX);
+
+            // 垂直旋转（X 轴）：旋转摄像机上下
+            _rotationX -= mouseY;
+            _rotationX = Mathf.Clamp(_rotationX, -90f, 90f);
+            Camera.main.transform.localRotation = Quaternion.Euler(_rotationX, 0f, 0f);
+        }
+    }
+
+    public void LockPointer()
+    {
+        TT.RequestPointerLock();
+        Debug.Log("已请求指针锁定");
+    }
+
+    public void UnlockPointer()
+    {
+        TT.ExitPointerLock();
+        Debug.Log("已退出指针锁定");
+    }
+}
+```
+
+---
+
+## 四、帧率控制
+
+### 4.1 TT.SetPreferredFramesPerSecond
+
+**说明**: 设置游戏期望的目标帧率。宿主会尽可能匹配目标帧率，但实际帧率受设备性能、系统节电策略等因素影响。合理设置帧率可平衡画面流畅度与设备发热/耗电。
+
+**语法**:
+
+```csharp
+public static void SetPreferredFramesPerSecond(int fps)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| fps | int | 是 | -- | 目标帧率。常见值为 30（省电模式）、60（标准模式）。部分设备支持 90 或 120 |
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using TT;
+
+public class FrameRateController : MonoBehaviour
+{
+    void Start()
+    {
+        // 初始化后设置目标帧率
+        TT.InitSDK((code, env) =>
+        {
+            if (code == 0)
+            {
+                // 默认 60fps 流畅体验
+                TT.SetPreferredFramesPerSecond(60);
+                Debug.Log("目标帧率已设置为 60fps");
+            }
+        });
+    }
+
+    // 根据游戏场景动态调整帧率
+    public void EnterMainMenu()
+    {
+        // 主菜单不需要高帧率，降低功耗
+        TT.SetPreferredFramesPerSecond(30);
+    }
+
+    public void EnterGameplay()
+    {
+        // 进入游戏战斗场景，恢复高帧率
+        TT.SetPreferredFramesPerSecond(60);
+    }
+
+    public void EnterBatterySaveMode()
+    {
+        // 低电量模式下进一步降低帧率
+        TT.SetPreferredFramesPerSecond(30);
+    }
+
+    // 部分高端设备可尝试 90/120fps
+    public void EnableHighFrameRate()
+    {
+        // 注意：需检测设备是否支持，不支持的设备会降至最高可用帧率
+        TT.SetPreferredFramesPerSecond(120);
+    }
+}
+```
+
+---
+
+## 五、系统字体
+
+### 5.1 TT.GetSystemFont
+
+**说明**: 获取宿主系统的默认字体文件路径。返回路径可直接用于 Unity 的 `Font` 加载。在抖音容器环境中，不同宿主 App 可能提供不同字体，通过此接口可获取统一的系统字体确保文本渲染一致性。
+
+**语法**:
+
+```csharp
+public static string GetSystemFont()
+```
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using UnityEngine.UI;
+using TT;
+
+public class SystemFontDemo : MonoBehaviour
+{
+    [SerializeField] private Text _systemFontText;
+    [SerializeField] private Text _fontPathText;
+
+    void Start()
+    {
+        LoadSystemFont();
+    }
+
+    void LoadSystemFont()
+    {
+        TT.InitSDK((code, env) =>
+        {
+            if (code == 0)
+            {
+                // 获取系统字体路径
+                string fontPath = TT.GetSystemFont();
+                _fontPathText.text = $"字体路径: {fontPath}";
+                Debug.Log($"系统字体路径: {fontPath}");
+
+                if (!string.IsNullOrEmpty(fontPath))
+                {
+                    // 方式1: 通过 Resources 或 AssetBundle 加载
+                    // Font sysFont = Resources.Load<Font>(fontPath);
+                    // _systemFontText.font = sysFont;
+
+                    // 方式2: 如果路径返回的是完整文件路径，可通过 WWW/UnityWebRequest 加载
+                    StartCoroutine(LoadFontFromPath(fontPath));
+                }
+                else
+                {
+                    Debug.LogWarning("无法获取系统字体路径，使用默认字体");
+                }
+            }
+        });
+    }
+
+    private System.Collections.IEnumerator LoadFontFromPath(string fontPath)
+    {
+        using (var www = UnityEngine.Networking.UnityWebRequest.Get("file://" + fontPath))
+        {
+            yield return www.SendWebRequest();
+
+            if (www.result == UnityEngine.Networking.UnityWebRequest.Result.Success)
+            {
+                // 注意：运行时从文件系统加载字体需要字体文件格式正确
+                Debug.Log("系统字体文件加载成功");
+            }
+            else
+            {
+                Debug.LogError($"系统字体加载失败: {www.error}");
+            }
+        }
+    }
+
+    // 使用系统字体渲染文本
+    public void ApplySystemFont(Text targetText)
+    {
+        string fontPath = TT.GetSystemFont();
+        if (!string.IsNullOrEmpty(fontPath))
+        {
+            Debug.Log($"应用系统字体到目标文本: {fontPath}");
+            // 根据返回的路径加载并应用字体
+        }
+    }
+}
+```
+
+---
+
+## 六、调试工具
+
+> ⚠️ **【安全警告 — 调试命令生产禁用】**：以下调试工具（`EnableTTSDKDebugToast`、`RegisterCommandEvent`）**仅限开发调试阶段使用**。所有调试功能**必须**用条件编译（`#if UNITY_EDITOR || DEVELOPMENT_BUILD`）包裹，生产包中**严禁**保留任何调试入口。GM 指令如 `add_resource`、`jump_level` 等在生产环境中会直接导致经济系统崩溃和作弊泛滥。
+
+### 6.1 TT.EnableTTSDKDebugToast
+
+**说明**: 启用或禁用 TTSDK 调试 Toast。开启后，每次调用 `TT.*` API 时会在屏幕底部显示 Toast 提示（包含方法名和简要结果），方便开发阶段追踪 API 调用链路。**仅应在调试阶段开启，正式发布前务必关闭。**
+
+**语法**:
+
+```csharp
+public static void EnableTTSDKDebugToast(bool enable)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| enable | bool | 是 | -- | true 启用调试 Toast；false 关闭 |
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using TT;
+
+public class DebugToolsDemo : MonoBehaviour
+{
+    void Start()
+    {
+        TT.InitSDK((code, env) =>
+        {
+            if (code == 0)
+            {
+                // 仅在开发版本中启用调试 Toast
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                    TT.EnableTTSDKDebugToast(true);
+                    Debug.Log("TTSDK 调试 Toast 已启用");
+                #else
+                    TT.EnableTTSDKDebugToast(false);
+                #endif
+            }
+        });
+    }
+}
+```
+
+---
+
+### 6.2 TT.RegisterCommandEvent
+
+**说明**: 注册自定义命令事件，用于与开发者工具进行交互。注册后可通过开发者工具面板向游戏发送命令，触发自定义逻辑（如调试面板开关、GM 指令等）。
+
+**语法**:
+
+```csharp
+public static void RegisterCommandEvent(string cmd, Action<string> callback)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| cmd | string | 是 | -- | 命令名称，用于匹配开发者工具发送的指令 |
+| callback | Action\<string\> | 是 | -- | 命令触发时的回调，参数为命令携带的数据 |
+
+**代码示例**:
+
+```csharp
+using UnityEngine;
+using TT;
+
+public class CommandEventDemo : MonoBehaviour
+{
+    void Start()
+    {
+        TT.InitSDK((code, env) =>
+        {
+            if (code == 0)
+            {
+                // ⚠️ 安全强制：调试命令仅在开发版本中注册
+                #if UNITY_EDITOR || DEVELOPMENT_BUILD
+                RegisterDebugCommands();
+                #else
+                Debug.Log("生产环境：调试命令已禁用");
+                #endif
+            }
+        });
+    }
+
+    // ⚠️ 整个方法仅存在于开发版本中
+    #if UNITY_EDITOR || DEVELOPMENT_BUILD
+    void RegisterDebugCommands()
+    {
+        // 注册调试开关命令
+        TT.RegisterCommandEvent("toggle_debug_panel", (data) =>
+        {
+            Debug.Log($"收到 toggle_debug_panel 命令，参数: {data}");
+            ToggleDebugPanel(data);
+        });
+
+        // 注册添加资源命令
+        TT.RegisterCommandEvent("add_resource", (data) =>
+        {
+            Debug.Log($"收到 add_resource 命令，参数: {data}");
+            // 解析 data 并添加资源
+            // 格式: "gold=1000&diamond=50"
+            ParseAndAddResource(data);
+        });
+
+        // 注册跳转关卡命令
+        TT.RegisterCommandEvent("jump_level", (data) =>
+        {
+            if (int.TryParse(data, out int levelId))
+            {
+                Debug.Log($"GM 跳转到关卡: {levelId}");
+                JumpToLevel(levelId);
+            }
+            else
+            {
+                Debug.LogWarning($"无效的关卡 ID: {data}");
+            }
+        });
+    }
+
+    private void ToggleDebugPanel(string data)
+    {
+        // 显示/隐藏调试面板
+        Debug.Log($"调试面板切换: {data}");
+    }
+
+    private void ParseAndAddResource(string data)
+    {
+        // 解析类似 "gold=1000&diamond=50" 的字符串
+        var pairs = data.Split('&');
+        foreach (var pair in pairs)
+        {
+            var kv = pair.Split('=');
+            if (kv.Length == 2)
+            {
+                Debug.Log($"添加资源: {kv[0]} = {kv[1]}");
+            }
+        }
+    }
+
+    private void JumpToLevel(int levelId)
+    {
+        Debug.Log($"执行跳转: 关卡 {levelId}");
+        // 实际的场景加载逻辑
+    }
+    #endif
+}
+```
+# 开放能力-扩展
+
+> 基于官方文档: 开放能力 API - 侧边栏、收藏、群聊、直播、互推、排行榜、公会群、数据分析
+> 生成时间: 2026-06-24
+
+> ⚠️ **【安全声明】**：
+> - **用户标识**：`OpenId`、`AwemeId` 等永久用户标识严禁打印到生产日志，已用 `#if UNITY_EDITOR || DEVELOPMENT_BUILD` 条件编译包裹
+> - **数据分析**：`ReportAnalytics`/`ReportScene` 上报数据会关联用户身份，应在用户同意隐私政策后启用，`eventData` 中不得包含敏感凭证
+> - **邀请数据**：邀请相关的 `openId`/`inviterId` 等用户 ID 不应记录到生产日志
+> - 所有含敏感数据的 `Debug.Log` 均已添加条件编译守卫，复制示例时请保持守卫不变
+
+## 一、侧边栏与场景
+
+### 1.1 TT.CheckScene
+
+**说明**: 检查当前场景是否可用，通常用于判断是否处于抖音宿主环境中的某个特定场景（如侧边栏、游戏中心等）。
+
+**语法**:
+
+```csharp
+public static void CheckScene(string scene, Action<bool> callback)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| scene | string | 是 | - | 场景标识，如 "sidebar"、"gameCenter" 等 |
+| callback | Action\<bool\> | 是 | - | 回调，参数为 true 表示该场景可用 |
+
+**代码示例**:
+
+```csharp
+TT.CheckScene("sidebar", (available) =>
+{
+    if (available)
+    {
+        Debug.Log("当前处于侧边栏场景，可使用侧边栏相关能力");
+    }
+    else
+    {
+        Debug.Log("当前不在侧边栏场景");
+    }
+});
+```
+
+---
+
+### 1.2 TT.NavigateToScene
+
+**说明**: 导航到指定场景，如从游戏内跳转到侧边栏、游戏中心等。
+
+**语法**:
+
+```csharp
+public static void NavigateToScene(string scene, Action success = null, Action<ErrorInfo> fail = null, Action complete = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| scene | string | 是 | - | 目标场景标识 |
+| success | Action | 否 | null | 导航成功回调 |
+| fail | Action\<ErrorInfo\> | 否 | null | 导航失败回调 |
+| complete | Action | 否 | null | 导航完成回调（成功/失败均触发） |
+
+**代码示例**:
+
+```csharp
+TT.NavigateToScene("sidebar",
+    success: () => Debug.Log("已导航到侧边栏"),
+    fail: (error) => Debug.Log($"导航失败: {error.ErrMsg} ({error.ErrorCode})"),
+    complete: () => Debug.Log("导航流程结束")
+);
+```
+
+---
+
+### 1.3 TT.RequestPromotionActivity
+
+**说明**: 请求获取推广活动信息，用于在侧边栏等场景中展示活动入口。
+
+**语法**:
+
+```csharp
+public static void RequestPromotionActivity(Action<PromotionActivityResult> success, Action<ErrorInfo> fail = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| success | Action\<PromotionActivityResult\> | 是 | - | 成功回调，返回活动数据 |
+| fail | Action\<ErrorInfo\> | 否 | null | 失败回调 |
+
+**代码示例**:
+
+```csharp
+TT.RequestPromotionActivity(
+    success: (result) =>
+    {
+        Debug.Log($"活动ID: {result.ActivityId}");
+        Debug.Log($"活动状态: {result.Status}");
+    },
+    fail: (error) => Debug.Log($"获取活动失败: {error.ErrMsg}")
+);
+```
+
+---
+
+### 1.4 TT.ReceiveCoupon
+
+**说明**: 用户领取优惠券，通常与推广活动配合使用。
+
+**语法**:
+
+```csharp
+public static void ReceiveCoupon(string activityId, Action success = null, Action<ErrorInfo> fail = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| activityId | string | 是 | - | 活动 ID |
+| success | Action | 否 | null | 领取成功回调 |
+| fail | Action\<ErrorInfo\> | 否 | null | 领取失败回调 |
+
+**代码示例**:
+
+```csharp
+TT.ReceiveCoupon("activity_12345",
+    success: () => Debug.Log("优惠券领取成功"),
+    fail: (error) => Debug.Log($"领取失败: {error.ErrMsg} ({error.ErrorCode})")
+);
+```
+
+---
+
+## 二、收藏
+
+### 2.1 TT.ShowFavoriteGuide
+
+**说明**: 显示收藏引导弹窗，提示用户将游戏添加到抖音收藏列表。
+
+**语法**:
+
+```csharp
+public static void ShowFavoriteGuide(Action<bool> callback = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| callback | Action\<bool\> | 否 | null | 回调，参数表示用户是否完成收藏操作 |
+
+**代码示例**:
+
+```csharp
+TT.ShowFavoriteGuide((success) =>
+{
+    if (success)
+    {
+        Debug.Log("用户已收藏游戏");
+        // 可以给予收藏奖励
+    }
+    else
+    {
+        Debug.Log("用户取消收藏");
+    }
+});
+```
+
+---
+
+## 三、群聊
+
+### 3.1 TT.JoinGroup
+
+**说明**: 引导用户加入指定的抖音群。
+
+**语法**:
+
+```csharp
+public static void JoinGroup(string groupId, Action success = null, Action<ErrorInfo> fail = null, Action complete = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| groupId | string | 是 | - | 目标群 ID |
+| success | Action | 否 | null | 加入成功回调 |
+| fail | Action\<ErrorInfo\> | 否 | null | 加入失败回调 |
+| complete | Action | 否 | null | 操作完成回调 |
+
+**代码示例**:
+
+```csharp
+TT.JoinGroup("group_xxxxx",
+    success: () => Debug.Log("已加入群聊"),
+    fail: (error) => Debug.Log($"加入失败: {error.ErrMsg}"),
+    complete: () => Debug.Log("入群流程结束")
+);
+```
+
+---
+
+### 3.2 TT.CheckGroupInfo
+
+**说明**: 查询指定群聊的基本信息。
+
+**语法**:
+
+```csharp
+public static void CheckGroupInfo(string groupId, Action<GroupInfoResult> success, Action<ErrorInfo> fail = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| groupId | string | 是 | - | 群 ID |
+| success | Action\<GroupInfoResult\> | 是 | - | 成功回调 |
+| fail | Action\<ErrorInfo\> | 否 | null | 失败回调 |
+
+**代码示例**:
+
+```csharp
+TT.CheckGroupInfo("group_xxxxx",
+    success: (result) =>
+    {
+        Debug.Log($"群名称: {result.GroupName}");
+        Debug.Log($"成员数: {result.MemberCount}");
+        Debug.Log($"当前用户是否在群中: {result.IsInGroup}");
+    },
+    fail: (error) => Debug.Log($"查询失败: {error.ErrMsg}")
+);
+```
+
+---
+
+## 四、关注抖音号
+
+### 4.1 TT.CheckFollowAwemeState
+
+**说明**: 检查用户是否已关注指定的抖音号。
+
+**语法**:
+
+```csharp
+public static void CheckFollowAwemeState(Action<FollowStateResult> success, Action<ErrorInfo> fail = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| success | Action\<FollowStateResult\> | 是 | - | 成功回调，返回关注状态 |
+| fail | Action\<ErrorInfo\> | 否 | null | 失败回调 |
+
+**代码示例**:
+
+```csharp
+TT.CheckFollowAwemeState(
+    success: (result) =>
+    {
+        if (result.HasFollowed)
+        {
+            Debug.Log("用户已关注该抖音号");
+        }
+        else
+        {
+            Debug.Log("用户未关注，可引导关注");
+        }
+    },
+    fail: (error) => Debug.Log($"查询失败: {error.ErrMsg}")
+);
+```
+
+---
+
+### 4.2 TT.OpenAwemeUserProfile
+
+**说明**: 打开指定抖音号的用户主页。
+
+**语法**:
+
+```csharp
+public static void OpenAwemeUserProfile(string awemeId = null, Action success = null, Action<ErrorInfo> fail = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| awemeId | string | 否 | null | 抖音号 ID，不传则打开游戏绑定账号的主页 |
+| success | Action | 否 | null | 打开成功回调 |
+| fail | Action\<ErrorInfo\> | 否 | null | 打开失败回调 |
+
+**代码示例**:
+
+```csharp
+// 打开游戏绑定的官方抖音号主页
+TT.OpenAwemeUserProfile(
+    success: () => Debug.Log("已打开主页"),
+    fail: (error) => Debug.Log($"打开失败: {error.ErrMsg}")
+);
+
+// 打开指定抖音号主页
+TT.OpenAwemeUserProfile("aweme_xxxxx",
+    success: () => Debug.Log("已打开指定抖音号主页")
+);
+```
+
+---
+
+### 4.3 TT.CheckBoundAweme
+
+**说明**: 检查当前游戏是否绑定了抖音号。
+
+**语法**:
+
+```csharp
+public static void CheckBoundAweme(Action<BoundAwemeResult> success, Action<ErrorInfo> fail = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| success | Action\<BoundAwemeResult\> | 是 | - | 成功回调 |
+| fail | Action\<ErrorInfo\> | 否 | null | 失败回调 |
+
+**代码示例**:
+
+```csharp
+TT.CheckBoundAweme(
+    success: (result) =>
+    {
+        // ⚠️ 安全：抖音号 ID 为永久用户标识，生产环境禁止打印
+        #if UNITY_EDITOR || DEVELOPMENT_BUILD
+        Debug.Log($"是否绑定: {result.IsBound}");
+        Debug.Log($"绑定抖音号ID: {result.AwemeId}");
+        #else
+        Debug.Log($"是否绑定: {result.IsBound}");
+        #endif
+    },
+    fail: (error) => Debug.Log($"查询失败: {error.ErrMsg}")
+);
+```
+
+---
+
+## 五、直玩（推荐流直出游戏）
+
+直玩能力允许用户在抖音推荐流中直接试玩游戏，无需下载安装。
+
+### 5.1 TT.RequestFeedSubscribe
+
+**说明**: 请求用户订阅推荐流直出游戏，订阅后用户可在推荐流中直接启动游戏。
+
+**语法**:
+
+```csharp
+public static void RequestFeedSubscribe(Action success = null, Action<ErrorInfo> fail = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| success | Action | 否 | null | 订阅成功回调 |
+| fail | Action\<ErrorInfo\> | 否 | null | 订阅失败回调 |
+
+**代码示例**:
+
+```csharp
+TT.RequestFeedSubscribe(
+    success: () => Debug.Log("直玩订阅成功"),
+    fail: (error) => Debug.Log($"直玩订阅失败: {error.ErrMsg}")
+);
+```
+
+---
+
+### 5.2 TT.CheckFeedSubscribeStatus
+
+**说明**: 检查用户当前直玩订阅状态。
+
+**语法**:
+
+```csharp
+public static void CheckFeedSubscribeStatus(Action<FeedSubscribeResult> success, Action<ErrorInfo> fail = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| success | Action\<FeedSubscribeResult\> | 是 | - | 成功回调，返回订阅状态 |
+| fail | Action\<ErrorInfo\> | 否 | null | 失败回调 |
+
+**代码示例**:
+
+```csharp
+TT.CheckFeedSubscribeStatus(
+    success: (result) =>
+    {
+        if (result.IsSubscribed)
+        {
+            Debug.Log("用户已订阅直玩");
+        }
+        else
+        {
+            Debug.Log("用户未订阅直玩");
+            TT.RequestFeedSubscribe(); // 引导订阅
+        }
+    },
+    fail: (error) => Debug.Log($"查询失败: {error.ErrMsg}")
+);
+```
+
+---
+
+### 5.3 TT.OnFeedStatusChange
+
+**说明**: 监听推荐流直出游戏的状态变化事件。
+
+**语法**:
+
+```csharp
+public static void OnFeedStatusChange(Action<FeedStatusChangeEvent> callback)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| callback | Action\<FeedStatusChangeEvent\> | 是 | - | 状态变化回调 |
+
+**代码示例**:
+
+```csharp
+TT.OnFeedStatusChange((eventData) =>
+{
+    Debug.Log($"直玩状态变化: {eventData.Status}");
+    switch (eventData.Status)
+    {
+        case "playing":
+            Debug.Log("用户在推荐流中开始游戏");
+            break;
+        case "paused":
+            Debug.Log("用户在推荐流中暂停游戏");
+            break;
+        case "closed":
+            Debug.Log("用户关闭推荐流游戏");
+            break;
+    }
+});
+```
+
+---
+
+### 5.4 TT.OffFeedStatusChange
+
+**说明**: 取消监听推荐流直出游戏的状态变化事件。
+
+**语法**:
+
+```csharp
+public static void OffFeedStatusChange(Action<FeedStatusChangeEvent> callback)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| callback | Action\<FeedStatusChangeEvent\> | 是 | - | 需移除的监听回调 |
+
+**代码示例**:
+
+```csharp
+// 注册监听
+private Action<FeedStatusChangeEvent> onFeedChange;
+
+void OnEnable()
+{
+    onFeedChange = (eventData) => Debug.Log($"直玩状态: {eventData.Status}");
+    TT.OnFeedStatusChange(onFeedChange);
+}
+
+void OnDisable()
+{
+    // 取消监听，避免内存泄漏
+    TT.OffFeedStatusChange(onFeedChange);
+}
+```
+
+---
+
+## 六、游戏互推
+
+### 6.1 TT.CreateGridGamePanel
+
+**说明**: 创建游戏互推面板，在指定区域展示其他推荐游戏的网格列表。
+
+**语法**:
+
+```csharp
+public static GridGamePanel CreateGridGamePanel(GridGamePanelParam param)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| param | GridGamePanelParam | 是 | - | 互推面板参数对象 |
+
+**GridGamePanelParam 属性**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| X | float | 否 | 0 | 面板 X 坐标（Unity 世界坐标） |
+| Y | float | 否 | 0 | 面板 Y 坐标（Unity 世界坐标） |
+| Width | float | 否 | 300 | 面板宽度 |
+| Height | float | 否 | 400 | 面板高度 |
+| ColumnCount | int | 否 | 2 | 网格列数 |
+
+**GridGamePanel 对象方法**:
+
+| 方法 | 说明 |
+|------|------|
+| Show() | 显示互推面板 |
+| Hide() | 隐藏互推面板 |
+| Destroy() | 销毁互推面板，释放资源 |
+| OnShow(Action callback) | 面板显示事件 |
+| OnHide(Action callback) | 面板隐藏事件 |
+
+**代码示例**:
+
+```csharp
+// 创建互推面板
+var panelParam = new GridGamePanelParam
+{
+    X = 50,
+    Y = 100,
+    Width = 600,
+    Height = 800,
+    ColumnCount = 3
+};
+
+var gamePanel = TT.CreateGridGamePanel(panelParam);
+
+gamePanel.OnShow(() => Debug.Log("互推面板已显示"));
+gamePanel.OnHide(() => Debug.Log("互推面板已隐藏"));
+
+// 显示面板
+gamePanel.Show();
+
+// 在适当时机隐藏
+// gamePanel.Hide();
+
+// 销毁时释放资源
+// gamePanel.Destroy();
+```
+
+---
+
+## 七、游戏排行榜
+
+### 7.1 TT.SetImRankData
+
+**说明**: 设置用户在当前群的 IM 排行榜数据，用于群排行榜功能。
+
+**语法**:
+
+```csharp
+public static void SetImRankData(ImRankDataParam param, Action success = null, Action<ErrorInfo> fail = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| param | ImRankDataParam | 是 | - | 排行榜数据参数 |
+| success | Action | 否 | null | 设置成功回调 |
+| fail | Action\<ErrorInfo\> | 否 | null | 设置失败回调 |
+
+**ImRankDataParam 属性**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| Score | int | 是 | - | 排行榜分数 |
+| RankData | string | 否 | "" | 额外排名数据（JSON 字符串） |
+
+**代码示例**:
+
+```csharp
+var rankParam = new ImRankDataParam
+{
+    Score = 9999,
+    RankData = "{\"level\":50,\"title\":\"王者\"}"
+};
+
+TT.SetImRankData(rankParam,
+    success: () => Debug.Log("排行榜数据更新成功"),
+    fail: (error) => Debug.Log($"更新失败: {error.ErrMsg}")
+);
+```
+
+---
+
+### 7.2 TT.GetImRankList
+
+**说明**: 获取当前群的 IM 排行榜列表。
+
+**语法**:
+
+```csharp
+public static void GetImRankList(Action<ImRankListResult> success, Action<ErrorInfo> fail = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| success | Action\<ImRankListResult\> | 是 | - | 成功回调，返回排行榜列表 |
+| fail | Action\<ErrorInfo\> | 否 | null | 失败回调 |
+
+**代码示例**:
+
+```csharp
+TT.GetImRankList(
+    success: (result) =>
+    {
+        Debug.Log($"排行榜列表长度: {result.RankList.Length}");
+        foreach (var item in result.RankList)
+        {
+            Debug.Log($"第{item.Rank}名: {item.NickName} - 分数:{item.Score}");
+        }
+    },
+    fail: (error) => Debug.Log($"获取排行榜失败: {error.ErrMsg}")
+);
+```
+
+---
+
+### 7.3 TT.GetImRankData
+
+**说明**: 获取当前用户在群排行榜中的个人排名数据。
+
+**语法**:
+
+```csharp
+public static void GetImRankData(Action<ImRankDataResult> success, Action<ErrorInfo> fail = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| success | Action\<ImRankDataResult\> | 是 | - | 成功回调，返回个人排名 |
+| fail | Action\<ErrorInfo\> | 否 | null | 失败回调 |
+
+**代码示例**:
+
+```csharp
+TT.GetImRankData(
+    success: (result) =>
+    {
+        Debug.Log($"我的排名: 第{result.Rank}名");
+        Debug.Log($"我的分数: {result.Score}");
+    },
+    fail: (error) => Debug.Log($"获取个人排名失败: {error.ErrMsg}")
+);
+```
+
+---
+
+## 八、直播能力
+
+### 8.1 TT.GetLiveManager
+
+**说明**: 获取直播管理器实例，用于与抖音直播进行交互。
+
+**语法**:
+
+```csharp
+public static TTLiveManager GetLiveManager()
+```
+
+**返回值**:
+
+| 类型 | 说明 |
+|------|------|
+| TTLiveManager | 直播管理器单例实例 |
+
+**TTLiveManager 方法**:
+
+#### CheckRoomIsValid
+
+**说明**: 检查直播间是否可用。
+
+```csharp
+public void CheckRoomIsValid(Action<bool> callback)
+```
+
+#### GetLiveStatus
+
+**说明**: 获取当前直播状态。
+
+```csharp
+public void GetLiveStatus(Action<LiveStatusResult> callback)
+```
+
+#### NavigateToLive
+
+**说明**: 导航到指定直播间。
+
+```csharp
+public void NavigateToLive(string roomId, Action success = null, Action<ErrorInfo> fail = null)
+```
+
+#### OnXScreenSizeChange
+
+**说明**: 监听异形屏尺寸变化（如直播小窗模式）。
+
+```csharp
+public void OnXScreenSizeChange(Action<XScreenSizeEvent> callback)
+```
+
+#### OffXScreenSizeChange
+
+**说明**: 取消监听异形屏尺寸变化。
+
+```csharp
+public void OffXScreenSizeChange(Action<XScreenSizeEvent> callback)
+```
+
+**代码示例**:
+
+```csharp
+var liveManager = TT.GetLiveManager();
+
+// 检查直播间是否可用
+liveManager.CheckRoomIsValid((isValid) =>
+{
+    if (isValid)
+    {
+        Debug.Log("直播间可用");
+    }
+    else
+    {
+        Debug.Log("当前不在直播间或直播能力不可用");
+    }
+});
+
+// 获取直播状态
+liveManager.GetLiveStatus((status) =>
+{
+    Debug.Log($"直播状态: {status.Status}");
+    Debug.Log($"直播间ID: {status.RoomId}");
+    Debug.Log($"是否正在直播: {status.IsLiving}");
+});
+
+// 导航到直播间
+liveManager.NavigateToLive("room_xxxxx",
+    success: () => Debug.Log("已跳转到直播间"),
+    fail: (error) => Debug.Log($"跳转失败: {error.ErrMsg}")
+);
+
+// 监听异形屏变化
+liveManager.OnXScreenSizeChange((eventData) =>
+{
+    Debug.Log($"屏幕尺寸变化: width={eventData.Width}, height={eventData.Height}");
+    Debug.Log($"安全区域: top={eventData.SafeAreaTop}, bottom={eventData.SafeAreaBottom}");
+    // 适配 UI 布局
+});
+```
+
+---
+
+## 九、公会群
+
+### 9.1 TT.GetUnionGroupInfo
+
+**说明**: 获取公会群的基本信息。
+
+**语法**:
+
+```csharp
+public static void GetUnionGroupInfo(Action<UnionGroupInfoResult> success, Action<ErrorInfo> fail = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| success | Action\<UnionGroupInfoResult\> | 是 | - | 成功回调 |
+| fail | Action\<ErrorInfo\> | 否 | null | 失败回调 |
+
+**代码示例**:
+
+```csharp
+TT.GetUnionGroupInfo(
+    success: (info) =>
+    {
+        Debug.Log($"公会群ID: {info.GroupId}");
+        Debug.Log($"公会群名称: {info.GroupName}");
+        Debug.Log($"是否已绑定: {info.IsBound}");
+    },
+    fail: (error) => Debug.Log($"获取公会群信息失败: {error.ErrMsg}")
+);
+```
+
+---
+
+### 9.2 TT.BindUnionGroup
+
+**说明**: 绑定游戏与公会群的关联关系。
+
+**语法**:
+
+```csharp
+public static void BindUnionGroup(string groupId, Action success = null, Action<ErrorInfo> fail = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| groupId | string | 是 | - | 公会群 ID |
+| success | Action | 否 | null | 绑定成功回调 |
+| fail | Action\<ErrorInfo\> | 否 | null | 绑定失败回调 |
+
+**代码示例**:
+
+```csharp
+TT.BindUnionGroup("union_group_xxxxx",
+    success: () => Debug.Log("公会群绑定成功"),
+    fail: (error) => Debug.Log($"绑定失败: {error.ErrMsg} ({error.ErrorCode})")
+);
+```
+
+---
+
+### 9.3 TT.UnbindUnionGroup
+
+**说明**: 解绑游戏与公会群的关联关系。
+
+**语法**:
+
+```csharp
+public static void UnbindUnionGroup(string groupId, Action success = null, Action<ErrorInfo> fail = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| groupId | string | 是 | - | 公会群 ID |
+| success | Action | 否 | null | 解绑成功回调 |
+| fail | Action\<ErrorInfo\> | 否 | null | 解绑失败回调 |
+
+**代码示例**:
+
+```csharp
+TT.UnbindUnionGroup("union_group_xxxxx",
+    success: () => Debug.Log("公会群解绑成功"),
+    fail: (error) => Debug.Log($"解绑失败: {error.ErrMsg}")
+);
+```
+
+---
+
+### 9.4 TT.JoinUnionGroup
+
+**说明**: 引导用户加入公会群。
+
+**语法**:
+
+```csharp
+public static void JoinUnionGroup(string groupId, Action success = null, Action<ErrorInfo> fail = null, Action complete = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| groupId | string | 是 | - | 公会群 ID |
+| success | Action | 否 | null | 加入成功回调 |
+| fail | Action\<ErrorInfo\> | 否 | null | 加入失败回调 |
+| complete | Action | 否 | null | 操作完成回调 |
+
+**代码示例**:
+
+```csharp
+TT.JoinUnionGroup("union_group_xxxxx",
+    success: () => Debug.Log("已加入公会群"),
+    fail: (error) => Debug.Log($"加入失败: {error.ErrMsg}"),
+    complete: () => Debug.Log("入群流程结束")
+);
+```
+
+---
+
+## 十、订阅消息
+
+### 10.1 TT.RequestSubscribeMessage
+
+**说明**: 请求用户授权订阅消息（模板消息），授权后可向用户发送服务通知。
+
+**语法**:
+
+```csharp
+public static void RequestSubscribeMessage(string[] tmplIds, Action<SubscribeMessageResult> success, Action<ErrorInfo> fail = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| tmplIds | string[] | 是 | - | 需要订阅的消息模板 ID 列表 |
+| success | Action\<SubscribeMessageResult\> | 是 | - | 授权成功回调 |
+| fail | Action\<ErrorInfo\> | 否 | null | 授权失败回调 |
+
+**代码示例**:
+
+```csharp
+string[] templateIds = new string[] { "tmpl_001", "tmpl_002", "tmpl_003" };
+
+TT.RequestSubscribeMessage(templateIds,
+    success: (result) =>
+    {
+        foreach (var item in result.SubscribeResults)
+        {
+            Debug.Log($"模板 {item.TmplId}: {(item.Accepted ? "已订阅" : "已拒绝")}");
+        }
+    },
+    fail: (error) => Debug.Log($"订阅失败: {error.ErrMsg}")
+);
+```
+
+---
+
+## 十一、数据分析
+
+### 11.1 TT.ReportAnalytics
+
+**说明**: 上报自定义分析事件，用于抖音开发者平台的数据统计。
+
+**语法**:
+
+```csharp
+public static void ReportAnalytics(string eventName, string eventData = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| eventName | string | 是 | - | 事件名称，需在开发者平台预先配置 |
+| eventData | string | 否 | null | 事件参数（JSON 字符串） |
+
+**代码示例**:
+
+> ⚠️ **【隐私合规提示】**：`ReportAnalytics` 上报的数据会关联用户身份。建议：
+> - 在用户首次登录时展示隐私政策并征得同意后启用数据分析上报
+> - `eventData` 中不得包含 `openid`、`code`、`session_key` 等敏感凭证
+> - 涉及用户行为的精细化分析（如关卡耗时）应在隐私政策中明确披露用途
+
+```csharp
+// 上报关卡通过事件
+TT.ReportAnalytics("level_complete", "{\"levelId\":5,\"score\":12500,\"duration\":180}");
+
+// 上报购买事件
+TT.ReportAnalytics("item_purchase", "{\"itemId\":\"weapon_001\",\"price\":6,\"currency\":\"CNY\"}");
+
+// 上报自定义事件（无额外数据）
+TT.ReportAnalytics("daily_login");
+```
+
+---
+
+### 11.2 TT.ReportScene
+
+**说明**: 上报场景切换事件，用于分析用户在游戏中的行为路径。
+
+**语法**:
+
+```csharp
+public static void ReportScene(string sceneId, int costTime = 0, string extraData = null, Action success = null, Action<ErrorInfo> fail = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| sceneId | string | 是 | - | 场景 ID |
+| costTime | int | 否 | 0 | 场景耗时（毫秒） |
+| extraData | string | 否 | null | 额外数据（JSON） |
+| success | Action | 否 | null | 上报成功回调 |
+| fail | Action\<ErrorInfo\> | 否 | null | 上报失败回调 |
+
+**代码示例**:
+
+> ⚠️ **【隐私合规提示】**：`ReportScene` 上报场景切换数据会关联用户身份。建议在隐私政策中披露场景数据采集用途，并在首次调用前获取用户同意。
+
+```csharp
+// 上报场景切换
+TT.ReportScene("main_menu", 0, null,
+    success: () => Debug.Log("场景上报成功")
+);
+
+// 上报场景带耗时
+TT.ReportScene("battle_scene", 2500, "{\"enemyCount\":10}",
+    success: () => Debug.Log("战斗场景上报成功"),
+    fail: (error) => Debug.Log($"场景上报失败: {error.ErrMsg}")
+);
+```
+
+---
+
+## 十二、客服
+
+### 12.1 TT.OpenCustomerServiceConversation
+
+**说明**: 打开客服会话页面，用户可与开发者进行沟通。
+
+**语法**:
+
+```csharp
+public static void OpenCustomerServiceConversation(Action success = null, Action<ErrorInfo> fail = null)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| success | Action | 否 | null | 打开成功回调 |
+| fail | Action\<ErrorInfo\> | 否 | null | 打开失败回调 |
+
+**代码示例**:
+
+```csharp
+TT.OpenCustomerServiceConversation(
+    success: () => Debug.Log("客服会话已打开"),
+    fail: (error) => Debug.Log($"打开客服失败: {error.ErrMsg}")
+);
+```
+
+---
+
+### 12.2 TT.OpenAwemeCustomerService
+
+**说明**: 打开抖音号客服页面（即钻石支付客服页面），可同时用于客服咨询和钻石支付。
+
+**语法**:
+
+```csharp
+public static void OpenAwemeCustomerService(OpenAwemeCustomerServiceParam param)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| param | OpenAwemeCustomerServiceParam | 是 | - | 客服/支付参数对象 |
+
+> 详细参数定义及支付流程见 [unity-payment.md](unity-payment.md) 第一节。
+
+**代码示例**:
+
+```csharp
+// 仅打开客服咨询（不涉及支付）
+var param = new OpenAwemeCustomerServiceParam
+{
+    Success = () => Debug.Log("客服页面已关闭"),
+    Fail = (error) => Debug.Log($"打开失败: {error.ErrMsg}")
+};
+TT.OpenAwemeCustomerService(param);
+```
+
+---
+
+## 十三、快捷方式
+
+### 13.1 TT.AddShortcut
+
+**说明**: 提示用户添加游戏快捷方式到桌面。
+
+**语法**:
+
+```csharp
+public static void AddShortcut(Action<bool> callback)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| callback | Action\<bool\> | 是 | - | 回调，参数为 true 表示添加成功 |
+
+**代码示例**:
+
+```csharp
+TT.AddShortcut((success) =>
+{
+    if (success)
+    {
+        Debug.Log("快捷方式已添加到桌面");
+    }
+    else
+    {
+        Debug.Log("用户取消添加或操作失败");
+    }
+});
+```
+
+---
+
+### 13.2 TT.CheckShortcut
+
+**说明**: 检查是否已存在游戏快捷方式。
+
+**语法**:
+
+```csharp
+public static void CheckShortcut(Action<bool> callback)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| callback | Action\<bool\> | 是 | - | 回调，参数为 true 表示快捷方式已存在 |
+
+**代码示例**:
+
+```csharp
+TT.CheckShortcut((exists) =>
+{
+    if (!exists)
+    {
+        Debug.Log("快捷方式不存在，弹出引导");
+        TT.AddShortcut((success) => Debug.Log($"添加结果: {success}"));
+    }
+    else
+    {
+        Debug.Log("快捷方式已存在");
+    }
+});
+```
+
+---
+
+## 十四、邀请模块
+
+### 14.1 TT.CreateInvitePanel
+
+**说明**: 创建游戏邀请面板，用户可通过该面板邀请好友一起游戏。
+
+**语法**:
+
+```csharp
+public static InvitePanel CreateInvitePanel(InvitePanelParam param)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| param | InvitePanelParam | 是 | - | 邀请面板参数对象 |
+
+**InvitePanelParam 属性**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| RoomId | string | 否 | "" | 房间 ID，透传给被邀请方 |
+| Query | string | 否 | "" | 自定义参数，透传给被邀请方 |
+| Timeout | int | 否 | 30000 | 邀请超时时间（毫秒） |
+
+**InvitePanel 对象方法**:
+
+| 方法 | 说明 |
+|------|------|
+| Show() | 显示邀请面板 |
+| Hide() | 隐藏邀请面板 |
+| Destroy() | 销毁邀请面板 |
+| OnSuccess(Action\<InviteResult\> callback) | 邀请成功回调 |
+| OnFail(Action\<ErrorInfo\> callback) | 邀请失败回调 |
+
+**代码示例**:
+
+```csharp
+var inviteParam = new InvitePanelParam
+{
+    RoomId = "room_12345",
+    Query = "mode=ranked&map=forest",
+    Timeout = 30000
+};
+
+var invitePanel = TT.CreateInvitePanel(inviteParam);
+
+invitePanel.OnSuccess((result) =>
+{
+    Debug.Log($"邀请成功: 已邀请 {result.InvitedCount} 位好友");
+});
+
+invitePanel.OnFail((error) =>
+{
+    Debug.Log($"邀请失败: {error.ErrMsg} ({error.ErrorCode})");
+});
+
+invitePanel.Show();
+```
+
+---
+
+### 14.2 TT.OnInviteStateChanged
+
+**说明**: 监听好友邀请状态变化（作为被邀请方时使用）。
+
+**语法**:
+
+```csharp
+public static void OnInviteStateChanged(Action<InviteStateEvent> callback)
+```
+
+**参数说明**:
+
+| 参数 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|--------|------|
+| callback | Action\<InviteStateEvent\> | 是 | - | 邀请状态变化回调 |
+
+**代码示例**:
+
+```csharp
+TT.OnInviteStateChanged((eventData) =>
+{
+    // ⚠️ 安全：OpenId 为永久用户标识，生产环境禁止打印
+    #if UNITY_EDITOR || DEVELOPMENT_BUILD
+    Debug.Log($"邀请状态: {eventData.State}");
+    Debug.Log($"邀请方 openId: {eventData.OpenId}");
+    Debug.Log($"房间ID: {eventData.RoomId}");
+    Debug.Log($"自定义参数: {eventData.Query}");
+    #else
+    Debug.Log($"邀请状态: {eventData.State}");
+    Debug.Log($"房间ID: {eventData.RoomId}");
+    #endif
+
+    switch (eventData.State)
+    {
+        case "invited":
+            Debug.Log("收到好友邀请");
+            // 可选择自动加入或展示提示
+            break;
+        case "accepted":
+            Debug.Log("邀请已被接受");
+            break;
+    }
+});
+```

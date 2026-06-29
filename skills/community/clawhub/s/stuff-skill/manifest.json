@@ -1,0 +1,19 @@
+{
+  "name": "stuff-skill",
+  "version": "1.1.0",
+  "owner": "老大 (aircango)",
+  "updated_at": "2026-06-23",
+  "status": "active",
+  "maturity_tier": "production",
+  "lifecycle_stage": "production",
+  "context_budget_tier": "production",
+  "review_cadence": "as-needed",
+  "target_platforms": [
+    "claude",
+    "generic"
+  ],
+  "factory_components": [
+    "assets",
+    "references"
+  ]
+}

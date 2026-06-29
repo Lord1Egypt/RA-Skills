@@ -1,0 +1,7 @@
+interface:
+  display_name: "AIOS Chart Image"
+  short_description: "Render JSON or Markdown data into ECharts images"
+  default_prompt: "Use $aios-make-chart-image to turn JSON, Markdown tables, or ECharts options into PNG, SVG, JPEG, or WebP chart images."
+
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,8 @@
+{
+  "name": "wyze-lock-skill-deps",
+  "private": true,
+  "description": "Runtime dependency for the Wyze lock OpenClaw skill",
+  "dependencies": {
+    "wyze-node": "^2.12.2"
+  }
+}

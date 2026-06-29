@@ -1,0 +1,20 @@
+# 节日 / 大促场景 Prompt 模板 v1
+# scene key 直接用于 --scene；占位符 {product} = 产品名称
+
+## christmas（圣诞）
+A {product} styled for Christmas holiday marketing, subtle pine branches and warm bokeh lights in soft background, red and gold accent props, cozy festive atmosphere, premium gift presentation, product remains hero of frame, winter holiday commercial photography
+
+## black_friday（黑五）
+A {product} in bold Black Friday promotional setting, high contrast lighting, dynamic angle, sleek dark backdrop with subtle gold accent props, urgency and premium deal aesthetic, e-commerce campaign photography, energetic commercial style
+
+## prime_day（Prime Day）
+A {product} in clean Amazon Prime Day style scene, blue and white accent lighting hints, modern minimal studio, trustworthy tech-shopping aesthetic, crisp product focus, professional marketplace campaign photography
+
+## valentine（情人节）
+A {product} in romantic Valentine's Day setting, soft pink and rose-gold tones, delicate floral props blurred in background, gift-ready presentation, warm intimate lighting, e-commerce lifestyle photography
+
+## lunar_new_year（春节 / 农历新年）
+A {product} in Lunar New Year festive setting, elegant red and gold accents, subtle lantern bokeh and traditional paper texture props, celebratory yet refined atmosphere, product as focal point, Asian festival commercial photography
+
+## summer_sale（夏日促销）
+A {product} in bright summer sale scene, sunny natural light, fresh citrus or beach-inspired color accents, airy and optimistic mood, seasonal promotion photography, vibrant but not cluttered

@@ -2,7 +2,7 @@
 name: "Long Context RAG Analyzer"
 slug: long-context
 description: "AI-powered long-context document analysis and RAG optimization assistant — process 100K-2M token documents, build hybrid search indexes, evaluate retrieval quality, handle multi-document reasoning, and generate structured reports. Built for financial analysts, legal professionals, researchers, and developers working with large-scale document datasets. Keywords: long context, RAG, retrieval augmented generation, document analysis, vector search, hybrid search, chunking strategy, context window, financial report analysis, legal document review, research paper synthesis, 长上下文, Gemini 2M token, 文档理解, 向量检索, 混合检索, RAG优化, 知识库.
-version: "3.0.1"
+version: "3.0.2"
 ---
 
 # Long Context RAG Analyzer
@@ -43,6 +43,18 @@ With Gemini 3.1 Ultra's 2M token context window and DeepSeek V4's 1M token conte
 - "vector database" / "向量数据库"
 
 ---
+
+
+### 长上下文RAG最新动态 [2026-06-28更新]
+
+| 动态类型 | 内容摘要 | 发布时间 | 影响范围 |
+|---------|---------|---------|---------|
+| 技术融合 | 长上下文模型与RAG架构加速融合，检索增强+长上下文成为企业知识库主流方案 | 2026-H1 | RAG系统架构设计 |
+| Agent标准 | MCP 2026路线图推动Agent通信标准化，RAG Agent可依托MCP扩展数据源与工具链 | 2026-06 | RAG Agent工具集成 |
+| 金融合规 | 银行业保险业AI安全开发应用指导意见要求金融AI应用可解释、可审计，RAG需增加溯源与合规检查 | 2026-06-18 | 金融RAG合规 |
+
+> **数据截止**: 2026-06-28 | 来源：国家金融监督管理总局、行业公开信息
+> **声明**: 以上动态供参考，具体以官方最新发布为准
 
 ## Workflow
 

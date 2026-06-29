@@ -1,0 +1,27 @@
+name: huawei-cloud-cce-cci-bursting-deployer
+level: L1
+domain: cce-cci-elasticity
+description: Configure, deploy, and verify Huawei Cloud CCE to CCI 2.0 bursting with VPCEP dependencies, virtual-kubelet, a smoke workload, and readiness checks.
+tools:
+  - huawei_list_cce_clusters
+  - huawei_list_cce_addons
+  - huawei_get_kubernetes_nodes
+  - huawei_get_cce_pods
+  - huawei_get_cce_events
+  - huawei_list_cce_nodepools
+  - huawei_resize_cce_nodepool
+  - huawei_create_cce_nodepool
+  - huawei_precheck_cce_cci_bursting
+  - huawei_check_cce_cci_node_capacity
+  - huawei_ensure_cce_cci_vpcep
+  - huawei_setup_cce_cci_bursting
+  - huawei_discover_cce_cci_smoke_images
+  - huawei_deploy_cce_cci_smoke_workload
+  - huawei_verify_cce_cci_bursting
+  - huawei_diagnose_cce_cci_bursting_addon
+references:
+  - references/workflow.md
+  - references/risk-rules.md
+  - references/troubleshooting.md
+guardrails:
+  max_auto_risk: R1

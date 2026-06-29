@@ -2078,8 +2078,8 @@
         "permanent"
       ],
       "forbidden_plan_terms": [
-        "BEGIN PRIVATE KEY",
-        "MIIEvQIBADANBgkqhki"
+        "raw key marker",
+        "raw key body"
       ],
       "min_thread_focus_hits": 4,
       "min_resolution_hits": 4,

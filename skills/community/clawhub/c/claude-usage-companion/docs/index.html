@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>claude-usage-companion — monitor your Claude credit pool, align your window</title>
+<meta name="description" content="Since June 2026, Claude meters claude -p / Agent SDK / GitHub Actions from a separate monthly credit pool. claude-usage-companion tracks that pool (burn + projection + alerts) and reminds you to start your interactive session. Reports and reminds only — no automation, no circumvention.">
+<meta property="og:title" content="claude-usage-companion">
+<meta property="og:description" content="Monitor your Claude credit pool. Align your window.">
+<meta property="og:image" content="assets/hero.png">
+<style>
+  :root{
+    --bg:#1c1c1a;--bg2:#262624;--card:#2d2d2a;--line:#3c3c38;
+    --clay:#d97757;--clay-d:#b35c40;--blue:#6b9bd1;--green:#7fb069;--amber:#e0b14d;--red:#d06e6e;
+    --text:#edeae3;--muted:#9a988f;
+    --mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:var(--clay);text-decoration:none} a:hover{text-decoration:underline}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px}
+  code,pre{font-family:var(--mono)}
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(28,28,26,.85);backdrop-filter:blur(8px);z-index:10}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:920px;margin:0 auto}
+  .brand{font-family:var(--mono);font-weight:700;color:var(--text)} .brand .dot{color:var(--clay)}
+  .nav a{color:var(--muted);margin-left:20px;font-size:14px} .nav a:hover{color:var(--text);text-decoration:none}
+  .hero{text-align:center;padding:70px 0 38px}
+  .hero h1{font-size:clamp(32px,5.5vw,54px);letter-spacing:-1px;line-height:1.06}
+  .hero h1 .accent{color:var(--clay)}
+  .hero p.tag{color:var(--muted);font-size:clamp(17px,2.4vw,21px);margin-top:18px}
+  .pills{margin-top:22px}
+  .pill{display:inline-block;border:1px solid var(--clay);color:var(--clay);border-radius:20px;font-family:var(--mono);font-size:13px;padding:5px 14px;margin:4px}
+  .cta{margin-top:30px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{display:inline-block;padding:12px 26px;border-radius:10px;font-weight:600;font-size:15px}
+  .btn.primary{background:var(--clay);color:#1c1c1a} .btn.primary:hover{background:var(--clay-d);color:#fff;text-decoration:none}
+  .btn.ghost{border:1px solid var(--line);color:var(--text)} .btn.ghost:hover{border-color:var(--clay);text-decoration:none}
+  section{padding:46px 0;border-top:1px solid var(--line)}
+  h2{font-size:clamp(24px,3.4vw,32px);letter-spacing:-.5px;margin-bottom:8px}
+  .lead{color:var(--muted);margin-bottom:26px;font-size:17px;max-width:700px}
+  .demo{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:30px 26px}
+  .gaugewrap{margin:6px 0}
+  .glabel{font-family:var(--mono);font-size:13px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between}
+  .track{position:relative;height:26px;background:#141413;border-radius:8px;overflow:hidden}
+  .fill{height:100%;background:var(--clay);width:0;border-radius:8px;transition:width 1.4s ease}
+  .mark{position:absolute;top:-3px;height:32px;width:2px}
+  .mark.warn{background:var(--amber)} .mark.crit{background:var(--red)}
+  .legend{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:14px}
+  .legend b.w{color:var(--amber)} .legend b.c{color:var(--red)}
+  .gifwrap{text-align:center;margin-top:28px}
+  .gifwrap img{max-width:600px;width:100%;border-radius:12px;border:1px solid var(--line)}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  @media(max-width:680px){.cards{grid-template-columns:1fr}}
+  .c{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px}
+  .c h3{font-size:17px;margin-bottom:8px} .c.mon h3{color:var(--clay)} .c.rem h3{color:var(--blue)}
+  .c p{color:var(--muted);font-size:15px}
+  .steps{display:grid;gap:18px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+  .step h3{font-size:16px;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+  .num{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--clay);color:#1c1c1a;font-family:var(--mono);font-weight:700;font-size:14px}
+  pre{background:#141413;border:1px solid var(--line);border-radius:9px;padding:14px 16px;overflow-x:auto;font-size:13.5px;line-height:1.7;color:#d8d5cd}
+  pre .cm{color:var(--muted)} pre .k{color:var(--clay)}
+  table{width:100%;border-collapse:collapse;font-size:14.5px;margin-top:6px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--muted);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.4px}
+  td code{background:#141413;border:1px solid var(--line);border-radius:5px;padding:2px 6px;font-size:13px;color:var(--clay)}
+  .callout{background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--green);border-radius:10px;padding:20px 22px}
+  .callout .yes{color:var(--green);font-weight:700} .callout .no{color:#d98a8a;font-weight:700}
+  .callout ul{margin:10px 0 0 18px;color:var(--muted)} .callout li{margin:5px 0}
+  footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:14px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <div class="nav">
+    <span class="brand">claude-usage-companion<span class="dot">.</span></span>
+    <nav>
+      <a href="#how">How</a><a href="#setup">Setup</a><a href="#config">Config</a>
+      <a href="https://github.com/DecisionVex/claude-usage-companion">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="hero">
+    <h1>Monitor your Claude credit pool.<br>Align your <span class="accent">window</span>.</h1>
+    <p class="tag">Since June 2026, <code>claude -p</code> / Agent SDK / GitHub Actions draw from a
+      separate monthly credit pool. This watches that pool and reminds you to start your session —
+      on your always-on box.</p>
+    <div class="pills">
+      <span class="pill">credit-pool monitor</span>
+      <span class="pill">window reminder</span>
+      <span class="pill">ccusage-powered</span>
+      <span class="pill">no model calls</span>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="#setup">Get started</a>
+      <a class="btn ghost" href="https://github.com/DecisionVex/claude-usage-companion">View on GitHub →</a>
+    </div>
+  </div>
+
+  <section id="how">
+    <h2>What it does</h2>
+    <p class="lead">Two hands-off jobs. It only <b>reports</b> and <b>reminds</b> — it never
+      automates the model and never circumvents a limit. Usage is read locally with
+      <code>ccusage</code> (no model calls, no window side effects).</p>
+    <div class="cards">
+      <div class="c mon">
+        <h3>① Monitor the credit pool</h3>
+        <p>Month-to-date burn, projected month-end spend, and an alert at your thresholds — so
+           automations don't quietly stop when the pool (no rollover) runs dry.</p>
+      </div>
+      <div class="c rem">
+        <h3>② Remind you</h3>
+        <p>At your anchor time it nudges <i>you</i> to send your first interactive prompt, so your
+           5-hour window lines up with your working day. You stay the one doing interactive usage.</p>
+      </div>
+    </div>
+
+    <div class="demo" style="margin-top:24px">
+      <div class="gaugewrap">
+        <div class="glabel"><span>programmatic credit pool — spent this month</span><span id="spent">$0.00</span></div>
+        <div class="track"><div class="fill" id="f1"></div><div class="mark warn" style="left:80%"></div><div class="mark crit" style="left:95%"></div></div>
+      </div>
+      <div class="gaugewrap" style="margin-top:18px">
+        <div class="glabel"><span>projected by month end</span><span id="proj">$0.00</span></div>
+        <div class="track"><div class="fill" id="f2"></div><div class="mark warn" style="left:80%"></div><div class="mark crit" style="left:95%"></div></div>
+      </div>
+      <div class="legend">cap $100 (Max 5x) · <b class="w">▏</b> warn 80% · <b class="c">▏</b> critical 95% — alert fires before you run dry</div>
+    </div>
+
+    <div class="gifwrap">
+      <p class="legend" style="margin-bottom:12px">check → report → remind:</p>
+      <img src="assets/demo.gif" alt="Demo: check, report, remind">
+    </div>
+  </section>
+
+  <section id="setup">
+    <h2>Setup — 1, 2, 3</h2>
+    <p class="lead">Run on your always-on box (Node 18+; <code>npm i -g ccusage</code> for the fast path).</p>
+<pre style="margin-bottom:22px">npx skills add DecisionVex/claude-usage-companion   <span class="cm"># skills.sh</span>
+clawhub install claude-usage-companion              <span class="cm"># OpenClaw / ClawHub</span></pre>
+    <div class="steps">
+      <div class="step"><h3><span class="num">1</span> Configure</h3>
+<pre>cp config.example.json config.json
+<span class="cm"># set "timezone", "plan" (pro|max5x|max20x), "anchor"</span></pre></div>
+      <div class="step"><h3><span class="num">2</span> Check &amp; see your burn</h3>
+<pre>node bin/usage-companion.mjs <span class="k">check</span>
+node bin/usage-companion.mjs <span class="k">report</span></pre></div>
+      <div class="step"><h3><span class="num">3</span> Schedule</h3>
+<pre>node bin/usage-companion.mjs <span class="k">install</span>   <span class="cm"># prints a cron block</span>
+crontab -e                              <span class="cm"># paste it, save</span></pre></div>
+    </div>
+  </section>
+
+  <section id="config">
+    <h2>Configuration</h2>
+    <table>
+      <tr><th>Field</th><th>Meaning</th><th>Default</th></tr>
+      <tr><td><code>timezone</code></td><td>IANA tz for all clock math — <b>set this</b></td><td><code>UTC</code></td></tr>
+      <tr><td><code>plan</code></td><td><code>pro</code>/<code>max5x</code>/<code>max20x</code> → credit cap ($20/$100/$200)</td><td><code>max5x</code></td></tr>
+      <tr><td><code>monthly_credit_usd</code></td><td>Override the cap</td><td><code>null</code></td></tr>
+      <tr><td><code>warn_pct</code> / <code>critical_pct</code></td><td>Alert thresholds (% of cap)</td><td><code>80</code> / <code>95</code></td></tr>
+      <tr><td><code>anchor</code></td><td>Local time you start work</td><td><code>08:00</code></td></tr>
+      <tr><td><code>alert_command</code></td><td>Shell command receiving alerts on stdin (e.g. Slack). <code>null</code> = stdout + log</td><td><code>null</code></td></tr>
+    </table>
+  </section>
+
+  <section id="why">
+    <h2>Why this exists</h2>
+    <p class="lead">In June 2026 Anthropic moved non-interactive usage — Agent SDK, <code>claude -p</code>,
+      Claude Code GitHub Actions, third-party agents — onto a separate monthly credit pool, metered
+      at API rates with no rollover. Interactive limits stay reserved for hands-on use.</p>
+    <div class="callout">
+      <p><span class="yes">✓ What this does</span> — observability + a human reminder, fully within terms:
+        reads your own usage locally, alerts you before the credit pool empties, and nudges you to start
+        your interactive session.</p>
+      <p style="margin-top:12px"><span class="no">✗ What it never does</span>:</p>
+      <ul>
+        <li>automate the model or script interactive input to "warm" the window</li>
+        <li>extract or reuse credentials</li>
+        <li>circumvent or exceed any limit</li>
+      </ul>
+      <p style="margin-top:12px;color:var(--muted)">Successor to
+        <a href="https://github.com/DecisionVex/claude-session-warmer">claude-session-warmer</a>,
+        whose <code>claude -p</code> priming no longer anchors the window after this change.</p>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>MIT licensed · built for <a href="https://github.com/DecisionVex">DecisionVex</a> ·
+       <a href="https://github.com/DecisionVex/claude-usage-companion">source</a></p>
+    <p style="margin-top:8px;font-size:13px">Not affiliated with Anthropic. Not legal advice — terms change.</p>
+  </div>
+</footer>
+
+<script>
+  // animate the gauges on load (cap $100, spent $4.51 → 4.5%, projected $7.96 → 8%)
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('f1').style.width = '4.5%';
+      document.getElementById('f2').style.width = '8%';
+    }, 250);
+    let a = 0, b = 0;
+    const t = setInterval(() => {
+      a = Math.min(4.51, a + 0.2); b = Math.min(7.96, b + 0.35);
+      document.getElementById('spent').textContent = '$' + a.toFixed(2);
+      document.getElementById('proj').textContent = '$' + b.toFixed(2);
+      if (a >= 4.51 && b >= 7.96) clearInterval(t);
+    }, 60);
+  });
+</script>
+</body>
+</html>

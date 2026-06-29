@@ -1,0 +1,10 @@
+{
+  "name": "data-table",
+  "label": "标准数据表格",
+  "description": "通用数据表格，支持排序、筛选、分页、搜索",
+  "layout": "table",
+  "features": ["sort", "filter", "search", "pagination", "column_resize", "row_select"],
+  "page_size": 25,
+  "page_sizes": [10, 25, 50, 100],
+  "auto_detect_types": true
+}

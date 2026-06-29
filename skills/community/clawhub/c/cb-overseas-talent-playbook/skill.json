@@ -1,0 +1,28 @@
+{
+  "name": "Overseas Talent and Team Building Playbook",
+  "slug": "cb-overseas-talent-playbook",
+  "version": "1.0.1",
+  "description": "Hire, onboard, and manage overseas talent in minutes. Get hiring sequences, role scorecards, interview rubrics, onboarding plans, and compliance checklists for any overseas market — install and build your distributed team in under 30 seconds.",
+  "author": "Pearl-led OpenClaw team",
+  "tags": [
+    "cross-border",
+    "overseas",
+    "global-expansion",
+    "global-team"
+  ],
+  "trigger_keywords": [
+    "hire overseas team",
+    "international talent playbook",
+    "local country manager",
+    "distributed global team",
+    "overseas hiring strategy"
+  ],
+  "language": "en",
+  "type": "descriptive",
+  "category": "cross-border-expansion",
+  "requires_api": false,
+  "requires_code_execution": false,
+  "outputs": "structured descriptive framework",
+  "readiness": "stable",
+  "safety": "Employment, contractor, tax, and immigration rules vary by jurisdiction and require local professional advice."
+}

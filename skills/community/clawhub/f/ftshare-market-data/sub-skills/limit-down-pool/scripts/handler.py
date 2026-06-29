@@ -23,7 +23,7 @@ def _is_a_share(symbol):
 
 
 def main():
-    url = f"{BASE_URL}/data/api/v1/market/data/limit-down-pool"
+    url = f"{BASE_URL}/gateway/api/v1/market/data/limit-down-pool"
     req = urllib.request.Request(url, method="GET")
     req.add_header("Accept", "application/json")
 

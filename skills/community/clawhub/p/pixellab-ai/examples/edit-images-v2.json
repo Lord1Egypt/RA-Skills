@@ -1,0 +1,21 @@
+{
+  "method": "edit_with_text",
+  "edit_images": [
+    {
+      "image": {
+        "type": "base64",
+        "format": "png",
+        "base64": "REPLACE_WITH_BASE64_FRAME_OR_IMAGE"
+      },
+      "width": 64,
+      "height": 64
+    }
+  ],
+  "image_size": {
+    "width": 64,
+    "height": 64
+  },
+  "description": "make every frame wear the same red scarf, preserve frame timing, canvas alignment, and transparent background",
+  "no_background": true,
+  "seed": 0
+}

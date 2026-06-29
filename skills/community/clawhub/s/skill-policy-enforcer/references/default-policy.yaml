@@ -1,0 +1,31 @@
+policy_name: "default-conservative-skill-policy"
+max_skill_md_words: 1200
+max_file_size_kb: 256
+allow_network: false
+allow_secret_reads: false
+require_files:
+  - SKILL.md
+allowed_frontmatter_fields:
+  - name
+  - description
+forbidden_paths:
+  - .env
+  - .ssh
+  - id_rsa
+  - id_ed25519
+  - credentials
+  - token
+  - browser profile
+forbidden_patterns:
+  - "curl\\s+[^\\n|]+\\|\\s*(sh|bash)"
+  - "Invoke-Expression"
+  - "\\biex\\b"
+  - "base64\\s+(-d|--decode)"
+  - "eval\\s*\\("
+  - "rm\\s+-rf\\s+(/|\\$HOME|~)"
+  - "Remove-Item\\s+.*-Recurse"
+warn_patterns:
+  - "\\bTODO\\b"
+  - "placeholder"
+  - "ignore previous instructions"
+  - "reveal secrets"

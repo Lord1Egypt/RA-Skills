@@ -1,0 +1,15 @@
+{
+  "name": "text2echart",
+  "version": "2.1.0",
+  "description": "Chart generator CLI — CSV/JSON → ECharts HTML/SVG/PNG",
+  "main": "cli.js",
+  "bin": { "text2echart": "cli.js" },
+  "scripts": {
+    "test": "node cli.js --help"
+  },
+  "keywords": ["echarts", "chart", "visualization", "wordcloud", "screenshot"],
+  "license": "MIT",
+  "optionalDependencies": {
+    "playwright": "^1.50.0"
+  }
+}

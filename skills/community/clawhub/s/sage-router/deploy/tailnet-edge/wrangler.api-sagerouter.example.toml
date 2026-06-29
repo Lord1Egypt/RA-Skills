@@ -1,0 +1,45 @@
+name = "sage-router-api-edge"
+main = "cloudflare-api-worker.js"
+compatibility_date = "2026-06-18"
+
+routes = [
+  { pattern = "api.sagerouter.dev/*", zone_name = "sagerouter.dev" }
+]
+
+[vars]
+# JSON origin pool. The Worker health-checks every origin and proxies each
+# request to the lowest-latency healthy origin.
+SAGE_ROUTER_ORIGINS = """
+[
+  {
+    "name": "tailnet-edge-gcp",
+    "url": "https://sage-router-edge-gcp.talpa-stargazer.ts.net",
+    "healthPath": "/edge/health"
+  },
+  {
+    "name": "tailnet-edge-standby",
+    "url": "https://sage-router-edge-standby.example.ts.net",
+    "healthPath": "/edge/health"
+  }
+]
+"""
+SAGE_ROUTER_ORIGIN_CACHE_SECONDS = "8"
+# Default 502,503,504. Replayable API requests are retried against the next
+# healthy origin when the selected origin returns one of these transient
+# statuses or cannot be reached.
+SAGE_ROUTER_EDGE_RETRY_STATUSES = "502,503,504"
+# Default true. Candidate origins must expose /edge/health metadata proving
+# Supabase auth, rate limits, auth-attempt throttling, durable quotas,
+# immediate generated-key revocation, retry failover, and redacted health
+# snapshots before the Worker can select them for api.sagerouter.dev.
+SAGE_ROUTER_REQUIRE_PUBLIC_EDGE_HEALTH = "1"
+# Default true when Supabase service credentials are configured. The Worker
+# records X-Sage-Router-Modalities from successful responses into the same
+# CDN-wide ledger used by router nodes and Tailnet edge proxies.
+SAGE_ROUTER_MODEL_MODALITIES_SHARED_ENABLED = "1"
+SAGE_ROUTER_SUPABASE_URL = "https://awtangrlqqsdpksarhwo.supabase.co"
+# Optional override; defaults to sage_router_record_model_modalities.
+# SAGE_ROUTER_SUPABASE_MODEL_MODALITIES_RPC = "sage_router_record_model_modalities"
+
+# Store SAGE_ROUTER_SUPABASE_SERVICE_ROLE_KEY with:
+# npx wrangler secret put SAGE_ROUTER_SUPABASE_SERVICE_ROLE_KEY --config wrangler.toml

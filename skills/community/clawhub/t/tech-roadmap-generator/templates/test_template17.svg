@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="867" viewBox="0 0 900 867">
+<defs>
+  <style>
+    text { font-family: "Microsoft YaHei", "PingFang SC", sans-serif; }
+  </style>
+</defs>
+<!-- 背景 -->
+<rect width="100%" height="100%" fill="#FFFFFF"/>
+<rect x="4.0" y="17.0" width="47.0" height="121.0" rx="5" fill="#90CAF9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="27.5" y="77.5" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#222222" text-anchor="middle" font-weight="bold">绪论</text>
+<rect x="67.0" y="12.0" width="818.0" height="131.0" fill="none" stroke="#F5F7FA" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="399.5" y="22.0" width="58.0" height="28.0" rx="4" fill="#5B7F9A" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="428.5" y="41.0" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#222222" text-anchor="middle" font-weight="bold">绪论</text>
+<rect x="75.0" y="56.0" width="349.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="249.5" y="77.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">教育数字化转
+研究背景</text>
+<rect x="429.0" y="56.0" width="349.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="603.5" y="77.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">研究目的与意
+义</text>
+<rect x="798.0" y="51.5" width="89.0" height="52.0" rx="3" fill="#E3F2FD" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="842.5" y="63.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">文献分析法</text>
+<text x="842.5" y="77.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">实际调研法</text>
+<text x="842.5" y="91.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">深度访谈法</text>
+<line x1="428.5" y1="143.0" x2="428.5" y2="149.0" stroke="#2C3E50" stroke-width="2.2"/><polygon points="428.5,158.0 424.0,149.0 433.0,149.0" fill="#2C3E50"/>
+<rect x="4.0" y="166.0" width="47.0" height="121.0" rx="5" fill="#90CAF9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="27.5" y="226.5" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#222222" text-anchor="middle" font-weight="bold">现状分析</text>
+<rect x="67.0" y="161.0" width="818.0" height="131.0" fill="none" stroke="#F5F7FA" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="399.5" y="171.0" width="58.0" height="28.0" rx="4" fill="#5B7F9A" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="428.5" y="190.0" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#222222" text-anchor="middle" font-weight="bold">绪论</text>
+<rect x="75.0" y="205.0" width="231.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="190.5" y="226.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">教育数字化转
+发展现状</text>
+<rect x="311.0" y="205.0" width="231.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="426.5" y="226.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">主要表现</text>
+<rect x="547.0" y="205.0" width="231.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="662.5" y="226.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">基本特征</text>
+<rect x="798.0" y="200.5" width="89.0" height="52.0" rx="3" fill="#E3F2FD" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="842.5" y="212.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">文献分析法</text>
+<text x="842.5" y="226.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">实际调研法</text>
+<text x="842.5" y="240.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">深度访谈法</text>
+<line x1="428.5" y1="292.0" x2="428.5" y2="298.0" stroke="#2C3E50" stroke-width="2.2"/><polygon points="428.5,307.0 424.0,298.0 433.0,298.0" fill="#2C3E50"/>
+<rect x="4.0" y="315.0" width="47.0" height="237.0" rx="5" fill="#90CAF9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="27.5" y="433.5" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#222222" text-anchor="middle" font-weight="bold">理论研究</text>
+<rect x="67.0" y="310.0" width="818.0" height="247.0" fill="none" stroke="#F5F7FA" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="385.5" y="320.0" width="86.0" height="28.0" rx="4" fill="#5B7F9A" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="428.5" y="339.0" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#222222" text-anchor="middle" font-weight="bold">理论研究</text>
+<rect x="407.5" y="354.0" width="42.0" height="24.0" rx="3" fill="#81C784" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="428.5" y="370.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#222222" text-anchor="middle" font-weight="bold">原因</text>
+<rect x="301.0" y="382.0" width="83.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="342.5" y="403.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">成因1</text>
+<rect x="387.0" y="382.0" width="83.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="428.5" y="403.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">成因2</text>
+<rect x="473.0" y="382.0" width="83.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="514.5" y="403.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">成因3</text>
+<rect x="407.5" y="426.0" width="42.0" height="24.0" rx="3" fill="#81C784" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="428.5" y="442.0" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#222222" text-anchor="middle" font-weight="bold">逻辑</text>
+<rect x="301.0" y="454.0" width="83.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="342.5" y="475.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">逻辑1</text>
+<rect x="387.0" y="454.0" width="83.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="428.5" y="475.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">逻辑2</text>
+<rect x="473.0" y="454.0" width="83.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="514.5" y="475.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">逻辑3</text>
+<rect x="798.0" y="400.5" width="89.0" height="66.0" rx="3" fill="#E3F2FD" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="842.5" y="412.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">案例研究法</text>
+<text x="842.5" y="426.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">比较研究法</text>
+<text x="842.5" y="440.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">专家咨询法</text>
+<text x="842.5" y="454.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">归纳分析法</text>
+<line x1="428.5" y1="557.0" x2="428.5" y2="563.0" stroke="#2C3E50" stroke-width="2.2"/><polygon points="428.5,572.0 424.0,563.0 433.0,563.0" fill="#2C3E50"/>
+<rect x="4.0" y="580.0" width="47.0" height="121.0" rx="5" fill="#90CAF9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="27.5" y="640.5" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#222222" text-anchor="middle" font-weight="bold">技术路径</text>
+<rect x="67.0" y="575.0" width="818.0" height="131.0" fill="none" stroke="#F5F7FA" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="385.5" y="585.0" width="86.0" height="28.0" rx="4" fill="#5B7F9A" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="428.5" y="604.0" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#222222" text-anchor="middle" font-weight="bold">技术路径</text>
+<rect x="75.0" y="619.0" width="136.6" height="34.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="143.3" y="640.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">路径一</text>
+<rect x="216.6" y="619.0" width="136.6" height="34.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="284.9" y="640.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">路径二</text>
+<rect x="358.2" y="619.0" width="136.6" height="34.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="426.5" y="640.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">路径三</text>
+<rect x="499.8" y="619.0" width="136.6" height="34.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="568.1" y="640.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">路径四</text>
+<rect x="641.4" y="619.0" width="136.6" height="34.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="709.7" y="640.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">路径五</text>
+<rect x="798.0" y="614.5" width="89.0" height="52.0" rx="3" fill="#E3F2FD" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="842.5" y="626.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">案例研究法</text>
+<text x="842.5" y="640.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">比较研究法</text>
+<text x="842.5" y="654.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">专家咨询法</text>
+<line x1="428.5" y1="706.0" x2="428.5" y2="712.0" stroke="#2C3E50" stroke-width="2.2"/><polygon points="428.5,721.0 424.0,712.0 433.0,712.0" fill="#2C3E50"/>
+<rect x="4.0" y="729.0" width="47.0" height="121.0" rx="5" fill="#90CAF9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="27.5" y="789.5" font-family="Microsoft YaHei, sans-serif" font-size="10" fill="#222222" text-anchor="middle" font-weight="bold">结论</text>
+<rect x="67.0" y="724.0" width="818.0" height="131.0" fill="none" stroke="#F5F7FA" stroke-width="1.5" stroke-dasharray="6,4"/>
+<rect x="399.5" y="734.0" width="58.0" height="28.0" rx="4" fill="#5B7F9A" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="428.5" y="753.0" font-family="Microsoft YaHei, sans-serif" font-size="12" fill="#222222" text-anchor="middle" font-weight="bold">结论</text>
+<rect x="75.0" y="768.0" width="231.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="190.5" y="789.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">结论一</text>
+<rect x="311.0" y="768.0" width="231.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="426.5" y="789.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">结论二</text>
+<rect x="547.0" y="768.0" width="231.0" height="34.0" rx="4" fill="#C8E6C9" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="662.5" y="789.0" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">结论三</text>
+<rect x="798.0" y="763.5" width="89.0" height="52.0" rx="3" fill="#E3F2FD" stroke="#7B9CB8" stroke-width="1.2"/>
+<text x="842.5" y="775.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">案例研究法</text>
+<text x="842.5" y="789.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">比较研究法</text>
+<text x="842.5" y="803.5" font-family="Microsoft YaHei, sans-serif" font-size="9" fill="#222222" text-anchor="middle" font-weight="normal">专家咨询法</text>
+</svg>

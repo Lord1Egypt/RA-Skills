@@ -1,18 +1,49 @@
-"""
-Stock Realtime Brief — A 股实时分析与操作建议生成器
+"""A 股投研体系 v5.0 - 散户级 Bloomberg"""
+__version__ = "5.0.0"
+__author__ = "Stock Realtime Brief Contributors"
 
-主要 API:
-    analyze_single(code) -> AnalysisResult
-    analyze_multi(codes) -> AnalysisResult
-    analyze_portfolio(path=None) -> AnalysisResult
-"""
-from .analyzers import analyze_single, analyze_multi, analyze_portfolio, AnalysisResult
+# v4.x 核心
+from . import (
+    data_sources,
+    indicators,
+    analyzers,
+    portfolio,
+    renderers,
+    realtime_analyzer,
+    multi_timeframe,
+    market_phase,
+    main_line_tracker,
+    end_wave_detector,
+    multi_dim_analysis,
+    shake_vs_break,
+    business_quality,
+    research_reports,
+    announcements,
+    smart_picker,
+    price_watcher,
+    disciplines,
+    run_brief,
+)
 
-__version__ = "2.2.0"
+# v5.0 新增 7 大工具
+from . import (
+    dcf_calculator,
+    sector_rotation,
+    sell_signal,
+    polaris_monitor,
+    realtime_alerts,
+    financial_parser,
+    backtest_engine,
+)
+
 __all__ = [
-    "analyze_single",
-    "analyze_multi",
-    "analyze_portfolio",
-    "AnalysisResult",
-    "__version__",
+    # v4.x
+    'data_sources', 'indicators', 'analyzers', 'portfolio', 'renderers',
+    'realtime_analyzer', 'multi_timeframe', 'market_phase', 'main_line_tracker',
+    'end_wave_detector', 'multi_dim_analysis', 'shake_vs_break',
+    'business_quality', 'research_reports', 'announcements',
+    'smart_picker', 'price_watcher', 'disciplines', 'run_brief',
+    # v5.0 新增
+    'dcf_calculator', 'sector_rotation', 'sell_signal', 'polaris_monitor',
+    'realtime_alerts', 'financial_parser', 'backtest_engine',
 ]

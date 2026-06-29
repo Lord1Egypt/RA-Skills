@@ -1,0 +1,73 @@
+{
+  "baseUrl": "https://api.justserpapi.com",
+  "description": "Call GET /api/v1/google/finance/search for Google SERP Finance Search through Just Serp API with query.",
+  "displayName": "Google SERP Finance Search",
+  "endpointPath": "finance/search",
+  "openapi": "3.1.0",
+  "operations": [
+    {
+      "description": "Get Google finance Search data, including market summaries, company details, and related finance results, for finance monitoring and market research.",
+      "method": "GET",
+      "operationId": "financeSearch",
+      "parameters": [
+        {
+          "defaultValue": null,
+          "description": "The stock symbol, company name, or index you want to search for on Google Finance (e.g., 'AAPL', 'Tesla', 'S&P 500').",
+          "enumValues": [],
+          "location": "query",
+          "name": "query",
+          "required": true,
+          "schemaType": "string"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set to true to return the raw HTML of the Google search results page alongside the structured data.",
+          "enumValues": [],
+          "location": "query",
+          "name": "html",
+          "required": false,
+          "schemaType": "boolean"
+        },
+        {
+          "defaultValue": null,
+          "description": "Set the language for the results using its two-letter code (e.g., 'en' for English, 'fr' for French). See <a href=\"/reference/google-language\">Google Language</a>.",
+          "enumValues": [],
+          "location": "query",
+          "name": "language",
+          "required": false,
+          "schemaType": "string"
+        }
+      ],
+      "path": "/api/v1/google/finance/search",
+      "requestBody": null,
+      "responses": [
+        {
+          "description": "OK",
+          "statusCode": "200"
+        },
+        {
+          "description": "Authentication failed: API Key is invalid or missing",
+          "statusCode": "401"
+        },
+        {
+          "description": "Access denied: Insufficient credits or quota exceeded",
+          "statusCode": "403"
+        },
+        {
+          "description": "Internal server error or upstream service exception",
+          "statusCode": "500"
+        }
+      ],
+      "summary": "Search",
+      "tags": [
+        "Google Finance"
+      ]
+    }
+  ],
+  "platformKey": "google",
+  "primaryTag": "Google SERP",
+  "skillName": "justserpapi_google_finance_search",
+  "skillType": "interface",
+  "slug": "justserpapi-google-finance-search",
+  "sourceTitle": "API Shop Documentation"
+}

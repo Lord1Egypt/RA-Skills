@@ -1,0 +1,21 @@
+[
+  {
+    "path": "/mnt/data/image 1.png",
+    "width": 1480,
+    "height": 248,
+    "file_size_kb": 173.8056640625,
+    "mode": "RGBA",
+    "aspect_ratio": 5.967741935483871,
+    "closest_ratio": "16:9",
+    "ratio_error_percent": 235.68548387096774,
+    "brightness_0_255": 231.13221447253704,
+    "contrast_proxy": 57.441142687973404,
+    "sharpness_proxy": 4204.827526191519,
+    "min_dimension_ok": false,
+    "notes": [
+      "最短边低于 720px，可能不适合高清封面。",
+      "比例接近 16:9，但误差 235.7%，建议按平台比例重新裁切。",
+      "整体过亮，白字或高光区域可能丢失层级。"
+    ]
+  }
+]

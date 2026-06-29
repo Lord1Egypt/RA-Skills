@@ -4,9 +4,9 @@ Find wasted AI spend in OpenClaw, Hermes, and Cursor.
 
 Xerg is a local-first CLI for auditing AI spend in dollars, not raw token counts. It reads OpenClaw and Hermes logs plus Cursor usage exports, separates confirmed waste from savings opportunities, and lets you measure fixes with `--compare`.
 
-Everything runs locally by default. The CLI is open source (MIT), published on npm as `@xerg/cli`, and the full source is at [github.com/xergai/xerg](https://github.com/xergai/xerg). No account is required for local audits. Hosted sync and hosted MCP are optional paid workspace features.
+Everything runs locally by default. The CLI is publicly installable from npm as `@xerg/cli`, but it is not open source. No account is required for local audits. Hosted sync and hosted MCP are optional paid workspace features.
 
-The `npx @xerg/cli` path fetches and executes the published npm package before running Xerg. If you want to review the code first and avoid that fetch on each use, install the CLI globally with `npm install -g @xerg/cli` or run a local build.
+The `npx @xerg/cli` path fetches and executes the published npm package before running Xerg. If you want to avoid that fetch on each use, install the CLI globally with `npm install -g @xerg/cli`.
 
 ## Install
 
@@ -83,7 +83,7 @@ xerg audit --json
 ## Links
 
 - Docs: [xerg.ai/docs](https://xerg.ai/docs)
-- GitHub: [xergai/xerg](https://github.com/xergai/xerg)
+- Skill: [xerg.ai/skill.md](https://xerg.ai/skill.md)
 - npm: [@xerg/cli](https://www.npmjs.com/package/@xerg/cli)
 - Pilot: [xerg.ai/pilot](https://xerg.ai/pilot)
 - Support: `query@xerg.ai`

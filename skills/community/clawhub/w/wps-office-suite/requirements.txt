@@ -1,0 +1,5 @@
+pywin32>=303; sys_platform == "win32"
+python-docx>=0.8.11
+openpyxl>=3.1.1
+Pillow>=9.0.0
+python-pptx>=0.6.21

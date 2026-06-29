@@ -1,0 +1,4 @@
+﻿display_name: U-AutoClaw Teacher Grading Pipeline / 教师批改流水线
+short_description: U-AutoClaw Portable Intelligent Data Warehouse workflow for K12 scan-to-grade, OCR/AI providers, dual verification, reports, and memory. U-AutoClaw 便携式智能数据仓的中小学扫描判卷、双接口校验、报表和记忆库流程。
+default_prompt: Design or implement a U-AutoClaw Portable Intelligent Data Warehouse / HermesDesktop / OpenClaw teacher grading pipeline using scans, answer keys, OCR/AI providers, review queues, Excel/Web/PDF exports, printable student reports, and separate teacher/student memory. 请设计或实现一个基于 U-AutoClaw 便携式智能数据仓、HermesDesktop、OpenClaw 的教师批改流水线，支持扫描试卷、标准答案、OCR/AI接口、异常审核、Excel/Web/PDF导出、学生报告打印、教师和学生记忆库分离。品牌：www.wboke.com。
+

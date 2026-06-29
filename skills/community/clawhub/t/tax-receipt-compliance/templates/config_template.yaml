@@ -1,0 +1,80 @@
+# 企业配置模板 - config.yaml
+# 本文件为示例模板，企业需根据实际情况填写
+# 未配置的功能模块将提示手动操作
+# 使用说明：参见 references/setup-guide.md
+
+# ==================== 查验引擎配置 ====================
+verify_engine: "tax_bureau"
+# 可选值:
+# - "tax_bureau": 国税总局查验平台（免费，无需API Key）
+# - "bairong": 百望云API（需企业自行申请）
+# - "nuonuo": 诺诺发票API（需企业自行申请）
+# - "custom": 企业自建接口（需提供接口地址）
+# - "none": 不启用查验功能
+
+# 百望云API（如选择bairong）
+bairong:
+  api_key: "在此填写您的百望云API Key"
+  api_secret: "在此填写您的百望云Secret"
+
+# 诺诺发票API（如选择nuonuo）
+nuonuo:
+  api_key: "在此填写您的诺诺发票API Key"
+  api_secret: "在此填写您的诺诺发票Secret"
+
+# 自建查验接口（如选择custom）
+custom:
+  endpoint: "https://your-company.com/api/verify"
+  method: "POST"
+  headers:
+    Authorization: "Bearer YOUR_TOKEN"
+  timeout: 30  # 超时时间（秒）
+
+# ==================== 审批平台配置 ====================
+approval:
+  platform: "none"
+  # 可选值:
+  # - "dingtalk": 钉钉审批
+  # - "wecom": 企业微信审批
+  # - "feishu": 飞书审批
+  # - "custom": 企业自建系统
+  # - "none": 不启用审批对接
+
+  # 钉钉审批
+  dingtalk:
+    app_key: ""
+    app_secret: ""
+    process_code: ""
+
+  # 企业微信审批
+  wecom:
+    corp_id: ""
+    secret: ""
+    template_id: ""
+
+  # 飞书审批
+  feishu:
+    app_id: ""
+    app_secret: ""
+    approval_code: ""
+
+  # 自建审批系统
+  custom:
+    endpoint: ""
+    method: "POST"
+    headers: {}
+    timeout: 30
+
+# ==================== 模板映射配置 ====================
+template:
+  path: "templates/expense_basic.xlsx"  # 报销单模板路径
+  field_mapping:
+    invoice_date: "开票日期"
+    seller_name: "销方名称"
+    amount: "金额（不含税）"
+    tax_amount: "税额"
+    total: "价税合计"
+    remark: "费用说明"
+    invoice_code: "发票代码"
+    invoice_number: "发票号码"
+    expense_type: "费用类型"

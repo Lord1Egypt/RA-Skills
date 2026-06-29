@@ -1,0 +1,9 @@
+{
+  "name": "scenario-sim",
+  "label": "场景模拟器",
+  "description": "用户输入场景，模拟判断理赔可能性和金额",
+  "layout": "interactive",
+  "features": ["input_form", "scenario_analysis", "coverage_check", "amount_estimate", "condition_tree"],
+  "input_fields": ["事故类型", "发生时间", "就诊医院", "费用金额", "既往症"],
+  "output_sections": ["是否赔付", "赔付金额", "赔付条件", "建议行动", "注意事项"]
+}

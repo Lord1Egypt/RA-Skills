@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Moving Checklist Output",
+  "description": "Output schema for the moving checklist result.",
+  "type": "object",
+  "required": ["version", "profile", "timeline", "categories", "budget"],
+  "properties": {
+    "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "profile": {
+      "type": "object",
+      "description": "Structured moving profile.",
+      "properties": {
+        "current": { "type": "string" },
+        "new_address": { "type": "string" },
+        "move_date": { "type": "string" },
+        "distance": { "type": "string" },
+        "household_size": { "type": "string" },
+        "household_members": { "type": "array", "items": { "type": "string" } },
+        "furniture": { "type": "string" },
+        "timeline_days": { "type": "integer" },
+        "city_tier": { "type": "string" }
+      }
+    },
+    "timeline": {
+      "type": "array",
+      "description": "Countdown timeline periods with tasks.",
+      "items": {
+        "type": "object",
+        "required": ["period", "label", "focus", "tasks"],
+        "properties": {
+          "period": { "type": "string", "description": "Date range label (e.g. D-30~D-14)." },
+          "label": { "type": "string", "description": "Period name." },
+          "focus": { "type": "string", "description": "Focus area for this period." },
+          "tasks": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "categories": {
+      "type": "object",
+      "description": "Tasks organized into 4 pillars.",
+      "properties": {
+        "Admin": {
+          "type": "object",
+          "properties": {
+            "label": { "type": "string" },
+            "description": { "type": "string" },
+            "tasks": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "minItems": 2,
+                "maxItems": 2,
+                "items": [{ "type": "string" }, { "type": "string" }]
+              }
+            }
+          }
+        },
+        "Packing": { "$ref": "#/properties/categories/properties/Admin" },
+        "Logistics": { "$ref": "#/properties/categories/properties/Admin" },
+        "Cleaning": { "$ref": "#/properties/categories/properties/Admin" }
+      }
+    },
+    "role_assignment": {
+      "type": "object",
+      "description": "Household role assignment matrix.",
+      "properties": {
+        "owner": { "type": "string" },
+        "members": { "type": "array", "items": { "type": "string" } },
+        "assignment": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        },
+        "note": { "type": "string" }
+      }
+    },
+    "budget": {
+      "type": "object",
+      "description": "Cost estimation breakdown.",
+      "properties": {
+        "city_tier": { "type": "string" },
+        "multiplier": { "type": "number" },
+        "box_count_estimate": { "type": "string" },
+        "categories": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "item": { "type": "string" },
+              "est": { "type": "string" }
+            }
+          }
+        },
+        "total_range": { "type": "string" },
+        "notes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "handbook": {
+      "type": "string",
+      "description": "Complete printable moving handbook in Markdown."
+    },
+    "warnings": {
+      "type": "array",
+      "description": "Any warnings or flags.",
+      "items": { "type": "string" }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "AI Product Visual Prompt Builder"
+  short_description: "Structured prompts for AI product visuals"
+  default_prompt: "Use $ai-product-visual-prompt-builder to turn my product image idea into a polished AI generation prompt."

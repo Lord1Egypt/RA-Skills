@@ -1,0 +1,10 @@
+# comprehensive-divination-skill dependencies
+#
+# IMPORTANT VERSION NOTE:
+# The original documentation pinned `zhdate>=1.0`, but PyPI only ships
+# `zhdate==0.1` for Windows (the 1.0 release only published a macOS ARM wheel).
+# The 0.1 release provides every API this skill actually uses:
+#   - ZhDate.from_datetime(dt) / to_datetime()
+#   - .leap_month / .lunar_year / .lunar_month / .lunar_day
+# Therefore we pin to 0.1 explicitly so installs succeed on all platforms.
+zhdate==0.1

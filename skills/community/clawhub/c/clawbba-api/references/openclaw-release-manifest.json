@@ -1,0 +1,13 @@
+{
+  "skillVersion": "2.0.31",
+  "openclaw": {
+    "pinned": "2026.6.1",
+    "min": "2026.5.28",
+    "max": "2026.6.1",
+    "npmSpec": "openclaw@2026.6.1",
+    "compatProfileId": "2026.5.28"
+  },
+  "versionPairLabel": "clawbba-api 2.0.31 ↔ OpenClaw 2026.6.1",
+  "npmAlignCommand": "npm i -g openclaw@2026.6.1",
+  "generatedAt": "2026-06-10T21:02:17.499Z"
+}

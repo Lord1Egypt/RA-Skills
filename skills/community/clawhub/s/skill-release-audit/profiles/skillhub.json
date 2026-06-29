@@ -1,0 +1,16 @@
+{
+  "name": "skillhub",
+  "description": "ClawHub-compatible private SkillHub (iFLYTEK / Tencent / Volcano / Aliyun). Like clawhub, but some deployments require version -> WARN.",
+  "frontmatter": {
+    "required": ["name", "description"],
+    "version_severity": "WARN"
+  },
+  "files": {
+    "require_readme": false,
+    "require_license": false
+  },
+  "slug_regex": "^[a-z0-9][a-z0-9-]*$",
+  "slug_max_len": null,
+  "bundle_limit_mb": 50,
+  "declaration_vs_code": "WARN"
+}

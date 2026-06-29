@@ -11,33 +11,31 @@ MIT-0 <br>
 
 
 ## Use Case: <br>
-Developers and content creators use this skill to convert local video recordings into optimized GIFs for documentation, demos, and lightweight sharing. <br>
+Developers and engineers use this skill to turn local webm, mp4, mov, or avi recordings into shareable GIFs with ffmpeg. It helps select quality, frame rate, scale, palette, and dithering settings and verify the generated output. <br>
 
 ### Deployment Geography for Use: <br>
 Global <br>
 
 ## Known Risks and Mitigations: <br>
-Risk: Broad activation triggers may cause the agent to suggest video conversion commands in unrelated contexts. <br>
-Mitigation: Review suggested actions before running commands and proceed only when the task is an intended video-to-GIF conversion. <br>
-Risk: Incorrect input or output paths could convert the wrong local file or write output to an unintended location. <br>
-Mitigation: Confirm the source video path, destination path, and ffmpeg command options before execution. <br>
-Risk: The workflow depends on a local ffmpeg installation. <br>
-Mitigation: Install ffmpeg only through a trusted package manager and verify availability before conversion. <br>
+Risk: Generic prompts mentioning video, GIFs, optimization, or ffmpeg may activate the skill. <br>
+Mitigation: Confirm the source video path, output GIF path, and selected conversion settings before allowing any ffmpeg command to run. <br>
+Risk: ffmpeg conversion commands process local files and can overwrite or create outputs at user-provided paths. <br>
+Mitigation: Validate that the input file exists, review the output filename, and verify the generated GIF before relying on the result. <br>
 
 
 ## Reference(s): <br>
-- [ClawHub skill page](https://clawhub.ai/athola/nm-scry-gif-generation) <br>
-- [Scry project homepage](https://github.com/athola/claude-night-market/tree/master/plugins/scry) <br>
+- [ClawHub skill page](https://clawhub.ai/athola/skills/nm-scry-gif-generation) <br>
+- [OpenClaw homepage metadata](https://github.com/athola/claude-night-market/tree/master/plugins/scry) <br>
 
 
 ## Skill Output: <br>
-**Output Type(s):** [Text, Markdown, Shell commands, Guidance] <br>
-**Output Format:** [Markdown guidance with inline shell commands] <br>
+**Output Type(s):** [text, markdown, shell commands, guidance] <br>
+**Output Format:** [Markdown guidance with inline bash commands] <br>
 **Output Parameters:** [1D] <br>
-**Other Properties Related to Output:** [Produces ffmpeg command suggestions and verification steps; GIF files are generated locally when the user runs the commands.] <br>
+**Other Properties Related to Output:** [Produces local ffmpeg command suggestions, validation steps, troubleshooting guidance, and output verification instructions.] <br>
 
 ## Skill Version(s): <br>
-1.9.12 (source: server release metadata) <br>
+1.9.13 (source: server release metadata; artifact frontmatter states 1.9.8) <br>
 
 ## Ethical Considerations: <br>
 Users should evaluate whether this skill is appropriate for their environment, review any generated or modified files before relying on them, and apply their organization's safety, security, and compliance requirements before deployment. <br>

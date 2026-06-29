@@ -1,0 +1,18 @@
+1/ I open-sourced Sage Router: a local-first AI model router for agents. One endpoint. Any provider. It picks the best model per request and fails over when a provider dies.
+
+Your keys can stay on your machine. No bundled model resale.
+
+github.com/earlvanze/sage-router?utm_source=x&utm_medium=social&utm_campaign=sage-router-launch
+
+2/ The problem: every harness (Codex, Claude Code, Cursor, Aider, Continue, OpenHands) has its own model picker and breaks on rate limits/outages. Sage Router puts routing+failover in one local layer.
+
+3/ 30-second start:
+python3 router.py --port 8790
+export OPENAI_BASE_URL=http://localhost:8790/v1
+codex --model openai/gpt-4.1
+
+4/ How it differs from OpenRouter: OpenRouter is a hosted marketplace/proxy. Sage Router is routing infrastructure for authorized access you already bring, and can keep provider credentials local by default.
+
+5/ Free local core. Hosted Sage Router adds generated keys, quotas, analytics, health checks, and reliability routing. Plans: Lite $6, Pro $30, Max $72.
+
+sagerouter.dev/pricing?utm_source=x&utm_medium=social&utm_campaign=sage-router-launch

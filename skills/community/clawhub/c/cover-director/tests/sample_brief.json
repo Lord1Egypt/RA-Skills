@@ -1,0 +1,24 @@
+{
+  "title": "新手别再乱用 ChatGPT 了，90% 的人都写错提示词",
+  "platform": "抖音",
+  "ratio": "9:16",
+  "field": "AI 工具教程",
+  "cover_goal": "涨点击 + 干货收藏",
+  "title_type": "避坑型 + 反常识型",
+  "main_keyword": "别乱用",
+  "support_text": "ChatGPT 提示词",
+  "subject": "真实知识博主人像，半身近景",
+  "expression": "严肃提醒，眼神直视镜头",
+  "gesture": "一只手做停止手势，另一只手自然放松",
+  "composition": "人物位于画面右侧，占画面高度约 60%，左侧留出大标题空间",
+  "background": "简洁蓝紫科技渐变背景，轻微界面光效，不出现文字",
+  "lighting": "明亮棚拍光线，脸部清晰，高对比度",
+  "color_palette": {
+    "primary": "blue-purple gradient",
+    "secondary": "dark navy",
+    "accent": "yellow"
+  },
+  "text_safe_area": "left side",
+  "style": "realistic commercial thumbnail photography, high contrast, sharp face details",
+  "negative": ["Chinese text", "gibberish characters", "QR code", "distorted hands"]
+}

@@ -31,8 +31,12 @@ siluzan-tso list-accounts [选项]
 | 列出全部某媒体账户 | `list-accounts -m <媒体> --page-size 999 --json-out <dir>` | `items[]`（`ma.mediaCustomerId`、`ma.mediaCustomerName`、`ma.currencyCode`、`ma.mediaAccountState` 等） |
 | 有多少个账户       | 同上                                                       | **`total`**（无需翻页；`itemCount < total` 时说明 page-size 不够大）                                    |
 | 只查某一个户       | `list-accounts -m <媒体> -k <id或名称> --json-out <dir>`   | 无需大 page-size                                                                                        |
+| **Meta 全部账户 + 余额/消耗** | **`accounts-digest -m MetaAd --json-out <dir>`**（一步；内部翻页+分批） | `accounts-digest-metaad.json` → `data.items[]`（含 `balance`、`spend`） |
+| Meta 余额续航预警  | `balance-scan -m MetaAd --json-out <dir>`                  | `balance-scan-metaad.json`                                                                              |
 
-仅当读盘后 `total > itemCount` 且已用 `--page-size 999` 时，再 `--page 2` 等同参数补拉；**禁止**对 stdout 写翻页循环（stdout 摘要无 `total` / `items`，读盘协议见 `core/agent-conventions.md` §三）。列账户 / 数个数**不需要** `accounts-digest`、`balance-scan`。
+> **MetaAd ID 格式**：OAuth 授权户（`list-accounts` 里 `mediaAccountType=FacebookAds`）的 `mediaCustomerId` **须带 `act_` 前缀**（与列表返回值一致）。**禁止**把 70+ 个 ID 拼成一条 `balance -a …`；全量用 `accounts-digest`。
+
+仅当读盘后 `total > itemCount` 且已用 `--page-size 999` 时，再 `--page 2` 等同参数补拉；**禁止**对 stdout 写翻页循环（stdout 摘要无 `total` / `items`，读盘协议见 `references/core/agent-conventions.md` §三）。列账户 / 数个数**不需要** `accounts-digest`、`balance-scan`。
 
 ```bash
 # ✅ 推荐：列出或统计全部 Google 账户（Agent 默认路径）
@@ -66,7 +70,7 @@ siluzan-tso list-accounts -m Google --page 2 --page-size 999 --json-out ./snap-p
 | ----------------- | --------------------------------------------------------------------------------------------------------------------- |
 | `entityId`        | 丝路赞内部 ID，`delink`/`share`、**`account-active-bills`** 等操作使用此 ID（**不是** `mediaCustomerId`）             |
 | `mediaCustomerId` | 媒体平台账户数字 ID（Google Customer ID 等）                                                                          |
-| `currencyCode`    | 账户主币种：`CNY`（人民币）或 `USD`（美金）等；**表格有「币种」列**；报告/Excel 须与此一致，见 `accounts/currency.md` |
+| `currencyCode`    | 账户主币种：`CNY`（人民币）或 `USD`（美金）等；**表格有「币种」列**；报告/Excel 须与此一致，见 `references/accounts/currency.md` |
 | `name`            | 账户名称                                                                                                              |
 | `status`          | 账户状态                                                                                                              |
 
@@ -116,7 +120,7 @@ siluzan-tso account-active-bills -m Google --id 18176820-6204-43c2-9a1f-0d0f5e9e
 siluzan-tso account-active-bills -m Google --id 18176820-6204-43c2-9a1f-0d0f5e9eb957 --json-out ./snap
 ```
 
-> **勿在文档或聊天中粘贴真实 JWT。** CI 环境基址为 `https://tso-api-ci.siluzan.com`，生产为 `https://tso-api.siluzan.com`（由 `config` / 构建环境决定）。
+> **勿在文档或聊天中粘贴真实 JWT。
 
 ---
 
@@ -128,7 +132,7 @@ siluzan-tso balance -m <媒体类型> -a <账户ID列表>
 
 | 选项                   | 说明                                                                                 |
 | ---------------------- | ------------------------------------------------------------------------------------ |
-| `-m, --media <type>`   | 媒体类型（必填）                                                                     |
+| `-m, --media <type>`   | 媒体类型（必填）：`Google \| TikTok \| Yandex \| MetaAd \| BingV2 \| Kwai`（MetaAd 走 `GetMediaAccountInfo`，余额字段为 `spend_cap`） |
 | `-a, --accounts <ids>` | 账户 `mediaCustomerId`（数字 ID），多个用逗号分隔（必填）。**注意：不是 `entityId`** |
 | `--json-out`           | 输出原始 JSON；不支持或查询失败时 stdout 为 `{"ok":false,"error":"..."}`             |
 
@@ -140,6 +144,9 @@ siluzan-tso balance -m Google -a 6326027735
 
 # 查询多个 TikTok 账户余额
 siluzan-tso balance -m TikTok -a 1234567890,9876543210
+
+# 查询 Meta 广告账户余额
+siluzan-tso balance -m MetaAd -a <mediaCustomerId>
 
 # JSON 输出，供脚本使用
 siluzan-tso balance -m Google -a 6326027735 --json-out ./snap
@@ -153,7 +160,7 @@ siluzan-tso balance -m Google -a 6326027735 --json-out ./snap
 
 一条命令替代 AI 对每个账户循环 `list-accounts -k` + `stats`。**多账户汇总表、对比消耗、跨账户巡检** 应优先本命令，禁止外层 for-loop 逐户 `stats`。
 
-> **数据时效性**：与 `stats` / `balance-scan` 相同（Google `account-spend-overview` 分流；TikTok/Yandex/BingV2/Kwai 为截至昨天的 `accountsoverview`）。完整表见 `references/analytics/account-analytics.md` 顶部。
+> **数据时效性**：与 `stats` / `balance-scan` 相同（Google `account-spend-overview` 分流；TikTok/Yandex/BingV2/Kwai/**MetaAd** 为截至昨天的 `accountsoverview`）。完整表见 `references/analytics/account-analytics.md` 顶部。
 
 ```bash
 siluzan-tso accounts-digest -m <媒体类型> [选项]
@@ -161,7 +168,7 @@ siluzan-tso accounts-digest -m <媒体类型> [选项]
 
 | 选项                   | 说明                                                                                                          | 默认    |
 | ---------------------- | ------------------------------------------------------------------------------------------------------------- | ------- |
-| `-m, --media <type>`   | 媒体类型（必填）：`Google \| TikTok \| Yandex \| BingV2 \| Kwai`（**MetaAd 无消耗汇总接口**）                 | —       |
+| `-m, --media <type>`   | 媒体类型（必填）：`Google \| TikTok \| Yandex \| MetaAd \| BingV2 \| Kwai`                 | —       |
 | `-a, --accounts <ids>` | 指定 `mediaCustomerId`，逗号分隔；**留空**则翻页拉该媒体全部账户                                              | —       |
 | `--start <YYYY-MM-DD>` | 统计开始日期（SKILL 要求 AI 先与用户确认区间）                                                                | 近 7 天 |
 | `--end <YYYY-MM-DD>`   | 统计结束日期                                                                                                  | 昨天    |
@@ -173,11 +180,11 @@ siluzan-tso accounts-digest -m <媒体类型> [选项]
 
 **`--json-out` 落盘**：
 
-- 目录模式典型文件：`accounts-digest-<媒体小写>.json`、同 stem 的 `*.outline.txt`、`cli-manifest-<媒体小写>.json`（读盘协议见 `core/agent-conventions.md` §三）。
+- 目录模式典型文件：`accounts-digest-<媒体小写>.json`、同 stem 的 `*.outline.txt`、`cli-manifest-<媒体小写>.json`（读盘协议见 `references/core/agent-conventions.md` §三）。
 - 响应结构：`{ ok, data: { items: [...] }, meta: { media, window, scanned, returned, source, totals, currencyNote, generatedAt } }`。
 - `meta.source`：`list` = 全量翻清单后拉数；`subset` = 传了 `-a`，跳过清单翻页（**`advertiserName` 会缺失**，公司名列显示 `-`）。
 
-**与 `stats` / `balance-scan` 的分工**见 `core/agent-conventions.md` §八 批量任务硬约束。
+**与 `stats` / `balance-scan` 的分工**见 `references/core/agent-conventions.md` §八 批量任务硬约束。
 
 **示例：**
 

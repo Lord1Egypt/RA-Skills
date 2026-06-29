@@ -1,0 +1,63 @@
+{
+  "schema_version": "s2t-architecture-patterns-v1",
+  "methodology": "framework-neutral agent relationship architecture by default; package metadata has no dependency on any one multi-agent runtime",
+  "principle": "Separate agent architecture from workflow orchestration. Use profile-based agents as graph nodes and explicit edges for routing, handoffs, gates, fan-out/fan-in, checkpoints, and terminal boundaries.",
+  "patterns": [
+    {
+      "id": "coordinator_specialists",
+      "name": "Coordinator + Specialists",
+      "use_when": "Most nontrivial teams need a small entry/coordinator plus specialist producers and an independent reviewer.",
+      "agent_count_fit": "5-6"
+    },
+    {
+      "id": "supervisor_workers",
+      "name": "Supervisor / Worker",
+      "use_when": "One role should route work, manage state, and synthesize specialist outputs.",
+      "agent_count_fit": "5-6"
+    },
+    {
+      "id": "router_specialists",
+      "name": "Router + Specialist Pools",
+      "use_when": "Inputs fall into distinct task classes and only some specialists should run per task.",
+      "agent_count_fit": "5-6, or fewer when classes are simple"
+    },
+    {
+      "id": "handoff_chain",
+      "name": "Handoff Chain",
+      "use_when": "Ownership should move from one accountable role to another with explicit inputs, outputs, and gates.",
+      "agent_count_fit": "5-6"
+    },
+    {
+      "id": "evidence_ledger",
+      "name": "Evidence Ledger / Blackboard",
+      "use_when": "Multiple roles consume shared evidence, claims, artifacts, or state that must stay versioned.",
+      "agent_count_fit": "5-6"
+    },
+    {
+      "id": "reviewer_gated",
+      "name": "Reviewer-Gated",
+      "use_when": "Producer or executor output must be independently accepted before delivery or side effects.",
+      "agent_count_fit": "5-6"
+    },
+    {
+      "id": "team_react_loop",
+      "name": "Team ReAct Loop",
+      "use_when": "Reason / act / observe behavior crosses agent boundaries instead of staying inside one agent.",
+      "agent_count_fit": "5-6 only when actions and observations have separate accountability"
+    },
+    {
+      "id": "hybrid_routing",
+      "name": "Hybrid Routing",
+      "use_when": "Simple tasks should stay single-agent or two-role, while complex or risky tasks activate the full team.",
+      "agent_count_fit": "2-4 for simple path with consolidation rationale, 5-6 for full path"
+    }
+  ],
+  "selection_rules": [
+    "Default to framework-neutral agent architecture relationship graph construction for design/package outputs unless the user requests another architecture.",
+    "Prefer 5-6 top-level agents for nontrivial teams.",
+    "Do not split a workflow step into an agent merely because it is a step.",
+    "Use one agent for one durable accountability boundary, not one action.",
+    "Keep ReAct as an agent-internal control pattern unless separate roles own reasoning, acting, and observing.",
+    "Escalate beyond 6 only for strong independence, isolation, domain, credential, or governance requirements."
+  ]
+}

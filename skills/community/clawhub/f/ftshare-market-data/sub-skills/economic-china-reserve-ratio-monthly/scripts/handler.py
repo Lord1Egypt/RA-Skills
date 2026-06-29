@@ -23,7 +23,7 @@ def safe_urlopen(req_or_url):
 
 
 def main():
-    url = f"{BASE_URL}/data/api/v1/market/data/economic/china-reserve-ratio"
+    url = f"{BASE_URL}/gateway/api/v1/market/data/economic/china-reserve-ratio"
 
     try:
         with safe_urlopen(url) as resp:

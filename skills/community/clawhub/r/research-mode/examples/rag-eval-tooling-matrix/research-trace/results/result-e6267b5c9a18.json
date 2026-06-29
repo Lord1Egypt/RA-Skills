@@ -1,0 +1,246 @@
+{
+  "summary": "Verified deployment and governance evidence for the hardest-to-score primary candidates, separating OSS/local runners from managed or enterprise platform controls. Saved a focused evidence note with workbook field recommendations and candidate-specific governance caveats.",
+  "next_angle": "Move into analysis: consolidate primary versus caveat rows, build the scoring weights, and translate capability plus governance evidence into a compact workbook schema with explicit Unknown/Enterprise-only values.",
+  "meaningful_progress": true,
+  "code_used": false,
+  "phase": "search",
+  "open_questions": [
+    "Should OSS libraries with optional commercial platforms, such as DeepEval/Confident AI and Giskard/Giskard Hub, be represented as one row with split notes or as separate workbook rows?",
+    "How should the workbook weight deployment/governance versus evaluation capability for a production RAG team?",
+    "Does Evidently currently offer a public SaaS/cloud option, or should SaaS availability be marked as needs verification because the current official FAQ wording is internally confusing?"
+  ],
+  "sources": [
+    {
+      "url": "https://docs.langchain.com/langsmith/enterprise",
+      "title": "LangSmith for Enterprise",
+      "note": "Official LangSmith enterprise deployment and user-management evidence: cloud, hybrid, self-hosted, roles, SCIM, SSO, and JIT provisioning."
+    },
+    {
+      "url": "https://docs.langchain.com/langsmith/administration-overview",
+      "title": "LangSmith Administration Overview",
+      "note": "Official LangSmith data-retention evidence: Base/Extended trace retention tiers and enterprise customization."
+    },
+    {
+      "url": "https://langfuse.com/docs/administration/rbac",
+      "title": "Langfuse Access Control (RBAC)",
+      "note": "Official Langfuse RBAC roles and organization/project access evidence."
+    },
+    {
+      "url": "https://langfuse.com/docs/administration/data-retention",
+      "title": "Langfuse Data Retention",
+      "note": "Official Langfuse retention evidence, including self-hosted object-delete requirements."
+    },
+    {
+      "url": "https://arize.com/docs/phoenix/self-hosting/features/authentication",
+      "title": "Phoenix Authentication",
+      "note": "Official Phoenix self-hosted user-management and role evidence."
+    },
+    {
+      "url": "https://arize.com/docs/phoenix/self-hosting/security/privacy",
+      "title": "Phoenix Privacy",
+      "note": "Official Phoenix self-hosted privacy and data-control evidence."
+    },
+    {
+      "url": "https://docs.wandb.ai/weave/guides/platform/weave-self-managed",
+      "title": "Set up a self-managed W&B Weave instance",
+      "note": "Official W&B Weave self-managed deployment requirements and enterprise license dependency."
+    },
+    {
+      "url": "https://docs.evidentlyai.com/faq/oss_vs_cloud",
+      "title": "Evidently Open-source vs. Cloud",
+      "note": "Official Evidently OSS, platform, commercial/enterprise, and RBAC feature evidence; also contains a SaaS availability ambiguity to carry forward."
+    },
+    {
+      "url": "https://deepeval.com/enterprise",
+      "title": "DeepEval Enterprise",
+      "note": "Official Confident AI platform evidence for cloud/self-hosted deployment, SSO/RBAC/audit logs, SOC 2, GDPR, and custom retention."
+    },
+    {
+      "url": "https://mlflow.org/docs/latest/self-hosting/",
+      "title": "MLflow Self-Hosting Overview",
+      "note": "Official MLflow open-source and self-hosting evidence."
+    },
+    {
+      "url": "https://mlflow.org/docs/latest/self-hosting/security/basic-http-auth/",
+      "title": "MLflow Authentication with Username and Password",
+      "note": "Official MLflow authentication and permissions evidence for self-hosted deployments."
+    },
+    {
+      "url": "https://github.com/promptfoo/promptfoo/blob/main/SECURITY.md",
+      "title": "Promptfoo Security Policy",
+      "note": "Official Promptfoo security model evidence: OSS runner is local and not a sandbox for untrusted eval content."
+    },
+    {
+      "url": "https://www.giskard.ai/",
+      "title": "Giskard AI Red Teaming and LLM Security Platform",
+      "note": "Official Giskard Hub enterprise controls evidence: data residency, RBAC, audit trails, identity-provider integration, compliance, and on-premise availability."
+    }
+  ],
+  "findings": [
+    {
+      "kind": "synthesis",
+      "text": "The workbook should separate evaluation capability scoring from deployment/governance scoring. Several candidates have strong OSS/local evaluation capability but enterprise controls only in a paired commercial platform.",
+      "source_urls": [
+        "https://github.com/confident-ai/deepeval",
+        "https://deepeval.com/enterprise",
+        "https://github.com/Giskard-AI/giskard-oss",
+        "https://www.giskard.ai/"
+      ]
+    },
+    {
+      "kind": "fact",
+      "text": "LangSmith has publicly documented enterprise deployment options covering managed cloud, hybrid deployment with customer VPC data plane, and self-hosted Docker Compose or Kubernetes, plus SSO/JIT/SCIM and role management.",
+      "source_urls": [
+        "https://docs.langchain.com/langsmith/enterprise"
+      ]
+    },
+    {
+      "kind": "fact",
+      "text": "LangSmith trace retention is publicly documented as Base 14 days and Extended 400 days, with enterprise customization for extended retention per workspace.",
+      "source_urls": [
+        "https://docs.langchain.com/langsmith/administration-overview"
+      ]
+    },
+    {
+      "kind": "fact",
+      "text": "Langfuse has public evidence for RBAC roles/scopes and data retention, including self-hosted retention requirements for S3-compatible blob storage deletion.",
+      "source_urls": [
+        "https://langfuse.com/docs/administration/rbac",
+        "https://langfuse.com/docs/administration/data-retention"
+      ]
+    },
+    {
+      "kind": "fact",
+      "text": "Phoenix has public self-hosted governance evidence: authentication-enabled instances support admin/member/viewer roles, and self-hosted Phoenix states trace, evaluation, dataset, and application data stays within the user's infrastructure.",
+      "source_urls": [
+        "https://arize.com/docs/phoenix/self-hosting/features/authentication",
+        "https://arize.com/docs/phoenix/self-hosting/security/privacy"
+      ]
+    },
+    {
+      "kind": "fact",
+      "text": "W&B Weave supports a self-managed deployment path, but official docs show it is an enterprise-grade deployment requiring W&B Platform, a Weave-enabled license, Kubernetes, ClickHouse, and S3-compatible storage.",
+      "source_urls": [
+        "https://docs.wandb.ai/weave/guides/platform/weave-self-managed"
+      ]
+    },
+    {
+      "kind": "risk",
+      "text": "Evidently's current official open-source-vs-cloud FAQ should be treated carefully: it documents OSS Apache-2.0 libraries and platform editions, but also contains confusing wording around whether Evidently Cloud is currently available as SaaS.",
+      "source_urls": [
+        "https://docs.evidentlyai.com/faq/oss_vs_cloud"
+      ]
+    },
+    {
+      "kind": "fact",
+      "text": "MLflow is publicly documented as fully open-source and self-hostable, with self-hosted authentication and APIs for managing users and permissions.",
+      "source_urls": [
+        "https://mlflow.org/docs/latest/self-hosting/",
+        "https://mlflow.org/docs/latest/self-hosting/security/basic-http-auth/"
+      ]
+    },
+    {
+      "kind": "risk",
+      "text": "Promptfoo should be scored high for local/private/CI-oriented evals but should carry an execution-risk note: its OSS security model explicitly says it is a local eval runner, not a sandbox for adversarial or untrusted configs.",
+      "source_urls": [
+        "https://github.com/promptfoo/promptfoo/blob/main/SECURITY.md"
+      ]
+    },
+    {
+      "kind": "plan",
+      "text": "Recommended governance workbook columns: license_or_commercial_posture, deployment_options, self_hosting_evidence, managed_saas_evidence, access_control_evidence, retention_or_data_control_evidence, enterprise_controls_evidence, governance_confidence, and governance_notes.",
+      "source_urls": [
+        "https://docs.langchain.com/langsmith/enterprise",
+        "https://langfuse.com/docs/administration/rbac",
+        "https://arize.com/docs/phoenix/self-hosting/security/privacy",
+        "https://docs.wandb.ai/weave/guides/platform/weave-self-managed"
+      ]
+    }
+  ],
+  "analysis_artifacts": [
+    {
+      "path": "workspace/analysis/deployment-governance-iteration-004.md",
+      "kind": "artifact",
+      "note": "Focused evidence note for governance/deployment columns and candidate-specific caveats to use during workbook analysis."
+    }
+  ],
+  "packages_used": [],
+  "database_used": false,
+  "database_artifacts": [],
+  "database_summary": null,
+  "vision_used": false,
+  "vision_artifacts": [],
+  "vision_summary": null,
+  "adequacy": {
+    "status": "not_started",
+    "goal_alignment": "This search iteration improves evidence for the production decision-matrix goal by verifying deployment and governance attributes that were still open after candidate discovery.",
+    "coverage_summary": "Covered governance evidence for LangSmith, Langfuse, Phoenix, W&B Weave, Evidently, DeepEval/Confident AI, MLflow, Promptfoo, and Giskard. Did not yet consolidate all rows or assign final scores.",
+    "covered_requirements": [
+      {
+        "requirement": "Use current public sources and prefer official documentation, GitHub repositories, release docs, and vendor docs.",
+        "evidence": "All added sources are official docs, official websites, or official GitHub repositories."
+      },
+      {
+        "requirement": "Compare open-source and commercially relevant tools through publicly verifiable sources.",
+        "evidence": "Findings explicitly separate OSS/local tooling from managed or enterprise platform controls."
+      },
+      {
+        "requirement": "Shape toward a compact public-safe workbook.",
+        "evidence": "Saved candidate governance notes and proposed workbook columns without personal data or private identifiers."
+      }
+    ],
+    "coverage_gaps": [
+      {
+        "gap": "Primary versus caveat/exclusion rows still need final consolidation across all 15 candidates.",
+        "severity": "blocking"
+      },
+      {
+        "gap": "Scoring weights have not yet been assigned.",
+        "severity": "blocking"
+      },
+      {
+        "gap": "Evidently SaaS/cloud status needs a second official confirmation or should remain marked as uncertain.",
+        "severity": "minor"
+      }
+    ],
+    "evidence_risks": [
+      {
+        "risk": "Vendor enterprise pages can make broad claims; final workbook should cite exact public docs and mark unverifiable controls as Unknown rather than inferred.",
+        "severity": "minor"
+      },
+      {
+        "risk": "Some OSS/commercial pairs may be confusing if represented as a single row without split notes.",
+        "severity": "minor"
+      }
+    ],
+    "contradictions": [
+      {
+        "contradiction": "The Evidently FAQ simultaneously says Evidently Cloud is no longer available as SaaS and later describes Cloud/Enterprise commercial deployment options.",
+        "severity": "minor"
+      }
+    ],
+    "recommended_next_phase": "analyze",
+    "recommended_next_angle": "Consolidate all 15 candidates into primary, caveat, and exclusion categories; then assign workbook scoring dimensions and weights using capability and governance evidence separately.",
+    "blocking_reasons": [],
+    "validation_evidence": [
+      {
+        "check": "goal_alignment",
+        "result": "passed",
+        "reason": "The iteration targeted an open question from working memory: publicly verifiable deployment/governance attributes for primary candidates."
+      },
+      {
+        "check": "explicit_constraints",
+        "result": "passed",
+        "reason": "No private identifiers or personal data were introduced; only public official sources were used."
+      },
+      {
+        "check": "next_phase_decision",
+        "result": "passed",
+        "reason": "Search now has enough governance evidence for an analysis iteration, but not enough synthesis/finalization work has happened to verify adequacy."
+      }
+    ]
+  },
+  "notify_recommendation": "silent",
+  "should_complete": false,
+  "final_report_markdown": null
+}

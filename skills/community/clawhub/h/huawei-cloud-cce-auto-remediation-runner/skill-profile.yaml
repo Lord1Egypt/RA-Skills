@@ -1,0 +1,40 @@
+﻿name: huawei-cloud-cce-auto-remediation-runner
+level: L3
+domain: diagnosis-remediation
+description: Prepare and run confirmed CCE remediation actions with preview-first guardrails.
+tools:
+  - huawei_auto_remediation_run
+  - huawei_rollback_cce_workload
+  - huawei_resize_cce_nodepool
+  - huawei_scale_cce_workload
+  - huawei_resize_cce_workload
+  - huawei_delete_cce_workload
+  - huawei_configure_cce_hpa
+  - huawei_delete_cce_node
+  - huawei_delete_cce_cluster
+  - huawei_hibernate_cce_cluster
+  - huawei_awake_cce_cluster
+  - huawei_cce_node_cordon
+  - huawei_cce_node_uncordon
+  - huawei_cce_node_drain
+  - huawei_reboot_ecs
+  - huawei_stop_ecs_instance
+  - huawei_start_ecs_instance
+  - huawei_hss_change_vul_status
+  - huawei_bind_cce_cluster_eip
+  - huawei_unbind_cce_cluster_eip
+  - huawei_network_verify_pod_scheduling
+  - huawei_get_cce_pods
+  - huawei_get_kubernetes_nodes
+  - huawei_get_cce_events
+  - huawei_workload_rollout_diagnose
+  - huawei_root_cause_analyze
+  - huawei_dependency_impact_analyze
+  - huawei_node_diagnose
+  - huawei_workload_diagnose
+references:
+  - references/workflow.md
+  - references/risk-rules.md
+  - references/output-schema.md
+guardrails:
+  max_auto_risk: R3

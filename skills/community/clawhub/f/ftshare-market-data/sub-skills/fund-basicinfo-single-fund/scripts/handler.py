@@ -29,7 +29,7 @@ def main():
     args = parser.parse_args()
 
     params = {"institution_code": args.institution_code}
-    url = f"{BASE_URL}/data/api/v1/market/data/fund/fund-basicinfo?" + urllib.parse.urlencode(params)
+    url = f"{BASE_URL}/gateway/api/v1/market/data/fund/fund-basicinfo?" + urllib.parse.urlencode(params)
 
     try:
         with safe_urlopen(url) as resp:

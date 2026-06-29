@@ -1,0 +1,10 @@
+{
+  "name": "standard",
+  "label": "标准甘特图",
+  "description": "通用项目甘特图，周/月时间轴",
+  "layout": "horizontal",
+  "features": ["task_bars", "timeline", "progress_indicator", "dependencies", "milestones"],
+  "time_unit": "auto",
+  "show_weekends": true,
+  "show_today": true
+}
